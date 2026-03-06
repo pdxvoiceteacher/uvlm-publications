@@ -17,6 +17,11 @@ concepts:
   - delta syn
   - narrative phase space
 
+concept_relations:
+  - source: coherence lattice
+    target: delta syn
+    type: contains
+
 publication_date: "2026-03-05"
 
 abstract: >

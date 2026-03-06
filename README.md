@@ -45,6 +45,7 @@ Each `papers/<slug>/metadata.yaml` includes:
 - `language` (2-letter code, e.g. `en`)
 - `keywords` (array of indexable topic strings)
 - optional `concepts` (explicit concept labels for concept graph nodes)
+- optional `concept_relations` (explicit concept hierarchy relations such as `contains`)
 - required `abstract`
 - `publication_date` in ISO format `YYYY-MM-DD`
 - `doi_suffix`
@@ -82,6 +83,7 @@ Required environment variables:
 - `registry/catalog.json`
 - declared per-paper `relations` in `papers/**/metadata.yaml`
 - declared per-paper `concepts` in `papers/**/metadata.yaml`
+- declared per-paper `concept_relations` in `papers/**/metadata.yaml`
 
 Node classes:
 
@@ -97,6 +99,7 @@ Edge classes:
 - `taggedWith`
 - `publishedIn`
 - `mentionsConcept`
+- `contains`
 - `cites`
 - `isVersionOf`
 - `isPartOf`

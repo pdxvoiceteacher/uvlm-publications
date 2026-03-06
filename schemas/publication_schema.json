@@ -61,6 +61,19 @@
       "items": { "type": "string", "minLength": 1 },
       "minItems": 1
     },
+    "concept_relations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["source", "target", "type"],
+        "properties": {
+          "source": { "type": "string", "minLength": 1 },
+          "target": { "type": "string", "minLength": 1 },
+          "type": { "type": "string", "enum": ["contains"] }
+        },
+        "additionalProperties": false
+      }
+    },
     "abstract": { "type": "string", "minLength": 1 },
     "version": { "type": "string", "pattern": "^v[0-9]+$" },
     "license": { "type": "string" },

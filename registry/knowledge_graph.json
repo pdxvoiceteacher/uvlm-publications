@@ -53,6 +53,11 @@
   ],
   "edges": [
     {
+      "source": "concept:coherence-lattice",
+      "target": "concept:delta-syn",
+      "type": "contains"
+    },
+    {
       "source": "publication:uvlm.paper.echo-atlas-primer.v1",
       "target": "author:thomas-prislac",
       "type": "authoredBy"

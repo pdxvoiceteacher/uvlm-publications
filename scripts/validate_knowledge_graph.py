@@ -14,6 +14,7 @@ ALLOWED_EDGE_TYPES = {
     "taggedWith",
     "publishedIn",
     "mentionsConcept",
+    "contains",
     "cites",
     "isVersionOf",
     "isPartOf",

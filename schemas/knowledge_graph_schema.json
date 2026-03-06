@@ -41,6 +41,7 @@
               "taggedWith",
               "publishedIn",
               "mentionsConcept",
+              "contains",
               "cites",
               "isVersionOf",
               "isPartOf",

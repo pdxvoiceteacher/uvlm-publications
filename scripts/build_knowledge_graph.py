@@ -10,6 +10,7 @@ from pathlib import Path
 import yaml
 
 PUBLICATION_RELATION_TYPES = {"cites", "isVersionOf", "isPartOf", "isReferencedBy"}
+CONCEPT_RELATION_TYPES = {"contains"}
 
 
 def read_json(path: Path) -> object:
@@ -71,6 +72,12 @@ def add_edge(edges: dict[str, dict], edge: dict) -> None:
     edges[key] = edge
 
 
+def add_concept_node(nodes: dict[str, dict], concept: str) -> str:
+    c_id = concept_id(concept)
+    add_node(nodes, {"id": c_id, "class": "concept", "value": concept})
+    return c_id
+
+
 def build_graph(catalog: list[dict], papers_dir: Path) -> dict:
     nodes: dict[str, dict] = {}
     edges: dict[str, dict] = {}
@@ -128,9 +135,19 @@ def build_graph(catalog: list[dict], papers_dir: Path) -> dict:
         for concept in metadata.get("concepts", []):
             if not concept:
                 continue
-            c_id = concept_id(concept)
-            add_node(nodes, {"id": c_id, "class": "concept", "value": concept})
+            c_id = add_concept_node(nodes, concept)
             add_edge(edges, {"source": pub_id, "target": c_id, "type": "mentionsConcept"})
+
+        for concept_relation in metadata.get("concept_relations", []):
+            source_concept = concept_relation.get("source", "")
+            target_concept = concept_relation.get("target", "")
+            relation_type = concept_relation.get("type")
+            if not source_concept or not target_concept or relation_type not in CONCEPT_RELATION_TYPES:
+                continue
+
+            source_id = add_concept_node(nodes, source_concept)
+            target_id = add_concept_node(nodes, target_concept)
+            add_edge(edges, {"source": source_id, "target": target_id, "type": relation_type})
 
         for rel in metadata.get("relations", []):
             rel_type = rel.get("type")
