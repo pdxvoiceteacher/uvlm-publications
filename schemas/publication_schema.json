@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": [
+    "title",
+    "authors",
+    "publication_date",
+    "doi_suffix",
+    "url"
+  ],
+  "properties": {
+    "title": { "type": "string" },
+    "authors": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["name"],
+        "properties": {
+          "name": { "type": "string" },
+          "orcid": { "type": "string" }
+        },
+        "additionalProperties": true
+      },
+      "minItems": 1
+    },
+    "publication_date": { "type": "string", "format": "date" },
+    "doi_suffix": { "type": "string" },
+    "url": { "type": "string", "format": "uri" },
+    "publisher": { "type": "string" },
+    "abstract": { "type": "string" },
+    "version": { "type": "string" },
+    "license": { "type": "string" },
+    "previous_doi": { "type": "string" }
+  },
+  "additionalProperties": true
+}
