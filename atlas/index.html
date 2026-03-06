@@ -32,6 +32,29 @@
       </div>
     </header>
 
+    <section class="timeline-controls">
+      <label>
+        Mode
+        <select id="mode-toggle">
+          <option value="static">Static</option>
+          <option value="temporal">Temporal</option>
+        </select>
+      </label>
+      <button id="timeline-play">Play</button>
+      <button id="timeline-pause">Pause</button>
+      <button id="timeline-reset">Reset Timeline</button>
+      <label>
+        Speed
+        <select id="timeline-speed">
+          <option value="1x">1x</option>
+          <option value="2x">2x</option>
+          <option value="5x">5x</option>
+        </select>
+      </label>
+      <input id="timeline-slider" type="range" />
+      <span id="timeline-date">--</span>
+    </section>
+
     <main class="layout">
       <section id="graph" aria-label="Knowledge graph visualization"></section>
       <aside class="panel">

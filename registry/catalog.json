@@ -16,5 +16,23 @@
     ],
     "type": "paper",
     "series": "UVLM Working Papers"
+  },
+  {
+    "title": "Coherence Lattice Formalism",
+    "doi": "pending",
+    "authors": [
+      "Thomas Prislac"
+    ],
+    "date": "2026-02-01",
+    "url": "https://ultraverbaluxmentis.org/publications/coherence-lattice-formalism",
+    "abstract": "A formal treatment of coherence lattices and relation-preserving mappings for narrative and conceptual structures.",
+    "language": "en",
+    "keywords": [
+      "coherence theory",
+      "formal systems",
+      "conceptual topology"
+    ],
+    "type": "paper",
+    "series": "UVLM Working Papers"
   }
 ]

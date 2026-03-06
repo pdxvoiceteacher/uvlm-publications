@@ -5,5 +5,12 @@
     "title": "The Echo Atlas Primer",
     "version": "v1",
     "date": "2026-03-05"
+  },
+  "coherence-lattice-formalism": {
+    "doi": "pending",
+    "status": "pending",
+    "title": "Coherence Lattice Formalism",
+    "version": "v1",
+    "date": "2026-02-01"
   }
 }

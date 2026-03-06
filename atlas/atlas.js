@@ -3,6 +3,9 @@ import { nodeStyles } from './nodeStyles.js';
 import { bindSearchAndFilter, centerOnQuery } from './search.js';
 import { renderMetadataPanel, setDefaultPanel } from './metadataPanel.js';
 import { bindZoomController } from './zoomController.js';
+import { timelineConfig } from './timelineConfig.js';
+import { createTimelineEngine } from './timelineEngine.js';
+import { bindTimelineControls } from './timelineControls.js';
 
 const graphContainer = document.getElementById('graph');
 const detailEl = document.getElementById('details');
@@ -12,6 +15,14 @@ const resetEl = document.getElementById('reset');
 const galaxyBtn = document.getElementById('view-galaxy');
 const solarBtn = document.getElementById('view-solar');
 const orbitBtn = document.getElementById('view-orbit');
+
+const timelineModeEl = document.getElementById('mode-toggle');
+const timelinePlayEl = document.getElementById('timeline-play');
+const timelinePauseEl = document.getElementById('timeline-pause');
+const timelineResetEl = document.getElementById('timeline-reset');
+const timelineSpeedEl = document.getElementById('timeline-speed');
+const timelineSliderEl = document.getElementById('timeline-slider');
+const timelineDateEl = document.getElementById('timeline-date');
 
 function nodeColor(cls) {
   return (nodeStyles[cls] ?? nodeStyles.fallback).color;
@@ -25,9 +36,34 @@ function borderColor(cls) {
   return (nodeStyles[cls] ?? nodeStyles.fallback).borderColor;
 }
 
-function toElements(graph) {
-  const nodes = graph.nodes.map((n) => ({ data: { ...n }, position: n.position }));
-  const edges = graph.edges.map((e, i) => ({ data: { id: `e-${i}`, ...e } }));
+function edgeTimelineId(edge) {
+  return `${edge.source}->${edge.target}:${edge.type}`;
+}
+
+function toElements(graph, timeline) {
+  const nodeDates = timeline?.nodes ?? {};
+  const edgeDates = timeline?.edges ?? {};
+
+  const nodes = graph.nodes.map((n) => ({
+    data: {
+      ...n,
+      appearanceDate: nodeDates[n.id]?.appearanceDate ?? null
+    },
+    position: n.position
+  }));
+
+  const edges = graph.edges.map((e, i) => {
+    const timelineId = edgeTimelineId(e);
+    return {
+      data: {
+        id: `e-${i}`,
+        ...e,
+        timelineId,
+        appearanceDate: edgeDates[timelineId]?.appearanceDate ?? null
+      }
+    };
+  });
+
   return [...nodes, ...edges];
 }
 
@@ -37,13 +73,18 @@ function firstNodeByClass(cy, klass) {
 }
 
 async function main() {
-  const response = await fetch('../registry/knowledge_graph.json');
-  const sourceGraph = await response.json();
+  const [graphResponse, timelineResponse] = await Promise.all([
+    fetch('../registry/knowledge_graph.json'),
+    fetch('../registry/atlas_timeline.json')
+  ]);
+
+  const sourceGraph = await graphResponse.json();
+  const timeline = await timelineResponse.json();
   const graph = computeAtlasLayout(sourceGraph);
 
   const cy = cytoscape({
     container: graphContainer,
-    elements: toElements(graph),
+    elements: toElements(graph, timeline),
     style: [
       {
         selector: 'node',
@@ -59,7 +100,8 @@ async function main() {
           'border-width': 1.2,
           'border-color': (ele) => borderColor(ele.data('class')),
           'text-outline-width': 0.5,
-          'text-outline-color': '#04060d'
+          'text-outline-color': '#04060d',
+          opacity: 1
         }
       },
       {
@@ -78,7 +120,8 @@ async function main() {
           'curve-style': 'bezier',
           'target-arrow-shape': 'triangle',
           'target-arrow-color': '#626f89',
-          'arrow-scale': 0.65
+          'arrow-scale': 0.65,
+          opacity: 1
         }
       },
       {
@@ -88,6 +131,14 @@ async function main() {
       {
         selector: '.filter-hidden',
         style: { display: 'none' }
+      },
+      {
+        selector: '.temporal-hidden',
+        style: { display: 'none' }
+      },
+      {
+        selector: '.newly-visible',
+        style: { opacity: 1 }
       },
       {
         selector: '.highlight',
@@ -113,6 +164,24 @@ async function main() {
   setDefaultPanel(detailEl);
   const searchAPI = bindSearchAndFilter({ cy, searchEl, typeFilterEl });
   const zoomAPI = bindZoomController(cy);
+
+  const timelineEngine = createTimelineEngine({
+    cy,
+    timeline,
+    config: timelineConfig
+  });
+
+  bindTimelineControls({
+    engine: timelineEngine,
+    modeEl: timelineModeEl,
+    playEl: timelinePlayEl,
+    pauseEl: timelinePauseEl,
+    resetEl: timelineResetEl,
+    speedEl: timelineSpeedEl,
+    sliderEl: timelineSliderEl,
+    dateLabelEl: timelineDateEl,
+    maxIndex: timeline.events.length - 1
+  });
 
   cy.on('tap', 'node, edge', (evt) => {
     cy.elements().removeClass('highlight');
@@ -144,7 +213,7 @@ async function main() {
     searchEl.value = '';
     typeFilterEl.value = 'all';
     cy.elements().removeClass('zoom-hidden filter-hidden highlight');
-    cy.fit(cy.elements(), 60);
+    cy.fit(cy.elements(':visible'), 60);
     setDefaultPanel(detailEl);
     searchAPI.apply();
   });
