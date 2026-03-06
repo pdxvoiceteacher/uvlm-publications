@@ -75,6 +75,51 @@
     },
     {
       "date": "2026-03-05",
+      "type": "node-appear",
+      "id": "author:thomas-prislac"
+    },
+    {
+      "date": "2026-03-05",
+      "type": "node-appear",
+      "id": "concept:coherence-lattice"
+    },
+    {
+      "date": "2026-03-05",
+      "type": "node-appear",
+      "id": "concept:delta-syn"
+    },
+    {
+      "date": "2026-03-05",
+      "type": "node-appear",
+      "id": "concept:narrative-phase-space"
+    },
+    {
+      "date": "2026-03-05",
+      "type": "node-appear",
+      "id": "keyword:coherence-theory"
+    },
+    {
+      "date": "2026-03-05",
+      "type": "node-appear",
+      "id": "keyword:complex-systems"
+    },
+    {
+      "date": "2026-03-05",
+      "type": "node-appear",
+      "id": "keyword:narrative-systems"
+    },
+    {
+      "date": "2026-03-05",
+      "type": "node-appear",
+      "id": "publication:uvlm.paper.echo-atlas-primer.v1"
+    },
+    {
+      "date": "2026-03-05",
+      "type": "node-appear",
+      "id": "series:uvlm-working-papers"
+    },
+    {
+      "date": "2026-03-05",
       "type": "edge-appear",
       "id": "concept:coherence-lattice->concept:delta-syn:contains"
     },
@@ -122,51 +167,6 @@
       "date": "2026-03-05",
       "type": "edge-appear",
       "id": "publication:uvlm.paper.echo-atlas-primer.v1->series:uvlm-working-papers:publishedIn"
-    },
-    {
-      "date": "2026-03-05",
-      "type": "node-appear",
-      "id": "author:thomas-prislac"
-    },
-    {
-      "date": "2026-03-05",
-      "type": "node-appear",
-      "id": "concept:coherence-lattice"
-    },
-    {
-      "date": "2026-03-05",
-      "type": "node-appear",
-      "id": "concept:delta-syn"
-    },
-    {
-      "date": "2026-03-05",
-      "type": "node-appear",
-      "id": "concept:narrative-phase-space"
-    },
-    {
-      "date": "2026-03-05",
-      "type": "node-appear",
-      "id": "keyword:coherence-theory"
-    },
-    {
-      "date": "2026-03-05",
-      "type": "node-appear",
-      "id": "keyword:complex-systems"
-    },
-    {
-      "date": "2026-03-05",
-      "type": "node-appear",
-      "id": "keyword:narrative-systems"
-    },
-    {
-      "date": "2026-03-05",
-      "type": "node-appear",
-      "id": "publication:uvlm.paper.echo-atlas-primer.v1"
-    },
-    {
-      "date": "2026-03-05",
-      "type": "node-appear",
-      "id": "series:uvlm-working-papers"
     }
   ]
 }

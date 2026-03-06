@@ -82,12 +82,21 @@ jobs:
       - name: Validate publication knowledge graph
         run: python scripts/validate_knowledge_graph.py registry/knowledge_graph.json
 
+      - name: Build atlas timeline
+        run: python scripts/build_atlas_timeline.py --graph registry/knowledge_graph.json --catalog registry/catalog.json --output registry/atlas_timeline.json
+
+      - name: Validate atlas timeline
+        run: python scripts/validate_atlas_timeline.py registry/atlas_timeline.json
+
+      - name: Validate atlas timeline JSON formatting
+        run: python -m json.tool registry/atlas_timeline.json >/dev/null
+
       - name: Commit registry updates
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add registry/dois.json registry/publications.json registry/catalog.json registry/knowledge_graph.json registry/deposits papers/echo-atlas-primer/metadata.yaml
+          git add registry/dois.json registry/publications.json registry/catalog.json registry/knowledge_graph.json registry/atlas_timeline.json registry/deposits papers/echo-atlas-primer/metadata.yaml
           git diff --cached --quiet || git commit -m "Update DOI registries, catalog, graph, and deposit logs"
           git push
 
@@ -103,3 +112,4 @@ jobs:
             registry/publications.json
             registry/catalog.json
             registry/knowledge_graph.json
+            registry/atlas_timeline.json

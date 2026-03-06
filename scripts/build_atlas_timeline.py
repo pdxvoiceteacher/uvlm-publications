@@ -104,7 +104,8 @@ def build_timeline(graph: dict, node_dates: dict[str, dt.date]) -> dict:
     for eid, date_value in edge_dates.items():
         events.append({"date": date_value.isoformat(), "type": "edge-appear", "id": eid})
 
-    events.sort(key=lambda e: (e["date"], e["type"], e["id"]))
+    type_order = {"node-appear": 0, "edge-appear": 1}
+    events.sort(key=lambda e: (e["date"], type_order.get(e["type"], 99), e["id"]))
 
     start = min(node_dates.values()).isoformat()
     end = max(node_dates.values()).isoformat()
