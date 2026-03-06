@@ -1,0 +1,17 @@
+{
+  "generatedAt": "2026-03-06",
+  "nonCanonical": true,
+  "entries": [
+    {
+      "inputId": "sonya:text:atlas-note-003",
+      "status": "pending-review",
+      "sourceAuditStatus": "defer",
+      "targetPublisherAction": "defer",
+      "linkedConceptIds": [
+        "concept:narrative-phase-space"
+      ],
+      "explanation": "Potentially useful but currently below confidence threshold.",
+      "nonCanonical": true
+    }
+  ]
+}
