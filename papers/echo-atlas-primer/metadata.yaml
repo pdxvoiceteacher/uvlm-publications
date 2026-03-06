@@ -1,0 +1,28 @@
+title: The Echo Atlas Primer
+type: paper
+
+authors:
+  - name: Thomas Prislac
+    orcid: 0000-0000-0000-0000
+
+publisher: Ultra Verba Lux Mentis
+
+publication_date: 2026-03-05
+
+abstract: >
+  A multi-scale framework for analyzing narrative coherence
+  patterns across psychological, narrative, and cultural levels.
+
+version: v1
+
+doi_suffix: uvlm.paper.echo-atlas-primer.v1
+
+url: https://ultraverbaluxmentis.org/publications/echo-atlas-primer
+
+license: CC-BY-4.0
+
+relations:
+  - type: isReferencedBy
+    doi: 10.XXXX/uvlm.paper.echo-atlas-primer.v1
+
+content_hash: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
