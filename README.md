@@ -107,6 +107,28 @@ Edge classes:
 
 Phase 1 intentionally avoids inferred similarity edges and ontology expansion to keep the graph explicit, deterministic, and auditable.
 
+
+## UVLM Research Atlas (Visualization Scaffold)
+
+An initial interactive atlas is available at `atlas/index.html`.
+
+- engine: Cytoscape.js
+- input: `registry/knowledge_graph.json`
+- interactions: node/edge detail panel, class filter, text search, reset view
+- visual metaphor mapping:
+  - `concept` → star
+  - `publication` → planet
+  - `author` → constellation
+  - `keyword` → nebula
+  - `series` → solar system
+
+To run locally:
+
+```bash
+python3 -m http.server 8000
+# open http://localhost:8000/atlas/
+```
+
 ## CI Safety Policy
 
 The workflow at `.github/workflows/mint_doi.yml` runs on `papers/**` changes:
