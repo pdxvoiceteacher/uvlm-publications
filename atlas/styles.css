@@ -34,6 +34,16 @@ body {
 .controls {
   display: flex;
   gap: 0.5rem;
+  align-items: center;
+}
+
+.view-buttons {
+  display: flex;
+  gap: 0.3rem;
+}
+
+.view-buttons button {
+  min-width: 60px;
 }
 
 .controls input,

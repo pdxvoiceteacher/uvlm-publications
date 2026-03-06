@@ -115,19 +115,36 @@ An interactive atlas is available at `atlas/index.html`.
 - engine: Cytoscape.js with deterministic preset positions + light `fcose` relaxation
 - input: `registry/knowledge_graph.json`
 - modular frontend files:
-  - `atlas/atlas.js` (bootstrap/render orchestration)
-  - `atlas/layoutConfig.js` (layout constants)
-  - `atlas/layoutEngine.js` (concept anchors + orbital placement)
+  - `atlas/atlas.js` (bootstrap + view orchestration)
+  - `atlas/layoutConfig.js` (physics + orbit constants)
+  - `atlas/layoutEngine.js` (concept anchors, publication orbits, shell placement)
+  - `atlas/zoomLevels.js` (zoom thresholds + visibility layers)
+  - `atlas/zoomController.js` (camera-driven multi-scale transitions)
   - `atlas/nodeStyles.js` (class style map)
   - `atlas/search.js` (search/filter helpers)
   - `atlas/metadataPanel.js` (detail panel rendering)
-- interactions: node/edge detail panel, class filter, text search, reset view
-- visual metaphor mapping:
-  - `concept` → star
-  - `publication` → planet
-  - `author` → constellation
-  - `keyword` → nebula
-  - `series` → solar system
+
+### Multi-Scale Zoom Architecture
+
+Zoom controls graph abstraction layers (not only camera scale):
+
+- **Galaxy view**: `concept + series`
+- **Solar view**: `concept + publication + series`
+- **Orbit view**: `concept + publication + keyword + author + series`
+
+Atlas supports both automatic zoom-driven transitions and manual controls (`Galaxy`, `Solar`, `Orbit`).
+
+- concept click → focus solar-system view
+- publication click → focus orbit-detail view
+- smooth transitions via Cytoscape animations
+
+Visual metaphor mapping:
+
+- `concept` → star
+- `publication` → planet
+- `author` → constellation
+- `keyword` → nebula
+- `series` → solar system
 
 To run locally:
 

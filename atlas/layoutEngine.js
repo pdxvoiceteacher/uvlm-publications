@@ -16,6 +16,14 @@ function orbitalPosition(center, radius, seed) {
   };
 }
 
+function evenlySpacedPosition(center, radius, index, total) {
+  const angle = (2 * Math.PI * index) / Math.max(1, total);
+  return {
+    x: center.x + radius * Math.cos(angle),
+    y: center.y + radius * Math.sin(angle)
+  };
+}
+
 function barycenter(nodes) {
   if (!nodes.length) {
     return { x: 0, y: 0 };
@@ -40,7 +48,7 @@ function connectionsByTarget(edges) {
 }
 
 function conceptAnchors(concepts) {
-  const radius = Math.max(420, 240 + concepts.length * 32);
+  const radius = Math.max(500, 300 + concepts.length * 45);
   concepts.forEach((concept, i) => {
     const angle = (2 * Math.PI * i) / Math.max(1, concepts.length);
     concept.position = {
@@ -94,4 +102,49 @@ export function computeAtlasLayout(graph) {
     nodes,
     edges
   };
+}
+
+export function applySolarSystemLayout(cy, conceptId) {
+  const concept = cy.getElementById(conceptId);
+  if (!concept || !concept.length) {
+    return {};
+  }
+
+  const conceptPos = concept.position();
+  const mentionsEdges = cy.edges('[type = "mentionsConcept"]').filter((edge) => edge.target().id() === conceptId);
+  const publications = mentionsEdges.map((edge) => edge.source());
+
+  const positions = {};
+  publications.forEach((pub, index) => {
+    positions[pub.id()] = evenlySpacedPosition(conceptPos, preferredOrbitRadius.publication, index, publications.length);
+  });
+
+  return positions;
+}
+
+export function applyOrbitDetailLayout(cy, publicationId) {
+  const publication = cy.getElementById(publicationId);
+  if (!publication || !publication.length) {
+    return {};
+  }
+
+  const center = publication.position();
+  const positions = {};
+
+  const keywords = publication.connectedEdges('[type = "taggedWith"]').targets();
+  keywords.forEach((node, index) => {
+    positions[node.id()] = evenlySpacedPosition(center, preferredOrbitRadius.keyword, index, keywords.length);
+  });
+
+  const authors = publication.connectedEdges('[type = "authoredBy"]').targets();
+  authors.forEach((node, index) => {
+    positions[node.id()] = evenlySpacedPosition(center, preferredOrbitRadius.author, index, authors.length);
+  });
+
+  const series = publication.connectedEdges('[type = "publishedIn"]').targets();
+  series.forEach((node, index) => {
+    positions[node.id()] = evenlySpacedPosition(center, preferredOrbitRadius.series, index, series.length);
+  });
+
+  return positions;
 }

@@ -2,12 +2,16 @@ import { computeAtlasLayout } from './layoutEngine.js';
 import { nodeStyles } from './nodeStyles.js';
 import { bindSearchAndFilter, centerOnQuery } from './search.js';
 import { renderMetadataPanel, setDefaultPanel } from './metadataPanel.js';
+import { bindZoomController } from './zoomController.js';
 
 const graphContainer = document.getElementById('graph');
 const detailEl = document.getElementById('details');
 const searchEl = document.getElementById('search');
 const typeFilterEl = document.getElementById('type-filter');
 const resetEl = document.getElementById('reset');
+const galaxyBtn = document.getElementById('view-galaxy');
+const solarBtn = document.getElementById('view-solar');
+const orbitBtn = document.getElementById('view-orbit');
 
 function nodeColor(cls) {
   return (nodeStyles[cls] ?? nodeStyles.fallback).color;
@@ -25,6 +29,11 @@ function toElements(graph) {
   const nodes = graph.nodes.map((n) => ({ data: { ...n }, position: n.position }));
   const edges = graph.edges.map((e, i) => ({ data: { id: `e-${i}`, ...e } }));
   return [...nodes, ...edges];
+}
+
+function firstNodeByClass(cy, klass) {
+  const matches = cy.nodes().filter((n) => n.data('class') === klass);
+  return matches.length ? matches[0].id() : null;
 }
 
 async function main() {
@@ -58,7 +67,7 @@ async function main() {
         style: {
           'shadow-color': '#ffd700',
           'shadow-blur': 18,
-          'shadow-opacity': 0.5
+          'shadow-opacity': 0.55
         }
       },
       {
@@ -73,7 +82,11 @@ async function main() {
         }
       },
       {
-        selector: '.hidden',
+        selector: '.zoom-hidden',
+        style: { display: 'none' }
+      },
+      {
+        selector: '.filter-hidden',
         style: { display: 'none' }
       },
       {
@@ -98,14 +111,24 @@ async function main() {
   }).run();
 
   setDefaultPanel(detailEl);
+  const searchAPI = bindSearchAndFilter({ cy, searchEl, typeFilterEl });
+  const zoomAPI = bindZoomController(cy);
 
   cy.on('tap', 'node, edge', (evt) => {
     cy.elements().removeClass('highlight');
     evt.target.addClass('highlight');
     renderMetadataPanel(detailEl, evt.target.data());
-  });
 
-  const searchAPI = bindSearchAndFilter({ cy, searchEl, typeFilterEl });
+    if (evt.target.isNode()) {
+      const cls = evt.target.data('class');
+      if (cls === 'concept') {
+        zoomAPI.toSolar(evt.target.id());
+      }
+      if (cls === 'publication') {
+        zoomAPI.toOrbit(evt.target.id());
+      }
+    }
+  });
 
   searchEl.addEventListener('keydown', (evt) => {
     if (evt.key === 'Enter') {
@@ -113,10 +136,14 @@ async function main() {
     }
   });
 
+  galaxyBtn?.addEventListener('click', () => zoomAPI.toGalaxy());
+  solarBtn?.addEventListener('click', () => zoomAPI.toSolar(firstNodeByClass(cy, 'concept')));
+  orbitBtn?.addEventListener('click', () => zoomAPI.toOrbit(firstNodeByClass(cy, 'publication')));
+
   resetEl.addEventListener('click', () => {
     searchEl.value = '';
     typeFilterEl.value = 'all';
-    cy.elements().removeClass('hidden highlight');
+    cy.elements().removeClass('zoom-hidden filter-hidden highlight');
     cy.fit(cy.elements(), 60);
     setDefaultPanel(detailEl);
     searchAPI.apply();

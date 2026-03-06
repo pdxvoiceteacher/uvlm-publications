@@ -7,11 +7,12 @@ export function bindSearchAndFilter({ cy, searchEl, typeFilterEl }) {
       const text = `${node.data('title') ?? ''} ${node.data('value') ?? ''} ${node.data('name') ?? ''} ${node.id()}`.toLowerCase();
       const classOk = selectedClass === 'all' || node.data('class') === selectedClass;
       const textOk = !q || text.includes(q);
-      node.toggleClass('hidden', !(classOk && textOk));
+      node.toggleClass('filter-hidden', !(classOk && textOk));
     });
 
     cy.edges().forEach((edge) => {
-      edge.toggleClass('hidden', edge.source().hasClass('hidden') || edge.target().hasClass('hidden'));
+      const hideByFilter = edge.source().hasClass('filter-hidden') || edge.target().hasClass('filter-hidden');
+      edge.toggleClass('filter-hidden', hideByFilter);
     });
 
     const visible = cy.elements(':visible');
