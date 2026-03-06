@@ -10,6 +10,8 @@
     "publication_date",
     "doi_suffix",
     "url",
+    "language",
+    "keywords",
     "content_hash"
   ],
   "properties": {
@@ -43,6 +45,12 @@
       "pattern": "^uvlm\\.(paper|dataset|software)\\.[a-z0-9-]+\\.v[0-9]+$"
     },
     "url": { "type": "string", "format": "uri" },
+    "language": { "type": "string", "pattern": "^[a-z]{2}$" },
+    "keywords": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 },
+      "minItems": 1
+    },
     "abstract": { "type": "string" },
     "version": { "type": "string", "pattern": "^v[0-9]+$" },
     "license": { "type": "string" },

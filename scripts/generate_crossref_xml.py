@@ -42,6 +42,16 @@ def add_relations(journal_article: ET.Element, relations: list[dict]) -> None:
         relation_node.text = relation["doi"]
 
 
+def add_keywords(journal_article: ET.Element, keywords: list[str]) -> None:
+    if not keywords:
+        return
+
+    kwd_group = ET.SubElement(journal_article, "jats:kwd_group")
+    kwd_group.set("xmlns:jats", "http://www.ncbi.nlm.nih.gov/JATS1")
+    for keyword in keywords:
+        ET.SubElement(kwd_group, "jats:kwd").text = keyword
+
+
 def build_xml(metadata: dict, doi_prefix: str, depositor_email: str, batch_id: str) -> ET.Element:
     if not DOI_SUFFIX_PATTERN.match(metadata["doi_suffix"]):
         raise ValueError(f"Invalid DOI suffix format: {metadata['doi_suffix']}")
@@ -69,7 +79,7 @@ def build_xml(metadata: dict, doi_prefix: str, depositor_email: str, batch_id: s
     journal = ET.SubElement(body, "journal")
 
     journal_metadata = ET.SubElement(journal, "journal_metadata")
-    ET.SubElement(journal_metadata, "full_title").text = metadata.get("publisher", "Ultra Verba Lux Mentis")
+    ET.SubElement(journal_metadata, "full_title").text = metadata.get("series", "UVLM Working Papers")
     ET.SubElement(journal_metadata, "abbrev_title").text = "UVLM"
     ET.SubElement(journal_metadata, "issn", media_type="electronic").text = "0000-0000"
 
@@ -80,7 +90,12 @@ def build_xml(metadata: dict, doi_prefix: str, depositor_email: str, batch_id: s
     ET.SubElement(publication_date, "month").text = f"{date_value.month:02d}"
     ET.SubElement(publication_date, "day").text = f"{date_value.day:02d}"
 
-    journal_article = ET.SubElement(journal, "journal_article", publication_type="full_text")
+    journal_article = ET.SubElement(
+        journal,
+        "journal_article",
+        publication_type="full_text",
+        language=metadata.get("language", "en"),
+    )
     titles = ET.SubElement(journal_article, "titles")
     ET.SubElement(titles, "title").text = metadata["title"]
 
@@ -111,6 +126,7 @@ def build_xml(metadata: dict, doi_prefix: str, depositor_email: str, batch_id: s
         abstract.set("xmlns:jats", "http://www.ncbi.nlm.nih.gov/JATS1")
         ET.SubElement(abstract, "jats:p").text = metadata["abstract"]
 
+    add_keywords(journal_article, metadata.get("keywords", []))
     add_relations(journal_article, metadata.get("relations", []))
 
     doi_data = ET.SubElement(journal_article, "doi_data")
