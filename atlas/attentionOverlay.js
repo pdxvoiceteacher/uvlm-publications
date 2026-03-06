@@ -50,7 +50,9 @@ export async function loadAttentionOverlay() {
     sophiaAnnotationsResp,
     sophiaAttentionStateResp,
     sonyaMemoryIndexResp,
-    sonyaAttentionCandidatesResp
+    sonyaAttentionCandidatesResp,
+    reasoningThreadsResp,
+    cognitiveWatchlistResp
   ] = await Promise.all([
     fetch('../bridge/attention_updates.json').catch(() => null),
     fetch('../bridge/coherence_assessment.json').catch(() => null),
@@ -59,7 +61,9 @@ export async function loadAttentionOverlay() {
     fetch('../registry/sophia_annotations.json').catch(() => null),
     fetch('../registry/sophia_attention_state.json').catch(() => null),
     fetch('../registry/sonya_memory_index.json').catch(() => null),
-    fetch('../registry/sonya_attention_candidates.json').catch(() => null)
+    fetch('../registry/sonya_attention_candidates.json').catch(() => null),
+    fetch('../registry/reasoning_threads.json').catch(() => null),
+    fetch('../registry/cognitive_watchlist.json').catch(() => null)
   ]);
 
   return {
@@ -70,7 +74,9 @@ export async function loadAttentionOverlay() {
     sophiaAnnotations: sophiaAnnotationsResp ? await sophiaAnnotationsResp.json() : {},
     sophiaAttentionState: sophiaAttentionStateResp ? await sophiaAttentionStateResp.json() : {},
     sonyaMemoryIndex: sonyaMemoryIndexResp ? await sonyaMemoryIndexResp.json() : {},
-    sonyaAttentionCandidates: sonyaAttentionCandidatesResp ? await sonyaAttentionCandidatesResp.json() : {}
+    sonyaAttentionCandidates: sonyaAttentionCandidatesResp ? await sonyaAttentionCandidatesResp.json() : {},
+    reasoningThreads: reasoningThreadsResp ? await reasoningThreadsResp.json() : {},
+    cognitiveWatchlist: cognitiveWatchlistResp ? await cognitiveWatchlistResp.json() : {}
   };
 }
 
@@ -107,6 +113,37 @@ function buildSonyaConceptSignals(sonyaMemoryIndex, sonyaAttentionCandidates) {
   return byConcept;
 }
 
+
+
+function buildReasoningConceptSignals(reasoningThreads, cognitiveWatchlist) {
+  const result = new Map();
+
+  asArray(reasoningThreads?.threads).forEach((thread) => {
+    asArray(thread?.linkedConceptIds).forEach((conceptId) => {
+      if (typeof conceptId !== 'string') {
+        return;
+      }
+      const existing = result.get(conceptId) ?? { threadCount: 0, watchCount: 0, watchStatus: 'none' };
+      existing.threadCount += 1;
+      result.set(conceptId, existing);
+    });
+  });
+
+  asArray(cognitiveWatchlist?.entries).forEach((entry) => {
+    asArray(entry?.linkedConceptIds).forEach((conceptId) => {
+      if (typeof conceptId !== 'string') {
+        return;
+      }
+      const existing = result.get(conceptId) ?? { threadCount: 0, watchCount: 0, watchStatus: 'none' };
+      existing.watchCount += 1;
+      existing.watchStatus = existing.watchCount > 0 ? 'watch' : 'none';
+      result.set(conceptId, existing);
+    });
+  });
+
+  return result;
+}
+
 export function applyAttentionOverlay(cy, overlay) {
   const conceptWeights = overlay?.coherenceWeights?.conceptWeights ?? {};
   const conceptAnnotations = overlay?.sophiaAnnotations?.conceptAnnotations ?? {};
@@ -117,6 +154,7 @@ export function applyAttentionOverlay(cy, overlay) {
   );
   const byConcept = rankingIndex(canonicalAttention);
   const sonyaSignals = buildSonyaConceptSignals(overlay?.sonyaMemoryIndex, overlay?.sonyaAttentionCandidates);
+  const reasoningSignals = buildReasoningConceptSignals(overlay?.reasoningThreads, overlay?.cognitiveWatchlist);
 
   cy.nodes('[class = "concept"]').forEach((node) => {
     const id = node.id();
@@ -134,7 +172,12 @@ export function applyAttentionOverlay(cy, overlay) {
     node.data('sonyaAdmittedSignalCount', sonya?.admittedSignals ?? 0);
     node.data('sonyaAttentionCandidates', sonya?.attentionCandidates ?? []);
 
-    node.removeClass('attention-priority attention-secondary sonya-candidate');
+    const reasoning = reasoningSignals.get(id);
+    node.data('reasoningThreadCount', reasoning?.threadCount ?? 0);
+    node.data('reasoningWatchCount', reasoning?.watchCount ?? 0);
+    node.data('reasoningWatchStatus', reasoning?.watchStatus ?? 'none');
+
+    node.removeClass('attention-priority attention-secondary sonya-candidate reasoning-thread reasoning-watch');
     if ((rankData?.rank ?? Infinity) <= 2) {
       node.addClass('attention-priority');
     } else if ((rankData?.rank ?? Infinity) <= 5) {
@@ -143,6 +186,13 @@ export function applyAttentionOverlay(cy, overlay) {
 
     if ((sonya?.admittedSignals ?? 0) > 0) {
       node.addClass('sonya-candidate');
+    }
+
+    if ((reasoning?.threadCount ?? 0) > 0) {
+      node.addClass('reasoning-thread');
+    }
+    if ((reasoning?.watchCount ?? 0) > 0) {
+      node.addClass('reasoning-watch');
     }
   });
 }

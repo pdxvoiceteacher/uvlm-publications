@@ -194,6 +194,21 @@ Build command:
 python3 scripts/build_sonya_memory_overlay.py
 ```
 
+### Reasoning-thread overlay gate (Phase D)
+
+Publisher surfaces only **Sophia-audited reasoning-thread overlays** and watch artifacts.
+It does not independently infer, certify, or mutate higher cognition truth.
+
+- inputs: `bridge/reasoning_audit.json`, `bridge/recursive_reasoning_candidates.json`, and admitted Sonya memory artifacts
+- canonical outputs: `registry/reasoning_threads.json`, `registry/reasoning_thread_annotations.json`
+- observational non-canonical output: `registry/cognitive_watchlist.json`
+
+Build command:
+
+```bash
+python3 scripts/build_reasoning_thread_overlay.py
+```
+
 
 ## UVLM Research Atlas
 

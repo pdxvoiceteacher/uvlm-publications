@@ -64,6 +64,8 @@ function renderConcept(data) {
     row('Drift Direction (formal)', data.driftDirection ?? '—'),
     row('Sophia Note', data.sophiaNote ?? '—'),
     row('Sonya Admitted Signals', data.sonyaAdmittedSignalCount ?? 0),
+    row('Reasoning Threads', data.reasoningThreadCount ?? 0),
+    row('Reasoning Watch Status', data.reasoningWatchStatus ?? 'none'),
     row('Related Concepts', data.relatedConceptCount ?? 0),
     renderConceptRelations(data.relatedConcepts)
   ].join('');

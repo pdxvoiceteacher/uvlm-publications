@@ -497,6 +497,20 @@ async function main() {
           'border-width': 2.6,
           'border-color': '#b6ffce'
         }
+      },
+      {
+        selector: '.reasoning-thread',
+        style: {
+          'border-color': '#c2a6ff'
+        }
+      },
+      {
+        selector: '.reasoning-watch',
+        style: {
+          'overlay-color': '#ffd37f',
+          'overlay-opacity': 0.12,
+          'overlay-padding': 2
+        }
       }
     ],
     layout: {
@@ -620,7 +634,7 @@ async function main() {
   resetEl.addEventListener('click', () => {
     searchEl.value = '';
     typeFilterEl.value = 'all';
-    cy.elements().removeClass('zoom-hidden filter-hidden highlight spotlight-dim spotlight-focus sonya-candidate');
+    cy.elements().removeClass('zoom-hidden filter-hidden highlight spotlight-dim spotlight-focus sonya-candidate reasoning-thread reasoning-watch');
     constellationApi.clear();
     cy.fit(cy.elements(':visible'), 60);
     setDefaultPanel(detailEl);
