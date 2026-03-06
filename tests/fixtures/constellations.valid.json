@@ -1,0 +1,53 @@
+{
+  "generatedAt": "2026-03-05",
+  "method": {
+    "name": "deterministic-topology-clustering",
+    "version": "v1"
+  },
+  "constellations": [
+    {
+      "id": "constellation:coherence-lattice-core",
+      "title": "Coherence Lattice Core",
+      "seedConcepts": [
+        "concept:coherence-lattice"
+      ],
+      "memberNodeIds": [
+        "author:thomas-prislac",
+        "concept:coherence-lattice",
+        "concept:delta-syn",
+        "concept:formal-coherence",
+        "concept:narrative-phase-space",
+        "publication:uvlm.paper.coherence-lattice-formalism.v1",
+        "publication:uvlm.paper.echo-atlas-primer.v1",
+        "series:uvlm-working-papers"
+      ],
+      "memberEdgeIds": [
+        "concept:coherence-lattice->concept:delta-syn:contains",
+        "publication:uvlm.paper.coherence-lattice-formalism.v1->author:thomas-prislac:authoredBy",
+        "publication:uvlm.paper.coherence-lattice-formalism.v1->concept:coherence-lattice:mentionsConcept",
+        "publication:uvlm.paper.coherence-lattice-formalism.v1->concept:formal-coherence:mentionsConcept",
+        "publication:uvlm.paper.coherence-lattice-formalism.v1->series:uvlm-working-papers:publishedIn",
+        "publication:uvlm.paper.echo-atlas-primer.v1->author:thomas-prislac:authoredBy",
+        "publication:uvlm.paper.echo-atlas-primer.v1->concept:coherence-lattice:mentionsConcept",
+        "publication:uvlm.paper.echo-atlas-primer.v1->concept:delta-syn:mentionsConcept",
+        "publication:uvlm.paper.echo-atlas-primer.v1->concept:narrative-phase-space:mentionsConcept",
+        "publication:uvlm.paper.echo-atlas-primer.v1->publication:uvlm.paper.coherence-lattice-formalism.v1:isReferencedBy",
+        "publication:uvlm.paper.echo-atlas-primer.v1->series:uvlm-working-papers:publishedIn"
+      ],
+      "stats": {
+        "publicationCount": 2,
+        "conceptCount": 4,
+        "authorCount": 1,
+        "seriesCount": 1
+      },
+      "explanation": {
+        "primarySignals": [
+          "shared concept mentions",
+          "concept hierarchy",
+          "publication reference linkage",
+          "shared series"
+        ]
+      }
+    }
+  ]
+}

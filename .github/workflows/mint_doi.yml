@@ -103,6 +103,9 @@ jobs:
       - name: Run atlas timeline validator regression fixtures
         run: python3 -m unittest tests/test_validate_atlas_timeline.py
 
+      - name: Run constellations validator regression fixtures
+        run: python3 -m unittest tests/test_validate_constellations.py
+
       - name: Commit registry updates
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         run: |
