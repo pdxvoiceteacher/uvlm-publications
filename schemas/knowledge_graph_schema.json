@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": ["nodes", "edges"],
+  "properties": {
+    "nodes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "class"],
+        "properties": {
+          "id": { "type": "string", "minLength": 1 },
+          "class": {
+            "type": "string",
+            "enum": ["publication", "author", "keyword", "series", "concept"]
+          },
+          "title": { "type": ["string", "null"] },
+          "doi": { "type": ["string", "null"] },
+          "doi_suffix": { "type": ["string", "null"] },
+          "date": { "type": ["string", "null"] },
+          "url": { "type": ["string", "null"] },
+          "publication_type": { "type": ["string", "null"] },
+          "name": { "type": ["string", "null"] },
+          "value": { "type": ["string", "null"] }
+        },
+        "additionalProperties": true
+      }
+    },
+    "edges": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["source", "target", "type"],
+        "properties": {
+          "source": { "type": "string", "minLength": 1 },
+          "target": { "type": "string", "minLength": 1 },
+          "type": {
+            "type": "string",
+            "enum": [
+              "authoredBy",
+              "taggedWith",
+              "publishedIn",
+              "mentionsConcept",
+              "contains",
+              "cites",
+              "isVersionOf",
+              "isPartOf",
+              "isReferencedBy"
+            ]
+          },
+          "doi": { "type": "string" }
+        },
+        "additionalProperties": true
+      }
+    }
+  },
+  "additionalProperties": false
+}
