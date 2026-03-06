@@ -1,0 +1,33 @@
+title: Coherence Lattice Formalism
+type: paper
+
+authors:
+  - name: Thomas Prislac
+    orcid: 0000-0000-0000-0000
+
+publisher: Ultra Verba Lux Mentis
+series: UVLM Working Papers
+language: en
+keywords:
+  - coherence theory
+  - formal systems
+  - conceptual topology
+concepts:
+  - coherence lattice
+  - formal coherence
+
+publication_date: "2026-02-01"
+
+abstract: >
+  A formal treatment of coherence lattices and relation-preserving mappings
+  for narrative and conceptual structures.
+
+version: v1
+
+doi_suffix: uvlm.paper.coherence-lattice-formalism.v1
+
+url: https://ultraverbaluxmentis.org/publications/coherence-lattice-formalism
+
+license: CC-BY-4.0
+
+content_hash: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
