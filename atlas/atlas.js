@@ -489,6 +489,14 @@ async function main() {
           'overlay-opacity': 0.2,
           'overlay-padding': 3
         }
+      },
+      {
+        selector: '.sonya-candidate',
+        style: {
+          'border-style': 'double',
+          'border-width': 2.6,
+          'border-color': '#b6ffce'
+        }
       }
     ],
     layout: {
@@ -612,7 +620,7 @@ async function main() {
   resetEl.addEventListener('click', () => {
     searchEl.value = '';
     typeFilterEl.value = 'all';
-    cy.elements().removeClass('zoom-hidden filter-hidden highlight spotlight-dim spotlight-focus');
+    cy.elements().removeClass('zoom-hidden filter-hidden highlight spotlight-dim spotlight-focus sonya-candidate');
     constellationApi.clear();
     cy.fit(cy.elements(':visible'), 60);
     setDefaultPanel(detailEl);

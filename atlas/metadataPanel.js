@@ -63,6 +63,7 @@ function renderConcept(data) {
     row('Activity Mismatch Score (publisher-local)', data.activityMismatchScore == null ? '—' : Number(data.activityMismatchScore).toFixed(2)),
     row('Drift Direction (formal)', data.driftDirection ?? '—'),
     row('Sophia Note', data.sophiaNote ?? '—'),
+    row('Sonya Admitted Signals', data.sonyaAdmittedSignalCount ?? 0),
     row('Related Concepts', data.relatedConceptCount ?? 0),
     renderConceptRelations(data.relatedConcepts)
   ].join('');

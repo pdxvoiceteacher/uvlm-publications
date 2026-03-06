@@ -169,6 +169,31 @@ Semantics used in this repo:
 
 Publisher may include local UI diagnostics, but they must be clearly separated from canonical policy metrics (e.g., `activityMismatchScore` is a local rendering diagnostic, not formal drift).
 
+### Sonya memory ingestion gate (Phase C)
+
+Publisher memory artifacts ingest **only Sophia-audited Sonya decisions**.
+
+Required order:
+
+1. raw Sonya input
+2. CoherenceLattice projection
+3. Sophia audit/admission decision
+4. Publisher memory storage
+
+Publisher does **not** store raw Sonya input directly into canonical corpus memory.
+
+Current memory-gating artifacts:
+
+- inputs: `bridge/sonya_audit.json`, `bridge/sonya_admission_decisions.json`
+- canonical outputs: `registry/sonya_memory_index.json`, `registry/sonya_memory_annotations.json`, `registry/sonya_attention_candidates.json`
+- non-canonical holding area (optional): `registry/sonya_pending_review.json`
+
+Build command:
+
+```bash
+python3 scripts/build_sonya_memory_overlay.py
+```
+
 
 ## UVLM Research Atlas
 

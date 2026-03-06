@@ -48,14 +48,18 @@ export async function loadAttentionOverlay() {
     sophiaRecommendationsResp,
     coherenceWeightsResp,
     sophiaAnnotationsResp,
-    sophiaAttentionStateResp
+    sophiaAttentionStateResp,
+    sonyaMemoryIndexResp,
+    sonyaAttentionCandidatesResp
   ] = await Promise.all([
     fetch('../bridge/attention_updates.json').catch(() => null),
     fetch('../bridge/coherence_assessment.json').catch(() => null),
     fetch('../bridge/sophia_recommendations.json').catch(() => null),
     fetch('../registry/coherence_weights.json').catch(() => null),
     fetch('../registry/sophia_annotations.json').catch(() => null),
-    fetch('../registry/sophia_attention_state.json').catch(() => null)
+    fetch('../registry/sophia_attention_state.json').catch(() => null),
+    fetch('../registry/sonya_memory_index.json').catch(() => null),
+    fetch('../registry/sonya_attention_candidates.json').catch(() => null)
   ]);
 
   return {
@@ -64,8 +68,43 @@ export async function loadAttentionOverlay() {
     sophiaRecommendations: sophiaRecommendationsResp ? await sophiaRecommendationsResp.json() : {},
     coherenceWeights: coherenceWeightsResp ? await coherenceWeightsResp.json() : {},
     sophiaAnnotations: sophiaAnnotationsResp ? await sophiaAnnotationsResp.json() : {},
-    sophiaAttentionState: sophiaAttentionStateResp ? await sophiaAttentionStateResp.json() : {}
+    sophiaAttentionState: sophiaAttentionStateResp ? await sophiaAttentionStateResp.json() : {},
+    sonyaMemoryIndex: sonyaMemoryIndexResp ? await sonyaMemoryIndexResp.json() : {},
+    sonyaAttentionCandidates: sonyaAttentionCandidatesResp ? await sonyaAttentionCandidatesResp.json() : {}
   };
+}
+
+
+
+function buildSonyaConceptSignals(sonyaMemoryIndex, sonyaAttentionCandidates) {
+  const admittedInputIds = new Set(
+    asArray(sonyaMemoryIndex?.entries)
+      .filter((e) => typeof e?.inputId === 'string')
+      .map((e) => e.inputId)
+  );
+
+  const byConcept = new Map();
+  asArray(sonyaAttentionCandidates?.candidates).forEach((candidate) => {
+    const inputId = candidate?.inputId;
+    if (typeof inputId !== 'string' || !admittedInputIds.has(inputId)) {
+      return;
+    }
+    asArray(candidate?.conceptTargets).forEach((conceptId) => {
+      if (typeof conceptId !== 'string') {
+        return;
+      }
+      const existing = byConcept.get(conceptId) ?? { admittedSignals: 0, attentionCandidates: [] };
+      existing.admittedSignals += 1;
+      existing.attentionCandidates.push({
+        inputId,
+        status: candidate?.status ?? 'stored',
+        attentionWeight: Number(candidate?.attentionWeight ?? 0)
+      });
+      byConcept.set(conceptId, existing);
+    });
+  });
+
+  return byConcept;
 }
 
 export function applyAttentionOverlay(cy, overlay) {
@@ -77,6 +116,7 @@ export function applyAttentionOverlay(cy, overlay) {
     overlay?.sophiaAttentionState
   );
   const byConcept = rankingIndex(canonicalAttention);
+  const sonyaSignals = buildSonyaConceptSignals(overlay?.sonyaMemoryIndex, overlay?.sonyaAttentionCandidates);
 
   cy.nodes('[class = "concept"]').forEach((node) => {
     const id = node.id();
@@ -90,11 +130,19 @@ export function applyAttentionOverlay(cy, overlay) {
     node.data('attentionReason', rankData?.attentionReason ?? null);
     node.data('sophiaNote', conceptAnnotations[id]?.note ?? fallbackAssessmentNotes[id] ?? null);
 
-    node.removeClass('attention-priority attention-secondary');
+    const sonya = sonyaSignals.get(id);
+    node.data('sonyaAdmittedSignalCount', sonya?.admittedSignals ?? 0);
+    node.data('sonyaAttentionCandidates', sonya?.attentionCandidates ?? []);
+
+    node.removeClass('attention-priority attention-secondary sonya-candidate');
     if ((rankData?.rank ?? Infinity) <= 2) {
       node.addClass('attention-priority');
     } else if ((rankData?.rank ?? Infinity) <= 5) {
       node.addClass('attention-secondary');
+    }
+
+    if ((sonya?.admittedSignals ?? 0) > 0) {
+      node.addClass('sonya-candidate');
     }
   });
 }
