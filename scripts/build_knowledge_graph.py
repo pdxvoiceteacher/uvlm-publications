@@ -64,7 +64,16 @@ def relation_target_publication_id(doi: str) -> str:
 
 
 def add_node(nodes: dict[str, dict], node: dict) -> None:
-    nodes[node["id"]] = node
+    existing = nodes.get(node["id"])
+    if existing is None:
+        nodes[node["id"]] = node
+        return
+
+    merged = dict(existing)
+    for key, value in node.items():
+        if key not in merged or merged[key] in (None, ""):
+            merged[key] = value
+    nodes[node["id"]] = merged
 
 
 def add_edge(edges: dict[str, dict], edge: dict) -> None:
@@ -156,6 +165,9 @@ def build_graph(catalog: list[dict], papers_dir: Path) -> dict:
                 continue
 
             target_id = relation_target_publication_id(rel_doi)
+            if target_id == pub_id:
+                continue
+
             add_node(
                 nodes,
                 {

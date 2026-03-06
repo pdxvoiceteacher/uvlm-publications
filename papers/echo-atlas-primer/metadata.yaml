@@ -38,6 +38,6 @@ license: CC-BY-4.0
 
 relations:
   - type: isReferencedBy
-    doi: 10.12345/uvlm.paper.echo-atlas-primer.v1
+    doi: 10.12345/uvlm.paper.coherence-lattice-formalism.v1
 
 content_hash: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855

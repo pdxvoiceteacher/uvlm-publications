@@ -108,12 +108,19 @@ Edge classes:
 Phase 1 intentionally avoids inferred similarity edges and ontology expansion to keep the graph explicit, deterministic, and auditable.
 
 
-## UVLM Research Atlas (Visualization Scaffold)
+## UVLM Research Atlas (Phase 2)
 
-An initial interactive atlas is available at `atlas/index.html`.
+An interactive atlas is available at `atlas/index.html`.
 
-- engine: Cytoscape.js
+- engine: Cytoscape.js with deterministic preset positions + light `fcose` relaxation
 - input: `registry/knowledge_graph.json`
+- modular frontend files:
+  - `atlas/atlas.js` (bootstrap/render orchestration)
+  - `atlas/layoutConfig.js` (layout constants)
+  - `atlas/layoutEngine.js` (concept anchors + orbital placement)
+  - `atlas/nodeStyles.js` (class style map)
+  - `atlas/search.js` (search/filter helpers)
+  - `atlas/metadataPanel.js` (detail panel rendering)
 - interactions: node/edge detail panel, class filter, text search, reset view
 - visual metaphor mapping:
   - `concept` → star
