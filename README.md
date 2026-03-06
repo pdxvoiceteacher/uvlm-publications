@@ -12,7 +12,7 @@ Canonical source for UVLM scholarly publications and DOI minting.
 - `registry/dois.json`: slug-based DOI state registry.
 - `registry/publications.json`: global publication index keyed by DOI suffix.
 - `registry/catalog.json`: website-oriented publication feed generated from metadata + index.
-- `registry/knowledge_graph.json`: relation graph generated from publication metadata.
+- `registry/knowledge_graph.json`: deterministic knowledge graph generated from catalog + declared relations.
 - `registry/deposits/`: deposit audit logs.
 - `.github/workflows/`: CI workflows.
 - `DOI_NAMESPACE.md`: canonical DOI naming policy.
@@ -65,7 +65,8 @@ Schema is enforced by `schemas/publication_schema.json`.
    - `registry/publications.json` global publication index
    - `registry/deposits/<date>_<slug>.json` audit logs
 7. `scripts/build_catalog.py` generates `registry/catalog.json` for website/indexing consumers.
-8. `scripts/build_knowledge_graph.py` generates `registry/knowledge_graph.json` from `relations`.
+8. `scripts/build_knowledge_graph.py` generates `registry/knowledge_graph.json`.
+9. `scripts/validate_knowledge_graph.py` validates graph node/edge structure.
 
 Required environment variables:
 
@@ -73,11 +74,37 @@ Required environment variables:
 - `CROSSREF_PASSWORD`
 - `DOI_PREFIX`
 
+## Live Knowledge Graph (Phase 1: Deterministic)
+
+`registry/knowledge_graph.json` is built from:
+
+- `registry/catalog.json`
+- declared per-paper `relations` in `papers/**/metadata.yaml`
+
+Node classes:
+
+- `publication`
+- `author`
+- `keyword`
+- `series`
+
+Edge classes:
+
+- `authoredBy`
+- `taggedWith`
+- `publishedIn`
+- `cites`
+- `isVersionOf`
+- `isPartOf`
+- `isReferencedBy`
+
+Phase 1 intentionally avoids inferred similarity edges and ontology expansion to keep the graph explicit, deterministic, and auditable.
+
 ## CI Safety Policy
 
 The workflow at `.github/workflows/mint_doi.yml` runs on `papers/**` changes:
 
-- **Pull requests**: validates metadata, generates/validates XML, performs **dry-run only** deposit, and builds catalog + graph.
+- **Pull requests**: validates metadata, generates/validates XML, performs **dry-run only** deposit, and builds/validates catalog + graph artifacts.
 - **Pushes to `main`**: performs minting deposit, updates registries/catalog/graph, commits audit artifacts.
 
 This prevents accidental DOI minting before merge while keeping public metadata artifacts fresh.

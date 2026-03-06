@@ -77,7 +77,10 @@ jobs:
         run: python scripts/build_catalog.py
 
       - name: Build publication knowledge graph
-        run: python scripts/build_knowledge_graph.py
+        run: python scripts/build_knowledge_graph.py --catalog registry/catalog.json --papers-dir papers --output registry/knowledge_graph.json
+
+      - name: Validate publication knowledge graph
+        run: python scripts/validate_knowledge_graph.py registry/knowledge_graph.json
 
       - name: Commit registry updates
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
