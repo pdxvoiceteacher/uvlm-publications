@@ -7,6 +7,8 @@ import { timelineConfig } from './timelineConfig.js';
 import { createTimelineEngine } from './timelineEngine.js';
 import { bindTimelineControls } from './timelineControls.js';
 import { edgeLabelMap } from './edgeLabels.js';
+import { applyAttentionOverlay, loadAttentionOverlay } from './attentionOverlay.js';
+import { applyDriftVisualization } from './driftVisualization.js';
 
 const graphContainer = document.getElementById('graph');
 const detailEl = document.getElementById('details');
@@ -371,11 +373,12 @@ function bindConstellations({ cy, constellations, renderConstellationInfo }) {
 }
 
 async function main() {
-  const [graphResponse, timelineResponse, pathsResponse, constellationsResponse] = await Promise.all([
+  const [graphResponse, timelineResponse, pathsResponse, constellationsResponse, attentionOverlay] = await Promise.all([
     fetch('../registry/knowledge_graph.json'),
     fetch('../registry/atlas_timeline.json'),
     fetch('../registry/atlas_paths.json').catch(() => null),
-    fetch('../registry/constellations.json').catch(() => null)
+    fetch('../registry/constellations.json').catch(() => null),
+    loadAttentionOverlay().catch(() => ({}))
   ]);
 
   const sourceGraph = await graphResponse.json();
@@ -462,6 +465,29 @@ async function main() {
       {
         selector: '.spotlight-focus',
         style: { opacity: 1 }
+      },
+
+      {
+        selector: '.attention-priority',
+        style: {
+          'border-width': 2.3,
+          'border-color': '#f7d24d'
+        }
+      },
+      {
+        selector: '.attention-secondary',
+        style: {
+          'border-width': 1.8,
+          'border-color': '#7dcfff'
+        }
+      },
+      {
+        selector: '.drift-high',
+        style: {
+          'overlay-color': '#ff5d73',
+          'overlay-opacity': 0.2,
+          'overlay-padding': 3
+        }
       }
     ],
     layout: {
@@ -481,6 +507,7 @@ async function main() {
   }).run();
 
   annotateConceptStats(cy);
+  applyAttentionOverlay(cy, attentionOverlay);
   setDefaultPanel(detailEl);
 
   function focusNode(node) {
@@ -511,6 +538,9 @@ async function main() {
     maxIndex: timeline.events.length - 1
   });
 
+  timelineEngine.refreshConceptVisuals();
+  applyDriftVisualization(cy);
+
   bindGuidedPaths(cy, pathsData?.paths ?? [], (node) => focusNode(node));
 
   const constellationApi = bindConstellations({
@@ -521,6 +551,7 @@ async function main() {
 
   timelineEngine.onStateChange(() => {
     timelineEngine.refreshConceptVisuals();
+    applyDriftVisualization(cy);
     constellationApi.refresh();
   });
 
@@ -584,6 +615,7 @@ async function main() {
     searchAPI.apply();
     window.history.replaceState(null, '', window.location.pathname);
     timelineEngine.refreshConceptVisuals();
+    applyDriftVisualization(cy);
   });
 
   wireOnboarding();

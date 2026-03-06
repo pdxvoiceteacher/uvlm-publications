@@ -56,6 +56,11 @@ function renderConcept(data) {
     row('First Appearance', data.appearanceDate),
     row('Related Papers (visible)', data.visiblePublicationCount ?? 0),
     row('Concept Importance', (data.importanceScore ?? 0).toFixed(2)),
+    row('Coherence Weight', (data.coherenceWeight ?? 0).toFixed(2)),
+    row('Attention Rank', data.attentionRank ?? '—'),
+    row('Drift Score', (data.driftScore ?? 0).toFixed(2)),
+    row('Drift Direction', data.driftDirection ?? '—'),
+    row('Sophia Note', data.sophiaNote ?? '—'),
     row('Related Concepts', data.relatedConceptCount ?? 0),
     renderConceptRelations(data.relatedConcepts)
   ].join('');
