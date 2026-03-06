@@ -7,7 +7,7 @@ Canonical source for UVLM scholarly publications and DOI minting.
 ## Repository Structure
 
 - `papers/`: publication packages (`paper.pdf`, `metadata.yaml`, local docs).
-- `schemas/`: JSON schema validation rules.
+- `schemas/`: JSON schema validation rules (publication, knowledge graph, constellations).
 - `scripts/`: metadata validation, hash generation, Crossref XML/deposit automation.
 - `registry/dois.json`: slug-based DOI state registry.
 - `registry/publications.json`: global publication index keyed by DOI suffix.
@@ -447,6 +447,7 @@ No embeddings, no inferred free-text semantics, and no non-declared edges are in
 
 ### Validation and auditability
 
+- `schemas/constellations_schema.json` defines the artifact contract for `registry/constellations.json`.
 - `scripts/validate_constellations.py` validates structure, references to graph node/edge IDs, duplicates, ordering, and stats consistency.
 - CI builds and validates `registry/constellations.json` alongside catalog/graph/timeline artifacts.
 

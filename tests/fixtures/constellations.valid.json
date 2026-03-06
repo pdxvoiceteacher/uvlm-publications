@@ -2,7 +2,8 @@
   "generatedAt": "2026-03-05",
   "method": {
     "name": "deterministic-topology-clustering",
-    "version": "v1"
+    "version": "v1",
+    "notes": "Deterministic topology clustering over declared graph structure"
   },
   "constellations": [
     {

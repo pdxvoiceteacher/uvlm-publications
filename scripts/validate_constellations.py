@@ -10,6 +10,8 @@ import sys
 from pathlib import Path
 from typing import Any
 
+from jsonschema import Draft7Validator
+
 
 def load_json(path: Path) -> Any:
     return json.loads(path.read_text(encoding="utf-8"))
@@ -27,6 +29,16 @@ def parse_iso_date(value: object) -> bool:
 
 def canonical_edge_id(edge: dict[str, Any]) -> str:
     return f"{edge.get('source')}->{edge.get('target')}:{edge.get('type')}"
+
+
+def validate_schema(doc: Any, schema_path: Path) -> list[str]:
+    schema = load_json(schema_path)
+    validator = Draft7Validator(schema)
+    errs = []
+    for err in sorted(validator.iter_errors(doc), key=lambda e: list(e.path)):
+        loc = ".".join(str(p) for p in err.path) or "<root>"
+        errs.append(f"schema.{loc}: {err.message}")
+    return errs
 
 
 def build_graph_index(graph: dict[str, Any]) -> tuple[dict[str, dict[str, Any]], dict[str, dict[str, Any]]]:
@@ -242,6 +254,7 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--constellations", dest="constellations_opt", type=Path)
     parser.add_argument("--graph", dest="graph_opt", type=Path)
     parser.add_argument("--strict", action="store_true")
+    parser.add_argument("--schema", type=Path, default=Path("schemas/constellations_schema.json"))
     return parser
 
 
@@ -259,7 +272,9 @@ def main() -> int:
     graph_doc = load_json(graph_path)
     graph_nodes, graph_edges = build_graph_index(graph_doc)
 
-    errors, warnings, constellations, method = validate_top_level(const_doc, strict=args.strict)
+    errors = validate_schema(const_doc, args.schema)
+    top_errors, warnings, constellations, method = validate_top_level(const_doc, strict=args.strict)
+    errors.extend(top_errors)
 
     seen_ids: set[str] = set()
     last_id = ""
