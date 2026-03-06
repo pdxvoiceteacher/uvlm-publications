@@ -1,0 +1,133 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Research Constellations Schema",
+  "type": "object",
+  "required": ["generatedAt", "method", "constellations"],
+  "properties": {
+    "generatedAt": {
+      "type": "string",
+      "format": "date",
+      "description": "Date (ISO) when constellations were generated"
+    },
+    "method": {
+      "type": "object",
+      "required": ["name", "version", "notes"],
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Clustering method name",
+          "minLength": 1
+        },
+        "version": {
+          "type": "string",
+          "description": "Method version",
+          "minLength": 1
+        },
+        "notes": {
+          "type": "string",
+          "description": "Method description or notes",
+          "minLength": 1
+        }
+      },
+      "additionalProperties": true
+    },
+    "constellations": {
+      "type": "array",
+      "description": "List of derived concept-publication clusters",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "title",
+          "seedConcepts",
+          "memberNodeIds",
+          "memberEdgeIds",
+          "stats",
+          "explanation"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Unique constellation identifier",
+            "minLength": 1
+          },
+          "title": {
+            "type": "string",
+            "description": "Human-readable title",
+            "minLength": 1
+          },
+          "seedConcepts": {
+            "type": "array",
+            "description": "Initial concept node(s)",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "memberNodeIds": {
+            "type": "array",
+            "description": "All node IDs in the cluster",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "memberEdgeIds": {
+            "type": "array",
+            "description": "All edge IDs connecting those nodes",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "stats": {
+            "type": "object",
+            "description": "Counts of node types in the cluster",
+            "required": [
+              "publicationCount",
+              "conceptCount",
+              "authorCount",
+              "seriesCount"
+            ],
+            "properties": {
+              "publicationCount": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "conceptCount": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "authorCount": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "seriesCount": {
+                "type": "integer",
+                "minimum": 0
+              }
+            },
+            "additionalProperties": true
+          },
+          "explanation": {
+            "type": "object",
+            "required": ["primarySignals"],
+            "properties": {
+              "primarySignals": {
+                "type": "array",
+                "description": "Detected signals (as strings)",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              }
+            },
+            "additionalProperties": true
+          }
+        },
+        "additionalProperties": true
+      }
+    }
+  },
+  "additionalProperties": false
+}

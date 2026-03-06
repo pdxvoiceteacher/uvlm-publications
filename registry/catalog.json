@@ -1,0 +1,38 @@
+[
+  {
+    "title": "Coherence Lattice Formalism",
+    "doi": "pending",
+    "authors": [
+      "Thomas Prislac"
+    ],
+    "date": "2026-02-01",
+    "url": "https://ultraverbaluxmentis.org/publications/coherence-lattice-formalism",
+    "abstract": "A formal treatment of coherence lattices and relation-preserving mappings for narrative and conceptual structures.\n",
+    "language": "en",
+    "keywords": [
+      "coherence theory",
+      "formal systems",
+      "conceptual topology"
+    ],
+    "type": "paper",
+    "series": "UVLM Working Papers"
+  },
+  {
+    "title": "The Echo Atlas Primer",
+    "doi": "pending",
+    "authors": [
+      "Thomas Prislac"
+    ],
+    "date": "2026-03-05",
+    "url": "https://ultraverbaluxmentis.org/publications/echo-atlas-primer",
+    "abstract": "A multi-scale framework for analyzing narrative coherence patterns across psychological, narrative, and cultural levels.\n",
+    "language": "en",
+    "keywords": [
+      "coherence theory",
+      "narrative systems",
+      "complex systems"
+    ],
+    "type": "paper",
+    "series": "UVLM Working Papers"
+  }
+]
