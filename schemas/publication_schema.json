@@ -12,6 +12,7 @@
     "url",
     "language",
     "keywords",
+    "abstract",
     "content_hash"
   ],
   "properties": {
@@ -44,14 +45,18 @@
       "type": "string",
       "pattern": "^uvlm\\.(paper|dataset|software)\\.[a-z0-9-]+\\.v[0-9]+$"
     },
-    "url": { "type": "string", "format": "uri" },
+    "url": {
+      "type": "string",
+      "format": "uri",
+      "pattern": "^https://"
+    },
     "language": { "type": "string", "pattern": "^[a-z]{2}$" },
     "keywords": {
       "type": "array",
       "items": { "type": "string", "minLength": 1 },
       "minItems": 1
     },
-    "abstract": { "type": "string" },
+    "abstract": { "type": "string", "minLength": 1 },
     "version": { "type": "string", "pattern": "^v[0-9]+$" },
     "license": { "type": "string" },
     "previous_doi": { "type": "string" },

@@ -12,6 +12,7 @@ Canonical source for UVLM scholarly publications and DOI minting.
 - `registry/dois.json`: slug-based DOI state registry.
 - `registry/publications.json`: global publication index keyed by DOI suffix.
 - `registry/catalog.json`: website-oriented publication feed generated from metadata + index.
+- `registry/knowledge_graph.json`: relation graph generated from publication metadata.
 - `registry/deposits/`: deposit audit logs.
 - `.github/workflows/`: CI workflows.
 - `DOI_NAMESPACE.md`: canonical DOI naming policy.
@@ -43,9 +44,10 @@ Each `papers/<slug>/metadata.yaml` includes:
 - `series` (e.g. `UVLM Working Papers`)
 - `language` (2-letter code, e.g. `en`)
 - `keywords` (array of indexable topic strings)
+- required `abstract`
 - `publication_date` in ISO format `YYYY-MM-DD`
 - `doi_suffix`
-- `url`
+- `url` (must be a secure `https://` URL)
 - `content_hash` (SHA-256 of `paper.pdf`)
 - optional `relations` entries with DOI links
 
@@ -56,12 +58,14 @@ Schema is enforced by `schemas/publication_schema.json`.
 1. `scripts/update_content_hash.py` computes deterministic `content_hash`.
 2. `scripts/validate_metadata.py` validates schema + verifies hash.
 3. `scripts/generate_crossref_xml.py` creates `crossref_deposit.xml` with relation, language, and keyword support.
-4. `scripts/deposit_crossref.py --dry-run` validates payload without minting.
-5. `scripts/deposit_crossref.py` deposits and updates:
+4. `scripts/validate_crossref_xml.py` validates generated Crossref XML structure and DOI/resource fields.
+5. `scripts/deposit_crossref.py --dry-run` validates payload without minting.
+6. `scripts/deposit_crossref.py` deposits and updates:
    - `registry/dois.json` (`pending`, `registered`, `failed`, `updated`)
    - `registry/publications.json` global publication index
    - `registry/deposits/<date>_<slug>.json` audit logs
-6. `scripts/build_catalog.py` generates `registry/catalog.json` for website/indexing consumers.
+7. `scripts/build_catalog.py` generates `registry/catalog.json` for website/indexing consumers.
+8. `scripts/build_knowledge_graph.py` generates `registry/knowledge_graph.json` from `relations`.
 
 Required environment variables:
 
@@ -73,7 +77,7 @@ Required environment variables:
 
 The workflow at `.github/workflows/mint_doi.yml` runs on `papers/**` changes:
 
-- **Pull requests**: validates metadata, generates XML, performs **dry-run only** deposit, and builds catalog.
-- **Pushes to `main`**: performs minting deposit, updates registries/catalog, commits audit artifacts.
+- **Pull requests**: validates metadata, generates/validates XML, performs **dry-run only** deposit, and builds catalog + graph.
+- **Pushes to `main`**: performs minting deposit, updates registries/catalog/graph, commits audit artifacts.
 
-This prevents accidental DOI minting before merge while keeping public catalog artifacts fresh.
+This prevents accidental DOI minting before merge while keeping public metadata artifacts fresh.
