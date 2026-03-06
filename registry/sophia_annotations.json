@@ -1,0 +1,27 @@
+{
+  "generatedAt": "2026-03-06",
+  "conceptAnnotations": {
+    "concept:coherence-lattice": {
+      "note": "Primary coherence anchor across current corpus.",
+      "weight": 1.0
+    },
+    "concept:delta-syn": {
+      "note": "Secondary lattice branch with strong publication coupling.",
+      "weight": 0.4815
+    },
+    "concept:formal-coherence": {
+      "note": "Formalization concept with focused references.",
+      "weight": 0.1852
+    },
+    "concept:narrative-phase-space": {
+      "note": "Narrative systems extension concept.",
+      "weight": 0.0
+    }
+  },
+  "constellationAnnotations": {
+    "constellation:coherence-lattice-core": {
+      "note": "Core cluster formed by shared concept mentions and reference linkage.",
+      "weight": 1.0
+    }
+  }
+}
