@@ -12,8 +12,12 @@ keywords:
   - coherence theory
   - narrative systems
   - complex systems
+concepts:
+  - coherence lattice
+  - delta syn
+  - narrative phase space
 
-publication_date: 2026-03-05
+publication_date: "2026-03-05"
 
 abstract: >
   A multi-scale framework for analyzing narrative coherence

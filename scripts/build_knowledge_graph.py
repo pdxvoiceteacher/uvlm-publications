@@ -34,20 +34,28 @@ def suffix_from_doi(doi: str) -> str:
     return doi.split("/", 1)[1] if "/" in doi else doi
 
 
+def slugify(value: str) -> str:
+    return value.strip().lower().replace(" ", "-")
+
+
 def publication_id(doi_suffix: str) -> str:
     return f"publication:{doi_suffix}"
 
 
 def author_id(name: str) -> str:
-    return f"author:{name.strip().lower().replace(' ', '-')}"
+    return f"author:{slugify(name)}"
 
 
 def keyword_id(keyword: str) -> str:
-    return f"keyword:{keyword.strip().lower().replace(' ', '-') }"
+    return f"keyword:{slugify(keyword)}"
 
 
 def series_id(series: str) -> str:
-    return f"series:{series.strip().lower().replace(' ', '-') }"
+    return f"series:{slugify(series)}"
+
+
+def concept_id(concept: str) -> str:
+    return f"concept:{slugify(concept)}"
 
 
 def relation_target_publication_id(doi: str) -> str:
@@ -116,6 +124,14 @@ def build_graph(catalog: list[dict], papers_dir: Path) -> dict:
             continue
 
         metadata = read_yaml(metadata_path)
+
+        for concept in metadata.get("concepts", []):
+            if not concept:
+                continue
+            c_id = concept_id(concept)
+            add_node(nodes, {"id": c_id, "class": "concept", "value": concept})
+            add_edge(edges, {"source": pub_id, "target": c_id, "type": "mentionsConcept"})
+
         for rel in metadata.get("relations", []):
             rel_type = rel.get("type")
             rel_doi = rel.get("doi", "")
@@ -136,10 +152,7 @@ def build_graph(catalog: list[dict], papers_dir: Path) -> dict:
                     "publication_type": None,
                 },
             )
-            add_edge(
-                edges,
-                {"source": pub_id, "target": target_id, "type": rel_type, "doi": rel_doi},
-            )
+            add_edge(edges, {"source": pub_id, "target": target_id, "type": rel_type, "doi": rel_doi})
 
         previous_doi = metadata.get("previous_doi")
         if previous_doi:
@@ -157,10 +170,7 @@ def build_graph(catalog: list[dict], papers_dir: Path) -> dict:
                     "publication_type": None,
                 },
             )
-            add_edge(
-                edges,
-                {"source": pub_id, "target": target_id, "type": "isVersionOf", "doi": previous_doi},
-            )
+            add_edge(edges, {"source": pub_id, "target": target_id, "type": "isVersionOf", "doi": previous_doi})
 
     return {
         "nodes": [nodes[key] for key in sorted(nodes)],

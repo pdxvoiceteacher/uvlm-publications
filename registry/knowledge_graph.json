@@ -6,6 +6,21 @@
       "name": "Thomas Prislac"
     },
     {
+      "id": "concept:coherence-lattice",
+      "class": "concept",
+      "value": "coherence lattice"
+    },
+    {
+      "id": "concept:delta-syn",
+      "class": "concept",
+      "value": "delta syn"
+    },
+    {
+      "id": "concept:narrative-phase-space",
+      "class": "concept",
+      "value": "narrative phase space"
+    },
+    {
       "id": "keyword:coherence-theory",
       "class": "keyword",
       "value": "coherence theory"
@@ -23,12 +38,12 @@
     {
       "id": "publication:uvlm.paper.echo-atlas-primer.v1",
       "class": "publication",
-      "title": "The Echo Atlas Primer",
-      "doi": "pending",
+      "title": null,
+      "doi": "10.12345/uvlm.paper.echo-atlas-primer.v1",
       "doi_suffix": "uvlm.paper.echo-atlas-primer.v1",
-      "date": "2026-03-05",
-      "url": "https://ultraverbaluxmentis.org/publications/echo-atlas-primer",
-      "publication_type": "paper"
+      "date": null,
+      "url": null,
+      "publication_type": null
     },
     {
       "id": "series:uvlm-working-papers",
@@ -44,6 +59,32 @@
     },
     {
       "source": "publication:uvlm.paper.echo-atlas-primer.v1",
+      "target": "publication:uvlm.paper.echo-atlas-primer.v1",
+      "type": "isReferencedBy",
+      "doi": "10.12345/uvlm.paper.echo-atlas-primer.v1"
+    },
+    {
+      "source": "publication:uvlm.paper.echo-atlas-primer.v1",
+      "target": "concept:coherence-lattice",
+      "type": "mentionsConcept"
+    },
+    {
+      "source": "publication:uvlm.paper.echo-atlas-primer.v1",
+      "target": "concept:delta-syn",
+      "type": "mentionsConcept"
+    },
+    {
+      "source": "publication:uvlm.paper.echo-atlas-primer.v1",
+      "target": "concept:narrative-phase-space",
+      "type": "mentionsConcept"
+    },
+    {
+      "source": "publication:uvlm.paper.echo-atlas-primer.v1",
+      "target": "series:uvlm-working-papers",
+      "type": "publishedIn"
+    },
+    {
+      "source": "publication:uvlm.paper.echo-atlas-primer.v1",
       "target": "keyword:coherence-theory",
       "type": "taggedWith"
     },
@@ -56,17 +97,6 @@
       "source": "publication:uvlm.paper.echo-atlas-primer.v1",
       "target": "keyword:narrative-systems",
       "type": "taggedWith"
-    },
-    {
-      "source": "publication:uvlm.paper.echo-atlas-primer.v1",
-      "target": "publication:uvlm.paper.echo-atlas-primer.v1",
-      "type": "isReferencedBy",
-      "doi": "10.12345/uvlm.paper.echo-atlas-primer.v1"
-    },
-    {
-      "source": "publication:uvlm.paper.echo-atlas-primer.v1",
-      "target": "series:uvlm-working-papers",
-      "type": "publishedIn"
     }
   ]
 }

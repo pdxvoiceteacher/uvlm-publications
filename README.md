@@ -44,6 +44,7 @@ Each `papers/<slug>/metadata.yaml` includes:
 - `series` (e.g. `UVLM Working Papers`)
 - `language` (2-letter code, e.g. `en`)
 - `keywords` (array of indexable topic strings)
+- optional `concepts` (explicit concept labels for concept graph nodes)
 - required `abstract`
 - `publication_date` in ISO format `YYYY-MM-DD`
 - `doi_suffix`
@@ -80,6 +81,7 @@ Required environment variables:
 
 - `registry/catalog.json`
 - declared per-paper `relations` in `papers/**/metadata.yaml`
+- declared per-paper `concepts` in `papers/**/metadata.yaml`
 
 Node classes:
 
@@ -87,12 +89,14 @@ Node classes:
 - `author`
 - `keyword`
 - `series`
+- `concept`
 
 Edge classes:
 
 - `authoredBy`
 - `taggedWith`
 - `publishedIn`
+- `mentionsConcept`
 - `cites`
 - `isVersionOf`
 - `isPartOf`

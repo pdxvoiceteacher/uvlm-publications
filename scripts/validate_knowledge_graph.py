@@ -8,11 +8,12 @@ import json
 import sys
 from pathlib import Path
 
-ALLOWED_NODE_CLASSES = {"publication", "author", "keyword", "series"}
+ALLOWED_NODE_CLASSES = {"publication", "author", "keyword", "series", "concept"}
 ALLOWED_EDGE_TYPES = {
     "authoredBy",
     "taggedWith",
     "publishedIn",
+    "mentionsConcept",
     "cites",
     "isVersionOf",
     "isPartOf",
