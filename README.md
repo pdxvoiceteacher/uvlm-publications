@@ -153,6 +153,270 @@ python3 -m http.server 8000
 # open http://localhost:8000/atlas/
 ```
 
+
+## UVLM Research Atlas
+
+### Product Vision (Engineering + Research Brief)
+
+#### Mission
+
+The UVLM Research Atlas transforms the Ultra Verba Lux Mentis corpus from a static archive of papers into a living, navigable map of ideas.
+
+Instead of browsing isolated documents, readers explore a cosmic topology of knowledge where:
+
+- Concepts are stars
+- Publications orbit them as planets
+- Authors form constellations
+- Keywords appear as nebulae
+- Series define solar systems
+
+The Atlas allows scholars to explore how ideas emerge, connect, and evolve through time.
+
+#### Core Product Idea
+
+The Atlas is both:
+
+1. **A Research Navigation System**
+
+   Users can visually explore relationships between:
+
+   - concepts
+   - papers
+   - authors
+   - keywords
+   - research series
+
+2. **A Theory Development Visualizer**
+
+   Temporal playback shows how a research program evolves as new publications appear and concept clusters grow.
+
+#### Design Philosophy
+
+The Atlas follows five principles:
+
+1. **Deterministic Truth**
+
+   All nodes and relationships originate from declared metadata. No speculative inference.
+
+2. **Multi-Scale Exploration**
+
+   Users can move smoothly between three levels of abstraction:
+
+   - Galaxy View
+   - Concept Solar System
+   - Paper Orbit
+
+3. **Temporal Awareness**
+
+   The corpus grows through time, revealing the development of ideas.
+
+4. **Scientific Legibility**
+
+   The interface should look beautiful, but every visual structure must reflect real graph structure.
+
+5. **Machine-Readable Scholarship**
+
+   The same data powering the visualization should support automated research tools.
+
+#### Core Data Model
+
+The Atlas is powered by structured artifacts produced by the publishing pipeline:
+
+```text
+metadata.yaml (per publication)
+       ↓
+knowledge_graph.json
+       ↓
+atlas_timeline.json
+       ↓
+Atlas UI
+```
+
+**Node types**
+
+- concept
+- publication
+- author
+- keyword
+- series
+
+**Edge types**
+
+- mentionsConcept
+- authoredBy
+- taggedWith
+- publishedIn
+- cites / references
+- contains (concept hierarchy)
+
+#### Interface Overview
+
+##### Galaxy View
+
+Shows the full conceptual landscape.
+
+- concepts = bright stars
+- concept hierarchy = constellations
+- publications hidden until zoom
+
+**Purpose:** Reveal the structure of the research domain.
+
+##### Concept Solar System
+
+Zooming toward a concept reveals its system.
+
+```text
+concept (star)
+      ↓
+publications orbiting
+```
+
+**Purpose:** Understand which works build a concept cluster.
+
+##### Paper Orbit View
+
+Zooming further reveals detailed scholarly context.
+
+```text
+publication
+    ↓
+authors
+keywords
+series
+```
+
+**Purpose:** Explore metadata and connections for a specific work.
+
+##### Temporal Evolution Mode
+
+Temporal mode replays the corpus growth.
+
+Users can:
+
+- press play
+- scrub through time
+- watch concept stars brighten
+- see new publications emerge
+
+Concept intensity reflects accumulated research:
+
+```text
+brightness(concept) ∝ log(number of connected publications)
+```
+
+The Atlas becomes a time-lapse of intellectual development.
+
+#### Reader Experience
+
+A scholar opening the Atlas might:
+
+1. Explore the galaxy of concepts.
+2. Zoom into “coherence lattice”.
+3. See all orbiting publications.
+4. Click a paper to view its metadata and DOI.
+5. Press play to watch the theory emerge chronologically.
+
+The interface makes the research program legible as a structure.
+
+#### What Makes This Distinctive
+
+Most scholarly sites provide a paper list.
+
+The Atlas provides an idea ecosystem.
+
+Instead of asking “What papers exist?”, users can ask:
+
+- What concepts organize this research?
+- How do ideas relate?
+- Which papers formed the core of the theory?
+- When did each concept emerge?
+
+This is closer to how knowledge actually develops.
+
+#### Sweet Sauce Enhancements
+
+The Atlas becomes extraordinary when these elements are layered in:
+
+##### Rich Node Objects
+
+Every publication node should include:
+
+- title
+- abstract
+- DOI
+- authors
+- concepts
+- keywords
+- series
+- link to publication page
+
+Graph and page must show the same object.
+
+##### Concept Ontology
+
+Concept nodes can relate to each other through declared relationships:
+
+- contains
+- dependsOn
+- refines
+- extends
+- contrastsWith
+
+This turns the Atlas into a map of theory, not just a tag network.
+
+##### Guided Research Paths
+
+Add curated pathways such as:
+
+- Start here
+- Coherence Lattice lineage
+- Narrative Systems cluster
+
+These help readers orient themselves inside the corpus.
+
+##### Page ↔ Atlas Integration
+
+Publication pages should include “View this work in the Research Atlas”, and Atlas nodes should link back to the publication.
+
+This creates a two-way knowledge interface.
+
+#### Technical Architecture
+
+The Atlas runs entirely from generated artifacts:
+
+- `registry/catalog.json`
+- `registry/knowledge_graph.json`
+- `registry/atlas_timeline.json`
+
+The frontend consumes these artifacts and renders:
+
+- Cytoscape graph
+- zoom architecture
+- timeline playback
+- metadata panels
+
+Because the artifacts are deterministic, the Atlas is reproducible and auditable.
+
+#### Long-Term Potential
+
+As the UVLM corpus grows, the Atlas becomes:
+
+- a research navigation interface
+- a theory development map
+- a machine-readable knowledge graph
+- a visualization of intellectual coherence
+
+It can eventually support:
+
+- concept lineage tracing
+- automated bibliography discovery
+- AI-assisted corpus exploration
+- interactive research pedagogy
+
+#### One-Sentence Vision
+
+The UVLM Research Atlas is a living star map of ideas, where the structure and evolution of a research program can be explored visually, chronologically, and conceptually.
+
 ## CI Safety Policy
 
 The workflow at `.github/workflows/mint_doi.yml` runs on `papers/**` changes:
