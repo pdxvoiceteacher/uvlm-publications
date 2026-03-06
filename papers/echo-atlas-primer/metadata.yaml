@@ -1,4 +1,5 @@
 title: The Echo Atlas Primer
+type: paper
 
 authors:
   - name: Thomas Prislac
@@ -14,8 +15,14 @@ abstract: >
 
 version: v1
 
-doi_suffix: echo-atlas-primer
+doi_suffix: uvlm.paper.echo-atlas-primer.v1
 
 url: https://ultraverbaluxmentis.org/publications/echo-atlas-primer
 
 license: CC-BY-4.0
+
+relations:
+  - type: isReferencedBy
+    doi: 10.XXXX/uvlm.paper.echo-atlas-primer.v1
+
+content_hash: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855

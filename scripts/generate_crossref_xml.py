@@ -5,14 +5,47 @@ from __future__ import annotations
 
 import argparse
 import datetime as dt
+import re
 import sys
 import xml.etree.ElementTree as ET
 from pathlib import Path
 
 import yaml
 
+DOI_SUFFIX_PATTERN = re.compile(r"^uvlm\.(paper|dataset|software)\.[a-z0-9-]+\.v[0-9]+$")
+
+
+def add_relations(journal_article: ET.Element, relations: list[dict]) -> None:
+    if not relations:
+        return
+
+    program = ET.SubElement(
+        journal_article,
+        "program",
+        {
+            "xmlns:rel": "http://www.crossref.org/relations.xsd",
+            "name": "relations",
+        },
+    )
+    rel_program = ET.SubElement(program, "rel:program")
+
+    for relation in relations:
+        related_item = ET.SubElement(rel_program, "rel:related_item")
+        relation_node = ET.SubElement(
+            related_item,
+            "rel:intra_work_relation",
+            {
+                "relationship-type": relation["type"],
+                "identifier-type": "doi",
+            },
+        )
+        relation_node.text = relation["doi"]
+
 
 def build_xml(metadata: dict, doi_prefix: str, depositor_email: str, batch_id: str) -> ET.Element:
+    if not DOI_SUFFIX_PATTERN.match(metadata["doi_suffix"]):
+        raise ValueError(f"Invalid DOI suffix format: {metadata['doi_suffix']}")
+
     now = dt.datetime.utcnow()
     root = ET.Element(
         "doi_batch",
@@ -66,8 +99,7 @@ def build_xml(metadata: dict, doi_prefix: str, depositor_email: str, batch_id: s
         )
         ET.SubElement(person, "given_name").text = given
         ET.SubElement(person, "surname").text = surname
-        if author.get("orcid"):
-            ET.SubElement(person, "ORCID").text = f"https://orcid.org/{author['orcid']}"
+        ET.SubElement(person, "ORCID").text = f"https://orcid.org/{author['orcid']}"
 
     pub_date = ET.SubElement(journal_article, "publication_date", media_type="online")
     ET.SubElement(pub_date, "year").text = str(date_value.year)
@@ -78,6 +110,8 @@ def build_xml(metadata: dict, doi_prefix: str, depositor_email: str, batch_id: s
         abstract = ET.SubElement(journal_article, "jats:abstract")
         abstract.set("xmlns:jats", "http://www.ncbi.nlm.nih.gov/JATS1")
         ET.SubElement(abstract, "jats:p").text = metadata["abstract"]
+
+    add_relations(journal_article, metadata.get("relations", []))
 
     doi_data = ET.SubElement(journal_article, "doi_data")
     ET.SubElement(doi_data, "doi").text = f"{doi_prefix}/{metadata['doi_suffix']}"

@@ -8,6 +8,8 @@ on:
 jobs:
   mint-doi:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
 
     steps:
       - name: Checkout repository
@@ -21,7 +23,10 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install pyyaml jsonschema requests
+          pip install -r requirements.txt
+
+      - name: Compute content hash
+        run: python scripts/update_content_hash.py papers/echo-atlas-primer/metadata.yaml
 
       - name: Validate publication metadata
         run: python scripts/validate_metadata.py papers
@@ -37,7 +42,22 @@ jobs:
             --batch-id "${GITHUB_SHA}" \
             --output crossref_deposit.xml
 
-      - name: Deposit DOI and update registry
+      - name: Validate generated XML
+        run: python -c "import xml.etree.ElementTree as ET; ET.parse('crossref_deposit.xml'); print('XML OK')"
+
+      - name: Dry-run deposit
+        env:
+          CROSSREF_USERNAME: ${{ secrets.CROSSREF_USERNAME }}
+          CROSSREF_PASSWORD: ${{ secrets.CROSSREF_PASSWORD }}
+          DOI_PREFIX: ${{ secrets.DOI_PREFIX }}
+        run: |
+          python scripts/deposit_crossref.py \
+            --metadata papers/echo-atlas-primer/metadata.yaml \
+            --xml crossref_deposit.xml \
+            --dry-run
+
+      - name: Mint DOI and update registry
+        if: github.ref == 'refs/heads/main'
         env:
           CROSSREF_USERNAME: ${{ secrets.CROSSREF_USERNAME }}
           CROSSREF_PASSWORD: ${{ secrets.CROSSREF_PASSWORD }}
@@ -46,3 +66,21 @@ jobs:
           python scripts/deposit_crossref.py \
             --metadata papers/echo-atlas-primer/metadata.yaml \
             --xml crossref_deposit.xml
+
+      - name: Commit registry updates
+        if: github.ref == 'refs/heads/main'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add registry/dois.json registry/deposits papers/echo-atlas-primer/metadata.yaml
+          git diff --cached --quiet || git commit -m "Update DOI registry and deposit logs"
+          git push
+
+      - name: Upload deposit artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: crossref-deposit-artifacts
+          path: |
+            crossref_deposit.xml
+            papers/echo-atlas-primer/metadata.yaml
+            registry/deposits/

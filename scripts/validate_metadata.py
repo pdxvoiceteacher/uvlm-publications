@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import sys
 from pathlib import Path
@@ -35,6 +36,27 @@ def discover_metadata_files(path: Path) -> list[Path]:
     return sorted(path.glob("*/metadata.yaml"))
 
 
+def sha256_file(path: Path) -> str:
+    digest = hashlib.sha256()
+    with path.open("rb") as handle:
+        for chunk in iter(lambda: handle.read(8192), b""):
+            digest.update(chunk)
+    return digest.hexdigest()
+
+
+def validate_content_hash(metadata_file: Path, metadata: dict) -> str | None:
+    paper_path = metadata_file.parent / "paper.pdf"
+    if not paper_path.exists():
+        return f"paper artifact not found at {paper_path}"
+
+    expected_hash = metadata.get("content_hash")
+    actual_hash = sha256_file(paper_path)
+    if expected_hash != actual_hash:
+        return f"content_hash mismatch (metadata={expected_hash}, actual={actual_hash})"
+
+    return None
+
+
 def validate_files(metadata_files: list[Path], schema: dict) -> int:
     validator = Draft202012Validator(schema)
     has_errors = False
@@ -48,15 +70,21 @@ def validate_files(metadata_files: list[Path], schema: dict) -> int:
             continue
 
         errors = sorted(validator.iter_errors(metadata), key=lambda e: e.path)
-        if not errors:
-            print(f"[OK] {metadata_file}")
+        if errors:
+            has_errors = True
+            print(f"[ERROR] {metadata_file} failed schema validation:")
+            for err in errors:
+                location = ".".join(str(item) for item in err.path) or "<root>"
+                print(f"  - {location}: {err.message}")
             continue
 
-        has_errors = True
-        print(f"[ERROR] {metadata_file} failed validation:")
-        for err in errors:
-            location = ".".join(str(item) for item in err.path) or "<root>"
-            print(f"  - {location}: {err.message}")
+        hash_error = validate_content_hash(metadata_file, metadata)
+        if hash_error:
+            has_errors = True
+            print(f"[ERROR] {metadata_file} failed content hash validation: {hash_error}")
+            continue
+
+        print(f"[OK] {metadata_file}")
 
     return 1 if has_errors else 0
 

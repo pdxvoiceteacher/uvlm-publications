@@ -1,44 +1,57 @@
 # Ultra Verba Lux Mentis Publication Registry
 
-This repository serves as the canonical metadata source for UVLM scholarly publications and DOI minting.
+![Mint DOI](https://github.com/ultra-verba-lux-mentis/uvlm-publications/actions/workflows/mint_doi.yml/badge.svg)
+
+Canonical source for UVLM scholarly publications and DOI minting.
 
 ## Repository Structure
 
-- `papers/`: publication packages (`paper.pdf`, `metadata.yaml`, and local publication docs).
-- `schemas/`: JSON schemas used to validate publication metadata.
-- `scripts/`: automation tools for validation, Crossref XML generation, and DOI deposit.
-- `registry/`: DOI tracking registry (`dois.json`).
-- `.github/workflows/`: CI pipelines for metadata validation and DOI minting.
+- `papers/`: publication packages (`paper.pdf`, `metadata.yaml`, local docs).
+- `schemas/`: JSON schema validation rules.
+- `scripts/`: metadata validation, hash generation, Crossref XML/deposit automation.
+- `registry/`: DOI state registry and deposit logs.
+- `.github/workflows/`: CI workflows.
 
-## How to Add a Paper
+## DOI Namespace Policy
 
-1. Create a new directory under `papers/<paper-slug>/`.
-2. Add:
-   - `paper.pdf`
-   - `metadata.yaml`
-   - `README.md`
-3. Choose a unique `doi_suffix` and include all required metadata fields.
-4. Commit and push.
+UVLM DOI suffixes must follow:
+
+`uvlm.<type>.<slug>.<version>`
+
+Examples:
+
+- `uvlm.paper.echo-atlas-primer.v1`
+- `uvlm.dataset.coherence-lattice.v1`
+- `uvlm.software.sophia-ledger.v1`
+
+Final DOI format in Crossref is:
+
+`10.<prefix>/uvlm.<type>.<slug>.<version>`
 
 ## Metadata Format
 
-Metadata lives in `metadata.yaml` and is validated by `schemas/publication_schema.json`.
-
-Required keys:
+Each `papers/<slug>/metadata.yaml` includes:
 
 - `title`
-- `authors`
+- `type` (`paper`, `dataset`, `software`, `book`, `working-paper`)
+- `authors` with required ORCID (`0000-0000-0000-0000`)
 - `publication_date`
 - `doi_suffix`
 - `url`
+- `content_hash` (SHA-256 of `paper.pdf`)
+- optional `relations` entries with DOI links
 
-Example publication is available at `papers/echo-atlas-primer/metadata.yaml`.
+Schema is enforced by `schemas/publication_schema.json`.
 
 ## DOI Generation Workflow
 
-1. Validate metadata via `scripts/validate_metadata.py`.
-2. Generate Crossref XML via `scripts/generate_crossref_xml.py`.
-3. Deposit XML and update `registry/dois.json` via `scripts/deposit_crossref.py`.
+1. `scripts/update_content_hash.py` computes deterministic `content_hash`.
+2. `scripts/validate_metadata.py` validates schema + verifies hash.
+3. `scripts/generate_crossref_xml.py` creates `crossref_deposit.xml` with relation support.
+4. `scripts/deposit_crossref.py --dry-run` validates payload without minting.
+5. `scripts/deposit_crossref.py` deposits and updates:
+   - `registry/dois.json` (`pending`, `registered`, `failed`, `updated`)
+   - `registry/deposits/<date>_<slug>.json` audit logs
 
 Required environment variables:
 
@@ -48,20 +61,12 @@ Required environment variables:
 
 ## CI Pipeline
 
-The workflow at `.github/workflows/mint_doi.yml` triggers on changes under `papers/**`.
+`.github/workflows/mint_doi.yml` runs on `papers/**` changes and performs:
 
-It performs:
-
-1. dependency install
-2. metadata validation
-3. Crossref XML generation
-4. DOI deposit and registry update
-
-## Versioning Strategy
-
-Use semantic publication IDs with version information in metadata:
-
-- `echo-atlas-primer` + `version: v1`
-- future updates can add `version: v2` and `previous_doi`
-
-This supports Crossref version linking over time.
+1. dependency install from `requirements.txt`
+2. metadata hash update + validation
+3. Crossref XML generation + XML validation
+4. dry-run deposit
+5. mint DOI (on `main`) and update registry/logs
+6. commit registry updates
+7. upload XML + metadata + deposit logs as artifacts
