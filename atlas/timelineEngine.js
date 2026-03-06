@@ -29,13 +29,16 @@ function updateConceptVisuals(cy, config) {
     }
     const count = visibleConceptPublicationCount(cy, node.id());
     const { size, glow, importanceScore } = conceptScale(config, count);
-    node.style('width', size);
-    node.style('height', size);
-    node.style('shadow-blur', glow);
+    const coherenceWeight = Number(node.data('coherenceWeight') ?? 1);
+    const weightedSize = size * (0.85 + coherenceWeight * 0.3);
+    const weightedGlow = glow * (0.8 + coherenceWeight * 0.45);
+    node.style('width', weightedSize);
+    node.style('height', weightedSize);
+    node.style('shadow-blur', weightedGlow);
     node.style('shadow-opacity', 0.45 + Math.min(0.45, count * 0.08));
-    node.style('font-size', 9 + Math.min(4, importanceScore * 1.6));
+    node.style('font-size', 9 + Math.min(5, importanceScore * 1.6 + coherenceWeight));
     node.data('visiblePublicationCount', count);
-    node.data('importanceScore', importanceScore);
+    node.data('importanceScore', importanceScore * coherenceWeight);
   });
 }
 
