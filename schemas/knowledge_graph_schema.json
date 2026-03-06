@@ -1,27 +1,127 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "type": "object",
-  "required": ["nodes", "edges"],
+  "required": [
+    "nodes",
+    "edges"
+  ],
   "properties": {
     "nodes": {
       "type": "array",
       "items": {
         "type": "object",
-        "required": ["id", "class"],
+        "required": [
+          "id",
+          "class"
+        ],
         "properties": {
-          "id": { "type": "string", "minLength": 1 },
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
           "class": {
             "type": "string",
-            "enum": ["publication", "author", "keyword", "series", "concept"]
+            "enum": [
+              "publication",
+              "author",
+              "keyword",
+              "series",
+              "concept"
+            ]
           },
-          "title": { "type": ["string", "null"] },
-          "doi": { "type": ["string", "null"] },
-          "doi_suffix": { "type": ["string", "null"] },
-          "date": { "type": ["string", "null"] },
-          "url": { "type": ["string", "null"] },
-          "publication_type": { "type": ["string", "null"] },
-          "name": { "type": ["string", "null"] },
-          "value": { "type": ["string", "null"] }
+          "title": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "doi": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "doi_suffix": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "date": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "url": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "publication_type": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "name": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "value": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "abstract": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "authors": {
+            "type": [
+              "array",
+              "null"
+            ],
+            "items": {
+              "type": "string"
+            }
+          },
+          "keywords": {
+            "type": [
+              "array",
+              "null"
+            ],
+            "items": {
+              "type": "string"
+            }
+          },
+          "concepts": {
+            "type": [
+              "array",
+              "null"
+            ],
+            "items": {
+              "type": "string"
+            }
+          },
+          "series": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "type": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
         },
         "additionalProperties": true
       }
@@ -30,10 +130,20 @@
       "type": "array",
       "items": {
         "type": "object",
-        "required": ["source", "target", "type"],
+        "required": [
+          "source",
+          "target",
+          "type"
+        ],
         "properties": {
-          "source": { "type": "string", "minLength": 1 },
-          "target": { "type": "string", "minLength": 1 },
+          "source": {
+            "type": "string",
+            "minLength": 1
+          },
+          "target": {
+            "type": "string",
+            "minLength": 1
+          },
           "type": {
             "type": "string",
             "enum": [
@@ -45,10 +155,16 @@
               "cites",
               "isVersionOf",
               "isPartOf",
-              "isReferencedBy"
+              "isReferencedBy",
+              "dependsOn",
+              "refines",
+              "extends",
+              "contrastsWith"
             ]
           },
-          "doi": { "type": "string" }
+          "doi": {
+            "type": "string"
+          }
         },
         "additionalProperties": true
       }

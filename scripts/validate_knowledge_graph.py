@@ -15,11 +15,19 @@ ALLOWED_EDGE_TYPES = {
     "publishedIn",
     "mentionsConcept",
     "contains",
+    "dependsOn",
+    "refines",
+    "extends",
+    "contrastsWith",
     "cites",
     "isVersionOf",
     "isPartOf",
     "isReferencedBy",
 }
+
+
+def is_non_empty_string(value: object) -> bool:
+    return isinstance(value, str) and bool(value.strip())
 
 
 def validate_graph(path: Path) -> list[str]:
@@ -56,6 +64,11 @@ def validate_graph(path: Path) -> list[str]:
 
         if node_class not in ALLOWED_NODE_CLASSES:
             errors.append(f"nodes[{index}].class must be one of {sorted(ALLOWED_NODE_CLASSES)}")
+
+        if node_class == "publication":
+            for required in ("title", "date", "url", "abstract"):
+                if not is_non_empty_string(node.get(required)):
+                    errors.append(f"nodes[{index}] publication field '{required}' must be non-null and non-empty")
 
     for index, edge in enumerate(edges):
         if not isinstance(edge, dict):

@@ -16,6 +16,11 @@
       "value": "delta syn"
     },
     {
+      "id": "concept:formal-coherence",
+      "class": "concept",
+      "value": "formal coherence"
+    },
+    {
       "id": "concept:narrative-phase-space",
       "class": "concept",
       "value": "narrative phase space"
@@ -31,6 +36,16 @@
       "value": "complex systems"
     },
     {
+      "id": "keyword:conceptual-topology",
+      "class": "keyword",
+      "value": "conceptual topology"
+    },
+    {
+      "id": "keyword:formal-systems",
+      "class": "keyword",
+      "value": "formal systems"
+    },
+    {
       "id": "keyword:narrative-systems",
       "class": "keyword",
       "value": "narrative systems"
@@ -38,12 +53,27 @@
     {
       "id": "publication:uvlm.paper.coherence-lattice-formalism.v1",
       "class": "publication",
-      "title": null,
-      "doi": "10.12345/uvlm.paper.coherence-lattice-formalism.v1",
+      "title": "Coherence Lattice Formalism",
+      "doi": "pending",
       "doi_suffix": "uvlm.paper.coherence-lattice-formalism.v1",
-      "date": null,
-      "url": null,
-      "publication_type": null
+      "date": "2026-02-01",
+      "url": "https://ultraverbaluxmentis.org/publications/coherence-lattice-formalism",
+      "abstract": "A formal treatment of coherence lattices and relation-preserving mappings for narrative and conceptual structures.\n",
+      "authors": [
+        "Thomas Prislac"
+      ],
+      "keywords": [
+        "coherence theory",
+        "formal systems",
+        "conceptual topology"
+      ],
+      "concepts": [
+        "coherence lattice",
+        "formal coherence"
+      ],
+      "series": "UVLM Working Papers",
+      "type": "paper",
+      "publication_type": "paper"
     },
     {
       "id": "publication:uvlm.paper.echo-atlas-primer.v1",
@@ -53,6 +83,22 @@
       "doi_suffix": "uvlm.paper.echo-atlas-primer.v1",
       "date": "2026-03-05",
       "url": "https://ultraverbaluxmentis.org/publications/echo-atlas-primer",
+      "abstract": "A multi-scale framework for analyzing narrative coherence patterns across psychological, narrative, and cultural levels.\n",
+      "authors": [
+        "Thomas Prislac"
+      ],
+      "keywords": [
+        "coherence theory",
+        "narrative systems",
+        "complex systems"
+      ],
+      "concepts": [
+        "coherence lattice",
+        "delta syn",
+        "narrative phase space"
+      ],
+      "series": "UVLM Working Papers",
+      "type": "paper",
       "publication_type": "paper"
     },
     {
@@ -66,6 +112,41 @@
       "source": "concept:coherence-lattice",
       "target": "concept:delta-syn",
       "type": "contains"
+    },
+    {
+      "source": "publication:uvlm.paper.coherence-lattice-formalism.v1",
+      "target": "author:thomas-prislac",
+      "type": "authoredBy"
+    },
+    {
+      "source": "publication:uvlm.paper.coherence-lattice-formalism.v1",
+      "target": "concept:coherence-lattice",
+      "type": "mentionsConcept"
+    },
+    {
+      "source": "publication:uvlm.paper.coherence-lattice-formalism.v1",
+      "target": "concept:formal-coherence",
+      "type": "mentionsConcept"
+    },
+    {
+      "source": "publication:uvlm.paper.coherence-lattice-formalism.v1",
+      "target": "series:uvlm-working-papers",
+      "type": "publishedIn"
+    },
+    {
+      "source": "publication:uvlm.paper.coherence-lattice-formalism.v1",
+      "target": "keyword:coherence-theory",
+      "type": "taggedWith"
+    },
+    {
+      "source": "publication:uvlm.paper.coherence-lattice-formalism.v1",
+      "target": "keyword:conceptual-topology",
+      "type": "taggedWith"
+    },
+    {
+      "source": "publication:uvlm.paper.coherence-lattice-formalism.v1",
+      "target": "keyword:formal-systems",
+      "type": "taggedWith"
     },
     {
       "source": "publication:uvlm.paper.echo-atlas-primer.v1",

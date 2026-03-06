@@ -35,6 +35,7 @@ body {
   display: flex;
   gap: 0.5rem;
   align-items: center;
+  flex-wrap: wrap;
 }
 
 .view-buttons {
@@ -56,10 +57,47 @@ body {
   padding: 0.45rem 0.6rem;
 }
 
+.atlas-intro {
+  padding: 0.7rem 1rem;
+  border-bottom: 1px solid #1f2b42;
+  color: #cfdafb;
+  font-size: 0.92rem;
+}
+
+.atlas-legend {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  padding: 0.55rem 1rem;
+  border-bottom: 1px solid #1f2b42;
+  background: rgba(10, 14, 25, 0.8);
+  color: #cad7f8;
+  font-size: 0.85rem;
+}
+
+.timeline-controls {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  padding: 0.7rem 1rem;
+  border-bottom: 1px solid #1f2b42;
+}
+
+.timeline-controls select,
+.timeline-controls button,
+.timeline-controls input {
+  background: #111a2e;
+  color: var(--text);
+  border: 1px solid #2b3d60;
+  border-radius: 6px;
+  padding: 0.35rem 0.55rem;
+}
+
 .layout {
   display: grid;
   grid-template-columns: 1fr 340px;
-  min-height: calc(100vh - 61px);
+  min-height: calc(100vh - 189px);
 }
 
 #graph {

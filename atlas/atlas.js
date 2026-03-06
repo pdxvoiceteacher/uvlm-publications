@@ -6,6 +6,7 @@ import { bindZoomController } from './zoomController.js';
 import { timelineConfig } from './timelineConfig.js';
 import { createTimelineEngine } from './timelineEngine.js';
 import { bindTimelineControls } from './timelineControls.js';
+import { edgeLabelMap } from './edgeLabels.js';
 
 const graphContainer = document.getElementById('graph');
 const detailEl = document.getElementById('details');
@@ -15,6 +16,8 @@ const resetEl = document.getElementById('reset');
 const galaxyBtn = document.getElementById('view-galaxy');
 const solarBtn = document.getElementById('view-solar');
 const orbitBtn = document.getElementById('view-orbit');
+const pathSelectEl = document.getElementById('guided-paths');
+const pathPlayEl = document.getElementById('guided-play');
 
 const timelineModeEl = document.getElementById('mode-toggle');
 const timelinePlayEl = document.getElementById('timeline-play');
@@ -58,6 +61,7 @@ function toElements(graph, timeline) {
       data: {
         id: `e-${i}`,
         ...e,
+        label: edgeLabelMap[e.type] ?? e.type,
         timelineId,
         appearanceDate: edgeDates[timelineId]?.appearanceDate ?? null
       }
@@ -72,14 +76,92 @@ function firstNodeByClass(cy, klass) {
   return matches.length ? matches[0].id() : null;
 }
 
+function annotateConceptStats(cy) {
+  cy.nodes('[class = "concept"]').forEach((node) => {
+    const relatedConceptCount = cy
+      .edges('[type = "contains"], [type = "dependsOn"], [type = "refines"], [type = "extends"], [type = "contrastsWith"]')
+      .filter((edge) => edge.source().id() === node.id() || edge.target().id() === node.id())
+      .length;
+    node.data('relatedConceptCount', relatedConceptCount);
+  });
+}
+
+function bindGuidedPaths(cy, paths) {
+  if (!pathSelectEl || !pathPlayEl) {
+    return;
+  }
+
+  pathSelectEl.innerHTML = '<option value="">Guided paths</option>';
+  (paths ?? []).forEach((path) => {
+    const opt = document.createElement('option');
+    opt.value = path.id;
+    opt.textContent = path.title;
+    pathSelectEl.appendChild(opt);
+  });
+
+  pathPlayEl.addEventListener('click', () => {
+    const selected = (paths ?? []).find((p) => p.id === pathSelectEl.value);
+    if (!selected || !Array.isArray(selected.nodes) || selected.nodes.length === 0) {
+      return;
+    }
+
+    cy.elements().removeClass('highlight');
+    let idx = 0;
+    const timer = setInterval(() => {
+      const nodeId = selected.nodes[idx];
+      const node = cy.getElementById(nodeId);
+      if (node && node.length) {
+        cy.elements().removeClass('highlight');
+        node.addClass('highlight');
+        cy.animate({
+          center: { eles: node },
+          zoom: Math.max(cy.zoom(), 1.2)
+        }, { duration: 500 });
+        renderMetadataPanel(detailEl, node.data(), { edgeLabelMap });
+      }
+      idx += 1;
+      if (idx >= selected.nodes.length) {
+        clearInterval(timer);
+      }
+    }, 1000);
+  });
+}
+
+function focusFromHash(cy, zoomAPI) {
+  const hash = window.location.hash ?? '';
+  if (!hash.startsWith('#node=')) {
+    return;
+  }
+  const nodeId = decodeURIComponent(hash.slice('#node='.length));
+  const node = cy.getElementById(nodeId);
+  if (!node || !node.length) {
+    return;
+  }
+
+  const cls = node.data('class');
+  if (cls === 'concept') {
+    zoomAPI.toSolar(nodeId);
+  } else if (cls === 'publication') {
+    zoomAPI.toOrbit(nodeId);
+  } else {
+    cy.animate({ center: { eles: node }, zoom: 1.2 }, { duration: 600 });
+  }
+
+  cy.elements().removeClass('highlight');
+  node.addClass('highlight');
+  renderMetadataPanel(detailEl, node.data(), { edgeLabelMap });
+}
+
 async function main() {
-  const [graphResponse, timelineResponse] = await Promise.all([
+  const [graphResponse, timelineResponse, pathsResponse] = await Promise.all([
     fetch('../registry/knowledge_graph.json'),
-    fetch('../registry/atlas_timeline.json')
+    fetch('../registry/atlas_timeline.json'),
+    fetch('../registry/atlas_paths.json').catch(() => null)
   ]);
 
   const sourceGraph = await graphResponse.json();
   const timeline = await timelineResponse.json();
+  const pathsData = pathsResponse ? await pathsResponse.json() : { paths: [] };
   const graph = computeAtlasLayout(sourceGraph);
 
   const cy = cytoscape({
@@ -161,6 +243,7 @@ async function main() {
     numIter: 200
   }).run();
 
+  annotateConceptStats(cy);
   setDefaultPanel(detailEl);
   const searchAPI = bindSearchAndFilter({ cy, searchEl, typeFilterEl });
   const zoomAPI = bindZoomController(cy);
@@ -183,10 +266,12 @@ async function main() {
     maxIndex: timeline.events.length - 1
   });
 
+  bindGuidedPaths(cy, pathsData?.paths ?? []);
+
   cy.on('tap', 'node, edge', (evt) => {
     cy.elements().removeClass('highlight');
     evt.target.addClass('highlight');
-    renderMetadataPanel(detailEl, evt.target.data());
+    renderMetadataPanel(detailEl, evt.target.data(), { edgeLabelMap });
 
     if (evt.target.isNode()) {
       const cls = evt.target.data('class');
@@ -196,6 +281,8 @@ async function main() {
       if (cls === 'publication') {
         zoomAPI.toOrbit(evt.target.id());
       }
+      const encoded = encodeURIComponent(evt.target.id());
+      window.history.replaceState(null, '', `#node=${encoded}`);
     }
   });
 
@@ -216,7 +303,10 @@ async function main() {
     cy.fit(cy.elements(':visible'), 60);
     setDefaultPanel(detailEl);
     searchAPI.apply();
+    window.history.replaceState(null, '', window.location.pathname);
   });
+
+  focusFromHash(cy, zoomAPI);
 }
 
 main().catch((err) => {
