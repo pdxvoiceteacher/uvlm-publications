@@ -1,0 +1,172 @@
+{
+  "timeRange": {
+    "start": "2026-02-01",
+    "end": "2026-03-05"
+  },
+  "nodes": {
+    "author:thomas-prislac": {
+      "appearanceDate": "2026-03-05"
+    },
+    "concept:coherence-lattice": {
+      "appearanceDate": "2026-03-05"
+    },
+    "concept:delta-syn": {
+      "appearanceDate": "2026-03-05"
+    },
+    "concept:narrative-phase-space": {
+      "appearanceDate": "2026-03-05"
+    },
+    "keyword:coherence-theory": {
+      "appearanceDate": "2026-03-05"
+    },
+    "keyword:complex-systems": {
+      "appearanceDate": "2026-03-05"
+    },
+    "keyword:narrative-systems": {
+      "appearanceDate": "2026-03-05"
+    },
+    "publication:uvlm.paper.coherence-lattice-formalism.v1": {
+      "appearanceDate": "2026-02-01"
+    },
+    "publication:uvlm.paper.echo-atlas-primer.v1": {
+      "appearanceDate": "2026-03-05"
+    },
+    "series:uvlm-working-papers": {
+      "appearanceDate": "2026-03-05"
+    }
+  },
+  "edges": {
+    "concept:coherence-lattice->concept:delta-syn:contains": {
+      "appearanceDate": "2026-03-05"
+    },
+    "publication:uvlm.paper.echo-atlas-primer.v1->author:thomas-prislac:authoredBy": {
+      "appearanceDate": "2026-03-05"
+    },
+    "publication:uvlm.paper.echo-atlas-primer.v1->concept:coherence-lattice:mentionsConcept": {
+      "appearanceDate": "2026-03-05"
+    },
+    "publication:uvlm.paper.echo-atlas-primer.v1->concept:delta-syn:mentionsConcept": {
+      "appearanceDate": "2026-03-05"
+    },
+    "publication:uvlm.paper.echo-atlas-primer.v1->concept:narrative-phase-space:mentionsConcept": {
+      "appearanceDate": "2026-03-05"
+    },
+    "publication:uvlm.paper.echo-atlas-primer.v1->keyword:coherence-theory:taggedWith": {
+      "appearanceDate": "2026-03-05"
+    },
+    "publication:uvlm.paper.echo-atlas-primer.v1->keyword:complex-systems:taggedWith": {
+      "appearanceDate": "2026-03-05"
+    },
+    "publication:uvlm.paper.echo-atlas-primer.v1->keyword:narrative-systems:taggedWith": {
+      "appearanceDate": "2026-03-05"
+    },
+    "publication:uvlm.paper.echo-atlas-primer.v1->publication:uvlm.paper.coherence-lattice-formalism.v1:isReferencedBy": {
+      "appearanceDate": "2026-03-05"
+    },
+    "publication:uvlm.paper.echo-atlas-primer.v1->series:uvlm-working-papers:publishedIn": {
+      "appearanceDate": "2026-03-05"
+    }
+  },
+  "events": [
+    {
+      "date": "2026-02-01",
+      "type": "node-appear",
+      "id": "publication:uvlm.paper.coherence-lattice-formalism.v1"
+    },
+    {
+      "date": "2026-03-05",
+      "type": "edge-appear",
+      "id": "concept:coherence-lattice->concept:delta-syn:contains"
+    },
+    {
+      "date": "2026-03-05",
+      "type": "edge-appear",
+      "id": "publication:uvlm.paper.echo-atlas-primer.v1->author:thomas-prislac:authoredBy"
+    },
+    {
+      "date": "2026-03-05",
+      "type": "edge-appear",
+      "id": "publication:uvlm.paper.echo-atlas-primer.v1->concept:coherence-lattice:mentionsConcept"
+    },
+    {
+      "date": "2026-03-05",
+      "type": "edge-appear",
+      "id": "publication:uvlm.paper.echo-atlas-primer.v1->concept:delta-syn:mentionsConcept"
+    },
+    {
+      "date": "2026-03-05",
+      "type": "edge-appear",
+      "id": "publication:uvlm.paper.echo-atlas-primer.v1->concept:narrative-phase-space:mentionsConcept"
+    },
+    {
+      "date": "2026-03-05",
+      "type": "edge-appear",
+      "id": "publication:uvlm.paper.echo-atlas-primer.v1->keyword:coherence-theory:taggedWith"
+    },
+    {
+      "date": "2026-03-05",
+      "type": "edge-appear",
+      "id": "publication:uvlm.paper.echo-atlas-primer.v1->keyword:complex-systems:taggedWith"
+    },
+    {
+      "date": "2026-03-05",
+      "type": "edge-appear",
+      "id": "publication:uvlm.paper.echo-atlas-primer.v1->keyword:narrative-systems:taggedWith"
+    },
+    {
+      "date": "2026-03-05",
+      "type": "edge-appear",
+      "id": "publication:uvlm.paper.echo-atlas-primer.v1->publication:uvlm.paper.coherence-lattice-formalism.v1:isReferencedBy"
+    },
+    {
+      "date": "2026-03-05",
+      "type": "edge-appear",
+      "id": "publication:uvlm.paper.echo-atlas-primer.v1->series:uvlm-working-papers:publishedIn"
+    },
+    {
+      "date": "2026-03-05",
+      "type": "node-appear",
+      "id": "author:thomas-prislac"
+    },
+    {
+      "date": "2026-03-05",
+      "type": "node-appear",
+      "id": "concept:coherence-lattice"
+    },
+    {
+      "date": "2026-03-05",
+      "type": "node-appear",
+      "id": "concept:delta-syn"
+    },
+    {
+      "date": "2026-03-05",
+      "type": "node-appear",
+      "id": "concept:narrative-phase-space"
+    },
+    {
+      "date": "2026-03-05",
+      "type": "node-appear",
+      "id": "keyword:coherence-theory"
+    },
+    {
+      "date": "2026-03-05",
+      "type": "node-appear",
+      "id": "keyword:complex-systems"
+    },
+    {
+      "date": "2026-03-05",
+      "type": "node-appear",
+      "id": "keyword:narrative-systems"
+    },
+    {
+      "date": "2026-03-05",
+      "type": "node-appear",
+      "id": "publication:uvlm.paper.echo-atlas-primer.v1"
+    },
+    {
+      "date": "2026-03-05",
+      "type": "node-appear",
+      "id": "series:uvlm-working-papers"
+    }
+  ]
+}

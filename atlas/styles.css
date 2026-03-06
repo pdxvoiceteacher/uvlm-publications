@@ -1,0 +1,91 @@
+:root {
+  --bg: #000000;
+  --panel: #0f1422;
+  --text: #edf2ff;
+  --muted: #9fb0cd;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  color: var(--text);
+  background: radial-gradient(circle at 20% 20%, #10182c 0%, #05070f 45%, #000000 100%);
+}
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.9rem 1rem;
+  border-bottom: 1px solid #1f2b42;
+  background: linear-gradient(180deg, rgba(8, 12, 22, 0.95), rgba(6, 9, 17, 0.95));
+}
+
+.topbar h1 {
+  font-size: 1.1rem;
+  margin: 0;
+}
+
+.controls {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.view-buttons {
+  display: flex;
+  gap: 0.3rem;
+}
+
+.view-buttons button {
+  min-width: 60px;
+}
+
+.controls input,
+.controls select,
+.controls button {
+  background: #111a2e;
+  color: var(--text);
+  border: 1px solid #2b3d60;
+  border-radius: 6px;
+  padding: 0.45rem 0.6rem;
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  min-height: calc(100vh - 61px);
+}
+
+#graph {
+  min-height: 520px;
+}
+
+.panel {
+  border-left: 1px solid #1f2b42;
+  background: color-mix(in srgb, var(--panel), transparent 6%);
+  padding: 1rem;
+  overflow-y: auto;
+}
+
+.panel h2 {
+  margin-top: 0;
+  font-size: 1rem;
+}
+
+.meta-key {
+  color: var(--muted);
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.meta-val {
+  margin: 0.1rem 0 0.5rem;
+  word-break: break-word;
+}
