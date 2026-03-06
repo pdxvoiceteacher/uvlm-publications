@@ -91,6 +91,15 @@ jobs:
       - name: Validate atlas timeline JSON formatting
         run: python -m json.tool registry/atlas_timeline.json >/dev/null
 
+      - name: Build research constellations
+        run: python scripts/build_constellations.py --graph registry/knowledge_graph.json --catalog registry/catalog.json --output registry/constellations.json
+
+      - name: Validate research constellations
+        run: python scripts/validate_constellations.py registry/constellations.json --graph registry/knowledge_graph.json
+
+      - name: Validate constellations JSON formatting
+        run: python -m json.tool registry/constellations.json >/dev/null
+
       - name: Run atlas timeline validator regression fixtures
         run: python3 -m unittest tests/test_validate_atlas_timeline.py
 
@@ -99,7 +108,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add registry/dois.json registry/publications.json registry/catalog.json registry/knowledge_graph.json registry/atlas_timeline.json registry/deposits papers/echo-atlas-primer/metadata.yaml
+          git add registry/dois.json registry/publications.json registry/catalog.json registry/knowledge_graph.json registry/atlas_timeline.json registry/constellations.json registry/deposits papers/echo-atlas-primer/metadata.yaml
           git diff --cached --quiet || git commit -m "Update DOI registries, catalog, graph, and deposit logs"
           git push
 
@@ -116,3 +125,4 @@ jobs:
             registry/catalog.json
             registry/knowledge_graph.json
             registry/atlas_timeline.json
+            registry/constellations.json

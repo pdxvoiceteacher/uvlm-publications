@@ -417,6 +417,39 @@ It can eventually support:
 
 The UVLM Research Atlas is a living star map of ideas, where the structure and evolution of a research program can be explored visually, chronologically, and conceptually.
 
+
+## Research Constellations (Derived Layer)
+
+The Atlas now includes a deterministic **research constellations** layer generated into `registry/constellations.json`.
+
+### What constellations are
+
+A constellation is a derived, explainable cluster of publications + concepts (with contextual authors/series) computed from declared graph topology.
+
+### Deterministic graph vs derived constellation layer
+
+- **Deterministic core graph (`registry/knowledge_graph.json`)**: direct representation of declared metadata only.
+- **Derived constellation layer (`registry/constellations.json`)**: computed analysis view built on top of the deterministic graph.
+
+Constellations do **not** mutate `knowledge_graph.json`; they remain a separate artifact for exploration and pedagogy.
+
+### Computation method (v1)
+
+`python3 scripts/build_constellations.py` uses deterministic topology clustering:
+
+1. Build a projection over publication + concept nodes.
+2. Connect nodes using declared structural edges (`mentionsConcept`, concept relations, publication reference/citation relations).
+3. Compute deterministic connected components in fixed sorted order.
+4. Expand each component with weak context (authors/series) for interpretability.
+5. Emit stable IDs, stable sorted members, stats, and machine-readable explanations.
+
+No embeddings, no inferred free-text semantics, and no non-declared edges are introduced.
+
+### Validation and auditability
+
+- `scripts/validate_constellations.py` validates structure, references to graph node/edge IDs, duplicates, ordering, and stats consistency.
+- CI builds and validates `registry/constellations.json` alongside catalog/graph/timeline artifacts.
+
 ## CI Safety Policy
 
 The workflow at `.github/workflows/mint_doi.yml` runs on `papers/**` changes:

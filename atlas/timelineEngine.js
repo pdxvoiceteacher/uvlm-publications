@@ -2,10 +2,14 @@ function parseDate(value) {
   return new Date(`${value}T00:00:00Z`).getTime();
 }
 
+function isModeVisible(nodeOrEdge) {
+  return !nodeOrEdge.hasClass('temporal-hidden') && !nodeOrEdge.hasClass('zoom-hidden') && !nodeOrEdge.hasClass('filter-hidden');
+}
+
 function visibleConceptPublicationCount(cy, conceptId) {
   return cy
     .edges('[type = "mentionsConcept"]')
-    .filter((edge) => !edge.hasClass('temporal-hidden') && edge.target().id() === conceptId)
+    .filter((edge) => isModeVisible(edge) && edge.target().id() === conceptId && isModeVisible(edge.source()))
     .length;
 }
 
@@ -13,22 +17,25 @@ function conceptScale(config, count) {
   const growth = Math.log1p(count);
   return {
     size: config.conceptScaling.baseSize + config.conceptScaling.sizeFactor * growth,
-    glow: config.conceptScaling.baseGlow + config.conceptScaling.glowFactor * growth
+    glow: config.conceptScaling.baseGlow + config.conceptScaling.glowFactor * growth,
+    importanceScore: growth
   };
 }
 
 function updateConceptVisuals(cy, config) {
   cy.nodes('[class = "concept"]').forEach((node) => {
-    if (node.hasClass('temporal-hidden')) {
+    if (!isModeVisible(node)) {
       return;
     }
     const count = visibleConceptPublicationCount(cy, node.id());
-    const { size, glow } = conceptScale(config, count);
+    const { size, glow, importanceScore } = conceptScale(config, count);
     node.style('width', size);
     node.style('height', size);
     node.style('shadow-blur', glow);
     node.style('shadow-opacity', 0.45 + Math.min(0.45, count * 0.08));
+    node.style('font-size', 9 + Math.min(4, importanceScore * 1.6));
     node.data('visiblePublicationCount', count);
+    node.data('importanceScore', importanceScore);
   });
 }
 
@@ -93,12 +100,7 @@ export function createTimelineEngine({ cy, timeline, config }) {
 
   function showStatic() {
     cy.elements().removeClass('temporal-hidden newly-visible');
-    cy.nodes('[class = "concept"]').forEach((node) => {
-      node.style('width', '');
-      node.style('height', '');
-      node.style('shadow-blur', '');
-      node.style('shadow-opacity', '');
-    });
+    updateConceptVisuals(cy, config);
   }
 
   function applyTemporalAt(index) {
@@ -237,6 +239,7 @@ export function createTimelineEngine({ cy, timeline, config }) {
     seekToDate,
     setSpeed,
     getCurrentState,
-    onStateChange
+    onStateChange,
+    refreshConceptVisuals: () => updateConceptVisuals(cy, config)
   };
 }

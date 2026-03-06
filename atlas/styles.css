@@ -127,3 +127,49 @@ body {
   margin: 0.1rem 0 0.5rem;
   word-break: break-word;
 }
+
+.relation-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.concept-relation-link {
+  background: #18243e;
+  color: #deebff;
+  border: 1px solid #35507d;
+  border-radius: 6px;
+  padding: 0.35rem 0.45rem;
+  text-align: left;
+  cursor: pointer;
+}
+
+.onboarding {
+  position: fixed;
+  inset: 0;
+  background: rgba(2, 4, 10, 0.85);
+  display: grid;
+  place-items: center;
+  z-index: 1000;
+}
+
+.onboarding-card {
+  max-width: 540px;
+  background: #0f1830;
+  border: 1px solid #2f436d;
+  border-radius: 12px;
+  padding: 1rem 1.1rem;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.45);
+}
+
+.onboarding-card h2 {
+  margin-top: 0;
+}
+
+.onboarding-card button {
+  background: #1b2d52;
+  color: #eff5ff;
+  border: 1px solid #45679f;
+  border-radius: 8px;
+  padding: 0.45rem 0.7rem;
+}

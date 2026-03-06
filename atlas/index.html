@@ -11,6 +11,17 @@
     <script src="https://unpkg.com/cytoscape-fcose/cytoscape-fcose.js"></script>
   </head>
   <body>
+    <div id="onboarding" class="onboarding" hidden>
+      <div class="onboarding-card">
+        <h2>Welcome to the UVLM Research Atlas</h2>
+        <p>
+          Concepts are stars, publications orbit them as planets, and the timeline replays how the corpus grows through time.
+          Use zoom controls to move from galaxy to solar to orbit-level detail.
+        </p>
+        <button id="onboarding-dismiss">Start Exploring</button>
+      </div>
+    </div>
+
     <header class="topbar">
       <h1>UVLM Research Atlas</h1>
       <div class="controls">
@@ -32,6 +43,13 @@
           <option value="">Guided paths</option>
         </select>
         <button id="guided-play">Play Path</button>
+        <select id="constellations">
+          <option value="">Research constellations</option>
+        </select>
+        <button id="constellation-clear">Clear Constellation</button>
+        <button id="export-png">Export PNG</button>
+        <button id="export-svg">Export SVG</button>
+        <button id="show-onboarding">Help</button>
         <button id="reset">Reset View</button>
       </div>
     </header>

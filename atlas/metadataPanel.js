@@ -9,6 +9,22 @@ function asList(values) {
   return values.join(', ');
 }
 
+function renderConceptRelations(relatedConcepts) {
+  if (!Array.isArray(relatedConcepts) || relatedConcepts.length === 0) {
+    return row('Theory Relations', '—');
+  }
+
+  const items = relatedConcepts
+    .map((item) => {
+      const rel = item.label ?? item.type ?? 'related';
+      const targetLabel = item.targetLabel ?? item.target ?? 'unknown';
+      return `<button class="concept-relation-link" data-concept-target="${item.target}">${rel}: ${targetLabel}</button>`;
+    })
+    .join('');
+
+  return `<div class="meta-key">Theory Relations</div><div class="meta-val relation-list">${items}</div>`;
+}
+
 function renderPublication(data) {
   const doiLink = data.doi && data.doi !== 'pending'
     ? `<a href="https://doi.org/${data.doi}" target="_blank" rel="noopener noreferrer">${data.doi}</a>`
@@ -38,8 +54,10 @@ function renderConcept(data) {
     row('Node Class', 'concept'),
     row('Concept', data.value),
     row('First Appearance', data.appearanceDate),
-    row('Related Papers', data.visiblePublicationCount ?? 0),
-    row('Related Concepts', data.relatedConceptCount ?? 0)
+    row('Related Papers (visible)', data.visiblePublicationCount ?? 0),
+    row('Concept Importance', (data.importanceScore ?? 0).toFixed(2)),
+    row('Related Concepts', data.relatedConceptCount ?? 0),
+    renderConceptRelations(data.relatedConcepts)
   ].join('');
 }
 
@@ -52,8 +70,29 @@ function renderEdge(data, edgeLabelMap = {}) {
   ].join('');
 }
 
+function renderConstellation(data) {
+  return [
+    row('Node Class', 'constellation'),
+    row('Title', data.title),
+    row('Constellation ID', data.id),
+    row('Primary Signals', asList(data.explanation?.primarySignals)),
+    row('Publications', data.stats?.publicationCount ?? 0),
+    row('Concepts', data.stats?.conceptCount ?? 0),
+    row('Authors', data.stats?.authorCount ?? 0),
+    row('Series', data.stats?.seriesCount ?? 0),
+    row('Visible Members', data.visibleMemberCount ?? 0),
+    row('Total Members', data.memberNodeIds?.length ?? 0)
+  ].join('');
+}
+
 export function renderMetadataPanel(container, data, options = {}) {
   const edgeLabelMap = options.edgeLabelMap ?? {};
+
+  if (data.class === 'constellation') {
+    container.innerHTML = renderConstellation(data);
+    return;
+  }
+
   if (data.source && data.target) {
     container.innerHTML = renderEdge(data, edgeLabelMap);
     return;
@@ -78,5 +117,5 @@ export function renderMetadataPanel(container, data, options = {}) {
 }
 
 export function setDefaultPanel(container) {
-  container.innerHTML = '<p>Select a node or edge to inspect metadata.</p>';
+  container.innerHTML = '<p>Select a node, edge, or constellation to inspect metadata.</p>';
 }
