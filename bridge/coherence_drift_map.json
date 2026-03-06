@@ -1,0 +1,23 @@
+{
+  "generatedAt": "2026-03-06",
+  "source": "CoherenceLattice",
+  "policy": "canonical-drift-map-v1",
+  "conceptDrift": {
+    "concept:coherence-lattice": {
+      "driftScore": 0.08,
+      "driftDirection": "stable"
+    },
+    "concept:delta-syn": {
+      "driftScore": 0.42,
+      "driftDirection": "under-modeled"
+    },
+    "concept:formal-coherence": {
+      "driftScore": 0.31,
+      "driftDirection": "over-modeled"
+    },
+    "concept:narrative-phase-space": {
+      "driftScore": 0.57,
+      "driftDirection": "under-modeled"
+    }
+  }
+}

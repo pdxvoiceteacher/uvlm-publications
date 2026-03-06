@@ -58,8 +58,10 @@ function renderConcept(data) {
     row('Concept Importance', (data.importanceScore ?? 0).toFixed(2)),
     row('Coherence Weight', (data.coherenceWeight ?? 0).toFixed(2)),
     row('Attention Rank', data.attentionRank ?? '—'),
-    row('Drift Score', (data.driftScore ?? 0).toFixed(2)),
-    row('Drift Direction', data.driftDirection ?? '—'),
+    row('Attention Weight', (data.attentionWeight ?? 0).toFixed(2)),
+    row('Drift Score (formal)', (data.driftScore ?? 0).toFixed(2)),
+    row('Activity Mismatch Score (publisher-local)', data.activityMismatchScore == null ? '—' : Number(data.activityMismatchScore).toFixed(2)),
+    row('Drift Direction (formal)', data.driftDirection ?? '—'),
     row('Sophia Note', data.sophiaNote ?? '—'),
     row('Related Concepts', data.relatedConceptCount ?? 0),
     renderConceptRelations(data.relatedConcepts)

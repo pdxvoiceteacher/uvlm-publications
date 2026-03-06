@@ -8,7 +8,7 @@ import { createTimelineEngine } from './timelineEngine.js';
 import { bindTimelineControls } from './timelineControls.js';
 import { edgeLabelMap } from './edgeLabels.js';
 import { applyAttentionOverlay, loadAttentionOverlay } from './attentionOverlay.js';
-import { applyDriftVisualization } from './driftVisualization.js';
+import { applyDriftVisualization, loadDriftOverlay } from './driftVisualization.js';
 
 const graphContainer = document.getElementById('graph');
 const detailEl = document.getElementById('details');
@@ -373,12 +373,13 @@ function bindConstellations({ cy, constellations, renderConstellationInfo }) {
 }
 
 async function main() {
-  const [graphResponse, timelineResponse, pathsResponse, constellationsResponse, attentionOverlay] = await Promise.all([
+  const [graphResponse, timelineResponse, pathsResponse, constellationsResponse, attentionOverlay, driftOverlay] = await Promise.all([
     fetch('../registry/knowledge_graph.json'),
     fetch('../registry/atlas_timeline.json'),
     fetch('../registry/atlas_paths.json').catch(() => null),
     fetch('../registry/constellations.json').catch(() => null),
-    loadAttentionOverlay().catch(() => ({}))
+    loadAttentionOverlay().catch(() => ({})),
+    loadDriftOverlay().catch(() => ({}))
   ]);
 
   const sourceGraph = await graphResponse.json();
@@ -507,7 +508,6 @@ async function main() {
   }).run();
 
   annotateConceptStats(cy);
-  applyAttentionOverlay(cy, attentionOverlay);
   setDefaultPanel(detailEl);
 
   function focusNode(node) {
@@ -538,8 +538,13 @@ async function main() {
     maxIndex: timeline.events.length - 1
   });
 
-  timelineEngine.refreshConceptVisuals();
-  applyDriftVisualization(cy);
+  function reapplyPublisherOverlays() {
+    applyAttentionOverlay(cy, attentionOverlay);
+    timelineEngine.refreshConceptVisuals();
+    applyDriftVisualization(cy, driftOverlay);
+  }
+
+  reapplyPublisherOverlays();
 
   bindGuidedPaths(cy, pathsData?.paths ?? [], (node) => focusNode(node));
 
@@ -550,8 +555,7 @@ async function main() {
   });
 
   timelineEngine.onStateChange(() => {
-    timelineEngine.refreshConceptVisuals();
-    applyDriftVisualization(cy);
+    reapplyPublisherOverlays();
     constellationApi.refresh();
   });
 
@@ -614,8 +618,7 @@ async function main() {
     setDefaultPanel(detailEl);
     searchAPI.apply();
     window.history.replaceState(null, '', window.location.pathname);
-    timelineEngine.refreshConceptVisuals();
-    applyDriftVisualization(cy);
+    reapplyPublisherOverlays();
   });
 
   wireOnboarding();
