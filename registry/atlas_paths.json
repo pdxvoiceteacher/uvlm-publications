@@ -1,0 +1,13 @@
+{
+  "paths": [
+    {
+      "id": "coherence-lineage",
+      "title": "Coherence Lattice Lineage",
+      "nodes": [
+        "concept:coherence-lattice",
+        "publication:uvlm.paper.echo-atlas-primer.v1",
+        "publication:uvlm.paper.coherence-lattice-formalism.v1"
+      ]
+    }
+  ]
+}
