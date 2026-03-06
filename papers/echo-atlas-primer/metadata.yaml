@@ -1,0 +1,43 @@
+title: The Echo Atlas Primer
+type: paper
+
+authors:
+  - name: Thomas Prislac
+    orcid: 0000-0000-0000-0000
+
+publisher: Ultra Verba Lux Mentis
+series: UVLM Working Papers
+language: en
+keywords:
+  - coherence theory
+  - narrative systems
+  - complex systems
+concepts:
+  - coherence lattice
+  - delta syn
+  - narrative phase space
+
+concept_relations:
+  - source: coherence lattice
+    target: delta syn
+    type: contains
+
+publication_date: "2026-03-05"
+
+abstract: >
+  A multi-scale framework for analyzing narrative coherence
+  patterns across psychological, narrative, and cultural levels.
+
+version: v1
+
+doi_suffix: uvlm.paper.echo-atlas-primer.v1
+
+url: https://ultraverbaluxmentis.org/publications/echo-atlas-primer
+
+license: CC-BY-4.0
+
+relations:
+  - type: isReferencedBy
+    doi: 10.12345/uvlm.paper.echo-atlas-primer.v1
+
+content_hash: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
