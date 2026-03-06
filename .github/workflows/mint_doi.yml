@@ -1,7 +1,12 @@
 name: Mint DOI
 
 on:
+  pull_request:
+    paths:
+      - "papers/**"
   push:
+    branches:
+      - main
     paths:
       - "papers/**"
 
@@ -45,7 +50,8 @@ jobs:
       - name: Validate generated XML
         run: python -c "import xml.etree.ElementTree as ET; ET.parse('crossref_deposit.xml'); print('XML OK')"
 
-      - name: Dry-run deposit
+      - name: Dry-run deposit (PR safety)
+        if: github.event_name == 'pull_request'
         env:
           CROSSREF_USERNAME: ${{ secrets.CROSSREF_USERNAME }}
           CROSSREF_PASSWORD: ${{ secrets.CROSSREF_PASSWORD }}
@@ -56,8 +62,8 @@ jobs:
             --xml crossref_deposit.xml \
             --dry-run
 
-      - name: Mint DOI and update registry
-        if: github.ref == 'refs/heads/main'
+      - name: Mint DOI and update registries
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         env:
           CROSSREF_USERNAME: ${{ secrets.CROSSREF_USERNAME }}
           CROSSREF_PASSWORD: ${{ secrets.CROSSREF_PASSWORD }}
@@ -68,12 +74,12 @@ jobs:
             --xml crossref_deposit.xml
 
       - name: Commit registry updates
-        if: github.ref == 'refs/heads/main'
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add registry/dois.json registry/deposits papers/echo-atlas-primer/metadata.yaml
-          git diff --cached --quiet || git commit -m "Update DOI registry and deposit logs"
+          git add registry/dois.json registry/publications.json registry/deposits papers/echo-atlas-primer/metadata.yaml
+          git diff --cached --quiet || git commit -m "Update DOI registries and deposit logs"
           git push
 
       - name: Upload deposit artifacts
@@ -84,3 +90,5 @@ jobs:
             crossref_deposit.xml
             papers/echo-atlas-primer/metadata.yaml
             registry/deposits/
+            registry/dois.json
+            registry/publications.json

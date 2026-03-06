@@ -9,8 +9,11 @@ Canonical source for UVLM scholarly publications and DOI minting.
 - `papers/`: publication packages (`paper.pdf`, `metadata.yaml`, local docs).
 - `schemas/`: JSON schema validation rules.
 - `scripts/`: metadata validation, hash generation, Crossref XML/deposit automation.
-- `registry/`: DOI state registry and deposit logs.
+- `registry/dois.json`: slug-based DOI state registry.
+- `registry/publications.json`: global publication index keyed by DOI suffix.
+- `registry/deposits/`: deposit audit logs.
 - `.github/workflows/`: CI workflows.
+- `DOI_NAMESPACE.md`: canonical DOI naming policy.
 
 ## DOI Namespace Policy
 
@@ -35,7 +38,9 @@ Each `papers/<slug>/metadata.yaml` includes:
 - `title`
 - `type` (`paper`, `dataset`, `software`, `book`, `working-paper`)
 - `authors` with required ORCID (`0000-0000-0000-0000`)
-- `publication_date`
+- `publisher` (explicit, e.g. `Ultra Verba Lux Mentis`)
+- `series` (e.g. `UVLM Working Papers`)
+- `publication_date` in ISO format `YYYY-MM-DD`
 - `doi_suffix`
 - `url`
 - `content_hash` (SHA-256 of `paper.pdf`)
@@ -51,6 +56,7 @@ Schema is enforced by `schemas/publication_schema.json`.
 4. `scripts/deposit_crossref.py --dry-run` validates payload without minting.
 5. `scripts/deposit_crossref.py` deposits and updates:
    - `registry/dois.json` (`pending`, `registered`, `failed`, `updated`)
+   - `registry/publications.json` global publication index
    - `registry/deposits/<date>_<slug>.json` audit logs
 
 Required environment variables:
@@ -59,14 +65,11 @@ Required environment variables:
 - `CROSSREF_PASSWORD`
 - `DOI_PREFIX`
 
-## CI Pipeline
+## CI Safety Policy
 
-`.github/workflows/mint_doi.yml` runs on `papers/**` changes and performs:
+The workflow at `.github/workflows/mint_doi.yml` runs on `papers/**` changes:
 
-1. dependency install from `requirements.txt`
-2. metadata hash update + validation
-3. Crossref XML generation + XML validation
-4. dry-run deposit
-5. mint DOI (on `main`) and update registry/logs
-6. commit registry updates
-7. upload XML + metadata + deposit logs as artifacts
+- **Pull requests**: validates metadata, generates XML, and runs **dry-run only** deposit.
+- **Pushes to `main`**: performs minting deposit, updates registries, commits audit artifacts.
+
+This prevents accidental DOI minting before merge.

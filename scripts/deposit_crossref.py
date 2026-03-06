@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Deposit Crossref XML and update DOI registry with audit logging."""
+"""Deposit Crossref XML and update DOI registries with audit logging."""
 
 from __future__ import annotations
 
@@ -22,7 +22,13 @@ def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--metadata", type=Path, required=True, help="Path to metadata.yaml")
     parser.add_argument("--xml", type=Path, required=True, help="Path to Crossref XML file")
-    parser.add_argument("--registry", type=Path, default=Path("registry/dois.json"), help="Path to DOI registry")
+    parser.add_argument("--registry", type=Path, default=Path("registry/dois.json"), help="Path to DOI slug registry")
+    parser.add_argument(
+        "--publications-index",
+        type=Path,
+        default=Path("registry/publications.json"),
+        help="Path to global DOI-suffix publication index",
+    )
     parser.add_argument("--deposits-dir", type=Path, default=Path("registry/deposits"), help="Path to deposit logs")
     parser.add_argument("--endpoint", default=CROSSREF_TEST_ENDPOINT, help="Crossref deposit endpoint")
     parser.add_argument("--dry-run", action="store_true", help="Validate payload and log attempt without minting DOI")
@@ -53,7 +59,7 @@ def validate_xml(xml_path: Path) -> None:
     ET.parse(xml_path)
 
 
-def update_registry(registry_path: Path, metadata: dict, doi: str, status: str) -> None:
+def update_slug_registry(registry_path: Path, metadata: dict, doi: str, status: str) -> None:
     registry = {}
     if registry_path.exists():
         registry = json.loads(registry_path.read_text(encoding="utf-8"))
@@ -68,6 +74,23 @@ def update_registry(registry_path: Path, metadata: dict, doi: str, status: str) 
     }
 
     registry_path.write_text(json.dumps(registry, indent=2) + "\n", encoding="utf-8")
+
+
+def update_publications_index(index_path: Path, metadata: dict, doi: str, status: str) -> None:
+    index = {}
+    if index_path.exists():
+        index = json.loads(index_path.read_text(encoding="utf-8"))
+
+    key = metadata["doi_suffix"]
+    index[key] = {
+        "title": metadata["title"],
+        "doi": doi,
+        "type": metadata["type"],
+        "date": metadata["publication_date"],
+        "status": status,
+    }
+
+    index_path.write_text(json.dumps(index, indent=2) + "\n", encoding="utf-8")
 
 
 def write_deposit_log(deposits_dir: Path, metadata: dict, doi: str, status: str, detail: str) -> Path:
@@ -88,6 +111,11 @@ def write_deposit_log(deposits_dir: Path, metadata: dict, doi: str, status: str,
     return log_path
 
 
+def write_indexes(args: argparse.Namespace, metadata: dict, doi: str, status: str) -> None:
+    update_slug_registry(args.registry, metadata, doi, status)
+    update_publications_index(args.publications_index, metadata, doi, status)
+
+
 def main() -> int:
     args = parse_args()
 
@@ -104,13 +132,13 @@ def main() -> int:
         validate_xml(args.xml)
     except ET.ParseError as exc:
         print(f"[ERROR] Invalid XML document: {exc}")
-        update_registry(args.registry, metadata, target_doi, "failed")
+        write_indexes(args, metadata, target_doi, "failed")
         write_deposit_log(args.deposits_dir, metadata, target_doi, "failed", f"XML parse failure: {exc}")
         return 1
 
     if args.dry_run:
         print(f"[DRY-RUN] Deposit validation completed for DOI: {target_doi}")
-        update_registry(args.registry, metadata, target_doi, "pending")
+        write_indexes(args, metadata, target_doi, "pending")
         log_path = write_deposit_log(args.deposits_dir, metadata, target_doi, "pending", "Dry-run validation only")
         print(f"[OK] Dry-run log written: {log_path}")
         return 0
@@ -121,14 +149,14 @@ def main() -> int:
     if response.status_code >= 300:
         detail = f"Crossref deposit failed: HTTP {response.status_code}"
         print(f"[ERROR] {detail}\n{response.text}")
-        update_registry(args.registry, metadata, target_doi, "failed")
+        write_indexes(args, metadata, target_doi, "failed")
         write_deposit_log(args.deposits_dir, metadata, target_doi, "failed", detail)
         return 1
 
     print("[OK] Crossref deposit accepted")
-    update_registry(args.registry, metadata, target_doi, "registered")
+    write_indexes(args, metadata, target_doi, "registered")
     log_path = write_deposit_log(args.deposits_dir, metadata, target_doi, "registered", "Crossref accepted deposit")
-    print(f"[OK] Registry updated: {args.registry}")
+    print(f"[OK] Registries updated: {args.registry}, {args.publications_index}")
     print(f"[OK] Deposit log written: {log_path}")
     return 0
 

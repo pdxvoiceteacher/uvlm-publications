@@ -5,6 +5,8 @@
     "title",
     "type",
     "authors",
+    "publisher",
+    "series",
     "publication_date",
     "doi_suffix",
     "url",
@@ -29,13 +31,18 @@
       },
       "minItems": 1
     },
-    "publication_date": { "type": "string", "format": "date" },
+    "publisher": { "type": "string", "minLength": 1 },
+    "series": { "type": "string", "minLength": 1 },
+    "publication_date": {
+      "type": "string",
+      "format": "date",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+    },
     "doi_suffix": {
       "type": "string",
       "pattern": "^uvlm\\.(paper|dataset|software)\\.[a-z0-9-]+\\.v[0-9]+$"
     },
     "url": { "type": "string", "format": "uri" },
-    "publisher": { "type": "string" },
     "abstract": { "type": "string" },
     "version": { "type": "string", "pattern": "^v[0-9]+$" },
     "license": { "type": "string" },

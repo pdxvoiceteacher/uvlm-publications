@@ -6,6 +6,7 @@ authors:
     orcid: 0000-0000-0000-0000
 
 publisher: Ultra Verba Lux Mentis
+series: UVLM Working Papers
 
 publication_date: 2026-03-05
 
@@ -23,6 +24,6 @@ license: CC-BY-4.0
 
 relations:
   - type: isReferencedBy
-    doi: 10.XXXX/uvlm.paper.echo-atlas-primer.v1
+    doi: 10.12345/uvlm.paper.echo-atlas-primer.v1
 
 content_hash: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
