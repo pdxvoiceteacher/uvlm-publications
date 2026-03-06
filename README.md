@@ -153,6 +153,22 @@ python3 -m http.server 8000
 # open http://localhost:8000/atlas/
 ```
 
+### Phase-lock integration rule (CoherenceLattice → Sophia → Publisher)
+
+The atlas overlay pipeline follows a strict order:
+
+1. **CoherenceLattice** provides formal coherence truth (including canonical drift).
+2. **Sophia** provides executive interpretation (canonical attention updates).
+3. **Publisher (Atlas)** renders overlays and presents memory-facing metadata.
+
+Semantics used in this repo:
+
+- **Formal drift** = CoherenceLattice truth (`bridge/coherence_drift_map.json`).
+- **Attention update** = Sophia executive interpretation (`bridge/attention_updates.json`).
+- **Overlay rendering** = Publisher visualization layer (Atlas modules).
+
+Publisher may include local UI diagnostics, but they must be clearly separated from canonical policy metrics (e.g., `activityMismatchScore` is a local rendering diagnostic, not formal drift).
+
 
 ## UVLM Research Atlas
 
