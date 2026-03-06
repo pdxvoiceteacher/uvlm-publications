@@ -1,0 +1,72 @@
+{
+  "nodes": [
+    {
+      "id": "author:thomas-prislac",
+      "class": "author",
+      "name": "Thomas Prislac"
+    },
+    {
+      "id": "keyword:coherence-theory",
+      "class": "keyword",
+      "value": "coherence theory"
+    },
+    {
+      "id": "keyword:complex-systems",
+      "class": "keyword",
+      "value": "complex systems"
+    },
+    {
+      "id": "keyword:narrative-systems",
+      "class": "keyword",
+      "value": "narrative systems"
+    },
+    {
+      "id": "publication:uvlm.paper.echo-atlas-primer.v1",
+      "class": "publication",
+      "title": "The Echo Atlas Primer",
+      "doi": "pending",
+      "doi_suffix": "uvlm.paper.echo-atlas-primer.v1",
+      "date": "2026-03-05",
+      "url": "https://ultraverbaluxmentis.org/publications/echo-atlas-primer",
+      "publication_type": "paper"
+    },
+    {
+      "id": "series:uvlm-working-papers",
+      "class": "series",
+      "name": "UVLM Working Papers"
+    }
+  ],
+  "edges": [
+    {
+      "source": "publication:uvlm.paper.echo-atlas-primer.v1",
+      "target": "author:thomas-prislac",
+      "type": "authoredBy"
+    },
+    {
+      "source": "publication:uvlm.paper.echo-atlas-primer.v1",
+      "target": "keyword:coherence-theory",
+      "type": "taggedWith"
+    },
+    {
+      "source": "publication:uvlm.paper.echo-atlas-primer.v1",
+      "target": "keyword:complex-systems",
+      "type": "taggedWith"
+    },
+    {
+      "source": "publication:uvlm.paper.echo-atlas-primer.v1",
+      "target": "keyword:narrative-systems",
+      "type": "taggedWith"
+    },
+    {
+      "source": "publication:uvlm.paper.echo-atlas-primer.v1",
+      "target": "publication:uvlm.paper.echo-atlas-primer.v1",
+      "type": "isReferencedBy",
+      "doi": "10.12345/uvlm.paper.echo-atlas-primer.v1"
+    },
+    {
+      "source": "publication:uvlm.paper.echo-atlas-primer.v1",
+      "target": "series:uvlm-working-papers",
+      "type": "publishedIn"
+    }
+  ]
+}
