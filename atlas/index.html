@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>UVLM Research Atlas</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://unpkg.com/cytoscape@3.29.2/dist/cytoscape.min.js"></script>
+    <script src="https://unpkg.com/layout-base/layout-base.js"></script>
+    <script src="https://unpkg.com/cose-base/cose-base.js"></script>
+    <script src="https://unpkg.com/cytoscape-fcose/cytoscape-fcose.js"></script>
+  </head>
+  <body>
+    <div id="onboarding" class="onboarding" hidden>
+      <div class="onboarding-card">
+        <h2>Welcome to the UVLM Research Atlas</h2>
+        <p>
+          Concepts are stars, publications orbit them as planets, and the timeline replays how the corpus grows through time.
+          Use zoom controls to move from galaxy to solar to orbit-level detail.
+        </p>
+        <button id="onboarding-dismiss">Start Exploring</button>
+      </div>
+    </div>
+
+    <header class="topbar">
+      <h1>UVLM Research Atlas</h1>
+      <div class="controls">
+        <input id="search" type="search" placeholder="Search nodes (e.g., coherence lattice)" />
+        <select id="type-filter">
+          <option value="all">All node classes</option>
+          <option value="publication">Publication (planet)</option>
+          <option value="concept">Concept (star)</option>
+          <option value="author">Author (constellation)</option>
+          <option value="keyword">Keyword (nebula)</option>
+          <option value="series">Series (solar system)</option>
+        </select>
+        <div class="view-buttons">
+          <button id="view-galaxy">Galaxy</button>
+          <button id="view-solar">Solar</button>
+          <button id="view-orbit">Orbit</button>
+        </div>
+        <select id="guided-paths">
+          <option value="">Guided paths</option>
+        </select>
+        <button id="guided-play">Play Path</button>
+        <select id="constellations">
+          <option value="">Research constellations</option>
+        </select>
+        <button id="constellation-clear">Clear Constellation</button>
+        <button id="export-png">Export PNG</button>
+        <button id="export-svg">Export SVG</button>
+        <button id="show-onboarding">Help</button>
+        <button id="reset">Reset View</button>
+      </div>
+    </header>
+
+    <section class="atlas-intro">
+      The UVLM Research Atlas is an interactive map of the Ultra Verba Lux Mentis research corpus. Concepts appear as stars, publications orbit them as planets, and the network evolves through time as new works are published.
+    </section>
+
+    <section class="atlas-legend" aria-label="Atlas legend">
+      <span>★ Concept</span>
+      <span>● Publication</span>
+      <span>✦ Author</span>
+      <span>◇ Keyword</span>
+      <span>⬡ Series</span>
+    </section>
+
+    <section class="timeline-controls">
+      <label>
+        Mode
+        <select id="mode-toggle">
+          <option value="static">Static</option>
+          <option value="temporal">Temporal</option>
+        </select>
+      </label>
+      <button id="timeline-play">Play</button>
+      <button id="timeline-pause">Pause</button>
+      <button id="timeline-reset">Reset Timeline</button>
+      <label>
+        Speed
+        <select id="timeline-speed">
+          <option value="1x">1x</option>
+          <option value="2x">2x</option>
+          <option value="5x">5x</option>
+        </select>
+      </label>
+      <input id="timeline-slider" type="range" />
+      <span id="timeline-date">--</span>
+    </section>
+
+    <main class="layout">
+      <section id="graph" aria-label="Knowledge graph visualization"></section>
+      <aside class="panel">
+        <h2>Node Details</h2>
+        <div id="details">
+          <p>Select a node to inspect metadata.</p>
+        </div>
+      </aside>
+    </main>
+
+    <script type="module" src="atlas.js"></script>
+  </body>
+</html>

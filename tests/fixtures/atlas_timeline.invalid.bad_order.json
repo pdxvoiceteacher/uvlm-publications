@@ -1,0 +1,36 @@
+{
+  "timeRange": {
+    "start": "2026-03-05",
+    "end": "2026-03-05"
+  },
+  "nodes": {
+    "publication:uvlm.paper.echo-atlas-primer.v1": {
+      "appearanceDate": "2026-03-05"
+    },
+    "concept:coherence-lattice": {
+      "appearanceDate": "2026-03-05"
+    }
+  },
+  "edges": {
+    "publication:uvlm.paper.echo-atlas-primer.v1->concept:coherence-lattice:mentionsConcept": {
+      "appearanceDate": "2026-03-05"
+    }
+  },
+  "events": [
+    {
+      "date": "2026-03-05",
+      "type": "edge-appear",
+      "id": "publication:uvlm.paper.echo-atlas-primer.v1->concept:coherence-lattice:mentionsConcept"
+    },
+    {
+      "date": "2026-03-05",
+      "type": "node-appear",
+      "id": "concept:coherence-lattice"
+    },
+    {
+      "date": "2026-03-05",
+      "type": "node-appear",
+      "id": "publication:uvlm.paper.echo-atlas-primer.v1"
+    }
+  ]
+}
