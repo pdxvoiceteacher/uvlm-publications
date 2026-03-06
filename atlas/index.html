@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>UVLM Research Atlas</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://unpkg.com/cytoscape@3.29.2/dist/cytoscape.min.js"></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <h1>UVLM Research Atlas</h1>
+      <div class="controls">
+        <input id="search" type="search" placeholder="Search nodes (e.g., coherence lattice)" />
+        <select id="type-filter">
+          <option value="all">All node classes</option>
+          <option value="publication">Publication (planet)</option>
+          <option value="concept">Concept (star)</option>
+          <option value="author">Author (constellation)</option>
+          <option value="keyword">Keyword (nebula)</option>
+          <option value="series">Series (solar system)</option>
+        </select>
+        <button id="reset">Reset View</button>
+      </div>
+    </header>
+
+    <main class="layout">
+      <section id="graph" aria-label="Knowledge graph visualization"></section>
+      <aside class="panel">
+        <h2>Node Details</h2>
+        <div id="details">
+          <p>Select a node to inspect metadata.</p>
+        </div>
+      </aside>
+    </main>
+
+    <script type="module" src="app.js"></script>
+  </body>
+</html>
