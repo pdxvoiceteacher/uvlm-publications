@@ -65,7 +65,11 @@ export async function loadAttentionOverlay() {
     governanceReviewDocketResp,
     reviewerIntegrityAnnotationsResp,
     reviewerWatchQueueResp,
-    reviewerBehaviorMonitorResp
+    reviewerBehaviorMonitorResp,
+    constitutionalStatusResp,
+    continuityModeIndexResp,
+    constitutionalAnnotationsResp,
+    governanceFailureWatchlistResp
   ] = await Promise.all([
     fetch('../bridge/attention_updates.json').catch(() => null),
     fetch('../bridge/coherence_assessment.json').catch(() => null),
@@ -89,7 +93,11 @@ export async function loadAttentionOverlay() {
     fetch('../registry/governance_review_docket.json').catch(() => null),
     fetch('../registry/reviewer_integrity_annotations.json').catch(() => null),
     fetch('../registry/reviewer_watch_queue.json').catch(() => null),
-    fetch('../registry/reviewer_behavior_monitor.json').catch(() => null)
+    fetch('../registry/reviewer_behavior_monitor.json').catch(() => null),
+    fetch('../registry/constitutional_status.json').catch(() => null),
+    fetch('../registry/continuity_mode_index.json').catch(() => null),
+    fetch('../registry/constitutional_annotations.json').catch(() => null),
+    fetch('../registry/governance_failure_watchlist.json').catch(() => null)
   ]);
 
   return {
@@ -115,7 +123,11 @@ export async function loadAttentionOverlay() {
     governanceReviewDocket: governanceReviewDocketResp ? await governanceReviewDocketResp.json() : {},
     reviewerIntegrityAnnotations: reviewerIntegrityAnnotationsResp ? await reviewerIntegrityAnnotationsResp.json() : {},
     reviewerWatchQueue: reviewerWatchQueueResp ? await reviewerWatchQueueResp.json() : {},
-    reviewerBehaviorMonitor: reviewerBehaviorMonitorResp ? await reviewerBehaviorMonitorResp.json() : {}
+    reviewerBehaviorMonitor: reviewerBehaviorMonitorResp ? await reviewerBehaviorMonitorResp.json() : {},
+    constitutionalStatus: constitutionalStatusResp ? await constitutionalStatusResp.json() : {},
+    continuityModeIndex: continuityModeIndexResp ? await continuityModeIndexResp.json() : {},
+    constitutionalAnnotations: constitutionalAnnotationsResp ? await constitutionalAnnotationsResp.json() : {},
+    governanceFailureWatchlist: governanceFailureWatchlistResp ? await governanceFailureWatchlistResp.json() : {}
   };
 }
 
@@ -380,6 +392,37 @@ function buildGovernanceConceptSignals(governanceReviewDocket, reviewerWatchQueu
   return byConcept;
 }
 
+function buildConstitutionalConceptSignals(constitutionalAnnotations, governanceFailureWatchlist) {
+  const byConcept = new Map();
+
+  const watchByArtifact = new Map();
+  asArray(governanceFailureWatchlist?.entries).forEach((entry) => {
+    if (typeof entry?.artifactId === 'string') {
+      watchByArtifact.set(entry.artifactId, entry);
+    }
+  });
+
+  asArray(constitutionalAnnotations?.annotations).forEach((entry) => {
+    const artifactId = entry?.artifactId;
+    if (typeof artifactId !== 'string') {
+      return;
+    }
+    const watch = watchByArtifact.get(artifactId);
+    asArray(watch?.linkedTargetIds).forEach((targetId) => {
+      if (typeof targetId !== 'string') {
+        return;
+      }
+      byConcept.set(targetId, {
+        constitutionalStatus: entry?.constitutionalStatus ?? 'watch',
+        freezeRecommendation: watch?.watchStatus === 'freeze-recommended',
+        constitutionalWatchStatus: watch?.watchStatus ?? 'none'
+      });
+    });
+  });
+
+  return byConcept;
+}
+
 export function applyAttentionOverlay(cy, overlay) {
   const conceptWeights = overlay?.coherenceWeights?.conceptWeights ?? {};
   const conceptAnnotations = overlay?.sophiaAnnotations?.conceptAnnotations ?? {};
@@ -406,6 +449,10 @@ export function applyAttentionOverlay(cy, overlay) {
     overlay?.governanceReviewDocket,
     overlay?.reviewerWatchQueue,
     overlay?.reviewerBehaviorMonitor
+  );
+  const constitutionalSignals = buildConstitutionalConceptSignals(
+    overlay?.constitutionalAnnotations,
+    overlay?.governanceFailureWatchlist
   );
 
   cy.nodes('[class = "concept"]').forEach((node) => {
@@ -449,8 +496,13 @@ export function applyAttentionOverlay(cy, overlay) {
     node.data('integrityWatchStatus', governance?.integrityWatchStatus ?? 'none');
     node.data('behaviorTrend', governance?.behaviorTrend ?? 'unknown');
     node.data('humanReviewFlag', governance?.humanReviewFlag ?? false);
+    const constitutional = constitutionalSignals.get(id);
+    node.data('constitutionalStatus', constitutional?.constitutionalStatus ?? (overlay?.constitutionalStatus?.constitutionalStatus ?? 'stable'));
+    node.data('continuityMode', overlay?.continuityModeIndex?.continuityMode ?? 'normal');
+    node.data('freezeRecommendation', constitutional?.freezeRecommendation ?? Boolean(overlay?.continuityModeIndex?.freezeRecommended));
+    node.data('constitutionalWatchStatus', constitutional?.constitutionalWatchStatus ?? 'none');
 
-    node.removeClass('attention-priority attention-secondary sonya-candidate reasoning-thread reasoning-watch stability-positive stability-watch multimodal-donation multimodal-watch review-candidate watch-queue governance-review governance-watch');
+    node.removeClass('attention-priority attention-secondary sonya-candidate reasoning-thread reasoning-watch stability-positive stability-watch multimodal-donation multimodal-watch review-candidate watch-queue governance-review governance-watch constitutional-watch constitutional-freeze');
     if ((rankData?.rank ?? Infinity) <= 2) {
       node.addClass('attention-priority');
     } else if ((rankData?.rank ?? Infinity) <= 5) {
@@ -494,6 +546,12 @@ export function applyAttentionOverlay(cy, overlay) {
     }
     if ((governance?.integrityWatchStatus ?? 'none') === 'watch') {
       node.addClass('governance-watch');
+    }
+    if ((constitutional?.constitutionalWatchStatus ?? 'none') !== 'none') {
+      node.addClass('constitutional-watch');
+    }
+    if ((constitutional?.freezeRecommendation ?? false) === true) {
+      node.addClass('constitutional-freeze');
     }
   });
 }

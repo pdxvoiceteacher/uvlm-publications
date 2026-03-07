@@ -570,6 +570,21 @@ async function main() {
           'overlay-opacity': 0.1,
           'overlay-padding': 2
         }
+      },
+      {
+        selector: '.constitutional-watch',
+        style: {
+          'border-color': '#94d3ff',
+          'border-width': 2
+        }
+      },
+      {
+        selector: '.constitutional-freeze',
+        style: {
+          'overlay-color': '#85b7ff',
+          'overlay-opacity': 0.12,
+          'overlay-padding': 3
+        }
       }
     ],
     layout: {
@@ -693,7 +708,7 @@ async function main() {
   resetEl.addEventListener('click', () => {
     searchEl.value = '';
     typeFilterEl.value = 'all';
-    cy.elements().removeClass('zoom-hidden filter-hidden highlight spotlight-dim spotlight-focus sonya-candidate reasoning-thread reasoning-watch stability-positive stability-watch multimodal-donation multimodal-watch review-candidate watch-queue governance-review governance-watch');
+    cy.elements().removeClass('zoom-hidden filter-hidden highlight spotlight-dim spotlight-focus sonya-candidate reasoning-thread reasoning-watch stability-positive stability-watch multimodal-donation multimodal-watch review-candidate watch-queue governance-review governance-watch constitutional-watch constitutional-freeze');
     constellationApi.clear();
     cy.fit(cy.elements(':visible'), 60);
     setDefaultPanel(detailEl);

@@ -79,6 +79,10 @@ function renderConcept(data) {
     row('Integrity Watch Status', data.integrityWatchStatus ?? 'none'),
     row('Behavior Trend', data.behaviorTrend ?? 'unknown'),
     row('Human Review Flag', data.humanReviewFlag ? 'yes' : 'no'),
+    row('Constitutional Status', data.constitutionalStatus ?? 'stable'),
+    row('Continuity Mode', data.continuityMode ?? 'normal'),
+    row('Freeze Recommendation', data.freezeRecommendation ? 'yes' : 'no'),
+    row('Constitutional Watch Status', data.constitutionalWatchStatus ?? 'none'),
     row('Related Concepts', data.relatedConceptCount ?? 0),
     renderConceptRelations(data.relatedConcepts)
   ].join('');

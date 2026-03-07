@@ -269,6 +269,20 @@ Build command:
 python3 scripts/build_governance_review_overlay.py
 ```
 
+### Constitutional charter and continuity mode overlays (Phase I)
+
+Publisher surfaces only **Sophia-audited constitutional and continuity overlays**.
+These artifacts are governance-facing recommendations only; final constitutional actions remain external (human/community governed).
+
+- inputs: `bridge/constitutional_audit.json`, `bridge/constitutional_recommendations.json`, `bridge/continuity_mode_assessment.json`
+- governance-facing non-canonical outputs: `registry/constitutional_status.json`, `registry/continuity_mode_index.json`, `registry/constitutional_annotations.json`, `registry/governance_failure_watchlist.json`
+
+Build command:
+
+```bash
+python3 scripts/build_constitutional_overlay.py
+```
+
 
 ## UVLM Research Atlas
 
