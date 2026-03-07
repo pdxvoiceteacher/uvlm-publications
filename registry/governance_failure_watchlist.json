@@ -1,0 +1,28 @@
+{
+  "generatedAt": "2026-03-07",
+  "nonCanonical": true,
+  "governanceFacing": true,
+  "entries": [
+    {
+      "artifactId": "governance-review-001",
+      "watchStatus": "watch",
+      "constitutionalStatus": "stable",
+      "humanReviewFlag": false,
+      "reason": "Observe for longitudinal consistency.",
+      "linkedTargetIds": [
+        "concept-governance",
+        "concept-legibility"
+      ]
+    },
+    {
+      "artifactId": "governance-review-002",
+      "watchStatus": "freeze-recommended",
+      "constitutionalStatus": "freeze-recommended",
+      "humanReviewFlag": true,
+      "reason": "Freeze recommended pending external governance vote.",
+      "linkedTargetIds": [
+        "concept-review-integrity"
+      ]
+    }
+  ]
+}

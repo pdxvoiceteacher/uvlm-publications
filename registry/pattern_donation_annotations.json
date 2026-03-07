@@ -1,0 +1,16 @@
+{
+  "generatedAt": "2026-03-07",
+  "annotations": [
+    {
+      "donationId": "donation:guide-001:coherence-lattice",
+      "targetId": "concept:coherence-lattice",
+      "explanation": "Admit as subtle cross-modal reinforcement overlay for concept-level annotation.",
+      "governingRule": "cross-modal-consistent-low-risk",
+      "reinforcementStatus": "reinforced",
+      "monitorFlags": [
+        "cross-modal consistency",
+        "stable-low contradiction"
+      ]
+    }
+  ]
+}

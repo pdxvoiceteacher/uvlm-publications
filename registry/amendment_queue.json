@@ -1,0 +1,27 @@
+{
+  "generatedAt": "2026-03-07",
+  "governanceFacing": true,
+  "nonCanonical": true,
+  "deliberationChamber": true,
+  "finalActionExternal": true,
+  "entries": [
+    {
+      "candidateId": "amend-001",
+      "reviewId": "delib-001",
+      "status": "require-broader-human-review",
+      "amendmentStatus": "recommend-deliberation",
+      "proceduralPrinciples": [
+        "quorum-legitimacy",
+        "reversibility-preference",
+        "slow-amendment"
+      ],
+      "emergencyInterpretationOnly": false,
+      "reversibilityPreference": "prefer-reversible-guidance",
+      "linkedTargetIds": [
+        "concept:coherence-lattice"
+      ],
+      "humanReviewFlag": true,
+      "queuedAt": "2026-03-07"
+    }
+  ]
+}
