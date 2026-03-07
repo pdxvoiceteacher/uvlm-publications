@@ -1,0 +1,26 @@
+{
+  "generatedAt": "2026-03-07",
+  "preparednessFacing": true,
+  "nonCanonical": true,
+  "stressRehearsalChamber": true,
+  "entries": [
+    {
+      "scenarioId": "scenario-001",
+      "reviewId": "scn-001",
+      "scenarioStatus": "rehearsal-ready",
+      "projectedCaptureRisk": "moderate",
+      "projectedContinuityRisk": "low",
+      "preparednessRecommendation": "rehearse-recovery",
+      "watchState": "none",
+      "linkedTargetIds": [
+        "concept:governance-integrity"
+      ],
+      "crossChamberLinks": {
+        "governance": false,
+        "quorumResilience": false,
+        "integrityTestimony": false,
+        "precedentDivergence": false
+      }
+    }
+  ]
+}

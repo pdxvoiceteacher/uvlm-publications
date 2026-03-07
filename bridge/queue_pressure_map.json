@@ -1,0 +1,14 @@
+{
+  "generatedAt": "2026-03-07",
+  "provenance": {
+    "schemaVersion": "phase-q.0",
+    "producerCommits": ["cl-commit-qqq222"],
+    "sourceMode": "fixture"
+  },
+  "entries": [
+    {"reviewId": "qh-001", "queueStatus": "high-pressure", "backlogPressure": "high"},
+    {"reviewId": "qh-002", "queueStatus": "high-pressure", "backlogPressure": "high"},
+    {"reviewId": "qh-003", "queueStatus": "moderate-pressure", "backlogPressure": "medium"},
+    {"reviewId": "qh-004", "queueStatus": "high-pressure", "backlogPressure": "high"}
+  ]
+}

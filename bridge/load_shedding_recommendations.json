@@ -1,0 +1,66 @@
+{
+  "generatedAt": "2026-03-07",
+  "provenance": {
+    "schemaVersion": "phase-q.0",
+    "producerCommits": ["sophia-commit-qqq111"],
+    "sourceMode": "fixture"
+  },
+  "recommendations": [
+    {
+      "reviewId": "qh-001",
+      "queueId": "queue-001",
+      "targetPublisherAction": "docket",
+      "watchlistTarget": "review_backlog_watchlist",
+      "queueStatus": "high-pressure",
+      "backlogPressure": "high",
+      "fatigueLoadClass": "elevated",
+      "metricGamingWatchStatus": "none",
+      "loadSheddingRecommendationSummary": "rebalance-review-capacity",
+      "linkedTargetIds": ["concept:governance-integrity"],
+      "humanReviewFlag": true,
+      "notes": "Queue overload should be visible and reviewable without automatic mutation."
+    },
+    {
+      "reviewId": "qh-002",
+      "queueId": "queue-002",
+      "targetPublisherAction": "watch",
+      "watchlistTarget": "review_backlog_watchlist",
+      "queueStatus": "high-pressure",
+      "backlogPressure": "high",
+      "fatigueLoadClass": "fatigued",
+      "metricGamingWatchStatus": "watch",
+      "loadSheddingRecommendationSummary": "defer-low-integrity-items",
+      "linkedTargetIds": ["concept:continuity-protocol"],
+      "humanReviewFlag": true,
+      "notes": "Review fatigue can degrade legitimacy and should remain explicit."
+    },
+    {
+      "reviewId": "qh-003",
+      "queueId": "queue-003",
+      "targetPublisherAction": "watch",
+      "watchlistTarget": "metric_gaming_watchlist",
+      "queueStatus": "moderate-pressure",
+      "backlogPressure": "medium",
+      "fatigueLoadClass": "elevated",
+      "metricGamingWatchStatus": "watch",
+      "loadSheddingRecommendationSummary": "audit-throughput-metrics",
+      "linkedTargetIds": ["concept:constitutional-safeguards"],
+      "humanReviewFlag": true,
+      "notes": "High throughput without coherence should trigger anti-Goodhart watch."
+    },
+    {
+      "reviewId": "qh-004",
+      "queueId": "queue-004",
+      "targetPublisherAction": "suppressed",
+      "watchlistTarget": "metric_gaming_watchlist",
+      "queueStatus": "high-pressure",
+      "backlogPressure": "high",
+      "fatigueLoadClass": "fatigued",
+      "metricGamingWatchStatus": "critical",
+      "loadSheddingRecommendationSummary": "suppressed-pending-review",
+      "linkedTargetIds": ["concept:coherence-lattice"],
+      "humanReviewFlag": true,
+      "notes": "Suppressed from actionable overlays pending conservative review."
+    }
+  ]
+}

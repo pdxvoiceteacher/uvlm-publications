@@ -1,0 +1,8 @@
+{
+  "generatedAt": "2026-99-99",
+  "method": {
+    "name": "deterministic-topology-clustering",
+    "version": "v1"
+  },
+  "constellations": []
+}

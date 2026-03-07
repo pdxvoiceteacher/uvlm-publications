@@ -1,0 +1,25 @@
+{
+  "generatedAt": "2026-03-07",
+  "governanceFacing": true,
+  "nonCanonical": true,
+  "integrityWitnessChamber": true,
+  "finalActionExternal": true,
+  "entries": [
+    {
+      "reviewId": "attest-001",
+      "artifactId": "registry/knowledge_graph.json",
+      "candidateId": "witness-candidate-001",
+      "status": "escrow-review",
+      "attestationStatus": "review-ready",
+      "witnessSufficiency": "sufficient",
+      "integrityTestimonyWatchState": "none",
+      "attestationNeed": "high",
+      "tamperSensitivity": "moderate",
+      "linkedTargetIds": [
+        "concept:coherence-lattice"
+      ],
+      "humanReviewFlag": true,
+      "queuedAt": "2026-03-07"
+    }
+  ]
+}

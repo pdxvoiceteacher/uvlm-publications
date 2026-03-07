@@ -1,0 +1,48 @@
+{
+  "generatedAt": "2026-03-07",
+  "recommendations": [
+    {
+      "reviewId": "scn-001",
+      "scenarioId": "scenario-001",
+      "targetPublisherAction": "docket",
+      "scenarioStatus": "rehearsal-ready",
+      "projectedCaptureRisk": "moderate",
+      "projectedContinuityRisk": "low",
+      "preparednessRecommendation": "rehearse-recovery",
+      "linkedTargetIds": [
+        "concept:governance-integrity"
+      ],
+      "humanReviewFlag": true,
+      "notes": "Rehearse before crisis with bounded governance/continuity coordination."
+    },
+    {
+      "reviewId": "scn-002",
+      "scenarioId": "scenario-002",
+      "targetPublisherAction": "watch",
+      "scenarioStatus": "watch",
+      "projectedCaptureRisk": "high",
+      "projectedContinuityRisk": "medium",
+      "preparednessRecommendation": "freeze-recommended",
+      "linkedTargetIds": [
+        "concept:continuity-protocol"
+      ],
+      "humanReviewFlag": true,
+      "notes": "Capture rehearsal and freeze-before-blind-escalation should remain explicit."
+    },
+    {
+      "reviewId": "scn-003",
+      "scenarioId": "scenario-003",
+      "targetPublisherAction": "suppressed",
+      "scenarioStatus": "suppressed",
+      "projectedCaptureRisk": "high",
+      "projectedContinuityRisk": "high",
+      "preparednessRecommendation": "freeze-recommended",
+      "linkedTargetIds": [
+        "concept:constitutional-safeguards"
+      ],
+      "humanReviewFlag": true,
+      "freezeBeforeBlindEscalation": true,
+      "notes": "Preparedness is not authority; no scenario-triggered emergency activation."
+    }
+  ]
+}
