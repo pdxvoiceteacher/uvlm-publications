@@ -1,0 +1,13 @@
+{
+  "generatedAt": "2026-03-07",
+  "provenance": {
+    "schemaVersion": "phase-u.0",
+    "producerCommits": ["sophia-u-111"],
+    "sourceMode": "fixture"
+  },
+  "entries": [
+    {"reviewId": "vf-001", "verificationUrgency": "high", "verificationTaskSummary": "cross-source-check"},
+    {"reviewId": "vf-002", "verificationUrgency": "routine", "verificationTaskSummary": "hold-until-identity-clarifies"},
+    {"reviewId": "vf-003", "verificationUrgency": "high", "verificationTaskSummary": "withhold-pending-traceability"}
+  ]
+}

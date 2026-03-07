@@ -911,6 +911,35 @@ async function main() {
           'shadow-opacity': 0.14,
           'shadow-blur': 14
         }
+      },
+      {
+        selector: '.verification-active',
+        style: {
+          'border-color': '#d5ebdf'
+        }
+      },
+      {
+        selector: '.claim-typed',
+        style: {
+          'overlay-color': '#d5ebdf',
+          'overlay-opacity': 0.08,
+          'overlay-padding': 2
+        }
+      },
+      {
+        selector: '.entity-ambiguity',
+        style: {
+          'border-width': 2,
+          'border-color': '#ffd8c8'
+        }
+      },
+      {
+        selector: '.verification-urgent',
+        style: {
+          'shadow-color': '#d5ebdf',
+          'shadow-opacity': 0.14,
+          'shadow-blur': 14
+        }
       }
     ],
     layout: {

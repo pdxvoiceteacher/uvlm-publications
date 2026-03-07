@@ -1,0 +1,46 @@
+{
+  "generatedAt": "2026-03-07",
+  "provenance": {
+    "schemaVersion": "phase-u.0",
+    "producerCommits": ["sophia-u-111"],
+    "sourceMode": "fixture"
+  },
+  "recommendations": [
+    {
+      "reviewId": "vf-001",
+      "targetPublisherAction": "docket",
+      "claimType": "factual-claim",
+      "entityResolutionStatus": "partially-resolved",
+      "ambiguityLevel": "medium",
+      "verificationUrgency": "high",
+      "verificationTaskSummary": "cross-source-check",
+      "linkedTargetIds": ["concept:governance-integrity"],
+      "humanReviewFlag": true,
+      "notes": "Verification tasking remains evidence-first and non-accusatory."
+    },
+    {
+      "reviewId": "vf-002",
+      "targetPublisherAction": "watch",
+      "claimType": "attribution-claim",
+      "entityResolutionStatus": "ambiguous",
+      "ambiguityLevel": "high",
+      "verificationUrgency": "routine",
+      "verificationTaskSummary": "hold-until-identity-clarifies",
+      "linkedTargetIds": ["concept:continuity-protocol"],
+      "humanReviewFlag": true,
+      "notes": "Ambiguous identity claims remain watch-only pending evidence."
+    },
+    {
+      "reviewId": "vf-003",
+      "targetPublisherAction": "suppressed",
+      "claimType": "causal-claim",
+      "entityResolutionStatus": "unresolved",
+      "ambiguityLevel": "high",
+      "verificationUrgency": "high",
+      "verificationTaskSummary": "withhold-pending-traceability",
+      "linkedTargetIds": ["concept:constitutional-safeguards"],
+      "humanReviewFlag": true,
+      "notes": "Suppressed from actionable verification overlays pending additional audit."
+    }
+  ]
+}

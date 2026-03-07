@@ -148,6 +148,13 @@ function renderConcept(data) {
     row('Symbolic-Field Schema Version', data.symbolicFieldSchemaVersion ?? 'unknown'),
     row('Symbolic-Field Producer Commit(s)', data.symbolicFieldProducerCommits ?? 'unknown'),
     row('Symbolic-Field Source Mode', data.symbolicFieldSourceMode ?? 'unknown'),
+    row('Claim Type', data.claimType ?? 'untyped'),
+    row('Entity-Resolution Status', data.entityResolutionStatus ?? 'unresolved'),
+    row('Ambiguity Level', data.ambiguityLevel ?? 'medium'),
+    row('Verification Urgency', data.verificationUrgency ?? 'routine'),
+    row('Verification Schema Version', data.verificationSchemaVersion ?? 'unknown'),
+    row('Verification Producer Commit(s)', data.verificationProducerCommits ?? 'unknown'),
+    row('Verification Source Mode', data.verificationSourceMode ?? 'unknown'),
     row('Related Concepts', data.relatedConceptCount ?? 0),
     renderConceptRelations(data.relatedConcepts)
   ].join('');

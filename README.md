@@ -465,6 +465,22 @@ Build command:
 python3 scripts/build_symbolic_field_overlay.py
 ```
 
+
+### Claim typing, entity resolution, and verification task protocol (Phase U)
+
+Publisher surfaces only **Sophia-audited verification materials; no automatic accusation, identity resolution, or canonical mutation occurs from this layer**.
+
+- inputs: `bridge/verification_audit.json`, `bridge/verification_recommendations.json`, `bridge/claim_type_map.json`, `bridge/entity_resolution_map.json`, `bridge/entity_resolution_summary.json`, `bridge/verification_task_map.json`, `registry/symbolic_field_registry.json`, `registry/closure_registry.json`, `registry/priority_dashboard.json`
+- non-canonical outputs: `registry/verification_dashboard.json`, `registry/entity_watchlist.json`, `registry/claim_type_registry.json`, `registry/verification_annotations.json`
+- phase lock: symbolic/closure/priority state → CoherenceLattice claim typing and identity formalization → Sophia verification audit → publisher verification overlays → human/community evidence review
+- principles: claim typing is triage, not blame; ambiguity must remain explicit; verification work must be evidence-bound; unresolved identity cannot be auto-resolved; watch state is observational, not punitive
+
+Build command:
+
+```bash
+python3 scripts/build_verification_overlay.py
+```
+
 ## UVLM Research Atlas
 
 ### Product Vision (Engineering + Research Brief)

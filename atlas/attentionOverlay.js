@@ -113,7 +113,11 @@ export async function loadAttentionOverlay() {
     symbolicFieldRegistryResp,
     earlyWarningDashboardResp,
     regimeWatchlistResp,
-    symbolicFieldAnnotationsResp
+    symbolicFieldAnnotationsResp,
+    verificationDashboardResp,
+    entityWatchlistResp,
+    claimTypeRegistryResp,
+    verificationAnnotationsResp
   ] = await Promise.all([
     fetch('../bridge/attention_updates.json').catch(() => null),
     fetch('../bridge/coherence_assessment.json').catch(() => null),
@@ -185,7 +189,11 @@ export async function loadAttentionOverlay() {
     fetch('../registry/symbolic_field_registry.json').catch(() => null),
     fetch('../registry/early_warning_dashboard.json').catch(() => null),
     fetch('../registry/regime_watchlist.json').catch(() => null),
-    fetch('../registry/symbolic_field_annotations.json').catch(() => null)
+    fetch('../registry/symbolic_field_annotations.json').catch(() => null),
+    fetch('../registry/verification_dashboard.json').catch(() => null),
+    fetch('../registry/entity_watchlist.json').catch(() => null),
+    fetch('../registry/claim_type_registry.json').catch(() => null),
+    fetch('../registry/verification_annotations.json').catch(() => null)
   ]);
 
   return {
@@ -259,7 +267,11 @@ export async function loadAttentionOverlay() {
     symbolicFieldRegistry: symbolicFieldRegistryResp ? await symbolicFieldRegistryResp.json() : {},
     earlyWarningDashboard: earlyWarningDashboardResp ? await earlyWarningDashboardResp.json() : {},
     regimeWatchlist: regimeWatchlistResp ? await regimeWatchlistResp.json() : {},
-    symbolicFieldAnnotations: symbolicFieldAnnotationsResp ? await symbolicFieldAnnotationsResp.json() : {}
+    symbolicFieldAnnotations: symbolicFieldAnnotationsResp ? await symbolicFieldAnnotationsResp.json() : {},
+    verificationDashboard: verificationDashboardResp ? await verificationDashboardResp.json() : {},
+    entityWatchlist: entityWatchlistResp ? await entityWatchlistResp.json() : {},
+    claimTypeRegistry: claimTypeRegistryResp ? await claimTypeRegistryResp.json() : {},
+    verificationAnnotations: verificationAnnotationsResp ? await verificationAnnotationsResp.json() : {}
   };
 }
 
@@ -1383,6 +1395,77 @@ function buildSymbolicFieldConceptSignals(symbolicFieldRegistry, earlyWarningDas
   return byConcept;
 }
 
+
+function buildVerificationConceptSignals(verificationDashboard, entityWatchlist, claimTypeRegistry, verificationAnnotations) {
+  const byConcept = new Map();
+
+  function bump(targetId, update) {
+    if (typeof targetId !== 'string') {
+      return;
+    }
+    const existing = byConcept.get(targetId) ?? {
+      claimType: 'untyped',
+      entityResolutionStatus: 'unresolved',
+      ambiguityLevel: 'medium',
+      verificationUrgency: 'routine',
+      verificationQueueStatus: 'none'
+    };
+    update(existing);
+    byConcept.set(targetId, existing);
+  }
+
+  asArray(claimTypeRegistry?.entries).forEach((entry) => {
+    asArray(entry?.linkedTargetIds).forEach((targetId) => {
+      bump(targetId, (s) => {
+        s.claimType = entry?.claimType ?? s.claimType;
+        s.entityResolutionStatus = entry?.entityResolutionStatus ?? s.entityResolutionStatus;
+        s.ambiguityLevel = entry?.ambiguityLevel ?? s.ambiguityLevel;
+        s.verificationUrgency = entry?.verificationUrgency ?? s.verificationUrgency;
+        s.verificationQueueStatus = 'registry';
+      });
+    });
+  });
+
+  asArray(verificationDashboard?.entries).forEach((entry) => {
+    asArray(entry?.linkedTargetIds).forEach((targetId) => {
+      bump(targetId, (s) => {
+        s.claimType = entry?.claimType ?? s.claimType;
+        s.entityResolutionStatus = entry?.entityResolutionStatus ?? s.entityResolutionStatus;
+        s.ambiguityLevel = entry?.ambiguityLevel ?? s.ambiguityLevel;
+        s.verificationUrgency = entry?.verificationUrgency ?? s.verificationUrgency;
+        s.verificationQueueStatus = 'dashboard';
+      });
+    });
+  });
+
+  asArray(entityWatchlist?.entries).forEach((entry) => {
+    asArray(entry?.linkedTargetIds).forEach((targetId) => {
+      bump(targetId, (s) => {
+        s.claimType = entry?.claimType ?? s.claimType;
+        s.entityResolutionStatus = entry?.entityResolutionStatus ?? s.entityResolutionStatus;
+        s.ambiguityLevel = entry?.ambiguityLevel ?? s.ambiguityLevel;
+        s.verificationUrgency = entry?.verificationUrgency ?? s.verificationUrgency;
+        if (!['registry', 'dashboard'].includes(s.verificationQueueStatus)) {
+          s.verificationQueueStatus = 'watch';
+        }
+      });
+    });
+  });
+
+  asArray(verificationAnnotations?.annotations).forEach((entry) => {
+    asArray(entry?.linkedTargetIds).forEach((targetId) => {
+      bump(targetId, (s) => {
+        s.claimType = entry?.claimType ?? s.claimType;
+        s.entityResolutionStatus = entry?.entityResolutionStatus ?? s.entityResolutionStatus;
+        s.ambiguityLevel = entry?.ambiguityLevel ?? s.ambiguityLevel;
+        s.verificationUrgency = entry?.verificationUrgency ?? s.verificationUrgency;
+      });
+    });
+  });
+
+  return byConcept;
+}
+
 function buildConstitutionalConceptSignals(constitutionalAnnotations, governanceFailureWatchlist) {
   const byConcept = new Map();
 
@@ -1511,6 +1594,12 @@ export function applyAttentionOverlay(cy, overlay) {
     overlay?.regimeWatchlist,
     overlay?.symbolicFieldAnnotations
   );
+  const verificationSignals = buildVerificationConceptSignals(
+    overlay?.verificationDashboard,
+    overlay?.entityWatchlist,
+    overlay?.claimTypeRegistry,
+    overlay?.verificationAnnotations
+  );
 
 
   const institutionalProvenance = overlay?.institutionalStatus?.provenance ?? {};
@@ -1543,6 +1632,12 @@ export function applyAttentionOverlay(cy, overlay) {
     ?? 'unknown';
   const symbolicFieldProducerCommits = asArray(symbolicFieldProvenance?.producerCommits).join(', ') || 'unknown';
   const symbolicFieldSourceMode = symbolicFieldProvenance?.derivedFromFixtures ? 'fixture' : 'live';
+  const verificationProvenance = overlay?.verificationDashboard?.provenance ?? {};
+  const verificationSchemaVersion = verificationProvenance?.schemaVersions?.entity_resolution_summary
+    ?? verificationProvenance?.schemaVersions?.entity_resolution_map
+    ?? 'unknown';
+  const verificationProducerCommits = asArray(verificationProvenance?.producerCommits).join(', ') || 'unknown';
+  const verificationSourceMode = verificationProvenance?.derivedFromFixtures ? 'fixture' : 'live';
 
   cy.nodes('[class = "concept"]').forEach((node) => {
     const id = node.id();
@@ -1666,8 +1761,16 @@ export function applyAttentionOverlay(cy, overlay) {
     node.data('symbolicFieldSchemaVersion', symbolicFieldSchemaVersion);
     node.data('symbolicFieldProducerCommits', symbolicFieldProducerCommits);
     node.data('symbolicFieldSourceMode', symbolicFieldSourceMode);
+    const verification = verificationSignals.get(id);
+    node.data('claimType', verification?.claimType ?? 'untyped');
+    node.data('entityResolutionStatus', verification?.entityResolutionStatus ?? 'unresolved');
+    node.data('ambiguityLevel', verification?.ambiguityLevel ?? 'medium');
+    node.data('verificationUrgency', verification?.verificationUrgency ?? 'routine');
+    node.data('verificationSchemaVersion', verificationSchemaVersion);
+    node.data('verificationProducerCommits', verificationProducerCommits);
+    node.data('verificationSourceMode', verificationSourceMode);
 
-    node.removeClass('attention-priority attention-secondary sonya-candidate reasoning-thread reasoning-watch stability-positive stability-watch multimodal-donation multimodal-watch review-candidate watch-queue governance-review governance-watch constitutional-watch constitutional-freeze deliberation-docket deliberation-watch deliberation-urgent anti-capture-watch continuity-docket continuity-watch continuity-fragile continuity-freeze recovery-docket recovery-watch escrow-ready recovery-fragile attestation-docket attestation-watch witness-sufficient attestation-sensitive precedent-docket precedent-watch precedent-divergent precedent-strong scenario-docket scenario-watch scenario-freeze scenario-rehearse-recovery institutional-status-indicator chamber-conflict-indicator system-health-overview queue-health-actionable backlog-pressure-watch review-fatigue-watch metric-gaming-watch load-shedding-recommended priority-actionable triage-watch urgency-high priority-critical triage-conflict closure-active closure-provisional repair-urgent reopened-watch symbolic-field-active regime-shift-watch lambda-warning architecture-hint');
+    node.removeClass('attention-priority attention-secondary sonya-candidate reasoning-thread reasoning-watch stability-positive stability-watch multimodal-donation multimodal-watch review-candidate watch-queue governance-review governance-watch constitutional-watch constitutional-freeze deliberation-docket deliberation-watch deliberation-urgent anti-capture-watch continuity-docket continuity-watch continuity-fragile continuity-freeze recovery-docket recovery-watch escrow-ready recovery-fragile attestation-docket attestation-watch witness-sufficient attestation-sensitive precedent-docket precedent-watch precedent-divergent precedent-strong scenario-docket scenario-watch scenario-freeze scenario-rehearse-recovery institutional-status-indicator chamber-conflict-indicator system-health-overview queue-health-actionable backlog-pressure-watch review-fatigue-watch metric-gaming-watch load-shedding-recommended priority-actionable triage-watch urgency-high priority-critical triage-conflict closure-active closure-provisional repair-urgent reopened-watch symbolic-field-active regime-shift-watch lambda-warning architecture-hint verification-active entity-ambiguity verification-urgent claim-typed');
     if ((rankData?.rank ?? Infinity) <= 2) {
       node.addClass('attention-priority');
     } else if ((rankData?.rank ?? Infinity) <= 5) {
@@ -1863,6 +1966,19 @@ export function applyAttentionOverlay(cy, overlay) {
     }
     if ((symbolicField?.architectureHint ?? 'monitor') !== 'monitor') {
       node.addClass('architecture-hint');
+    }
+
+    if (['registry', 'dashboard'].includes(verification?.verificationQueueStatus ?? 'none')) {
+      node.addClass('verification-active');
+    }
+    if ((verification?.claimType ?? 'untyped') !== 'untyped') {
+      node.addClass('claim-typed');
+    }
+    if (['medium', 'high'].includes(verification?.ambiguityLevel ?? 'medium')) {
+      node.addClass('entity-ambiguity');
+    }
+    if ((verification?.verificationUrgency ?? 'routine') === 'high') {
+      node.addClass('verification-urgent');
     }
   });
 }
