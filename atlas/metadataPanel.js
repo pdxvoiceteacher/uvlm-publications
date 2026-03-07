@@ -163,6 +163,16 @@ function renderConcept(data) {
     row('Public-Record Schema Version', data.publicRecordSchemaVersion ?? 'unknown'),
     row('Public-Record Producer Commit(s)', data.publicRecordProducerCommits ?? 'unknown'),
     row('Public-Record Source Mode', data.publicRecordSourceMode ?? 'unknown'),
+    row('Investigation Stage', data.investigationStage ?? 'intake'),
+    row('Investigation Stage Rank', Number(data.investigationStageRank ?? 1).toFixed(0)),
+    row('Investigation Plan Status', data.investigationPlanStatus ?? 'none'),
+    row('Investigation Plan Progress', Number(data.investigationPlanProgress ?? 0).toFixed(2)),
+    row('Investigation Dependency Count', data.investigationDependencyCount ?? 0),
+    row('Investigation Plan Steps', `${data.investigationPlanCompletedSteps ?? 0}/${data.investigationPlanTotalSteps ?? 0}`),
+    row('Investigation Blocked Dependencies', asList(data.investigationBlockedDependencies)),
+    row('Investigation Schema Version', data.investigationSchemaVersion ?? 'unknown'),
+    row('Investigation Producer Commit(s)', data.investigationProducerCommits ?? 'unknown'),
+    row('Investigation Source Mode', data.investigationSourceMode ?? 'unknown'),
     row('Related Concepts', data.relatedConceptCount ?? 0),
     renderConceptRelations(data.relatedConcepts)
   ].join('');

@@ -85,7 +85,7 @@ python3 scripts/validate_metadata.py
 python3 scripts/build_catalog.py
 python3 scripts/build_knowledge_graph.py
 python3 scripts/validate_knowledge_graph.py
-python3 -m unittest tests/test_build_public_record_overlay.py tests/test_build_verification_overlay.py tests/test_build_symbolic_field_overlay.py tests/test_build_closure_overlay.py tests/test_build_priority_overlay.py tests/test_build_queue_health_overlay.py tests/test_build_institutional_overlay.py tests/test_validate_atlas_timeline.py tests/test_validate_constellations.py
+python3 -m unittest tests/test_build_public_record_overlay.py tests/test_build_verification_overlay.py tests/test_build_investigation_overlay.py tests/test_build_symbolic_field_overlay.py tests/test_build_closure_overlay.py tests/test_build_priority_overlay.py tests/test_build_queue_health_overlay.py tests/test_build_institutional_overlay.py tests/test_validate_atlas_timeline.py tests/test_validate_constellations.py
 ```
 
 These checks keep metadata, graph artifacts, and overlay contracts deterministic and auditable.
@@ -510,6 +510,23 @@ Build command:
 ```bash
 python3 scripts/build_public_record_overlay.py
 ```
+
+
+### Investigation staging and dependency-plan protocol (Phase W)
+
+Publisher surfaces only **bounded investigation planning overlays; no automatic adjudication, identity mutation, or canonical state mutation occurs from this layer**.
+
+- inputs: `bridge/triage_recommendations.json`, `bridge/verification_recommendations.json`, `bridge/public_record_recommendations.json`, `bridge/artifact_escrow_plan.json`
+- non-canonical outputs: `registry/investigation_dashboard.json`, `registry/investigation_plan_registry.json`, `registry/investigation_watchlist.json`, `registry/investigation_annotations.json`
+- phase lock: triage/verification/public-record recommendations → dependency-aware plan composition → publisher investigation overlays → human/community execution review
+- principles: stage indicators are workflow signals, not verdicts; dependency graphs remain evidence-local; plan progress is observational and review-facing; watch states never auto-trigger canonical mutation
+
+Build command:
+
+```bash
+python3 scripts/build_investigation_overlay.py
+```
+
 
 ## UVLM Research Atlas
 
