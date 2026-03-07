@@ -121,7 +121,11 @@ export async function loadAttentionOverlay() {
     publicRecordDashboardResp,
     entityGraphRegistryResp,
     relationshipWatchlistResp,
-    chainOfCustodyAnnotationsResp
+    chainOfCustodyAnnotationsResp,
+    investigationDashboardResp,
+    investigationPlanRegistryResp,
+    investigationWatchlistResp,
+    investigationAnnotationsResp
   ] = await Promise.all([
     fetch('../bridge/attention_updates.json').catch(() => null),
     fetch('../bridge/coherence_assessment.json').catch(() => null),
@@ -201,7 +205,11 @@ export async function loadAttentionOverlay() {
     fetch('../registry/public_record_dashboard.json').catch(() => null),
     fetch('../registry/entity_graph_registry.json').catch(() => null),
     fetch('../registry/relationship_watchlist.json').catch(() => null),
-    fetch('../registry/chain_of_custody_annotations.json').catch(() => null)
+    fetch('../registry/chain_of_custody_annotations.json').catch(() => null),
+    fetch('../registry/investigation_dashboard.json').catch(() => null),
+    fetch('../registry/investigation_plan_registry.json').catch(() => null),
+    fetch('../registry/investigation_watchlist.json').catch(() => null),
+    fetch('../registry/investigation_annotations.json').catch(() => null)
   ]);
 
   return {
@@ -283,7 +291,11 @@ export async function loadAttentionOverlay() {
     publicRecordDashboard: publicRecordDashboardResp ? await publicRecordDashboardResp.json() : {},
     entityGraphRegistry: entityGraphRegistryResp ? await entityGraphRegistryResp.json() : {},
     relationshipWatchlist: relationshipWatchlistResp ? await relationshipWatchlistResp.json() : {},
-    chainOfCustodyAnnotations: chainOfCustodyAnnotationsResp ? await chainOfCustodyAnnotationsResp.json() : {}
+    chainOfCustodyAnnotations: chainOfCustodyAnnotationsResp ? await chainOfCustodyAnnotationsResp.json() : {},
+    investigationDashboard: investigationDashboardResp ? await investigationDashboardResp.json() : {},
+    investigationPlanRegistry: investigationPlanRegistryResp ? await investigationPlanRegistryResp.json() : {},
+    investigationWatchlist: investigationWatchlistResp ? await investigationWatchlistResp.json() : {},
+    investigationAnnotations: investigationAnnotationsResp ? await investigationAnnotationsResp.json() : {}
   };
 }
 
@@ -1554,6 +1566,80 @@ function buildPublicRecordConceptSignals(publicRecordDashboard, entityGraphRegis
   return byConcept;
 }
 
+function buildInvestigationConceptSignals(investigationDashboard, investigationPlanRegistry, investigationWatchlist, investigationAnnotations) {
+  const byConcept = new Map();
+
+  function bump(targetId, update) {
+    if (typeof targetId !== 'string') {
+      return;
+    }
+    const existing = byConcept.get(targetId) ?? {
+      investigationStage: 'intake',
+      stageRank: 1,
+      planStatus: 'none',
+      planProgress: 0,
+      investigationQueueStatus: 'none',
+      dependencyCount: 0,
+      dependencyGraph: { nodes: [], edges: [] },
+      blockedDependencies: [],
+      planTotalSteps: 0,
+      planCompletedSteps: 0,
+    };
+    update(existing);
+    byConcept.set(targetId, existing);
+  }
+
+  const plansByReview = new Map();
+  asArray(investigationPlanRegistry?.entries).forEach((entry) => {
+    if (typeof entry?.reviewId === 'string') {
+      plansByReview.set(entry.reviewId, entry);
+    }
+  });
+
+  asArray(investigationDashboard?.entries).forEach((entry) => {
+    const plan = plansByReview.get(entry?.reviewId);
+    asArray(entry?.linkedTargetIds).forEach((targetId) => {
+      bump(targetId, (s) => {
+        s.investigationStage = entry?.investigationStage ?? s.investigationStage;
+        s.stageRank = Number(entry?.stageRank ?? s.stageRank);
+        s.planStatus = entry?.planStatus ?? plan?.planStatus ?? s.planStatus;
+        s.planProgress = Number(entry?.planProgress ?? plan?.planProgress ?? s.planProgress);
+        s.dependencyCount = Number(entry?.dependencyCount ?? plan?.dependencyCount ?? s.dependencyCount);
+        s.dependencyGraph = entry?.dependencyGraph ?? s.dependencyGraph;
+        s.blockedDependencies = asArray(plan?.blockedBy);
+        s.planTotalSteps = Number(plan?.totalSteps ?? s.planTotalSteps);
+        s.planCompletedSteps = Number(plan?.completedSteps ?? s.planCompletedSteps);
+        s.investigationQueueStatus = 'dashboard';
+      });
+    });
+  });
+
+  asArray(investigationWatchlist?.entries).forEach((entry) => {
+    asArray(entry?.linkedTargetIds).forEach((targetId) => {
+      bump(targetId, (s) => {
+        s.investigationStage = entry?.investigationStage ?? s.investigationStage;
+        s.planProgress = Number(entry?.planProgress ?? s.planProgress);
+        s.dependencyCount = Number(entry?.dependencyCount ?? s.dependencyCount);
+        if (s.investigationQueueStatus !== 'dashboard') {
+          s.investigationQueueStatus = 'watch';
+        }
+      });
+    });
+  });
+
+  asArray(investigationAnnotations?.annotations).forEach((entry) => {
+    asArray(entry?.linkedTargetIds).forEach((targetId) => {
+      bump(targetId, (s) => {
+        s.investigationStage = entry?.investigationStage ?? s.investigationStage;
+        s.planProgress = Number(entry?.planProgress ?? s.planProgress);
+        s.dependencyCount = Number(entry?.dependencyCount ?? s.dependencyCount);
+      });
+    });
+  });
+
+  return byConcept;
+}
+
 function buildConstitutionalConceptSignals(constitutionalAnnotations, governanceFailureWatchlist) {
   const byConcept = new Map();
 
@@ -1694,6 +1780,12 @@ export function applyAttentionOverlay(cy, overlay) {
     overlay?.relationshipWatchlist,
     overlay?.chainOfCustodyAnnotations
   );
+  const investigationSignals = buildInvestigationConceptSignals(
+    overlay?.investigationDashboard,
+    overlay?.investigationPlanRegistry,
+    overlay?.investigationWatchlist,
+    overlay?.investigationAnnotations
+  );
 
 
   const institutionalProvenance = overlay?.institutionalStatus?.provenance ?? {};
@@ -1738,6 +1830,12 @@ export function applyAttentionOverlay(cy, overlay) {
     ?? 'unknown';
   const publicRecordProducerCommits = asArray(publicRecordProvenance?.producerCommits).join(', ') || 'unknown';
   const publicRecordSourceMode = publicRecordProvenance?.derivedFromFixtures ? 'fixture' : 'live';
+  const investigationProvenance = overlay?.investigationDashboard?.provenance ?? {};
+  const investigationSchemaVersion = investigationProvenance?.schemaVersions?.triage_recommendations
+    ?? investigationProvenance?.schemaVersions?.verification_recommendations
+    ?? 'unknown';
+  const investigationProducerCommits = asArray(investigationProvenance?.producerCommits).join(', ') || 'unknown';
+  const investigationSourceMode = investigationProvenance?.derivedFromFixtures ? 'fixture' : 'live';
 
   cy.nodes('[class = "concept"]').forEach((node) => {
     const id = node.id();
@@ -1878,8 +1976,21 @@ export function applyAttentionOverlay(cy, overlay) {
     node.data('publicRecordSchemaVersion', publicRecordSchemaVersion);
     node.data('publicRecordProducerCommits', publicRecordProducerCommits);
     node.data('publicRecordSourceMode', publicRecordSourceMode);
+    const investigation = investigationSignals.get(id);
+    node.data('investigationStage', investigation?.investigationStage ?? 'intake');
+    node.data('investigationStageRank', Number(investigation?.stageRank ?? 1));
+    node.data('investigationPlanStatus', investigation?.planStatus ?? 'none');
+    node.data('investigationPlanProgress', Number(investigation?.planProgress ?? 0));
+    node.data('investigationDependencyCount', Number(investigation?.dependencyCount ?? 0));
+    node.data('investigationPlanTotalSteps', Number(investigation?.planTotalSteps ?? 0));
+    node.data('investigationPlanCompletedSteps', Number(investigation?.planCompletedSteps ?? 0));
+    node.data('investigationBlockedDependencies', asArray(investigation?.blockedDependencies));
+    node.data('investigationDependencyGraph', investigation?.dependencyGraph ?? { nodes: [], edges: [] });
+    node.data('investigationSchemaVersion', investigationSchemaVersion);
+    node.data('investigationProducerCommits', investigationProducerCommits);
+    node.data('investigationSourceMode', investigationSourceMode);
 
-    node.removeClass('attention-priority attention-secondary sonya-candidate reasoning-thread reasoning-watch stability-positive stability-watch multimodal-donation multimodal-watch review-candidate watch-queue governance-review governance-watch constitutional-watch constitutional-freeze deliberation-docket deliberation-watch deliberation-urgent anti-capture-watch continuity-docket continuity-watch continuity-fragile continuity-freeze recovery-docket recovery-watch escrow-ready recovery-fragile attestation-docket attestation-watch witness-sufficient attestation-sensitive precedent-docket precedent-watch precedent-divergent precedent-strong scenario-docket scenario-watch scenario-freeze scenario-rehearse-recovery institutional-status-indicator chamber-conflict-indicator system-health-overview queue-health-actionable backlog-pressure-watch review-fatigue-watch metric-gaming-watch load-shedding-recommended priority-actionable triage-watch urgency-high priority-critical triage-conflict closure-active closure-provisional repair-urgent reopened-watch symbolic-field-active regime-shift-watch lambda-warning architecture-hint verification-active entity-ambiguity verification-urgent claim-typed public-record-active entity-graph-linked relationship-ambiguous custody-fragile machine-readable-record');
+    node.removeClass('attention-priority attention-secondary sonya-candidate reasoning-thread reasoning-watch stability-positive stability-watch multimodal-donation multimodal-watch review-candidate watch-queue governance-review governance-watch constitutional-watch constitutional-freeze deliberation-docket deliberation-watch deliberation-urgent anti-capture-watch continuity-docket continuity-watch continuity-fragile continuity-freeze recovery-docket recovery-watch escrow-ready recovery-fragile attestation-docket attestation-watch witness-sufficient attestation-sensitive precedent-docket precedent-watch precedent-divergent precedent-strong scenario-docket scenario-watch scenario-freeze scenario-rehearse-recovery institutional-status-indicator chamber-conflict-indicator system-health-overview queue-health-actionable backlog-pressure-watch review-fatigue-watch metric-gaming-watch load-shedding-recommended priority-actionable triage-watch urgency-high priority-critical triage-conflict closure-active closure-provisional repair-urgent reopened-watch symbolic-field-active regime-shift-watch lambda-warning architecture-hint verification-active entity-ambiguity verification-urgent claim-typed public-record-active entity-graph-linked relationship-ambiguous custody-fragile machine-readable-record investigation-active investigation-stage-mid investigation-stage-late investigation-plan-progressing investigation-blocked dependency-graph-linked');
     if ((rankData?.rank ?? Infinity) <= 2) {
       node.addClass('attention-priority');
     } else if ((rankData?.rank ?? Infinity) <= 5) {
@@ -2104,6 +2215,25 @@ export function applyAttentionOverlay(cy, overlay) {
     }
     if ((publicRecord?.machineReadabilityScore ?? 0) >= 0.75) {
       node.addClass('machine-readable-record');
+    }
+
+    if (['dashboard', 'watch'].includes(investigation?.investigationQueueStatus ?? 'none')) {
+      node.addClass('investigation-active');
+    }
+    if ((investigation?.stageRank ?? 1) >= 3) {
+      node.addClass('investigation-stage-mid');
+    }
+    if ((investigation?.stageRank ?? 1) >= 4) {
+      node.addClass('investigation-stage-late');
+    }
+    if ((investigation?.planProgress ?? 0) > 0 && (investigation?.planProgress ?? 0) < 1) {
+      node.addClass('investigation-plan-progressing');
+    }
+    if (asArray(investigation?.blockedDependencies).length > 0) {
+      node.addClass('investigation-blocked');
+    }
+    if (Number(investigation?.dependencyCount ?? 0) > 0) {
+      node.addClass('dependency-graph-linked');
     }
   });
 }
