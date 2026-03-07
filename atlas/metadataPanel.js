@@ -83,6 +83,10 @@ function renderConcept(data) {
     row('Continuity Mode', data.continuityMode ?? 'normal'),
     row('Freeze Recommendation', data.freezeRecommendation ? 'yes' : 'no'),
     row('Constitutional Watch Status', data.constitutionalWatchStatus ?? 'none'),
+    row('Quorum Status', data.quorumStatus ?? 'none'),
+    row('Amendment Status', data.amendmentStatus ?? 'none'),
+    row('Deliberation Urgency', data.deliberationUrgency ?? 'routine'),
+    row('Anti-Capture Watch Signals', asList(data.antiCaptureSignals)),
     row('Related Concepts', data.relatedConceptCount ?? 0),
     renderConceptRelations(data.relatedConcepts)
   ].join('');

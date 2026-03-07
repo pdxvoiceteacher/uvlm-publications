@@ -585,6 +585,35 @@ async function main() {
           'overlay-opacity': 0.12,
           'overlay-padding': 3
         }
+      },
+      {
+        selector: '.deliberation-docket',
+        style: {
+          'border-color': '#8ac5ff'
+        }
+      },
+      {
+        selector: '.deliberation-watch',
+        style: {
+          'overlay-color': '#8ac5ff',
+          'overlay-opacity': 0.08,
+          'overlay-padding': 2
+        }
+      },
+      {
+        selector: '.deliberation-urgent',
+        style: {
+          'border-width': 2.2,
+          'border-color': '#ffd28f'
+        }
+      },
+      {
+        selector: '.anti-capture-watch',
+        style: {
+          'shadow-color': '#ff9b9b',
+          'shadow-opacity': 0.18,
+          'shadow-blur': 20
+        }
       }
     ],
     layout: {
@@ -708,7 +737,7 @@ async function main() {
   resetEl.addEventListener('click', () => {
     searchEl.value = '';
     typeFilterEl.value = 'all';
-    cy.elements().removeClass('zoom-hidden filter-hidden highlight spotlight-dim spotlight-focus sonya-candidate reasoning-thread reasoning-watch stability-positive stability-watch multimodal-donation multimodal-watch review-candidate watch-queue governance-review governance-watch constitutional-watch constitutional-freeze');
+    cy.elements().removeClass('zoom-hidden filter-hidden highlight spotlight-dim spotlight-focus sonya-candidate reasoning-thread reasoning-watch stability-positive stability-watch multimodal-donation multimodal-watch review-candidate watch-queue governance-review governance-watch constitutional-watch constitutional-freeze deliberation-docket deliberation-watch deliberation-urgent anti-capture-watch');
     constellationApi.clear();
     cy.fit(cy.elements(':visible'), 60);
     setDefaultPanel(detailEl);

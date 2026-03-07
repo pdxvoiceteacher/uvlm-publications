@@ -284,6 +284,22 @@ python3 scripts/build_constitutional_overlay.py
 ```
 
 
+### Deliberative quorum and amendment protocol (Phase J)
+
+Publisher surfaces only **Sophia-audited deliberation and amendment review materials** as a deliberation chamber.
+The system prepares lawful constitutional review context; constitutional change remains external to automation.
+
+- inputs: `bridge/quorum_audit.json`, `bridge/amendment_recommendations.json`, `bridge/deliberation_state_map.json`, `bridge/amendment_candidate_map.json`, `registry/constitutional_status.json`, `registry/governance_review_docket.json`
+- governance-facing non-canonical outputs: `registry/deliberation_docket.json`, `registry/amendment_queue.json`, `registry/quorum_watchlist.json`, `registry/constitutional_revision_annotations.json`
+- phase lock: constitutional state → deliberation/amendment formalization → Sophia quorum/amendment audit → publisher deliberation docket + amendment queue → human/community constitutional review
+
+Build command:
+
+```bash
+python3 scripts/build_deliberation_overlay.py
+```
+
+
 ## UVLM Research Atlas
 
 ### Product Vision (Engineering + Research Brief)

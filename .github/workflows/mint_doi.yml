@@ -203,6 +203,28 @@ jobs:
           python -m json.tool registry/constitutional_annotations.json >/dev/null
           python -m json.tool registry/governance_failure_watchlist.json >/dev/null
 
+
+      - name: Build deliberation and amendment overlays
+        run: |
+          python scripts/build_deliberation_overlay.py \
+            --quorum-audit bridge/quorum_audit.json \
+            --amendment-recommendations bridge/amendment_recommendations.json \
+            --deliberation-state-map bridge/deliberation_state_map.json \
+            --amendment-candidate-map bridge/amendment_candidate_map.json \
+            --constitutional-status registry/constitutional_status.json \
+            --governance-review-docket registry/governance_review_docket.json
+
+      - name: Validate deliberation and amendment JSON formatting
+        run: |
+          python -m json.tool bridge/quorum_audit.json >/dev/null
+          python -m json.tool bridge/amendment_recommendations.json >/dev/null
+          python -m json.tool bridge/deliberation_state_map.json >/dev/null
+          python -m json.tool bridge/amendment_candidate_map.json >/dev/null
+          python -m json.tool registry/deliberation_docket.json >/dev/null
+          python -m json.tool registry/amendment_queue.json >/dev/null
+          python -m json.tool registry/quorum_watchlist.json >/dev/null
+          python -m json.tool registry/constitutional_revision_annotations.json >/dev/null
+
       - name: Validate research constellations
         run: python scripts/validate_constellations.py registry/constellations.json --graph registry/knowledge_graph.json
 
@@ -220,7 +242,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add registry/dois.json registry/publications.json registry/catalog.json registry/knowledge_graph.json registry/atlas_timeline.json registry/constellations.json bridge/symbolic_input.json registry/sonya_memory_index.json registry/sonya_memory_annotations.json registry/sonya_attention_candidates.json registry/sonya_pending_review.json bridge/sonya_audit.json bridge/sonya_admission_decisions.json bridge/reasoning_audit.json bridge/recursive_reasoning_candidates.json registry/reasoning_threads.json registry/reasoning_thread_annotations.json registry/cognitive_watchlist.json bridge/stability_audit.json bridge/recursive_watch_escalations.json registry/cognitive_monitor_index.json registry/cognitive_stability_annotations.json registry/recursive_watch_history.json bridge/pattern_donation_audit.json bridge/pattern_donation_decisions.json bridge/cross_modal_reinforcement_report.json registry/multimodal_signal_index.json registry/pattern_donation_annotations.json registry/cross_modal_attention_overlays.json registry/pattern_donation_watchlist.json bridge/promotion_audit.json bridge/promotion_recommendations.json registry/review_docket.json registry/promotion_annotations.json registry/promotion_watch_queue.json bridge/governance_audit.json bridge/governance_recommendations.json bridge/reviewer_behavior_audit.json registry/governance_review_docket.json registry/reviewer_integrity_annotations.json registry/reviewer_watch_queue.json registry/reviewer_behavior_monitor.json bridge/constitutional_audit.json bridge/constitutional_recommendations.json bridge/continuity_mode_assessment.json registry/constitutional_status.json registry/continuity_mode_index.json registry/constitutional_annotations.json registry/governance_failure_watchlist.json registry/deposits papers/echo-atlas-primer/metadata.yaml
+          git add registry/dois.json registry/publications.json registry/catalog.json registry/knowledge_graph.json registry/atlas_timeline.json registry/constellations.json bridge/symbolic_input.json registry/sonya_memory_index.json registry/sonya_memory_annotations.json registry/sonya_attention_candidates.json registry/sonya_pending_review.json bridge/sonya_audit.json bridge/sonya_admission_decisions.json bridge/reasoning_audit.json bridge/recursive_reasoning_candidates.json registry/reasoning_threads.json registry/reasoning_thread_annotations.json registry/cognitive_watchlist.json bridge/stability_audit.json bridge/recursive_watch_escalations.json registry/cognitive_monitor_index.json registry/cognitive_stability_annotations.json registry/recursive_watch_history.json bridge/pattern_donation_audit.json bridge/pattern_donation_decisions.json bridge/cross_modal_reinforcement_report.json registry/multimodal_signal_index.json registry/pattern_donation_annotations.json registry/cross_modal_attention_overlays.json registry/pattern_donation_watchlist.json bridge/promotion_audit.json bridge/promotion_recommendations.json registry/review_docket.json registry/promotion_annotations.json registry/promotion_watch_queue.json bridge/governance_audit.json bridge/governance_recommendations.json bridge/reviewer_behavior_audit.json registry/governance_review_docket.json registry/reviewer_integrity_annotations.json registry/reviewer_watch_queue.json registry/reviewer_behavior_monitor.json bridge/constitutional_audit.json bridge/constitutional_recommendations.json bridge/continuity_mode_assessment.json registry/constitutional_status.json registry/continuity_mode_index.json registry/constitutional_annotations.json registry/governance_failure_watchlist.json bridge/quorum_audit.json bridge/amendment_recommendations.json bridge/deliberation_state_map.json bridge/amendment_candidate_map.json registry/deliberation_docket.json registry/amendment_queue.json registry/quorum_watchlist.json registry/constitutional_revision_annotations.json registry/deposits papers/echo-atlas-primer/metadata.yaml
           git diff --cached --quiet || git commit -m "Update DOI registries, catalog, graph, and deposit logs"
           git push
 
@@ -281,3 +303,11 @@ jobs:
             registry/continuity_mode_index.json
             registry/constitutional_annotations.json
             registry/governance_failure_watchlist.json
+            bridge/quorum_audit.json
+            bridge/amendment_recommendations.json
+            bridge/deliberation_state_map.json
+            bridge/amendment_candidate_map.json
+            registry/deliberation_docket.json
+            registry/amendment_queue.json
+            registry/quorum_watchlist.json
+            registry/constitutional_revision_annotations.json
