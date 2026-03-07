@@ -75,6 +75,10 @@ function renderConcept(data) {
     row('Review Candidate Count', data.reviewCandidateCount ?? 0),
     row('Review Watch Count', data.reviewWatchCount ?? 0),
     row('Review Queue Status', data.reviewQueueStatus ?? 'none'),
+    row('Governance Status', data.governanceStatus ?? 'none'),
+    row('Integrity Watch Status', data.integrityWatchStatus ?? 'none'),
+    row('Behavior Trend', data.behaviorTrend ?? 'unknown'),
+    row('Human Review Flag', data.humanReviewFlag ? 'yes' : 'no'),
     row('Related Concepts', data.relatedConceptCount ?? 0),
     renderConceptRelations(data.relatedConcepts)
   ].join('');

@@ -61,7 +61,11 @@ export async function loadAttentionOverlay() {
     crossModalAttentionOverlaysResp,
     patternDonationWatchlistResp,
     reviewDocketResp,
-    promotionWatchQueueResp
+    promotionWatchQueueResp,
+    governanceReviewDocketResp,
+    reviewerIntegrityAnnotationsResp,
+    reviewerWatchQueueResp,
+    reviewerBehaviorMonitorResp
   ] = await Promise.all([
     fetch('../bridge/attention_updates.json').catch(() => null),
     fetch('../bridge/coherence_assessment.json').catch(() => null),
@@ -81,7 +85,11 @@ export async function loadAttentionOverlay() {
     fetch('../registry/cross_modal_attention_overlays.json').catch(() => null),
     fetch('../registry/pattern_donation_watchlist.json').catch(() => null),
     fetch('../registry/review_docket.json').catch(() => null),
-    fetch('../registry/promotion_watch_queue.json').catch(() => null)
+    fetch('../registry/promotion_watch_queue.json').catch(() => null),
+    fetch('../registry/governance_review_docket.json').catch(() => null),
+    fetch('../registry/reviewer_integrity_annotations.json').catch(() => null),
+    fetch('../registry/reviewer_watch_queue.json').catch(() => null),
+    fetch('../registry/reviewer_behavior_monitor.json').catch(() => null)
   ]);
 
   return {
@@ -103,7 +111,11 @@ export async function loadAttentionOverlay() {
     crossModalAttentionOverlays: crossModalAttentionOverlaysResp ? await crossModalAttentionOverlaysResp.json() : {},
     patternDonationWatchlist: patternDonationWatchlistResp ? await patternDonationWatchlistResp.json() : {},
     reviewDocket: reviewDocketResp ? await reviewDocketResp.json() : {},
-    promotionWatchQueue: promotionWatchQueueResp ? await promotionWatchQueueResp.json() : {}
+    promotionWatchQueue: promotionWatchQueueResp ? await promotionWatchQueueResp.json() : {},
+    governanceReviewDocket: governanceReviewDocketResp ? await governanceReviewDocketResp.json() : {},
+    reviewerIntegrityAnnotations: reviewerIntegrityAnnotationsResp ? await reviewerIntegrityAnnotationsResp.json() : {},
+    reviewerWatchQueue: reviewerWatchQueueResp ? await reviewerWatchQueueResp.json() : {},
+    reviewerBehaviorMonitor: reviewerBehaviorMonitorResp ? await reviewerBehaviorMonitorResp.json() : {}
   };
 }
 
@@ -309,6 +321,65 @@ function buildPromotionConceptSignals(reviewDocket, promotionWatchQueue) {
   return byConcept;
 }
 
+
+
+function buildGovernanceConceptSignals(governanceReviewDocket, reviewerWatchQueue, reviewerBehaviorMonitor) {
+  const behaviorByReviewer = new Map();
+  asArray(reviewerBehaviorMonitor?.entries).forEach((entry) => {
+    if (typeof entry?.reviewerId === 'string') {
+      behaviorByReviewer.set(entry.reviewerId, entry);
+    }
+  });
+
+  const byConcept = new Map();
+
+  function bump(targetId, update) {
+    if (typeof targetId !== 'string') {
+      return;
+    }
+    const existing = byConcept.get(targetId) ?? {
+      governanceStatus: 'none',
+      integrityWatchStatus: 'none',
+      behaviorTrend: 'unknown',
+      humanReviewFlag: false
+    };
+    update(existing);
+    byConcept.set(targetId, existing);
+  }
+
+  asArray(governanceReviewDocket?.entries).forEach((entry) => {
+    const behavior = behaviorByReviewer.get(entry?.reviewerId);
+    asArray(entry?.linkedTargetIds).forEach((targetId) => {
+      bump(targetId, (s) => {
+        s.governanceStatus = entry?.governanceStatus ?? 'recommend-human-review';
+        s.integrityWatchStatus = 'docket';
+        s.humanReviewFlag = Boolean(entry?.humanReviewFlag);
+        s.behaviorTrend = behavior?.behaviorTrend ?? s.behaviorTrend;
+      });
+    });
+  });
+
+  asArray(reviewerWatchQueue?.entries).forEach((entry) => {
+    const behavior = behaviorByReviewer.get(entry?.reviewerId);
+    asArray(entry?.linkedTargetIds).forEach((targetId) => {
+      bump(targetId, (s) => {
+        if (s.governanceStatus === 'none') {
+          s.governanceStatus = entry?.governanceStatus ?? 'watch';
+        }
+        if (s.integrityWatchStatus !== 'docket') {
+          s.integrityWatchStatus = 'watch';
+        }
+        s.humanReviewFlag = s.humanReviewFlag || Boolean(entry?.humanReviewFlag);
+        if (s.behaviorTrend === 'unknown') {
+          s.behaviorTrend = behavior?.behaviorTrend ?? s.behaviorTrend;
+        }
+      });
+    });
+  });
+
+  return byConcept;
+}
+
 export function applyAttentionOverlay(cy, overlay) {
   const conceptWeights = overlay?.coherenceWeights?.conceptWeights ?? {};
   const conceptAnnotations = overlay?.sophiaAnnotations?.conceptAnnotations ?? {};
@@ -331,6 +402,11 @@ export function applyAttentionOverlay(cy, overlay) {
     overlay?.patternDonationWatchlist
   );
   const promotionSignals = buildPromotionConceptSignals(overlay?.reviewDocket, overlay?.promotionWatchQueue);
+  const governanceSignals = buildGovernanceConceptSignals(
+    overlay?.governanceReviewDocket,
+    overlay?.reviewerWatchQueue,
+    overlay?.reviewerBehaviorMonitor
+  );
 
   cy.nodes('[class = "concept"]').forEach((node) => {
     const id = node.id();
@@ -368,7 +444,13 @@ export function applyAttentionOverlay(cy, overlay) {
     node.data('reviewWatchCount', promotion?.reviewWatchCount ?? 0);
     node.data('reviewQueueStatus', promotion?.reviewQueueStatus ?? 'none');
 
-    node.removeClass('attention-priority attention-secondary sonya-candidate reasoning-thread reasoning-watch stability-positive stability-watch multimodal-donation multimodal-watch review-candidate watch-queue');
+    const governance = governanceSignals.get(id);
+    node.data('governanceStatus', governance?.governanceStatus ?? 'none');
+    node.data('integrityWatchStatus', governance?.integrityWatchStatus ?? 'none');
+    node.data('behaviorTrend', governance?.behaviorTrend ?? 'unknown');
+    node.data('humanReviewFlag', governance?.humanReviewFlag ?? false);
+
+    node.removeClass('attention-priority attention-secondary sonya-candidate reasoning-thread reasoning-watch stability-positive stability-watch multimodal-donation multimodal-watch review-candidate watch-queue governance-review governance-watch');
     if ((rankData?.rank ?? Infinity) <= 2) {
       node.addClass('attention-priority');
     } else if ((rankData?.rank ?? Infinity) <= 5) {
@@ -405,6 +487,13 @@ export function applyAttentionOverlay(cy, overlay) {
     }
     if ((promotion?.reviewWatchCount ?? 0) > 0) {
       node.addClass('watch-queue');
+    }
+
+    if ((governance?.integrityWatchStatus ?? 'none') === 'docket') {
+      node.addClass('governance-review');
+    }
+    if ((governance?.integrityWatchStatus ?? 'none') === 'watch') {
+      node.addClass('governance-watch');
     }
   });
 }

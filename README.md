@@ -254,6 +254,21 @@ Build command:
 python3 scripts/build_review_docket.py
 ```
 
+### Governance integrity protocol (Phase H)
+
+Publisher surfaces only **Sophia-audited governance review materials**.
+Final appointment/removal decisions remain human/community decisions external to automation.
+
+- inputs: `bridge/governance_audit.json`, `bridge/governance_recommendations.json`, optional `bridge/reviewer_behavior_audit.json`, `registry/review_docket.json`
+- canonical output: `registry/governance_review_docket.json`, `registry/reviewer_integrity_annotations.json`
+- observational non-canonical outputs: `registry/reviewer_watch_queue.json`, `registry/reviewer_behavior_monitor.json`
+
+Build command:
+
+```bash
+python3 scripts/build_governance_review_overlay.py
+```
+
 
 ## UVLM Research Atlas
 

@@ -556,6 +556,20 @@ async function main() {
           'overlay-opacity': 0.12,
           'overlay-padding': 2
         }
+      },
+      {
+        selector: '.governance-review',
+        style: {
+          'border-color': '#ffb36b'
+        }
+      },
+      {
+        selector: '.governance-watch',
+        style: {
+          'overlay-color': '#ffc27a',
+          'overlay-opacity': 0.1,
+          'overlay-padding': 2
+        }
       }
     ],
     layout: {
@@ -679,7 +693,7 @@ async function main() {
   resetEl.addEventListener('click', () => {
     searchEl.value = '';
     typeFilterEl.value = 'all';
-    cy.elements().removeClass('zoom-hidden filter-hidden highlight spotlight-dim spotlight-focus sonya-candidate reasoning-thread reasoning-watch stability-positive stability-watch multimodal-donation multimodal-watch review-candidate watch-queue');
+    cy.elements().removeClass('zoom-hidden filter-hidden highlight spotlight-dim spotlight-focus sonya-candidate reasoning-thread reasoning-watch stability-positive stability-watch multimodal-donation multimodal-watch review-candidate watch-queue governance-review governance-watch');
     constellationApi.clear();
     cy.fit(cy.elements(':visible'), 60);
     setDefaultPanel(detailEl);
