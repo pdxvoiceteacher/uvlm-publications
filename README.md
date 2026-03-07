@@ -76,6 +76,20 @@ Required environment variables:
 - `CROSSREF_PASSWORD`
 - `DOI_PREFIX`
 
+## Local Validation Quickstart
+
+Use this minimal sequence before committing publication or overlay changes:
+
+```bash
+python3 scripts/validate_metadata.py
+python3 scripts/build_catalog.py
+python3 scripts/build_knowledge_graph.py
+python3 scripts/validate_knowledge_graph.py
+python3 -m unittest tests/test_build_public_record_overlay.py tests/test_build_verification_overlay.py tests/test_build_symbolic_field_overlay.py tests/test_build_closure_overlay.py tests/test_build_priority_overlay.py tests/test_build_queue_health_overlay.py tests/test_build_institutional_overlay.py tests/test_validate_atlas_timeline.py tests/test_validate_constellations.py
+```
+
+These checks keep metadata, graph artifacts, and overlay contracts deterministic and auditable.
+
 ## Live Knowledge Graph (Phase 1: Deterministic)
 
 `registry/knowledge_graph.json` is built from:
