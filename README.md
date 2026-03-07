@@ -449,6 +449,22 @@ Build command:
 python3 scripts/build_closure_overlay.py
 ```
 
+
+### Multi-axial symbolic field and early-warning protocol (Phase T)
+
+Publisher surfaces only **Sophia-audited symbolic field and early-warning materials; no automatic intervention or memory mutation occurs from this layer**.
+
+- inputs: `bridge/symbolic_field_audit.json`, `bridge/symbolic_field_recommendations.json`, `bridge/symbolic_field_state.json`, `bridge/symbolic_field_summary.json`, `bridge/regime_transition_report.json`, `bridge/early_warning_signal_map.json`, `registry/institutional_status.json`, `registry/queue_health_dashboard.json`, `registry/priority_dashboard.json`, `registry/closure_registry.json`
+- non-canonical outputs: `registry/symbolic_field_registry.json`, `registry/early_warning_dashboard.json`, `registry/regime_watchlist.json`, `registry/symbolic_field_annotations.json`
+- phase lock: institutional/queue/priority/closure state → CoherenceLattice symbolic field formalization → Sophia symbolic field audit → publisher symbolic field overlays → human/community early-warning review
+- principles: symbolic signals are directional, not verdicts; early warning must be bounded and evidence-tied; TEL-like memory visibility must remain auditable; watch state is not automatic intervention; architecture hints are review inputs, not canonical edits
+
+Build command:
+
+```bash
+python3 scripts/build_symbolic_field_overlay.py
+```
+
 ## UVLM Research Atlas
 
 ### Product Vision (Engineering + Research Brief)

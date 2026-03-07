@@ -109,7 +109,11 @@ export async function loadAttentionOverlay() {
     closureRegistryResp,
     repairDocketResp,
     reopenedCaseWatchlistResp,
-    closureAnnotationsResp
+    closureAnnotationsResp,
+    symbolicFieldRegistryResp,
+    earlyWarningDashboardResp,
+    regimeWatchlistResp,
+    symbolicFieldAnnotationsResp
   ] = await Promise.all([
     fetch('../bridge/attention_updates.json').catch(() => null),
     fetch('../bridge/coherence_assessment.json').catch(() => null),
@@ -177,7 +181,11 @@ export async function loadAttentionOverlay() {
     fetch('../registry/closure_registry.json').catch(() => null),
     fetch('../registry/repair_docket.json').catch(() => null),
     fetch('../registry/reopened_case_watchlist.json').catch(() => null),
-    fetch('../registry/closure_annotations.json').catch(() => null)
+    fetch('../registry/closure_annotations.json').catch(() => null),
+    fetch('../registry/symbolic_field_registry.json').catch(() => null),
+    fetch('../registry/early_warning_dashboard.json').catch(() => null),
+    fetch('../registry/regime_watchlist.json').catch(() => null),
+    fetch('../registry/symbolic_field_annotations.json').catch(() => null)
   ]);
 
   return {
@@ -247,7 +255,11 @@ export async function loadAttentionOverlay() {
     closureRegistry: closureRegistryResp ? await closureRegistryResp.json() : {},
     repairDocket: repairDocketResp ? await repairDocketResp.json() : {},
     reopenedCaseWatchlist: reopenedCaseWatchlistResp ? await reopenedCaseWatchlistResp.json() : {},
-    closureAnnotations: closureAnnotationsResp ? await closureAnnotationsResp.json() : {}
+    closureAnnotations: closureAnnotationsResp ? await closureAnnotationsResp.json() : {},
+    symbolicFieldRegistry: symbolicFieldRegistryResp ? await symbolicFieldRegistryResp.json() : {},
+    earlyWarningDashboard: earlyWarningDashboardResp ? await earlyWarningDashboardResp.json() : {},
+    regimeWatchlist: regimeWatchlistResp ? await regimeWatchlistResp.json() : {},
+    symbolicFieldAnnotations: symbolicFieldAnnotationsResp ? await symbolicFieldAnnotationsResp.json() : {}
   };
 }
 
@@ -1295,6 +1307,82 @@ function buildClosureConceptSignals(closureRegistry, repairDocket, reopenedCaseW
   return byConcept;
 }
 
+
+function buildSymbolicFieldConceptSignals(symbolicFieldRegistry, earlyWarningDashboard, regimeWatchlist, symbolicFieldAnnotations) {
+  const byConcept = new Map();
+
+  function bump(targetId, update) {
+    if (typeof targetId !== 'string') {
+      return;
+    }
+    const existing = byConcept.get(targetId) ?? {
+      symbolicFieldStatus: 'stable',
+      regimeClass: 'bounded-order',
+      lambdaZoneWarningLevel: 'low',
+      architectureHint: 'monitor',
+      regimeWatchStatus: 'none',
+      symbolicFieldQueueStatus: 'none'
+    };
+    update(existing);
+    byConcept.set(targetId, existing);
+  }
+
+  asArray(symbolicFieldRegistry?.entries).forEach((entry) => {
+    asArray(entry?.linkedTargetIds).forEach((targetId) => {
+      bump(targetId, (s) => {
+        s.symbolicFieldStatus = entry?.symbolicFieldStatus ?? s.symbolicFieldStatus;
+        s.regimeClass = entry?.regimeClass ?? s.regimeClass;
+        s.lambdaZoneWarningLevel = entry?.lambdaZoneWarningLevel ?? s.lambdaZoneWarningLevel;
+        s.architectureHint = entry?.architectureHint ?? s.architectureHint;
+        s.regimeWatchStatus = entry?.regimeWatchStatus ?? s.regimeWatchStatus;
+        s.symbolicFieldQueueStatus = 'registry';
+      });
+    });
+  });
+
+  asArray(earlyWarningDashboard?.entries).forEach((entry) => {
+    asArray(entry?.linkedTargetIds).forEach((targetId) => {
+      bump(targetId, (s) => {
+        s.symbolicFieldStatus = entry?.symbolicFieldStatus ?? s.symbolicFieldStatus;
+        s.regimeClass = entry?.regimeClass ?? s.regimeClass;
+        s.lambdaZoneWarningLevel = entry?.lambdaZoneWarningLevel ?? s.lambdaZoneWarningLevel;
+        s.architectureHint = entry?.architectureHint ?? s.architectureHint;
+        s.regimeWatchStatus = entry?.regimeWatchStatus ?? s.regimeWatchStatus;
+        s.symbolicFieldQueueStatus = 'dashboard';
+      });
+    });
+  });
+
+  asArray(regimeWatchlist?.entries).forEach((entry) => {
+    asArray(entry?.linkedTargetIds).forEach((targetId) => {
+      bump(targetId, (s) => {
+        s.symbolicFieldStatus = entry?.symbolicFieldStatus ?? s.symbolicFieldStatus;
+        s.regimeClass = entry?.regimeClass ?? s.regimeClass;
+        s.lambdaZoneWarningLevel = entry?.lambdaZoneWarningLevel ?? s.lambdaZoneWarningLevel;
+        s.architectureHint = entry?.architectureHint ?? s.architectureHint;
+        s.regimeWatchStatus = entry?.regimeWatchStatus ?? s.regimeWatchStatus;
+        if (!['registry', 'dashboard'].includes(s.symbolicFieldQueueStatus)) {
+          s.symbolicFieldQueueStatus = 'watch';
+        }
+      });
+    });
+  });
+
+  asArray(symbolicFieldAnnotations?.annotations).forEach((entry) => {
+    asArray(entry?.linkedTargetIds).forEach((targetId) => {
+      bump(targetId, (s) => {
+        s.symbolicFieldStatus = entry?.symbolicFieldStatus ?? s.symbolicFieldStatus;
+        s.regimeClass = entry?.regimeClass ?? s.regimeClass;
+        s.lambdaZoneWarningLevel = entry?.lambdaZoneWarningLevel ?? s.lambdaZoneWarningLevel;
+        s.architectureHint = entry?.architectureHint ?? s.architectureHint;
+        s.regimeWatchStatus = entry?.regimeWatchStatus ?? s.regimeWatchStatus;
+      });
+    });
+  });
+
+  return byConcept;
+}
+
 function buildConstitutionalConceptSignals(constitutionalAnnotations, governanceFailureWatchlist) {
   const byConcept = new Map();
 
@@ -1417,6 +1505,12 @@ export function applyAttentionOverlay(cy, overlay) {
     overlay?.reopenedCaseWatchlist,
     overlay?.closureAnnotations
   );
+  const symbolicFieldSignals = buildSymbolicFieldConceptSignals(
+    overlay?.symbolicFieldRegistry,
+    overlay?.earlyWarningDashboard,
+    overlay?.regimeWatchlist,
+    overlay?.symbolicFieldAnnotations
+  );
 
 
   const institutionalProvenance = overlay?.institutionalStatus?.provenance ?? {};
@@ -1443,6 +1537,12 @@ export function applyAttentionOverlay(cy, overlay) {
     ?? 'unknown';
   const closureProducerCommits = asArray(closureProvenance?.producerCommits).join(', ') || 'unknown';
   const closureSourceMode = closureProvenance?.derivedFromFixtures ? 'fixture' : 'live';
+  const symbolicFieldProvenance = overlay?.symbolicFieldRegistry?.provenance ?? {};
+  const symbolicFieldSchemaVersion = symbolicFieldProvenance?.schemaVersions?.symbolic_field_summary
+    ?? symbolicFieldProvenance?.schemaVersions?.symbolic_field_state
+    ?? 'unknown';
+  const symbolicFieldProducerCommits = asArray(symbolicFieldProvenance?.producerCommits).join(', ') || 'unknown';
+  const symbolicFieldSourceMode = symbolicFieldProvenance?.derivedFromFixtures ? 'fixture' : 'live';
 
   cy.nodes('[class = "concept"]').forEach((node) => {
     const id = node.id();
@@ -1558,8 +1658,16 @@ export function applyAttentionOverlay(cy, overlay) {
     node.data('closureSchemaVersion', closureSchemaVersion);
     node.data('closureProducerCommits', closureProducerCommits);
     node.data('closureSourceMode', closureSourceMode);
+    const symbolicField = symbolicFieldSignals.get(id);
+    node.data('symbolicFieldStatus', symbolicField?.symbolicFieldStatus ?? 'stable');
+    node.data('regimeClass', symbolicField?.regimeClass ?? 'bounded-order');
+    node.data('lambdaZoneWarningLevel', symbolicField?.lambdaZoneWarningLevel ?? 'low');
+    node.data('architectureHint', symbolicField?.architectureHint ?? 'monitor');
+    node.data('symbolicFieldSchemaVersion', symbolicFieldSchemaVersion);
+    node.data('symbolicFieldProducerCommits', symbolicFieldProducerCommits);
+    node.data('symbolicFieldSourceMode', symbolicFieldSourceMode);
 
-    node.removeClass('attention-priority attention-secondary sonya-candidate reasoning-thread reasoning-watch stability-positive stability-watch multimodal-donation multimodal-watch review-candidate watch-queue governance-review governance-watch constitutional-watch constitutional-freeze deliberation-docket deliberation-watch deliberation-urgent anti-capture-watch continuity-docket continuity-watch continuity-fragile continuity-freeze recovery-docket recovery-watch escrow-ready recovery-fragile attestation-docket attestation-watch witness-sufficient attestation-sensitive precedent-docket precedent-watch precedent-divergent precedent-strong scenario-docket scenario-watch scenario-freeze scenario-rehearse-recovery institutional-status-indicator chamber-conflict-indicator system-health-overview queue-health-actionable backlog-pressure-watch review-fatigue-watch metric-gaming-watch load-shedding-recommended priority-actionable triage-watch urgency-high priority-critical triage-conflict closure-active closure-provisional repair-urgent reopened-watch');
+    node.removeClass('attention-priority attention-secondary sonya-candidate reasoning-thread reasoning-watch stability-positive stability-watch multimodal-donation multimodal-watch review-candidate watch-queue governance-review governance-watch constitutional-watch constitutional-freeze deliberation-docket deliberation-watch deliberation-urgent anti-capture-watch continuity-docket continuity-watch continuity-fragile continuity-freeze recovery-docket recovery-watch escrow-ready recovery-fragile attestation-docket attestation-watch witness-sufficient attestation-sensitive precedent-docket precedent-watch precedent-divergent precedent-strong scenario-docket scenario-watch scenario-freeze scenario-rehearse-recovery institutional-status-indicator chamber-conflict-indicator system-health-overview queue-health-actionable backlog-pressure-watch review-fatigue-watch metric-gaming-watch load-shedding-recommended priority-actionable triage-watch urgency-high priority-critical triage-conflict closure-active closure-provisional repair-urgent reopened-watch symbolic-field-active regime-shift-watch lambda-warning architecture-hint');
     if ((rankData?.rank ?? Infinity) <= 2) {
       node.addClass('attention-priority');
     } else if ((rankData?.rank ?? Infinity) <= 5) {
@@ -1742,6 +1850,19 @@ export function applyAttentionOverlay(cy, overlay) {
     }
     if ((closure?.reopenedCaseWatchStatus ?? 'none') !== 'none') {
       node.addClass('reopened-watch');
+    }
+
+    if (['registry', 'dashboard'].includes(symbolicField?.symbolicFieldQueueStatus ?? 'none')) {
+      node.addClass('symbolic-field-active');
+    }
+    if (['transition-risk', 'drift-watch', 'uncertain'].includes(symbolicField?.regimeClass ?? 'bounded-order')) {
+      node.addClass('regime-shift-watch');
+    }
+    if (['medium', 'high'].includes(symbolicField?.lambdaZoneWarningLevel ?? 'low')) {
+      node.addClass('lambda-warning');
+    }
+    if ((symbolicField?.architectureHint ?? 'monitor') !== 'monitor') {
+      node.addClass('architecture-hint');
     }
   });
 }

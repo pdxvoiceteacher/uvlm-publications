@@ -141,6 +141,13 @@ function renderConcept(data) {
     row('Closure Schema Version', data.closureSchemaVersion ?? 'unknown'),
     row('Closure Producer Commit(s)', data.closureProducerCommits ?? 'unknown'),
     row('Closure Source Mode', data.closureSourceMode ?? 'unknown'),
+    row('Symbolic Field Status', data.symbolicFieldStatus ?? 'stable'),
+    row('Regime Class', data.regimeClass ?? 'bounded-order'),
+    row('Lambda-Zone Warning Level', data.lambdaZoneWarningLevel ?? 'low'),
+    row('Architecture Hint', data.architectureHint ?? 'monitor'),
+    row('Symbolic-Field Schema Version', data.symbolicFieldSchemaVersion ?? 'unknown'),
+    row('Symbolic-Field Producer Commit(s)', data.symbolicFieldProducerCommits ?? 'unknown'),
+    row('Symbolic-Field Source Mode', data.symbolicFieldSourceMode ?? 'unknown'),
     row('Related Concepts', data.relatedConceptCount ?? 0),
     renderConceptRelations(data.relatedConcepts)
   ].join('');

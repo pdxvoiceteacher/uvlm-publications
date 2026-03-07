@@ -882,6 +882,35 @@ async function main() {
           'shadow-opacity': 0.14,
           'shadow-blur': 14
         }
+      },
+      {
+        selector: '.symbolic-field-active',
+        style: {
+          'border-color': '#d5d8ff'
+        }
+      },
+      {
+        selector: '.regime-shift-watch',
+        style: {
+          'overlay-color': '#d5d8ff',
+          'overlay-opacity': 0.08,
+          'overlay-padding': 2
+        }
+      },
+      {
+        selector: '.lambda-warning',
+        style: {
+          'border-width': 2,
+          'border-color': '#ffd6be'
+        }
+      },
+      {
+        selector: '.architecture-hint',
+        style: {
+          'shadow-color': '#d5d8ff',
+          'shadow-opacity': 0.14,
+          'shadow-blur': 14
+        }
       }
     ],
     layout: {

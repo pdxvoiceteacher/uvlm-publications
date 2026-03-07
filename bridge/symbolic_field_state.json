@@ -1,0 +1,13 @@
+{
+  "generatedAt": "2026-03-07",
+  "provenance": {
+    "schemaVersion": "phase-t.0",
+    "producerCommits": ["cl-t-222"],
+    "sourceMode": "fixture"
+  },
+  "entries": [
+    {"reviewId": "sf-001", "symbolicFieldStatus": "strained", "regimeClass": "transition-risk", "lambdaZoneWarningLevel": "medium"},
+    {"reviewId": "sf-002", "symbolicFieldStatus": "volatile", "regimeClass": "drift-watch", "lambdaZoneWarningLevel": "high"},
+    {"reviewId": "sf-003", "symbolicFieldStatus": "contested", "regimeClass": "uncertain", "lambdaZoneWarningLevel": "high"}
+  ]
+}
