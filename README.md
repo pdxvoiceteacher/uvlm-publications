@@ -333,6 +333,23 @@ python3 scripts/build_recovery_overlay.py
 ```
 
 
+### Federated witness and external attestation protocol (Phase M)
+
+Publisher surfaces only **Sophia-audited attestation and witness materials** as an integrity witness chamber.
+Actual witnessing and any resulting human/community decisions remain external to automation.
+
+- inputs: `bridge/witness_audit.json`, `bridge/attestation_recommendations.json`, `bridge/attestation_state_map.json`, `bridge/witness_roster_candidates.json`, `registry/escrow_index.json`, `registry/recovery_docket.json`, `registry/continuity_roster.json`
+- governance-facing non-canonical outputs: `registry/attestation_registry.json`, `registry/witness_docket.json`, `registry/integrity_testimony_watchlist.json`, `registry/attestation_annotations.json`
+- phase lock: canonical/continuity/recovery state → attestation formalization → Sophia witness/attestation audit → publisher attestation overlays → external human/community witnessing
+- procedural guardrails: witnessing over secrecy; distribution over monopoly; attestation without sovereignty; freeze under attestation ambiguity; evidence-first continuity
+
+Build command:
+
+```bash
+python3 scripts/build_attestation_overlay.py
+```
+
+
 ## UVLM Research Atlas
 
 ### Product Vision (Engineering + Research Brief)
