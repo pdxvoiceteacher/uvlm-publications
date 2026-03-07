@@ -1,0 +1,28 @@
+{
+  "generatedAt": "2026-03-07",
+  "governanceFacing": true,
+  "nonCanonical": true,
+  "entries": [
+    {
+      "reviewId": "recovery-002",
+      "artifactId": "registry/governance_review_docket.json",
+      "candidateId": "rec-candidate-002",
+      "status": "watch",
+      "preservationCriticality": "high",
+      "escrowStatus": "pending-integrity-review",
+      "recoveryReadiness": "partial",
+      "recoverabilityScore": 0.58,
+      "integrityWatchState": "watch",
+      "linkedTargetIds": [
+        "concept:governance-integrity"
+      ],
+      "antiTamperSignals": [
+        "dependency-drift"
+      ],
+      "humanReviewFlag": true,
+      "observational": true,
+      "nonCanonical": true,
+      "queuedAt": "2026-03-07"
+    }
+  ]
+}

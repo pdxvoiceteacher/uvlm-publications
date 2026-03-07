@@ -1,0 +1,19 @@
+{
+  "generatedAt": "2026-03-12",
+  "reviews": [
+    {
+      "reviewerId": "reviewer:example-001",
+      "behaviorTrend": "stable-positive",
+      "continuedEligibilityStatus": "eligible",
+      "humanReviewFlag": true,
+      "notes": "Consistent rationale quality and bounded conflict handling."
+    },
+    {
+      "reviewerId": "reviewer:example-002",
+      "behaviorTrend": "mixed",
+      "continuedEligibilityStatus": "watch",
+      "humanReviewFlag": false,
+      "notes": "Variance in review rationale depth; continue monitoring."
+    }
+  ]
+}

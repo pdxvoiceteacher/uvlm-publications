@@ -1,0 +1,32 @@
+{
+  "generatedAt": "2026-03-05",
+  "method": {
+    "name": "deterministic-topology-clustering",
+    "version": "v1"
+  },
+  "constellations": [
+    {
+      "id": "constellation:test",
+      "title": "Test Constellation",
+      "seedConcepts": [
+        "concept:coherence-lattice"
+      ],
+      "memberNodeIds": [
+        "concept:coherence-lattice",
+        "publication:uvlm.paper.nonexistent.v1"
+      ],
+      "memberEdgeIds": [],
+      "stats": {
+        "publicationCount": 1,
+        "conceptCount": 1,
+        "authorCount": 0,
+        "seriesCount": 0
+      },
+      "explanation": {
+        "primarySignals": [
+          "shared concept mentions"
+        ]
+      }
+    }
+  ]
+}

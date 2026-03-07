@@ -1,0 +1,51 @@
+{
+  "generatedAt": "2026-03-12",
+  "audits": [
+    {
+      "reviewerId": "reviewer:example-001",
+      "governanceStatus": "recommend-human-review",
+      "auditStatus": "recommend-human-review",
+      "coherenceScore": 0.82,
+      "riskScore": 0.18,
+      "conflictRisk": 0.21,
+      "integritySignals": [
+        "stable review rationales",
+        "low contradiction exposure",
+        "declared conflicts bounded"
+      ],
+      "targetPublisherAction": "docket",
+      "governingRule": "bounded-evidence-high-coherence-low-risk",
+      "explanation": "Eligible for bounded human governance review."
+    },
+    {
+      "reviewerId": "reviewer:example-002",
+      "governanceStatus": "watch",
+      "auditStatus": "watch",
+      "coherenceScore": 0.63,
+      "riskScore": 0.31,
+      "conflictRisk": 0.36,
+      "integritySignals": [
+        "moderate inconsistency",
+        "needs additional sample"
+      ],
+      "targetPublisherAction": "watch",
+      "governingRule": "watch-pending-evidence",
+      "explanation": "Keep in watch queue for follow-up review."
+    },
+    {
+      "reviewerId": "reviewer:example-003",
+      "governanceStatus": "ineligible",
+      "auditStatus": "suppress",
+      "coherenceScore": 0.34,
+      "riskScore": 0.74,
+      "conflictRisk": 0.67,
+      "integritySignals": [
+        "high contradiction",
+        "unresolved conflict disclosures"
+      ],
+      "targetPublisherAction": "suppress",
+      "governingRule": "high-risk-conflict",
+      "explanation": "Suppressed from governance docket due to unresolved high-risk signals."
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "generatedAt": "2026-03-07",
+  "annotations": [
+    {
+      "reviewerId": "reviewer:example-001",
+      "coherenceScore": 0.82,
+      "riskScore": 0.18,
+      "conflictRisk": 0.21,
+      "integritySignals": [
+        "declared conflicts present but bounded",
+        "low contradiction exposure",
+        "stable review rationales"
+      ],
+      "governingRule": "bounded-evidence-high-coherence-low-risk",
+      "explanation": "Queue for human/community governance review."
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "generatedAt": "2026-03-07",
+  "nonCanonical": true,
+  "entries": [
+    {
+      "reviewerId": "reviewer:example-001",
+      "observational": true,
+      "nonCanonical": true,
+      "behaviorTrend": "stable-positive",
+      "continuedEligibilityStatus": "eligible",
+      "humanReviewFlag": true,
+      "notes": "Consistent rationale quality and bounded conflict handling."
+    },
+    {
+      "reviewerId": "reviewer:example-002",
+      "observational": true,
+      "nonCanonical": true,
+      "behaviorTrend": "mixed",
+      "continuedEligibilityStatus": "watch",
+      "humanReviewFlag": false,
+      "notes": "Variance in review rationale depth; continue monitoring."
+    }
+  ]
+}

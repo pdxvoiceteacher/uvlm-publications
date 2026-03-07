@@ -1,0 +1,53 @@
+{
+  "generatedAt": "2026-03-07",
+  "decisions": [
+    {
+      "inputId": "sonya:text:atlas-note-001",
+      "auditStatus": "admit",
+      "coherenceScore": 0.81,
+      "riskScore": 0.12,
+      "governingRule": "high-coherence-low-risk",
+      "targetPublisherAction": "store",
+      "suggestedConceptTargets": [
+        "concept:coherence-lattice"
+      ],
+      "explanation": "Projected cleanly into stable-high regime with low contradiction risk."
+    },
+    {
+      "inputId": "sonya:text:atlas-note-002",
+      "auditStatus": "admit",
+      "coherenceScore": 0.76,
+      "riskScore": 0.18,
+      "governingRule": "admit-with-promotion",
+      "targetPublisherAction": "promote",
+      "suggestedConceptTargets": [
+        "concept:formal-coherence"
+      ],
+      "explanation": "Useful reinforcement signal for formal coherence thread."
+    },
+    {
+      "inputId": "sonya:text:atlas-note-003",
+      "auditStatus": "defer",
+      "coherenceScore": 0.53,
+      "riskScore": 0.39,
+      "governingRule": "defer-for-review",
+      "targetPublisherAction": "defer",
+      "suggestedConceptTargets": [
+        "concept:narrative-phase-space"
+      ],
+      "explanation": "Potentially useful but currently below confidence threshold."
+    },
+    {
+      "inputId": "sonya:text:atlas-note-004",
+      "auditStatus": "reject",
+      "coherenceScore": 0.24,
+      "riskScore": 0.72,
+      "governingRule": "contradiction-risk",
+      "targetPublisherAction": "reject",
+      "suggestedConceptTargets": [
+        "concept:delta-syn"
+      ],
+      "explanation": "Rejected due to unresolved contradiction flags and high risk."
+    }
+  ]
+}

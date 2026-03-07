@@ -1,0 +1,25 @@
+{
+  "generatedAt": "2026-03-07",
+  "governanceFacing": true,
+  "nonCanonical": true,
+  "integrityWitnessChamber": true,
+  "entries": [
+    {
+      "artifactId": "registry/knowledge_graph.json",
+      "reviewId": "attest-001",
+      "candidateId": "witness-candidate-001",
+      "attestationStatus": "review-ready",
+      "witnessSufficiency": "sufficient",
+      "integrityTestimonyWatchState": "none",
+      "attestationNeed": "high",
+      "tamperSensitivity": "moderate",
+      "witnessIds": [
+        "witness:community-node-1",
+        "witness:institution-a"
+      ],
+      "escrowStatus": "ready-for-review",
+      "recoveryLinked": false,
+      "continuityLinked": false
+    }
+  ]
+}

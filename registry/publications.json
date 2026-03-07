@@ -1,0 +1,16 @@
+{
+  "uvlm.paper.echo-atlas-primer.v1": {
+    "title": "The Echo Atlas Primer",
+    "doi": "pending",
+    "type": "paper",
+    "date": "2026-03-05",
+    "status": "pending"
+  },
+  "uvlm.paper.coherence-lattice-formalism.v1": {
+    "title": "Coherence Lattice Formalism",
+    "doi": "pending",
+    "type": "paper",
+    "date": "2026-02-01",
+    "status": "pending"
+  }
+}
