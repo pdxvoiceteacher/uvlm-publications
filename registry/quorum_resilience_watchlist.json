@@ -1,0 +1,28 @@
+{
+  "generatedAt": "2026-03-07",
+  "governanceFacing": true,
+  "nonCanonical": true,
+  "entries": [
+    {
+      "reviewId": "cont-002",
+      "candidateId": "reserve-002",
+      "status": "watch",
+      "resilienceStatus": "watch",
+      "successionReadinessScore": 0.57,
+      "successionReadiness": "partial",
+      "governanceFragilityScore": 0.68,
+      "fragilityStatus": "thinning",
+      "continuityWatchState": "watch",
+      "antiCaptureSignals": [
+        "participation-thinning"
+      ],
+      "linkedTargetIds": [
+        "concept:governance-integrity"
+      ],
+      "humanReviewFlag": true,
+      "observational": true,
+      "nonCanonical": true,
+      "queuedAt": "2026-03-07"
+    }
+  ]
+}

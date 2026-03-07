@@ -1,0 +1,18 @@
+{
+  "generatedAt": "2026-03-07",
+  "annotations": [
+    {
+      "candidateId": "candidate:concept-relation:coherence-lattice-delta-syn-001",
+      "governingRule": "high-coherence-stable-low-risk",
+      "coherenceScore": 0.84,
+      "riskScore": 0.12,
+      "persistenceScore": 0.79,
+      "cognitiveWatchSignals": [
+        "cross-modal support present",
+        "low contradiction",
+        "repeated multi-cycle coherence"
+      ],
+      "explanation": "Stable recurring candidate should be queued for human editorial review."
+    }
+  ]
+}
