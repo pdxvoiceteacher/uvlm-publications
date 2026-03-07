@@ -1139,6 +1139,14 @@ export function applyAttentionOverlay(cy, overlay) {
     overlay?.institutionalAnnotations
   );
 
+
+  const institutionalProvenance = overlay?.institutionalStatus?.provenance ?? {};
+  const institutionalSchemaVersion = institutionalProvenance?.schemaVersions?.institutional_state_summary
+    ?? institutionalProvenance?.schemaVersions?.institutional_state_map
+    ?? 'unknown';
+  const institutionalProducerCommits = asArray(institutionalProvenance?.producerCommits).join(', ') || 'unknown';
+  const institutionalSourceMode = institutionalProvenance?.derivedFromFixtures ? 'fixture' : 'live';
+
   cy.nodes('[class = "concept"]').forEach((node) => {
     const id = node.id();
     const rankData = byConcept.get(id);
@@ -1224,6 +1232,9 @@ export function applyAttentionOverlay(cy, overlay) {
     node.data('chamberConflictLevel', institutional?.chamberConflictLevel ?? 'none');
     node.data('systemHealthScore', Number(institutional?.systemHealthScore ?? 0));
     node.data('systemHealthOverview', institutional?.systemHealthOverview ?? 'bounded-rehearsal');
+    node.data('institutionalSchemaVersion', institutionalSchemaVersion);
+    node.data('institutionalProducerCommits', institutionalProducerCommits);
+    node.data('institutionalSourceMode', institutionalSourceMode);
 
     node.removeClass('attention-priority attention-secondary sonya-candidate reasoning-thread reasoning-watch stability-positive stability-watch multimodal-donation multimodal-watch review-candidate watch-queue governance-review governance-watch constitutional-watch constitutional-freeze deliberation-docket deliberation-watch deliberation-urgent anti-capture-watch continuity-docket continuity-watch continuity-fragile continuity-freeze recovery-docket recovery-watch escrow-ready recovery-fragile attestation-docket attestation-watch witness-sufficient attestation-sensitive precedent-docket precedent-watch precedent-divergent precedent-strong scenario-docket scenario-watch scenario-freeze scenario-rehearse-recovery institutional-status-indicator chamber-conflict-indicator system-health-overview');
     if ((rankData?.rank ?? Infinity) <= 2) {

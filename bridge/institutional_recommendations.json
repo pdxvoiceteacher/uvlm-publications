@@ -1,5 +1,10 @@
 {
   "generatedAt": "2026-03-07",
+  "provenance": {
+    "schemaVersion": "phase-p.1",
+    "producerCommits": ["sophia-commit-bbb222"],
+    "sourceMode": "fixture"
+  },
   "recommendations": [
     {
       "reviewId": "inst-001",

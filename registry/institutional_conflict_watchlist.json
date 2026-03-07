@@ -2,6 +2,29 @@
   "generatedAt": "2026-03-07",
   "institutionalSynthesis": true,
   "nonCanonical": true,
+  "provenance": {
+    "schemaVersions": {
+      "institutional_audit": "phase-p.1",
+      "institutional_recommendations": "phase-p.1",
+      "institutional_state_map": "phase-p.1",
+      "institutional_state_summary": "phase-p.1",
+      "institutional_conflict_report": "phase-p.1",
+      "institutional_health_projection": "phase-p.1"
+    },
+    "producerCommits": [
+      "cl-commit-aaa111",
+      "sophia-commit-bbb222"
+    ],
+    "sourceModes": {
+      "institutional_audit": "fixture",
+      "institutional_recommendations": "fixture",
+      "institutional_state_map": "fixture",
+      "institutional_state_summary": "fixture",
+      "institutional_conflict_report": "fixture",
+      "institutional_health_projection": "fixture"
+    },
+    "derivedFromFixtures": true
+  },
   "entries": [
     {
       "reviewId": "inst-002",

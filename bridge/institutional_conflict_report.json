@@ -8,17 +8,14 @@
   "entries": [
     {
       "reviewId": "inst-001",
-      "institutionalStatus": "stable",
       "chamberConflictLevel": "low"
     },
     {
       "reviewId": "inst-002",
-      "institutionalStatus": "degraded",
       "chamberConflictLevel": "medium"
     },
     {
       "reviewId": "inst-003",
-      "institutionalStatus": "degraded",
       "chamberConflictLevel": "high"
     }
   ]

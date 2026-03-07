@@ -115,6 +115,9 @@ function renderConcept(data) {
     row('Chamber Conflict Level', data.chamberConflictLevel ?? 'none'),
     row('System Health Score', Number(data.systemHealthScore ?? 0).toFixed(2)),
     row('System Health Overview', data.systemHealthOverview ?? 'bounded-rehearsal'),
+    row('Institutional Schema Version', data.institutionalSchemaVersion ?? 'unknown'),
+    row('Institutional Producer Commit(s)', data.institutionalProducerCommits ?? 'unknown'),
+    row('Institutional Source Mode', data.institutionalSourceMode ?? 'unknown'),
     row('Related Concepts', data.relatedConceptCount ?? 0),
     renderConceptRelations(data.relatedConcepts)
   ].join('');

@@ -8,18 +8,18 @@
   "entries": [
     {
       "reviewId": "inst-001",
-      "institutionalStatus": "stable",
-      "chamberConflictLevel": "low"
+      "systemHealthScore": 0.88,
+      "systemHealthOverview": "stable-under-watch"
     },
     {
       "reviewId": "inst-002",
-      "institutionalStatus": "degraded",
-      "chamberConflictLevel": "medium"
+      "systemHealthScore": 0.62,
+      "systemHealthOverview": "conflict-watch"
     },
     {
       "reviewId": "inst-003",
-      "institutionalStatus": "degraded",
-      "chamberConflictLevel": "high"
+      "systemHealthScore": 0.41,
+      "systemHealthOverview": "suppressed-conflict"
     }
   ]
 }

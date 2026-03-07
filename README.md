@@ -389,10 +389,11 @@ python3 scripts/build_scenario_overlay.py
 
 Publisher surfaces institutional state from **CoherenceLattice deterministic synthesis and Sophia-audited bounded recommendations** as preparedness and governance context, without mutating canonical truth.
 
-- inputs: `bridge/institutional_audit.json`, `bridge/institutional_recommendations.json`, `bridge/institutional_state_map.json`, `bridge/institutional_synthesis.json`, `registry/governance_review_docket.json`, `registry/quorum_resilience_watchlist.json`, `registry/integrity_testimony_watchlist.json`, `registry/divergence_watchlist.json`
+- inputs: `bridge/institutional_audit.json`, `bridge/institutional_recommendations.json`, `bridge/institutional_state_map.json`, `bridge/institutional_state_summary.json`, `bridge/institutional_conflict_report.json`, `bridge/institutional_health_projection.json`, `registry/governance_review_docket.json`, `registry/quorum_resilience_watchlist.json`, `registry/integrity_testimony_watchlist.json`, `registry/divergence_watchlist.json`
 - non-canonical outputs: `registry/institutional_status.json`, `registry/system_health_dashboard.json`, `registry/institutional_conflict_watchlist.json`, `registry/institutional_annotations.json`
 - publication rules: only `targetPublisherAction=docket` enters institutional status and system-health dashboard; watch entries remain in institutional conflict watchlist; suppressed entries stay annotation-only
 - UI focus: institutional status indicator, chamber conflict indicators, and system health overview for bounded visibility
+- contract hardening: `bridge/institutional_synthesis.json` is deprecated and rejected by the builder to prevent semantic aliasing
 
 Build command:
 
