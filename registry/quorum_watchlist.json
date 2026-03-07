@@ -1,0 +1,25 @@
+{
+  "generatedAt": "2026-03-07",
+  "governanceFacing": true,
+  "nonCanonical": true,
+  "entries": [
+    {
+      "reviewId": "delib-002",
+      "candidateId": "amend-002",
+      "status": "watch",
+      "quorumStatus": "thin",
+      "amendmentStatus": "emergency-interpretation-only",
+      "deliberationUrgency": "heightened",
+      "antiCaptureSignals": [
+        "stacked-risk"
+      ],
+      "linkedTargetIds": [
+        "concept:governance-integrity"
+      ],
+      "humanReviewFlag": true,
+      "nonCanonical": true,
+      "observational": true,
+      "queuedAt": "2026-03-07"
+    }
+  ]
+}

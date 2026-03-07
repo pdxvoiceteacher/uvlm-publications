@@ -1,0 +1,16 @@
+{
+  "generatedAt": "2026-03-07",
+  "entries": [
+    {
+      "candidateId": "candidate:concept-relation:coherence-lattice-delta-syn-001",
+      "candidateType": "concept-relation",
+      "status": "queued-for-human-review",
+      "linkedTargetIds": [
+        "concept:coherence-lattice",
+        "concept:delta-syn"
+      ],
+      "sourceAuditStatus": "recommend-human-review",
+      "queuedAt": "2026-03-07"
+    }
+  ]
+}
