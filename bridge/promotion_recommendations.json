@@ -1,0 +1,71 @@
+{
+  "generatedAt": "2026-03-11",
+  "recommendations": [
+    {
+      "candidateId": "candidate:concept-relation:coherence-lattice-delta-syn-001",
+      "candidateType": "concept-relation",
+      "linkedTargetIds": [
+        "concept:coherence-lattice",
+        "concept:delta-syn"
+      ],
+      "sourceIds": [
+        "thread:coherence-lattice-001",
+        "donation:guide-001:coherence-lattice"
+      ],
+      "auditStatus": "recommend-human-review",
+      "coherenceScore": 0.84,
+      "riskScore": 0.12,
+      "persistenceScore": 0.79,
+      "cognitiveWatchSignals": [
+        "repeated multi-cycle coherence",
+        "low contradiction",
+        "cross-modal support present"
+      ],
+      "governingRule": "high-coherence-stable-low-risk",
+      "targetPublisherAction": "docket",
+      "explanation": "Stable recurring candidate should be queued for human editorial review."
+    },
+    {
+      "candidateId": "candidate:concept:narrative-phase-space-001",
+      "candidateType": "concept",
+      "linkedTargetIds": [
+        "concept:narrative-phase-space"
+      ],
+      "sourceIds": [
+        "thread:narrative-bridge-001",
+        "donation:guide-002:narrative-phase-space"
+      ],
+      "auditStatus": "watch",
+      "coherenceScore": 0.66,
+      "riskScore": 0.24,
+      "persistenceScore": 0.59,
+      "cognitiveWatchSignals": [
+        "moderate persistence",
+        "insufficient recurrence"
+      ],
+      "governingRule": "watch-pending-recurrence",
+      "targetPublisherAction": "watch",
+      "explanation": "Keep in promotion watch queue; not ready for docket."
+    },
+    {
+      "candidateId": "candidate:concept:delta-syn-contradiction-001",
+      "candidateType": "concept",
+      "linkedTargetIds": [
+        "concept:delta-syn"
+      ],
+      "sourceIds": [
+        "thread:delta-contradiction-001"
+      ],
+      "auditStatus": "reject",
+      "coherenceScore": 0.37,
+      "riskScore": 0.71,
+      "persistenceScore": 0.21,
+      "cognitiveWatchSignals": [
+        "contradiction escalation"
+      ],
+      "governingRule": "high-contradiction-risk",
+      "targetPublisherAction": "suppress",
+      "explanation": "Suppress from docket due to high contradiction risk."
+    }
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "generatedAt": "2026-03-10",
+  "audits": [
+    {
+      "donationId": "donation:guide-001:coherence-lattice",
+      "sourceInputId": "sonya:audio:guide-001",
+      "targetType": "concept",
+      "targetId": "concept:coherence-lattice",
+      "auditStatus": "admit",
+      "coherenceScore": 0.79,
+      "riskScore": 0.15,
+      "reinforcementScore": 0.72,
+      "governingRule": "cross-modal-consistent-low-risk",
+      "targetPublisherAction": "admit-overlay",
+      "explanation": "Pattern reinforces stable coherence-lattice concept signal across modalities."
+    },
+    {
+      "donationId": "donation:guide-002:narrative-phase-space",
+      "sourceInputId": "sonya:image:diagram-002",
+      "targetType": "concept",
+      "targetId": "concept:narrative-phase-space",
+      "auditStatus": "watch",
+      "coherenceScore": 0.64,
+      "riskScore": 0.27,
+      "reinforcementScore": 0.58,
+      "governingRule": "watch-until-recurs",
+      "targetPublisherAction": "watch",
+      "explanation": "Possible reinforcement but recurrence evidence is still limited."
+    },
+    {
+      "donationId": "donation:guide-003:delta-syn",
+      "sourceInputId": "sonya:audio:guide-003",
+      "targetType": "concept",
+      "targetId": "concept:delta-syn",
+      "auditStatus": "reject",
+      "coherenceScore": 0.31,
+      "riskScore": 0.69,
+      "reinforcementScore": 0.22,
+      "governingRule": "high-contradiction-risk",
+      "targetPublisherAction": "reject",
+      "explanation": "Rejected due to contradictory pattern trace and high risk score."
+    }
+  ]
+}

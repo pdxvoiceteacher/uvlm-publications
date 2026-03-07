@@ -1,0 +1,18 @@
+{
+  "generatedAt": "2026-03-07",
+  "nonCanonical": true,
+  "entries": [
+    {
+      "donationId": "donation:guide-002:narrative-phase-space",
+      "targetId": "concept:narrative-phase-space",
+      "targetType": "concept",
+      "observational": true,
+      "nonCanonical": true,
+      "watchStatus": "watch",
+      "auditStatus": "watch",
+      "reinforcementStatus": "watch",
+      "reinforcementTrend": "flat",
+      "explanation": "Keep in watchlist until recurrence and coherence persistence improves."
+    }
+  ]
+}

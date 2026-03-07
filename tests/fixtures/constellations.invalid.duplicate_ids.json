@@ -1,0 +1,53 @@
+{
+  "generatedAt": "2026-03-05",
+  "method": {
+    "name": "deterministic-topology-clustering",
+    "version": "v1"
+  },
+  "constellations": [
+    {
+      "id": "constellation:coherence-lattice-core",
+      "title": "Cluster A",
+      "seedConcepts": [
+        "concept:coherence-lattice"
+      ],
+      "memberNodeIds": [
+        "concept:coherence-lattice"
+      ],
+      "memberEdgeIds": [],
+      "stats": {
+        "publicationCount": 0,
+        "conceptCount": 1,
+        "authorCount": 0,
+        "seriesCount": 0
+      },
+      "explanation": {
+        "primarySignals": [
+          "concept hierarchy"
+        ]
+      }
+    },
+    {
+      "id": "constellation:coherence-lattice-core",
+      "title": "Cluster B",
+      "seedConcepts": [
+        "concept:delta-syn"
+      ],
+      "memberNodeIds": [
+        "concept:delta-syn"
+      ],
+      "memberEdgeIds": [],
+      "stats": {
+        "publicationCount": 0,
+        "conceptCount": 1,
+        "authorCount": 0,
+        "seriesCount": 0
+      },
+      "explanation": {
+        "primarySignals": [
+          "shared concept mentions"
+        ]
+      }
+    }
+  ]
+}

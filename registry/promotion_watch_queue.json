@@ -1,0 +1,19 @@
+{
+  "generatedAt": "2026-03-07",
+  "nonCanonical": true,
+  "entries": [
+    {
+      "candidateId": "candidate:concept:narrative-phase-space-001",
+      "candidateType": "concept",
+      "status": "watch-queue",
+      "observational": true,
+      "nonCanonical": true,
+      "linkedTargetIds": [
+        "concept:narrative-phase-space"
+      ],
+      "sourceAuditStatus": "watch",
+      "targetPublisherAction": "watch",
+      "queuedAt": "2026-03-07"
+    }
+  ]
+}

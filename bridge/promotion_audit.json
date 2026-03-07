@@ -1,0 +1,48 @@
+{
+  "generatedAt": "2026-03-11",
+  "audits": [
+    {
+      "candidateId": "candidate:concept-relation:coherence-lattice-delta-syn-001",
+      "candidateType": "concept-relation",
+      "linkedTargetIds": [
+        "concept:coherence-lattice",
+        "concept:delta-syn"
+      ],
+      "auditStatus": "recommend-human-review",
+      "coherenceScore": 0.84,
+      "riskScore": 0.12,
+      "persistenceScore": 0.79,
+      "governingRule": "high-coherence-stable-low-risk",
+      "targetPublisherAction": "docket",
+      "explanation": "Pattern is stable and coherent enough for curator review, not automatic promotion."
+    },
+    {
+      "candidateId": "candidate:concept:narrative-phase-space-001",
+      "candidateType": "concept",
+      "linkedTargetIds": [
+        "concept:narrative-phase-space"
+      ],
+      "auditStatus": "watch",
+      "coherenceScore": 0.66,
+      "riskScore": 0.24,
+      "persistenceScore": 0.59,
+      "governingRule": "watch-pending-recurrence",
+      "targetPublisherAction": "watch",
+      "explanation": "Potentially meaningful but needs recurrence before docketing."
+    },
+    {
+      "candidateId": "candidate:concept:delta-syn-contradiction-001",
+      "candidateType": "concept",
+      "linkedTargetIds": [
+        "concept:delta-syn"
+      ],
+      "auditStatus": "reject",
+      "coherenceScore": 0.37,
+      "riskScore": 0.71,
+      "persistenceScore": 0.21,
+      "governingRule": "high-contradiction-risk",
+      "targetPublisherAction": "suppress",
+      "explanation": "Rejected due to contradictory support and unstable profile."
+    }
+  ]
+}
