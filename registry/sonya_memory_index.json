@@ -1,0 +1,25 @@
+{
+  "generatedAt": "2026-03-06",
+  "entries": [
+    {
+      "inputId": "sonya:text:atlas-note-001",
+      "status": "stored",
+      "sourceAuditStatus": "admit",
+      "sourceAction": "store",
+      "linkedConceptIds": [
+        "concept:coherence-lattice"
+      ],
+      "storedAt": "2026-03-06"
+    },
+    {
+      "inputId": "sonya:text:atlas-note-002",
+      "status": "promoted",
+      "sourceAuditStatus": "admit",
+      "sourceAction": "promote",
+      "linkedConceptIds": [
+        "concept:formal-coherence"
+      ],
+      "storedAt": "2026-03-06"
+    }
+  ]
+}

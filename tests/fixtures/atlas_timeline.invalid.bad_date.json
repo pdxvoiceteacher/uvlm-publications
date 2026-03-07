@@ -1,0 +1,19 @@
+{
+  "timeRange": {
+    "start": "2026-02-01",
+    "end": "2026-03-05"
+  },
+  "nodes": {
+    "publication:uvlm.paper.echo-atlas-primer.v1": {
+      "appearanceDate": "2026-03-05"
+    }
+  },
+  "edges": {},
+  "events": [
+    {
+      "date": "2026-99-99",
+      "type": "node-appear",
+      "id": "publication:uvlm.paper.echo-atlas-primer.v1"
+    }
+  ]
+}

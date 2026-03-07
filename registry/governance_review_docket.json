@@ -1,0 +1,16 @@
+{
+  "generatedAt": "2026-03-07",
+  "entries": [
+    {
+      "reviewerId": "reviewer:example-001",
+      "status": "queued-for-human-governance-review",
+      "sourceAuditStatus": "recommend-human-review",
+      "governanceStatus": "recommend-human-review",
+      "linkedTargetIds": [
+        "concept:coherence-lattice"
+      ],
+      "humanReviewFlag": true,
+      "queuedAt": "2026-03-07"
+    }
+  ]
+}

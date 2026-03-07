@@ -1,0 +1,17 @@
+{
+  "generatedAt": "2026-03-07",
+  "entries": [
+    {
+      "reviewId": "scn-001",
+      "scenarioStatus": "rehearsal-ready"
+    },
+    {
+      "reviewId": "scn-002",
+      "scenarioStatus": "watch"
+    },
+    {
+      "reviewId": "scn-003",
+      "scenarioStatus": "suppressed"
+    }
+  ]
+}
