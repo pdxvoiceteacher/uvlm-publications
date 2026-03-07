@@ -1,0 +1,34 @@
+{
+  "generatedAt": "2026-03-05",
+  "method": {
+    "name": "deterministic-topology-clustering",
+    "version": "v1"
+  },
+  "constellations": [
+    {
+      "id": "constellation:coherence-lattice-core",
+      "title": "Coherence Lattice Core",
+      "seedConcepts": [
+        "concept:coherence-lattice"
+      ],
+      "memberNodeIds": [
+        "concept:coherence-lattice",
+        "publication:uvlm.paper.echo-atlas-primer.v1"
+      ],
+      "memberEdgeIds": [
+        "publication:uvlm.paper.echo-atlas-primer.v1->concept:coherence-lattice:mentionsConcept"
+      ],
+      "stats": {
+        "publicationCount": 9,
+        "conceptCount": 8,
+        "authorCount": 7,
+        "seriesCount": 6
+      },
+      "explanation": {
+        "primarySignals": [
+          "shared concept mentions"
+        ]
+      }
+    }
+  ]
+}

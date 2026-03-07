@@ -1,0 +1,46 @@
+{
+  "generatedAt": "2026-03-07",
+  "provenance": {
+    "schemaVersion": "phase-t.0",
+    "producerCommits": ["sophia-t-111"],
+    "sourceMode": "fixture"
+  },
+  "recommendations": [
+    {
+      "reviewId": "sf-001",
+      "targetPublisherAction": "docket",
+      "symbolicFieldStatus": "strained",
+      "regimeClass": "transition-risk",
+      "lambdaZoneWarningLevel": "medium",
+      "architectureHint": "stabilize-recall-boundary",
+      "regimeWatchStatus": "none",
+      "linkedTargetIds": ["concept:governance-integrity"],
+      "humanReviewFlag": true,
+      "notes": "Early warning is bounded and review-facing, not an intervention trigger."
+    },
+    {
+      "reviewId": "sf-002",
+      "targetPublisherAction": "watch",
+      "symbolicFieldStatus": "volatile",
+      "regimeClass": "drift-watch",
+      "lambdaZoneWarningLevel": "high",
+      "architectureHint": "increase-visibility",
+      "regimeWatchStatus": "watch",
+      "linkedTargetIds": ["concept:continuity-protocol"],
+      "humanReviewFlag": true,
+      "notes": "Keep TEL-like memory visibility explicit and auditable."
+    },
+    {
+      "reviewId": "sf-003",
+      "targetPublisherAction": "suppressed",
+      "symbolicFieldStatus": "contested",
+      "regimeClass": "uncertain",
+      "lambdaZoneWarningLevel": "high",
+      "architectureHint": "hold-boundary",
+      "regimeWatchStatus": "watch",
+      "linkedTargetIds": ["concept:constitutional-safeguards"],
+      "humanReviewFlag": true,
+      "notes": "Suppressed from actionable dashboard sections pending additional audit."
+    }
+  ]
+}

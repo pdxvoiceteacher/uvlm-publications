@@ -1,0 +1,758 @@
+name: Mint DOI
+
+on:
+  pull_request:
+    paths:
+      - "papers/**"
+  push:
+    branches:
+      - main
+    paths:
+      - "papers/**"
+
+jobs:
+  mint-doi:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Compute content hash
+        run: python scripts/update_content_hash.py papers/echo-atlas-primer/metadata.yaml
+
+      - name: Validate publication metadata
+        run: python scripts/validate_metadata.py papers
+
+      - name: Generate Crossref XML
+        env:
+          DOI_PREFIX: ${{ secrets.DOI_PREFIX }}
+        run: |
+          python scripts/generate_crossref_xml.py \
+            papers/echo-atlas-primer/metadata.yaml \
+            --doi-prefix "${DOI_PREFIX}" \
+            --depositor-email "publications@ultraverbaluxmentis.org" \
+            --batch-id "${GITHUB_SHA}" \
+            --output crossref_deposit.xml
+
+      - name: Validate Crossref XML
+        run: python scripts/validate_crossref_xml.py crossref_deposit.xml
+
+      - name: Dry-run deposit (PR safety)
+        if: github.event_name == 'pull_request'
+        env:
+          CROSSREF_USERNAME: ${{ secrets.CROSSREF_USERNAME }}
+          CROSSREF_PASSWORD: ${{ secrets.CROSSREF_PASSWORD }}
+          DOI_PREFIX: ${{ secrets.DOI_PREFIX }}
+        run: |
+          python scripts/deposit_crossref.py \
+            --metadata papers/echo-atlas-primer/metadata.yaml \
+            --xml crossref_deposit.xml \
+            --dry-run
+
+      - name: Mint DOI and update registries
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        env:
+          CROSSREF_USERNAME: ${{ secrets.CROSSREF_USERNAME }}
+          CROSSREF_PASSWORD: ${{ secrets.CROSSREF_PASSWORD }}
+          DOI_PREFIX: ${{ secrets.DOI_PREFIX }}
+        run: |
+          python scripts/deposit_crossref.py \
+            --metadata papers/echo-atlas-primer/metadata.yaml \
+            --xml crossref_deposit.xml
+
+      - name: Build publication catalog
+        run: python scripts/build_catalog.py
+
+      - name: Build publication knowledge graph
+        run: python scripts/build_knowledge_graph.py --catalog registry/catalog.json --papers-dir papers --output registry/knowledge_graph.json
+
+      - name: Validate publication knowledge graph
+        run: python scripts/validate_knowledge_graph.py registry/knowledge_graph.json
+
+      - name: Build atlas timeline
+        run: python scripts/build_atlas_timeline.py --graph registry/knowledge_graph.json --catalog registry/catalog.json --output registry/atlas_timeline.json
+
+      - name: Validate atlas timeline
+        run: python scripts/validate_atlas_timeline.py registry/atlas_timeline.json
+
+      - name: Validate atlas timeline JSON formatting
+        run: python -m json.tool registry/atlas_timeline.json >/dev/null
+
+      - name: Build research constellations
+        run: python scripts/build_constellations.py --graph registry/knowledge_graph.json --catalog registry/catalog.json --output registry/constellations.json
+
+      - name: Export symbolic bridge structures
+        run: python scripts/export_symbolic_structures.py --graph registry/knowledge_graph.json --constellations registry/constellations.json --output bridge/symbolic_input.json
+
+      - name: Build Sonya memory ingestion overlays
+        run: python scripts/build_sonya_memory_overlay.py --sonya-audit bridge/sonya_audit.json --sonya-decisions bridge/sonya_admission_decisions.json
+
+      - name: Validate Sonya memory artifact JSON formatting
+        run: |
+          python -m json.tool registry/sonya_memory_index.json >/dev/null
+          python -m json.tool registry/sonya_memory_annotations.json >/dev/null
+          python -m json.tool registry/sonya_attention_candidates.json >/dev/null
+          python -m json.tool registry/sonya_pending_review.json >/dev/null
+
+      - name: Build reasoning thread overlays
+        run: |
+          python scripts/build_reasoning_thread_overlay.py \
+            --reasoning-audit bridge/reasoning_audit.json \
+            --recursive-candidates bridge/recursive_reasoning_candidates.json \
+            --sonya-memory-index registry/sonya_memory_index.json \
+            --sonya-memory-annotations registry/sonya_memory_annotations.json \
+            --sonya-attention-candidates registry/sonya_attention_candidates.json
+
+      - name: Validate reasoning overlay JSON formatting
+        run: |
+          python -m json.tool registry/reasoning_threads.json >/dev/null
+          python -m json.tool registry/reasoning_thread_annotations.json >/dev/null
+          python -m json.tool registry/cognitive_watchlist.json >/dev/null
+
+      - name: Build cognitive monitor overlays
+        run: |
+          python scripts/build_cognitive_monitor_overlay.py \
+            --stability-audit bridge/stability_audit.json \
+            --recursive-watch-escalations bridge/recursive_watch_escalations.json \
+            --reasoning-threads registry/reasoning_threads.json \
+            --cognitive-watchlist registry/cognitive_watchlist.json
+
+      - name: Validate cognitive monitor JSON formatting
+        run: |
+          python -m json.tool registry/cognitive_monitor_index.json >/dev/null
+          python -m json.tool registry/cognitive_stability_annotations.json >/dev/null
+          python -m json.tool registry/recursive_watch_history.json >/dev/null
+
+      - name: Build multimodal donation overlays
+        run: |
+          python scripts/build_multimodal_overlay.py \
+            --pattern-donation-audit bridge/pattern_donation_audit.json \
+            --pattern-donation-decisions bridge/pattern_donation_decisions.json \
+            --cross-modal-reinforcement-report bridge/cross_modal_reinforcement_report.json \
+            --cognitive-monitor-index registry/cognitive_monitor_index.json \
+            --reasoning-threads registry/reasoning_threads.json \
+            --cognitive-watchlist registry/cognitive_watchlist.json
+
+      - name: Validate multimodal overlay JSON formatting
+        run: |
+          python -m json.tool registry/multimodal_signal_index.json >/dev/null
+          python -m json.tool registry/pattern_donation_annotations.json >/dev/null
+          python -m json.tool registry/cross_modal_attention_overlays.json >/dev/null
+          python -m json.tool registry/pattern_donation_watchlist.json >/dev/null
+
+      - name: Build review docket overlays
+        run: |
+          python scripts/build_review_docket.py \
+            --promotion-audit bridge/promotion_audit.json \
+            --promotion-recommendations bridge/promotion_recommendations.json \
+            --reasoning-threads registry/reasoning_threads.json \
+            --cognitive-monitor-index registry/cognitive_monitor_index.json \
+            --multimodal-signal-index registry/multimodal_signal_index.json \
+            --pattern-donation-annotations registry/pattern_donation_annotations.json \
+            --cognitive-watchlist registry/cognitive_watchlist.json
+
+      - name: Validate review docket JSON formatting
+        run: |
+          python -m json.tool registry/review_docket.json >/dev/null
+          python -m json.tool registry/promotion_annotations.json >/dev/null
+          python -m json.tool registry/promotion_watch_queue.json >/dev/null
+
+      - name: Build governance review overlays
+        run: |
+          python scripts/build_governance_review_overlay.py \
+            --governance-audit bridge/governance_audit.json \
+            --governance-recommendations bridge/governance_recommendations.json \
+            --reviewer-behavior-audit bridge/reviewer_behavior_audit.json \
+            --review-docket registry/review_docket.json
+
+      - name: Validate governance review JSON formatting
+        run: |
+          python -m json.tool registry/governance_review_docket.json >/dev/null
+          python -m json.tool registry/reviewer_integrity_annotations.json >/dev/null
+          python -m json.tool registry/reviewer_watch_queue.json >/dev/null
+          python -m json.tool registry/reviewer_behavior_monitor.json >/dev/null
+
+
+      - name: Build constitutional governance overlays
+        run: |
+          python scripts/build_constitutional_overlay.py \
+            --constitutional-audit bridge/constitutional_audit.json \
+            --constitutional-recommendations bridge/constitutional_recommendations.json \
+            --continuity-mode-assessment bridge/continuity_mode_assessment.json
+
+      - name: Validate constitutional governance JSON formatting
+        run: |
+          python -m json.tool bridge/constitutional_audit.json >/dev/null
+          python -m json.tool bridge/constitutional_recommendations.json >/dev/null
+          python -m json.tool bridge/continuity_mode_assessment.json >/dev/null
+          python -m json.tool registry/constitutional_status.json >/dev/null
+          python -m json.tool registry/continuity_mode_index.json >/dev/null
+          python -m json.tool registry/constitutional_annotations.json >/dev/null
+          python -m json.tool registry/governance_failure_watchlist.json >/dev/null
+
+
+      - name: Build deliberation and amendment overlays
+        run: |
+          python scripts/build_deliberation_overlay.py \
+            --quorum-audit bridge/quorum_audit.json \
+            --amendment-recommendations bridge/amendment_recommendations.json \
+            --deliberation-state-map bridge/deliberation_state_map.json \
+            --amendment-candidate-map bridge/amendment_candidate_map.json \
+            --constitutional-status registry/constitutional_status.json \
+            --governance-review-docket registry/governance_review_docket.json
+
+      - name: Validate deliberation and amendment JSON formatting
+        run: |
+          python -m json.tool bridge/quorum_audit.json >/dev/null
+          python -m json.tool bridge/amendment_recommendations.json >/dev/null
+          python -m json.tool bridge/deliberation_state_map.json >/dev/null
+          python -m json.tool bridge/amendment_candidate_map.json >/dev/null
+          python -m json.tool registry/deliberation_docket.json >/dev/null
+          python -m json.tool registry/amendment_queue.json >/dev/null
+          python -m json.tool registry/quorum_watchlist.json >/dev/null
+          python -m json.tool registry/constitutional_revision_annotations.json >/dev/null
+
+
+      - name: Build continuity and resilience overlays
+        run: |
+          python scripts/build_continuity_overlay.py \
+            --resilience-audit bridge/resilience_audit.json \
+            --succession-recommendations bridge/succession_recommendations.json \
+            --succession-state-map bridge/succession_state_map.json \
+            --continuity-roster-candidates bridge/continuity_roster_candidates.json \
+            --governance-review-docket registry/governance_review_docket.json \
+            --reviewer-behavior-monitor registry/reviewer_behavior_monitor.json \
+            --constitutional-status registry/constitutional_status.json
+
+      - name: Validate continuity and resilience JSON formatting
+        run: |
+          python -m json.tool bridge/resilience_audit.json >/dev/null
+          python -m json.tool bridge/succession_recommendations.json >/dev/null
+          python -m json.tool bridge/succession_state_map.json >/dev/null
+          python -m json.tool bridge/continuity_roster_candidates.json >/dev/null
+          python -m json.tool registry/continuity_roster.json >/dev/null
+          python -m json.tool registry/succession_docket.json >/dev/null
+          python -m json.tool registry/quorum_resilience_watchlist.json >/dev/null
+          python -m json.tool registry/governance_redundancy_annotations.json >/dev/null
+
+
+      - name: Build recovery and escrow overlays
+        run: |
+          python scripts/build_recovery_overlay.py \
+            --recovery-audit bridge/recovery_audit.json \
+            --recovery-recommendations bridge/recovery_recommendations.json \
+            --preservation-state-map bridge/preservation_state_map.json \
+            --artifact-escrow-plan bridge/artifact_escrow_plan.json \
+            --recovery-candidate-map bridge/recovery_candidate_map.json \
+            --constitutional-status registry/constitutional_status.json \
+            --continuity-mode-index registry/continuity_mode_index.json
+
+      - name: Validate recovery and escrow JSON formatting
+        run: |
+          python -m json.tool bridge/recovery_audit.json >/dev/null
+          python -m json.tool bridge/recovery_recommendations.json >/dev/null
+          python -m json.tool bridge/preservation_state_map.json >/dev/null
+          python -m json.tool bridge/artifact_escrow_plan.json >/dev/null
+          python -m json.tool bridge/recovery_candidate_map.json >/dev/null
+          python -m json.tool registry/escrow_index.json >/dev/null
+          python -m json.tool registry/recovery_docket.json >/dev/null
+          python -m json.tool registry/integrity_watchlist.json >/dev/null
+          python -m json.tool registry/recovery_annotations.json >/dev/null
+
+
+      - name: Build attestation and witness overlays
+        run: |
+          python scripts/build_attestation_overlay.py \
+            --witness-audit bridge/witness_audit.json \
+            --attestation-recommendations bridge/attestation_recommendations.json \
+            --attestation-state-map bridge/attestation_state_map.json \
+            --witness-roster-candidates bridge/witness_roster_candidates.json \
+            --escrow-index registry/escrow_index.json \
+            --recovery-docket registry/recovery_docket.json \
+            --continuity-roster registry/continuity_roster.json
+
+      - name: Validate attestation and witness JSON formatting
+        run: |
+          python -m json.tool bridge/witness_audit.json >/dev/null
+          python -m json.tool bridge/attestation_recommendations.json >/dev/null
+          python -m json.tool bridge/attestation_state_map.json >/dev/null
+          python -m json.tool bridge/witness_roster_candidates.json >/dev/null
+          python -m json.tool registry/attestation_registry.json >/dev/null
+          python -m json.tool registry/witness_docket.json >/dev/null
+          python -m json.tool registry/integrity_testimony_watchlist.json >/dev/null
+          python -m json.tool registry/attestation_annotations.json >/dev/null
+
+
+      - name: Build precedent and case-memory overlays
+        run: |
+          python scripts/build_precedent_overlay.py \
+            --precedent-audit bridge/precedent_audit.json \
+            --precedent-recommendations bridge/precedent_recommendations.json \
+            --precedent-state-map bridge/precedent_state_map.json \
+            --case-analogy-candidates bridge/case_analogy_candidates.json \
+            --review-docket registry/review_docket.json \
+            --governance-review-docket registry/governance_review_docket.json \
+            --deliberation-docket registry/deliberation_docket.json \
+            --recovery-docket registry/recovery_docket.json \
+            --witness-docket registry/witness_docket.json
+
+      - name: Validate precedent and case-memory JSON formatting
+        run: |
+          python -m json.tool bridge/precedent_audit.json >/dev/null
+          python -m json.tool bridge/precedent_recommendations.json >/dev/null
+          python -m json.tool bridge/precedent_state_map.json >/dev/null
+          python -m json.tool bridge/case_analogy_candidates.json >/dev/null
+          python -m json.tool registry/precedent_registry.json >/dev/null
+          python -m json.tool registry/case_docket.json >/dev/null
+          python -m json.tool registry/divergence_watchlist.json >/dev/null
+          python -m json.tool registry/precedent_annotations.json >/dev/null
+
+
+      - name: Build scenario and stress-test overlays
+        run: |
+          python scripts/build_scenario_overlay.py \
+            --scenario-audit bridge/scenario_audit.json \
+            --scenario-recommendations bridge/scenario_recommendations.json \
+            --scenario-state-map bridge/scenario_state_map.json \
+            --scenario-outcome-projection bridge/scenario_outcome_projection.json \
+            --governance-review-docket registry/governance_review_docket.json \
+            --quorum-resilience-watchlist registry/quorum_resilience_watchlist.json \
+            --integrity-testimony-watchlist registry/integrity_testimony_watchlist.json \
+            --divergence-watchlist registry/divergence_watchlist.json
+
+      - name: Validate scenario and stress-test JSON formatting
+        run: |
+          python -m json.tool bridge/scenario_audit.json >/dev/null
+          python -m json.tool bridge/scenario_recommendations.json >/dev/null
+          python -m json.tool bridge/scenario_state_map.json >/dev/null
+          python -m json.tool bridge/scenario_outcome_projection.json >/dev/null
+          python -m json.tool registry/scenario_registry.json >/dev/null
+          python -m json.tool registry/stress_test_docket.json >/dev/null
+          python -m json.tool registry/resilience_findings_watchlist.json >/dev/null
+          python -m json.tool registry/scenario_annotations.json >/dev/null
+
+
+      - name: Build institutional overlays
+        run: |
+          python scripts/build_institutional_overlay.py \
+            --institutional-audit bridge/institutional_audit.json \
+            --institutional-recommendations bridge/institutional_recommendations.json \
+            --institutional-state-map bridge/institutional_state_map.json \
+            --institutional-state-summary bridge/institutional_state_summary.json \
+            --institutional-conflict-report bridge/institutional_conflict_report.json \
+            --institutional-health-projection bridge/institutional_health_projection.json \
+            --governance-review-docket registry/governance_review_docket.json \
+            --quorum-resilience-watchlist registry/quorum_resilience_watchlist.json \
+            --integrity-testimony-watchlist registry/integrity_testimony_watchlist.json \
+            --divergence-watchlist registry/divergence_watchlist.json
+
+      - name: Validate institutional JSON formatting
+        run: |
+          python -m json.tool bridge/institutional_audit.json >/dev/null
+          python -m json.tool bridge/institutional_recommendations.json >/dev/null
+          python -m json.tool bridge/institutional_state_map.json >/dev/null
+          python -m json.tool bridge/institutional_state_summary.json >/dev/null
+          python -m json.tool bridge/institutional_conflict_report.json >/dev/null
+          python -m json.tool bridge/institutional_health_projection.json >/dev/null
+          python -m json.tool registry/institutional_status.json >/dev/null
+          python -m json.tool registry/system_health_dashboard.json >/dev/null
+          python -m json.tool registry/institutional_conflict_watchlist.json >/dev/null
+          python -m json.tool registry/institutional_annotations.json >/dev/null
+
+
+      - name: Build queue-health and anti-Goodhart overlays
+        run: |
+          python scripts/build_queue_health_overlay.py \
+            --load-shedding-audit bridge/load_shedding_audit.json \
+            --load-shedding-recommendations bridge/load_shedding_recommendations.json \
+            --queue-pressure-map bridge/queue_pressure_map.json \
+            --queue-pressure-summary bridge/queue_pressure_summary.json \
+            --review-load-distribution bridge/review_load_distribution.json \
+            --goodhart-risk-report bridge/goodhart_risk_report.json \
+            --institutional-status registry/institutional_status.json \
+            --system-health-dashboard registry/system_health_dashboard.json \
+            --review-docket registry/review_docket.json \
+            --governance-review-docket registry/governance_review_docket.json \
+            --deliberation-docket registry/deliberation_docket.json \
+            --recovery-docket registry/recovery_docket.json \
+            --witness-docket registry/witness_docket.json \
+            --case-docket registry/case_docket.json \
+            --stress-test-docket registry/stress_test_docket.json
+
+      - name: Validate queue-health and anti-Goodhart JSON formatting
+        run: |
+          python -m json.tool bridge/load_shedding_audit.json >/dev/null
+          python -m json.tool bridge/load_shedding_recommendations.json >/dev/null
+          python -m json.tool bridge/queue_pressure_map.json >/dev/null
+          python -m json.tool bridge/queue_pressure_summary.json >/dev/null
+          python -m json.tool bridge/review_load_distribution.json >/dev/null
+          python -m json.tool bridge/goodhart_risk_report.json >/dev/null
+          python -m json.tool registry/queue_health_dashboard.json >/dev/null
+          python -m json.tool registry/review_backlog_watchlist.json >/dev/null
+          python -m json.tool registry/metric_gaming_watchlist.json >/dev/null
+          python -m json.tool registry/load_shedding_annotations.json >/dev/null
+
+
+      - name: Build priority and triage overlays
+        run: |
+          python scripts/build_priority_overlay.py \
+            --triage-audit bridge/triage_audit.json \
+            --triage-recommendations bridge/triage_recommendations.json \
+            --priority-state-map bridge/priority_state_map.json \
+            --priority-state-summary bridge/priority_state_summary.json \
+            --triage-candidate-map bridge/triage_candidate_map.json \
+            --triage-conflict-report bridge/triage_conflict_report.json \
+            --queue-health-dashboard registry/queue_health_dashboard.json \
+            --system-health-dashboard registry/system_health_dashboard.json \
+            --review-backlog-watchlist registry/review_backlog_watchlist.json \
+            --metric-gaming-watchlist registry/metric_gaming_watchlist.json
+
+      - name: Validate priority and triage JSON formatting
+        run: |
+          python -m json.tool bridge/triage_audit.json >/dev/null
+          python -m json.tool bridge/triage_recommendations.json >/dev/null
+          python -m json.tool bridge/priority_state_map.json >/dev/null
+          python -m json.tool bridge/priority_state_summary.json >/dev/null
+          python -m json.tool bridge/triage_candidate_map.json >/dev/null
+          python -m json.tool bridge/triage_conflict_report.json >/dev/null
+          python -m json.tool registry/priority_dashboard.json >/dev/null
+          python -m json.tool registry/triage_docket.json >/dev/null
+          python -m json.tool registry/triage_watchlist.json >/dev/null
+          python -m json.tool registry/priority_annotations.json >/dev/null
+
+      - name: Build closure and repair overlays
+        run: |
+          python scripts/build_closure_overlay.py \
+            --closure-audit bridge/closure_audit.json \
+            --closure-recommendations bridge/closure_recommendations.json \
+            --closure-state-map bridge/closure_state_map.json \
+            --closure-state-summary bridge/closure_state_summary.json \
+            --repair-candidate-map bridge/repair_candidate_map.json \
+            --reopen-signal-report bridge/reopen_signal_report.json \
+            --priority-dashboard registry/priority_dashboard.json \
+            --triage-docket registry/triage_docket.json \
+            --triage-watchlist registry/triage_watchlist.json
+
+      - name: Validate closure and repair JSON formatting
+        run: |
+          python -m json.tool bridge/closure_audit.json >/dev/null
+          python -m json.tool bridge/closure_recommendations.json >/dev/null
+          python -m json.tool bridge/closure_state_map.json >/dev/null
+          python -m json.tool bridge/closure_state_summary.json >/dev/null
+          python -m json.tool bridge/repair_candidate_map.json >/dev/null
+          python -m json.tool bridge/reopen_signal_report.json >/dev/null
+          python -m json.tool registry/closure_registry.json >/dev/null
+          python -m json.tool registry/repair_docket.json >/dev/null
+          python -m json.tool registry/reopened_case_watchlist.json >/dev/null
+          python -m json.tool registry/closure_annotations.json >/dev/null
+
+      - name: Build symbolic field and early-warning overlays
+        run: |
+          python scripts/build_symbolic_field_overlay.py \
+            --symbolic-field-audit bridge/symbolic_field_audit.json \
+            --symbolic-field-recommendations bridge/symbolic_field_recommendations.json \
+            --symbolic-field-state bridge/symbolic_field_state.json \
+            --symbolic-field-summary bridge/symbolic_field_summary.json \
+            --regime-transition-report bridge/regime_transition_report.json \
+            --early-warning-signal-map bridge/early_warning_signal_map.json \
+            --institutional-status registry/institutional_status.json \
+            --queue-health-dashboard registry/queue_health_dashboard.json \
+            --priority-dashboard registry/priority_dashboard.json \
+            --closure-registry registry/closure_registry.json
+
+      - name: Validate symbolic field and early-warning JSON formatting
+        run: |
+          python -m json.tool bridge/symbolic_field_audit.json >/dev/null
+          python -m json.tool bridge/symbolic_field_recommendations.json >/dev/null
+          python -m json.tool bridge/symbolic_field_state.json >/dev/null
+          python -m json.tool bridge/symbolic_field_summary.json >/dev/null
+          python -m json.tool bridge/regime_transition_report.json >/dev/null
+          python -m json.tool bridge/early_warning_signal_map.json >/dev/null
+          python -m json.tool registry/symbolic_field_registry.json >/dev/null
+          python -m json.tool registry/early_warning_dashboard.json >/dev/null
+          python -m json.tool registry/regime_watchlist.json >/dev/null
+          python -m json.tool registry/symbolic_field_annotations.json >/dev/null
+
+      - name: Build verification overlays
+        run: |
+          python scripts/build_verification_overlay.py \
+            --verification-audit bridge/verification_audit.json \
+            --verification-recommendations bridge/verification_recommendations.json \
+            --claim-type-map bridge/claim_type_map.json \
+            --entity-resolution-map bridge/entity_resolution_map.json \
+            --entity-resolution-summary bridge/entity_resolution_summary.json \
+            --verification-task-map bridge/verification_task_map.json \
+            --symbolic-field-registry registry/symbolic_field_registry.json \
+            --closure-registry registry/closure_registry.json \
+            --priority-dashboard registry/priority_dashboard.json
+
+      - name: Validate verification JSON formatting
+        run: |
+          python -m json.tool bridge/verification_audit.json >/dev/null
+          python -m json.tool bridge/verification_recommendations.json >/dev/null
+          python -m json.tool bridge/claim_type_map.json >/dev/null
+          python -m json.tool bridge/entity_resolution_map.json >/dev/null
+          python -m json.tool bridge/entity_resolution_summary.json >/dev/null
+          python -m json.tool bridge/verification_task_map.json >/dev/null
+          python -m json.tool registry/verification_dashboard.json >/dev/null
+          python -m json.tool registry/entity_watchlist.json >/dev/null
+          python -m json.tool registry/claim_type_registry.json >/dev/null
+          python -m json.tool registry/verification_annotations.json >/dev/null
+
+      - name: Build public-record overlays
+        run: |
+          python scripts/build_public_record_overlay.py \
+            --public-record-audit bridge/public_record_audit.json \
+            --public-record-recommendations bridge/public_record_recommendations.json \
+            --public-record-intake-map bridge/public_record_intake_map.json \
+            --entity-graph-map bridge/entity_graph_map.json \
+            --relationship-edge-map bridge/relationship_edge_map.json \
+            --chain-of-custody-report bridge/chain_of_custody_report.json \
+            --verification-dashboard registry/verification_dashboard.json \
+            --claim-type-registry registry/claim_type_registry.json \
+            --entity-watchlist registry/entity_watchlist.json
+
+      - name: Validate public-record JSON formatting
+        run: |
+          python -m json.tool bridge/public_record_audit.json >/dev/null
+          python -m json.tool bridge/public_record_recommendations.json >/dev/null
+          python -m json.tool bridge/public_record_intake_map.json >/dev/null
+          python -m json.tool bridge/entity_graph_map.json >/dev/null
+          python -m json.tool bridge/relationship_edge_map.json >/dev/null
+          python -m json.tool bridge/chain_of_custody_report.json >/dev/null
+          python -m json.tool registry/public_record_dashboard.json >/dev/null
+          python -m json.tool registry/entity_graph_registry.json >/dev/null
+          python -m json.tool registry/relationship_watchlist.json >/dev/null
+          python -m json.tool registry/chain_of_custody_annotations.json >/dev/null
+
+      - name: Validate research constellations
+        run: python scripts/validate_constellations.py registry/constellations.json --graph registry/knowledge_graph.json
+
+      - name: Validate constellations JSON formatting
+        run: python -m json.tool registry/constellations.json >/dev/null
+
+      - name: Run atlas timeline validator regression fixtures
+        run: python3 -m unittest tests/test_validate_atlas_timeline.py
+
+      - name: Run constellations validator regression fixtures
+        run: python3 -m unittest tests/test_validate_constellations.py
+
+      - name: Run institutional overlay contract fixtures
+        run: python3 -m unittest tests/test_build_institutional_overlay.py
+
+      - name: Run queue-health overlay contract fixtures
+        run: python3 -m unittest tests/test_build_queue_health_overlay.py
+
+      - name: Run priority overlay contract fixtures
+        run: python3 -m unittest tests/test_build_priority_overlay.py
+
+      - name: Run closure overlay contract fixtures
+        run: python3 -m unittest tests/test_build_closure_overlay.py
+
+      - name: Run symbolic-field overlay contract fixtures
+        run: python3 -m unittest tests/test_build_symbolic_field_overlay.py
+
+      - name: Run verification overlay contract fixtures
+        run: python3 -m unittest tests/test_build_verification_overlay.py
+
+      - name: Run public-record overlay contract fixtures
+        run: python3 -m unittest tests/test_build_public_record_overlay.py
+
+      - name: Commit registry updates
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add registry/dois.json registry/publications.json registry/catalog.json registry/knowledge_graph.json registry/atlas_timeline.json registry/constellations.json bridge/symbolic_input.json registry/sonya_memory_index.json registry/sonya_memory_annotations.json registry/sonya_attention_candidates.json registry/sonya_pending_review.json bridge/sonya_audit.json bridge/sonya_admission_decisions.json bridge/reasoning_audit.json bridge/recursive_reasoning_candidates.json registry/reasoning_threads.json registry/reasoning_thread_annotations.json registry/cognitive_watchlist.json bridge/stability_audit.json bridge/recursive_watch_escalations.json registry/cognitive_monitor_index.json registry/cognitive_stability_annotations.json registry/recursive_watch_history.json bridge/pattern_donation_audit.json bridge/pattern_donation_decisions.json bridge/cross_modal_reinforcement_report.json registry/multimodal_signal_index.json registry/pattern_donation_annotations.json registry/cross_modal_attention_overlays.json registry/pattern_donation_watchlist.json bridge/promotion_audit.json bridge/promotion_recommendations.json registry/review_docket.json registry/promotion_annotations.json registry/promotion_watch_queue.json bridge/governance_audit.json bridge/governance_recommendations.json bridge/reviewer_behavior_audit.json registry/governance_review_docket.json registry/reviewer_integrity_annotations.json registry/reviewer_watch_queue.json registry/reviewer_behavior_monitor.json bridge/constitutional_audit.json bridge/constitutional_recommendations.json bridge/continuity_mode_assessment.json registry/constitutional_status.json registry/continuity_mode_index.json registry/constitutional_annotations.json registry/governance_failure_watchlist.json bridge/quorum_audit.json bridge/amendment_recommendations.json bridge/deliberation_state_map.json bridge/amendment_candidate_map.json registry/deliberation_docket.json registry/amendment_queue.json registry/quorum_watchlist.json registry/constitutional_revision_annotations.json bridge/resilience_audit.json bridge/succession_recommendations.json bridge/succession_state_map.json bridge/continuity_roster_candidates.json registry/continuity_roster.json registry/succession_docket.json registry/quorum_resilience_watchlist.json registry/governance_redundancy_annotations.json bridge/recovery_audit.json bridge/recovery_recommendations.json bridge/preservation_state_map.json bridge/artifact_escrow_plan.json bridge/recovery_candidate_map.json registry/escrow_index.json registry/recovery_docket.json registry/integrity_watchlist.json registry/recovery_annotations.json bridge/witness_audit.json bridge/attestation_recommendations.json bridge/attestation_state_map.json bridge/witness_roster_candidates.json registry/attestation_registry.json registry/witness_docket.json registry/integrity_testimony_watchlist.json registry/attestation_annotations.json bridge/precedent_audit.json bridge/precedent_recommendations.json bridge/precedent_state_map.json bridge/case_analogy_candidates.json registry/precedent_registry.json registry/case_docket.json registry/divergence_watchlist.json registry/precedent_annotations.json bridge/scenario_audit.json bridge/scenario_recommendations.json bridge/scenario_state_map.json bridge/scenario_outcome_projection.json registry/scenario_registry.json registry/stress_test_docket.json registry/resilience_findings_watchlist.json registry/scenario_annotations.json bridge/institutional_audit.json bridge/institutional_recommendations.json bridge/institutional_state_map.json bridge/institutional_state_summary.json bridge/institutional_conflict_report.json bridge/institutional_health_projection.json registry/institutional_status.json registry/system_health_dashboard.json registry/institutional_conflict_watchlist.json registry/institutional_annotations.json bridge/load_shedding_audit.json bridge/load_shedding_recommendations.json bridge/queue_pressure_map.json bridge/queue_pressure_summary.json bridge/review_load_distribution.json bridge/goodhart_risk_report.json registry/queue_health_dashboard.json registry/review_backlog_watchlist.json registry/metric_gaming_watchlist.json registry/load_shedding_annotations.json bridge/triage_audit.json bridge/triage_recommendations.json bridge/priority_state_map.json bridge/priority_state_summary.json bridge/triage_candidate_map.json bridge/triage_conflict_report.json registry/priority_dashboard.json registry/triage_docket.json registry/triage_watchlist.json registry/priority_annotations.json bridge/closure_audit.json bridge/closure_recommendations.json bridge/closure_state_map.json bridge/closure_state_summary.json bridge/repair_candidate_map.json bridge/reopen_signal_report.json registry/closure_registry.json registry/repair_docket.json registry/reopened_case_watchlist.json registry/closure_annotations.json bridge/symbolic_field_audit.json bridge/symbolic_field_recommendations.json bridge/symbolic_field_state.json bridge/symbolic_field_summary.json bridge/regime_transition_report.json bridge/early_warning_signal_map.json registry/symbolic_field_registry.json registry/early_warning_dashboard.json registry/regime_watchlist.json registry/symbolic_field_annotations.json bridge/verification_audit.json bridge/verification_recommendations.json bridge/claim_type_map.json bridge/entity_resolution_map.json bridge/entity_resolution_summary.json bridge/verification_task_map.json registry/verification_dashboard.json registry/entity_watchlist.json registry/claim_type_registry.json registry/verification_annotations.json bridge/public_record_audit.json bridge/public_record_recommendations.json bridge/public_record_intake_map.json bridge/entity_graph_map.json bridge/relationship_edge_map.json bridge/chain_of_custody_report.json registry/public_record_dashboard.json registry/entity_graph_registry.json registry/relationship_watchlist.json registry/chain_of_custody_annotations.json registry/deposits papers/echo-atlas-primer/metadata.yaml
+          git diff --cached --quiet || git commit -m "Update DOI registries, catalog, graph, and deposit logs"
+          git push
+
+      - name: Upload deposit artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: crossref-deposit-artifacts
+          path: |
+            crossref_deposit.xml
+            papers/echo-atlas-primer/metadata.yaml
+            registry/deposits/
+            registry/dois.json
+            registry/publications.json
+            registry/catalog.json
+            registry/knowledge_graph.json
+            registry/atlas_timeline.json
+            registry/constellations.json
+            bridge/symbolic_input.json
+            bridge/sonya_audit.json
+            bridge/sonya_admission_decisions.json
+            registry/sonya_memory_index.json
+            registry/sonya_memory_annotations.json
+            registry/sonya_attention_candidates.json
+            registry/sonya_pending_review.json
+            bridge/reasoning_audit.json
+            bridge/recursive_reasoning_candidates.json
+            registry/reasoning_threads.json
+            registry/reasoning_thread_annotations.json
+            registry/cognitive_watchlist.json
+            bridge/stability_audit.json
+            bridge/recursive_watch_escalations.json
+            registry/cognitive_monitor_index.json
+            registry/cognitive_stability_annotations.json
+            registry/recursive_watch_history.json
+            bridge/pattern_donation_audit.json
+            bridge/pattern_donation_decisions.json
+            bridge/cross_modal_reinforcement_report.json
+            registry/multimodal_signal_index.json
+            registry/pattern_donation_annotations.json
+            registry/cross_modal_attention_overlays.json
+            registry/pattern_donation_watchlist.json
+            bridge/promotion_audit.json
+            bridge/promotion_recommendations.json
+            registry/review_docket.json
+            registry/promotion_annotations.json
+            registry/promotion_watch_queue.json
+            bridge/governance_audit.json
+            bridge/governance_recommendations.json
+            bridge/reviewer_behavior_audit.json
+            registry/governance_review_docket.json
+            registry/reviewer_integrity_annotations.json
+            registry/reviewer_watch_queue.json
+            registry/reviewer_behavior_monitor.json
+            bridge/constitutional_audit.json
+            bridge/constitutional_recommendations.json
+            bridge/continuity_mode_assessment.json
+            registry/constitutional_status.json
+            registry/continuity_mode_index.json
+            registry/constitutional_annotations.json
+            registry/governance_failure_watchlist.json
+            bridge/quorum_audit.json
+            bridge/amendment_recommendations.json
+            bridge/deliberation_state_map.json
+            bridge/amendment_candidate_map.json
+            registry/deliberation_docket.json
+            registry/amendment_queue.json
+            registry/quorum_watchlist.json
+            registry/constitutional_revision_annotations.json
+            bridge/resilience_audit.json
+            bridge/succession_recommendations.json
+            bridge/succession_state_map.json
+            bridge/continuity_roster_candidates.json
+            registry/continuity_roster.json
+            registry/succession_docket.json
+            registry/quorum_resilience_watchlist.json
+            registry/governance_redundancy_annotations.json
+            bridge/recovery_audit.json
+            bridge/recovery_recommendations.json
+            bridge/preservation_state_map.json
+            bridge/artifact_escrow_plan.json
+            bridge/recovery_candidate_map.json
+            registry/escrow_index.json
+            registry/recovery_docket.json
+            registry/integrity_watchlist.json
+            registry/recovery_annotations.json
+            bridge/witness_audit.json
+            bridge/attestation_recommendations.json
+            bridge/attestation_state_map.json
+            bridge/witness_roster_candidates.json
+            registry/attestation_registry.json
+            registry/witness_docket.json
+            registry/integrity_testimony_watchlist.json
+            registry/attestation_annotations.json
+            bridge/precedent_audit.json
+            bridge/precedent_recommendations.json
+            bridge/precedent_state_map.json
+            bridge/case_analogy_candidates.json
+            registry/precedent_registry.json
+            registry/case_docket.json
+            registry/divergence_watchlist.json
+            registry/precedent_annotations.json
+            bridge/scenario_audit.json
+            bridge/scenario_recommendations.json
+            bridge/scenario_state_map.json
+            bridge/scenario_outcome_projection.json
+            registry/scenario_registry.json
+            registry/stress_test_docket.json
+            registry/resilience_findings_watchlist.json
+            registry/scenario_annotations.json
+            bridge/institutional_audit.json
+            bridge/institutional_recommendations.json
+            bridge/institutional_state_map.json
+            bridge/institutional_state_summary.json
+            bridge/institutional_conflict_report.json
+            bridge/institutional_health_projection.json
+            registry/institutional_status.json
+            registry/system_health_dashboard.json
+            registry/institutional_conflict_watchlist.json
+            registry/institutional_annotations.json
+            bridge/load_shedding_audit.json
+            bridge/load_shedding_recommendations.json
+            bridge/queue_pressure_map.json
+            bridge/queue_pressure_summary.json
+            bridge/review_load_distribution.json
+            bridge/goodhart_risk_report.json
+            registry/queue_health_dashboard.json
+            registry/review_backlog_watchlist.json
+            registry/metric_gaming_watchlist.json
+            registry/load_shedding_annotations.json
+            bridge/triage_audit.json
+            bridge/triage_recommendations.json
+            bridge/priority_state_map.json
+            bridge/priority_state_summary.json
+            bridge/triage_candidate_map.json
+            bridge/triage_conflict_report.json
+            registry/priority_dashboard.json
+            registry/triage_docket.json
+            registry/triage_watchlist.json
+            registry/priority_annotations.json
+            bridge/closure_audit.json
+            bridge/closure_recommendations.json
+            bridge/closure_state_map.json
+            bridge/closure_state_summary.json
+            bridge/repair_candidate_map.json
+            bridge/reopen_signal_report.json
+            registry/closure_registry.json
+            registry/repair_docket.json
+            registry/reopened_case_watchlist.json
+            registry/closure_annotations.json
+            bridge/symbolic_field_audit.json
+            bridge/symbolic_field_recommendations.json
+            bridge/symbolic_field_state.json
+            bridge/symbolic_field_summary.json
+            bridge/regime_transition_report.json
+            bridge/early_warning_signal_map.json
+            registry/symbolic_field_registry.json
+            registry/early_warning_dashboard.json
+            registry/regime_watchlist.json
+            registry/symbolic_field_annotations.json
+            bridge/verification_audit.json
+            bridge/verification_recommendations.json
+            bridge/claim_type_map.json
+            bridge/entity_resolution_map.json
+            bridge/entity_resolution_summary.json
+            bridge/verification_task_map.json
+            registry/verification_dashboard.json
+            registry/entity_watchlist.json
+            registry/claim_type_registry.json
+            registry/verification_annotations.json
+            bridge/public_record_audit.json
+            bridge/public_record_recommendations.json
+            bridge/public_record_intake_map.json
+            bridge/entity_graph_map.json
+            bridge/relationship_edge_map.json
+            bridge/chain_of_custody_report.json
+            registry/public_record_dashboard.json
+            registry/entity_graph_registry.json
+            registry/relationship_watchlist.json
+            registry/chain_of_custody_annotations.json

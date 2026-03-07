@@ -1,0 +1,48 @@
+{
+  "generatedAt": "2026-03-07",
+  "candidates": [
+    {
+      "candidateId": "amend-001",
+      "title": "Quorum legitimacy interpretation guardrail",
+      "amendmentStatus": "recommend-deliberation",
+      "emergencyInterpretationOnly": false,
+      "reversibilityPreference": "prefer-reversible-guidance",
+      "proceduralPrinciples": [
+        "slow-amendment",
+        "quorum-legitimacy",
+        "reversibility-preference"
+      ],
+      "linkedTargetIds": [
+        "concept:coherence-lattice"
+      ]
+    },
+    {
+      "candidateId": "amend-002",
+      "title": "Emergency interpretation boundary",
+      "amendmentStatus": "emergency-interpretation-only",
+      "emergencyInterpretationOnly": true,
+      "reversibilityPreference": "prefer-reversible-guidance",
+      "proceduralPrinciples": [
+        "emergency-distinction",
+        "reversibility-preference"
+      ],
+      "linkedTargetIds": [
+        "concept:governance-integrity"
+      ]
+    },
+    {
+      "candidateId": "amend-003",
+      "title": "Anti-capture freeze safeguard",
+      "amendmentStatus": "blocked-anti-capture",
+      "emergencyInterpretationOnly": true,
+      "reversibilityPreference": "prefer-reversible-guidance",
+      "proceduralPrinciples": [
+        "anti-capture-override",
+        "slow-amendment"
+      ],
+      "linkedTargetIds": [
+        "concept:continuity-protocol"
+      ]
+    }
+  ]
+}

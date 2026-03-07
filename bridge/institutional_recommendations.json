@@ -1,0 +1,55 @@
+{
+  "generatedAt": "2026-03-07",
+  "provenance": {
+    "schemaVersion": "phase-p.1",
+    "producerCommits": ["sophia-commit-bbb222"],
+    "sourceMode": "fixture"
+  },
+  "recommendations": [
+    {
+      "reviewId": "inst-001",
+      "institutionId": "institution-001",
+      "targetPublisherAction": "docket",
+      "institutionalStatus": "stable",
+      "chamberConflictLevel": "low",
+      "systemHealthScore": 0.88,
+      "systemHealthOverview": "stable-under-watch",
+      "preparednessRecommendation": "bounded-rehearsal",
+      "linkedTargetIds": [
+        "concept:governance-integrity"
+      ],
+      "humanReviewFlag": true,
+      "notes": "Deterministic institutional synthesis indicates healthy bounded operation."
+    },
+    {
+      "reviewId": "inst-002",
+      "institutionId": "institution-002",
+      "targetPublisherAction": "watch",
+      "institutionalStatus": "degraded",
+      "chamberConflictLevel": "medium",
+      "systemHealthScore": 0.62,
+      "systemHealthOverview": "conflict-watch",
+      "preparednessRecommendation": "bounded-rehearsal",
+      "linkedTargetIds": [
+        "concept:continuity-protocol"
+      ],
+      "humanReviewFlag": true,
+      "notes": "Chamber conflict rehearsal should stay visible without authority implications."
+    },
+    {
+      "reviewId": "inst-003",
+      "institutionId": "institution-003",
+      "targetPublisherAction": "suppressed",
+      "institutionalStatus": "degraded",
+      "chamberConflictLevel": "high",
+      "systemHealthScore": 0.41,
+      "systemHealthOverview": "suppressed-conflict",
+      "preparednessRecommendation": "bounded-rehearsal",
+      "linkedTargetIds": [
+        "concept:constitutional-safeguards"
+      ],
+      "humanReviewFlag": true,
+      "notes": "Suppressed pending clearer institutional constraints."
+    }
+  ]
+}

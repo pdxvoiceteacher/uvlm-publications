@@ -1,0 +1,23 @@
+{
+  "generatedAt": "2026-03-06",
+  "candidates": [
+    {
+      "inputId": "sonya:text:atlas-note-001",
+      "status": "stored",
+      "conceptTargets": [
+        "concept:coherence-lattice"
+      ],
+      "attentionWeight": 0.81,
+      "reason": "Projected cleanly into stable-high regime with low contradiction risk."
+    },
+    {
+      "inputId": "sonya:text:atlas-note-002",
+      "status": "promoted",
+      "conceptTargets": [
+        "concept:formal-coherence"
+      ],
+      "attentionWeight": 0.76,
+      "reason": "Useful reinforcement signal for formal coherence thread."
+    }
+  ]
+}

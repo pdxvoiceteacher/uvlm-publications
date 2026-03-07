@@ -1,0 +1,49 @@
+{
+  "generatedAt": "2026-03-07",
+  "provenance": {
+    "schemaVersion": "phase-v.0",
+    "producerCommits": ["sophia-v-111"],
+    "sourceMode": "fixture"
+  },
+  "recommendations": [
+    {
+      "reviewId": "prv-001",
+      "targetPublisherAction": "docket",
+      "recordType": "court-filing",
+      "machineReadabilityScore": 0.88,
+      "entityGraphStatus": "linked",
+      "relationshipAmbiguity": "medium",
+      "custodyIntegrityScore": 0.91,
+      "custodyState": "traceable",
+      "linkedTargetIds": ["concept:governance-integrity"],
+      "humanReviewFlag": true,
+      "notes": "Lawful record mapping should remain bounded and evidence-led."
+    },
+    {
+      "reviewId": "prv-002",
+      "targetPublisherAction": "watch",
+      "recordType": "procurement-ledger",
+      "machineReadabilityScore": 0.67,
+      "entityGraphStatus": "partial",
+      "relationshipAmbiguity": "high",
+      "custodyIntegrityScore": 0.62,
+      "custodyState": "needs-traceability",
+      "linkedTargetIds": ["concept:continuity-protocol"],
+      "humanReviewFlag": true,
+      "notes": "Ambiguous relationships remain watch-only until corroborated."
+    },
+    {
+      "reviewId": "prv-003",
+      "targetPublisherAction": "suppressed",
+      "recordType": "media-summary",
+      "machineReadabilityScore": 0.44,
+      "entityGraphStatus": "unlinked",
+      "relationshipAmbiguity": "high",
+      "custodyIntegrityScore": 0.35,
+      "custodyState": "unverified",
+      "linkedTargetIds": ["concept:constitutional-safeguards"],
+      "humanReviewFlag": true,
+      "notes": "Suppressed from actionable sections pending additional audit."
+    }
+  ]
+}

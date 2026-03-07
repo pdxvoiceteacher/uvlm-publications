@@ -1,0 +1,49 @@
+{
+  "generatedAt": "2026-03-07",
+  "provenance": {
+    "schemaVersion": "phase-r.0",
+    "producerCommits": ["sophia-r-111"],
+    "sourceMode": "fixture"
+  },
+  "recommendations": [
+    {
+      "reviewId": "pr-001",
+      "candidateId": "triage-001",
+      "targetPublisherAction": "docket",
+      "triageStatus": "ready",
+      "urgencyLevel": "high",
+      "priorityClass": "critical-integrity",
+      "triageConflictStatus": "none",
+      "recommendationSummary": "review-before-noncritical-throughput",
+      "linkedTargetIds": ["concept:governance-integrity"],
+      "humanReviewFlag": true,
+      "notes": "Capture-risk indicators elevate ordered review priority."
+    },
+    {
+      "reviewId": "pr-002",
+      "candidateId": "triage-002",
+      "targetPublisherAction": "watch",
+      "triageStatus": "watch",
+      "urgencyLevel": "medium",
+      "priorityClass": "operational",
+      "triageConflictStatus": "queue-conflict",
+      "recommendationSummary": "defer-reversible-items",
+      "linkedTargetIds": ["concept:continuity-protocol"],
+      "humanReviewFlag": true,
+      "notes": "Reversible issues can wait longer than irreversible integrity risks."
+    },
+    {
+      "reviewId": "pr-003",
+      "candidateId": "triage-003",
+      "targetPublisherAction": "suppressed",
+      "triageStatus": "suppressed",
+      "urgencyLevel": "high",
+      "priorityClass": "critical-integrity",
+      "triageConflictStatus": "contested",
+      "recommendationSummary": "hold-for-human-escalation",
+      "linkedTargetIds": ["concept:constitutional-safeguards"],
+      "humanReviewFlag": true,
+      "notes": "Suppressed from actionable overlays pending additional review."
+    }
+  ]
+}
