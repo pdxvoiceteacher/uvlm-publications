@@ -1,0 +1,60 @@
+{
+  "generatedAt": "2026-03-07",
+  "closureProtocol": true,
+  "nonCanonical": true,
+  "provenance": {
+    "schemaVersions": {
+      "closure_audit": "phase-s.0",
+      "closure_recommendations": "phase-s.0",
+      "closure_state_map": "phase-s.0",
+      "closure_state_summary": "phase-s.0",
+      "repair_candidate_map": "phase-s.0",
+      "reopen_signal_report": "phase-s.0",
+      "priority_dashboard": "composite",
+      "triage_docket": "composite",
+      "triage_watchlist": "composite"
+    },
+    "producerCommits": [
+      "sophia-s-111",
+      "cl-s-222",
+      "sophia-r-111",
+      "cl-r-222",
+      "sophia-commit-qqq111",
+      "cl-commit-qqq222",
+      "cl-commit-aaa111",
+      "sophia-commit-bbb222"
+    ],
+    "sourceModes": {
+      "closure_audit": "fixture",
+      "closure_recommendations": "fixture",
+      "closure_state_map": "fixture",
+      "closure_state_summary": "fixture",
+      "repair_candidate_map": "fixture",
+      "reopen_signal_report": "fixture",
+      "priority_dashboard": "fixture",
+      "triage_docket": "fixture",
+      "triage_watchlist": "fixture"
+    },
+    "derivedFromFixtures": true
+  },
+  "entries": [
+    {
+      "reviewId": "cl-002",
+      "candidateId": "repair-002",
+      "status": "watch",
+      "closureStatus": "closed",
+      "closureConfidence": "low",
+      "repairUrgency": "routine",
+      "reopenedCaseWatchStatus": "watch",
+      "outcomeDurability": "fragile",
+      "closureAuditState": "monitor",
+      "linkedTargetIds": [
+        "concept:continuity-protocol"
+      ],
+      "humanReviewFlag": true,
+      "observational": true,
+      "nonCanonical": true,
+      "queuedAt": "2026-03-07"
+    }
+  ]
+}

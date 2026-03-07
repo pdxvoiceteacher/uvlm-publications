@@ -134,6 +134,13 @@ function renderConcept(data) {
     row('Priority Schema Version', data.prioritySchemaVersion ?? 'unknown'),
     row('Priority Producer Commit(s)', data.priorityProducerCommits ?? 'unknown'),
     row('Priority Source Mode', data.prioritySourceMode ?? 'unknown'),
+    row('Closure Status', data.closureStatus ?? 'pending'),
+    row('Closure Confidence', data.closureConfidence ?? 'low'),
+    row('Repair Urgency', data.repairUrgency ?? 'routine'),
+    row('Reopened-Case Watch Status', data.reopenedCaseWatchStatus ?? 'none'),
+    row('Closure Schema Version', data.closureSchemaVersion ?? 'unknown'),
+    row('Closure Producer Commit(s)', data.closureProducerCommits ?? 'unknown'),
+    row('Closure Source Mode', data.closureSourceMode ?? 'unknown'),
     row('Related Concepts', data.relatedConceptCount ?? 0),
     renderConceptRelations(data.relatedConcepts)
   ].join('');

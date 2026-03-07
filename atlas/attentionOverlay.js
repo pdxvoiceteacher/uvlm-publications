@@ -105,7 +105,11 @@ export async function loadAttentionOverlay() {
     priorityDashboardResp,
     triageDocketResp,
     triageWatchlistResp,
-    priorityAnnotationsResp
+    priorityAnnotationsResp,
+    closureRegistryResp,
+    repairDocketResp,
+    reopenedCaseWatchlistResp,
+    closureAnnotationsResp
   ] = await Promise.all([
     fetch('../bridge/attention_updates.json').catch(() => null),
     fetch('../bridge/coherence_assessment.json').catch(() => null),
@@ -169,7 +173,11 @@ export async function loadAttentionOverlay() {
     fetch('../registry/priority_dashboard.json').catch(() => null),
     fetch('../registry/triage_docket.json').catch(() => null),
     fetch('../registry/triage_watchlist.json').catch(() => null),
-    fetch('../registry/priority_annotations.json').catch(() => null)
+    fetch('../registry/priority_annotations.json').catch(() => null),
+    fetch('../registry/closure_registry.json').catch(() => null),
+    fetch('../registry/repair_docket.json').catch(() => null),
+    fetch('../registry/reopened_case_watchlist.json').catch(() => null),
+    fetch('../registry/closure_annotations.json').catch(() => null)
   ]);
 
   return {
@@ -235,7 +243,11 @@ export async function loadAttentionOverlay() {
     priorityDashboard: priorityDashboardResp ? await priorityDashboardResp.json() : {},
     triageDocket: triageDocketResp ? await triageDocketResp.json() : {},
     triageWatchlist: triageWatchlistResp ? await triageWatchlistResp.json() : {},
-    priorityAnnotations: priorityAnnotationsResp ? await priorityAnnotationsResp.json() : {}
+    priorityAnnotations: priorityAnnotationsResp ? await priorityAnnotationsResp.json() : {},
+    closureRegistry: closureRegistryResp ? await closureRegistryResp.json() : {},
+    repairDocket: repairDocketResp ? await repairDocketResp.json() : {},
+    reopenedCaseWatchlist: reopenedCaseWatchlistResp ? await reopenedCaseWatchlistResp.json() : {},
+    closureAnnotations: closureAnnotationsResp ? await closureAnnotationsResp.json() : {}
   };
 }
 
@@ -1212,6 +1224,77 @@ function buildPriorityConceptSignals(priorityDashboard, triageDocket, triageWatc
   return byConcept;
 }
 
+
+function buildClosureConceptSignals(closureRegistry, repairDocket, reopenedCaseWatchlist, closureAnnotations) {
+  const byConcept = new Map();
+
+  function bump(targetId, update) {
+    if (typeof targetId !== 'string') {
+      return;
+    }
+    const existing = byConcept.get(targetId) ?? {
+      closureStatus: 'pending',
+      closureConfidence: 'low',
+      repairUrgency: 'routine',
+      reopenedCaseWatchStatus: 'none',
+      closureQueueStatus: 'none'
+    };
+    update(existing);
+    byConcept.set(targetId, existing);
+  }
+
+  asArray(closureRegistry?.entries).forEach((entry) => {
+    asArray(entry?.linkedTargetIds).forEach((targetId) => {
+      bump(targetId, (s) => {
+        s.closureStatus = entry?.closureStatus ?? s.closureStatus;
+        s.closureConfidence = entry?.closureConfidence ?? s.closureConfidence;
+        s.repairUrgency = entry?.repairUrgency ?? s.repairUrgency;
+        s.reopenedCaseWatchStatus = entry?.reopenedCaseWatchStatus ?? s.reopenedCaseWatchStatus;
+        s.closureQueueStatus = 'registry';
+      });
+    });
+  });
+
+  asArray(repairDocket?.entries).forEach((entry) => {
+    asArray(entry?.linkedTargetIds).forEach((targetId) => {
+      bump(targetId, (s) => {
+        s.closureStatus = entry?.closureStatus ?? s.closureStatus;
+        s.closureConfidence = entry?.closureConfidence ?? s.closureConfidence;
+        s.repairUrgency = entry?.repairUrgency ?? s.repairUrgency;
+        s.reopenedCaseWatchStatus = entry?.reopenedCaseWatchStatus ?? s.reopenedCaseWatchStatus;
+        s.closureQueueStatus = 'docket';
+      });
+    });
+  });
+
+  asArray(reopenedCaseWatchlist?.entries).forEach((entry) => {
+    asArray(entry?.linkedTargetIds).forEach((targetId) => {
+      bump(targetId, (s) => {
+        s.closureStatus = entry?.closureStatus ?? s.closureStatus;
+        s.closureConfidence = entry?.closureConfidence ?? s.closureConfidence;
+        s.repairUrgency = entry?.repairUrgency ?? s.repairUrgency;
+        s.reopenedCaseWatchStatus = entry?.reopenedCaseWatchStatus ?? s.reopenedCaseWatchStatus;
+        if (!['registry', 'docket'].includes(s.closureQueueStatus)) {
+          s.closureQueueStatus = 'watch';
+        }
+      });
+    });
+  });
+
+  asArray(closureAnnotations?.annotations).forEach((entry) => {
+    asArray(entry?.linkedTargetIds).forEach((targetId) => {
+      bump(targetId, (s) => {
+        s.closureStatus = entry?.closureStatus ?? s.closureStatus;
+        s.closureConfidence = entry?.closureConfidence ?? s.closureConfidence;
+        s.repairUrgency = entry?.repairUrgency ?? s.repairUrgency;
+        s.reopenedCaseWatchStatus = entry?.reopenedCaseWatchStatus ?? s.reopenedCaseWatchStatus;
+      });
+    });
+  });
+
+  return byConcept;
+}
+
 function buildConstitutionalConceptSignals(constitutionalAnnotations, governanceFailureWatchlist) {
   const byConcept = new Map();
 
@@ -1328,6 +1411,12 @@ export function applyAttentionOverlay(cy, overlay) {
     overlay?.triageWatchlist,
     overlay?.priorityAnnotations
   );
+  const closureSignals = buildClosureConceptSignals(
+    overlay?.closureRegistry,
+    overlay?.repairDocket,
+    overlay?.reopenedCaseWatchlist,
+    overlay?.closureAnnotations
+  );
 
 
   const institutionalProvenance = overlay?.institutionalStatus?.provenance ?? {};
@@ -1348,6 +1437,12 @@ export function applyAttentionOverlay(cy, overlay) {
     ?? 'unknown';
   const priorityProducerCommits = asArray(priorityProvenance?.producerCommits).join(', ') || 'unknown';
   const prioritySourceMode = priorityProvenance?.derivedFromFixtures ? 'fixture' : 'live';
+  const closureProvenance = overlay?.closureRegistry?.provenance ?? {};
+  const closureSchemaVersion = closureProvenance?.schemaVersions?.closure_state_summary
+    ?? closureProvenance?.schemaVersions?.closure_state_map
+    ?? 'unknown';
+  const closureProducerCommits = asArray(closureProvenance?.producerCommits).join(', ') || 'unknown';
+  const closureSourceMode = closureProvenance?.derivedFromFixtures ? 'fixture' : 'live';
 
   cy.nodes('[class = "concept"]').forEach((node) => {
     const id = node.id();
@@ -1455,8 +1550,16 @@ export function applyAttentionOverlay(cy, overlay) {
     node.data('prioritySchemaVersion', prioritySchemaVersion);
     node.data('priorityProducerCommits', priorityProducerCommits);
     node.data('prioritySourceMode', prioritySourceMode);
+    const closure = closureSignals.get(id);
+    node.data('closureStatus', closure?.closureStatus ?? 'pending');
+    node.data('closureConfidence', closure?.closureConfidence ?? 'low');
+    node.data('repairUrgency', closure?.repairUrgency ?? 'routine');
+    node.data('reopenedCaseWatchStatus', closure?.reopenedCaseWatchStatus ?? 'none');
+    node.data('closureSchemaVersion', closureSchemaVersion);
+    node.data('closureProducerCommits', closureProducerCommits);
+    node.data('closureSourceMode', closureSourceMode);
 
-    node.removeClass('attention-priority attention-secondary sonya-candidate reasoning-thread reasoning-watch stability-positive stability-watch multimodal-donation multimodal-watch review-candidate watch-queue governance-review governance-watch constitutional-watch constitutional-freeze deliberation-docket deliberation-watch deliberation-urgent anti-capture-watch continuity-docket continuity-watch continuity-fragile continuity-freeze recovery-docket recovery-watch escrow-ready recovery-fragile attestation-docket attestation-watch witness-sufficient attestation-sensitive precedent-docket precedent-watch precedent-divergent precedent-strong scenario-docket scenario-watch scenario-freeze scenario-rehearse-recovery institutional-status-indicator chamber-conflict-indicator system-health-overview queue-health-actionable backlog-pressure-watch review-fatigue-watch metric-gaming-watch load-shedding-recommended priority-actionable triage-watch urgency-high priority-critical triage-conflict');
+    node.removeClass('attention-priority attention-secondary sonya-candidate reasoning-thread reasoning-watch stability-positive stability-watch multimodal-donation multimodal-watch review-candidate watch-queue governance-review governance-watch constitutional-watch constitutional-freeze deliberation-docket deliberation-watch deliberation-urgent anti-capture-watch continuity-docket continuity-watch continuity-fragile continuity-freeze recovery-docket recovery-watch escrow-ready recovery-fragile attestation-docket attestation-watch witness-sufficient attestation-sensitive precedent-docket precedent-watch precedent-divergent precedent-strong scenario-docket scenario-watch scenario-freeze scenario-rehearse-recovery institutional-status-indicator chamber-conflict-indicator system-health-overview queue-health-actionable backlog-pressure-watch review-fatigue-watch metric-gaming-watch load-shedding-recommended priority-actionable triage-watch urgency-high priority-critical triage-conflict closure-active closure-provisional repair-urgent reopened-watch');
     if ((rankData?.rank ?? Infinity) <= 2) {
       node.addClass('attention-priority');
     } else if ((rankData?.rank ?? Infinity) <= 5) {
@@ -1626,6 +1729,19 @@ export function applyAttentionOverlay(cy, overlay) {
     }
     if ((priority?.triageConflictStatus ?? 'none') !== 'none') {
       node.addClass('triage-conflict');
+    }
+
+    if (['registry', 'docket'].includes(closure?.closureQueueStatus ?? 'none')) {
+      node.addClass('closure-active');
+    }
+    if ((closure?.closureStatus ?? 'pending') === 'provisional-closed') {
+      node.addClass('closure-provisional');
+    }
+    if ((closure?.repairUrgency ?? 'routine') === 'high') {
+      node.addClass('repair-urgent');
+    }
+    if ((closure?.reopenedCaseWatchStatus ?? 'none') !== 'none') {
+      node.addClass('reopened-watch');
     }
   });
 }

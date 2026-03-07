@@ -853,6 +853,35 @@ async function main() {
           'border-width': 2,
           'border-color': '#ffccda'
         }
+      },
+      {
+        selector: '.closure-active',
+        style: {
+          'border-color': '#cfe7dc'
+        }
+      },
+      {
+        selector: '.closure-provisional',
+        style: {
+          'overlay-color': '#cfe7dc',
+          'overlay-opacity': 0.08,
+          'overlay-padding': 2
+        }
+      },
+      {
+        selector: '.repair-urgent',
+        style: {
+          'border-width': 2,
+          'border-color': '#ffd9b8'
+        }
+      },
+      {
+        selector: '.reopened-watch',
+        style: {
+          'shadow-color': '#ffd7e4',
+          'shadow-opacity': 0.14,
+          'shadow-blur': 14
+        }
       }
     ],
     layout: {

@@ -433,6 +433,22 @@ Build command:
 python3 scripts/build_priority_overlay.py
 ```
 
+
+### Closure, outcome logging, and repair protocol (Phase S)
+
+Publisher surfaces only **Sophia-audited closure and repair materials; no automatic reopening, closure, or repair occurs from this layer**.
+
+- inputs: `bridge/closure_audit.json`, `bridge/closure_recommendations.json`, `bridge/closure_state_map.json`, `bridge/closure_state_summary.json`, `bridge/repair_candidate_map.json`, `bridge/reopen_signal_report.json`, `registry/priority_dashboard.json`, `registry/triage_docket.json`, `registry/triage_watchlist.json`
+- non-canonical outputs: `registry/closure_registry.json`, `registry/repair_docket.json`, `registry/reopened_case_watchlist.json`, `registry/closure_annotations.json`
+- phase lock: docket/outcome/recommendation state → CoherenceLattice closure and repair formalization → Sophia closure audit → publisher closure and repair overlays → human/community review of outcome durability
+- principles: processed is not the same as resolved; closure must be reviewable; provisional closure should be explicit; repair is part of integrity; reopening must be evidence-bound
+
+Build command:
+
+```bash
+python3 scripts/build_closure_overlay.py
+```
+
 ## UVLM Research Atlas
 
 ### Product Vision (Engineering + Research Brief)
