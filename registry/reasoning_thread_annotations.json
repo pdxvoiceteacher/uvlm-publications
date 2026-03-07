@@ -1,0 +1,16 @@
+{
+  "generatedAt": "2026-03-06",
+  "annotations": [
+    {
+      "threadId": "thread:coherence-lattice-001",
+      "explanation": "Thread shows coherent multi-step structure and persistence under low contradiction risk.",
+      "governingRule": "coherent-low-risk-thread",
+      "cognitiveWatchSignals": [
+        "low contradiction",
+        "multi-step coherence persistence",
+        "stable concept reuse"
+      ],
+      "recursivePotentialScore": 0.74
+    }
+  ]
+}

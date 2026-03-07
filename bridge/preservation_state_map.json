@@ -1,0 +1,26 @@
+{
+  "generatedAt": "2026-03-07",
+  "entries": [
+    {
+      "reviewId": "recovery-001",
+      "preservationState": "stable",
+      "preservationCriticality": "high",
+      "recoveryReadiness": "review-ready",
+      "recoverabilityScore": 0.85
+    },
+    {
+      "reviewId": "recovery-002",
+      "preservationState": "watch",
+      "preservationCriticality": "high",
+      "recoveryReadiness": "partial",
+      "recoverabilityScore": 0.58
+    },
+    {
+      "reviewId": "recovery-003",
+      "preservationState": "frozen",
+      "preservationCriticality": "critical",
+      "recoveryReadiness": "blocked",
+      "recoverabilityScore": 0.41
+    }
+  ]
+}

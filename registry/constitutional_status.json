@@ -1,0 +1,11 @@
+{
+  "generatedAt": "2026-03-07",
+  "constitutionalStatus": "freeze-recommended",
+  "governanceFacing": true,
+  "nonCanonical": true,
+  "finalActionExternal": true,
+  "countsByStatus": {
+    "stable": 1,
+    "watch": 1
+  }
+}

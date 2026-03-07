@@ -1,0 +1,32 @@
+{
+  "generatedAt": "2026-03-07",
+  "governanceFacing": true,
+  "nonCanonical": true,
+  "annotations": [
+    {
+      "artifactId": "governance-review-001",
+      "constitutionalStatus": "stable",
+      "charterClauses": [
+        "charter-1",
+        "charter-3"
+      ],
+      "governanceSignals": [
+        "procedural-consistency"
+      ],
+      "humanReviewFlag": false,
+      "notes": "Conforms to baseline governance charter requirements."
+    },
+    {
+      "artifactId": "governance-review-002",
+      "constitutionalStatus": "watch",
+      "charterClauses": [
+        "charter-2"
+      ],
+      "governanceSignals": [
+        "conflict-risk"
+      ],
+      "humanReviewFlag": true,
+      "notes": "Requires additional human review before advancement."
+    }
+  ]
+}
