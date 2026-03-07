@@ -85,7 +85,11 @@ export async function loadAttentionOverlay() {
     attestationRegistryResp,
     witnessDocketResp,
     integrityTestimonyWatchlistResp,
-    attestationAnnotationsResp
+    attestationAnnotationsResp,
+    precedentRegistryResp,
+    caseDocketResp,
+    divergenceWatchlistResp,
+    precedentAnnotationsResp
   ] = await Promise.all([
     fetch('../bridge/attention_updates.json').catch(() => null),
     fetch('../bridge/coherence_assessment.json').catch(() => null),
@@ -129,7 +133,11 @@ export async function loadAttentionOverlay() {
     fetch('../registry/attestation_registry.json').catch(() => null),
     fetch('../registry/witness_docket.json').catch(() => null),
     fetch('../registry/integrity_testimony_watchlist.json').catch(() => null),
-    fetch('../registry/attestation_annotations.json').catch(() => null)
+    fetch('../registry/attestation_annotations.json').catch(() => null),
+    fetch('../registry/precedent_registry.json').catch(() => null),
+    fetch('../registry/case_docket.json').catch(() => null),
+    fetch('../registry/divergence_watchlist.json').catch(() => null),
+    fetch('../registry/precedent_annotations.json').catch(() => null)
   ]);
 
   return {
@@ -175,7 +183,11 @@ export async function loadAttentionOverlay() {
     attestationRegistry: attestationRegistryResp ? await attestationRegistryResp.json() : {},
     witnessDocket: witnessDocketResp ? await witnessDocketResp.json() : {},
     integrityTestimonyWatchlist: integrityTestimonyWatchlistResp ? await integrityTestimonyWatchlistResp.json() : {},
-    attestationAnnotations: attestationAnnotationsResp ? await attestationAnnotationsResp.json() : {}
+    attestationAnnotations: attestationAnnotationsResp ? await attestationAnnotationsResp.json() : {},
+    precedentRegistry: precedentRegistryResp ? await precedentRegistryResp.json() : {},
+    caseDocket: caseDocketResp ? await caseDocketResp.json() : {},
+    divergenceWatchlist: divergenceWatchlistResp ? await divergenceWatchlistResp.json() : {},
+    precedentAnnotations: precedentAnnotationsResp ? await precedentAnnotationsResp.json() : {}
   };
 }
 
@@ -762,6 +774,83 @@ function buildAttestationConceptSignals(attestationRegistry, witnessDocket, inte
   return byConcept;
 }
 
+
+
+function buildPrecedentConceptSignals(precedentRegistry, caseDocket, divergenceWatchlist, precedentAnnotations) {
+  const byConcept = new Map();
+
+  function bump(targetId, update) {
+    if (typeof targetId !== 'string') {
+      return;
+    }
+    const existing = byConcept.get(targetId) ?? {
+      precedentStatus: 'review-pending',
+      analogyConfidence: 0,
+      divergenceLevel: 'none',
+      precedentWatchState: 'none',
+      precedentQueueStatus: 'none'
+    };
+    update(existing);
+    byConcept.set(targetId, existing);
+  }
+
+  asArray(caseDocket?.entries).forEach((entry) => {
+    asArray(entry?.linkedTargetIds).forEach((targetId) => {
+      bump(targetId, (s) => {
+        s.precedentStatus = entry?.precedentStatus ?? s.precedentStatus;
+        s.analogyConfidence = Number(entry?.analogyConfidence ?? s.analogyConfidence ?? 0);
+        s.divergenceLevel = entry?.divergenceLevel ?? s.divergenceLevel;
+        s.precedentWatchState = entry?.watchState ?? s.precedentWatchState;
+        s.precedentQueueStatus = 'docket';
+      });
+    });
+  });
+
+  asArray(divergenceWatchlist?.entries).forEach((entry) => {
+    asArray(entry?.linkedTargetIds).forEach((targetId) => {
+      bump(targetId, (s) => {
+        s.precedentStatus = entry?.precedentStatus ?? s.precedentStatus;
+        s.analogyConfidence = Number(entry?.analogyConfidence ?? s.analogyConfidence ?? 0);
+        s.divergenceLevel = entry?.divergenceLevel ?? s.divergenceLevel;
+        s.precedentWatchState = entry?.watchState ?? s.precedentWatchState;
+        if (s.precedentQueueStatus !== 'docket') {
+          s.precedentQueueStatus = 'watch';
+        }
+      });
+    });
+  });
+
+  asArray(precedentAnnotations?.annotations).forEach((entry) => {
+    asArray(entry?.linkedTargetIds).forEach((targetId) => {
+      bump(targetId, (s) => {
+        s.precedentStatus = entry?.precedentStatus ?? s.precedentStatus;
+        s.analogyConfidence = Number(entry?.analogyConfidence ?? s.analogyConfidence ?? 0);
+        s.divergenceLevel = entry?.divergenceLevel ?? s.divergenceLevel;
+        s.precedentWatchState = entry?.watchState ?? s.precedentWatchState;
+      });
+    });
+  });
+
+  const registryByCandidate = new Map();
+  asArray(precedentRegistry?.entries).forEach((entry) => {
+    if (typeof entry?.candidateId === 'string') {
+      registryByCandidate.set(entry.candidateId, entry);
+    }
+  });
+
+  asArray(precedentAnnotations?.annotations).forEach((entry) => {
+    const reg = registryByCandidate.get(entry?.candidateId);
+    asArray(entry?.linkedTargetIds).forEach((targetId) => {
+      bump(targetId, (s) => {
+        s.precedentStatus = reg?.precedentStatus ?? s.precedentStatus;
+        s.analogyConfidence = Number(reg?.analogyConfidence ?? s.analogyConfidence ?? 0);
+      });
+    });
+  });
+
+  return byConcept;
+}
+
 function buildConstitutionalConceptSignals(constitutionalAnnotations, governanceFailureWatchlist) {
   const byConcept = new Map();
 
@@ -848,6 +937,12 @@ export function applyAttentionOverlay(cy, overlay) {
     overlay?.integrityTestimonyWatchlist,
     overlay?.attestationAnnotations
   );
+  const precedentSignals = buildPrecedentConceptSignals(
+    overlay?.precedentRegistry,
+    overlay?.caseDocket,
+    overlay?.divergenceWatchlist,
+    overlay?.precedentAnnotations
+  );
 
   cy.nodes('[class = "concept"]').forEach((node) => {
     const id = node.id();
@@ -919,8 +1014,13 @@ export function applyAttentionOverlay(cy, overlay) {
     node.data('integrityTestimonyWatchState', attestation?.integrityTestimonyWatchState ?? 'none');
     node.data('attestationNeed', attestation?.attestationNeed ?? 'moderate');
     node.data('tamperSensitivity', attestation?.tamperSensitivity ?? 'unknown');
+    const precedent = precedentSignals.get(id);
+    node.data('precedentStatus', precedent?.precedentStatus ?? 'review-pending');
+    node.data('analogyConfidence', Number(precedent?.analogyConfidence ?? 0));
+    node.data('divergenceLevel', precedent?.divergenceLevel ?? 'none');
+    node.data('precedentWatchState', precedent?.precedentWatchState ?? 'none');
 
-    node.removeClass('attention-priority attention-secondary sonya-candidate reasoning-thread reasoning-watch stability-positive stability-watch multimodal-donation multimodal-watch review-candidate watch-queue governance-review governance-watch constitutional-watch constitutional-freeze deliberation-docket deliberation-watch deliberation-urgent anti-capture-watch continuity-docket continuity-watch continuity-fragile continuity-freeze recovery-docket recovery-watch escrow-ready recovery-fragile attestation-docket attestation-watch witness-sufficient attestation-sensitive');
+    node.removeClass('attention-priority attention-secondary sonya-candidate reasoning-thread reasoning-watch stability-positive stability-watch multimodal-donation multimodal-watch review-candidate watch-queue governance-review governance-watch constitutional-watch constitutional-freeze deliberation-docket deliberation-watch deliberation-urgent anti-capture-watch continuity-docket continuity-watch continuity-fragile continuity-freeze recovery-docket recovery-watch escrow-ready recovery-fragile attestation-docket attestation-watch witness-sufficient attestation-sensitive precedent-docket precedent-watch precedent-divergent precedent-strong');
     if ((rankData?.rank ?? Infinity) <= 2) {
       node.addClass('attention-priority');
     } else if ((rankData?.rank ?? Infinity) <= 5) {
@@ -1022,6 +1122,19 @@ export function applyAttentionOverlay(cy, overlay) {
     }
     if (['high', 'critical'].includes(attestation?.attestationNeed ?? 'moderate') || (attestation?.tamperSensitivity ?? 'unknown') === 'high') {
       node.addClass('attestation-sensitive');
+    }
+
+    if ((precedent?.precedentQueueStatus ?? 'none') === 'docket') {
+      node.addClass('precedent-docket');
+    }
+    if ((precedent?.precedentQueueStatus ?? 'none') === 'watch') {
+      node.addClass('precedent-watch');
+    }
+    if (['medium', 'high'].includes(precedent?.divergenceLevel ?? 'none')) {
+      node.addClass('precedent-divergent');
+    }
+    if ((precedent?.analogyConfidence ?? 0) >= 0.8) {
+      node.addClass('precedent-strong');
     }
   });
 }

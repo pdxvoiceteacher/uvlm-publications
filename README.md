@@ -350,6 +350,23 @@ python3 scripts/build_attestation_overlay.py
 ```
 
 
+### Normative memory and precedent protocol (Phase N)
+
+Publisher surfaces only **Sophia-audited precedent and case-analogy materials** as a precedent and case-memory chamber.
+Actual doctrinal use remains external to automation.
+
+- inputs: `bridge/precedent_audit.json`, `bridge/precedent_recommendations.json`, `bridge/precedent_state_map.json`, `bridge/case_analogy_candidates.json`, `registry/review_docket.json`, `registry/governance_review_docket.json`, `registry/deliberation_docket.json`, `registry/recovery_docket.json`, `registry/witness_docket.json`
+- governance-facing non-canonical outputs: `registry/precedent_registry.json`, `registry/case_docket.json`, `registry/divergence_watchlist.json`, `registry/precedent_annotations.json`
+- phase lock: review/governance/continuity/attestation outcomes → precedent formalization → Sophia precedent audit → publisher precedent/case-memory overlays → human/community use of precedent
+- procedural guardrails: precedent is persuasive, not absolute; divergence requires explanation; weak precedent must not harden into dogma; constitutional principles outrank precedent; anti-capture overrides convenience
+
+Build command:
+
+```bash
+python3 scripts/build_precedent_overlay.py
+```
+
+
 ## UVLM Research Atlas
 
 ### Product Vision (Engineering + Research Brief)

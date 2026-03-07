@@ -103,6 +103,10 @@ function renderConcept(data) {
     row('Integrity Testimony Watch State', data.integrityTestimonyWatchState ?? 'none'),
     row('Attestation Need', data.attestationNeed ?? 'moderate'),
     row('Tamper Sensitivity', data.tamperSensitivity ?? 'unknown'),
+    row('Precedent Status', data.precedentStatus ?? 'review-pending'),
+    row('Analogy Confidence', Number(data.analogyConfidence ?? 0).toFixed(2)),
+    row('Divergence Level', data.divergenceLevel ?? 'none'),
+    row('Precedent Watch State', data.precedentWatchState ?? 'none'),
     row('Related Concepts', data.relatedConceptCount ?? 0),
     renderConceptRelations(data.relatedConcepts)
   ].join('');
