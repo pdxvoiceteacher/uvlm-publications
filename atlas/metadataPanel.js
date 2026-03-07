@@ -126,6 +126,14 @@ function renderConcept(data) {
     row('Queue-Health Schema Version', data.queueHealthSchemaVersion ?? 'unknown'),
     row('Queue-Health Producer Commit(s)', data.queueHealthProducerCommits ?? 'unknown'),
     row('Queue-Health Source Mode', data.queueHealthSourceMode ?? 'unknown'),
+    row('Triage Status', data.triageStatus ?? 'pending'),
+    row('Urgency Level', data.urgencyLevel ?? 'routine'),
+    row('Priority Class', data.priorityClass ?? 'standard'),
+    row('Triage Conflict Status', data.triageConflictStatus ?? 'none'),
+    row('Triage Recommendation Summary', data.triageRecommendationSummary ?? 'none'),
+    row('Priority Schema Version', data.prioritySchemaVersion ?? 'unknown'),
+    row('Priority Producer Commit(s)', data.priorityProducerCommits ?? 'unknown'),
+    row('Priority Source Mode', data.prioritySourceMode ?? 'unknown'),
     row('Related Concepts', data.relatedConceptCount ?? 0),
     renderConceptRelations(data.relatedConcepts)
   ].join('');

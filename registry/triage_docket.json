@@ -1,0 +1,58 @@
+{
+  "generatedAt": "2026-03-07",
+  "priorityProtocol": true,
+  "nonCanonical": true,
+  "provenance": {
+    "schemaVersions": {
+      "triage_audit": "phase-r.0",
+      "triage_recommendations": "phase-r.0",
+      "priority_state_map": "phase-r.0",
+      "priority_state_summary": "phase-r.0",
+      "triage_candidate_map": "phase-r.0",
+      "triage_conflict_report": "phase-r.0",
+      "queue_health_dashboard": "composite",
+      "system_health_dashboard": "composite",
+      "review_backlog_watchlist": "composite",
+      "metric_gaming_watchlist": "composite"
+    },
+    "producerCommits": [
+      "sophia-r-111",
+      "cl-r-222",
+      "sophia-commit-qqq111",
+      "cl-commit-qqq222",
+      "cl-commit-aaa111",
+      "sophia-commit-bbb222"
+    ],
+    "sourceModes": {
+      "triage_audit": "fixture",
+      "triage_recommendations": "fixture",
+      "priority_state_map": "fixture",
+      "priority_state_summary": "fixture",
+      "triage_candidate_map": "fixture",
+      "triage_conflict_report": "fixture",
+      "queue_health_dashboard": "fixture",
+      "system_health_dashboard": "fixture",
+      "review_backlog_watchlist": "fixture",
+      "metric_gaming_watchlist": "fixture"
+    },
+    "derivedFromFixtures": true
+  },
+  "entries": [
+    {
+      "reviewId": "pr-001",
+      "candidateId": "triage-001",
+      "triageStatus": "ready",
+      "urgencyLevel": "high",
+      "priorityClass": "critical-integrity",
+      "triageConflictStatus": "none",
+      "recommendationSummary": "review-before-noncritical-throughput",
+      "watchState": "none",
+      "linkedTargetIds": [
+        "concept:governance-integrity"
+      ],
+      "humanReviewFlag": true,
+      "queuedAt": "2026-03-07",
+      "status": "docketed"
+    }
+  ]
+}

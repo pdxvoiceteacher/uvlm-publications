@@ -1,0 +1,13 @@
+{
+  "generatedAt": "2026-03-07",
+  "provenance": {
+    "schemaVersion": "phase-r.0",
+    "producerCommits": ["cl-r-222"],
+    "sourceMode": "fixture"
+  },
+  "candidates": [
+    {"candidateId": "triage-001", "linkedTargetIds": ["concept:governance-integrity"]},
+    {"candidateId": "triage-002", "linkedTargetIds": ["concept:continuity-protocol"]},
+    {"candidateId": "triage-003", "linkedTargetIds": ["concept:constitutional-safeguards"]}
+  ]
+}

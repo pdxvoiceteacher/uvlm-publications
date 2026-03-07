@@ -417,6 +417,22 @@ Build command:
 python3 scripts/build_queue_health_overlay.py
 ```
 
+
+### Resolution priority and triage protocol (Phase R)
+
+Publisher surfaces only **Sophia-audited priority and triage materials; no automatic queue reordering or canonical mutation occurs from this layer**.
+
+- inputs: `bridge/triage_audit.json`, `bridge/triage_recommendations.json`, `bridge/priority_state_map.json`, `bridge/priority_state_summary.json`, `bridge/triage_candidate_map.json`, `bridge/triage_conflict_report.json`, `registry/queue_health_dashboard.json`, `registry/system_health_dashboard.json`, `registry/review_backlog_watchlist.json`, `registry/metric_gaming_watchlist.json`
+- non-canonical outputs: `registry/priority_dashboard.json`, `registry/triage_docket.json`, `registry/triage_watchlist.json`, `registry/priority_annotations.json`
+- phase lock: institutional/queue/watchlist state → CoherenceLattice priority formalization → Sophia triage audit → publisher priority overlays → human/community ordered review
+- principles: attention is a constitutional resource; priority must be explicit; reversible issues can wait longer than irreversible ones; capture risk increases priority; triage must remain reviewable
+
+Build command:
+
+```bash
+python3 scripts/build_priority_overlay.py
+```
+
 ## UVLM Research Atlas
 
 ### Product Vision (Engineering + Research Brief)

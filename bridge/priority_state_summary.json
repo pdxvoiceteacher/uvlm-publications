@@ -1,0 +1,13 @@
+{
+  "generatedAt": "2026-03-07",
+  "provenance": {
+    "schemaVersion": "phase-r.0",
+    "producerCommits": ["cl-r-222"],
+    "sourceMode": "fixture"
+  },
+  "entries": [
+    {"reviewId": "pr-001", "recommendationSummary": "review-before-noncritical-throughput"},
+    {"reviewId": "pr-002", "recommendationSummary": "defer-reversible-items"},
+    {"reviewId": "pr-003", "recommendationSummary": "hold-for-human-escalation"}
+  ]
+}

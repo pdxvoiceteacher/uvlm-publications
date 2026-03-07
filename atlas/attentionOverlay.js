@@ -101,7 +101,11 @@ export async function loadAttentionOverlay() {
     queueHealthDashboardResp,
     reviewBacklogWatchlistResp,
     metricGamingWatchlistResp,
-    loadSheddingAnnotationsResp
+    loadSheddingAnnotationsResp,
+    priorityDashboardResp,
+    triageDocketResp,
+    triageWatchlistResp,
+    priorityAnnotationsResp
   ] = await Promise.all([
     fetch('../bridge/attention_updates.json').catch(() => null),
     fetch('../bridge/coherence_assessment.json').catch(() => null),
@@ -161,7 +165,11 @@ export async function loadAttentionOverlay() {
     fetch('../registry/queue_health_dashboard.json').catch(() => null),
     fetch('../registry/review_backlog_watchlist.json').catch(() => null),
     fetch('../registry/metric_gaming_watchlist.json').catch(() => null),
-    fetch('../registry/load_shedding_annotations.json').catch(() => null)
+    fetch('../registry/load_shedding_annotations.json').catch(() => null),
+    fetch('../registry/priority_dashboard.json').catch(() => null),
+    fetch('../registry/triage_docket.json').catch(() => null),
+    fetch('../registry/triage_watchlist.json').catch(() => null),
+    fetch('../registry/priority_annotations.json').catch(() => null)
   ]);
 
   return {
@@ -223,7 +231,11 @@ export async function loadAttentionOverlay() {
     queueHealthDashboard: queueHealthDashboardResp ? await queueHealthDashboardResp.json() : {},
     reviewBacklogWatchlist: reviewBacklogWatchlistResp ? await reviewBacklogWatchlistResp.json() : {},
     metricGamingWatchlist: metricGamingWatchlistResp ? await metricGamingWatchlistResp.json() : {},
-    loadSheddingAnnotations: loadSheddingAnnotationsResp ? await loadSheddingAnnotationsResp.json() : {}
+    loadSheddingAnnotations: loadSheddingAnnotationsResp ? await loadSheddingAnnotationsResp.json() : {},
+    priorityDashboard: priorityDashboardResp ? await priorityDashboardResp.json() : {},
+    triageDocket: triageDocketResp ? await triageDocketResp.json() : {},
+    triageWatchlist: triageWatchlistResp ? await triageWatchlistResp.json() : {},
+    priorityAnnotations: priorityAnnotationsResp ? await priorityAnnotationsResp.json() : {}
   };
 }
 
@@ -1124,6 +1136,82 @@ function buildQueueHealthConceptSignals(queueHealthDashboard, reviewBacklogWatch
   return byConcept;
 }
 
+
+function buildPriorityConceptSignals(priorityDashboard, triageDocket, triageWatchlist, priorityAnnotations) {
+  const byConcept = new Map();
+
+  function bump(targetId, update) {
+    if (typeof targetId !== 'string') {
+      return;
+    }
+    const existing = byConcept.get(targetId) ?? {
+      triageStatus: 'pending',
+      urgencyLevel: 'routine',
+      priorityClass: 'standard',
+      triageConflictStatus: 'none',
+      recommendationSummary: 'none',
+      triageQueueStatus: 'none'
+    };
+    update(existing);
+    byConcept.set(targetId, existing);
+  }
+
+  asArray(priorityDashboard?.entries).forEach((entry) => {
+    asArray(entry?.linkedTargetIds).forEach((targetId) => {
+      bump(targetId, (s) => {
+        s.triageStatus = entry?.triageStatus ?? s.triageStatus;
+        s.urgencyLevel = entry?.urgencyLevel ?? s.urgencyLevel;
+        s.priorityClass = entry?.priorityClass ?? s.priorityClass;
+        s.triageConflictStatus = entry?.triageConflictStatus ?? s.triageConflictStatus;
+        s.recommendationSummary = entry?.recommendationSummary ?? s.recommendationSummary;
+        s.triageQueueStatus = 'dashboard';
+      });
+    });
+  });
+
+  asArray(triageDocket?.entries).forEach((entry) => {
+    asArray(entry?.linkedTargetIds).forEach((targetId) => {
+      bump(targetId, (s) => {
+        s.triageStatus = entry?.triageStatus ?? s.triageStatus;
+        s.urgencyLevel = entry?.urgencyLevel ?? s.urgencyLevel;
+        s.priorityClass = entry?.priorityClass ?? s.priorityClass;
+        s.triageConflictStatus = entry?.triageConflictStatus ?? s.triageConflictStatus;
+        s.recommendationSummary = entry?.recommendationSummary ?? s.recommendationSummary;
+        s.triageQueueStatus = 'docket';
+      });
+    });
+  });
+
+  asArray(triageWatchlist?.entries).forEach((entry) => {
+    asArray(entry?.linkedTargetIds).forEach((targetId) => {
+      bump(targetId, (s) => {
+        s.triageStatus = entry?.triageStatus ?? s.triageStatus;
+        s.urgencyLevel = entry?.urgencyLevel ?? s.urgencyLevel;
+        s.priorityClass = entry?.priorityClass ?? s.priorityClass;
+        s.triageConflictStatus = entry?.triageConflictStatus ?? s.triageConflictStatus;
+        s.recommendationSummary = entry?.recommendationSummary ?? s.recommendationSummary;
+        if (!['dashboard', 'docket'].includes(s.triageQueueStatus)) {
+          s.triageQueueStatus = 'watch';
+        }
+      });
+    });
+  });
+
+  asArray(priorityAnnotations?.annotations).forEach((entry) => {
+    asArray(entry?.linkedTargetIds).forEach((targetId) => {
+      bump(targetId, (s) => {
+        s.triageStatus = entry?.triageStatus ?? s.triageStatus;
+        s.urgencyLevel = entry?.urgencyLevel ?? s.urgencyLevel;
+        s.priorityClass = entry?.priorityClass ?? s.priorityClass;
+        s.triageConflictStatus = entry?.triageConflictStatus ?? s.triageConflictStatus;
+        s.recommendationSummary = entry?.recommendationSummary ?? s.recommendationSummary;
+      });
+    });
+  });
+
+  return byConcept;
+}
+
 function buildConstitutionalConceptSignals(constitutionalAnnotations, governanceFailureWatchlist) {
   const byConcept = new Map();
 
@@ -1234,6 +1322,12 @@ export function applyAttentionOverlay(cy, overlay) {
     overlay?.metricGamingWatchlist,
     overlay?.loadSheddingAnnotations
   );
+  const prioritySignals = buildPriorityConceptSignals(
+    overlay?.priorityDashboard,
+    overlay?.triageDocket,
+    overlay?.triageWatchlist,
+    overlay?.priorityAnnotations
+  );
 
 
   const institutionalProvenance = overlay?.institutionalStatus?.provenance ?? {};
@@ -1248,6 +1342,12 @@ export function applyAttentionOverlay(cy, overlay) {
     ?? 'unknown';
   const queueHealthProducerCommits = asArray(queueProvenance?.producerCommits).join(', ') || 'unknown';
   const queueHealthSourceMode = queueProvenance?.derivedFromFixtures ? 'fixture' : 'live';
+  const priorityProvenance = overlay?.priorityDashboard?.provenance ?? {};
+  const prioritySchemaVersion = priorityProvenance?.schemaVersions?.priority_state_summary
+    ?? priorityProvenance?.schemaVersions?.priority_state_map
+    ?? 'unknown';
+  const priorityProducerCommits = asArray(priorityProvenance?.producerCommits).join(', ') || 'unknown';
+  const prioritySourceMode = priorityProvenance?.derivedFromFixtures ? 'fixture' : 'live';
 
   cy.nodes('[class = "concept"]').forEach((node) => {
     const id = node.id();
@@ -1346,8 +1446,17 @@ export function applyAttentionOverlay(cy, overlay) {
     node.data('queueHealthSchemaVersion', queueHealthSchemaVersion);
     node.data('queueHealthProducerCommits', queueHealthProducerCommits);
     node.data('queueHealthSourceMode', queueHealthSourceMode);
+    const priority = prioritySignals.get(id);
+    node.data('triageStatus', priority?.triageStatus ?? 'pending');
+    node.data('urgencyLevel', priority?.urgencyLevel ?? 'routine');
+    node.data('priorityClass', priority?.priorityClass ?? 'standard');
+    node.data('triageConflictStatus', priority?.triageConflictStatus ?? 'none');
+    node.data('triageRecommendationSummary', priority?.recommendationSummary ?? 'none');
+    node.data('prioritySchemaVersion', prioritySchemaVersion);
+    node.data('priorityProducerCommits', priorityProducerCommits);
+    node.data('prioritySourceMode', prioritySourceMode);
 
-    node.removeClass('attention-priority attention-secondary sonya-candidate reasoning-thread reasoning-watch stability-positive stability-watch multimodal-donation multimodal-watch review-candidate watch-queue governance-review governance-watch constitutional-watch constitutional-freeze deliberation-docket deliberation-watch deliberation-urgent anti-capture-watch continuity-docket continuity-watch continuity-fragile continuity-freeze recovery-docket recovery-watch escrow-ready recovery-fragile attestation-docket attestation-watch witness-sufficient attestation-sensitive precedent-docket precedent-watch precedent-divergent precedent-strong scenario-docket scenario-watch scenario-freeze scenario-rehearse-recovery institutional-status-indicator chamber-conflict-indicator system-health-overview queue-health-actionable backlog-pressure-watch review-fatigue-watch metric-gaming-watch load-shedding-recommended');
+    node.removeClass('attention-priority attention-secondary sonya-candidate reasoning-thread reasoning-watch stability-positive stability-watch multimodal-donation multimodal-watch review-candidate watch-queue governance-review governance-watch constitutional-watch constitutional-freeze deliberation-docket deliberation-watch deliberation-urgent anti-capture-watch continuity-docket continuity-watch continuity-fragile continuity-freeze recovery-docket recovery-watch escrow-ready recovery-fragile attestation-docket attestation-watch witness-sufficient attestation-sensitive precedent-docket precedent-watch precedent-divergent precedent-strong scenario-docket scenario-watch scenario-freeze scenario-rehearse-recovery institutional-status-indicator chamber-conflict-indicator system-health-overview queue-health-actionable backlog-pressure-watch review-fatigue-watch metric-gaming-watch load-shedding-recommended priority-actionable triage-watch urgency-high priority-critical triage-conflict');
     if ((rankData?.rank ?? Infinity) <= 2) {
       node.addClass('attention-priority');
     } else if ((rankData?.rank ?? Infinity) <= 5) {
@@ -1501,6 +1610,22 @@ export function applyAttentionOverlay(cy, overlay) {
     }
     if ((queueHealth?.loadSheddingRecommendationSummary ?? 'none') !== 'none') {
       node.addClass('load-shedding-recommended');
+    }
+
+    if (['dashboard', 'docket'].includes(priority?.triageQueueStatus ?? 'none')) {
+      node.addClass('priority-actionable');
+    }
+    if ((priority?.triageQueueStatus ?? 'none') === 'watch') {
+      node.addClass('triage-watch');
+    }
+    if ((priority?.urgencyLevel ?? 'routine') === 'high') {
+      node.addClass('urgency-high');
+    }
+    if ((priority?.priorityClass ?? 'standard') === 'critical-integrity') {
+      node.addClass('priority-critical');
+    }
+    if ((priority?.triageConflictStatus ?? 'none') !== 'none') {
+      node.addClass('triage-conflict');
     }
   });
 }
