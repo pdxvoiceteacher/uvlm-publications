@@ -111,6 +111,10 @@ function renderConcept(data) {
     row('Projected Capture Risk', data.projectedCaptureRisk ?? 'unknown'),
     row('Projected Continuity Risk', data.projectedContinuityRisk ?? 'unknown'),
     row('Preparedness Recommendation', data.preparednessRecommendation ?? 'rehearse-recovery'),
+    row('Institutional Status', data.institutionalStatus ?? 'review-pending'),
+    row('Chamber Conflict Level', data.chamberConflictLevel ?? 'none'),
+    row('System Health Score', Number(data.systemHealthScore ?? 0).toFixed(2)),
+    row('System Health Overview', data.systemHealthOverview ?? 'bounded-rehearsal'),
     row('Related Concepts', data.relatedConceptCount ?? 0),
     renderConceptRelations(data.relatedConcepts)
   ].join('');

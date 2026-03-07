@@ -93,7 +93,11 @@ export async function loadAttentionOverlay() {
     scenarioRegistryResp,
     stressTestDocketResp,
     resilienceFindingsWatchlistResp,
-    scenarioAnnotationsResp
+    scenarioAnnotationsResp,
+    institutionalStatusResp,
+    systemHealthDashboardResp,
+    institutionalConflictWatchlistResp,
+    institutionalAnnotationsResp
   ] = await Promise.all([
     fetch('../bridge/attention_updates.json').catch(() => null),
     fetch('../bridge/coherence_assessment.json').catch(() => null),
@@ -145,7 +149,11 @@ export async function loadAttentionOverlay() {
     fetch('../registry/scenario_registry.json').catch(() => null),
     fetch('../registry/stress_test_docket.json').catch(() => null),
     fetch('../registry/resilience_findings_watchlist.json').catch(() => null),
-    fetch('../registry/scenario_annotations.json').catch(() => null)
+    fetch('../registry/scenario_annotations.json').catch(() => null),
+    fetch('../registry/institutional_status.json').catch(() => null),
+    fetch('../registry/system_health_dashboard.json').catch(() => null),
+    fetch('../registry/institutional_conflict_watchlist.json').catch(() => null),
+    fetch('../registry/institutional_annotations.json').catch(() => null)
   ]);
 
   return {
@@ -199,7 +207,11 @@ export async function loadAttentionOverlay() {
     scenarioRegistry: scenarioRegistryResp ? await scenarioRegistryResp.json() : {},
     stressTestDocket: stressTestDocketResp ? await stressTestDocketResp.json() : {},
     resilienceFindingsWatchlist: resilienceFindingsWatchlistResp ? await resilienceFindingsWatchlistResp.json() : {},
-    scenarioAnnotations: scenarioAnnotationsResp ? await scenarioAnnotationsResp.json() : {}
+    scenarioAnnotations: scenarioAnnotationsResp ? await scenarioAnnotationsResp.json() : {},
+    institutionalStatus: institutionalStatusResp ? await institutionalStatusResp.json() : {},
+    systemHealthDashboard: systemHealthDashboardResp ? await systemHealthDashboardResp.json() : {},
+    institutionalConflictWatchlist: institutionalConflictWatchlistResp ? await institutionalConflictWatchlistResp.json() : {},
+    institutionalAnnotations: institutionalAnnotationsResp ? await institutionalAnnotationsResp.json() : {}
   };
 }
 
@@ -944,6 +956,84 @@ function buildScenarioConceptSignals(scenarioRegistry, stressTestDocket, resilie
   return byConcept;
 }
 
+
+function buildInstitutionalConceptSignals(institutionalStatus, systemHealthDashboard, institutionalConflictWatchlist, institutionalAnnotations) {
+  const byConcept = new Map();
+
+  function bump(targetId, update) {
+    if (typeof targetId !== 'string') {
+      return;
+    }
+    const existing = byConcept.get(targetId) ?? {
+      institutionalStatus: 'review-pending',
+      chamberConflictLevel: 'none',
+      systemHealthScore: 0,
+      systemHealthOverview: 'bounded-rehearsal',
+      institutionalQueueStatus: 'none'
+    };
+    update(existing);
+    byConcept.set(targetId, existing);
+  }
+
+  asArray(systemHealthDashboard?.entries).forEach((entry) => {
+    asArray(entry?.linkedTargetIds).forEach((targetId) => {
+      bump(targetId, (s) => {
+        s.institutionalStatus = entry?.institutionalStatus ?? s.institutionalStatus;
+        s.chamberConflictLevel = entry?.chamberConflictLevel ?? s.chamberConflictLevel;
+        s.systemHealthScore = Number(entry?.systemHealthScore ?? s.systemHealthScore ?? 0);
+        s.systemHealthOverview = entry?.systemHealthOverview ?? s.systemHealthOverview;
+        s.institutionalQueueStatus = 'docket';
+      });
+    });
+  });
+
+  asArray(institutionalConflictWatchlist?.entries).forEach((entry) => {
+    asArray(entry?.linkedTargetIds).forEach((targetId) => {
+      bump(targetId, (s) => {
+        s.institutionalStatus = entry?.institutionalStatus ?? s.institutionalStatus;
+        s.chamberConflictLevel = entry?.chamberConflictLevel ?? s.chamberConflictLevel;
+        s.systemHealthScore = Number(entry?.systemHealthScore ?? s.systemHealthScore ?? 0);
+        s.systemHealthOverview = entry?.systemHealthOverview ?? s.systemHealthOverview;
+        if (s.institutionalQueueStatus !== 'docket') {
+          s.institutionalQueueStatus = 'watch';
+        }
+      });
+    });
+  });
+
+  asArray(institutionalAnnotations?.annotations).forEach((entry) => {
+    asArray(entry?.linkedTargetIds).forEach((targetId) => {
+      bump(targetId, (s) => {
+        s.institutionalStatus = entry?.institutionalStatus ?? s.institutionalStatus;
+        s.chamberConflictLevel = entry?.chamberConflictLevel ?? s.chamberConflictLevel;
+        s.systemHealthScore = Number(entry?.systemHealthScore ?? s.systemHealthScore ?? 0);
+        s.systemHealthOverview = entry?.systemHealthOverview ?? s.systemHealthOverview;
+      });
+    });
+  });
+
+  const statusByInstitution = new Map();
+  asArray(institutionalStatus?.entries).forEach((entry) => {
+    if (typeof entry?.institutionId === 'string') {
+      statusByInstitution.set(entry.institutionId, entry);
+    }
+  });
+
+  asArray(institutionalAnnotations?.annotations).forEach((entry) => {
+    const reg = statusByInstitution.get(entry?.institutionId);
+    asArray(entry?.linkedTargetIds).forEach((targetId) => {
+      bump(targetId, (s) => {
+        s.institutionalStatus = reg?.institutionalStatus ?? s.institutionalStatus;
+        s.chamberConflictLevel = reg?.chamberConflictLevel ?? s.chamberConflictLevel;
+        s.systemHealthScore = Number(reg?.systemHealthScore ?? s.systemHealthScore ?? 0);
+        s.systemHealthOverview = reg?.systemHealthOverview ?? s.systemHealthOverview;
+      });
+    });
+  });
+
+  return byConcept;
+}
+
 function buildConstitutionalConceptSignals(constitutionalAnnotations, governanceFailureWatchlist) {
   const byConcept = new Map();
 
@@ -1042,6 +1132,12 @@ export function applyAttentionOverlay(cy, overlay) {
     overlay?.resilienceFindingsWatchlist,
     overlay?.scenarioAnnotations
   );
+  const institutionalSignals = buildInstitutionalConceptSignals(
+    overlay?.institutionalStatus,
+    overlay?.systemHealthDashboard,
+    overlay?.institutionalConflictWatchlist,
+    overlay?.institutionalAnnotations
+  );
 
   cy.nodes('[class = "concept"]').forEach((node) => {
     const id = node.id();
@@ -1123,8 +1219,13 @@ export function applyAttentionOverlay(cy, overlay) {
     node.data('projectedCaptureRisk', scenario?.projectedCaptureRisk ?? 'unknown');
     node.data('projectedContinuityRisk', scenario?.projectedContinuityRisk ?? 'unknown');
     node.data('preparednessRecommendation', scenario?.preparednessRecommendation ?? 'rehearse-recovery');
+    const institutional = institutionalSignals.get(id);
+    node.data('institutionalStatus', institutional?.institutionalStatus ?? 'review-pending');
+    node.data('chamberConflictLevel', institutional?.chamberConflictLevel ?? 'none');
+    node.data('systemHealthScore', Number(institutional?.systemHealthScore ?? 0));
+    node.data('systemHealthOverview', institutional?.systemHealthOverview ?? 'bounded-rehearsal');
 
-    node.removeClass('attention-priority attention-secondary sonya-candidate reasoning-thread reasoning-watch stability-positive stability-watch multimodal-donation multimodal-watch review-candidate watch-queue governance-review governance-watch constitutional-watch constitutional-freeze deliberation-docket deliberation-watch deliberation-urgent anti-capture-watch continuity-docket continuity-watch continuity-fragile continuity-freeze recovery-docket recovery-watch escrow-ready recovery-fragile attestation-docket attestation-watch witness-sufficient attestation-sensitive precedent-docket precedent-watch precedent-divergent precedent-strong scenario-docket scenario-watch scenario-freeze scenario-rehearse-recovery');
+    node.removeClass('attention-priority attention-secondary sonya-candidate reasoning-thread reasoning-watch stability-positive stability-watch multimodal-donation multimodal-watch review-candidate watch-queue governance-review governance-watch constitutional-watch constitutional-freeze deliberation-docket deliberation-watch deliberation-urgent anti-capture-watch continuity-docket continuity-watch continuity-fragile continuity-freeze recovery-docket recovery-watch escrow-ready recovery-fragile attestation-docket attestation-watch witness-sufficient attestation-sensitive precedent-docket precedent-watch precedent-divergent precedent-strong scenario-docket scenario-watch scenario-freeze scenario-rehearse-recovery institutional-status-indicator chamber-conflict-indicator system-health-overview');
     if ((rankData?.rank ?? Infinity) <= 2) {
       node.addClass('attention-priority');
     } else if ((rankData?.rank ?? Infinity) <= 5) {
@@ -1252,6 +1353,16 @@ export function applyAttentionOverlay(cy, overlay) {
     }
     if ((scenario?.preparednessRecommendation ?? 'rehearse-recovery') === 'rehearse-recovery') {
       node.addClass('scenario-rehearse-recovery');
+    }
+
+    if ((institutional?.institutionalQueueStatus ?? 'none') !== 'none') {
+      node.addClass('institutional-status-indicator');
+    }
+    if (['medium', 'high'].includes(institutional?.chamberConflictLevel ?? 'none')) {
+      node.addClass('chamber-conflict-indicator');
+    }
+    if ((institutional?.systemHealthScore ?? 0) >= 0.75) {
+      node.addClass('system-health-overview');
     }
   });
 }

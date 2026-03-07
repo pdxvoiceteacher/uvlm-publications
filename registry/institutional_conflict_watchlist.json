@@ -1,0 +1,24 @@
+{
+  "generatedAt": "2026-03-07",
+  "institutionalSynthesis": true,
+  "nonCanonical": true,
+  "entries": [
+    {
+      "reviewId": "inst-002",
+      "institutionId": "institution-002",
+      "status": "watch",
+      "institutionalStatus": "degraded",
+      "chamberConflictLevel": "medium",
+      "systemHealthScore": 0.62,
+      "systemHealthOverview": "conflict-watch",
+      "watchState": "watch",
+      "linkedTargetIds": [
+        "concept:continuity-protocol"
+      ],
+      "humanReviewFlag": true,
+      "observational": true,
+      "nonCanonical": true,
+      "queuedAt": "2026-03-07"
+    }
+  ]
+}

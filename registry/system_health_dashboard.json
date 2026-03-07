@@ -1,0 +1,23 @@
+{
+  "generatedAt": "2026-03-07",
+  "institutionalSynthesis": true,
+  "nonCanonical": true,
+  "entries": [
+    {
+      "reviewId": "inst-001",
+      "institutionId": "institution-001",
+      "status": "docketed",
+      "institutionalStatus": "stable",
+      "chamberConflictLevel": "low",
+      "systemHealthScore": 0.88,
+      "systemHealthOverview": "stable-under-watch",
+      "preparednessRecommendation": "bounded-rehearsal",
+      "watchState": "none",
+      "linkedTargetIds": [
+        "concept:governance-integrity"
+      ],
+      "humanReviewFlag": true,
+      "queuedAt": "2026-03-07"
+    }
+  ]
+}
