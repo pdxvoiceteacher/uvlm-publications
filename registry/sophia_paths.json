@@ -1,0 +1,16 @@
+{
+  "generatedAt": "2026-03-06",
+  "promotedPaths": [
+    {
+      "id": "coherence-lineage",
+      "title": "Coherence Lattice Lineage",
+      "promotionWeight": 1.0,
+      "nodes": [
+        "concept:coherence-lattice",
+        "publication:uvlm.paper.coherence-lattice-formalism.v1",
+        "publication:uvlm.paper.echo-atlas-primer.v1"
+      ],
+      "reason": "Recommended for first-pass orientation through the coherence lattice cluster."
+    }
+  ]
+}

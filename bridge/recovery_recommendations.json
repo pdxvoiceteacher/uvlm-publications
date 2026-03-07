@@ -1,0 +1,50 @@
+{
+  "generatedAt": "2026-03-07",
+  "recommendations": [
+    {
+      "reviewId": "recovery-001",
+      "artifactId": "registry/knowledge_graph.json",
+      "candidateId": "rec-candidate-001",
+      "targetPublisherAction": "docket",
+      "preservationCriticality": "high",
+      "escrowStatus": "ready-for-review",
+      "recoveryReadiness": "review-ready",
+      "recoverabilityScore": 0.85,
+      "humanReviewFlag": true,
+      "linkedTargetIds": [
+        "concept:coherence-lattice"
+      ],
+      "notes": "Escrow-review candidate for lawful recovery planning."
+    },
+    {
+      "reviewId": "recovery-002",
+      "artifactId": "registry/governance_review_docket.json",
+      "candidateId": "rec-candidate-002",
+      "targetPublisherAction": "watch",
+      "preservationCriticality": "high",
+      "escrowStatus": "pending-integrity-review",
+      "recoveryReadiness": "partial",
+      "recoverabilityScore": 0.58,
+      "humanReviewFlag": true,
+      "linkedTargetIds": [
+        "concept:governance-integrity"
+      ],
+      "notes": "Watch for dependency transparency issues."
+    },
+    {
+      "reviewId": "recovery-003",
+      "artifactId": "registry/constitutional_status.json",
+      "candidateId": "rec-candidate-003",
+      "targetPublisherAction": "suppressed",
+      "preservationCriticality": "critical",
+      "escrowStatus": "frozen",
+      "recoveryReadiness": "blocked",
+      "recoverabilityScore": 0.41,
+      "humanReviewFlag": true,
+      "linkedTargetIds": [
+        "concept:continuity-protocol"
+      ],
+      "notes": "Suppressed under freeze + watch + human review rule."
+    }
+  ]
+}

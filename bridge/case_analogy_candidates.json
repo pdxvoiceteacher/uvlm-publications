@@ -1,0 +1,26 @@
+{
+  "generatedAt": "2026-03-07",
+  "candidates": [
+    {
+      "candidateId": "case-001",
+      "linkedTargetIds": [
+        "concept:coherence-lattice"
+      ],
+      "notes": "Persuasive precedent, not absolute doctrine."
+    },
+    {
+      "candidateId": "case-002",
+      "linkedTargetIds": [
+        "concept:governance-integrity"
+      ],
+      "notes": "Divergence requires explanation."
+    },
+    {
+      "candidateId": "case-003",
+      "linkedTargetIds": [
+        "concept:continuity-protocol"
+      ],
+      "notes": "Weak precedent must not harden into dogma."
+    }
+  ]
+}

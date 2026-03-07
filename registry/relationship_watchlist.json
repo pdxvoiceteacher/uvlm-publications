@@ -1,0 +1,66 @@
+{
+  "generatedAt": "2026-03-07",
+  "publicRecordProtocol": true,
+  "nonCanonical": true,
+  "provenance": {
+    "schemaVersions": {
+      "public_record_audit": "phase-v.0",
+      "public_record_recommendations": "phase-v.0",
+      "public_record_intake_map": "phase-v.0",
+      "entity_graph_map": "phase-v.0",
+      "relationship_edge_map": "phase-v.0",
+      "chain_of_custody_report": "phase-v.0",
+      "verification_dashboard": "composite",
+      "claim_type_registry": "composite",
+      "entity_watchlist": "composite"
+    },
+    "producerCommits": [
+      "sophia-v-111",
+      "cl-v-222",
+      "sophia-u-111",
+      "cl-u-222",
+      "sophia-t-111",
+      "cl-t-222",
+      "cl-commit-aaa111",
+      "sophia-commit-bbb222",
+      "sophia-commit-qqq111",
+      "cl-commit-qqq222",
+      "sophia-r-111",
+      "cl-r-222",
+      "sophia-s-111",
+      "cl-s-222"
+    ],
+    "sourceModes": {
+      "public_record_audit": "fixture",
+      "public_record_recommendations": "fixture",
+      "public_record_intake_map": "fixture",
+      "entity_graph_map": "fixture",
+      "relationship_edge_map": "fixture",
+      "chain_of_custody_report": "fixture",
+      "verification_dashboard": "fixture",
+      "claim_type_registry": "fixture",
+      "entity_watchlist": "fixture"
+    },
+    "derivedFromFixtures": true
+  },
+  "entries": [
+    {
+      "reviewId": "prv-002",
+      "status": "watch",
+      "recordType": "procurement-ledger",
+      "machineReadabilityScore": 0.67,
+      "entityGraphStatus": "partial",
+      "relationshipAmbiguity": "high",
+      "custodyIntegrityScore": 0.62,
+      "custodyState": "needs-traceability",
+      "publicRecordAuditState": "monitor",
+      "linkedTargetIds": [
+        "concept:continuity-protocol"
+      ],
+      "humanReviewFlag": true,
+      "observational": true,
+      "nonCanonical": true,
+      "queuedAt": "2026-03-07"
+    }
+  ]
+}

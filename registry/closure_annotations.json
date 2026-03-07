@@ -1,0 +1,103 @@
+{
+  "generatedAt": "2026-03-07",
+  "closureProtocol": true,
+  "nonCanonical": true,
+  "provenance": {
+    "schemaVersions": {
+      "closure_audit": "phase-s.0",
+      "closure_recommendations": "phase-s.0",
+      "closure_state_map": "phase-s.0",
+      "closure_state_summary": "phase-s.0",
+      "repair_candidate_map": "phase-s.0",
+      "reopen_signal_report": "phase-s.0",
+      "priority_dashboard": "composite",
+      "triage_docket": "composite",
+      "triage_watchlist": "composite"
+    },
+    "producerCommits": [
+      "sophia-s-111",
+      "cl-s-222",
+      "sophia-r-111",
+      "cl-r-222",
+      "sophia-commit-qqq111",
+      "cl-commit-qqq222",
+      "cl-commit-aaa111",
+      "sophia-commit-bbb222"
+    ],
+    "sourceModes": {
+      "closure_audit": "fixture",
+      "closure_recommendations": "fixture",
+      "closure_state_map": "fixture",
+      "closure_state_summary": "fixture",
+      "repair_candidate_map": "fixture",
+      "reopen_signal_report": "fixture",
+      "priority_dashboard": "fixture",
+      "triage_docket": "fixture",
+      "triage_watchlist": "fixture"
+    },
+    "derivedFromFixtures": true
+  },
+  "noAutomaticReopen": true,
+  "noAutomaticClosure": true,
+  "noAutomaticRepair": true,
+  "noCanonicalMutation": true,
+  "annotations": [
+    {
+      "reviewId": "cl-001",
+      "candidateId": "repair-001",
+      "targetPublisherAction": "docket",
+      "closureStatus": "provisional-closed",
+      "closureConfidence": "medium",
+      "repairUrgency": "high",
+      "reopenedCaseWatchStatus": "none",
+      "outcomeDurability": "bounded-stable",
+      "closureAuditState": "verified",
+      "linkedTargetIds": [
+        "concept:governance-integrity"
+      ],
+      "noAutomaticReopen": true,
+      "noAutomaticClosure": true,
+      "noAutomaticRepair": true,
+      "noCanonicalMutation": true,
+      "notes": "Processed is not resolved; schedule bounded repair review."
+    },
+    {
+      "reviewId": "cl-002",
+      "candidateId": "repair-002",
+      "targetPublisherAction": "watch",
+      "closureStatus": "closed",
+      "closureConfidence": "low",
+      "repairUrgency": "routine",
+      "reopenedCaseWatchStatus": "watch",
+      "outcomeDurability": "fragile",
+      "closureAuditState": "monitor",
+      "linkedTargetIds": [
+        "concept:continuity-protocol"
+      ],
+      "noAutomaticReopen": true,
+      "noAutomaticClosure": true,
+      "noAutomaticRepair": true,
+      "noCanonicalMutation": true,
+      "notes": "Reopening must remain evidence-bound while closure stays reviewable."
+    },
+    {
+      "reviewId": "cl-003",
+      "candidateId": "repair-003",
+      "targetPublisherAction": "suppressed",
+      "closureStatus": "contested",
+      "closureConfidence": "low",
+      "repairUrgency": "high",
+      "reopenedCaseWatchStatus": "watch",
+      "outcomeDurability": "unstable",
+      "closureAuditState": "contested",
+      "linkedTargetIds": [
+        "concept:constitutional-safeguards"
+      ],
+      "noAutomaticReopen": true,
+      "noAutomaticClosure": true,
+      "noAutomaticRepair": true,
+      "noCanonicalMutation": true,
+      "notes": "Suppressed from actionable closure overlays pending additional audit."
+    }
+  ]
+}

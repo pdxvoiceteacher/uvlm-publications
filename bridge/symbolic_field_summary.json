@@ -1,0 +1,13 @@
+{
+  "generatedAt": "2026-03-07",
+  "provenance": {
+    "schemaVersion": "phase-t.0",
+    "producerCommits": ["cl-t-222"],
+    "sourceMode": "fixture"
+  },
+  "entries": [
+    {"reviewId": "sf-001", "architectureHint": "stabilize-recall-boundary"},
+    {"reviewId": "sf-002", "architectureHint": "increase-visibility"},
+    {"reviewId": "sf-003", "architectureHint": "hold-boundary"}
+  ]
+}

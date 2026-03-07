@@ -1,0 +1,49 @@
+{
+  "generatedAt": "2026-03-07",
+  "provenance": {
+    "schemaVersion": "phase-s.0",
+    "producerCommits": ["sophia-s-111"],
+    "sourceMode": "fixture"
+  },
+  "recommendations": [
+    {
+      "reviewId": "cl-001",
+      "candidateId": "repair-001",
+      "targetPublisherAction": "docket",
+      "closureStatus": "provisional-closed",
+      "closureConfidence": "medium",
+      "repairUrgency": "high",
+      "reopenedCaseWatchStatus": "none",
+      "outcomeDurability": "bounded-stable",
+      "linkedTargetIds": ["concept:governance-integrity"],
+      "humanReviewFlag": true,
+      "notes": "Processed is not resolved; schedule bounded repair review."
+    },
+    {
+      "reviewId": "cl-002",
+      "candidateId": "repair-002",
+      "targetPublisherAction": "watch",
+      "closureStatus": "closed",
+      "closureConfidence": "low",
+      "repairUrgency": "routine",
+      "reopenedCaseWatchStatus": "watch",
+      "outcomeDurability": "fragile",
+      "linkedTargetIds": ["concept:continuity-protocol"],
+      "humanReviewFlag": true,
+      "notes": "Reopening must remain evidence-bound while closure stays reviewable."
+    },
+    {
+      "reviewId": "cl-003",
+      "candidateId": "repair-003",
+      "targetPublisherAction": "suppressed",
+      "closureStatus": "contested",
+      "closureConfidence": "low",
+      "repairUrgency": "high",
+      "reopenedCaseWatchStatus": "watch",
+      "outcomeDurability": "unstable",
+      "linkedTargetIds": ["concept:constitutional-safeguards"],
+      "humanReviewFlag": true,
+      "notes": "Suppressed from actionable closure overlays pending additional audit."
+    }
+  ]
+}
