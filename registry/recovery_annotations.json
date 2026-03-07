@@ -1,0 +1,77 @@
+{
+  "generatedAt": "2026-03-07",
+  "governanceFacing": true,
+  "nonCanonical": true,
+  "noCanonicalMutation": true,
+  "noAutomaticReplication": true,
+  "noRecoveryExecution": true,
+  "annotations": [
+    {
+      "reviewId": "recovery-001",
+      "artifactId": "registry/knowledge_graph.json",
+      "candidateId": "rec-candidate-001",
+      "targetPublisherAction": "docket",
+      "preservationCriticality": "high",
+      "escrowStatus": "ready-for-review",
+      "recoveryReadiness": "review-ready",
+      "recoverabilityScore": 0.85,
+      "integrityWatchState": "none",
+      "dependencyPaths": [
+        "papers/**/metadata.yaml",
+        "registry/catalog.json"
+      ],
+      "linkedTargetIds": [
+        "concept:coherence-lattice"
+      ],
+      "constitutionalBaseline": "freeze-recommended",
+      "continuityMode": "freeze-watch",
+      "noAutomaticExecution": true,
+      "notes": "Escrow-review candidate for lawful recovery planning."
+    },
+    {
+      "reviewId": "recovery-002",
+      "artifactId": "registry/governance_review_docket.json",
+      "candidateId": "rec-candidate-002",
+      "targetPublisherAction": "watch",
+      "preservationCriticality": "high",
+      "escrowStatus": "pending-integrity-review",
+      "recoveryReadiness": "partial",
+      "recoverabilityScore": 0.58,
+      "integrityWatchState": "watch",
+      "dependencyPaths": [
+        "bridge/governance_audit.json",
+        "bridge/governance_recommendations.json",
+        "bridge/reviewer_behavior_audit.json"
+      ],
+      "linkedTargetIds": [
+        "concept:governance-integrity"
+      ],
+      "constitutionalBaseline": "freeze-recommended",
+      "continuityMode": "freeze-watch",
+      "noAutomaticExecution": true,
+      "notes": "Watch for dependency transparency issues."
+    },
+    {
+      "reviewId": "recovery-003",
+      "artifactId": "registry/constitutional_status.json",
+      "candidateId": "rec-candidate-003",
+      "targetPublisherAction": "suppressed",
+      "preservationCriticality": "critical",
+      "escrowStatus": "frozen",
+      "recoveryReadiness": "blocked",
+      "recoverabilityScore": 0.41,
+      "integrityWatchState": "freeze",
+      "dependencyPaths": [
+        "bridge/constitutional_audit.json",
+        "bridge/constitutional_recommendations.json"
+      ],
+      "linkedTargetIds": [
+        "concept:continuity-protocol"
+      ],
+      "constitutionalBaseline": "freeze-recommended",
+      "continuityMode": "freeze-watch",
+      "noAutomaticExecution": true,
+      "notes": "Suppressed under freeze + watch + human review rule."
+    }
+  ]
+}

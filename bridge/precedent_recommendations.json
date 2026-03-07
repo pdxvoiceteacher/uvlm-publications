@@ -1,0 +1,45 @@
+{
+  "generatedAt": "2026-03-07",
+  "recommendations": [
+    {
+      "reviewId": "prec-001",
+      "candidateId": "case-001",
+      "targetPublisherAction": "docket",
+      "precedentStatus": "follow-precedent",
+      "analogyConfidence": 0.86,
+      "divergenceLevel": "low",
+      "humanReviewFlag": true,
+      "linkedTargetIds": [
+        "concept:coherence-lattice"
+      ],
+      "notes": "Persuasive precedent for bounded case comparison."
+    },
+    {
+      "reviewId": "prec-002",
+      "candidateId": "case-002",
+      "targetPublisherAction": "watch",
+      "precedentStatus": "distinguish-case",
+      "analogyConfidence": 0.54,
+      "divergenceLevel": "medium",
+      "humanReviewFlag": true,
+      "linkedTargetIds": [
+        "concept:governance-integrity"
+      ],
+      "notes": "Divergence should remain explicit and reviewable."
+    },
+    {
+      "reviewId": "prec-003",
+      "candidateId": "case-003",
+      "targetPublisherAction": "suppressed",
+      "precedentStatus": "distinguish-case",
+      "analogyConfidence": 0.31,
+      "divergenceLevel": "high",
+      "humanReviewFlag": true,
+      "linkedTargetIds": [
+        "concept:continuity-protocol"
+      ],
+      "antiCaptureOverride": true,
+      "notes": "Suppressed due to capture-risk amplification concern."
+    }
+  ]
+}

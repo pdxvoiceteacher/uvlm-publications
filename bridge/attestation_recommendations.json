@@ -1,0 +1,50 @@
+{
+  "generatedAt": "2026-03-07",
+  "recommendations": [
+    {
+      "reviewId": "attest-001",
+      "artifactId": "registry/knowledge_graph.json",
+      "candidateId": "witness-candidate-001",
+      "targetPublisherAction": "docket",
+      "attestationStatus": "review-ready",
+      "witnessSufficiency": "sufficient",
+      "attestationNeed": "high",
+      "tamperSensitivity": "moderate",
+      "humanReviewFlag": true,
+      "linkedTargetIds": [
+        "concept:coherence-lattice"
+      ],
+      "notes": "Queue for integrity witness chamber review only."
+    },
+    {
+      "reviewId": "attest-002",
+      "artifactId": "registry/governance_review_docket.json",
+      "candidateId": "witness-candidate-002",
+      "targetPublisherAction": "watch",
+      "attestationStatus": "watch",
+      "witnessSufficiency": "partial",
+      "attestationNeed": "high",
+      "tamperSensitivity": "high",
+      "humanReviewFlag": true,
+      "linkedTargetIds": [
+        "concept:governance-integrity"
+      ],
+      "notes": "Watch until witness distribution improves."
+    },
+    {
+      "reviewId": "attest-003",
+      "artifactId": "registry/constitutional_status.json",
+      "candidateId": "witness-candidate-003",
+      "targetPublisherAction": "suppressed",
+      "attestationStatus": "blocked",
+      "witnessSufficiency": "insufficient",
+      "attestationNeed": "critical",
+      "tamperSensitivity": "high",
+      "humanReviewFlag": true,
+      "linkedTargetIds": [
+        "concept:continuity-protocol"
+      ],
+      "notes": "Suppressed under freeze + hold + human witnessing rule."
+    }
+  ]
+}

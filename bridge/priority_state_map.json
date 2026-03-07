@@ -1,0 +1,13 @@
+{
+  "generatedAt": "2026-03-07",
+  "provenance": {
+    "schemaVersion": "phase-r.0",
+    "producerCommits": ["cl-r-222"],
+    "sourceMode": "fixture"
+  },
+  "entries": [
+    {"reviewId": "pr-001", "triageStatus": "ready", "urgencyLevel": "high", "priorityClass": "critical-integrity"},
+    {"reviewId": "pr-002", "triageStatus": "watch", "urgencyLevel": "medium", "priorityClass": "operational"},
+    {"reviewId": "pr-003", "triageStatus": "suppressed", "urgencyLevel": "high", "priorityClass": "critical-integrity"}
+  ]
+}

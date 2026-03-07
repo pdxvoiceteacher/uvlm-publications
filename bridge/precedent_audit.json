@@ -1,0 +1,30 @@
+{
+  "generatedAt": "2026-03-07",
+  "auditor": "sophia",
+  "audits": [
+    {
+      "reviewId": "prec-001",
+      "watchState": "none",
+      "antiCaptureSignals": [
+        "balanced-precedent-sourcing"
+      ],
+      "notes": "Strong prior analogy is reviewable and non-conflicted."
+    },
+    {
+      "reviewId": "prec-002",
+      "watchState": "watch",
+      "antiCaptureSignals": [
+        "thin-precedent-base"
+      ],
+      "notes": "Divergence requires explicit explanation and watch." 
+    },
+    {
+      "reviewId": "prec-003",
+      "watchState": "freeze",
+      "antiCaptureSignals": [
+        "capture-tainted-history"
+      ],
+      "notes": "Suppress precedent reuse under anti-capture override."
+    }
+  ]
+}

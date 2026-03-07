@@ -1,0 +1,79 @@
+{
+  "generatedAt": "2026-03-07",
+  "institutionalSynthesis": true,
+  "nonCanonical": true,
+  "noCanonicalMutation": true,
+  "provenance": {
+    "schemaVersions": {
+      "institutional_audit": "phase-p.1",
+      "institutional_recommendations": "phase-p.1",
+      "institutional_state_map": "phase-p.1",
+      "institutional_state_summary": "phase-p.1",
+      "institutional_conflict_report": "phase-p.1",
+      "institutional_health_projection": "phase-p.1"
+    },
+    "producerCommits": [
+      "cl-commit-aaa111",
+      "sophia-commit-bbb222"
+    ],
+    "sourceModes": {
+      "institutional_audit": "fixture",
+      "institutional_recommendations": "fixture",
+      "institutional_state_map": "fixture",
+      "institutional_state_summary": "fixture",
+      "institutional_conflict_report": "fixture",
+      "institutional_health_projection": "fixture"
+    },
+    "derivedFromFixtures": true
+  },
+  "annotations": [
+    {
+      "reviewId": "inst-001",
+      "institutionId": "institution-001",
+      "targetPublisherAction": "docket",
+      "institutionalStatus": "stable",
+      "chamberConflictLevel": "low",
+      "systemHealthScore": 0.88,
+      "systemHealthOverview": "stable-under-watch",
+      "watchState": "none",
+      "linkedTargetIds": [
+        "concept:governance-integrity"
+      ],
+      "boundedRecommendation": true,
+      "noCanonicalMutation": true,
+      "notes": "Deterministic institutional synthesis indicates healthy bounded operation."
+    },
+    {
+      "reviewId": "inst-002",
+      "institutionId": "institution-002",
+      "targetPublisherAction": "watch",
+      "institutionalStatus": "degraded",
+      "chamberConflictLevel": "medium",
+      "systemHealthScore": 0.62,
+      "systemHealthOverview": "conflict-watch",
+      "watchState": "watch",
+      "linkedTargetIds": [
+        "concept:continuity-protocol"
+      ],
+      "boundedRecommendation": true,
+      "noCanonicalMutation": true,
+      "notes": "Chamber conflict rehearsal should stay visible without authority implications."
+    },
+    {
+      "reviewId": "inst-003",
+      "institutionId": "institution-003",
+      "targetPublisherAction": "suppressed",
+      "institutionalStatus": "degraded",
+      "chamberConflictLevel": "high",
+      "systemHealthScore": 0.41,
+      "systemHealthOverview": "suppressed-conflict",
+      "watchState": "freeze",
+      "linkedTargetIds": [
+        "concept:constitutional-safeguards"
+      ],
+      "boundedRecommendation": true,
+      "noCanonicalMutation": true,
+      "notes": "Suppressed pending clearer institutional constraints."
+    }
+  ]
+}

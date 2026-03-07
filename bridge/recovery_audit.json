@@ -1,0 +1,33 @@
+{
+  "generatedAt": "2026-03-07",
+  "auditor": "sophia",
+  "audits": [
+    {
+      "reviewId": "recovery-001",
+      "artifactId": "registry/knowledge_graph.json",
+      "integrityWatchState": "none",
+      "antiTamperSignals": [
+        "hash-chain-consistent"
+      ],
+      "notes": "Integrity posture is stable for escrow review."
+    },
+    {
+      "reviewId": "recovery-002",
+      "artifactId": "registry/governance_review_docket.json",
+      "integrityWatchState": "watch",
+      "antiTamperSignals": [
+        "dependency-drift"
+      ],
+      "notes": "Watch integrity drift before any recovery routing."
+    },
+    {
+      "reviewId": "recovery-003",
+      "artifactId": "registry/constitutional_status.json",
+      "integrityWatchState": "freeze",
+      "antiTamperSignals": [
+        "tamper-ambiguity"
+      ],
+      "notes": "Freeze under tamper ambiguity pending human review."
+    }
+  ]
+}

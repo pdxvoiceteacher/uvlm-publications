@@ -1,0 +1,13 @@
+{
+  "generatedAt": "2026-03-07",
+  "provenance": {
+    "schemaVersion": "phase-s.0",
+    "producerCommits": ["cl-s-222"],
+    "sourceMode": "fixture"
+  },
+  "entries": [
+    {"reviewId": "cl-001", "closureStatus": "provisional-closed", "closureConfidence": "medium", "repairUrgency": "high"},
+    {"reviewId": "cl-002", "closureStatus": "closed", "closureConfidence": "low", "repairUrgency": "routine"},
+    {"reviewId": "cl-003", "closureStatus": "contested", "closureConfidence": "low", "repairUrgency": "high"}
+  ]
+}

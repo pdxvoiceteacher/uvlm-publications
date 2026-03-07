@@ -1,0 +1,17 @@
+{
+  "generatedAt": "2026-03-01",
+  "entries": [
+    {
+      "artifactId": "governance-review-001",
+      "continuityScore": 0.88,
+      "continuityStatus": "stable",
+      "freezeRecommended": false
+    },
+    {
+      "artifactId": "governance-review-002",
+      "continuityScore": 0.51,
+      "continuityStatus": "degraded",
+      "freezeRecommended": true
+    }
+  ]
+}

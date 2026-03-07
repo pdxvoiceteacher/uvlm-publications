@@ -1,0 +1,74 @@
+{
+  "generatedAt": "2026-03-07",
+  "governanceFacing": true,
+  "nonCanonical": true,
+  "noCanonicalMutation": true,
+  "noAuthorityTransfer": true,
+  "noAutomaticExecution": true,
+  "annotations": [
+    {
+      "reviewId": "attest-001",
+      "artifactId": "registry/knowledge_graph.json",
+      "candidateId": "witness-candidate-001",
+      "targetPublisherAction": "docket",
+      "attestationStatus": "review-ready",
+      "witnessSufficiency": "sufficient",
+      "integrityTestimonyWatchState": "none",
+      "attestationNeed": "high",
+      "tamperSensitivity": "moderate",
+      "witnessIds": [
+        "witness:community-node-1",
+        "witness:institution-a"
+      ],
+      "linkedTargetIds": [
+        "concept:coherence-lattice"
+      ],
+      "escrowStatus": "ready-for-review",
+      "noAuthorityTransfer": true,
+      "noAutomaticExecution": true,
+      "notes": "Queue for integrity witness chamber review only."
+    },
+    {
+      "reviewId": "attest-002",
+      "artifactId": "registry/governance_review_docket.json",
+      "candidateId": "witness-candidate-002",
+      "targetPublisherAction": "watch",
+      "attestationStatus": "watch",
+      "witnessSufficiency": "partial",
+      "integrityTestimonyWatchState": "watch",
+      "attestationNeed": "high",
+      "tamperSensitivity": "high",
+      "witnessIds": [
+        "witness:institution-b"
+      ],
+      "linkedTargetIds": [
+        "concept:governance-integrity"
+      ],
+      "escrowStatus": "pending-integrity-review",
+      "noAuthorityTransfer": true,
+      "noAutomaticExecution": true,
+      "notes": "Watch until witness distribution improves."
+    },
+    {
+      "reviewId": "attest-003",
+      "artifactId": "registry/constitutional_status.json",
+      "candidateId": "witness-candidate-003",
+      "targetPublisherAction": "suppressed",
+      "attestationStatus": "blocked",
+      "witnessSufficiency": "insufficient",
+      "integrityTestimonyWatchState": "freeze",
+      "attestationNeed": "critical",
+      "tamperSensitivity": "high",
+      "witnessIds": [
+        "witness:institution-b"
+      ],
+      "linkedTargetIds": [
+        "concept:continuity-protocol"
+      ],
+      "escrowStatus": "frozen",
+      "noAuthorityTransfer": true,
+      "noAutomaticExecution": true,
+      "notes": "Suppressed under freeze + hold + human witnessing rule."
+    }
+  ]
+}

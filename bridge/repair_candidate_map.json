@@ -1,0 +1,13 @@
+{
+  "generatedAt": "2026-03-07",
+  "provenance": {
+    "schemaVersion": "phase-s.0",
+    "producerCommits": ["cl-s-222"],
+    "sourceMode": "fixture"
+  },
+  "candidates": [
+    {"candidateId": "repair-001", "linkedTargetIds": ["concept:governance-integrity"]},
+    {"candidateId": "repair-002", "linkedTargetIds": ["concept:continuity-protocol"]},
+    {"candidateId": "repair-003", "linkedTargetIds": ["concept:constitutional-safeguards"]}
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "generatedAt": "2026-03-06",
+  "entries": [
+    {
+      "threadId": "thread:coherence-lattice-001",
+      "status": "monitor-surfaced",
+      "stabilityStatus": "stable",
+      "watchStatus": "none",
+      "persistenceScore": 0.79,
+      "persistenceTrend": "rising",
+      "coherenceScore": 0.85,
+      "riskScore": 0.13,
+      "sourceAuditStatus": "promote",
+      "targetPublisherAction": "surface",
+      "updatedAt": "2026-03-06"
+    }
+  ]
+}

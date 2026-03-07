@@ -1,0 +1,31 @@
+{
+  "generatedAt": "2026-03-07",
+  "provenance": {
+    "schemaVersion": "phase-p.1",
+    "producerCommits": ["cl-commit-aaa111"],
+    "sourceMode": "fixture"
+  },
+  "entries": [
+    {
+      "reviewId": "inst-001",
+      "institutionalStatus": "stable",
+      "systemHealthScore": 0.88,
+      "systemHealthOverview": "stable-under-watch",
+      "notes": "Deterministic synthesis confirms bounded institutional continuity."
+    },
+    {
+      "reviewId": "inst-002",
+      "institutionalStatus": "degraded",
+      "systemHealthScore": 0.62,
+      "systemHealthOverview": "conflict-watch",
+      "notes": "Conflict pathways should be rehearsed prior to crisis conditions."
+    },
+    {
+      "reviewId": "inst-003",
+      "institutionalStatus": "degraded",
+      "systemHealthScore": 0.41,
+      "systemHealthOverview": "suppressed-conflict",
+      "notes": "Suppressed synthesis remains annotation-only for conservative review."
+    }
+  ]
+}

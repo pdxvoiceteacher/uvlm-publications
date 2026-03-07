@@ -1,0 +1,33 @@
+{
+  "generatedAt": "2026-03-07",
+  "entries": [
+    {
+      "artifactId": "registry/knowledge_graph.json",
+      "escrowStatus": "ready-for-review",
+      "custodyModel": "distributed-review",
+      "dependencyPaths": [
+        "registry/catalog.json",
+        "papers/**/metadata.yaml"
+      ]
+    },
+    {
+      "artifactId": "registry/governance_review_docket.json",
+      "escrowStatus": "pending-integrity-review",
+      "custodyModel": "distributed-review",
+      "dependencyPaths": [
+        "bridge/governance_audit.json",
+        "bridge/governance_recommendations.json",
+        "bridge/reviewer_behavior_audit.json"
+      ]
+    },
+    {
+      "artifactId": "registry/constitutional_status.json",
+      "escrowStatus": "frozen",
+      "custodyModel": "distributed-review",
+      "dependencyPaths": [
+        "bridge/constitutional_audit.json",
+        "bridge/constitutional_recommendations.json"
+      ]
+    }
+  ]
+}

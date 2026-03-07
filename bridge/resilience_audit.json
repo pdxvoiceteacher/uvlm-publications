@@ -1,0 +1,39 @@
+{
+  "generatedAt": "2026-03-07",
+  "auditor": "sophia",
+  "audits": [
+    {
+      "reviewId": "cont-001",
+      "reviewerId": "reviewer:example-001",
+      "resilienceStatus": "stable",
+      "governanceFragilityScore": 0.29,
+      "fragilityStatus": "healthy",
+      "antiCaptureSignals": [
+        "redundancy-preserved"
+      ],
+      "notes": "Redundancy appears adequate for bounded continuity review."
+    },
+    {
+      "reviewId": "cont-002",
+      "reviewerId": "reviewer:example-002",
+      "resilienceStatus": "watch",
+      "governanceFragilityScore": 0.68,
+      "fragilityStatus": "thinning",
+      "antiCaptureSignals": [
+        "participation-thinning"
+      ],
+      "notes": "Thin quorum signals require conservative continuity watch."
+    },
+    {
+      "reviewId": "cont-003",
+      "reviewerId": "reviewer:example-002",
+      "resilienceStatus": "freeze-recommended",
+      "governanceFragilityScore": 0.87,
+      "fragilityStatus": "capture-risk",
+      "antiCaptureSignals": [
+        "capture-risk-high"
+      ],
+      "notes": "Freeze under severe capture risk; preserve reviewability before replacement."
+    }
+  ]
+}
