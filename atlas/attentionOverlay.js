@@ -125,7 +125,11 @@ export async function loadAttentionOverlay() {
     investigationDashboardResp,
     investigationPlanRegistryResp,
     investigationWatchlistResp,
-    investigationAnnotationsResp
+    investigationAnnotationsResp,
+    authorityGateDashboardResp,
+    weakEvidenceWatchlistResp,
+    propagationAnnotationsResp,
+    maturityRestrictionRegistryResp
   ] = await Promise.all([
     fetch('../bridge/attention_updates.json').catch(() => null),
     fetch('../bridge/coherence_assessment.json').catch(() => null),
@@ -209,7 +213,11 @@ export async function loadAttentionOverlay() {
     fetch('../registry/investigation_dashboard.json').catch(() => null),
     fetch('../registry/investigation_plan_registry.json').catch(() => null),
     fetch('../registry/investigation_watchlist.json').catch(() => null),
-    fetch('../registry/investigation_annotations.json').catch(() => null)
+    fetch('../registry/investigation_annotations.json').catch(() => null),
+    fetch('../registry/authority_gate_dashboard.json').catch(() => null),
+    fetch('../registry/weak_evidence_watchlist.json').catch(() => null),
+    fetch('../registry/propagation_annotations.json').catch(() => null),
+    fetch('../registry/maturity_restriction_registry.json').catch(() => null)
   ]);
 
   return {
@@ -295,7 +303,11 @@ export async function loadAttentionOverlay() {
     investigationDashboard: investigationDashboardResp ? await investigationDashboardResp.json() : {},
     investigationPlanRegistry: investigationPlanRegistryResp ? await investigationPlanRegistryResp.json() : {},
     investigationWatchlist: investigationWatchlistResp ? await investigationWatchlistResp.json() : {},
-    investigationAnnotations: investigationAnnotationsResp ? await investigationAnnotationsResp.json() : {}
+    investigationAnnotations: investigationAnnotationsResp ? await investigationAnnotationsResp.json() : {},
+    authorityGateDashboard: authorityGateDashboardResp ? await authorityGateDashboardResp.json() : {},
+    weakEvidenceWatchlist: weakEvidenceWatchlistResp ? await weakEvidenceWatchlistResp.json() : {},
+    propagationAnnotations: propagationAnnotationsResp ? await propagationAnnotationsResp.json() : {},
+    maturityRestrictionRegistry: maturityRestrictionRegistryResp ? await maturityRestrictionRegistryResp.json() : {}
   };
 }
 
@@ -1640,6 +1652,88 @@ function buildInvestigationConceptSignals(investigationDashboard, investigationP
   return byConcept;
 }
 
+function buildEvidenceAuthorityConceptSignals(authorityGateDashboard, weakEvidenceWatchlist, propagationAnnotations, maturityRestrictionRegistry) {
+  const byConcept = new Map();
+
+  function bump(targetId, update) {
+    if (typeof targetId !== 'string') {
+      return;
+    }
+    const existing = byConcept.get(targetId) ?? {
+      evidenceMaturity: 'unknown',
+      evidenceAuthorityClaimType: 'untyped',
+      allowedAuthorityClass: 'restricted',
+      authorityMismatchFlag: false,
+      propagationRestrictions: [],
+      allowedPropagationRights: [],
+      maturityGateStatus: 'hold',
+      maturityGateReason: 'insufficient-evidence-maturity',
+      authorityQueueStatus: 'none',
+    };
+    update(existing);
+    byConcept.set(targetId, existing);
+  }
+
+  const maturityByReview = new Map();
+  asArray(maturityRestrictionRegistry?.entries).forEach((entry) => {
+    if (typeof entry?.reviewId === 'string') {
+      maturityByReview.set(entry.reviewId, entry);
+    }
+  });
+
+  asArray(authorityGateDashboard?.entries).forEach((entry) => {
+    const maturity = maturityByReview.get(entry?.reviewId);
+    asArray(entry?.linkedTargetIds).forEach((targetId) => {
+      bump(targetId, (s) => {
+        s.evidenceMaturity = entry?.evidenceMaturity ?? s.evidenceMaturity;
+        s.evidenceAuthorityClaimType = entry?.claimType ?? s.evidenceAuthorityClaimType;
+        s.allowedAuthorityClass = entry?.allowedAuthorityClass ?? s.allowedAuthorityClass;
+        s.authorityMismatchFlag = Boolean(entry?.authorityMismatchFlag ?? s.authorityMismatchFlag);
+        s.propagationRestrictions = asArray(entry?.propagationRestrictions ?? maturity?.propagationRestrictions);
+        s.allowedPropagationRights = asArray(entry?.allowedPropagationRights ?? maturity?.allowedPropagationRights);
+        s.maturityGateStatus = entry?.maturityGateStatus ?? maturity?.maturityGateStatus ?? s.maturityGateStatus;
+        s.maturityGateReason = entry?.maturityGateReason ?? maturity?.maturityGateReason ?? s.maturityGateReason;
+        s.authorityQueueStatus = 'dashboard';
+      });
+    });
+  });
+
+  asArray(weakEvidenceWatchlist?.entries).forEach((entry) => {
+    asArray(entry?.linkedTargetIds).forEach((targetId) => {
+      bump(targetId, (s) => {
+        s.evidenceMaturity = entry?.evidenceMaturity ?? s.evidenceMaturity;
+        s.evidenceAuthorityClaimType = entry?.claimType ?? s.evidenceAuthorityClaimType;
+        s.allowedAuthorityClass = entry?.allowedAuthorityClass ?? s.allowedAuthorityClass;
+        s.authorityMismatchFlag = Boolean(entry?.authorityMismatchFlag ?? s.authorityMismatchFlag);
+        s.propagationRestrictions = asArray(entry?.propagationRestrictions ?? s.propagationRestrictions);
+        s.allowedPropagationRights = asArray(entry?.allowedPropagationRights ?? s.allowedPropagationRights);
+        s.maturityGateStatus = entry?.maturityGateStatus ?? s.maturityGateStatus;
+        s.maturityGateReason = entry?.maturityGateReason ?? s.maturityGateReason;
+        if (s.authorityQueueStatus !== 'dashboard') {
+          s.authorityQueueStatus = 'watch';
+        }
+      });
+    });
+  });
+
+  asArray(propagationAnnotations?.annotations).forEach((entry) => {
+    asArray(entry?.linkedTargetIds).forEach((targetId) => {
+      bump(targetId, (s) => {
+        s.evidenceMaturity = entry?.evidenceMaturity ?? s.evidenceMaturity;
+        s.evidenceAuthorityClaimType = entry?.claimType ?? s.evidenceAuthorityClaimType;
+        s.allowedAuthorityClass = entry?.allowedAuthorityClass ?? s.allowedAuthorityClass;
+        s.authorityMismatchFlag = Boolean(entry?.authorityMismatchFlag ?? s.authorityMismatchFlag);
+        s.propagationRestrictions = asArray(entry?.propagationRestrictions ?? s.propagationRestrictions);
+        s.allowedPropagationRights = asArray(entry?.allowedPropagationRights ?? s.allowedPropagationRights);
+        s.maturityGateStatus = entry?.maturityGateStatus ?? s.maturityGateStatus;
+        s.maturityGateReason = entry?.maturityGateReason ?? s.maturityGateReason;
+      });
+    });
+  });
+
+  return byConcept;
+}
+
 function buildConstitutionalConceptSignals(constitutionalAnnotations, governanceFailureWatchlist) {
   const byConcept = new Map();
 
@@ -1786,6 +1880,12 @@ export function applyAttentionOverlay(cy, overlay) {
     overlay?.investigationWatchlist,
     overlay?.investigationAnnotations
   );
+  const authoritySignals = buildEvidenceAuthorityConceptSignals(
+    overlay?.authorityGateDashboard,
+    overlay?.weakEvidenceWatchlist,
+    overlay?.propagationAnnotations,
+    overlay?.maturityRestrictionRegistry
+  );
 
 
   const institutionalProvenance = overlay?.institutionalStatus?.provenance ?? {};
@@ -1836,6 +1936,12 @@ export function applyAttentionOverlay(cy, overlay) {
     ?? 'unknown';
   const investigationProducerCommits = asArray(investigationProvenance?.producerCommits).join(', ') || 'unknown';
   const investigationSourceMode = investigationProvenance?.derivedFromFixtures ? 'fixture' : 'live';
+  const authorityProvenance = overlay?.authorityGateDashboard?.provenance ?? {};
+  const authoritySchemaVersion = authorityProvenance?.schemaVersions?.evidence_authority_summary
+    ?? authorityProvenance?.schemaVersions?.evidence_authority_map
+    ?? 'unknown';
+  const authorityProducerCommits = asArray(authorityProvenance?.producerCommits).join(', ') || 'unknown';
+  const authoritySourceMode = authorityProvenance?.derivedFromFixtures ? 'fixture' : 'live';
 
   cy.nodes('[class = "concept"]').forEach((node) => {
     const id = node.id();
@@ -1989,8 +2095,20 @@ export function applyAttentionOverlay(cy, overlay) {
     node.data('investigationSchemaVersion', investigationSchemaVersion);
     node.data('investigationProducerCommits', investigationProducerCommits);
     node.data('investigationSourceMode', investigationSourceMode);
+    const authority = authoritySignals.get(id);
+    node.data('evidenceMaturity', authority?.evidenceMaturity ?? 'unknown');
+    node.data('evidenceAuthorityClaimType', authority?.evidenceAuthorityClaimType ?? (verification?.claimType ?? 'untyped'));
+    node.data('allowedAuthorityClass', authority?.allowedAuthorityClass ?? 'restricted');
+    node.data('authorityMismatchFlag', Boolean(authority?.authorityMismatchFlag ?? false));
+    node.data('propagationRestrictions', asArray(authority?.propagationRestrictions));
+    node.data('allowedPropagationRights', asArray(authority?.allowedPropagationRights));
+    node.data('maturityGateStatus', authority?.maturityGateStatus ?? 'hold');
+    node.data('maturityGateReason', authority?.maturityGateReason ?? 'insufficient-evidence-maturity');
+    node.data('authorityGateSchemaVersion', authoritySchemaVersion);
+    node.data('authorityGateProducerCommits', authorityProducerCommits);
+    node.data('authorityGateSourceMode', authoritySourceMode);
 
-    node.removeClass('attention-priority attention-secondary sonya-candidate reasoning-thread reasoning-watch stability-positive stability-watch multimodal-donation multimodal-watch review-candidate watch-queue governance-review governance-watch constitutional-watch constitutional-freeze deliberation-docket deliberation-watch deliberation-urgent anti-capture-watch continuity-docket continuity-watch continuity-fragile continuity-freeze recovery-docket recovery-watch escrow-ready recovery-fragile attestation-docket attestation-watch witness-sufficient attestation-sensitive precedent-docket precedent-watch precedent-divergent precedent-strong scenario-docket scenario-watch scenario-freeze scenario-rehearse-recovery institutional-status-indicator chamber-conflict-indicator system-health-overview queue-health-actionable backlog-pressure-watch review-fatigue-watch metric-gaming-watch load-shedding-recommended priority-actionable triage-watch urgency-high priority-critical triage-conflict closure-active closure-provisional repair-urgent reopened-watch symbolic-field-active regime-shift-watch lambda-warning architecture-hint verification-active entity-ambiguity verification-urgent claim-typed public-record-active entity-graph-linked relationship-ambiguous custody-fragile machine-readable-record investigation-active investigation-stage-mid investigation-stage-late investigation-plan-progressing investigation-blocked dependency-graph-linked');
+    node.removeClass('attention-priority attention-secondary sonya-candidate reasoning-thread reasoning-watch stability-positive stability-watch multimodal-donation multimodal-watch review-candidate watch-queue governance-review governance-watch constitutional-watch constitutional-freeze deliberation-docket deliberation-watch deliberation-urgent anti-capture-watch continuity-docket continuity-watch continuity-fragile continuity-freeze recovery-docket recovery-watch escrow-ready recovery-fragile attestation-docket attestation-watch witness-sufficient attestation-sensitive precedent-docket precedent-watch precedent-divergent precedent-strong scenario-docket scenario-watch scenario-freeze scenario-rehearse-recovery institutional-status-indicator chamber-conflict-indicator system-health-overview queue-health-actionable backlog-pressure-watch review-fatigue-watch metric-gaming-watch load-shedding-recommended priority-actionable triage-watch urgency-high priority-critical triage-conflict closure-active closure-provisional repair-urgent reopened-watch symbolic-field-active regime-shift-watch lambda-warning architecture-hint verification-active entity-ambiguity verification-urgent claim-typed public-record-active entity-graph-linked relationship-ambiguous custody-fragile machine-readable-record investigation-active investigation-stage-mid investigation-stage-late investigation-plan-progressing investigation-blocked dependency-graph-linked authority-gated weak-evidence-signal authority-mismatch propagation-restricted maturity-gated');
     if ((rankData?.rank ?? Infinity) <= 2) {
       node.addClass('attention-priority');
     } else if ((rankData?.rank ?? Infinity) <= 5) {
@@ -2234,6 +2352,22 @@ export function applyAttentionOverlay(cy, overlay) {
     }
     if (Number(investigation?.dependencyCount ?? 0) > 0) {
       node.addClass('dependency-graph-linked');
+    }
+
+    if (['dashboard', 'watch'].includes(authority?.authorityQueueStatus ?? 'none')) {
+      node.addClass('authority-gated');
+    }
+    if (['weak', 'speculative'].includes(authority?.evidenceMaturity ?? 'unknown')) {
+      node.addClass('weak-evidence-signal');
+    }
+    if ((authority?.authorityMismatchFlag ?? false) === true) {
+      node.addClass('authority-mismatch');
+    }
+    if (asArray(authority?.propagationRestrictions).length > 0) {
+      node.addClass('propagation-restricted');
+    }
+    if ((authority?.maturityGateStatus ?? 'hold') !== 'open') {
+      node.addClass('maturity-gated');
     }
   });
 }

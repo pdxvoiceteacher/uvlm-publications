@@ -173,6 +173,17 @@ function renderConcept(data) {
     row('Investigation Schema Version', data.investigationSchemaVersion ?? 'unknown'),
     row('Investigation Producer Commit(s)', data.investigationProducerCommits ?? 'unknown'),
     row('Investigation Source Mode', data.investigationSourceMode ?? 'unknown'),
+    row('Evidence Maturity', data.evidenceMaturity ?? 'unknown'),
+    row('Authority Claim Type', data.evidenceAuthorityClaimType ?? data.claimType ?? 'untyped'),
+    row('Allowed Authority Class', data.allowedAuthorityClass ?? 'restricted'),
+    row('Authority Mismatch Flag', data.authorityMismatchFlag ? 'yes' : 'no'),
+    row('Propagation Restrictions', asList(data.propagationRestrictions)),
+    row('Allowed Propagation Rights', asList(data.allowedPropagationRights)),
+    row('Maturity Gate Status', data.maturityGateStatus ?? 'hold'),
+    row('Maturity Gate Reason', data.maturityGateReason ?? 'insufficient-evidence-maturity'),
+    row('Authority-Gate Schema Version', data.authorityGateSchemaVersion ?? 'unknown'),
+    row('Authority-Gate Producer Commit(s)', data.authorityGateProducerCommits ?? 'unknown'),
+    row('Authority-Gate Source Mode', data.authorityGateSourceMode ?? 'unknown'),
     row('Related Concepts', data.relatedConceptCount ?? 0),
     renderConceptRelations(data.relatedConcepts)
   ].join('');
