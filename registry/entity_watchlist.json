@@ -1,0 +1,63 @@
+{
+  "generatedAt": "2026-03-07",
+  "verificationProtocol": true,
+  "nonCanonical": true,
+  "provenance": {
+    "schemaVersions": {
+      "verification_audit": "phase-u.0",
+      "verification_recommendations": "phase-u.0",
+      "claim_type_map": "phase-u.0",
+      "entity_resolution_map": "phase-u.0",
+      "entity_resolution_summary": "phase-u.0",
+      "verification_task_map": "phase-u.0",
+      "symbolic_field_registry": "composite",
+      "closure_registry": "composite",
+      "priority_dashboard": "composite"
+    },
+    "producerCommits": [
+      "sophia-u-111",
+      "cl-u-222",
+      "sophia-t-111",
+      "cl-t-222",
+      "cl-commit-aaa111",
+      "sophia-commit-bbb222",
+      "sophia-commit-qqq111",
+      "cl-commit-qqq222",
+      "sophia-r-111",
+      "cl-r-222",
+      "sophia-s-111",
+      "cl-s-222"
+    ],
+    "sourceModes": {
+      "verification_audit": "fixture",
+      "verification_recommendations": "fixture",
+      "claim_type_map": "fixture",
+      "entity_resolution_map": "fixture",
+      "entity_resolution_summary": "fixture",
+      "verification_task_map": "fixture",
+      "symbolic_field_registry": "fixture",
+      "closure_registry": "fixture",
+      "priority_dashboard": "fixture"
+    },
+    "derivedFromFixtures": true
+  },
+  "entries": [
+    {
+      "reviewId": "vf-002",
+      "status": "watch",
+      "claimType": "attribution-claim",
+      "entityResolutionStatus": "ambiguous",
+      "ambiguityLevel": "high",
+      "verificationUrgency": "routine",
+      "verificationTaskSummary": "hold-until-identity-clarifies",
+      "verificationAuditState": "monitor",
+      "linkedTargetIds": [
+        "concept:continuity-protocol"
+      ],
+      "humanReviewFlag": true,
+      "observational": true,
+      "nonCanonical": true,
+      "queuedAt": "2026-03-07"
+    }
+  ]
+}

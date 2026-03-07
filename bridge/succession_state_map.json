@@ -1,0 +1,26 @@
+{
+  "generatedAt": "2026-03-07",
+  "entries": [
+    {
+      "reviewId": "cont-001",
+      "successionState": "preliminary",
+      "successionReadinessScore": 0.81,
+      "successionReadiness": "review-ready",
+      "continuityWatchState": "none"
+    },
+    {
+      "reviewId": "cont-002",
+      "successionState": "monitoring",
+      "successionReadinessScore": 0.57,
+      "successionReadiness": "partial",
+      "continuityWatchState": "watch"
+    },
+    {
+      "reviewId": "cont-003",
+      "successionState": "frozen",
+      "successionReadinessScore": 0.44,
+      "successionReadiness": "blocked",
+      "continuityWatchState": "freeze"
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "generatedAt": "2026-03-07",
+  "provenance": {
+    "schemaVersion": "phase-s.0",
+    "producerCommits": ["cl-s-222"],
+    "sourceMode": "fixture"
+  },
+  "entries": [
+    {"reviewId": "cl-001", "outcomeDurability": "bounded-stable"},
+    {"reviewId": "cl-002", "outcomeDurability": "fragile"},
+    {"reviewId": "cl-003", "outcomeDurability": "unstable"}
+  ]
+}

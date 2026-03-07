@@ -1,0 +1,15 @@
+{
+  "generatedAt": "2026-03-06",
+  "conceptWeights": {
+    "concept:coherence-lattice": 1.0,
+    "concept:delta-syn": 0.4815,
+    "concept:formal-coherence": 0.1852,
+    "concept:narrative-phase-space": 0.0
+  },
+  "constellationWeights": {
+    "constellation:coherence-lattice-core": 1.0
+  },
+  "pathWeights": {
+    "coherence-lineage": 1.0
+  }
+}

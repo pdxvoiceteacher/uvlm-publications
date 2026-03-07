@@ -1,0 +1,59 @@
+{
+  "generatedAt": "2026-03-07",
+  "governanceFacing": true,
+  "nonCanonical": true,
+  "noAutomaticConstitutionalMutation": true,
+  "annotations": [
+    {
+      "reviewId": "delib-001",
+      "candidateId": "amend-001",
+      "quorumStatus": "legitimate",
+      "amendmentStatus": "recommend-deliberation",
+      "deliberationUrgency": "routine",
+      "antiCaptureSignals": [
+        "balanced-participation"
+      ],
+      "targetPublisherAction": "docket",
+      "linkedTargetIds": [
+        "concept:coherence-lattice"
+      ],
+      "constitutionalBaseline": "freeze-recommended",
+      "governanceReviewLinked": true,
+      "notes": "Eligible for deliberation chamber intake."
+    },
+    {
+      "reviewId": "delib-002",
+      "candidateId": "amend-002",
+      "quorumStatus": "thin",
+      "amendmentStatus": "emergency-interpretation-only",
+      "deliberationUrgency": "heightened",
+      "antiCaptureSignals": [
+        "stacked-risk"
+      ],
+      "targetPublisherAction": "watch",
+      "linkedTargetIds": [
+        "concept:governance-integrity"
+      ],
+      "constitutionalBaseline": "freeze-recommended",
+      "governanceReviewLinked": true,
+      "notes": "Watch only until quorum broadens."
+    },
+    {
+      "reviewId": "delib-003",
+      "candidateId": "amend-003",
+      "quorumStatus": "capture-risk",
+      "amendmentStatus": "blocked-anti-capture",
+      "deliberationUrgency": "urgent",
+      "antiCaptureSignals": [
+        "capture-risk-high"
+      ],
+      "targetPublisherAction": "suppressed",
+      "linkedTargetIds": [
+        "concept:continuity-protocol"
+      ],
+      "constitutionalBaseline": "freeze-recommended",
+      "governanceReviewLinked": true,
+      "notes": "Suppressed due to capture risk."
+    }
+  ]
+}

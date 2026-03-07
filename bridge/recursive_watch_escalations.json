@@ -1,0 +1,23 @@
+{
+  "generatedAt": "2026-03-09",
+  "events": [
+    {
+      "threadId": "thread:narrative-bridge-001",
+      "eventDate": "2026-03-09",
+      "escalationAction": "watch",
+      "targetPublisherAction": "watch",
+      "watchStatus": "watch",
+      "persistenceTrend": "flat",
+      "reason": "Track for additional cycles before promotion."
+    },
+    {
+      "threadId": "thread:delta-contradiction-001",
+      "eventDate": "2026-03-09",
+      "escalationAction": "escalate-human-review",
+      "targetPublisherAction": "escalate-human-review",
+      "watchStatus": "escalate-human-review",
+      "persistenceTrend": "falling",
+      "reason": "Contradiction trajectory warrants explicit human review."
+    }
+  ]
+}

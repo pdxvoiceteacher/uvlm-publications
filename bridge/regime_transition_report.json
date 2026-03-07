@@ -1,0 +1,13 @@
+{
+  "generatedAt": "2026-03-07",
+  "provenance": {
+    "schemaVersion": "phase-t.0",
+    "producerCommits": ["cl-t-222"],
+    "sourceMode": "fixture"
+  },
+  "entries": [
+    {"reviewId": "sf-001", "regimeClass": "transition-risk", "regimeWatchStatus": "none"},
+    {"reviewId": "sf-002", "regimeClass": "drift-watch", "regimeWatchStatus": "watch"},
+    {"reviewId": "sf-003", "regimeClass": "uncertain", "regimeWatchStatus": "watch"}
+  ]
+}

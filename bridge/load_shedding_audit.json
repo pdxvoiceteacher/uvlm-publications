@@ -1,0 +1,14 @@
+{
+  "generatedAt": "2026-03-07",
+  "auditor": "sophia",
+  "provenance": {
+    "schemaVersion": "phase-q.0",
+    "producerCommits": ["sophia-commit-qqq111"],
+    "sourceMode": "fixture"
+  },
+  "audits": [
+    {"reviewId": "qh-001", "watchState": "none"},
+    {"reviewId": "qh-002", "watchState": "watch"},
+    {"reviewId": "qh-003", "watchState": "watch"}
+  ]
+}

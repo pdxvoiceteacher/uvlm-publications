@@ -1,0 +1,13 @@
+{
+  "generatedAt": "2026-03-07",
+  "provenance": {
+    "schemaVersion": "phase-t.0",
+    "producerCommits": ["sophia-t-111"],
+    "sourceMode": "fixture"
+  },
+  "entries": [
+    {"reviewId": "sf-001", "lambdaZoneWarningLevel": "medium"},
+    {"reviewId": "sf-002", "lambdaZoneWarningLevel": "high"},
+    {"reviewId": "sf-003", "lambdaZoneWarningLevel": "high"}
+  ]
+}

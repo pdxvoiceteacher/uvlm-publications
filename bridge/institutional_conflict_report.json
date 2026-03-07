@@ -1,0 +1,22 @@
+{
+  "generatedAt": "2026-03-07",
+  "provenance": {
+    "schemaVersion": "phase-p.1",
+    "producerCommits": ["cl-commit-aaa111"],
+    "sourceMode": "fixture"
+  },
+  "entries": [
+    {
+      "reviewId": "inst-001",
+      "chamberConflictLevel": "low"
+    },
+    {
+      "reviewId": "inst-002",
+      "chamberConflictLevel": "medium"
+    },
+    {
+      "reviewId": "inst-003",
+      "chamberConflictLevel": "high"
+    }
+  ]
+}

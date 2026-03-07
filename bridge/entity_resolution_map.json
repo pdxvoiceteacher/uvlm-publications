@@ -1,0 +1,13 @@
+{
+  "generatedAt": "2026-03-07",
+  "provenance": {
+    "schemaVersion": "phase-u.0",
+    "producerCommits": ["cl-u-222"],
+    "sourceMode": "fixture"
+  },
+  "entries": [
+    {"reviewId": "vf-001", "entityResolutionStatus": "partially-resolved"},
+    {"reviewId": "vf-002", "entityResolutionStatus": "ambiguous"},
+    {"reviewId": "vf-003", "entityResolutionStatus": "unresolved"}
+  ]
+}
