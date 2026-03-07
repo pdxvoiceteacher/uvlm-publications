@@ -1,0 +1,36 @@
+{
+  "generatedAt": "2026-03-07",
+  "auditor": "sophia",
+  "audits": [
+    {
+      "reviewId": "delib-001",
+      "reviewerId": "reviewer:example-001",
+      "quorumStatus": "legitimate",
+      "participationBreadth": "broad",
+      "antiCaptureSignals": [
+        "balanced-participation"
+      ],
+      "notes": "Quorum is sufficiently broad for deliberation intake."
+    },
+    {
+      "reviewId": "delib-002",
+      "reviewerId": "reviewer:example-001",
+      "quorumStatus": "thin",
+      "participationBreadth": "narrow",
+      "antiCaptureSignals": [
+        "stacked-risk"
+      ],
+      "notes": "Needs broader participation before constitutional interpretation."
+    },
+    {
+      "reviewId": "delib-003",
+      "reviewerId": "reviewer:example-001",
+      "quorumStatus": "capture-risk",
+      "participationBreadth": "narrow",
+      "antiCaptureSignals": [
+        "capture-risk-high"
+      ],
+      "notes": "Anti-capture override suggests freeze rather than acceleration."
+    }
+  ]
+}

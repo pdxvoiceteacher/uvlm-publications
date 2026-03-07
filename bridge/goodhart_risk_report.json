@@ -1,0 +1,14 @@
+{
+  "generatedAt": "2026-03-07",
+  "provenance": {
+    "schemaVersion": "phase-q.0",
+    "producerCommits": ["cl-commit-qqq222"],
+    "sourceMode": "fixture"
+  },
+  "entries": [
+    {"reviewId": "qh-001", "metricGamingWatchStatus": "none"},
+    {"reviewId": "qh-002", "metricGamingWatchStatus": "watch"},
+    {"reviewId": "qh-003", "metricGamingWatchStatus": "watch"},
+    {"reviewId": "qh-004", "metricGamingWatchStatus": "critical"}
+  ]
+}

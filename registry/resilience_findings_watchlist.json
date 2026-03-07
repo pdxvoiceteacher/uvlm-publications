@@ -1,0 +1,24 @@
+{
+  "generatedAt": "2026-03-07",
+  "preparednessFacing": true,
+  "nonCanonical": true,
+  "entries": [
+    {
+      "reviewId": "scn-002",
+      "scenarioId": "scenario-002",
+      "status": "watch",
+      "scenarioStatus": "watch",
+      "projectedCaptureRisk": "high",
+      "projectedContinuityRisk": "medium",
+      "preparednessRecommendation": "freeze-recommended",
+      "watchState": "watch",
+      "linkedTargetIds": [
+        "concept:continuity-protocol"
+      ],
+      "humanReviewFlag": true,
+      "observational": true,
+      "nonCanonical": true,
+      "queuedAt": "2026-03-07"
+    }
+  ]
+}

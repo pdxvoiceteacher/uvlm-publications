@@ -1,0 +1,54 @@
+{
+  "generatedAt": "2026-03-07",
+  "operationalQueueHealth": true,
+  "nonCanonical": true,
+  "provenance": {
+    "schemaVersions": {
+      "load_shedding_audit": "phase-q.0",
+      "load_shedding_recommendations": "phase-q.0",
+      "queue_pressure_map": "phase-q.0",
+      "queue_pressure_summary": "phase-q.0",
+      "review_load_distribution": "phase-q.0",
+      "goodhart_risk_report": "phase-q.0",
+      "institutional_status": "composite",
+      "system_health_dashboard": "composite"
+    },
+    "producerCommits": [
+      "sophia-commit-qqq111",
+      "cl-commit-qqq222",
+      "cl-commit-aaa111",
+      "sophia-commit-bbb222"
+    ],
+    "sourceModes": {
+      "load_shedding_audit": "fixture",
+      "load_shedding_recommendations": "fixture",
+      "queue_pressure_map": "fixture",
+      "queue_pressure_summary": "fixture",
+      "review_load_distribution": "fixture",
+      "goodhart_risk_report": "fixture",
+      "institutional_status": "fixture",
+      "system_health_dashboard": "fixture"
+    },
+    "derivedFromFixtures": true
+  },
+  "entries": [
+    {
+      "reviewId": "qh-003",
+      "queueId": "queue-003",
+      "status": "watch",
+      "queueStatus": "moderate-pressure",
+      "backlogPressure": "medium",
+      "fatigueLoadClass": "elevated",
+      "metricGamingWatchStatus": "watch",
+      "loadSheddingRecommendationSummary": "audit-throughput-metrics",
+      "watchState": "watch",
+      "linkedTargetIds": [
+        "concept:constitutional-safeguards"
+      ],
+      "humanReviewFlag": true,
+      "observational": true,
+      "nonCanonical": true,
+      "queuedAt": "2026-03-07"
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "generatedAt": "2026-03-07",
+  "governanceFacing": true,
+  "nonCanonical": true,
+  "entries": [
+    {
+      "reviewId": "attest-002",
+      "artifactId": "registry/governance_review_docket.json",
+      "candidateId": "witness-candidate-002",
+      "status": "watch",
+      "attestationStatus": "watch",
+      "witnessSufficiency": "partial",
+      "integrityTestimonyWatchState": "watch",
+      "attestationNeed": "high",
+      "tamperSensitivity": "high",
+      "linkedTargetIds": [
+        "concept:governance-integrity"
+      ],
+      "antiCaptureSignals": [
+        "conflict-concentration-risk"
+      ],
+      "humanReviewFlag": true,
+      "observational": true,
+      "nonCanonical": true,
+      "queuedAt": "2026-03-07"
+    }
+  ]
+}

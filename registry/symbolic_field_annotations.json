@@ -1,0 +1,100 @@
+{
+  "generatedAt": "2026-03-07",
+  "symbolicFieldProtocol": true,
+  "nonCanonical": true,
+  "provenance": {
+    "schemaVersions": {
+      "symbolic_field_audit": "phase-t.0",
+      "symbolic_field_recommendations": "phase-t.0",
+      "symbolic_field_state": "phase-t.0",
+      "symbolic_field_summary": "phase-t.0",
+      "regime_transition_report": "phase-t.0",
+      "early_warning_signal_map": "phase-t.0",
+      "institutional_status": "composite",
+      "queue_health_dashboard": "composite",
+      "priority_dashboard": "composite",
+      "closure_registry": "composite"
+    },
+    "producerCommits": [
+      "sophia-t-111",
+      "cl-t-222",
+      "cl-commit-aaa111",
+      "sophia-commit-bbb222",
+      "sophia-commit-qqq111",
+      "cl-commit-qqq222",
+      "sophia-r-111",
+      "cl-r-222",
+      "sophia-s-111",
+      "cl-s-222"
+    ],
+    "sourceModes": {
+      "symbolic_field_audit": "fixture",
+      "symbolic_field_recommendations": "fixture",
+      "symbolic_field_state": "fixture",
+      "symbolic_field_summary": "fixture",
+      "regime_transition_report": "fixture",
+      "early_warning_signal_map": "fixture",
+      "institutional_status": "fixture",
+      "queue_health_dashboard": "fixture",
+      "priority_dashboard": "fixture",
+      "closure_registry": "fixture"
+    },
+    "derivedFromFixtures": true
+  },
+  "noAutomaticIntervention": true,
+  "noMemoryMutation": true,
+  "noCanonicalMutation": true,
+  "annotations": [
+    {
+      "reviewId": "sf-001",
+      "targetPublisherAction": "docket",
+      "symbolicFieldStatus": "strained",
+      "regimeClass": "transition-risk",
+      "lambdaZoneWarningLevel": "medium",
+      "architectureHint": "stabilize-recall-boundary",
+      "regimeWatchStatus": "none",
+      "symbolicAuditState": "verified",
+      "linkedTargetIds": [
+        "concept:governance-integrity"
+      ],
+      "noAutomaticIntervention": true,
+      "noMemoryMutation": true,
+      "noCanonicalMutation": true,
+      "notes": "Early warning is bounded and review-facing, not an intervention trigger."
+    },
+    {
+      "reviewId": "sf-002",
+      "targetPublisherAction": "watch",
+      "symbolicFieldStatus": "volatile",
+      "regimeClass": "drift-watch",
+      "lambdaZoneWarningLevel": "high",
+      "architectureHint": "increase-visibility",
+      "regimeWatchStatus": "watch",
+      "symbolicAuditState": "monitor",
+      "linkedTargetIds": [
+        "concept:continuity-protocol"
+      ],
+      "noAutomaticIntervention": true,
+      "noMemoryMutation": true,
+      "noCanonicalMutation": true,
+      "notes": "Keep TEL-like memory visibility explicit and auditable."
+    },
+    {
+      "reviewId": "sf-003",
+      "targetPublisherAction": "suppressed",
+      "symbolicFieldStatus": "contested",
+      "regimeClass": "uncertain",
+      "lambdaZoneWarningLevel": "high",
+      "architectureHint": "hold-boundary",
+      "regimeWatchStatus": "watch",
+      "symbolicAuditState": "contested",
+      "linkedTargetIds": [
+        "concept:constitutional-safeguards"
+      ],
+      "noAutomaticIntervention": true,
+      "noMemoryMutation": true,
+      "noCanonicalMutation": true,
+      "notes": "Suppressed from actionable dashboard sections pending additional audit."
+    }
+  ]
+}

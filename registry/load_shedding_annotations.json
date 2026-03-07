@@ -1,0 +1,122 @@
+{
+  "generatedAt": "2026-03-07",
+  "operationalQueueHealth": true,
+  "nonCanonical": true,
+  "provenance": {
+    "schemaVersions": {
+      "load_shedding_audit": "phase-q.0",
+      "load_shedding_recommendations": "phase-q.0",
+      "queue_pressure_map": "phase-q.0",
+      "queue_pressure_summary": "phase-q.0",
+      "review_load_distribution": "phase-q.0",
+      "goodhart_risk_report": "phase-q.0",
+      "institutional_status": "composite",
+      "system_health_dashboard": "composite"
+    },
+    "producerCommits": [
+      "sophia-commit-qqq111",
+      "cl-commit-qqq222",
+      "cl-commit-aaa111",
+      "sophia-commit-bbb222"
+    ],
+    "sourceModes": {
+      "load_shedding_audit": "fixture",
+      "load_shedding_recommendations": "fixture",
+      "queue_pressure_map": "fixture",
+      "queue_pressure_summary": "fixture",
+      "review_load_distribution": "fixture",
+      "goodhart_risk_report": "fixture",
+      "institutional_status": "fixture",
+      "system_health_dashboard": "fixture"
+    },
+    "derivedFromFixtures": true
+  },
+  "noAutomaticQueueMutation": true,
+  "noCanonicalMutation": true,
+  "annotations": [
+    {
+      "reviewId": "qh-001",
+      "queueId": "queue-001",
+      "targetPublisherAction": "docket",
+      "queueStatus": "high-pressure",
+      "backlogPressure": "high",
+      "fatigueLoadClass": "elevated",
+      "metricGamingWatchStatus": "none",
+      "loadSheddingRecommendationSummary": "rebalance-review-capacity",
+      "watchState": "none",
+      "linkedTargetIds": [
+        "concept:governance-integrity"
+      ],
+      "watchlistTarget": "review_backlog_watchlist",
+      "noAutomaticQueueMutation": true,
+      "noAutomaticArchival": true,
+      "noAutomaticFreeze": true,
+      "noAutomaticDeletion": true,
+      "noCanonicalMutation": true,
+      "notes": "Queue overload should be visible and reviewable without automatic mutation."
+    },
+    {
+      "reviewId": "qh-002",
+      "queueId": "queue-002",
+      "targetPublisherAction": "watch",
+      "queueStatus": "high-pressure",
+      "backlogPressure": "high",
+      "fatigueLoadClass": "fatigued",
+      "metricGamingWatchStatus": "watch",
+      "loadSheddingRecommendationSummary": "defer-low-integrity-items",
+      "watchState": "watch",
+      "linkedTargetIds": [
+        "concept:continuity-protocol"
+      ],
+      "watchlistTarget": "review_backlog_watchlist",
+      "noAutomaticQueueMutation": true,
+      "noAutomaticArchival": true,
+      "noAutomaticFreeze": true,
+      "noAutomaticDeletion": true,
+      "noCanonicalMutation": true,
+      "notes": "Review fatigue can degrade legitimacy and should remain explicit."
+    },
+    {
+      "reviewId": "qh-003",
+      "queueId": "queue-003",
+      "targetPublisherAction": "watch",
+      "queueStatus": "moderate-pressure",
+      "backlogPressure": "medium",
+      "fatigueLoadClass": "elevated",
+      "metricGamingWatchStatus": "watch",
+      "loadSheddingRecommendationSummary": "audit-throughput-metrics",
+      "watchState": "watch",
+      "linkedTargetIds": [
+        "concept:constitutional-safeguards"
+      ],
+      "watchlistTarget": "metric_gaming_watchlist",
+      "noAutomaticQueueMutation": true,
+      "noAutomaticArchival": true,
+      "noAutomaticFreeze": true,
+      "noAutomaticDeletion": true,
+      "noCanonicalMutation": true,
+      "notes": "High throughput without coherence should trigger anti-Goodhart watch."
+    },
+    {
+      "reviewId": "qh-004",
+      "queueId": "queue-004",
+      "targetPublisherAction": "suppressed",
+      "queueStatus": "high-pressure",
+      "backlogPressure": "high",
+      "fatigueLoadClass": "fatigued",
+      "metricGamingWatchStatus": "critical",
+      "loadSheddingRecommendationSummary": "suppressed-pending-review",
+      "watchState": "none",
+      "linkedTargetIds": [
+        "concept:coherence-lattice"
+      ],
+      "watchlistTarget": "metric_gaming_watchlist",
+      "noAutomaticQueueMutation": true,
+      "noAutomaticArchival": true,
+      "noAutomaticFreeze": true,
+      "noAutomaticDeletion": true,
+      "noCanonicalMutation": true,
+      "notes": "Suppressed from actionable overlays pending conservative review."
+    }
+  ]
+}

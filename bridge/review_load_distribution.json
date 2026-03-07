@@ -1,0 +1,14 @@
+{
+  "generatedAt": "2026-03-07",
+  "provenance": {
+    "schemaVersion": "phase-q.0",
+    "producerCommits": ["cl-commit-qqq222"],
+    "sourceMode": "fixture"
+  },
+  "entries": [
+    {"reviewId": "qh-001", "fatigueLoadClass": "elevated"},
+    {"reviewId": "qh-002", "fatigueLoadClass": "fatigued"},
+    {"reviewId": "qh-003", "fatigueLoadClass": "elevated"},
+    {"reviewId": "qh-004", "fatigueLoadClass": "fatigued"}
+  ]
+}
