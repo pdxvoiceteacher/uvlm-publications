@@ -1,0 +1,21 @@
+{
+  "generatedAt": "2026-03-06",
+  "annotations": [
+    {
+      "inputId": "sonya:text:atlas-note-001",
+      "status": "stored",
+      "explanation": "Projected cleanly into stable-high regime with low contradiction risk.",
+      "governingRule": "high-coherence-low-risk",
+      "coherenceScore": 0.81,
+      "riskScore": 0.12
+    },
+    {
+      "inputId": "sonya:text:atlas-note-002",
+      "status": "promoted",
+      "explanation": "Useful reinforcement signal for formal coherence thread.",
+      "governingRule": "admit-with-promotion",
+      "coherenceScore": 0.76,
+      "riskScore": 0.18
+    }
+  ]
+}
