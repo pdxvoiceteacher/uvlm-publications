@@ -1,0 +1,29 @@
+{
+  "generatedAt": "2026-03-07",
+  "governanceFacing": true,
+  "nonCanonical": true,
+  "continuityResilienceChamber": true,
+  "finalActionExternal": true,
+  "entries": [
+    {
+      "candidateId": "reserve-001",
+      "reviewId": "cont-001",
+      "status": "require-broader-human-review",
+      "resilienceStatus": "stable",
+      "successionReadinessScore": 0.81,
+      "successionReadiness": "review-ready",
+      "governanceFragilityScore": 0.29,
+      "fragilityStatus": "healthy",
+      "continuityWatchState": "none",
+      "redundancySignals": [
+        "cross-domain-coverage",
+        "documented-rationale-traceability"
+      ],
+      "linkedTargetIds": [
+        "concept:coherence-lattice"
+      ],
+      "humanReviewFlag": true,
+      "queuedAt": "2026-03-07"
+    }
+  ]
+}

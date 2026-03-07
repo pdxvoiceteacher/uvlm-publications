@@ -300,6 +300,39 @@ python3 scripts/build_deliberation_overlay.py
 ```
 
 
+### Succession, redundancy, and anti-capture resilience protocol (Phase K)
+
+Publisher surfaces **Sophia-audited continuity and succession review materials only** as a continuity and resilience chamber.
+Final continuity and reviewer appointment decisions remain external and human/community governed.
+
+- inputs: `bridge/resilience_audit.json`, `bridge/succession_recommendations.json`, `bridge/succession_state_map.json`, `bridge/continuity_roster_candidates.json`, `registry/governance_review_docket.json`, `registry/reviewer_behavior_monitor.json`, `registry/constitutional_status.json`
+- governance-facing non-canonical outputs: `registry/continuity_roster.json`, `registry/succession_docket.json`, `registry/quorum_resilience_watchlist.json`, `registry/governance_redundancy_annotations.json`
+- phase lock: governance body state → succession/resilience formalization → Sophia resilience audit → publisher continuity/succession overlays → human/community continuity decision
+
+Build command:
+
+```bash
+python3 scripts/build_continuity_overlay.py
+```
+
+
+### Evidence escrow, replication, and recovery protocol (Phase L)
+
+Publisher surfaces only **Sophia-audited preservation and recovery review materials** as an evidence escrow and recovery chamber.
+Actual escrow or recovery action remains external and human/community governed.
+
+- inputs: `bridge/recovery_audit.json`, `bridge/recovery_recommendations.json`, `bridge/preservation_state_map.json`, `bridge/artifact_escrow_plan.json`, `bridge/recovery_candidate_map.json`, `registry/constitutional_status.json`, `registry/continuity_mode_index.json`
+- governance-facing non-canonical outputs: `registry/escrow_index.json`, `registry/recovery_docket.json`, `registry/integrity_watchlist.json`, `registry/recovery_annotations.json`
+- phase lock: artifact/governance/continuity state → preservation/recovery formalization → Sophia recovery audit → publisher escrow/recovery overlays → human/community recovery action
+- procedural guardrails: evidence escrow over opaque persistence; recovery by review (no silent resurrection); freeze under tamper ambiguity; dependency transparency; distributed preservation over concentrated custody
+
+Build command:
+
+```bash
+python3 scripts/build_recovery_overlay.py
+```
+
+
 ## UVLM Research Atlas
 
 ### Product Vision (Engineering + Research Brief)

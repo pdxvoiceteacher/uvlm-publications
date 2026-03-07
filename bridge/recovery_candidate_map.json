@@ -1,0 +1,40 @@
+{
+  "generatedAt": "2026-03-07",
+  "candidates": [
+    {
+      "candidateId": "rec-candidate-001",
+      "artifactId": "registry/knowledge_graph.json",
+      "dependencyPaths": [
+        "registry/catalog.json",
+        "papers/**/metadata.yaml"
+      ],
+      "linkedTargetIds": [
+        "concept:coherence-lattice"
+      ],
+      "notes": "Evidence escrow over opaque persistence."
+    },
+    {
+      "candidateId": "rec-candidate-002",
+      "artifactId": "registry/governance_review_docket.json",
+      "dependencyPaths": [
+        "bridge/governance_audit.json",
+        "bridge/governance_recommendations.json"
+      ],
+      "linkedTargetIds": [
+        "concept:governance-integrity"
+      ],
+      "notes": "Recovery by review, not silent resurrection."
+    },
+    {
+      "candidateId": "rec-candidate-003",
+      "artifactId": "registry/constitutional_status.json",
+      "dependencyPaths": [
+        "bridge/constitutional_audit.json"
+      ],
+      "linkedTargetIds": [
+        "concept:continuity-protocol"
+      ],
+      "notes": "Freeze under tamper ambiguity."
+    }
+  ]
+}
