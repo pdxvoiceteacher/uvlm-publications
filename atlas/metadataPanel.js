@@ -118,6 +118,14 @@ function renderConcept(data) {
     row('Institutional Schema Version', data.institutionalSchemaVersion ?? 'unknown'),
     row('Institutional Producer Commit(s)', data.institutionalProducerCommits ?? 'unknown'),
     row('Institutional Source Mode', data.institutionalSourceMode ?? 'unknown'),
+    row('Queue Status', data.queueStatus ?? 'normal'),
+    row('Backlog Pressure', data.backlogPressure ?? 'low'),
+    row('Fatigue / Load Class', data.fatigueLoadClass ?? 'normal'),
+    row('Metric-Gaming Watch Status', data.metricGamingWatchStatus ?? 'none'),
+    row('Load-Shedding Recommendation', data.loadSheddingRecommendationSummary ?? 'none'),
+    row('Queue-Health Schema Version', data.queueHealthSchemaVersion ?? 'unknown'),
+    row('Queue-Health Producer Commit(s)', data.queueHealthProducerCommits ?? 'unknown'),
+    row('Queue-Health Source Mode', data.queueHealthSourceMode ?? 'unknown'),
     row('Related Concepts', data.relatedConceptCount ?? 0),
     renderConceptRelations(data.relatedConcepts)
   ].join('');

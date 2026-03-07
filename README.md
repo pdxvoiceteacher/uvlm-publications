@@ -401,6 +401,22 @@ Build command:
 python3 scripts/build_institutional_overlay.py
 ```
 
+
+### Queue pressure, anti-Goodhart, and load-shedding protocol (Phase Q)
+
+Publisher surfaces only **Sophia-audited queue-health and anti-Goodhart materials; no automatic archival, freezing, or deletion occurs from this layer alone**.
+
+- inputs: `bridge/load_shedding_audit.json`, `bridge/load_shedding_recommendations.json`, `bridge/queue_pressure_map.json`, `bridge/queue_pressure_summary.json`, `bridge/review_load_distribution.json`, `bridge/goodhart_risk_report.json`, `registry/institutional_status.json`, `registry/system_health_dashboard.json`, `registry/review_docket.json`, `registry/governance_review_docket.json`, `registry/deliberation_docket.json`, `registry/recovery_docket.json`, `registry/witness_docket.json`, `registry/case_docket.json`, `registry/stress_test_docket.json`
+- non-canonical outputs: `registry/queue_health_dashboard.json`, `registry/review_backlog_watchlist.json`, `registry/metric_gaming_watchlist.json`, `registry/load_shedding_annotations.json`
+- phase lock: queue/review/watchlist state → CoherenceLattice pressure formalization → Sophia load-shedding and anti-Goodhart audit → publisher queue-health overlays → human/community operational review
+- principles: queue overload is a governance signal; delay can be capture; metric performance is not integrity; review fatigue reduces legitimacy; load shedding must be explicit, auditable, and reversible
+
+Build command:
+
+```bash
+python3 scripts/build_queue_health_overlay.py
+```
+
 ## UVLM Research Atlas
 
 ### Product Vision (Engineering + Research Brief)

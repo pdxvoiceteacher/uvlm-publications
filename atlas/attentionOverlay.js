@@ -97,7 +97,11 @@ export async function loadAttentionOverlay() {
     institutionalStatusResp,
     systemHealthDashboardResp,
     institutionalConflictWatchlistResp,
-    institutionalAnnotationsResp
+    institutionalAnnotationsResp,
+    queueHealthDashboardResp,
+    reviewBacklogWatchlistResp,
+    metricGamingWatchlistResp,
+    loadSheddingAnnotationsResp
   ] = await Promise.all([
     fetch('../bridge/attention_updates.json').catch(() => null),
     fetch('../bridge/coherence_assessment.json').catch(() => null),
@@ -153,7 +157,11 @@ export async function loadAttentionOverlay() {
     fetch('../registry/institutional_status.json').catch(() => null),
     fetch('../registry/system_health_dashboard.json').catch(() => null),
     fetch('../registry/institutional_conflict_watchlist.json').catch(() => null),
-    fetch('../registry/institutional_annotations.json').catch(() => null)
+    fetch('../registry/institutional_annotations.json').catch(() => null),
+    fetch('../registry/queue_health_dashboard.json').catch(() => null),
+    fetch('../registry/review_backlog_watchlist.json').catch(() => null),
+    fetch('../registry/metric_gaming_watchlist.json').catch(() => null),
+    fetch('../registry/load_shedding_annotations.json').catch(() => null)
   ]);
 
   return {
@@ -211,7 +219,11 @@ export async function loadAttentionOverlay() {
     institutionalStatus: institutionalStatusResp ? await institutionalStatusResp.json() : {},
     systemHealthDashboard: systemHealthDashboardResp ? await systemHealthDashboardResp.json() : {},
     institutionalConflictWatchlist: institutionalConflictWatchlistResp ? await institutionalConflictWatchlistResp.json() : {},
-    institutionalAnnotations: institutionalAnnotationsResp ? await institutionalAnnotationsResp.json() : {}
+    institutionalAnnotations: institutionalAnnotationsResp ? await institutionalAnnotationsResp.json() : {},
+    queueHealthDashboard: queueHealthDashboardResp ? await queueHealthDashboardResp.json() : {},
+    reviewBacklogWatchlist: reviewBacklogWatchlistResp ? await reviewBacklogWatchlistResp.json() : {},
+    metricGamingWatchlist: metricGamingWatchlistResp ? await metricGamingWatchlistResp.json() : {},
+    loadSheddingAnnotations: loadSheddingAnnotationsResp ? await loadSheddingAnnotationsResp.json() : {}
   };
 }
 
@@ -1034,6 +1046,84 @@ function buildInstitutionalConceptSignals(institutionalStatus, systemHealthDashb
   return byConcept;
 }
 
+
+function buildQueueHealthConceptSignals(queueHealthDashboard, reviewBacklogWatchlist, metricGamingWatchlist, loadSheddingAnnotations) {
+  const byConcept = new Map();
+
+  function bump(targetId, update) {
+    if (typeof targetId !== 'string') {
+      return;
+    }
+    const existing = byConcept.get(targetId) ?? {
+      queueStatus: 'normal',
+      backlogPressure: 'low',
+      fatigueLoadClass: 'normal',
+      metricGamingWatchStatus: 'none',
+      loadSheddingRecommendationSummary: 'none',
+      queueHealthQueueStatus: 'none'
+    };
+    update(existing);
+    byConcept.set(targetId, existing);
+  }
+
+  asArray(queueHealthDashboard?.entries).forEach((entry) => {
+    asArray(entry?.linkedTargetIds).forEach((targetId) => {
+      bump(targetId, (s) => {
+        s.queueStatus = entry?.queueStatus ?? s.queueStatus;
+        s.backlogPressure = entry?.backlogPressure ?? s.backlogPressure;
+        s.fatigueLoadClass = entry?.fatigueLoadClass ?? s.fatigueLoadClass;
+        s.metricGamingWatchStatus = entry?.metricGamingWatchStatus ?? s.metricGamingWatchStatus;
+        s.loadSheddingRecommendationSummary = entry?.loadSheddingRecommendationSummary ?? s.loadSheddingRecommendationSummary;
+        s.queueHealthQueueStatus = 'dashboard';
+      });
+    });
+  });
+
+  asArray(reviewBacklogWatchlist?.entries).forEach((entry) => {
+    asArray(entry?.linkedTargetIds).forEach((targetId) => {
+      bump(targetId, (s) => {
+        s.queueStatus = entry?.queueStatus ?? s.queueStatus;
+        s.backlogPressure = entry?.backlogPressure ?? s.backlogPressure;
+        s.fatigueLoadClass = entry?.fatigueLoadClass ?? s.fatigueLoadClass;
+        s.metricGamingWatchStatus = entry?.metricGamingWatchStatus ?? s.metricGamingWatchStatus;
+        s.loadSheddingRecommendationSummary = entry?.loadSheddingRecommendationSummary ?? s.loadSheddingRecommendationSummary;
+        if (s.queueHealthQueueStatus !== 'dashboard') {
+          s.queueHealthQueueStatus = 'backlog-watch';
+        }
+      });
+    });
+  });
+
+  asArray(metricGamingWatchlist?.entries).forEach((entry) => {
+    asArray(entry?.linkedTargetIds).forEach((targetId) => {
+      bump(targetId, (s) => {
+        s.queueStatus = entry?.queueStatus ?? s.queueStatus;
+        s.backlogPressure = entry?.backlogPressure ?? s.backlogPressure;
+        s.fatigueLoadClass = entry?.fatigueLoadClass ?? s.fatigueLoadClass;
+        s.metricGamingWatchStatus = entry?.metricGamingWatchStatus ?? s.metricGamingWatchStatus;
+        s.loadSheddingRecommendationSummary = entry?.loadSheddingRecommendationSummary ?? s.loadSheddingRecommendationSummary;
+        if (s.queueHealthQueueStatus !== 'dashboard') {
+          s.queueHealthQueueStatus = 'goodhart-watch';
+        }
+      });
+    });
+  });
+
+  asArray(loadSheddingAnnotations?.annotations).forEach((entry) => {
+    asArray(entry?.linkedTargetIds).forEach((targetId) => {
+      bump(targetId, (s) => {
+        s.queueStatus = entry?.queueStatus ?? s.queueStatus;
+        s.backlogPressure = entry?.backlogPressure ?? s.backlogPressure;
+        s.fatigueLoadClass = entry?.fatigueLoadClass ?? s.fatigueLoadClass;
+        s.metricGamingWatchStatus = entry?.metricGamingWatchStatus ?? s.metricGamingWatchStatus;
+        s.loadSheddingRecommendationSummary = entry?.loadSheddingRecommendationSummary ?? s.loadSheddingRecommendationSummary;
+      });
+    });
+  });
+
+  return byConcept;
+}
+
 function buildConstitutionalConceptSignals(constitutionalAnnotations, governanceFailureWatchlist) {
   const byConcept = new Map();
 
@@ -1138,6 +1228,12 @@ export function applyAttentionOverlay(cy, overlay) {
     overlay?.institutionalConflictWatchlist,
     overlay?.institutionalAnnotations
   );
+  const queueHealthSignals = buildQueueHealthConceptSignals(
+    overlay?.queueHealthDashboard,
+    overlay?.reviewBacklogWatchlist,
+    overlay?.metricGamingWatchlist,
+    overlay?.loadSheddingAnnotations
+  );
 
 
   const institutionalProvenance = overlay?.institutionalStatus?.provenance ?? {};
@@ -1146,6 +1242,12 @@ export function applyAttentionOverlay(cy, overlay) {
     ?? 'unknown';
   const institutionalProducerCommits = asArray(institutionalProvenance?.producerCommits).join(', ') || 'unknown';
   const institutionalSourceMode = institutionalProvenance?.derivedFromFixtures ? 'fixture' : 'live';
+  const queueProvenance = overlay?.queueHealthDashboard?.provenance ?? {};
+  const queueHealthSchemaVersion = queueProvenance?.schemaVersions?.queue_pressure_summary
+    ?? queueProvenance?.schemaVersions?.queue_pressure_map
+    ?? 'unknown';
+  const queueHealthProducerCommits = asArray(queueProvenance?.producerCommits).join(', ') || 'unknown';
+  const queueHealthSourceMode = queueProvenance?.derivedFromFixtures ? 'fixture' : 'live';
 
   cy.nodes('[class = "concept"]').forEach((node) => {
     const id = node.id();
@@ -1235,8 +1337,17 @@ export function applyAttentionOverlay(cy, overlay) {
     node.data('institutionalSchemaVersion', institutionalSchemaVersion);
     node.data('institutionalProducerCommits', institutionalProducerCommits);
     node.data('institutionalSourceMode', institutionalSourceMode);
+    const queueHealth = queueHealthSignals.get(id);
+    node.data('queueStatus', queueHealth?.queueStatus ?? 'normal');
+    node.data('backlogPressure', queueHealth?.backlogPressure ?? 'low');
+    node.data('fatigueLoadClass', queueHealth?.fatigueLoadClass ?? 'normal');
+    node.data('metricGamingWatchStatus', queueHealth?.metricGamingWatchStatus ?? 'none');
+    node.data('loadSheddingRecommendationSummary', queueHealth?.loadSheddingRecommendationSummary ?? 'none');
+    node.data('queueHealthSchemaVersion', queueHealthSchemaVersion);
+    node.data('queueHealthProducerCommits', queueHealthProducerCommits);
+    node.data('queueHealthSourceMode', queueHealthSourceMode);
 
-    node.removeClass('attention-priority attention-secondary sonya-candidate reasoning-thread reasoning-watch stability-positive stability-watch multimodal-donation multimodal-watch review-candidate watch-queue governance-review governance-watch constitutional-watch constitutional-freeze deliberation-docket deliberation-watch deliberation-urgent anti-capture-watch continuity-docket continuity-watch continuity-fragile continuity-freeze recovery-docket recovery-watch escrow-ready recovery-fragile attestation-docket attestation-watch witness-sufficient attestation-sensitive precedent-docket precedent-watch precedent-divergent precedent-strong scenario-docket scenario-watch scenario-freeze scenario-rehearse-recovery institutional-status-indicator chamber-conflict-indicator system-health-overview');
+    node.removeClass('attention-priority attention-secondary sonya-candidate reasoning-thread reasoning-watch stability-positive stability-watch multimodal-donation multimodal-watch review-candidate watch-queue governance-review governance-watch constitutional-watch constitutional-freeze deliberation-docket deliberation-watch deliberation-urgent anti-capture-watch continuity-docket continuity-watch continuity-fragile continuity-freeze recovery-docket recovery-watch escrow-ready recovery-fragile attestation-docket attestation-watch witness-sufficient attestation-sensitive precedent-docket precedent-watch precedent-divergent precedent-strong scenario-docket scenario-watch scenario-freeze scenario-rehearse-recovery institutional-status-indicator chamber-conflict-indicator system-health-overview queue-health-actionable backlog-pressure-watch review-fatigue-watch metric-gaming-watch load-shedding-recommended');
     if ((rankData?.rank ?? Infinity) <= 2) {
       node.addClass('attention-priority');
     } else if ((rankData?.rank ?? Infinity) <= 5) {
@@ -1374,6 +1485,22 @@ export function applyAttentionOverlay(cy, overlay) {
     }
     if ((institutional?.systemHealthScore ?? 0) >= 0.75) {
       node.addClass('system-health-overview');
+    }
+
+    if ((queueHealth?.queueHealthQueueStatus ?? 'none') === 'dashboard') {
+      node.addClass('queue-health-actionable');
+    }
+    if (['medium', 'high'].includes(queueHealth?.backlogPressure ?? 'low')) {
+      node.addClass('backlog-pressure-watch');
+    }
+    if (['elevated', 'fatigued'].includes(queueHealth?.fatigueLoadClass ?? 'normal')) {
+      node.addClass('review-fatigue-watch');
+    }
+    if ((queueHealth?.metricGamingWatchStatus ?? 'none') !== 'none') {
+      node.addClass('metric-gaming-watch');
+    }
+    if ((queueHealth?.loadSheddingRecommendationSummary ?? 'none') !== 'none') {
+      node.addClass('load-shedding-recommended');
     }
   });
 }
