@@ -300,6 +300,22 @@ python3 scripts/build_deliberation_overlay.py
 ```
 
 
+### Succession, redundancy, and anti-capture resilience protocol (Phase K)
+
+Publisher surfaces **Sophia-audited continuity and succession review materials only** as a continuity and resilience chamber.
+Final continuity and reviewer appointment decisions remain external and human/community governed.
+
+- inputs: `bridge/resilience_audit.json`, `bridge/succession_recommendations.json`, `bridge/succession_state_map.json`, `bridge/continuity_roster_candidates.json`, `registry/governance_review_docket.json`, `registry/reviewer_behavior_monitor.json`, `registry/constitutional_status.json`
+- governance-facing non-canonical outputs: `registry/continuity_roster.json`, `registry/succession_docket.json`, `registry/quorum_resilience_watchlist.json`, `registry/governance_redundancy_annotations.json`
+- phase lock: governance body state → succession/resilience formalization → Sophia resilience audit → publisher continuity/succession overlays → human/community continuity decision
+
+Build command:
+
+```bash
+python3 scripts/build_continuity_overlay.py
+```
+
+
 ## UVLM Research Atlas
 
 ### Product Vision (Engineering + Research Brief)

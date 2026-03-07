@@ -87,6 +87,12 @@ function renderConcept(data) {
     row('Amendment Status', data.amendmentStatus ?? 'none'),
     row('Deliberation Urgency', data.deliberationUrgency ?? 'routine'),
     row('Anti-Capture Watch Signals', asList(data.antiCaptureSignals)),
+    row('Resilience Status', data.resilienceStatus ?? 'none'),
+    row('Succession Readiness', data.successionReadiness ?? 'unknown'),
+    row('Succession Readiness Score', Number(data.successionReadinessScore ?? 0).toFixed(2)),
+    row('Fragility / Thinning Status', data.fragilityStatus ?? 'unknown'),
+    row('Governance Fragility Score', Number(data.governanceFragilityScore ?? 0).toFixed(2)),
+    row('Continuity Watch State', data.continuityWatchState ?? 'none'),
     row('Related Concepts', data.relatedConceptCount ?? 0),
     renderConceptRelations(data.relatedConcepts)
   ].join('');
