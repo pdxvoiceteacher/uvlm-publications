@@ -1,0 +1,15 @@
+{
+  "generatedAt": "2026-03-06",
+  "annotations": [
+    {
+      "threadId": "thread:coherence-lattice-001",
+      "stabilityStatus": "stable",
+      "cognitiveWatchSignals": [
+        "decreasing drift",
+        "stable multi-cycle coherence"
+      ],
+      "governingRule": "persistent-high-coherence-low-risk",
+      "explanation": "Thread remains coherent over repeated observations with decreasing drift."
+    }
+  ]
+}

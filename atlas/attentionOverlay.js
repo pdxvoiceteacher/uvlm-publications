@@ -52,7 +52,10 @@ export async function loadAttentionOverlay() {
     sonyaMemoryIndexResp,
     sonyaAttentionCandidatesResp,
     reasoningThreadsResp,
-    cognitiveWatchlistResp
+    cognitiveWatchlistResp,
+    cognitiveMonitorIndexResp,
+    cognitiveStabilityAnnotationsResp,
+    recursiveWatchHistoryResp
   ] = await Promise.all([
     fetch('../bridge/attention_updates.json').catch(() => null),
     fetch('../bridge/coherence_assessment.json').catch(() => null),
@@ -63,7 +66,10 @@ export async function loadAttentionOverlay() {
     fetch('../registry/sonya_memory_index.json').catch(() => null),
     fetch('../registry/sonya_attention_candidates.json').catch(() => null),
     fetch('../registry/reasoning_threads.json').catch(() => null),
-    fetch('../registry/cognitive_watchlist.json').catch(() => null)
+    fetch('../registry/cognitive_watchlist.json').catch(() => null),
+    fetch('../registry/cognitive_monitor_index.json').catch(() => null),
+    fetch('../registry/cognitive_stability_annotations.json').catch(() => null),
+    fetch('../registry/recursive_watch_history.json').catch(() => null)
   ]);
 
   return {
@@ -76,7 +82,10 @@ export async function loadAttentionOverlay() {
     sonyaMemoryIndex: sonyaMemoryIndexResp ? await sonyaMemoryIndexResp.json() : {},
     sonyaAttentionCandidates: sonyaAttentionCandidatesResp ? await sonyaAttentionCandidatesResp.json() : {},
     reasoningThreads: reasoningThreadsResp ? await reasoningThreadsResp.json() : {},
-    cognitiveWatchlist: cognitiveWatchlistResp ? await cognitiveWatchlistResp.json() : {}
+    cognitiveWatchlist: cognitiveWatchlistResp ? await cognitiveWatchlistResp.json() : {},
+    cognitiveMonitorIndex: cognitiveMonitorIndexResp ? await cognitiveMonitorIndexResp.json() : {},
+    cognitiveStabilityAnnotations: cognitiveStabilityAnnotationsResp ? await cognitiveStabilityAnnotationsResp.json() : {},
+    recursiveWatchHistory: recursiveWatchHistoryResp ? await recursiveWatchHistoryResp.json() : {}
   };
 }
 
@@ -144,6 +153,60 @@ function buildReasoningConceptSignals(reasoningThreads, cognitiveWatchlist) {
   return result;
 }
 
+
+
+function buildCognitiveMonitorConceptSignals(reasoningThreads, cognitiveMonitorIndex, recursiveWatchHistory) {
+  const threadConcepts = new Map();
+  asArray(reasoningThreads?.threads).forEach((thread) => {
+    if (typeof thread?.threadId !== 'string') {
+      return;
+    }
+    threadConcepts.set(thread.threadId, asArray(thread?.linkedConceptIds).filter((id) => typeof id === 'string'));
+  });
+
+  const byConcept = new Map();
+
+  function bump(conceptId, update) {
+    const existing = byConcept.get(conceptId) ?? {
+      stabilityStatus: 'unknown',
+      persistenceTrend: 'unknown',
+      monitorCount: 0,
+      watchHistoryCount: 0,
+      watchStatus: 'none'
+    };
+    update(existing);
+    byConcept.set(conceptId, existing);
+  }
+
+  asArray(cognitiveMonitorIndex?.entries).forEach((entry) => {
+    const concepts = threadConcepts.get(entry?.threadId) ?? [];
+    concepts.forEach((conceptId) => {
+      bump(conceptId, (c) => {
+        c.monitorCount += 1;
+        c.stabilityStatus = entry?.stabilityStatus ?? c.stabilityStatus;
+        c.persistenceTrend = entry?.persistenceTrend ?? c.persistenceTrend;
+        c.watchStatus = entry?.watchStatus ?? c.watchStatus;
+      });
+    });
+  });
+
+  asArray(recursiveWatchHistory?.entries).forEach((entry) => {
+    const concepts = threadConcepts.get(entry?.threadId) ?? [];
+    concepts.forEach((conceptId) => {
+      bump(conceptId, (c) => {
+        c.watchHistoryCount += 1;
+        c.watchStatus = entry?.watchStatus ?? c.watchStatus;
+        c.persistenceTrend = entry?.persistenceTrend ?? c.persistenceTrend;
+        if (c.stabilityStatus === 'unknown') {
+          c.stabilityStatus = entry?.stabilityStatus ?? c.stabilityStatus;
+        }
+      });
+    });
+  });
+
+  return byConcept;
+}
+
 export function applyAttentionOverlay(cy, overlay) {
   const conceptWeights = overlay?.coherenceWeights?.conceptWeights ?? {};
   const conceptAnnotations = overlay?.sophiaAnnotations?.conceptAnnotations ?? {};
@@ -155,6 +218,11 @@ export function applyAttentionOverlay(cy, overlay) {
   const byConcept = rankingIndex(canonicalAttention);
   const sonyaSignals = buildSonyaConceptSignals(overlay?.sonyaMemoryIndex, overlay?.sonyaAttentionCandidates);
   const reasoningSignals = buildReasoningConceptSignals(overlay?.reasoningThreads, overlay?.cognitiveWatchlist);
+  const monitorSignals = buildCognitiveMonitorConceptSignals(
+    overlay?.reasoningThreads,
+    overlay?.cognitiveMonitorIndex,
+    overlay?.recursiveWatchHistory
+  );
 
   cy.nodes('[class = "concept"]').forEach((node) => {
     const id = node.id();
@@ -177,7 +245,12 @@ export function applyAttentionOverlay(cy, overlay) {
     node.data('reasoningWatchCount', reasoning?.watchCount ?? 0);
     node.data('reasoningWatchStatus', reasoning?.watchStatus ?? 'none');
 
-    node.removeClass('attention-priority attention-secondary sonya-candidate reasoning-thread reasoning-watch');
+    const monitor = monitorSignals.get(id);
+    node.data('stabilityStatus', monitor?.stabilityStatus ?? 'unknown');
+    node.data('persistenceTrend', monitor?.persistenceTrend ?? 'unknown');
+    node.data('monitorWatchStatus', monitor?.watchStatus ?? 'none');
+
+    node.removeClass('attention-priority attention-secondary sonya-candidate reasoning-thread reasoning-watch stability-positive stability-watch');
     if ((rankData?.rank ?? Infinity) <= 2) {
       node.addClass('attention-priority');
     } else if ((rankData?.rank ?? Infinity) <= 5) {
@@ -193,6 +266,13 @@ export function applyAttentionOverlay(cy, overlay) {
     }
     if ((reasoning?.watchCount ?? 0) > 0) {
       node.addClass('reasoning-watch');
+    }
+
+    if ((monitor?.stabilityStatus ?? 'unknown') === 'stable') {
+      node.addClass('stability-positive');
+    }
+    if (['watch', 'escalate-human-review'].includes(monitor?.watchStatus ?? 'none')) {
+      node.addClass('stability-watch');
     }
   });
 }

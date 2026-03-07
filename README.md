@@ -209,6 +209,21 @@ Build command:
 python3 scripts/build_reasoning_thread_overlay.py
 ```
 
+### Recursive coherence monitoring overlay gate (Phase E)
+
+Publisher surfaces only **Sophia-audited monitoring overlays** and watch / human-review signals.
+It does not independently certify cognitive status.
+
+- inputs: `bridge/stability_audit.json`, `bridge/recursive_watch_escalations.json`, `registry/reasoning_threads.json`, `registry/cognitive_watchlist.json`
+- canonical outputs: `registry/cognitive_monitor_index.json`, `registry/cognitive_stability_annotations.json`
+- observational non-canonical output: `registry/recursive_watch_history.json`
+
+Build command:
+
+```bash
+python3 scripts/build_cognitive_monitor_overlay.py
+```
+
 
 ## UVLM Research Atlas
 

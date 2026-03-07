@@ -109,13 +109,32 @@ jobs:
 
       - name: Build reasoning thread overlays
         run: |
-          python scripts/build_reasoning_thread_overlay.py             --reasoning-audit bridge/reasoning_audit.json             --recursive-candidates bridge/recursive_reasoning_candidates.json             --sonya-memory-index registry/sonya_memory_index.json             --sonya-memory-annotations registry/sonya_memory_annotations.json             --sonya-attention-candidates registry/sonya_attention_candidates.json
+          python scripts/build_reasoning_thread_overlay.py \
+            --reasoning-audit bridge/reasoning_audit.json \
+            --recursive-candidates bridge/recursive_reasoning_candidates.json \
+            --sonya-memory-index registry/sonya_memory_index.json \
+            --sonya-memory-annotations registry/sonya_memory_annotations.json \
+            --sonya-attention-candidates registry/sonya_attention_candidates.json
 
       - name: Validate reasoning overlay JSON formatting
         run: |
           python -m json.tool registry/reasoning_threads.json >/dev/null
           python -m json.tool registry/reasoning_thread_annotations.json >/dev/null
           python -m json.tool registry/cognitive_watchlist.json >/dev/null
+
+      - name: Build cognitive monitor overlays
+        run: |
+          python scripts/build_cognitive_monitor_overlay.py \
+            --stability-audit bridge/stability_audit.json \
+            --recursive-watch-escalations bridge/recursive_watch_escalations.json \
+            --reasoning-threads registry/reasoning_threads.json \
+            --cognitive-watchlist registry/cognitive_watchlist.json
+
+      - name: Validate cognitive monitor JSON formatting
+        run: |
+          python -m json.tool registry/cognitive_monitor_index.json >/dev/null
+          python -m json.tool registry/cognitive_stability_annotations.json >/dev/null
+          python -m json.tool registry/recursive_watch_history.json >/dev/null
 
       - name: Validate research constellations
         run: python scripts/validate_constellations.py registry/constellations.json --graph registry/knowledge_graph.json
@@ -134,7 +153,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add registry/dois.json registry/publications.json registry/catalog.json registry/knowledge_graph.json registry/atlas_timeline.json registry/constellations.json bridge/symbolic_input.json registry/sonya_memory_index.json registry/sonya_memory_annotations.json registry/sonya_attention_candidates.json registry/sonya_pending_review.json bridge/sonya_audit.json bridge/sonya_admission_decisions.json bridge/reasoning_audit.json bridge/recursive_reasoning_candidates.json registry/reasoning_threads.json registry/reasoning_thread_annotations.json registry/cognitive_watchlist.json registry/deposits papers/echo-atlas-primer/metadata.yaml
+          git add registry/dois.json registry/publications.json registry/catalog.json registry/knowledge_graph.json registry/atlas_timeline.json registry/constellations.json bridge/symbolic_input.json registry/sonya_memory_index.json registry/sonya_memory_annotations.json registry/sonya_attention_candidates.json registry/sonya_pending_review.json bridge/sonya_audit.json bridge/sonya_admission_decisions.json bridge/reasoning_audit.json bridge/recursive_reasoning_candidates.json registry/reasoning_threads.json registry/reasoning_thread_annotations.json registry/cognitive_watchlist.json bridge/stability_audit.json bridge/recursive_watch_escalations.json registry/cognitive_monitor_index.json registry/cognitive_stability_annotations.json registry/recursive_watch_history.json registry/deposits papers/echo-atlas-primer/metadata.yaml
           git diff --cached --quiet || git commit -m "Update DOI registries, catalog, graph, and deposit logs"
           git push
 
@@ -164,3 +183,8 @@ jobs:
             registry/reasoning_threads.json
             registry/reasoning_thread_annotations.json
             registry/cognitive_watchlist.json
+            bridge/stability_audit.json
+            bridge/recursive_watch_escalations.json
+            registry/cognitive_monitor_index.json
+            registry/cognitive_stability_annotations.json
+            registry/recursive_watch_history.json

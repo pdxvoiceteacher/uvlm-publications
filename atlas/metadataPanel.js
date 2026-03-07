@@ -66,6 +66,9 @@ function renderConcept(data) {
     row('Sonya Admitted Signals', data.sonyaAdmittedSignalCount ?? 0),
     row('Reasoning Threads', data.reasoningThreadCount ?? 0),
     row('Reasoning Watch Status', data.reasoningWatchStatus ?? 'none'),
+    row('Stability Status', data.stabilityStatus ?? 'unknown'),
+    row('Persistence Trend', data.persistenceTrend ?? 'unknown'),
+    row('Monitor Watch Status', data.monitorWatchStatus ?? 'none'),
     row('Related Concepts', data.relatedConceptCount ?? 0),
     renderConceptRelations(data.relatedConcepts)
   ].join('');
