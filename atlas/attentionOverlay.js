@@ -55,7 +55,11 @@ export async function loadAttentionOverlay() {
     cognitiveWatchlistResp,
     cognitiveMonitorIndexResp,
     cognitiveStabilityAnnotationsResp,
-    recursiveWatchHistoryResp
+    recursiveWatchHistoryResp,
+    multimodalSignalIndexResp,
+    patternDonationAnnotationsResp,
+    crossModalAttentionOverlaysResp,
+    patternDonationWatchlistResp
   ] = await Promise.all([
     fetch('../bridge/attention_updates.json').catch(() => null),
     fetch('../bridge/coherence_assessment.json').catch(() => null),
@@ -69,7 +73,11 @@ export async function loadAttentionOverlay() {
     fetch('../registry/cognitive_watchlist.json').catch(() => null),
     fetch('../registry/cognitive_monitor_index.json').catch(() => null),
     fetch('../registry/cognitive_stability_annotations.json').catch(() => null),
-    fetch('../registry/recursive_watch_history.json').catch(() => null)
+    fetch('../registry/recursive_watch_history.json').catch(() => null),
+    fetch('../registry/multimodal_signal_index.json').catch(() => null),
+    fetch('../registry/pattern_donation_annotations.json').catch(() => null),
+    fetch('../registry/cross_modal_attention_overlays.json').catch(() => null),
+    fetch('../registry/pattern_donation_watchlist.json').catch(() => null)
   ]);
 
   return {
@@ -85,7 +93,11 @@ export async function loadAttentionOverlay() {
     cognitiveWatchlist: cognitiveWatchlistResp ? await cognitiveWatchlistResp.json() : {},
     cognitiveMonitorIndex: cognitiveMonitorIndexResp ? await cognitiveMonitorIndexResp.json() : {},
     cognitiveStabilityAnnotations: cognitiveStabilityAnnotationsResp ? await cognitiveStabilityAnnotationsResp.json() : {},
-    recursiveWatchHistory: recursiveWatchHistoryResp ? await recursiveWatchHistoryResp.json() : {}
+    recursiveWatchHistory: recursiveWatchHistoryResp ? await recursiveWatchHistoryResp.json() : {},
+    multimodalSignalIndex: multimodalSignalIndexResp ? await multimodalSignalIndexResp.json() : {},
+    patternDonationAnnotations: patternDonationAnnotationsResp ? await patternDonationAnnotationsResp.json() : {},
+    crossModalAttentionOverlays: crossModalAttentionOverlaysResp ? await crossModalAttentionOverlaysResp.json() : {},
+    patternDonationWatchlist: patternDonationWatchlistResp ? await patternDonationWatchlistResp.json() : {}
   };
 }
 
@@ -207,6 +219,53 @@ function buildCognitiveMonitorConceptSignals(reasoningThreads, cognitiveMonitorI
   return byConcept;
 }
 
+
+
+function buildMultimodalConceptSignals(multimodalSignalIndex, crossModalAttentionOverlays, patternDonationWatchlist) {
+  const overlayByDonation = new Map();
+  asArray(crossModalAttentionOverlays?.overlays).forEach((overlay) => {
+    if (typeof overlay?.donationId === 'string') {
+      overlayByDonation.set(overlay.donationId, overlay);
+    }
+  });
+
+  const byConcept = new Map();
+
+  function bump(conceptId, update) {
+    const existing = byConcept.get(conceptId) ?? {
+      donationCount: 0,
+      donationWatchStatus: 'none',
+      reinforcementStatus: 'none'
+    };
+    update(existing);
+    byConcept.set(conceptId, existing);
+  }
+
+  asArray(multimodalSignalIndex?.signals).forEach((signal) => {
+    if (signal?.targetType !== 'concept' || typeof signal?.targetId !== 'string') {
+      return;
+    }
+    const overlay = overlayByDonation.get(signal?.donationId);
+    bump(signal.targetId, (s) => {
+      s.donationCount += 1;
+      s.reinforcementStatus = overlay?.reinforcementStatus ?? s.reinforcementStatus;
+      s.donationWatchStatus = 'admit-overlay';
+    });
+  });
+
+  asArray(patternDonationWatchlist?.entries).forEach((entry) => {
+    if (entry?.targetType !== 'concept' || typeof entry?.targetId !== 'string') {
+      return;
+    }
+    bump(entry.targetId, (s) => {
+      s.donationWatchStatus = entry?.watchStatus ?? s.donationWatchStatus;
+      s.reinforcementStatus = entry?.reinforcementStatus ?? s.reinforcementStatus;
+    });
+  });
+
+  return byConcept;
+}
+
 export function applyAttentionOverlay(cy, overlay) {
   const conceptWeights = overlay?.coherenceWeights?.conceptWeights ?? {};
   const conceptAnnotations = overlay?.sophiaAnnotations?.conceptAnnotations ?? {};
@@ -222,6 +281,11 @@ export function applyAttentionOverlay(cy, overlay) {
     overlay?.reasoningThreads,
     overlay?.cognitiveMonitorIndex,
     overlay?.recursiveWatchHistory
+  );
+  const multimodalSignals = buildMultimodalConceptSignals(
+    overlay?.multimodalSignalIndex,
+    overlay?.crossModalAttentionOverlays,
+    overlay?.patternDonationWatchlist
   );
 
   cy.nodes('[class = "concept"]').forEach((node) => {
@@ -250,7 +314,12 @@ export function applyAttentionOverlay(cy, overlay) {
     node.data('persistenceTrend', monitor?.persistenceTrend ?? 'unknown');
     node.data('monitorWatchStatus', monitor?.watchStatus ?? 'none');
 
-    node.removeClass('attention-priority attention-secondary sonya-candidate reasoning-thread reasoning-watch stability-positive stability-watch');
+    const multimodal = multimodalSignals.get(id);
+    node.data('multimodalDonationCount', multimodal?.donationCount ?? 0);
+    node.data('donationWatchStatus', multimodal?.donationWatchStatus ?? 'none');
+    node.data('reinforcementStatus', multimodal?.reinforcementStatus ?? 'none');
+
+    node.removeClass('attention-priority attention-secondary sonya-candidate reasoning-thread reasoning-watch stability-positive stability-watch multimodal-donation multimodal-watch');
     if ((rankData?.rank ?? Infinity) <= 2) {
       node.addClass('attention-priority');
     } else if ((rankData?.rank ?? Infinity) <= 5) {
@@ -273,6 +342,13 @@ export function applyAttentionOverlay(cy, overlay) {
     }
     if (['watch', 'escalate-human-review'].includes(monitor?.watchStatus ?? 'none')) {
       node.addClass('stability-watch');
+    }
+
+    if ((multimodal?.donationCount ?? 0) > 0) {
+      node.addClass('multimodal-donation');
+    }
+    if (['watch', 'defer', 'escalate-human-review'].includes(multimodal?.donationWatchStatus ?? 'none')) {
+      node.addClass('multimodal-watch');
     }
   });
 }

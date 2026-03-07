@@ -69,6 +69,9 @@ function renderConcept(data) {
     row('Stability Status', data.stabilityStatus ?? 'unknown'),
     row('Persistence Trend', data.persistenceTrend ?? 'unknown'),
     row('Monitor Watch Status', data.monitorWatchStatus ?? 'none'),
+    row('Multimodal Donation Count', data.multimodalDonationCount ?? 0),
+    row('Donation Watch Status', data.donationWatchStatus ?? 'none'),
+    row('Reinforcement Status', data.reinforcementStatus ?? 'none'),
     row('Related Concepts', data.relatedConceptCount ?? 0),
     renderConceptRelations(data.relatedConcepts)
   ].join('');

@@ -224,6 +224,21 @@ Build command:
 python3 scripts/build_cognitive_monitor_overlay.py
 ```
 
+### Multimodal pattern donation overlay gate (Phase F)
+
+Publisher surfaces only **Sophia-audited multimodal donation overlays** and watch artifacts.
+It does not independently interpret raw pattern signals or mutate canonical structure.
+
+- inputs: `bridge/pattern_donation_audit.json`, `bridge/pattern_donation_decisions.json`, `bridge/cross_modal_reinforcement_report.json`, monitor/reasoning/watch overlays
+- canonical outputs: `registry/multimodal_signal_index.json`, `registry/pattern_donation_annotations.json`, `registry/cross_modal_attention_overlays.json`
+- observational non-canonical output: `registry/pattern_donation_watchlist.json`
+
+Build command:
+
+```bash
+python3 scripts/build_multimodal_overlay.py
+```
+
 
 ## UVLM Research Atlas
 

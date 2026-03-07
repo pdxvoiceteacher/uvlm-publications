@@ -1,0 +1,17 @@
+{
+  "generatedAt": "2026-03-07",
+  "signals": [
+    {
+      "donationId": "donation:guide-001:coherence-lattice",
+      "sourceInputId": "sonya:audio:guide-001",
+      "targetType": "concept",
+      "targetId": "concept:coherence-lattice",
+      "status": "admit-overlay",
+      "sourceAuditStatus": "admit",
+      "reinforcementScore": 0.72,
+      "coherenceScore": 0.79,
+      "riskScore": 0.15,
+      "updatedAt": "2026-03-07"
+    }
+  ]
+}

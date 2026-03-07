@@ -527,6 +527,20 @@ async function main() {
           'overlay-opacity': 0.14,
           'overlay-padding': 3
         }
+      },
+      {
+        selector: '.multimodal-donation',
+        style: {
+          'border-color': '#8ff3ff'
+        }
+      },
+      {
+        selector: '.multimodal-watch',
+        style: {
+          'overlay-color': '#7fd3ff',
+          'overlay-opacity': 0.12,
+          'overlay-padding': 3
+        }
       }
     ],
     layout: {
@@ -650,7 +664,7 @@ async function main() {
   resetEl.addEventListener('click', () => {
     searchEl.value = '';
     typeFilterEl.value = 'all';
-    cy.elements().removeClass('zoom-hidden filter-hidden highlight spotlight-dim spotlight-focus sonya-candidate reasoning-thread reasoning-watch stability-positive stability-watch');
+    cy.elements().removeClass('zoom-hidden filter-hidden highlight spotlight-dim spotlight-focus sonya-candidate reasoning-thread reasoning-watch stability-positive stability-watch multimodal-donation multimodal-watch');
     constellationApi.clear();
     cy.fit(cy.elements(':visible'), 60);
     setDefaultPanel(detailEl);
