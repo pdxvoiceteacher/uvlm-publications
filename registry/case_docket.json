@@ -1,0 +1,23 @@
+{
+  "generatedAt": "2026-03-07",
+  "governanceFacing": true,
+  "nonCanonical": true,
+  "precedentMemoryChamber": true,
+  "finalActionExternal": true,
+  "entries": [
+    {
+      "reviewId": "prec-001",
+      "candidateId": "case-001",
+      "status": "follow-precedent",
+      "precedentStatus": "follow-precedent",
+      "analogyConfidence": 0.86,
+      "divergenceLevel": "low",
+      "watchState": "none",
+      "linkedTargetIds": [
+        "concept:coherence-lattice"
+      ],
+      "humanReviewFlag": true,
+      "queuedAt": "2026-03-07"
+    }
+  ]
+}

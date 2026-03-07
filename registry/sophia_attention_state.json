@@ -1,0 +1,35 @@
+{
+  "generatedAt": "2026-03-06",
+  "attention": {
+    "concepts": [
+      {
+        "id": "concept:coherence-lattice",
+        "weight": 1.0
+      },
+      {
+        "id": "concept:delta-syn",
+        "weight": 0.4815
+      },
+      {
+        "id": "concept:formal-coherence",
+        "weight": 0.1852
+      },
+      {
+        "id": "concept:narrative-phase-space",
+        "weight": 0.0
+      }
+    ],
+    "constellations": [
+      {
+        "id": "constellation:coherence-lattice-core",
+        "weight": 1.0
+      }
+    ],
+    "paths": [
+      {
+        "id": "coherence-lineage",
+        "weight": 1.0
+      }
+    ]
+  }
+}

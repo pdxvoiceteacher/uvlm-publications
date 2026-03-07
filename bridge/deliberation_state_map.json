@@ -1,0 +1,20 @@
+{
+  "generatedAt": "2026-03-07",
+  "entries": [
+    {
+      "reviewId": "delib-001",
+      "deliberationState": "preliminary",
+      "urgency": "routine"
+    },
+    {
+      "reviewId": "delib-002",
+      "deliberationState": "monitoring",
+      "urgency": "heightened"
+    },
+    {
+      "reviewId": "delib-003",
+      "deliberationState": "frozen",
+      "urgency": "urgent"
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "generatedAt": "2026-03-10",
+  "reports": [
+    {
+      "donationId": "donation:guide-001:coherence-lattice",
+      "targetId": "concept:coherence-lattice",
+      "reinforcementStatus": "reinforced",
+      "reinforcementTrend": "rising",
+      "monitorFlags": [
+        "cross-modal consistency",
+        "stable-low contradiction"
+      ]
+    },
+    {
+      "donationId": "donation:guide-002:narrative-phase-space",
+      "targetId": "concept:narrative-phase-space",
+      "reinforcementStatus": "watch",
+      "reinforcementTrend": "flat",
+      "monitorFlags": [
+        "insufficient recurrence"
+      ]
+    },
+    {
+      "donationId": "donation:guide-003:delta-syn",
+      "targetId": "concept:delta-syn",
+      "reinforcementStatus": "contradicted",
+      "reinforcementTrend": "falling",
+      "monitorFlags": [
+        "contradiction detected"
+      ]
+    }
+  ]
+}

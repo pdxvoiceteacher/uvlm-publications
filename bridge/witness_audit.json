@@ -1,0 +1,33 @@
+{
+  "generatedAt": "2026-03-07",
+  "auditor": "sophia",
+  "audits": [
+    {
+      "reviewId": "attest-001",
+      "artifactId": "registry/knowledge_graph.json",
+      "integrityTestimonyWatchState": "none",
+      "antiCaptureSignals": [
+        "distributed-witness-breadth"
+      ],
+      "notes": "Witness sufficiency appears stable for attestation review."
+    },
+    {
+      "reviewId": "attest-002",
+      "artifactId": "registry/governance_review_docket.json",
+      "integrityTestimonyWatchState": "watch",
+      "antiCaptureSignals": [
+        "conflict-concentration-risk"
+      ],
+      "notes": "Attestation ambiguity requires watch state."
+    },
+    {
+      "reviewId": "attest-003",
+      "artifactId": "registry/constitutional_status.json",
+      "integrityTestimonyWatchState": "freeze",
+      "antiCaptureSignals": [
+        "witness-sufficiency-too-thin"
+      ],
+      "notes": "Freeze under attestation ambiguity pending human review."
+    }
+  ]
+}

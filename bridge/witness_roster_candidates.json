@@ -1,0 +1,39 @@
+{
+  "generatedAt": "2026-03-07",
+  "candidates": [
+    {
+      "candidateId": "witness-candidate-001",
+      "artifactId": "registry/knowledge_graph.json",
+      "witnessIds": [
+        "witness:institution-a",
+        "witness:community-node-1"
+      ],
+      "linkedTargetIds": [
+        "concept:coherence-lattice"
+      ],
+      "notes": "Witnessing over secrecy; evidence-first continuity."
+    },
+    {
+      "candidateId": "witness-candidate-002",
+      "artifactId": "registry/governance_review_docket.json",
+      "witnessIds": [
+        "witness:institution-b"
+      ],
+      "linkedTargetIds": [
+        "concept:governance-integrity"
+      ],
+      "notes": "Distribution over monopoly."
+    },
+    {
+      "candidateId": "witness-candidate-003",
+      "artifactId": "registry/constitutional_status.json",
+      "witnessIds": [
+        "witness:institution-b"
+      ],
+      "linkedTargetIds": [
+        "concept:continuity-protocol"
+      ],
+      "notes": "Attestation without sovereignty."
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "generatedAt": "2026-03-07",
+  "preparednessFacing": true,
+  "nonCanonical": true,
+  "stressRehearsalChamber": true,
+  "finalActionExternal": true,
+  "entries": [
+    {
+      "reviewId": "scn-001",
+      "scenarioId": "scenario-001",
+      "status": "stress-test-docketed",
+      "scenarioStatus": "rehearsal-ready",
+      "projectedCaptureRisk": "moderate",
+      "projectedContinuityRisk": "low",
+      "preparednessRecommendation": "rehearse-recovery",
+      "watchState": "none",
+      "linkedTargetIds": [
+        "concept:governance-integrity"
+      ],
+      "humanReviewFlag": true,
+      "queuedAt": "2026-03-07"
+    }
+  ]
+}

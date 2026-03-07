@@ -1,0 +1,26 @@
+{
+  "generatedAt": "2026-03-07",
+  "governanceFacing": true,
+  "nonCanonical": true,
+  "entries": [
+    {
+      "reviewId": "prec-002",
+      "candidateId": "case-002",
+      "status": "watch",
+      "precedentStatus": "distinguish-case",
+      "analogyConfidence": 0.54,
+      "divergenceLevel": "medium",
+      "watchState": "watch",
+      "linkedTargetIds": [
+        "concept:governance-integrity"
+      ],
+      "antiCaptureSignals": [
+        "thin-precedent-base"
+      ],
+      "humanReviewFlag": true,
+      "observational": true,
+      "nonCanonical": true,
+      "queuedAt": "2026-03-07"
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "generatedAt": "2026-03-07",
+  "candidates": [
+    {
+      "candidateId": "reserve-001",
+      "title": "Redundant continuity reviewer reserve",
+      "redundancySignals": [
+        "cross-domain-coverage",
+        "documented-rationale-traceability"
+      ],
+      "linkedTargetIds": [
+        "concept:coherence-lattice"
+      ],
+      "notes": "Succession by review, not inheritance."
+    },
+    {
+      "candidateId": "reserve-002",
+      "title": "Thin quorum continuity reserve",
+      "redundancySignals": [
+        "participation-thinning"
+      ],
+      "linkedTargetIds": [
+        "concept:governance-integrity"
+      ],
+      "notes": "Requires broader legitimacy review before any appointment discussion."
+    },
+    {
+      "candidateId": "reserve-003",
+      "title": "Freeze-path reserve candidate",
+      "redundancySignals": [
+        "capture-risk-high",
+        "preservation-before-replacement"
+      ],
+      "linkedTargetIds": [
+        "concept:continuity-protocol"
+      ],
+      "notes": "Preserve evidence and structure before replacement action."
+    }
+  ]
+}
