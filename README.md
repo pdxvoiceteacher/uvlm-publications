@@ -85,7 +85,7 @@ python3 scripts/validate_metadata.py
 python3 scripts/build_catalog.py
 python3 scripts/build_knowledge_graph.py
 python3 scripts/validate_knowledge_graph.py
-python3 -m unittest tests/test_build_public_record_overlay.py tests/test_build_verification_overlay.py tests/test_build_symbolic_field_overlay.py tests/test_build_closure_overlay.py tests/test_build_priority_overlay.py tests/test_build_queue_health_overlay.py tests/test_build_institutional_overlay.py tests/test_validate_atlas_timeline.py tests/test_validate_constellations.py
+python3 -m unittest tests/test_build_public_record_overlay.py tests/test_build_verification_overlay.py tests/test_build_investigation_overlay.py tests/test_build_evidence_authority_overlay.py tests/test_build_symbolic_field_overlay.py tests/test_build_closure_overlay.py tests/test_build_priority_overlay.py tests/test_build_queue_health_overlay.py tests/test_build_institutional_overlay.py tests/test_validate_atlas_timeline.py tests/test_validate_constellations.py
 ```
 
 These checks keep metadata, graph artifacts, and overlay contracts deterministic and auditable.
@@ -120,6 +120,23 @@ Edge classes:
 - `isReferencedBy`
 
 Phase 1 intentionally avoids inferred similarity edges and ontology expansion to keep the graph explicit, deterministic, and auditable.
+
+
+
+### Evidence maturity gating and propagation rights protocol (Phase X.1)
+
+Publisher surfaces only Sophia-audited evidence-authority materials; no automatic restriction lifting or graph hardening occurs from this layer.
+
+- inputs: `bridge/evidence_authority_audit.json`, `bridge/evidence_authority_recommendations.json`, `bridge/evidence_authority_map.json`, `bridge/evidence_authority_summary.json`, `bridge/propagation_rights_map.json`, `bridge/maturity_gate_report.json`, `registry/verification_dashboard.json`, `registry/public_record_dashboard.json`, `registry/symbolic_field_registry.json`, `registry/investigation_dashboard.json`
+- non-canonical outputs: `registry/authority_gate_dashboard.json`, `registry/weak_evidence_watchlist.json`, `registry/propagation_annotations.json`, `registry/maturity_restriction_registry.json`
+- phase lock: claim / entity / graph / closure / precedent / investigation state → CoherenceLattice evidence-authority formalization → Sophia evidence-authority audit → Publisher authority-gating overlays → human/community review of propagation limits
+- principles: weak evidence remains watch-only; propagation restrictions are bounded and non-punitive; suppressed recommendations are excluded from actionable authority overlays; no automatic mutation of identities/edges/precedents/closures/canonical truth artifacts
+
+Build command:
+
+```bash
+python3 scripts/build_evidence_authority_overlay.py
+```
 
 
 ## UVLM Research Atlas (Phase 2)
@@ -510,6 +527,40 @@ Build command:
 ```bash
 python3 scripts/build_public_record_overlay.py
 ```
+
+
+### Investigation staging and dependency-plan protocol (Phase W)
+
+Publisher surfaces only **bounded investigation planning overlays; no automatic adjudication, identity mutation, or canonical state mutation occurs from this layer**.
+
+- inputs: `bridge/triage_recommendations.json`, `bridge/verification_recommendations.json`, `bridge/public_record_recommendations.json`, `bridge/artifact_escrow_plan.json`
+- non-canonical outputs: `registry/investigation_dashboard.json`, `registry/investigation_plan_registry.json`, `registry/investigation_watchlist.json`, `registry/investigation_annotations.json`
+- phase lock: triage/verification/public-record recommendations → dependency-aware plan composition → publisher investigation overlays → human/community execution review
+- principles: stage indicators are workflow signals, not verdicts; dependency graphs remain evidence-local; plan progress is observational and review-facing; watch states never auto-trigger canonical mutation
+
+Build command:
+
+```bash
+python3 scripts/build_investigation_overlay.py
+```
+
+
+
+### Evidence maturity gating and propagation rights protocol (Phase X.1)
+
+Publisher surfaces only Sophia-audited evidence-authority materials; no automatic restriction lifting or graph hardening occurs from this layer.
+
+- inputs: `bridge/evidence_authority_audit.json`, `bridge/evidence_authority_recommendations.json`, `bridge/evidence_authority_map.json`, `bridge/evidence_authority_summary.json`, `bridge/propagation_rights_map.json`, `bridge/maturity_gate_report.json`, `registry/verification_dashboard.json`, `registry/public_record_dashboard.json`, `registry/symbolic_field_registry.json`, `registry/investigation_dashboard.json`
+- non-canonical outputs: `registry/authority_gate_dashboard.json`, `registry/weak_evidence_watchlist.json`, `registry/propagation_annotations.json`, `registry/maturity_restriction_registry.json`
+- phase lock: claim / entity / graph / closure / precedent / investigation state → CoherenceLattice evidence-authority formalization → Sophia evidence-authority audit → Publisher authority-gating overlays → human/community review of propagation limits
+- principles: weak evidence remains watch-only; propagation restrictions are bounded and non-punitive; suppressed recommendations are excluded from actionable authority overlays; no automatic mutation of identities/edges/precedents/closures/canonical truth artifacts
+
+Build command:
+
+```bash
+python3 scripts/build_evidence_authority_overlay.py
+```
+
 
 ## UVLM Research Atlas
 

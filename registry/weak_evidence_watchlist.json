@@ -1,0 +1,77 @@
+{
+  "generatedAt": "2026-03-07",
+  "evidenceAuthorityProtocol": true,
+  "nonCanonical": true,
+  "provenance": {
+    "schemaVersions": {
+      "evidence_authority_audit": "phase-x1.0",
+      "evidence_authority_recommendations": "phase-x1.0",
+      "evidence_authority_map": "phase-x1.0",
+      "evidence_authority_summary": "phase-x1.0",
+      "propagation_rights_map": "phase-x1.0",
+      "maturity_gate_report": "phase-x1.0",
+      "verification_dashboard": "composite",
+      "public_record_dashboard": "composite",
+      "symbolic_field_registry": "composite",
+      "investigation_dashboard": "composite"
+    },
+    "producerCommits": [
+      "sophia-x1-111",
+      "coherence-x1-111",
+      "coherence-x1-112",
+      "coherence-x1-113",
+      "coherence-x1-114",
+      "sophia-u-111",
+      "cl-u-222",
+      "sophia-t-111",
+      "cl-t-222",
+      "cl-commit-aaa111",
+      "sophia-commit-bbb222",
+      "sophia-commit-qqq111",
+      "cl-commit-qqq222",
+      "sophia-r-111",
+      "cl-r-222",
+      "sophia-s-111",
+      "cl-s-222",
+      "sophia-v-111",
+      "cl-v-222"
+    ],
+    "sourceModes": {
+      "evidence_authority_audit": "fixture",
+      "evidence_authority_recommendations": "fixture",
+      "evidence_authority_map": "fixture",
+      "evidence_authority_summary": "fixture",
+      "propagation_rights_map": "fixture",
+      "maturity_gate_report": "fixture",
+      "verification_dashboard": "fixture",
+      "public_record_dashboard": "fixture",
+      "symbolic_field_registry": "fixture",
+      "investigation_dashboard": "fixture"
+    },
+    "derivedFromFixtures": true
+  },
+  "entries": [
+    {
+      "reviewId": "ea-002",
+      "status": "watch",
+      "evidenceMaturity": "weak",
+      "claimType": "policy-signal",
+      "allowedAuthorityClass": "observation-only",
+      "authorityMismatchFlag": true,
+      "propagationRestrictions": [
+        "no-escalation",
+        "no-public-forwarding"
+      ],
+      "maturityGateStatus": "hold",
+      "maturityGateReason": "weak-evidence",
+      "authorityAuditState": "watch",
+      "linkedTargetIds": [
+        "concept:continuity-protocol"
+      ],
+      "humanReviewFlag": true,
+      "observational": true,
+      "nonCanonical": true,
+      "queuedAt": "2026-03-07"
+    }
+  ]
+}
