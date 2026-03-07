@@ -672,6 +672,35 @@ async function main() {
           'border-width': 2,
           'border-color': '#ffd8a4'
         }
+      },
+      {
+        selector: '.attestation-docket',
+        style: {
+          'border-color': '#b9f0ff'
+        }
+      },
+      {
+        selector: '.attestation-watch',
+        style: {
+          'overlay-color': '#b9f0ff',
+          'overlay-opacity': 0.08,
+          'overlay-padding': 2
+        }
+      },
+      {
+        selector: '.witness-sufficient',
+        style: {
+          'shadow-color': '#8ff0cc',
+          'shadow-opacity': 0.18,
+          'shadow-blur': 18
+        }
+      },
+      {
+        selector: '.attestation-sensitive',
+        style: {
+          'border-width': 2,
+          'border-color': '#ffd3a0'
+        }
       }
     ],
     layout: {
@@ -795,7 +824,7 @@ async function main() {
   resetEl.addEventListener('click', () => {
     searchEl.value = '';
     typeFilterEl.value = 'all';
-    cy.elements().removeClass('zoom-hidden filter-hidden highlight spotlight-dim spotlight-focus sonya-candidate reasoning-thread reasoning-watch stability-positive stability-watch multimodal-donation multimodal-watch review-candidate watch-queue governance-review governance-watch constitutional-watch constitutional-freeze deliberation-docket deliberation-watch deliberation-urgent anti-capture-watch continuity-docket continuity-watch continuity-fragile continuity-freeze recovery-docket recovery-watch escrow-ready recovery-fragile');
+    cy.elements().removeClass('zoom-hidden filter-hidden highlight spotlight-dim spotlight-focus sonya-candidate reasoning-thread reasoning-watch stability-positive stability-watch multimodal-donation multimodal-watch review-candidate watch-queue governance-review governance-watch constitutional-watch constitutional-freeze deliberation-docket deliberation-watch deliberation-urgent anti-capture-watch continuity-docket continuity-watch continuity-fragile continuity-freeze recovery-docket recovery-watch escrow-ready recovery-fragile attestation-docket attestation-watch witness-sufficient attestation-sensitive');
     constellationApi.clear();
     cy.fit(cy.elements(':visible'), 60);
     setDefaultPanel(detailEl);

@@ -81,7 +81,11 @@ export async function loadAttentionOverlay() {
     escrowIndexResp,
     recoveryDocketResp,
     integrityWatchlistResp,
-    recoveryAnnotationsResp
+    recoveryAnnotationsResp,
+    attestationRegistryResp,
+    witnessDocketResp,
+    integrityTestimonyWatchlistResp,
+    attestationAnnotationsResp
   ] = await Promise.all([
     fetch('../bridge/attention_updates.json').catch(() => null),
     fetch('../bridge/coherence_assessment.json').catch(() => null),
@@ -121,7 +125,11 @@ export async function loadAttentionOverlay() {
     fetch('../registry/escrow_index.json').catch(() => null),
     fetch('../registry/recovery_docket.json').catch(() => null),
     fetch('../registry/integrity_watchlist.json').catch(() => null),
-    fetch('../registry/recovery_annotations.json').catch(() => null)
+    fetch('../registry/recovery_annotations.json').catch(() => null),
+    fetch('../registry/attestation_registry.json').catch(() => null),
+    fetch('../registry/witness_docket.json').catch(() => null),
+    fetch('../registry/integrity_testimony_watchlist.json').catch(() => null),
+    fetch('../registry/attestation_annotations.json').catch(() => null)
   ]);
 
   return {
@@ -163,7 +171,11 @@ export async function loadAttentionOverlay() {
     escrowIndex: escrowIndexResp ? await escrowIndexResp.json() : {},
     recoveryDocket: recoveryDocketResp ? await recoveryDocketResp.json() : {},
     integrityWatchlist: integrityWatchlistResp ? await integrityWatchlistResp.json() : {},
-    recoveryAnnotations: recoveryAnnotationsResp ? await recoveryAnnotationsResp.json() : {}
+    recoveryAnnotations: recoveryAnnotationsResp ? await recoveryAnnotationsResp.json() : {},
+    attestationRegistry: attestationRegistryResp ? await attestationRegistryResp.json() : {},
+    witnessDocket: witnessDocketResp ? await witnessDocketResp.json() : {},
+    integrityTestimonyWatchlist: integrityTestimonyWatchlistResp ? await integrityTestimonyWatchlistResp.json() : {},
+    attestationAnnotations: attestationAnnotationsResp ? await attestationAnnotationsResp.json() : {}
   };
 }
 
@@ -669,6 +681,87 @@ function buildRecoveryConceptSignals(escrowIndex, recoveryDocket, integrityWatch
   return byConcept;
 }
 
+
+
+function buildAttestationConceptSignals(attestationRegistry, witnessDocket, integrityTestimonyWatchlist, attestationAnnotations) {
+  const byConcept = new Map();
+
+  function bump(targetId, update) {
+    if (typeof targetId !== 'string') {
+      return;
+    }
+    const existing = byConcept.get(targetId) ?? {
+      attestationStatus: 'review-pending',
+      witnessSufficiency: 'unknown',
+      integrityTestimonyWatchState: 'none',
+      attestationNeed: 'moderate',
+      tamperSensitivity: 'unknown',
+      attestationQueueStatus: 'none'
+    };
+    update(existing);
+    byConcept.set(targetId, existing);
+  }
+
+  asArray(witnessDocket?.entries).forEach((entry) => {
+    asArray(entry?.linkedTargetIds).forEach((targetId) => {
+      bump(targetId, (s) => {
+        s.attestationStatus = entry?.attestationStatus ?? s.attestationStatus;
+        s.witnessSufficiency = entry?.witnessSufficiency ?? s.witnessSufficiency;
+        s.integrityTestimonyWatchState = entry?.integrityTestimonyWatchState ?? s.integrityTestimonyWatchState;
+        s.attestationNeed = entry?.attestationNeed ?? s.attestationNeed;
+        s.tamperSensitivity = entry?.tamperSensitivity ?? s.tamperSensitivity;
+        s.attestationQueueStatus = 'docket';
+      });
+    });
+  });
+
+  asArray(integrityTestimonyWatchlist?.entries).forEach((entry) => {
+    asArray(entry?.linkedTargetIds).forEach((targetId) => {
+      bump(targetId, (s) => {
+        s.attestationStatus = entry?.attestationStatus ?? s.attestationStatus;
+        s.witnessSufficiency = entry?.witnessSufficiency ?? s.witnessSufficiency;
+        s.integrityTestimonyWatchState = entry?.integrityTestimonyWatchState ?? s.integrityTestimonyWatchState;
+        s.attestationNeed = entry?.attestationNeed ?? s.attestationNeed;
+        s.tamperSensitivity = entry?.tamperSensitivity ?? s.tamperSensitivity;
+        if (s.attestationQueueStatus !== 'docket') {
+          s.attestationQueueStatus = 'watch';
+        }
+      });
+    });
+  });
+
+  asArray(attestationAnnotations?.annotations).forEach((entry) => {
+    asArray(entry?.linkedTargetIds).forEach((targetId) => {
+      bump(targetId, (s) => {
+        s.attestationStatus = entry?.attestationStatus ?? s.attestationStatus;
+        s.witnessSufficiency = entry?.witnessSufficiency ?? s.witnessSufficiency;
+        s.integrityTestimonyWatchState = entry?.integrityTestimonyWatchState ?? s.integrityTestimonyWatchState;
+        s.attestationNeed = entry?.attestationNeed ?? s.attestationNeed;
+        s.tamperSensitivity = entry?.tamperSensitivity ?? s.tamperSensitivity;
+      });
+    });
+  });
+
+  const registryByArtifact = new Map();
+  asArray(attestationRegistry?.entries).forEach((entry) => {
+    if (typeof entry?.artifactId === 'string') {
+      registryByArtifact.set(entry.artifactId, entry);
+    }
+  });
+
+  asArray(attestationAnnotations?.annotations).forEach((entry) => {
+    const registryEntry = registryByArtifact.get(entry?.artifactId);
+    asArray(entry?.linkedTargetIds).forEach((targetId) => {
+      bump(targetId, (s) => {
+        s.attestationStatus = registryEntry?.attestationStatus ?? s.attestationStatus;
+        s.witnessSufficiency = registryEntry?.witnessSufficiency ?? s.witnessSufficiency;
+      });
+    });
+  });
+
+  return byConcept;
+}
+
 function buildConstitutionalConceptSignals(constitutionalAnnotations, governanceFailureWatchlist) {
   const byConcept = new Map();
 
@@ -749,6 +842,12 @@ export function applyAttentionOverlay(cy, overlay) {
     overlay?.integrityWatchlist,
     overlay?.recoveryAnnotations
   );
+  const attestationSignals = buildAttestationConceptSignals(
+    overlay?.attestationRegistry,
+    overlay?.witnessDocket,
+    overlay?.integrityTestimonyWatchlist,
+    overlay?.attestationAnnotations
+  );
 
   cy.nodes('[class = "concept"]').forEach((node) => {
     const id = node.id();
@@ -814,8 +913,14 @@ export function applyAttentionOverlay(cy, overlay) {
     node.data('recoveryReadiness', recovery?.recoveryReadiness ?? 'unknown');
     node.data('integrityWatchState', recovery?.integrityWatchState ?? 'none');
     node.data('recoverabilityScore', Number(recovery?.recoverabilityScore ?? 0));
+    const attestation = attestationSignals.get(id);
+    node.data('attestationStatus', attestation?.attestationStatus ?? 'review-pending');
+    node.data('witnessSufficiency', attestation?.witnessSufficiency ?? 'unknown');
+    node.data('integrityTestimonyWatchState', attestation?.integrityTestimonyWatchState ?? 'none');
+    node.data('attestationNeed', attestation?.attestationNeed ?? 'moderate');
+    node.data('tamperSensitivity', attestation?.tamperSensitivity ?? 'unknown');
 
-    node.removeClass('attention-priority attention-secondary sonya-candidate reasoning-thread reasoning-watch stability-positive stability-watch multimodal-donation multimodal-watch review-candidate watch-queue governance-review governance-watch constitutional-watch constitutional-freeze deliberation-docket deliberation-watch deliberation-urgent anti-capture-watch continuity-docket continuity-watch continuity-fragile continuity-freeze recovery-docket recovery-watch escrow-ready recovery-fragile');
+    node.removeClass('attention-priority attention-secondary sonya-candidate reasoning-thread reasoning-watch stability-positive stability-watch multimodal-donation multimodal-watch review-candidate watch-queue governance-review governance-watch constitutional-watch constitutional-freeze deliberation-docket deliberation-watch deliberation-urgent anti-capture-watch continuity-docket continuity-watch continuity-fragile continuity-freeze recovery-docket recovery-watch escrow-ready recovery-fragile attestation-docket attestation-watch witness-sufficient attestation-sensitive');
     if ((rankData?.rank ?? Infinity) <= 2) {
       node.addClass('attention-priority');
     } else if ((rankData?.rank ?? Infinity) <= 5) {
@@ -904,6 +1009,19 @@ export function applyAttentionOverlay(cy, overlay) {
     }
     if (['watch', 'freeze'].includes(recovery?.integrityWatchState ?? 'none')) {
       node.addClass('recovery-fragile');
+    }
+
+    if ((attestation?.attestationQueueStatus ?? 'none') === 'docket') {
+      node.addClass('attestation-docket');
+    }
+    if ((attestation?.attestationQueueStatus ?? 'none') === 'watch') {
+      node.addClass('attestation-watch');
+    }
+    if ((attestation?.witnessSufficiency ?? 'unknown') === 'sufficient') {
+      node.addClass('witness-sufficient');
+    }
+    if (['high', 'critical'].includes(attestation?.attestationNeed ?? 'moderate') || (attestation?.tamperSensitivity ?? 'unknown') === 'high') {
+      node.addClass('attestation-sensitive');
     }
   });
 }

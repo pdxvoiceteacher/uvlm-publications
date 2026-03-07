@@ -98,6 +98,11 @@ function renderConcept(data) {
     row('Recovery Readiness', data.recoveryReadiness ?? 'unknown'),
     row('Recoverability Score', Number(data.recoverabilityScore ?? 0).toFixed(2)),
     row('Integrity Watch State', data.integrityWatchState ?? 'none'),
+    row('Attestation Status', data.attestationStatus ?? 'review-pending'),
+    row('Witness Sufficiency', data.witnessSufficiency ?? 'unknown'),
+    row('Integrity Testimony Watch State', data.integrityTestimonyWatchState ?? 'none'),
+    row('Attestation Need', data.attestationNeed ?? 'moderate'),
+    row('Tamper Sensitivity', data.tamperSensitivity ?? 'unknown'),
     row('Related Concepts', data.relatedConceptCount ?? 0),
     renderConceptRelations(data.relatedConcepts)
   ].join('');
