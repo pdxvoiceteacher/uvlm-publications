@@ -940,6 +940,42 @@ async function main() {
           'shadow-opacity': 0.14,
           'shadow-blur': 14
         }
+      },
+      {
+        selector: '.public-record-active',
+        style: {
+          'border-color': '#d4e6f5'
+        }
+      },
+      {
+        selector: '.entity-graph-linked',
+        style: {
+          'overlay-color': '#d4e6f5',
+          'overlay-opacity': 0.08,
+          'overlay-padding': 2
+        }
+      },
+      {
+        selector: '.relationship-ambiguous',
+        style: {
+          'border-width': 2,
+          'border-color': '#ffd7c7'
+        }
+      },
+      {
+        selector: '.custody-fragile',
+        style: {
+          'shadow-color': '#ffd7c7',
+          'shadow-opacity': 0.14,
+          'shadow-blur': 14
+        }
+      },
+      {
+        selector: '.machine-readable-record',
+        style: {
+          'border-style': 'dashed',
+          'border-width': 2
+        }
       }
     ],
     layout: {

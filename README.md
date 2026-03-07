@@ -481,6 +481,22 @@ Build command:
 python3 scripts/build_verification_overlay.py
 ```
 
+
+### Public record ingestion, entity graph, and chain-of-custody protocol (Phase V)
+
+Publisher surfaces only **Sophia-audited public-record mapping materials; no automatic accusation, graph hardening, or identity mutation occurs from this layer**.
+
+- inputs: `bridge/public_record_audit.json`, `bridge/public_record_recommendations.json`, `bridge/public_record_intake_map.json`, `bridge/entity_graph_map.json`, `bridge/relationship_edge_map.json`, `bridge/chain_of_custody_report.json`, `registry/verification_dashboard.json`, `registry/claim_type_registry.json`, `registry/entity_watchlist.json`
+- non-canonical outputs: `registry/public_record_dashboard.json`, `registry/entity_graph_registry.json`, `registry/relationship_watchlist.json`, `registry/chain_of_custody_annotations.json`
+- phase lock: verification/claim/entity state → CoherenceLattice public-record and custody formalization → Sophia public-record audit → publisher record-mapping overlays → human/community lawful record review
+- principles: record intake is evidentiary, not accusatory; relationship ambiguity must remain explicit; custody integrity must stay traceable; watch state is observational; graph visibility is not canonical graph mutation
+
+Build command:
+
+```bash
+python3 scripts/build_public_record_overlay.py
+```
+
 ## UVLM Research Atlas
 
 ### Product Vision (Engineering + Research Brief)

@@ -117,7 +117,11 @@ export async function loadAttentionOverlay() {
     verificationDashboardResp,
     entityWatchlistResp,
     claimTypeRegistryResp,
-    verificationAnnotationsResp
+    verificationAnnotationsResp,
+    publicRecordDashboardResp,
+    entityGraphRegistryResp,
+    relationshipWatchlistResp,
+    chainOfCustodyAnnotationsResp
   ] = await Promise.all([
     fetch('../bridge/attention_updates.json').catch(() => null),
     fetch('../bridge/coherence_assessment.json').catch(() => null),
@@ -193,7 +197,11 @@ export async function loadAttentionOverlay() {
     fetch('../registry/verification_dashboard.json').catch(() => null),
     fetch('../registry/entity_watchlist.json').catch(() => null),
     fetch('../registry/claim_type_registry.json').catch(() => null),
-    fetch('../registry/verification_annotations.json').catch(() => null)
+    fetch('../registry/verification_annotations.json').catch(() => null),
+    fetch('../registry/public_record_dashboard.json').catch(() => null),
+    fetch('../registry/entity_graph_registry.json').catch(() => null),
+    fetch('../registry/relationship_watchlist.json').catch(() => null),
+    fetch('../registry/chain_of_custody_annotations.json').catch(() => null)
   ]);
 
   return {
@@ -271,7 +279,11 @@ export async function loadAttentionOverlay() {
     verificationDashboard: verificationDashboardResp ? await verificationDashboardResp.json() : {},
     entityWatchlist: entityWatchlistResp ? await entityWatchlistResp.json() : {},
     claimTypeRegistry: claimTypeRegistryResp ? await claimTypeRegistryResp.json() : {},
-    verificationAnnotations: verificationAnnotationsResp ? await verificationAnnotationsResp.json() : {}
+    verificationAnnotations: verificationAnnotationsResp ? await verificationAnnotationsResp.json() : {},
+    publicRecordDashboard: publicRecordDashboardResp ? await publicRecordDashboardResp.json() : {},
+    entityGraphRegistry: entityGraphRegistryResp ? await entityGraphRegistryResp.json() : {},
+    relationshipWatchlist: relationshipWatchlistResp ? await relationshipWatchlistResp.json() : {},
+    chainOfCustodyAnnotations: chainOfCustodyAnnotationsResp ? await chainOfCustodyAnnotationsResp.json() : {}
   };
 }
 
@@ -1466,6 +1478,82 @@ function buildVerificationConceptSignals(verificationDashboard, entityWatchlist,
   return byConcept;
 }
 
+
+function buildPublicRecordConceptSignals(publicRecordDashboard, entityGraphRegistry, relationshipWatchlist, chainOfCustodyAnnotations) {
+  const byConcept = new Map();
+
+  function bump(targetId, update) {
+    if (typeof targetId !== 'string') {
+      return;
+    }
+    const existing = byConcept.get(targetId) ?? {
+      recordType: 'unknown',
+      machineReadabilityScore: 0,
+      entityGraphStatus: 'pending',
+      relationshipAmbiguity: 'medium',
+      custodyIntegrityScore: 0,
+      publicRecordQueueStatus: 'none'
+    };
+    update(existing);
+    byConcept.set(targetId, existing);
+  }
+
+  asArray(entityGraphRegistry?.entries).forEach((entry) => {
+    asArray(entry?.linkedTargetIds).forEach((targetId) => {
+      bump(targetId, (s) => {
+        s.recordType = entry?.recordType ?? s.recordType;
+        s.machineReadabilityScore = Number(entry?.machineReadabilityScore ?? s.machineReadabilityScore);
+        s.entityGraphStatus = entry?.entityGraphStatus ?? s.entityGraphStatus;
+        s.relationshipAmbiguity = entry?.relationshipAmbiguity ?? s.relationshipAmbiguity;
+        s.custodyIntegrityScore = Number(entry?.custodyIntegrityScore ?? s.custodyIntegrityScore);
+        s.publicRecordQueueStatus = 'registry';
+      });
+    });
+  });
+
+  asArray(publicRecordDashboard?.entries).forEach((entry) => {
+    asArray(entry?.linkedTargetIds).forEach((targetId) => {
+      bump(targetId, (s) => {
+        s.recordType = entry?.recordType ?? s.recordType;
+        s.machineReadabilityScore = Number(entry?.machineReadabilityScore ?? s.machineReadabilityScore);
+        s.entityGraphStatus = entry?.entityGraphStatus ?? s.entityGraphStatus;
+        s.relationshipAmbiguity = entry?.relationshipAmbiguity ?? s.relationshipAmbiguity;
+        s.custodyIntegrityScore = Number(entry?.custodyIntegrityScore ?? s.custodyIntegrityScore);
+        s.publicRecordQueueStatus = 'dashboard';
+      });
+    });
+  });
+
+  asArray(relationshipWatchlist?.entries).forEach((entry) => {
+    asArray(entry?.linkedTargetIds).forEach((targetId) => {
+      bump(targetId, (s) => {
+        s.recordType = entry?.recordType ?? s.recordType;
+        s.machineReadabilityScore = Number(entry?.machineReadabilityScore ?? s.machineReadabilityScore);
+        s.entityGraphStatus = entry?.entityGraphStatus ?? s.entityGraphStatus;
+        s.relationshipAmbiguity = entry?.relationshipAmbiguity ?? s.relationshipAmbiguity;
+        s.custodyIntegrityScore = Number(entry?.custodyIntegrityScore ?? s.custodyIntegrityScore);
+        if (!['registry', 'dashboard'].includes(s.publicRecordQueueStatus)) {
+          s.publicRecordQueueStatus = 'watch';
+        }
+      });
+    });
+  });
+
+  asArray(chainOfCustodyAnnotations?.annotations).forEach((entry) => {
+    asArray(entry?.linkedTargetIds).forEach((targetId) => {
+      bump(targetId, (s) => {
+        s.recordType = entry?.recordType ?? s.recordType;
+        s.machineReadabilityScore = Number(entry?.machineReadabilityScore ?? s.machineReadabilityScore);
+        s.entityGraphStatus = entry?.entityGraphStatus ?? s.entityGraphStatus;
+        s.relationshipAmbiguity = entry?.relationshipAmbiguity ?? s.relationshipAmbiguity;
+        s.custodyIntegrityScore = Number(entry?.custodyIntegrityScore ?? s.custodyIntegrityScore);
+      });
+    });
+  });
+
+  return byConcept;
+}
+
 function buildConstitutionalConceptSignals(constitutionalAnnotations, governanceFailureWatchlist) {
   const byConcept = new Map();
 
@@ -1600,6 +1688,12 @@ export function applyAttentionOverlay(cy, overlay) {
     overlay?.claimTypeRegistry,
     overlay?.verificationAnnotations
   );
+  const publicRecordSignals = buildPublicRecordConceptSignals(
+    overlay?.publicRecordDashboard,
+    overlay?.entityGraphRegistry,
+    overlay?.relationshipWatchlist,
+    overlay?.chainOfCustodyAnnotations
+  );
 
 
   const institutionalProvenance = overlay?.institutionalStatus?.provenance ?? {};
@@ -1638,6 +1732,12 @@ export function applyAttentionOverlay(cy, overlay) {
     ?? 'unknown';
   const verificationProducerCommits = asArray(verificationProvenance?.producerCommits).join(', ') || 'unknown';
   const verificationSourceMode = verificationProvenance?.derivedFromFixtures ? 'fixture' : 'live';
+  const publicRecordProvenance = overlay?.publicRecordDashboard?.provenance ?? {};
+  const publicRecordSchemaVersion = publicRecordProvenance?.schemaVersions?.public_record_intake_map
+    ?? publicRecordProvenance?.schemaVersions?.entity_graph_map
+    ?? 'unknown';
+  const publicRecordProducerCommits = asArray(publicRecordProvenance?.producerCommits).join(', ') || 'unknown';
+  const publicRecordSourceMode = publicRecordProvenance?.derivedFromFixtures ? 'fixture' : 'live';
 
   cy.nodes('[class = "concept"]').forEach((node) => {
     const id = node.id();
@@ -1769,8 +1869,17 @@ export function applyAttentionOverlay(cy, overlay) {
     node.data('verificationSchemaVersion', verificationSchemaVersion);
     node.data('verificationProducerCommits', verificationProducerCommits);
     node.data('verificationSourceMode', verificationSourceMode);
+    const publicRecord = publicRecordSignals.get(id);
+    node.data('recordType', publicRecord?.recordType ?? 'unknown');
+    node.data('machineReadabilityScore', Number(publicRecord?.machineReadabilityScore ?? 0));
+    node.data('entityGraphStatus', publicRecord?.entityGraphStatus ?? 'pending');
+    node.data('relationshipAmbiguity', publicRecord?.relationshipAmbiguity ?? 'medium');
+    node.data('custodyIntegrityScore', Number(publicRecord?.custodyIntegrityScore ?? 0));
+    node.data('publicRecordSchemaVersion', publicRecordSchemaVersion);
+    node.data('publicRecordProducerCommits', publicRecordProducerCommits);
+    node.data('publicRecordSourceMode', publicRecordSourceMode);
 
-    node.removeClass('attention-priority attention-secondary sonya-candidate reasoning-thread reasoning-watch stability-positive stability-watch multimodal-donation multimodal-watch review-candidate watch-queue governance-review governance-watch constitutional-watch constitutional-freeze deliberation-docket deliberation-watch deliberation-urgent anti-capture-watch continuity-docket continuity-watch continuity-fragile continuity-freeze recovery-docket recovery-watch escrow-ready recovery-fragile attestation-docket attestation-watch witness-sufficient attestation-sensitive precedent-docket precedent-watch precedent-divergent precedent-strong scenario-docket scenario-watch scenario-freeze scenario-rehearse-recovery institutional-status-indicator chamber-conflict-indicator system-health-overview queue-health-actionable backlog-pressure-watch review-fatigue-watch metric-gaming-watch load-shedding-recommended priority-actionable triage-watch urgency-high priority-critical triage-conflict closure-active closure-provisional repair-urgent reopened-watch symbolic-field-active regime-shift-watch lambda-warning architecture-hint verification-active entity-ambiguity verification-urgent claim-typed');
+    node.removeClass('attention-priority attention-secondary sonya-candidate reasoning-thread reasoning-watch stability-positive stability-watch multimodal-donation multimodal-watch review-candidate watch-queue governance-review governance-watch constitutional-watch constitutional-freeze deliberation-docket deliberation-watch deliberation-urgent anti-capture-watch continuity-docket continuity-watch continuity-fragile continuity-freeze recovery-docket recovery-watch escrow-ready recovery-fragile attestation-docket attestation-watch witness-sufficient attestation-sensitive precedent-docket precedent-watch precedent-divergent precedent-strong scenario-docket scenario-watch scenario-freeze scenario-rehearse-recovery institutional-status-indicator chamber-conflict-indicator system-health-overview queue-health-actionable backlog-pressure-watch review-fatigue-watch metric-gaming-watch load-shedding-recommended priority-actionable triage-watch urgency-high priority-critical triage-conflict closure-active closure-provisional repair-urgent reopened-watch symbolic-field-active regime-shift-watch lambda-warning architecture-hint verification-active entity-ambiguity verification-urgent claim-typed public-record-active entity-graph-linked relationship-ambiguous custody-fragile machine-readable-record');
     if ((rankData?.rank ?? Infinity) <= 2) {
       node.addClass('attention-priority');
     } else if ((rankData?.rank ?? Infinity) <= 5) {
@@ -1979,6 +2088,22 @@ export function applyAttentionOverlay(cy, overlay) {
     }
     if ((verification?.verificationUrgency ?? 'routine') === 'high') {
       node.addClass('verification-urgent');
+    }
+
+    if (['registry', 'dashboard'].includes(publicRecord?.publicRecordQueueStatus ?? 'none')) {
+      node.addClass('public-record-active');
+    }
+    if ((publicRecord?.entityGraphStatus ?? 'pending') === 'linked') {
+      node.addClass('entity-graph-linked');
+    }
+    if (['medium', 'high'].includes(publicRecord?.relationshipAmbiguity ?? 'medium')) {
+      node.addClass('relationship-ambiguous');
+    }
+    if ((publicRecord?.custodyIntegrityScore ?? 0) < 0.7) {
+      node.addClass('custody-fragile');
+    }
+    if ((publicRecord?.machineReadabilityScore ?? 0) >= 0.75) {
+      node.addClass('machine-readable-record');
     }
   });
 }

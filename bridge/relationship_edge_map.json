@@ -1,0 +1,13 @@
+{
+  "generatedAt": "2026-03-07",
+  "provenance": {
+    "schemaVersion": "phase-v.0",
+    "producerCommits": ["cl-v-222"],
+    "sourceMode": "fixture"
+  },
+  "entries": [
+    {"reviewId": "prv-001", "relationshipAmbiguity": "medium"},
+    {"reviewId": "prv-002", "relationshipAmbiguity": "high"},
+    {"reviewId": "prv-003", "relationshipAmbiguity": "high"}
+  ]
+}

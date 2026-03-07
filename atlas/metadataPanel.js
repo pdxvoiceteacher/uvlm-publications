@@ -155,6 +155,14 @@ function renderConcept(data) {
     row('Verification Schema Version', data.verificationSchemaVersion ?? 'unknown'),
     row('Verification Producer Commit(s)', data.verificationProducerCommits ?? 'unknown'),
     row('Verification Source Mode', data.verificationSourceMode ?? 'unknown'),
+    row('Record Type', data.recordType ?? 'unknown'),
+    row('Machine-Readability Score', Number(data.machineReadabilityScore ?? 0).toFixed(2)),
+    row('Entity Graph Status', data.entityGraphStatus ?? 'pending'),
+    row('Relationship Ambiguity', data.relationshipAmbiguity ?? 'medium'),
+    row('Custody Integrity Score', Number(data.custodyIntegrityScore ?? 0).toFixed(2)),
+    row('Public-Record Schema Version', data.publicRecordSchemaVersion ?? 'unknown'),
+    row('Public-Record Producer Commit(s)', data.publicRecordProducerCommits ?? 'unknown'),
+    row('Public-Record Source Mode', data.publicRecordSourceMode ?? 'unknown'),
     row('Related Concepts', data.relatedConceptCount ?? 0),
     renderConceptRelations(data.relatedConcepts)
   ].join('');

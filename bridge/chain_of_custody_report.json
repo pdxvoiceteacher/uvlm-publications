@@ -1,0 +1,13 @@
+{
+  "generatedAt": "2026-03-07",
+  "provenance": {
+    "schemaVersion": "phase-v.0",
+    "producerCommits": ["sophia-v-111"],
+    "sourceMode": "fixture"
+  },
+  "entries": [
+    {"reviewId": "prv-001", "custodyIntegrityScore": 0.91, "custodyState": "traceable"},
+    {"reviewId": "prv-002", "custodyIntegrityScore": 0.62, "custodyState": "needs-traceability"},
+    {"reviewId": "prv-003", "custodyIntegrityScore": 0.35, "custodyState": "unverified"}
+  ]
+}
