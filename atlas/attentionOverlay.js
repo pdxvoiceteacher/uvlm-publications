@@ -59,7 +59,9 @@ export async function loadAttentionOverlay() {
     multimodalSignalIndexResp,
     patternDonationAnnotationsResp,
     crossModalAttentionOverlaysResp,
-    patternDonationWatchlistResp
+    patternDonationWatchlistResp,
+    reviewDocketResp,
+    promotionWatchQueueResp
   ] = await Promise.all([
     fetch('../bridge/attention_updates.json').catch(() => null),
     fetch('../bridge/coherence_assessment.json').catch(() => null),
@@ -77,7 +79,9 @@ export async function loadAttentionOverlay() {
     fetch('../registry/multimodal_signal_index.json').catch(() => null),
     fetch('../registry/pattern_donation_annotations.json').catch(() => null),
     fetch('../registry/cross_modal_attention_overlays.json').catch(() => null),
-    fetch('../registry/pattern_donation_watchlist.json').catch(() => null)
+    fetch('../registry/pattern_donation_watchlist.json').catch(() => null),
+    fetch('../registry/review_docket.json').catch(() => null),
+    fetch('../registry/promotion_watch_queue.json').catch(() => null)
   ]);
 
   return {
@@ -97,7 +101,9 @@ export async function loadAttentionOverlay() {
     multimodalSignalIndex: multimodalSignalIndexResp ? await multimodalSignalIndexResp.json() : {},
     patternDonationAnnotations: patternDonationAnnotationsResp ? await patternDonationAnnotationsResp.json() : {},
     crossModalAttentionOverlays: crossModalAttentionOverlaysResp ? await crossModalAttentionOverlaysResp.json() : {},
-    patternDonationWatchlist: patternDonationWatchlistResp ? await patternDonationWatchlistResp.json() : {}
+    patternDonationWatchlist: patternDonationWatchlistResp ? await patternDonationWatchlistResp.json() : {},
+    reviewDocket: reviewDocketResp ? await reviewDocketResp.json() : {},
+    promotionWatchQueue: promotionWatchQueueResp ? await promotionWatchQueueResp.json() : {}
   };
 }
 
@@ -266,6 +272,43 @@ function buildMultimodalConceptSignals(multimodalSignalIndex, crossModalAttentio
   return byConcept;
 }
 
+
+
+function buildPromotionConceptSignals(reviewDocket, promotionWatchQueue) {
+  const byConcept = new Map();
+
+  function bump(targetId, update) {
+    if (typeof targetId !== 'string') {
+      return;
+    }
+    const existing = byConcept.get(targetId) ?? { reviewCandidateCount: 0, reviewWatchCount: 0, reviewQueueStatus: 'none' };
+    update(existing);
+    byConcept.set(targetId, existing);
+  }
+
+  asArray(reviewDocket?.entries).forEach((entry) => {
+    asArray(entry?.linkedTargetIds).forEach((targetId) => {
+      bump(targetId, (e) => {
+        e.reviewCandidateCount += 1;
+        e.reviewQueueStatus = 'docket';
+      });
+    });
+  });
+
+  asArray(promotionWatchQueue?.entries).forEach((entry) => {
+    asArray(entry?.linkedTargetIds).forEach((targetId) => {
+      bump(targetId, (e) => {
+        e.reviewWatchCount += 1;
+        if (e.reviewQueueStatus !== 'docket') {
+          e.reviewQueueStatus = 'watch';
+        }
+      });
+    });
+  });
+
+  return byConcept;
+}
+
 export function applyAttentionOverlay(cy, overlay) {
   const conceptWeights = overlay?.coherenceWeights?.conceptWeights ?? {};
   const conceptAnnotations = overlay?.sophiaAnnotations?.conceptAnnotations ?? {};
@@ -287,6 +330,7 @@ export function applyAttentionOverlay(cy, overlay) {
     overlay?.crossModalAttentionOverlays,
     overlay?.patternDonationWatchlist
   );
+  const promotionSignals = buildPromotionConceptSignals(overlay?.reviewDocket, overlay?.promotionWatchQueue);
 
   cy.nodes('[class = "concept"]').forEach((node) => {
     const id = node.id();
@@ -319,7 +363,12 @@ export function applyAttentionOverlay(cy, overlay) {
     node.data('donationWatchStatus', multimodal?.donationWatchStatus ?? 'none');
     node.data('reinforcementStatus', multimodal?.reinforcementStatus ?? 'none');
 
-    node.removeClass('attention-priority attention-secondary sonya-candidate reasoning-thread reasoning-watch stability-positive stability-watch multimodal-donation multimodal-watch');
+    const promotion = promotionSignals.get(id);
+    node.data('reviewCandidateCount', promotion?.reviewCandidateCount ?? 0);
+    node.data('reviewWatchCount', promotion?.reviewWatchCount ?? 0);
+    node.data('reviewQueueStatus', promotion?.reviewQueueStatus ?? 'none');
+
+    node.removeClass('attention-priority attention-secondary sonya-candidate reasoning-thread reasoning-watch stability-positive stability-watch multimodal-donation multimodal-watch review-candidate watch-queue');
     if ((rankData?.rank ?? Infinity) <= 2) {
       node.addClass('attention-priority');
     } else if ((rankData?.rank ?? Infinity) <= 5) {
@@ -349,6 +398,13 @@ export function applyAttentionOverlay(cy, overlay) {
     }
     if (['watch', 'defer', 'escalate-human-review'].includes(multimodal?.donationWatchStatus ?? 'none')) {
       node.addClass('multimodal-watch');
+    }
+
+    if ((promotion?.reviewCandidateCount ?? 0) > 0) {
+      node.addClass('review-candidate');
+    }
+    if ((promotion?.reviewWatchCount ?? 0) > 0) {
+      node.addClass('watch-queue');
     }
   });
 }

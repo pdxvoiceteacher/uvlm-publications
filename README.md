@@ -239,6 +239,21 @@ Build command:
 python3 scripts/build_multimodal_overlay.py
 ```
 
+### Human review promotion gate (Phase G)
+
+Publisher surfaces only **Sophia-audited review candidates and watch items**.
+Human promotion decisions remain external to automation.
+
+- inputs: `bridge/promotion_audit.json`, `bridge/promotion_recommendations.json`, and surfaced reasoning/monitoring/multimodal overlays
+- canonical output: `registry/review_docket.json`, `registry/promotion_annotations.json`
+- observational non-canonical output: `registry/promotion_watch_queue.json`
+
+Build command:
+
+```bash
+python3 scripts/build_review_docket.py
+```
+
 
 ## UVLM Research Atlas
 

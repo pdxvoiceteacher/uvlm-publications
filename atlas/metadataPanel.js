@@ -72,6 +72,9 @@ function renderConcept(data) {
     row('Multimodal Donation Count', data.multimodalDonationCount ?? 0),
     row('Donation Watch Status', data.donationWatchStatus ?? 'none'),
     row('Reinforcement Status', data.reinforcementStatus ?? 'none'),
+    row('Review Candidate Count', data.reviewCandidateCount ?? 0),
+    row('Review Watch Count', data.reviewWatchCount ?? 0),
+    row('Review Queue Status', data.reviewQueueStatus ?? 'none'),
     row('Related Concepts', data.relatedConceptCount ?? 0),
     renderConceptRelations(data.relatedConcepts)
   ].join('');

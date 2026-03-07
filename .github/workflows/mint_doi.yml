@@ -153,6 +153,23 @@ jobs:
           python -m json.tool registry/cross_modal_attention_overlays.json >/dev/null
           python -m json.tool registry/pattern_donation_watchlist.json >/dev/null
 
+      - name: Build review docket overlays
+        run: |
+          python scripts/build_review_docket.py \
+            --promotion-audit bridge/promotion_audit.json \
+            --promotion-recommendations bridge/promotion_recommendations.json \
+            --reasoning-threads registry/reasoning_threads.json \
+            --cognitive-monitor-index registry/cognitive_monitor_index.json \
+            --multimodal-signal-index registry/multimodal_signal_index.json \
+            --pattern-donation-annotations registry/pattern_donation_annotations.json \
+            --cognitive-watchlist registry/cognitive_watchlist.json
+
+      - name: Validate review docket JSON formatting
+        run: |
+          python -m json.tool registry/review_docket.json >/dev/null
+          python -m json.tool registry/promotion_annotations.json >/dev/null
+          python -m json.tool registry/promotion_watch_queue.json >/dev/null
+
       - name: Validate research constellations
         run: python scripts/validate_constellations.py registry/constellations.json --graph registry/knowledge_graph.json
 
@@ -170,7 +187,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add registry/dois.json registry/publications.json registry/catalog.json registry/knowledge_graph.json registry/atlas_timeline.json registry/constellations.json bridge/symbolic_input.json registry/sonya_memory_index.json registry/sonya_memory_annotations.json registry/sonya_attention_candidates.json registry/sonya_pending_review.json bridge/sonya_audit.json bridge/sonya_admission_decisions.json bridge/reasoning_audit.json bridge/recursive_reasoning_candidates.json registry/reasoning_threads.json registry/reasoning_thread_annotations.json registry/cognitive_watchlist.json bridge/stability_audit.json bridge/recursive_watch_escalations.json registry/cognitive_monitor_index.json registry/cognitive_stability_annotations.json registry/recursive_watch_history.json bridge/pattern_donation_audit.json bridge/pattern_donation_decisions.json bridge/cross_modal_reinforcement_report.json registry/multimodal_signal_index.json registry/pattern_donation_annotations.json registry/cross_modal_attention_overlays.json registry/pattern_donation_watchlist.json registry/deposits papers/echo-atlas-primer/metadata.yaml
+          git add registry/dois.json registry/publications.json registry/catalog.json registry/knowledge_graph.json registry/atlas_timeline.json registry/constellations.json bridge/symbolic_input.json registry/sonya_memory_index.json registry/sonya_memory_annotations.json registry/sonya_attention_candidates.json registry/sonya_pending_review.json bridge/sonya_audit.json bridge/sonya_admission_decisions.json bridge/reasoning_audit.json bridge/recursive_reasoning_candidates.json registry/reasoning_threads.json registry/reasoning_thread_annotations.json registry/cognitive_watchlist.json bridge/stability_audit.json bridge/recursive_watch_escalations.json registry/cognitive_monitor_index.json registry/cognitive_stability_annotations.json registry/recursive_watch_history.json bridge/pattern_donation_audit.json bridge/pattern_donation_decisions.json bridge/cross_modal_reinforcement_report.json registry/multimodal_signal_index.json registry/pattern_donation_annotations.json registry/cross_modal_attention_overlays.json registry/pattern_donation_watchlist.json bridge/promotion_audit.json bridge/promotion_recommendations.json registry/review_docket.json registry/promotion_annotations.json registry/promotion_watch_queue.json registry/deposits papers/echo-atlas-primer/metadata.yaml
           git diff --cached --quiet || git commit -m "Update DOI registries, catalog, graph, and deposit logs"
           git push
 
@@ -212,3 +229,8 @@ jobs:
             registry/pattern_donation_annotations.json
             registry/cross_modal_attention_overlays.json
             registry/pattern_donation_watchlist.json
+            bridge/promotion_audit.json
+            bridge/promotion_recommendations.json
+            registry/review_docket.json
+            registry/promotion_annotations.json
+            registry/promotion_watch_queue.json
