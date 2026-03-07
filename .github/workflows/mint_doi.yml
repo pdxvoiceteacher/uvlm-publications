@@ -1,0 +1,214 @@
+name: Mint DOI
+
+on:
+  pull_request:
+    paths:
+      - "papers/**"
+  push:
+    branches:
+      - main
+    paths:
+      - "papers/**"
+
+jobs:
+  mint-doi:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Compute content hash
+        run: python scripts/update_content_hash.py papers/echo-atlas-primer/metadata.yaml
+
+      - name: Validate publication metadata
+        run: python scripts/validate_metadata.py papers
+
+      - name: Generate Crossref XML
+        env:
+          DOI_PREFIX: ${{ secrets.DOI_PREFIX }}
+        run: |
+          python scripts/generate_crossref_xml.py \
+            papers/echo-atlas-primer/metadata.yaml \
+            --doi-prefix "${DOI_PREFIX}" \
+            --depositor-email "publications@ultraverbaluxmentis.org" \
+            --batch-id "${GITHUB_SHA}" \
+            --output crossref_deposit.xml
+
+      - name: Validate Crossref XML
+        run: python scripts/validate_crossref_xml.py crossref_deposit.xml
+
+      - name: Dry-run deposit (PR safety)
+        if: github.event_name == 'pull_request'
+        env:
+          CROSSREF_USERNAME: ${{ secrets.CROSSREF_USERNAME }}
+          CROSSREF_PASSWORD: ${{ secrets.CROSSREF_PASSWORD }}
+          DOI_PREFIX: ${{ secrets.DOI_PREFIX }}
+        run: |
+          python scripts/deposit_crossref.py \
+            --metadata papers/echo-atlas-primer/metadata.yaml \
+            --xml crossref_deposit.xml \
+            --dry-run
+
+      - name: Mint DOI and update registries
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        env:
+          CROSSREF_USERNAME: ${{ secrets.CROSSREF_USERNAME }}
+          CROSSREF_PASSWORD: ${{ secrets.CROSSREF_PASSWORD }}
+          DOI_PREFIX: ${{ secrets.DOI_PREFIX }}
+        run: |
+          python scripts/deposit_crossref.py \
+            --metadata papers/echo-atlas-primer/metadata.yaml \
+            --xml crossref_deposit.xml
+
+      - name: Build publication catalog
+        run: python scripts/build_catalog.py
+
+      - name: Build publication knowledge graph
+        run: python scripts/build_knowledge_graph.py --catalog registry/catalog.json --papers-dir papers --output registry/knowledge_graph.json
+
+      - name: Validate publication knowledge graph
+        run: python scripts/validate_knowledge_graph.py registry/knowledge_graph.json
+
+      - name: Build atlas timeline
+        run: python scripts/build_atlas_timeline.py --graph registry/knowledge_graph.json --catalog registry/catalog.json --output registry/atlas_timeline.json
+
+      - name: Validate atlas timeline
+        run: python scripts/validate_atlas_timeline.py registry/atlas_timeline.json
+
+      - name: Validate atlas timeline JSON formatting
+        run: python -m json.tool registry/atlas_timeline.json >/dev/null
+
+      - name: Build research constellations
+        run: python scripts/build_constellations.py --graph registry/knowledge_graph.json --catalog registry/catalog.json --output registry/constellations.json
+
+      - name: Export symbolic bridge structures
+        run: python scripts/export_symbolic_structures.py --graph registry/knowledge_graph.json --constellations registry/constellations.json --output bridge/symbolic_input.json
+
+      - name: Build Sonya memory ingestion overlays
+        run: python scripts/build_sonya_memory_overlay.py --sonya-audit bridge/sonya_audit.json --sonya-decisions bridge/sonya_admission_decisions.json
+
+      - name: Validate Sonya memory artifact JSON formatting
+        run: |
+          python -m json.tool registry/sonya_memory_index.json >/dev/null
+          python -m json.tool registry/sonya_memory_annotations.json >/dev/null
+          python -m json.tool registry/sonya_attention_candidates.json >/dev/null
+          python -m json.tool registry/sonya_pending_review.json >/dev/null
+
+      - name: Build reasoning thread overlays
+        run: |
+          python scripts/build_reasoning_thread_overlay.py \
+            --reasoning-audit bridge/reasoning_audit.json \
+            --recursive-candidates bridge/recursive_reasoning_candidates.json \
+            --sonya-memory-index registry/sonya_memory_index.json \
+            --sonya-memory-annotations registry/sonya_memory_annotations.json \
+            --sonya-attention-candidates registry/sonya_attention_candidates.json
+
+      - name: Validate reasoning overlay JSON formatting
+        run: |
+          python -m json.tool registry/reasoning_threads.json >/dev/null
+          python -m json.tool registry/reasoning_thread_annotations.json >/dev/null
+          python -m json.tool registry/cognitive_watchlist.json >/dev/null
+
+      - name: Build cognitive monitor overlays
+        run: |
+          python scripts/build_cognitive_monitor_overlay.py \
+            --stability-audit bridge/stability_audit.json \
+            --recursive-watch-escalations bridge/recursive_watch_escalations.json \
+            --reasoning-threads registry/reasoning_threads.json \
+            --cognitive-watchlist registry/cognitive_watchlist.json
+
+      - name: Validate cognitive monitor JSON formatting
+        run: |
+          python -m json.tool registry/cognitive_monitor_index.json >/dev/null
+          python -m json.tool registry/cognitive_stability_annotations.json >/dev/null
+          python -m json.tool registry/recursive_watch_history.json >/dev/null
+
+      - name: Build multimodal donation overlays
+        run: |
+          python scripts/build_multimodal_overlay.py \
+            --pattern-donation-audit bridge/pattern_donation_audit.json \
+            --pattern-donation-decisions bridge/pattern_donation_decisions.json \
+            --cross-modal-reinforcement-report bridge/cross_modal_reinforcement_report.json \
+            --cognitive-monitor-index registry/cognitive_monitor_index.json \
+            --reasoning-threads registry/reasoning_threads.json \
+            --cognitive-watchlist registry/cognitive_watchlist.json
+
+      - name: Validate multimodal overlay JSON formatting
+        run: |
+          python -m json.tool registry/multimodal_signal_index.json >/dev/null
+          python -m json.tool registry/pattern_donation_annotations.json >/dev/null
+          python -m json.tool registry/cross_modal_attention_overlays.json >/dev/null
+          python -m json.tool registry/pattern_donation_watchlist.json >/dev/null
+
+      - name: Validate research constellations
+        run: python scripts/validate_constellations.py registry/constellations.json --graph registry/knowledge_graph.json
+
+      - name: Validate constellations JSON formatting
+        run: python -m json.tool registry/constellations.json >/dev/null
+
+      - name: Run atlas timeline validator regression fixtures
+        run: python3 -m unittest tests/test_validate_atlas_timeline.py
+
+      - name: Run constellations validator regression fixtures
+        run: python3 -m unittest tests/test_validate_constellations.py
+
+      - name: Commit registry updates
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add registry/dois.json registry/publications.json registry/catalog.json registry/knowledge_graph.json registry/atlas_timeline.json registry/constellations.json bridge/symbolic_input.json registry/sonya_memory_index.json registry/sonya_memory_annotations.json registry/sonya_attention_candidates.json registry/sonya_pending_review.json bridge/sonya_audit.json bridge/sonya_admission_decisions.json bridge/reasoning_audit.json bridge/recursive_reasoning_candidates.json registry/reasoning_threads.json registry/reasoning_thread_annotations.json registry/cognitive_watchlist.json bridge/stability_audit.json bridge/recursive_watch_escalations.json registry/cognitive_monitor_index.json registry/cognitive_stability_annotations.json registry/recursive_watch_history.json bridge/pattern_donation_audit.json bridge/pattern_donation_decisions.json bridge/cross_modal_reinforcement_report.json registry/multimodal_signal_index.json registry/pattern_donation_annotations.json registry/cross_modal_attention_overlays.json registry/pattern_donation_watchlist.json registry/deposits papers/echo-atlas-primer/metadata.yaml
+          git diff --cached --quiet || git commit -m "Update DOI registries, catalog, graph, and deposit logs"
+          git push
+
+      - name: Upload deposit artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: crossref-deposit-artifacts
+          path: |
+            crossref_deposit.xml
+            papers/echo-atlas-primer/metadata.yaml
+            registry/deposits/
+            registry/dois.json
+            registry/publications.json
+            registry/catalog.json
+            registry/knowledge_graph.json
+            registry/atlas_timeline.json
+            registry/constellations.json
+            bridge/symbolic_input.json
+            bridge/sonya_audit.json
+            bridge/sonya_admission_decisions.json
+            registry/sonya_memory_index.json
+            registry/sonya_memory_annotations.json
+            registry/sonya_attention_candidates.json
+            registry/sonya_pending_review.json
+            bridge/reasoning_audit.json
+            bridge/recursive_reasoning_candidates.json
+            registry/reasoning_threads.json
+            registry/reasoning_thread_annotations.json
+            registry/cognitive_watchlist.json
+            bridge/stability_audit.json
+            bridge/recursive_watch_escalations.json
+            registry/cognitive_monitor_index.json
+            registry/cognitive_stability_annotations.json
+            registry/recursive_watch_history.json
+            bridge/pattern_donation_audit.json
+            bridge/pattern_donation_decisions.json
+            bridge/cross_modal_reinforcement_report.json
+            registry/multimodal_signal_index.json
+            registry/pattern_donation_annotations.json
+            registry/cross_modal_attention_overlays.json
+            registry/pattern_donation_watchlist.json

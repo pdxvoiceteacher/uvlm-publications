@@ -1,0 +1,20 @@
+{
+  "conceptScores": {
+    "concept:coherence-lattice": 0.96,
+    "concept:delta-syn": 0.82,
+    "concept:formal-coherence": 0.74,
+    "concept:narrative-phase-space": 0.69
+  },
+  "constellationScores": {
+    "constellation:coherence-lattice-core": 0.91
+  },
+  "conceptNotes": {
+    "concept:coherence-lattice": "Primary coherence anchor across current corpus.",
+    "concept:delta-syn": "Secondary lattice branch with strong publication coupling.",
+    "concept:formal-coherence": "Formalization concept with focused references.",
+    "concept:narrative-phase-space": "Narrative systems extension concept."
+  },
+  "constellationNotes": {
+    "constellation:coherence-lattice-core": "Core cluster formed by shared concept mentions and reference linkage."
+  }
+}
