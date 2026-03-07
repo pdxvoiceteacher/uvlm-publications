@@ -1,0 +1,26 @@
+{
+  "generatedAt": "2026-03-07",
+  "governanceFacing": true,
+  "nonCanonical": true,
+  "deliberationChamber": true,
+  "finalActionExternal": true,
+  "entries": [
+    {
+      "reviewId": "delib-001",
+      "candidateId": "amend-001",
+      "status": "recommend-deliberation",
+      "quorumStatus": "legitimate",
+      "amendmentStatus": "recommend-deliberation",
+      "deliberationUrgency": "routine",
+      "antiCaptureSignals": [
+        "balanced-participation"
+      ],
+      "linkedTargetIds": [
+        "concept:coherence-lattice"
+      ],
+      "humanReviewFlag": true,
+      "governanceDependencies": [],
+      "queuedAt": "2026-03-07"
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "generatedAt": "2026-03-07",
+  "audits": [
+    {
+      "inputId": "sonya:text:atlas-note-001",
+      "auditStatus": "admit",
+      "auditor": "Sophia",
+      "coherenceScore": 0.81,
+      "riskScore": 0.12,
+      "governingRule": "high-coherence-low-risk"
+    },
+    {
+      "inputId": "sonya:text:atlas-note-002",
+      "auditStatus": "admit",
+      "auditor": "Sophia",
+      "coherenceScore": 0.76,
+      "riskScore": 0.18,
+      "governingRule": "admit-with-promotion"
+    },
+    {
+      "inputId": "sonya:text:atlas-note-003",
+      "auditStatus": "defer",
+      "auditor": "Sophia",
+      "coherenceScore": 0.53,
+      "riskScore": 0.39,
+      "governingRule": "defer-for-review"
+    },
+    {
+      "inputId": "sonya:text:atlas-note-004",
+      "auditStatus": "reject",
+      "auditor": "Sophia",
+      "coherenceScore": 0.24,
+      "riskScore": 0.72,
+      "governingRule": "contradiction-risk"
+    }
+  ]
+}

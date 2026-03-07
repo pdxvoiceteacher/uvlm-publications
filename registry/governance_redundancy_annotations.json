@@ -1,0 +1,75 @@
+{
+  "generatedAt": "2026-03-07",
+  "governanceFacing": true,
+  "nonCanonical": true,
+  "noAutomaticReviewerAppointment": true,
+  "noGovernanceTruthMutation": true,
+  "annotations": [
+    {
+      "reviewId": "cont-001",
+      "candidateId": "reserve-001",
+      "reviewerId": "reviewer:example-001",
+      "resilienceStatus": "stable",
+      "successionReadinessScore": 0.81,
+      "successionReadiness": "review-ready",
+      "governanceFragilityScore": 0.29,
+      "fragilityStatus": "healthy",
+      "continuityWatchState": "none",
+      "antiCaptureSignals": [
+        "redundancy-preserved"
+      ],
+      "targetPublisherAction": "docket",
+      "linkedTargetIds": [
+        "concept:coherence-lattice"
+      ],
+      "constitutionalBaseline": "freeze-recommended",
+      "governanceReviewLinked": true,
+      "reviewerBehaviorTrend": "stable-positive",
+      "notes": "Queue for continuity chamber review only."
+    },
+    {
+      "reviewId": "cont-002",
+      "candidateId": "reserve-002",
+      "reviewerId": "reviewer:example-002",
+      "resilienceStatus": "watch",
+      "successionReadinessScore": 0.57,
+      "successionReadiness": "partial",
+      "governanceFragilityScore": 0.68,
+      "fragilityStatus": "thinning",
+      "continuityWatchState": "watch",
+      "antiCaptureSignals": [
+        "participation-thinning"
+      ],
+      "targetPublisherAction": "watch",
+      "linkedTargetIds": [
+        "concept:governance-integrity"
+      ],
+      "constitutionalBaseline": "freeze-recommended",
+      "governanceReviewLinked": false,
+      "reviewerBehaviorTrend": "mixed",
+      "notes": "Watch until quorum thinning improves."
+    },
+    {
+      "reviewId": "cont-003",
+      "candidateId": "reserve-003",
+      "reviewerId": "reviewer:example-002",
+      "resilienceStatus": "freeze-recommended",
+      "successionReadinessScore": 0.44,
+      "successionReadiness": "blocked",
+      "governanceFragilityScore": 0.87,
+      "fragilityStatus": "capture-risk",
+      "continuityWatchState": "freeze",
+      "antiCaptureSignals": [
+        "capture-risk-high"
+      ],
+      "targetPublisherAction": "suppressed",
+      "linkedTargetIds": [
+        "concept:continuity-protocol"
+      ],
+      "constitutionalBaseline": "freeze-recommended",
+      "governanceReviewLinked": false,
+      "reviewerBehaviorTrend": "mixed",
+      "notes": "Suppressed under anti-capture freeze rule."
+    }
+  ]
+}

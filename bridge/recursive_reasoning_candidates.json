@@ -1,0 +1,64 @@
+{
+  "generatedAt": "2026-03-08",
+  "candidates": [
+    {
+      "threadId": "thread:coherence-lattice-001",
+      "sourceInputIds": [
+        "sonya:text:atlas-note-001",
+        "sonya:text:atlas-note-002"
+      ],
+      "linkedConceptIds": [
+        "concept:coherence-lattice",
+        "concept:formal-coherence"
+      ],
+      "auditStatus": "admit",
+      "coherenceScore": 0.83,
+      "riskScore": 0.14,
+      "recursivePotentialScore": 0.74,
+      "cognitiveWatchSignals": [
+        "multi-step coherence persistence",
+        "low contradiction",
+        "stable concept reuse"
+      ],
+      "targetPublisherAction": "annotate",
+      "explanation": "Thread shows coherent multi-step structure and persistence under low contradiction risk."
+    },
+    {
+      "threadId": "thread:narrative-bridge-001",
+      "sourceInputIds": [
+        "sonya:text:atlas-note-003"
+      ],
+      "linkedConceptIds": [
+        "concept:narrative-phase-space"
+      ],
+      "auditStatus": "watch",
+      "coherenceScore": 0.68,
+      "riskScore": 0.28,
+      "recursivePotentialScore": 0.62,
+      "cognitiveWatchSignals": [
+        "cross-domain concept blending",
+        "moderate uncertainty"
+      ],
+      "targetPublisherAction": "watch",
+      "explanation": "Observational candidate with moderate recursive potential; keep on watchlist only."
+    },
+    {
+      "threadId": "thread:delta-contradiction-001",
+      "sourceInputIds": [
+        "sonya:text:atlas-note-004"
+      ],
+      "linkedConceptIds": [
+        "concept:delta-syn"
+      ],
+      "auditStatus": "reject",
+      "coherenceScore": 0.33,
+      "riskScore": 0.73,
+      "recursivePotentialScore": 0.19,
+      "cognitiveWatchSignals": [
+        "contradiction escalation"
+      ],
+      "targetPublisherAction": "reject",
+      "explanation": "Rejected due to high contradiction and risk profile."
+    }
+  ]
+}

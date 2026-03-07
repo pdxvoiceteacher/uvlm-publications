@@ -1,0 +1,22 @@
+{
+  "generatedAt": "2026-03-07",
+  "continuityMode": "freeze-watch",
+  "continuityScore": 0.695,
+  "freezeRecommended": true,
+  "governanceFacing": true,
+  "nonCanonical": true,
+  "entries": [
+    {
+      "artifactId": "governance-review-001",
+      "continuityScore": 0.88,
+      "continuityStatus": "stable",
+      "freezeRecommended": false
+    },
+    {
+      "artifactId": "governance-review-002",
+      "continuityScore": 0.51,
+      "continuityStatus": "degraded",
+      "freezeRecommended": true
+    }
+  ]
+}

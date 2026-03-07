@@ -1,0 +1,23 @@
+{
+  "generatedAt": "2026-03-07",
+  "entries": [
+    {
+      "reviewId": "prec-001",
+      "precedentStatus": "follow-precedent",
+      "analogyConfidence": 0.86,
+      "divergenceLevel": "low"
+    },
+    {
+      "reviewId": "prec-002",
+      "precedentStatus": "distinguish-case",
+      "analogyConfidence": 0.54,
+      "divergenceLevel": "medium"
+    },
+    {
+      "reviewId": "prec-003",
+      "precedentStatus": "distinguish-case",
+      "analogyConfidence": 0.31,
+      "divergenceLevel": "high"
+    }
+  ]
+}
