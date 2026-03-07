@@ -1,0 +1,31 @@
+{
+  "generatedAt": "2026-03-01",
+  "auditor": "sophia",
+  "audits": [
+    {
+      "artifactId": "governance-review-001",
+      "constitutionalStatus": "stable",
+      "charterClauses": [
+        "charter-1",
+        "charter-3"
+      ],
+      "governanceSignals": [
+        "procedural-consistency"
+      ],
+      "humanReviewFlag": false,
+      "notes": "Conforms to baseline governance charter requirements."
+    },
+    {
+      "artifactId": "governance-review-002",
+      "constitutionalStatus": "watch",
+      "charterClauses": [
+        "charter-2"
+      ],
+      "governanceSignals": [
+        "conflict-risk"
+      ],
+      "humanReviewFlag": true,
+      "notes": "Requires additional human review before advancement."
+    }
+  ]
+}

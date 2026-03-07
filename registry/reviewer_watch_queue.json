@@ -1,0 +1,18 @@
+{
+  "generatedAt": "2026-03-07",
+  "nonCanonical": true,
+  "entries": [
+    {
+      "reviewerId": "reviewer:example-002",
+      "status": "watch",
+      "observational": true,
+      "nonCanonical": true,
+      "governanceStatus": "watch",
+      "linkedTargetIds": [
+        "concept:narrative-phase-space"
+      ],
+      "humanReviewFlag": false,
+      "queuedAt": "2026-03-07"
+    }
+  ]
+}

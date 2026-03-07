@@ -1,0 +1,26 @@
+{
+  "generatedAt": "2026-03-06",
+  "nonCanonical": true,
+  "entries": [
+    {
+      "threadId": "thread:narrative-bridge-001",
+      "status": "watch",
+      "observational": true,
+      "nonCanonical": true,
+      "sourceAuditStatus": "watch",
+      "targetPublisherAction": "watch",
+      "sourceInputIds": [
+        "sonya:text:atlas-note-003"
+      ],
+      "linkedConceptIds": [
+        "concept:narrative-phase-space"
+      ],
+      "recursivePotentialScore": 0.62,
+      "cognitiveWatchSignals": [
+        "cross-domain concept blending",
+        "moderate uncertainty"
+      ],
+      "explanation": "Observational candidate with moderate recursive potential; keep on watchlist only."
+    }
+  ]
+}

@@ -1,0 +1,58 @@
+{
+  "generatedAt": "2026-03-12",
+  "recommendations": [
+    {
+      "reviewerId": "reviewer:example-001",
+      "governanceStatus": "recommend-human-review",
+      "auditStatus": "recommend-human-review",
+      "coherenceScore": 0.82,
+      "riskScore": 0.18,
+      "conflictRisk": 0.21,
+      "integritySignals": [
+        "stable review rationales",
+        "low contradiction exposure",
+        "declared conflicts present but bounded"
+      ],
+      "targetPublisherAction": "docket",
+      "linkedTargetIds": [
+        "concept:coherence-lattice"
+      ],
+      "humanReviewFlag": true,
+      "explanation": "Queue for human/community governance review."
+    },
+    {
+      "reviewerId": "reviewer:example-002",
+      "governanceStatus": "watch",
+      "auditStatus": "watch",
+      "coherenceScore": 0.63,
+      "riskScore": 0.31,
+      "conflictRisk": 0.36,
+      "integritySignals": [
+        "moderate inconsistency"
+      ],
+      "targetPublisherAction": "watch",
+      "linkedTargetIds": [
+        "concept:narrative-phase-space"
+      ],
+      "humanReviewFlag": false,
+      "explanation": "Watch queue candidate pending additional evidence."
+    },
+    {
+      "reviewerId": "reviewer:example-003",
+      "governanceStatus": "ineligible",
+      "auditStatus": "suppress",
+      "coherenceScore": 0.34,
+      "riskScore": 0.74,
+      "conflictRisk": 0.67,
+      "integritySignals": [
+        "high contradiction"
+      ],
+      "targetPublisherAction": "suppress",
+      "linkedTargetIds": [
+        "concept:delta-syn"
+      ],
+      "humanReviewFlag": false,
+      "explanation": "Suppressed due to unresolved high-risk patterns."
+    }
+  ]
+}
