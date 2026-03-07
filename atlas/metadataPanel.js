@@ -107,6 +107,10 @@ function renderConcept(data) {
     row('Analogy Confidence', Number(data.analogyConfidence ?? 0).toFixed(2)),
     row('Divergence Level', data.divergenceLevel ?? 'none'),
     row('Precedent Watch State', data.precedentWatchState ?? 'none'),
+    row('Scenario Status', data.scenarioStatus ?? 'review-pending'),
+    row('Projected Capture Risk', data.projectedCaptureRisk ?? 'unknown'),
+    row('Projected Continuity Risk', data.projectedContinuityRisk ?? 'unknown'),
+    row('Preparedness Recommendation', data.preparednessRecommendation ?? 'rehearse-recovery'),
     row('Related Concepts', data.relatedConceptCount ?? 0),
     renderConceptRelations(data.relatedConcepts)
   ].join('');

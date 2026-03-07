@@ -89,7 +89,11 @@ export async function loadAttentionOverlay() {
     precedentRegistryResp,
     caseDocketResp,
     divergenceWatchlistResp,
-    precedentAnnotationsResp
+    precedentAnnotationsResp,
+    scenarioRegistryResp,
+    stressTestDocketResp,
+    resilienceFindingsWatchlistResp,
+    scenarioAnnotationsResp
   ] = await Promise.all([
     fetch('../bridge/attention_updates.json').catch(() => null),
     fetch('../bridge/coherence_assessment.json').catch(() => null),
@@ -137,7 +141,11 @@ export async function loadAttentionOverlay() {
     fetch('../registry/precedent_registry.json').catch(() => null),
     fetch('../registry/case_docket.json').catch(() => null),
     fetch('../registry/divergence_watchlist.json').catch(() => null),
-    fetch('../registry/precedent_annotations.json').catch(() => null)
+    fetch('../registry/precedent_annotations.json').catch(() => null),
+    fetch('../registry/scenario_registry.json').catch(() => null),
+    fetch('../registry/stress_test_docket.json').catch(() => null),
+    fetch('../registry/resilience_findings_watchlist.json').catch(() => null),
+    fetch('../registry/scenario_annotations.json').catch(() => null)
   ]);
 
   return {
@@ -187,7 +195,11 @@ export async function loadAttentionOverlay() {
     precedentRegistry: precedentRegistryResp ? await precedentRegistryResp.json() : {},
     caseDocket: caseDocketResp ? await caseDocketResp.json() : {},
     divergenceWatchlist: divergenceWatchlistResp ? await divergenceWatchlistResp.json() : {},
-    precedentAnnotations: precedentAnnotationsResp ? await precedentAnnotationsResp.json() : {}
+    precedentAnnotations: precedentAnnotationsResp ? await precedentAnnotationsResp.json() : {},
+    scenarioRegistry: scenarioRegistryResp ? await scenarioRegistryResp.json() : {},
+    stressTestDocket: stressTestDocketResp ? await stressTestDocketResp.json() : {},
+    resilienceFindingsWatchlist: resilienceFindingsWatchlistResp ? await resilienceFindingsWatchlistResp.json() : {},
+    scenarioAnnotations: scenarioAnnotationsResp ? await scenarioAnnotationsResp.json() : {}
   };
 }
 
@@ -851,6 +863,87 @@ function buildPrecedentConceptSignals(precedentRegistry, caseDocket, divergenceW
   return byConcept;
 }
 
+function buildScenarioConceptSignals(scenarioRegistry, stressTestDocket, resilienceFindingsWatchlist, scenarioAnnotations) {
+  const byConcept = new Map();
+
+  function bump(targetId, update) {
+    if (typeof targetId !== 'string') {
+      return;
+    }
+    const existing = byConcept.get(targetId) ?? {
+      scenarioStatus: 'review-pending',
+      projectedCaptureRisk: 'unknown',
+      projectedContinuityRisk: 'unknown',
+      preparednessRecommendation: 'rehearse-recovery',
+      scenarioWatchState: 'none',
+      scenarioQueueStatus: 'none'
+    };
+    update(existing);
+    byConcept.set(targetId, existing);
+  }
+
+  asArray(stressTestDocket?.entries).forEach((entry) => {
+    asArray(entry?.linkedTargetIds).forEach((targetId) => {
+      bump(targetId, (s) => {
+        s.scenarioStatus = entry?.scenarioStatus ?? s.scenarioStatus;
+        s.projectedCaptureRisk = entry?.projectedCaptureRisk ?? s.projectedCaptureRisk;
+        s.projectedContinuityRisk = entry?.projectedContinuityRisk ?? s.projectedContinuityRisk;
+        s.preparednessRecommendation = entry?.preparednessRecommendation ?? s.preparednessRecommendation;
+        s.scenarioWatchState = entry?.watchState ?? s.scenarioWatchState;
+        s.scenarioQueueStatus = 'docket';
+      });
+    });
+  });
+
+  asArray(resilienceFindingsWatchlist?.entries).forEach((entry) => {
+    asArray(entry?.linkedTargetIds).forEach((targetId) => {
+      bump(targetId, (s) => {
+        s.scenarioStatus = entry?.scenarioStatus ?? s.scenarioStatus;
+        s.projectedCaptureRisk = entry?.projectedCaptureRisk ?? s.projectedCaptureRisk;
+        s.projectedContinuityRisk = entry?.projectedContinuityRisk ?? s.projectedContinuityRisk;
+        s.preparednessRecommendation = entry?.preparednessRecommendation ?? s.preparednessRecommendation;
+        s.scenarioWatchState = entry?.watchState ?? s.scenarioWatchState;
+        if (s.scenarioQueueStatus !== 'docket') {
+          s.scenarioQueueStatus = 'watch';
+        }
+      });
+    });
+  });
+
+  asArray(scenarioAnnotations?.annotations).forEach((entry) => {
+    asArray(entry?.linkedTargetIds).forEach((targetId) => {
+      bump(targetId, (s) => {
+        s.scenarioStatus = entry?.scenarioStatus ?? s.scenarioStatus;
+        s.projectedCaptureRisk = entry?.projectedCaptureRisk ?? s.projectedCaptureRisk;
+        s.projectedContinuityRisk = entry?.projectedContinuityRisk ?? s.projectedContinuityRisk;
+        s.preparednessRecommendation = entry?.preparednessRecommendation ?? s.preparednessRecommendation;
+        s.scenarioWatchState = entry?.watchState ?? s.scenarioWatchState;
+      });
+    });
+  });
+
+  const registryByScenario = new Map();
+  asArray(scenarioRegistry?.entries).forEach((entry) => {
+    if (typeof entry?.scenarioId === 'string') {
+      registryByScenario.set(entry.scenarioId, entry);
+    }
+  });
+
+  asArray(scenarioAnnotations?.annotations).forEach((entry) => {
+    const reg = registryByScenario.get(entry?.scenarioId);
+    asArray(entry?.linkedTargetIds).forEach((targetId) => {
+      bump(targetId, (s) => {
+        s.scenarioStatus = reg?.scenarioStatus ?? s.scenarioStatus;
+        s.projectedCaptureRisk = reg?.projectedCaptureRisk ?? s.projectedCaptureRisk;
+        s.projectedContinuityRisk = reg?.projectedContinuityRisk ?? s.projectedContinuityRisk;
+        s.preparednessRecommendation = reg?.preparednessRecommendation ?? s.preparednessRecommendation;
+      });
+    });
+  });
+
+  return byConcept;
+}
+
 function buildConstitutionalConceptSignals(constitutionalAnnotations, governanceFailureWatchlist) {
   const byConcept = new Map();
 
@@ -943,6 +1036,12 @@ export function applyAttentionOverlay(cy, overlay) {
     overlay?.divergenceWatchlist,
     overlay?.precedentAnnotations
   );
+  const scenarioSignals = buildScenarioConceptSignals(
+    overlay?.scenarioRegistry,
+    overlay?.stressTestDocket,
+    overlay?.resilienceFindingsWatchlist,
+    overlay?.scenarioAnnotations
+  );
 
   cy.nodes('[class = "concept"]').forEach((node) => {
     const id = node.id();
@@ -1019,8 +1118,13 @@ export function applyAttentionOverlay(cy, overlay) {
     node.data('analogyConfidence', Number(precedent?.analogyConfidence ?? 0));
     node.data('divergenceLevel', precedent?.divergenceLevel ?? 'none');
     node.data('precedentWatchState', precedent?.precedentWatchState ?? 'none');
+    const scenario = scenarioSignals.get(id);
+    node.data('scenarioStatus', scenario?.scenarioStatus ?? 'review-pending');
+    node.data('projectedCaptureRisk', scenario?.projectedCaptureRisk ?? 'unknown');
+    node.data('projectedContinuityRisk', scenario?.projectedContinuityRisk ?? 'unknown');
+    node.data('preparednessRecommendation', scenario?.preparednessRecommendation ?? 'rehearse-recovery');
 
-    node.removeClass('attention-priority attention-secondary sonya-candidate reasoning-thread reasoning-watch stability-positive stability-watch multimodal-donation multimodal-watch review-candidate watch-queue governance-review governance-watch constitutional-watch constitutional-freeze deliberation-docket deliberation-watch deliberation-urgent anti-capture-watch continuity-docket continuity-watch continuity-fragile continuity-freeze recovery-docket recovery-watch escrow-ready recovery-fragile attestation-docket attestation-watch witness-sufficient attestation-sensitive precedent-docket precedent-watch precedent-divergent precedent-strong');
+    node.removeClass('attention-priority attention-secondary sonya-candidate reasoning-thread reasoning-watch stability-positive stability-watch multimodal-donation multimodal-watch review-candidate watch-queue governance-review governance-watch constitutional-watch constitutional-freeze deliberation-docket deliberation-watch deliberation-urgent anti-capture-watch continuity-docket continuity-watch continuity-fragile continuity-freeze recovery-docket recovery-watch escrow-ready recovery-fragile attestation-docket attestation-watch witness-sufficient attestation-sensitive precedent-docket precedent-watch precedent-divergent precedent-strong scenario-docket scenario-watch scenario-freeze scenario-rehearse-recovery');
     if ((rankData?.rank ?? Infinity) <= 2) {
       node.addClass('attention-priority');
     } else if ((rankData?.rank ?? Infinity) <= 5) {
@@ -1135,6 +1239,19 @@ export function applyAttentionOverlay(cy, overlay) {
     }
     if ((precedent?.analogyConfidence ?? 0) >= 0.8) {
       node.addClass('precedent-strong');
+    }
+
+    if ((scenario?.scenarioQueueStatus ?? 'none') === 'docket') {
+      node.addClass('scenario-docket');
+    }
+    if ((scenario?.scenarioQueueStatus ?? 'none') === 'watch') {
+      node.addClass('scenario-watch');
+    }
+    if ((scenario?.preparednessRecommendation ?? 'rehearse-recovery') === 'freeze-recommended') {
+      node.addClass('scenario-freeze');
+    }
+    if ((scenario?.preparednessRecommendation ?? 'rehearse-recovery') === 'rehearse-recovery') {
+      node.addClass('scenario-rehearse-recovery');
     }
   });
 }

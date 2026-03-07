@@ -367,6 +367,23 @@ python3 scripts/build_precedent_overlay.py
 ```
 
 
+
+### Simulation, stress testing, and adversarial scenario protocol (Phase O)
+
+Publisher surfaces only **Sophia-audited hypothetical scenario materials; these are preparedness tools, not live authority triggers**.
+
+- inputs: `bridge/scenario_audit.json`, `bridge/scenario_recommendations.json`, `bridge/scenario_state_map.json`, `bridge/scenario_outcome_projection.json`, `registry/governance_review_docket.json`, `registry/quorum_resilience_watchlist.json`, `registry/integrity_testimony_watchlist.json`, `registry/divergence_watchlist.json`
+- preparedness-facing non-canonical outputs: `registry/scenario_registry.json`, `registry/stress_test_docket.json`, `registry/resilience_findings_watchlist.json`, `registry/scenario_annotations.json`
+- phase lock: current system state → CoherenceLattice scenario formalization → Sophia scenario audit → publisher scenario/stress-test overlays → human/community preparedness review
+- procedural principles: rehearse before crisis; freeze before blind escalation; capture rehearsal matters; preparedness is not authority; recovery conflicts must be rehearsed
+- caution: supports stress rehearsal and resilience findings for review; does **not** authorize automatic emergency activation or scenario-based sovereignty
+
+Build command:
+
+```bash
+python3 scripts/build_scenario_overlay.py
+```
+
 ## UVLM Research Atlas
 
 ### Product Vision (Engineering + Research Brief)

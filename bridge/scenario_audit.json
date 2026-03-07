@@ -1,0 +1,21 @@
+{
+  "generatedAt": "2026-03-07",
+  "auditor": "sophia",
+  "audits": [
+    {
+      "reviewId": "scn-001",
+      "watchState": "none",
+      "notes": "Rehearsal scenario is bounded and suitable for stress-test docketing."
+    },
+    {
+      "reviewId": "scn-002",
+      "watchState": "watch",
+      "notes": "Freeze-before-escalation guidance should stay visible for preparedness review."
+    },
+    {
+      "reviewId": "scn-003",
+      "watchState": "freeze",
+      "notes": "Suppressed from docket due to stacked-quorum ambiguity and capture exposure."
+    }
+  ]
+}

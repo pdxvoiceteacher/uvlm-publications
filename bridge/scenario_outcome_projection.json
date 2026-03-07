@@ -1,0 +1,26 @@
+{
+  "generatedAt": "2026-03-07",
+  "entries": [
+    {
+      "reviewId": "scn-001",
+      "projectedCaptureRisk": "moderate",
+      "projectedContinuityRisk": "low",
+      "preparednessRecommendation": "rehearse-recovery",
+      "notes": "Exercise recovery conflict handoffs before crisis pressure."
+    },
+    {
+      "reviewId": "scn-002",
+      "projectedCaptureRisk": "high",
+      "projectedContinuityRisk": "medium",
+      "preparednessRecommendation": "freeze-recommended",
+      "notes": "Model stacked-quorum hostility and preserve bounded freeze paths."
+    },
+    {
+      "reviewId": "scn-003",
+      "projectedCaptureRisk": "high",
+      "projectedContinuityRisk": "high",
+      "preparednessRecommendation": "freeze-recommended",
+      "notes": "Suppressed scenario remains annotation-only for conservative preparedness memory."
+    }
+  ]
+}

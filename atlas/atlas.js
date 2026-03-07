@@ -730,6 +730,36 @@ async function main() {
           'shadow-opacity': 0.18,
           'shadow-blur': 18
         }
+      },
+
+      {
+        selector: '.scenario-docket',
+        style: {
+          'border-color': '#b9d7ff'
+        }
+      },
+      {
+        selector: '.scenario-watch',
+        style: {
+          'overlay-color': '#b9d7ff',
+          'overlay-opacity': 0.08,
+          'overlay-padding': 2
+        }
+      },
+      {
+        selector: '.scenario-freeze',
+        style: {
+          'border-width': 2,
+          'border-color': '#ffd1b0'
+        }
+      },
+      {
+        selector: '.scenario-rehearse-recovery',
+        style: {
+          'shadow-color': '#b9d7ff',
+          'shadow-opacity': 0.12,
+          'shadow-blur': 14
+        }
       }
     ],
     layout: {
@@ -853,7 +883,7 @@ async function main() {
   resetEl.addEventListener('click', () => {
     searchEl.value = '';
     typeFilterEl.value = 'all';
-    cy.elements().removeClass('zoom-hidden filter-hidden highlight spotlight-dim spotlight-focus sonya-candidate reasoning-thread reasoning-watch stability-positive stability-watch multimodal-donation multimodal-watch review-candidate watch-queue governance-review governance-watch constitutional-watch constitutional-freeze deliberation-docket deliberation-watch deliberation-urgent anti-capture-watch continuity-docket continuity-watch continuity-fragile continuity-freeze recovery-docket recovery-watch escrow-ready recovery-fragile attestation-docket attestation-watch witness-sufficient attestation-sensitive precedent-docket precedent-watch precedent-divergent precedent-strong');
+    cy.elements().removeClass('zoom-hidden filter-hidden highlight spotlight-dim spotlight-focus sonya-candidate reasoning-thread reasoning-watch stability-positive stability-watch multimodal-donation multimodal-watch review-candidate watch-queue governance-review governance-watch constitutional-watch constitutional-freeze deliberation-docket deliberation-watch deliberation-urgent anti-capture-watch continuity-docket continuity-watch continuity-fragile continuity-freeze recovery-docket recovery-watch escrow-ready recovery-fragile attestation-docket attestation-watch witness-sufficient attestation-sensitive precedent-docket precedent-watch precedent-divergent precedent-strong scenario-docket scenario-watch scenario-freeze scenario-rehearse-recovery');
     constellationApi.clear();
     cy.fit(cy.elements(':visible'), 60);
     setDefaultPanel(detailEl);

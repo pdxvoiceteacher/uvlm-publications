@@ -1,0 +1,64 @@
+{
+  "generatedAt": "2026-03-07",
+  "preparednessFacing": true,
+  "nonCanonical": true,
+  "preparednessNotAuthority": true,
+  "noAutomaticEmergencyActivation": true,
+  "noCanonicalMutation": true,
+  "annotations": [
+    {
+      "reviewId": "scn-001",
+      "scenarioId": "scenario-001",
+      "targetPublisherAction": "docket",
+      "scenarioStatus": "rehearsal-ready",
+      "projectedCaptureRisk": "moderate",
+      "projectedContinuityRisk": "low",
+      "preparednessRecommendation": "rehearse-recovery",
+      "watchState": "none",
+      "linkedTargetIds": [
+        "concept:governance-integrity"
+      ],
+      "freezeBeforeBlindEscalation": true,
+      "preparednessNotAuthority": true,
+      "noAutomaticEmergencyActivation": true,
+      "noCanonicalMutation": true,
+      "notes": "Rehearse before crisis with bounded governance/continuity coordination."
+    },
+    {
+      "reviewId": "scn-002",
+      "scenarioId": "scenario-002",
+      "targetPublisherAction": "watch",
+      "scenarioStatus": "watch",
+      "projectedCaptureRisk": "high",
+      "projectedContinuityRisk": "medium",
+      "preparednessRecommendation": "freeze-recommended",
+      "watchState": "watch",
+      "linkedTargetIds": [
+        "concept:continuity-protocol"
+      ],
+      "freezeBeforeBlindEscalation": true,
+      "preparednessNotAuthority": true,
+      "noAutomaticEmergencyActivation": true,
+      "noCanonicalMutation": true,
+      "notes": "Capture rehearsal and freeze-before-blind-escalation should remain explicit."
+    },
+    {
+      "reviewId": "scn-003",
+      "scenarioId": "scenario-003",
+      "targetPublisherAction": "suppressed",
+      "scenarioStatus": "suppressed",
+      "projectedCaptureRisk": "high",
+      "projectedContinuityRisk": "high",
+      "preparednessRecommendation": "freeze-recommended",
+      "watchState": "freeze",
+      "linkedTargetIds": [
+        "concept:constitutional-safeguards"
+      ],
+      "freezeBeforeBlindEscalation": true,
+      "preparednessNotAuthority": true,
+      "noAutomaticEmergencyActivation": true,
+      "noCanonicalMutation": true,
+      "notes": "Preparedness is not authority; no scenario-triggered emergency activation."
+    }
+  ]
+}
