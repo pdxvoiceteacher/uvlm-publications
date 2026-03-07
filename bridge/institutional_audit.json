@@ -1,0 +1,21 @@
+{
+  "generatedAt": "2026-03-07",
+  "auditor": "sophia",
+  "audits": [
+    {
+      "reviewId": "inst-001",
+      "watchState": "none",
+      "notes": "Institutional synthesis is bounded and fit for preparedness-facing publication."
+    },
+    {
+      "reviewId": "inst-002",
+      "watchState": "watch",
+      "notes": "Chamber conflict should remain on watch with conservative escalation limits."
+    },
+    {
+      "reviewId": "inst-003",
+      "watchState": "freeze",
+      "notes": "Suppressed due to unresolved inter-chamber conflict assumptions."
+    }
+  ]
+}

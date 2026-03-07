@@ -1,0 +1,29 @@
+{
+  "generatedAt": "2026-03-07",
+  "governanceFacing": true,
+  "nonCanonical": true,
+  "evidenceEscrowChamber": true,
+  "finalActionExternal": true,
+  "entries": [
+    {
+      "reviewId": "recovery-001",
+      "artifactId": "registry/knowledge_graph.json",
+      "candidateId": "rec-candidate-001",
+      "status": "escrow-review",
+      "preservationCriticality": "high",
+      "escrowStatus": "ready-for-review",
+      "recoveryReadiness": "review-ready",
+      "recoverabilityScore": 0.85,
+      "integrityWatchState": "none",
+      "dependencyPaths": [
+        "papers/**/metadata.yaml",
+        "registry/catalog.json"
+      ],
+      "linkedTargetIds": [
+        "concept:coherence-lattice"
+      ],
+      "humanReviewFlag": true,
+      "queuedAt": "2026-03-07"
+    }
+  ]
+}

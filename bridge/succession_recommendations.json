@@ -1,0 +1,50 @@
+{
+  "generatedAt": "2026-03-07",
+  "recommendations": [
+    {
+      "reviewId": "cont-001",
+      "candidateId": "reserve-001",
+      "reviewerId": "reviewer:example-001",
+      "targetPublisherAction": "docket",
+      "resilienceStatus": "stable",
+      "successionReadinessScore": 0.81,
+      "successionReadiness": "review-ready",
+      "continuityWatchState": "none",
+      "humanReviewFlag": true,
+      "linkedTargetIds": [
+        "concept:coherence-lattice"
+      ],
+      "notes": "Queue for continuity chamber review only."
+    },
+    {
+      "reviewId": "cont-002",
+      "candidateId": "reserve-002",
+      "reviewerId": "reviewer:example-002",
+      "targetPublisherAction": "watch",
+      "resilienceStatus": "watch",
+      "successionReadinessScore": 0.57,
+      "successionReadiness": "partial",
+      "continuityWatchState": "watch",
+      "humanReviewFlag": true,
+      "linkedTargetIds": [
+        "concept:governance-integrity"
+      ],
+      "notes": "Watch until quorum thinning improves."
+    },
+    {
+      "reviewId": "cont-003",
+      "candidateId": "reserve-003",
+      "reviewerId": "reviewer:example-002",
+      "targetPublisherAction": "suppressed",
+      "resilienceStatus": "freeze-recommended",
+      "successionReadinessScore": 0.44,
+      "successionReadiness": "blocked",
+      "continuityWatchState": "freeze",
+      "humanReviewFlag": true,
+      "linkedTargetIds": [
+        "concept:continuity-protocol"
+      ],
+      "notes": "Suppressed under anti-capture freeze rule."
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "generatedAt": "2026-03-07",
+  "institutionalSynthesis": true,
+  "nonCanonical": true,
+  "entries": [
+    {
+      "institutionId": "institution-001",
+      "reviewId": "inst-001",
+      "institutionalStatus": "stable",
+      "chamberConflictLevel": "low",
+      "systemHealthScore": 0.88,
+      "systemHealthOverview": "stable-under-watch",
+      "watchState": "none",
+      "linkedTargetIds": [
+        "concept:governance-integrity"
+      ],
+      "crossChamberLinks": {
+        "governance": false,
+        "quorumResilience": false,
+        "integrityTestimony": false,
+        "precedentDivergence": false
+      }
+    }
+  ]
+}

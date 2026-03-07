@@ -1,0 +1,31 @@
+{
+  "generatedAt": "2026-03-06",
+  "source": "Sophia",
+  "policy": "canonical-attention-updates-v1",
+  "conceptAttention": [
+    {
+      "id": "concept:coherence-lattice",
+      "rank": 1,
+      "weight": 1.0,
+      "reason": "Primary coherence anchor with strongest synthesis centrality."
+    },
+    {
+      "id": "concept:delta-syn",
+      "rank": 2,
+      "weight": 0.78,
+      "reason": "High recommendation priority due to current publication coupling."
+    },
+    {
+      "id": "concept:formal-coherence",
+      "rank": 3,
+      "weight": 0.49,
+      "reason": "Formal backbone concept requiring sustained attention."
+    },
+    {
+      "id": "concept:narrative-phase-space",
+      "rank": 4,
+      "weight": 0.21,
+      "reason": "Exploratory extension with lower immediate urgency."
+    }
+  ]
+}

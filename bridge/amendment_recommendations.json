@@ -1,0 +1,44 @@
+{
+  "generatedAt": "2026-03-07",
+  "recommendations": [
+    {
+      "reviewId": "delib-001",
+      "candidateId": "amend-001",
+      "reviewerId": "reviewer:example-001",
+      "targetPublisherAction": "docket",
+      "amendmentStatus": "recommend-deliberation",
+      "deliberationUrgency": "routine",
+      "humanReviewFlag": true,
+      "linkedTargetIds": [
+        "concept:coherence-lattice"
+      ],
+      "notes": "Eligible for deliberation chamber intake."
+    },
+    {
+      "reviewId": "delib-002",
+      "candidateId": "amend-002",
+      "reviewerId": "reviewer:example-001",
+      "targetPublisherAction": "watch",
+      "amendmentStatus": "emergency-interpretation-only",
+      "deliberationUrgency": "heightened",
+      "humanReviewFlag": true,
+      "linkedTargetIds": [
+        "concept:governance-integrity"
+      ],
+      "notes": "Watch only until quorum broadens."
+    },
+    {
+      "reviewId": "delib-003",
+      "candidateId": "amend-003",
+      "reviewerId": "reviewer:example-001",
+      "targetPublisherAction": "suppressed",
+      "amendmentStatus": "blocked-anti-capture",
+      "deliberationUrgency": "urgent",
+      "humanReviewFlag": true,
+      "linkedTargetIds": [
+        "concept:continuity-protocol"
+      ],
+      "notes": "Suppressed due to capture risk."
+    }
+  ]
+}

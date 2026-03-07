@@ -1,0 +1,26 @@
+{
+  "generatedAt": "2026-03-07",
+  "entries": [
+    {
+      "reviewId": "attest-001",
+      "attestationStatus": "review-ready",
+      "witnessSufficiency": "sufficient",
+      "attestationNeed": "high",
+      "tamperSensitivity": "moderate"
+    },
+    {
+      "reviewId": "attest-002",
+      "attestationStatus": "watch",
+      "witnessSufficiency": "partial",
+      "attestationNeed": "high",
+      "tamperSensitivity": "high"
+    },
+    {
+      "reviewId": "attest-003",
+      "attestationStatus": "blocked",
+      "witnessSufficiency": "insufficient",
+      "attestationNeed": "critical",
+      "tamperSensitivity": "high"
+    }
+  ]
+}
