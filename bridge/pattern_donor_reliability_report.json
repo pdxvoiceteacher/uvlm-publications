@@ -1,0 +1,9 @@
+{
+  "generatedAt": "2026-03-08",
+  "provenance": {"schemaVersion": "phase-ao.0", "producerCommits": ["sophia-ao-111"], "sourceMode": "fixture"},
+  "entries": [
+    {"reviewId": "mc-001", "patternDonorReliability": "reliable"},
+    {"reviewId": "mc-002", "patternDonorReliability": "watch"},
+    {"reviewId": "mc-003", "patternDonorReliability": "unstable"}
+  ]
+}

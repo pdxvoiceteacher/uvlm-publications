@@ -1,0 +1,49 @@
+{
+  "generatedAt": "2026-03-07",
+  "provenance": {
+    "schemaVersion": "phase-y.0",
+    "producerCommits": ["sophia-y-111"],
+    "sourceMode": "fixture"
+  },
+  "recommendations": [
+    {
+      "reviewId": "rp-001",
+      "targetPublisherAction": "docket",
+      "packetStatus": "ready-for-human-review",
+      "maturityCeiling": "bounded-public-summary",
+      "ambiguityLevel": "medium",
+      "uncertaintyDisclosures": ["causal-direction-underdetermined"],
+      "excludedConclusions": ["identity-attribution", "culpability-claim"],
+      "synthesisStatus": "bounded",
+      "linkedTargetIds": ["concept:governance-integrity"],
+      "humanReviewFlag": true,
+      "notes": "Packet emphasizes bounded synthesis and explicit uncertainty disclaimers."
+    },
+    {
+      "reviewId": "rp-002",
+      "targetPublisherAction": "watch",
+      "packetStatus": "needs-additional-corroboration",
+      "maturityCeiling": "internal-watch-only",
+      "ambiguityLevel": "high",
+      "uncertaintyDisclosures": ["sample-bias-risk", "missing-counterfactual"],
+      "excludedConclusions": ["public-escalation"],
+      "synthesisStatus": "provisional",
+      "linkedTargetIds": ["concept:continuity-protocol"],
+      "humanReviewFlag": true,
+      "notes": "Uncertainty is too high for action-oriented packet publication."
+    },
+    {
+      "reviewId": "rp-003",
+      "targetPublisherAction": "suppressed",
+      "packetStatus": "suppressed",
+      "maturityCeiling": "internal-watch-only",
+      "ambiguityLevel": "high",
+      "uncertaintyDisclosures": ["weak-grounding"],
+      "excludedConclusions": ["identity-accusation"],
+      "synthesisStatus": "withheld",
+      "linkedTargetIds": ["concept:constitutional-safeguards"],
+      "humanReviewFlag": true,
+      "notes": "Suppressed pending stronger evidence maturity."
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "generatedAt": "2026-03-08",
+  "provenance": {"schemaVersion": "phase-ao.0", "producerCommits": ["sophia-ao-111"], "sourceMode": "fixture"},
+  "audits": [
+    {"reviewId": "mc-001", "metaCognitionAuditState": "verified"},
+    {"reviewId": "mc-002", "metaCognitionAuditState": "monitor"},
+    {"reviewId": "mc-003", "metaCognitionAuditState": "restricted"}
+  ]
+}

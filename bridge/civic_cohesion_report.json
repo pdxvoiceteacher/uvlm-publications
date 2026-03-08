@@ -1,0 +1,9 @@
+{
+  "generatedAt": "2026-03-08",
+  "provenance": {"schemaVersion": "phase-aq.0", "producerCommits": ["sophia-aq-111"], "sourceMode": "fixture"},
+  "entries": [
+    {"reviewId": "se-001", "cohesionClass": "fragile"},
+    {"reviewId": "se-002", "cohesionClass": "mixed"},
+    {"reviewId": "se-003", "cohesionClass": "stable"}
+  ]
+}

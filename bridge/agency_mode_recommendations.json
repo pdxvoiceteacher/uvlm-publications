@@ -1,0 +1,9 @@
+{
+  "generatedAt": "2026-03-08",
+  "provenance": {"schemaVersion": "phase-ai.0", "producerCommits": ["sophia-ai-111"], "sourceMode": "fixture"},
+  "recommendations": [
+    {"reviewId": "ag-001", "targetPublisherAction": "docket", "linkedTargetIds": ["concept:coherence-lattice"], "humanReviewFlag": true, "notes": "Comparative fit is provisional; keep safeguards active."},
+    {"reviewId": "ag-002", "targetPublisherAction": "watch", "linkedTargetIds": ["concept:governance-integrity"], "humanReviewFlag": true, "notes": "Disagreement persists across deterministic/volitional fit."},
+    {"reviewId": "ag-003", "targetPublisherAction": "suppressed", "linkedTargetIds": ["concept:constitutional-safeguards"], "humanReviewFlag": true, "notes": "Suppressed pending consent-signal audit."}
+  ]
+}

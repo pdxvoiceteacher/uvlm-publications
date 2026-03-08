@@ -1,0 +1,9 @@
+{
+  "generatedAt": "2026-03-08",
+  "provenance": {"schemaVersion": "phase-an.0", "producerCommits": ["sophia-an-111"], "sourceMode": "fixture"},
+  "audits": [
+    {"reviewId": "va-001", "valueAlignmentAuditState": "verified"},
+    {"reviewId": "va-002", "valueAlignmentAuditState": "monitor"},
+    {"reviewId": "va-003", "valueAlignmentAuditState": "restricted"}
+  ]
+}

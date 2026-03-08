@@ -1,0 +1,9 @@
+{
+  "generatedAt": "2026-03-08",
+  "provenance": {"schemaVersion": "phase-ai.0", "producerCommits": ["sophia-ai-111"], "sourceMode": "fixture"},
+  "entries": [
+    {"reviewId": "ag-001", "governanceModeClass": "bounded-consensual", "consentSignal": "required", "blameSuppressionSignal": "enabled"},
+    {"reviewId": "ag-002", "governanceModeClass": "disagreement-hold", "consentSignal": "required", "blameSuppressionSignal": "elevated"},
+    {"reviewId": "ag-003", "governanceModeClass": "suppressed", "consentSignal": "blocked", "blameSuppressionSignal": "enabled"}
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "generatedAt": "2026-03-08",
+  "provenance": {"schemaVersion": "phase-ah.0", "producerCommits": ["sophia-ah-111"], "sourceMode": "fixture"},
+  "entries": [
+    {"reviewId": "th-001", "competitionState": "contested-leading", "competitionPeers": ["theory:alt-01"]},
+    {"reviewId": "th-002", "competitionState": "active-competition", "competitionPeers": ["theory:alt-02", "theory:alt-03"]},
+    {"reviewId": "th-003", "competitionState": "suppressed", "competitionPeers": ["theory:alt-04"]}
+  ]
+}
