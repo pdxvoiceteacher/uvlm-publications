@@ -1,0 +1,163 @@
+{
+  "generatedAt": "2026-03-07",
+  "investigationProtocol": true,
+  "nonCanonical": true,
+  "provenance": {
+    "schemaVersions": {
+      "triage_recommendations": "phase-r.0",
+      "verification_recommendations": "phase-u.0",
+      "public_record_recommendations": "phase-v.0"
+    },
+    "producerCommits": [
+      "sophia-r-111",
+      "sophia-u-111",
+      "sophia-v-111"
+    ],
+    "sourceModes": {
+      "triage_recommendations": "fixture",
+      "verification_recommendations": "fixture",
+      "public_record_recommendations": "fixture"
+    },
+    "derivedFromFixtures": true
+  },
+  "noAutomaticAccusation": true,
+  "noAutomaticPlanMutation": true,
+  "noCanonicalMutation": true,
+  "annotations": [
+    {
+      "reviewId": "pr-001",
+      "source": "triage",
+      "targetPublisherAction": "docket",
+      "investigationStage": "intake",
+      "planProgress": 0.2,
+      "dependencyCount": 7,
+      "linkedTargetIds": [
+        "concept:governance-integrity"
+      ],
+      "noAutomaticAccusation": true,
+      "noAutomaticPlanMutation": true,
+      "noCanonicalMutation": true,
+      "notes": "Capture-risk indicators elevate ordered review priority."
+    },
+    {
+      "reviewId": "pr-002",
+      "source": "triage",
+      "targetPublisherAction": "watch",
+      "investigationStage": "intake",
+      "planProgress": 0.2,
+      "dependencyCount": 7,
+      "linkedTargetIds": [
+        "concept:continuity-protocol"
+      ],
+      "noAutomaticAccusation": true,
+      "noAutomaticPlanMutation": true,
+      "noCanonicalMutation": true,
+      "notes": "Reversible issues can wait longer than irreversible integrity risks."
+    },
+    {
+      "reviewId": "pr-003",
+      "source": "triage",
+      "targetPublisherAction": "suppressed",
+      "investigationStage": "intake",
+      "planProgress": 0.2,
+      "dependencyCount": 7,
+      "linkedTargetIds": [
+        "concept:constitutional-safeguards"
+      ],
+      "noAutomaticAccusation": true,
+      "noAutomaticPlanMutation": true,
+      "noCanonicalMutation": true,
+      "notes": "Suppressed from actionable overlays pending additional review."
+    },
+    {
+      "reviewId": "prv-001",
+      "source": "public-record",
+      "targetPublisherAction": "docket",
+      "investigationStage": "dependency-mapping",
+      "planProgress": 0.6,
+      "dependencyCount": 7,
+      "linkedTargetIds": [
+        "concept:governance-integrity"
+      ],
+      "noAutomaticAccusation": true,
+      "noAutomaticPlanMutation": true,
+      "noCanonicalMutation": true,
+      "notes": "Lawful record mapping should remain bounded and evidence-led."
+    },
+    {
+      "reviewId": "prv-002",
+      "source": "public-record",
+      "targetPublisherAction": "watch",
+      "investigationStage": "dependency-mapping",
+      "planProgress": 0.6,
+      "dependencyCount": 7,
+      "linkedTargetIds": [
+        "concept:continuity-protocol"
+      ],
+      "noAutomaticAccusation": true,
+      "noAutomaticPlanMutation": true,
+      "noCanonicalMutation": true,
+      "notes": "Ambiguous relationships remain watch-only until corroborated."
+    },
+    {
+      "reviewId": "prv-003",
+      "source": "public-record",
+      "targetPublisherAction": "suppressed",
+      "investigationStage": "dependency-mapping",
+      "planProgress": 0.6,
+      "dependencyCount": 7,
+      "linkedTargetIds": [
+        "concept:constitutional-safeguards"
+      ],
+      "noAutomaticAccusation": true,
+      "noAutomaticPlanMutation": true,
+      "noCanonicalMutation": true,
+      "notes": "Suppressed from actionable sections pending additional audit."
+    },
+    {
+      "reviewId": "vf-001",
+      "source": "verification",
+      "targetPublisherAction": "docket",
+      "investigationStage": "verification",
+      "planProgress": 0.4,
+      "dependencyCount": 7,
+      "linkedTargetIds": [
+        "concept:governance-integrity"
+      ],
+      "noAutomaticAccusation": true,
+      "noAutomaticPlanMutation": true,
+      "noCanonicalMutation": true,
+      "notes": "Verification tasking remains evidence-first and non-accusatory."
+    },
+    {
+      "reviewId": "vf-002",
+      "source": "verification",
+      "targetPublisherAction": "watch",
+      "investigationStage": "verification",
+      "planProgress": 0.4,
+      "dependencyCount": 7,
+      "linkedTargetIds": [
+        "concept:continuity-protocol"
+      ],
+      "noAutomaticAccusation": true,
+      "noAutomaticPlanMutation": true,
+      "noCanonicalMutation": true,
+      "notes": "Ambiguous identity claims remain watch-only pending evidence."
+    },
+    {
+      "reviewId": "vf-003",
+      "source": "verification",
+      "targetPublisherAction": "suppressed",
+      "investigationStage": "verification",
+      "planProgress": 0.4,
+      "dependencyCount": 7,
+      "linkedTargetIds": [
+        "concept:constitutional-safeguards"
+      ],
+      "noAutomaticAccusation": true,
+      "noAutomaticPlanMutation": true,
+      "noCanonicalMutation": true,
+      "notes": "Suppressed from actionable verification overlays pending additional audit."
+    }
+  ]
+}
