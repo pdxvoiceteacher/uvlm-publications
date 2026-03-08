@@ -1,0 +1,9 @@
+{
+  "generatedAt": "2026-03-08",
+  "provenance": {"schemaVersion": "phase-aq.0", "producerCommits": ["sophia-aq-111"], "sourceMode": "fixture"},
+  "audits": [
+    {"reviewId": "se-001", "socialEntropyAuditState": "verified"},
+    {"reviewId": "se-002", "socialEntropyAuditState": "monitor"},
+    {"reviewId": "se-003", "socialEntropyAuditState": "restricted"}
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "generatedAt": "2026-03-08",
+  "provenance": {"schemaVersion": "phase-af.0", "producerCommits": ["sophia-af-111"], "sourceMode": "fixture"},
+  "entries": [
+    {"reviewId": "pr-001", "outcomeTimeline": [{"date": "2026-02-10", "outcome": "partial-hit"}, {"date": "2026-02-25", "outcome": "hit"}]},
+    {"reviewId": "pr-002", "outcomeTimeline": [{"date": "2026-02-14", "outcome": "miss"}]},
+    {"reviewId": "pr-003", "outcomeTimeline": [{"date": "2026-02-18", "outcome": "unresolved"}]}
+  ]
+}

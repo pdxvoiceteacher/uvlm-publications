@@ -1,0 +1,9 @@
+{
+  "generatedAt": "2026-03-08",
+  "provenance": {"schemaVersion": "phase-al.0", "producerCommits": ["sophia-al-111"], "sourceMode": "fixture"},
+  "recommendations": [
+    {"reviewId": "sf-001", "targetPublisherAction": "docket", "linkedTargetIds": ["concept:coherence-lattice"], "humanReviewFlag": true, "notes": "Forecast informs investigation and replication priority only."},
+    {"reviewId": "sf-002", "targetPublisherAction": "watch", "linkedTargetIds": ["concept:governance-integrity"], "humanReviewFlag": true, "notes": "Trajectory divergence needs watch-only handling."},
+    {"reviewId": "sf-003", "targetPublisherAction": "suppressed", "linkedTargetIds": ["concept:constitutional-safeguards"], "humanReviewFlag": true, "notes": "Suppressed pending asymmetry-risk reconciliation."}
+  ]
+}

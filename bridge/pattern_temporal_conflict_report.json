@@ -1,0 +1,13 @@
+{
+  "generatedAt": "2026-03-08",
+  "provenance": {
+    "schemaVersion": "phase-z1.0",
+    "producerCommits": ["cl-z1-113"],
+    "sourceMode": "fixture"
+  },
+  "entries": [
+    {"reviewId": "pt-001", "temporalConflictMarkers": ["window-shift"]},
+    {"reviewId": "pt-002", "temporalConflictMarkers": ["window-sparsity", "ordering-ambiguity"]},
+    {"reviewId": "pt-003", "temporalConflictMarkers": ["identity-time-collision"]}
+  ]
+}

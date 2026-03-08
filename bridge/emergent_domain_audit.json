@@ -1,0 +1,9 @@
+{
+  "generatedAt": "2026-03-08",
+  "provenance": {"schemaVersion": "phase-at.0", "producerCommits": ["sophia-at-111"], "sourceMode": "fixture"},
+  "audits": [
+    {"reviewId": "ed-001", "emergentDomainAuditState": "verified"},
+    {"reviewId": "ed-002", "emergentDomainAuditState": "monitor"},
+    {"reviewId": "ed-003", "emergentDomainAuditState": "restricted"}
+  ]
+}

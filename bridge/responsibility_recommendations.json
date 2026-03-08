@@ -1,0 +1,9 @@
+{
+  "generatedAt": "2026-03-08",
+  "provenance": {"schemaVersion": "phase-aj.0", "producerCommits": ["sophia-aj-111"], "sourceMode": "fixture"},
+  "recommendations": [
+    {"reviewId": "rs-001", "targetPublisherAction": "docket", "linkedTargetIds": ["concept:coherence-lattice"], "humanReviewFlag": true, "notes": "Support-first pathway with explicit coercion ceiling."},
+    {"reviewId": "rs-002", "targetPublisherAction": "watch", "linkedTargetIds": ["concept:governance-integrity"], "humanReviewFlag": true, "notes": "Intervention boundary uncertainty remains active."},
+    {"reviewId": "rs-003", "targetPublisherAction": "suppressed", "linkedTargetIds": ["concept:constitutional-safeguards"], "humanReviewFlag": true, "notes": "Suppressed pending sanction-suppression audit."}
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "generatedAt": "2026-03-08",
+  "provenance": {"schemaVersion": "phase-au.0", "producerCommits": ["cl-au-201"], "sourceMode": "fixture"},
+  "entries": [
+    {"reviewId": "cs-001", "institutionalCaptureRisk": "elevated", "institutionalCaptureRiskScore": 0.72},
+    {"reviewId": "cs-002", "institutionalCaptureRisk": "watch", "institutionalCaptureRiskScore": 0.48},
+    {"reviewId": "cs-003", "institutionalCaptureRisk": "bounded", "institutionalCaptureRiskScore": 0.20}
+  ]
+}

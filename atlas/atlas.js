@@ -976,7 +976,915 @@ async function main() {
           'border-style': 'dashed',
           'border-width': 2
         }
-      }
+      },
+
+      {
+        selector: '.investigation-active',
+        style: {
+          'border-color': '#cde8ff'
+        }
+      },
+      {
+        selector: '.investigation-stage-mid',
+        style: {
+          'overlay-color': '#cde8ff',
+          'overlay-opacity': 0.08,
+          'overlay-padding': 2
+        }
+      },
+      {
+        selector: '.investigation-stage-late',
+        style: {
+          'border-width': 2,
+          'border-color': '#ffd8ae'
+        }
+      },
+      {
+        selector: '.investigation-plan-progressing',
+        style: {
+          'shadow-color': '#cde8ff',
+          'shadow-opacity': 0.14,
+          'shadow-blur': 14
+        }
+      },
+      {
+        selector: '.investigation-blocked',
+        style: {
+          'border-width': 2,
+          'border-color': '#ffc8d8'
+        }
+      },
+      {
+        selector: '.dependency-graph-linked',
+        style: {
+          'border-style': 'double',
+          'border-width': 2
+        }
+      },
+
+      {
+        selector: '.authority-gated',
+        style: {
+          'border-color': '#d7e8ff'
+        }
+      },
+      {
+        selector: '.weak-evidence-signal',
+        style: {
+          'overlay-color': '#d7e8ff',
+          'overlay-opacity': 0.07,
+          'overlay-padding': 2
+        }
+      },
+      {
+        selector: '.authority-mismatch',
+        style: {
+          'border-width': 2,
+          'border-color': '#ffd8d8'
+        }
+      },
+      {
+        selector: '.propagation-restricted',
+        style: {
+          'shadow-color': '#d7e8ff',
+          'shadow-opacity': 0.12,
+          'shadow-blur': 13
+        }
+      },
+      {
+        selector: '.maturity-gated',
+        style: {
+          'border-style': 'dotted',
+          'border-width': 2
+        }
+      },
+
+      {
+        selector: '.review-packet-ready',
+        style: {
+          'border-color': '#dcecff'
+        }
+      },
+      {
+        selector: '.review-packet-watch',
+        style: {
+          'overlay-color': '#dcecff',
+          'overlay-opacity': 0.08,
+          'overlay-padding': 2
+        }
+      },
+      {
+        selector: '.packet-ambiguity-high',
+        style: {
+          'border-width': 2,
+          'border-color': '#ffd7cc'
+        }
+      },
+      {
+        selector: '.uncertainty-disclosed',
+        style: {
+          'shadow-color': '#dcecff',
+          'shadow-opacity': 0.12,
+          'shadow-blur': 13
+        }
+      },
+      {
+        selector: '.synthesis-bounded',
+        style: {
+          'border-style': 'dashed',
+          'border-width': 2
+        }
+      },
+
+      {
+        selector: '.pattern-cluster-active',
+        style: {
+          'border-color': '#dce7ff'
+        }
+      },
+      {
+        selector: '.cross-case-hints',
+        style: {
+          'overlay-color': '#dce7ff',
+          'overlay-opacity': 0.08,
+          'overlay-padding': 2
+        }
+      },
+      {
+        selector: '.pattern-maturity-stable',
+        style: {
+          'shadow-color': '#dce7ff',
+          'shadow-opacity': 0.12,
+          'shadow-blur': 13
+        }
+      },
+      {
+        selector: '.pattern-conflict',
+        style: {
+          'border-width': 2,
+          'border-color': '#ffd5d5'
+        }
+      },
+
+      {
+        selector: '.pattern-timeline-active',
+        style: {
+          'border-color': '#dfe7ff'
+        }
+      },
+      {
+        selector: '.persistence-stable',
+        style: {
+          'shadow-color': '#dfe7ff',
+          'shadow-opacity': 0.12,
+          'shadow-blur': 13
+        }
+      },
+      {
+        selector: '.temporal-conflict-marker',
+        style: {
+          'border-width': 2,
+          'border-color': '#ffd3d3'
+        }
+      },
+      {
+        selector: '.causal-bundle-active',
+        style: {
+          'border-color': '#dfeeff'
+        }
+      },
+      {
+        selector: '.mechanism-candidate',
+        style: {
+          'overlay-color': '#dfeeff',
+          'overlay-opacity': 0.08,
+          'overlay-padding': 2
+        }
+      },
+      {
+        selector: '.explanatory-gap-high',
+        style: {
+          'border-width': 2,
+          'border-color': '#ffd6d6'
+        }
+      },
+      {
+        selector: '.prohibited-conclusion',
+        style: {
+          'shadow-color': '#dfeeff',
+          'shadow-opacity': 0.12,
+          'shadow-blur': 13
+        }
+      },
+      {
+        selector: '.causal-conflict-marker',
+        style: {
+          'border-style': 'dotted',
+          'border-width': 2
+        }
+      },
+      {
+        selector: '.collaborative-review-active',
+        style: {
+          'border-color': '#e5f4ff'
+        }
+      },
+      {
+        selector: '.consensus-provisional',
+        style: {
+          'overlay-color': '#e5f4ff',
+          'overlay-opacity': 0.08,
+          'overlay-padding': 2
+        }
+      },
+      {
+        selector: '.dissent-present',
+        style: {
+          'border-style': 'dashed',
+          'border-width': 2
+        }
+      },
+      {
+        selector: '.collaborative-maturity-bound',
+        style: {
+          'shadow-color': '#e5f4ff',
+          'shadow-opacity': 0.1,
+          'shadow-blur': 12
+        }
+      },
+      {
+        selector: '.telemetry-field-active',
+        style: {
+          'border-color': '#edf8ff'
+        }
+      },
+      {
+        selector: '.lattice-transition',
+        style: {
+          'border-style': 'dashed',
+          'border-width': 2
+        }
+      },
+      {
+        selector: '.donor-pattern-active',
+        style: {
+          'overlay-color': '#edf8ff',
+          'overlay-opacity': 0.08,
+          'overlay-padding': 2
+        }
+      },
+      {
+        selector: '.taf-elevated',
+        style: {
+          'shadow-color': '#edf8ff',
+          'shadow-opacity': 0.1,
+          'shadow-blur': 12
+        }
+      },
+      {
+        selector: '.branch-novel',
+        style: {
+          'border-width': 2,
+          'border-color': '#d8ebff'
+        }
+      },
+      {
+        selector: '.branch-maturity-bound',
+        style: {
+          'border-style': 'dotted'
+        }
+      },
+      {
+        selector: '.branch-lifecycle-active',
+        style: {
+          'border-color': '#eef6ff'
+        }
+      },
+      {
+        selector: '.branch-conflict-graph',
+        style: {
+          'border-style': 'dashed',
+          'border-width': 2
+        }
+      },
+      {
+        selector: '.branch-decay-indicator',
+        style: {
+          'border-color': '#ffe0e0',
+          'border-width': 2
+        }
+      },
+      {
+        selector: '.branch-reinforcement-trend',
+        style: {
+          'shadow-color': '#eef6ff',
+          'shadow-opacity': 0.12,
+          'shadow-blur': 12
+        }
+      },
+      {
+        selector: '.branch-contradiction-trend',
+        style: {
+          'overlay-color': '#ffe0e0',
+          'overlay-opacity': 0.08,
+          'overlay-padding': 2
+        }
+      },
+      {
+        selector: '.forecast-accuracy-high',
+        style: {
+          'border-color': '#eaf6ff'
+        }
+      },
+      {
+        selector: '.calibration-improving',
+        style: {
+          'shadow-color': '#eaf6ff',
+          'shadow-opacity': 0.1,
+          'shadow-blur': 12
+        }
+      },
+      {
+        selector: '.branch-reliability-stable',
+        style: {
+          'border-width': 2,
+          'border-color': '#dcebff'
+        }
+      },
+      {
+        selector: '.prediction-timeline-active',
+        style: {
+          'overlay-color': '#eaf6ff',
+          'overlay-opacity': 0.08,
+          'overlay-padding': 2
+        }
+      },
+      {
+        selector: '.experimental-active',
+        style: {
+          'border-color': '#f1f7ff'
+        }
+      },
+      {
+        selector: '.falsification-ready',
+        style: {
+          'shadow-color': '#f1f7ff',
+          'shadow-opacity': 0.1,
+          'shadow-blur': 11
+        }
+      },
+      {
+        selector: '.replication-defined',
+        style: {
+          'overlay-color': '#f1f7ff',
+          'overlay-opacity': 0.08,
+          'overlay-padding': 2
+        }
+      },
+      {
+        selector: '.theory-gate-hold',
+        style: {
+          'border-style': 'dotted',
+          'border-width': 2
+        }
+      },
+
+      {
+        selector: '.theory-corpus-active',
+        style: {
+          'border-color': '#eef1ff'
+        }
+      },
+      {
+        selector: '.theory-negative-results',
+        style: {
+          'overlay-color': '#ffeef2',
+          'overlay-opacity': 0.08,
+          'overlay-padding': 2
+        }
+      },
+      {
+        selector: '.theory-revision-lineage',
+        style: {
+          'shadow-color': '#eef1ff',
+          'shadow-opacity': 0.1,
+          'shadow-blur': 10
+        }
+      },
+      {
+        selector: '.theory-competition-open',
+        style: {
+          'border-style': 'dashed',
+          'border-width': 2,
+          'border-color': '#e5e9ff'
+        }
+      },
+
+      {
+        selector: '.agency-mode-active',
+        style: {
+          'border-color': '#f3f0ff'
+        }
+      },
+      {
+        selector: '.agency-volitional-edge',
+        style: {
+          'shadow-color': '#f3f0ff',
+          'shadow-opacity': 0.1,
+          'shadow-blur': 10
+        }
+      },
+      {
+        selector: '.agency-deterministic-edge',
+        style: {
+          'overlay-color': '#f3f0ff',
+          'overlay-opacity': 0.08,
+          'overlay-padding': 2
+        }
+      },
+      {
+        selector: '.agency-vhat-provisional',
+        style: {
+          'border-style': 'dashed',
+          'border-width': 2,
+          'border-color': '#ece6ff'
+        }
+      },
+      {
+        selector: '.agency-governance-bounded',
+        style: {
+          'border-color': '#eee8ff'
+        }
+      },
+      {
+        selector: '.agency-consent-required',
+        style: {
+          'overlay-color': '#f6f2ff',
+          'overlay-opacity': 0.08,
+          'overlay-padding': 2
+        }
+      },
+      {
+        selector: '.agency-blame-suppressed',
+        style: {
+          'shadow-color': '#f0e9ff',
+          'shadow-opacity': 0.08,
+          'shadow-blur': 9
+        }
+      },
+
+      {
+        selector: '.responsibility-active',
+        style: {
+          'border-color': '#f0f7f1'
+        }
+      },
+      {
+        selector: '.support-pathway-defined',
+        style: {
+          'shadow-color': '#eef8f0',
+          'shadow-opacity': 0.1,
+          'shadow-blur': 10
+        }
+      },
+      {
+        selector: '.consent-required',
+        style: {
+          'overlay-color': '#eef8f0',
+          'overlay-opacity': 0.08,
+          'overlay-padding': 2
+        }
+      },
+      {
+        selector: '.coercion-ceiling-strict',
+        style: {
+          'border-style': 'dashed',
+          'border-width': 2,
+          'border-color': '#e6f2e9'
+        }
+      },
+      {
+        selector: '.sanction-suppressed',
+        style: {
+          'shadow-color': '#edf6ef',
+          'shadow-opacity': 0.08,
+          'shadow-blur': 9
+        }
+      },
+      {
+        selector: '.intervention-bounded',
+        style: {
+          'border-color': '#e9f4ec'
+        }
+      },
+
+      {
+        selector: '.transfer-active',
+        style: {
+          'border-color': '#f1f3ff'
+        }
+      },
+      {
+        selector: '.transfer-asymmetry-high',
+        style: {
+          'overlay-color': '#fff0f4',
+          'overlay-opacity': 0.08,
+          'overlay-padding': 2
+        }
+      },
+      {
+        selector: '.transfer-replication-gated',
+        style: {
+          'border-style': 'dashed',
+          'border-width': 2,
+          'border-color': '#ecefff'
+        }
+      },
+      {
+        selector: '.transfer-prohibited-claims',
+        style: {
+          'shadow-color': '#f3f4ff',
+          'shadow-opacity': 0.1,
+          'shadow-blur': 10
+        }
+      },
+      {
+        selector: '.transfer-risk-elevated',
+        style: {
+          'border-color': '#ecefff'
+        }
+      },
+
+      {
+        selector: '.system-forecast-active',
+        style: {
+          'border-color': '#eef5ff'
+        }
+      },
+      {
+        selector: '.regime-transition-probable',
+        style: {
+          'shadow-color': '#edf4ff',
+          'shadow-opacity': 0.1,
+          'shadow-blur': 10
+        }
+      },
+      {
+        selector: '.entropy-accumulating',
+        style: {
+          'overlay-color': '#eef4ff',
+          'overlay-opacity': 0.08,
+          'overlay-padding': 2
+        }
+      },
+      {
+        selector: '.branch-ecosystem-fragile',
+        style: {
+          'border-style': 'dashed',
+          'border-width': 2,
+          'border-color': '#e7f0ff'
+        }
+      },
+      {
+        selector: '.trajectory-divergent',
+        style: {
+          'border-color': '#e8f1ff'
+        }
+      },
+
+      {
+        selector: '.curiosity-active',
+        style: {
+          'border-color': '#f0f9f6'
+        }
+      },
+      {
+        selector: '.uncertainty-gradient-high',
+        style: {
+          'overlay-color': '#f2faf7',
+          'overlay-opacity': 0.08,
+          'overlay-padding': 2
+        }
+      },
+      {
+        selector: '.information-gain-high',
+        style: {
+          'shadow-color': '#eef8f4',
+          'shadow-opacity': 0.1,
+          'shadow-blur': 10
+        }
+      },
+      {
+        selector: '.experiment-priority-high',
+        style: {
+          'border-style': 'dashed',
+          'border-width': 2,
+          'border-color': '#e7f3ee'
+        }
+      },
+      {
+        selector: '.entropy-reduction-positive',
+        style: {
+          'border-color': '#e8f4ef'
+        }
+      },
+
+      {
+        selector: '.value-alignment-active',
+        style: {
+          'border-color': '#f7f7ef'
+        }
+      },
+      {
+        selector: '.knowledge-priority-top',
+        style: {
+          'border-style': 'dashed',
+          'border-width': 2,
+          'border-color': '#f0efdd'
+        }
+      },
+      {
+        selector: '.welfare-impact-positive',
+        style: {
+          'shadow-color': '#f5f5ea',
+          'shadow-opacity': 0.1,
+          'shadow-blur': 10
+        }
+      },
+      {
+        selector: '.fairness-impact-watch',
+        style: {
+          'overlay-color': '#f7f7ed',
+          'overlay-opacity': 0.08,
+          'overlay-padding': 2
+        }
+      },
+      {
+        selector: '.value-risk-flagged',
+        style: {
+          'border-color': '#f1f1e1'
+        }
+      },
+
+      {
+        selector: '.meta-active',
+        style: {
+          'border-color': '#f6f2fb'
+        }
+      },
+      {
+        selector: '.reasoning-efficiency-high',
+        style: {
+          'shadow-color': '#f4effc',
+          'shadow-opacity': 0.1,
+          'shadow-blur': 10
+        }
+      },
+      {
+        selector: '.donor-reliability-high',
+        style: {
+          'border-style': 'dashed',
+          'border-width': 2,
+          'border-color': '#eee7f8'
+        }
+      },
+      {
+        selector: '.governance-constraint-strong',
+        style: {
+          'overlay-color': '#f6f1fb',
+          'overlay-opacity': 0.08,
+          'overlay-padding': 2
+        }
+      },
+      {
+        selector: '.discovery-productive',
+        style: {
+          'border-color': '#f0e9f9'
+        }
+      },
+
+      {
+        selector: '.architecture-active',
+        style: {
+          'border-color': '#f1f6fa'
+        }
+      },
+      {
+        selector: '.module-performance-strong',
+        style: {
+          'shadow-color': '#eef4f9',
+          'shadow-opacity': 0.1,
+          'shadow-blur': 10
+        }
+      },
+      {
+        selector: '.architecture-discovery-productive',
+        style: {
+          'border-style': 'dashed',
+          'border-width': 2,
+          'border-color': '#e7eef6'
+        }
+      },
+      {
+        selector: '.safeguard-performance-strong',
+        style: {
+          'overlay-color': '#f0f5fa',
+          'overlay-opacity': 0.08,
+          'overlay-padding': 2
+        }
+      },
+      {
+        selector: '.architecture-proposal-queued',
+        style: {
+          'border-color': '#e8eff7'
+        }
+      },
+
+      {
+        selector: '.social-entropy-active',
+        style: {
+          'border-color': '#f7f3f2'
+        }
+      },
+      {
+        selector: '.social-status-fraying',
+        style: {
+          'overlay-color': '#f8f4f3',
+          'overlay-opacity': 0.08,
+          'overlay-padding': 2
+        }
+      },
+      {
+        selector: '.cohesion-fragile',
+        style: {
+          'border-style': 'dashed',
+          'border-width': 2,
+          'border-color': '#f1e8e5'
+        }
+      },
+      {
+        selector: '.legitimacy-drift-elevated',
+        style: {
+          'shadow-color': '#f6efed',
+          'shadow-opacity': 0.1,
+          'shadow-blur': 10
+        }
+      },
+      {
+        selector: '.reviewer-concentration-high',
+        style: {
+          'border-color': '#eee4e1'
+        }
+      },
+      {
+        selector: '.reviewer-fatigue-high',
+        style: {
+          'border-color': '#ece2df'
+        }
+      },
+      {
+        selector: '.repair-priority-high',
+        style: {
+          'border-color': '#ebdfdc'
+        }
+      },
+
+      {
+        selector: '.federation-active',
+        style: {
+          'border-color': '#f4f6f2'
+        }
+      },
+      {
+        selector: '.federation-status-coherent',
+        style: {
+          'overlay-color': '#f5f7f3',
+          'overlay-opacity': 0.08,
+          'overlay-padding': 2
+        }
+      },
+      {
+        selector: '.stewardship-node-distributed',
+        style: {
+          'border-style': 'dashed',
+          'border-width': 2,
+          'border-color': '#eaeee6'
+        }
+      },
+      {
+        selector: '.dissent-portable',
+        style: {
+          'shadow-color': '#f2f5ef',
+          'shadow-opacity': 0.1,
+          'shadow-blur': 10
+        }
+      },
+      {
+        selector: '.capture-risk-elevated',
+        style: {
+          'border-color': '#e7ebe2'
+        }
+      },
+      {
+        selector: '.mitigation-required',
+        style: {
+          'border-color': '#e5e9df'
+        }
+      },
+
+      {
+        selector: '.emergent-domain-active',
+        style: {
+          'border-color': '#f3f6f8'
+        }
+      },
+      {
+        selector: '.domain-status-emergent',
+        style: {
+          'overlay-color': '#f4f7f9',
+          'overlay-opacity': 0.08,
+          'overlay-padding': 2
+        }
+      },
+      {
+        selector: '.invariant-pattern-convergent',
+        style: {
+          'border-style': 'dashed',
+          'border-width': 2,
+          'border-color': '#e8edf1'
+        }
+      },
+      {
+        selector: '.field-birth-pressure-high',
+        style: {
+          'shadow-color': '#eff3f6',
+          'shadow-opacity': 0.1,
+          'shadow-blur': 10
+        }
+      },
+      {
+        selector: '.domain-boundary-failure-active',
+        style: {
+          'border-color': '#e4eaee'
+        }
+      },
+      {
+        selector: '.commons-legibility-required',
+        style: {
+          'border-color': '#e2e8ed'
+        }
+      },
+      {
+        selector: '.trust-presentation-degraded',
+        style: {
+          'border-style': 'dotted',
+          'border-width': 2,
+          'border-color': '#e6dcda'
+        }
+      },
+
+      {
+        selector: '.commons-sovereignty-active',
+        style: {
+          'border-color': '#f3f5f3'
+        }
+      },
+      {
+        selector: '.commons-integrity-fragile',
+        style: {
+          'overlay-color': '#f4f6f4',
+          'overlay-opacity': 0.08,
+          'overlay-padding': 2
+        }
+      },
+      {
+        selector: '.institutional-capture-risk-elevated',
+        style: {
+          'border-style': 'dashed',
+          'border-width': 2,
+          'border-color': '#e8ede8'
+        }
+      },
+      {
+        selector: '.public-trust-unstable',
+        style: {
+          'shadow-color': '#eef2ee',
+          'shadow-opacity': 0.1,
+          'shadow-blur': 10
+        }
+      },
+      {
+        selector: '.epistemic-diversity-high',
+        style: {
+          'border-color': '#e6ece6'
+        }
+      },
+      {
+        selector: '.civilizational-dissent-portable',
+        style: {
+          'border-color': '#e4ebe4'
+        }
+      },
     ],
     layout: {
       name: 'preset'
@@ -1099,7 +2007,7 @@ async function main() {
   resetEl.addEventListener('click', () => {
     searchEl.value = '';
     typeFilterEl.value = 'all';
-    cy.elements().removeClass('zoom-hidden filter-hidden highlight spotlight-dim spotlight-focus sonya-candidate reasoning-thread reasoning-watch stability-positive stability-watch multimodal-donation multimodal-watch review-candidate watch-queue governance-review governance-watch constitutional-watch constitutional-freeze deliberation-docket deliberation-watch deliberation-urgent anti-capture-watch continuity-docket continuity-watch continuity-fragile continuity-freeze recovery-docket recovery-watch escrow-ready recovery-fragile attestation-docket attestation-watch witness-sufficient attestation-sensitive precedent-docket precedent-watch precedent-divergent precedent-strong scenario-docket scenario-watch scenario-freeze scenario-rehearse-recovery institutional-status-indicator chamber-conflict-indicator system-health-overview queue-health-actionable backlog-pressure-watch review-fatigue-watch metric-gaming-watch load-shedding-recommended priority-actionable triage-watch urgency-high priority-critical triage-conflict');
+    cy.elements().removeClass('zoom-hidden filter-hidden highlight spotlight-dim spotlight-focus sonya-candidate reasoning-thread reasoning-watch stability-positive stability-watch multimodal-donation multimodal-watch review-candidate watch-queue governance-review governance-watch constitutional-watch constitutional-freeze deliberation-docket deliberation-watch deliberation-urgent anti-capture-watch continuity-docket continuity-watch continuity-fragile continuity-freeze recovery-docket recovery-watch escrow-ready recovery-fragile attestation-docket attestation-watch witness-sufficient attestation-sensitive precedent-docket precedent-watch precedent-divergent precedent-strong scenario-docket scenario-watch scenario-freeze scenario-rehearse-recovery institutional-status-indicator chamber-conflict-indicator system-health-overview queue-health-actionable backlog-pressure-watch review-fatigue-watch metric-gaming-watch load-shedding-recommended priority-actionable triage-watch urgency-high priority-critical triage-conflict investigation-active investigation-stage-mid investigation-stage-late investigation-plan-progressing investigation-blocked dependency-graph-linked authority-gated weak-evidence-signal authority-mismatch propagation-restricted maturity-gated review-packet-ready review-packet-watch packet-ambiguity-high uncertainty-disclosed synthesis-bounded pattern-cluster-active cross-case-hints pattern-maturity-stable pattern-conflict pattern-timeline-active persistence-stable temporal-conflict-marker causal-bundle-active mechanism-candidate explanatory-gap-high prohibited-conclusion causal-conflict-marker collaborative-review-active consensus-provisional dissent-present collaborative-maturity-bound telemetry-field-active lattice-transition donor-pattern-active taf-elevated branch-novel branch-maturity-bound branch-lifecycle-active branch-conflict-graph branch-decay-indicator branch-reinforcement-trend branch-contradiction-trend forecast-accuracy-high calibration-improving branch-reliability-stable prediction-timeline-active experimental-active falsification-ready replication-defined theory-gate-hold theory-corpus-active theory-negative-results theory-revision-lineage theory-competition-open agency-mode-active agency-volitional-edge agency-deterministic-edge agency-vhat-provisional agency-governance-bounded agency-consent-required agency-blame-suppressed responsibility-active support-pathway-defined consent-required coercion-ceiling-strict sanction-suppressed intervention-bounded transfer-active transfer-asymmetry-high transfer-replication-gated transfer-prohibited-claims transfer-risk-elevated system-forecast-active regime-transition-probable entropy-accumulating branch-ecosystem-fragile trajectory-divergent uncertainty-gradient-high information-gain-high experiment-priority-high entropy-reduction-positive curiosity-active value-alignment-active knowledge-priority-top welfare-impact-positive fairness-impact-watch value-risk-flagged meta-active reasoning-efficiency-high donor-reliability-high governance-constraint-strong discovery-productive architecture-active module-performance-strong architecture-discovery-productive safeguard-performance-strong architecture-proposal-queued social-entropy-active social-status-fraying cohesion-fragile legitimacy-drift-elevated reviewer-concentration-high reviewer-fatigue-high repair-priority-high federation-active federation-status-coherent stewardship-node-distributed dissent-portable capture-risk-elevated mitigation-required emergent-domain-active domain-status-emergent invariant-pattern-convergent field-birth-pressure-high domain-boundary-failure-active commons-legibility-required trust-presentation-degraded commons-sovereignty-active commons-integrity-fragile institutional-capture-risk-elevated public-trust-unstable epistemic-diversity-high civilizational-dissent-portable');
     constellationApi.clear();
     cy.fit(cy.elements(':visible'), 60);
     setDefaultPanel(detailEl);

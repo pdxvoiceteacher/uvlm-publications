@@ -85,7 +85,7 @@ python3 scripts/validate_metadata.py
 python3 scripts/build_catalog.py
 python3 scripts/build_knowledge_graph.py
 python3 scripts/validate_knowledge_graph.py
-python3 -m unittest tests/test_build_public_record_overlay.py tests/test_build_verification_overlay.py tests/test_build_symbolic_field_overlay.py tests/test_build_closure_overlay.py tests/test_build_priority_overlay.py tests/test_build_queue_health_overlay.py tests/test_build_institutional_overlay.py tests/test_validate_atlas_timeline.py tests/test_validate_constellations.py
+python3 -m unittest tests/test_build_public_record_overlay.py tests/test_build_verification_overlay.py tests/test_build_investigation_overlay.py tests/test_build_evidence_authority_overlay.py tests/test_build_review_packet_overlay.py tests/test_build_pattern_overlay.py tests/test_build_pattern_temporal_overlay.py tests/test_build_symbolic_field_overlay.py tests/test_build_closure_overlay.py tests/test_build_priority_overlay.py tests/test_build_queue_health_overlay.py tests/test_build_institutional_overlay.py tests/test_validate_atlas_timeline.py tests/test_validate_constellations.py
 ```
 
 These checks keep metadata, graph artifacts, and overlay contracts deterministic and auditable.
@@ -120,6 +120,7 @@ Edge classes:
 - `isReferencedBy`
 
 Phase 1 intentionally avoids inferred similarity edges and ontology expansion to keep the graph explicit, deterministic, and auditable.
+
 
 
 ## UVLM Research Atlas (Phase 2)
@@ -511,6 +512,91 @@ Build command:
 python3 scripts/build_public_record_overlay.py
 ```
 
+
+### Investigation staging and dependency-plan protocol (Phase W)
+
+Publisher surfaces only **bounded investigation planning overlays; no automatic adjudication, identity mutation, or canonical state mutation occurs from this layer**.
+
+- inputs: `bridge/triage_recommendations.json`, `bridge/verification_recommendations.json`, `bridge/public_record_recommendations.json`, `bridge/artifact_escrow_plan.json`
+- non-canonical outputs: `registry/investigation_dashboard.json`, `registry/investigation_plan_registry.json`, `registry/investigation_watchlist.json`, `registry/investigation_annotations.json`
+- phase lock: triage/verification/public-record recommendations → dependency-aware plan composition → publisher investigation overlays → human/community execution review
+- principles: stage indicators are workflow signals, not verdicts; dependency graphs remain evidence-local; plan progress is observational and review-facing; watch states never auto-trigger canonical mutation
+
+Build command:
+
+```bash
+python3 scripts/build_investigation_overlay.py
+```
+
+
+
+### Evidence maturity gating and propagation rights protocol (Phase X.1)
+
+Publisher surfaces only Sophia-audited evidence-authority materials; no automatic restriction lifting or graph hardening occurs from this layer.
+
+- inputs: `bridge/evidence_authority_audit.json`, `bridge/evidence_authority_recommendations.json`, `bridge/evidence_authority_map.json`, `bridge/evidence_authority_summary.json`, `bridge/propagation_rights_map.json`, `bridge/maturity_gate_report.json`, `registry/verification_dashboard.json`, `registry/public_record_dashboard.json`, `registry/symbolic_field_registry.json`, `registry/investigation_dashboard.json`
+- non-canonical outputs: `registry/authority_gate_dashboard.json`, `registry/weak_evidence_watchlist.json`, `registry/propagation_annotations.json`, `registry/maturity_restriction_registry.json`
+- phase lock: claim / entity / graph / closure / precedent / investigation state → CoherenceLattice evidence-authority formalization → Sophia evidence-authority audit → Publisher authority-gating overlays → human/community review of propagation limits
+- principles: weak evidence remains watch-only; propagation restrictions are bounded and non-punitive; suppressed recommendations are excluded from actionable authority overlays; no automatic mutation of identities/edges/precedents/closures/canonical truth artifacts
+
+Build command:
+
+```bash
+python3 scripts/build_evidence_authority_overlay.py
+```
+
+
+
+### Human review packet and narrative synthesis protocol (Phase Y)
+
+Publisher surfaces only Sophia-audited review packets and uncertainty disclosures; no automatic accusation, publication, or canonical mutation occurs from this layer.
+
+- inputs: `bridge/review_packet_audit.json`, `bridge/review_packet_recommendations.json`, `bridge/review_packet_map.json`, `bridge/review_packet_summary.json`, `bridge/narrative_synthesis_map.json`, `bridge/uncertainty_disclosure_report.json`, `registry/investigation_dashboard.json`, `registry/public_record_dashboard.json`, `registry/authority_gate_dashboard.json`
+- non-canonical outputs: `registry/review_packet_dashboard.json`, `registry/review_packet_registry.json`, `registry/uncertainty_watchlist.json`, `registry/review_packet_annotations.json`
+- phase lock: investigation / verification / evidence-authority state → CoherenceLattice review-packet formalization → Sophia packet audit → Publisher review-packet overlays → human/community bounded review
+- principles: docket packets stay bounded and uncertainty-explicit; watch packets remain observational; suppressed items are excluded from actionable overlays; no automatic mutation of identities/edges/precedents/closures/canonical truth artifacts
+
+Build command:
+
+```bash
+python3 scripts/build_review_packet_overlay.py
+```
+
+
+
+### Pattern cluster and cross-case protocol (Phase Z)
+
+Publisher surfaces only Sophia-audited pattern cluster materials; no automatic accusation, publication, graph mutation, or canonical mutation occurs from this layer.
+
+- inputs: `bridge/pattern_audit.json`, `bridge/pattern_recommendations.json`, `bridge/pattern_cluster_map.json`, `bridge/pattern_maturity_map.json`, `bridge/cross_case_relationship_map.json`, `bridge/pattern_conflict_report.json`, `registry/investigation_dashboard.json`, `registry/authority_gate_dashboard.json`, `registry/review_packet_dashboard.json`
+- non-canonical outputs: `registry/pattern_dashboard.json`, `registry/pattern_registry.json`, `registry/pattern_watchlist.json`, `registry/pattern_annotations.json`
+- phase lock: investigation / authority / review-packet state → CoherenceLattice pattern formalization → Sophia pattern audit → Publisher pattern overlays → human/community bounded review
+- principles: actionable pattern clusters require docket recommendation; watch patterns remain observational; suppressed items excluded from actionable overlays; conflict markers are cautionary hints, not verdicts
+
+Build command:
+
+```bash
+python3 scripts/build_pattern_overlay.py
+```
+
+
+
+### Pattern temporal persistence protocol (Phase Z.1)
+
+Publisher surfaces only Sophia-audited temporal pattern materials; no automatic accusation, graph mutation, or canonical mutation occurs from this layer.
+
+- inputs: `bridge/pattern_temporal_audit.json`, `bridge/pattern_temporal_recommendations.json`, `bridge/pattern_timeline_map.json`, `bridge/pattern_persistence_map.json`, `bridge/pattern_temporal_conflict_report.json`, `registry/pattern_dashboard.json`, `registry/pattern_registry.json`, `registry/pattern_watchlist.json`
+- non-canonical outputs: `registry/pattern_timeline_dashboard.json`, `registry/pattern_persistence_registry.json`, `registry/pattern_temporal_watchlist.json`, `registry/pattern_temporal_annotations.json`
+- phase lock: pattern cluster state → CoherenceLattice temporal formalization → Sophia temporal audit → Publisher temporal overlays → human/community bounded temporal review
+- principles: actionable timeline indicators require docket recommendation; persistence markers remain review-facing hints; temporal conflict markers are cautionary and non-punitive
+
+Build command:
+
+```bash
+python3 scripts/build_pattern_temporal_overlay.py
+```
+
+
 ## UVLM Research Atlas
 
 ### Product Vision (Engineering + Research Brief)
@@ -816,3 +902,281 @@ The workflow at `.github/workflows/mint_doi.yml` runs on `papers/**` changes:
 - **Pushes to `main`**: performs minting deposit, updates registries/catalog/graph, commits audit artifacts.
 
 This prevents accidental DOI minting before merge while keeping public metadata artifacts fresh.
+
+## Collaborative Review Workflow & Deliberation Trace Overlay (Phase AC)
+
+Publisher surfaces only **Sophia-audited collaborative-review materials**; no automatic consensus ratification or dissent suppression occurs from this layer.
+
+- script: `scripts/build_collaborative_review_overlay.py`
+- inputs: `bridge/collaborative_review_audit.json`, `bridge/collaborative_review_recommendations.json`, `bridge/reviewer_deliberation_map.json`, `bridge/reviewer_position_map.json`, `bridge/consensus_state_report.json`, `bridge/dissent_trace_report.json`, `registry/review_packet_dashboard.json`, `registry/causal_dashboard.json`, `registry/authority_gate_dashboard.json`
+- outputs: `registry/collaborative_review_dashboard.json`, `registry/consensus_registry.json`, `registry/dissent_watchlist.json`, `registry/deliberation_annotations.json`
+- policy: docket items are actionable collaborative entries, watch items are bounded dissent tracking, suppressed items are excluded from actionable overlays.
+
+```bash
+python3 scripts/build_collaborative_review_overlay.py
+python3 -m unittest tests/test_build_collaborative_review_overlay.py
+```
+
+## Telemetry Field Unification & Total Action Functional Overlay (Phase AD)
+
+Publisher surfaces only **Sophia-audited telemetry-field and TAF materials**; no automatic branch activation or canonical mutation occurs from this layer.
+
+- script: `scripts/build_telemetry_field_overlay.py`
+- inputs: `bridge/telemetry_field_audit.json`, `bridge/telemetry_field_recommendations.json`, `bridge/telemetry_field_map.json`, `bridge/lattice_projection_map.json`, `bridge/pattern_donation_registry.json`, `bridge/action_functional_scorecard.json`, `bridge/branch_emergence_report.json`, `registry/symbolic_field_registry.json`, `registry/investigation_dashboard.json`, `registry/authority_gate_dashboard.json`
+- outputs: `registry/telemetry_dashboard.json`, `registry/lattice_projection_registry.json`, `registry/pattern_donation_watchlist.json`, `registry/action_functional_annotations.json`
+- policy: docket items are actionable telemetry/branch overlays, watch items remain bounded in pattern-donation watchlist, suppressed items are excluded from actionable overlays.
+
+```bash
+python3 scripts/build_telemetry_field_overlay.py
+python3 -m unittest tests/test_build_telemetry_field_overlay.py
+```
+
+## Branch Lifecycle Overlay
+
+Publisher surfaces only **Sophia-audited branch lifecycle materials**; no automatic branch activation or canonical mutation occurs from this layer.
+
+- script: `scripts/build_branch_lifecycle_overlay.py`
+- outputs: `registry/branch_dashboard.json`, `registry/branch_registry.json`, `registry/branch_watchlist.json`, `registry/branch_annotations.json`
+
+```bash
+python3 scripts/build_branch_lifecycle_overlay.py
+python3 -m unittest tests/test_build_branch_lifecycle_overlay.py
+```
+
+## Prediction Overlay (Phase AF)
+
+Publisher surfaces only **Sophia-audited prediction materials**; no automatic branch activation or canonical mutation occurs from this layer.
+
+- script: `scripts/build_prediction_overlay.py`
+- outputs: `registry/prediction_dashboard.json`, `registry/forecast_registry.json`, `registry/prediction_watchlist.json`, `registry/calibration_annotations.json`
+
+```bash
+python3 scripts/build_prediction_overlay.py
+python3 -m unittest tests/test_build_prediction_overlay.py
+```
+
+## Experimental Design, Falsification, and Replication Overlay (Phase AG)
+
+Publisher surfaces only **Sophia-audited experimental materials**; no automatic theory promotion or canonical mutation occurs from this layer.
+
+- script: `scripts/build_experimental_overlay.py`
+- inputs: `bridge/experimental_audit.json`, `bridge/experimental_recommendations.json`, `bridge/experimental_hypothesis_map.json`, `bridge/falsification_design_report.json`, `bridge/replication_pathway_map.json`, `bridge/theory_promotion_gate.json`, `registry/prediction_dashboard.json`, `registry/branch_dashboard.json`, `registry/authority_gate_dashboard.json`
+- outputs: `registry/experiment_dashboard.json`, `registry/hypothesis_registry.json`, `registry/falsification_watchlist.json`, `registry/theory_gate_annotations.json`
+
+```bash
+python3 scripts/build_experimental_overlay.py
+python3 -m unittest tests/test_build_experimental_overlay.py
+```
+
+## Theory Corpus, Negative Results, and Revision Lineage Overlay (Phase AH)
+
+Publisher surfaces only **Sophia-audited theory corpus materials**; no automatic theory certification or canonical mutation occurs from this layer.
+
+- script: `scripts/build_theory_corpus_overlay.py`
+- inputs: `bridge/theory_corpus_audit.json`, `bridge/theory_corpus_recommendations.json`, `bridge/theory_corpus_map.json`, `bridge/theory_revision_lineage.json`, `bridge/negative_result_registry.json`, `bridge/theory_competition_report.json`, `registry/experiment_dashboard.json`, `registry/prediction_dashboard.json`, `registry/branch_dashboard.json`
+- outputs: `registry/theory_dashboard.json`, `registry/theory_registry.json`, `registry/negative_result_watchlist.json`, `registry/theory_annotations.json`
+
+```bash
+python3 scripts/build_theory_corpus_overlay.py
+python3 -m unittest tests/test_build_theory_corpus_overlay.py
+```
+
+## Agency-Mode Comparator and Governance Switching Overlay (Phase AI)
+
+Publisher surfaces only **Sophia-audited agency-mode materials**; no automatic metaphysical classification or governance mutation occurs from this layer.
+
+- script: `scripts/build_agency_mode_overlay.py`
+- inputs: `bridge/agency_mode_audit.json`, `bridge/agency_mode_recommendations.json`, `bridge/agency_mode_hypothesis_map.json`, `bridge/agency_fit_comparison_report.json`, `bridge/tel_branch_signature_map.json`, `bridge/agency_governance_mode_gate.json`, `registry/theory_dashboard.json`, `registry/prediction_dashboard.json`, `registry/experiment_dashboard.json`
+- outputs: `registry/agency_mode_dashboard.json`, `registry/agency_fit_registry.json`, `registry/agency_disagreement_watchlist.json`, `registry/agency_governance_annotations.json`
+
+```bash
+python3 scripts/build_agency_mode_overlay.py
+python3 -m unittest tests/test_build_agency_mode_overlay.py
+```
+
+## Responsibility, Support, and Intervention Boundary Overlay (Phase AJ)
+
+Publisher surfaces only **Sophia-audited responsibility/support materials**; no automatic sanctioning, coercion, or moral classification occurs from this layer.
+
+- script: `scripts/build_responsibility_overlay.py`
+- inputs: `bridge/responsibility_audit.json`, `bridge/responsibility_recommendations.json`, `bridge/responsibility_mode_map.json`, `bridge/support_pathway_map.json`, `bridge/intervention_boundary_report.json`, `bridge/sanction_suppression_gate.json`, `registry/agency_mode_dashboard.json`, `registry/theory_dashboard.json`, `registry/experiment_dashboard.json`
+- outputs: `registry/responsibility_dashboard.json`, `registry/support_registry.json`, `registry/intervention_watchlist.json`, `registry/responsibility_annotations.json`
+
+```bash
+python3 scripts/build_responsibility_overlay.py
+python3 -m unittest tests/test_build_responsibility_overlay.py
+```
+
+## Cross-Domain Theory Transfer & Donation Governance Overlay (Phase AK)
+
+Publisher surfaces only **Sophia-audited theory-transfer materials**; no automatic cross-domain theory certification or canonical mutation occurs from this layer.
+
+- script: `scripts/build_theory_transfer_overlay.py`
+- inputs: `bridge/theory_transfer_audit.json`, `bridge/theory_transfer_recommendations.json`, `bridge/theory_transfer_map.json`, `bridge/donor_target_asymmetry_report.json`, `bridge/transfer_replication_gate.json`, `bridge/transfer_risk_register.json`, `registry/theory_dashboard.json`, `registry/experiment_dashboard.json`, `registry/agency_mode_dashboard.json`
+- outputs: `registry/transfer_dashboard.json`, `registry/theory_transfer_registry.json`, `registry/transfer_watchlist.json`, `registry/transfer_annotations.json`
+
+```bash
+python3 scripts/build_theory_transfer_overlay.py
+python3 -m unittest tests/test_build_theory_transfer_overlay.py
+```
+
+## System Forecast Overlay (Phase AL)
+
+Publisher surfaces only **Sophia-audited system forecast materials**; no automatic cross-domain theory certification or canonical mutation occurs from this layer.
+
+Forecasts may guide attention, but never justify pre-emptive coercion.
+
+- script: `scripts/build_system_forecast_overlay.py`
+- outputs: `registry/system_forecast_dashboard.json`, `registry/regime_transition_registry.json`, `registry/trajectory_watchlist.json`, `registry/system_forecast_annotations.json`
+
+```bash
+python3 scripts/build_system_forecast_overlay.py
+python3 -m unittest tests/test_build_system_forecast_overlay.py
+```
+
+## Information Value Overlay (Phase AM)
+
+Publisher surfaces only **Sophia-audited information-value materials**; no automatic surveillance expansion or canonical mutation occurs from this layer.
+
+Information-seeking may prioritize attention, but never justify surveillance expansion without explicit human authorization.
+Curiosity must guide investigation, not intrusion.
+
+- script: `scripts/build_information_value_overlay.py`
+- outputs: `registry/uncertainty_dashboard.json`, `registry/observation_priority_registry.json`, `registry/curiosity_watchlist.json`, `registry/curiosity_annotations.json`
+
+```bash
+python3 scripts/build_information_value_overlay.py
+python3 -m unittest tests/test_build_information_value_overlay.py
+```
+
+
+
+## Value Alignment Overlay (Phase AN)
+
+Publisher surfaces only **Sophia-audited value-alignment materials**; no automatic moral execution or canonical mutation occurs from this layer.
+
+The system may recommend knowledge priorities, but human communities must retain authority over final value judgments.
+The triad should illuminate moral consequences, not replace human ethics.
+
+- script: `scripts/build_value_alignment_overlay.py`
+- outputs: `registry/value_dashboard.json`, `registry/knowledge_priority_registry.json`, `registry/value_risk_watchlist.json`, `registry/value_annotations.json`
+
+```bash
+python3 scripts/build_value_alignment_overlay.py
+python3 -m unittest tests/test_build_value_alignment_overlay.py
+```
+
+When Phase AN is complete, the architecture supports the full civilizational cognition cycle:
+
+`telemetry → lattice projection → pattern discovery → hypothesis generation → prediction → experiment design → theory memory → agency governance → responsibility boundaries → cross-domain transfer governance → trajectory forecasting → curiosity-driven inquiry → value-aligned discovery priorities`
+
+
+## Meta-Cognition Overlay (Phase AO)
+
+Publisher surfaces only **Sophia-audited meta-cognition materials**; no autonomous safety-constraint mutation or canonical mutation occurs from this layer.
+
+The system may evaluate its architecture but cannot autonomously modify core safety constraints.
+Meta-cognition may propose improvements, but humans must approve structural changes.
+
+Immutable without human approval:
+
+- evidence maturity gating
+- provenance requirements
+- sanction suppression rules
+- agency humility protocol
+- non-coercion forecasting rule
+- human authority over value judgments
+
+- script: `scripts/build_meta_cognition_overlay.py`
+- outputs: `registry/meta_dashboard.json`, `registry/reasoning_performance_registry.json`, `registry/meta_watchlist.json`, `registry/meta_annotations.json`
+
+```bash
+python3 scripts/build_meta_cognition_overlay.py
+python3 -m unittest tests/test_build_meta_cognition_overlay.py
+```
+
+## Architecture Overlay (Phase AP)
+
+Publisher surfaces only **Sophia-audited architecture materials**; architecture evaluations may inform review, but cannot mutate core safeguards or canonical state without explicit human approval.
+
+- script: `scripts/build_architecture_overlay.py`
+- outputs: `registry/architecture_dashboard.json`, `registry/module_performance_registry.json`, `registry/architecture_watchlist.json`, `registry/architecture_annotations.json`
+
+```bash
+python3 scripts/build_architecture_overlay.py
+python3 -m unittest tests/test_build_architecture_overlay.py
+```
+
+## Social Entropy & Civic Cohesion Overlay (Phase AQ)
+
+Publisher surfaces only **Sophia-audited social-entropy materials**; no automatic suppression, ranking of persons, or coercive normalization occurs from this layer.
+
+- script: `scripts/build_social_entropy_overlay.py`
+- outputs: `registry/social_entropy_dashboard.json`, `registry/civic_cohesion_registry.json`, `registry/legitimacy_watchlist.json`, `registry/social_repair_annotations.json`
+
+```bash
+python3 scripts/build_social_entropy_overlay.py
+python3 -m unittest tests/test_build_social_entropy_overlay.py
+```
+
+Codex context note: this interface should help humans see where the commons is fraying without turning the system into a civics panopticon.
+
+## Federated Stewardship & Commons Governance Overlay (Phase AR)
+
+Publisher surfaces only **Sophia-audited federated-governance materials**; no automatic centralization, ranking of communities, or sovereignty claims occur from this layer.
+
+- script: `scripts/build_federated_governance_overlay.py`
+- outputs: `registry/federation_dashboard.json`, `registry/stewardship_registry.json`, `registry/capture_watchlist.json`, `registry/federation_annotations.json`
+
+```bash
+python3 scripts/build_federated_governance_overlay.py
+python3 -m unittest tests/test_build_federated_governance_overlay.py
+```
+
+Codex context note: this interface should help humans see where the commons is centralizing or fracturing, not create a new prestige hierarchy.
+
+## Emergent Domain Detection & Field Birth Overlay (Phase AT)
+
+Publisher surfaces only **Sophia-audited emergent-domain materials; no automatic canon formation, ranking of disciplines, or field sovereignty claims occur from this layer.**
+
+The interface should show the birth of a field as a pattern of convergence, not a proclamation.
+
+- script: `scripts/build_emergent_domain_overlay.py`
+- inputs: `bridge/emergent_domain_audit.json`, `bridge/emergent_domain_recommendations.json`, `bridge/emergent_domain_map.json`, `bridge/cross_domain_invariant_report.json`, `bridge/field_birth_pressure_report.json`, `bridge/domain_boundary_failure_map.json`, `registry/transfer_dashboard.json`, `registry/value_dashboard.json`, `registry/uncertainty_dashboard.json`, `registry/social_entropy_dashboard.json`, `registry/civic_literacy_dashboard.json`
+- outputs: `registry/emergent_domain_dashboard.json`, `registry/domain_birth_registry.json`, `registry/domain_boundary_watchlist.json`, `registry/emergent_domain_annotations.json`
+- policy: docket items are actionable emergent-domain entries, watch items are bounded domain-boundary tracking, suppressed items are excluded from actionable overlays.
+- canonical integrity helper: `scripts/canonical_integrity_manifest.py` evaluates bridge/registry manifest metadata and degrades trust presentation when manifests are missing, diverged, or have invalid constraint signatures.
+
+```bash
+python3 scripts/build_emergent_domain_overlay.py
+python3 -m unittest tests/test_build_emergent_domain_overlay.py
+```
+
+Canonical trust rule: derivatives that remove provenance or alter safety boundaries without disclosure lose canonical trust status.
+
+### Phase-lock integration rule (Phase AT)
+
+`transfer / theory / prediction / curiosity / value / commons context -> CoherenceLattice emergent-domain formalization -> Sophia emergent-domain audit -> Publisher field-birth overlays -> human/community/scientific ratification pathways`
+
+
+## Canonical Integrity & Derivative Trust
+
+Bridge/registry artifacts may include canonical integrity manifests with constraint signatures.
+If immutable safety constraints change, the constraint signature must change accordingly.
+Derivatives that remove provenance or alter safety boundaries without disclosure lose canonical trust status and should be presented with degraded trust markers.
+
+## Civilizational Commons Safeguard Overlay (Phase AU)
+
+Publisher surfaces only **Sophia-audited commons sovereignty signals; it does not determine governance authority**.
+
+The UI should show the health of the commons, not elevate any institution above it.
+
+- script: `scripts/build_commons_sovereignty_overlay.py`
+- inputs: `bridge/commons_sovereignty_audit.json`, `bridge/commons_sovereignty_recommendations.json`, `bridge/commons_sovereignty_map.json`, `bridge/institutional_capture_risk_report.json`, `bridge/public_trust_signal_map.json`, `bridge/civilizational_integrity_report.json`, `registry/federation_dashboard.json`, `registry/social_entropy_dashboard.json`, `registry/value_dashboard.json`, `registry/architecture_dashboard.json`
+- outputs: `registry/commons_sovereignty_dashboard.json`, `registry/institutional_capture_registry.json`, `registry/public_trust_watchlist.json`, `registry/civilizational_integrity_annotations.json`
+- policy: docket items enter actionable dashboard/registry sections, watch items enter public trust watchlist, and suppressed items are excluded from actionable overlays.
+
+```bash
+python3 scripts/build_commons_sovereignty_overlay.py
+python3 -m unittest tests/test_build_commons_sovereignty_overlay.py
+```

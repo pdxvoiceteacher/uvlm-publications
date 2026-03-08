@@ -1,0 +1,9 @@
+{
+  "generatedAt": "2026-03-08",
+  "provenance": {"schemaVersion": "phase-am.0", "producerCommits": ["sophia-am-111"], "sourceMode": "fixture"},
+  "entries": [
+    {"reviewId": "iv-001", "informationGain": 0.72},
+    {"reviewId": "iv-002", "informationGain": 0.55},
+    {"reviewId": "iv-003", "informationGain": 0.33}
+  ]
+}
