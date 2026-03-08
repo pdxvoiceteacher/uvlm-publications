@@ -1,0 +1,132 @@
+{
+  "generatedAt": "2026-03-08",
+  "patternProtocol": true,
+  "nonCanonical": true,
+  "provenance": {
+    "schemaVersions": {
+      "pattern_audit": "phase-z.0",
+      "pattern_recommendations": "phase-z.0",
+      "pattern_cluster_map": "phase-z.0",
+      "pattern_maturity_map": "phase-z.0",
+      "cross_case_relationship_map": "phase-z.0",
+      "pattern_conflict_report": "phase-z.0",
+      "investigation_dashboard": "composite",
+      "authority_gate_dashboard": "composite",
+      "review_packet_dashboard": "composite"
+    },
+    "producerCommits": [
+      "sophia-z-111",
+      "cl-z-111",
+      "cl-z-112",
+      "cl-z-113",
+      "cl-z-114",
+      "sophia-r-111",
+      "sophia-u-111",
+      "sophia-v-111",
+      "sophia-x1-111",
+      "coherence-x1-111",
+      "coherence-x1-112",
+      "coherence-x1-113",
+      "coherence-x1-114",
+      "cl-u-222",
+      "sophia-t-111",
+      "cl-t-222",
+      "cl-commit-aaa111",
+      "sophia-commit-bbb222",
+      "sophia-commit-qqq111",
+      "cl-commit-qqq222",
+      "cl-r-222",
+      "sophia-s-111",
+      "cl-s-222",
+      "cl-v-222",
+      "sophia-y-111",
+      "cl-y-111",
+      "cl-y-112",
+      "cl-y-113",
+      "cl-y-114"
+    ],
+    "sourceModes": {
+      "pattern_audit": "fixture",
+      "pattern_recommendations": "fixture",
+      "pattern_cluster_map": "fixture",
+      "pattern_maturity_map": "fixture",
+      "cross_case_relationship_map": "fixture",
+      "pattern_conflict_report": "fixture",
+      "investigation_dashboard": "fixture",
+      "authority_gate_dashboard": "fixture",
+      "review_packet_dashboard": "fixture"
+    },
+    "derivedFromFixtures": true
+  },
+  "noAutomaticAccusation": true,
+  "noAutomaticGraphMutation": true,
+  "noAutomaticPrecedentMutation": true,
+  "noCanonicalMutation": true,
+  "annotations": [
+    {
+      "reviewId": "pat-001",
+      "targetPublisherAction": "docket",
+      "patternCluster": "governance-fragility",
+      "patternMaturity": "emergent-stable",
+      "crossCaseRelationshipHints": [
+        "case-001~case-004",
+        "case-002~case-007"
+      ],
+      "conflictMarkers": [
+        "timing-drift"
+      ],
+      "patternAuditState": "verified",
+      "linkedTargetIds": [
+        "concept:governance-integrity"
+      ],
+      "noAutomaticAccusation": true,
+      "noAutomaticGraphMutation": true,
+      "noAutomaticPrecedentMutation": true,
+      "noCanonicalMutation": true,
+      "notes": "Cluster is coherent but still bounded to review-facing usage."
+    },
+    {
+      "reviewId": "pat-002",
+      "targetPublisherAction": "watch",
+      "patternCluster": "continuity-anomalies",
+      "patternMaturity": "speculative",
+      "crossCaseRelationshipHints": [
+        "case-005~case-006"
+      ],
+      "conflictMarkers": [
+        "small-sample",
+        "source-asymmetry"
+      ],
+      "patternAuditState": "watch",
+      "linkedTargetIds": [
+        "concept:continuity-protocol"
+      ],
+      "noAutomaticAccusation": true,
+      "noAutomaticGraphMutation": true,
+      "noAutomaticPrecedentMutation": true,
+      "noCanonicalMutation": true,
+      "notes": "Useful for uncertainty-aware watch; not actionable."
+    },
+    {
+      "reviewId": "pat-003",
+      "targetPublisherAction": "suppressed",
+      "patternCluster": "identity-linkage",
+      "patternMaturity": "speculative",
+      "crossCaseRelationshipHints": [
+        "case-009~case-010"
+      ],
+      "conflictMarkers": [
+        "identity-ambiguity"
+      ],
+      "patternAuditState": "suppressed",
+      "linkedTargetIds": [
+        "concept:constitutional-safeguards"
+      ],
+      "noAutomaticAccusation": true,
+      "noAutomaticGraphMutation": true,
+      "noAutomaticPrecedentMutation": true,
+      "noCanonicalMutation": true,
+      "notes": "Suppressed pending stronger pattern maturity and disambiguation."
+    }
+  ]
+}

@@ -1,0 +1,82 @@
+{
+  "generatedAt": "2026-03-08",
+  "patternProtocol": true,
+  "nonCanonical": true,
+  "provenance": {
+    "schemaVersions": {
+      "pattern_audit": "phase-z.0",
+      "pattern_recommendations": "phase-z.0",
+      "pattern_cluster_map": "phase-z.0",
+      "pattern_maturity_map": "phase-z.0",
+      "cross_case_relationship_map": "phase-z.0",
+      "pattern_conflict_report": "phase-z.0",
+      "investigation_dashboard": "composite",
+      "authority_gate_dashboard": "composite",
+      "review_packet_dashboard": "composite"
+    },
+    "producerCommits": [
+      "sophia-z-111",
+      "cl-z-111",
+      "cl-z-112",
+      "cl-z-113",
+      "cl-z-114",
+      "sophia-r-111",
+      "sophia-u-111",
+      "sophia-v-111",
+      "sophia-x1-111",
+      "coherence-x1-111",
+      "coherence-x1-112",
+      "coherence-x1-113",
+      "coherence-x1-114",
+      "cl-u-222",
+      "sophia-t-111",
+      "cl-t-222",
+      "cl-commit-aaa111",
+      "sophia-commit-bbb222",
+      "sophia-commit-qqq111",
+      "cl-commit-qqq222",
+      "cl-r-222",
+      "sophia-s-111",
+      "cl-s-222",
+      "cl-v-222",
+      "sophia-y-111",
+      "cl-y-111",
+      "cl-y-112",
+      "cl-y-113",
+      "cl-y-114"
+    ],
+    "sourceModes": {
+      "pattern_audit": "fixture",
+      "pattern_recommendations": "fixture",
+      "pattern_cluster_map": "fixture",
+      "pattern_maturity_map": "fixture",
+      "cross_case_relationship_map": "fixture",
+      "pattern_conflict_report": "fixture",
+      "investigation_dashboard": "fixture",
+      "authority_gate_dashboard": "fixture",
+      "review_packet_dashboard": "fixture"
+    },
+    "derivedFromFixtures": true
+  },
+  "entries": [
+    {
+      "reviewId": "pat-001",
+      "patternCluster": "governance-fragility",
+      "patternMaturity": "emergent-stable",
+      "crossCaseRelationshipHints": [
+        "case-001~case-004",
+        "case-002~case-007"
+      ],
+      "conflictMarkers": [
+        "timing-drift"
+      ],
+      "patternAuditState": "verified",
+      "linkedTargetIds": [
+        "concept:governance-integrity"
+      ],
+      "humanReviewFlag": true,
+      "queuedAt": "2026-03-08",
+      "updatedAt": "2026-03-08"
+    }
+  ]
+}
