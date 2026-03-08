@@ -51,11 +51,36 @@
     },
     "derivedFromFixtures": true
   },
-  "entries": [
+  "noAutomaticBranchActivation": true,
+  "noAutomaticGraphMutation": true,
+  "noCanonicalMutation": true,
+  "annotations": [
+    {
+      "reviewId": "tf-001",
+      "targetPublisherAction": "docket",
+      "telemetryFieldStatus": "coherent",
+      "latticeCoordinates": "0.42,0.11,0.73",
+      "latticeRegime": "bounded-order",
+      "donorPatternPedigree": [
+        "pattern:coherence-loop",
+        "pattern:governance-feedback"
+      ],
+      "tafScoreSummary": "bounded-positive",
+      "tafScore": 0.74,
+      "branchNovelty": "moderate",
+      "maturityCeiling": "bounded-review",
+      "telemetryAuditState": "verified",
+      "linkedTargetIds": [
+        "concept:coherence-lattice"
+      ],
+      "noAutomaticBranchActivation": true,
+      "noAutomaticGraphMutation": true,
+      "noCanonicalMutation": true,
+      "notes": "Bounded telemetry branch candidate."
+    },
     {
       "reviewId": "tf-002",
-      "status": "watch",
-      "donationWatchStatus": "watch",
+      "targetPublisherAction": "watch",
       "telemetryFieldStatus": "drift-watch",
       "latticeCoordinates": "0.35,0.58,0.29",
       "latticeRegime": "transition-risk",
@@ -70,10 +95,32 @@
       "linkedTargetIds": [
         "concept:governance-integrity"
       ],
-      "humanReviewFlag": true,
-      "observational": true,
-      "nonCanonical": true,
-      "queuedAt": "2026-03-08"
+      "noAutomaticBranchActivation": true,
+      "noAutomaticGraphMutation": true,
+      "noCanonicalMutation": true,
+      "notes": "Pattern donation monitored only."
+    },
+    {
+      "reviewId": "tf-003",
+      "targetPublisherAction": "suppressed",
+      "telemetryFieldStatus": "withheld",
+      "latticeCoordinates": "0.10,0.20,0.18",
+      "latticeRegime": "uncertain",
+      "donorPatternPedigree": [
+        "pattern:unverified-branch"
+      ],
+      "tafScoreSummary": "insufficient",
+      "tafScore": 0.12,
+      "branchNovelty": "high",
+      "maturityCeiling": "suppressed",
+      "telemetryAuditState": "suppressed",
+      "linkedTargetIds": [
+        "concept:constitutional-safeguards"
+      ],
+      "noAutomaticBranchActivation": true,
+      "noAutomaticGraphMutation": true,
+      "noCanonicalMutation": true,
+      "notes": "Suppressed until stronger authority alignment."
     }
   ]
 }
