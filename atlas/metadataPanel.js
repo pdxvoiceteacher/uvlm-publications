@@ -293,6 +293,17 @@ function renderConcept(data) {
     row('Transfer Schema Version', data.transferSchemaVersion ?? 'unknown'),
     row('Transfer Producer Commit(s)', data.transferProducerCommits ?? 'unknown'),
     row('Transfer Source Mode', data.transferSourceMode ?? 'unknown'),
+    row('Regime Transition Probability', Number(data.regimeTransitionProbability ?? 0).toFixed(2)),
+    row('Entropy Accumulation Graph', asList((Array.isArray(data.entropyAccumulationGraph) ? data.entropyAccumulationGraph.map((e) => `${e.step}:${e.entropy}`) : []))),
+    row('Branch Ecosystem Stability', data.branchEcosystemStability ?? 'unknown'),
+    row('Trajectory Divergence Markers', asList(data.trajectoryDivergenceMarkers)),
+    row('Forecast Donor-Target Asymmetry', data.forecastDonorTargetAsymmetry ?? 'unknown'),
+    row('Forecast Replication Gate State', data.forecastReplicationGateState ?? 'hold'),
+    row('Forecast Prohibited Claims', asList(data.forecastProhibitedClaims)),
+    row('Forecast Risk Register Summary', data.forecastRiskRegisterSummary ?? 'bounded'),
+    row('System Forecast Schema Version', data.systemForecastSchemaVersion ?? 'unknown'),
+    row('System Forecast Producer Commit(s)', data.systemForecastProducerCommits ?? 'unknown'),
+    row('System Forecast Source Mode', data.systemForecastSourceMode ?? 'unknown'),
     row('Related Concepts', data.relatedConceptCount ?? 0),
     renderConceptRelations(data.relatedConcepts)
   ].join('');

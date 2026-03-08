@@ -1020,3 +1020,17 @@ python3 scripts/build_theory_transfer_overlay.py
 python3 -m unittest tests/test_build_theory_transfer_overlay.py
 ```
 
+## System Forecast Overlay (Phase AL)
+
+Publisher surfaces only **Sophia-audited system forecast materials**; no automatic cross-domain theory certification or canonical mutation occurs from this layer.
+
+Forecasts may guide attention, but never justify pre-emptive coercion.
+
+- script: `scripts/build_system_forecast_overlay.py`
+- outputs: `registry/system_forecast_dashboard.json`, `registry/regime_transition_registry.json`, `registry/trajectory_watchlist.json`, `registry/system_forecast_annotations.json`
+
+```bash
+python3 scripts/build_system_forecast_overlay.py
+python3 -m unittest tests/test_build_system_forecast_overlay.py
+```
+

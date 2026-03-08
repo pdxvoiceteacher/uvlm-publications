@@ -180,7 +180,11 @@ export async function loadAttentionOverlay() {
     transferDashboardResp,
     theoryTransferRegistryResp,
     transferWatchlistResp,
-    transferAnnotationsResp
+    transferAnnotationsResp,
+    systemForecastDashboardResp,
+    regimeTransitionRegistryResp,
+    trajectoryWatchlistResp,
+    systemForecastAnnotationsResp
   ] = await Promise.all([
     fetch('../bridge/attention_updates.json').catch(() => null),
     fetch('../bridge/coherence_assessment.json').catch(() => null),
@@ -319,7 +323,11 @@ export async function loadAttentionOverlay() {
     fetch('../registry/transfer_dashboard.json').catch(() => null),
     fetch('../registry/theory_transfer_registry.json').catch(() => null),
     fetch('../registry/transfer_watchlist.json').catch(() => null),
-    fetch('../registry/transfer_annotations.json').catch(() => null)
+    fetch('../registry/transfer_annotations.json').catch(() => null),
+    fetch('../registry/system_forecast_dashboard.json').catch(() => null),
+    fetch('../registry/regime_transition_registry.json').catch(() => null),
+    fetch('../registry/trajectory_watchlist.json').catch(() => null),
+    fetch('../registry/system_forecast_annotations.json').catch(() => null)
   ]);
 
   return {
@@ -460,7 +468,11 @@ export async function loadAttentionOverlay() {
     transferDashboard: transferDashboardResp ? await transferDashboardResp.json() : {},
     theoryTransferRegistry: theoryTransferRegistryResp ? await theoryTransferRegistryResp.json() : {},
     transferWatchlist: transferWatchlistResp ? await transferWatchlistResp.json() : {},
-    transferAnnotations: transferAnnotationsResp ? await transferAnnotationsResp.json() : {}
+    transferAnnotations: transferAnnotationsResp ? await transferAnnotationsResp.json() : {},
+    systemForecastDashboard: systemForecastDashboardResp ? await systemForecastDashboardResp.json() : {},
+    regimeTransitionRegistry: regimeTransitionRegistryResp ? await regimeTransitionRegistryResp.json() : {},
+    trajectoryWatchlist: trajectoryWatchlistResp ? await trajectoryWatchlistResp.json() : {},
+    systemForecastAnnotations: systemForecastAnnotationsResp ? await systemForecastAnnotationsResp.json() : {}
   };
 }
 
@@ -2867,6 +2879,90 @@ function buildTheoryTransferConceptSignals(transferDashboard, theoryTransferRegi
   return byConcept;
 }
 
+
+
+function buildSystemForecastConceptSignals(systemForecastDashboard, regimeTransitionRegistry, trajectoryWatchlist, systemForecastAnnotations) {
+  const byConcept = new Map();
+
+  function bump(targetId, update) {
+    if (typeof targetId !== 'string') {
+      return;
+    }
+    const existing = byConcept.get(targetId) ?? {
+      regimeTransitionProbability: 0,
+      entropyAccumulationGraph: [],
+      branchEcosystemStability: 'unknown',
+      trajectoryDivergenceMarkers: [],
+      donorTargetAsymmetry: 'unknown',
+      replicationGateState: 'hold',
+      prohibitedClaims: [],
+      riskRegisterSummary: 'bounded',
+      forecastQueueStatus: 'none',
+    };
+    update(existing);
+    byConcept.set(targetId, existing);
+  }
+
+  const registryByReview = new Map();
+  asArray(regimeTransitionRegistry?.entries).forEach((entry) => {
+    if (typeof entry?.reviewId === 'string') {
+      registryByReview.set(entry.reviewId, entry);
+    }
+  });
+
+  asArray(systemForecastDashboard?.entries).forEach((entry) => {
+    const reg = registryByReview.get(entry?.reviewId);
+    asArray(entry?.linkedTargetIds).forEach((targetId) => {
+      bump(targetId, (s) => {
+        s.regimeTransitionProbability = Number(entry?.regimeTransitionProbability ?? reg?.regimeTransitionProbability ?? s.regimeTransitionProbability);
+        s.entropyAccumulationGraph = asArray(entry?.entropyAccumulationGraph ?? reg?.entropyAccumulationGraph ?? s.entropyAccumulationGraph);
+        s.branchEcosystemStability = entry?.branchEcosystemStability ?? reg?.branchEcosystemStability ?? s.branchEcosystemStability;
+        s.trajectoryDivergenceMarkers = asArray(entry?.trajectoryDivergenceMarkers ?? reg?.trajectoryDivergenceMarkers ?? s.trajectoryDivergenceMarkers);
+        s.donorTargetAsymmetry = entry?.donorTargetAsymmetry ?? reg?.donorTargetAsymmetry ?? s.donorTargetAsymmetry;
+        s.replicationGateState = entry?.replicationGateState ?? reg?.replicationGateState ?? s.replicationGateState;
+        s.prohibitedClaims = asArray(entry?.prohibitedClaims ?? reg?.prohibitedClaims ?? s.prohibitedClaims);
+        s.riskRegisterSummary = entry?.riskRegisterSummary ?? reg?.riskRegisterSummary ?? s.riskRegisterSummary;
+        s.forecastQueueStatus = 'dashboard';
+      });
+    });
+  });
+
+  asArray(trajectoryWatchlist?.entries).forEach((entry) => {
+    asArray(entry?.linkedTargetIds).forEach((targetId) => {
+      bump(targetId, (s) => {
+        s.regimeTransitionProbability = Number(entry?.regimeTransitionProbability ?? s.regimeTransitionProbability);
+        s.entropyAccumulationGraph = asArray(entry?.entropyAccumulationGraph ?? s.entropyAccumulationGraph);
+        s.branchEcosystemStability = entry?.branchEcosystemStability ?? s.branchEcosystemStability;
+        s.trajectoryDivergenceMarkers = asArray(entry?.trajectoryDivergenceMarkers ?? s.trajectoryDivergenceMarkers);
+        s.donorTargetAsymmetry = entry?.donorTargetAsymmetry ?? s.donorTargetAsymmetry;
+        s.replicationGateState = entry?.replicationGateState ?? s.replicationGateState;
+        s.prohibitedClaims = asArray(entry?.prohibitedClaims ?? s.prohibitedClaims);
+        s.riskRegisterSummary = entry?.riskRegisterSummary ?? s.riskRegisterSummary;
+        if (s.forecastQueueStatus !== 'dashboard') {
+          s.forecastQueueStatus = 'watch';
+        }
+      });
+    });
+  });
+
+  asArray(systemForecastAnnotations?.annotations).forEach((entry) => {
+    asArray(entry?.linkedTargetIds).forEach((targetId) => {
+      bump(targetId, (s) => {
+        s.regimeTransitionProbability = Number(entry?.regimeTransitionProbability ?? s.regimeTransitionProbability);
+        s.entropyAccumulationGraph = asArray(entry?.entropyAccumulationGraph ?? s.entropyAccumulationGraph);
+        s.branchEcosystemStability = entry?.branchEcosystemStability ?? s.branchEcosystemStability;
+        s.trajectoryDivergenceMarkers = asArray(entry?.trajectoryDivergenceMarkers ?? s.trajectoryDivergenceMarkers);
+        s.donorTargetAsymmetry = entry?.donorTargetAsymmetry ?? s.donorTargetAsymmetry;
+        s.replicationGateState = entry?.replicationGateState ?? s.replicationGateState;
+        s.prohibitedClaims = asArray(entry?.prohibitedClaims ?? s.prohibitedClaims);
+        s.riskRegisterSummary = entry?.riskRegisterSummary ?? s.riskRegisterSummary;
+      });
+    });
+  });
+
+  return byConcept;
+}
+
 function buildConstitutionalConceptSignals(constitutionalAnnotations, governanceFailureWatchlist) {
   const byConcept = new Map();
 
@@ -3097,6 +3193,12 @@ export function applyAttentionOverlay(cy, overlay) {
     overlay?.transferWatchlist,
     overlay?.transferAnnotations
   );
+  const systemForecastSignals = buildSystemForecastConceptSignals(
+    overlay?.systemForecastDashboard,
+    overlay?.regimeTransitionRegistry,
+    overlay?.trajectoryWatchlist,
+    overlay?.systemForecastAnnotations
+  );
 
   const institutionalProvenance = overlay?.institutionalStatus?.provenance ?? {};
   const institutionalSchemaVersion = institutionalProvenance?.schemaVersions?.institutional_state_summary
@@ -3230,6 +3332,12 @@ export function applyAttentionOverlay(cy, overlay) {
     ?? 'unknown';
   const transferProducerCommits = asArray(transferProvenance?.producerCommits).join(', ') || 'unknown';
   const transferSourceMode = transferProvenance?.derivedFromFixtures ? 'fixture' : 'live';
+  const systemForecastProvenance = overlay?.systemForecastDashboard?.provenance ?? {};
+  const systemForecastSchemaVersion = systemForecastProvenance?.schemaVersions?.theory_transfer_map
+    ?? systemForecastProvenance?.schemaVersions?.transfer_replication_gate
+    ?? 'unknown';
+  const systemForecastProducerCommits = asArray(systemForecastProvenance?.producerCommits).join(', ') || 'unknown';
+  const systemForecastSourceMode = systemForecastProvenance?.derivedFromFixtures ? 'fixture' : 'live';
 
   cy.nodes('[class = "concept"]').forEach((node) => {
     const id = node.id();
@@ -3525,8 +3633,20 @@ export function applyAttentionOverlay(cy, overlay) {
     node.data('transferSchemaVersion', transferSchemaVersion);
     node.data('transferProducerCommits', transferProducerCommits);
     node.data('transferSourceMode', transferSourceMode);
+    const systemForecast = systemForecastSignals.get(id);
+    node.data('regimeTransitionProbability', Number(systemForecast?.regimeTransitionProbability ?? 0));
+    node.data('entropyAccumulationGraph', asArray(systemForecast?.entropyAccumulationGraph));
+    node.data('branchEcosystemStability', systemForecast?.branchEcosystemStability ?? 'unknown');
+    node.data('trajectoryDivergenceMarkers', asArray(systemForecast?.trajectoryDivergenceMarkers));
+    node.data('forecastDonorTargetAsymmetry', systemForecast?.donorTargetAsymmetry ?? 'unknown');
+    node.data('forecastReplicationGateState', systemForecast?.replicationGateState ?? 'hold');
+    node.data('forecastProhibitedClaims', asArray(systemForecast?.prohibitedClaims));
+    node.data('forecastRiskRegisterSummary', systemForecast?.riskRegisterSummary ?? 'bounded');
+    node.data('systemForecastSchemaVersion', systemForecastSchemaVersion);
+    node.data('systemForecastProducerCommits', systemForecastProducerCommits);
+    node.data('systemForecastSourceMode', systemForecastSourceMode);
 
-    node.removeClass('attention-priority attention-secondary sonya-candidate reasoning-thread reasoning-watch stability-positive stability-watch multimodal-donation multimodal-watch review-candidate watch-queue governance-review governance-watch constitutional-watch constitutional-freeze deliberation-docket deliberation-watch deliberation-urgent anti-capture-watch continuity-docket continuity-watch continuity-fragile continuity-freeze recovery-docket recovery-watch escrow-ready recovery-fragile attestation-docket attestation-watch witness-sufficient attestation-sensitive precedent-docket precedent-watch precedent-divergent precedent-strong scenario-docket scenario-watch scenario-freeze scenario-rehearse-recovery institutional-status-indicator chamber-conflict-indicator system-health-overview queue-health-actionable backlog-pressure-watch review-fatigue-watch metric-gaming-watch load-shedding-recommended priority-actionable triage-watch urgency-high priority-critical triage-conflict closure-active closure-provisional repair-urgent reopened-watch symbolic-field-active regime-shift-watch lambda-warning architecture-hint verification-active entity-ambiguity verification-urgent claim-typed public-record-active entity-graph-linked relationship-ambiguous custody-fragile machine-readable-record investigation-active investigation-stage-mid investigation-stage-late investigation-plan-progressing investigation-blocked dependency-graph-linked authority-gated weak-evidence-signal authority-mismatch propagation-restricted maturity-gated review-packet-ready review-packet-watch packet-ambiguity-high uncertainty-disclosed synthesis-bounded pattern-cluster-active cross-case-hints pattern-maturity-stable pattern-conflict pattern-timeline-active persistence-stable temporal-conflict-marker causal-bundle-active mechanism-candidate explanatory-gap-high prohibited-conclusion causal-conflict-marker collaborative-review-active consensus-provisional dissent-present collaborative-maturity-bound telemetry-field-active lattice-transition donor-pattern-active taf-elevated branch-novel branch-maturity-bound branch-lifecycle-active branch-conflict-graph branch-decay-indicator branch-reinforcement-trend branch-contradiction-trend forecast-accuracy-high calibration-improving branch-reliability-stable prediction-timeline-active experimental-active falsification-ready replication-defined theory-gate-hold theory-corpus-active theory-negative-results theory-revision-lineage theory-competition-open agency-mode-active agency-volitional-edge agency-deterministic-edge agency-vhat-provisional agency-governance-bounded agency-consent-required agency-blame-suppressed responsibility-active support-pathway-defined consent-required coercion-ceiling-strict sanction-suppressed intervention-bounded transfer-active transfer-asymmetry-high transfer-replication-gated transfer-prohibited-claims transfer-risk-elevated');
+    node.removeClass('attention-priority attention-secondary sonya-candidate reasoning-thread reasoning-watch stability-positive stability-watch multimodal-donation multimodal-watch review-candidate watch-queue governance-review governance-watch constitutional-watch constitutional-freeze deliberation-docket deliberation-watch deliberation-urgent anti-capture-watch continuity-docket continuity-watch continuity-fragile continuity-freeze recovery-docket recovery-watch escrow-ready recovery-fragile attestation-docket attestation-watch witness-sufficient attestation-sensitive precedent-docket precedent-watch precedent-divergent precedent-strong scenario-docket scenario-watch scenario-freeze scenario-rehearse-recovery institutional-status-indicator chamber-conflict-indicator system-health-overview queue-health-actionable backlog-pressure-watch review-fatigue-watch metric-gaming-watch load-shedding-recommended priority-actionable triage-watch urgency-high priority-critical triage-conflict closure-active closure-provisional repair-urgent reopened-watch symbolic-field-active regime-shift-watch lambda-warning architecture-hint verification-active entity-ambiguity verification-urgent claim-typed public-record-active entity-graph-linked relationship-ambiguous custody-fragile machine-readable-record investigation-active investigation-stage-mid investigation-stage-late investigation-plan-progressing investigation-blocked dependency-graph-linked authority-gated weak-evidence-signal authority-mismatch propagation-restricted maturity-gated review-packet-ready review-packet-watch packet-ambiguity-high uncertainty-disclosed synthesis-bounded pattern-cluster-active cross-case-hints pattern-maturity-stable pattern-conflict pattern-timeline-active persistence-stable temporal-conflict-marker causal-bundle-active mechanism-candidate explanatory-gap-high prohibited-conclusion causal-conflict-marker collaborative-review-active consensus-provisional dissent-present collaborative-maturity-bound telemetry-field-active lattice-transition donor-pattern-active taf-elevated branch-novel branch-maturity-bound branch-lifecycle-active branch-conflict-graph branch-decay-indicator branch-reinforcement-trend branch-contradiction-trend forecast-accuracy-high calibration-improving branch-reliability-stable prediction-timeline-active experimental-active falsification-ready replication-defined theory-gate-hold theory-corpus-active theory-negative-results theory-revision-lineage theory-competition-open agency-mode-active agency-volitional-edge agency-deterministic-edge agency-vhat-provisional agency-governance-bounded agency-consent-required agency-blame-suppressed responsibility-active support-pathway-defined consent-required coercion-ceiling-strict sanction-suppressed intervention-bounded transfer-active transfer-asymmetry-high transfer-replication-gated transfer-prohibited-claims transfer-risk-elevated system-forecast-active regime-transition-probable entropy-accumulating branch-ecosystem-fragile trajectory-divergent');
     if ((rankData?.rank ?? Infinity) <= 2) {
       node.addClass('attention-priority');
     } else if ((rankData?.rank ?? Infinity) <= 5) {
@@ -3985,6 +4105,22 @@ export function applyAttentionOverlay(cy, overlay) {
     }
     if ((transfer?.riskRegisterSummary ?? 'bounded') === 'elevated') {
       node.addClass('transfer-risk-elevated');
+    }
+
+    if (['dashboard', 'watch'].includes(systemForecast?.forecastQueueStatus ?? 'none')) {
+      node.addClass('system-forecast-active');
+    }
+    if ((systemForecast?.regimeTransitionProbability ?? 0) >= 0.6) {
+      node.addClass('regime-transition-probable');
+    }
+    if (asArray(systemForecast?.entropyAccumulationGraph).length > 0) {
+      node.addClass('entropy-accumulating');
+    }
+    if ((systemForecast?.branchEcosystemStability ?? 'unknown') === 'fragile') {
+      node.addClass('branch-ecosystem-fragile');
+    }
+    if (asArray(systemForecast?.trajectoryDivergenceMarkers).length > 0) {
+      node.addClass('trajectory-divergent');
     }
   });
 }
