@@ -1,0 +1,13 @@
+{
+  "generatedAt": "2026-03-08",
+  "provenance": {
+    "schemaVersion": "phase-z.0",
+    "producerCommits": ["sophia-z-111"],
+    "sourceMode": "fixture"
+  },
+  "audits": [
+    {"reviewId": "pat-001", "patternAuditState": "verified"},
+    {"reviewId": "pat-002", "patternAuditState": "watch"},
+    {"reviewId": "pat-003", "patternAuditState": "suppressed"}
+  ]
+}

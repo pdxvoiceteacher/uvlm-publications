@@ -1,0 +1,13 @@
+{
+  "generatedAt": "2026-03-08",
+  "provenance": {
+    "schemaVersion": "phase-z1.0",
+    "producerCommits": ["cl-z1-111"],
+    "sourceMode": "fixture"
+  },
+  "entries": [
+    {"reviewId": "pt-001", "patternTimelineStatus": "tracked", "timelineEvents": [{"date": "2026-02-01", "event": "cluster-emerged"}, {"date": "2026-03-01", "event": "cluster-confirmed"}]},
+    {"reviewId": "pt-002", "patternTimelineStatus": "drifting", "timelineEvents": [{"date": "2026-02-10", "event": "cluster-appears"}, {"date": "2026-03-05", "event": "signal-weakens"}]},
+    {"reviewId": "pt-003", "patternTimelineStatus": "incoherent", "timelineEvents": [{"date": "2026-01-20", "event": "outlier-link"}]}
+  ]
+}

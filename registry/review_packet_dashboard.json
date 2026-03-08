@@ -1,0 +1,78 @@
+{
+  "generatedAt": "2026-03-08",
+  "reviewPacketProtocol": true,
+  "nonCanonical": true,
+  "provenance": {
+    "schemaVersions": {
+      "review_packet_audit": "phase-y.0",
+      "review_packet_recommendations": "phase-y.0",
+      "review_packet_map": "phase-y.0",
+      "review_packet_summary": "phase-y.0",
+      "narrative_synthesis_map": "phase-y.0",
+      "uncertainty_disclosure_report": "phase-y.0",
+      "investigation_dashboard": "composite",
+      "public_record_dashboard": "composite",
+      "authority_gate_dashboard": "composite"
+    },
+    "producerCommits": [
+      "sophia-y-111",
+      "cl-y-111",
+      "cl-y-112",
+      "cl-y-113",
+      "cl-y-114",
+      "sophia-r-111",
+      "sophia-u-111",
+      "sophia-v-111",
+      "cl-v-222",
+      "cl-u-222",
+      "sophia-t-111",
+      "cl-t-222",
+      "cl-commit-aaa111",
+      "sophia-commit-bbb222",
+      "sophia-commit-qqq111",
+      "cl-commit-qqq222",
+      "cl-r-222",
+      "sophia-s-111",
+      "cl-s-222",
+      "sophia-x1-111",
+      "coherence-x1-111",
+      "coherence-x1-112",
+      "coherence-x1-113",
+      "coherence-x1-114"
+    ],
+    "sourceModes": {
+      "review_packet_audit": "fixture",
+      "review_packet_recommendations": "fixture",
+      "review_packet_map": "fixture",
+      "review_packet_summary": "fixture",
+      "narrative_synthesis_map": "fixture",
+      "uncertainty_disclosure_report": "fixture",
+      "investigation_dashboard": "fixture",
+      "public_record_dashboard": "fixture",
+      "authority_gate_dashboard": "fixture"
+    },
+    "derivedFromFixtures": true
+  },
+  "entries": [
+    {
+      "reviewId": "rp-001",
+      "packetStatus": "ready-for-human-review",
+      "maturityCeiling": "bounded-public-summary",
+      "ambiguityLevel": "medium",
+      "uncertaintyDisclosures": [
+        "causal-direction-underdetermined"
+      ],
+      "excludedConclusions": [
+        "culpability-claim",
+        "identity-attribution"
+      ],
+      "synthesisStatus": "bounded",
+      "reviewPacketAuditState": "verified",
+      "linkedTargetIds": [
+        "concept:governance-integrity"
+      ],
+      "humanReviewFlag": true,
+      "queuedAt": "2026-03-08"
+    }
+  ]
+}

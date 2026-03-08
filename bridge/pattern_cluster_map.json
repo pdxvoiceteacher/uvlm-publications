@@ -1,0 +1,13 @@
+{
+  "generatedAt": "2026-03-08",
+  "provenance": {
+    "schemaVersion": "phase-z.0",
+    "producerCommits": ["cl-z-111"],
+    "sourceMode": "fixture"
+  },
+  "entries": [
+    {"reviewId": "pat-001", "patternCluster": "governance-fragility"},
+    {"reviewId": "pat-002", "patternCluster": "continuity-anomalies"},
+    {"reviewId": "pat-003", "patternCluster": "identity-linkage"}
+  ]
+}
