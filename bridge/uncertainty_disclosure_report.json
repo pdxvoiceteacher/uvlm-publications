@@ -1,0 +1,13 @@
+{
+  "generatedAt": "2026-03-07",
+  "provenance": {
+    "schemaVersion": "phase-y.0",
+    "producerCommits": ["cl-y-114"],
+    "sourceMode": "fixture"
+  },
+  "entries": [
+    {"reviewId": "rp-001", "uncertaintyDisclosures": ["causal-direction-underdetermined"]},
+    {"reviewId": "rp-002", "uncertaintyDisclosures": ["sample-bias-risk", "missing-counterfactual"]},
+    {"reviewId": "rp-003", "uncertaintyDisclosures": ["weak-grounding"]}
+  ]
+}
