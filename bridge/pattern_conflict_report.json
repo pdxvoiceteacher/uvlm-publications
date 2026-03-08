@@ -1,0 +1,13 @@
+{
+  "generatedAt": "2026-03-08",
+  "provenance": {
+    "schemaVersion": "phase-z.0",
+    "producerCommits": ["cl-z-114"],
+    "sourceMode": "fixture"
+  },
+  "entries": [
+    {"reviewId": "pat-001", "conflictMarkers": ["timing-drift"]},
+    {"reviewId": "pat-002", "conflictMarkers": ["source-asymmetry", "small-sample"]},
+    {"reviewId": "pat-003", "conflictMarkers": ["identity-ambiguity"]}
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "generatedAt": "2026-03-08",
+  "provenance": {"schemaVersion": "phase-ao.0", "producerCommits": ["sophia-ao-111"], "sourceMode": "fixture"},
+  "entries": [
+    {"reviewId": "mc-001", "discoveryProductivity": 0.74},
+    {"reviewId": "mc-002", "discoveryProductivity": 0.44},
+    {"reviewId": "mc-003", "discoveryProductivity": 0.23}
+  ]
+}

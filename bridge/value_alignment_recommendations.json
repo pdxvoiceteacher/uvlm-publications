@@ -1,0 +1,9 @@
+{
+  "generatedAt": "2026-03-08",
+  "provenance": {"schemaVersion": "phase-an.0", "producerCommits": ["sophia-an-111"], "sourceMode": "fixture"},
+  "recommendations": [
+    {"reviewId": "va-001", "targetPublisherAction": "docket", "linkedTargetIds": ["concept:coherence-lattice"], "humanReviewFlag": true, "notes": "Knowledge priorities are advisory only."},
+    {"reviewId": "va-002", "targetPublisherAction": "watch", "linkedTargetIds": ["concept:governance-integrity"], "humanReviewFlag": true, "notes": "Fairness impact remains under community review."},
+    {"reviewId": "va-003", "targetPublisherAction": "suppressed", "linkedTargetIds": ["concept:constitutional-safeguards"], "humanReviewFlag": true, "notes": "Suppressed pending ethics council decision."}
+  ]
+}

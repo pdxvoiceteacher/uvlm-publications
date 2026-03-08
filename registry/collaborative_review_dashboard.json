@@ -1,0 +1,96 @@
+{
+  "generatedAt": "2026-03-08",
+  "collaborativeReviewProtocol": true,
+  "nonCanonical": true,
+  "provenance": {
+    "schemaVersions": {
+      "collaborative_review_audit": "phase-ac.0",
+      "collaborative_review_recommendations": "phase-ac.0",
+      "reviewer_deliberation_map": "phase-ac.0",
+      "reviewer_position_map": "phase-ac.0",
+      "consensus_state_report": "phase-ac.0",
+      "dissent_trace_report": "phase-ac.0",
+      "review_packet_dashboard": "composite",
+      "causal_dashboard": "composite",
+      "authority_gate_dashboard": "composite"
+    },
+    "producerCommits": [
+      "sophia-ac-111",
+      "sophia-y-111",
+      "cl-y-111",
+      "cl-y-112",
+      "cl-y-113",
+      "cl-y-114",
+      "sophia-r-111",
+      "sophia-u-111",
+      "sophia-v-111",
+      "cl-v-222",
+      "cl-u-222",
+      "sophia-t-111",
+      "cl-t-222",
+      "cl-commit-aaa111",
+      "sophia-commit-bbb222",
+      "sophia-commit-qqq111",
+      "cl-commit-qqq222",
+      "cl-r-222",
+      "sophia-s-111",
+      "cl-s-222",
+      "sophia-x1-111",
+      "coherence-x1-111",
+      "coherence-x1-112",
+      "coherence-x1-113",
+      "coherence-x1-114",
+      "sophia-ab-111",
+      "cl-ab-111",
+      "cl-ab-112",
+      "cl-ab-113",
+      "cl-ab-114",
+      "sophia-z1-111",
+      "cl-z1-111",
+      "cl-z1-112",
+      "cl-z1-113",
+      "sophia-z-111",
+      "cl-z-111",
+      "cl-z-112",
+      "cl-z-113",
+      "cl-z-114",
+      "sophia-aa-111"
+    ],
+    "sourceModes": {
+      "collaborative_review_audit": "fixture",
+      "collaborative_review_recommendations": "fixture",
+      "reviewer_deliberation_map": "fixture",
+      "reviewer_position_map": "fixture",
+      "consensus_state_report": "fixture",
+      "dissent_trace_report": "fixture",
+      "review_packet_dashboard": "fixture",
+      "causal_dashboard": "fixture",
+      "authority_gate_dashboard": "fixture"
+    },
+    "derivedFromFixtures": true
+  },
+  "entries": [
+    {
+      "reviewId": "cr-001",
+      "collaborativeStatus": "active-deliberation",
+      "consensusClass": "provisional-consensus",
+      "dissentPresent": true,
+      "dissentTraceCount": 1,
+      "maturityConstraints": [
+        "bounded-claiming",
+        "human-ratification-required"
+      ],
+      "reviewerPositions": [
+        "dissent",
+        "qualified-support",
+        "support"
+      ],
+      "collaborativeAuditState": "verified",
+      "linkedTargetIds": [
+        "concept:governance-integrity"
+      ],
+      "humanReviewFlag": true,
+      "queuedAt": "2026-03-08"
+    }
+  ]
+}
