@@ -1,0 +1,13 @@
+{
+  "generatedAt": "2026-03-08",
+  "provenance": {
+    "schemaVersion": "phase-z.0",
+    "producerCommits": ["cl-z-113"],
+    "sourceMode": "fixture"
+  },
+  "entries": [
+    {"reviewId": "pat-001", "crossCaseRelationshipHints": ["case-001~case-004", "case-002~case-007"]},
+    {"reviewId": "pat-002", "crossCaseRelationshipHints": ["case-005~case-006"]},
+    {"reviewId": "pat-003", "crossCaseRelationshipHints": ["case-009~case-010"]}
+  ]
+}

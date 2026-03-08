@@ -1,0 +1,9 @@
+{
+  "generatedAt": "2026-03-08",
+  "provenance": {"schemaVersion": "phase-af.0", "producerCommits": ["sophia-af-111"], "sourceMode": "fixture"},
+  "recommendations": [
+    {"reviewId": "pr-001", "targetPublisherAction": "docket", "linkedTargetIds": ["concept:coherence-lattice"], "humanReviewFlag": true, "notes": "Actionable bounded prediction candidate."},
+    {"reviewId": "pr-002", "targetPublisherAction": "watch", "linkedTargetIds": ["concept:governance-integrity"], "humanReviewFlag": true, "notes": "Forecast uncertainty remains high."},
+    {"reviewId": "pr-003", "targetPublisherAction": "suppressed", "linkedTargetIds": ["concept:constitutional-safeguards"], "humanReviewFlag": true, "notes": "Suppressed pending stronger calibration."}
+  ]
+}
