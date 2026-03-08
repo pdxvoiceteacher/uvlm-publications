@@ -1,0 +1,119 @@
+{
+  "generatedAt": "2026-03-08",
+  "systemForecastProtocol": true,
+  "nonCanonical": true,
+  "noPreemptiveCoercionFromForecasts": true,
+  "forecastGuidesAttentionOnly": true,
+  "provenance": {
+    "schemaVersions": {
+      "theory_transfer_audit": "phase-al.0",
+      "theory_transfer_recommendations": "phase-al.0",
+      "theory_transfer_map": "phase-al.0",
+      "donor_target_asymmetry_report": "phase-al.0",
+      "transfer_replication_gate": "phase-al.0",
+      "transfer_risk_register": "phase-al.0",
+      "theory_dashboard": "composite",
+      "experiment_dashboard": "composite",
+      "agency_mode_dashboard": "composite"
+    },
+    "producerCommits": [
+      "sophia-al-111",
+      "sophia-ah-111",
+      "sophia-ag-111",
+      "sophia-af-111",
+      "sophia-ae-111",
+      "sophia-ad-111",
+      "sophia-t-111",
+      "cl-t-222",
+      "cl-commit-aaa111",
+      "sophia-commit-bbb222",
+      "sophia-commit-qqq111",
+      "cl-commit-qqq222",
+      "sophia-r-111",
+      "cl-r-222",
+      "sophia-s-111",
+      "cl-s-222",
+      "sophia-u-111",
+      "sophia-v-111",
+      "sophia-x1-111",
+      "coherence-x1-111",
+      "coherence-x1-112",
+      "coherence-x1-113",
+      "coherence-x1-114",
+      "cl-u-222",
+      "cl-v-222",
+      "sophia-ab-111",
+      "cl-ab-111",
+      "cl-ab-112",
+      "cl-ab-113",
+      "cl-ab-114",
+      "sophia-z1-111",
+      "cl-z1-111",
+      "cl-z1-112",
+      "cl-z1-113",
+      "sophia-z-111",
+      "cl-z-111",
+      "cl-z-112",
+      "cl-z-113",
+      "cl-z-114",
+      "sophia-y-111",
+      "cl-y-111",
+      "cl-y-112",
+      "cl-y-113",
+      "cl-y-114",
+      "sophia-aa-111",
+      "sophia-ac-111",
+      "sophia-ai-111"
+    ],
+    "sourceModes": {
+      "theory_transfer_audit": "fixture",
+      "theory_transfer_recommendations": "fixture",
+      "theory_transfer_map": "fixture",
+      "donor_target_asymmetry_report": "fixture",
+      "transfer_replication_gate": "fixture",
+      "transfer_risk_register": "fixture",
+      "theory_dashboard": "fixture",
+      "experiment_dashboard": "fixture",
+      "agency_mode_dashboard": "fixture"
+    },
+    "derivedFromFixtures": true
+  },
+  "entries": [
+    {
+      "reviewId": "sf-001",
+      "regimeTransitionProbability": 0.67,
+      "entropyAccumulationGraph": [
+        {
+          "step": 1,
+          "entropy": 0.28
+        },
+        {
+          "step": 2,
+          "entropy": 0.36
+        },
+        {
+          "step": 3,
+          "entropy": 0.41
+        }
+      ],
+      "branchEcosystemStability": "monitor-stable",
+      "trajectoryDivergenceMarkers": [
+        "branch-drift-1",
+        "branch-drift-2"
+      ],
+      "donorTargetAsymmetry": "medium",
+      "replicationGateState": "gated-open",
+      "prohibitedClaims": [
+        "deterministic-certainty",
+        "preemptive-sanction"
+      ],
+      "riskRegisterSummary": "bounded",
+      "theoryTransferAuditState": "verified",
+      "linkedTargetIds": [
+        "concept:coherence-lattice"
+      ],
+      "humanReviewFlag": true,
+      "queuedAt": "2026-03-08"
+    }
+  ]
+}

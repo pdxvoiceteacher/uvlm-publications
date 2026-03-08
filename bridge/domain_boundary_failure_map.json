@@ -1,0 +1,9 @@
+{
+  "generatedAt": "2026-03-08",
+  "provenance": {"schemaVersion": "phase-at.0", "producerCommits": ["cl-at-201"], "sourceMode": "fixture"},
+  "entries": [
+    {"reviewId": "ed-001", "domainBoundaryFailure": "porous"},
+    {"reviewId": "ed-002", "domainBoundaryFailure": "blended"},
+    {"reviewId": "ed-003", "domainBoundaryFailure": "bounded"}
+  ]
+}

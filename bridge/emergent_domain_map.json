@@ -1,0 +1,9 @@
+{
+  "generatedAt": "2026-03-08",
+  "provenance": {"schemaVersion": "phase-at.0", "producerCommits": ["cl-at-201"], "sourceMode": "fixture"},
+  "entries": [
+    {"reviewId": "ed-001", "domainStatus": "emergent", "sourceDomains": ["transfer", "value", "curiosity"]},
+    {"reviewId": "ed-002", "domainStatus": "forming", "sourceDomains": ["theory", "prediction"]},
+    {"reviewId": "ed-003", "domainStatus": "monitor", "sourceDomains": ["commons"]}
+  ]
+}
