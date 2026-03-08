@@ -1,0 +1,9 @@
+{
+  "generatedAt": "2026-03-08",
+  "provenance": {"schemaVersion": "phase-ar.0", "producerCommits": ["sophia-ar-111"], "sourceMode": "fixture"},
+  "audits": [
+    {"reviewId": "fg-001", "federatedGovernanceAuditState": "verified"},
+    {"reviewId": "fg-002", "federatedGovernanceAuditState": "monitor"},
+    {"reviewId": "fg-003", "federatedGovernanceAuditState": "restricted"}
+  ]
+}

@@ -344,6 +344,16 @@ function renderConcept(data) {
     row('Social Entropy Schema Version', data.socialEntropySchemaVersion ?? 'unknown'),
     row('Social Entropy Producer Commit(s)', data.socialEntropyProducerCommits ?? 'unknown'),
     row('Social Entropy Source Mode', data.socialEntropySourceMode ?? 'unknown'),
+    row('Federation Status', data.federationStatus ?? 'monitor'),
+    row('Stewardship Node Class', data.stewardshipNodeClass ?? 'bounded'),
+    row('Dissent Portability', data.dissentPortability ?? 'bounded'),
+    row('Capture Risk', data.captureRisk ?? 'bounded'),
+    row('Federation Legitimacy Signal', data.federationLegitimacySignal ?? 'stable'),
+    row('Mitigation Requirement', data.mitigationRequirement ?? 'monitor'),
+    row('Capture Risk Score', Number(data.captureRiskScore ?? 0).toFixed(2)),
+    row('Federated Governance Schema Version', data.federatedGovernanceSchemaVersion ?? 'unknown'),
+    row('Federated Governance Producer Commit(s)', data.federatedGovernanceProducerCommits ?? 'unknown'),
+    row('Federated Governance Source Mode', data.federatedGovernanceSourceMode ?? 'unknown'),
     row('Related Concepts', data.relatedConceptCount ?? 0),
     renderConceptRelations(data.relatedConcepts)
   ].join('');

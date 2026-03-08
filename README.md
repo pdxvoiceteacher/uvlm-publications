@@ -1120,3 +1120,17 @@ python3 -m unittest tests/test_build_social_entropy_overlay.py
 ```
 
 Codex context note: this interface should help humans see where the commons is fraying without turning the system into a civics panopticon.
+
+## Federated Stewardship & Commons Governance Overlay (Phase AR)
+
+Publisher surfaces only **Sophia-audited federated-governance materials**; no automatic centralization, ranking of communities, or sovereignty claims occur from this layer.
+
+- script: `scripts/build_federated_governance_overlay.py`
+- outputs: `registry/federation_dashboard.json`, `registry/stewardship_registry.json`, `registry/capture_watchlist.json`, `registry/federation_annotations.json`
+
+```bash
+python3 scripts/build_federated_governance_overlay.py
+python3 -m unittest tests/test_build_federated_governance_overlay.py
+```
+
+Codex context note: this interface should help humans see where the commons is centralizing or fracturing, not create a new prestige hierarchy.

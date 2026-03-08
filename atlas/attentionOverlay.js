@@ -204,7 +204,11 @@ export async function loadAttentionOverlay() {
     socialEntropyDashboardResp,
     civicCohesionRegistryResp,
     legitimacyWatchlistResp,
-    socialRepairAnnotationsResp
+    socialRepairAnnotationsResp,
+    federationDashboardResp,
+    stewardshipRegistryResp,
+    captureWatchlistResp,
+    federationAnnotationsResp
   ] = await Promise.all([
     fetch('../bridge/attention_updates.json').catch(() => null),
     fetch('../bridge/coherence_assessment.json').catch(() => null),
@@ -367,7 +371,11 @@ export async function loadAttentionOverlay() {
     fetch('../registry/social_entropy_dashboard.json').catch(() => null),
     fetch('../registry/civic_cohesion_registry.json').catch(() => null),
     fetch('../registry/legitimacy_watchlist.json').catch(() => null),
-    fetch('../registry/social_repair_annotations.json').catch(() => null)
+    fetch('../registry/social_repair_annotations.json').catch(() => null),
+    fetch('../registry/federation_dashboard.json').catch(() => null),
+    fetch('../registry/stewardship_registry.json').catch(() => null),
+    fetch('../registry/capture_watchlist.json').catch(() => null),
+    fetch('../registry/federation_annotations.json').catch(() => null)
   ]);
 
   return {
@@ -532,7 +540,11 @@ export async function loadAttentionOverlay() {
     socialEntropyDashboard: socialEntropyDashboardResp ? await socialEntropyDashboardResp.json() : {},
     civicCohesionRegistry: civicCohesionRegistryResp ? await civicCohesionRegistryResp.json() : {},
     legitimacyWatchlist: legitimacyWatchlistResp ? await legitimacyWatchlistResp.json() : {},
-    socialRepairAnnotations: socialRepairAnnotationsResp ? await socialRepairAnnotationsResp.json() : {}
+    socialRepairAnnotations: socialRepairAnnotationsResp ? await socialRepairAnnotationsResp.json() : {},
+    federationDashboard: federationDashboardResp ? await federationDashboardResp.json() : {},
+    stewardshipRegistry: stewardshipRegistryResp ? await stewardshipRegistryResp.json() : {},
+    captureWatchlist: captureWatchlistResp ? await captureWatchlistResp.json() : {},
+    federationAnnotations: federationAnnotationsResp ? await federationAnnotationsResp.json() : {}
   };
 }
 
@@ -3379,6 +3391,85 @@ function buildSocialEntropyConceptSignals(socialEntropyDashboard, civicCohesionR
   return byConcept;
 }
 
+
+function buildFederatedGovernanceConceptSignals(federationDashboard, stewardshipRegistry, captureWatchlist, federationAnnotations) {
+  const byConcept = new Map();
+
+  function bump(targetId, update) {
+    if (typeof targetId !== 'string') {
+      return;
+    }
+    const existing = byConcept.get(targetId) ?? {
+      federationStatus: 'monitor',
+      stewardshipNodeClass: 'bounded',
+      dissentPortability: 'bounded',
+      captureRisk: 'bounded',
+      legitimacySignal: 'stable',
+      mitigationRequirement: 'monitor',
+      captureRiskScore: 0,
+      federationQueueStatus: 'none',
+    };
+    update(existing);
+    byConcept.set(targetId, existing);
+  }
+
+  const registryByReview = new Map();
+  asArray(stewardshipRegistry?.entries).forEach((entry) => {
+    if (typeof entry?.reviewId === 'string') {
+      registryByReview.set(entry.reviewId, entry);
+    }
+  });
+
+  asArray(federationDashboard?.entries).forEach((entry) => {
+    const reg = registryByReview.get(entry?.reviewId);
+    asArray(entry?.linkedTargetIds).forEach((targetId) => {
+      bump(targetId, (s) => {
+        s.federationStatus = entry?.federationStatus ?? reg?.federationStatus ?? s.federationStatus;
+        s.stewardshipNodeClass = entry?.nodeClass ?? reg?.nodeClass ?? s.stewardshipNodeClass;
+        s.dissentPortability = entry?.dissentPortability ?? reg?.dissentPortability ?? s.dissentPortability;
+        s.captureRisk = entry?.captureRisk ?? reg?.captureRisk ?? s.captureRisk;
+        s.legitimacySignal = entry?.legitimacySignal ?? reg?.legitimacySignal ?? s.legitimacySignal;
+        s.mitigationRequirement = entry?.mitigationRequirement ?? reg?.mitigationRequirement ?? s.mitigationRequirement;
+        s.captureRiskScore = Number(entry?.captureRiskScore ?? reg?.captureRiskScore ?? s.captureRiskScore);
+        s.federationQueueStatus = 'dashboard';
+      });
+    });
+  });
+
+  asArray(captureWatchlist?.entries).forEach((entry) => {
+    asArray(entry?.linkedTargetIds).forEach((targetId) => {
+      bump(targetId, (s) => {
+        s.federationStatus = entry?.federationStatus ?? s.federationStatus;
+        s.stewardshipNodeClass = entry?.nodeClass ?? s.stewardshipNodeClass;
+        s.dissentPortability = entry?.dissentPortability ?? s.dissentPortability;
+        s.captureRisk = entry?.captureRisk ?? s.captureRisk;
+        s.legitimacySignal = entry?.legitimacySignal ?? s.legitimacySignal;
+        s.mitigationRequirement = entry?.mitigationRequirement ?? s.mitigationRequirement;
+        s.captureRiskScore = Number(entry?.captureRiskScore ?? s.captureRiskScore);
+        if (s.federationQueueStatus !== 'dashboard') {
+          s.federationQueueStatus = 'watch';
+        }
+      });
+    });
+  });
+
+  asArray(federationAnnotations?.annotations).forEach((entry) => {
+    asArray(entry?.linkedTargetIds).forEach((targetId) => {
+      bump(targetId, (s) => {
+        s.federationStatus = entry?.federationStatus ?? s.federationStatus;
+        s.stewardshipNodeClass = entry?.nodeClass ?? s.stewardshipNodeClass;
+        s.dissentPortability = entry?.dissentPortability ?? s.dissentPortability;
+        s.captureRisk = entry?.captureRisk ?? s.captureRisk;
+        s.legitimacySignal = entry?.legitimacySignal ?? s.legitimacySignal;
+        s.mitigationRequirement = entry?.mitigationRequirement ?? s.mitigationRequirement;
+        s.captureRiskScore = Number(entry?.captureRiskScore ?? s.captureRiskScore);
+      });
+    });
+  });
+
+  return byConcept;
+}
+
 function buildConstitutionalConceptSignals(constitutionalAnnotations, governanceFailureWatchlist) {
   const byConcept = new Map();
 
@@ -3645,6 +3736,12 @@ export function applyAttentionOverlay(cy, overlay) {
     overlay?.legitimacyWatchlist,
     overlay?.socialRepairAnnotations
   );
+  const federatedGovernanceSignals = buildFederatedGovernanceConceptSignals(
+    overlay?.federationDashboard,
+    overlay?.stewardshipRegistry,
+    overlay?.captureWatchlist,
+    overlay?.federationAnnotations
+  );
 
   const institutionalProvenance = overlay?.institutionalStatus?.provenance ?? {};
   const institutionalSchemaVersion = institutionalProvenance?.schemaVersions?.institutional_state_summary
@@ -3814,6 +3911,12 @@ export function applyAttentionOverlay(cy, overlay) {
     ?? 'unknown';
   const socialEntropyProducerCommits = asArray(socialEntropyProvenance?.producerCommits).join(', ') || 'unknown';
   const socialEntropySourceMode = socialEntropyProvenance?.derivedFromFixtures ? 'fixture' : 'live';
+  const federatedGovernanceProvenance = overlay?.federationDashboard?.provenance ?? {};
+  const federatedGovernanceSchemaVersion = federatedGovernanceProvenance?.schemaVersions?.stewardship_node_map
+    ?? federatedGovernanceProvenance?.schemaVersions?.federation_coherence_report
+    ?? 'unknown';
+  const federatedGovernanceProducerCommits = asArray(federatedGovernanceProvenance?.producerCommits).join(', ') || 'unknown';
+  const federatedGovernanceSourceMode = federatedGovernanceProvenance?.derivedFromFixtures ? 'fixture' : 'live';
 
   cy.nodes('[class = "concept"]').forEach((node) => {
     const id = node.id();
@@ -4166,8 +4269,19 @@ export function applyAttentionOverlay(cy, overlay) {
     node.data('socialEntropySchemaVersion', socialEntropySchemaVersion);
     node.data('socialEntropyProducerCommits', socialEntropyProducerCommits);
     node.data('socialEntropySourceMode', socialEntropySourceMode);
+    const federated = federatedGovernanceSignals.get(id);
+    node.data('federationStatus', federated?.federationStatus ?? 'monitor');
+    node.data('stewardshipNodeClass', federated?.stewardshipNodeClass ?? 'bounded');
+    node.data('dissentPortability', federated?.dissentPortability ?? 'bounded');
+    node.data('captureRisk', federated?.captureRisk ?? 'bounded');
+    node.data('federationLegitimacySignal', federated?.legitimacySignal ?? 'stable');
+    node.data('mitigationRequirement', federated?.mitigationRequirement ?? 'monitor');
+    node.data('captureRiskScore', Number(federated?.captureRiskScore ?? 0));
+    node.data('federatedGovernanceSchemaVersion', federatedGovernanceSchemaVersion);
+    node.data('federatedGovernanceProducerCommits', federatedGovernanceProducerCommits);
+    node.data('federatedGovernanceSourceMode', federatedGovernanceSourceMode);
 
-    node.removeClass('attention-priority attention-secondary sonya-candidate reasoning-thread reasoning-watch stability-positive stability-watch multimodal-donation multimodal-watch review-candidate watch-queue governance-review governance-watch constitutional-watch constitutional-freeze deliberation-docket deliberation-watch deliberation-urgent anti-capture-watch continuity-docket continuity-watch continuity-fragile continuity-freeze recovery-docket recovery-watch escrow-ready recovery-fragile attestation-docket attestation-watch witness-sufficient attestation-sensitive precedent-docket precedent-watch precedent-divergent precedent-strong scenario-docket scenario-watch scenario-freeze scenario-rehearse-recovery institutional-status-indicator chamber-conflict-indicator system-health-overview queue-health-actionable backlog-pressure-watch review-fatigue-watch metric-gaming-watch load-shedding-recommended priority-actionable triage-watch urgency-high priority-critical triage-conflict closure-active closure-provisional repair-urgent reopened-watch symbolic-field-active regime-shift-watch lambda-warning architecture-hint verification-active entity-ambiguity verification-urgent claim-typed public-record-active entity-graph-linked relationship-ambiguous custody-fragile machine-readable-record investigation-active investigation-stage-mid investigation-stage-late investigation-plan-progressing investigation-blocked dependency-graph-linked authority-gated weak-evidence-signal authority-mismatch propagation-restricted maturity-gated review-packet-ready review-packet-watch packet-ambiguity-high uncertainty-disclosed synthesis-bounded pattern-cluster-active cross-case-hints pattern-maturity-stable pattern-conflict pattern-timeline-active persistence-stable temporal-conflict-marker causal-bundle-active mechanism-candidate explanatory-gap-high prohibited-conclusion causal-conflict-marker collaborative-review-active consensus-provisional dissent-present collaborative-maturity-bound telemetry-field-active lattice-transition donor-pattern-active taf-elevated branch-novel branch-maturity-bound branch-lifecycle-active branch-conflict-graph branch-decay-indicator branch-reinforcement-trend branch-contradiction-trend forecast-accuracy-high calibration-improving branch-reliability-stable prediction-timeline-active experimental-active falsification-ready replication-defined theory-gate-hold theory-corpus-active theory-negative-results theory-revision-lineage theory-competition-open agency-mode-active agency-volitional-edge agency-deterministic-edge agency-vhat-provisional agency-governance-bounded agency-consent-required agency-blame-suppressed responsibility-active support-pathway-defined consent-required coercion-ceiling-strict sanction-suppressed intervention-bounded transfer-active transfer-asymmetry-high transfer-replication-gated transfer-prohibited-claims transfer-risk-elevated system-forecast-active regime-transition-probable entropy-accumulating branch-ecosystem-fragile trajectory-divergent uncertainty-gradient-high information-gain-high experiment-priority-high entropy-reduction-positive curiosity-active value-alignment-active knowledge-priority-top welfare-impact-positive fairness-impact-watch value-risk-flagged meta-active reasoning-efficiency-high donor-reliability-high governance-constraint-strong discovery-productive architecture-active module-performance-strong architecture-discovery-productive safeguard-performance-strong architecture-proposal-queued social-entropy-active social-status-fraying cohesion-fragile legitimacy-drift-elevated reviewer-concentration-high reviewer-fatigue-high repair-priority-high');
+    node.removeClass('attention-priority attention-secondary sonya-candidate reasoning-thread reasoning-watch stability-positive stability-watch multimodal-donation multimodal-watch review-candidate watch-queue governance-review governance-watch constitutional-watch constitutional-freeze deliberation-docket deliberation-watch deliberation-urgent anti-capture-watch continuity-docket continuity-watch continuity-fragile continuity-freeze recovery-docket recovery-watch escrow-ready recovery-fragile attestation-docket attestation-watch witness-sufficient attestation-sensitive precedent-docket precedent-watch precedent-divergent precedent-strong scenario-docket scenario-watch scenario-freeze scenario-rehearse-recovery institutional-status-indicator chamber-conflict-indicator system-health-overview queue-health-actionable backlog-pressure-watch review-fatigue-watch metric-gaming-watch load-shedding-recommended priority-actionable triage-watch urgency-high priority-critical triage-conflict closure-active closure-provisional repair-urgent reopened-watch symbolic-field-active regime-shift-watch lambda-warning architecture-hint verification-active entity-ambiguity verification-urgent claim-typed public-record-active entity-graph-linked relationship-ambiguous custody-fragile machine-readable-record investigation-active investigation-stage-mid investigation-stage-late investigation-plan-progressing investigation-blocked dependency-graph-linked authority-gated weak-evidence-signal authority-mismatch propagation-restricted maturity-gated review-packet-ready review-packet-watch packet-ambiguity-high uncertainty-disclosed synthesis-bounded pattern-cluster-active cross-case-hints pattern-maturity-stable pattern-conflict pattern-timeline-active persistence-stable temporal-conflict-marker causal-bundle-active mechanism-candidate explanatory-gap-high prohibited-conclusion causal-conflict-marker collaborative-review-active consensus-provisional dissent-present collaborative-maturity-bound telemetry-field-active lattice-transition donor-pattern-active taf-elevated branch-novel branch-maturity-bound branch-lifecycle-active branch-conflict-graph branch-decay-indicator branch-reinforcement-trend branch-contradiction-trend forecast-accuracy-high calibration-improving branch-reliability-stable prediction-timeline-active experimental-active falsification-ready replication-defined theory-gate-hold theory-corpus-active theory-negative-results theory-revision-lineage theory-competition-open agency-mode-active agency-volitional-edge agency-deterministic-edge agency-vhat-provisional agency-governance-bounded agency-consent-required agency-blame-suppressed responsibility-active support-pathway-defined consent-required coercion-ceiling-strict sanction-suppressed intervention-bounded transfer-active transfer-asymmetry-high transfer-replication-gated transfer-prohibited-claims transfer-risk-elevated system-forecast-active regime-transition-probable entropy-accumulating branch-ecosystem-fragile trajectory-divergent uncertainty-gradient-high information-gain-high experiment-priority-high entropy-reduction-positive curiosity-active value-alignment-active knowledge-priority-top welfare-impact-positive fairness-impact-watch value-risk-flagged meta-active reasoning-efficiency-high donor-reliability-high governance-constraint-strong discovery-productive architecture-active module-performance-strong architecture-discovery-productive safeguard-performance-strong architecture-proposal-queued social-entropy-active social-status-fraying cohesion-fragile legitimacy-drift-elevated reviewer-concentration-high reviewer-fatigue-high repair-priority-high federation-active federation-status-coherent stewardship-node-distributed dissent-portable capture-risk-elevated mitigation-required');
     if ((rankData?.rank ?? Infinity) <= 2) {
       node.addClass('attention-priority');
     } else if ((rankData?.rank ?? Infinity) <= 5) {
@@ -4728,6 +4842,25 @@ export function applyAttentionOverlay(cy, overlay) {
     }
     if ((socialEntropy?.repairPriority ?? 'routine') === 'high') {
       node.addClass('repair-priority-high');
+    }
+
+    if (['dashboard', 'watch'].includes(federated?.federationQueueStatus ?? 'none')) {
+      node.addClass('federation-active');
+    }
+    if ((federated?.federationStatus ?? 'monitor') === 'coherent') {
+      node.addClass('federation-status-coherent');
+    }
+    if ((federated?.stewardshipNodeClass ?? 'bounded') === 'distributed') {
+      node.addClass('stewardship-node-distributed');
+    }
+    if ((federated?.dissentPortability ?? 'bounded') === 'portable') {
+      node.addClass('dissent-portable');
+    }
+    if ((federated?.captureRisk ?? 'bounded') === 'elevated' || (federated?.captureRiskScore ?? 0) >= 0.6) {
+      node.addClass('capture-risk-elevated');
+    }
+    if ((federated?.mitigationRequirement ?? 'monitor') === 'high') {
+      node.addClass('mitigation-required');
     }
   });
 }
