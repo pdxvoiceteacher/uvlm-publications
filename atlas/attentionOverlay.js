@@ -212,7 +212,11 @@ export async function loadAttentionOverlay() {
     emergentDomainDashboardResp,
     domainBirthRegistryResp,
     domainBoundaryWatchlistResp,
-    emergentDomainAnnotationsResp
+    emergentDomainAnnotationsResp,
+    commonsSovereigntyDashboardResp,
+    institutionalCaptureRegistryResp,
+    publicTrustWatchlistResp,
+    civilizationalIntegrityAnnotationsResp
   ] = await Promise.all([
     fetch('../bridge/attention_updates.json').catch(() => null),
     fetch('../bridge/coherence_assessment.json').catch(() => null),
@@ -383,7 +387,11 @@ export async function loadAttentionOverlay() {
     fetch('../registry/emergent_domain_dashboard.json').catch(() => null),
     fetch('../registry/domain_birth_registry.json').catch(() => null),
     fetch('../registry/domain_boundary_watchlist.json').catch(() => null),
-    fetch('../registry/emergent_domain_annotations.json').catch(() => null)
+    fetch('../registry/emergent_domain_annotations.json').catch(() => null),
+    fetch('../registry/commons_sovereignty_dashboard.json').catch(() => null),
+    fetch('../registry/institutional_capture_registry.json').catch(() => null),
+    fetch('../registry/public_trust_watchlist.json').catch(() => null),
+    fetch('../registry/civilizational_integrity_annotations.json').catch(() => null)
   ]);
 
   return {
@@ -556,7 +564,11 @@ export async function loadAttentionOverlay() {
     emergentDomainDashboard: emergentDomainDashboardResp ? await emergentDomainDashboardResp.json() : {},
     domainBirthRegistry: domainBirthRegistryResp ? await domainBirthRegistryResp.json() : {},
     domainBoundaryWatchlist: domainBoundaryWatchlistResp ? await domainBoundaryWatchlistResp.json() : {},
-    emergentDomainAnnotations: emergentDomainAnnotationsResp ? await emergentDomainAnnotationsResp.json() : {}
+    emergentDomainAnnotations: emergentDomainAnnotationsResp ? await emergentDomainAnnotationsResp.json() : {},
+    commonsSovereigntyDashboard: commonsSovereigntyDashboardResp ? await commonsSovereigntyDashboardResp.json() : {},
+    institutionalCaptureRegistry: institutionalCaptureRegistryResp ? await institutionalCaptureRegistryResp.json() : {},
+    publicTrustWatchlist: publicTrustWatchlistResp ? await publicTrustWatchlistResp.json() : {},
+    civilizationalIntegrityAnnotations: civilizationalIntegrityAnnotationsResp ? await civilizationalIntegrityAnnotationsResp.json() : {}
   };
 }
 
@@ -3562,6 +3574,80 @@ function buildEmergentDomainConceptSignals(emergentDomainDashboard, domainBirthR
   return byConcept;
 }
 
+function buildCommonsSovereigntyConceptSignals(commonsSovereigntyDashboard, institutionalCaptureRegistry, publicTrustWatchlist, civilizationalIntegrityAnnotations) {
+  const byConcept = new Map();
+
+  function bump(targetId, update) {
+    if (typeof targetId !== 'string') {
+      return;
+    }
+    const existing = byConcept.get(targetId) ?? {
+      commonsIntegrity: 'monitor',
+      institutionalCaptureRisk: 'bounded',
+      institutionalCaptureRiskScore: 0,
+      publicTrustStability: 'stable',
+      epistemicDiversity: 'mixed',
+      dissentPortability: 'bounded',
+      sovereigntyQueueStatus: 'none',
+    };
+    update(existing);
+    byConcept.set(targetId, existing);
+  }
+
+  const registryByReview = new Map();
+  asArray(institutionalCaptureRegistry?.entries).forEach((entry) => {
+    if (typeof entry?.reviewId === 'string') {
+      registryByReview.set(entry.reviewId, entry);
+    }
+  });
+
+  asArray(commonsSovereigntyDashboard?.entries).forEach((entry) => {
+    const reg = registryByReview.get(entry?.reviewId);
+    asArray(entry?.linkedTargetIds).forEach((targetId) => {
+      bump(targetId, (s) => {
+        s.commonsIntegrity = entry?.commonsIntegrity ?? reg?.commonsIntegrity ?? s.commonsIntegrity;
+        s.institutionalCaptureRisk = entry?.institutionalCaptureRisk ?? reg?.institutionalCaptureRisk ?? s.institutionalCaptureRisk;
+        s.institutionalCaptureRiskScore = Number(entry?.institutionalCaptureRiskScore ?? reg?.institutionalCaptureRiskScore ?? s.institutionalCaptureRiskScore);
+        s.publicTrustStability = entry?.publicTrustStability ?? reg?.publicTrustStability ?? s.publicTrustStability;
+        s.epistemicDiversity = entry?.epistemicDiversity ?? reg?.epistemicDiversity ?? s.epistemicDiversity;
+        s.dissentPortability = entry?.dissentPortability ?? reg?.dissentPortability ?? s.dissentPortability;
+        s.sovereigntyQueueStatus = 'dashboard';
+      });
+    });
+  });
+
+  asArray(publicTrustWatchlist?.entries).forEach((entry) => {
+    asArray(entry?.linkedTargetIds).forEach((targetId) => {
+      bump(targetId, (s) => {
+        s.commonsIntegrity = entry?.commonsIntegrity ?? s.commonsIntegrity;
+        s.institutionalCaptureRisk = entry?.institutionalCaptureRisk ?? s.institutionalCaptureRisk;
+        s.institutionalCaptureRiskScore = Number(entry?.institutionalCaptureRiskScore ?? s.institutionalCaptureRiskScore);
+        s.publicTrustStability = entry?.publicTrustStability ?? s.publicTrustStability;
+        s.epistemicDiversity = entry?.epistemicDiversity ?? s.epistemicDiversity;
+        s.dissentPortability = entry?.dissentPortability ?? s.dissentPortability;
+        if (s.sovereigntyQueueStatus !== 'dashboard') {
+          s.sovereigntyQueueStatus = 'watch';
+        }
+      });
+    });
+  });
+
+  asArray(civilizationalIntegrityAnnotations?.annotations).forEach((entry) => {
+    asArray(entry?.linkedTargetIds).forEach((targetId) => {
+      bump(targetId, (s) => {
+        s.commonsIntegrity = entry?.commonsIntegrity ?? s.commonsIntegrity;
+        s.institutionalCaptureRisk = entry?.institutionalCaptureRisk ?? s.institutionalCaptureRisk;
+        s.institutionalCaptureRiskScore = Number(entry?.institutionalCaptureRiskScore ?? s.institutionalCaptureRiskScore);
+        s.publicTrustStability = entry?.publicTrustStability ?? s.publicTrustStability;
+        s.epistemicDiversity = entry?.epistemicDiversity ?? s.epistemicDiversity;
+        s.dissentPortability = entry?.dissentPortability ?? s.dissentPortability;
+      });
+    });
+  });
+
+  return byConcept;
+}
+
 function buildConstitutionalConceptSignals(constitutionalAnnotations, governanceFailureWatchlist) {
   const byConcept = new Map();
 
@@ -3840,6 +3926,12 @@ export function applyAttentionOverlay(cy, overlay) {
     overlay?.domainBoundaryWatchlist,
     overlay?.emergentDomainAnnotations
   );
+  const commonsSovereigntySignals = buildCommonsSovereigntyConceptSignals(
+    overlay?.commonsSovereigntyDashboard,
+    overlay?.institutionalCaptureRegistry,
+    overlay?.publicTrustWatchlist,
+    overlay?.civilizationalIntegrityAnnotations
+  );
 
   const institutionalProvenance = overlay?.institutionalStatus?.provenance ?? {};
   const institutionalSchemaVersion = institutionalProvenance?.schemaVersions?.institutional_state_summary
@@ -4021,6 +4113,12 @@ export function applyAttentionOverlay(cy, overlay) {
     ?? 'unknown';
   const emergentDomainProducerCommits = asArray(emergentDomainProvenance?.producerCommits).join(', ') || 'unknown';
   const emergentDomainSourceMode = emergentDomainProvenance?.derivedFromFixtures ? 'fixture' : 'live';
+  const commonsSovereigntyProvenance = overlay?.commonsSovereigntyDashboard?.provenance ?? {};
+  const commonsSovereigntySchemaVersion = commonsSovereigntyProvenance?.schemaVersions?.commons_sovereignty_audit
+    ?? commonsSovereigntyProvenance?.schemaVersions?.commons_sovereignty_map
+    ?? 'unknown';
+  const commonsSovereigntyProducerCommits = asArray(commonsSovereigntyProvenance?.producerCommits).join(', ') || 'unknown';
+  const commonsSovereigntySourceMode = commonsSovereigntyProvenance?.derivedFromFixtures ? 'fixture' : 'live';
 
   cy.nodes('[class = "concept"]').forEach((node) => {
     const id = node.id();
@@ -4404,8 +4502,18 @@ export function applyAttentionOverlay(cy, overlay) {
     node.data('commonsIntegrityNotice', overlay?.emergentDomainDashboard?.commonsIntegrityNotice ?? 'unknown');
     node.data('constraintSignatureVersion', overlay?.emergentDomainDashboard?.constraintSignatureVersion ?? 'unknown');
     node.data('constraintSignatureSha256', overlay?.emergentDomainDashboard?.constraintSignatureSha256 ?? 'unknown');
+    const commonsSovereignty = commonsSovereigntySignals.get(id);
+    node.data('commonsIntegrity', commonsSovereignty?.commonsIntegrity ?? 'monitor');
+    node.data('institutionalCaptureRisk', commonsSovereignty?.institutionalCaptureRisk ?? 'bounded');
+    node.data('institutionalCaptureRiskScore', Number(commonsSovereignty?.institutionalCaptureRiskScore ?? 0));
+    node.data('publicTrustStability', commonsSovereignty?.publicTrustStability ?? 'stable');
+    node.data('epistemicDiversity', commonsSovereignty?.epistemicDiversity ?? 'mixed');
+    node.data('civilizationalDissentPortability', commonsSovereignty?.dissentPortability ?? 'bounded');
+    node.data('commonsSovereigntySchemaVersion', commonsSovereigntySchemaVersion);
+    node.data('commonsSovereigntyProducerCommits', commonsSovereigntyProducerCommits);
+    node.data('commonsSovereigntySourceMode', commonsSovereigntySourceMode);
 
-    node.removeClass('attention-priority attention-secondary sonya-candidate reasoning-thread reasoning-watch stability-positive stability-watch multimodal-donation multimodal-watch review-candidate watch-queue governance-review governance-watch constitutional-watch constitutional-freeze deliberation-docket deliberation-watch deliberation-urgent anti-capture-watch continuity-docket continuity-watch continuity-fragile continuity-freeze recovery-docket recovery-watch escrow-ready recovery-fragile attestation-docket attestation-watch witness-sufficient attestation-sensitive precedent-docket precedent-watch precedent-divergent precedent-strong scenario-docket scenario-watch scenario-freeze scenario-rehearse-recovery institutional-status-indicator chamber-conflict-indicator system-health-overview queue-health-actionable backlog-pressure-watch review-fatigue-watch metric-gaming-watch load-shedding-recommended priority-actionable triage-watch urgency-high priority-critical triage-conflict closure-active closure-provisional repair-urgent reopened-watch symbolic-field-active regime-shift-watch lambda-warning architecture-hint verification-active entity-ambiguity verification-urgent claim-typed public-record-active entity-graph-linked relationship-ambiguous custody-fragile machine-readable-record investigation-active investigation-stage-mid investigation-stage-late investigation-plan-progressing investigation-blocked dependency-graph-linked authority-gated weak-evidence-signal authority-mismatch propagation-restricted maturity-gated review-packet-ready review-packet-watch packet-ambiguity-high uncertainty-disclosed synthesis-bounded pattern-cluster-active cross-case-hints pattern-maturity-stable pattern-conflict pattern-timeline-active persistence-stable temporal-conflict-marker causal-bundle-active mechanism-candidate explanatory-gap-high prohibited-conclusion causal-conflict-marker collaborative-review-active consensus-provisional dissent-present collaborative-maturity-bound telemetry-field-active lattice-transition donor-pattern-active taf-elevated branch-novel branch-maturity-bound branch-lifecycle-active branch-conflict-graph branch-decay-indicator branch-reinforcement-trend branch-contradiction-trend forecast-accuracy-high calibration-improving branch-reliability-stable prediction-timeline-active experimental-active falsification-ready replication-defined theory-gate-hold theory-corpus-active theory-negative-results theory-revision-lineage theory-competition-open agency-mode-active agency-volitional-edge agency-deterministic-edge agency-vhat-provisional agency-governance-bounded agency-consent-required agency-blame-suppressed responsibility-active support-pathway-defined consent-required coercion-ceiling-strict sanction-suppressed intervention-bounded transfer-active transfer-asymmetry-high transfer-replication-gated transfer-prohibited-claims transfer-risk-elevated system-forecast-active regime-transition-probable entropy-accumulating branch-ecosystem-fragile trajectory-divergent uncertainty-gradient-high information-gain-high experiment-priority-high entropy-reduction-positive curiosity-active value-alignment-active knowledge-priority-top welfare-impact-positive fairness-impact-watch value-risk-flagged meta-active reasoning-efficiency-high donor-reliability-high governance-constraint-strong discovery-productive architecture-active module-performance-strong architecture-discovery-productive safeguard-performance-strong architecture-proposal-queued social-entropy-active social-status-fraying cohesion-fragile legitimacy-drift-elevated reviewer-concentration-high reviewer-fatigue-high repair-priority-high federation-active federation-status-coherent stewardship-node-distributed dissent-portable capture-risk-elevated mitigation-required emergent-domain-active domain-status-emergent invariant-pattern-convergent field-birth-pressure-high domain-boundary-failure-active commons-legibility-required trust-presentation-degraded');
+    node.removeClass('attention-priority attention-secondary sonya-candidate reasoning-thread reasoning-watch stability-positive stability-watch multimodal-donation multimodal-watch review-candidate watch-queue governance-review governance-watch constitutional-watch constitutional-freeze deliberation-docket deliberation-watch deliberation-urgent anti-capture-watch continuity-docket continuity-watch continuity-fragile continuity-freeze recovery-docket recovery-watch escrow-ready recovery-fragile attestation-docket attestation-watch witness-sufficient attestation-sensitive precedent-docket precedent-watch precedent-divergent precedent-strong scenario-docket scenario-watch scenario-freeze scenario-rehearse-recovery institutional-status-indicator chamber-conflict-indicator system-health-overview queue-health-actionable backlog-pressure-watch review-fatigue-watch metric-gaming-watch load-shedding-recommended priority-actionable triage-watch urgency-high priority-critical triage-conflict closure-active closure-provisional repair-urgent reopened-watch symbolic-field-active regime-shift-watch lambda-warning architecture-hint verification-active entity-ambiguity verification-urgent claim-typed public-record-active entity-graph-linked relationship-ambiguous custody-fragile machine-readable-record investigation-active investigation-stage-mid investigation-stage-late investigation-plan-progressing investigation-blocked dependency-graph-linked authority-gated weak-evidence-signal authority-mismatch propagation-restricted maturity-gated review-packet-ready review-packet-watch packet-ambiguity-high uncertainty-disclosed synthesis-bounded pattern-cluster-active cross-case-hints pattern-maturity-stable pattern-conflict pattern-timeline-active persistence-stable temporal-conflict-marker causal-bundle-active mechanism-candidate explanatory-gap-high prohibited-conclusion causal-conflict-marker collaborative-review-active consensus-provisional dissent-present collaborative-maturity-bound telemetry-field-active lattice-transition donor-pattern-active taf-elevated branch-novel branch-maturity-bound branch-lifecycle-active branch-conflict-graph branch-decay-indicator branch-reinforcement-trend branch-contradiction-trend forecast-accuracy-high calibration-improving branch-reliability-stable prediction-timeline-active experimental-active falsification-ready replication-defined theory-gate-hold theory-corpus-active theory-negative-results theory-revision-lineage theory-competition-open agency-mode-active agency-volitional-edge agency-deterministic-edge agency-vhat-provisional agency-governance-bounded agency-consent-required agency-blame-suppressed responsibility-active support-pathway-defined consent-required coercion-ceiling-strict sanction-suppressed intervention-bounded transfer-active transfer-asymmetry-high transfer-replication-gated transfer-prohibited-claims transfer-risk-elevated system-forecast-active regime-transition-probable entropy-accumulating branch-ecosystem-fragile trajectory-divergent uncertainty-gradient-high information-gain-high experiment-priority-high entropy-reduction-positive curiosity-active value-alignment-active knowledge-priority-top welfare-impact-positive fairness-impact-watch value-risk-flagged meta-active reasoning-efficiency-high donor-reliability-high governance-constraint-strong discovery-productive architecture-active module-performance-strong architecture-discovery-productive safeguard-performance-strong architecture-proposal-queued social-entropy-active social-status-fraying cohesion-fragile legitimacy-drift-elevated reviewer-concentration-high reviewer-fatigue-high repair-priority-high federation-active federation-status-coherent stewardship-node-distributed dissent-portable capture-risk-elevated mitigation-required emergent-domain-active domain-status-emergent invariant-pattern-convergent field-birth-pressure-high domain-boundary-failure-active commons-legibility-required trust-presentation-degraded commons-sovereignty-active commons-integrity-fragile institutional-capture-risk-elevated public-trust-unstable epistemic-diversity-high civilizational-dissent-portable');
     if ((rankData?.rank ?? Infinity) <= 2) {
       node.addClass('attention-priority');
     } else if ((rankData?.rank ?? Infinity) <= 5) {
@@ -5007,6 +5115,25 @@ export function applyAttentionOverlay(cy, overlay) {
     }
     if (overlay?.emergentDomainDashboard?.trustPresentationDegraded) {
       node.addClass('trust-presentation-degraded');
+    }
+
+    if (['dashboard', 'watch'].includes(commonsSovereignty?.sovereigntyQueueStatus ?? 'none')) {
+      node.addClass('commons-sovereignty-active');
+    }
+    if ((commonsSovereignty?.commonsIntegrity ?? 'monitor') === 'fragile') {
+      node.addClass('commons-integrity-fragile');
+    }
+    if ((commonsSovereignty?.institutionalCaptureRisk ?? 'bounded') === 'elevated' || (commonsSovereignty?.institutionalCaptureRiskScore ?? 0) >= 0.6) {
+      node.addClass('institutional-capture-risk-elevated');
+    }
+    if (['fragile', 'watch'].includes(commonsSovereignty?.publicTrustStability ?? 'stable')) {
+      node.addClass('public-trust-unstable');
+    }
+    if ((commonsSovereignty?.epistemicDiversity ?? 'mixed') === 'high') {
+      node.addClass('epistemic-diversity-high');
+    }
+    if ((commonsSovereignty?.dissentPortability ?? 'bounded') === 'portable') {
+      node.addClass('civilizational-dissent-portable');
     }
   });
 }

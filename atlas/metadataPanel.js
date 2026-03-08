@@ -373,6 +373,15 @@ function renderConcept(data) {
     row('Commons Integrity Notice', data.commonsIntegrityNotice ?? 'unknown'),
     row('Constraint Signature Version', data.constraintSignatureVersion ?? 'unknown'),
     row('Constraint Signature SHA-256', data.constraintSignatureSha256 ?? 'unknown'),
+    row('Commons Integrity', data.commonsIntegrity ?? 'monitor'),
+    row('Institutional Capture Risk', data.institutionalCaptureRisk ?? 'bounded'),
+    row('Institutional Capture Risk Score', Number(data.institutionalCaptureRiskScore ?? 0).toFixed(2)),
+    row('Public Trust Stability', data.publicTrustStability ?? 'stable'),
+    row('Epistemic Diversity', data.epistemicDiversity ?? 'mixed'),
+    row('Civilizational Dissent Portability', data.civilizationalDissentPortability ?? 'bounded'),
+    row('Commons Sovereignty Schema Version', data.commonsSovereigntySchemaVersion ?? 'unknown'),
+    row('Commons Sovereignty Producer Commit(s)', data.commonsSovereigntyProducerCommits ?? 'unknown'),
+    row('Commons Sovereignty Source Mode', data.commonsSovereigntySourceMode ?? 'unknown'),
     row('Related Concepts', data.relatedConceptCount ?? 0),
     renderConceptRelations(data.relatedConcepts)
   ].join('');

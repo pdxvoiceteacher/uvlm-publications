@@ -1164,3 +1164,19 @@ Canonical trust rule: derivatives that remove provenance or alter safety boundar
 Bridge/registry artifacts may include canonical integrity manifests with constraint signatures.
 If immutable safety constraints change, the constraint signature must change accordingly.
 Derivatives that remove provenance or alter safety boundaries without disclosure lose canonical trust status and should be presented with degraded trust markers.
+
+## Civilizational Commons Safeguard Overlay (Phase AU)
+
+Publisher surfaces only **Sophia-audited commons sovereignty signals; it does not determine governance authority**.
+
+The UI should show the health of the commons, not elevate any institution above it.
+
+- script: `scripts/build_commons_sovereignty_overlay.py`
+- inputs: `bridge/commons_sovereignty_audit.json`, `bridge/commons_sovereignty_recommendations.json`, `bridge/commons_sovereignty_map.json`, `bridge/institutional_capture_risk_report.json`, `bridge/public_trust_signal_map.json`, `bridge/civilizational_integrity_report.json`, `registry/federation_dashboard.json`, `registry/social_entropy_dashboard.json`, `registry/value_dashboard.json`, `registry/architecture_dashboard.json`
+- outputs: `registry/commons_sovereignty_dashboard.json`, `registry/institutional_capture_registry.json`, `registry/public_trust_watchlist.json`, `registry/civilizational_integrity_annotations.json`
+- policy: docket items enter actionable dashboard/registry sections, watch items enter public trust watchlist, and suppressed items are excluded from actionable overlays.
+
+```bash
+python3 scripts/build_commons_sovereignty_overlay.py
+python3 -m unittest tests/test_build_commons_sovereignty_overlay.py
+```
