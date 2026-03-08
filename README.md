@@ -85,7 +85,7 @@ python3 scripts/validate_metadata.py
 python3 scripts/build_catalog.py
 python3 scripts/build_knowledge_graph.py
 python3 scripts/validate_knowledge_graph.py
-python3 -m unittest tests/test_build_public_record_overlay.py tests/test_build_verification_overlay.py tests/test_build_investigation_overlay.py tests/test_build_evidence_authority_overlay.py tests/test_build_symbolic_field_overlay.py tests/test_build_closure_overlay.py tests/test_build_priority_overlay.py tests/test_build_queue_health_overlay.py tests/test_build_institutional_overlay.py tests/test_validate_atlas_timeline.py tests/test_validate_constellations.py
+python3 -m unittest tests/test_build_public_record_overlay.py tests/test_build_verification_overlay.py tests/test_build_investigation_overlay.py tests/test_build_evidence_authority_overlay.py tests/test_build_review_packet_overlay.py tests/test_build_symbolic_field_overlay.py tests/test_build_closure_overlay.py tests/test_build_priority_overlay.py tests/test_build_queue_health_overlay.py tests/test_build_institutional_overlay.py tests/test_validate_atlas_timeline.py tests/test_validate_constellations.py
 ```
 
 These checks keep metadata, graph artifacts, and overlay contracts deterministic and auditable.
@@ -121,22 +121,6 @@ Edge classes:
 
 Phase 1 intentionally avoids inferred similarity edges and ontology expansion to keep the graph explicit, deterministic, and auditable.
 
-
-
-### Evidence maturity gating and propagation rights protocol (Phase X.1)
-
-Publisher surfaces only Sophia-audited evidence-authority materials; no automatic restriction lifting or graph hardening occurs from this layer.
-
-- inputs: `bridge/evidence_authority_audit.json`, `bridge/evidence_authority_recommendations.json`, `bridge/evidence_authority_map.json`, `bridge/evidence_authority_summary.json`, `bridge/propagation_rights_map.json`, `bridge/maturity_gate_report.json`, `registry/verification_dashboard.json`, `registry/public_record_dashboard.json`, `registry/symbolic_field_registry.json`, `registry/investigation_dashboard.json`
-- non-canonical outputs: `registry/authority_gate_dashboard.json`, `registry/weak_evidence_watchlist.json`, `registry/propagation_annotations.json`, `registry/maturity_restriction_registry.json`
-- phase lock: claim / entity / graph / closure / precedent / investigation state → CoherenceLattice evidence-authority formalization → Sophia evidence-authority audit → Publisher authority-gating overlays → human/community review of propagation limits
-- principles: weak evidence remains watch-only; propagation restrictions are bounded and non-punitive; suppressed recommendations are excluded from actionable authority overlays; no automatic mutation of identities/edges/precedents/closures/canonical truth artifacts
-
-Build command:
-
-```bash
-python3 scripts/build_evidence_authority_overlay.py
-```
 
 
 ## UVLM Research Atlas (Phase 2)
@@ -559,6 +543,23 @@ Build command:
 
 ```bash
 python3 scripts/build_evidence_authority_overlay.py
+```
+
+
+
+### Human review packet and narrative synthesis protocol (Phase Y)
+
+Publisher surfaces only Sophia-audited review packets and uncertainty disclosures; no automatic accusation, publication, or canonical mutation occurs from this layer.
+
+- inputs: `bridge/review_packet_audit.json`, `bridge/review_packet_recommendations.json`, `bridge/review_packet_map.json`, `bridge/review_packet_summary.json`, `bridge/narrative_synthesis_map.json`, `bridge/uncertainty_disclosure_report.json`, `registry/investigation_dashboard.json`, `registry/public_record_dashboard.json`, `registry/authority_gate_dashboard.json`
+- non-canonical outputs: `registry/review_packet_dashboard.json`, `registry/review_packet_registry.json`, `registry/uncertainty_watchlist.json`, `registry/review_packet_annotations.json`
+- phase lock: investigation / verification / evidence-authority state → CoherenceLattice review-packet formalization → Sophia packet audit → Publisher review-packet overlays → human/community bounded review
+- principles: docket packets stay bounded and uncertainty-explicit; watch packets remain observational; suppressed items are excluded from actionable overlays; no automatic mutation of identities/edges/precedents/closures/canonical truth artifacts
+
+Build command:
+
+```bash
+python3 scripts/build_review_packet_overlay.py
 ```
 
 

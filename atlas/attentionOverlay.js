@@ -129,7 +129,11 @@ export async function loadAttentionOverlay() {
     authorityGateDashboardResp,
     weakEvidenceWatchlistResp,
     propagationAnnotationsResp,
-    maturityRestrictionRegistryResp
+    maturityRestrictionRegistryResp,
+    reviewPacketDashboardResp,
+    reviewPacketRegistryResp,
+    uncertaintyWatchlistResp,
+    reviewPacketAnnotationsResp
   ] = await Promise.all([
     fetch('../bridge/attention_updates.json').catch(() => null),
     fetch('../bridge/coherence_assessment.json').catch(() => null),
@@ -217,7 +221,11 @@ export async function loadAttentionOverlay() {
     fetch('../registry/authority_gate_dashboard.json').catch(() => null),
     fetch('../registry/weak_evidence_watchlist.json').catch(() => null),
     fetch('../registry/propagation_annotations.json').catch(() => null),
-    fetch('../registry/maturity_restriction_registry.json').catch(() => null)
+    fetch('../registry/maturity_restriction_registry.json').catch(() => null),
+    fetch('../registry/review_packet_dashboard.json').catch(() => null),
+    fetch('../registry/review_packet_registry.json').catch(() => null),
+    fetch('../registry/uncertainty_watchlist.json').catch(() => null),
+    fetch('../registry/review_packet_annotations.json').catch(() => null)
   ]);
 
   return {
@@ -307,7 +315,11 @@ export async function loadAttentionOverlay() {
     authorityGateDashboard: authorityGateDashboardResp ? await authorityGateDashboardResp.json() : {},
     weakEvidenceWatchlist: weakEvidenceWatchlistResp ? await weakEvidenceWatchlistResp.json() : {},
     propagationAnnotations: propagationAnnotationsResp ? await propagationAnnotationsResp.json() : {},
-    maturityRestrictionRegistry: maturityRestrictionRegistryResp ? await maturityRestrictionRegistryResp.json() : {}
+    maturityRestrictionRegistry: maturityRestrictionRegistryResp ? await maturityRestrictionRegistryResp.json() : {},
+    reviewPacketDashboard: reviewPacketDashboardResp ? await reviewPacketDashboardResp.json() : {},
+    reviewPacketRegistry: reviewPacketRegistryResp ? await reviewPacketRegistryResp.json() : {},
+    uncertaintyWatchlist: uncertaintyWatchlistResp ? await uncertaintyWatchlistResp.json() : {},
+    reviewPacketAnnotations: reviewPacketAnnotationsResp ? await reviewPacketAnnotationsResp.json() : {}
   };
 }
 
@@ -1734,6 +1746,80 @@ function buildEvidenceAuthorityConceptSignals(authorityGateDashboard, weakEviden
   return byConcept;
 }
 
+function buildReviewPacketConceptSignals(reviewPacketDashboard, reviewPacketRegistry, uncertaintyWatchlist, reviewPacketAnnotations) {
+  const byConcept = new Map();
+
+  function bump(targetId, update) {
+    if (typeof targetId !== 'string') {
+      return;
+    }
+    const existing = byConcept.get(targetId) ?? {
+      reviewPacketStatus: 'pending-review',
+      maturityCeiling: 'bounded-review',
+      reviewPacketAmbiguityLevel: 'medium',
+      uncertaintyDisclosures: [],
+      excludedConclusions: [],
+      synthesisStatus: 'bounded',
+      reviewPacketQueueStatus: 'none',
+    };
+    update(existing);
+    byConcept.set(targetId, existing);
+  }
+
+  const registryByReview = new Map();
+  asArray(reviewPacketRegistry?.entries).forEach((entry) => {
+    if (typeof entry?.reviewId === 'string') {
+      registryByReview.set(entry.reviewId, entry);
+    }
+  });
+
+  asArray(reviewPacketDashboard?.entries).forEach((entry) => {
+    const reg = registryByReview.get(entry?.reviewId);
+    asArray(entry?.linkedTargetIds).forEach((targetId) => {
+      bump(targetId, (s) => {
+        s.reviewPacketStatus = entry?.packetStatus ?? reg?.packetStatus ?? s.reviewPacketStatus;
+        s.maturityCeiling = entry?.maturityCeiling ?? reg?.maturityCeiling ?? s.maturityCeiling;
+        s.reviewPacketAmbiguityLevel = entry?.ambiguityLevel ?? reg?.ambiguityLevel ?? s.reviewPacketAmbiguityLevel;
+        s.uncertaintyDisclosures = asArray(entry?.uncertaintyDisclosures ?? reg?.uncertaintyDisclosures);
+        s.excludedConclusions = asArray(entry?.excludedConclusions ?? reg?.excludedConclusions);
+        s.synthesisStatus = entry?.synthesisStatus ?? reg?.synthesisStatus ?? s.synthesisStatus;
+        s.reviewPacketQueueStatus = 'dashboard';
+      });
+    });
+  });
+
+  asArray(uncertaintyWatchlist?.entries).forEach((entry) => {
+    asArray(entry?.linkedTargetIds).forEach((targetId) => {
+      bump(targetId, (s) => {
+        s.reviewPacketStatus = entry?.packetStatus ?? s.reviewPacketStatus;
+        s.maturityCeiling = entry?.maturityCeiling ?? s.maturityCeiling;
+        s.reviewPacketAmbiguityLevel = entry?.ambiguityLevel ?? s.reviewPacketAmbiguityLevel;
+        s.uncertaintyDisclosures = asArray(entry?.uncertaintyDisclosures ?? s.uncertaintyDisclosures);
+        s.excludedConclusions = asArray(entry?.excludedConclusions ?? s.excludedConclusions);
+        s.synthesisStatus = entry?.synthesisStatus ?? s.synthesisStatus;
+        if (s.reviewPacketQueueStatus !== 'dashboard') {
+          s.reviewPacketQueueStatus = 'watch';
+        }
+      });
+    });
+  });
+
+  asArray(reviewPacketAnnotations?.annotations).forEach((entry) => {
+    asArray(entry?.linkedTargetIds).forEach((targetId) => {
+      bump(targetId, (s) => {
+        s.reviewPacketStatus = entry?.packetStatus ?? s.reviewPacketStatus;
+        s.maturityCeiling = entry?.maturityCeiling ?? s.maturityCeiling;
+        s.reviewPacketAmbiguityLevel = entry?.ambiguityLevel ?? s.reviewPacketAmbiguityLevel;
+        s.uncertaintyDisclosures = asArray(entry?.uncertaintyDisclosures ?? s.uncertaintyDisclosures);
+        s.excludedConclusions = asArray(entry?.excludedConclusions ?? s.excludedConclusions);
+        s.synthesisStatus = entry?.synthesisStatus ?? s.synthesisStatus;
+      });
+    });
+  });
+
+  return byConcept;
+}
+
 function buildConstitutionalConceptSignals(constitutionalAnnotations, governanceFailureWatchlist) {
   const byConcept = new Map();
 
@@ -1886,6 +1972,12 @@ export function applyAttentionOverlay(cy, overlay) {
     overlay?.propagationAnnotations,
     overlay?.maturityRestrictionRegistry
   );
+  const reviewPacketSignals = buildReviewPacketConceptSignals(
+    overlay?.reviewPacketDashboard,
+    overlay?.reviewPacketRegistry,
+    overlay?.uncertaintyWatchlist,
+    overlay?.reviewPacketAnnotations
+  );
 
 
   const institutionalProvenance = overlay?.institutionalStatus?.provenance ?? {};
@@ -1942,6 +2034,12 @@ export function applyAttentionOverlay(cy, overlay) {
     ?? 'unknown';
   const authorityProducerCommits = asArray(authorityProvenance?.producerCommits).join(', ') || 'unknown';
   const authoritySourceMode = authorityProvenance?.derivedFromFixtures ? 'fixture' : 'live';
+  const reviewPacketProvenance = overlay?.reviewPacketDashboard?.provenance ?? {};
+  const reviewPacketSchemaVersion = reviewPacketProvenance?.schemaVersions?.review_packet_summary
+    ?? reviewPacketProvenance?.schemaVersions?.review_packet_map
+    ?? 'unknown';
+  const reviewPacketProducerCommits = asArray(reviewPacketProvenance?.producerCommits).join(', ') || 'unknown';
+  const reviewPacketSourceMode = reviewPacketProvenance?.derivedFromFixtures ? 'fixture' : 'live';
 
   cy.nodes('[class = "concept"]').forEach((node) => {
     const id = node.id();
@@ -2107,8 +2205,18 @@ export function applyAttentionOverlay(cy, overlay) {
     node.data('authorityGateSchemaVersion', authoritySchemaVersion);
     node.data('authorityGateProducerCommits', authorityProducerCommits);
     node.data('authorityGateSourceMode', authoritySourceMode);
+    const reviewPacket = reviewPacketSignals.get(id);
+    node.data('reviewPacketStatus', reviewPacket?.reviewPacketStatus ?? 'pending-review');
+    node.data('maturityCeiling', reviewPacket?.maturityCeiling ?? 'bounded-review');
+    node.data('reviewPacketAmbiguityLevel', reviewPacket?.reviewPacketAmbiguityLevel ?? 'medium');
+    node.data('uncertaintyDisclosures', asArray(reviewPacket?.uncertaintyDisclosures));
+    node.data('excludedConclusions', asArray(reviewPacket?.excludedConclusions));
+    node.data('synthesisStatus', reviewPacket?.synthesisStatus ?? 'bounded');
+    node.data('reviewPacketSchemaVersion', reviewPacketSchemaVersion);
+    node.data('reviewPacketProducerCommits', reviewPacketProducerCommits);
+    node.data('reviewPacketSourceMode', reviewPacketSourceMode);
 
-    node.removeClass('attention-priority attention-secondary sonya-candidate reasoning-thread reasoning-watch stability-positive stability-watch multimodal-donation multimodal-watch review-candidate watch-queue governance-review governance-watch constitutional-watch constitutional-freeze deliberation-docket deliberation-watch deliberation-urgent anti-capture-watch continuity-docket continuity-watch continuity-fragile continuity-freeze recovery-docket recovery-watch escrow-ready recovery-fragile attestation-docket attestation-watch witness-sufficient attestation-sensitive precedent-docket precedent-watch precedent-divergent precedent-strong scenario-docket scenario-watch scenario-freeze scenario-rehearse-recovery institutional-status-indicator chamber-conflict-indicator system-health-overview queue-health-actionable backlog-pressure-watch review-fatigue-watch metric-gaming-watch load-shedding-recommended priority-actionable triage-watch urgency-high priority-critical triage-conflict closure-active closure-provisional repair-urgent reopened-watch symbolic-field-active regime-shift-watch lambda-warning architecture-hint verification-active entity-ambiguity verification-urgent claim-typed public-record-active entity-graph-linked relationship-ambiguous custody-fragile machine-readable-record investigation-active investigation-stage-mid investigation-stage-late investigation-plan-progressing investigation-blocked dependency-graph-linked authority-gated weak-evidence-signal authority-mismatch propagation-restricted maturity-gated');
+    node.removeClass('attention-priority attention-secondary sonya-candidate reasoning-thread reasoning-watch stability-positive stability-watch multimodal-donation multimodal-watch review-candidate watch-queue governance-review governance-watch constitutional-watch constitutional-freeze deliberation-docket deliberation-watch deliberation-urgent anti-capture-watch continuity-docket continuity-watch continuity-fragile continuity-freeze recovery-docket recovery-watch escrow-ready recovery-fragile attestation-docket attestation-watch witness-sufficient attestation-sensitive precedent-docket precedent-watch precedent-divergent precedent-strong scenario-docket scenario-watch scenario-freeze scenario-rehearse-recovery institutional-status-indicator chamber-conflict-indicator system-health-overview queue-health-actionable backlog-pressure-watch review-fatigue-watch metric-gaming-watch load-shedding-recommended priority-actionable triage-watch urgency-high priority-critical triage-conflict closure-active closure-provisional repair-urgent reopened-watch symbolic-field-active regime-shift-watch lambda-warning architecture-hint verification-active entity-ambiguity verification-urgent claim-typed public-record-active entity-graph-linked relationship-ambiguous custody-fragile machine-readable-record investigation-active investigation-stage-mid investigation-stage-late investigation-plan-progressing investigation-blocked dependency-graph-linked authority-gated weak-evidence-signal authority-mismatch propagation-restricted maturity-gated review-packet-ready review-packet-watch packet-ambiguity-high uncertainty-disclosed synthesis-bounded');
     if ((rankData?.rank ?? Infinity) <= 2) {
       node.addClass('attention-priority');
     } else if ((rankData?.rank ?? Infinity) <= 5) {
@@ -2368,6 +2476,22 @@ export function applyAttentionOverlay(cy, overlay) {
     }
     if ((authority?.maturityGateStatus ?? 'hold') !== 'open') {
       node.addClass('maturity-gated');
+    }
+
+    if (['dashboard', 'registry'].includes(reviewPacket?.reviewPacketQueueStatus ?? 'none')) {
+      node.addClass('review-packet-ready');
+    }
+    if ((reviewPacket?.reviewPacketQueueStatus ?? 'none') === 'watch') {
+      node.addClass('review-packet-watch');
+    }
+    if ((reviewPacket?.reviewPacketAmbiguityLevel ?? 'medium') === 'high') {
+      node.addClass('packet-ambiguity-high');
+    }
+    if (asArray(reviewPacket?.uncertaintyDisclosures).length > 0) {
+      node.addClass('uncertainty-disclosed');
+    }
+    if ((reviewPacket?.synthesisStatus ?? 'bounded') === 'bounded') {
+      node.addClass('synthesis-bounded');
     }
   });
 }

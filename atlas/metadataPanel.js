@@ -184,6 +184,15 @@ function renderConcept(data) {
     row('Authority-Gate Schema Version', data.authorityGateSchemaVersion ?? 'unknown'),
     row('Authority-Gate Producer Commit(s)', data.authorityGateProducerCommits ?? 'unknown'),
     row('Authority-Gate Source Mode', data.authorityGateSourceMode ?? 'unknown'),
+    row('Review Packet Status', data.reviewPacketStatus ?? 'pending-review'),
+    row('Maturity Ceiling', data.maturityCeiling ?? 'bounded-review'),
+    row('Packet Ambiguity Level', data.reviewPacketAmbiguityLevel ?? 'medium'),
+    row('Uncertainty Disclosures', asList(data.uncertaintyDisclosures)),
+    row('Excluded Conclusions', asList(data.excludedConclusions)),
+    row('Synthesis Status', data.synthesisStatus ?? 'bounded'),
+    row('Review-Packet Schema Version', data.reviewPacketSchemaVersion ?? 'unknown'),
+    row('Review-Packet Producer Commit(s)', data.reviewPacketProducerCommits ?? 'unknown'),
+    row('Review-Packet Source Mode', data.reviewPacketSourceMode ?? 'unknown'),
     row('Related Concepts', data.relatedConceptCount ?? 0),
     renderConceptRelations(data.relatedConcepts)
   ].join('');
