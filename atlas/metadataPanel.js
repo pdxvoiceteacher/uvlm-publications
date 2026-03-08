@@ -335,6 +335,15 @@ function renderConcept(data) {
     row('Architecture Schema Version', data.architectureSchemaVersion ?? 'unknown'),
     row('Architecture Producer Commit(s)', data.architectureProducerCommits ?? 'unknown'),
     row('Architecture Source Mode', data.architectureSourceMode ?? 'unknown'),
+    row('Social Status', data.socialStatus ?? 'monitor'),
+    row('Cohesion Class', data.cohesionClass ?? 'mixed'),
+    row('Legitimacy Drift', data.legitimacyDrift ?? 'bounded'),
+    row('Reviewer Concentration', Number(data.reviewerConcentration ?? 0).toFixed(2)),
+    row('Reviewer Fatigue', data.reviewerFatigue ?? 'bounded'),
+    row('Repair Priority', data.repairPriority ?? 'routine'),
+    row('Social Entropy Schema Version', data.socialEntropySchemaVersion ?? 'unknown'),
+    row('Social Entropy Producer Commit(s)', data.socialEntropyProducerCommits ?? 'unknown'),
+    row('Social Entropy Source Mode', data.socialEntropySourceMode ?? 'unknown'),
     row('Related Concepts', data.relatedConceptCount ?? 0),
     renderConceptRelations(data.relatedConcepts)
   ].join('');

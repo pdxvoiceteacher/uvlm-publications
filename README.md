@@ -1106,3 +1106,17 @@ Publisher surfaces only **Sophia-audited architecture materials**; architecture 
 python3 scripts/build_architecture_overlay.py
 python3 -m unittest tests/test_build_architecture_overlay.py
 ```
+
+## Social Entropy & Civic Cohesion Overlay (Phase AQ)
+
+Publisher surfaces only **Sophia-audited social-entropy materials**; no automatic suppression, ranking of persons, or coercive normalization occurs from this layer.
+
+- script: `scripts/build_social_entropy_overlay.py`
+- outputs: `registry/social_entropy_dashboard.json`, `registry/civic_cohesion_registry.json`, `registry/legitimacy_watchlist.json`, `registry/social_repair_annotations.json`
+
+```bash
+python3 scripts/build_social_entropy_overlay.py
+python3 -m unittest tests/test_build_social_entropy_overlay.py
+```
+
+Codex context note: this interface should help humans see where the commons is fraying without turning the system into a civics panopticon.
