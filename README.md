@@ -942,3 +942,15 @@ Publisher surfaces only **Sophia-audited branch lifecycle materials**; no automa
 python3 scripts/build_branch_lifecycle_overlay.py
 python3 -m unittest tests/test_build_branch_lifecycle_overlay.py
 ```
+
+## Prediction Overlay (Phase AF)
+
+Publisher surfaces only **Sophia-audited prediction materials**; no automatic branch activation or canonical mutation occurs from this layer.
+
+- script: `scripts/build_prediction_overlay.py`
+- outputs: `registry/prediction_dashboard.json`, `registry/forecast_registry.json`, `registry/prediction_watchlist.json`, `registry/calibration_annotations.json`
+
+```bash
+python3 scripts/build_prediction_overlay.py
+python3 -m unittest tests/test_build_prediction_overlay.py
+```

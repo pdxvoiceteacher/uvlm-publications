@@ -156,7 +156,11 @@ export async function loadAttentionOverlay() {
     branchDashboardResp,
     branchRegistryResp,
     branchWatchlistResp,
-    branchAnnotationsResp
+    branchAnnotationsResp,
+    predictionDashboardResp,
+    forecastRegistryResp,
+    predictionWatchlistResp,
+    calibrationAnnotationsResp
   ] = await Promise.all([
     fetch('../bridge/attention_updates.json').catch(() => null),
     fetch('../bridge/coherence_assessment.json').catch(() => null),
@@ -271,7 +275,11 @@ export async function loadAttentionOverlay() {
     fetch('../registry/branch_dashboard.json').catch(() => null),
     fetch('../registry/branch_registry.json').catch(() => null),
     fetch('../registry/branch_watchlist.json').catch(() => null),
-    fetch('../registry/branch_annotations.json').catch(() => null)
+    fetch('../registry/branch_annotations.json').catch(() => null),
+    fetch('../registry/prediction_dashboard.json').catch(() => null),
+    fetch('../registry/forecast_registry.json').catch(() => null),
+    fetch('../registry/prediction_watchlist.json').catch(() => null),
+    fetch('../registry/calibration_annotations.json').catch(() => null)
   ]);
 
   return {
@@ -388,7 +396,11 @@ export async function loadAttentionOverlay() {
     branchDashboard: branchDashboardResp ? await branchDashboardResp.json() : {},
     branchRegistry: branchRegistryResp ? await branchRegistryResp.json() : {},
     branchWatchlist: branchWatchlistResp ? await branchWatchlistResp.json() : {},
-    branchAnnotations: branchAnnotationsResp ? await branchAnnotationsResp.json() : {}
+    branchAnnotations: branchAnnotationsResp ? await branchAnnotationsResp.json() : {},
+    predictionDashboard: predictionDashboardResp ? await predictionDashboardResp.json() : {},
+    forecastRegistry: forecastRegistryResp ? await forecastRegistryResp.json() : {},
+    predictionWatchlist: predictionWatchlistResp ? await predictionWatchlistResp.json() : {},
+    calibrationAnnotations: calibrationAnnotationsResp ? await calibrationAnnotationsResp.json() : {}
   };
 }
 
@@ -2331,6 +2343,86 @@ function buildBranchLifecycleConceptSignals(branchDashboard, branchRegistry, bra
   return byConcept;
 }
 
+
+
+function buildPredictionConceptSignals(predictionDashboard, forecastRegistry, predictionWatchlist, calibrationAnnotations) {
+  const byConcept = new Map();
+
+  function bump(targetId, update) {
+    if (typeof targetId !== 'string') {
+      return;
+    }
+    const existing = byConcept.get(targetId) ?? {
+      forecastAccuracy: 'unknown',
+      forecastConfidence: 'bounded',
+      calibrationTrend: 'stable',
+      calibrationError: 0,
+      branchReliability: 'unknown',
+      reliabilityScore: 0,
+      outcomeTimeline: [],
+      predictionQueueStatus: 'none',
+    };
+    update(existing);
+    byConcept.set(targetId, existing);
+  }
+
+  const registryByReview = new Map();
+  asArray(forecastRegistry?.entries).forEach((entry) => {
+    if (typeof entry?.reviewId === 'string') {
+      registryByReview.set(entry.reviewId, entry);
+    }
+  });
+
+  asArray(predictionDashboard?.entries).forEach((entry) => {
+    const reg = registryByReview.get(entry?.reviewId);
+    asArray(entry?.linkedTargetIds).forEach((targetId) => {
+      bump(targetId, (s) => {
+        s.forecastAccuracy = entry?.forecastAccuracy ?? reg?.forecastAccuracy ?? s.forecastAccuracy;
+        s.forecastConfidence = entry?.forecastConfidence ?? reg?.forecastConfidence ?? s.forecastConfidence;
+        s.calibrationTrend = entry?.calibrationTrend ?? reg?.calibrationTrend ?? s.calibrationTrend;
+        s.calibrationError = Number(entry?.calibrationError ?? reg?.calibrationError ?? s.calibrationError);
+        s.branchReliability = entry?.branchReliability ?? reg?.branchReliability ?? s.branchReliability;
+        s.reliabilityScore = Number(entry?.reliabilityScore ?? reg?.reliabilityScore ?? s.reliabilityScore);
+        s.outcomeTimeline = asArray(entry?.outcomeTimeline ?? reg?.outcomeTimeline);
+        s.predictionQueueStatus = 'dashboard';
+      });
+    });
+  });
+
+  asArray(predictionWatchlist?.entries).forEach((entry) => {
+    asArray(entry?.linkedTargetIds).forEach((targetId) => {
+      bump(targetId, (s) => {
+        s.forecastAccuracy = entry?.forecastAccuracy ?? s.forecastAccuracy;
+        s.forecastConfidence = entry?.forecastConfidence ?? s.forecastConfidence;
+        s.calibrationTrend = entry?.calibrationTrend ?? s.calibrationTrend;
+        s.calibrationError = Number(entry?.calibrationError ?? s.calibrationError);
+        s.branchReliability = entry?.branchReliability ?? s.branchReliability;
+        s.reliabilityScore = Number(entry?.reliabilityScore ?? s.reliabilityScore);
+        s.outcomeTimeline = asArray(entry?.outcomeTimeline ?? s.outcomeTimeline);
+        if (s.predictionQueueStatus !== 'dashboard') {
+          s.predictionQueueStatus = 'watch';
+        }
+      });
+    });
+  });
+
+  asArray(calibrationAnnotations?.annotations).forEach((entry) => {
+    asArray(entry?.linkedTargetIds).forEach((targetId) => {
+      bump(targetId, (s) => {
+        s.forecastAccuracy = entry?.forecastAccuracy ?? s.forecastAccuracy;
+        s.forecastConfidence = entry?.forecastConfidence ?? s.forecastConfidence;
+        s.calibrationTrend = entry?.calibrationTrend ?? s.calibrationTrend;
+        s.calibrationError = Number(entry?.calibrationError ?? s.calibrationError);
+        s.branchReliability = entry?.branchReliability ?? s.branchReliability;
+        s.reliabilityScore = Number(entry?.reliabilityScore ?? s.reliabilityScore);
+        s.outcomeTimeline = asArray(entry?.outcomeTimeline ?? s.outcomeTimeline);
+      });
+    });
+  });
+
+  return byConcept;
+}
+
 function buildConstitutionalConceptSignals(constitutionalAnnotations, governanceFailureWatchlist) {
   const byConcept = new Map();
 
@@ -2525,6 +2617,12 @@ export function applyAttentionOverlay(cy, overlay) {
     overlay?.branchWatchlist,
     overlay?.branchAnnotations
   );
+  const predictionSignals = buildPredictionConceptSignals(
+    overlay?.predictionDashboard,
+    overlay?.forecastRegistry,
+    overlay?.predictionWatchlist,
+    overlay?.calibrationAnnotations
+  );
 
 
   const institutionalProvenance = overlay?.institutionalStatus?.provenance ?? {};
@@ -2623,6 +2721,12 @@ export function applyAttentionOverlay(cy, overlay) {
     ?? 'unknown';
   const branchProducerCommits = asArray(branchProvenance?.producerCommits).join(', ') || 'unknown';
   const branchSourceMode = branchProvenance?.derivedFromFixtures ? 'fixture' : 'live';
+  const predictionProvenance = overlay?.predictionDashboard?.provenance ?? {};
+  const predictionSchemaVersion = predictionProvenance?.schemaVersions?.forecast_map
+    ?? predictionProvenance?.schemaVersions?.calibration_report
+    ?? 'unknown';
+  const predictionProducerCommits = asArray(predictionProvenance?.producerCommits).join(', ') || 'unknown';
+  const predictionSourceMode = predictionProvenance?.derivedFromFixtures ? 'fixture' : 'live';
 
   cy.nodes('[class = "concept"]').forEach((node) => {
     const id = node.id();
@@ -2856,8 +2960,19 @@ export function applyAttentionOverlay(cy, overlay) {
     node.data('branchSchemaVersion', branchSchemaVersion);
     node.data('branchProducerCommits', branchProducerCommits);
     node.data('branchSourceMode', branchSourceMode);
+    const prediction = predictionSignals.get(id);
+    node.data('forecastAccuracy', prediction?.forecastAccuracy ?? 'unknown');
+    node.data('forecastConfidence', prediction?.forecastConfidence ?? 'bounded');
+    node.data('calibrationTrend', prediction?.calibrationTrend ?? 'stable');
+    node.data('calibrationError', Number(prediction?.calibrationError ?? 0));
+    node.data('branchReliability', prediction?.branchReliability ?? 'unknown');
+    node.data('reliabilityScore', Number(prediction?.reliabilityScore ?? 0));
+    node.data('predictionOutcomeTimeline', asArray(prediction?.outcomeTimeline));
+    node.data('predictionSchemaVersion', predictionSchemaVersion);
+    node.data('predictionProducerCommits', predictionProducerCommits);
+    node.data('predictionSourceMode', predictionSourceMode);
 
-    node.removeClass('attention-priority attention-secondary sonya-candidate reasoning-thread reasoning-watch stability-positive stability-watch multimodal-donation multimodal-watch review-candidate watch-queue governance-review governance-watch constitutional-watch constitutional-freeze deliberation-docket deliberation-watch deliberation-urgent anti-capture-watch continuity-docket continuity-watch continuity-fragile continuity-freeze recovery-docket recovery-watch escrow-ready recovery-fragile attestation-docket attestation-watch witness-sufficient attestation-sensitive precedent-docket precedent-watch precedent-divergent precedent-strong scenario-docket scenario-watch scenario-freeze scenario-rehearse-recovery institutional-status-indicator chamber-conflict-indicator system-health-overview queue-health-actionable backlog-pressure-watch review-fatigue-watch metric-gaming-watch load-shedding-recommended priority-actionable triage-watch urgency-high priority-critical triage-conflict closure-active closure-provisional repair-urgent reopened-watch symbolic-field-active regime-shift-watch lambda-warning architecture-hint verification-active entity-ambiguity verification-urgent claim-typed public-record-active entity-graph-linked relationship-ambiguous custody-fragile machine-readable-record investigation-active investigation-stage-mid investigation-stage-late investigation-plan-progressing investigation-blocked dependency-graph-linked authority-gated weak-evidence-signal authority-mismatch propagation-restricted maturity-gated review-packet-ready review-packet-watch packet-ambiguity-high uncertainty-disclosed synthesis-bounded pattern-cluster-active cross-case-hints pattern-maturity-stable pattern-conflict pattern-timeline-active persistence-stable temporal-conflict-marker causal-bundle-active mechanism-candidate explanatory-gap-high prohibited-conclusion causal-conflict-marker collaborative-review-active consensus-provisional dissent-present collaborative-maturity-bound telemetry-field-active lattice-transition donor-pattern-active taf-elevated branch-novel branch-maturity-bound branch-lifecycle-active branch-conflict-graph branch-decay-indicator branch-reinforcement-trend branch-contradiction-trend');
+    node.removeClass('attention-priority attention-secondary sonya-candidate reasoning-thread reasoning-watch stability-positive stability-watch multimodal-donation multimodal-watch review-candidate watch-queue governance-review governance-watch constitutional-watch constitutional-freeze deliberation-docket deliberation-watch deliberation-urgent anti-capture-watch continuity-docket continuity-watch continuity-fragile continuity-freeze recovery-docket recovery-watch escrow-ready recovery-fragile attestation-docket attestation-watch witness-sufficient attestation-sensitive precedent-docket precedent-watch precedent-divergent precedent-strong scenario-docket scenario-watch scenario-freeze scenario-rehearse-recovery institutional-status-indicator chamber-conflict-indicator system-health-overview queue-health-actionable backlog-pressure-watch review-fatigue-watch metric-gaming-watch load-shedding-recommended priority-actionable triage-watch urgency-high priority-critical triage-conflict closure-active closure-provisional repair-urgent reopened-watch symbolic-field-active regime-shift-watch lambda-warning architecture-hint verification-active entity-ambiguity verification-urgent claim-typed public-record-active entity-graph-linked relationship-ambiguous custody-fragile machine-readable-record investigation-active investigation-stage-mid investigation-stage-late investigation-plan-progressing investigation-blocked dependency-graph-linked authority-gated weak-evidence-signal authority-mismatch propagation-restricted maturity-gated review-packet-ready review-packet-watch packet-ambiguity-high uncertainty-disclosed synthesis-bounded pattern-cluster-active cross-case-hints pattern-maturity-stable pattern-conflict pattern-timeline-active persistence-stable temporal-conflict-marker causal-bundle-active mechanism-candidate explanatory-gap-high prohibited-conclusion causal-conflict-marker collaborative-review-active consensus-provisional dissent-present collaborative-maturity-bound telemetry-field-active lattice-transition donor-pattern-active taf-elevated branch-novel branch-maturity-bound branch-lifecycle-active branch-conflict-graph branch-decay-indicator branch-reinforcement-trend branch-contradiction-trend forecast-accuracy-high calibration-improving branch-reliability-stable prediction-timeline-active');
     if ((rankData?.rank ?? Infinity) <= 2) {
       node.addClass('attention-priority');
     } else if ((rankData?.rank ?? Infinity) <= 5) {
@@ -3220,6 +3335,19 @@ export function applyAttentionOverlay(cy, overlay) {
     }
     if ((branch?.contradictionTrend ?? 'low') === 'high') {
       node.addClass('branch-contradiction-trend');
+    }
+
+    if ((prediction?.forecastAccuracy ?? 'unknown') === 'high') {
+      node.addClass('forecast-accuracy-high');
+    }
+    if ((prediction?.calibrationTrend ?? 'stable') === 'improving') {
+      node.addClass('calibration-improving');
+    }
+    if ((prediction?.branchReliability ?? 'unknown') === 'stable') {
+      node.addClass('branch-reliability-stable');
+    }
+    if (asArray(prediction?.outcomeTimeline).length > 0) {
+      node.addClass('prediction-timeline-active');
     }
   });
 }

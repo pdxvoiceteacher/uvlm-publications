@@ -237,6 +237,16 @@ function renderConcept(data) {
     row('Branch Schema Version', data.branchSchemaVersion ?? 'unknown'),
     row('Branch Producer Commit(s)', data.branchProducerCommits ?? 'unknown'),
     row('Branch Source Mode', data.branchSourceMode ?? 'unknown'),
+    row('Forecast Accuracy', data.forecastAccuracy ?? 'unknown'),
+    row('Forecast Confidence', data.forecastConfidence ?? 'bounded'),
+    row('Calibration Trend', data.calibrationTrend ?? 'stable'),
+    row('Calibration Error', Number(data.calibrationError ?? 0).toFixed(2)),
+    row('Branch Reliability', data.branchReliability ?? 'unknown'),
+    row('Reliability Score', Number(data.reliabilityScore ?? 0).toFixed(2)),
+    row('Prediction Outcome Timeline', asList((Array.isArray(data.predictionOutcomeTimeline) ? data.predictionOutcomeTimeline.map((e) => `${e.date}:${e.outcome}`) : []))),
+    row('Prediction Schema Version', data.predictionSchemaVersion ?? 'unknown'),
+    row('Prediction Producer Commit(s)', data.predictionProducerCommits ?? 'unknown'),
+    row('Prediction Source Mode', data.predictionSourceMode ?? 'unknown'),
     row('Related Concepts', data.relatedConceptCount ?? 0),
     renderConceptRelations(data.relatedConcepts)
   ].join('');

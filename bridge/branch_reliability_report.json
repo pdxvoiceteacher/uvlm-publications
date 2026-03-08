@@ -1,0 +1,9 @@
+{
+  "generatedAt": "2026-03-08",
+  "provenance": {"schemaVersion": "phase-af.0", "producerCommits": ["sophia-af-111"], "sourceMode": "fixture"},
+  "entries": [
+    {"reviewId": "pr-001", "branchReliability": "stable", "reliabilityScore": 0.81},
+    {"reviewId": "pr-002", "branchReliability": "uncertain", "reliabilityScore": 0.46},
+    {"reviewId": "pr-003", "branchReliability": "fragile", "reliabilityScore": 0.22}
+  ]
+}
