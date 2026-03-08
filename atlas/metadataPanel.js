@@ -265,6 +265,17 @@ function renderConcept(data) {
     row('Theory Schema Version', data.theorySchemaVersion ?? 'unknown'),
     row('Theory Producer Commit(s)', data.theoryProducerCommits ?? 'unknown'),
     row('Theory Source Mode', data.theorySourceMode ?? 'unknown'),
+    row('Agency Status', data.agencyStatus ?? 'under-review'),
+    row('Deterministic Fit', Number(data.deterministicFit ?? 0).toFixed(2)),
+    row('Volitional Fit', Number(data.volitionalFit ?? 0).toFixed(2)),
+    row('Provisional vHat', Number(data.provisionalVHat ?? 0).toFixed(2)),
+    row('TEL Branch Signature', data.telBranchSignature ?? 'untyped'),
+    row('Governance Mode Class', data.governanceModeClass ?? 'bounded-watch'),
+    row('Consent Signal', data.consentSignal ?? 'required'),
+    row('Blame Suppression Signal', data.blameSuppressionSignal ?? 'enabled'),
+    row('Agency Schema Version', data.agencySchemaVersion ?? 'unknown'),
+    row('Agency Producer Commit(s)', data.agencyProducerCommits ?? 'unknown'),
+    row('Agency Source Mode', data.agencySourceMode ?? 'unknown'),
     row('Related Concepts', data.relatedConceptCount ?? 0),
     renderConceptRelations(data.relatedConcepts)
   ].join('');

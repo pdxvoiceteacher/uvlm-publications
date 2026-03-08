@@ -981,3 +981,16 @@ python3 scripts/build_theory_corpus_overlay.py
 python3 -m unittest tests/test_build_theory_corpus_overlay.py
 ```
 
+## Agency-Mode Comparator and Governance Switching Overlay (Phase AI)
+
+Publisher surfaces only **Sophia-audited agency-mode materials**; no automatic metaphysical classification or governance mutation occurs from this layer.
+
+- script: `scripts/build_agency_mode_overlay.py`
+- inputs: `bridge/agency_mode_audit.json`, `bridge/agency_mode_recommendations.json`, `bridge/agency_mode_hypothesis_map.json`, `bridge/agency_fit_comparison_report.json`, `bridge/tel_branch_signature_map.json`, `bridge/agency_governance_mode_gate.json`, `registry/theory_dashboard.json`, `registry/prediction_dashboard.json`, `registry/experiment_dashboard.json`
+- outputs: `registry/agency_mode_dashboard.json`, `registry/agency_fit_registry.json`, `registry/agency_disagreement_watchlist.json`, `registry/agency_governance_annotations.json`
+
+```bash
+python3 scripts/build_agency_mode_overlay.py
+python3 -m unittest tests/test_build_agency_mode_overlay.py
+```
+
