@@ -320,6 +320,13 @@ function renderConcept(data) {
     row('Value Alignment Schema Version', data.valueAlignmentSchemaVersion ?? 'unknown'),
     row('Value Alignment Producer Commit(s)', data.valueAlignmentProducerCommits ?? 'unknown'),
     row('Value Alignment Source Mode', data.valueAlignmentSourceMode ?? 'unknown'),
+    row('Reasoning Efficiency', Number(data.reasoningEfficiency ?? 0).toFixed(2)),
+    row('Pattern Donor Reliability', data.patternDonorReliability ?? 'unknown'),
+    row('Governance Constraint Performance', data.governanceConstraintPerformance ?? 'bounded'),
+    row('Discovery Productivity', Number(data.discoveryProductivity ?? 0).toFixed(2)),
+    row('Meta-Cognition Schema Version', data.metaCognitionSchemaVersion ?? 'unknown'),
+    row('Meta-Cognition Producer Commit(s)', data.metaCognitionProducerCommits ?? 'unknown'),
+    row('Meta-Cognition Source Mode', data.metaCognitionSourceMode ?? 'unknown'),
     row('Related Concepts', data.relatedConceptCount ?? 0),
     renderConceptRelations(data.relatedConcepts)
   ].join('');

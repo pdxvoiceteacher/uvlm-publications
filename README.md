@@ -1070,3 +1070,27 @@ When Phase AN is complete, the architecture supports the full civilizational cog
 
 `telemetry → lattice projection → pattern discovery → hypothesis generation → prediction → experiment design → theory memory → agency governance → responsibility boundaries → cross-domain transfer governance → trajectory forecasting → curiosity-driven inquiry → value-aligned discovery priorities`
 
+
+## Meta-Cognition Overlay (Phase AO)
+
+Publisher surfaces only **Sophia-audited meta-cognition materials**; no autonomous safety-constraint mutation or canonical mutation occurs from this layer.
+
+The system may evaluate its architecture but cannot autonomously modify core safety constraints.
+Meta-cognition may propose improvements, but humans must approve structural changes.
+
+Immutable without human approval:
+
+- evidence maturity gating
+- provenance requirements
+- sanction suppression rules
+- agency humility protocol
+- non-coercion forecasting rule
+- human authority over value judgments
+
+- script: `scripts/build_meta_cognition_overlay.py`
+- outputs: `registry/meta_dashboard.json`, `registry/reasoning_performance_registry.json`, `registry/meta_watchlist.json`, `registry/meta_annotations.json`
+
+```bash
+python3 scripts/build_meta_cognition_overlay.py
+python3 -m unittest tests/test_build_meta_cognition_overlay.py
+```
