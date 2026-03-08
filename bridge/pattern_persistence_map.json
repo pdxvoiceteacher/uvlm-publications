@@ -1,0 +1,13 @@
+{
+  "generatedAt": "2026-03-08",
+  "provenance": {
+    "schemaVersion": "phase-z1.0",
+    "producerCommits": ["cl-z1-112"],
+    "sourceMode": "fixture"
+  },
+  "entries": [
+    {"reviewId": "pt-001", "patternPersistence": "stable"},
+    {"reviewId": "pt-002", "patternPersistence": "fragile"},
+    {"reviewId": "pt-003", "patternPersistence": "fragile"}
+  ]
+}

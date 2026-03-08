@@ -1,0 +1,150 @@
+{
+  "generatedAt": "2026-03-08",
+  "patternTemporalProtocol": true,
+  "nonCanonical": true,
+  "provenance": {
+    "schemaVersions": {
+      "pattern_temporal_audit": "phase-z1.0",
+      "pattern_temporal_recommendations": "phase-z1.0",
+      "pattern_timeline_map": "phase-z1.0",
+      "pattern_persistence_map": "phase-z1.0",
+      "pattern_temporal_conflict_report": "phase-z1.0",
+      "pattern_dashboard": "composite",
+      "pattern_registry": "composite",
+      "pattern_watchlist": "composite"
+    },
+    "producerCommits": [
+      "sophia-z1-111",
+      "cl-z1-111",
+      "cl-z1-112",
+      "cl-z1-113",
+      "sophia-z-111",
+      "cl-z-111",
+      "cl-z-112",
+      "cl-z-113",
+      "cl-z-114",
+      "sophia-r-111",
+      "sophia-u-111",
+      "sophia-v-111",
+      "sophia-x1-111",
+      "coherence-x1-111",
+      "coherence-x1-112",
+      "coherence-x1-113",
+      "coherence-x1-114",
+      "cl-u-222",
+      "sophia-t-111",
+      "cl-t-222",
+      "cl-commit-aaa111",
+      "sophia-commit-bbb222",
+      "sophia-commit-qqq111",
+      "cl-commit-qqq222",
+      "cl-r-222",
+      "sophia-s-111",
+      "cl-s-222",
+      "cl-v-222",
+      "sophia-y-111",
+      "cl-y-111",
+      "cl-y-112",
+      "cl-y-113",
+      "cl-y-114"
+    ],
+    "sourceModes": {
+      "pattern_temporal_audit": "fixture",
+      "pattern_temporal_recommendations": "fixture",
+      "pattern_timeline_map": "fixture",
+      "pattern_persistence_map": "fixture",
+      "pattern_temporal_conflict_report": "fixture",
+      "pattern_dashboard": "fixture",
+      "pattern_registry": "fixture",
+      "pattern_watchlist": "fixture"
+    },
+    "derivedFromFixtures": true
+  },
+  "noAutomaticAccusation": true,
+  "noAutomaticGraphMutation": true,
+  "noAutomaticPrecedentMutation": true,
+  "noCanonicalMutation": true,
+  "annotations": [
+    {
+      "reviewId": "pt-001",
+      "targetPublisherAction": "docket",
+      "patternTimelineStatus": "tracked",
+      "patternPersistence": "stable",
+      "timelineEvents": [
+        {
+          "date": "2026-02-01",
+          "event": "cluster-emerged"
+        },
+        {
+          "date": "2026-03-01",
+          "event": "cluster-confirmed"
+        }
+      ],
+      "temporalConflictMarkers": [
+        "window-shift"
+      ],
+      "patternTemporalAuditState": "verified",
+      "linkedTargetIds": [
+        "concept:governance-integrity"
+      ],
+      "noAutomaticAccusation": true,
+      "noAutomaticGraphMutation": true,
+      "noAutomaticPrecedentMutation": true,
+      "noCanonicalMutation": true,
+      "notes": "Pattern persists across windows with bounded temporal conflicts."
+    },
+    {
+      "reviewId": "pt-002",
+      "targetPublisherAction": "watch",
+      "patternTimelineStatus": "drifting",
+      "patternPersistence": "fragile",
+      "timelineEvents": [
+        {
+          "date": "2026-02-10",
+          "event": "cluster-appears"
+        },
+        {
+          "date": "2026-03-05",
+          "event": "signal-weakens"
+        }
+      ],
+      "temporalConflictMarkers": [
+        "ordering-ambiguity",
+        "window-sparsity"
+      ],
+      "patternTemporalAuditState": "watch",
+      "linkedTargetIds": [
+        "concept:continuity-protocol"
+      ],
+      "noAutomaticAccusation": true,
+      "noAutomaticGraphMutation": true,
+      "noAutomaticPrecedentMutation": true,
+      "noCanonicalMutation": true,
+      "notes": "Insufficient persistence for actionable timeline interpretation."
+    },
+    {
+      "reviewId": "pt-003",
+      "targetPublisherAction": "suppressed",
+      "patternTimelineStatus": "incoherent",
+      "patternPersistence": "fragile",
+      "timelineEvents": [
+        {
+          "date": "2026-01-20",
+          "event": "outlier-link"
+        }
+      ],
+      "temporalConflictMarkers": [
+        "identity-time-collision"
+      ],
+      "patternTemporalAuditState": "suppressed",
+      "linkedTargetIds": [
+        "concept:constitutional-safeguards"
+      ],
+      "noAutomaticAccusation": true,
+      "noAutomaticGraphMutation": true,
+      "noAutomaticPrecedentMutation": true,
+      "noCanonicalMutation": true,
+      "notes": "Suppressed pending stronger temporal coherence."
+    }
+  ]
+}

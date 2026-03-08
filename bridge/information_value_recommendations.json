@@ -1,0 +1,9 @@
+{
+  "generatedAt": "2026-03-08",
+  "provenance": {"schemaVersion": "phase-am.0", "producerCommits": ["sophia-am-111"], "sourceMode": "fixture"},
+  "recommendations": [
+    {"reviewId": "iv-001", "targetPublisherAction": "docket", "linkedTargetIds": ["concept:coherence-lattice"], "humanReviewFlag": true, "notes": "Information-seeking informs experiment priority only."},
+    {"reviewId": "iv-002", "targetPublisherAction": "watch", "linkedTargetIds": ["concept:governance-integrity"], "humanReviewFlag": true, "notes": "Curiosity watch active due to uncertainty spread."},
+    {"reviewId": "iv-003", "targetPublisherAction": "suppressed", "linkedTargetIds": ["concept:constitutional-safeguards"], "humanReviewFlag": true, "notes": "Suppressed pending authorization review."}
+  ]
+}

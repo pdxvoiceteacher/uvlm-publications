@@ -1,0 +1,9 @@
+{
+  "generatedAt": "2026-03-08",
+  "provenance": {"schemaVersion": "phase-ae.0", "producerCommits": ["sophia-ae-111"], "sourceMode": "fixture"},
+  "entries": [
+    {"reviewId": "bl-001", "conflictNodes": ["n1"], "conflictEdges": ["e1"]},
+    {"reviewId": "bl-002", "conflictNodes": ["n2", "n3"], "conflictEdges": ["e2"]},
+    {"reviewId": "bl-003", "conflictNodes": ["n4"], "conflictEdges": ["e3"]}
+  ]
+}
