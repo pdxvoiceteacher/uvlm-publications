@@ -200,6 +200,13 @@ function renderConcept(data) {
     row('Pattern Schema Version', data.patternSchemaVersion ?? 'unknown'),
     row('Pattern Producer Commit(s)', data.patternProducerCommits ?? 'unknown'),
     row('Pattern Source Mode', data.patternSourceMode ?? 'unknown'),
+    row('Pattern Timeline Status', data.patternTimelineStatus ?? 'tracked'),
+    row('Pattern Persistence', data.patternPersistence ?? 'fragile'),
+    row('Pattern Timeline Events', asList((Array.isArray(data.patternTimelineEvents) ? data.patternTimelineEvents.map((e) => `${e.date}:${e.event}`) : []))),
+    row('Temporal Conflict Markers', asList(data.temporalConflictMarkers)),
+    row('Pattern-Temporal Schema Version', data.patternTemporalSchemaVersion ?? 'unknown'),
+    row('Pattern-Temporal Producer Commit(s)', data.patternTemporalProducerCommits ?? 'unknown'),
+    row('Pattern-Temporal Source Mode', data.patternTemporalSourceMode ?? 'unknown'),
     row('Related Concepts', data.relatedConceptCount ?? 0),
     renderConceptRelations(data.relatedConcepts)
   ].join('');

@@ -137,7 +137,11 @@ export async function loadAttentionOverlay() {
     patternDashboardResp,
     patternRegistryResp,
     patternWatchlistResp,
-    patternAnnotationsResp
+    patternAnnotationsResp,
+    patternTimelineDashboardResp,
+    patternPersistenceRegistryResp,
+    patternTemporalWatchlistResp,
+    patternTemporalAnnotationsResp
   ] = await Promise.all([
     fetch('../bridge/attention_updates.json').catch(() => null),
     fetch('../bridge/coherence_assessment.json').catch(() => null),
@@ -233,7 +237,11 @@ export async function loadAttentionOverlay() {
     fetch('../registry/pattern_dashboard.json').catch(() => null),
     fetch('../registry/pattern_registry.json').catch(() => null),
     fetch('../registry/pattern_watchlist.json').catch(() => null),
-    fetch('../registry/pattern_annotations.json').catch(() => null)
+    fetch('../registry/pattern_annotations.json').catch(() => null),
+    fetch('../registry/pattern_timeline_dashboard.json').catch(() => null),
+    fetch('../registry/pattern_persistence_registry.json').catch(() => null),
+    fetch('../registry/pattern_temporal_watchlist.json').catch(() => null),
+    fetch('../registry/pattern_temporal_annotations.json').catch(() => null)
   ]);
 
   return {
@@ -331,7 +339,11 @@ export async function loadAttentionOverlay() {
     patternDashboard: patternDashboardResp ? await patternDashboardResp.json() : {},
     patternRegistry: patternRegistryResp ? await patternRegistryResp.json() : {},
     patternWatchlist: patternWatchlistResp ? await patternWatchlistResp.json() : {},
-    patternAnnotations: patternAnnotationsResp ? await patternAnnotationsResp.json() : {}
+    patternAnnotations: patternAnnotationsResp ? await patternAnnotationsResp.json() : {},
+    patternTimelineDashboard: patternTimelineDashboardResp ? await patternTimelineDashboardResp.json() : {},
+    patternPersistenceRegistry: patternPersistenceRegistryResp ? await patternPersistenceRegistryResp.json() : {},
+    patternTemporalWatchlist: patternTemporalWatchlistResp ? await patternTemporalWatchlistResp.json() : {},
+    patternTemporalAnnotations: patternTemporalAnnotationsResp ? await patternTemporalAnnotationsResp.json() : {}
   };
 }
 
@@ -1898,6 +1910,72 @@ function buildPatternConceptSignals(patternDashboard, patternRegistry, patternWa
   return byConcept;
 }
 
+function buildPatternTemporalConceptSignals(patternTimelineDashboard, patternPersistenceRegistry, patternTemporalWatchlist, patternTemporalAnnotations) {
+  const byConcept = new Map();
+
+  function bump(targetId, update) {
+    if (typeof targetId !== 'string') {
+      return;
+    }
+    const existing = byConcept.get(targetId) ?? {
+      patternTimelineStatus: 'tracked',
+      patternPersistence: 'fragile',
+      temporalConflictMarkers: [],
+      patternTimelineEvents: [],
+      patternTemporalQueueStatus: 'none',
+    };
+    update(existing);
+    byConcept.set(targetId, existing);
+  }
+
+  const persistenceByReview = new Map();
+  asArray(patternPersistenceRegistry?.entries).forEach((entry) => {
+    if (typeof entry?.reviewId === 'string') {
+      persistenceByReview.set(entry.reviewId, entry);
+    }
+  });
+
+  asArray(patternTimelineDashboard?.entries).forEach((entry) => {
+    const persist = persistenceByReview.get(entry?.reviewId);
+    asArray(entry?.linkedTargetIds).forEach((targetId) => {
+      bump(targetId, (s) => {
+        s.patternTimelineStatus = entry?.patternTimelineStatus ?? persist?.patternTimelineStatus ?? s.patternTimelineStatus;
+        s.patternPersistence = entry?.patternPersistence ?? persist?.patternPersistence ?? s.patternPersistence;
+        s.temporalConflictMarkers = asArray(entry?.temporalConflictMarkers ?? persist?.temporalConflictMarkers);
+        s.patternTimelineEvents = asArray(entry?.timelineEvents ?? persist?.timelineEvents);
+        s.patternTemporalQueueStatus = 'dashboard';
+      });
+    });
+  });
+
+  asArray(patternTemporalWatchlist?.entries).forEach((entry) => {
+    asArray(entry?.linkedTargetIds).forEach((targetId) => {
+      bump(targetId, (s) => {
+        s.patternTimelineStatus = entry?.patternTimelineStatus ?? s.patternTimelineStatus;
+        s.patternPersistence = entry?.patternPersistence ?? s.patternPersistence;
+        s.temporalConflictMarkers = asArray(entry?.temporalConflictMarkers ?? s.temporalConflictMarkers);
+        s.patternTimelineEvents = asArray(entry?.timelineEvents ?? s.patternTimelineEvents);
+        if (s.patternTemporalQueueStatus !== 'dashboard') {
+          s.patternTemporalQueueStatus = 'watch';
+        }
+      });
+    });
+  });
+
+  asArray(patternTemporalAnnotations?.annotations).forEach((entry) => {
+    asArray(entry?.linkedTargetIds).forEach((targetId) => {
+      bump(targetId, (s) => {
+        s.patternTimelineStatus = entry?.patternTimelineStatus ?? s.patternTimelineStatus;
+        s.patternPersistence = entry?.patternPersistence ?? s.patternPersistence;
+        s.temporalConflictMarkers = asArray(entry?.temporalConflictMarkers ?? s.temporalConflictMarkers);
+        s.patternTimelineEvents = asArray(entry?.timelineEvents ?? s.patternTimelineEvents);
+      });
+    });
+  });
+
+  return byConcept;
+}
+
 function buildConstitutionalConceptSignals(constitutionalAnnotations, governanceFailureWatchlist) {
   const byConcept = new Map();
 
@@ -2062,6 +2140,12 @@ export function applyAttentionOverlay(cy, overlay) {
     overlay?.patternWatchlist,
     overlay?.patternAnnotations
   );
+  const patternTemporalSignals = buildPatternTemporalConceptSignals(
+    overlay?.patternTimelineDashboard,
+    overlay?.patternPersistenceRegistry,
+    overlay?.patternTemporalWatchlist,
+    overlay?.patternTemporalAnnotations
+  );
 
 
   const institutionalProvenance = overlay?.institutionalStatus?.provenance ?? {};
@@ -2130,6 +2214,12 @@ export function applyAttentionOverlay(cy, overlay) {
     ?? 'unknown';
   const patternProducerCommits = asArray(patternProvenance?.producerCommits).join(', ') || 'unknown';
   const patternSourceMode = patternProvenance?.derivedFromFixtures ? 'fixture' : 'live';
+  const patternTemporalProvenance = overlay?.patternTimelineDashboard?.provenance ?? {};
+  const patternTemporalSchemaVersion = patternTemporalProvenance?.schemaVersions?.pattern_persistence_map
+    ?? patternTemporalProvenance?.schemaVersions?.pattern_timeline_map
+    ?? 'unknown';
+  const patternTemporalProducerCommits = asArray(patternTemporalProvenance?.producerCommits).join(', ') || 'unknown';
+  const patternTemporalSourceMode = patternTemporalProvenance?.derivedFromFixtures ? 'fixture' : 'live';
 
   cy.nodes('[class = "concept"]').forEach((node) => {
     const id = node.id();
@@ -2313,8 +2403,16 @@ export function applyAttentionOverlay(cy, overlay) {
     node.data('patternSchemaVersion', patternSchemaVersion);
     node.data('patternProducerCommits', patternProducerCommits);
     node.data('patternSourceMode', patternSourceMode);
+    const patternTemporal = patternTemporalSignals.get(id);
+    node.data('patternTimelineStatus', patternTemporal?.patternTimelineStatus ?? 'tracked');
+    node.data('patternPersistence', patternTemporal?.patternPersistence ?? 'fragile');
+    node.data('temporalConflictMarkers', asArray(patternTemporal?.temporalConflictMarkers));
+    node.data('patternTimelineEvents', asArray(patternTemporal?.patternTimelineEvents));
+    node.data('patternTemporalSchemaVersion', patternTemporalSchemaVersion);
+    node.data('patternTemporalProducerCommits', patternTemporalProducerCommits);
+    node.data('patternTemporalSourceMode', patternTemporalSourceMode);
 
-    node.removeClass('attention-priority attention-secondary sonya-candidate reasoning-thread reasoning-watch stability-positive stability-watch multimodal-donation multimodal-watch review-candidate watch-queue governance-review governance-watch constitutional-watch constitutional-freeze deliberation-docket deliberation-watch deliberation-urgent anti-capture-watch continuity-docket continuity-watch continuity-fragile continuity-freeze recovery-docket recovery-watch escrow-ready recovery-fragile attestation-docket attestation-watch witness-sufficient attestation-sensitive precedent-docket precedent-watch precedent-divergent precedent-strong scenario-docket scenario-watch scenario-freeze scenario-rehearse-recovery institutional-status-indicator chamber-conflict-indicator system-health-overview queue-health-actionable backlog-pressure-watch review-fatigue-watch metric-gaming-watch load-shedding-recommended priority-actionable triage-watch urgency-high priority-critical triage-conflict closure-active closure-provisional repair-urgent reopened-watch symbolic-field-active regime-shift-watch lambda-warning architecture-hint verification-active entity-ambiguity verification-urgent claim-typed public-record-active entity-graph-linked relationship-ambiguous custody-fragile machine-readable-record investigation-active investigation-stage-mid investigation-stage-late investigation-plan-progressing investigation-blocked dependency-graph-linked authority-gated weak-evidence-signal authority-mismatch propagation-restricted maturity-gated review-packet-ready review-packet-watch packet-ambiguity-high uncertainty-disclosed synthesis-bounded pattern-cluster-active cross-case-hints pattern-maturity-stable pattern-conflict');
+    node.removeClass('attention-priority attention-secondary sonya-candidate reasoning-thread reasoning-watch stability-positive stability-watch multimodal-donation multimodal-watch review-candidate watch-queue governance-review governance-watch constitutional-watch constitutional-freeze deliberation-docket deliberation-watch deliberation-urgent anti-capture-watch continuity-docket continuity-watch continuity-fragile continuity-freeze recovery-docket recovery-watch escrow-ready recovery-fragile attestation-docket attestation-watch witness-sufficient attestation-sensitive precedent-docket precedent-watch precedent-divergent precedent-strong scenario-docket scenario-watch scenario-freeze scenario-rehearse-recovery institutional-status-indicator chamber-conflict-indicator system-health-overview queue-health-actionable backlog-pressure-watch review-fatigue-watch metric-gaming-watch load-shedding-recommended priority-actionable triage-watch urgency-high priority-critical triage-conflict closure-active closure-provisional repair-urgent reopened-watch symbolic-field-active regime-shift-watch lambda-warning architecture-hint verification-active entity-ambiguity verification-urgent claim-typed public-record-active entity-graph-linked relationship-ambiguous custody-fragile machine-readable-record investigation-active investigation-stage-mid investigation-stage-late investigation-plan-progressing investigation-blocked dependency-graph-linked authority-gated weak-evidence-signal authority-mismatch propagation-restricted maturity-gated review-packet-ready review-packet-watch packet-ambiguity-high uncertainty-disclosed synthesis-bounded pattern-cluster-active cross-case-hints pattern-maturity-stable pattern-conflict pattern-timeline-active persistence-stable temporal-conflict-marker');
     if ((rankData?.rank ?? Infinity) <= 2) {
       node.addClass('attention-priority');
     } else if ((rankData?.rank ?? Infinity) <= 5) {
@@ -2603,6 +2701,16 @@ export function applyAttentionOverlay(cy, overlay) {
     }
     if (asArray(pattern?.patternConflictMarkers).length > 0) {
       node.addClass('pattern-conflict');
+    }
+
+    if (['dashboard', 'watch'].includes(patternTemporal?.patternTemporalQueueStatus ?? 'none')) {
+      node.addClass('pattern-timeline-active');
+    }
+    if ((patternTemporal?.patternPersistence ?? 'fragile') === 'stable') {
+      node.addClass('persistence-stable');
+    }
+    if (asArray(patternTemporal?.temporalConflictMarkers).length > 0) {
+      node.addClass('temporal-conflict-marker');
     }
   });
 }

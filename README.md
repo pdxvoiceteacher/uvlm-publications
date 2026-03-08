@@ -85,7 +85,7 @@ python3 scripts/validate_metadata.py
 python3 scripts/build_catalog.py
 python3 scripts/build_knowledge_graph.py
 python3 scripts/validate_knowledge_graph.py
-python3 -m unittest tests/test_build_public_record_overlay.py tests/test_build_verification_overlay.py tests/test_build_investigation_overlay.py tests/test_build_evidence_authority_overlay.py tests/test_build_review_packet_overlay.py tests/test_build_pattern_overlay.py tests/test_build_symbolic_field_overlay.py tests/test_build_closure_overlay.py tests/test_build_priority_overlay.py tests/test_build_queue_health_overlay.py tests/test_build_institutional_overlay.py tests/test_validate_atlas_timeline.py tests/test_validate_constellations.py
+python3 -m unittest tests/test_build_public_record_overlay.py tests/test_build_verification_overlay.py tests/test_build_investigation_overlay.py tests/test_build_evidence_authority_overlay.py tests/test_build_review_packet_overlay.py tests/test_build_pattern_overlay.py tests/test_build_pattern_temporal_overlay.py tests/test_build_symbolic_field_overlay.py tests/test_build_closure_overlay.py tests/test_build_priority_overlay.py tests/test_build_queue_health_overlay.py tests/test_build_institutional_overlay.py tests/test_validate_atlas_timeline.py tests/test_validate_constellations.py
 ```
 
 These checks keep metadata, graph artifacts, and overlay contracts deterministic and auditable.
@@ -577,6 +577,23 @@ Build command:
 
 ```bash
 python3 scripts/build_pattern_overlay.py
+```
+
+
+
+### Pattern temporal persistence protocol (Phase Z.1)
+
+Publisher surfaces only Sophia-audited temporal pattern materials; no automatic accusation, graph mutation, or canonical mutation occurs from this layer.
+
+- inputs: `bridge/pattern_temporal_audit.json`, `bridge/pattern_temporal_recommendations.json`, `bridge/pattern_timeline_map.json`, `bridge/pattern_persistence_map.json`, `bridge/pattern_temporal_conflict_report.json`, `registry/pattern_dashboard.json`, `registry/pattern_registry.json`, `registry/pattern_watchlist.json`
+- non-canonical outputs: `registry/pattern_timeline_dashboard.json`, `registry/pattern_persistence_registry.json`, `registry/pattern_temporal_watchlist.json`, `registry/pattern_temporal_annotations.json`
+- phase lock: pattern cluster state → CoherenceLattice temporal formalization → Sophia temporal audit → Publisher temporal overlays → human/community bounded temporal review
+- principles: actionable timeline indicators require docket recommendation; persistence markers remain review-facing hints; temporal conflict markers are cautionary and non-punitive
+
+Build command:
+
+```bash
+python3 scripts/build_pattern_temporal_overlay.py
 ```
 
 
