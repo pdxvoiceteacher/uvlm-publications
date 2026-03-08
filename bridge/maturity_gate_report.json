@@ -1,0 +1,13 @@
+{
+  "generatedAt": "2026-03-07",
+  "provenance": {
+    "schemaVersion": "phase-x1.0",
+    "producerCommits": ["coherence-x1-114"],
+    "sourceMode": "fixture"
+  },
+  "entries": [
+    {"reviewId": "ea-001", "maturityGateStatus": "gated", "maturityGateReason": "requires-independent-corroboration"},
+    {"reviewId": "ea-002", "maturityGateStatus": "hold", "maturityGateReason": "weak-evidence"},
+    {"reviewId": "ea-003", "maturityGateStatus": "hold", "maturityGateReason": "insufficient-grounding"}
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "generatedAt": "2026-03-08",
+  "provenance": {"schemaVersion": "phase-ad.0", "producerCommits": ["sophia-ad-111"], "sourceMode": "fixture"},
+  "entries": [
+    {"reviewId": "tf-001", "telemetryFieldStatus": "coherent"},
+    {"reviewId": "tf-002", "telemetryFieldStatus": "drift-watch"},
+    {"reviewId": "tf-003", "telemetryFieldStatus": "withheld"}
+  ]
+}

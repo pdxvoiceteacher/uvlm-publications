@@ -1,0 +1,9 @@
+{
+  "generatedAt": "2026-03-08",
+  "provenance": {"schemaVersion": "phase-an.0", "producerCommits": ["sophia-an-111"], "sourceMode": "fixture"},
+  "entries": [
+    {"reviewId": "va-001", "fairnessImpactMarker": "equitable"},
+    {"reviewId": "va-002", "fairnessImpactMarker": "equity-watch"},
+    {"reviewId": "va-003", "fairnessImpactMarker": "disparity-risk"}
+  ]
+}

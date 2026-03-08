@@ -1,0 +1,9 @@
+{
+  "generatedAt": "2026-03-08",
+  "provenance": {"schemaVersion": "phase-ar.0", "producerCommits": ["sophia-ar-111"], "sourceMode": "fixture"},
+  "entries": [
+    {"reviewId": "fg-001", "captureRisk": "elevated", "captureRiskScore": 0.64, "legitimacySignal": "strained"},
+    {"reviewId": "fg-002", "captureRisk": "watch", "captureRiskScore": 0.51, "legitimacySignal": "watch"},
+    {"reviewId": "fg-003", "captureRisk": "bounded", "captureRiskScore": 0.29, "legitimacySignal": "stable"}
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "generatedAt": "2026-03-08",
+  "provenance": {
+    "schemaVersion": "phase-ab.0",
+    "producerCommits": ["cl-ab-112"],
+    "sourceMode": "fixture"
+  },
+  "entries": [
+    {"reviewId": "ca-001", "mechanismCandidates": ["incentive-drift", "review-fatigue-coupling"]},
+    {"reviewId": "ca-002", "mechanismCandidates": ["queue-congestion"]},
+    {"reviewId": "ca-003", "mechanismCandidates": ["identity-linkage"]}
+  ]
+}
