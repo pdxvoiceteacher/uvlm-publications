@@ -141,7 +141,11 @@ export async function loadAttentionOverlay() {
     patternTimelineDashboardResp,
     patternPersistenceRegistryResp,
     patternTemporalWatchlistResp,
-    patternTemporalAnnotationsResp
+    patternTemporalAnnotationsResp,
+    causalDashboardResp,
+    mechanismRegistryResp,
+    causalWatchlistResp,
+    causalAnnotationsResp
   ] = await Promise.all([
     fetch('../bridge/attention_updates.json').catch(() => null),
     fetch('../bridge/coherence_assessment.json').catch(() => null),
@@ -241,7 +245,11 @@ export async function loadAttentionOverlay() {
     fetch('../registry/pattern_timeline_dashboard.json').catch(() => null),
     fetch('../registry/pattern_persistence_registry.json').catch(() => null),
     fetch('../registry/pattern_temporal_watchlist.json').catch(() => null),
-    fetch('../registry/pattern_temporal_annotations.json').catch(() => null)
+    fetch('../registry/pattern_temporal_annotations.json').catch(() => null),
+    fetch('../registry/causal_dashboard.json').catch(() => null),
+    fetch('../registry/mechanism_registry.json').catch(() => null),
+    fetch('../registry/causal_watchlist.json').catch(() => null),
+    fetch('../registry/causal_annotations.json').catch(() => null)
   ]);
 
   return {
@@ -343,7 +351,11 @@ export async function loadAttentionOverlay() {
     patternTimelineDashboard: patternTimelineDashboardResp ? await patternTimelineDashboardResp.json() : {},
     patternPersistenceRegistry: patternPersistenceRegistryResp ? await patternPersistenceRegistryResp.json() : {},
     patternTemporalWatchlist: patternTemporalWatchlistResp ? await patternTemporalWatchlistResp.json() : {},
-    patternTemporalAnnotations: patternTemporalAnnotationsResp ? await patternTemporalAnnotationsResp.json() : {}
+    patternTemporalAnnotations: patternTemporalAnnotationsResp ? await patternTemporalAnnotationsResp.json() : {},
+    causalDashboard: causalDashboardResp ? await causalDashboardResp.json() : {},
+    mechanismRegistry: mechanismRegistryResp ? await mechanismRegistryResp.json() : {},
+    causalWatchlist: causalWatchlistResp ? await causalWatchlistResp.json() : {},
+    causalAnnotations: causalAnnotationsResp ? await causalAnnotationsResp.json() : {}
   };
 }
 
@@ -1976,6 +1988,76 @@ function buildPatternTemporalConceptSignals(patternTimelineDashboard, patternPer
   return byConcept;
 }
 
+function buildCausalConceptSignals(causalDashboard, mechanismRegistry, causalWatchlist, causalAnnotations) {
+  const byConcept = new Map();
+
+  function bump(targetId, update) {
+    if (typeof targetId !== 'string') {
+      return;
+    }
+    const existing = byConcept.get(targetId) ?? {
+      causalBundleType: 'unknown-bundle',
+      mechanismCandidates: [],
+      explanatoryGap: 'high',
+      prohibitedConclusions: [],
+      causalConflictState: 'none',
+      causalQueueStatus: 'none',
+    };
+    update(existing);
+    byConcept.set(targetId, existing);
+  }
+
+  const mechanismByReview = new Map();
+  asArray(mechanismRegistry?.entries).forEach((entry) => {
+    if (typeof entry?.reviewId === 'string') {
+      mechanismByReview.set(entry.reviewId, entry);
+    }
+  });
+
+  asArray(causalDashboard?.entries).forEach((entry) => {
+    const mech = mechanismByReview.get(entry?.reviewId);
+    asArray(entry?.linkedTargetIds).forEach((targetId) => {
+      bump(targetId, (s) => {
+        s.causalBundleType = entry?.causalBundleType ?? mech?.causalBundleType ?? s.causalBundleType;
+        s.mechanismCandidates = asArray(entry?.mechanismCandidates ?? mech?.mechanismCandidates);
+        s.explanatoryGap = entry?.explanatoryGap ?? mech?.explanatoryGap ?? s.explanatoryGap;
+        s.prohibitedConclusions = asArray(entry?.prohibitedConclusions ?? mech?.prohibitedConclusions);
+        s.causalConflictState = entry?.causalConflictState ?? mech?.causalConflictState ?? s.causalConflictState;
+        s.causalQueueStatus = 'dashboard';
+      });
+    });
+  });
+
+  asArray(causalWatchlist?.entries).forEach((entry) => {
+    asArray(entry?.linkedTargetIds).forEach((targetId) => {
+      bump(targetId, (s) => {
+        s.causalBundleType = entry?.causalBundleType ?? s.causalBundleType;
+        s.mechanismCandidates = asArray(entry?.mechanismCandidates ?? s.mechanismCandidates);
+        s.explanatoryGap = entry?.explanatoryGap ?? s.explanatoryGap;
+        s.prohibitedConclusions = asArray(entry?.prohibitedConclusions ?? s.prohibitedConclusions);
+        s.causalConflictState = entry?.causalConflictState ?? s.causalConflictState;
+        if (s.causalQueueStatus !== 'dashboard') {
+          s.causalQueueStatus = 'watch';
+        }
+      });
+    });
+  });
+
+  asArray(causalAnnotations?.annotations).forEach((entry) => {
+    asArray(entry?.linkedTargetIds).forEach((targetId) => {
+      bump(targetId, (s) => {
+        s.causalBundleType = entry?.causalBundleType ?? s.causalBundleType;
+        s.mechanismCandidates = asArray(entry?.mechanismCandidates ?? s.mechanismCandidates);
+        s.explanatoryGap = entry?.explanatoryGap ?? s.explanatoryGap;
+        s.prohibitedConclusions = asArray(entry?.prohibitedConclusions ?? s.prohibitedConclusions);
+        s.causalConflictState = entry?.causalConflictState ?? s.causalConflictState;
+      });
+    });
+  });
+
+  return byConcept;
+}
+
 function buildConstitutionalConceptSignals(constitutionalAnnotations, governanceFailureWatchlist) {
   const byConcept = new Map();
 
@@ -2220,6 +2302,12 @@ export function applyAttentionOverlay(cy, overlay) {
     ?? 'unknown';
   const patternTemporalProducerCommits = asArray(patternTemporalProvenance?.producerCommits).join(', ') || 'unknown';
   const patternTemporalSourceMode = patternTemporalProvenance?.derivedFromFixtures ? 'fixture' : 'live';
+  const causalProvenance = overlay?.causalDashboard?.provenance ?? {};
+  const causalSchemaVersion = causalProvenance?.schemaVersions?.mechanism_separation_report
+    ?? causalProvenance?.schemaVersions?.causal_bundle_map
+    ?? 'unknown';
+  const causalProducerCommits = asArray(causalProvenance?.producerCommits).join(', ') || 'unknown';
+  const causalSourceMode = causalProvenance?.derivedFromFixtures ? 'fixture' : 'live';
 
   cy.nodes('[class = "concept"]').forEach((node) => {
     const id = node.id();
@@ -2411,8 +2499,17 @@ export function applyAttentionOverlay(cy, overlay) {
     node.data('patternTemporalSchemaVersion', patternTemporalSchemaVersion);
     node.data('patternTemporalProducerCommits', patternTemporalProducerCommits);
     node.data('patternTemporalSourceMode', patternTemporalSourceMode);
+    const causal = causalSignals.get(id);
+    node.data('causalBundleType', causal?.causalBundleType ?? 'unknown-bundle');
+    node.data('mechanismCandidates', asArray(causal?.mechanismCandidates));
+    node.data('explanatoryGap', causal?.explanatoryGap ?? 'high');
+    node.data('prohibitedConclusions', asArray(causal?.prohibitedConclusions));
+    node.data('causalConflictState', causal?.causalConflictState ?? 'none');
+    node.data('causalSchemaVersion', causalSchemaVersion);
+    node.data('causalProducerCommits', causalProducerCommits);
+    node.data('causalSourceMode', causalSourceMode);
 
-    node.removeClass('attention-priority attention-secondary sonya-candidate reasoning-thread reasoning-watch stability-positive stability-watch multimodal-donation multimodal-watch review-candidate watch-queue governance-review governance-watch constitutional-watch constitutional-freeze deliberation-docket deliberation-watch deliberation-urgent anti-capture-watch continuity-docket continuity-watch continuity-fragile continuity-freeze recovery-docket recovery-watch escrow-ready recovery-fragile attestation-docket attestation-watch witness-sufficient attestation-sensitive precedent-docket precedent-watch precedent-divergent precedent-strong scenario-docket scenario-watch scenario-freeze scenario-rehearse-recovery institutional-status-indicator chamber-conflict-indicator system-health-overview queue-health-actionable backlog-pressure-watch review-fatigue-watch metric-gaming-watch load-shedding-recommended priority-actionable triage-watch urgency-high priority-critical triage-conflict closure-active closure-provisional repair-urgent reopened-watch symbolic-field-active regime-shift-watch lambda-warning architecture-hint verification-active entity-ambiguity verification-urgent claim-typed public-record-active entity-graph-linked relationship-ambiguous custody-fragile machine-readable-record investigation-active investigation-stage-mid investigation-stage-late investigation-plan-progressing investigation-blocked dependency-graph-linked authority-gated weak-evidence-signal authority-mismatch propagation-restricted maturity-gated review-packet-ready review-packet-watch packet-ambiguity-high uncertainty-disclosed synthesis-bounded pattern-cluster-active cross-case-hints pattern-maturity-stable pattern-conflict pattern-timeline-active persistence-stable temporal-conflict-marker');
+    node.removeClass('attention-priority attention-secondary sonya-candidate reasoning-thread reasoning-watch stability-positive stability-watch multimodal-donation multimodal-watch review-candidate watch-queue governance-review governance-watch constitutional-watch constitutional-freeze deliberation-docket deliberation-watch deliberation-urgent anti-capture-watch continuity-docket continuity-watch continuity-fragile continuity-freeze recovery-docket recovery-watch escrow-ready recovery-fragile attestation-docket attestation-watch witness-sufficient attestation-sensitive precedent-docket precedent-watch precedent-divergent precedent-strong scenario-docket scenario-watch scenario-freeze scenario-rehearse-recovery institutional-status-indicator chamber-conflict-indicator system-health-overview queue-health-actionable backlog-pressure-watch review-fatigue-watch metric-gaming-watch load-shedding-recommended priority-actionable triage-watch urgency-high priority-critical triage-conflict closure-active closure-provisional repair-urgent reopened-watch symbolic-field-active regime-shift-watch lambda-warning architecture-hint verification-active entity-ambiguity verification-urgent claim-typed public-record-active entity-graph-linked relationship-ambiguous custody-fragile machine-readable-record investigation-active investigation-stage-mid investigation-stage-late investigation-plan-progressing investigation-blocked dependency-graph-linked authority-gated weak-evidence-signal authority-mismatch propagation-restricted maturity-gated review-packet-ready review-packet-watch packet-ambiguity-high uncertainty-disclosed synthesis-bounded pattern-cluster-active cross-case-hints pattern-maturity-stable pattern-conflict pattern-timeline-active persistence-stable temporal-conflict-marker causal-bundle-active mechanism-candidate explanatory-gap-high prohibited-conclusion causal-conflict-marker');
     if ((rankData?.rank ?? Infinity) <= 2) {
       node.addClass('attention-priority');
     } else if ((rankData?.rank ?? Infinity) <= 5) {
@@ -2711,6 +2808,22 @@ export function applyAttentionOverlay(cy, overlay) {
     }
     if (asArray(patternTemporal?.temporalConflictMarkers).length > 0) {
       node.addClass('temporal-conflict-marker');
+    }
+
+    if (['dashboard', 'watch'].includes(causal?.causalQueueStatus ?? 'none')) {
+      node.addClass('causal-bundle-active');
+    }
+    if (asArray(causal?.mechanismCandidates).length > 0) {
+      node.addClass('mechanism-candidate');
+    }
+    if ((causal?.explanatoryGap ?? 'high') === 'high') {
+      node.addClass('explanatory-gap-high');
+    }
+    if (asArray(causal?.prohibitedConclusions).length > 0) {
+      node.addClass('prohibited-conclusion');
+    }
+    if ((causal?.causalConflictState ?? 'none') !== 'none') {
+      node.addClass('causal-conflict-marker');
     }
   });
 }

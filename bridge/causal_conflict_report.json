@@ -1,0 +1,13 @@
+{
+  "generatedAt": "2026-03-08",
+  "provenance": {
+    "schemaVersion": "phase-ab.0",
+    "producerCommits": ["cl-ab-114"],
+    "sourceMode": "fixture"
+  },
+  "entries": [
+    {"reviewId": "ca-001", "causalConflictState": "bounded-disagreement"},
+    {"reviewId": "ca-002", "causalConflictState": "under-specified"},
+    {"reviewId": "ca-003", "causalConflictState": "identity-entanglement"}
+  ]
+}
