@@ -994,3 +994,16 @@ python3 scripts/build_agency_mode_overlay.py
 python3 -m unittest tests/test_build_agency_mode_overlay.py
 ```
 
+## Responsibility, Support, and Intervention Boundary Overlay (Phase AJ)
+
+Publisher surfaces only **Sophia-audited responsibility/support materials**; no automatic sanctioning, coercion, or moral classification occurs from this layer.
+
+- script: `scripts/build_responsibility_overlay.py`
+- inputs: `bridge/responsibility_audit.json`, `bridge/responsibility_recommendations.json`, `bridge/responsibility_mode_map.json`, `bridge/support_pathway_map.json`, `bridge/intervention_boundary_report.json`, `bridge/sanction_suppression_gate.json`, `registry/agency_mode_dashboard.json`, `registry/theory_dashboard.json`, `registry/experiment_dashboard.json`
+- outputs: `registry/responsibility_dashboard.json`, `registry/support_registry.json`, `registry/intervention_watchlist.json`, `registry/responsibility_annotations.json`
+
+```bash
+python3 scripts/build_responsibility_overlay.py
+python3 -m unittest tests/test_build_responsibility_overlay.py
+```
+

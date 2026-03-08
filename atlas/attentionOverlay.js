@@ -172,7 +172,11 @@ export async function loadAttentionOverlay() {
     agencyModeDashboardResp,
     agencyFitRegistryResp,
     agencyDisagreementWatchlistResp,
-    agencyGovernanceAnnotationsResp
+    agencyGovernanceAnnotationsResp,
+    responsibilityDashboardResp,
+    supportRegistryResp,
+    interventionWatchlistResp,
+    responsibilityAnnotationsResp
   ] = await Promise.all([
     fetch('../bridge/attention_updates.json').catch(() => null),
     fetch('../bridge/coherence_assessment.json').catch(() => null),
@@ -303,7 +307,11 @@ export async function loadAttentionOverlay() {
     fetch('../registry/agency_mode_dashboard.json').catch(() => null),
     fetch('../registry/agency_fit_registry.json').catch(() => null),
     fetch('../registry/agency_disagreement_watchlist.json').catch(() => null),
-    fetch('../registry/agency_governance_annotations.json').catch(() => null)
+    fetch('../registry/agency_governance_annotations.json').catch(() => null),
+    fetch('../registry/responsibility_dashboard.json').catch(() => null),
+    fetch('../registry/support_registry.json').catch(() => null),
+    fetch('../registry/intervention_watchlist.json').catch(() => null),
+    fetch('../registry/responsibility_annotations.json').catch(() => null)
   ]);
 
   return {
@@ -436,7 +444,11 @@ export async function loadAttentionOverlay() {
     agencyModeDashboard: agencyModeDashboardResp ? await agencyModeDashboardResp.json() : {},
     agencyFitRegistry: agencyFitRegistryResp ? await agencyFitRegistryResp.json() : {},
     agencyDisagreementWatchlist: agencyDisagreementWatchlistResp ? await agencyDisagreementWatchlistResp.json() : {},
-    agencyGovernanceAnnotations: agencyGovernanceAnnotationsResp ? await agencyGovernanceAnnotationsResp.json() : {}
+    agencyGovernanceAnnotations: agencyGovernanceAnnotationsResp ? await agencyGovernanceAnnotationsResp.json() : {},
+    responsibilityDashboard: responsibilityDashboardResp ? await responsibilityDashboardResp.json() : {},
+    supportRegistry: supportRegistryResp ? await supportRegistryResp.json() : {},
+    interventionWatchlist: interventionWatchlistResp ? await interventionWatchlistResp.json() : {},
+    responsibilityAnnotations: responsibilityAnnotationsResp ? await responsibilityAnnotationsResp.json() : {}
   };
 }
 
@@ -2695,6 +2707,82 @@ function buildAgencyModeConceptSignals(agencyModeDashboard, agencyFitRegistry, a
   return byConcept;
 }
 
+
+
+function buildResponsibilityConceptSignals(responsibilityDashboard, supportRegistry, interventionWatchlist, responsibilityAnnotations) {
+  const byConcept = new Map();
+
+  function bump(targetId, update) {
+    if (typeof targetId !== 'string') {
+      return;
+    }
+    const existing = byConcept.get(targetId) ?? {
+      responsibilityStatus: 'under-review',
+      supportPathway: 'monitor',
+      consentRequirement: 'required',
+      coercionCeiling: 'strict',
+      sanctionSuppressionState: 'enabled',
+      interventionBoundaryState: 'bounded',
+      responsibilityQueueStatus: 'none',
+    };
+    update(existing);
+    byConcept.set(targetId, existing);
+  }
+
+  const registryByReview = new Map();
+  asArray(supportRegistry?.entries).forEach((entry) => {
+    if (typeof entry?.reviewId === 'string') {
+      registryByReview.set(entry.reviewId, entry);
+    }
+  });
+
+  asArray(responsibilityDashboard?.entries).forEach((entry) => {
+    const reg = registryByReview.get(entry?.reviewId);
+    asArray(entry?.linkedTargetIds).forEach((targetId) => {
+      bump(targetId, (s) => {
+        s.responsibilityStatus = entry?.responsibilityStatus ?? reg?.responsibilityStatus ?? s.responsibilityStatus;
+        s.supportPathway = entry?.supportPathway ?? reg?.supportPathway ?? s.supportPathway;
+        s.consentRequirement = entry?.consentRequirement ?? reg?.consentRequirement ?? s.consentRequirement;
+        s.coercionCeiling = entry?.coercionCeiling ?? reg?.coercionCeiling ?? s.coercionCeiling;
+        s.sanctionSuppressionState = entry?.sanctionSuppressionState ?? reg?.sanctionSuppressionState ?? s.sanctionSuppressionState;
+        s.interventionBoundaryState = entry?.interventionBoundaryState ?? reg?.interventionBoundaryState ?? s.interventionBoundaryState;
+        s.responsibilityQueueStatus = 'dashboard';
+      });
+    });
+  });
+
+  asArray(interventionWatchlist?.entries).forEach((entry) => {
+    asArray(entry?.linkedTargetIds).forEach((targetId) => {
+      bump(targetId, (s) => {
+        s.responsibilityStatus = entry?.responsibilityStatus ?? s.responsibilityStatus;
+        s.supportPathway = entry?.supportPathway ?? s.supportPathway;
+        s.consentRequirement = entry?.consentRequirement ?? s.consentRequirement;
+        s.coercionCeiling = entry?.coercionCeiling ?? s.coercionCeiling;
+        s.sanctionSuppressionState = entry?.sanctionSuppressionState ?? s.sanctionSuppressionState;
+        s.interventionBoundaryState = entry?.interventionBoundaryState ?? s.interventionBoundaryState;
+        if (s.responsibilityQueueStatus !== 'dashboard') {
+          s.responsibilityQueueStatus = 'watch';
+        }
+      });
+    });
+  });
+
+  asArray(responsibilityAnnotations?.annotations).forEach((entry) => {
+    asArray(entry?.linkedTargetIds).forEach((targetId) => {
+      bump(targetId, (s) => {
+        s.responsibilityStatus = entry?.responsibilityStatus ?? s.responsibilityStatus;
+        s.supportPathway = entry?.supportPathway ?? s.supportPathway;
+        s.consentRequirement = entry?.consentRequirement ?? s.consentRequirement;
+        s.coercionCeiling = entry?.coercionCeiling ?? s.coercionCeiling;
+        s.sanctionSuppressionState = entry?.sanctionSuppressionState ?? s.sanctionSuppressionState;
+        s.interventionBoundaryState = entry?.interventionBoundaryState ?? s.interventionBoundaryState;
+      });
+    });
+  });
+
+  return byConcept;
+}
+
 function buildConstitutionalConceptSignals(constitutionalAnnotations, governanceFailureWatchlist) {
   const byConcept = new Map();
 
@@ -2913,6 +3001,12 @@ export function applyAttentionOverlay(cy, overlay) {
     overlay?.agencyDisagreementWatchlist,
     overlay?.agencyGovernanceAnnotations
   );
+  const responsibilitySignals = buildResponsibilityConceptSignals(
+    overlay?.responsibilityDashboard,
+    overlay?.supportRegistry,
+    overlay?.interventionWatchlist,
+    overlay?.responsibilityAnnotations
+  );
 
   const institutionalProvenance = overlay?.institutionalStatus?.provenance ?? {};
   const institutionalSchemaVersion = institutionalProvenance?.schemaVersions?.institutional_state_summary
@@ -3034,6 +3128,12 @@ export function applyAttentionOverlay(cy, overlay) {
     ?? 'unknown';
   const agencyProducerCommits = asArray(agencyProvenance?.producerCommits).join(', ') || 'unknown';
   const agencySourceMode = agencyProvenance?.derivedFromFixtures ? 'fixture' : 'live';
+  const responsibilityProvenance = overlay?.responsibilityDashboard?.provenance ?? {};
+  const responsibilitySchemaVersion = responsibilityProvenance?.schemaVersions?.responsibility_mode_map
+    ?? responsibilityProvenance?.schemaVersions?.support_pathway_map
+    ?? 'unknown';
+  const responsibilityProducerCommits = asArray(responsibilityProvenance?.producerCommits).join(', ') || 'unknown';
+  const responsibilitySourceMode = responsibilityProvenance?.derivedFromFixtures ? 'fixture' : 'live';
 
   cy.nodes('[class = "concept"]').forEach((node) => {
     const id = node.id();
@@ -3310,8 +3410,18 @@ export function applyAttentionOverlay(cy, overlay) {
     node.data('agencySchemaVersion', agencySchemaVersion);
     node.data('agencyProducerCommits', agencyProducerCommits);
     node.data('agencySourceMode', agencySourceMode);
+    const responsibility = responsibilitySignals.get(id);
+    node.data('responsibilityStatus', responsibility?.responsibilityStatus ?? 'under-review');
+    node.data('supportPathway', responsibility?.supportPathway ?? 'monitor');
+    node.data('consentRequirement', responsibility?.consentRequirement ?? 'required');
+    node.data('coercionCeiling', responsibility?.coercionCeiling ?? 'strict');
+    node.data('sanctionSuppressionState', responsibility?.sanctionSuppressionState ?? 'enabled');
+    node.data('interventionBoundaryState', responsibility?.interventionBoundaryState ?? 'bounded');
+    node.data('responsibilitySchemaVersion', responsibilitySchemaVersion);
+    node.data('responsibilityProducerCommits', responsibilityProducerCommits);
+    node.data('responsibilitySourceMode', responsibilitySourceMode);
 
-    node.removeClass('attention-priority attention-secondary sonya-candidate reasoning-thread reasoning-watch stability-positive stability-watch multimodal-donation multimodal-watch review-candidate watch-queue governance-review governance-watch constitutional-watch constitutional-freeze deliberation-docket deliberation-watch deliberation-urgent anti-capture-watch continuity-docket continuity-watch continuity-fragile continuity-freeze recovery-docket recovery-watch escrow-ready recovery-fragile attestation-docket attestation-watch witness-sufficient attestation-sensitive precedent-docket precedent-watch precedent-divergent precedent-strong scenario-docket scenario-watch scenario-freeze scenario-rehearse-recovery institutional-status-indicator chamber-conflict-indicator system-health-overview queue-health-actionable backlog-pressure-watch review-fatigue-watch metric-gaming-watch load-shedding-recommended priority-actionable triage-watch urgency-high priority-critical triage-conflict closure-active closure-provisional repair-urgent reopened-watch symbolic-field-active regime-shift-watch lambda-warning architecture-hint verification-active entity-ambiguity verification-urgent claim-typed public-record-active entity-graph-linked relationship-ambiguous custody-fragile machine-readable-record investigation-active investigation-stage-mid investigation-stage-late investigation-plan-progressing investigation-blocked dependency-graph-linked authority-gated weak-evidence-signal authority-mismatch propagation-restricted maturity-gated review-packet-ready review-packet-watch packet-ambiguity-high uncertainty-disclosed synthesis-bounded pattern-cluster-active cross-case-hints pattern-maturity-stable pattern-conflict pattern-timeline-active persistence-stable temporal-conflict-marker causal-bundle-active mechanism-candidate explanatory-gap-high prohibited-conclusion causal-conflict-marker collaborative-review-active consensus-provisional dissent-present collaborative-maturity-bound telemetry-field-active lattice-transition donor-pattern-active taf-elevated branch-novel branch-maturity-bound branch-lifecycle-active branch-conflict-graph branch-decay-indicator branch-reinforcement-trend branch-contradiction-trend forecast-accuracy-high calibration-improving branch-reliability-stable prediction-timeline-active experimental-active falsification-ready replication-defined theory-gate-hold theory-corpus-active theory-negative-results theory-revision-lineage theory-competition-open agency-mode-active agency-volitional-edge agency-deterministic-edge agency-vhat-provisional agency-governance-bounded agency-consent-required agency-blame-suppressed');
+    node.removeClass('attention-priority attention-secondary sonya-candidate reasoning-thread reasoning-watch stability-positive stability-watch multimodal-donation multimodal-watch review-candidate watch-queue governance-review governance-watch constitutional-watch constitutional-freeze deliberation-docket deliberation-watch deliberation-urgent anti-capture-watch continuity-docket continuity-watch continuity-fragile continuity-freeze recovery-docket recovery-watch escrow-ready recovery-fragile attestation-docket attestation-watch witness-sufficient attestation-sensitive precedent-docket precedent-watch precedent-divergent precedent-strong scenario-docket scenario-watch scenario-freeze scenario-rehearse-recovery institutional-status-indicator chamber-conflict-indicator system-health-overview queue-health-actionable backlog-pressure-watch review-fatigue-watch metric-gaming-watch load-shedding-recommended priority-actionable triage-watch urgency-high priority-critical triage-conflict closure-active closure-provisional repair-urgent reopened-watch symbolic-field-active regime-shift-watch lambda-warning architecture-hint verification-active entity-ambiguity verification-urgent claim-typed public-record-active entity-graph-linked relationship-ambiguous custody-fragile machine-readable-record investigation-active investigation-stage-mid investigation-stage-late investigation-plan-progressing investigation-blocked dependency-graph-linked authority-gated weak-evidence-signal authority-mismatch propagation-restricted maturity-gated review-packet-ready review-packet-watch packet-ambiguity-high uncertainty-disclosed synthesis-bounded pattern-cluster-active cross-case-hints pattern-maturity-stable pattern-conflict pattern-timeline-active persistence-stable temporal-conflict-marker causal-bundle-active mechanism-candidate explanatory-gap-high prohibited-conclusion causal-conflict-marker collaborative-review-active consensus-provisional dissent-present collaborative-maturity-bound telemetry-field-active lattice-transition donor-pattern-active taf-elevated branch-novel branch-maturity-bound branch-lifecycle-active branch-conflict-graph branch-decay-indicator branch-reinforcement-trend branch-contradiction-trend forecast-accuracy-high calibration-improving branch-reliability-stable prediction-timeline-active experimental-active falsification-ready replication-defined theory-gate-hold theory-corpus-active theory-negative-results theory-revision-lineage theory-competition-open agency-mode-active agency-volitional-edge agency-deterministic-edge agency-vhat-provisional agency-governance-bounded agency-consent-required agency-blame-suppressed responsibility-active support-pathway-defined consent-required coercion-ceiling-strict sanction-suppressed intervention-bounded');
     if ((rankData?.rank ?? Infinity) <= 2) {
       node.addClass('attention-priority');
     } else if ((rankData?.rank ?? Infinity) <= 5) {
@@ -3735,6 +3845,25 @@ export function applyAttentionOverlay(cy, overlay) {
     }
     if (['enabled', 'elevated'].includes(agency?.blameSuppressionSignal ?? 'enabled')) {
       node.addClass('agency-blame-suppressed');
+    }
+
+    if (['dashboard', 'watch'].includes(responsibility?.responsibilityQueueStatus ?? 'none')) {
+      node.addClass('responsibility-active');
+    }
+    if ((responsibility?.supportPathway ?? 'monitor') !== 'monitor') {
+      node.addClass('support-pathway-defined');
+    }
+    if ((responsibility?.consentRequirement ?? 'required') === 'required') {
+      node.addClass('consent-required');
+    }
+    if ((responsibility?.coercionCeiling ?? 'strict') === 'strict') {
+      node.addClass('coercion-ceiling-strict');
+    }
+    if (['enabled', 'elevated'].includes(responsibility?.sanctionSuppressionState ?? 'enabled')) {
+      node.addClass('sanction-suppressed');
+    }
+    if (['bounded', 'uncertain'].includes(responsibility?.interventionBoundaryState ?? 'bounded')) {
+      node.addClass('intervention-bounded');
     }
   });
 }

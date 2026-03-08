@@ -276,6 +276,15 @@ function renderConcept(data) {
     row('Agency Schema Version', data.agencySchemaVersion ?? 'unknown'),
     row('Agency Producer Commit(s)', data.agencyProducerCommits ?? 'unknown'),
     row('Agency Source Mode', data.agencySourceMode ?? 'unknown'),
+    row('Responsibility Status', data.responsibilityStatus ?? 'under-review'),
+    row('Support Pathway', data.supportPathway ?? 'monitor'),
+    row('Consent Requirement', data.consentRequirement ?? 'required'),
+    row('Coercion Ceiling', data.coercionCeiling ?? 'strict'),
+    row('Sanction Suppression State', data.sanctionSuppressionState ?? 'enabled'),
+    row('Intervention Boundary State', data.interventionBoundaryState ?? 'bounded'),
+    row('Responsibility Schema Version', data.responsibilitySchemaVersion ?? 'unknown'),
+    row('Responsibility Producer Commit(s)', data.responsibilityProducerCommits ?? 'unknown'),
+    row('Responsibility Source Mode', data.responsibilitySourceMode ?? 'unknown'),
     row('Related Concepts', data.relatedConceptCount ?? 0),
     renderConceptRelations(data.relatedConcepts)
   ].join('');
