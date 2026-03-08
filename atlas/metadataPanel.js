@@ -193,6 +193,13 @@ function renderConcept(data) {
     row('Review-Packet Schema Version', data.reviewPacketSchemaVersion ?? 'unknown'),
     row('Review-Packet Producer Commit(s)', data.reviewPacketProducerCommits ?? 'unknown'),
     row('Review-Packet Source Mode', data.reviewPacketSourceMode ?? 'unknown'),
+    row('Pattern Cluster', data.patternCluster ?? 'unclustered'),
+    row('Pattern Maturity', data.patternMaturity ?? 'speculative'),
+    row('Cross-Case Relationship Hints', asList(data.crossCaseRelationshipHints)),
+    row('Pattern Conflict Markers', asList(data.patternConflictMarkers)),
+    row('Pattern Schema Version', data.patternSchemaVersion ?? 'unknown'),
+    row('Pattern Producer Commit(s)', data.patternProducerCommits ?? 'unknown'),
+    row('Pattern Source Mode', data.patternSourceMode ?? 'unknown'),
     row('Related Concepts', data.relatedConceptCount ?? 0),
     renderConceptRelations(data.relatedConcepts)
   ].join('');

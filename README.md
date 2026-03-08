@@ -85,7 +85,7 @@ python3 scripts/validate_metadata.py
 python3 scripts/build_catalog.py
 python3 scripts/build_knowledge_graph.py
 python3 scripts/validate_knowledge_graph.py
-python3 -m unittest tests/test_build_public_record_overlay.py tests/test_build_verification_overlay.py tests/test_build_investigation_overlay.py tests/test_build_evidence_authority_overlay.py tests/test_build_review_packet_overlay.py tests/test_build_symbolic_field_overlay.py tests/test_build_closure_overlay.py tests/test_build_priority_overlay.py tests/test_build_queue_health_overlay.py tests/test_build_institutional_overlay.py tests/test_validate_atlas_timeline.py tests/test_validate_constellations.py
+python3 -m unittest tests/test_build_public_record_overlay.py tests/test_build_verification_overlay.py tests/test_build_investigation_overlay.py tests/test_build_evidence_authority_overlay.py tests/test_build_review_packet_overlay.py tests/test_build_pattern_overlay.py tests/test_build_symbolic_field_overlay.py tests/test_build_closure_overlay.py tests/test_build_priority_overlay.py tests/test_build_queue_health_overlay.py tests/test_build_institutional_overlay.py tests/test_validate_atlas_timeline.py tests/test_validate_constellations.py
 ```
 
 These checks keep metadata, graph artifacts, and overlay contracts deterministic and auditable.
@@ -560,6 +560,23 @@ Build command:
 
 ```bash
 python3 scripts/build_review_packet_overlay.py
+```
+
+
+
+### Pattern cluster and cross-case protocol (Phase Z)
+
+Publisher surfaces only Sophia-audited pattern cluster materials; no automatic accusation, publication, graph mutation, or canonical mutation occurs from this layer.
+
+- inputs: `bridge/pattern_audit.json`, `bridge/pattern_recommendations.json`, `bridge/pattern_cluster_map.json`, `bridge/pattern_maturity_map.json`, `bridge/cross_case_relationship_map.json`, `bridge/pattern_conflict_report.json`, `registry/investigation_dashboard.json`, `registry/authority_gate_dashboard.json`, `registry/review_packet_dashboard.json`
+- non-canonical outputs: `registry/pattern_dashboard.json`, `registry/pattern_registry.json`, `registry/pattern_watchlist.json`, `registry/pattern_annotations.json`
+- phase lock: investigation / authority / review-packet state → CoherenceLattice pattern formalization → Sophia pattern audit → Publisher pattern overlays → human/community bounded review
+- principles: actionable pattern clusters require docket recommendation; watch patterns remain observational; suppressed items excluded from actionable overlays; conflict markers are cautionary hints, not verdicts
+
+Build command:
+
+```bash
+python3 scripts/build_pattern_overlay.py
 ```
 
 
