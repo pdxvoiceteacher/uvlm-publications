@@ -1180,3 +1180,19 @@ The UI should show the health of the commons, not elevate any institution above 
 python3 scripts/build_commons_sovereignty_overlay.py
 python3 -m unittest tests/test_build_commons_sovereignty_overlay.py
 ```
+
+## Civilizational Memory & Knowledge Stewardship Overlay (Phase AV)
+
+Publisher surfaces only **Sophia-audited civilizational memory materials; it does not determine canon, rank traditions, or erase failed branches**.
+
+The interface should make preservation feel participatory and legible, never priestly or opaque.
+
+- script: `scripts/build_civilizational_memory_overlay.py`
+- inputs: `bridge/civilizational_memory_audit.json`, `bridge/civilizational_memory_recommendations.json`, `bridge/civilizational_memory_map.json`, `bridge/intergenerational_legibility_report.json`, `bridge/epistemic_resilience_scorecard.json`, `bridge/memory_fragility_report.json`, `registry/theory_dashboard.json`, `registry/commons_sovereignty_dashboard.json`, `registry/civic_literacy_dashboard.json`, `registry/knowledge_priority_registry.json`
+- outputs: `registry/civilizational_memory_dashboard.json`, `registry/epistemic_resilience_registry.json`, `registry/memory_fragility_watchlist.json`, `registry/civilizational_memory_annotations.json`
+- policy: docket items are actionable memory/stewardship entries, watch items are bounded fragility tracking, suppressed items are excluded from actionable overlays.
+
+```bash
+python3 scripts/build_civilizational_memory_overlay.py
+python3 -m unittest tests/test_build_civilizational_memory_overlay.py
+```

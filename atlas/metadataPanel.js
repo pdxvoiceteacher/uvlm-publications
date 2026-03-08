@@ -382,6 +382,16 @@ function renderConcept(data) {
     row('Commons Sovereignty Schema Version', data.commonsSovereigntySchemaVersion ?? 'unknown'),
     row('Commons Sovereignty Producer Commit(s)', data.commonsSovereigntyProducerCommits ?? 'unknown'),
     row('Commons Sovereignty Source Mode', data.commonsSovereigntySourceMode ?? 'unknown'),
+    row('Memory Status', data.memoryStatus ?? 'monitor'),
+    row('Preservation Criticality', data.preservationCriticality ?? 'routine'),
+    row('Legibility Persistence', data.legibilityPersistence ?? 'bounded'),
+    row('Vocabulary Drift Risk', data.vocabularyDriftRisk ?? 'bounded'),
+    row('Notation Fragility', data.notationFragility ?? 'bounded'),
+    row('Recoverability', data.memoryRecoverability ?? 'bounded'),
+    row('Custody Diversity', data.custodyDiversity ?? 'mixed'),
+    row('Civilizational Memory Schema Version', data.civilizationalMemorySchemaVersion ?? 'unknown'),
+    row('Civilizational Memory Producer Commit(s)', data.civilizationalMemoryProducerCommits ?? 'unknown'),
+    row('Civilizational Memory Source Mode', data.civilizationalMemorySourceMode ?? 'unknown'),
     row('Related Concepts', data.relatedConceptCount ?? 0),
     renderConceptRelations(data.relatedConcepts)
   ].join('');

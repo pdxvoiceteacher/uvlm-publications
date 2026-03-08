@@ -1,0 +1,9 @@
+{
+  "generatedAt": "2026-03-08",
+  "provenance": {"schemaVersion": "phase-av.0", "producerCommits": ["sophia-av-111"], "sourceMode": "fixture"},
+  "audits": [
+    {"reviewId": "cm-001", "civilizationalMemoryAuditState": "verified"},
+    {"reviewId": "cm-002", "civilizationalMemoryAuditState": "monitor"},
+    {"reviewId": "cm-003", "civilizationalMemoryAuditState": "restricted"}
+  ]
+}
