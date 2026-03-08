@@ -1,0 +1,9 @@
+{
+  "generatedAt": "2026-03-08",
+  "provenance": {"schemaVersion": "phase-ap.0", "producerCommits": ["sophia-ap-111"], "sourceMode": "fixture"},
+  "entries": [
+    {"reviewId": "ar-001", "modulePerformance": "strong", "modulePerformanceScore": 0.84},
+    {"reviewId": "ar-002", "modulePerformance": "bounded", "modulePerformanceScore": 0.56},
+    {"reviewId": "ar-003", "modulePerformance": "degraded", "modulePerformanceScore": 0.31}
+  ]
+}

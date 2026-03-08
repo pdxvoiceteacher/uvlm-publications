@@ -327,6 +327,14 @@ function renderConcept(data) {
     row('Meta-Cognition Schema Version', data.metaCognitionSchemaVersion ?? 'unknown'),
     row('Meta-Cognition Producer Commit(s)', data.metaCognitionProducerCommits ?? 'unknown'),
     row('Meta-Cognition Source Mode', data.metaCognitionSourceMode ?? 'unknown'),
+    row('Module Performance', data.modulePerformance ?? 'monitor'),
+    row('Module Performance Score', Number(data.modulePerformanceScore ?? 0).toFixed(2)),
+    row('Architecture Discovery Productivity', Number(data.architectureDiscoveryProductivity ?? 0).toFixed(2)),
+    row('Safeguard Performance', data.safeguardPerformance ?? 'bounded'),
+    row('Architecture Improvement Proposal', data.architectureImprovementProposal ?? 'none'),
+    row('Architecture Schema Version', data.architectureSchemaVersion ?? 'unknown'),
+    row('Architecture Producer Commit(s)', data.architectureProducerCommits ?? 'unknown'),
+    row('Architecture Source Mode', data.architectureSourceMode ?? 'unknown'),
     row('Related Concepts', data.relatedConceptCount ?? 0),
     renderConceptRelations(data.relatedConcepts)
   ].join('');

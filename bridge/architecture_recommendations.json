@@ -1,0 +1,9 @@
+{
+  "generatedAt": "2026-03-08",
+  "provenance": {"schemaVersion": "phase-ap.0", "producerCommits": ["sophia-ap-111"], "sourceMode": "fixture"},
+  "recommendations": [
+    {"reviewId": "ar-001", "targetPublisherAction": "docket", "linkedTargetIds": ["concept:coherence-lattice"], "humanReviewFlag": true, "notes": "Architecture improvements are proposal-only until human approval."},
+    {"reviewId": "ar-002", "targetPublisherAction": "watch", "linkedTargetIds": ["concept:governance-integrity"], "humanReviewFlag": true, "notes": "Safeguard performance requires additional review."},
+    {"reviewId": "ar-003", "targetPublisherAction": "suppressed", "linkedTargetIds": ["concept:constitutional-safeguards"], "humanReviewFlag": true, "notes": "Suppressed pending architecture board review."}
+  ]
+}

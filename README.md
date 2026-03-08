@@ -1094,3 +1094,15 @@ Immutable without human approval:
 python3 scripts/build_meta_cognition_overlay.py
 python3 -m unittest tests/test_build_meta_cognition_overlay.py
 ```
+
+## Architecture Overlay (Phase AP)
+
+Publisher surfaces only **Sophia-audited architecture materials**; architecture evaluations may inform review, but cannot mutate core safeguards or canonical state without explicit human approval.
+
+- script: `scripts/build_architecture_overlay.py`
+- outputs: `registry/architecture_dashboard.json`, `registry/module_performance_registry.json`, `registry/architecture_watchlist.json`, `registry/architecture_annotations.json`
+
+```bash
+python3 scripts/build_architecture_overlay.py
+python3 -m unittest tests/test_build_architecture_overlay.py
+```

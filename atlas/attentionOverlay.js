@@ -196,7 +196,11 @@ export async function loadAttentionOverlay() {
     metaDashboardResp,
     reasoningPerformanceRegistryResp,
     metaWatchlistResp,
-    metaAnnotationsResp
+    metaAnnotationsResp,
+    architectureDashboardResp,
+    modulePerformanceRegistryResp,
+    architectureWatchlistResp,
+    architectureAnnotationsResp
   ] = await Promise.all([
     fetch('../bridge/attention_updates.json').catch(() => null),
     fetch('../bridge/coherence_assessment.json').catch(() => null),
@@ -351,7 +355,11 @@ export async function loadAttentionOverlay() {
     fetch('../registry/meta_dashboard.json').catch(() => null),
     fetch('../registry/reasoning_performance_registry.json').catch(() => null),
     fetch('../registry/meta_watchlist.json').catch(() => null),
-    fetch('../registry/meta_annotations.json').catch(() => null)
+    fetch('../registry/meta_annotations.json').catch(() => null),
+    fetch('../registry/architecture_dashboard.json').catch(() => null),
+    fetch('../registry/module_performance_registry.json').catch(() => null),
+    fetch('../registry/architecture_watchlist.json').catch(() => null),
+    fetch('../registry/architecture_annotations.json').catch(() => null)
   ]);
 
   return {
@@ -508,7 +516,11 @@ export async function loadAttentionOverlay() {
     metaDashboard: metaDashboardResp ? await metaDashboardResp.json() : {},
     reasoningPerformanceRegistry: reasoningPerformanceRegistryResp ? await reasoningPerformanceRegistryResp.json() : {},
     metaWatchlist: metaWatchlistResp ? await metaWatchlistResp.json() : {},
-    metaAnnotations: metaAnnotationsResp ? await metaAnnotationsResp.json() : {}
+    metaAnnotations: metaAnnotationsResp ? await metaAnnotationsResp.json() : {},
+    architectureDashboard: architectureDashboardResp ? await architectureDashboardResp.json() : {},
+    modulePerformanceRegistry: modulePerformanceRegistryResp ? await modulePerformanceRegistryResp.json() : {},
+    architectureWatchlist: architectureWatchlistResp ? await architectureWatchlistResp.json() : {},
+    architectureAnnotations: architectureAnnotationsResp ? await architectureAnnotationsResp.json() : {}
   };
 }
 
@@ -3209,6 +3221,77 @@ function buildMetaCognitionConceptSignals(metaDashboard, reasoningPerformanceReg
   return byConcept;
 }
 
+
+function buildArchitectureConceptSignals(architectureDashboard, modulePerformanceRegistry, architectureWatchlist, architectureAnnotations) {
+  const byConcept = new Map();
+
+  function bump(targetId, update) {
+    if (typeof targetId !== 'string') {
+      return;
+    }
+    const existing = byConcept.get(targetId) ?? {
+      modulePerformance: 'monitor',
+      modulePerformanceScore: 0,
+      architectureDiscoveryProductivity: 0,
+      safeguardPerformance: 'bounded',
+      architectureImprovementProposal: 'none',
+      architectureQueueStatus: 'none',
+    };
+    update(existing);
+    byConcept.set(targetId, existing);
+  }
+
+  const registryByReview = new Map();
+  asArray(modulePerformanceRegistry?.entries).forEach((entry) => {
+    if (typeof entry?.reviewId === 'string') {
+      registryByReview.set(entry.reviewId, entry);
+    }
+  });
+
+  asArray(architectureDashboard?.entries).forEach((entry) => {
+    const reg = registryByReview.get(entry?.reviewId);
+    asArray(entry?.linkedTargetIds).forEach((targetId) => {
+      bump(targetId, (s) => {
+        s.modulePerformance = entry?.modulePerformance ?? reg?.modulePerformance ?? s.modulePerformance;
+        s.modulePerformanceScore = Number(entry?.modulePerformanceScore ?? reg?.modulePerformanceScore ?? s.modulePerformanceScore);
+        s.architectureDiscoveryProductivity = Number(entry?.discoveryProductivity ?? reg?.discoveryProductivity ?? s.architectureDiscoveryProductivity);
+        s.safeguardPerformance = entry?.safeguardPerformance ?? reg?.safeguardPerformance ?? s.safeguardPerformance;
+        s.architectureImprovementProposal = entry?.architectureImprovementProposal ?? reg?.architectureImprovementProposal ?? s.architectureImprovementProposal;
+        s.architectureQueueStatus = 'dashboard';
+      });
+    });
+  });
+
+  asArray(architectureWatchlist?.entries).forEach((entry) => {
+    asArray(entry?.linkedTargetIds).forEach((targetId) => {
+      bump(targetId, (s) => {
+        s.modulePerformance = entry?.modulePerformance ?? s.modulePerformance;
+        s.modulePerformanceScore = Number(entry?.modulePerformanceScore ?? s.modulePerformanceScore);
+        s.architectureDiscoveryProductivity = Number(entry?.discoveryProductivity ?? s.architectureDiscoveryProductivity);
+        s.safeguardPerformance = entry?.safeguardPerformance ?? s.safeguardPerformance;
+        s.architectureImprovementProposal = entry?.architectureImprovementProposal ?? s.architectureImprovementProposal;
+        if (s.architectureQueueStatus !== 'dashboard') {
+          s.architectureQueueStatus = 'watch';
+        }
+      });
+    });
+  });
+
+  asArray(architectureAnnotations?.annotations).forEach((entry) => {
+    asArray(entry?.linkedTargetIds).forEach((targetId) => {
+      bump(targetId, (s) => {
+        s.modulePerformance = entry?.modulePerformance ?? s.modulePerformance;
+        s.modulePerformanceScore = Number(entry?.modulePerformanceScore ?? s.modulePerformanceScore);
+        s.architectureDiscoveryProductivity = Number(entry?.discoveryProductivity ?? s.architectureDiscoveryProductivity);
+        s.safeguardPerformance = entry?.safeguardPerformance ?? s.safeguardPerformance;
+        s.architectureImprovementProposal = entry?.architectureImprovementProposal ?? s.architectureImprovementProposal;
+      });
+    });
+  });
+
+  return byConcept;
+}
+
 function buildConstitutionalConceptSignals(constitutionalAnnotations, governanceFailureWatchlist) {
   const byConcept = new Map();
 
@@ -3463,6 +3546,12 @@ export function applyAttentionOverlay(cy, overlay) {
     overlay?.metaWatchlist,
     overlay?.metaAnnotations
   );
+  const architectureSignals = buildArchitectureConceptSignals(
+    overlay?.architectureDashboard,
+    overlay?.modulePerformanceRegistry,
+    overlay?.architectureWatchlist,
+    overlay?.architectureAnnotations
+  );
 
   const institutionalProvenance = overlay?.institutionalStatus?.provenance ?? {};
   const institutionalSchemaVersion = institutionalProvenance?.schemaVersions?.institutional_state_summary
@@ -3620,6 +3709,12 @@ export function applyAttentionOverlay(cy, overlay) {
     ?? 'unknown';
   const metaCognitionProducerCommits = asArray(metaCognitionProvenance?.producerCommits).join(', ') || 'unknown';
   const metaCognitionSourceMode = metaCognitionProvenance?.derivedFromFixtures ? 'fixture' : 'live';
+  const architectureProvenance = overlay?.architectureDashboard?.provenance ?? {};
+  const architectureSchemaVersion = architectureProvenance?.schemaVersions?.module_performance_report
+    ?? architectureProvenance?.schemaVersions?.safeguard_performance_report
+    ?? 'unknown';
+  const architectureProducerCommits = asArray(architectureProvenance?.producerCommits).join(', ') || 'unknown';
+  const architectureSourceMode = architectureProvenance?.derivedFromFixtures ? 'fixture' : 'live';
 
   cy.nodes('[class = "concept"]').forEach((node) => {
     const id = node.id();
@@ -3953,8 +4048,17 @@ export function applyAttentionOverlay(cy, overlay) {
     node.data('metaCognitionSchemaVersion', metaCognitionSchemaVersion);
     node.data('metaCognitionProducerCommits', metaCognitionProducerCommits);
     node.data('metaCognitionSourceMode', metaCognitionSourceMode);
+    const architecture = architectureSignals.get(id);
+    node.data('modulePerformance', architecture?.modulePerformance ?? 'monitor');
+    node.data('modulePerformanceScore', Number(architecture?.modulePerformanceScore ?? 0));
+    node.data('architectureDiscoveryProductivity', Number(architecture?.architectureDiscoveryProductivity ?? 0));
+    node.data('safeguardPerformance', architecture?.safeguardPerformance ?? 'bounded');
+    node.data('architectureImprovementProposal', architecture?.architectureImprovementProposal ?? 'none');
+    node.data('architectureSchemaVersion', architectureSchemaVersion);
+    node.data('architectureProducerCommits', architectureProducerCommits);
+    node.data('architectureSourceMode', architectureSourceMode);
 
-    node.removeClass('attention-priority attention-secondary sonya-candidate reasoning-thread reasoning-watch stability-positive stability-watch multimodal-donation multimodal-watch review-candidate watch-queue governance-review governance-watch constitutional-watch constitutional-freeze deliberation-docket deliberation-watch deliberation-urgent anti-capture-watch continuity-docket continuity-watch continuity-fragile continuity-freeze recovery-docket recovery-watch escrow-ready recovery-fragile attestation-docket attestation-watch witness-sufficient attestation-sensitive precedent-docket precedent-watch precedent-divergent precedent-strong scenario-docket scenario-watch scenario-freeze scenario-rehearse-recovery institutional-status-indicator chamber-conflict-indicator system-health-overview queue-health-actionable backlog-pressure-watch review-fatigue-watch metric-gaming-watch load-shedding-recommended priority-actionable triage-watch urgency-high priority-critical triage-conflict closure-active closure-provisional repair-urgent reopened-watch symbolic-field-active regime-shift-watch lambda-warning architecture-hint verification-active entity-ambiguity verification-urgent claim-typed public-record-active entity-graph-linked relationship-ambiguous custody-fragile machine-readable-record investigation-active investigation-stage-mid investigation-stage-late investigation-plan-progressing investigation-blocked dependency-graph-linked authority-gated weak-evidence-signal authority-mismatch propagation-restricted maturity-gated review-packet-ready review-packet-watch packet-ambiguity-high uncertainty-disclosed synthesis-bounded pattern-cluster-active cross-case-hints pattern-maturity-stable pattern-conflict pattern-timeline-active persistence-stable temporal-conflict-marker causal-bundle-active mechanism-candidate explanatory-gap-high prohibited-conclusion causal-conflict-marker collaborative-review-active consensus-provisional dissent-present collaborative-maturity-bound telemetry-field-active lattice-transition donor-pattern-active taf-elevated branch-novel branch-maturity-bound branch-lifecycle-active branch-conflict-graph branch-decay-indicator branch-reinforcement-trend branch-contradiction-trend forecast-accuracy-high calibration-improving branch-reliability-stable prediction-timeline-active experimental-active falsification-ready replication-defined theory-gate-hold theory-corpus-active theory-negative-results theory-revision-lineage theory-competition-open agency-mode-active agency-volitional-edge agency-deterministic-edge agency-vhat-provisional agency-governance-bounded agency-consent-required agency-blame-suppressed responsibility-active support-pathway-defined consent-required coercion-ceiling-strict sanction-suppressed intervention-bounded transfer-active transfer-asymmetry-high transfer-replication-gated transfer-prohibited-claims transfer-risk-elevated system-forecast-active regime-transition-probable entropy-accumulating branch-ecosystem-fragile trajectory-divergent uncertainty-gradient-high information-gain-high experiment-priority-high entropy-reduction-positive curiosity-active value-alignment-active knowledge-priority-top welfare-impact-positive fairness-impact-watch value-risk-flagged meta-active reasoning-efficiency-high donor-reliability-high governance-constraint-strong discovery-productive');
+    node.removeClass('attention-priority attention-secondary sonya-candidate reasoning-thread reasoning-watch stability-positive stability-watch multimodal-donation multimodal-watch review-candidate watch-queue governance-review governance-watch constitutional-watch constitutional-freeze deliberation-docket deliberation-watch deliberation-urgent anti-capture-watch continuity-docket continuity-watch continuity-fragile continuity-freeze recovery-docket recovery-watch escrow-ready recovery-fragile attestation-docket attestation-watch witness-sufficient attestation-sensitive precedent-docket precedent-watch precedent-divergent precedent-strong scenario-docket scenario-watch scenario-freeze scenario-rehearse-recovery institutional-status-indicator chamber-conflict-indicator system-health-overview queue-health-actionable backlog-pressure-watch review-fatigue-watch metric-gaming-watch load-shedding-recommended priority-actionable triage-watch urgency-high priority-critical triage-conflict closure-active closure-provisional repair-urgent reopened-watch symbolic-field-active regime-shift-watch lambda-warning architecture-hint verification-active entity-ambiguity verification-urgent claim-typed public-record-active entity-graph-linked relationship-ambiguous custody-fragile machine-readable-record investigation-active investigation-stage-mid investigation-stage-late investigation-plan-progressing investigation-blocked dependency-graph-linked authority-gated weak-evidence-signal authority-mismatch propagation-restricted maturity-gated review-packet-ready review-packet-watch packet-ambiguity-high uncertainty-disclosed synthesis-bounded pattern-cluster-active cross-case-hints pattern-maturity-stable pattern-conflict pattern-timeline-active persistence-stable temporal-conflict-marker causal-bundle-active mechanism-candidate explanatory-gap-high prohibited-conclusion causal-conflict-marker collaborative-review-active consensus-provisional dissent-present collaborative-maturity-bound telemetry-field-active lattice-transition donor-pattern-active taf-elevated branch-novel branch-maturity-bound branch-lifecycle-active branch-conflict-graph branch-decay-indicator branch-reinforcement-trend branch-contradiction-trend forecast-accuracy-high calibration-improving branch-reliability-stable prediction-timeline-active experimental-active falsification-ready replication-defined theory-gate-hold theory-corpus-active theory-negative-results theory-revision-lineage theory-competition-open agency-mode-active agency-volitional-edge agency-deterministic-edge agency-vhat-provisional agency-governance-bounded agency-consent-required agency-blame-suppressed responsibility-active support-pathway-defined consent-required coercion-ceiling-strict sanction-suppressed intervention-bounded transfer-active transfer-asymmetry-high transfer-replication-gated transfer-prohibited-claims transfer-risk-elevated system-forecast-active regime-transition-probable entropy-accumulating branch-ecosystem-fragile trajectory-divergent uncertainty-gradient-high information-gain-high experiment-priority-high entropy-reduction-positive curiosity-active value-alignment-active knowledge-priority-top welfare-impact-positive fairness-impact-watch value-risk-flagged meta-active reasoning-efficiency-high donor-reliability-high governance-constraint-strong discovery-productive architecture-active module-performance-strong architecture-discovery-productive safeguard-performance-strong architecture-proposal-queued');
     if ((rankData?.rank ?? Infinity) <= 2) {
       node.addClass('attention-priority');
     } else if ((rankData?.rank ?? Infinity) <= 5) {
@@ -4477,6 +4581,22 @@ export function applyAttentionOverlay(cy, overlay) {
     }
     if ((metaCognition?.discoveryProductivity ?? 0) >= 0.6) {
       node.addClass('discovery-productive');
+    }
+
+    if (['dashboard', 'watch'].includes(architecture?.architectureQueueStatus ?? 'none')) {
+      node.addClass('architecture-active');
+    }
+    if ((architecture?.modulePerformance ?? 'monitor') === 'strong' || (architecture?.modulePerformanceScore ?? 0) >= 0.75) {
+      node.addClass('module-performance-strong');
+    }
+    if ((architecture?.architectureDiscoveryProductivity ?? 0) >= 0.6) {
+      node.addClass('architecture-discovery-productive');
+    }
+    if ((architecture?.safeguardPerformance ?? 'bounded') === 'strong') {
+      node.addClass('safeguard-performance-strong');
+    }
+    if ((architecture?.architectureImprovementProposal ?? 'none') !== 'none' && (architecture?.architectureImprovementProposal ?? 'none') !== 'proposal-hold') {
+      node.addClass('architecture-proposal-queued');
     }
   });
 }
