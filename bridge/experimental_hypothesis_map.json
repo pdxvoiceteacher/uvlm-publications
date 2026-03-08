@@ -1,0 +1,9 @@
+{
+  "generatedAt": "2026-03-08",
+  "provenance": {"schemaVersion": "phase-ag.0", "producerCommits": ["sophia-ag-111"], "sourceMode": "fixture"},
+  "entries": [
+    {"reviewId": "ex-001", "experimentalStatus": "active-design", "hypothesisClass": "mechanistic"},
+    {"reviewId": "ex-002", "experimentalStatus": "watch-design", "hypothesisClass": "comparative"},
+    {"reviewId": "ex-003", "experimentalStatus": "withheld", "hypothesisClass": "speculative"}
+  ]
+}

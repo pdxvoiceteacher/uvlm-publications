@@ -1,0 +1,106 @@
+{
+  "generatedAt": "2026-03-08",
+  "theoryCorpusProtocol": true,
+  "nonCanonical": true,
+  "provenance": {
+    "schemaVersions": {
+      "theory_corpus_audit": "phase-ah.0",
+      "theory_corpus_recommendations": "phase-ah.0",
+      "theory_corpus_map": "phase-ah.0",
+      "theory_revision_lineage": "phase-ah.0",
+      "negative_result_registry": "phase-ah.0",
+      "theory_competition_report": "phase-ah.0",
+      "experiment_dashboard": "composite",
+      "prediction_dashboard": "composite",
+      "branch_dashboard": "composite"
+    },
+    "producerCommits": [
+      "sophia-ah-111",
+      "sophia-ag-111",
+      "sophia-af-111",
+      "sophia-ae-111",
+      "sophia-ad-111",
+      "sophia-t-111",
+      "cl-t-222",
+      "cl-commit-aaa111",
+      "sophia-commit-bbb222",
+      "sophia-commit-qqq111",
+      "cl-commit-qqq222",
+      "sophia-r-111",
+      "cl-r-222",
+      "sophia-s-111",
+      "cl-s-222",
+      "sophia-u-111",
+      "sophia-v-111",
+      "sophia-x1-111",
+      "coherence-x1-111",
+      "coherence-x1-112",
+      "coherence-x1-113",
+      "coherence-x1-114",
+      "cl-u-222",
+      "cl-v-222",
+      "sophia-ab-111",
+      "cl-ab-111",
+      "cl-ab-112",
+      "cl-ab-113",
+      "cl-ab-114",
+      "sophia-z1-111",
+      "cl-z1-111",
+      "cl-z1-112",
+      "cl-z1-113",
+      "sophia-z-111",
+      "cl-z-111",
+      "cl-z-112",
+      "cl-z-113",
+      "cl-z-114",
+      "sophia-y-111",
+      "cl-y-111",
+      "cl-y-112",
+      "cl-y-113",
+      "cl-y-114",
+      "sophia-aa-111",
+      "sophia-ac-111"
+    ],
+    "sourceModes": {
+      "theory_corpus_audit": "fixture",
+      "theory_corpus_recommendations": "fixture",
+      "theory_corpus_map": "fixture",
+      "theory_revision_lineage": "fixture",
+      "negative_result_registry": "fixture",
+      "theory_competition_report": "fixture",
+      "experiment_dashboard": "fixture",
+      "prediction_dashboard": "fixture",
+      "branch_dashboard": "fixture"
+    },
+    "derivedFromFixtures": true
+  },
+  "entries": [
+    {
+      "reviewId": "th-002",
+      "theoryStatus": "under-review",
+      "falsificationStatus": "pending",
+      "replicationStatus": "pending",
+      "revisionLineage": [
+        "v1:proposal",
+        "v2:open-competition"
+      ],
+      "negativeResultIndicators": [
+        "failed-replication-probe"
+      ],
+      "competitionState": "active-competition",
+      "competitionPeers": [
+        "theory:alt-02",
+        "theory:alt-03"
+      ],
+      "theoryAuditState": "watch",
+      "linkedTargetIds": [
+        "concept:governance-integrity"
+      ],
+      "status": "watch",
+      "humanReviewFlag": true,
+      "observational": true,
+      "nonCanonical": true,
+      "queuedAt": "2026-03-08"
+    }
+  ]
+}
