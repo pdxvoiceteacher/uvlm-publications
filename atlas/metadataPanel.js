@@ -226,6 +226,17 @@ function renderConcept(data) {
     row('Telemetry Schema Version', data.telemetrySchemaVersion ?? 'unknown'),
     row('Telemetry Producer Commit(s)', data.telemetryProducerCommits ?? 'unknown'),
     row('Telemetry Source Mode', data.telemetrySourceMode ?? 'unknown'),
+    row('Branch Lifecycle Status', data.branchLifecycleStatus ?? 'monitor'),
+    row('Branch Stage', data.branchStage ?? 'emergent'),
+    row('Branch Conflict Nodes', asList(data.branchConflictNodes)),
+    row('Branch Conflict Edges', asList(data.branchConflictEdges)),
+    row('Branch Decay Risk', data.branchDecayRisk ?? 'low'),
+    row('Branch Decay Signals', asList(data.branchDecaySignals)),
+    row('Reinforcement Trend', data.reinforcementTrend ?? 'balanced'),
+    row('Contradiction Trend', data.contradictionTrend ?? 'low'),
+    row('Branch Schema Version', data.branchSchemaVersion ?? 'unknown'),
+    row('Branch Producer Commit(s)', data.branchProducerCommits ?? 'unknown'),
+    row('Branch Source Mode', data.branchSourceMode ?? 'unknown'),
     row('Related Concepts', data.relatedConceptCount ?? 0),
     renderConceptRelations(data.relatedConcepts)
   ].join('');

@@ -930,3 +930,15 @@ Publisher surfaces only **Sophia-audited telemetry-field and TAF materials**; no
 python3 scripts/build_telemetry_field_overlay.py
 python3 -m unittest tests/test_build_telemetry_field_overlay.py
 ```
+
+## Branch Lifecycle Overlay
+
+Publisher surfaces only **Sophia-audited branch lifecycle materials**; no automatic branch activation or canonical mutation occurs from this layer.
+
+- script: `scripts/build_branch_lifecycle_overlay.py`
+- outputs: `registry/branch_dashboard.json`, `registry/branch_registry.json`, `registry/branch_watchlist.json`, `registry/branch_annotations.json`
+
+```bash
+python3 scripts/build_branch_lifecycle_overlay.py
+python3 -m unittest tests/test_build_branch_lifecycle_overlay.py
+```

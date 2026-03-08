@@ -152,7 +152,11 @@ export async function loadAttentionOverlay() {
     deliberationAnnotationsResp,
     telemetryDashboardResp,
     latticeProjectionRegistryResp,
-    actionFunctionalAnnotationsResp
+    actionFunctionalAnnotationsResp,
+    branchDashboardResp,
+    branchRegistryResp,
+    branchWatchlistResp,
+    branchAnnotationsResp
   ] = await Promise.all([
     fetch('../bridge/attention_updates.json').catch(() => null),
     fetch('../bridge/coherence_assessment.json').catch(() => null),
@@ -263,7 +267,11 @@ export async function loadAttentionOverlay() {
     fetch('../registry/deliberation_annotations.json').catch(() => null),
     fetch('../registry/telemetry_dashboard.json').catch(() => null),
     fetch('../registry/lattice_projection_registry.json').catch(() => null),
-    fetch('../registry/action_functional_annotations.json').catch(() => null)
+    fetch('../registry/action_functional_annotations.json').catch(() => null),
+    fetch('../registry/branch_dashboard.json').catch(() => null),
+    fetch('../registry/branch_registry.json').catch(() => null),
+    fetch('../registry/branch_watchlist.json').catch(() => null),
+    fetch('../registry/branch_annotations.json').catch(() => null)
   ]);
 
   return {
@@ -376,7 +384,11 @@ export async function loadAttentionOverlay() {
     deliberationAnnotations: deliberationAnnotationsResp ? await deliberationAnnotationsResp.json() : {},
     telemetryDashboard: telemetryDashboardResp ? await telemetryDashboardResp.json() : {},
     latticeProjectionRegistry: latticeProjectionRegistryResp ? await latticeProjectionRegistryResp.json() : {},
-    actionFunctionalAnnotations: actionFunctionalAnnotationsResp ? await actionFunctionalAnnotationsResp.json() : {}
+    actionFunctionalAnnotations: actionFunctionalAnnotationsResp ? await actionFunctionalAnnotationsResp.json() : {},
+    branchDashboard: branchDashboardResp ? await branchDashboardResp.json() : {},
+    branchRegistry: branchRegistryResp ? await branchRegistryResp.json() : {},
+    branchWatchlist: branchWatchlistResp ? await branchWatchlistResp.json() : {},
+    branchAnnotations: branchAnnotationsResp ? await branchAnnotationsResp.json() : {}
   };
 }
 
@@ -2235,6 +2247,90 @@ function buildTelemetryConceptSignals(telemetryDashboard, latticeProjectionRegis
   return byConcept;
 }
 
+
+
+function buildBranchLifecycleConceptSignals(branchDashboard, branchRegistry, branchWatchlist, branchAnnotations) {
+  const byConcept = new Map();
+
+  function bump(targetId, update) {
+    if (typeof targetId !== 'string') {
+      return;
+    }
+    const existing = byConcept.get(targetId) ?? {
+      branchLifecycleStatus: 'monitor',
+      branchStage: 'emergent',
+      branchConflictNodes: [],
+      branchConflictEdges: [],
+      branchDecayRisk: 'low',
+      branchDecaySignals: [],
+      reinforcementTrend: 'balanced',
+      contradictionTrend: 'low',
+      branchQueueStatus: 'none',
+    };
+    update(existing);
+    byConcept.set(targetId, existing);
+  }
+
+  const registryByReview = new Map();
+  asArray(branchRegistry?.entries).forEach((entry) => {
+    if (typeof entry?.reviewId === 'string') {
+      registryByReview.set(entry.reviewId, entry);
+    }
+  });
+
+  asArray(branchDashboard?.entries).forEach((entry) => {
+    const reg = registryByReview.get(entry?.reviewId);
+    asArray(entry?.linkedTargetIds).forEach((targetId) => {
+      bump(targetId, (s) => {
+        s.branchLifecycleStatus = entry?.branchLifecycleStatus ?? reg?.branchLifecycleStatus ?? s.branchLifecycleStatus;
+        s.branchStage = entry?.branchStage ?? reg?.branchStage ?? s.branchStage;
+        s.branchConflictNodes = asArray(entry?.conflictNodes ?? reg?.conflictNodes);
+        s.branchConflictEdges = asArray(entry?.conflictEdges ?? reg?.conflictEdges);
+        s.branchDecayRisk = entry?.decayRisk ?? reg?.decayRisk ?? s.branchDecayRisk;
+        s.branchDecaySignals = asArray(entry?.decaySignals ?? reg?.decaySignals);
+        s.reinforcementTrend = entry?.reinforcementTrend ?? reg?.reinforcementTrend ?? s.reinforcementTrend;
+        s.contradictionTrend = entry?.contradictionTrend ?? reg?.contradictionTrend ?? s.contradictionTrend;
+        s.branchQueueStatus = 'dashboard';
+      });
+    });
+  });
+
+  asArray(branchWatchlist?.entries).forEach((entry) => {
+    asArray(entry?.linkedTargetIds).forEach((targetId) => {
+      bump(targetId, (s) => {
+        s.branchLifecycleStatus = entry?.branchLifecycleStatus ?? s.branchLifecycleStatus;
+        s.branchStage = entry?.branchStage ?? s.branchStage;
+        s.branchConflictNodes = asArray(entry?.conflictNodes ?? s.branchConflictNodes);
+        s.branchConflictEdges = asArray(entry?.conflictEdges ?? s.branchConflictEdges);
+        s.branchDecayRisk = entry?.decayRisk ?? s.branchDecayRisk;
+        s.branchDecaySignals = asArray(entry?.decaySignals ?? s.branchDecaySignals);
+        s.reinforcementTrend = entry?.reinforcementTrend ?? s.reinforcementTrend;
+        s.contradictionTrend = entry?.contradictionTrend ?? s.contradictionTrend;
+        if (s.branchQueueStatus !== 'dashboard') {
+          s.branchQueueStatus = 'watch';
+        }
+      });
+    });
+  });
+
+  asArray(branchAnnotations?.annotations).forEach((entry) => {
+    asArray(entry?.linkedTargetIds).forEach((targetId) => {
+      bump(targetId, (s) => {
+        s.branchLifecycleStatus = entry?.branchLifecycleStatus ?? s.branchLifecycleStatus;
+        s.branchStage = entry?.branchStage ?? s.branchStage;
+        s.branchConflictNodes = asArray(entry?.conflictNodes ?? s.branchConflictNodes);
+        s.branchConflictEdges = asArray(entry?.conflictEdges ?? s.branchConflictEdges);
+        s.branchDecayRisk = entry?.decayRisk ?? s.branchDecayRisk;
+        s.branchDecaySignals = asArray(entry?.decaySignals ?? s.branchDecaySignals);
+        s.reinforcementTrend = entry?.reinforcementTrend ?? s.reinforcementTrend;
+        s.contradictionTrend = entry?.contradictionTrend ?? s.contradictionTrend;
+      });
+    });
+  });
+
+  return byConcept;
+}
+
 function buildConstitutionalConceptSignals(constitutionalAnnotations, governanceFailureWatchlist) {
   const byConcept = new Map();
 
@@ -2423,6 +2519,12 @@ export function applyAttentionOverlay(cy, overlay) {
     overlay?.patternDonationWatchlist,
     overlay?.actionFunctionalAnnotations
   );
+  const branchSignals = buildBranchLifecycleConceptSignals(
+    overlay?.branchDashboard,
+    overlay?.branchRegistry,
+    overlay?.branchWatchlist,
+    overlay?.branchAnnotations
+  );
 
 
   const institutionalProvenance = overlay?.institutionalStatus?.provenance ?? {};
@@ -2515,6 +2617,12 @@ export function applyAttentionOverlay(cy, overlay) {
     ?? 'unknown';
   const telemetryProducerCommits = asArray(telemetryProvenance?.producerCommits).join(', ') || 'unknown';
   const telemetrySourceMode = telemetryProvenance?.derivedFromFixtures ? 'fixture' : 'live';
+  const branchProvenance = overlay?.branchDashboard?.provenance ?? {};
+  const branchSchemaVersion = branchProvenance?.schemaVersions?.branch_state_map
+    ?? branchProvenance?.schemaVersions?.branch_conflict_graph
+    ?? 'unknown';
+  const branchProducerCommits = asArray(branchProvenance?.producerCommits).join(', ') || 'unknown';
+  const branchSourceMode = branchProvenance?.derivedFromFixtures ? 'fixture' : 'live';
 
   cy.nodes('[class = "concept"]').forEach((node) => {
     const id = node.id();
@@ -2736,8 +2844,20 @@ export function applyAttentionOverlay(cy, overlay) {
     node.data('telemetrySchemaVersion', telemetrySchemaVersion);
     node.data('telemetryProducerCommits', telemetryProducerCommits);
     node.data('telemetrySourceMode', telemetrySourceMode);
+    const branch = branchSignals.get(id);
+    node.data('branchLifecycleStatus', branch?.branchLifecycleStatus ?? 'monitor');
+    node.data('branchStage', branch?.branchStage ?? 'emergent');
+    node.data('branchConflictNodes', asArray(branch?.branchConflictNodes));
+    node.data('branchConflictEdges', asArray(branch?.branchConflictEdges));
+    node.data('branchDecayRisk', branch?.branchDecayRisk ?? 'low');
+    node.data('branchDecaySignals', asArray(branch?.branchDecaySignals));
+    node.data('reinforcementTrend', branch?.reinforcementTrend ?? 'balanced');
+    node.data('contradictionTrend', branch?.contradictionTrend ?? 'low');
+    node.data('branchSchemaVersion', branchSchemaVersion);
+    node.data('branchProducerCommits', branchProducerCommits);
+    node.data('branchSourceMode', branchSourceMode);
 
-    node.removeClass('attention-priority attention-secondary sonya-candidate reasoning-thread reasoning-watch stability-positive stability-watch multimodal-donation multimodal-watch review-candidate watch-queue governance-review governance-watch constitutional-watch constitutional-freeze deliberation-docket deliberation-watch deliberation-urgent anti-capture-watch continuity-docket continuity-watch continuity-fragile continuity-freeze recovery-docket recovery-watch escrow-ready recovery-fragile attestation-docket attestation-watch witness-sufficient attestation-sensitive precedent-docket precedent-watch precedent-divergent precedent-strong scenario-docket scenario-watch scenario-freeze scenario-rehearse-recovery institutional-status-indicator chamber-conflict-indicator system-health-overview queue-health-actionable backlog-pressure-watch review-fatigue-watch metric-gaming-watch load-shedding-recommended priority-actionable triage-watch urgency-high priority-critical triage-conflict closure-active closure-provisional repair-urgent reopened-watch symbolic-field-active regime-shift-watch lambda-warning architecture-hint verification-active entity-ambiguity verification-urgent claim-typed public-record-active entity-graph-linked relationship-ambiguous custody-fragile machine-readable-record investigation-active investigation-stage-mid investigation-stage-late investigation-plan-progressing investigation-blocked dependency-graph-linked authority-gated weak-evidence-signal authority-mismatch propagation-restricted maturity-gated review-packet-ready review-packet-watch packet-ambiguity-high uncertainty-disclosed synthesis-bounded pattern-cluster-active cross-case-hints pattern-maturity-stable pattern-conflict pattern-timeline-active persistence-stable temporal-conflict-marker causal-bundle-active mechanism-candidate explanatory-gap-high prohibited-conclusion causal-conflict-marker collaborative-review-active consensus-provisional dissent-present collaborative-maturity-bound telemetry-field-active lattice-transition donor-pattern-active taf-elevated branch-novel branch-maturity-bound');
+    node.removeClass('attention-priority attention-secondary sonya-candidate reasoning-thread reasoning-watch stability-positive stability-watch multimodal-donation multimodal-watch review-candidate watch-queue governance-review governance-watch constitutional-watch constitutional-freeze deliberation-docket deliberation-watch deliberation-urgent anti-capture-watch continuity-docket continuity-watch continuity-fragile continuity-freeze recovery-docket recovery-watch escrow-ready recovery-fragile attestation-docket attestation-watch witness-sufficient attestation-sensitive precedent-docket precedent-watch precedent-divergent precedent-strong scenario-docket scenario-watch scenario-freeze scenario-rehearse-recovery institutional-status-indicator chamber-conflict-indicator system-health-overview queue-health-actionable backlog-pressure-watch review-fatigue-watch metric-gaming-watch load-shedding-recommended priority-actionable triage-watch urgency-high priority-critical triage-conflict closure-active closure-provisional repair-urgent reopened-watch symbolic-field-active regime-shift-watch lambda-warning architecture-hint verification-active entity-ambiguity verification-urgent claim-typed public-record-active entity-graph-linked relationship-ambiguous custody-fragile machine-readable-record investigation-active investigation-stage-mid investigation-stage-late investigation-plan-progressing investigation-blocked dependency-graph-linked authority-gated weak-evidence-signal authority-mismatch propagation-restricted maturity-gated review-packet-ready review-packet-watch packet-ambiguity-high uncertainty-disclosed synthesis-bounded pattern-cluster-active cross-case-hints pattern-maturity-stable pattern-conflict pattern-timeline-active persistence-stable temporal-conflict-marker causal-bundle-active mechanism-candidate explanatory-gap-high prohibited-conclusion causal-conflict-marker collaborative-review-active consensus-provisional dissent-present collaborative-maturity-bound telemetry-field-active lattice-transition donor-pattern-active taf-elevated branch-novel branch-maturity-bound branch-lifecycle-active branch-conflict-graph branch-decay-indicator branch-reinforcement-trend branch-contradiction-trend');
     if ((rankData?.rank ?? Infinity) <= 2) {
       node.addClass('attention-priority');
     } else if ((rankData?.rank ?? Infinity) <= 5) {
@@ -3084,6 +3204,22 @@ export function applyAttentionOverlay(cy, overlay) {
     }
     if ((telemetry?.branchMaturityCeiling ?? 'bounded-review') !== 'open') {
       node.addClass('branch-maturity-bound');
+    }
+
+    if (['dashboard', 'watch'].includes(branch?.branchQueueStatus ?? 'none')) {
+      node.addClass('branch-lifecycle-active');
+    }
+    if (asArray(branch?.branchConflictNodes).length > 0 || asArray(branch?.branchConflictEdges).length > 0) {
+      node.addClass('branch-conflict-graph');
+    }
+    if ((branch?.branchDecayRisk ?? 'low') === 'high' || asArray(branch?.branchDecaySignals).length > 0) {
+      node.addClass('branch-decay-indicator');
+    }
+    if ((branch?.reinforcementTrend ?? 'balanced') === 'up') {
+      node.addClass('branch-reinforcement-trend');
+    }
+    if ((branch?.contradictionTrend ?? 'low') === 'high') {
+      node.addClass('branch-contradiction-trend');
     }
   });
 }
