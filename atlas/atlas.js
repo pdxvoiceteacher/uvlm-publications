@@ -976,7 +976,284 @@ async function main() {
           'border-style': 'dashed',
           'border-width': 2
         }
-      }
+      },
+
+      {
+        selector: '.investigation-active',
+        style: {
+          'border-color': '#cde8ff'
+        }
+      },
+      {
+        selector: '.investigation-stage-mid',
+        style: {
+          'overlay-color': '#cde8ff',
+          'overlay-opacity': 0.08,
+          'overlay-padding': 2
+        }
+      },
+      {
+        selector: '.investigation-stage-late',
+        style: {
+          'border-width': 2,
+          'border-color': '#ffd8ae'
+        }
+      },
+      {
+        selector: '.investigation-plan-progressing',
+        style: {
+          'shadow-color': '#cde8ff',
+          'shadow-opacity': 0.14,
+          'shadow-blur': 14
+        }
+      },
+      {
+        selector: '.investigation-blocked',
+        style: {
+          'border-width': 2,
+          'border-color': '#ffc8d8'
+        }
+      },
+      {
+        selector: '.dependency-graph-linked',
+        style: {
+          'border-style': 'double',
+          'border-width': 2
+        }
+      },
+
+      {
+        selector: '.authority-gated',
+        style: {
+          'border-color': '#d7e8ff'
+        }
+      },
+      {
+        selector: '.weak-evidence-signal',
+        style: {
+          'overlay-color': '#d7e8ff',
+          'overlay-opacity': 0.07,
+          'overlay-padding': 2
+        }
+      },
+      {
+        selector: '.authority-mismatch',
+        style: {
+          'border-width': 2,
+          'border-color': '#ffd8d8'
+        }
+      },
+      {
+        selector: '.propagation-restricted',
+        style: {
+          'shadow-color': '#d7e8ff',
+          'shadow-opacity': 0.12,
+          'shadow-blur': 13
+        }
+      },
+      {
+        selector: '.maturity-gated',
+        style: {
+          'border-style': 'dotted',
+          'border-width': 2
+        }
+      },
+
+      {
+        selector: '.review-packet-ready',
+        style: {
+          'border-color': '#dcecff'
+        }
+      },
+      {
+        selector: '.review-packet-watch',
+        style: {
+          'overlay-color': '#dcecff',
+          'overlay-opacity': 0.08,
+          'overlay-padding': 2
+        }
+      },
+      {
+        selector: '.packet-ambiguity-high',
+        style: {
+          'border-width': 2,
+          'border-color': '#ffd7cc'
+        }
+      },
+      {
+        selector: '.uncertainty-disclosed',
+        style: {
+          'shadow-color': '#dcecff',
+          'shadow-opacity': 0.12,
+          'shadow-blur': 13
+        }
+      },
+      {
+        selector: '.synthesis-bounded',
+        style: {
+          'border-style': 'dashed',
+          'border-width': 2
+        }
+      },
+
+      {
+        selector: '.pattern-cluster-active',
+        style: {
+          'border-color': '#dce7ff'
+        }
+      },
+      {
+        selector: '.cross-case-hints',
+        style: {
+          'overlay-color': '#dce7ff',
+          'overlay-opacity': 0.08,
+          'overlay-padding': 2
+        }
+      },
+      {
+        selector: '.pattern-maturity-stable',
+        style: {
+          'shadow-color': '#dce7ff',
+          'shadow-opacity': 0.12,
+          'shadow-blur': 13
+        }
+      },
+      {
+        selector: '.pattern-conflict',
+        style: {
+          'border-width': 2,
+          'border-color': '#ffd5d5'
+        }
+      },
+
+      {
+        selector: '.pattern-timeline-active',
+        style: {
+          'border-color': '#dfe7ff'
+        }
+      },
+      {
+        selector: '.persistence-stable',
+        style: {
+          'shadow-color': '#dfe7ff',
+          'shadow-opacity': 0.12,
+          'shadow-blur': 13
+        }
+      },
+      {
+        selector: '.temporal-conflict-marker',
+        style: {
+          'border-width': 2,
+          'border-color': '#ffd3d3'
+        }
+      },
+      {
+        selector: '.causal-bundle-active',
+        style: {
+          'border-color': '#dfeeff'
+        }
+      },
+      {
+        selector: '.mechanism-candidate',
+        style: {
+          'overlay-color': '#dfeeff',
+          'overlay-opacity': 0.08,
+          'overlay-padding': 2
+        }
+      },
+      {
+        selector: '.explanatory-gap-high',
+        style: {
+          'border-width': 2,
+          'border-color': '#ffd6d6'
+        }
+      },
+      {
+        selector: '.prohibited-conclusion',
+        style: {
+          'shadow-color': '#dfeeff',
+          'shadow-opacity': 0.12,
+          'shadow-blur': 13
+        }
+      },
+      {
+        selector: '.causal-conflict-marker',
+        style: {
+          'border-style': 'dotted',
+          'border-width': 2
+        }
+      },
+      {
+        selector: '.collaborative-review-active',
+        style: {
+          'border-color': '#e5f4ff'
+        }
+      },
+      {
+        selector: '.consensus-provisional',
+        style: {
+          'overlay-color': '#e5f4ff',
+          'overlay-opacity': 0.08,
+          'overlay-padding': 2
+        }
+      },
+      {
+        selector: '.dissent-present',
+        style: {
+          'border-style': 'dashed',
+          'border-width': 2
+        }
+      },
+      {
+        selector: '.collaborative-maturity-bound',
+        style: {
+          'shadow-color': '#e5f4ff',
+          'shadow-opacity': 0.1,
+          'shadow-blur': 12
+        }
+      },
+      {
+        selector: '.telemetry-field-active',
+        style: {
+          'border-color': '#edf8ff'
+        }
+      },
+      {
+        selector: '.lattice-transition',
+        style: {
+          'border-style': 'dashed',
+          'border-width': 2
+        }
+      },
+      {
+        selector: '.donor-pattern-active',
+        style: {
+          'overlay-color': '#edf8ff',
+          'overlay-opacity': 0.08,
+          'overlay-padding': 2
+        }
+      },
+      {
+        selector: '.taf-elevated',
+        style: {
+          'shadow-color': '#edf8ff',
+          'shadow-opacity': 0.1,
+          'shadow-blur': 12
+        }
+      },
+      {
+        selector: '.branch-novel',
+        style: {
+          'border-width': 2,
+          'border-color': '#d8ebff'
+        }
+      },
+      {
+        selector: '.branch-maturity-bound',
+        style: {
+          'border-style': 'dotted'
+        }
+      },
     ],
     layout: {
       name: 'preset'
@@ -1099,7 +1376,7 @@ async function main() {
   resetEl.addEventListener('click', () => {
     searchEl.value = '';
     typeFilterEl.value = 'all';
-    cy.elements().removeClass('zoom-hidden filter-hidden highlight spotlight-dim spotlight-focus sonya-candidate reasoning-thread reasoning-watch stability-positive stability-watch multimodal-donation multimodal-watch review-candidate watch-queue governance-review governance-watch constitutional-watch constitutional-freeze deliberation-docket deliberation-watch deliberation-urgent anti-capture-watch continuity-docket continuity-watch continuity-fragile continuity-freeze recovery-docket recovery-watch escrow-ready recovery-fragile attestation-docket attestation-watch witness-sufficient attestation-sensitive precedent-docket precedent-watch precedent-divergent precedent-strong scenario-docket scenario-watch scenario-freeze scenario-rehearse-recovery institutional-status-indicator chamber-conflict-indicator system-health-overview queue-health-actionable backlog-pressure-watch review-fatigue-watch metric-gaming-watch load-shedding-recommended priority-actionable triage-watch urgency-high priority-critical triage-conflict');
+    cy.elements().removeClass('zoom-hidden filter-hidden highlight spotlight-dim spotlight-focus sonya-candidate reasoning-thread reasoning-watch stability-positive stability-watch multimodal-donation multimodal-watch review-candidate watch-queue governance-review governance-watch constitutional-watch constitutional-freeze deliberation-docket deliberation-watch deliberation-urgent anti-capture-watch continuity-docket continuity-watch continuity-fragile continuity-freeze recovery-docket recovery-watch escrow-ready recovery-fragile attestation-docket attestation-watch witness-sufficient attestation-sensitive precedent-docket precedent-watch precedent-divergent precedent-strong scenario-docket scenario-watch scenario-freeze scenario-rehearse-recovery institutional-status-indicator chamber-conflict-indicator system-health-overview queue-health-actionable backlog-pressure-watch review-fatigue-watch metric-gaming-watch load-shedding-recommended priority-actionable triage-watch urgency-high priority-critical triage-conflict investigation-active investigation-stage-mid investigation-stage-late investigation-plan-progressing investigation-blocked dependency-graph-linked authority-gated weak-evidence-signal authority-mismatch propagation-restricted maturity-gated review-packet-ready review-packet-watch packet-ambiguity-high uncertainty-disclosed synthesis-bounded pattern-cluster-active cross-case-hints pattern-maturity-stable pattern-conflict pattern-timeline-active persistence-stable temporal-conflict-marker causal-bundle-active mechanism-candidate explanatory-gap-high prohibited-conclusion causal-conflict-marker collaborative-review-active consensus-provisional dissent-present collaborative-maturity-bound telemetry-field-active lattice-transition donor-pattern-active taf-elevated branch-novel branch-maturity-bound');
     constellationApi.clear();
     cy.fit(cy.elements(':visible'), 60);
     setDefaultPanel(detailEl);

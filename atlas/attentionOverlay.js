@@ -121,7 +121,38 @@ export async function loadAttentionOverlay() {
     publicRecordDashboardResp,
     entityGraphRegistryResp,
     relationshipWatchlistResp,
-    chainOfCustodyAnnotationsResp
+    chainOfCustodyAnnotationsResp,
+    investigationDashboardResp,
+    investigationPlanRegistryResp,
+    investigationWatchlistResp,
+    investigationAnnotationsResp,
+    authorityGateDashboardResp,
+    weakEvidenceWatchlistResp,
+    propagationAnnotationsResp,
+    maturityRestrictionRegistryResp,
+    reviewPacketDashboardResp,
+    reviewPacketRegistryResp,
+    uncertaintyWatchlistResp,
+    reviewPacketAnnotationsResp,
+    patternDashboardResp,
+    patternRegistryResp,
+    patternWatchlistResp,
+    patternAnnotationsResp,
+    patternTimelineDashboardResp,
+    patternPersistenceRegistryResp,
+    patternTemporalWatchlistResp,
+    patternTemporalAnnotationsResp,
+    causalDashboardResp,
+    mechanismRegistryResp,
+    causalWatchlistResp,
+    causalAnnotationsResp,
+    collaborativeReviewDashboardResp,
+    consensusRegistryResp,
+    dissentWatchlistResp,
+    deliberationAnnotationsResp,
+    telemetryDashboardResp,
+    latticeProjectionRegistryResp,
+    actionFunctionalAnnotationsResp
   ] = await Promise.all([
     fetch('../bridge/attention_updates.json').catch(() => null),
     fetch('../bridge/coherence_assessment.json').catch(() => null),
@@ -201,7 +232,38 @@ export async function loadAttentionOverlay() {
     fetch('../registry/public_record_dashboard.json').catch(() => null),
     fetch('../registry/entity_graph_registry.json').catch(() => null),
     fetch('../registry/relationship_watchlist.json').catch(() => null),
-    fetch('../registry/chain_of_custody_annotations.json').catch(() => null)
+    fetch('../registry/chain_of_custody_annotations.json').catch(() => null),
+    fetch('../registry/investigation_dashboard.json').catch(() => null),
+    fetch('../registry/investigation_plan_registry.json').catch(() => null),
+    fetch('../registry/investigation_watchlist.json').catch(() => null),
+    fetch('../registry/investigation_annotations.json').catch(() => null),
+    fetch('../registry/authority_gate_dashboard.json').catch(() => null),
+    fetch('../registry/weak_evidence_watchlist.json').catch(() => null),
+    fetch('../registry/propagation_annotations.json').catch(() => null),
+    fetch('../registry/maturity_restriction_registry.json').catch(() => null),
+    fetch('../registry/review_packet_dashboard.json').catch(() => null),
+    fetch('../registry/review_packet_registry.json').catch(() => null),
+    fetch('../registry/uncertainty_watchlist.json').catch(() => null),
+    fetch('../registry/review_packet_annotations.json').catch(() => null),
+    fetch('../registry/pattern_dashboard.json').catch(() => null),
+    fetch('../registry/pattern_registry.json').catch(() => null),
+    fetch('../registry/pattern_watchlist.json').catch(() => null),
+    fetch('../registry/pattern_annotations.json').catch(() => null),
+    fetch('../registry/pattern_timeline_dashboard.json').catch(() => null),
+    fetch('../registry/pattern_persistence_registry.json').catch(() => null),
+    fetch('../registry/pattern_temporal_watchlist.json').catch(() => null),
+    fetch('../registry/pattern_temporal_annotations.json').catch(() => null),
+    fetch('../registry/causal_dashboard.json').catch(() => null),
+    fetch('../registry/mechanism_registry.json').catch(() => null),
+    fetch('../registry/causal_watchlist.json').catch(() => null),
+    fetch('../registry/causal_annotations.json').catch(() => null),
+    fetch('../registry/collaborative_review_dashboard.json').catch(() => null),
+    fetch('../registry/consensus_registry.json').catch(() => null),
+    fetch('../registry/dissent_watchlist.json').catch(() => null),
+    fetch('../registry/deliberation_annotations.json').catch(() => null),
+    fetch('../registry/telemetry_dashboard.json').catch(() => null),
+    fetch('../registry/lattice_projection_registry.json').catch(() => null),
+    fetch('../registry/action_functional_annotations.json').catch(() => null)
   ]);
 
   return {
@@ -283,7 +345,38 @@ export async function loadAttentionOverlay() {
     publicRecordDashboard: publicRecordDashboardResp ? await publicRecordDashboardResp.json() : {},
     entityGraphRegistry: entityGraphRegistryResp ? await entityGraphRegistryResp.json() : {},
     relationshipWatchlist: relationshipWatchlistResp ? await relationshipWatchlistResp.json() : {},
-    chainOfCustodyAnnotations: chainOfCustodyAnnotationsResp ? await chainOfCustodyAnnotationsResp.json() : {}
+    chainOfCustodyAnnotations: chainOfCustodyAnnotationsResp ? await chainOfCustodyAnnotationsResp.json() : {},
+    investigationDashboard: investigationDashboardResp ? await investigationDashboardResp.json() : {},
+    investigationPlanRegistry: investigationPlanRegistryResp ? await investigationPlanRegistryResp.json() : {},
+    investigationWatchlist: investigationWatchlistResp ? await investigationWatchlistResp.json() : {},
+    investigationAnnotations: investigationAnnotationsResp ? await investigationAnnotationsResp.json() : {},
+    authorityGateDashboard: authorityGateDashboardResp ? await authorityGateDashboardResp.json() : {},
+    weakEvidenceWatchlist: weakEvidenceWatchlistResp ? await weakEvidenceWatchlistResp.json() : {},
+    propagationAnnotations: propagationAnnotationsResp ? await propagationAnnotationsResp.json() : {},
+    maturityRestrictionRegistry: maturityRestrictionRegistryResp ? await maturityRestrictionRegistryResp.json() : {},
+    reviewPacketDashboard: reviewPacketDashboardResp ? await reviewPacketDashboardResp.json() : {},
+    reviewPacketRegistry: reviewPacketRegistryResp ? await reviewPacketRegistryResp.json() : {},
+    uncertaintyWatchlist: uncertaintyWatchlistResp ? await uncertaintyWatchlistResp.json() : {},
+    reviewPacketAnnotations: reviewPacketAnnotationsResp ? await reviewPacketAnnotationsResp.json() : {},
+    patternDashboard: patternDashboardResp ? await patternDashboardResp.json() : {},
+    patternRegistry: patternRegistryResp ? await patternRegistryResp.json() : {},
+    patternWatchlist: patternWatchlistResp ? await patternWatchlistResp.json() : {},
+    patternAnnotations: patternAnnotationsResp ? await patternAnnotationsResp.json() : {},
+    patternTimelineDashboard: patternTimelineDashboardResp ? await patternTimelineDashboardResp.json() : {},
+    patternPersistenceRegistry: patternPersistenceRegistryResp ? await patternPersistenceRegistryResp.json() : {},
+    patternTemporalWatchlist: patternTemporalWatchlistResp ? await patternTemporalWatchlistResp.json() : {},
+    patternTemporalAnnotations: patternTemporalAnnotationsResp ? await patternTemporalAnnotationsResp.json() : {},
+    causalDashboard: causalDashboardResp ? await causalDashboardResp.json() : {},
+    mechanismRegistry: mechanismRegistryResp ? await mechanismRegistryResp.json() : {},
+    causalWatchlist: causalWatchlistResp ? await causalWatchlistResp.json() : {},
+    causalAnnotations: causalAnnotationsResp ? await causalAnnotationsResp.json() : {},
+    collaborativeReviewDashboard: collaborativeReviewDashboardResp ? await collaborativeReviewDashboardResp.json() : {},
+    consensusRegistry: consensusRegistryResp ? await consensusRegistryResp.json() : {},
+    dissentWatchlist: dissentWatchlistResp ? await dissentWatchlistResp.json() : {},
+    deliberationAnnotations: deliberationAnnotationsResp ? await deliberationAnnotationsResp.json() : {},
+    telemetryDashboard: telemetryDashboardResp ? await telemetryDashboardResp.json() : {},
+    latticeProjectionRegistry: latticeProjectionRegistryResp ? await latticeProjectionRegistryResp.json() : {},
+    actionFunctionalAnnotations: actionFunctionalAnnotationsResp ? await actionFunctionalAnnotationsResp.json() : {}
   };
 }
 
@@ -1554,6 +1647,594 @@ function buildPublicRecordConceptSignals(publicRecordDashboard, entityGraphRegis
   return byConcept;
 }
 
+function buildInvestigationConceptSignals(investigationDashboard, investigationPlanRegistry, investigationWatchlist, investigationAnnotations) {
+  const byConcept = new Map();
+
+  function bump(targetId, update) {
+    if (typeof targetId !== 'string') {
+      return;
+    }
+    const existing = byConcept.get(targetId) ?? {
+      investigationStage: 'intake',
+      stageRank: 1,
+      planStatus: 'none',
+      planProgress: 0,
+      investigationQueueStatus: 'none',
+      dependencyCount: 0,
+      dependencyGraph: { nodes: [], edges: [] },
+      blockedDependencies: [],
+      planTotalSteps: 0,
+      planCompletedSteps: 0,
+    };
+    update(existing);
+    byConcept.set(targetId, existing);
+  }
+
+  const plansByReview = new Map();
+  asArray(investigationPlanRegistry?.entries).forEach((entry) => {
+    if (typeof entry?.reviewId === 'string') {
+      plansByReview.set(entry.reviewId, entry);
+    }
+  });
+
+  asArray(investigationDashboard?.entries).forEach((entry) => {
+    const plan = plansByReview.get(entry?.reviewId);
+    asArray(entry?.linkedTargetIds).forEach((targetId) => {
+      bump(targetId, (s) => {
+        s.investigationStage = entry?.investigationStage ?? s.investigationStage;
+        s.stageRank = Number(entry?.stageRank ?? s.stageRank);
+        s.planStatus = entry?.planStatus ?? plan?.planStatus ?? s.planStatus;
+        s.planProgress = Number(entry?.planProgress ?? plan?.planProgress ?? s.planProgress);
+        s.dependencyCount = Number(entry?.dependencyCount ?? plan?.dependencyCount ?? s.dependencyCount);
+        s.dependencyGraph = entry?.dependencyGraph ?? s.dependencyGraph;
+        s.blockedDependencies = asArray(plan?.blockedBy);
+        s.planTotalSteps = Number(plan?.totalSteps ?? s.planTotalSteps);
+        s.planCompletedSteps = Number(plan?.completedSteps ?? s.planCompletedSteps);
+        s.investigationQueueStatus = 'dashboard';
+      });
+    });
+  });
+
+  asArray(investigationWatchlist?.entries).forEach((entry) => {
+    asArray(entry?.linkedTargetIds).forEach((targetId) => {
+      bump(targetId, (s) => {
+        s.investigationStage = entry?.investigationStage ?? s.investigationStage;
+        s.planProgress = Number(entry?.planProgress ?? s.planProgress);
+        s.dependencyCount = Number(entry?.dependencyCount ?? s.dependencyCount);
+        if (s.investigationQueueStatus !== 'dashboard') {
+          s.investigationQueueStatus = 'watch';
+        }
+      });
+    });
+  });
+
+  asArray(investigationAnnotations?.annotations).forEach((entry) => {
+    asArray(entry?.linkedTargetIds).forEach((targetId) => {
+      bump(targetId, (s) => {
+        s.investigationStage = entry?.investigationStage ?? s.investigationStage;
+        s.planProgress = Number(entry?.planProgress ?? s.planProgress);
+        s.dependencyCount = Number(entry?.dependencyCount ?? s.dependencyCount);
+      });
+    });
+  });
+
+  return byConcept;
+}
+
+function buildEvidenceAuthorityConceptSignals(authorityGateDashboard, weakEvidenceWatchlist, propagationAnnotations, maturityRestrictionRegistry) {
+  const byConcept = new Map();
+
+  function bump(targetId, update) {
+    if (typeof targetId !== 'string') {
+      return;
+    }
+    const existing = byConcept.get(targetId) ?? {
+      evidenceMaturity: 'unknown',
+      evidenceAuthorityClaimType: 'untyped',
+      allowedAuthorityClass: 'restricted',
+      authorityMismatchFlag: false,
+      propagationRestrictions: [],
+      allowedPropagationRights: [],
+      maturityGateStatus: 'hold',
+      maturityGateReason: 'insufficient-evidence-maturity',
+      authorityQueueStatus: 'none',
+    };
+    update(existing);
+    byConcept.set(targetId, existing);
+  }
+
+  const maturityByReview = new Map();
+  asArray(maturityRestrictionRegistry?.entries).forEach((entry) => {
+    if (typeof entry?.reviewId === 'string') {
+      maturityByReview.set(entry.reviewId, entry);
+    }
+  });
+
+  asArray(authorityGateDashboard?.entries).forEach((entry) => {
+    const maturity = maturityByReview.get(entry?.reviewId);
+    asArray(entry?.linkedTargetIds).forEach((targetId) => {
+      bump(targetId, (s) => {
+        s.evidenceMaturity = entry?.evidenceMaturity ?? s.evidenceMaturity;
+        s.evidenceAuthorityClaimType = entry?.claimType ?? s.evidenceAuthorityClaimType;
+        s.allowedAuthorityClass = entry?.allowedAuthorityClass ?? s.allowedAuthorityClass;
+        s.authorityMismatchFlag = Boolean(entry?.authorityMismatchFlag ?? s.authorityMismatchFlag);
+        s.propagationRestrictions = asArray(entry?.propagationRestrictions ?? maturity?.propagationRestrictions);
+        s.allowedPropagationRights = asArray(entry?.allowedPropagationRights ?? maturity?.allowedPropagationRights);
+        s.maturityGateStatus = entry?.maturityGateStatus ?? maturity?.maturityGateStatus ?? s.maturityGateStatus;
+        s.maturityGateReason = entry?.maturityGateReason ?? maturity?.maturityGateReason ?? s.maturityGateReason;
+        s.authorityQueueStatus = 'dashboard';
+      });
+    });
+  });
+
+  asArray(weakEvidenceWatchlist?.entries).forEach((entry) => {
+    asArray(entry?.linkedTargetIds).forEach((targetId) => {
+      bump(targetId, (s) => {
+        s.evidenceMaturity = entry?.evidenceMaturity ?? s.evidenceMaturity;
+        s.evidenceAuthorityClaimType = entry?.claimType ?? s.evidenceAuthorityClaimType;
+        s.allowedAuthorityClass = entry?.allowedAuthorityClass ?? s.allowedAuthorityClass;
+        s.authorityMismatchFlag = Boolean(entry?.authorityMismatchFlag ?? s.authorityMismatchFlag);
+        s.propagationRestrictions = asArray(entry?.propagationRestrictions ?? s.propagationRestrictions);
+        s.allowedPropagationRights = asArray(entry?.allowedPropagationRights ?? s.allowedPropagationRights);
+        s.maturityGateStatus = entry?.maturityGateStatus ?? s.maturityGateStatus;
+        s.maturityGateReason = entry?.maturityGateReason ?? s.maturityGateReason;
+        if (s.authorityQueueStatus !== 'dashboard') {
+          s.authorityQueueStatus = 'watch';
+        }
+      });
+    });
+  });
+
+  asArray(propagationAnnotations?.annotations).forEach((entry) => {
+    asArray(entry?.linkedTargetIds).forEach((targetId) => {
+      bump(targetId, (s) => {
+        s.evidenceMaturity = entry?.evidenceMaturity ?? s.evidenceMaturity;
+        s.evidenceAuthorityClaimType = entry?.claimType ?? s.evidenceAuthorityClaimType;
+        s.allowedAuthorityClass = entry?.allowedAuthorityClass ?? s.allowedAuthorityClass;
+        s.authorityMismatchFlag = Boolean(entry?.authorityMismatchFlag ?? s.authorityMismatchFlag);
+        s.propagationRestrictions = asArray(entry?.propagationRestrictions ?? s.propagationRestrictions);
+        s.allowedPropagationRights = asArray(entry?.allowedPropagationRights ?? s.allowedPropagationRights);
+        s.maturityGateStatus = entry?.maturityGateStatus ?? s.maturityGateStatus;
+        s.maturityGateReason = entry?.maturityGateReason ?? s.maturityGateReason;
+      });
+    });
+  });
+
+  return byConcept;
+}
+
+function buildReviewPacketConceptSignals(reviewPacketDashboard, reviewPacketRegistry, uncertaintyWatchlist, reviewPacketAnnotations) {
+  const byConcept = new Map();
+
+  function bump(targetId, update) {
+    if (typeof targetId !== 'string') {
+      return;
+    }
+    const existing = byConcept.get(targetId) ?? {
+      reviewPacketStatus: 'pending-review',
+      maturityCeiling: 'bounded-review',
+      reviewPacketAmbiguityLevel: 'medium',
+      uncertaintyDisclosures: [],
+      excludedConclusions: [],
+      synthesisStatus: 'bounded',
+      reviewPacketQueueStatus: 'none',
+    };
+    update(existing);
+    byConcept.set(targetId, existing);
+  }
+
+  const registryByReview = new Map();
+  asArray(reviewPacketRegistry?.entries).forEach((entry) => {
+    if (typeof entry?.reviewId === 'string') {
+      registryByReview.set(entry.reviewId, entry);
+    }
+  });
+
+  asArray(reviewPacketDashboard?.entries).forEach((entry) => {
+    const reg = registryByReview.get(entry?.reviewId);
+    asArray(entry?.linkedTargetIds).forEach((targetId) => {
+      bump(targetId, (s) => {
+        s.reviewPacketStatus = entry?.packetStatus ?? reg?.packetStatus ?? s.reviewPacketStatus;
+        s.maturityCeiling = entry?.maturityCeiling ?? reg?.maturityCeiling ?? s.maturityCeiling;
+        s.reviewPacketAmbiguityLevel = entry?.ambiguityLevel ?? reg?.ambiguityLevel ?? s.reviewPacketAmbiguityLevel;
+        s.uncertaintyDisclosures = asArray(entry?.uncertaintyDisclosures ?? reg?.uncertaintyDisclosures);
+        s.excludedConclusions = asArray(entry?.excludedConclusions ?? reg?.excludedConclusions);
+        s.synthesisStatus = entry?.synthesisStatus ?? reg?.synthesisStatus ?? s.synthesisStatus;
+        s.reviewPacketQueueStatus = 'dashboard';
+      });
+    });
+  });
+
+  asArray(uncertaintyWatchlist?.entries).forEach((entry) => {
+    asArray(entry?.linkedTargetIds).forEach((targetId) => {
+      bump(targetId, (s) => {
+        s.reviewPacketStatus = entry?.packetStatus ?? s.reviewPacketStatus;
+        s.maturityCeiling = entry?.maturityCeiling ?? s.maturityCeiling;
+        s.reviewPacketAmbiguityLevel = entry?.ambiguityLevel ?? s.reviewPacketAmbiguityLevel;
+        s.uncertaintyDisclosures = asArray(entry?.uncertaintyDisclosures ?? s.uncertaintyDisclosures);
+        s.excludedConclusions = asArray(entry?.excludedConclusions ?? s.excludedConclusions);
+        s.synthesisStatus = entry?.synthesisStatus ?? s.synthesisStatus;
+        if (s.reviewPacketQueueStatus !== 'dashboard') {
+          s.reviewPacketQueueStatus = 'watch';
+        }
+      });
+    });
+  });
+
+  asArray(reviewPacketAnnotations?.annotations).forEach((entry) => {
+    asArray(entry?.linkedTargetIds).forEach((targetId) => {
+      bump(targetId, (s) => {
+        s.reviewPacketStatus = entry?.packetStatus ?? s.reviewPacketStatus;
+        s.maturityCeiling = entry?.maturityCeiling ?? s.maturityCeiling;
+        s.reviewPacketAmbiguityLevel = entry?.ambiguityLevel ?? s.reviewPacketAmbiguityLevel;
+        s.uncertaintyDisclosures = asArray(entry?.uncertaintyDisclosures ?? s.uncertaintyDisclosures);
+        s.excludedConclusions = asArray(entry?.excludedConclusions ?? s.excludedConclusions);
+        s.synthesisStatus = entry?.synthesisStatus ?? s.synthesisStatus;
+      });
+    });
+  });
+
+  return byConcept;
+}
+
+function buildPatternConceptSignals(patternDashboard, patternRegistry, patternWatchlist, patternAnnotations) {
+  const byConcept = new Map();
+
+  function bump(targetId, update) {
+    if (typeof targetId !== 'string') {
+      return;
+    }
+    const existing = byConcept.get(targetId) ?? {
+      patternCluster: 'unclustered',
+      patternMaturity: 'speculative',
+      crossCaseRelationshipHints: [],
+      patternConflictMarkers: [],
+      patternQueueStatus: 'none',
+    };
+    update(existing);
+    byConcept.set(targetId, existing);
+  }
+
+  const registryByReview = new Map();
+  asArray(patternRegistry?.entries).forEach((entry) => {
+    if (typeof entry?.reviewId === 'string') {
+      registryByReview.set(entry.reviewId, entry);
+    }
+  });
+
+  asArray(patternDashboard?.entries).forEach((entry) => {
+    const reg = registryByReview.get(entry?.reviewId);
+    asArray(entry?.linkedTargetIds).forEach((targetId) => {
+      bump(targetId, (s) => {
+        s.patternCluster = entry?.patternCluster ?? reg?.patternCluster ?? s.patternCluster;
+        s.patternMaturity = entry?.patternMaturity ?? reg?.patternMaturity ?? s.patternMaturity;
+        s.crossCaseRelationshipHints = asArray(entry?.crossCaseRelationshipHints ?? reg?.crossCaseRelationshipHints);
+        s.patternConflictMarkers = asArray(entry?.conflictMarkers ?? reg?.conflictMarkers);
+        s.patternQueueStatus = 'dashboard';
+      });
+    });
+  });
+
+  asArray(patternWatchlist?.entries).forEach((entry) => {
+    asArray(entry?.linkedTargetIds).forEach((targetId) => {
+      bump(targetId, (s) => {
+        s.patternCluster = entry?.patternCluster ?? s.patternCluster;
+        s.patternMaturity = entry?.patternMaturity ?? s.patternMaturity;
+        s.crossCaseRelationshipHints = asArray(entry?.crossCaseRelationshipHints ?? s.crossCaseRelationshipHints);
+        s.patternConflictMarkers = asArray(entry?.conflictMarkers ?? s.patternConflictMarkers);
+        if (s.patternQueueStatus !== 'dashboard') {
+          s.patternQueueStatus = 'watch';
+        }
+      });
+    });
+  });
+
+  asArray(patternAnnotations?.annotations).forEach((entry) => {
+    asArray(entry?.linkedTargetIds).forEach((targetId) => {
+      bump(targetId, (s) => {
+        s.patternCluster = entry?.patternCluster ?? s.patternCluster;
+        s.patternMaturity = entry?.patternMaturity ?? s.patternMaturity;
+        s.crossCaseRelationshipHints = asArray(entry?.crossCaseRelationshipHints ?? s.crossCaseRelationshipHints);
+        s.patternConflictMarkers = asArray(entry?.conflictMarkers ?? s.patternConflictMarkers);
+      });
+    });
+  });
+
+  return byConcept;
+}
+
+function buildPatternTemporalConceptSignals(patternTimelineDashboard, patternPersistenceRegistry, patternTemporalWatchlist, patternTemporalAnnotations) {
+  const byConcept = new Map();
+
+  function bump(targetId, update) {
+    if (typeof targetId !== 'string') {
+      return;
+    }
+    const existing = byConcept.get(targetId) ?? {
+      patternTimelineStatus: 'tracked',
+      patternPersistence: 'fragile',
+      temporalConflictMarkers: [],
+      patternTimelineEvents: [],
+      patternTemporalQueueStatus: 'none',
+    };
+    update(existing);
+    byConcept.set(targetId, existing);
+  }
+
+  const persistenceByReview = new Map();
+  asArray(patternPersistenceRegistry?.entries).forEach((entry) => {
+    if (typeof entry?.reviewId === 'string') {
+      persistenceByReview.set(entry.reviewId, entry);
+    }
+  });
+
+  asArray(patternTimelineDashboard?.entries).forEach((entry) => {
+    const persist = persistenceByReview.get(entry?.reviewId);
+    asArray(entry?.linkedTargetIds).forEach((targetId) => {
+      bump(targetId, (s) => {
+        s.patternTimelineStatus = entry?.patternTimelineStatus ?? persist?.patternTimelineStatus ?? s.patternTimelineStatus;
+        s.patternPersistence = entry?.patternPersistence ?? persist?.patternPersistence ?? s.patternPersistence;
+        s.temporalConflictMarkers = asArray(entry?.temporalConflictMarkers ?? persist?.temporalConflictMarkers);
+        s.patternTimelineEvents = asArray(entry?.timelineEvents ?? persist?.timelineEvents);
+        s.patternTemporalQueueStatus = 'dashboard';
+      });
+    });
+  });
+
+  asArray(patternTemporalWatchlist?.entries).forEach((entry) => {
+    asArray(entry?.linkedTargetIds).forEach((targetId) => {
+      bump(targetId, (s) => {
+        s.patternTimelineStatus = entry?.patternTimelineStatus ?? s.patternTimelineStatus;
+        s.patternPersistence = entry?.patternPersistence ?? s.patternPersistence;
+        s.temporalConflictMarkers = asArray(entry?.temporalConflictMarkers ?? s.temporalConflictMarkers);
+        s.patternTimelineEvents = asArray(entry?.timelineEvents ?? s.patternTimelineEvents);
+        if (s.patternTemporalQueueStatus !== 'dashboard') {
+          s.patternTemporalQueueStatus = 'watch';
+        }
+      });
+    });
+  });
+
+  asArray(patternTemporalAnnotations?.annotations).forEach((entry) => {
+    asArray(entry?.linkedTargetIds).forEach((targetId) => {
+      bump(targetId, (s) => {
+        s.patternTimelineStatus = entry?.patternTimelineStatus ?? s.patternTimelineStatus;
+        s.patternPersistence = entry?.patternPersistence ?? s.patternPersistence;
+        s.temporalConflictMarkers = asArray(entry?.temporalConflictMarkers ?? s.temporalConflictMarkers);
+        s.patternTimelineEvents = asArray(entry?.timelineEvents ?? s.patternTimelineEvents);
+      });
+    });
+  });
+
+  return byConcept;
+}
+
+function buildCausalConceptSignals(causalDashboard, mechanismRegistry, causalWatchlist, causalAnnotations) {
+  const byConcept = new Map();
+
+  function bump(targetId, update) {
+    if (typeof targetId !== 'string') {
+      return;
+    }
+    const existing = byConcept.get(targetId) ?? {
+      causalBundleType: 'unknown-bundle',
+      mechanismCandidates: [],
+      explanatoryGap: 'high',
+      prohibitedConclusions: [],
+      causalConflictState: 'none',
+      causalQueueStatus: 'none',
+    };
+    update(existing);
+    byConcept.set(targetId, existing);
+  }
+
+  const mechanismByReview = new Map();
+  asArray(mechanismRegistry?.entries).forEach((entry) => {
+    if (typeof entry?.reviewId === 'string') {
+      mechanismByReview.set(entry.reviewId, entry);
+    }
+  });
+
+  asArray(causalDashboard?.entries).forEach((entry) => {
+    const mech = mechanismByReview.get(entry?.reviewId);
+    asArray(entry?.linkedTargetIds).forEach((targetId) => {
+      bump(targetId, (s) => {
+        s.causalBundleType = entry?.causalBundleType ?? mech?.causalBundleType ?? s.causalBundleType;
+        s.mechanismCandidates = asArray(entry?.mechanismCandidates ?? mech?.mechanismCandidates);
+        s.explanatoryGap = entry?.explanatoryGap ?? mech?.explanatoryGap ?? s.explanatoryGap;
+        s.prohibitedConclusions = asArray(entry?.prohibitedConclusions ?? mech?.prohibitedConclusions);
+        s.causalConflictState = entry?.causalConflictState ?? mech?.causalConflictState ?? s.causalConflictState;
+        s.causalQueueStatus = 'dashboard';
+      });
+    });
+  });
+
+  asArray(causalWatchlist?.entries).forEach((entry) => {
+    asArray(entry?.linkedTargetIds).forEach((targetId) => {
+      bump(targetId, (s) => {
+        s.causalBundleType = entry?.causalBundleType ?? s.causalBundleType;
+        s.mechanismCandidates = asArray(entry?.mechanismCandidates ?? s.mechanismCandidates);
+        s.explanatoryGap = entry?.explanatoryGap ?? s.explanatoryGap;
+        s.prohibitedConclusions = asArray(entry?.prohibitedConclusions ?? s.prohibitedConclusions);
+        s.causalConflictState = entry?.causalConflictState ?? s.causalConflictState;
+        if (s.causalQueueStatus !== 'dashboard') {
+          s.causalQueueStatus = 'watch';
+        }
+      });
+    });
+  });
+
+  asArray(causalAnnotations?.annotations).forEach((entry) => {
+    asArray(entry?.linkedTargetIds).forEach((targetId) => {
+      bump(targetId, (s) => {
+        s.causalBundleType = entry?.causalBundleType ?? s.causalBundleType;
+        s.mechanismCandidates = asArray(entry?.mechanismCandidates ?? s.mechanismCandidates);
+        s.explanatoryGap = entry?.explanatoryGap ?? s.explanatoryGap;
+        s.prohibitedConclusions = asArray(entry?.prohibitedConclusions ?? s.prohibitedConclusions);
+        s.causalConflictState = entry?.causalConflictState ?? s.causalConflictState;
+      });
+    });
+  });
+
+  return byConcept;
+}
+
+
+
+function buildCollaborativeConceptSignals(collaborativeReviewDashboard, consensusRegistry, dissentWatchlist, deliberationAnnotations) {
+  const byConcept = new Map();
+
+  function bump(targetId, update) {
+    if (typeof targetId !== 'string') {
+      return;
+    }
+    const existing = byConcept.get(targetId) ?? {
+      collaborativeStatus: 'none',
+      consensusClass: 'none',
+      dissentPresent: false,
+      dissentTraceCount: 0,
+      maturityConstraints: [],
+      collaborativeQueueStatus: 'none',
+    };
+    update(existing);
+    byConcept.set(targetId, existing);
+  }
+
+  const consensusByReview = new Map();
+  asArray(consensusRegistry?.entries).forEach((entry) => {
+    if (typeof entry?.reviewId === 'string') {
+      consensusByReview.set(entry.reviewId, entry);
+    }
+  });
+
+  asArray(collaborativeReviewDashboard?.entries).forEach((entry) => {
+    const consensus = consensusByReview.get(entry?.reviewId);
+    asArray(entry?.linkedTargetIds).forEach((targetId) => {
+      bump(targetId, (s) => {
+        s.collaborativeStatus = entry?.collaborativeStatus ?? s.collaborativeStatus;
+        s.consensusClass = entry?.consensusClass ?? consensus?.consensusClass ?? s.consensusClass;
+        s.dissentPresent = Boolean(entry?.dissentPresent ?? consensus?.dissentPresent ?? s.dissentPresent);
+        s.dissentTraceCount = Number(entry?.dissentTraceCount ?? consensus?.dissentTraceCount ?? s.dissentTraceCount);
+        s.maturityConstraints = asArray(entry?.maturityConstraints ?? consensus?.maturityConstraints);
+        s.collaborativeQueueStatus = 'dashboard';
+      });
+    });
+  });
+
+  asArray(dissentWatchlist?.entries).forEach((entry) => {
+    asArray(entry?.linkedTargetIds).forEach((targetId) => {
+      bump(targetId, (s) => {
+        s.collaborativeStatus = entry?.collaborativeStatus ?? s.collaborativeStatus;
+        s.consensusClass = entry?.consensusClass ?? s.consensusClass;
+        s.dissentPresent = Boolean(entry?.dissentPresent ?? s.dissentPresent);
+        s.dissentTraceCount = Number(entry?.dissentTraceCount ?? s.dissentTraceCount);
+        s.maturityConstraints = asArray(entry?.maturityConstraints ?? s.maturityConstraints);
+        if (s.collaborativeQueueStatus !== 'dashboard') {
+          s.collaborativeQueueStatus = 'watch';
+        }
+      });
+    });
+  });
+
+  asArray(deliberationAnnotations?.annotations).forEach((entry) => {
+    asArray(entry?.linkedTargetIds).forEach((targetId) => {
+      bump(targetId, (s) => {
+        s.collaborativeStatus = entry?.collaborativeStatus ?? s.collaborativeStatus;
+        s.consensusClass = entry?.consensusClass ?? s.consensusClass;
+        s.dissentPresent = Boolean(entry?.dissentPresent ?? s.dissentPresent);
+        s.dissentTraceCount = Number(entry?.dissentTraceCount ?? s.dissentTraceCount);
+        s.maturityConstraints = asArray(entry?.maturityConstraints ?? s.maturityConstraints);
+      });
+    });
+  });
+
+  return byConcept;
+}
+
+
+
+function buildTelemetryConceptSignals(telemetryDashboard, latticeProjectionRegistry, patternDonationWatchlist, actionFunctionalAnnotations) {
+  const byConcept = new Map();
+
+  function bump(targetId, update) {
+    if (typeof targetId !== 'string') {
+      return;
+    }
+    const existing = byConcept.get(targetId) ?? {
+      telemetryFieldStatus: 'monitor',
+      latticeCoordinates: '0,0,0',
+      latticeRegime: 'bounded-order',
+      donorPatternPedigree: [],
+      tafScoreSummary: 'bounded',
+      tafScore: 0,
+      branchNovelty: 'low',
+      branchMaturityCeiling: 'bounded-review',
+      telemetryQueueStatus: 'none',
+    };
+    update(existing);
+    byConcept.set(targetId, existing);
+  }
+
+  const latticeByReview = new Map();
+  asArray(latticeProjectionRegistry?.entries).forEach((entry) => {
+    if (typeof entry?.reviewId === 'string') {
+      latticeByReview.set(entry.reviewId, entry);
+    }
+  });
+
+  asArray(telemetryDashboard?.entries).forEach((entry) => {
+    const lattice = latticeByReview.get(entry?.reviewId);
+    asArray(entry?.linkedTargetIds).forEach((targetId) => {
+      bump(targetId, (s) => {
+        s.telemetryFieldStatus = entry?.telemetryFieldStatus ?? s.telemetryFieldStatus;
+        s.latticeCoordinates = entry?.latticeCoordinates ?? lattice?.latticeCoordinates ?? s.latticeCoordinates;
+        s.latticeRegime = entry?.latticeRegime ?? lattice?.latticeRegime ?? s.latticeRegime;
+        s.donorPatternPedigree = asArray(entry?.donorPatternPedigree ?? lattice?.donorPatternPedigree);
+        s.tafScoreSummary = entry?.tafScoreSummary ?? lattice?.tafScoreSummary ?? s.tafScoreSummary;
+        s.tafScore = Number(entry?.tafScore ?? lattice?.tafScore ?? s.tafScore);
+        s.branchNovelty = entry?.branchNovelty ?? lattice?.branchNovelty ?? s.branchNovelty;
+        s.branchMaturityCeiling = entry?.maturityCeiling ?? lattice?.maturityCeiling ?? s.branchMaturityCeiling;
+        s.telemetryQueueStatus = 'dashboard';
+      });
+    });
+  });
+
+  asArray(patternDonationWatchlist?.entries).forEach((entry) => {
+    asArray(entry?.linkedTargetIds).forEach((targetId) => {
+      bump(targetId, (s) => {
+        s.telemetryFieldStatus = entry?.telemetryFieldStatus ?? s.telemetryFieldStatus;
+        s.latticeCoordinates = entry?.latticeCoordinates ?? s.latticeCoordinates;
+        s.latticeRegime = entry?.latticeRegime ?? s.latticeRegime;
+        s.donorPatternPedigree = asArray(entry?.donorPatternPedigree ?? s.donorPatternPedigree);
+        s.tafScoreSummary = entry?.tafScoreSummary ?? s.tafScoreSummary;
+        s.tafScore = Number(entry?.tafScore ?? s.tafScore);
+        s.branchNovelty = entry?.branchNovelty ?? s.branchNovelty;
+        s.branchMaturityCeiling = entry?.maturityCeiling ?? s.branchMaturityCeiling;
+        if (s.telemetryQueueStatus !== 'dashboard') {
+          s.telemetryQueueStatus = 'watch';
+        }
+      });
+    });
+  });
+
+  asArray(actionFunctionalAnnotations?.annotations).forEach((entry) => {
+    asArray(entry?.linkedTargetIds).forEach((targetId) => {
+      bump(targetId, (s) => {
+        s.telemetryFieldStatus = entry?.telemetryFieldStatus ?? s.telemetryFieldStatus;
+        s.latticeCoordinates = entry?.latticeCoordinates ?? s.latticeCoordinates;
+        s.latticeRegime = entry?.latticeRegime ?? s.latticeRegime;
+        s.donorPatternPedigree = asArray(entry?.donorPatternPedigree ?? s.donorPatternPedigree);
+        s.tafScoreSummary = entry?.tafScoreSummary ?? s.tafScoreSummary;
+        s.tafScore = Number(entry?.tafScore ?? s.tafScore);
+        s.branchNovelty = entry?.branchNovelty ?? s.branchNovelty;
+        s.branchMaturityCeiling = entry?.maturityCeiling ?? s.branchMaturityCeiling;
+      });
+    });
+  });
+
+  return byConcept;
+}
+
 function buildConstitutionalConceptSignals(constitutionalAnnotations, governanceFailureWatchlist) {
   const byConcept = new Map();
 
@@ -1694,6 +2375,54 @@ export function applyAttentionOverlay(cy, overlay) {
     overlay?.relationshipWatchlist,
     overlay?.chainOfCustodyAnnotations
   );
+  const investigationSignals = buildInvestigationConceptSignals(
+    overlay?.investigationDashboard,
+    overlay?.investigationPlanRegistry,
+    overlay?.investigationWatchlist,
+    overlay?.investigationAnnotations
+  );
+  const authoritySignals = buildEvidenceAuthorityConceptSignals(
+    overlay?.authorityGateDashboard,
+    overlay?.weakEvidenceWatchlist,
+    overlay?.propagationAnnotations,
+    overlay?.maturityRestrictionRegistry
+  );
+  const reviewPacketSignals = buildReviewPacketConceptSignals(
+    overlay?.reviewPacketDashboard,
+    overlay?.reviewPacketRegistry,
+    overlay?.uncertaintyWatchlist,
+    overlay?.reviewPacketAnnotations
+  );
+  const patternSignals = buildPatternConceptSignals(
+    overlay?.patternDashboard,
+    overlay?.patternRegistry,
+    overlay?.patternWatchlist,
+    overlay?.patternAnnotations
+  );
+  const patternTemporalSignals = buildPatternTemporalConceptSignals(
+    overlay?.patternTimelineDashboard,
+    overlay?.patternPersistenceRegistry,
+    overlay?.patternTemporalWatchlist,
+    overlay?.patternTemporalAnnotations
+  );
+  const causalSignals = buildCausalConceptSignals(
+    overlay?.causalDashboard,
+    overlay?.mechanismRegistry,
+    overlay?.causalWatchlist,
+    overlay?.causalAnnotations
+  );
+  const collaborativeSignals = buildCollaborativeConceptSignals(
+    overlay?.collaborativeReviewDashboard,
+    overlay?.consensusRegistry,
+    overlay?.dissentWatchlist,
+    overlay?.deliberationAnnotations
+  );
+  const telemetrySignals = buildTelemetryConceptSignals(
+    overlay?.telemetryDashboard,
+    overlay?.latticeProjectionRegistry,
+    overlay?.patternDonationWatchlist,
+    overlay?.actionFunctionalAnnotations
+  );
 
 
   const institutionalProvenance = overlay?.institutionalStatus?.provenance ?? {};
@@ -1738,6 +2467,54 @@ export function applyAttentionOverlay(cy, overlay) {
     ?? 'unknown';
   const publicRecordProducerCommits = asArray(publicRecordProvenance?.producerCommits).join(', ') || 'unknown';
   const publicRecordSourceMode = publicRecordProvenance?.derivedFromFixtures ? 'fixture' : 'live';
+  const investigationProvenance = overlay?.investigationDashboard?.provenance ?? {};
+  const investigationSchemaVersion = investigationProvenance?.schemaVersions?.triage_recommendations
+    ?? investigationProvenance?.schemaVersions?.verification_recommendations
+    ?? 'unknown';
+  const investigationProducerCommits = asArray(investigationProvenance?.producerCommits).join(', ') || 'unknown';
+  const investigationSourceMode = investigationProvenance?.derivedFromFixtures ? 'fixture' : 'live';
+  const authorityProvenance = overlay?.authorityGateDashboard?.provenance ?? {};
+  const authoritySchemaVersion = authorityProvenance?.schemaVersions?.evidence_authority_summary
+    ?? authorityProvenance?.schemaVersions?.evidence_authority_map
+    ?? 'unknown';
+  const authorityProducerCommits = asArray(authorityProvenance?.producerCommits).join(', ') || 'unknown';
+  const authoritySourceMode = authorityProvenance?.derivedFromFixtures ? 'fixture' : 'live';
+  const reviewPacketProvenance = overlay?.reviewPacketDashboard?.provenance ?? {};
+  const reviewPacketSchemaVersion = reviewPacketProvenance?.schemaVersions?.review_packet_summary
+    ?? reviewPacketProvenance?.schemaVersions?.review_packet_map
+    ?? 'unknown';
+  const reviewPacketProducerCommits = asArray(reviewPacketProvenance?.producerCommits).join(', ') || 'unknown';
+  const reviewPacketSourceMode = reviewPacketProvenance?.derivedFromFixtures ? 'fixture' : 'live';
+  const patternProvenance = overlay?.patternDashboard?.provenance ?? {};
+  const patternSchemaVersion = patternProvenance?.schemaVersions?.pattern_maturity_map
+    ?? patternProvenance?.schemaVersions?.pattern_cluster_map
+    ?? 'unknown';
+  const patternProducerCommits = asArray(patternProvenance?.producerCommits).join(', ') || 'unknown';
+  const patternSourceMode = patternProvenance?.derivedFromFixtures ? 'fixture' : 'live';
+  const patternTemporalProvenance = overlay?.patternTimelineDashboard?.provenance ?? {};
+  const patternTemporalSchemaVersion = patternTemporalProvenance?.schemaVersions?.pattern_persistence_map
+    ?? patternTemporalProvenance?.schemaVersions?.pattern_timeline_map
+    ?? 'unknown';
+  const patternTemporalProducerCommits = asArray(patternTemporalProvenance?.producerCommits).join(', ') || 'unknown';
+  const patternTemporalSourceMode = patternTemporalProvenance?.derivedFromFixtures ? 'fixture' : 'live';
+  const causalProvenance = overlay?.causalDashboard?.provenance ?? {};
+  const causalSchemaVersion = causalProvenance?.schemaVersions?.mechanism_separation_report
+    ?? causalProvenance?.schemaVersions?.causal_bundle_map
+    ?? 'unknown';
+  const causalProducerCommits = asArray(causalProvenance?.producerCommits).join(', ') || 'unknown';
+  const causalSourceMode = causalProvenance?.derivedFromFixtures ? 'fixture' : 'live';
+  const collaborativeProvenance = overlay?.collaborativeReviewDashboard?.provenance ?? {};
+  const collaborativeSchemaVersion = collaborativeProvenance?.schemaVersions?.consensus_state_report
+    ?? collaborativeProvenance?.schemaVersions?.reviewer_position_map
+    ?? 'unknown';
+  const collaborativeProducerCommits = asArray(collaborativeProvenance?.producerCommits).join(', ') || 'unknown';
+  const collaborativeSourceMode = collaborativeProvenance?.derivedFromFixtures ? 'fixture' : 'live';
+  const telemetryProvenance = overlay?.telemetryDashboard?.provenance ?? {};
+  const telemetrySchemaVersion = telemetryProvenance?.schemaVersions?.action_functional_scorecard
+    ?? telemetryProvenance?.schemaVersions?.telemetry_field_map
+    ?? 'unknown';
+  const telemetryProducerCommits = asArray(telemetryProvenance?.producerCommits).join(', ') || 'unknown';
+  const telemetrySourceMode = telemetryProvenance?.derivedFromFixtures ? 'fixture' : 'live';
 
   cy.nodes('[class = "concept"]').forEach((node) => {
     const id = node.id();
@@ -1878,8 +2655,89 @@ export function applyAttentionOverlay(cy, overlay) {
     node.data('publicRecordSchemaVersion', publicRecordSchemaVersion);
     node.data('publicRecordProducerCommits', publicRecordProducerCommits);
     node.data('publicRecordSourceMode', publicRecordSourceMode);
+    const investigation = investigationSignals.get(id);
+    node.data('investigationStage', investigation?.investigationStage ?? 'intake');
+    node.data('investigationStageRank', Number(investigation?.stageRank ?? 1));
+    node.data('investigationPlanStatus', investigation?.planStatus ?? 'none');
+    node.data('investigationPlanProgress', Number(investigation?.planProgress ?? 0));
+    node.data('investigationDependencyCount', Number(investigation?.dependencyCount ?? 0));
+    node.data('investigationPlanTotalSteps', Number(investigation?.planTotalSteps ?? 0));
+    node.data('investigationPlanCompletedSteps', Number(investigation?.planCompletedSteps ?? 0));
+    node.data('investigationBlockedDependencies', asArray(investigation?.blockedDependencies));
+    node.data('investigationDependencyGraph', investigation?.dependencyGraph ?? { nodes: [], edges: [] });
+    node.data('investigationSchemaVersion', investigationSchemaVersion);
+    node.data('investigationProducerCommits', investigationProducerCommits);
+    node.data('investigationSourceMode', investigationSourceMode);
+    const authority = authoritySignals.get(id);
+    node.data('evidenceMaturity', authority?.evidenceMaturity ?? 'unknown');
+    node.data('evidenceAuthorityClaimType', authority?.evidenceAuthorityClaimType ?? (verification?.claimType ?? 'untyped'));
+    node.data('allowedAuthorityClass', authority?.allowedAuthorityClass ?? 'restricted');
+    node.data('authorityMismatchFlag', Boolean(authority?.authorityMismatchFlag ?? false));
+    node.data('propagationRestrictions', asArray(authority?.propagationRestrictions));
+    node.data('allowedPropagationRights', asArray(authority?.allowedPropagationRights));
+    node.data('maturityGateStatus', authority?.maturityGateStatus ?? 'hold');
+    node.data('maturityGateReason', authority?.maturityGateReason ?? 'insufficient-evidence-maturity');
+    node.data('authorityGateSchemaVersion', authoritySchemaVersion);
+    node.data('authorityGateProducerCommits', authorityProducerCommits);
+    node.data('authorityGateSourceMode', authoritySourceMode);
+    const reviewPacket = reviewPacketSignals.get(id);
+    node.data('reviewPacketStatus', reviewPacket?.reviewPacketStatus ?? 'pending-review');
+    node.data('maturityCeiling', reviewPacket?.maturityCeiling ?? 'bounded-review');
+    node.data('reviewPacketAmbiguityLevel', reviewPacket?.reviewPacketAmbiguityLevel ?? 'medium');
+    node.data('uncertaintyDisclosures', asArray(reviewPacket?.uncertaintyDisclosures));
+    node.data('excludedConclusions', asArray(reviewPacket?.excludedConclusions));
+    node.data('synthesisStatus', reviewPacket?.synthesisStatus ?? 'bounded');
+    node.data('reviewPacketSchemaVersion', reviewPacketSchemaVersion);
+    node.data('reviewPacketProducerCommits', reviewPacketProducerCommits);
+    node.data('reviewPacketSourceMode', reviewPacketSourceMode);
+    const pattern = patternSignals.get(id);
+    node.data('patternCluster', pattern?.patternCluster ?? 'unclustered');
+    node.data('patternMaturity', pattern?.patternMaturity ?? 'speculative');
+    node.data('crossCaseRelationshipHints', asArray(pattern?.crossCaseRelationshipHints));
+    node.data('patternConflictMarkers', asArray(pattern?.patternConflictMarkers));
+    node.data('patternSchemaVersion', patternSchemaVersion);
+    node.data('patternProducerCommits', patternProducerCommits);
+    node.data('patternSourceMode', patternSourceMode);
+    const patternTemporal = patternTemporalSignals.get(id);
+    node.data('patternTimelineStatus', patternTemporal?.patternTimelineStatus ?? 'tracked');
+    node.data('patternPersistence', patternTemporal?.patternPersistence ?? 'fragile');
+    node.data('temporalConflictMarkers', asArray(patternTemporal?.temporalConflictMarkers));
+    node.data('patternTimelineEvents', asArray(patternTemporal?.patternTimelineEvents));
+    node.data('patternTemporalSchemaVersion', patternTemporalSchemaVersion);
+    node.data('patternTemporalProducerCommits', patternTemporalProducerCommits);
+    node.data('patternTemporalSourceMode', patternTemporalSourceMode);
+    const causal = causalSignals.get(id);
+    node.data('causalBundleType', causal?.causalBundleType ?? 'unknown-bundle');
+    node.data('mechanismCandidates', asArray(causal?.mechanismCandidates));
+    node.data('explanatoryGap', causal?.explanatoryGap ?? 'high');
+    node.data('prohibitedConclusions', asArray(causal?.prohibitedConclusions));
+    node.data('causalConflictState', causal?.causalConflictState ?? 'none');
+    node.data('causalSchemaVersion', causalSchemaVersion);
+    node.data('causalProducerCommits', causalProducerCommits);
+    node.data('causalSourceMode', causalSourceMode);
+    const collaborative = collaborativeSignals.get(id);
+    node.data('collaborativeStatus', collaborative?.collaborativeStatus ?? 'none');
+    node.data('consensusClass', collaborative?.consensusClass ?? 'none');
+    node.data('dissentPresence', collaborative?.dissentPresent ?? false);
+    node.data('dissentTraceCount', collaborative?.dissentTraceCount ?? 0);
+    node.data('collaborativeMaturityConstraints', asArray(collaborative?.maturityConstraints));
+    node.data('collaborativeSchemaVersion', collaborativeSchemaVersion);
+    node.data('collaborativeProducerCommits', collaborativeProducerCommits);
+    node.data('collaborativeSourceMode', collaborativeSourceMode);
+    const telemetry = telemetrySignals.get(id);
+    node.data('telemetryFieldStatus', telemetry?.telemetryFieldStatus ?? 'monitor');
+    node.data('latticeCoordinates', telemetry?.latticeCoordinates ?? '0,0,0');
+    node.data('latticeRegime', telemetry?.latticeRegime ?? 'bounded-order');
+    node.data('donorPatternPedigree', asArray(telemetry?.donorPatternPedigree));
+    node.data('tafScoreSummary', telemetry?.tafScoreSummary ?? 'bounded');
+    node.data('tafScore', Number(telemetry?.tafScore ?? 0));
+    node.data('branchNovelty', telemetry?.branchNovelty ?? 'low');
+    node.data('branchMaturityCeiling', telemetry?.branchMaturityCeiling ?? 'bounded-review');
+    node.data('telemetrySchemaVersion', telemetrySchemaVersion);
+    node.data('telemetryProducerCommits', telemetryProducerCommits);
+    node.data('telemetrySourceMode', telemetrySourceMode);
 
-    node.removeClass('attention-priority attention-secondary sonya-candidate reasoning-thread reasoning-watch stability-positive stability-watch multimodal-donation multimodal-watch review-candidate watch-queue governance-review governance-watch constitutional-watch constitutional-freeze deliberation-docket deliberation-watch deliberation-urgent anti-capture-watch continuity-docket continuity-watch continuity-fragile continuity-freeze recovery-docket recovery-watch escrow-ready recovery-fragile attestation-docket attestation-watch witness-sufficient attestation-sensitive precedent-docket precedent-watch precedent-divergent precedent-strong scenario-docket scenario-watch scenario-freeze scenario-rehearse-recovery institutional-status-indicator chamber-conflict-indicator system-health-overview queue-health-actionable backlog-pressure-watch review-fatigue-watch metric-gaming-watch load-shedding-recommended priority-actionable triage-watch urgency-high priority-critical triage-conflict closure-active closure-provisional repair-urgent reopened-watch symbolic-field-active regime-shift-watch lambda-warning architecture-hint verification-active entity-ambiguity verification-urgent claim-typed public-record-active entity-graph-linked relationship-ambiguous custody-fragile machine-readable-record');
+    node.removeClass('attention-priority attention-secondary sonya-candidate reasoning-thread reasoning-watch stability-positive stability-watch multimodal-donation multimodal-watch review-candidate watch-queue governance-review governance-watch constitutional-watch constitutional-freeze deliberation-docket deliberation-watch deliberation-urgent anti-capture-watch continuity-docket continuity-watch continuity-fragile continuity-freeze recovery-docket recovery-watch escrow-ready recovery-fragile attestation-docket attestation-watch witness-sufficient attestation-sensitive precedent-docket precedent-watch precedent-divergent precedent-strong scenario-docket scenario-watch scenario-freeze scenario-rehearse-recovery institutional-status-indicator chamber-conflict-indicator system-health-overview queue-health-actionable backlog-pressure-watch review-fatigue-watch metric-gaming-watch load-shedding-recommended priority-actionable triage-watch urgency-high priority-critical triage-conflict closure-active closure-provisional repair-urgent reopened-watch symbolic-field-active regime-shift-watch lambda-warning architecture-hint verification-active entity-ambiguity verification-urgent claim-typed public-record-active entity-graph-linked relationship-ambiguous custody-fragile machine-readable-record investigation-active investigation-stage-mid investigation-stage-late investigation-plan-progressing investigation-blocked dependency-graph-linked authority-gated weak-evidence-signal authority-mismatch propagation-restricted maturity-gated review-packet-ready review-packet-watch packet-ambiguity-high uncertainty-disclosed synthesis-bounded pattern-cluster-active cross-case-hints pattern-maturity-stable pattern-conflict pattern-timeline-active persistence-stable temporal-conflict-marker causal-bundle-active mechanism-candidate explanatory-gap-high prohibited-conclusion causal-conflict-marker collaborative-review-active consensus-provisional dissent-present collaborative-maturity-bound telemetry-field-active lattice-transition donor-pattern-active taf-elevated branch-novel branch-maturity-bound');
     if ((rankData?.rank ?? Infinity) <= 2) {
       node.addClass('attention-priority');
     } else if ((rankData?.rank ?? Infinity) <= 5) {
@@ -2104,6 +2962,128 @@ export function applyAttentionOverlay(cy, overlay) {
     }
     if ((publicRecord?.machineReadabilityScore ?? 0) >= 0.75) {
       node.addClass('machine-readable-record');
+    }
+
+    if (['dashboard', 'watch'].includes(investigation?.investigationQueueStatus ?? 'none')) {
+      node.addClass('investigation-active');
+    }
+    if ((investigation?.stageRank ?? 1) >= 3) {
+      node.addClass('investigation-stage-mid');
+    }
+    if ((investigation?.stageRank ?? 1) >= 4) {
+      node.addClass('investigation-stage-late');
+    }
+    if ((investigation?.planProgress ?? 0) > 0 && (investigation?.planProgress ?? 0) < 1) {
+      node.addClass('investigation-plan-progressing');
+    }
+    if (asArray(investigation?.blockedDependencies).length > 0) {
+      node.addClass('investigation-blocked');
+    }
+    if (Number(investigation?.dependencyCount ?? 0) > 0) {
+      node.addClass('dependency-graph-linked');
+    }
+
+    if (['dashboard', 'watch'].includes(authority?.authorityQueueStatus ?? 'none')) {
+      node.addClass('authority-gated');
+    }
+    if (['weak', 'speculative'].includes(authority?.evidenceMaturity ?? 'unknown')) {
+      node.addClass('weak-evidence-signal');
+    }
+    if ((authority?.authorityMismatchFlag ?? false) === true) {
+      node.addClass('authority-mismatch');
+    }
+    if (asArray(authority?.propagationRestrictions).length > 0) {
+      node.addClass('propagation-restricted');
+    }
+    if ((authority?.maturityGateStatus ?? 'hold') !== 'open') {
+      node.addClass('maturity-gated');
+    }
+
+    if (['dashboard', 'registry'].includes(reviewPacket?.reviewPacketQueueStatus ?? 'none')) {
+      node.addClass('review-packet-ready');
+    }
+    if ((reviewPacket?.reviewPacketQueueStatus ?? 'none') === 'watch') {
+      node.addClass('review-packet-watch');
+    }
+    if ((reviewPacket?.reviewPacketAmbiguityLevel ?? 'medium') === 'high') {
+      node.addClass('packet-ambiguity-high');
+    }
+    if (asArray(reviewPacket?.uncertaintyDisclosures).length > 0) {
+      node.addClass('uncertainty-disclosed');
+    }
+    if ((reviewPacket?.synthesisStatus ?? 'bounded') === 'bounded') {
+      node.addClass('synthesis-bounded');
+    }
+
+    if (['dashboard', 'watch'].includes(pattern?.patternQueueStatus ?? 'none')) {
+      node.addClass('pattern-cluster-active');
+    }
+    if (asArray(pattern?.crossCaseRelationshipHints).length > 0) {
+      node.addClass('cross-case-hints');
+    }
+    if (['emergent-stable', 'stable', 'confirmed'].includes(pattern?.patternMaturity ?? 'speculative')) {
+      node.addClass('pattern-maturity-stable');
+    }
+    if (asArray(pattern?.patternConflictMarkers).length > 0) {
+      node.addClass('pattern-conflict');
+    }
+
+    if (['dashboard', 'watch'].includes(patternTemporal?.patternTemporalQueueStatus ?? 'none')) {
+      node.addClass('pattern-timeline-active');
+    }
+    if ((patternTemporal?.patternPersistence ?? 'fragile') === 'stable') {
+      node.addClass('persistence-stable');
+    }
+    if (asArray(patternTemporal?.temporalConflictMarkers).length > 0) {
+      node.addClass('temporal-conflict-marker');
+    }
+
+    if (['dashboard', 'watch'].includes(causal?.causalQueueStatus ?? 'none')) {
+      node.addClass('causal-bundle-active');
+    }
+    if (asArray(causal?.mechanismCandidates).length > 0) {
+      node.addClass('mechanism-candidate');
+    }
+    if ((causal?.explanatoryGap ?? 'high') === 'high') {
+      node.addClass('explanatory-gap-high');
+    }
+    if (asArray(causal?.prohibitedConclusions).length > 0) {
+      node.addClass('prohibited-conclusion');
+    }
+    if ((causal?.causalConflictState ?? 'none') !== 'none') {
+      node.addClass('causal-conflict-marker');
+    }
+
+    if (['dashboard', 'watch'].includes(collaborative?.collaborativeQueueStatus ?? 'none')) {
+      node.addClass('collaborative-review-active');
+    }
+    if ((collaborative?.consensusClass ?? 'none') === 'provisional-consensus') {
+      node.addClass('consensus-provisional');
+    }
+    if ((collaborative?.dissentPresent ?? false) === true) {
+      node.addClass('dissent-present');
+    }
+    if (asArray(collaborative?.maturityConstraints).length > 0) {
+      node.addClass('collaborative-maturity-bound');
+    }
+
+    if (['dashboard', 'watch'].includes(telemetry?.telemetryQueueStatus ?? 'none')) {
+      node.addClass('telemetry-field-active');
+    }
+    if (['transition-risk', 'uncertain'].includes(telemetry?.latticeRegime ?? 'bounded-order')) {
+      node.addClass('lattice-transition');
+    }
+    if (asArray(telemetry?.donorPatternPedigree).length > 0) {
+      node.addClass('donor-pattern-active');
+    }
+    if ((telemetry?.tafScore ?? 0) >= 0.6) {
+      node.addClass('taf-elevated');
+    }
+    if (['moderate', 'high'].includes(telemetry?.branchNovelty ?? 'low')) {
+      node.addClass('branch-novel');
+    }
+    if ((telemetry?.branchMaturityCeiling ?? 'bounded-review') !== 'open') {
+      node.addClass('branch-maturity-bound');
     }
   });
 }

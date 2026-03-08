@@ -53,27 +53,25 @@
   },
   "entries": [
     {
-      "reviewId": "tf-002",
-      "status": "watch",
-      "donationWatchStatus": "watch",
-      "telemetryFieldStatus": "drift-watch",
-      "latticeCoordinates": "0.35,0.58,0.29",
-      "latticeRegime": "transition-risk",
+      "reviewId": "tf-001",
+      "telemetryFieldStatus": "coherent",
+      "latticeCoordinates": "0.42,0.11,0.73",
+      "latticeRegime": "bounded-order",
       "donorPatternPedigree": [
-        "pattern:continuity-fragility"
+        "pattern:coherence-loop",
+        "pattern:governance-feedback"
       ],
-      "tafScoreSummary": "uncertain",
-      "tafScore": 0.41,
-      "branchNovelty": "high",
-      "maturityCeiling": "watch-only",
-      "telemetryAuditState": "watch",
+      "tafScoreSummary": "bounded-positive",
+      "tafScore": 0.74,
+      "branchNovelty": "moderate",
+      "maturityCeiling": "bounded-review",
+      "telemetryAuditState": "verified",
       "linkedTargetIds": [
-        "concept:governance-integrity"
+        "concept:coherence-lattice"
       ],
       "humanReviewFlag": true,
-      "observational": true,
-      "nonCanonical": true,
-      "queuedAt": "2026-03-08"
+      "queuedAt": "2026-03-08",
+      "updatedAt": "2026-03-08"
     }
   ]
 }

@@ -1,0 +1,79 @@
+{
+  "generatedAt": "2026-03-07",
+  "investigationProtocol": true,
+  "nonCanonical": true,
+  "provenance": {
+    "schemaVersions": {
+      "triage_recommendations": "phase-r.0",
+      "verification_recommendations": "phase-u.0",
+      "public_record_recommendations": "phase-v.0"
+    },
+    "producerCommits": [
+      "sophia-r-111",
+      "sophia-u-111",
+      "sophia-v-111"
+    ],
+    "sourceModes": {
+      "triage_recommendations": "fixture",
+      "verification_recommendations": "fixture",
+      "public_record_recommendations": "fixture"
+    },
+    "derivedFromFixtures": true
+  },
+  "entries": [
+    {
+      "planId": "investigation-plan:pr-001",
+      "reviewId": "pr-001",
+      "investigationStage": "intake",
+      "planStatus": "active",
+      "totalSteps": 1,
+      "completedSteps": 0,
+      "planProgress": 0.2,
+      "blockedBy": [
+        "registry/constitutional_status.json",
+        "registry/governance_review_docket.json"
+      ],
+      "dependencyCount": 7,
+      "linkedTargetIds": [
+        "concept:governance-integrity"
+      ],
+      "updatedAt": "2026-03-07"
+    },
+    {
+      "planId": "investigation-plan:prv-001",
+      "reviewId": "prv-001",
+      "investigationStage": "dependency-mapping",
+      "planStatus": "active",
+      "totalSteps": 3,
+      "completedSteps": 2,
+      "planProgress": 0.6,
+      "blockedBy": [
+        "registry/constitutional_status.json",
+        "registry/governance_review_docket.json"
+      ],
+      "dependencyCount": 7,
+      "linkedTargetIds": [
+        "concept:governance-integrity"
+      ],
+      "updatedAt": "2026-03-07"
+    },
+    {
+      "planId": "investigation-plan:vf-001",
+      "reviewId": "vf-001",
+      "investigationStage": "verification",
+      "planStatus": "active",
+      "totalSteps": 2,
+      "completedSteps": 1,
+      "planProgress": 0.4,
+      "blockedBy": [
+        "registry/constitutional_status.json",
+        "registry/governance_review_docket.json"
+      ],
+      "dependencyCount": 7,
+      "linkedTargetIds": [
+        "concept:governance-integrity"
+      ],
+      "updatedAt": "2026-03-07"
+    }
+  ]
+}
