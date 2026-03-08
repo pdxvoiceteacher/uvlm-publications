@@ -1034,3 +1034,18 @@ python3 scripts/build_system_forecast_overlay.py
 python3 -m unittest tests/test_build_system_forecast_overlay.py
 ```
 
+## Information Value Overlay (Phase AM)
+
+Publisher surfaces only **Sophia-audited information-value materials**; no automatic surveillance expansion or canonical mutation occurs from this layer.
+
+Information-seeking may prioritize attention, but never justify surveillance expansion without explicit human authorization.
+Curiosity must guide investigation, not intrusion.
+
+- script: `scripts/build_information_value_overlay.py`
+- outputs: `registry/uncertainty_dashboard.json`, `registry/observation_priority_registry.json`, `registry/curiosity_watchlist.json`, `registry/curiosity_annotations.json`
+
+```bash
+python3 scripts/build_information_value_overlay.py
+python3 -m unittest tests/test_build_information_value_overlay.py
+```
+

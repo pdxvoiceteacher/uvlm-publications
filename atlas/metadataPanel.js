@@ -304,6 +304,13 @@ function renderConcept(data) {
     row('System Forecast Schema Version', data.systemForecastSchemaVersion ?? 'unknown'),
     row('System Forecast Producer Commit(s)', data.systemForecastProducerCommits ?? 'unknown'),
     row('System Forecast Source Mode', data.systemForecastSourceMode ?? 'unknown'),
+    row('Uncertainty Gradient', data.uncertaintyGradient ?? 'moderate'),
+    row('Information Gain', Number(data.informationGain ?? 0).toFixed(2)),
+    row('Experiment Priority', data.experimentPriority ?? 'monitor'),
+    row('Entropy Reduction Forecast', Number(data.entropyReductionForecast ?? 0).toFixed(2)),
+    row('Information Value Schema Version', data.informationValueSchemaVersion ?? 'unknown'),
+    row('Information Value Producer Commit(s)', data.informationValueProducerCommits ?? 'unknown'),
+    row('Information Value Source Mode', data.informationValueSourceMode ?? 'unknown'),
     row('Related Concepts', data.relatedConceptCount ?? 0),
     renderConceptRelations(data.relatedConcepts)
   ].join('');
