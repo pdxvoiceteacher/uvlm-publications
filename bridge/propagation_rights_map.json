@@ -1,0 +1,25 @@
+{
+  "generatedAt": "2026-03-07",
+  "provenance": {
+    "schemaVersion": "phase-x1.0",
+    "producerCommits": ["coherence-x1-113"],
+    "sourceMode": "fixture"
+  },
+  "entries": [
+    {
+      "reviewId": "ea-001",
+      "propagationRestrictions": ["no-public-forwarding"],
+      "allowedPropagationRights": ["internal-review", "bounded-annotation"]
+    },
+    {
+      "reviewId": "ea-002",
+      "propagationRestrictions": ["no-escalation", "no-public-forwarding"],
+      "allowedPropagationRights": ["internal-watch"]
+    },
+    {
+      "reviewId": "ea-003",
+      "propagationRestrictions": ["no-identity-propagation"],
+      "allowedPropagationRights": []
+    }
+  ]
+}
