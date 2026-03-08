@@ -902,3 +902,31 @@ The workflow at `.github/workflows/mint_doi.yml` runs on `papers/**` changes:
 - **Pushes to `main`**: performs minting deposit, updates registries/catalog/graph, commits audit artifacts.
 
 This prevents accidental DOI minting before merge while keeping public metadata artifacts fresh.
+
+## Collaborative Review Workflow & Deliberation Trace Overlay (Phase AC)
+
+Publisher surfaces only **Sophia-audited collaborative-review materials**; no automatic consensus ratification or dissent suppression occurs from this layer.
+
+- script: `scripts/build_collaborative_review_overlay.py`
+- inputs: `bridge/collaborative_review_audit.json`, `bridge/collaborative_review_recommendations.json`, `bridge/reviewer_deliberation_map.json`, `bridge/reviewer_position_map.json`, `bridge/consensus_state_report.json`, `bridge/dissent_trace_report.json`, `registry/review_packet_dashboard.json`, `registry/causal_dashboard.json`, `registry/authority_gate_dashboard.json`
+- outputs: `registry/collaborative_review_dashboard.json`, `registry/consensus_registry.json`, `registry/dissent_watchlist.json`, `registry/deliberation_annotations.json`
+- policy: docket items are actionable collaborative entries, watch items are bounded dissent tracking, suppressed items are excluded from actionable overlays.
+
+```bash
+python3 scripts/build_collaborative_review_overlay.py
+python3 -m unittest tests/test_build_collaborative_review_overlay.py
+```
+
+## Telemetry Field Unification & Total Action Functional Overlay (Phase AD)
+
+Publisher surfaces only **Sophia-audited telemetry-field and TAF materials**; no automatic branch activation or canonical mutation occurs from this layer.
+
+- script: `scripts/build_telemetry_field_overlay.py`
+- inputs: `bridge/telemetry_field_audit.json`, `bridge/telemetry_field_recommendations.json`, `bridge/telemetry_field_map.json`, `bridge/lattice_projection_map.json`, `bridge/pattern_donation_registry.json`, `bridge/action_functional_scorecard.json`, `bridge/branch_emergence_report.json`, `registry/symbolic_field_registry.json`, `registry/investigation_dashboard.json`, `registry/authority_gate_dashboard.json`
+- outputs: `registry/telemetry_dashboard.json`, `registry/lattice_projection_registry.json`, `registry/pattern_donation_watchlist.json`, `registry/action_functional_annotations.json`
+- policy: docket items are actionable telemetry/branch overlays, watch items remain bounded in pattern-donation watchlist, suppressed items are excluded from actionable overlays.
+
+```bash
+python3 scripts/build_telemetry_field_overlay.py
+python3 -m unittest tests/test_build_telemetry_field_overlay.py
+```

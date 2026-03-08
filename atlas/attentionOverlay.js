@@ -145,7 +145,14 @@ export async function loadAttentionOverlay() {
     causalDashboardResp,
     mechanismRegistryResp,
     causalWatchlistResp,
-    causalAnnotationsResp
+    causalAnnotationsResp,
+    collaborativeReviewDashboardResp,
+    consensusRegistryResp,
+    dissentWatchlistResp,
+    deliberationAnnotationsResp,
+    telemetryDashboardResp,
+    latticeProjectionRegistryResp,
+    actionFunctionalAnnotationsResp
   ] = await Promise.all([
     fetch('../bridge/attention_updates.json').catch(() => null),
     fetch('../bridge/coherence_assessment.json').catch(() => null),
@@ -249,7 +256,14 @@ export async function loadAttentionOverlay() {
     fetch('../registry/causal_dashboard.json').catch(() => null),
     fetch('../registry/mechanism_registry.json').catch(() => null),
     fetch('../registry/causal_watchlist.json').catch(() => null),
-    fetch('../registry/causal_annotations.json').catch(() => null)
+    fetch('../registry/causal_annotations.json').catch(() => null),
+    fetch('../registry/collaborative_review_dashboard.json').catch(() => null),
+    fetch('../registry/consensus_registry.json').catch(() => null),
+    fetch('../registry/dissent_watchlist.json').catch(() => null),
+    fetch('../registry/deliberation_annotations.json').catch(() => null),
+    fetch('../registry/telemetry_dashboard.json').catch(() => null),
+    fetch('../registry/lattice_projection_registry.json').catch(() => null),
+    fetch('../registry/action_functional_annotations.json').catch(() => null)
   ]);
 
   return {
@@ -355,7 +369,14 @@ export async function loadAttentionOverlay() {
     causalDashboard: causalDashboardResp ? await causalDashboardResp.json() : {},
     mechanismRegistry: mechanismRegistryResp ? await mechanismRegistryResp.json() : {},
     causalWatchlist: causalWatchlistResp ? await causalWatchlistResp.json() : {},
-    causalAnnotations: causalAnnotationsResp ? await causalAnnotationsResp.json() : {}
+    causalAnnotations: causalAnnotationsResp ? await causalAnnotationsResp.json() : {},
+    collaborativeReviewDashboard: collaborativeReviewDashboardResp ? await collaborativeReviewDashboardResp.json() : {},
+    consensusRegistry: consensusRegistryResp ? await consensusRegistryResp.json() : {},
+    dissentWatchlist: dissentWatchlistResp ? await dissentWatchlistResp.json() : {},
+    deliberationAnnotations: deliberationAnnotationsResp ? await deliberationAnnotationsResp.json() : {},
+    telemetryDashboard: telemetryDashboardResp ? await telemetryDashboardResp.json() : {},
+    latticeProjectionRegistry: latticeProjectionRegistryResp ? await latticeProjectionRegistryResp.json() : {},
+    actionFunctionalAnnotations: actionFunctionalAnnotationsResp ? await actionFunctionalAnnotationsResp.json() : {}
   };
 }
 
@@ -2058,6 +2079,162 @@ function buildCausalConceptSignals(causalDashboard, mechanismRegistry, causalWat
   return byConcept;
 }
 
+
+
+function buildCollaborativeConceptSignals(collaborativeReviewDashboard, consensusRegistry, dissentWatchlist, deliberationAnnotations) {
+  const byConcept = new Map();
+
+  function bump(targetId, update) {
+    if (typeof targetId !== 'string') {
+      return;
+    }
+    const existing = byConcept.get(targetId) ?? {
+      collaborativeStatus: 'none',
+      consensusClass: 'none',
+      dissentPresent: false,
+      dissentTraceCount: 0,
+      maturityConstraints: [],
+      collaborativeQueueStatus: 'none',
+    };
+    update(existing);
+    byConcept.set(targetId, existing);
+  }
+
+  const consensusByReview = new Map();
+  asArray(consensusRegistry?.entries).forEach((entry) => {
+    if (typeof entry?.reviewId === 'string') {
+      consensusByReview.set(entry.reviewId, entry);
+    }
+  });
+
+  asArray(collaborativeReviewDashboard?.entries).forEach((entry) => {
+    const consensus = consensusByReview.get(entry?.reviewId);
+    asArray(entry?.linkedTargetIds).forEach((targetId) => {
+      bump(targetId, (s) => {
+        s.collaborativeStatus = entry?.collaborativeStatus ?? s.collaborativeStatus;
+        s.consensusClass = entry?.consensusClass ?? consensus?.consensusClass ?? s.consensusClass;
+        s.dissentPresent = Boolean(entry?.dissentPresent ?? consensus?.dissentPresent ?? s.dissentPresent);
+        s.dissentTraceCount = Number(entry?.dissentTraceCount ?? consensus?.dissentTraceCount ?? s.dissentTraceCount);
+        s.maturityConstraints = asArray(entry?.maturityConstraints ?? consensus?.maturityConstraints);
+        s.collaborativeQueueStatus = 'dashboard';
+      });
+    });
+  });
+
+  asArray(dissentWatchlist?.entries).forEach((entry) => {
+    asArray(entry?.linkedTargetIds).forEach((targetId) => {
+      bump(targetId, (s) => {
+        s.collaborativeStatus = entry?.collaborativeStatus ?? s.collaborativeStatus;
+        s.consensusClass = entry?.consensusClass ?? s.consensusClass;
+        s.dissentPresent = Boolean(entry?.dissentPresent ?? s.dissentPresent);
+        s.dissentTraceCount = Number(entry?.dissentTraceCount ?? s.dissentTraceCount);
+        s.maturityConstraints = asArray(entry?.maturityConstraints ?? s.maturityConstraints);
+        if (s.collaborativeQueueStatus !== 'dashboard') {
+          s.collaborativeQueueStatus = 'watch';
+        }
+      });
+    });
+  });
+
+  asArray(deliberationAnnotations?.annotations).forEach((entry) => {
+    asArray(entry?.linkedTargetIds).forEach((targetId) => {
+      bump(targetId, (s) => {
+        s.collaborativeStatus = entry?.collaborativeStatus ?? s.collaborativeStatus;
+        s.consensusClass = entry?.consensusClass ?? s.consensusClass;
+        s.dissentPresent = Boolean(entry?.dissentPresent ?? s.dissentPresent);
+        s.dissentTraceCount = Number(entry?.dissentTraceCount ?? s.dissentTraceCount);
+        s.maturityConstraints = asArray(entry?.maturityConstraints ?? s.maturityConstraints);
+      });
+    });
+  });
+
+  return byConcept;
+}
+
+
+
+function buildTelemetryConceptSignals(telemetryDashboard, latticeProjectionRegistry, patternDonationWatchlist, actionFunctionalAnnotations) {
+  const byConcept = new Map();
+
+  function bump(targetId, update) {
+    if (typeof targetId !== 'string') {
+      return;
+    }
+    const existing = byConcept.get(targetId) ?? {
+      telemetryFieldStatus: 'monitor',
+      latticeCoordinates: '0,0,0',
+      latticeRegime: 'bounded-order',
+      donorPatternPedigree: [],
+      tafScoreSummary: 'bounded',
+      tafScore: 0,
+      branchNovelty: 'low',
+      branchMaturityCeiling: 'bounded-review',
+      telemetryQueueStatus: 'none',
+    };
+    update(existing);
+    byConcept.set(targetId, existing);
+  }
+
+  const latticeByReview = new Map();
+  asArray(latticeProjectionRegistry?.entries).forEach((entry) => {
+    if (typeof entry?.reviewId === 'string') {
+      latticeByReview.set(entry.reviewId, entry);
+    }
+  });
+
+  asArray(telemetryDashboard?.entries).forEach((entry) => {
+    const lattice = latticeByReview.get(entry?.reviewId);
+    asArray(entry?.linkedTargetIds).forEach((targetId) => {
+      bump(targetId, (s) => {
+        s.telemetryFieldStatus = entry?.telemetryFieldStatus ?? s.telemetryFieldStatus;
+        s.latticeCoordinates = entry?.latticeCoordinates ?? lattice?.latticeCoordinates ?? s.latticeCoordinates;
+        s.latticeRegime = entry?.latticeRegime ?? lattice?.latticeRegime ?? s.latticeRegime;
+        s.donorPatternPedigree = asArray(entry?.donorPatternPedigree ?? lattice?.donorPatternPedigree);
+        s.tafScoreSummary = entry?.tafScoreSummary ?? lattice?.tafScoreSummary ?? s.tafScoreSummary;
+        s.tafScore = Number(entry?.tafScore ?? lattice?.tafScore ?? s.tafScore);
+        s.branchNovelty = entry?.branchNovelty ?? lattice?.branchNovelty ?? s.branchNovelty;
+        s.branchMaturityCeiling = entry?.maturityCeiling ?? lattice?.maturityCeiling ?? s.branchMaturityCeiling;
+        s.telemetryQueueStatus = 'dashboard';
+      });
+    });
+  });
+
+  asArray(patternDonationWatchlist?.entries).forEach((entry) => {
+    asArray(entry?.linkedTargetIds).forEach((targetId) => {
+      bump(targetId, (s) => {
+        s.telemetryFieldStatus = entry?.telemetryFieldStatus ?? s.telemetryFieldStatus;
+        s.latticeCoordinates = entry?.latticeCoordinates ?? s.latticeCoordinates;
+        s.latticeRegime = entry?.latticeRegime ?? s.latticeRegime;
+        s.donorPatternPedigree = asArray(entry?.donorPatternPedigree ?? s.donorPatternPedigree);
+        s.tafScoreSummary = entry?.tafScoreSummary ?? s.tafScoreSummary;
+        s.tafScore = Number(entry?.tafScore ?? s.tafScore);
+        s.branchNovelty = entry?.branchNovelty ?? s.branchNovelty;
+        s.branchMaturityCeiling = entry?.maturityCeiling ?? s.branchMaturityCeiling;
+        if (s.telemetryQueueStatus !== 'dashboard') {
+          s.telemetryQueueStatus = 'watch';
+        }
+      });
+    });
+  });
+
+  asArray(actionFunctionalAnnotations?.annotations).forEach((entry) => {
+    asArray(entry?.linkedTargetIds).forEach((targetId) => {
+      bump(targetId, (s) => {
+        s.telemetryFieldStatus = entry?.telemetryFieldStatus ?? s.telemetryFieldStatus;
+        s.latticeCoordinates = entry?.latticeCoordinates ?? s.latticeCoordinates;
+        s.latticeRegime = entry?.latticeRegime ?? s.latticeRegime;
+        s.donorPatternPedigree = asArray(entry?.donorPatternPedigree ?? s.donorPatternPedigree);
+        s.tafScoreSummary = entry?.tafScoreSummary ?? s.tafScoreSummary;
+        s.tafScore = Number(entry?.tafScore ?? s.tafScore);
+        s.branchNovelty = entry?.branchNovelty ?? s.branchNovelty;
+        s.branchMaturityCeiling = entry?.maturityCeiling ?? s.branchMaturityCeiling;
+      });
+    });
+  });
+
+  return byConcept;
+}
+
 function buildConstitutionalConceptSignals(constitutionalAnnotations, governanceFailureWatchlist) {
   const byConcept = new Map();
 
@@ -2228,6 +2405,24 @@ export function applyAttentionOverlay(cy, overlay) {
     overlay?.patternTemporalWatchlist,
     overlay?.patternTemporalAnnotations
   );
+  const causalSignals = buildCausalConceptSignals(
+    overlay?.causalDashboard,
+    overlay?.mechanismRegistry,
+    overlay?.causalWatchlist,
+    overlay?.causalAnnotations
+  );
+  const collaborativeSignals = buildCollaborativeConceptSignals(
+    overlay?.collaborativeReviewDashboard,
+    overlay?.consensusRegistry,
+    overlay?.dissentWatchlist,
+    overlay?.deliberationAnnotations
+  );
+  const telemetrySignals = buildTelemetryConceptSignals(
+    overlay?.telemetryDashboard,
+    overlay?.latticeProjectionRegistry,
+    overlay?.patternDonationWatchlist,
+    overlay?.actionFunctionalAnnotations
+  );
 
 
   const institutionalProvenance = overlay?.institutionalStatus?.provenance ?? {};
@@ -2308,6 +2503,18 @@ export function applyAttentionOverlay(cy, overlay) {
     ?? 'unknown';
   const causalProducerCommits = asArray(causalProvenance?.producerCommits).join(', ') || 'unknown';
   const causalSourceMode = causalProvenance?.derivedFromFixtures ? 'fixture' : 'live';
+  const collaborativeProvenance = overlay?.collaborativeReviewDashboard?.provenance ?? {};
+  const collaborativeSchemaVersion = collaborativeProvenance?.schemaVersions?.consensus_state_report
+    ?? collaborativeProvenance?.schemaVersions?.reviewer_position_map
+    ?? 'unknown';
+  const collaborativeProducerCommits = asArray(collaborativeProvenance?.producerCommits).join(', ') || 'unknown';
+  const collaborativeSourceMode = collaborativeProvenance?.derivedFromFixtures ? 'fixture' : 'live';
+  const telemetryProvenance = overlay?.telemetryDashboard?.provenance ?? {};
+  const telemetrySchemaVersion = telemetryProvenance?.schemaVersions?.action_functional_scorecard
+    ?? telemetryProvenance?.schemaVersions?.telemetry_field_map
+    ?? 'unknown';
+  const telemetryProducerCommits = asArray(telemetryProvenance?.producerCommits).join(', ') || 'unknown';
+  const telemetrySourceMode = telemetryProvenance?.derivedFromFixtures ? 'fixture' : 'live';
 
   cy.nodes('[class = "concept"]').forEach((node) => {
     const id = node.id();
@@ -2508,8 +2715,29 @@ export function applyAttentionOverlay(cy, overlay) {
     node.data('causalSchemaVersion', causalSchemaVersion);
     node.data('causalProducerCommits', causalProducerCommits);
     node.data('causalSourceMode', causalSourceMode);
+    const collaborative = collaborativeSignals.get(id);
+    node.data('collaborativeStatus', collaborative?.collaborativeStatus ?? 'none');
+    node.data('consensusClass', collaborative?.consensusClass ?? 'none');
+    node.data('dissentPresence', collaborative?.dissentPresent ?? false);
+    node.data('dissentTraceCount', collaborative?.dissentTraceCount ?? 0);
+    node.data('collaborativeMaturityConstraints', asArray(collaborative?.maturityConstraints));
+    node.data('collaborativeSchemaVersion', collaborativeSchemaVersion);
+    node.data('collaborativeProducerCommits', collaborativeProducerCommits);
+    node.data('collaborativeSourceMode', collaborativeSourceMode);
+    const telemetry = telemetrySignals.get(id);
+    node.data('telemetryFieldStatus', telemetry?.telemetryFieldStatus ?? 'monitor');
+    node.data('latticeCoordinates', telemetry?.latticeCoordinates ?? '0,0,0');
+    node.data('latticeRegime', telemetry?.latticeRegime ?? 'bounded-order');
+    node.data('donorPatternPedigree', asArray(telemetry?.donorPatternPedigree));
+    node.data('tafScoreSummary', telemetry?.tafScoreSummary ?? 'bounded');
+    node.data('tafScore', Number(telemetry?.tafScore ?? 0));
+    node.data('branchNovelty', telemetry?.branchNovelty ?? 'low');
+    node.data('branchMaturityCeiling', telemetry?.branchMaturityCeiling ?? 'bounded-review');
+    node.data('telemetrySchemaVersion', telemetrySchemaVersion);
+    node.data('telemetryProducerCommits', telemetryProducerCommits);
+    node.data('telemetrySourceMode', telemetrySourceMode);
 
-    node.removeClass('attention-priority attention-secondary sonya-candidate reasoning-thread reasoning-watch stability-positive stability-watch multimodal-donation multimodal-watch review-candidate watch-queue governance-review governance-watch constitutional-watch constitutional-freeze deliberation-docket deliberation-watch deliberation-urgent anti-capture-watch continuity-docket continuity-watch continuity-fragile continuity-freeze recovery-docket recovery-watch escrow-ready recovery-fragile attestation-docket attestation-watch witness-sufficient attestation-sensitive precedent-docket precedent-watch precedent-divergent precedent-strong scenario-docket scenario-watch scenario-freeze scenario-rehearse-recovery institutional-status-indicator chamber-conflict-indicator system-health-overview queue-health-actionable backlog-pressure-watch review-fatigue-watch metric-gaming-watch load-shedding-recommended priority-actionable triage-watch urgency-high priority-critical triage-conflict closure-active closure-provisional repair-urgent reopened-watch symbolic-field-active regime-shift-watch lambda-warning architecture-hint verification-active entity-ambiguity verification-urgent claim-typed public-record-active entity-graph-linked relationship-ambiguous custody-fragile machine-readable-record investigation-active investigation-stage-mid investigation-stage-late investigation-plan-progressing investigation-blocked dependency-graph-linked authority-gated weak-evidence-signal authority-mismatch propagation-restricted maturity-gated review-packet-ready review-packet-watch packet-ambiguity-high uncertainty-disclosed synthesis-bounded pattern-cluster-active cross-case-hints pattern-maturity-stable pattern-conflict pattern-timeline-active persistence-stable temporal-conflict-marker causal-bundle-active mechanism-candidate explanatory-gap-high prohibited-conclusion causal-conflict-marker');
+    node.removeClass('attention-priority attention-secondary sonya-candidate reasoning-thread reasoning-watch stability-positive stability-watch multimodal-donation multimodal-watch review-candidate watch-queue governance-review governance-watch constitutional-watch constitutional-freeze deliberation-docket deliberation-watch deliberation-urgent anti-capture-watch continuity-docket continuity-watch continuity-fragile continuity-freeze recovery-docket recovery-watch escrow-ready recovery-fragile attestation-docket attestation-watch witness-sufficient attestation-sensitive precedent-docket precedent-watch precedent-divergent precedent-strong scenario-docket scenario-watch scenario-freeze scenario-rehearse-recovery institutional-status-indicator chamber-conflict-indicator system-health-overview queue-health-actionable backlog-pressure-watch review-fatigue-watch metric-gaming-watch load-shedding-recommended priority-actionable triage-watch urgency-high priority-critical triage-conflict closure-active closure-provisional repair-urgent reopened-watch symbolic-field-active regime-shift-watch lambda-warning architecture-hint verification-active entity-ambiguity verification-urgent claim-typed public-record-active entity-graph-linked relationship-ambiguous custody-fragile machine-readable-record investigation-active investigation-stage-mid investigation-stage-late investigation-plan-progressing investigation-blocked dependency-graph-linked authority-gated weak-evidence-signal authority-mismatch propagation-restricted maturity-gated review-packet-ready review-packet-watch packet-ambiguity-high uncertainty-disclosed synthesis-bounded pattern-cluster-active cross-case-hints pattern-maturity-stable pattern-conflict pattern-timeline-active persistence-stable temporal-conflict-marker causal-bundle-active mechanism-candidate explanatory-gap-high prohibited-conclusion causal-conflict-marker collaborative-review-active consensus-provisional dissent-present collaborative-maturity-bound telemetry-field-active lattice-transition donor-pattern-active taf-elevated branch-novel branch-maturity-bound');
     if ((rankData?.rank ?? Infinity) <= 2) {
       node.addClass('attention-priority');
     } else if ((rankData?.rank ?? Infinity) <= 5) {
@@ -2824,6 +3052,38 @@ export function applyAttentionOverlay(cy, overlay) {
     }
     if ((causal?.causalConflictState ?? 'none') !== 'none') {
       node.addClass('causal-conflict-marker');
+    }
+
+    if (['dashboard', 'watch'].includes(collaborative?.collaborativeQueueStatus ?? 'none')) {
+      node.addClass('collaborative-review-active');
+    }
+    if ((collaborative?.consensusClass ?? 'none') === 'provisional-consensus') {
+      node.addClass('consensus-provisional');
+    }
+    if ((collaborative?.dissentPresent ?? false) === true) {
+      node.addClass('dissent-present');
+    }
+    if (asArray(collaborative?.maturityConstraints).length > 0) {
+      node.addClass('collaborative-maturity-bound');
+    }
+
+    if (['dashboard', 'watch'].includes(telemetry?.telemetryQueueStatus ?? 'none')) {
+      node.addClass('telemetry-field-active');
+    }
+    if (['transition-risk', 'uncertain'].includes(telemetry?.latticeRegime ?? 'bounded-order')) {
+      node.addClass('lattice-transition');
+    }
+    if (asArray(telemetry?.donorPatternPedigree).length > 0) {
+      node.addClass('donor-pattern-active');
+    }
+    if ((telemetry?.tafScore ?? 0) >= 0.6) {
+      node.addClass('taf-elevated');
+    }
+    if (['moderate', 'high'].includes(telemetry?.branchNovelty ?? 'low')) {
+      node.addClass('branch-novel');
+    }
+    if ((telemetry?.branchMaturityCeiling ?? 'bounded-review') !== 'open') {
+      node.addClass('branch-maturity-bound');
     }
   });
 }

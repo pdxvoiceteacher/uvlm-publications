@@ -1,0 +1,9 @@
+{
+  "generatedAt": "2026-03-08",
+  "provenance": {"schemaVersion": "phase-ad.0", "producerCommits": ["sophia-ad-111"], "sourceMode": "fixture"},
+  "entries": [
+    {"reviewId": "tf-001", "latticeCoordinates": "0.42,0.11,0.73", "latticeRegime": "bounded-order"},
+    {"reviewId": "tf-002", "latticeCoordinates": "0.35,0.58,0.29", "latticeRegime": "transition-risk"},
+    {"reviewId": "tf-003", "latticeCoordinates": "0.10,0.20,0.18", "latticeRegime": "uncertain"}
+  ]
+}
