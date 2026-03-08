@@ -1,0 +1,13 @@
+{
+  "generatedAt": "2026-03-08",
+  "provenance": {
+    "schemaVersion": "phase-ab.0",
+    "producerCommits": ["cl-ab-113"],
+    "sourceMode": "fixture"
+  },
+  "entries": [
+    {"reviewId": "ca-001", "explanatoryGap": "moderate", "prohibitedConclusions": ["identity-attribution", "intent-assertion"]},
+    {"reviewId": "ca-002", "explanatoryGap": "high", "prohibitedConclusions": ["culpability-claim"]},
+    {"reviewId": "ca-003", "explanatoryGap": "high", "prohibitedConclusions": ["identity-accusation"]}
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "generatedAt": "2026-03-08",
+  "provenance": {"schemaVersion": "phase-ag.0", "producerCommits": ["sophia-ag-111"], "sourceMode": "fixture"},
+  "entries": [
+    {"reviewId": "ex-001", "falsificationReadiness": "ready", "falsificationPlan": ["counter-example-probe", "sensitivity-check"]},
+    {"reviewId": "ex-002", "falsificationReadiness": "pending", "falsificationPlan": ["missing-baseline"]},
+    {"reviewId": "ex-003", "falsificationReadiness": "blocked", "falsificationPlan": ["insufficient-observations"]}
+  ]
+}

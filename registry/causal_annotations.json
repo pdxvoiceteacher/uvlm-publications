@@ -1,0 +1,145 @@
+{
+  "generatedAt": "2026-03-08",
+  "causalProtocol": true,
+  "nonCanonical": true,
+  "provenance": {
+    "schemaVersions": {
+      "causal_audit": "phase-ab.0",
+      "causal_recommendations": "phase-ab.0",
+      "causal_bundle_map": "phase-ab.0",
+      "mechanism_candidate_map": "phase-ab.0",
+      "mechanism_separation_report": "phase-ab.0",
+      "causal_conflict_report": "phase-ab.0",
+      "pattern_timeline_dashboard": "composite",
+      "environment_integrity_dashboard": "composite",
+      "authority_gate_dashboard": "composite"
+    },
+    "producerCommits": [
+      "sophia-ab-111",
+      "cl-ab-111",
+      "cl-ab-112",
+      "cl-ab-113",
+      "cl-ab-114",
+      "sophia-z1-111",
+      "cl-z1-111",
+      "cl-z1-112",
+      "cl-z1-113",
+      "sophia-z-111",
+      "cl-z-111",
+      "cl-z-112",
+      "cl-z-113",
+      "cl-z-114",
+      "sophia-r-111",
+      "sophia-u-111",
+      "sophia-v-111",
+      "sophia-x1-111",
+      "coherence-x1-111",
+      "coherence-x1-112",
+      "coherence-x1-113",
+      "coherence-x1-114",
+      "cl-u-222",
+      "sophia-t-111",
+      "cl-t-222",
+      "cl-commit-aaa111",
+      "sophia-commit-bbb222",
+      "sophia-commit-qqq111",
+      "cl-commit-qqq222",
+      "cl-r-222",
+      "sophia-s-111",
+      "cl-s-222",
+      "cl-v-222",
+      "sophia-y-111",
+      "cl-y-111",
+      "cl-y-112",
+      "cl-y-113",
+      "cl-y-114",
+      "sophia-aa-111"
+    ],
+    "sourceModes": {
+      "causal_audit": "fixture",
+      "causal_recommendations": "fixture",
+      "causal_bundle_map": "fixture",
+      "mechanism_candidate_map": "fixture",
+      "mechanism_separation_report": "fixture",
+      "causal_conflict_report": "fixture",
+      "pattern_timeline_dashboard": "fixture",
+      "environment_integrity_dashboard": "fixture",
+      "authority_gate_dashboard": "fixture"
+    },
+    "derivedFromFixtures": true
+  },
+  "noAutomaticAccusation": true,
+  "noAutomaticAttribution": true,
+  "noAutomaticGraphMutation": true,
+  "noCanonicalMutation": true,
+  "annotations": [
+    {
+      "reviewId": "ca-001",
+      "targetPublisherAction": "docket",
+      "causalBundleType": "institutional-feedback-loop",
+      "mechanismCandidates": [
+        "incentive-drift",
+        "review-fatigue-coupling"
+      ],
+      "explanatoryGap": "moderate",
+      "prohibitedConclusions": [
+        "identity-attribution",
+        "intent-assertion"
+      ],
+      "causalConflictState": "bounded-disagreement",
+      "causalAuditState": "verified",
+      "linkedTargetIds": [
+        "concept:governance-integrity"
+      ],
+      "noAutomaticAccusation": true,
+      "noAutomaticAttribution": true,
+      "noAutomaticGraphMutation": true,
+      "noCanonicalMutation": true,
+      "notes": "Bundle remains hypothesis-level and bounded for human review."
+    },
+    {
+      "reviewId": "ca-002",
+      "targetPublisherAction": "watch",
+      "causalBundleType": "resource-thinning",
+      "mechanismCandidates": [
+        "queue-congestion"
+      ],
+      "explanatoryGap": "high",
+      "prohibitedConclusions": [
+        "culpability-claim"
+      ],
+      "causalConflictState": "under-specified",
+      "causalAuditState": "watch",
+      "linkedTargetIds": [
+        "concept:continuity-protocol"
+      ],
+      "noAutomaticAccusation": true,
+      "noAutomaticAttribution": true,
+      "noAutomaticGraphMutation": true,
+      "noCanonicalMutation": true,
+      "notes": "Insufficient mechanism separation for action-oriented use."
+    },
+    {
+      "reviewId": "ca-003",
+      "targetPublisherAction": "suppressed",
+      "causalBundleType": "identity-chain",
+      "mechanismCandidates": [
+        "identity-linkage"
+      ],
+      "explanatoryGap": "high",
+      "prohibitedConclusions": [
+        "identity-accusation"
+      ],
+      "causalConflictState": "identity-entanglement",
+      "causalAuditState": "suppressed",
+      "linkedTargetIds": [
+        "concept:constitutional-safeguards"
+      ],
+      "noAutomaticAccusation": true,
+      "noAutomaticAttribution": true,
+      "noAutomaticGraphMutation": true,
+      "noCanonicalMutation": true,
+      "notes": "Suppressed pending higher-quality mechanism evidence."
+    }
+  ]
+}
