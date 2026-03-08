@@ -1,0 +1,9 @@
+{
+  "generatedAt": "2026-03-08",
+  "provenance": {"schemaVersion": "phase-av.0", "producerCommits": ["sophia-av-111"], "sourceMode": "fixture"},
+  "recommendations": [
+    {"reviewId": "cm-001", "targetPublisherAction": "docket", "linkedTargetIds": ["concept:coherence-lattice"], "preservationCriticality": "high", "humanReviewFlag": true, "notes": "Preservation priority without canonization."},
+    {"reviewId": "cm-002", "targetPublisherAction": "watch", "linkedTargetIds": ["concept:theory-transfer"], "preservationCriticality": "monitor", "humanReviewFlag": true, "notes": "Watch vocabulary drift and notation fragility."},
+    {"reviewId": "cm-003", "targetPublisherAction": "suppressed", "linkedTargetIds": ["concept:value-alignment"], "preservationCriticality": "hold", "humanReviewFlag": true, "notes": "Suppressed pending additional review."}
+  ]
+}

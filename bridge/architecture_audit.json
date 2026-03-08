@@ -1,0 +1,9 @@
+{
+  "generatedAt": "2026-03-08",
+  "provenance": {"schemaVersion": "phase-ap.0", "producerCommits": ["sophia-ap-111"], "sourceMode": "fixture"},
+  "audits": [
+    {"reviewId": "ar-001", "architectureAuditState": "verified"},
+    {"reviewId": "ar-002", "architectureAuditState": "monitor"},
+    {"reviewId": "ar-003", "architectureAuditState": "restricted"}
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "generatedAt": "2026-03-08",
+  "provenance": {"schemaVersion": "phase-ar.0", "producerCommits": ["sophia-ar-111"], "sourceMode": "fixture"},
+  "recommendations": [
+    {"reviewId": "fg-001", "targetPublisherAction": "docket", "linkedTargetIds": ["concept:coherence-lattice"], "mitigationRequirement": "high", "humanReviewFlag": true, "notes": "Federation repair actions remain advisory pending human approval."},
+    {"reviewId": "fg-002", "targetPublisherAction": "watch", "linkedTargetIds": ["concept:governance-integrity"], "mitigationRequirement": "monitor", "humanReviewFlag": true, "notes": "Capture risk monitored for federation drift."},
+    {"reviewId": "fg-003", "targetPublisherAction": "suppressed", "linkedTargetIds": ["concept:constitutional-safeguards"], "mitigationRequirement": "low", "humanReviewFlag": true, "notes": "Suppressed pending community deliberation."}
+  ]
+}

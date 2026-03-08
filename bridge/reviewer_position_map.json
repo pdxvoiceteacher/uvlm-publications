@@ -1,0 +1,25 @@
+{
+  "generatedAt": "2026-03-08",
+  "provenance": {
+    "schemaVersion": "phase-ac.0",
+    "producerCommits": ["sophia-ac-111"],
+    "sourceMode": "fixture"
+  },
+  "entries": [
+    {
+      "reviewId": "cr-001",
+      "maturityConstraints": ["bounded-claiming", "human-ratification-required"],
+      "reviewerPositions": ["support", "qualified-support", "dissent"]
+    },
+    {
+      "reviewId": "cr-002",
+      "maturityConstraints": ["insufficient-authority-alignment"],
+      "reviewerPositions": ["support", "oppose"]
+    },
+    {
+      "reviewId": "cr-003",
+      "maturityConstraints": ["insufficient-evidence"],
+      "reviewerPositions": ["undetermined"]
+    }
+  ]
+}

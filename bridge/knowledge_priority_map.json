@@ -1,0 +1,9 @@
+{
+  "generatedAt": "2026-03-08",
+  "provenance": {"schemaVersion": "phase-an.0", "producerCommits": ["sophia-an-111"], "sourceMode": "fixture"},
+  "entries": [
+    {"reviewId": "va-001", "knowledgePriorityRank": 1},
+    {"reviewId": "va-002", "knowledgePriorityRank": 2},
+    {"reviewId": "va-003", "knowledgePriorityRank": 7}
+  ]
+}
