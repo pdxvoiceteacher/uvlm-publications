@@ -967,3 +967,17 @@ Publisher surfaces only **Sophia-audited experimental materials**; no automatic 
 python3 scripts/build_experimental_overlay.py
 python3 -m unittest tests/test_build_experimental_overlay.py
 ```
+
+## Theory Corpus, Negative Results, and Revision Lineage Overlay (Phase AH)
+
+Publisher surfaces only **Sophia-audited theory corpus materials**; no automatic theory certification or canonical mutation occurs from this layer.
+
+- script: `scripts/build_theory_corpus_overlay.py`
+- inputs: `bridge/theory_corpus_audit.json`, `bridge/theory_corpus_recommendations.json`, `bridge/theory_corpus_map.json`, `bridge/theory_revision_lineage.json`, `bridge/negative_result_registry.json`, `bridge/theory_competition_report.json`, `registry/experiment_dashboard.json`, `registry/prediction_dashboard.json`, `registry/branch_dashboard.json`
+- outputs: `registry/theory_dashboard.json`, `registry/theory_registry.json`, `registry/negative_result_watchlist.json`, `registry/theory_annotations.json`
+
+```bash
+python3 scripts/build_theory_corpus_overlay.py
+python3 -m unittest tests/test_build_theory_corpus_overlay.py
+```
+

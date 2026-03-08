@@ -1,0 +1,9 @@
+{
+  "generatedAt": "2026-03-08",
+  "provenance": {"schemaVersion": "phase-ah.0", "producerCommits": ["sophia-ah-111"], "sourceMode": "fixture"},
+  "entries": [
+    {"reviewId": "th-001", "theoryStatus": "provisional", "falsificationStatus": "tested", "replicationStatus": "replicated", "competitionState": "contested-leading"},
+    {"reviewId": "th-002", "theoryStatus": "under-review", "falsificationStatus": "pending", "replicationStatus": "pending", "competitionState": "active-competition"},
+    {"reviewId": "th-003", "theoryStatus": "withheld", "falsificationStatus": "not-assessed", "replicationStatus": "not-assessed", "competitionState": "suppressed"}
+  ]
+}

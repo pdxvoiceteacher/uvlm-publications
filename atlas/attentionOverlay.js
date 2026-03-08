@@ -164,7 +164,11 @@ export async function loadAttentionOverlay() {
     experimentDashboardResp,
     hypothesisRegistryResp,
     falsificationWatchlistResp,
-    theoryGateAnnotationsResp
+    theoryGateAnnotationsResp,
+    theoryDashboardResp,
+    theoryRegistryResp,
+    negativeResultWatchlistResp,
+    theoryAnnotationsResp
   ] = await Promise.all([
     fetch('../bridge/attention_updates.json').catch(() => null),
     fetch('../bridge/coherence_assessment.json').catch(() => null),
@@ -287,7 +291,11 @@ export async function loadAttentionOverlay() {
     fetch('../registry/experiment_dashboard.json').catch(() => null),
     fetch('../registry/hypothesis_registry.json').catch(() => null),
     fetch('../registry/falsification_watchlist.json').catch(() => null),
-    fetch('../registry/theory_gate_annotations.json').catch(() => null)
+    fetch('../registry/theory_gate_annotations.json').catch(() => null),
+    fetch('../registry/theory_dashboard.json').catch(() => null),
+    fetch('../registry/theory_registry.json').catch(() => null),
+    fetch('../registry/negative_result_watchlist.json').catch(() => null),
+    fetch('../registry/theory_annotations.json').catch(() => null)
   ]);
 
   return {
@@ -412,7 +420,11 @@ export async function loadAttentionOverlay() {
     experimentDashboard: experimentDashboardResp ? await experimentDashboardResp.json() : {},
     hypothesisRegistry: hypothesisRegistryResp ? await hypothesisRegistryResp.json() : {},
     falsificationWatchlist: falsificationWatchlistResp ? await falsificationWatchlistResp.json() : {},
-    theoryGateAnnotations: theoryGateAnnotationsResp ? await theoryGateAnnotationsResp.json() : {}
+    theoryGateAnnotations: theoryGateAnnotationsResp ? await theoryGateAnnotationsResp.json() : {},
+    theoryDashboard: theoryDashboardResp ? await theoryDashboardResp.json() : {},
+    theoryRegistry: theoryRegistryResp ? await theoryRegistryResp.json() : {},
+    negativeResultWatchlist: negativeResultWatchlistResp ? await negativeResultWatchlistResp.json() : {},
+    theoryAnnotations: theoryAnnotationsResp ? await theoryAnnotationsResp.json() : {}
   };
 }
 
@@ -2507,6 +2519,86 @@ function buildExperimentalConceptSignals(experimentDashboard, hypothesisRegistry
   return byConcept;
 }
 
+
+
+function buildTheoryCorpusConceptSignals(theoryDashboard, theoryRegistry, negativeResultWatchlist, theoryAnnotations) {
+  const byConcept = new Map();
+
+  function bump(targetId, update) {
+    if (typeof targetId !== 'string') {
+      return;
+    }
+    const existing = byConcept.get(targetId) ?? {
+      theoryStatus: 'under-review',
+      falsificationStatus: 'pending',
+      replicationStatus: 'pending',
+      revisionLineage: [],
+      negativeResultIndicators: [],
+      competitionState: 'unresolved',
+      competitionPeers: [],
+      theoryQueueStatus: 'none',
+    };
+    update(existing);
+    byConcept.set(targetId, existing);
+  }
+
+  const registryByReview = new Map();
+  asArray(theoryRegistry?.entries).forEach((entry) => {
+    if (typeof entry?.reviewId === 'string') {
+      registryByReview.set(entry.reviewId, entry);
+    }
+  });
+
+  asArray(theoryDashboard?.entries).forEach((entry) => {
+    const reg = registryByReview.get(entry?.reviewId);
+    asArray(entry?.linkedTargetIds).forEach((targetId) => {
+      bump(targetId, (s) => {
+        s.theoryStatus = entry?.theoryStatus ?? reg?.theoryStatus ?? s.theoryStatus;
+        s.falsificationStatus = entry?.falsificationStatus ?? reg?.falsificationStatus ?? s.falsificationStatus;
+        s.replicationStatus = entry?.replicationStatus ?? reg?.replicationStatus ?? s.replicationStatus;
+        s.revisionLineage = asArray(entry?.revisionLineage ?? reg?.revisionLineage ?? s.revisionLineage);
+        s.negativeResultIndicators = asArray(entry?.negativeResultIndicators ?? reg?.negativeResultIndicators ?? s.negativeResultIndicators);
+        s.competitionState = entry?.competitionState ?? reg?.competitionState ?? s.competitionState;
+        s.competitionPeers = asArray(entry?.competitionPeers ?? reg?.competitionPeers ?? s.competitionPeers);
+        s.theoryQueueStatus = 'dashboard';
+      });
+    });
+  });
+
+  asArray(negativeResultWatchlist?.entries).forEach((entry) => {
+    asArray(entry?.linkedTargetIds).forEach((targetId) => {
+      bump(targetId, (s) => {
+        s.theoryStatus = entry?.theoryStatus ?? s.theoryStatus;
+        s.falsificationStatus = entry?.falsificationStatus ?? s.falsificationStatus;
+        s.replicationStatus = entry?.replicationStatus ?? s.replicationStatus;
+        s.revisionLineage = asArray(entry?.revisionLineage ?? s.revisionLineage);
+        s.negativeResultIndicators = asArray(entry?.negativeResultIndicators ?? s.negativeResultIndicators);
+        s.competitionState = entry?.competitionState ?? s.competitionState;
+        s.competitionPeers = asArray(entry?.competitionPeers ?? s.competitionPeers);
+        if (s.theoryQueueStatus !== 'dashboard') {
+          s.theoryQueueStatus = 'watch';
+        }
+      });
+    });
+  });
+
+  asArray(theoryAnnotations?.annotations).forEach((entry) => {
+    asArray(entry?.linkedTargetIds).forEach((targetId) => {
+      bump(targetId, (s) => {
+        s.theoryStatus = entry?.theoryStatus ?? s.theoryStatus;
+        s.falsificationStatus = entry?.falsificationStatus ?? s.falsificationStatus;
+        s.replicationStatus = entry?.replicationStatus ?? s.replicationStatus;
+        s.revisionLineage = asArray(entry?.revisionLineage ?? s.revisionLineage);
+        s.negativeResultIndicators = asArray(entry?.negativeResultIndicators ?? s.negativeResultIndicators);
+        s.competitionState = entry?.competitionState ?? s.competitionState;
+        s.competitionPeers = asArray(entry?.competitionPeers ?? s.competitionPeers);
+      });
+    });
+  });
+
+  return byConcept;
+}
+
 function buildConstitutionalConceptSignals(constitutionalAnnotations, governanceFailureWatchlist) {
   const byConcept = new Map();
 
@@ -2713,7 +2805,12 @@ export function applyAttentionOverlay(cy, overlay) {
     overlay?.falsificationWatchlist,
     overlay?.theoryGateAnnotations
   );
-
+  const theorySignals = buildTheoryCorpusConceptSignals(
+    overlay?.theoryDashboard,
+    overlay?.theoryRegistry,
+    overlay?.negativeResultWatchlist,
+    overlay?.theoryAnnotations
+  );
 
   const institutionalProvenance = overlay?.institutionalStatus?.provenance ?? {};
   const institutionalSchemaVersion = institutionalProvenance?.schemaVersions?.institutional_state_summary
@@ -2823,6 +2920,12 @@ export function applyAttentionOverlay(cy, overlay) {
     ?? 'unknown';
   const experimentalProducerCommits = asArray(experimentalProvenance?.producerCommits).join(', ') || 'unknown';
   const experimentalSourceMode = experimentalProvenance?.derivedFromFixtures ? 'fixture' : 'live';
+  const theoryProvenance = overlay?.theoryDashboard?.provenance ?? {};
+  const theorySchemaVersion = theoryProvenance?.schemaVersions?.theory_corpus_map
+    ?? theoryProvenance?.schemaVersions?.theory_revision_lineage
+    ?? 'unknown';
+  const theoryProducerCommits = asArray(theoryProvenance?.producerCommits).join(', ') || 'unknown';
+  const theorySourceMode = theoryProvenance?.derivedFromFixtures ? 'fixture' : 'live';
 
   cy.nodes('[class = "concept"]').forEach((node) => {
     const id = node.id();
@@ -3076,8 +3179,19 @@ export function applyAttentionOverlay(cy, overlay) {
     node.data('experimentalSchemaVersion', experimentalSchemaVersion);
     node.data('experimentalProducerCommits', experimentalProducerCommits);
     node.data('experimentalSourceMode', experimentalSourceMode);
+    const theory = theorySignals.get(id);
+    node.data('theoryStatus', theory?.theoryStatus ?? 'under-review');
+    node.data('theoryFalsificationStatus', theory?.falsificationStatus ?? 'pending');
+    node.data('theoryReplicationStatus', theory?.replicationStatus ?? 'pending');
+    node.data('revisionLineage', asArray(theory?.revisionLineage));
+    node.data('negativeResultIndicators', asArray(theory?.negativeResultIndicators));
+    node.data('competitionState', theory?.competitionState ?? 'unresolved');
+    node.data('competitionPeers', asArray(theory?.competitionPeers));
+    node.data('theorySchemaVersion', theorySchemaVersion);
+    node.data('theoryProducerCommits', theoryProducerCommits);
+    node.data('theorySourceMode', theorySourceMode);
 
-    node.removeClass('attention-priority attention-secondary sonya-candidate reasoning-thread reasoning-watch stability-positive stability-watch multimodal-donation multimodal-watch review-candidate watch-queue governance-review governance-watch constitutional-watch constitutional-freeze deliberation-docket deliberation-watch deliberation-urgent anti-capture-watch continuity-docket continuity-watch continuity-fragile continuity-freeze recovery-docket recovery-watch escrow-ready recovery-fragile attestation-docket attestation-watch witness-sufficient attestation-sensitive precedent-docket precedent-watch precedent-divergent precedent-strong scenario-docket scenario-watch scenario-freeze scenario-rehearse-recovery institutional-status-indicator chamber-conflict-indicator system-health-overview queue-health-actionable backlog-pressure-watch review-fatigue-watch metric-gaming-watch load-shedding-recommended priority-actionable triage-watch urgency-high priority-critical triage-conflict closure-active closure-provisional repair-urgent reopened-watch symbolic-field-active regime-shift-watch lambda-warning architecture-hint verification-active entity-ambiguity verification-urgent claim-typed public-record-active entity-graph-linked relationship-ambiguous custody-fragile machine-readable-record investigation-active investigation-stage-mid investigation-stage-late investigation-plan-progressing investigation-blocked dependency-graph-linked authority-gated weak-evidence-signal authority-mismatch propagation-restricted maturity-gated review-packet-ready review-packet-watch packet-ambiguity-high uncertainty-disclosed synthesis-bounded pattern-cluster-active cross-case-hints pattern-maturity-stable pattern-conflict pattern-timeline-active persistence-stable temporal-conflict-marker causal-bundle-active mechanism-candidate explanatory-gap-high prohibited-conclusion causal-conflict-marker collaborative-review-active consensus-provisional dissent-present collaborative-maturity-bound telemetry-field-active lattice-transition donor-pattern-active taf-elevated branch-novel branch-maturity-bound branch-lifecycle-active branch-conflict-graph branch-decay-indicator branch-reinforcement-trend branch-contradiction-trend forecast-accuracy-high calibration-improving branch-reliability-stable prediction-timeline-active experimental-active falsification-ready replication-defined theory-gate-hold');
+    node.removeClass('attention-priority attention-secondary sonya-candidate reasoning-thread reasoning-watch stability-positive stability-watch multimodal-donation multimodal-watch review-candidate watch-queue governance-review governance-watch constitutional-watch constitutional-freeze deliberation-docket deliberation-watch deliberation-urgent anti-capture-watch continuity-docket continuity-watch continuity-fragile continuity-freeze recovery-docket recovery-watch escrow-ready recovery-fragile attestation-docket attestation-watch witness-sufficient attestation-sensitive precedent-docket precedent-watch precedent-divergent precedent-strong scenario-docket scenario-watch scenario-freeze scenario-rehearse-recovery institutional-status-indicator chamber-conflict-indicator system-health-overview queue-health-actionable backlog-pressure-watch review-fatigue-watch metric-gaming-watch load-shedding-recommended priority-actionable triage-watch urgency-high priority-critical triage-conflict closure-active closure-provisional repair-urgent reopened-watch symbolic-field-active regime-shift-watch lambda-warning architecture-hint verification-active entity-ambiguity verification-urgent claim-typed public-record-active entity-graph-linked relationship-ambiguous custody-fragile machine-readable-record investigation-active investigation-stage-mid investigation-stage-late investigation-plan-progressing investigation-blocked dependency-graph-linked authority-gated weak-evidence-signal authority-mismatch propagation-restricted maturity-gated review-packet-ready review-packet-watch packet-ambiguity-high uncertainty-disclosed synthesis-bounded pattern-cluster-active cross-case-hints pattern-maturity-stable pattern-conflict pattern-timeline-active persistence-stable temporal-conflict-marker causal-bundle-active mechanism-candidate explanatory-gap-high prohibited-conclusion causal-conflict-marker collaborative-review-active consensus-provisional dissent-present collaborative-maturity-bound telemetry-field-active lattice-transition donor-pattern-active taf-elevated branch-novel branch-maturity-bound branch-lifecycle-active branch-conflict-graph branch-decay-indicator branch-reinforcement-trend branch-contradiction-trend forecast-accuracy-high calibration-improving branch-reliability-stable prediction-timeline-active experimental-active falsification-ready replication-defined theory-gate-hold theory-corpus-active theory-negative-results theory-revision-lineage theory-competition-open');
     if ((rankData?.rank ?? Infinity) <= 2) {
       node.addClass('attention-priority');
     } else if ((rankData?.rank ?? Infinity) <= 5) {
@@ -3466,6 +3580,19 @@ export function applyAttentionOverlay(cy, overlay) {
     }
     if ((experimental?.theoryGateClass ?? 'hold') === 'hold') {
       node.addClass('theory-gate-hold');
+    }
+
+    if (['dashboard', 'watch'].includes(theory?.theoryQueueStatus ?? 'none')) {
+      node.addClass('theory-corpus-active');
+    }
+    if (asArray(theory?.negativeResultIndicators).length > 0) {
+      node.addClass('theory-negative-results');
+    }
+    if (asArray(theory?.revisionLineage).length > 0) {
+      node.addClass('theory-revision-lineage');
+    }
+    if (['active-competition', 'contested-leading', 'unresolved'].includes(theory?.competitionState ?? 'unresolved')) {
+      node.addClass('theory-competition-open');
     }
   });
 }

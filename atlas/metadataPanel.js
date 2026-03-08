@@ -255,6 +255,16 @@ function renderConcept(data) {
     row('Experimental Schema Version', data.experimentalSchemaVersion ?? 'unknown'),
     row('Experimental Producer Commit(s)', data.experimentalProducerCommits ?? 'unknown'),
     row('Experimental Source Mode', data.experimentalSourceMode ?? 'unknown'),
+    row('Theory Status', data.theoryStatus ?? 'under-review'),
+    row('Theory Falsification Status', data.theoryFalsificationStatus ?? 'pending'),
+    row('Theory Replication Status', data.theoryReplicationStatus ?? 'pending'),
+    row('Revision Lineage', asList(data.revisionLineage)),
+    row('Negative Result Indicators', asList(data.negativeResultIndicators)),
+    row('Competition State', data.competitionState ?? 'unresolved'),
+    row('Competition Peers', asList(data.competitionPeers)),
+    row('Theory Schema Version', data.theorySchemaVersion ?? 'unknown'),
+    row('Theory Producer Commit(s)', data.theoryProducerCommits ?? 'unknown'),
+    row('Theory Source Mode', data.theorySourceMode ?? 'unknown'),
     row('Related Concepts', data.relatedConceptCount ?? 0),
     renderConceptRelations(data.relatedConcepts)
   ].join('');
