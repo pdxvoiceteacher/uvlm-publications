@@ -1,0 +1,9 @@
+{
+  "generatedAt": "2026-03-08",
+  "provenance": {"schemaVersion": "phase-ai.0", "producerCommits": ["sophia-ai-111"], "sourceMode": "fixture"},
+  "audits": [
+    {"reviewId": "ag-001", "agencyAuditState": "verified"},
+    {"reviewId": "ag-002", "agencyAuditState": "watch"},
+    {"reviewId": "ag-003", "agencyAuditState": "suppressed"}
+  ]
+}

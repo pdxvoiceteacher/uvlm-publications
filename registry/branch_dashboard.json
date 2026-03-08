@@ -1,0 +1,97 @@
+{
+  "generatedAt": "2026-03-08",
+  "branchLifecycleProtocol": true,
+  "nonCanonical": true,
+  "provenance": {
+    "schemaVersions": {
+      "branch_lifecycle_audit": "phase-ae.0",
+      "branch_lifecycle_recommendations": "phase-ae.0",
+      "branch_state_map": "phase-ae.0",
+      "branch_conflict_graph": "phase-ae.0",
+      "branch_decay_report": "phase-ae.0",
+      "branch_reinforcement_trend": "phase-ae.0",
+      "telemetry_dashboard": "composite",
+      "causal_dashboard": "composite",
+      "collaborative_review_dashboard": "composite"
+    },
+    "producerCommits": [
+      "sophia-ae-111",
+      "sophia-ad-111",
+      "sophia-t-111",
+      "cl-t-222",
+      "cl-commit-aaa111",
+      "sophia-commit-bbb222",
+      "sophia-commit-qqq111",
+      "cl-commit-qqq222",
+      "sophia-r-111",
+      "cl-r-222",
+      "sophia-s-111",
+      "cl-s-222",
+      "sophia-u-111",
+      "sophia-v-111",
+      "sophia-x1-111",
+      "coherence-x1-111",
+      "coherence-x1-112",
+      "coherence-x1-113",
+      "coherence-x1-114",
+      "cl-u-222",
+      "cl-v-222",
+      "sophia-ab-111",
+      "cl-ab-111",
+      "cl-ab-112",
+      "cl-ab-113",
+      "cl-ab-114",
+      "sophia-z1-111",
+      "cl-z1-111",
+      "cl-z1-112",
+      "cl-z1-113",
+      "sophia-z-111",
+      "cl-z-111",
+      "cl-z-112",
+      "cl-z-113",
+      "cl-z-114",
+      "sophia-y-111",
+      "cl-y-111",
+      "cl-y-112",
+      "cl-y-113",
+      "cl-y-114",
+      "sophia-aa-111",
+      "sophia-ac-111"
+    ],
+    "sourceModes": {
+      "branch_lifecycle_audit": "fixture",
+      "branch_lifecycle_recommendations": "fixture",
+      "branch_state_map": "fixture",
+      "branch_conflict_graph": "fixture",
+      "branch_decay_report": "fixture",
+      "branch_reinforcement_trend": "fixture",
+      "telemetry_dashboard": "fixture",
+      "causal_dashboard": "fixture",
+      "collaborative_review_dashboard": "fixture"
+    },
+    "derivedFromFixtures": true
+  },
+  "entries": [
+    {
+      "reviewId": "bl-001",
+      "branchLifecycleStatus": "active-lifecycle",
+      "branchStage": "stabilizing",
+      "conflictNodes": [
+        "n1"
+      ],
+      "conflictEdges": [
+        "e1"
+      ],
+      "decayRisk": "low",
+      "decaySignals": [],
+      "reinforcementTrend": "up",
+      "contradictionTrend": "low",
+      "branchAuditState": "verified",
+      "linkedTargetIds": [
+        "concept:coherence-lattice"
+      ],
+      "humanReviewFlag": true,
+      "queuedAt": "2026-03-08"
+    }
+  ]
+}

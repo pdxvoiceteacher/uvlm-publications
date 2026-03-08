@@ -1,0 +1,13 @@
+{
+  "generatedAt": "2026-03-07",
+  "provenance": {
+    "schemaVersion": "phase-x1.0",
+    "producerCommits": ["coherence-x1-112"],
+    "sourceMode": "fixture"
+  },
+  "entries": [
+    {"reviewId": "ea-001", "evidenceMaturity": "corroborated", "authorityMismatchFlag": false},
+    {"reviewId": "ea-002", "evidenceMaturity": "weak", "authorityMismatchFlag": true},
+    {"reviewId": "ea-003", "evidenceMaturity": "weak", "authorityMismatchFlag": true}
+  ]
+}

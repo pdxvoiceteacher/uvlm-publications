@@ -1,0 +1,13 @@
+{
+  "generatedAt": "2026-03-07",
+  "provenance": {
+    "schemaVersion": "phase-y.0",
+    "producerCommits": ["cl-y-113"],
+    "sourceMode": "fixture"
+  },
+  "entries": [
+    {"reviewId": "rp-001", "synthesisStatus": "bounded", "excludedConclusions": ["identity-attribution", "culpability-claim"]},
+    {"reviewId": "rp-002", "synthesisStatus": "provisional", "excludedConclusions": ["public-escalation"]},
+    {"reviewId": "rp-003", "synthesisStatus": "withheld", "excludedConclusions": ["identity-accusation"]}
+  ]
+}
