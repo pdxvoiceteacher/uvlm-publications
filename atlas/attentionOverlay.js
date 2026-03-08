@@ -160,7 +160,11 @@ export async function loadAttentionOverlay() {
     predictionDashboardResp,
     forecastRegistryResp,
     predictionWatchlistResp,
-    calibrationAnnotationsResp
+    calibrationAnnotationsResp,
+    experimentDashboardResp,
+    hypothesisRegistryResp,
+    falsificationWatchlistResp,
+    theoryGateAnnotationsResp
   ] = await Promise.all([
     fetch('../bridge/attention_updates.json').catch(() => null),
     fetch('../bridge/coherence_assessment.json').catch(() => null),
@@ -279,7 +283,11 @@ export async function loadAttentionOverlay() {
     fetch('../registry/prediction_dashboard.json').catch(() => null),
     fetch('../registry/forecast_registry.json').catch(() => null),
     fetch('../registry/prediction_watchlist.json').catch(() => null),
-    fetch('../registry/calibration_annotations.json').catch(() => null)
+    fetch('../registry/calibration_annotations.json').catch(() => null),
+    fetch('../registry/experiment_dashboard.json').catch(() => null),
+    fetch('../registry/hypothesis_registry.json').catch(() => null),
+    fetch('../registry/falsification_watchlist.json').catch(() => null),
+    fetch('../registry/theory_gate_annotations.json').catch(() => null)
   ]);
 
   return {
@@ -400,7 +408,11 @@ export async function loadAttentionOverlay() {
     predictionDashboard: predictionDashboardResp ? await predictionDashboardResp.json() : {},
     forecastRegistry: forecastRegistryResp ? await forecastRegistryResp.json() : {},
     predictionWatchlist: predictionWatchlistResp ? await predictionWatchlistResp.json() : {},
-    calibrationAnnotations: calibrationAnnotationsResp ? await calibrationAnnotationsResp.json() : {}
+    calibrationAnnotations: calibrationAnnotationsResp ? await calibrationAnnotationsResp.json() : {},
+    experimentDashboard: experimentDashboardResp ? await experimentDashboardResp.json() : {},
+    hypothesisRegistry: hypothesisRegistryResp ? await hypothesisRegistryResp.json() : {},
+    falsificationWatchlist: falsificationWatchlistResp ? await falsificationWatchlistResp.json() : {},
+    theoryGateAnnotations: theoryGateAnnotationsResp ? await theoryGateAnnotationsResp.json() : {}
   };
 }
 
@@ -2423,6 +2435,78 @@ function buildPredictionConceptSignals(predictionDashboard, forecastRegistry, pr
   return byConcept;
 }
 
+
+
+function buildExperimentalConceptSignals(experimentDashboard, hypothesisRegistry, falsificationWatchlist, theoryGateAnnotations) {
+  const byConcept = new Map();
+
+  function bump(targetId, update) {
+    if (typeof targetId !== 'string') {
+      return;
+    }
+    const existing = byConcept.get(targetId) ?? {
+      experimentalStatus: 'design',
+      falsificationReadiness: 'pending',
+      replicationPathwayStatus: 'pending',
+      theoryGateClass: 'hold',
+      hypothesisClass: 'exploratory',
+      experimentalQueueStatus: 'none',
+    };
+    update(existing);
+    byConcept.set(targetId, existing);
+  }
+
+  const registryByReview = new Map();
+  asArray(hypothesisRegistry?.entries).forEach((entry) => {
+    if (typeof entry?.reviewId === 'string') {
+      registryByReview.set(entry.reviewId, entry);
+    }
+  });
+
+  asArray(experimentDashboard?.entries).forEach((entry) => {
+    const reg = registryByReview.get(entry?.reviewId);
+    asArray(entry?.linkedTargetIds).forEach((targetId) => {
+      bump(targetId, (s) => {
+        s.experimentalStatus = entry?.experimentalStatus ?? reg?.experimentalStatus ?? s.experimentalStatus;
+        s.falsificationReadiness = entry?.falsificationReadiness ?? reg?.falsificationReadiness ?? s.falsificationReadiness;
+        s.replicationPathwayStatus = entry?.replicationPathwayStatus ?? reg?.replicationPathwayStatus ?? s.replicationPathwayStatus;
+        s.theoryGateClass = entry?.theoryGateClass ?? reg?.theoryGateClass ?? s.theoryGateClass;
+        s.hypothesisClass = entry?.hypothesisClass ?? reg?.hypothesisClass ?? s.hypothesisClass;
+        s.experimentalQueueStatus = 'dashboard';
+      });
+    });
+  });
+
+  asArray(falsificationWatchlist?.entries).forEach((entry) => {
+    asArray(entry?.linkedTargetIds).forEach((targetId) => {
+      bump(targetId, (s) => {
+        s.experimentalStatus = entry?.experimentalStatus ?? s.experimentalStatus;
+        s.falsificationReadiness = entry?.falsificationReadiness ?? s.falsificationReadiness;
+        s.replicationPathwayStatus = entry?.replicationPathwayStatus ?? s.replicationPathwayStatus;
+        s.theoryGateClass = entry?.theoryGateClass ?? s.theoryGateClass;
+        s.hypothesisClass = entry?.hypothesisClass ?? s.hypothesisClass;
+        if (s.experimentalQueueStatus !== 'dashboard') {
+          s.experimentalQueueStatus = 'watch';
+        }
+      });
+    });
+  });
+
+  asArray(theoryGateAnnotations?.annotations).forEach((entry) => {
+    asArray(entry?.linkedTargetIds).forEach((targetId) => {
+      bump(targetId, (s) => {
+        s.experimentalStatus = entry?.experimentalStatus ?? s.experimentalStatus;
+        s.falsificationReadiness = entry?.falsificationReadiness ?? s.falsificationReadiness;
+        s.replicationPathwayStatus = entry?.replicationPathwayStatus ?? s.replicationPathwayStatus;
+        s.theoryGateClass = entry?.theoryGateClass ?? s.theoryGateClass;
+        s.hypothesisClass = entry?.hypothesisClass ?? s.hypothesisClass;
+      });
+    });
+  });
+
+  return byConcept;
+}
+
 function buildConstitutionalConceptSignals(constitutionalAnnotations, governanceFailureWatchlist) {
   const byConcept = new Map();
 
@@ -2623,6 +2707,12 @@ export function applyAttentionOverlay(cy, overlay) {
     overlay?.predictionWatchlist,
     overlay?.calibrationAnnotations
   );
+  const experimentalSignals = buildExperimentalConceptSignals(
+    overlay?.experimentDashboard,
+    overlay?.hypothesisRegistry,
+    overlay?.falsificationWatchlist,
+    overlay?.theoryGateAnnotations
+  );
 
 
   const institutionalProvenance = overlay?.institutionalStatus?.provenance ?? {};
@@ -2727,6 +2817,12 @@ export function applyAttentionOverlay(cy, overlay) {
     ?? 'unknown';
   const predictionProducerCommits = asArray(predictionProvenance?.producerCommits).join(', ') || 'unknown';
   const predictionSourceMode = predictionProvenance?.derivedFromFixtures ? 'fixture' : 'live';
+  const experimentalProvenance = overlay?.experimentDashboard?.provenance ?? {};
+  const experimentalSchemaVersion = experimentalProvenance?.schemaVersions?.experimental_hypothesis_map
+    ?? experimentalProvenance?.schemaVersions?.falsification_design_report
+    ?? 'unknown';
+  const experimentalProducerCommits = asArray(experimentalProvenance?.producerCommits).join(', ') || 'unknown';
+  const experimentalSourceMode = experimentalProvenance?.derivedFromFixtures ? 'fixture' : 'live';
 
   cy.nodes('[class = "concept"]').forEach((node) => {
     const id = node.id();
@@ -2971,8 +3067,17 @@ export function applyAttentionOverlay(cy, overlay) {
     node.data('predictionSchemaVersion', predictionSchemaVersion);
     node.data('predictionProducerCommits', predictionProducerCommits);
     node.data('predictionSourceMode', predictionSourceMode);
+    const experimental = experimentalSignals.get(id);
+    node.data('experimentalStatus', experimental?.experimentalStatus ?? 'design');
+    node.data('falsificationReadiness', experimental?.falsificationReadiness ?? 'pending');
+    node.data('replicationPathwayStatus', experimental?.replicationPathwayStatus ?? 'pending');
+    node.data('theoryGateClass', experimental?.theoryGateClass ?? 'hold');
+    node.data('hypothesisClass', experimental?.hypothesisClass ?? 'exploratory');
+    node.data('experimentalSchemaVersion', experimentalSchemaVersion);
+    node.data('experimentalProducerCommits', experimentalProducerCommits);
+    node.data('experimentalSourceMode', experimentalSourceMode);
 
-    node.removeClass('attention-priority attention-secondary sonya-candidate reasoning-thread reasoning-watch stability-positive stability-watch multimodal-donation multimodal-watch review-candidate watch-queue governance-review governance-watch constitutional-watch constitutional-freeze deliberation-docket deliberation-watch deliberation-urgent anti-capture-watch continuity-docket continuity-watch continuity-fragile continuity-freeze recovery-docket recovery-watch escrow-ready recovery-fragile attestation-docket attestation-watch witness-sufficient attestation-sensitive precedent-docket precedent-watch precedent-divergent precedent-strong scenario-docket scenario-watch scenario-freeze scenario-rehearse-recovery institutional-status-indicator chamber-conflict-indicator system-health-overview queue-health-actionable backlog-pressure-watch review-fatigue-watch metric-gaming-watch load-shedding-recommended priority-actionable triage-watch urgency-high priority-critical triage-conflict closure-active closure-provisional repair-urgent reopened-watch symbolic-field-active regime-shift-watch lambda-warning architecture-hint verification-active entity-ambiguity verification-urgent claim-typed public-record-active entity-graph-linked relationship-ambiguous custody-fragile machine-readable-record investigation-active investigation-stage-mid investigation-stage-late investigation-plan-progressing investigation-blocked dependency-graph-linked authority-gated weak-evidence-signal authority-mismatch propagation-restricted maturity-gated review-packet-ready review-packet-watch packet-ambiguity-high uncertainty-disclosed synthesis-bounded pattern-cluster-active cross-case-hints pattern-maturity-stable pattern-conflict pattern-timeline-active persistence-stable temporal-conflict-marker causal-bundle-active mechanism-candidate explanatory-gap-high prohibited-conclusion causal-conflict-marker collaborative-review-active consensus-provisional dissent-present collaborative-maturity-bound telemetry-field-active lattice-transition donor-pattern-active taf-elevated branch-novel branch-maturity-bound branch-lifecycle-active branch-conflict-graph branch-decay-indicator branch-reinforcement-trend branch-contradiction-trend forecast-accuracy-high calibration-improving branch-reliability-stable prediction-timeline-active');
+    node.removeClass('attention-priority attention-secondary sonya-candidate reasoning-thread reasoning-watch stability-positive stability-watch multimodal-donation multimodal-watch review-candidate watch-queue governance-review governance-watch constitutional-watch constitutional-freeze deliberation-docket deliberation-watch deliberation-urgent anti-capture-watch continuity-docket continuity-watch continuity-fragile continuity-freeze recovery-docket recovery-watch escrow-ready recovery-fragile attestation-docket attestation-watch witness-sufficient attestation-sensitive precedent-docket precedent-watch precedent-divergent precedent-strong scenario-docket scenario-watch scenario-freeze scenario-rehearse-recovery institutional-status-indicator chamber-conflict-indicator system-health-overview queue-health-actionable backlog-pressure-watch review-fatigue-watch metric-gaming-watch load-shedding-recommended priority-actionable triage-watch urgency-high priority-critical triage-conflict closure-active closure-provisional repair-urgent reopened-watch symbolic-field-active regime-shift-watch lambda-warning architecture-hint verification-active entity-ambiguity verification-urgent claim-typed public-record-active entity-graph-linked relationship-ambiguous custody-fragile machine-readable-record investigation-active investigation-stage-mid investigation-stage-late investigation-plan-progressing investigation-blocked dependency-graph-linked authority-gated weak-evidence-signal authority-mismatch propagation-restricted maturity-gated review-packet-ready review-packet-watch packet-ambiguity-high uncertainty-disclosed synthesis-bounded pattern-cluster-active cross-case-hints pattern-maturity-stable pattern-conflict pattern-timeline-active persistence-stable temporal-conflict-marker causal-bundle-active mechanism-candidate explanatory-gap-high prohibited-conclusion causal-conflict-marker collaborative-review-active consensus-provisional dissent-present collaborative-maturity-bound telemetry-field-active lattice-transition donor-pattern-active taf-elevated branch-novel branch-maturity-bound branch-lifecycle-active branch-conflict-graph branch-decay-indicator branch-reinforcement-trend branch-contradiction-trend forecast-accuracy-high calibration-improving branch-reliability-stable prediction-timeline-active experimental-active falsification-ready replication-defined theory-gate-hold');
     if ((rankData?.rank ?? Infinity) <= 2) {
       node.addClass('attention-priority');
     } else if ((rankData?.rank ?? Infinity) <= 5) {
@@ -3348,6 +3453,19 @@ export function applyAttentionOverlay(cy, overlay) {
     }
     if (asArray(prediction?.outcomeTimeline).length > 0) {
       node.addClass('prediction-timeline-active');
+    }
+
+    if (['dashboard', 'watch'].includes(experimental?.experimentalQueueStatus ?? 'none')) {
+      node.addClass('experimental-active');
+    }
+    if ((experimental?.falsificationReadiness ?? 'pending') === 'ready') {
+      node.addClass('falsification-ready');
+    }
+    if ((experimental?.replicationPathwayStatus ?? 'pending') === 'defined') {
+      node.addClass('replication-defined');
+    }
+    if ((experimental?.theoryGateClass ?? 'hold') === 'hold') {
+      node.addClass('theory-gate-hold');
     }
   });
 }

@@ -954,3 +954,16 @@ Publisher surfaces only **Sophia-audited prediction materials**; no automatic br
 python3 scripts/build_prediction_overlay.py
 python3 -m unittest tests/test_build_prediction_overlay.py
 ```
+
+## Experimental Design, Falsification, and Replication Overlay (Phase AG)
+
+Publisher surfaces only **Sophia-audited experimental materials**; no automatic theory promotion or canonical mutation occurs from this layer.
+
+- script: `scripts/build_experimental_overlay.py`
+- inputs: `bridge/experimental_audit.json`, `bridge/experimental_recommendations.json`, `bridge/experimental_hypothesis_map.json`, `bridge/falsification_design_report.json`, `bridge/replication_pathway_map.json`, `bridge/theory_promotion_gate.json`, `registry/prediction_dashboard.json`, `registry/branch_dashboard.json`, `registry/authority_gate_dashboard.json`
+- outputs: `registry/experiment_dashboard.json`, `registry/hypothesis_registry.json`, `registry/falsification_watchlist.json`, `registry/theory_gate_annotations.json`
+
+```bash
+python3 scripts/build_experimental_overlay.py
+python3 -m unittest tests/test_build_experimental_overlay.py
+```

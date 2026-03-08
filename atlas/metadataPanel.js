@@ -247,6 +247,14 @@ function renderConcept(data) {
     row('Prediction Schema Version', data.predictionSchemaVersion ?? 'unknown'),
     row('Prediction Producer Commit(s)', data.predictionProducerCommits ?? 'unknown'),
     row('Prediction Source Mode', data.predictionSourceMode ?? 'unknown'),
+    row('Experimental Status', data.experimentalStatus ?? 'design'),
+    row('Hypothesis Class', data.hypothesisClass ?? 'exploratory'),
+    row('Falsification Readiness', data.falsificationReadiness ?? 'pending'),
+    row('Replication Pathway Status', data.replicationPathwayStatus ?? 'pending'),
+    row('Theory Gate Class', data.theoryGateClass ?? 'hold'),
+    row('Experimental Schema Version', data.experimentalSchemaVersion ?? 'unknown'),
+    row('Experimental Producer Commit(s)', data.experimentalProducerCommits ?? 'unknown'),
+    row('Experimental Source Mode', data.experimentalSourceMode ?? 'unknown'),
     row('Related Concepts', data.relatedConceptCount ?? 0),
     renderConceptRelations(data.relatedConcepts)
   ].join('');
