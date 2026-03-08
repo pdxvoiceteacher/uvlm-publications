@@ -1,0 +1,13 @@
+{
+  "generatedAt": "2026-03-07",
+  "provenance": {
+    "schemaVersion": "phase-y.0",
+    "producerCommits": ["cl-y-112"],
+    "sourceMode": "fixture"
+  },
+  "entries": [
+    {"reviewId": "rp-001", "maturityCeiling": "bounded-public-summary", "ambiguityLevel": "medium"},
+    {"reviewId": "rp-002", "maturityCeiling": "internal-watch-only", "ambiguityLevel": "high"},
+    {"reviewId": "rp-003", "maturityCeiling": "internal-watch-only", "ambiguityLevel": "high"}
+  ]
+}

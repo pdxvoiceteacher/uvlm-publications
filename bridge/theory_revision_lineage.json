@@ -1,0 +1,9 @@
+{
+  "generatedAt": "2026-03-08",
+  "provenance": {"schemaVersion": "phase-ah.0", "producerCommits": ["sophia-ah-111"], "sourceMode": "fixture"},
+  "entries": [
+    {"reviewId": "th-001", "revisionLineage": ["v1:baseline", "v2:counterexample-patch", "v3:replication-update"]},
+    {"reviewId": "th-002", "revisionLineage": ["v1:proposal", "v2:open-competition"]},
+    {"reviewId": "th-003", "revisionLineage": ["v1:retracted-draft"]}
+  ]
+}
