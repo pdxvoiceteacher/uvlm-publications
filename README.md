@@ -1145,12 +1145,22 @@ The interface should show the birth of a field as a pattern of convergence, not 
 - inputs: `bridge/emergent_domain_audit.json`, `bridge/emergent_domain_recommendations.json`, `bridge/emergent_domain_map.json`, `bridge/cross_domain_invariant_report.json`, `bridge/field_birth_pressure_report.json`, `bridge/domain_boundary_failure_map.json`, `registry/transfer_dashboard.json`, `registry/value_dashboard.json`, `registry/uncertainty_dashboard.json`, `registry/social_entropy_dashboard.json`, `registry/civic_literacy_dashboard.json`
 - outputs: `registry/emergent_domain_dashboard.json`, `registry/domain_birth_registry.json`, `registry/domain_boundary_watchlist.json`, `registry/emergent_domain_annotations.json`
 - policy: docket items are actionable emergent-domain entries, watch items are bounded domain-boundary tracking, suppressed items are excluded from actionable overlays.
+- canonical integrity helper: `scripts/canonical_integrity_manifest.py` evaluates bridge/registry manifest metadata and degrades trust presentation when manifests are missing, diverged, or have invalid constraint signatures.
 
 ```bash
 python3 scripts/build_emergent_domain_overlay.py
 python3 -m unittest tests/test_build_emergent_domain_overlay.py
 ```
 
+Canonical trust rule: derivatives that remove provenance or alter safety boundaries without disclosure lose canonical trust status.
+
 ### Phase-lock integration rule (Phase AT)
 
 `transfer / theory / prediction / curiosity / value / commons context -> CoherenceLattice emergent-domain formalization -> Sophia emergent-domain audit -> Publisher field-birth overlays -> human/community/scientific ratification pathways`
+
+
+## Canonical Integrity & Derivative Trust
+
+Bridge/registry artifacts may include canonical integrity manifests with constraint signatures.
+If immutable safety constraints change, the constraint signature must change accordingly.
+Derivatives that remove provenance or alter safety boundaries without disclosure lose canonical trust status and should be presented with degraded trust markers.

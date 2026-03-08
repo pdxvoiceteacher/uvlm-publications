@@ -6,6 +6,8 @@ import tempfile
 import unittest
 from pathlib import Path
 
+from scripts.canonical_integrity_manifest import compute_constraint_signature_sha256
+
 SCRIPT = Path('scripts/build_emergent_domain_overlay.py')
 
 
@@ -33,6 +35,18 @@ class EmergentDomainOverlayBuilderTests(unittest.TestCase):
         write_json(self.bridge / 'field_birth_pressure_report.json', {'provenance': prov, 'entries': [{'reviewId': 'ed-1', 'fieldBirthPressure': 'high', 'fieldBirthPressureScore': 0.81}]})
         write_json(self.bridge / 'domain_boundary_failure_map.json', {'provenance': prov, 'entries': [{'reviewId': 'ed-1', 'domainBoundaryFailure': 'porous'}]})
 
+        manifest = {
+            'originProject': 'uvlm-publications',
+            'canonicalPhaselock': 'phase-at-lock',
+            'modificationDisclosureRequired': True,
+            'ethicalBoundaryNotice': 'no canon formation',
+            'commonsIntegrityNotice': 'provenance required',
+            'constraintSignatureVersion': 'phase-at.integrity.v1',
+        }
+        manifest['constraintSignatureSha256'] = compute_constraint_signature_sha256(manifest)
+        write_json(self.bridge / 'canonical_integrity_manifest.json', manifest)
+        write_json(self.registry / 'canonical_integrity_manifest.json', manifest)
+
         reg_prov = {'provenance': {'schemaVersions': {'x': '1'}, 'producerCommits': ['abc'], 'derivedFromFixtures': True}}
         write_json(self.registry / 'transfer_dashboard.json', {**reg_prov, 'entries': []})
         write_json(self.registry / 'value_dashboard.json', {**reg_prov, 'entries': []})
@@ -57,6 +71,8 @@ class EmergentDomainOverlayBuilderTests(unittest.TestCase):
             '--uncertainty-dashboard', str(self.registry / 'uncertainty_dashboard.json'),
             '--social-entropy-dashboard', str(self.registry / 'social_entropy_dashboard.json'),
             '--civic-literacy-dashboard', str(self.registry / 'civic_literacy_dashboard.json'),
+            '--bridge-canonical-integrity-manifest', str(self.bridge / 'canonical_integrity_manifest.json'),
+            '--registry-canonical-integrity-manifest', str(self.registry / 'canonical_integrity_manifest.json'),
             '--out-emergent-domain-dashboard', str(self.registry / 'emergent_domain_dashboard.json'),
             '--out-domain-birth-registry', str(self.registry / 'domain_birth_registry.json'),
             '--out-domain-boundary-watchlist', str(self.registry / 'domain_boundary_watchlist.json'),
@@ -82,6 +98,16 @@ class EmergentDomainOverlayBuilderTests(unittest.TestCase):
         self.assertTrue(ann.get('noDisciplineRanking'))
         self.assertTrue(ann.get('noFieldSovereigntyClaims'))
         self.assertTrue(ann.get('noScientificCanonMutation'))
+
+    def test_missing_manifest_degrades_trust(self) -> None:
+        (self.bridge / 'canonical_integrity_manifest.json').unlink(missing_ok=True)
+
+        result = self.run_builder()
+        self.assertEqual(result.returncode, 0)
+        dashboard = json.loads((self.registry / 'emergent_domain_dashboard.json').read_text(encoding='utf-8'))
+        self.assertFalse(dashboard['canonicalIntegrityVerified'])
+        self.assertTrue(dashboard['modificationDisclosureMissing'])
+        self.assertTrue(dashboard['trustPresentationDegraded'])
 
     def test_invalid_numeric_values_default_to_zero(self) -> None:
         payload = json.loads((self.bridge / 'field_birth_pressure_report.json').read_text(encoding='utf-8'))

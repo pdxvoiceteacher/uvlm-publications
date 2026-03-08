@@ -364,6 +364,15 @@ function renderConcept(data) {
     row('Emergent-Domain Schema Version', data.emergentDomainSchemaVersion ?? 'unknown'),
     row('Emergent-Domain Producer Commit(s)', data.emergentDomainProducerCommits ?? 'unknown'),
     row('Emergent-Domain Source Mode', data.emergentDomainSourceMode ?? 'unknown'),
+    row('Canonical Integrity Verified', data.canonicalIntegrityVerified === true ? 'true' : 'false'),
+    row('Modification Disclosure Missing', data.modificationDisclosureMissing === true ? 'true' : 'false'),
+    row('Trust Presentation Degraded', data.trustPresentationDegraded === true ? 'true' : 'false'),
+    row('Origin Project', data.originProject ?? 'unknown'),
+    row('Canonical Phaselock', data.canonicalPhaselock ?? 'unknown'),
+    row('Ethical Boundary Notice', data.ethicalBoundaryNotice ?? 'unknown'),
+    row('Commons Integrity Notice', data.commonsIntegrityNotice ?? 'unknown'),
+    row('Constraint Signature Version', data.constraintSignatureVersion ?? 'unknown'),
+    row('Constraint Signature SHA-256', data.constraintSignatureSha256 ?? 'unknown'),
     row('Related Concepts', data.relatedConceptCount ?? 0),
     renderConceptRelations(data.relatedConcepts)
   ].join('');

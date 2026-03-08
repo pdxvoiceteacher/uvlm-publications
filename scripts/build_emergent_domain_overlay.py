@@ -14,6 +14,8 @@ import json
 from pathlib import Path
 from typing import Any
 
+from canonical_integrity_manifest import evaluate_manifest_pair, load_manifest
+
 REQUIRED_PROVENANCE_KEYS = ("schemaVersion", "producerCommits", "sourceMode")
 
 
@@ -127,7 +129,11 @@ def _validate_outputs(
         raise ValueError("domain_boundary_watchlist.entries must be a list")
     if not isinstance(emergent_domain_annotations.get("annotations"), list):
         raise ValueError("emergent_domain_annotations.annotations must be a list")
+
     for payload in (emergent_domain_dashboard, domain_birth_registry, domain_boundary_watchlist, emergent_domain_annotations):
+        for key in ("canonicalIntegrityVerified", "modificationDisclosureMissing", "trustPresentationDegraded"):
+            if not isinstance(payload.get(key), bool):
+                raise ValueError(f"{key} must be a boolean")
         json.dumps(payload)
 
 
@@ -143,6 +149,8 @@ def build_emergent_domain_overlays(
     uncertainty_dashboard: dict[str, Any],
     social_entropy_dashboard: dict[str, Any],
     civic_literacy_dashboard: dict[str, Any],
+    bridge_canonical_integrity_manifest: dict[str, Any] | None = None,
+    registry_canonical_integrity_manifest: dict[str, Any] | None = None,
 ) -> tuple[dict[str, Any], dict[str, Any], dict[str, Any], dict[str, Any]]:
     generated_at = dt.date.today().isoformat()
 
@@ -165,6 +173,7 @@ def build_emergent_domain_overlays(
         if optional:
             provenances[name] = optional
     provenance_summary = _build_provenance_summary(provenances)
+    integrity_status = evaluate_manifest_pair(bridge_canonical_integrity_manifest, registry_canonical_integrity_manifest)
 
     audits = [e for e in as_list(emergent_domain_audit.get("audits")) if isinstance(e, dict)]
     recs = [e for e in as_list(emergent_domain_recommendations.get("recommendations")) if isinstance(e, dict)]
@@ -256,6 +265,7 @@ def build_emergent_domain_overlays(
         "noDisciplineRanking": True,
         "noFieldSovereigntyClaims": True,
         "provenance": provenance_summary,
+        **integrity_status,
         "entries": sorted(dashboard_entries, key=lambda e: str(e.get("reviewId", ""))),
     }
     domain_birth_registry = {
@@ -266,6 +276,7 @@ def build_emergent_domain_overlays(
         "noDisciplineRanking": True,
         "noFieldSovereigntyClaims": True,
         "provenance": provenance_summary,
+        **integrity_status,
         "entries": sorted(registry_entries, key=lambda e: str(e.get("reviewId", ""))),
     }
     domain_boundary_watchlist = {
@@ -276,6 +287,7 @@ def build_emergent_domain_overlays(
         "noDisciplineRanking": True,
         "noFieldSovereigntyClaims": True,
         "provenance": provenance_summary,
+        **integrity_status,
         "entries": sorted(watch_entries, key=lambda e: str(e.get("reviewId", ""))),
     }
     emergent_domain_annotations = {
@@ -292,6 +304,7 @@ def build_emergent_domain_overlays(
         "noScientificCanonMutation": True,
         "noCanonicalMutation": True,
         "provenance": provenance_summary,
+        **integrity_status,
         "annotations": sorted(annotation_entries, key=lambda e: str(e.get("reviewId", ""))),
     }
 
@@ -313,6 +326,8 @@ def main() -> int:
     parser.add_argument("--uncertainty-dashboard", type=Path, default=Path("registry/uncertainty_dashboard.json"))
     parser.add_argument("--social-entropy-dashboard", type=Path, default=Path("registry/social_entropy_dashboard.json"))
     parser.add_argument("--civic-literacy-dashboard", type=Path, default=Path("registry/civic_literacy_dashboard.json"))
+    parser.add_argument("--bridge-canonical-integrity-manifest", type=Path, default=Path("bridge/canonical_integrity_manifest.json"))
+    parser.add_argument("--registry-canonical-integrity-manifest", type=Path, default=Path("registry/canonical_integrity_manifest.json"))
 
     parser.add_argument("--out-emergent-domain-dashboard", type=Path, default=Path("registry/emergent_domain_dashboard.json"))
     parser.add_argument("--out-domain-birth-registry", type=Path, default=Path("registry/domain_birth_registry.json"))
@@ -334,6 +349,8 @@ def main() -> int:
             load_required_json(args.uncertainty_dashboard),
             load_required_json(args.social_entropy_dashboard),
             load_required_json(args.civic_literacy_dashboard),
+            load_manifest(args.bridge_canonical_integrity_manifest),
+            load_manifest(args.registry_canonical_integrity_manifest),
         )
     except ValueError as exc:
         print(f"[ERROR] {exc}")

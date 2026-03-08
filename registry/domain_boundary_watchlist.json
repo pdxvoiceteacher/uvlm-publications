@@ -93,6 +93,15 @@
     },
     "derivedFromFixtures": true
   },
+  "canonicalIntegrityVerified": true,
+  "modificationDisclosureMissing": false,
+  "trustPresentationDegraded": false,
+  "originProject": "uvlm-publications",
+  "canonicalPhaselock": "transfer/theory/prediction/curiosity/value/commons -> CoherenceLattice emergent-domain formalization -> Sophia emergent-domain audit -> Publisher field-birth overlays -> human/community/scientific ratification pathways",
+  "ethicalBoundaryNotice": "No automatic canon formation, discipline ranking, sovereignty claims, or rights mutation from emergent-domain overlays.",
+  "commonsIntegrityNotice": "Derivatives removing provenance or changing safety boundaries without disclosure lose canonical trust status.",
+  "constraintSignatureVersion": "phase-at.integrity.v1",
+  "constraintSignatureSha256": "339fc29b40408b4a740b3ae5af283e1ab6fcb4657966b3290554e681a059656c",
   "entries": [
     {
       "reviewId": "ed-002",
