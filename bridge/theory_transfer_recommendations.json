@@ -1,0 +1,9 @@
+{
+  "generatedAt": "2026-03-08",
+  "provenance": {"schemaVersion": "phase-ak.0", "producerCommits": ["sophia-ak-111"], "sourceMode": "fixture"},
+  "recommendations": [
+    {"reviewId": "tr-001", "targetPublisherAction": "docket", "linkedTargetIds": ["concept:coherence-lattice"], "humanReviewFlag": true, "notes": "Transfer candidate remains conditional on replication burden."},
+    {"reviewId": "tr-002", "targetPublisherAction": "watch", "linkedTargetIds": ["concept:governance-integrity"], "humanReviewFlag": true, "notes": "Asymmetry risk unresolved; watch-only transfer."},
+    {"reviewId": "tr-003", "targetPublisherAction": "suppressed", "linkedTargetIds": ["concept:constitutional-safeguards"], "humanReviewFlag": true, "notes": "Suppressed pending prohibited-claim audit."}
+  ]
+}

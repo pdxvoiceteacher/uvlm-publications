@@ -285,6 +285,14 @@ function renderConcept(data) {
     row('Responsibility Schema Version', data.responsibilitySchemaVersion ?? 'unknown'),
     row('Responsibility Producer Commit(s)', data.responsibilityProducerCommits ?? 'unknown'),
     row('Responsibility Source Mode', data.responsibilitySourceMode ?? 'unknown'),
+    row('Transfer Status', data.transferStatus ?? 'under-review'),
+    row('Donor-Target Asymmetry', data.donorTargetAsymmetry ?? 'unknown'),
+    row('Transfer Replication Gate', data.replicationGateState ?? 'hold'),
+    row('Transfer Prohibited Claims', asList(data.prohibitedClaims)),
+    row('Transfer Risk Register Summary', data.riskRegisterSummary ?? 'bounded'),
+    row('Transfer Schema Version', data.transferSchemaVersion ?? 'unknown'),
+    row('Transfer Producer Commit(s)', data.transferProducerCommits ?? 'unknown'),
+    row('Transfer Source Mode', data.transferSourceMode ?? 'unknown'),
     row('Related Concepts', data.relatedConceptCount ?? 0),
     renderConceptRelations(data.relatedConcepts)
   ].join('');

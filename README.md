@@ -1007,3 +1007,16 @@ python3 scripts/build_responsibility_overlay.py
 python3 -m unittest tests/test_build_responsibility_overlay.py
 ```
 
+## Cross-Domain Theory Transfer & Donation Governance Overlay (Phase AK)
+
+Publisher surfaces only **Sophia-audited theory-transfer materials**; no automatic cross-domain theory certification or canonical mutation occurs from this layer.
+
+- script: `scripts/build_theory_transfer_overlay.py`
+- inputs: `bridge/theory_transfer_audit.json`, `bridge/theory_transfer_recommendations.json`, `bridge/theory_transfer_map.json`, `bridge/donor_target_asymmetry_report.json`, `bridge/transfer_replication_gate.json`, `bridge/transfer_risk_register.json`, `registry/theory_dashboard.json`, `registry/experiment_dashboard.json`, `registry/agency_mode_dashboard.json`
+- outputs: `registry/transfer_dashboard.json`, `registry/theory_transfer_registry.json`, `registry/transfer_watchlist.json`, `registry/transfer_annotations.json`
+
+```bash
+python3 scripts/build_theory_transfer_overlay.py
+python3 -m unittest tests/test_build_theory_transfer_overlay.py
+```
+

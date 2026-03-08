@@ -1,0 +1,9 @@
+{
+  "generatedAt": "2026-03-08",
+  "provenance": {"schemaVersion": "phase-ak.0", "producerCommits": ["sophia-ak-111"], "sourceMode": "fixture"},
+  "entries": [
+    {"reviewId": "tr-001", "replicationGateState": "gated-open", "prohibitedClaims": ["universal-certification"]},
+    {"reviewId": "tr-002", "replicationGateState": "hold", "prohibitedClaims": ["cross-domain-proof"]},
+    {"reviewId": "tr-003", "replicationGateState": "suppressed", "prohibitedClaims": ["canonical-import"]}
+  ]
+}

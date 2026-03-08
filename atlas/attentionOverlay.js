@@ -176,7 +176,11 @@ export async function loadAttentionOverlay() {
     responsibilityDashboardResp,
     supportRegistryResp,
     interventionWatchlistResp,
-    responsibilityAnnotationsResp
+    responsibilityAnnotationsResp,
+    transferDashboardResp,
+    theoryTransferRegistryResp,
+    transferWatchlistResp,
+    transferAnnotationsResp
   ] = await Promise.all([
     fetch('../bridge/attention_updates.json').catch(() => null),
     fetch('../bridge/coherence_assessment.json').catch(() => null),
@@ -311,7 +315,11 @@ export async function loadAttentionOverlay() {
     fetch('../registry/responsibility_dashboard.json').catch(() => null),
     fetch('../registry/support_registry.json').catch(() => null),
     fetch('../registry/intervention_watchlist.json').catch(() => null),
-    fetch('../registry/responsibility_annotations.json').catch(() => null)
+    fetch('../registry/responsibility_annotations.json').catch(() => null),
+    fetch('../registry/transfer_dashboard.json').catch(() => null),
+    fetch('../registry/theory_transfer_registry.json').catch(() => null),
+    fetch('../registry/transfer_watchlist.json').catch(() => null),
+    fetch('../registry/transfer_annotations.json').catch(() => null)
   ]);
 
   return {
@@ -448,7 +456,11 @@ export async function loadAttentionOverlay() {
     responsibilityDashboard: responsibilityDashboardResp ? await responsibilityDashboardResp.json() : {},
     supportRegistry: supportRegistryResp ? await supportRegistryResp.json() : {},
     interventionWatchlist: interventionWatchlistResp ? await interventionWatchlistResp.json() : {},
-    responsibilityAnnotations: responsibilityAnnotationsResp ? await responsibilityAnnotationsResp.json() : {}
+    responsibilityAnnotations: responsibilityAnnotationsResp ? await responsibilityAnnotationsResp.json() : {},
+    transferDashboard: transferDashboardResp ? await transferDashboardResp.json() : {},
+    theoryTransferRegistry: theoryTransferRegistryResp ? await theoryTransferRegistryResp.json() : {},
+    transferWatchlist: transferWatchlistResp ? await transferWatchlistResp.json() : {},
+    transferAnnotations: transferAnnotationsResp ? await transferAnnotationsResp.json() : {}
   };
 }
 
@@ -2783,6 +2795,78 @@ function buildResponsibilityConceptSignals(responsibilityDashboard, supportRegis
   return byConcept;
 }
 
+
+
+function buildTheoryTransferConceptSignals(transferDashboard, theoryTransferRegistry, transferWatchlist, transferAnnotations) {
+  const byConcept = new Map();
+
+  function bump(targetId, update) {
+    if (typeof targetId !== 'string') {
+      return;
+    }
+    const existing = byConcept.get(targetId) ?? {
+      transferStatus: 'under-review',
+      donorTargetAsymmetry: 'unknown',
+      replicationGateState: 'hold',
+      prohibitedClaims: [],
+      riskRegisterSummary: 'bounded',
+      transferQueueStatus: 'none',
+    };
+    update(existing);
+    byConcept.set(targetId, existing);
+  }
+
+  const registryByReview = new Map();
+  asArray(theoryTransferRegistry?.entries).forEach((entry) => {
+    if (typeof entry?.reviewId === 'string') {
+      registryByReview.set(entry.reviewId, entry);
+    }
+  });
+
+  asArray(transferDashboard?.entries).forEach((entry) => {
+    const reg = registryByReview.get(entry?.reviewId);
+    asArray(entry?.linkedTargetIds).forEach((targetId) => {
+      bump(targetId, (s) => {
+        s.transferStatus = entry?.transferStatus ?? reg?.transferStatus ?? s.transferStatus;
+        s.donorTargetAsymmetry = entry?.donorTargetAsymmetry ?? reg?.donorTargetAsymmetry ?? s.donorTargetAsymmetry;
+        s.replicationGateState = entry?.replicationGateState ?? reg?.replicationGateState ?? s.replicationGateState;
+        s.prohibitedClaims = asArray(entry?.prohibitedClaims ?? reg?.prohibitedClaims ?? s.prohibitedClaims);
+        s.riskRegisterSummary = entry?.riskRegisterSummary ?? reg?.riskRegisterSummary ?? s.riskRegisterSummary;
+        s.transferQueueStatus = 'dashboard';
+      });
+    });
+  });
+
+  asArray(transferWatchlist?.entries).forEach((entry) => {
+    asArray(entry?.linkedTargetIds).forEach((targetId) => {
+      bump(targetId, (s) => {
+        s.transferStatus = entry?.transferStatus ?? s.transferStatus;
+        s.donorTargetAsymmetry = entry?.donorTargetAsymmetry ?? s.donorTargetAsymmetry;
+        s.replicationGateState = entry?.replicationGateState ?? s.replicationGateState;
+        s.prohibitedClaims = asArray(entry?.prohibitedClaims ?? s.prohibitedClaims);
+        s.riskRegisterSummary = entry?.riskRegisterSummary ?? s.riskRegisterSummary;
+        if (s.transferQueueStatus !== 'dashboard') {
+          s.transferQueueStatus = 'watch';
+        }
+      });
+    });
+  });
+
+  asArray(transferAnnotations?.annotations).forEach((entry) => {
+    asArray(entry?.linkedTargetIds).forEach((targetId) => {
+      bump(targetId, (s) => {
+        s.transferStatus = entry?.transferStatus ?? s.transferStatus;
+        s.donorTargetAsymmetry = entry?.donorTargetAsymmetry ?? s.donorTargetAsymmetry;
+        s.replicationGateState = entry?.replicationGateState ?? s.replicationGateState;
+        s.prohibitedClaims = asArray(entry?.prohibitedClaims ?? s.prohibitedClaims);
+        s.riskRegisterSummary = entry?.riskRegisterSummary ?? s.riskRegisterSummary;
+      });
+    });
+  });
+
+  return byConcept;
+}
+
 function buildConstitutionalConceptSignals(constitutionalAnnotations, governanceFailureWatchlist) {
   const byConcept = new Map();
 
@@ -3007,6 +3091,12 @@ export function applyAttentionOverlay(cy, overlay) {
     overlay?.interventionWatchlist,
     overlay?.responsibilityAnnotations
   );
+  const transferSignals = buildTheoryTransferConceptSignals(
+    overlay?.transferDashboard,
+    overlay?.theoryTransferRegistry,
+    overlay?.transferWatchlist,
+    overlay?.transferAnnotations
+  );
 
   const institutionalProvenance = overlay?.institutionalStatus?.provenance ?? {};
   const institutionalSchemaVersion = institutionalProvenance?.schemaVersions?.institutional_state_summary
@@ -3134,6 +3224,12 @@ export function applyAttentionOverlay(cy, overlay) {
     ?? 'unknown';
   const responsibilityProducerCommits = asArray(responsibilityProvenance?.producerCommits).join(', ') || 'unknown';
   const responsibilitySourceMode = responsibilityProvenance?.derivedFromFixtures ? 'fixture' : 'live';
+  const transferProvenance = overlay?.transferDashboard?.provenance ?? {};
+  const transferSchemaVersion = transferProvenance?.schemaVersions?.theory_transfer_map
+    ?? transferProvenance?.schemaVersions?.donor_target_asymmetry_report
+    ?? 'unknown';
+  const transferProducerCommits = asArray(transferProvenance?.producerCommits).join(', ') || 'unknown';
+  const transferSourceMode = transferProvenance?.derivedFromFixtures ? 'fixture' : 'live';
 
   cy.nodes('[class = "concept"]').forEach((node) => {
     const id = node.id();
@@ -3420,8 +3516,17 @@ export function applyAttentionOverlay(cy, overlay) {
     node.data('responsibilitySchemaVersion', responsibilitySchemaVersion);
     node.data('responsibilityProducerCommits', responsibilityProducerCommits);
     node.data('responsibilitySourceMode', responsibilitySourceMode);
+    const transfer = transferSignals.get(id);
+    node.data('transferStatus', transfer?.transferStatus ?? 'under-review');
+    node.data('donorTargetAsymmetry', transfer?.donorTargetAsymmetry ?? 'unknown');
+    node.data('replicationGateState', transfer?.replicationGateState ?? 'hold');
+    node.data('prohibitedClaims', asArray(transfer?.prohibitedClaims));
+    node.data('riskRegisterSummary', transfer?.riskRegisterSummary ?? 'bounded');
+    node.data('transferSchemaVersion', transferSchemaVersion);
+    node.data('transferProducerCommits', transferProducerCommits);
+    node.data('transferSourceMode', transferSourceMode);
 
-    node.removeClass('attention-priority attention-secondary sonya-candidate reasoning-thread reasoning-watch stability-positive stability-watch multimodal-donation multimodal-watch review-candidate watch-queue governance-review governance-watch constitutional-watch constitutional-freeze deliberation-docket deliberation-watch deliberation-urgent anti-capture-watch continuity-docket continuity-watch continuity-fragile continuity-freeze recovery-docket recovery-watch escrow-ready recovery-fragile attestation-docket attestation-watch witness-sufficient attestation-sensitive precedent-docket precedent-watch precedent-divergent precedent-strong scenario-docket scenario-watch scenario-freeze scenario-rehearse-recovery institutional-status-indicator chamber-conflict-indicator system-health-overview queue-health-actionable backlog-pressure-watch review-fatigue-watch metric-gaming-watch load-shedding-recommended priority-actionable triage-watch urgency-high priority-critical triage-conflict closure-active closure-provisional repair-urgent reopened-watch symbolic-field-active regime-shift-watch lambda-warning architecture-hint verification-active entity-ambiguity verification-urgent claim-typed public-record-active entity-graph-linked relationship-ambiguous custody-fragile machine-readable-record investigation-active investigation-stage-mid investigation-stage-late investigation-plan-progressing investigation-blocked dependency-graph-linked authority-gated weak-evidence-signal authority-mismatch propagation-restricted maturity-gated review-packet-ready review-packet-watch packet-ambiguity-high uncertainty-disclosed synthesis-bounded pattern-cluster-active cross-case-hints pattern-maturity-stable pattern-conflict pattern-timeline-active persistence-stable temporal-conflict-marker causal-bundle-active mechanism-candidate explanatory-gap-high prohibited-conclusion causal-conflict-marker collaborative-review-active consensus-provisional dissent-present collaborative-maturity-bound telemetry-field-active lattice-transition donor-pattern-active taf-elevated branch-novel branch-maturity-bound branch-lifecycle-active branch-conflict-graph branch-decay-indicator branch-reinforcement-trend branch-contradiction-trend forecast-accuracy-high calibration-improving branch-reliability-stable prediction-timeline-active experimental-active falsification-ready replication-defined theory-gate-hold theory-corpus-active theory-negative-results theory-revision-lineage theory-competition-open agency-mode-active agency-volitional-edge agency-deterministic-edge agency-vhat-provisional agency-governance-bounded agency-consent-required agency-blame-suppressed responsibility-active support-pathway-defined consent-required coercion-ceiling-strict sanction-suppressed intervention-bounded');
+    node.removeClass('attention-priority attention-secondary sonya-candidate reasoning-thread reasoning-watch stability-positive stability-watch multimodal-donation multimodal-watch review-candidate watch-queue governance-review governance-watch constitutional-watch constitutional-freeze deliberation-docket deliberation-watch deliberation-urgent anti-capture-watch continuity-docket continuity-watch continuity-fragile continuity-freeze recovery-docket recovery-watch escrow-ready recovery-fragile attestation-docket attestation-watch witness-sufficient attestation-sensitive precedent-docket precedent-watch precedent-divergent precedent-strong scenario-docket scenario-watch scenario-freeze scenario-rehearse-recovery institutional-status-indicator chamber-conflict-indicator system-health-overview queue-health-actionable backlog-pressure-watch review-fatigue-watch metric-gaming-watch load-shedding-recommended priority-actionable triage-watch urgency-high priority-critical triage-conflict closure-active closure-provisional repair-urgent reopened-watch symbolic-field-active regime-shift-watch lambda-warning architecture-hint verification-active entity-ambiguity verification-urgent claim-typed public-record-active entity-graph-linked relationship-ambiguous custody-fragile machine-readable-record investigation-active investigation-stage-mid investigation-stage-late investigation-plan-progressing investigation-blocked dependency-graph-linked authority-gated weak-evidence-signal authority-mismatch propagation-restricted maturity-gated review-packet-ready review-packet-watch packet-ambiguity-high uncertainty-disclosed synthesis-bounded pattern-cluster-active cross-case-hints pattern-maturity-stable pattern-conflict pattern-timeline-active persistence-stable temporal-conflict-marker causal-bundle-active mechanism-candidate explanatory-gap-high prohibited-conclusion causal-conflict-marker collaborative-review-active consensus-provisional dissent-present collaborative-maturity-bound telemetry-field-active lattice-transition donor-pattern-active taf-elevated branch-novel branch-maturity-bound branch-lifecycle-active branch-conflict-graph branch-decay-indicator branch-reinforcement-trend branch-contradiction-trend forecast-accuracy-high calibration-improving branch-reliability-stable prediction-timeline-active experimental-active falsification-ready replication-defined theory-gate-hold theory-corpus-active theory-negative-results theory-revision-lineage theory-competition-open agency-mode-active agency-volitional-edge agency-deterministic-edge agency-vhat-provisional agency-governance-bounded agency-consent-required agency-blame-suppressed responsibility-active support-pathway-defined consent-required coercion-ceiling-strict sanction-suppressed intervention-bounded transfer-active transfer-asymmetry-high transfer-replication-gated transfer-prohibited-claims transfer-risk-elevated');
     if ((rankData?.rank ?? Infinity) <= 2) {
       node.addClass('attention-priority');
     } else if ((rankData?.rank ?? Infinity) <= 5) {
@@ -3864,6 +3969,22 @@ export function applyAttentionOverlay(cy, overlay) {
     }
     if (['bounded', 'uncertain'].includes(responsibility?.interventionBoundaryState ?? 'bounded')) {
       node.addClass('intervention-bounded');
+    }
+
+    if (['dashboard', 'watch'].includes(transfer?.transferQueueStatus ?? 'none')) {
+      node.addClass('transfer-active');
+    }
+    if ((transfer?.donorTargetAsymmetry ?? 'unknown') === 'high') {
+      node.addClass('transfer-asymmetry-high');
+    }
+    if ((transfer?.replicationGateState ?? 'hold') !== 'gated-open') {
+      node.addClass('transfer-replication-gated');
+    }
+    if (asArray(transfer?.prohibitedClaims).length > 0) {
+      node.addClass('transfer-prohibited-claims');
+    }
+    if ((transfer?.riskRegisterSummary ?? 'bounded') === 'elevated') {
+      node.addClass('transfer-risk-elevated');
     }
   });
 }

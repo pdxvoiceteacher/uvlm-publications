@@ -1,0 +1,9 @@
+{
+  "generatedAt": "2026-03-08",
+  "provenance": {"schemaVersion": "phase-ak.0", "producerCommits": ["sophia-ak-111"], "sourceMode": "fixture"},
+  "audits": [
+    {"reviewId": "tr-001", "theoryTransferAuditState": "verified"},
+    {"reviewId": "tr-002", "theoryTransferAuditState": "watch"},
+    {"reviewId": "tr-003", "theoryTransferAuditState": "suppressed"}
+  ]
+}
