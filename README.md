@@ -1134,3 +1134,23 @@ python3 -m unittest tests/test_build_federated_governance_overlay.py
 ```
 
 Codex context note: this interface should help humans see where the commons is centralizing or fracturing, not create a new prestige hierarchy.
+
+## Emergent Domain Detection & Field Birth Overlay (Phase AT)
+
+Publisher surfaces only **Sophia-audited emergent-domain materials; no automatic canon formation, ranking of disciplines, or field sovereignty claims occur from this layer.**
+
+The interface should show the birth of a field as a pattern of convergence, not a proclamation.
+
+- script: `scripts/build_emergent_domain_overlay.py`
+- inputs: `bridge/emergent_domain_audit.json`, `bridge/emergent_domain_recommendations.json`, `bridge/emergent_domain_map.json`, `bridge/cross_domain_invariant_report.json`, `bridge/field_birth_pressure_report.json`, `bridge/domain_boundary_failure_map.json`, `registry/transfer_dashboard.json`, `registry/value_dashboard.json`, `registry/uncertainty_dashboard.json`, `registry/social_entropy_dashboard.json`, `registry/civic_literacy_dashboard.json`
+- outputs: `registry/emergent_domain_dashboard.json`, `registry/domain_birth_registry.json`, `registry/domain_boundary_watchlist.json`, `registry/emergent_domain_annotations.json`
+- policy: docket items are actionable emergent-domain entries, watch items are bounded domain-boundary tracking, suppressed items are excluded from actionable overlays.
+
+```bash
+python3 scripts/build_emergent_domain_overlay.py
+python3 -m unittest tests/test_build_emergent_domain_overlay.py
+```
+
+### Phase-lock integration rule (Phase AT)
+
+`transfer / theory / prediction / curiosity / value / commons context -> CoherenceLattice emergent-domain formalization -> Sophia emergent-domain audit -> Publisher field-birth overlays -> human/community/scientific ratification pathways`

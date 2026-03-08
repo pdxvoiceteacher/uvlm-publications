@@ -354,6 +354,16 @@ function renderConcept(data) {
     row('Federated Governance Schema Version', data.federatedGovernanceSchemaVersion ?? 'unknown'),
     row('Federated Governance Producer Commit(s)', data.federatedGovernanceProducerCommits ?? 'unknown'),
     row('Federated Governance Source Mode', data.federatedGovernanceSourceMode ?? 'unknown'),
+    row('Domain Status', data.domainStatus ?? 'monitor'),
+    row('Source Domains', asList(data.sourceDomains)),
+    row('Invariant Pattern Class', data.invariantPatternClass ?? 'unclassified'),
+    row('Field-Birth Pressure', data.fieldBirthPressure ?? 'bounded'),
+    row('Field-Birth Pressure Score', Number(data.fieldBirthPressureScore ?? 0).toFixed(2)),
+    row('Domain-Boundary Failure', data.domainBoundaryFailure ?? 'bounded'),
+    row('Commons Legibility Requirement', data.commonsLegibilityRequirement ?? 'required'),
+    row('Emergent-Domain Schema Version', data.emergentDomainSchemaVersion ?? 'unknown'),
+    row('Emergent-Domain Producer Commit(s)', data.emergentDomainProducerCommits ?? 'unknown'),
+    row('Emergent-Domain Source Mode', data.emergentDomainSourceMode ?? 'unknown'),
     row('Related Concepts', data.relatedConceptCount ?? 0),
     renderConceptRelations(data.relatedConcepts)
   ].join('');
