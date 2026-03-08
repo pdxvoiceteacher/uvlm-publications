@@ -902,3 +902,17 @@ The workflow at `.github/workflows/mint_doi.yml` runs on `papers/**` changes:
 - **Pushes to `main`**: performs minting deposit, updates registries/catalog/graph, commits audit artifacts.
 
 This prevents accidental DOI minting before merge while keeping public metadata artifacts fresh.
+
+## Collaborative Review Workflow & Deliberation Trace Overlay (Phase AC)
+
+Publisher surfaces only **Sophia-audited collaborative-review materials**; no automatic consensus ratification or dissent suppression occurs from this layer.
+
+- script: `scripts/build_collaborative_review_overlay.py`
+- inputs: `bridge/collaborative_review_audit.json`, `bridge/collaborative_review_recommendations.json`, `bridge/reviewer_deliberation_map.json`, `bridge/reviewer_position_map.json`, `bridge/consensus_state_report.json`, `bridge/dissent_trace_report.json`, `registry/review_packet_dashboard.json`, `registry/causal_dashboard.json`, `registry/authority_gate_dashboard.json`
+- outputs: `registry/collaborative_review_dashboard.json`, `registry/consensus_registry.json`, `registry/dissent_watchlist.json`, `registry/deliberation_annotations.json`
+- policy: docket items are actionable collaborative entries, watch items are bounded dissent tracking, suppressed items are excluded from actionable overlays.
+
+```bash
+python3 scripts/build_collaborative_review_overlay.py
+python3 -m unittest tests/test_build_collaborative_review_overlay.py
+```

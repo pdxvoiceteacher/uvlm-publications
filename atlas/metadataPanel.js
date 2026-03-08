@@ -207,6 +207,14 @@ function renderConcept(data) {
     row('Pattern-Temporal Schema Version', data.patternTemporalSchemaVersion ?? 'unknown'),
     row('Pattern-Temporal Producer Commit(s)', data.patternTemporalProducerCommits ?? 'unknown'),
     row('Pattern-Temporal Source Mode', data.patternTemporalSourceMode ?? 'unknown'),
+    row('Collaborative Status', data.collaborativeStatus ?? 'none'),
+    row('Consensus Class', data.consensusClass ?? 'none'),
+    row('Dissent Presence', data.dissentPresence ? 'yes' : 'no'),
+    row('Dissent Trace Count', data.dissentTraceCount ?? 0),
+    row('Collaborative Maturity Constraints', asList(data.collaborativeMaturityConstraints)),
+    row('Collaborative Schema Version', data.collaborativeSchemaVersion ?? 'unknown'),
+    row('Collaborative Producer Commit(s)', data.collaborativeProducerCommits ?? 'unknown'),
+    row('Collaborative Source Mode', data.collaborativeSourceMode ?? 'unknown'),
     row('Related Concepts', data.relatedConceptCount ?? 0),
     renderConceptRelations(data.relatedConcepts)
   ].join('');
