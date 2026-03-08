@@ -1,0 +1,55 @@
+{
+  "generatedAt": "2026-03-07",
+  "provenance": {
+    "schemaVersion": "phase-x1.0",
+    "producerCommits": ["sophia-x1-111"],
+    "sourceMode": "fixture"
+  },
+  "recommendations": [
+    {
+      "reviewId": "ea-001",
+      "targetPublisherAction": "docket",
+      "evidenceMaturity": "corroborated",
+      "claimType": "integrity-risk",
+      "allowedAuthorityClass": "review-only",
+      "authorityMismatchFlag": false,
+      "propagationRestrictions": ["no-public-forwarding"],
+      "maturityGateStatus": "gated",
+      "maturityGateReason": "requires-independent-corroboration",
+      "allowedPropagationRights": ["internal-review", "bounded-annotation"],
+      "linkedTargetIds": ["concept:governance-integrity"],
+      "humanReviewFlag": true,
+      "notes": "Propagation remains bounded until corroboration thresholds hold."
+    },
+    {
+      "reviewId": "ea-002",
+      "targetPublisherAction": "watch",
+      "evidenceMaturity": "weak",
+      "claimType": "policy-signal",
+      "allowedAuthorityClass": "observation-only",
+      "authorityMismatchFlag": true,
+      "propagationRestrictions": ["no-escalation", "no-public-forwarding"],
+      "maturityGateStatus": "hold",
+      "maturityGateReason": "weak-evidence",
+      "allowedPropagationRights": ["internal-watch"],
+      "linkedTargetIds": ["concept:continuity-protocol"],
+      "humanReviewFlag": true,
+      "notes": "Weak evidence stays observational and non-punitive."
+    },
+    {
+      "reviewId": "ea-003",
+      "targetPublisherAction": "suppressed",
+      "evidenceMaturity": "weak",
+      "claimType": "identity-assertion",
+      "allowedAuthorityClass": "restricted",
+      "authorityMismatchFlag": true,
+      "propagationRestrictions": ["no-identity-propagation"],
+      "maturityGateStatus": "hold",
+      "maturityGateReason": "insufficient-grounding",
+      "allowedPropagationRights": [],
+      "linkedTargetIds": ["concept:constitutional-safeguards"],
+      "humanReviewFlag": true,
+      "notes": "Suppressed pending stronger corroboration."
+    }
+  ]
+}

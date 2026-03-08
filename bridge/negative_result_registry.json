@@ -1,0 +1,9 @@
+{
+  "generatedAt": "2026-03-08",
+  "provenance": {"schemaVersion": "phase-ah.0", "producerCommits": ["sophia-ah-111"], "sourceMode": "fixture"},
+  "entries": [
+    {"reviewId": "th-001", "negativeResultIndicators": ["failed-mechanism-a", "null-effect-b"]},
+    {"reviewId": "th-002", "negativeResultIndicators": ["failed-replication-probe"]},
+    {"reviewId": "th-003", "negativeResultIndicators": ["audit-gaps"]}
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "generatedAt": "2026-03-08",
+  "provenance": {"schemaVersion": "phase-ai.0", "producerCommits": ["sophia-ai-111"], "sourceMode": "fixture"},
+  "entries": [
+    {"reviewId": "ag-001", "agencyStatus": "comparative-provisional"},
+    {"reviewId": "ag-002", "agencyStatus": "contested"},
+    {"reviewId": "ag-003", "agencyStatus": "withheld"}
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "generatedAt": "2026-03-08",
+  "provenance": {"schemaVersion": "phase-aj.0", "producerCommits": ["sophia-aj-111"], "sourceMode": "fixture"},
+  "entries": [
+    {"reviewId": "rs-001", "responsibilityStatus": "support-accountable"},
+    {"reviewId": "rs-002", "responsibilityStatus": "watch-boundary"},
+    {"reviewId": "rs-003", "responsibilityStatus": "withheld"}
+  ]
+}
