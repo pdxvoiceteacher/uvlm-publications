@@ -1,0 +1,43 @@
+{
+  "generatedAt": "2026-03-08",
+  "provenance": {
+    "schemaVersion": "phase-ab.0",
+    "producerCommits": ["sophia-ab-111"],
+    "sourceMode": "fixture"
+  },
+  "recommendations": [
+    {
+      "reviewId": "ca-001",
+      "targetPublisherAction": "docket",
+      "causalBundleType": "institutional-feedback-loop",
+      "mechanismCandidates": ["incentive-drift", "review-fatigue-coupling"],
+      "explanatoryGap": "moderate",
+      "prohibitedConclusions": ["identity-attribution", "intent-assertion"],
+      "linkedTargetIds": ["concept:governance-integrity"],
+      "humanReviewFlag": true,
+      "notes": "Bundle remains hypothesis-level and bounded for human review."
+    },
+    {
+      "reviewId": "ca-002",
+      "targetPublisherAction": "watch",
+      "causalBundleType": "resource-thinning",
+      "mechanismCandidates": ["queue-congestion"],
+      "explanatoryGap": "high",
+      "prohibitedConclusions": ["culpability-claim"],
+      "linkedTargetIds": ["concept:continuity-protocol"],
+      "humanReviewFlag": true,
+      "notes": "Insufficient mechanism separation for action-oriented use."
+    },
+    {
+      "reviewId": "ca-003",
+      "targetPublisherAction": "suppressed",
+      "causalBundleType": "identity-chain",
+      "mechanismCandidates": ["identity-linkage"],
+      "explanatoryGap": "high",
+      "prohibitedConclusions": ["identity-accusation"],
+      "linkedTargetIds": ["concept:constitutional-safeguards"],
+      "humanReviewFlag": true,
+      "notes": "Suppressed pending higher-quality mechanism evidence."
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "generatedAt": "2026-03-08",
+  "environmentIntegrityProtocol": true,
+  "nonCanonical": true,
+  "provenance": {
+    "schemaVersions": {
+      "environment_integrity_audit": "phase-aa.0"
+    },
+    "producerCommits": ["sophia-aa-111"],
+    "sourceModes": {
+      "environment_integrity_audit": "fixture"
+    },
+    "derivedFromFixtures": true
+  },
+  "entries": [
+    {
+      "reviewId": "env-001",
+      "integrityStatus": "bounded-risk",
+      "linkedTargetIds": ["concept:governance-integrity"]
+    }
+  ]
+}
