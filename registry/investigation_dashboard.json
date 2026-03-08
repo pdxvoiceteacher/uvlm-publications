@@ -1,0 +1,310 @@
+{
+  "generatedAt": "2026-03-07",
+  "investigationProtocol": true,
+  "nonCanonical": true,
+  "provenance": {
+    "schemaVersions": {
+      "triage_recommendations": "phase-r.0",
+      "verification_recommendations": "phase-u.0",
+      "public_record_recommendations": "phase-v.0"
+    },
+    "producerCommits": [
+      "sophia-r-111",
+      "sophia-u-111",
+      "sophia-v-111"
+    ],
+    "sourceModes": {
+      "triage_recommendations": "fixture",
+      "verification_recommendations": "fixture",
+      "public_record_recommendations": "fixture"
+    },
+    "derivedFromFixtures": true
+  },
+  "entries": [
+    {
+      "reviewId": "pr-001",
+      "source": "triage",
+      "investigationStage": "intake",
+      "stageRank": 1,
+      "planStatus": "active",
+      "planProgress": 0.2,
+      "linkedTargetIds": [
+        "concept:governance-integrity"
+      ],
+      "dependencyGraph": {
+        "nodes": [
+          {
+            "id": "bridge/constitutional_audit.json",
+            "kind": "dependency"
+          },
+          {
+            "id": "bridge/constitutional_recommendations.json",
+            "kind": "dependency"
+          },
+          {
+            "id": "bridge/governance_audit.json",
+            "kind": "dependency"
+          },
+          {
+            "id": "bridge/governance_recommendations.json",
+            "kind": "dependency"
+          },
+          {
+            "id": "bridge/reviewer_behavior_audit.json",
+            "kind": "dependency"
+          },
+          {
+            "id": "papers/**/metadata.yaml",
+            "kind": "dependency"
+          },
+          {
+            "id": "registry/catalog.json",
+            "kind": "dependency"
+          },
+          {
+            "id": "registry/constitutional_status.json",
+            "kind": "artifact"
+          },
+          {
+            "id": "registry/governance_review_docket.json",
+            "kind": "artifact"
+          },
+          {
+            "id": "registry/knowledge_graph.json",
+            "kind": "artifact"
+          }
+        ],
+        "edges": [
+          {
+            "source": "bridge/constitutional_audit.json",
+            "target": "registry/constitutional_status.json",
+            "relation": "dependsOn"
+          },
+          {
+            "source": "bridge/constitutional_recommendations.json",
+            "target": "registry/constitutional_status.json",
+            "relation": "dependsOn"
+          },
+          {
+            "source": "bridge/governance_audit.json",
+            "target": "registry/governance_review_docket.json",
+            "relation": "dependsOn"
+          },
+          {
+            "source": "bridge/governance_recommendations.json",
+            "target": "registry/governance_review_docket.json",
+            "relation": "dependsOn"
+          },
+          {
+            "source": "bridge/reviewer_behavior_audit.json",
+            "target": "registry/governance_review_docket.json",
+            "relation": "dependsOn"
+          },
+          {
+            "source": "papers/**/metadata.yaml",
+            "target": "registry/knowledge_graph.json",
+            "relation": "dependsOn"
+          },
+          {
+            "source": "registry/catalog.json",
+            "target": "registry/knowledge_graph.json",
+            "relation": "dependsOn"
+          }
+        ]
+      },
+      "dependencyCount": 7,
+      "humanReviewFlag": true,
+      "queuedAt": "2026-03-07"
+    },
+    {
+      "reviewId": "prv-001",
+      "source": "public-record",
+      "investigationStage": "dependency-mapping",
+      "stageRank": 3,
+      "planStatus": "active",
+      "planProgress": 0.6,
+      "linkedTargetIds": [
+        "concept:governance-integrity"
+      ],
+      "dependencyGraph": {
+        "nodes": [
+          {
+            "id": "bridge/constitutional_audit.json",
+            "kind": "dependency"
+          },
+          {
+            "id": "bridge/constitutional_recommendations.json",
+            "kind": "dependency"
+          },
+          {
+            "id": "bridge/governance_audit.json",
+            "kind": "dependency"
+          },
+          {
+            "id": "bridge/governance_recommendations.json",
+            "kind": "dependency"
+          },
+          {
+            "id": "bridge/reviewer_behavior_audit.json",
+            "kind": "dependency"
+          },
+          {
+            "id": "papers/**/metadata.yaml",
+            "kind": "dependency"
+          },
+          {
+            "id": "registry/catalog.json",
+            "kind": "dependency"
+          },
+          {
+            "id": "registry/constitutional_status.json",
+            "kind": "artifact"
+          },
+          {
+            "id": "registry/governance_review_docket.json",
+            "kind": "artifact"
+          },
+          {
+            "id": "registry/knowledge_graph.json",
+            "kind": "artifact"
+          }
+        ],
+        "edges": [
+          {
+            "source": "bridge/constitutional_audit.json",
+            "target": "registry/constitutional_status.json",
+            "relation": "dependsOn"
+          },
+          {
+            "source": "bridge/constitutional_recommendations.json",
+            "target": "registry/constitutional_status.json",
+            "relation": "dependsOn"
+          },
+          {
+            "source": "bridge/governance_audit.json",
+            "target": "registry/governance_review_docket.json",
+            "relation": "dependsOn"
+          },
+          {
+            "source": "bridge/governance_recommendations.json",
+            "target": "registry/governance_review_docket.json",
+            "relation": "dependsOn"
+          },
+          {
+            "source": "bridge/reviewer_behavior_audit.json",
+            "target": "registry/governance_review_docket.json",
+            "relation": "dependsOn"
+          },
+          {
+            "source": "papers/**/metadata.yaml",
+            "target": "registry/knowledge_graph.json",
+            "relation": "dependsOn"
+          },
+          {
+            "source": "registry/catalog.json",
+            "target": "registry/knowledge_graph.json",
+            "relation": "dependsOn"
+          }
+        ]
+      },
+      "dependencyCount": 7,
+      "humanReviewFlag": true,
+      "queuedAt": "2026-03-07"
+    },
+    {
+      "reviewId": "vf-001",
+      "source": "verification",
+      "investigationStage": "verification",
+      "stageRank": 2,
+      "planStatus": "active",
+      "planProgress": 0.4,
+      "linkedTargetIds": [
+        "concept:governance-integrity"
+      ],
+      "dependencyGraph": {
+        "nodes": [
+          {
+            "id": "bridge/constitutional_audit.json",
+            "kind": "dependency"
+          },
+          {
+            "id": "bridge/constitutional_recommendations.json",
+            "kind": "dependency"
+          },
+          {
+            "id": "bridge/governance_audit.json",
+            "kind": "dependency"
+          },
+          {
+            "id": "bridge/governance_recommendations.json",
+            "kind": "dependency"
+          },
+          {
+            "id": "bridge/reviewer_behavior_audit.json",
+            "kind": "dependency"
+          },
+          {
+            "id": "papers/**/metadata.yaml",
+            "kind": "dependency"
+          },
+          {
+            "id": "registry/catalog.json",
+            "kind": "dependency"
+          },
+          {
+            "id": "registry/constitutional_status.json",
+            "kind": "artifact"
+          },
+          {
+            "id": "registry/governance_review_docket.json",
+            "kind": "artifact"
+          },
+          {
+            "id": "registry/knowledge_graph.json",
+            "kind": "artifact"
+          }
+        ],
+        "edges": [
+          {
+            "source": "bridge/constitutional_audit.json",
+            "target": "registry/constitutional_status.json",
+            "relation": "dependsOn"
+          },
+          {
+            "source": "bridge/constitutional_recommendations.json",
+            "target": "registry/constitutional_status.json",
+            "relation": "dependsOn"
+          },
+          {
+            "source": "bridge/governance_audit.json",
+            "target": "registry/governance_review_docket.json",
+            "relation": "dependsOn"
+          },
+          {
+            "source": "bridge/governance_recommendations.json",
+            "target": "registry/governance_review_docket.json",
+            "relation": "dependsOn"
+          },
+          {
+            "source": "bridge/reviewer_behavior_audit.json",
+            "target": "registry/governance_review_docket.json",
+            "relation": "dependsOn"
+          },
+          {
+            "source": "papers/**/metadata.yaml",
+            "target": "registry/knowledge_graph.json",
+            "relation": "dependsOn"
+          },
+          {
+            "source": "registry/catalog.json",
+            "target": "registry/knowledge_graph.json",
+            "relation": "dependsOn"
+          }
+        ]
+      },
+      "dependencyCount": 7,
+      "humanReviewFlag": true,
+      "queuedAt": "2026-03-07"
+    }
+  ]
+}
