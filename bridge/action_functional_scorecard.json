@@ -1,0 +1,9 @@
+{
+  "generatedAt": "2026-03-08",
+  "provenance": {"schemaVersion": "phase-ad.0", "producerCommits": ["sophia-ad-111"], "sourceMode": "fixture"},
+  "entries": [
+    {"reviewId": "tf-001", "tafScoreSummary": "bounded-positive", "tafScore": 0.74},
+    {"reviewId": "tf-002", "tafScoreSummary": "uncertain", "tafScore": 0.41},
+    {"reviewId": "tf-003", "tafScoreSummary": "insufficient", "tafScore": 0.12}
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "generatedAt": "2026-03-08",
+  "provenance": {"schemaVersion": "phase-ag.0", "producerCommits": ["sophia-ag-111"], "sourceMode": "fixture"},
+  "entries": [
+    {"reviewId": "ex-001", "replicationPathwayStatus": "defined", "replicationPathways": ["cross-case-replay", "holdout-validation"]},
+    {"reviewId": "ex-002", "replicationPathwayStatus": "partial", "replicationPathways": ["holdout-validation"]},
+    {"reviewId": "ex-003", "replicationPathwayStatus": "none", "replicationPathways": []}
+  ]
+}

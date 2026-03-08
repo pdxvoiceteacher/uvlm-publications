@@ -1,0 +1,9 @@
+{
+  "generatedAt": "2026-03-08",
+  "provenance": {"schemaVersion": "phase-aq.0", "producerCommits": ["sophia-aq-111"], "sourceMode": "fixture"},
+  "recommendations": [
+    {"reviewId": "se-001", "targetPublisherAction": "docket", "linkedTargetIds": ["concept:coherence-lattice"], "repairPriority": "high", "humanReviewFlag": true, "notes": "Repair priority is advisory and review-facing only."},
+    {"reviewId": "se-002", "targetPublisherAction": "watch", "linkedTargetIds": ["concept:governance-integrity"], "repairPriority": "monitor", "humanReviewFlag": true, "notes": "Legitimacy drift flagged for civic review."},
+    {"reviewId": "se-003", "targetPublisherAction": "suppressed", "linkedTargetIds": ["concept:constitutional-safeguards"], "repairPriority": "low", "humanReviewFlag": true, "notes": "Suppressed pending constitutional review."}
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "generatedAt": "2026-03-08",
+  "provenance": {"schemaVersion": "phase-al.0", "producerCommits": ["sophia-al-111"], "sourceMode": "fixture"},
+  "entries": [
+    {
+      "reviewId": "sf-001",
+      "regimeTransitionProbability": 0.67,
+      "entropyAccumulationGraph": [
+        {"step": 1, "entropy": 0.28},
+        {"step": 2, "entropy": 0.36},
+        {"step": 3, "entropy": 0.41}
+      ],
+      "branchEcosystemStability": "monitor-stable",
+      "trajectoryDivergenceMarkers": ["branch-drift-1", "branch-drift-2"]
+    },
+    {
+      "reviewId": "sf-002",
+      "regimeTransitionProbability": 0.54,
+      "entropyAccumulationGraph": [
+        {"step": 1, "entropy": 0.33},
+        {"step": 2, "entropy": 0.49}
+      ],
+      "branchEcosystemStability": "fragile",
+      "trajectoryDivergenceMarkers": ["trajectory-split-a"]
+    },
+    {
+      "reviewId": "sf-003",
+      "regimeTransitionProbability": 0.45,
+      "entropyAccumulationGraph": [
+        {"step": 1, "entropy": 0.22}
+      ],
+      "branchEcosystemStability": "suppressed",
+      "trajectoryDivergenceMarkers": ["suppressed-path"]
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "generatedAt": "2026-03-08",
+  "provenance": {"schemaVersion": "phase-al.0", "producerCommits": ["sophia-al-111"], "sourceMode": "fixture"},
+  "entries": [
+    {"reviewId": "sf-001", "donorTargetAsymmetry": "medium"},
+    {"reviewId": "sf-002", "donorTargetAsymmetry": "high"},
+    {"reviewId": "sf-003", "donorTargetAsymmetry": "suppressed"}
+  ]
+}

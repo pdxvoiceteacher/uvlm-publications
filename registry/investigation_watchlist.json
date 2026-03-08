@@ -1,0 +1,70 @@
+{
+  "generatedAt": "2026-03-07",
+  "investigationProtocol": true,
+  "nonCanonical": true,
+  "provenance": {
+    "schemaVersions": {
+      "triage_recommendations": "phase-r.0",
+      "verification_recommendations": "phase-u.0",
+      "public_record_recommendations": "phase-v.0"
+    },
+    "producerCommits": [
+      "sophia-r-111",
+      "sophia-u-111",
+      "sophia-v-111"
+    ],
+    "sourceModes": {
+      "triage_recommendations": "fixture",
+      "verification_recommendations": "fixture",
+      "public_record_recommendations": "fixture"
+    },
+    "derivedFromFixtures": true
+  },
+  "entries": [
+    {
+      "reviewId": "pr-002",
+      "source": "triage",
+      "status": "watch",
+      "investigationStage": "intake",
+      "planProgress": 0.2,
+      "dependencyCount": 7,
+      "linkedTargetIds": [
+        "concept:continuity-protocol"
+      ],
+      "humanReviewFlag": true,
+      "observational": true,
+      "nonCanonical": true,
+      "queuedAt": "2026-03-07"
+    },
+    {
+      "reviewId": "prv-002",
+      "source": "public-record",
+      "status": "watch",
+      "investigationStage": "dependency-mapping",
+      "planProgress": 0.6,
+      "dependencyCount": 7,
+      "linkedTargetIds": [
+        "concept:continuity-protocol"
+      ],
+      "humanReviewFlag": true,
+      "observational": true,
+      "nonCanonical": true,
+      "queuedAt": "2026-03-07"
+    },
+    {
+      "reviewId": "vf-002",
+      "source": "verification",
+      "status": "watch",
+      "investigationStage": "verification",
+      "planProgress": 0.4,
+      "dependencyCount": 7,
+      "linkedTargetIds": [
+        "concept:continuity-protocol"
+      ],
+      "humanReviewFlag": true,
+      "observational": true,
+      "nonCanonical": true,
+      "queuedAt": "2026-03-07"
+    }
+  ]
+}

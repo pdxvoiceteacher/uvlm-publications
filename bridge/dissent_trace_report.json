@@ -1,0 +1,13 @@
+{
+  "generatedAt": "2026-03-08",
+  "provenance": {
+    "schemaVersion": "phase-ac.0",
+    "producerCommits": ["sophia-ac-111"],
+    "sourceMode": "fixture"
+  },
+  "entries": [
+    {"reviewId": "cr-001", "dissentPresent": true, "dissentTraceCount": 1},
+    {"reviewId": "cr-002", "dissentPresent": true, "dissentTraceCount": 2},
+    {"reviewId": "cr-003", "dissentPresent": false, "dissentTraceCount": 0}
+  ]
+}

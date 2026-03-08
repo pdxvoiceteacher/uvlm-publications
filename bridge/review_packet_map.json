@@ -1,0 +1,13 @@
+{
+  "generatedAt": "2026-03-07",
+  "provenance": {
+    "schemaVersion": "phase-y.0",
+    "producerCommits": ["cl-y-111"],
+    "sourceMode": "fixture"
+  },
+  "entries": [
+    {"reviewId": "rp-001", "packetStatus": "ready-for-human-review"},
+    {"reviewId": "rp-002", "packetStatus": "needs-additional-corroboration"},
+    {"reviewId": "rp-003", "packetStatus": "suppressed"}
+  ]
+}

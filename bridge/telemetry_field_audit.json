@@ -1,0 +1,9 @@
+{
+  "generatedAt": "2026-03-08",
+  "provenance": {"schemaVersion": "phase-ad.0", "producerCommits": ["sophia-ad-111"], "sourceMode": "fixture"},
+  "audits": [
+    {"reviewId": "tf-001", "telemetryAuditState": "verified"},
+    {"reviewId": "tf-002", "telemetryAuditState": "watch"},
+    {"reviewId": "tf-003", "telemetryAuditState": "suppressed"}
+  ]
+}
