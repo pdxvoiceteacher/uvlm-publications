@@ -1,0 +1,13 @@
+{
+  "generatedAt": "2026-03-07",
+  "provenance": {
+    "schemaVersion": "phase-x1.0",
+    "producerCommits": ["sophia-x1-111"],
+    "sourceMode": "fixture"
+  },
+  "audits": [
+    {"reviewId": "ea-001", "authorityAuditState": "verified"},
+    {"reviewId": "ea-002", "authorityAuditState": "watch"},
+    {"reviewId": "ea-003", "authorityAuditState": "suppressed"}
+  ]
+}

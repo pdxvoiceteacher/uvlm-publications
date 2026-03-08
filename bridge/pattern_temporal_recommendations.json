@@ -1,0 +1,51 @@
+{
+  "generatedAt": "2026-03-08",
+  "provenance": {
+    "schemaVersion": "phase-z1.0",
+    "producerCommits": ["sophia-z1-111"],
+    "sourceMode": "fixture"
+  },
+  "recommendations": [
+    {
+      "reviewId": "pt-001",
+      "targetPublisherAction": "docket",
+      "patternTimelineStatus": "tracked",
+      "patternPersistence": "stable",
+      "temporalConflictMarkers": ["window-shift"],
+      "timelineEvents": [
+        {"date": "2026-02-01", "event": "cluster-emerged"},
+        {"date": "2026-03-01", "event": "cluster-confirmed"}
+      ],
+      "linkedTargetIds": ["concept:governance-integrity"],
+      "humanReviewFlag": true,
+      "notes": "Pattern persists across windows with bounded temporal conflicts."
+    },
+    {
+      "reviewId": "pt-002",
+      "targetPublisherAction": "watch",
+      "patternTimelineStatus": "drifting",
+      "patternPersistence": "fragile",
+      "temporalConflictMarkers": ["window-sparsity", "ordering-ambiguity"],
+      "timelineEvents": [
+        {"date": "2026-02-10", "event": "cluster-appears"},
+        {"date": "2026-03-05", "event": "signal-weakens"}
+      ],
+      "linkedTargetIds": ["concept:continuity-protocol"],
+      "humanReviewFlag": true,
+      "notes": "Insufficient persistence for actionable timeline interpretation."
+    },
+    {
+      "reviewId": "pt-003",
+      "targetPublisherAction": "suppressed",
+      "patternTimelineStatus": "incoherent",
+      "patternPersistence": "fragile",
+      "temporalConflictMarkers": ["identity-time-collision"],
+      "timelineEvents": [
+        {"date": "2026-01-20", "event": "outlier-link"}
+      ],
+      "linkedTargetIds": ["concept:constitutional-safeguards"],
+      "humanReviewFlag": true,
+      "notes": "Suppressed pending stronger temporal coherence."
+    }
+  ]
+}
