@@ -1049,3 +1049,24 @@ python3 scripts/build_information_value_overlay.py
 python3 -m unittest tests/test_build_information_value_overlay.py
 ```
 
+
+
+## Value Alignment Overlay (Phase AN)
+
+Publisher surfaces only **Sophia-audited value-alignment materials**; no automatic moral execution or canonical mutation occurs from this layer.
+
+The system may recommend knowledge priorities, but human communities must retain authority over final value judgments.
+The triad should illuminate moral consequences, not replace human ethics.
+
+- script: `scripts/build_value_alignment_overlay.py`
+- outputs: `registry/value_dashboard.json`, `registry/knowledge_priority_registry.json`, `registry/value_risk_watchlist.json`, `registry/value_annotations.json`
+
+```bash
+python3 scripts/build_value_alignment_overlay.py
+python3 -m unittest tests/test_build_value_alignment_overlay.py
+```
+
+When Phase AN is complete, the architecture supports the full civilizational cognition cycle:
+
+`telemetry → lattice projection → pattern discovery → hypothesis generation → prediction → experiment design → theory memory → agency governance → responsibility boundaries → cross-domain transfer governance → trajectory forecasting → curiosity-driven inquiry → value-aligned discovery priorities`
+

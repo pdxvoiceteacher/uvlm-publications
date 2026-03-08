@@ -311,6 +311,15 @@ function renderConcept(data) {
     row('Information Value Schema Version', data.informationValueSchemaVersion ?? 'unknown'),
     row('Information Value Producer Commit(s)', data.informationValueProducerCommits ?? 'unknown'),
     row('Information Value Source Mode', data.informationValueSourceMode ?? 'unknown'),
+    row('Knowledge Priority Rank', Number(data.knowledgePriorityRank ?? 99)),
+    row('Welfare Impact Score', Number(data.welfareImpactScore ?? 0).toFixed(2)),
+    row('Welfare Impact Indicator', data.welfareImpactIndicator ?? 'monitor'),
+    row('Fairness Impact Marker', data.fairnessImpactMarker ?? 'monitor'),
+    row('Value Risk Flag', data.valueRiskFlag ?? 'bounded'),
+    row('Value Risk Score', Number(data.valueRiskScore ?? 0).toFixed(2)),
+    row('Value Alignment Schema Version', data.valueAlignmentSchemaVersion ?? 'unknown'),
+    row('Value Alignment Producer Commit(s)', data.valueAlignmentProducerCommits ?? 'unknown'),
+    row('Value Alignment Source Mode', data.valueAlignmentSourceMode ?? 'unknown'),
     row('Related Concepts', data.relatedConceptCount ?? 0),
     renderConceptRelations(data.relatedConcepts)
   ].join('');
