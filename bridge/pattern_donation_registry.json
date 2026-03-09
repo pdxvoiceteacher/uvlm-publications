@@ -1,0 +1,9 @@
+{
+  "generatedAt": "2026-03-08",
+  "provenance": {"schemaVersion": "phase-ad.0", "producerCommits": ["sophia-ad-111"], "sourceMode": "fixture"},
+  "entries": [
+    {"reviewId": "tf-001", "donorPatternPedigree": ["pattern:coherence-loop", "pattern:governance-feedback"], "donationWatchStatus": "docket"},
+    {"reviewId": "tf-002", "donorPatternPedigree": ["pattern:continuity-fragility"], "donationWatchStatus": "watch"},
+    {"reviewId": "tf-003", "donorPatternPedigree": ["pattern:unverified-branch"], "donationWatchStatus": "suppressed"}
+  ]
+}

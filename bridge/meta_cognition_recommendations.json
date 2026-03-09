@@ -1,0 +1,9 @@
+{
+  "generatedAt": "2026-03-08",
+  "provenance": {"schemaVersion": "phase-ao.0", "producerCommits": ["sophia-ao-111"], "sourceMode": "fixture"},
+  "recommendations": [
+    {"reviewId": "mc-001", "targetPublisherAction": "docket", "linkedTargetIds": ["concept:coherence-lattice"], "humanReviewFlag": true, "notes": "Meta-cognition can recommend architecture audits only."},
+    {"reviewId": "mc-002", "targetPublisherAction": "watch", "linkedTargetIds": ["concept:governance-integrity"], "humanReviewFlag": true, "notes": "Constraint performance drift requires oversight."},
+    {"reviewId": "mc-003", "targetPublisherAction": "suppressed", "linkedTargetIds": ["concept:constitutional-safeguards"], "humanReviewFlag": true, "notes": "Suppressed pending human review board approval."}
+  ]
+}

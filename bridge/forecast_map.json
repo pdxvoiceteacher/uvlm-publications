@@ -1,0 +1,9 @@
+{
+  "generatedAt": "2026-03-08",
+  "provenance": {"schemaVersion": "phase-af.0", "producerCommits": ["sophia-af-111"], "sourceMode": "fixture"},
+  "entries": [
+    {"reviewId": "pr-001", "forecastAccuracy": "high", "forecastConfidence": "bounded-high"},
+    {"reviewId": "pr-002", "forecastAccuracy": "medium", "forecastConfidence": "bounded-medium"},
+    {"reviewId": "pr-003", "forecastAccuracy": "low", "forecastConfidence": "bounded-low"}
+  ]
+}

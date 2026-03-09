@@ -1,0 +1,9 @@
+{
+  "generatedAt": "2026-03-08",
+  "provenance": {"schemaVersion": "phase-ai.0", "producerCommits": ["sophia-ai-111"], "sourceMode": "fixture"},
+  "entries": [
+    {"reviewId": "ag-001", "deterministicFit": 0.61, "volitionalFit": 0.58, "provisionalVHat": 0.59},
+    {"reviewId": "ag-002", "deterministicFit": 0.49, "volitionalFit": 0.52, "provisionalVHat": 0.50},
+    {"reviewId": "ag-003", "deterministicFit": 0.40, "volitionalFit": 0.39, "provisionalVHat": 0.39}
+  ]
+}

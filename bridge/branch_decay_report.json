@@ -1,0 +1,9 @@
+{
+  "generatedAt": "2026-03-08",
+  "provenance": {"schemaVersion": "phase-ae.0", "producerCommits": ["sophia-ae-111"], "sourceMode": "fixture"},
+  "entries": [
+    {"reviewId": "bl-001", "decayRisk": "low", "decaySignals": []},
+    {"reviewId": "bl-002", "decayRisk": "high", "decaySignals": ["signal-fragility"]},
+    {"reviewId": "bl-003", "decayRisk": "high", "decaySignals": ["signal-contradiction"]}
+  ]
+}

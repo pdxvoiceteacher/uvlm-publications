@@ -1,0 +1,9 @@
+{
+  "generatedAt": "2026-03-08",
+  "provenance": {"schemaVersion": "phase-aw.0", "producerCommits": ["cl-aw-201"], "sourceMode": "fixture"},
+  "entries": [
+    {"reviewId": "ea-001", "epistemicStatus": "stable", "attractorClass": "convergent"},
+    {"reviewId": "ea-002", "epistemicStatus": "volatile", "attractorClass": "competing"},
+    {"reviewId": "ea-003", "epistemicStatus": "monitor", "attractorClass": "mixed"}
+  ]
+}

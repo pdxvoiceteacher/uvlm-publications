@@ -1,0 +1,49 @@
+{
+  "generatedAt": "2026-03-08",
+  "provenance": {
+    "schemaVersion": "phase-ac.0",
+    "producerCommits": ["sophia-ac-111"],
+    "sourceMode": "fixture"
+  },
+  "recommendations": [
+    {
+      "reviewId": "cr-001",
+      "targetPublisherAction": "docket",
+      "collaborativeStatus": "active-deliberation",
+      "consensusClass": "provisional-consensus",
+      "dissentPresent": true,
+      "dissentTraceCount": 1,
+      "maturityConstraints": ["bounded-claiming", "human-ratification-required"],
+      "reviewerPositions": ["support", "qualified-support", "dissent"],
+      "linkedTargetIds": ["concept:governance-integrity"],
+      "humanReviewFlag": true,
+      "notes": "Collaborative state is bounded and remains pending explicit ratification."
+    },
+    {
+      "reviewId": "cr-002",
+      "targetPublisherAction": "watch",
+      "collaborativeStatus": "position-divergence",
+      "consensusClass": "contested",
+      "dissentPresent": true,
+      "dissentTraceCount": 2,
+      "maturityConstraints": ["insufficient-authority-alignment"],
+      "reviewerPositions": ["support", "oppose"],
+      "linkedTargetIds": ["concept:continuity-protocol"],
+      "humanReviewFlag": true,
+      "notes": "Dissent is retained for traceability while held in watch mode."
+    },
+    {
+      "reviewId": "cr-003",
+      "targetPublisherAction": "suppressed",
+      "collaborativeStatus": "withheld",
+      "consensusClass": "none",
+      "dissentPresent": false,
+      "dissentTraceCount": 0,
+      "maturityConstraints": ["insufficient-evidence"],
+      "reviewerPositions": ["undetermined"],
+      "linkedTargetIds": ["concept:constitutional-safeguards"],
+      "humanReviewFlag": true,
+      "notes": "Suppressed until stronger review packet and authority maturity are available."
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "generatedAt": "2026-03-08",
+  "provenance": {"schemaVersion": "phase-au.0", "producerCommits": ["cl-au-201"], "sourceMode": "fixture"},
+  "entries": [
+    {"reviewId": "cs-001", "commonsIntegrity": "resilient"},
+    {"reviewId": "cs-002", "commonsIntegrity": "fragile"},
+    {"reviewId": "cs-003", "commonsIntegrity": "monitor"}
+  ]
+}
