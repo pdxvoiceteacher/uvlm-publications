@@ -1234,3 +1234,41 @@ python3 -m unittest tests/test_build_discovery_navigation_overlay.py
 ```
 
 Phase lock: attractor / basin / dead-zone / operational-boundary / value / commons context -> CoherenceLattice discovery-vector and corridor formalization -> Sophia bounded discovery-navigation audit -> Publisher corridor overlays -> human/community/scientific deliberation and bounded exploration.
+
+## Knowledge River Mapping & Corridor Braiding Overlay (Phase BB)
+
+Publisher surfaces only **Sophia-audited knowledge-river materials; it does not authorize canon formation, deployment, institutional control, or prestige hierarchy**.
+
+Render rivers as braided commons infrastructure, not as a crowned main channel. Surface support, irrigation potential, and capture risk clearly but quietly.
+
+- script: `scripts/build_knowledge_river_overlay.py`
+- inputs: `bridge/knowledge_river_audit.json`, `bridge/knowledge_river_recommendations.json`, `bridge/knowledge_river_map.json`, `bridge/corridor_braiding_report.json`, `bridge/tributary_support_registry.json`, `bridge/river_capture_risk_report.json`, `registry/discovery_navigation_dashboard.json`, `registry/knowledge_topology_dashboard.json`, `registry/civilizational_memory_dashboard.json`, `registry/commons_sovereignty_dashboard.json`, `registry/value_dashboard.json`
+- outputs: `registry/knowledge_river_dashboard.json`, `registry/river_registry.json`, `registry/river_capture_watchlist.json`, `registry/river_annotations.json`
+- policy: `docket` routes to actionable river dashboard/registry outputs, `watch` routes to river capture watchlist, and `suppressed` is excluded from actionable overlays.
+- safeguards: no canon mutation, no deployment execution, no governance-right mutation, no ranking of persons/communities/institutions/traditions, no implication that river maturity equals final truth authority, and no closure of theory competition.
+
+```bash
+python3 scripts/build_knowledge_river_overlay.py
+python3 -m unittest tests/test_build_knowledge_river_overlay.py
+```
+
+Phase lock: discovery / attractor / memory / sovereignty / value context -> CoherenceLattice knowledge-river and braid formalization -> Sophia bounded river audit -> Publisher river overlays -> human/community/scientific stewardship of braided discovery channels.
+
+## Observer Legibility & Onboarding Overlay (Phase BC)
+
+Publisher surfaces Sophia-audited observer and onboarding materials for legibility and bounded participation only; no automatic governance-right expansion, personhood declaration, ranking, or sovereignty assignment occurs from this layer.
+
+- script: `scripts/build_observer_onboarding_overlay.py`
+- inputs: `bridge/observer_onboarding_audit.json`, `bridge/observer_onboarding_recommendations.json`, `bridge/observer_class_map.json`, `bridge/visualization_readiness_report.json`, `bridge/participatory_standing_registry.json`, `bridge/onboarding_capture_risk_report.json`, `registry/commons_sovereignty_dashboard.json`, `registry/civilizational_memory_dashboard.json`, `registry/knowledge_river_dashboard.json`, `registry/river_capture_watchlist.json`
+- outputs: `registry/observer_dashboard.json`, `registry/visualization_registry.json`, `registry/onboarding_watchlist.json`, `registry/participation_annotations.json`
+- routing: `docket` routes to dashboard + visualization registry, `watch` routes to onboarding watchlist, `suppress` excludes actionable outputs while preserving bounded annotations.
+- safeguards: no governance-right mutation, no sovereign authority assignment, no automatic ranking of intelligences by worth, no coercive normalization, no canon closure, and no hidden mutation controls in observer-facing views.
+- Atlas integration: exposes `observerClass`, `viewLegibility`, `guidedInterfaceRequired`, `participatoryStanding`, `suffrageReviewFlag`, `translationSupportRequired`, `captureRisk`, `antiPriesthoodGuard`, and `trustPresentationDegraded`; metadata includes allowed panels, detail level, render mode, standing/vote basis/revocation, canonical integrity status, and provenance markers. Reset removes BC classes (`observer-guided`, `observer-public`, `observer-sophia`, `observer-witness`, `standing-bounded`, `standing-review`, `capture-risk`, `translation-required`, `trust-presentation-degraded`).
+- visualization modes: Sophia Internal (high detail, provenance-rich, audit visible), Human Steward (decision-support with queue/capture warnings), Human Public / Commons (simplified bounded summaries), and Recognized/Guided Other-Intelligence View (translation-first, lower cognitive load, explicit boundaries).
+
+```bash
+python3 scripts/build_observer_onboarding_overlay.py
+python3 -m unittest tests/test_build_observer_onboarding_overlay.py
+```
+
+Phase BC widens legibility and participation across observer classes while preserving anti-capture, anti-priesthood, anti-coercion, and no-sovereignty-transfer constraints. Recognition and suffrage pathways remain bounded, reviewable, and explicitly non-autonomous.
