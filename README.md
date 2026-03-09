@@ -1337,3 +1337,24 @@ python3 -m unittest tests/test_build_civilizational_delta_overlay.py
 ```
 
 Phase lock: rivers / memory / trust / sovereignty / value context -> CoherenceLattice delta-seed and reorganization formalization -> Sophia bounded civilizational-delta audit -> Publisher delta overlays -> human/community/scientific interpretation and plural stewardship.
+
+## Epochal Terrace Mapping Overlay (Phase BF)
+
+Publisher surfaces only Sophia-audited epochal terrace materials; it does not declare permanent epochs, canonize social orders, or authorize institutional consolidation.
+
+Render terraces as living plateaus shaped by memory, plurality, and erosion risk, not monuments of inevitability.
+
+- script: `scripts/build_epochal_terrace_overlay.py`
+- inputs: `bridge/epochal_terrace_audit.json`, `bridge/epochal_terrace_recommendations.json`, `bridge/epochal_terrace_map.json`, `bridge/stability_plateau_report.json`, `bridge/institutional_sedimentation_registry.json`, `bridge/terrace_erosion_risk_report.json`, `registry/delta_dashboard.json`, `registry/knowledge_river_dashboard.json`, `registry/civilizational_memory_dashboard.json`, `registry/commons_sovereignty_dashboard.json`, `registry/trust_surface_dashboard.json`, `registry/value_dashboard.json`
+- outputs: `registry/epoch_dashboard.json`, `registry/plateau_registry.json`, `registry/terrace_watchlist.json`, `registry/epoch_annotations.json`
+- routing: `docket` routes to actionable epoch dashboard/plateau registry, `watch` routes to terrace watchlist, and `suppressed` is excluded from actionable overlays.
+- safeguards: no canon mutation, no deployment execution, no governance-right mutation, no ranking of civilizations/communities/institutions/traditions, no implication that terrace stability equals final truth authority, no closure of theory competition, and no `epoch confirmed forever` presentation.
+- UI signals: `terraceStatus`, `terraceClass`, `plateauClass`, `sedimentClass`, `pluralityRetention`, `trustSurfaceStability`, `erosionRisk`, `institutionalEmbedment`, `provenanceMarkers`, `canonicalIntegrityMarkers`.
+- Atlas styling: subtle classes only, reset clears terrace markers, and trust degradation presentation is preserved when canonical integrity is degraded.
+
+```bash
+python3 scripts/build_epochal_terrace_overlay.py
+python3 -m unittest tests/test_build_epochal_terrace_overlay.py
+```
+
+Phase lock: delta / river / memory / trust / sovereignty / value context -> CoherenceLattice epochal terrace formalization -> Sophia bounded terrace audit -> Publisher terrace overlays -> human/community/scientific stewardship of long-lived civilizational plateaus.
