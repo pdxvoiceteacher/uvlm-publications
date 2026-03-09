@@ -1234,3 +1234,22 @@ python3 -m unittest tests/test_build_discovery_navigation_overlay.py
 ```
 
 Phase lock: attractor / basin / dead-zone / operational-boundary / value / commons context -> CoherenceLattice discovery-vector and corridor formalization -> Sophia bounded discovery-navigation audit -> Publisher corridor overlays -> human/community/scientific deliberation and bounded exploration.
+
+## Knowledge River Mapping & Corridor Braiding Overlay (Phase BB)
+
+Publisher surfaces only **Sophia-audited knowledge-river materials; it does not authorize canon formation, deployment, institutional control, or prestige hierarchy**.
+
+Render rivers as braided commons infrastructure, not as a crowned main channel. Surface support, irrigation potential, and capture risk clearly but quietly.
+
+- script: `scripts/build_knowledge_river_overlay.py`
+- inputs: `bridge/knowledge_river_audit.json`, `bridge/knowledge_river_recommendations.json`, `bridge/knowledge_river_map.json`, `bridge/corridor_braiding_report.json`, `bridge/tributary_support_registry.json`, `bridge/river_capture_risk_report.json`, `registry/discovery_navigation_dashboard.json`, `registry/knowledge_topology_dashboard.json`, `registry/civilizational_memory_dashboard.json`, `registry/commons_sovereignty_dashboard.json`, `registry/value_dashboard.json`
+- outputs: `registry/knowledge_river_dashboard.json`, `registry/river_registry.json`, `registry/river_capture_watchlist.json`, `registry/river_annotations.json`
+- policy: `docket` routes to actionable river dashboard/registry outputs, `watch` routes to river capture watchlist, and `suppressed` is excluded from actionable overlays.
+- safeguards: no canon mutation, no deployment execution, no governance-right mutation, no ranking of persons/communities/institutions/traditions, no implication that river maturity equals final truth authority, and no closure of theory competition.
+
+```bash
+python3 scripts/build_knowledge_river_overlay.py
+python3 -m unittest tests/test_build_knowledge_river_overlay.py
+```
+
+Phase lock: discovery / attractor / memory / sovereignty / value context -> CoherenceLattice knowledge-river and braid formalization -> Sophia bounded river audit -> Publisher river overlays -> human/community/scientific stewardship of braided discovery channels.
