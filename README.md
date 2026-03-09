@@ -1358,3 +1358,24 @@ python3 -m unittest tests/test_build_epochal_terrace_overlay.py
 ```
 
 Phase lock: delta / river / memory / trust / sovereignty / value context -> CoherenceLattice epochal terrace formalization -> Sophia bounded terrace audit -> Publisher terrace overlays -> human/community/scientific stewardship of long-lived civilizational plateaus.
+
+## Epistemic Terrace Erosion & Renewal Overlay (Phase BG)
+
+Publisher surfaces only Sophia-audited terrace erosion and renewal materials; it does not declare epoch collapse, canonize successor systems, or authorize institutional transition.
+
+Render erosion and renewal as living terrain under stress, not spectacle. Surface repair, risk, and hidden emergence together.
+
+- script: `scripts/build_terrace_erosion_overlay.py`
+- inputs: `bridge/terrace_erosion_audit.json`, `bridge/terrace_erosion_recommendations.json`, `bridge/terrace_erosion_map.json`, `bridge/orthodoxy_pressure_report.json`, `bridge/renewal_corridor_registry.json`, `bridge/epochal_transition_forecast.json`, `registry/epoch_dashboard.json`, `registry/delta_dashboard.json`, `registry/knowledge_river_dashboard.json`, `registry/civilizational_memory_dashboard.json`, `registry/commons_sovereignty_dashboard.json`, `registry/trust_surface_dashboard.json`
+- outputs: `registry/terrace_health_dashboard.json`, `registry/orthodoxy_watchlist.json`, `registry/renewal_corridor_registry.json`, `registry/epoch_transition_annotations.json`
+- routing: `docket` routes to actionable terrace health dashboard/renewal corridor registry, `watch` routes to orthodoxy watchlist, and `suppressed` is excluded from actionable overlays.
+- safeguards: no canon mutation, no deployment execution, no governance-right mutation, no ranking of civilizations/institutions/successor orders, no implication that erosion equals collapse certainty, no `new age confirmed` presentation, and no closure of theory competition.
+- UI signals: `erosionStatus`, `erosionClass`, `orthodoxyClass`, `renewalClass`, `pluralityCollapseRecovery`, `trustErosion`, `memoryReactivation`, `phaseTransitionLikelihood`, `provenanceMarkers`, `canonicalIntegrityMarkers`.
+- Atlas styling: subtle classes only, reset clears erosion/renewal markers, and trust degradation presentation is preserved when canonical integrity is degraded.
+
+```bash
+python3 scripts/build_terrace_erosion_overlay.py
+python3 -m unittest tests/test_build_terrace_erosion_overlay.py
+```
+
+Phase lock: terrace / delta / river / trust / sovereignty / value context -> CoherenceLattice erosion and renewal formalization -> Sophia bounded erosion audit -> Publisher erosion/renewal overlays -> human/community/scientific stewardship of brittle epochs and emerging renewal.
