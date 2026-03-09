@@ -1,0 +1,8 @@
+{
+  "generatedAt": "2026-03-09",
+  "provenance": {"schemaVersion": "phase-ba.0", "producerCommits": ["cl-ba-201"], "sourceMode": "fixture"},
+  "entries": [
+    {"reviewId": "dn-001", "bridgeMaturity": "emergent", "bridgeConfidence": 0.66},
+    {"reviewId": "dn-002", "bridgeMaturity": "proto", "bridgeConfidence": 0.39}
+  ]
+}

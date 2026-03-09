@@ -228,7 +228,11 @@ export async function loadAttentionOverlay() {
     operationalMaturityDashboardResp,
     deploymentBoundaryRegistryResp,
     translationRiskWatchlistResp,
-    operationalizationAnnotationsResp
+    operationalizationAnnotationsResp,
+    discoveryNavigationDashboardResp,
+    discoveryCorridorRegistryResp,
+    discoveryRiskWatchlistResp,
+    discoveryAnnotationsResp
   ] = await Promise.all([
     fetch('../bridge/attention_updates.json').catch(() => null),
     fetch('../bridge/coherence_assessment.json').catch(() => null),
@@ -415,7 +419,11 @@ export async function loadAttentionOverlay() {
     fetch('../registry/operational_maturity_dashboard.json').catch(() => null),
     fetch('../registry/deployment_boundary_registry.json').catch(() => null),
     fetch('../registry/translation_risk_watchlist.json').catch(() => null),
-    fetch('../registry/operationalization_annotations.json').catch(() => null)
+    fetch('../registry/operationalization_annotations.json').catch(() => null),
+    fetch('../registry/discovery_navigation_dashboard.json').catch(() => null),
+    fetch('../registry/discovery_corridor_registry.json').catch(() => null),
+    fetch('../registry/discovery_risk_watchlist.json').catch(() => null),
+    fetch('../registry/discovery_annotations.json').catch(() => null)
   ]);
 
   return {
@@ -604,7 +612,11 @@ export async function loadAttentionOverlay() {
     operationalMaturityDashboard: operationalMaturityDashboardResp ? await operationalMaturityDashboardResp.json() : {},
     deploymentBoundaryRegistry: deploymentBoundaryRegistryResp ? await deploymentBoundaryRegistryResp.json() : {},
     translationRiskWatchlist: translationRiskWatchlistResp ? await translationRiskWatchlistResp.json() : {},
-    operationalizationAnnotations: operationalizationAnnotationsResp ? await operationalizationAnnotationsResp.json() : {}
+    operationalizationAnnotations: operationalizationAnnotationsResp ? await operationalizationAnnotationsResp.json() : {},
+    discoveryNavigationDashboard: discoveryNavigationDashboardResp ? await discoveryNavigationDashboardResp.json() : {},
+    discoveryCorridorRegistry: discoveryCorridorRegistryResp ? await discoveryCorridorRegistryResp.json() : {},
+    discoveryRiskWatchlist: discoveryRiskWatchlistResp ? await discoveryRiskWatchlistResp.json() : {},
+    discoveryAnnotations: discoveryAnnotationsResp ? await discoveryAnnotationsResp.json() : {}
   };
 }
 
@@ -3928,6 +3940,97 @@ function buildOperationalizationConceptSignals(
   return byConcept;
 }
 
+function buildDiscoveryNavigationConceptSignals(
+  discoveryNavigationDashboard,
+  discoveryCorridorRegistry,
+  discoveryRiskWatchlist,
+  discoveryAnnotations
+) {
+  const byConcept = new Map();
+
+  function bump(targetId, update) {
+    if (typeof targetId !== 'string') {
+      return;
+    }
+    const existing = byConcept.get(targetId) ?? {
+      discoveryStatus: 'monitor',
+      vectorClass: 'bounded',
+      bridgeMaturity: 'bounded',
+      corridorClass: 'bounded',
+      deadZoneAdjacency: 'bounded',
+      memorySupport: 'bounded',
+      commonsReviewRequirement: 'required',
+      corridorScore: 0,
+      bridgeConfidence: 0,
+      discoveryQueueStatus: 'none'
+    };
+    update(existing);
+    byConcept.set(targetId, existing);
+  }
+
+  const corridorByReview = new Map();
+  asArray(discoveryCorridorRegistry?.entries).forEach((entry) => {
+    if (typeof entry?.reviewId === 'string') {
+      corridorByReview.set(entry.reviewId, entry);
+    }
+  });
+
+  asArray(discoveryNavigationDashboard?.entries).forEach((entry) => {
+    const corridor = corridorByReview.get(entry?.reviewId);
+    asArray(entry?.linkedTargetIds).forEach((targetId) => {
+      bump(targetId, (s) => {
+        s.discoveryStatus = entry?.discoveryStatus ?? corridor?.discoveryStatus ?? s.discoveryStatus;
+        s.vectorClass = entry?.vectorClass ?? corridor?.vectorClass ?? s.vectorClass;
+        s.bridgeMaturity = entry?.bridgeMaturity ?? corridor?.bridgeMaturity ?? s.bridgeMaturity;
+        s.corridorClass = corridor?.corridorClass ?? entry?.corridorClass ?? s.corridorClass;
+        s.deadZoneAdjacency = corridor?.deadZoneAdjacency ?? entry?.deadZoneAdjacency ?? s.deadZoneAdjacency;
+        s.memorySupport = entry?.memorySupport ?? corridor?.memorySupport ?? s.memorySupport;
+        s.commonsReviewRequirement = entry?.commonsReviewRequirement ?? corridor?.commonsReviewRequirement ?? s.commonsReviewRequirement;
+        s.corridorScore = Number(corridor?.corridorScore ?? entry?.corridorScore ?? s.corridorScore);
+        s.bridgeConfidence = Number(entry?.bridgeConfidence ?? corridor?.bridgeConfidence ?? s.bridgeConfidence);
+        s.discoveryQueueStatus = 'dashboard';
+      });
+    });
+  });
+
+  asArray(discoveryRiskWatchlist?.entries).forEach((entry) => {
+    asArray(entry?.linkedTargetIds).forEach((targetId) => {
+      bump(targetId, (s) => {
+        s.discoveryStatus = entry?.discoveryStatus ?? s.discoveryStatus;
+        s.vectorClass = entry?.vectorClass ?? s.vectorClass;
+        s.bridgeMaturity = entry?.bridgeMaturity ?? s.bridgeMaturity;
+        s.corridorClass = entry?.corridorClass ?? s.corridorClass;
+        s.deadZoneAdjacency = entry?.deadZoneAdjacency ?? s.deadZoneAdjacency;
+        s.memorySupport = entry?.memorySupport ?? s.memorySupport;
+        s.commonsReviewRequirement = entry?.commonsReviewRequirement ?? s.commonsReviewRequirement;
+        s.corridorScore = Number(entry?.corridorScore ?? s.corridorScore);
+        s.bridgeConfidence = Number(entry?.bridgeConfidence ?? s.bridgeConfidence);
+        if (s.discoveryQueueStatus !== 'dashboard') {
+          s.discoveryQueueStatus = 'watch';
+        }
+      });
+    });
+  });
+
+  asArray(discoveryAnnotations?.annotations).forEach((entry) => {
+    asArray(entry?.linkedTargetIds).forEach((targetId) => {
+      bump(targetId, (s) => {
+        s.discoveryStatus = entry?.discoveryStatus ?? s.discoveryStatus;
+        s.vectorClass = entry?.vectorClass ?? s.vectorClass;
+        s.bridgeMaturity = entry?.bridgeMaturity ?? s.bridgeMaturity;
+        s.corridorClass = entry?.corridorClass ?? s.corridorClass;
+        s.deadZoneAdjacency = entry?.deadZoneAdjacency ?? s.deadZoneAdjacency;
+        s.memorySupport = entry?.memorySupport ?? s.memorySupport;
+        s.commonsReviewRequirement = entry?.commonsReviewRequirement ?? s.commonsReviewRequirement;
+        s.corridorScore = Number(entry?.corridorScore ?? s.corridorScore);
+        s.bridgeConfidence = Number(entry?.bridgeConfidence ?? s.bridgeConfidence);
+      });
+    });
+  });
+
+  return byConcept;
+}
+
 function buildConstitutionalConceptSignals(constitutionalAnnotations, governanceFailureWatchlist) {
   const byConcept = new Map();
 
@@ -4224,6 +4327,12 @@ export function applyAttentionOverlay(cy, overlay) {
     overlay?.translationRiskWatchlist,
     overlay?.operationalizationAnnotations
   );
+  const discoveryNavigationSignals = buildDiscoveryNavigationConceptSignals(
+    overlay?.discoveryNavigationDashboard,
+    overlay?.discoveryCorridorRegistry,
+    overlay?.discoveryRiskWatchlist,
+    overlay?.discoveryAnnotations
+  );
 
   const institutionalProvenance = overlay?.institutionalStatus?.provenance ?? {};
   const institutionalSchemaVersion = institutionalProvenance?.schemaVersions?.institutional_state_summary
@@ -4423,6 +4532,12 @@ export function applyAttentionOverlay(cy, overlay) {
     ?? 'unknown';
   const operationalizationProducerCommits = asArray(operationalizationProvenance?.producerCommits).join(', ') || 'unknown';
   const operationalizationSourceMode = operationalizationProvenance?.derivedFromFixtures ? 'fixture' : 'live';
+  const discoveryNavigationProvenance = overlay?.discoveryNavigationDashboard?.provenance ?? {};
+  const discoveryNavigationSchemaVersion = discoveryNavigationProvenance?.schemaVersions?.discovery_vector_field
+    ?? discoveryNavigationProvenance?.schemaVersions?.entropy_reduction_corridor
+    ?? 'unknown';
+  const discoveryNavigationProducerCommits = asArray(discoveryNavigationProvenance?.producerCommits).join(', ') || 'unknown';
+  const discoveryNavigationSourceMode = discoveryNavigationProvenance?.derivedFromFixtures ? 'fixture' : 'live';
 
   cy.nodes('[class = "concept"]').forEach((node) => {
     const id = node.id();
@@ -4840,8 +4955,21 @@ export function applyAttentionOverlay(cy, overlay) {
     node.data('operationalizationSchemaVersion', operationalizationSchemaVersion);
     node.data('operationalizationProducerCommits', operationalizationProducerCommits);
     node.data('operationalizationSourceMode', operationalizationSourceMode);
+    const discoveryNavigation = discoveryNavigationSignals.get(id);
+    node.data('discoveryStatus', discoveryNavigation?.discoveryStatus ?? 'monitor');
+    node.data('discoveryVectorClass', discoveryNavigation?.vectorClass ?? 'bounded');
+    node.data('discoveryBridgeMaturity', discoveryNavigation?.bridgeMaturity ?? 'bounded');
+    node.data('discoveryCorridorClass', discoveryNavigation?.corridorClass ?? 'bounded');
+    node.data('discoveryDeadZoneAdjacency', discoveryNavigation?.deadZoneAdjacency ?? 'bounded');
+    node.data('discoveryMemorySupport', discoveryNavigation?.memorySupport ?? 'bounded');
+    node.data('discoveryCommonsReviewRequirement', discoveryNavigation?.commonsReviewRequirement ?? 'required');
+    node.data('discoveryCorridorScore', Number(discoveryNavigation?.corridorScore ?? 0));
+    node.data('discoveryBridgeConfidence', Number(discoveryNavigation?.bridgeConfidence ?? 0));
+    node.data('discoveryNavigationSchemaVersion', discoveryNavigationSchemaVersion);
+    node.data('discoveryNavigationProducerCommits', discoveryNavigationProducerCommits);
+    node.data('discoveryNavigationSourceMode', discoveryNavigationSourceMode);
 
-    node.removeClass('attention-priority attention-secondary sonya-candidate reasoning-thread reasoning-watch stability-positive stability-watch multimodal-donation multimodal-watch review-candidate watch-queue governance-review governance-watch constitutional-watch constitutional-freeze deliberation-docket deliberation-watch deliberation-urgent anti-capture-watch continuity-docket continuity-watch continuity-fragile continuity-freeze recovery-docket recovery-watch escrow-ready recovery-fragile attestation-docket attestation-watch witness-sufficient attestation-sensitive precedent-docket precedent-watch precedent-divergent precedent-strong scenario-docket scenario-watch scenario-freeze scenario-rehearse-recovery institutional-status-indicator chamber-conflict-indicator system-health-overview queue-health-actionable backlog-pressure-watch review-fatigue-watch metric-gaming-watch load-shedding-recommended priority-actionable triage-watch urgency-high priority-critical triage-conflict closure-active closure-provisional repair-urgent reopened-watch symbolic-field-active regime-shift-watch lambda-warning architecture-hint verification-active entity-ambiguity verification-urgent claim-typed public-record-active entity-graph-linked relationship-ambiguous custody-fragile machine-readable-record investigation-active investigation-stage-mid investigation-stage-late investigation-plan-progressing investigation-blocked dependency-graph-linked authority-gated weak-evidence-signal authority-mismatch propagation-restricted maturity-gated review-packet-ready review-packet-watch packet-ambiguity-high uncertainty-disclosed synthesis-bounded pattern-cluster-active cross-case-hints pattern-maturity-stable pattern-conflict pattern-timeline-active persistence-stable temporal-conflict-marker causal-bundle-active mechanism-candidate explanatory-gap-high prohibited-conclusion causal-conflict-marker collaborative-review-active consensus-provisional dissent-present collaborative-maturity-bound telemetry-field-active lattice-transition donor-pattern-active taf-elevated branch-novel branch-maturity-bound branch-lifecycle-active branch-conflict-graph branch-decay-indicator branch-reinforcement-trend branch-contradiction-trend forecast-accuracy-high calibration-improving branch-reliability-stable prediction-timeline-active experimental-active falsification-ready replication-defined theory-gate-hold theory-corpus-active theory-negative-results theory-revision-lineage theory-competition-open agency-mode-active agency-volitional-edge agency-deterministic-edge agency-vhat-provisional agency-governance-bounded agency-consent-required agency-blame-suppressed responsibility-active support-pathway-defined consent-required coercion-ceiling-strict sanction-suppressed intervention-bounded transfer-active transfer-asymmetry-high transfer-replication-gated transfer-prohibited-claims transfer-risk-elevated system-forecast-active regime-transition-probable entropy-accumulating branch-ecosystem-fragile trajectory-divergent uncertainty-gradient-high information-gain-high experiment-priority-high entropy-reduction-positive curiosity-active value-alignment-active knowledge-priority-top welfare-impact-positive fairness-impact-watch value-risk-flagged meta-active reasoning-efficiency-high donor-reliability-high governance-constraint-strong discovery-productive architecture-active module-performance-strong architecture-discovery-productive safeguard-performance-strong architecture-proposal-queued social-entropy-active social-status-fraying cohesion-fragile legitimacy-drift-elevated reviewer-concentration-high reviewer-fatigue-high repair-priority-high federation-active federation-status-coherent stewardship-node-distributed dissent-portable capture-risk-elevated mitigation-required emergent-domain-active domain-status-emergent invariant-pattern-convergent field-birth-pressure-high domain-boundary-failure-active commons-legibility-required trust-presentation-degraded commons-sovereignty-active commons-integrity-fragile institutional-capture-risk-elevated public-trust-unstable epistemic-diversity-high civilizational-dissent-portable civilizational-memory-active preservation-criticality-high legibility-drifting vocabulary-drift-risk-high notation-fragility-high memory-recoverability-strong custody-diversity-high operationalization-active operational-status-bounded-ready maturity-class-field-tested deployment-readiness-bounded dead-zone-adjacent translation-risk-watch safeguards-required commons-review-required');
+    node.removeClass('attention-priority attention-secondary sonya-candidate reasoning-thread reasoning-watch stability-positive stability-watch multimodal-donation multimodal-watch review-candidate watch-queue governance-review governance-watch constitutional-watch constitutional-freeze deliberation-docket deliberation-watch deliberation-urgent anti-capture-watch continuity-docket continuity-watch continuity-fragile continuity-freeze recovery-docket recovery-watch escrow-ready recovery-fragile attestation-docket attestation-watch witness-sufficient attestation-sensitive precedent-docket precedent-watch precedent-divergent precedent-strong scenario-docket scenario-watch scenario-freeze scenario-rehearse-recovery institutional-status-indicator chamber-conflict-indicator system-health-overview queue-health-actionable backlog-pressure-watch review-fatigue-watch metric-gaming-watch load-shedding-recommended priority-actionable triage-watch urgency-high priority-critical triage-conflict closure-active closure-provisional repair-urgent reopened-watch symbolic-field-active regime-shift-watch lambda-warning architecture-hint verification-active entity-ambiguity verification-urgent claim-typed public-record-active entity-graph-linked relationship-ambiguous custody-fragile machine-readable-record investigation-active investigation-stage-mid investigation-stage-late investigation-plan-progressing investigation-blocked dependency-graph-linked authority-gated weak-evidence-signal authority-mismatch propagation-restricted maturity-gated review-packet-ready review-packet-watch packet-ambiguity-high uncertainty-disclosed synthesis-bounded pattern-cluster-active cross-case-hints pattern-maturity-stable pattern-conflict pattern-timeline-active persistence-stable temporal-conflict-marker causal-bundle-active mechanism-candidate explanatory-gap-high prohibited-conclusion causal-conflict-marker collaborative-review-active consensus-provisional dissent-present collaborative-maturity-bound telemetry-field-active lattice-transition donor-pattern-active taf-elevated branch-novel branch-maturity-bound branch-lifecycle-active branch-conflict-graph branch-decay-indicator branch-reinforcement-trend branch-contradiction-trend forecast-accuracy-high calibration-improving branch-reliability-stable prediction-timeline-active experimental-active falsification-ready replication-defined theory-gate-hold theory-corpus-active theory-negative-results theory-revision-lineage theory-competition-open agency-mode-active agency-volitional-edge agency-deterministic-edge agency-vhat-provisional agency-governance-bounded agency-consent-required agency-blame-suppressed responsibility-active support-pathway-defined consent-required coercion-ceiling-strict sanction-suppressed intervention-bounded transfer-active transfer-asymmetry-high transfer-replication-gated transfer-prohibited-claims transfer-risk-elevated system-forecast-active regime-transition-probable entropy-accumulating branch-ecosystem-fragile trajectory-divergent uncertainty-gradient-high information-gain-high experiment-priority-high entropy-reduction-positive curiosity-active value-alignment-active knowledge-priority-top welfare-impact-positive fairness-impact-watch value-risk-flagged meta-active reasoning-efficiency-high donor-reliability-high governance-constraint-strong discovery-productive architecture-active module-performance-strong architecture-discovery-productive safeguard-performance-strong architecture-proposal-queued social-entropy-active social-status-fraying cohesion-fragile legitimacy-drift-elevated reviewer-concentration-high reviewer-fatigue-high repair-priority-high federation-active federation-status-coherent stewardship-node-distributed dissent-portable capture-risk-elevated mitigation-required emergent-domain-active domain-status-emergent invariant-pattern-convergent field-birth-pressure-high domain-boundary-failure-active commons-legibility-required trust-presentation-degraded commons-sovereignty-active commons-integrity-fragile institutional-capture-risk-elevated public-trust-unstable epistemic-diversity-high civilizational-dissent-portable civilizational-memory-active preservation-criticality-high legibility-drifting vocabulary-drift-risk-high notation-fragility-high memory-recoverability-strong custody-diversity-high operationalization-active operational-status-bounded-ready maturity-class-field-tested deployment-readiness-bounded dead-zone-adjacent translation-risk-watch safeguards-required commons-review-required discovery-navigation-active discovery-status-active discovery-vector-cross-domain discovery-bridge-emergent discovery-corridor-bounded discovery-dead-zone-adjacent discovery-memory-supported discovery-commons-review-required discovery-risk-watch');
     if ((rankData?.rank ?? Infinity) <= 2) {
       node.addClass('attention-priority');
     } else if ((rankData?.rank ?? Infinity) <= 5) {
@@ -5509,6 +5637,34 @@ export function applyAttentionOverlay(cy, overlay) {
     }
     if ((operationalization?.commonsReviewRequirement ?? 'required') === 'required') {
       node.addClass('commons-review-required');
+    }
+
+    if (['dashboard', 'watch'].includes(discoveryNavigation?.discoveryQueueStatus ?? 'none')) {
+      node.addClass('discovery-navigation-active');
+    }
+    if ((discoveryNavigation?.discoveryStatus ?? 'monitor') === 'active') {
+      node.addClass('discovery-status-active');
+    }
+    if ((discoveryNavigation?.vectorClass ?? 'bounded') === 'cross-domain') {
+      node.addClass('discovery-vector-cross-domain');
+    }
+    if ((discoveryNavigation?.bridgeMaturity ?? 'bounded') === 'emergent') {
+      node.addClass('discovery-bridge-emergent');
+    }
+    if ((discoveryNavigation?.corridorClass ?? 'bounded') === 'bounded') {
+      node.addClass('discovery-corridor-bounded');
+    }
+    if ((discoveryNavigation?.deadZoneAdjacency ?? 'bounded') !== 'bounded') {
+      node.addClass('discovery-dead-zone-adjacent');
+    }
+    if ((discoveryNavigation?.memorySupport ?? 'bounded') === 'supported') {
+      node.addClass('discovery-memory-supported');
+    }
+    if ((discoveryNavigation?.commonsReviewRequirement ?? 'required') === 'required') {
+      node.addClass('discovery-commons-review-required');
+    }
+    if ((discoveryNavigation?.corridorClass ?? 'bounded') === 'volatile' || (discoveryNavigation?.bridgeConfidence ?? 0) < 0.4) {
+      node.addClass('discovery-risk-watch');
     }
   });
 }

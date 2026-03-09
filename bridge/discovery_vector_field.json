@@ -1,0 +1,8 @@
+{
+  "generatedAt": "2026-03-09",
+  "provenance": {"schemaVersion": "phase-ba.0", "producerCommits": ["cl-ba-201"], "sourceMode": "fixture"},
+  "entries": [
+    {"reviewId": "dn-001", "discoveryStatus": "active", "vectorClass": "cross-domain"},
+    {"reviewId": "dn-002", "discoveryStatus": "fragile", "vectorClass": "contested"}
+  ]
+}

@@ -1215,3 +1215,22 @@ python3 -m unittest tests/test_build_operationalization_overlay.py
 ```
 
 Phase lock: attractor / basin / dead-zone / memory / sovereignty / value context -> CoherenceLattice operational maturity and deployment-boundary formalization -> Sophia bounded operationalization audit -> Publisher deployment-maturity overlays -> human/community/scientific/institutional deliberation.
+
+## Discovery Navigation Engine Overlay (Phase BA)
+
+Publisher surfaces only **Sophia-audited discovery-navigation materials; it does not authorize autonomous pursuit, deployment, canonization, or institutional control.**
+
+Render discovery as bounded terrain and navigable corridors, not as an oracle path.
+
+- script: `scripts/build_discovery_navigation_overlay.py`
+- inputs: `bridge/discovery_navigation_audit.json`, `bridge/discovery_navigation_recommendations.json`, `bridge/discovery_vector_field.json`, `bridge/cross_domain_bridge_map.json`, `bridge/entropy_reduction_corridor.json`, `bridge/discovery_navigation_report.json`, `registry/knowledge_topology_dashboard.json`, `registry/operational_maturity_dashboard.json`, `registry/civilizational_memory_dashboard.json`, `registry/commons_sovereignty_dashboard.json`, `registry/value_dashboard.json`
+- outputs: `registry/discovery_navigation_dashboard.json`, `registry/discovery_corridor_registry.json`, `registry/discovery_risk_watchlist.json`, `registry/discovery_annotations.json`
+- policy: `docket` routes to actionable dashboard/corridor outputs, `watch` routes to discovery risk watchlist, and `suppressed` is excluded from actionable overlays.
+- safeguards: no autonomous research execution, no deployment execution, no governance-right mutation, no canon closure, no ranking of communities/institutions, and no implication that corridor priority equals truth authority.
+
+```bash
+python3 scripts/build_discovery_navigation_overlay.py
+python3 -m unittest tests/test_build_discovery_navigation_overlay.py
+```
+
+Phase lock: attractor / basin / dead-zone / operational-boundary / value / commons context -> CoherenceLattice discovery-vector and corridor formalization -> Sophia bounded discovery-navigation audit -> Publisher corridor overlays -> human/community/scientific deliberation and bounded exploration.

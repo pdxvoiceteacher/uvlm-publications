@@ -404,6 +404,18 @@ function renderConcept(data) {
     row('Operationalization Schema Version', data.operationalizationSchemaVersion ?? 'unknown'),
     row('Operationalization Producer Commit(s)', data.operationalizationProducerCommits ?? 'unknown'),
     row('Operationalization Source Mode', data.operationalizationSourceMode ?? 'unknown'),
+    row('Discovery Status', data.discoveryStatus ?? 'monitor'),
+    row('Discovery Vector Class', data.discoveryVectorClass ?? 'bounded'),
+    row('Discovery Bridge Maturity', data.discoveryBridgeMaturity ?? 'bounded'),
+    row('Discovery Corridor Class', data.discoveryCorridorClass ?? 'bounded'),
+    row('Discovery Dead-Zone Adjacency', data.discoveryDeadZoneAdjacency ?? 'bounded'),
+    row('Discovery Memory Support', data.discoveryMemorySupport ?? 'bounded'),
+    row('Discovery Commons Review Requirement', data.discoveryCommonsReviewRequirement ?? 'required'),
+    row('Discovery Corridor Score', Number(data.discoveryCorridorScore ?? 0).toFixed(2)),
+    row('Discovery Bridge Confidence', Number(data.discoveryBridgeConfidence ?? 0).toFixed(2)),
+    row('Discovery Navigation Schema Version', data.discoveryNavigationSchemaVersion ?? 'unknown'),
+    row('Discovery Navigation Producer Commit(s)', data.discoveryNavigationProducerCommits ?? 'unknown'),
+    row('Discovery Navigation Source Mode', data.discoveryNavigationSourceMode ?? 'unknown'),
     row('Related Concepts', data.relatedConceptCount ?? 0),
     renderConceptRelations(data.relatedConcepts)
   ].join('');
