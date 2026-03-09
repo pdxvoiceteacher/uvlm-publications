@@ -392,6 +392,18 @@ function renderConcept(data) {
     row('Civilizational Memory Schema Version', data.civilizationalMemorySchemaVersion ?? 'unknown'),
     row('Civilizational Memory Producer Commit(s)', data.civilizationalMemoryProducerCommits ?? 'unknown'),
     row('Civilizational Memory Source Mode', data.civilizationalMemorySourceMode ?? 'unknown'),
+    row('Operational Status', data.operationalStatus ?? 'monitor'),
+    row('Maturity Class', data.maturityClass ?? 'bounded'),
+    row('Deployment Readiness', data.deploymentReadiness ?? 'bounded'),
+    row('Dead-Zone Adjacency', data.deadZoneAdjacency ?? 'bounded'),
+    row('Translation Risk', data.translationRisk ?? 'bounded'),
+    row('Required Safeguards', asList(data.requiredSafeguards)),
+    row('Commons Review Requirement', data.commonsReviewRequirement ?? 'required'),
+    row('Operational Readiness Score', Number(data.operationalReadinessScore ?? 0).toFixed(2)),
+    row('Translation Risk Score', Number(data.translationRiskScore ?? 0).toFixed(2)),
+    row('Operationalization Schema Version', data.operationalizationSchemaVersion ?? 'unknown'),
+    row('Operationalization Producer Commit(s)', data.operationalizationProducerCommits ?? 'unknown'),
+    row('Operationalization Source Mode', data.operationalizationSourceMode ?? 'unknown'),
     row('Related Concepts', data.relatedConceptCount ?? 0),
     renderConceptRelations(data.relatedConcepts)
   ].join('');

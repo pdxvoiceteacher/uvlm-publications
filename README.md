@@ -1196,3 +1196,22 @@ The interface should make preservation feel participatory and legible, never pri
 python3 scripts/build_civilizational_memory_overlay.py
 python3 -m unittest tests/test_build_civilizational_memory_overlay.py
 ```
+
+## Operationalization Boundary & Deployment Maturity Overlay (Phase AX)
+
+Publisher surfaces only **Sophia-audited operationalization materials; it does not authorize deployment, implementation, or institutional control.**
+
+Readiness is shown as bounded possibility, not a green light: the interface communicates stewardship thresholds and translation risk, never deployment triumph.
+
+- script: `scripts/build_operationalization_overlay.py`
+- inputs: `bridge/operationalization_audit.json`, `bridge/operationalization_recommendations.json`, `bridge/operational_maturity_map.json`, `bridge/deployment_boundary_report.json`, `bridge/translation_risk_register.json`, `bridge/operationalization_gate.json`, `registry/knowledge_topology_dashboard.json`, `registry/emergent_domain_dashboard.json`, `registry/civilizational_memory_dashboard.json`, `registry/commons_sovereignty_dashboard.json`, `registry/value_dashboard.json`
+- outputs: `registry/operational_maturity_dashboard.json`, `registry/deployment_boundary_registry.json`, `registry/translation_risk_watchlist.json`, `registry/operationalization_annotations.json`
+- policy: `docket` routes to actionable operational maturity/deployment-boundary outputs, `watch` routes to translation-risk watchlist, and `suppressed` is excluded from actionable overlays.
+- safeguards: no deployment execution, no policy enactment, no governance-right mutation, no canon closure, no ranking of persons/communities/institutions, and no claim that scientific maturity alone licenses operational control.
+
+```bash
+python3 scripts/build_operationalization_overlay.py
+python3 -m unittest tests/test_build_operationalization_overlay.py
+```
+
+Phase lock: attractor / basin / dead-zone / memory / sovereignty / value context -> CoherenceLattice operational maturity and deployment-boundary formalization -> Sophia bounded operationalization audit -> Publisher deployment-maturity overlays -> human/community/scientific/institutional deliberation.

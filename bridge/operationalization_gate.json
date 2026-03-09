@@ -1,0 +1,8 @@
+{
+  "generatedAt": "2026-03-09",
+  "provenance": {"schemaVersion": "phase-ax.0", "producerCommits": ["sophia-ax-111"], "sourceMode": "fixture"},
+  "entries": [
+    {"reviewId": "op-001", "requiredSafeguards": ["human-oversight", "commons-review", "translation-monitor"], "commonsReviewRequirement": "required"},
+    {"reviewId": "op-002", "requiredSafeguards": ["extended-watch"], "commonsReviewRequirement": "required"}
+  ]
+}
