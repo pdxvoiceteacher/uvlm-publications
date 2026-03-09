@@ -1,0 +1,9 @@
+{
+  "generatedAt": "2026-03-08",
+  "provenance": {"schemaVersion": "phase-au.0", "producerCommits": ["sophia-au-111"], "sourceMode": "fixture"},
+  "recommendations": [
+    {"reviewId": "cs-001", "targetPublisherAction": "docket", "linkedTargetIds": ["concept:coherence-lattice"], "sovereigntyStatus": "priority-review", "humanReviewFlag": true, "notes": "Signal is review-facing and non-sovereign."},
+    {"reviewId": "cs-002", "targetPublisherAction": "watch", "linkedTargetIds": ["concept:governance-integrity"], "sovereigntyStatus": "monitor", "humanReviewFlag": true, "notes": "Watch for trust drift and capture risk."},
+    {"reviewId": "cs-003", "targetPublisherAction": "suppressed", "linkedTargetIds": ["concept:value-alignment"], "sovereigntyStatus": "hold", "humanReviewFlag": true, "notes": "Suppressed pending additional human review."}
+  ]
+}

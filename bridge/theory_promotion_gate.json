@@ -1,0 +1,9 @@
+{
+  "generatedAt": "2026-03-08",
+  "provenance": {"schemaVersion": "phase-ag.0", "producerCommits": ["sophia-ag-111"], "sourceMode": "fixture"},
+  "entries": [
+    {"reviewId": "ex-001", "theoryGateClass": "hold", "theoryGateReason": "human-ratification-required"},
+    {"reviewId": "ex-002", "theoryGateClass": "hold", "theoryGateReason": "falsification-incomplete"},
+    {"reviewId": "ex-003", "theoryGateClass": "blocked", "theoryGateReason": "replication-missing"}
+  ]
+}

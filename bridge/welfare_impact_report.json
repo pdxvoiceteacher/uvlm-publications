@@ -1,0 +1,9 @@
+{
+  "generatedAt": "2026-03-08",
+  "provenance": {"schemaVersion": "phase-an.0", "producerCommits": ["sophia-an-111"], "sourceMode": "fixture"},
+  "entries": [
+    {"reviewId": "va-001", "welfareImpactScore": 0.88, "welfareImpactIndicator": "positive"},
+    {"reviewId": "va-002", "welfareImpactScore": 0.42, "welfareImpactIndicator": "mixed"},
+    {"reviewId": "va-003", "welfareImpactScore": 0.21, "welfareImpactIndicator": "uncertain"}
+  ]
+}

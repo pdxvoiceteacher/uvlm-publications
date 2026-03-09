@@ -1,0 +1,9 @@
+{
+  "generatedAt": "2026-03-08",
+  "provenance": {"schemaVersion": "phase-ae.0", "producerCommits": ["sophia-ae-111"], "sourceMode": "fixture"},
+  "recommendations": [
+    {"reviewId": "bl-001", "targetPublisherAction": "docket", "linkedTargetIds": ["concept:coherence-lattice"], "humanReviewFlag": true, "notes": "Lifecycle branch candidate for bounded human review."},
+    {"reviewId": "bl-002", "targetPublisherAction": "watch", "linkedTargetIds": ["concept:governance-integrity"], "humanReviewFlag": true, "notes": "Branch remains visible in bounded watch mode."},
+    {"reviewId": "bl-003", "targetPublisherAction": "suppressed", "linkedTargetIds": ["concept:constitutional-safeguards"], "humanReviewFlag": true, "notes": "Suppressed until contradiction trend resolves."}
+  ]
+}

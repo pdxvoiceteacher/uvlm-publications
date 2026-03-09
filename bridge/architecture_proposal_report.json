@@ -1,0 +1,9 @@
+{
+  "generatedAt": "2026-03-08",
+  "provenance": {"schemaVersion": "phase-ap.0", "producerCommits": ["sophia-ap-111"], "sourceMode": "fixture"},
+  "entries": [
+    {"reviewId": "ar-001", "architectureImprovementProposal": "proposal-queued"},
+    {"reviewId": "ar-002", "architectureImprovementProposal": "proposal-review"},
+    {"reviewId": "ar-003", "architectureImprovementProposal": "proposal-hold"}
+  ]
+}

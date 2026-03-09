@@ -1,0 +1,9 @@
+{
+  "generatedAt": "2026-03-08",
+  "provenance": {"schemaVersion": "phase-ae.0", "producerCommits": ["sophia-ae-111"], "sourceMode": "fixture"},
+  "audits": [
+    {"reviewId": "bl-001", "branchAuditState": "verified"},
+    {"reviewId": "bl-002", "branchAuditState": "watch"},
+    {"reviewId": "bl-003", "branchAuditState": "suppressed"}
+  ]
+}

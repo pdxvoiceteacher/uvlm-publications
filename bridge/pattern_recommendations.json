@@ -1,0 +1,43 @@
+{
+  "generatedAt": "2026-03-08",
+  "provenance": {
+    "schemaVersion": "phase-z.0",
+    "producerCommits": ["sophia-z-111"],
+    "sourceMode": "fixture"
+  },
+  "recommendations": [
+    {
+      "reviewId": "pat-001",
+      "targetPublisherAction": "docket",
+      "patternCluster": "governance-fragility",
+      "patternMaturity": "emergent-stable",
+      "crossCaseRelationshipHints": ["case-001~case-004", "case-002~case-007"],
+      "conflictMarkers": ["timing-drift"],
+      "linkedTargetIds": ["concept:governance-integrity"],
+      "humanReviewFlag": true,
+      "notes": "Cluster is coherent but still bounded to review-facing usage."
+    },
+    {
+      "reviewId": "pat-002",
+      "targetPublisherAction": "watch",
+      "patternCluster": "continuity-anomalies",
+      "patternMaturity": "speculative",
+      "crossCaseRelationshipHints": ["case-005~case-006"],
+      "conflictMarkers": ["source-asymmetry", "small-sample"],
+      "linkedTargetIds": ["concept:continuity-protocol"],
+      "humanReviewFlag": true,
+      "notes": "Useful for uncertainty-aware watch; not actionable."
+    },
+    {
+      "reviewId": "pat-003",
+      "targetPublisherAction": "suppressed",
+      "patternCluster": "identity-linkage",
+      "patternMaturity": "speculative",
+      "crossCaseRelationshipHints": ["case-009~case-010"],
+      "conflictMarkers": ["identity-ambiguity"],
+      "linkedTargetIds": ["concept:constitutional-safeguards"],
+      "humanReviewFlag": true,
+      "notes": "Suppressed pending stronger pattern maturity and disambiguation."
+    }
+  ]
+}

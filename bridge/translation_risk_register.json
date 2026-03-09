@@ -1,0 +1,8 @@
+{
+  "generatedAt": "2026-03-09",
+  "provenance": {"schemaVersion": "phase-ax.0", "producerCommits": ["sophia-ax-111"], "sourceMode": "fixture"},
+  "entries": [
+    {"reviewId": "op-001", "translationRisk": "medium", "translationRiskScore": 0.41},
+    {"reviewId": "op-002", "translationRisk": "high", "translationRiskScore": 0.72}
+  ]
+}

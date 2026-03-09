@@ -1,0 +1,9 @@
+{
+  "generatedAt": "2026-03-08",
+  "provenance": {"schemaVersion": "phase-at.0", "producerCommits": ["sophia-at-111"], "sourceMode": "fixture"},
+  "recommendations": [
+    {"reviewId": "ed-001", "targetPublisherAction": "docket", "linkedTargetIds": ["concept:coherence-lattice"], "commonsLegibilityRequirement": "required", "humanReviewFlag": true, "notes": "Convergence signal invites inquiry, not canonization."},
+    {"reviewId": "ed-002", "targetPublisherAction": "watch", "linkedTargetIds": ["concept:theory-transfer"], "commonsLegibilityRequirement": "required", "humanReviewFlag": true, "notes": "Boundary pressure requires human review context."},
+    {"reviewId": "ed-003", "targetPublisherAction": "suppressed", "linkedTargetIds": ["concept:value-alignment"], "commonsLegibilityRequirement": "required", "humanReviewFlag": true, "notes": "Suppressed pending additional safeguards."}
+  ]
+}

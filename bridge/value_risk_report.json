@@ -1,0 +1,9 @@
+{
+  "generatedAt": "2026-03-08",
+  "provenance": {"schemaVersion": "phase-an.0", "producerCommits": ["sophia-an-111"], "sourceMode": "fixture"},
+  "entries": [
+    {"reviewId": "va-001", "valueRiskFlag": "bounded", "valueRiskScore": 0.18},
+    {"reviewId": "va-002", "valueRiskFlag": "elevated", "valueRiskScore": 0.61},
+    {"reviewId": "va-003", "valueRiskFlag": "restricted", "valueRiskScore": 0.83}
+  ]
+}
