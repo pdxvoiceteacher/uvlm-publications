@@ -1,18 +1,79 @@
 {
-  "generatedAt": "2026-03-07",
+  "generatedAt": "2026-03-08",
+  "telemetryFieldProtocol": true,
   "nonCanonical": true,
+  "provenance": {
+    "schemaVersions": {
+      "telemetry_field_audit": "phase-ad.0",
+      "telemetry_field_recommendations": "phase-ad.0",
+      "telemetry_field_map": "phase-ad.0",
+      "lattice_projection_map": "phase-ad.0",
+      "pattern_donation_registry": "phase-ad.0",
+      "action_functional_scorecard": "phase-ad.0",
+      "branch_emergence_report": "phase-ad.0",
+      "symbolic_field_registry": "composite",
+      "investigation_dashboard": "composite",
+      "authority_gate_dashboard": "composite"
+    },
+    "producerCommits": [
+      "sophia-ad-111",
+      "sophia-t-111",
+      "cl-t-222",
+      "cl-commit-aaa111",
+      "sophia-commit-bbb222",
+      "sophia-commit-qqq111",
+      "cl-commit-qqq222",
+      "sophia-r-111",
+      "cl-r-222",
+      "sophia-s-111",
+      "cl-s-222",
+      "sophia-u-111",
+      "sophia-v-111",
+      "sophia-x1-111",
+      "coherence-x1-111",
+      "coherence-x1-112",
+      "coherence-x1-113",
+      "coherence-x1-114",
+      "cl-u-222",
+      "cl-v-222"
+    ],
+    "sourceModes": {
+      "telemetry_field_audit": "fixture",
+      "telemetry_field_recommendations": "fixture",
+      "telemetry_field_map": "fixture",
+      "lattice_projection_map": "fixture",
+      "pattern_donation_registry": "fixture",
+      "action_functional_scorecard": "fixture",
+      "branch_emergence_report": "fixture",
+      "symbolic_field_registry": "fixture",
+      "investigation_dashboard": "fixture",
+      "authority_gate_dashboard": "fixture"
+    },
+    "derivedFromFixtures": true
+  },
   "entries": [
     {
-      "donationId": "donation:guide-002:narrative-phase-space",
-      "targetId": "concept:narrative-phase-space",
-      "targetType": "concept",
+      "reviewId": "tf-002",
+      "status": "watch",
+      "donationWatchStatus": "watch",
+      "telemetryFieldStatus": "drift-watch",
+      "latticeCoordinates": "0.35,0.58,0.29",
+      "latticeRegime": "transition-risk",
+      "donorPatternPedigree": [
+        "pattern:continuity-fragility"
+      ],
+      "tafScoreSummary": "uncertain",
+      "tafScore": 0.41,
+      "branchNovelty": "high",
+      "maturityCeiling": "watch-only",
+      "telemetryAuditState": "watch",
+      "linkedTargetIds": [
+        "concept:governance-integrity"
+      ],
+      "humanReviewFlag": true,
       "observational": true,
       "nonCanonical": true,
-      "watchStatus": "watch",
-      "auditStatus": "watch",
-      "reinforcementStatus": "watch",
-      "reinforcementTrend": "flat",
-      "explanation": "Keep in watchlist until recurrence and coherence persistence improves."
+      "queuedAt": "2026-03-08"
     }
   ]
 }

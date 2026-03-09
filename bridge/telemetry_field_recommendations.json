@@ -1,0 +1,9 @@
+{
+  "generatedAt": "2026-03-08",
+  "provenance": {"schemaVersion": "phase-ad.0", "producerCommits": ["sophia-ad-111"], "sourceMode": "fixture"},
+  "recommendations": [
+    {"reviewId": "tf-001", "targetPublisherAction": "docket", "linkedTargetIds": ["concept:coherence-lattice"], "humanReviewFlag": true, "notes": "Bounded telemetry branch candidate."},
+    {"reviewId": "tf-002", "targetPublisherAction": "watch", "linkedTargetIds": ["concept:governance-integrity"], "humanReviewFlag": true, "notes": "Pattern donation monitored only."},
+    {"reviewId": "tf-003", "targetPublisherAction": "suppressed", "linkedTargetIds": ["concept:constitutional-safeguards"], "humanReviewFlag": true, "notes": "Suppressed until stronger authority alignment."}
+  ]
+}

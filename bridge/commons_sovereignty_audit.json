@@ -1,0 +1,9 @@
+{
+  "generatedAt": "2026-03-08",
+  "provenance": {"schemaVersion": "phase-au.0", "producerCommits": ["sophia-au-111"], "sourceMode": "fixture"},
+  "audits": [
+    {"reviewId": "cs-001", "commonsSovereigntyAuditState": "verified"},
+    {"reviewId": "cs-002", "commonsSovereigntyAuditState": "monitor"},
+    {"reviewId": "cs-003", "commonsSovereigntyAuditState": "restricted"}
+  ]
+}

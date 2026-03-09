@@ -1,0 +1,9 @@
+{
+  "generatedAt": "2026-03-08",
+  "provenance": {"schemaVersion": "phase-ar.0", "producerCommits": ["sophia-ar-111"], "sourceMode": "fixture"},
+  "entries": [
+    {"reviewId": "fg-001", "federationStatus": "coherent"},
+    {"reviewId": "fg-002", "federationStatus": "strained"},
+    {"reviewId": "fg-003", "federationStatus": "fragmented"}
+  ]
+}

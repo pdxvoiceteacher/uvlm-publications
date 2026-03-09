@@ -1,0 +1,14 @@
+{
+  "generatedAt": "2026-03-08",
+  "commonsParticipationProtocol": true,
+  "nonCanonical": true,
+  "provenance": {
+    "schemaVersions": {"civic_literacy_dashboard": "phase-as.0"},
+    "producerCommits": ["publisher-as-001"],
+    "sourceModes": {"civic_literacy_dashboard": "fixture"},
+    "derivedFromFixtures": true
+  },
+  "entries": [
+    {"reviewId": "cp-001", "linkedTargetIds": ["concept:coherence-lattice"], "literacyClass": "clear"}
+  ]
+}

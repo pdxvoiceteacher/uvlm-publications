@@ -1,0 +1,9 @@
+{
+  "generatedAt": "2026-03-09",
+  "provenance": {"schemaVersion": "phase-ba.0", "producerCommits": ["sophia-ba-111"], "sourceMode": "fixture"},
+  "recommendations": [
+    {"reviewId": "dn-001", "targetPublisherAction": "docket", "linkedTargetIds": ["concept:coherence-lattice"], "commonsReviewRequirement": "required", "notes": "Corridor guidance for bounded exploration; not truth authority."},
+    {"reviewId": "dn-002", "targetPublisherAction": "watch", "linkedTargetIds": ["concept:theory-transfer"], "commonsReviewRequirement": "required", "notes": "Discovery corridor risk remains elevated."},
+    {"reviewId": "dn-003", "targetPublisherAction": "suppressed", "linkedTargetIds": ["concept:value-alignment"], "notes": "Suppressed pending deliberative review."}
+  ]
+}

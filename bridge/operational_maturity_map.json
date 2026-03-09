@@ -1,0 +1,8 @@
+{
+  "generatedAt": "2026-03-09",
+  "provenance": {"schemaVersion": "phase-ax.0", "producerCommits": ["cl-ax-201"], "sourceMode": "fixture"},
+  "entries": [
+    {"reviewId": "op-001", "operationalStatus": "bounded-ready", "maturityClass": "field-tested", "readinessScore": 0.68},
+    {"reviewId": "op-002", "operationalStatus": "fragile", "maturityClass": "prototype", "readinessScore": 0.34}
+  ]
+}

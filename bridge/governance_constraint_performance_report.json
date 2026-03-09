@@ -1,0 +1,9 @@
+{
+  "generatedAt": "2026-03-08",
+  "provenance": {"schemaVersion": "phase-ao.0", "producerCommits": ["sophia-ao-111"], "sourceMode": "fixture"},
+  "entries": [
+    {"reviewId": "mc-001", "governanceConstraintPerformance": "strong"},
+    {"reviewId": "mc-002", "governanceConstraintPerformance": "bounded"},
+    {"reviewId": "mc-003", "governanceConstraintPerformance": "degraded"}
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "generatedAt": "2026-03-08",
+  "provenance": {
+    "schemaVersion": "phase-ac.0",
+    "producerCommits": ["sophia-ac-111"],
+    "sourceMode": "fixture"
+  },
+  "entries": [
+    {"reviewId": "cr-001", "collaborativeStatus": "active-deliberation"},
+    {"reviewId": "cr-002", "collaborativeStatus": "position-divergence"},
+    {"reviewId": "cr-003", "collaborativeStatus": "withheld"}
+  ]
+}
