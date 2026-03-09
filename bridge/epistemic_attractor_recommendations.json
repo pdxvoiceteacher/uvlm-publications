@@ -1,0 +1,9 @@
+{
+  "generatedAt": "2026-03-08",
+  "provenance": {"schemaVersion": "phase-aw.0", "producerCommits": ["sophia-aw-111"], "sourceMode": "fixture"},
+  "recommendations": [
+    {"reviewId": "ea-001", "targetPublisherAction": "docket", "linkedTargetIds": ["concept:coherence-lattice"], "memoryRetentionStrength": "strong", "governanceCompatibility": "compatible", "humanReviewFlag": true, "notes": "Terrain signal for review, not dogma."},
+    {"reviewId": "ea-002", "targetPublisherAction": "watch", "linkedTargetIds": ["concept:theory-transfer"], "memoryRetentionStrength": "bounded", "governanceCompatibility": "watch", "humanReviewFlag": true, "notes": "Dead-zone recurrence monitor only."},
+    {"reviewId": "ea-003", "targetPublisherAction": "suppressed", "linkedTargetIds": ["concept:value-alignment"], "memoryRetentionStrength": "hold", "governanceCompatibility": "bounded", "humanReviewFlag": true, "notes": "Suppressed pending human interpretation."}
+  ]
+}

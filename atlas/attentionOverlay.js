@@ -220,7 +220,11 @@ export async function loadAttentionOverlay() {
     civilizationalMemoryDashboardResp,
     epistemicResilienceRegistryResp,
     memoryFragilityWatchlistResp,
-    civilizationalMemoryAnnotationsResp
+    civilizationalMemoryAnnotationsResp,
+    knowledgeTopologyDashboardResp,
+    attractorRegistryResp,
+    deadZoneWatchlistResp,
+    paradigmShiftAnnotationsResp
   ] = await Promise.all([
     fetch('../bridge/attention_updates.json').catch(() => null),
     fetch('../bridge/coherence_assessment.json').catch(() => null),
@@ -399,7 +403,11 @@ export async function loadAttentionOverlay() {
     fetch('../registry/civilizational_memory_dashboard.json').catch(() => null),
     fetch('../registry/epistemic_resilience_registry.json').catch(() => null),
     fetch('../registry/memory_fragility_watchlist.json').catch(() => null),
-    fetch('../registry/civilizational_memory_annotations.json').catch(() => null)
+    fetch('../registry/civilizational_memory_annotations.json').catch(() => null),
+    fetch('../registry/knowledge_topology_dashboard.json').catch(() => null),
+    fetch('../registry/attractor_registry.json').catch(() => null),
+    fetch('../registry/dead_zone_watchlist.json').catch(() => null),
+    fetch('../registry/paradigm_shift_annotations.json').catch(() => null)
   ]);
 
   return {
@@ -580,7 +588,11 @@ export async function loadAttentionOverlay() {
     civilizationalMemoryDashboard: civilizationalMemoryDashboardResp ? await civilizationalMemoryDashboardResp.json() : {},
     epistemicResilienceRegistry: epistemicResilienceRegistryResp ? await epistemicResilienceRegistryResp.json() : {},
     memoryFragilityWatchlist: memoryFragilityWatchlistResp ? await memoryFragilityWatchlistResp.json() : {},
-    civilizationalMemoryAnnotations: civilizationalMemoryAnnotationsResp ? await civilizationalMemoryAnnotationsResp.json() : {}
+    civilizationalMemoryAnnotations: civilizationalMemoryAnnotationsResp ? await civilizationalMemoryAnnotationsResp.json() : {},
+    knowledgeTopologyDashboard: knowledgeTopologyDashboardResp ? await knowledgeTopologyDashboardResp.json() : {},
+    attractorRegistry: attractorRegistryResp ? await attractorRegistryResp.json() : {},
+    deadZoneWatchlist: deadZoneWatchlistResp ? await deadZoneWatchlistResp.json() : {},
+    paradigmShiftAnnotations: paradigmShiftAnnotationsResp ? await paradigmShiftAnnotationsResp.json() : {}
   };
 }
 
@@ -3731,6 +3743,88 @@ function buildCivilizationalMemoryConceptSignals(civilizationalMemoryDashboard, 
         s.notationFragility = entry?.notationFragility ?? s.notationFragility;
         s.recoverability = entry?.recoverability ?? s.recoverability;
         s.custodyDiversity = entry?.custodyDiversity ?? s.custodyDiversity;
+      });
+    });
+  });
+
+  return byConcept;
+}
+
+function buildEpistemicAttractorConceptSignals(knowledgeTopologyDashboard, attractorRegistry, deadZoneWatchlist, paradigmShiftAnnotations) {
+  const byConcept = new Map();
+
+  function bump(targetId, update) {
+    if (typeof targetId !== 'string') {
+      return;
+    }
+    const existing = byConcept.get(targetId) ?? {
+      epistemicStatus: 'monitor',
+      attractorClass: 'mixed',
+      basinClass: 'mixed',
+      deadZoneRecurrence: 'bounded',
+      paradigmShiftForecast: 'bounded',
+      memoryRetentionStrength: 'bounded',
+      governanceCompatibility: 'compatible',
+      shiftProbability: 0,
+      topologyQueueStatus: 'none',
+    };
+    update(existing);
+    byConcept.set(targetId, existing);
+  }
+
+  const registryByReview = new Map();
+  asArray(attractorRegistry?.entries).forEach((entry) => {
+    if (typeof entry?.reviewId === 'string') {
+      registryByReview.set(entry.reviewId, entry);
+    }
+  });
+
+  asArray(knowledgeTopologyDashboard?.entries).forEach((entry) => {
+    const reg = registryByReview.get(entry?.reviewId);
+    asArray(entry?.linkedTargetIds).forEach((targetId) => {
+      bump(targetId, (s) => {
+        s.epistemicStatus = entry?.epistemicStatus ?? reg?.epistemicStatus ?? s.epistemicStatus;
+        s.attractorClass = entry?.attractorClass ?? reg?.attractorClass ?? s.attractorClass;
+        s.basinClass = entry?.basinClass ?? reg?.basinClass ?? s.basinClass;
+        s.deadZoneRecurrence = entry?.deadZoneRecurrence ?? reg?.deadZoneRecurrence ?? s.deadZoneRecurrence;
+        s.paradigmShiftForecast = entry?.paradigmShiftForecast ?? reg?.paradigmShiftForecast ?? s.paradigmShiftForecast;
+        s.memoryRetentionStrength = entry?.memoryRetentionStrength ?? reg?.memoryRetentionStrength ?? s.memoryRetentionStrength;
+        s.governanceCompatibility = entry?.governanceCompatibility ?? reg?.governanceCompatibility ?? s.governanceCompatibility;
+        s.shiftProbability = Number(entry?.shiftProbability ?? reg?.shiftProbability ?? s.shiftProbability);
+        s.topologyQueueStatus = 'dashboard';
+      });
+    });
+  });
+
+  asArray(deadZoneWatchlist?.entries).forEach((entry) => {
+    asArray(entry?.linkedTargetIds).forEach((targetId) => {
+      bump(targetId, (s) => {
+        s.epistemicStatus = entry?.epistemicStatus ?? s.epistemicStatus;
+        s.attractorClass = entry?.attractorClass ?? s.attractorClass;
+        s.basinClass = entry?.basinClass ?? s.basinClass;
+        s.deadZoneRecurrence = entry?.deadZoneRecurrence ?? s.deadZoneRecurrence;
+        s.paradigmShiftForecast = entry?.paradigmShiftForecast ?? s.paradigmShiftForecast;
+        s.memoryRetentionStrength = entry?.memoryRetentionStrength ?? s.memoryRetentionStrength;
+        s.governanceCompatibility = entry?.governanceCompatibility ?? s.governanceCompatibility;
+        s.shiftProbability = Number(entry?.shiftProbability ?? s.shiftProbability);
+        if (s.topologyQueueStatus !== 'dashboard') {
+          s.topologyQueueStatus = 'watch';
+        }
+      });
+    });
+  });
+
+  asArray(paradigmShiftAnnotations?.annotations).forEach((entry) => {
+    asArray(entry?.linkedTargetIds).forEach((targetId) => {
+      bump(targetId, (s) => {
+        s.epistemicStatus = entry?.epistemicStatus ?? s.epistemicStatus;
+        s.attractorClass = entry?.attractorClass ?? s.attractorClass;
+        s.basinClass = entry?.basinClass ?? s.basinClass;
+        s.deadZoneRecurrence = entry?.deadZoneRecurrence ?? s.deadZoneRecurrence;
+        s.paradigmShiftForecast = entry?.paradigmShiftForecast ?? s.paradigmShiftForecast;
+        s.memoryRetentionStrength = entry?.memoryRetentionStrength ?? s.memoryRetentionStrength;
+        s.governanceCompatibility = entry?.governanceCompatibility ?? s.governanceCompatibility;
+        s.shiftProbability = Number(entry?.shiftProbability ?? s.shiftProbability);
       });
     });
   });
