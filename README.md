@@ -1316,3 +1316,24 @@ Visualization should clarify trust pathways without becoming an accusation engin
 python3 scripts/build_trust_surface_overlay.py
 python3 -m unittest tests/test_build_trust_surface_overlay.py
 ```
+
+## Civilizational Delta Mapping Overlay (Phase BE)
+
+Publisher surfaces only Sophia-audited civilizational delta materials; it does not authorize epoch declarations, canon formation, governance transition, or civilizational ranking.
+
+Render deltas as convergent terrain and branching futures, not victory banners; surface promise, plurality, and capture risk together.
+
+- script: `scripts/build_civilizational_delta_overlay.py`
+- inputs: `bridge/civilizational_delta_audit.json`, `bridge/civilizational_delta_recommendations.json`, `bridge/delta_seed_map.json`, `bridge/paradigm_convergence_report.json`, `bridge/epistemic_reorganization_signal.json`, `bridge/civilizational_delta_forecast.json`, `registry/knowledge_river_dashboard.json`, `registry/discovery_navigation_dashboard.json`, `registry/civilizational_memory_dashboard.json`, `registry/commons_sovereignty_dashboard.json`, `registry/trust_surface_dashboard.json`, `registry/value_dashboard.json`
+- outputs: `registry/delta_dashboard.json`, `registry/paradigm_transition_registry.json`, `registry/epoch_shift_watchlist.json`, `registry/delta_annotations.json`
+- routing: `docket` routes to actionable delta dashboard/paradigm transition registry, `watch` routes to epoch-shift watchlist, and `suppressed` is excluded from actionable overlays.
+- safeguards: no canon mutation, no deployment execution, no governance-right mutation, no ranking of persons/communities/institutions/civilizations, no implication that delta maturity equals final truth authority, no closure of theory competition, and no `epoch confirmed` presentation.
+- UI signals: `deltaStatus`, `deltaSeedClass`, `convergenceClass`, `reorganizationClass`, `riverBraidingDensity`, `memorySupport`, `distributaryPotential`, `trustSurfaceStability`, `pluralityPreservation`, `captureRisk`, `provenanceMarkers`, `canonicalIntegrityMarkers`.
+- Atlas styling: subtle classes only, reset clears delta markers, and trust degradation presentation is preserved when canonical integrity is degraded.
+
+```bash
+python3 scripts/build_civilizational_delta_overlay.py
+python3 -m unittest tests/test_build_civilizational_delta_overlay.py
+```
+
+Phase lock: rivers / memory / trust / sovereignty / value context -> CoherenceLattice delta-seed and reorganization formalization -> Sophia bounded civilizational-delta audit -> Publisher delta overlays -> human/community/scientific interpretation and plural stewardship.
