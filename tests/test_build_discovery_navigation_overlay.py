@@ -32,8 +32,8 @@ class DiscoveryNavigationOverlayBuilderTests(unittest.TestCase):
         ]})
         write_json(self.bridge / 'discovery_vector_field.json', {'provenance': prov, 'entries': [{'reviewId': 'dn-1', 'discoveryStatus': 'active', 'vectorClass': 'cross-domain'}]})
         write_json(self.bridge / 'cross_domain_bridge_map.json', {'provenance': prov, 'entries': [{'reviewId': 'dn-1', 'bridgeMaturity': 'emergent', 'bridgeConfidence': 0.67}]})
-        write_json(self.bridge / 'entropy_reduction_corridor.json', {'provenance': prov, 'entries': [{'reviewId': 'dn-1', 'corridorClass': 'bounded', 'deadZoneAdjacency': 'adjacent', 'corridorScore': 0.58}]})
-        write_json(self.bridge / 'discovery_navigation_report.json', {'provenance': prov, 'entries': [{'reviewId': 'dn-1', 'memorySupport': 'supported', 'commonsReviewRequirement': 'required'}]})
+        write_json(self.bridge / 'entropy_reduction_corridor.json', {'provenance': prov, 'entries': [{'reviewId': 'dn-1', 'corridorClass': 'bounded', 'deadZoneAdjacency': 'adjacent', 'corridorScore': 0.58, 'altruisticCorridorScore': 0.64, 'conformityPenalty': 0.22, 'repairCorridorFlag': True, 'riverSeedPotential': 'high', 'riverFormationSignal': 'braiding', 'corridorWeavingScore': 0.61}]})
+        write_json(self.bridge / 'discovery_navigation_report.json', {'provenance': prov, 'entries': [{'reviewId': 'dn-1', 'memorySupport': 'supported', 'commonsReviewRequirement': 'required', 'consentFeedbackFriction': 'low', 'multiscaleSupportClass': 'aligned', 'distortionRiskClass': 'bounded'}]})
 
         manifest = {
             'originProject': 'uvlm-publications',
@@ -127,6 +127,48 @@ class DiscoveryNavigationOverlayBuilderTests(unittest.TestCase):
         self.assertFalse(dashboard['modificationDisclosureMissing'])
         self.assertFalse(dashboard['trustPresentationDegraded'])
 
+
+    def test_ba1_field_propagation(self) -> None:
+        result = self.run_builder()
+        self.assertEqual(result.returncode, 0)
+        dashboard = json.loads((self.registry / 'discovery_navigation_dashboard.json').read_text(encoding='utf-8'))
+        entry = dashboard['entries'][0]
+        self.assertEqual(entry['riverSeedPotential'], 'high')
+        self.assertEqual(entry['riverFormationSignal'], 'braiding')
+        self.assertTrue(entry['repairCorridorFlag'])
+        self.assertEqual(entry['distortionRiskClass'], 'bounded')
+
+    def test_repair_corridor_presentation_flag(self) -> None:
+        result = self.run_builder()
+        self.assertEqual(result.returncode, 0)
+        registry = json.loads((self.registry / 'discovery_corridor_registry.json').read_text(encoding='utf-8'))
+        self.assertTrue(registry['entries'][0]['repairCorridorFlag'])
+
+    def test_anti_distortion_annotation_behavior(self) -> None:
+        result = self.run_builder()
+        self.assertEqual(result.returncode, 0)
+        annotations = json.loads((self.registry / 'discovery_annotations.json').read_text(encoding='utf-8'))
+        self.assertTrue(annotations['annotations'][0]['antiDistortionSafeguardsRequired'])
+
+    def test_missing_field_backwards_compatibility(self) -> None:
+        payload = json.loads((self.bridge / 'entropy_reduction_corridor.json').read_text(encoding='utf-8'))
+        for key in ['altruisticCorridorScore', 'conformityPenalty', 'repairCorridorFlag', 'riverSeedPotential', 'riverFormationSignal', 'corridorWeavingScore']:
+            payload['entries'][0].pop(key, None)
+        write_json(self.bridge / 'entropy_reduction_corridor.json', payload)
+
+        report = json.loads((self.bridge / 'discovery_navigation_report.json').read_text(encoding='utf-8'))
+        for key in ['consentFeedbackFriction', 'multiscaleSupportClass', 'distortionRiskClass']:
+            report['entries'][0].pop(key, None)
+        write_json(self.bridge / 'discovery_navigation_report.json', report)
+
+        result = self.run_builder()
+        self.assertEqual(result.returncode, 0)
+        dashboard = json.loads((self.registry / 'discovery_navigation_dashboard.json').read_text(encoding='utf-8'))
+        entry = dashboard['entries'][0]
+        self.assertEqual(entry['riverSeedPotential'], 'bounded')
+        self.assertEqual(entry['riverFormationSignal'], 'emergent')
+        self.assertFalse(entry['repairCorridorFlag'])
+        self.assertEqual(entry['distortionRiskClass'], 'bounded')
 
 if __name__ == '__main__':
     unittest.main()

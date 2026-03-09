@@ -1220,7 +1220,7 @@ Phase lock: attractor / basin / dead-zone / memory / sovereignty / value context
 
 Publisher surfaces only **Sophia-audited discovery-navigation materials; it does not authorize autonomous pursuit, deployment, canonization, or institutional control.**
 
-Render discovery as bounded terrain and navigable corridors, not as an oracle path.
+Render discovery as bounded terrain and navigable corridors, not as an oracle path. Discovery corridors are weighted by coherent care, multiscale validity, and anti-distortion safeguards; the Atlas does not privilege novelty for its own sake.
 
 - script: `scripts/build_discovery_navigation_overlay.py`
 - inputs: `bridge/discovery_navigation_audit.json`, `bridge/discovery_navigation_recommendations.json`, `bridge/discovery_vector_field.json`, `bridge/cross_domain_bridge_map.json`, `bridge/entropy_reduction_corridor.json`, `bridge/discovery_navigation_report.json`, `registry/knowledge_topology_dashboard.json`, `registry/operational_maturity_dashboard.json`, `registry/civilizational_memory_dashboard.json`, `registry/commons_sovereignty_dashboard.json`, `registry/value_dashboard.json`

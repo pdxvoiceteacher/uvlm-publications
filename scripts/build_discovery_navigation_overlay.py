@@ -218,6 +218,15 @@ def build_discovery_navigation_overlays(
         dead_zone_adjacency = str(corridor.get("deadZoneAdjacency", rec.get("deadZoneAdjacency", "bounded")))
         memory_support = str(report.get("memorySupport", rec.get("memorySupport", "bounded")))
         commons_review_requirement = str(report.get("commonsReviewRequirement", rec.get("commonsReviewRequirement", "required")))
+        altruistic_corridor_score = _to_float(corridor.get("altruisticCorridorScore", rec.get("altruisticCorridorScore", 0.0)))
+        consent_feedback_friction = str(report.get("consentFeedbackFriction", rec.get("consentFeedbackFriction", "bounded")))
+        multiscale_support_class = str(report.get("multiscaleSupportClass", rec.get("multiscaleSupportClass", "bounded")))
+        conformity_penalty = _to_float(corridor.get("conformityPenalty", rec.get("conformityPenalty", 0.0)))
+        repair_corridor_flag = bool(corridor.get("repairCorridorFlag", rec.get("repairCorridorFlag", False)))
+        distortion_risk_class = str(report.get("distortionRiskClass", rec.get("distortionRiskClass", "bounded")))
+        river_seed_potential = str(corridor.get("riverSeedPotential", rec.get("riverSeedPotential", "bounded")))
+        river_formation_signal = str(corridor.get("riverFormationSignal", rec.get("riverFormationSignal", "emergent")))
+        corridor_weaving_score = _to_float(corridor.get("corridorWeavingScore", rec.get("corridorWeavingScore", 0.0)))
         corridor_score = _to_float(corridor.get("corridorScore", rec.get("corridorScore", 0.0)))
         bridge_confidence = _to_float(bridge.get("bridgeConfidence", rec.get("bridgeConfidence", 0.0)))
         audit_state = str(audit.get("discoveryNavigationAuditState", rec.get("discoveryNavigationAuditState", "none")))
@@ -232,6 +241,15 @@ def build_discovery_navigation_overlays(
             "deadZoneAdjacency": dead_zone_adjacency,
             "memorySupport": memory_support,
             "commonsReviewRequirement": commons_review_requirement,
+            "altruisticCorridorScore": altruistic_corridor_score,
+            "consentFeedbackFriction": consent_feedback_friction,
+            "multiscaleSupportClass": multiscale_support_class,
+            "conformityPenalty": conformity_penalty,
+            "repairCorridorFlag": repair_corridor_flag,
+            "distortionRiskClass": distortion_risk_class,
+            "riverSeedPotential": river_seed_potential,
+            "riverFormationSignal": river_formation_signal,
+            "corridorWeavingScore": corridor_weaving_score,
             "corridorScore": corridor_score,
             "bridgeConfidence": bridge_confidence,
             "discoveryNavigationAuditState": audit_state,
@@ -261,6 +279,7 @@ def build_discovery_navigation_overlays(
             "noCanonClosure": True,
             "noRankingOfCommunitiesOrInstitutions": True,
             "corridorPriorityNotTruthAuthority": True,
+            "antiDistortionSafeguardsRequired": True,
             "notes": rec.get("notes", ""),
         })
 
