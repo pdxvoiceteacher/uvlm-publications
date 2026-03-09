@@ -1,0 +1,9 @@
+{
+  "generatedAt": "2026-03-08",
+  "provenance": {"schemaVersion": "phase-au.0", "producerCommits": ["cl-au-201"], "sourceMode": "fixture"},
+  "entries": [
+    {"reviewId": "cs-001", "epistemicDiversity": "high", "dissentPortability": "portable"},
+    {"reviewId": "cs-002", "epistemicDiversity": "mixed", "dissentPortability": "bounded"},
+    {"reviewId": "cs-003", "epistemicDiversity": "low", "dissentPortability": "bounded"}
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "generatedAt": "2026-03-09",
+  "provenance": {
+    "schemaVersion": "phase-ba.0",
+    "producerCommits": [
+      "cl-ba-201"
+    ],
+    "sourceMode": "fixture"
+  },
+  "entries": [
+    {
+      "reviewId": "dn-001",
+      "corridorClass": "bounded",
+      "deadZoneAdjacency": "adjacent",
+      "corridorScore": 0.57,
+      "altruisticCorridorScore": 0.63,
+      "conformityPenalty": 0.21,
+      "repairCorridorFlag": true,
+      "riverSeedPotential": "high",
+      "riverFormationSignal": "braiding",
+      "corridorWeavingScore": 0.62
+    },
+    {
+      "reviewId": "dn-002",
+      "corridorClass": "volatile",
+      "deadZoneAdjacency": "recurrent",
+      "corridorScore": 0.32,
+      "altruisticCorridorScore": 0.28,
+      "conformityPenalty": 0.67,
+      "repairCorridorFlag": false,
+      "riverSeedPotential": "bounded",
+      "riverFormationSignal": "fragmented",
+      "corridorWeavingScore": 0.29
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "generatedAt": "2026-03-09",
+  "provenance": {
+    "schemaVersion": "phase-ba.0",
+    "producerCommits": [
+      "sophia-ba-111"
+    ],
+    "sourceMode": "fixture"
+  },
+  "entries": [
+    {
+      "reviewId": "dn-001",
+      "memorySupport": "supported",
+      "commonsReviewRequirement": "required",
+      "consentFeedbackFriction": "low",
+      "multiscaleSupportClass": "aligned",
+      "distortionRiskClass": "bounded"
+    },
+    {
+      "reviewId": "dn-002",
+      "memorySupport": "fragile",
+      "commonsReviewRequirement": "required",
+      "consentFeedbackFriction": "high",
+      "multiscaleSupportClass": "misaligned",
+      "distortionRiskClass": "elevated"
+    }
+  ]
+}

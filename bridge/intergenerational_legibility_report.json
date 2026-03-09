@@ -1,0 +1,9 @@
+{
+  "generatedAt": "2026-03-08",
+  "provenance": {"schemaVersion": "phase-av.0", "producerCommits": ["cl-av-201"], "sourceMode": "fixture"},
+  "entries": [
+    {"reviewId": "cm-001", "legibilityPersistence": "durable"},
+    {"reviewId": "cm-002", "legibilityPersistence": "drifting"},
+    {"reviewId": "cm-003", "legibilityPersistence": "bounded"}
+  ]
+}

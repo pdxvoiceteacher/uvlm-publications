@@ -1,0 +1,9 @@
+{
+  "generatedAt": "2026-03-08",
+  "provenance": {"schemaVersion": "phase-al.0", "producerCommits": ["sophia-al-111"], "sourceMode": "fixture"},
+  "entries": [
+    {"reviewId": "sf-001", "replicationGateState": "gated-open", "prohibitedClaims": ["preemptive-sanction", "deterministic-certainty"]},
+    {"reviewId": "sf-002", "replicationGateState": "hold", "prohibitedClaims": ["preemptive-intervention"]},
+    {"reviewId": "sf-003", "replicationGateState": "suppressed", "prohibitedClaims": ["canonical-forecast-enforcement"]}
+  ]
+}

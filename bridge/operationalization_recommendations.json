@@ -1,0 +1,9 @@
+{
+  "generatedAt": "2026-03-09",
+  "provenance": {"schemaVersion": "phase-ax.0", "producerCommits": ["sophia-ax-111"], "sourceMode": "fixture"},
+  "recommendations": [
+    {"reviewId": "op-001", "targetPublisherAction": "docket", "linkedTargetIds": ["concept:coherence-lattice"], "requiredSafeguards": ["human-oversight", "commons-review"], "commonsReviewRequirement": "required", "notes": "Bounded readiness, not execution authorization."},
+    {"reviewId": "op-002", "targetPublisherAction": "watch", "linkedTargetIds": ["concept:theory-transfer"], "requiredSafeguards": ["stewardship-threshold"], "commonsReviewRequirement": "required", "notes": "Translation risk remains elevated."},
+    {"reviewId": "op-003", "targetPublisherAction": "suppressed", "linkedTargetIds": ["concept:value-alignment"], "notes": "Suppressed pending further deliberation."}
+  ]
+}

@@ -1,0 +1,126 @@
+{
+  "generatedAt": "2026-03-08",
+  "telemetryFieldProtocol": true,
+  "nonCanonical": true,
+  "provenance": {
+    "schemaVersions": {
+      "telemetry_field_audit": "phase-ad.0",
+      "telemetry_field_recommendations": "phase-ad.0",
+      "telemetry_field_map": "phase-ad.0",
+      "lattice_projection_map": "phase-ad.0",
+      "pattern_donation_registry": "phase-ad.0",
+      "action_functional_scorecard": "phase-ad.0",
+      "branch_emergence_report": "phase-ad.0",
+      "symbolic_field_registry": "composite",
+      "investigation_dashboard": "composite",
+      "authority_gate_dashboard": "composite"
+    },
+    "producerCommits": [
+      "sophia-ad-111",
+      "sophia-t-111",
+      "cl-t-222",
+      "cl-commit-aaa111",
+      "sophia-commit-bbb222",
+      "sophia-commit-qqq111",
+      "cl-commit-qqq222",
+      "sophia-r-111",
+      "cl-r-222",
+      "sophia-s-111",
+      "cl-s-222",
+      "sophia-u-111",
+      "sophia-v-111",
+      "sophia-x1-111",
+      "coherence-x1-111",
+      "coherence-x1-112",
+      "coherence-x1-113",
+      "coherence-x1-114",
+      "cl-u-222",
+      "cl-v-222"
+    ],
+    "sourceModes": {
+      "telemetry_field_audit": "fixture",
+      "telemetry_field_recommendations": "fixture",
+      "telemetry_field_map": "fixture",
+      "lattice_projection_map": "fixture",
+      "pattern_donation_registry": "fixture",
+      "action_functional_scorecard": "fixture",
+      "branch_emergence_report": "fixture",
+      "symbolic_field_registry": "fixture",
+      "investigation_dashboard": "fixture",
+      "authority_gate_dashboard": "fixture"
+    },
+    "derivedFromFixtures": true
+  },
+  "noAutomaticBranchActivation": true,
+  "noAutomaticGraphMutation": true,
+  "noCanonicalMutation": true,
+  "annotations": [
+    {
+      "reviewId": "tf-001",
+      "targetPublisherAction": "docket",
+      "telemetryFieldStatus": "coherent",
+      "latticeCoordinates": "0.42,0.11,0.73",
+      "latticeRegime": "bounded-order",
+      "donorPatternPedigree": [
+        "pattern:coherence-loop",
+        "pattern:governance-feedback"
+      ],
+      "tafScoreSummary": "bounded-positive",
+      "tafScore": 0.74,
+      "branchNovelty": "moderate",
+      "maturityCeiling": "bounded-review",
+      "telemetryAuditState": "verified",
+      "linkedTargetIds": [
+        "concept:coherence-lattice"
+      ],
+      "noAutomaticBranchActivation": true,
+      "noAutomaticGraphMutation": true,
+      "noCanonicalMutation": true,
+      "notes": "Bounded telemetry branch candidate."
+    },
+    {
+      "reviewId": "tf-002",
+      "targetPublisherAction": "watch",
+      "telemetryFieldStatus": "drift-watch",
+      "latticeCoordinates": "0.35,0.58,0.29",
+      "latticeRegime": "transition-risk",
+      "donorPatternPedigree": [
+        "pattern:continuity-fragility"
+      ],
+      "tafScoreSummary": "uncertain",
+      "tafScore": 0.41,
+      "branchNovelty": "high",
+      "maturityCeiling": "watch-only",
+      "telemetryAuditState": "watch",
+      "linkedTargetIds": [
+        "concept:governance-integrity"
+      ],
+      "noAutomaticBranchActivation": true,
+      "noAutomaticGraphMutation": true,
+      "noCanonicalMutation": true,
+      "notes": "Pattern donation monitored only."
+    },
+    {
+      "reviewId": "tf-003",
+      "targetPublisherAction": "suppressed",
+      "telemetryFieldStatus": "withheld",
+      "latticeCoordinates": "0.10,0.20,0.18",
+      "latticeRegime": "uncertain",
+      "donorPatternPedigree": [
+        "pattern:unverified-branch"
+      ],
+      "tafScoreSummary": "insufficient",
+      "tafScore": 0.12,
+      "branchNovelty": "high",
+      "maturityCeiling": "suppressed",
+      "telemetryAuditState": "suppressed",
+      "linkedTargetIds": [
+        "concept:constitutional-safeguards"
+      ],
+      "noAutomaticBranchActivation": true,
+      "noAutomaticGraphMutation": true,
+      "noCanonicalMutation": true,
+      "notes": "Suppressed until stronger authority alignment."
+    }
+  ]
+}
