@@ -1272,3 +1272,29 @@ python3 -m unittest tests/test_build_observer_onboarding_overlay.py
 ```
 
 Phase BC widens legibility and participation across observer classes while preserving anti-capture, anti-priesthood, anti-coercion, and no-sovereignty-transfer constraints. Recognition and suffrage pathways remain bounded, reviewable, and explicitly non-autonomous.
+
+## Canonical Authorship & Misrepresentation Guard Overlay (Phase BC.1)
+
+Publisher surfaces authorship and disclosure materials for provenance clarity only; it does not retaliate against derivatives, assign governance authority, or conceal hidden enforcement behavior.
+
+- script: `scripts/build_authorship_integrity_overlay.py`
+- inputs: `bridge/authorship_integrity_audit.json`, `bridge/authorship_integrity_recommendations.json`, `bridge/canonical_authorship_manifest.json`, `bridge/derivative_disclosure_report.json`, `bridge/misattribution_risk_report.json`, `bridge/authorship_integrity_summary.json`, `registry/observer_dashboard.json`, `registry/knowledge_river_dashboard.json`, `registry/civilizational_memory_dashboard.json`, `registry/commons_sovereignty_dashboard.json`
+- outputs: `registry/authorship_integrity_dashboard.json`, `registry/derivative_registry.json`, `registry/misattribution_watchlist.json`, `registry/authorship_annotations.json`
+- routing: `docket` routes to dashboard + derivative registry, `watch` routes to misattribution watchlist, and `suppress`/`suppressed` excludes actionable outputs while preserving bounded annotations.
+- safeguards: no governance-right mutation, no sovereign authority assignment, no hidden sabotage, no covert punishment, no deletion/disabling logic, no automatic derivative blocking solely for derivation status, and only visible trust degradation + disclosure signaling.
+- Atlas integration signals: `authorshipVerified`, `derivativeDisclosed`, `trustDegraded`, `attributionDivergenceDetected`, `sourceManifestHashPresent`, `constraintSignaturePresent`, `releaseSignaturePresent`.
+- subtle classes: `authorship-verified`, `derivative-disclosed`, `trust-degraded`, `attribution-divergence`, `provenance-missing`.
+- metadata rows: canonical authors, origin project, source repos, derivative disclosure present, constraint signature, release signature, trust status, divergence reasons.
+- reset behavior: clear all BC.1 classes on overlay reset.
+- visualization modes: Sophia Internal, Human Steward, Human Public / Commons, and Recognized/Guided Other-Intelligence View all receive bounded authorship/trust signals at appropriate detail.
+
+Canonical authorship notice:
+
+> This architecture includes foundational code and governance design authored by Thomas Prislac and Envoy Echo within the Ultra Verba Lux Mentis / triadic commons lineage. Derivatives must preserve provenance, disclose modifications, and may not claim canonical equivalence when safety or governance boundaries have changed.
+
+```bash
+python3 scripts/build_authorship_integrity_overlay.py
+python3 -m unittest tests/test_build_authorship_integrity_overlay.py
+```
+
+Phase BC.1 phaselock: canonical authorship + disclosure + integrity context -> CoherenceLattice authorship/misattribution formalization -> Sophia bounded authorship-integrity audit -> Publisher visible provenance and trust-degradation overlays -> human/community/legal/social accountability.
