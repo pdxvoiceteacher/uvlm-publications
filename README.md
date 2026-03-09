@@ -1298,3 +1298,21 @@ python3 -m unittest tests/test_build_authorship_integrity_overlay.py
 ```
 
 Phase BC.1 phaselock: canonical authorship + disclosure + integrity context -> CoherenceLattice authorship/misattribution formalization -> Sophia bounded authorship-integrity audit -> Publisher visible provenance and trust-degradation overlays -> human/community/legal/social accountability.
+
+## Trust Surface Visualization & Delegated Access Transparency Overlay (Phase BD)
+
+Phase BD exposes delegated-access and legitimacy surfaces for transparency and research only.
+
+Visualization should clarify trust pathways without becoming an accusation engine.
+
+- script: `scripts/build_trust_surface_overlay.py`
+- inputs: `bridge/trust_surface_audit.json`, `bridge/trust_surface_recommendations.json`, `bridge/trust_surface_map.json`, `bridge/delegated_access_registry.json`, `bridge/revocation_asymmetry_report.json`, `bridge/interface_legitimacy_risk_report.json`
+- outputs: `registry/trust_surface_dashboard.json`, `registry/delegated_access_registry.json`, `registry/revocation_watchlist.json`, `registry/interface_legitimacy_annotations.json`
+- UI signals: `trustSurfaceStatus`, `persistenceClass`, `revocationAsymmetryScore`, `interfaceLegitimacyScore`, `trustCompressionRisk`, `auditBurdenScore`, `wrapperLineage`
+- subtle classes: `trust-surface-stable`, `revocation-asymmetry`, `legitimacy-risk`, `wrapper-provenance-risk`, `trust-compression-warning`
+- safeguards: no automatic accusation, no enforcement actions, no identity mutation, no governance authority assignment, and informational signals only.
+
+```bash
+python3 scripts/build_trust_surface_overlay.py
+python3 -m unittest tests/test_build_trust_surface_overlay.py
+```
