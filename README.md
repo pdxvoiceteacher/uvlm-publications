@@ -1505,3 +1505,24 @@ python3 -m unittest tests/test_build_epochal_surface_overlay.py
 ```
 
 Phase lock: terrace-seed / stabilization / crossing / successor / delta / trust / sovereignty / value context -> CoherenceLattice epochal-surface and reopened-experimentation formalization -> Sophia bounded epochal-surface audit -> Publisher epochal-surface / experiment overlays -> human/community/scientific stewardship of livable emergence and plural experimentation.
+
+## Living Terrace Consolidation & Commons Habitability Overlay (Phase BN)
+
+Publisher surfaces only Sophia-audited living-terrace materials; it does not declare new epochs, certify settled futures, or authorize institutional succession.
+
+Render living terraces as commons-habitable coherence under review, and plural habitation as healthy openness — never as incompleteness.
+
+- script: `scripts/build_living_terrace_overlay.py`
+- inputs: `bridge/living_terrace_audit.json`, `bridge/living_terrace_recommendations.json`, `bridge/living_terrace_map.json`, `bridge/commons_habitability_report.json`, `bridge/plural_habitation_registry.json`, `bridge/terrace_consolidation_gate.json`, `registry/epochal_surface_dashboard.json`, `registry/reopened_experiment_watchlist.json`, `registry/habitable_plateau_registry.json`, `registry/terrace_seed_dashboard.json`, `registry/new_delta_dashboard.json`, `registry/successor_crossing_dashboard.json`, `registry/terrace_health_dashboard.json`, `registry/epoch_dashboard.json`, `registry/delta_dashboard.json`, `registry/civilizational_memory_dashboard.json`, `registry/commons_sovereignty_dashboard.json`, `registry/trust_surface_dashboard.json`
+- outputs: `registry/living_terrace_dashboard.json`, `registry/plural_habitation_watchlist.json`, `registry/commons_habitability_registry.json`, `registry/living_terrace_annotations.json`
+- routing: `docket` routes to actionable living terrace dashboard/commons habitability registry, `watch` routes to plural habitation watchlist, and `suppressed` is excluded from actionable overlays.
+- safeguards: no canon mutation, no deployment execution, no governance-right mutation, no ranking of futures/successor orders/civilizations/communities/institutions, no implication that terrace visibility equals settled authority, no theory-competition closure, and no `new age settled` or `future secured permanently` presentation.
+- UI signals: `terraceStatus`, `livingTerraceClass`, `habitabilityClass`, `habitationClass`, `gateStatus`, `trustOrdinariness`, `memoryTeachability`, `pluralityMetabolization`, `ordinaryStewardUsability`, `provenanceMarkers`, `canonicalIntegrityMarkers` (if present).
+- Atlas styling: subtle classes only, reset clears living-terrace markers, and trust degradation presentation is preserved when canonical integrity is degraded.
+
+```bash
+python3 scripts/build_living_terrace_overlay.py
+python3 -m unittest tests/test_build_living_terrace_overlay.py
+```
+
+Phase lock: surface / terrace-seed / stabilization / successor / delta / trust / sovereignty / value context -> CoherenceLattice living-terrace and commons-habitability formalization -> Sophia bounded living-terrace audit -> Publisher living-terrace / plural-habitation overlays -> human/community/scientific stewardship of habitable emergence and open plurality.
