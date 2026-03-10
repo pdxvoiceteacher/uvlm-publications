@@ -1379,3 +1379,24 @@ python3 -m unittest tests/test_build_terrace_erosion_overlay.py
 ```
 
 Phase lock: terrace / delta / river / trust / sovereignty / value context -> CoherenceLattice erosion and renewal formalization -> Sophia bounded erosion audit -> Publisher erosion/renewal overlays -> human/community/scientific stewardship of brittle epochs and emerging renewal.
+
+## Renewal Braiding & Successor Delta Seeding Overlay (Phase BH)
+
+Publisher surfaces only Sophia-audited successor-delta materials; it does not declare new epochs, canonize successor orders, or authorize institutional transition.
+
+Render successor formation as braided recovery and reopened possibility, not a coronation.
+
+- script: `scripts/build_successor_delta_overlay.py`
+- inputs: `bridge/successor_delta_audit.json`, `bridge/successor_delta_recommendations.json`, `bridge/renewal_braid_map.json`, `bridge/successor_delta_seed_report.json`, `bridge/plurality_recovery_registry.json`, `bridge/transition_coupling_report.json`, `registry/terrace_health_dashboard.json`, `registry/epoch_dashboard.json`, `registry/delta_dashboard.json`, `registry/knowledge_river_dashboard.json`, `registry/civilizational_memory_dashboard.json`, `registry/commons_sovereignty_dashboard.json`, `registry/trust_surface_dashboard.json`
+- outputs: `registry/renewal_braid_dashboard.json`, `registry/successor_delta_registry.json`, `registry/plurality_recovery_watchlist.json`, `registry/transition_annotations.json`
+- routing: `docket` routes to actionable renewal braid dashboard/successor delta registry, `watch` routes to plurality recovery watchlist, and `suppressed` is excluded from actionable overlays.
+- safeguards: no canon mutation, no deployment execution, no governance-right mutation, no ranking of successor orders/civilizations/institutions/communities, no implication that successor-seed visibility equals new epoch authority, no theory-competition closure, and no `new age confirmed` presentation.
+- UI signals: `successorStatus`, `braidClass`, `successorSeedClass`, `pluralityClass`, `transitionCouplingClass`, `trustRepair`, `memoryReactivation`, `successorCaptureRisk`, `provenanceMarkers`, `canonicalIntegrityMarkers`.
+- Atlas styling: subtle classes only, reset clears successor-delta markers, and trust degradation presentation is preserved when canonical integrity is degraded.
+
+```bash
+python3 scripts/build_successor_delta_overlay.py
+python3 -m unittest tests/test_build_successor_delta_overlay.py
+```
+
+Phase lock: erosion / terrace / delta / river / trust / sovereignty / value context -> CoherenceLattice renewal-braid and successor-delta formalization -> Sophia bounded successor audit -> Publisher successor overlays -> human/community/scientific stewardship of renewal and successor plurality.
