@@ -1526,3 +1526,24 @@ python3 -m unittest tests/test_build_living_terrace_overlay.py
 ```
 
 Phase lock: surface / terrace-seed / stabilization / successor / delta / trust / sovereignty / value context -> CoherenceLattice living-terrace and commons-habitability formalization -> Sophia bounded living-terrace audit -> Publisher living-terrace / plural-habitation overlays -> human/community/scientific stewardship of habitable emergence and open plurality.
+
+## Civilizational Normalization & Background Coherence Overlay (Phase BO)
+
+Publisher surfaces only Sophia-audited background-coherence materials; it does not declare final epochs, certify civilizational settlement, or authorize institutional succession.
+
+Render background coherence as quiet normality under review, not as final truth.
+
+- script: `scripts/build_background_coherence_overlay.py`
+- inputs: `bridge/background_coherence_audit.json`, `bridge/background_coherence_recommendations.json`, `bridge/background_coherence_map.json`, `bridge/civilizational_normalization_report.json`, `bridge/ambient_memory_registry.json`, `bridge/normalization_gate.json`, `registry/living_terrace_dashboard.json`, `registry/plural_habitation_watchlist.json`, `registry/commons_habitability_registry.json`, `registry/epochal_surface_dashboard.json`, `registry/terrace_seed_dashboard.json`, `registry/new_delta_dashboard.json`, `registry/epoch_dashboard.json`, `registry/delta_dashboard.json`, `registry/civilizational_memory_dashboard.json`, `registry/commons_sovereignty_dashboard.json`, `registry/trust_surface_dashboard.json`
+- outputs: `registry/background_coherence_dashboard.json`, `registry/ambient_memory_watchlist.json`, `registry/civilizational_normalization_registry.json`, `registry/background_coherence_annotations.json`
+- routing: `docket` routes to actionable background coherence dashboard/civilizational normalization registry, `watch` routes to ambient memory watchlist, and `suppressed` is excluded from actionable overlays.
+- safeguards: no canon mutation, no deployment execution, no governance-right mutation, no ranking of futures/civilizations/communities/institutions, no implication that background visibility equals final authority, no theory-competition closure, and no `epoch finalized` or `future settled permanently` presentation.
+- UI signals: `backgroundStatus`, `backgroundClass`, `normalizationClass`, `ambientMemoryClass`, `gateStatus`, `trustOrdinariness`, `pluralityMetabolization`, `commonsHabitability`, `pedagogyOrdinariness`, `provenanceMarkers`, `canonicalIntegrityMarkers` (if present).
+- Atlas styling: subtle classes only, reset clears background-coherence markers, and trust degradation presentation is preserved when canonical integrity is degraded.
+
+```bash
+python3 scripts/build_background_coherence_overlay.py
+python3 -m unittest tests/test_build_background_coherence_overlay.py
+```
+
+Phase lock: living-terrace / epochal-surface / terrace-seed / successor / delta / trust / sovereignty / value context -> CoherenceLattice background-coherence and civilizational-normalization formalization -> Sophia bounded background-coherence audit -> Publisher background-coherence / ambient-memory overlays -> human/community/scientific stewardship of ordinary, habitable, non-priestly civilizational coherence.
