@@ -1484,3 +1484,24 @@ python3 -m unittest tests/test_build_terrace_seed_overlay.py
 ```
 
 Phase lock: stabilization / crossing / successor / terrace / delta / trust / sovereignty / value context -> CoherenceLattice terrace-seed and repluralization formalization -> Sophia bounded terrace-seed audit -> Publisher terrace-seed / repluralization overlays -> human/community/scientific stewardship of early sediment and plural experimentation.
+
+## Epochal Surface Emergence & Reopened Experiment Cycling Overlay (Phase BM)
+
+Publisher surfaces only Sophia-audited epochal-surface materials; it does not declare new epochs, certify settled futures, or authorize institutional succession.
+
+Render habitable surfaces as living coherence under review, and reopened experimentation as healthy plural motion — never as defeat.
+
+- script: `scripts/build_epochal_surface_overlay.py`
+- inputs: `bridge/epochal_surface_audit.json`, `bridge/epochal_surface_recommendations.json`, `bridge/epochal_surface_map.json`, `bridge/habitable_plateau_report.json`, `bridge/reopened_experiment_registry.json`, `bridge/surface_emergence_gate.json`, `registry/terrace_seed_dashboard.json`, `registry/repluralization_watchlist.json`, `registry/sedimentation_readiness_registry.json`, `registry/new_delta_dashboard.json`, `registry/successor_crossing_dashboard.json`, `registry/successor_maturation_dashboard.json`, `registry/renewal_braid_dashboard.json`, `registry/terrace_health_dashboard.json`, `registry/epoch_dashboard.json`, `registry/delta_dashboard.json`, `registry/civilizational_memory_dashboard.json`, `registry/commons_sovereignty_dashboard.json`, `registry/trust_surface_dashboard.json`
+- outputs: `registry/epochal_surface_dashboard.json`, `registry/reopened_experiment_watchlist.json`, `registry/habitable_plateau_registry.json`, `registry/epochal_surface_annotations.json`
+- routing: `docket` routes to actionable epochal surface dashboard/habitable plateau registry, `watch` routes to reopened experiment watchlist, and `suppressed` is excluded from actionable overlays.
+- safeguards: no canon mutation, no deployment execution, no governance-right mutation, no ranking of futures/successor orders/civilizations/communities/institutions, no implication that surface visibility equals settled authority, no theory-competition closure, and no `new age formed` or `future secured permanently` presentation.
+- UI signals: `surfaceStatus`, `surfaceClass`, `plateauClass`, `experimentClass`, `gateStatus`, `trustStability`, `memoryTeachability`, `pluralityDurability`, `experimentationRecovery`, `provenanceMarkers`, `canonicalIntegrityMarkers` (if present).
+- Atlas styling: subtle classes only, reset clears epochal-surface markers, and trust degradation presentation is preserved when canonical integrity is degraded.
+
+```bash
+python3 scripts/build_epochal_surface_overlay.py
+python3 -m unittest tests/test_build_epochal_surface_overlay.py
+```
+
+Phase lock: terrace-seed / stabilization / crossing / successor / delta / trust / sovereignty / value context -> CoherenceLattice epochal-surface and reopened-experimentation formalization -> Sophia bounded epochal-surface audit -> Publisher epochal-surface / experiment overlays -> human/community/scientific stewardship of livable emergence and plural experimentation.
