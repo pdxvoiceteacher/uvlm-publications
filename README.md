@@ -1463,3 +1463,24 @@ python3 -m unittest tests/test_build_new_delta_stabilization_overlay.py
 ```
 
 Phase lock: crossing / successor / terrace / delta / trust / sovereignty / value context -> CoherenceLattice new-delta stabilization and fragmented-reversion formalization -> Sophia bounded stabilization audit -> Publisher stabilization/reversion overlays -> human/community/scientific stewardship of durable and non-durable post-crossing futures.
+
+## Terrace Seed Formation & Experimental Repluralization Overlay (Phase BL)
+
+Publisher surfaces only Sophia-audited terrace-seed materials; it does not declare new epochs, certify settled futures, or authorize institutional succession.
+
+Render terrace seeds as early sediment under review, and repluralization as healthy reopened experimentation — never as defeat.
+
+- script: `scripts/build_terrace_seed_overlay.py`
+- inputs: `bridge/terrace_seed_audit.json`, `bridge/terrace_seed_recommendations.json`, `bridge/terrace_seed_map.json`, `bridge/experimental_repluralization_report.json`, `bridge/sedimentation_readiness_scorecard.json`, `bridge/terrace_seed_gate.json`, `registry/new_delta_dashboard.json`, `registry/reversion_watchlist.json`, `registry/crossing_resilience_registry.json`, `registry/successor_crossing_dashboard.json`, `registry/successor_maturation_dashboard.json`, `registry/renewal_braid_dashboard.json`, `registry/terrace_health_dashboard.json`, `registry/epoch_dashboard.json`, `registry/delta_dashboard.json`, `registry/civilizational_memory_dashboard.json`, `registry/commons_sovereignty_dashboard.json`, `registry/trust_surface_dashboard.json`
+- outputs: `registry/terrace_seed_dashboard.json`, `registry/repluralization_watchlist.json`, `registry/sedimentation_readiness_registry.json`, `registry/terrace_seed_annotations.json`
+- routing: `docket` routes to actionable terrace seed dashboard/sedimentation readiness registry, `watch` routes to repluralization watchlist, and `suppressed` is excluded from actionable overlays.
+- safeguards: no canon mutation, no deployment execution, no governance-right mutation, no ranking of futures/successor orders/civilizations/communities/institutions, no implication that seed visibility equals settled authority, no theory-competition closure, and no `new age formed` or `future secured permanently` presentation.
+- UI signals: `seedStatus`, `terraceSeedClass`, `repluralizationClass`, `readinessClass`, `gateStatus`, `trustStability`, `memoryTeachability`, `pluralityDurability`, `experimentationRecovery`, `provenanceMarkers`, `canonicalIntegrityMarkers` (if present).
+- Atlas styling: subtle classes only, reset clears terrace-seed markers, and trust degradation presentation is preserved when canonical integrity is degraded.
+
+```bash
+python3 scripts/build_terrace_seed_overlay.py
+python3 -m unittest tests/test_build_terrace_seed_overlay.py
+```
+
+Phase lock: stabilization / crossing / successor / terrace / delta / trust / sovereignty / value context -> CoherenceLattice terrace-seed and repluralization formalization -> Sophia bounded terrace-seed audit -> Publisher terrace-seed / repluralization overlays -> human/community/scientific stewardship of early sediment and plural experimentation.
