@@ -1400,3 +1400,24 @@ python3 -m unittest tests/test_build_successor_delta_overlay.py
 ```
 
 Phase lock: erosion / terrace / delta / river / trust / sovereignty / value context -> CoherenceLattice renewal-braid and successor-delta formalization -> Sophia bounded successor audit -> Publisher successor overlays -> human/community/scientific stewardship of renewal and successor plurality.
+
+## Successor Delta Maturation & False-Future Discrimination Overlay (Phase BI)
+
+Publisher surfaces only Sophia-audited successor-maturation materials; it does not declare new epochs, certify futures, or authorize institutional succession.
+
+Render healthy futures as plural, legible, and memory-bearing. Render false futures as compressed, simulated, or captured terrain — never as destiny.
+
+- script: `scripts/build_successor_maturation_overlay.py`
+- inputs: `bridge/successor_maturation_audit.json`, `bridge/successor_maturation_recommendations.json`, `bridge/successor_maturation_map.json`, `bridge/false_future_risk_report.json`, `bridge/plurality_retention_scorecard.json`, `bridge/maturation_gate_report.json`, `registry/renewal_braid_dashboard.json`, `registry/successor_delta_registry.json`, `registry/terrace_health_dashboard.json`, `registry/epoch_dashboard.json`, `registry/delta_dashboard.json`, `registry/civilizational_memory_dashboard.json`, `registry/commons_sovereignty_dashboard.json`, `registry/trust_surface_dashboard.json`
+- outputs: `registry/successor_maturation_dashboard.json`, `registry/false_future_watchlist.json`, `registry/plurality_retention_registry.json`, `registry/future_annotations.json`
+- routing: `docket` routes to actionable successor maturation dashboard/plurality retention registry, `watch` routes to false-future watchlist, and `suppressed` is excluded from actionable overlays.
+- safeguards: no canon mutation, no deployment execution, no governance-right mutation, no ranking of futures/successor orders/civilizations/communities/institutions, no implication that maturation visibility equals legitimate authority, no theory-competition closure, and no `new age confirmed` or `future secured` presentation.
+- UI signals: `maturationStatus`, `maturationClass`, `falseFutureClass`, `pluralityRetentionClass`, `gateStatus`, `trustLegibility`, `memoryContinuity`, `successorCaptureRisk`, `provenanceMarkers`, `canonicalIntegrityMarkers`.
+- Atlas styling: subtle classes only, reset clears successor-maturation markers, and trust degradation presentation is preserved when canonical integrity is degraded.
+
+```bash
+python3 scripts/build_successor_maturation_overlay.py
+python3 -m unittest tests/test_build_successor_maturation_overlay.py
+```
+
+Phase lock: renewal / successor / terrace / delta / trust / sovereignty / value context -> CoherenceLattice successor-maturation and false-future formalization -> Sophia bounded maturation audit -> Publisher future overlays -> human/community/scientific stewardship of viable and non-viable successor formations.
