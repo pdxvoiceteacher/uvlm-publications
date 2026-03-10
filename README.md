@@ -1420,4 +1420,4 @@ python3 scripts/build_successor_maturation_overlay.py
 python3 -m unittest tests/test_build_successor_maturation_overlay.py
 ```
 
-Phase lock: renewal / successor / terrace / delta / trust / sovereignty / value context -> CoherenceLattice successor-maturation and false-future formalization -> Sophia bounded maturation audit -> Publisher future overlays -> human/community/scientific stewardship of viable and non-viable successor formations.
+Phase lock: successor / maturation / terrace / delta / trust / sovereignty / value context -> CoherenceLattice successor-crossing and false-future-decay formalization -> Sophia bounded crossing audit -> Publisher crossing/decay overlays -> human/community/scientific stewardship of viable and non-viable future formations.
