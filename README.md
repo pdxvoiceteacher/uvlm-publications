@@ -1442,3 +1442,24 @@ python3 -m unittest tests/test_build_successor_crossing_overlay.py
 ```
 
 Phase lock: successor / maturation / terrace / delta / trust / sovereignty / value context -> CoherenceLattice successor-crossing and false-future-decay formalization -> Sophia bounded crossing audit -> Publisher crossing/decay overlays -> human/community/scientific stewardship of viable and non-viable future formations.
+
+## New Delta Stabilization & Fragmented-Renewal Reversion Overlay (Phase BK)
+
+Publisher surfaces only Sophia-audited post-crossing stabilization materials; it does not declare new epochs, certify successor governance, or authorize institutional succession.
+
+Render stabilization as durable coherence under review, and reversion as fragmented renewal under stress — never as destiny or defeat.
+
+- script: `scripts/build_new_delta_stabilization_overlay.py`
+- inputs: `bridge/new_delta_stabilization_audit.json`, `bridge/new_delta_stabilization_recommendations.json`, `bridge/new_delta_stabilization_map.json`, `bridge/fragmented_renewal_reversion_report.json`, `bridge/crossing_resilience_scorecard.json`, `bridge/post_crossing_governance_gate.json`, `registry/successor_crossing_dashboard.json`, `registry/false_future_decay_watchlist.json`, `registry/delta_gate_registry.json`, `registry/successor_maturation_dashboard.json`, `registry/renewal_braid_dashboard.json`, `registry/terrace_health_dashboard.json`, `registry/epoch_dashboard.json`, `registry/delta_dashboard.json`, `registry/civilizational_memory_dashboard.json`, `registry/commons_sovereignty_dashboard.json`, `registry/trust_surface_dashboard.json`
+- outputs: `registry/new_delta_dashboard.json`, `registry/reversion_watchlist.json`, `registry/crossing_resilience_registry.json`, `registry/post_crossing_annotations.json`
+- routing: `docket` routes to actionable new delta dashboard/crossing resilience registry, `watch` routes to reversion watchlist, and `suppressed` is excluded from actionable overlays.
+- safeguards: no canon mutation, no deployment execution, no governance-right mutation, no ranking of futures/successor orders/civilizations/communities/institutions, no implication that stabilization visibility equals legitimate authority, no theory-competition closure, and no `new age confirmed` or `future secured permanently` presentation.
+- UI signals: `stabilizationStatus`, `stabilizationClass`, `reversionClass`, `resilienceClass`, `gateStatus`, `trustLegibility`, `memoryContinuity`, `pluralityRetention`, `renewalScatter`, `provenanceMarkers`, `canonicalIntegrityMarkers` (if present).
+- Atlas styling: subtle classes only, reset clears post-crossing stabilization markers, and trust degradation presentation is preserved when canonical integrity is degraded.
+
+```bash
+python3 scripts/build_new_delta_stabilization_overlay.py
+python3 -m unittest tests/test_build_new_delta_stabilization_overlay.py
+```
+
+Phase lock: crossing / successor / terrace / delta / trust / sovereignty / value context -> CoherenceLattice new-delta stabilization and fragmented-reversion formalization -> Sophia bounded stabilization audit -> Publisher stabilization/reversion overlays -> human/community/scientific stewardship of durable and non-durable post-crossing futures.
