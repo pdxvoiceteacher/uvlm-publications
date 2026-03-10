@@ -1421,3 +1421,24 @@ python3 -m unittest tests/test_build_successor_maturation_overlay.py
 ```
 
 Phase lock: successor / maturation / terrace / delta / trust / sovereignty / value context -> CoherenceLattice successor-crossing and false-future-decay formalization -> Sophia bounded crossing audit -> Publisher crossing/decay overlays -> human/community/scientific stewardship of viable and non-viable future formations.
+
+## Successor Delta Crossing & False-Future Decay Overlay (Phase BJ)
+
+Publisher surfaces only Sophia-audited successor-crossing materials; it does not declare new epochs, certify futures, or authorize institutional succession.
+
+Render crossing as a threshold under review, not a banner of inevitability. Render false-future decay as loss of coherence, not a morality play.
+
+- script: `scripts/build_successor_crossing_overlay.py`
+- inputs: `bridge/successor_crossing_audit.json`, `bridge/successor_crossing_recommendations.json`, `bridge/successor_crossing_map.json`, `bridge/false_future_decay_report.json`, `bridge/delta_crossing_gate.json`, `bridge/future_viability_forecast.json`, `registry/successor_maturation_dashboard.json`, `registry/false_future_watchlist.json`, `registry/plurality_retention_registry.json`, `registry/renewal_braid_dashboard.json`, `registry/terrace_health_dashboard.json`, `registry/epoch_dashboard.json`, `registry/delta_dashboard.json`, `registry/civilizational_memory_dashboard.json`, `registry/commons_sovereignty_dashboard.json`, `registry/trust_surface_dashboard.json`
+- outputs: `registry/successor_crossing_dashboard.json`, `registry/false_future_decay_watchlist.json`, `registry/delta_gate_registry.json`, `registry/future_crossing_annotations.json`
+- routing: `docket` routes to actionable successor crossing dashboard/delta gate registry, `watch` routes to false-future decay watchlist, and `suppressed` is excluded from actionable overlays.
+- safeguards: no canon mutation, no deployment execution, no governance-right mutation, no ranking of futures/successor orders/civilizations/communities/institutions, no implication that crossing visibility equals legitimate authority, no theory-competition closure, and no `new age confirmed` or `future secured` presentation.
+- UI signals: `crossingStatus`, `crossingClass`, `decayClass`, `gateStatus`, `viabilityScore`, `trustLegibility`, `memoryContinuity`, `pluralityRetention`, `captureExposure`, `provenanceMarkers`, `canonicalIntegrityMarkers` (if present).
+- Atlas styling: subtle classes only, reset clears successor-crossing markers, and trust degradation presentation is preserved when canonical integrity is degraded.
+
+```bash
+python3 scripts/build_successor_crossing_overlay.py
+python3 -m unittest tests/test_build_successor_crossing_overlay.py
+```
+
+Phase lock: successor / maturation / terrace / delta / trust / sovereignty / value context -> CoherenceLattice successor-crossing and false-future-decay formalization -> Sophia bounded crossing audit -> Publisher crossing/decay overlays -> human/community/scientific stewardship of viable and non-viable future formations.
