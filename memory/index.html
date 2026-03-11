@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Memory Dashboard</title>
+    <link rel="stylesheet" href="../atlas/styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <h1>Memory Dashboard</h1>
+      <div class="controls">
+        <a href="../atlas/index.html"><button>Atlas</button></a>
+        <a href="../lineage/"><button>Lineage</button></a>
+      </div>
+    </header>
+    <section class="atlas-intro">
+      Canonical legibility aid only — memory tiers are displayed for steward queryability and carry no governance-right implications.
+    </section>
+    <main class="layout">
+      <section class="panel" style="width: 100%">
+        <h2>/memory</h2>
+        <table id="memory-table" style="width:100%"></table>
+      </section>
+      <aside class="panel">
+        <h2>Phase Trace Overlay</h2>
+        <div id="memory-trace"><p>Select a memory row to inspect donor patterns and unresolved tensions by phase.</p></div>
+      </aside>
+    </main>
+    <script type="module" src="./memory.js"></script>
+  </body>
+</html>

@@ -1,0 +1,105 @@
+from __future__ import annotations
+
+import unittest
+from pathlib import Path
+
+
+class TelTerraceOverlayAssetsTests(unittest.TestCase):
+    def test_html_has_toggle_and_legend_markers(self) -> None:
+        html = Path('atlas/index.html').read_text(encoding='utf-8')
+        self.assertIn('show-terrace-readiness', html)
+        self.assertIn('show-orthodoxy-risk', html)
+        self.assertIn('show-discovery-corridor', html)
+        self.assertIn('show-schism-risk', html)
+        self.assertIn('toggle-rebraid', html)
+        self.assertIn('toggle-corridor', html)
+        self.assertIn('toggle-river', html)
+        self.assertIn('toggle-delta', html)
+        self.assertIn('toggle-rupture', html)
+        self.assertIn('toggle-cascade', html)
+        self.assertIn('Approaching Terrace', html)
+        self.assertIn('Converged Orthodoxy', html)
+        self.assertIn('Orthodoxy Alert (coercive coherence)', html)
+        self.assertIn('Discovery Corridor (reopening)', html)
+        self.assertIn('Schism Alert (double-helix)', html)
+        self.assertIn('Coupled Spirals', html)
+        self.assertIn('Rebraiding (exchange zones)', html)
+        self.assertIn('Braid Coupling (shared structure)', html)
+        self.assertIn('Corridor Paths (exploration)', html)
+        self.assertIn('Knowledge River (flow)', html)
+        self.assertIn('Knowledge Delta (emergence)', html)
+        self.assertIn('Rupture Signal (watch)', html)
+        self.assertIn('Cascade Hotspot (strong propagation)', html)
+
+    def test_overlay_module_has_advisory_non_final_language(self) -> None:
+        js = Path('atlas/telTerraceOverlay.js').read_text(encoding='utf-8')
+        self.assertIn('Bounded guidance', js)
+        self.assertIn('no governance claim', js)
+        self.assertIn('no closure or finality implied', js)
+
+    def test_atlas_integration_wires_overlay_and_reset(self) -> None:
+        js = Path('atlas/atlas.js').read_text(encoding='utf-8')
+        self.assertIn('applyTerraceOverlay', js)
+        self.assertIn('bindTerraceOverlayToggle', js)
+        self.assertIn('terraceResettableClasses', js)
+        self.assertIn('terrace-approaching', js)
+        self.assertIn('terrace-converged-orthodoxy', js)
+        self.assertIn('applyOrthodoxyCorridorOverlay', js)
+        self.assertIn('bindOrthodoxyCorridorToggles', js)
+        self.assertIn('orthodoxyResettableClasses', js)
+        self.assertIn('applySchismOverlay', js)
+        self.assertIn('bindSchismOverlayToggle', js)
+        self.assertIn('schismResettableClasses', js)
+        self.assertIn('applyRebraidOverlay', js)
+        self.assertIn('bindRebraidOverlayToggle', js)
+        self.assertIn('rebraidResettableClasses', js)
+        self.assertIn('applyCorridorOverlay', js)
+        self.assertIn('applyRiverOverlay', js)
+        self.assertIn('applyDeltaOverlay', js)
+        self.assertIn('applyRuptureOverlay', js)
+        self.assertIn('applyCascadeOverlay', js)
+        self.assertIn('bindCorridorOverlayToggle', js)
+        self.assertIn('bindRiverOverlayToggle', js)
+        self.assertIn('bindDeltaOverlayToggle', js)
+        self.assertIn('bindRuptureOverlayToggle', js)
+        self.assertIn('bindCascadeOverlayToggle', js)
+
+    def test_orthodoxy_overlay_module_has_advisory_labels(self) -> None:
+        js = Path('atlas/telOrthodoxyOverlay.js').read_text(encoding='utf-8')
+        self.assertIn('Orthodoxy Alert', js)
+        self.assertIn('Corridor Forming', js)
+        self.assertIn('supportive overlay, not a final conclusion', js)
+
+
+    def test_schism_overlay_module_has_advisory_labels(self) -> None:
+        js = Path('atlas/telSchismOverlay.js').read_text(encoding='utf-8')
+        self.assertIn('schismPotential', js)
+        self.assertIn('Schism', js)
+        self.assertIn('Advisory only, not authoritative', js)
+
+
+    def test_rebraid_overlay_module_has_advisory_labels(self) -> None:
+        js = Path('atlas/telRebraidOverlay.js').read_text(encoding='utf-8')
+        self.assertIn('clearRebraidOverlay', js)
+        self.assertIn('rebraidPotential', js)
+        self.assertIn('preliminary mutual translation', js.lower())
+        self.assertIn('Advisory only, not authoritative', js)
+
+    def test_corridor_river_delta_rupture_modules_have_advisory_labels(self) -> None:
+        corridor_js = Path('atlas/telCorridorOverlay.js').read_text(encoding='utf-8')
+        river_js = Path('atlas/telRiverOverlay.js').read_text(encoding='utf-8')
+        delta_js = Path('atlas/telDeltaOverlay.js').read_text(encoding='utf-8')
+        rupture_js = Path('atlas/telRuptureOverlay.js').read_text(encoding='utf-8')
+        self.assertIn('Advisory only, not authoritative', corridor_js)
+        self.assertIn('knowledge-river flow indicator', river_js)
+        self.assertIn('civilizational delta emergence signal', delta_js)
+        self.assertIn('rupture signal watch indicator', rupture_js)
+
+    def test_cascade_overlay_module_has_advisory_labels(self) -> None:
+        js = Path('atlas/telCascadeOverlay.js').read_text(encoding='utf-8')
+        self.assertIn('cascadeSignal', js)
+        self.assertIn('cascade-strong', js)
+        self.assertIn('Advisory only, not authoritative', js)
+
+if __name__ == '__main__':
+    unittest.main()
