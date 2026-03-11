@@ -1,0 +1,31 @@
+{
+  "entries": [
+    {
+      "phaseId": "phase-alpha",
+      "donorPatternsApplied": [
+        "pattern:a",
+        "pattern:b"
+      ],
+      "unresolvedTensions": [
+        "tension:x"
+      ],
+      "orthodoxyScore": 0.81,
+      "corridorPotential": 0.74,
+      "signalArtifactHash": "sig:alpha",
+      "schismPotential": 0.79,
+      "schismAlert": "high"
+    },
+    {
+      "phaseId": "phase-beta",
+      "donorPatternsApplied": [
+        "pattern:c"
+      ],
+      "unresolvedTensions": [],
+      "orthodoxyScore": 0.22,
+      "corridorPotential": 0.67,
+      "signalArtifactHash": "sig:beta",
+      "schismPotential": 0.34,
+      "schismAlert": "bounded"
+    }
+  ]
+}
