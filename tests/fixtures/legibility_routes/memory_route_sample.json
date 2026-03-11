@@ -1,0 +1,18 @@
+{
+  "entries": [
+    {
+      "memoryId": "mem-001",
+      "phaseId": "phase-bo",
+      "memoryTier": "hot",
+      "preservationCriticality": "critical",
+      "invariantHash": "sha256:abc123"
+    },
+    {
+      "memoryId": "mem-002",
+      "phaseId": "phase-bn",
+      "memoryTier": "warm",
+      "preservationCriticality": "elevated",
+      "invariantHash": "sha256:def456"
+    }
+  ]
+}
