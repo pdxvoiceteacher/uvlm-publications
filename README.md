@@ -1586,3 +1586,39 @@ Route fixtures/tests:
 ```bash
 python3 -m unittest tests/test_legibility_dashboard_routes.py
 ```
+
+### TEL terrace readiness overlay (Publisher)
+
+Publisher adds a bounded TEL terrace-readiness affordance in Atlas with:
+- node tinting: approaching terrace (`🟧`) and converged orthodoxy caution (`🟥`),
+- advisory-only language in node metadata (`bounded guidance`, never closure/finality),
+- a topbar toggle: `Show terrace readiness`, and
+- reset-safe class clearing through the Atlas reset flow.
+
+Implementation:
+- module: `atlas/telTerraceOverlay.js`
+- integration: `atlas/atlas.js`
+- legend/toggle UI: `atlas/index.html`
+
+```bash
+python3 -m unittest tests/test_tel_terrace_overlay.py
+```
+
+## Memory Overlay Registry & Dashboard Statistics
+
+Publisher can materialize memory visualization metadata and dashboard health stats without changing governance boundaries.
+
+- script: `scripts/build_memory_overlay_registry.py`
+- inputs: `bridge/phase_lineage_registry.json`, `bridge/phase_glossary.json`, `bridge/coherence_memory_trace.json`, `bridge/governance_action_ledger.json`, `bridge/audit_lineage_registry.json`, `registry/civilizational_memory_dashboard.json`, `registry/phase_lineage_dashboard.json`
+- outputs: `registry/memory_overlay.json`, `registry/memory_dashboard.json`
+- produced capabilities:
+  - tier-based visual encodings (`hot/warm/cold` color+icon+intensity)
+  - lineage continuity and plurality retention markers
+  - clickable navigation links across source signal, lineage route, memory route, and registry anchors
+  - dashboard stats: counts by tier, top reused fragments, lineage collisions by compressed signature, recently compressed pathways
+  - explicit reversibility notices: `(compressed, reversible – audit-only)` with no authority gain
+
+```bash
+python3 scripts/build_memory_overlay_registry.py
+python3 -m unittest tests/test_build_memory_overlay_registry.py
+```
