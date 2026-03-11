@@ -11,7 +11,7 @@ class TelTerraceOverlayAssetsTests(unittest.TestCase):
         self.assertIn('show-orthodoxy-risk', html)
         self.assertIn('show-discovery-corridor', html)
         self.assertIn('show-schism-risk', html)
-        self.assertIn('show-rebraid-signals', html)
+        self.assertIn('toggle-rebraid', html)
         self.assertIn('toggle-corridor', html)
         self.assertIn('toggle-river', html)
         self.assertIn('toggle-delta', html)
@@ -80,6 +80,7 @@ class TelTerraceOverlayAssetsTests(unittest.TestCase):
 
     def test_rebraid_overlay_module_has_advisory_labels(self) -> None:
         js = Path('atlas/telRebraidOverlay.js').read_text(encoding='utf-8')
+        self.assertIn('clearRebraidOverlay', js)
         self.assertIn('rebraidPotential', js)
         self.assertIn('preliminary mutual translation', js.lower())
         self.assertIn('Advisory only, not authoritative', js)
