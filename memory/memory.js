@@ -37,7 +37,7 @@ function renderTrace(phaseId, trace) {
 
 async function main() {
   const [memoryPayload, tracePayload] = await Promise.all([
-    fetchJsonWithFallback('../registry/civilizational_memory_dashboard.json', '../tests/fixtures/legibility_routes/memory_route_sample.json'),
+    fetchJsonWithFallback('../bridge/civilizational_memory_map.json', '../tests/fixtures/legibility_routes/memory_route_sample.json'),
     fetchJsonWithFallback('../bridge/coherence_memory_trace.json', '../tests/fixtures/legibility_routes/coherence_memory_trace_sample.json'),
   ]);
   const memories = normalizeMemoryEntries(memoryPayload);

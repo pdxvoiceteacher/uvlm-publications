@@ -36,7 +36,7 @@ function renderTrace(phaseId, trace) {
 
 async function main() {
   const [lineagePayload, tracePayload] = await Promise.all([
-    fetchJsonWithFallback('../registry/phase_lineage_dashboard.json', '../tests/fixtures/legibility_routes/lineage_route_sample.json'),
+    fetchJsonWithFallback('../bridge/phase_lineage_registry.json', '../tests/fixtures/legibility_routes/lineage_route_sample.json'),
     fetchJsonWithFallback('../bridge/coherence_memory_trace.json', '../tests/fixtures/legibility_routes/coherence_memory_trace_sample.json'),
   ]);
   const lineage = normalizeLineageEntries(lineagePayload);

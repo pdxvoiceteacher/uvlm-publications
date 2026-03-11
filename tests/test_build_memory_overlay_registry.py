@@ -128,6 +128,12 @@ class MemoryOverlayRegistryBuilderTests(unittest.TestCase):
         self.assertFalse(dash['modificationDisclosureMissing'])
         self.assertFalse(dash['trustPresentationDegraded'])
 
+    def test_sync_helper_exists_and_lists_bridge_files(self) -> None:
+        helper = Path('tools/sync_bridge_from_coherencelattice.py').read_text(encoding='utf-8')
+        self.assertIn('phase_lineage_registry.json', helper)
+        self.assertIn('civilizational_delta_map.json', helper)
+        self.assertIn('rupture_map.json', helper)
+
     def test_optional_registry_provenance_accepts_schema_version(self) -> None:
         payload = json.loads((self.registry / 'phase_lineage_dashboard.json').read_text(encoding='utf-8'))
         payload['provenance'] = {

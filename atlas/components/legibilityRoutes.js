@@ -6,8 +6,18 @@ export function sortByKey(entries, key) {
   return [...entries].sort((a, b) => String(a?.[key] ?? '').localeCompare(String(b?.[key] ?? '')));
 }
 
+function pickRows(payload, keys) {
+  for (const key of keys) {
+    if (Array.isArray(payload?.[key])) {
+      return payload[key];
+    }
+  }
+  return [];
+}
+
 export function normalizeLineageEntries(payload) {
-  return sortByKey(asArray(payload?.entries), 'phaseId').map((entry) => ({
+  const rows = pickRows(payload, ['entries', 'lineage']);
+  return sortByKey(asArray(rows), 'phaseId').map((entry) => ({
     phaseId: String(entry.phaseId ?? entry.reviewId ?? 'unknown-phase'),
     phaseLineageVisibility: Boolean(entry.phaseLineageVisibility),
     glossaryAvailability: Boolean(entry.glossaryAvailability),
@@ -21,7 +31,8 @@ export function normalizeLineageEntries(payload) {
 }
 
 export function normalizeMemoryEntries(payload) {
-  return sortByKey(asArray(payload?.entries), 'memoryId').map((entry) => ({
+  const rows = pickRows(payload, ['entries', 'memory', 'memoryRecords']);
+  return sortByKey(asArray(rows), 'memoryId').map((entry) => ({
     memoryId: String(entry.memoryId ?? entry.reviewId ?? 'unknown-memory'),
     memoryTier: String(entry.memoryTier ?? 'unknown').toLowerCase(),
     preservationCriticality: String(entry.preservationCriticality ?? 'bounded'),
@@ -32,7 +43,8 @@ export function normalizeMemoryEntries(payload) {
 
 export function buildTraceIndex(tracePayload) {
   const idx = new Map();
-  for (const row of asArray(tracePayload?.entries)) {
+  const rows = pickRows(tracePayload, ['entries', 'memoryTrace']);
+  for (const row of asArray(rows)) {
     const phaseId = String(row?.phaseId ?? row?.reviewId ?? '').trim();
     if (!phaseId) continue;
     idx.set(phaseId, {

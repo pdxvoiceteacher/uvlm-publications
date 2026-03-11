@@ -6,6 +6,11 @@ from pathlib import Path
 
 
 class LegibilityDashboardRouteFixturesTests(unittest.TestCase):
+    def test_normalizer_supports_bridge_payload_shape_references(self) -> None:
+        routes_js = Path('atlas/components/legibilityRoutes.js').read_text(encoding='utf-8')
+        self.assertIn("['entries', 'lineage']", routes_js)
+        self.assertIn("['entries', 'memory', 'memoryRecords']", routes_js)
+        self.assertIn("['entries', 'memoryTrace']", routes_js)
     def test_lineage_fixture_keys_present(self) -> None:
         payload = json.loads(Path('tests/fixtures/legibility_routes/lineage_route_sample.json').read_text(encoding='utf-8'))
         self.assertIsInstance(payload.get('entries'), list)
@@ -51,7 +56,9 @@ class LegibilityDashboardRouteFixturesTests(unittest.TestCase):
         lineage_js = Path('lineage/lineage.js').read_text(encoding='utf-8')
         memory_js = Path('memory/memory.js').read_text(encoding='utf-8')
         self.assertIn('fetchJsonWithFallback', lineage_js)
+        self.assertIn('phase_lineage_registry.json', lineage_js)
         self.assertIn('fetchJsonWithFallback', memory_js)
+        self.assertIn('civilizational_memory_map.json', memory_js)
         self.assertIn('orthodoxyScore', lineage_js)
         self.assertIn('corridorPotential', lineage_js)
         self.assertIn('schismPotential', lineage_js)
