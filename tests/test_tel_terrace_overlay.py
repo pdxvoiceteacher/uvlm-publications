@@ -12,6 +12,10 @@ class TelTerraceOverlayAssetsTests(unittest.TestCase):
         self.assertIn('show-discovery-corridor', html)
         self.assertIn('show-schism-risk', html)
         self.assertIn('show-rebraid-signals', html)
+        self.assertIn('toggle-corridor', html)
+        self.assertIn('toggle-river', html)
+        self.assertIn('toggle-delta', html)
+        self.assertIn('toggle-rupture', html)
         self.assertIn('Approaching Terrace', html)
         self.assertIn('Converged Orthodoxy', html)
         self.assertIn('Orthodoxy Alert (coercive coherence)', html)
@@ -20,6 +24,10 @@ class TelTerraceOverlayAssetsTests(unittest.TestCase):
         self.assertIn('Coupled Spirals', html)
         self.assertIn('Rebraiding (exchange zones)', html)
         self.assertIn('Braid Coupling (shared structure)', html)
+        self.assertIn('Corridor Paths (exploration)', html)
+        self.assertIn('Knowledge River (flow)', html)
+        self.assertIn('Knowledge Delta (emergence)', html)
+        self.assertIn('Rupture Signal (watch)', html)
 
     def test_overlay_module_has_advisory_non_final_language(self) -> None:
         js = Path('atlas/telTerraceOverlay.js').read_text(encoding='utf-8')
@@ -43,6 +51,14 @@ class TelTerraceOverlayAssetsTests(unittest.TestCase):
         self.assertIn('applyRebraidOverlay', js)
         self.assertIn('bindRebraidOverlayToggle', js)
         self.assertIn('rebraidResettableClasses', js)
+        self.assertIn('applyCorridorOverlay', js)
+        self.assertIn('applyRiverOverlay', js)
+        self.assertIn('applyDeltaOverlay', js)
+        self.assertIn('applyRuptureOverlay', js)
+        self.assertIn('bindCorridorOverlayToggle', js)
+        self.assertIn('bindRiverOverlayToggle', js)
+        self.assertIn('bindDeltaOverlayToggle', js)
+        self.assertIn('bindRuptureOverlayToggle', js)
 
     def test_orthodoxy_overlay_module_has_advisory_labels(self) -> None:
         js = Path('atlas/telOrthodoxyOverlay.js').read_text(encoding='utf-8')
@@ -63,6 +79,16 @@ class TelTerraceOverlayAssetsTests(unittest.TestCase):
         self.assertIn('rebraidPotential', js)
         self.assertIn('preliminary mutual translation', js.lower())
         self.assertIn('Advisory only, not authoritative', js)
+
+    def test_corridor_river_delta_rupture_modules_have_advisory_labels(self) -> None:
+        corridor_js = Path('atlas/telCorridorOverlay.js').read_text(encoding='utf-8')
+        river_js = Path('atlas/telRiverOverlay.js').read_text(encoding='utf-8')
+        delta_js = Path('atlas/telDeltaOverlay.js').read_text(encoding='utf-8')
+        rupture_js = Path('atlas/telRuptureOverlay.js').read_text(encoding='utf-8')
+        self.assertIn('Advisory only, not authoritative', corridor_js)
+        self.assertIn('knowledge-river flow indicator', river_js)
+        self.assertIn('civilizational delta emergence signal', delta_js)
+        self.assertIn('rupture signal watch indicator', rupture_js)
 
 if __name__ == '__main__':
     unittest.main()

@@ -15,7 +15,10 @@
       "schismPotential": 0.79,
       "schismAlert": "high",
       "rebraidPotential": 0.83,
-      "rebraidAlert": "true"
+      "rebraidAlert": "true",
+      "riverFlow": true,
+      "deltaPotential": 0.77,
+      "ruptureAlert": "high"
     },
     {
       "phaseId": "phase-beta",
@@ -29,7 +32,10 @@
       "schismPotential": 0.34,
       "schismAlert": "bounded",
       "rebraidPotential": 0.41,
-      "rebraidAlert": "false"
+      "rebraidAlert": "false",
+      "riverFlow": false,
+      "deltaPotential": 0.22,
+      "ruptureAlert": "false"
     }
   ]
 }

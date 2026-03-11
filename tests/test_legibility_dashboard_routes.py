@@ -38,6 +38,9 @@ class LegibilityDashboardRouteFixturesTests(unittest.TestCase):
         self.assertIn('schismAlert', row)
         self.assertIn('rebraidPotential', row)
         self.assertIn('rebraidAlert', row)
+        self.assertIn('riverFlow', row)
+        self.assertIn('deltaPotential', row)
+        self.assertIn('ruptureAlert', row)
 
     def test_route_pages_contain_boundary_label(self) -> None:
         lineage_html = Path('lineage/index.html').read_text(encoding='utf-8')
@@ -55,6 +58,12 @@ class LegibilityDashboardRouteFixturesTests(unittest.TestCase):
         self.assertIn('schismPotential', memory_js)
         self.assertIn('rebraidPotential', lineage_js)
         self.assertIn('rebraidPotential', memory_js)
+        self.assertIn('riverFlow', lineage_js)
+        self.assertIn('riverFlow', memory_js)
+        self.assertIn('deltaPotential', lineage_js)
+        self.assertIn('deltaPotential', memory_js)
+        self.assertIn('ruptureAlert', lineage_js)
+        self.assertIn('ruptureAlert', memory_js)
 
 
 if __name__ == '__main__':

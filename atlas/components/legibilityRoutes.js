@@ -45,6 +45,9 @@ export function buildTraceIndex(tracePayload) {
       schismAlert: String(row.schismAlert ?? 'bounded'),
       rebraidPotential: Number.parseFloat(row.rebraidPotential ?? 0) || 0,
       rebraidAlert: String(row.rebraidAlert ?? 'false'),
+      riverFlow: Boolean(row.riverFlow),
+      deltaPotential: Number.parseFloat(row.deltaPotential ?? 0) || 0,
+      ruptureAlert: String(row.ruptureAlert ?? 'false'),
     });
   }
   return idx;
