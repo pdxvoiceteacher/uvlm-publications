@@ -110,6 +110,10 @@ def _encodings_for_tier(tier: str) -> dict[str, Any]:
     return {"color": "#ffb46b", "icon": "♨", "intensity": 0.65}
 
 
+def _tier_visual_legend() -> dict[str, dict[str, Any]]:
+    return {tier: _encodings_for_tier(tier) for tier in ("hot", "warm", "cold")}
+
+
 def build_memory_overlay_and_dashboard(
     phase_lineage_registry: dict[str, Any],
     phase_glossary: dict[str, Any],
@@ -154,6 +158,7 @@ def build_memory_overlay_and_dashboard(
     reused_counter: Counter[str] = Counter()
     signature_to_sources: dict[str, set[str]] = {}
     recent_paths: list[dict[str, Any]] = []
+    memory_links: dict[str, dict[str, str]] = {}
 
     for row in sorted(memory_rows, key=lambda r: str(r.get("memoryId", r.get("reviewId", "")))):
         memory_id = str(row.get("memoryId", row.get("reviewId", "unknown-memory")))
@@ -177,6 +182,8 @@ def build_memory_overlay_and_dashboard(
             "lineageOverlay": f"../lineage/index.html#phaseId={phase_id}",
             "memoryOverlay": f"../memory/index.html#memoryId={memory_id}",
         }
+
+        memory_links[memory_id] = lineage_links
 
         overlay_entries.append({
             "memoryId": memory_id,
@@ -203,11 +210,31 @@ def build_memory_overlay_and_dashboard(
         tier_counter[tier] += 1
         reused_counter[memory_id] = reuse_frequency
         signature_to_sources.setdefault(invariant_hash, set()).add(source_signal)
-        recent_paths.append({"memoryId": memory_id, "phaseId": phase_id, "compressedAt": compressed_at})
+        recent_paths.append({
+            "memoryId": memory_id,
+            "phaseId": phase_id,
+            "compressedAt": compressed_at,
+            "navigationLinks": lineage_links,
+            "reversibilityNotice": "(compressed, reversible – audit-only)",
+        })
 
-    top_reused = [{"memoryId": mid, "reuseFrequency": freq} for mid, freq in reused_counter.most_common(10)]
+    top_reused = [
+        {
+            "memoryId": mid,
+            "reuseFrequency": freq,
+            "navigationLinks": memory_links.get(mid, {}),
+            "reversibilityNotice": "(compressed, reversible – audit-only)",
+        }
+        for mid, freq in reused_counter.most_common(10)
+    ]
     collisions = [
-        {"compressedSignature": sig, "sourceSignals": sorted(sources), "collisionCount": len(sources)}
+        {
+            "compressedSignature": sig,
+            "sourceSignals": sorted(sources),
+            "collisionCount": len(sources),
+            "reversibilityNotice": "(compressed, reversible – audit-only)",
+            "noCompressionAuthorityGain": True,
+        }
         for sig, sources in sorted(signature_to_sources.items()) if len(sources) > 1
     ]
     recent_paths_sorted = sorted(recent_paths, key=lambda r: str(r.get("compressedAt", "")), reverse=True)[:25]
@@ -226,12 +253,16 @@ def build_memory_overlay_and_dashboard(
         "noFinalSettlementPresentation": True,
         "preserveTrustPresentationDegraded": True,
         "provenance": _build_provenance_summary(provenances),
+        "tierEncodings": _tier_visual_legend(),
         **integrity_status,
     }
 
     overlay = {
         **shared,
         "entries": overlay_entries,
+        "reversibilityNotice": "(compressed, reversible – audit-only)",
+        "noMinorityVoiceEliminationClaim": True,
+        "noCompressionAuthorityGain": True,
     }
     dashboard = {
         **shared,
@@ -240,6 +271,8 @@ def build_memory_overlay_and_dashboard(
         "lineageCollisions": collisions,
         "recentlyCompressedPathways": recent_paths_sorted,
         "reversibilityNotice": "(compressed, reversible – audit-only)",
+        "noMinorityVoiceEliminationClaim": True,
+        "noCompressionAuthorityGain": True,
     }
 
     return overlay, dashboard

@@ -93,6 +93,18 @@ class MemoryOverlayRegistryBuilderTests(unittest.TestCase):
         self.assertEqual(dash['topReusedFragments'][0]['memoryId'], 'mem-1')
         self.assertEqual(dash['lineageCollisions'][0]['compressedSignature'], 'sig:same')
 
+    def test_dashboard_includes_navigation_links_and_notices(self) -> None:
+        result = self.run_builder()
+        self.assertEqual(result.returncode, 0)
+        dash = json.loads((self.registry / 'memory_dashboard.json').read_text(encoding='utf-8'))
+        self.assertIn('tierEncodings', dash)
+        self.assertIn('hot', dash['tierEncodings'])
+        self.assertEqual(dash['topReusedFragments'][0]['reversibilityNotice'], '(compressed, reversible – audit-only)')
+        self.assertIn('memoryOverlay', dash['topReusedFragments'][0]['navigationLinks'])
+        self.assertEqual(dash['recentlyCompressedPathways'][0]['reversibilityNotice'], '(compressed, reversible – audit-only)')
+        self.assertTrue(dash['noCompressionAuthorityGain'])
+        self.assertTrue(dash['noMinorityVoiceEliminationClaim'])
+
     def test_provenance_failure(self) -> None:
         payload = json.loads((self.bridge / 'phase_lineage_registry.json').read_text(encoding='utf-8'))
         payload['provenance']['producerCommits'] = []
