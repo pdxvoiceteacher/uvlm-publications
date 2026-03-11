@@ -1421,3 +1421,168 @@ python3 -m unittest tests/test_build_successor_maturation_overlay.py
 ```
 
 Phase lock: successor / maturation / terrace / delta / trust / sovereignty / value context -> CoherenceLattice successor-crossing and false-future-decay formalization -> Sophia bounded crossing audit -> Publisher crossing/decay overlays -> human/community/scientific stewardship of viable and non-viable future formations.
+
+## Successor Delta Crossing & False-Future Decay Overlay (Phase BJ)
+
+Publisher surfaces only Sophia-audited successor-crossing materials; it does not declare new epochs, certify futures, or authorize institutional succession.
+
+Render crossing as a threshold under review, not a banner of inevitability. Render false-future decay as loss of coherence, not a morality play.
+
+- script: `scripts/build_successor_crossing_overlay.py`
+- inputs: `bridge/successor_crossing_audit.json`, `bridge/successor_crossing_recommendations.json`, `bridge/successor_crossing_map.json`, `bridge/false_future_decay_report.json`, `bridge/delta_crossing_gate.json`, `bridge/future_viability_forecast.json`, `registry/successor_maturation_dashboard.json`, `registry/false_future_watchlist.json`, `registry/plurality_retention_registry.json`, `registry/renewal_braid_dashboard.json`, `registry/terrace_health_dashboard.json`, `registry/epoch_dashboard.json`, `registry/delta_dashboard.json`, `registry/civilizational_memory_dashboard.json`, `registry/commons_sovereignty_dashboard.json`, `registry/trust_surface_dashboard.json`
+- outputs: `registry/successor_crossing_dashboard.json`, `registry/false_future_decay_watchlist.json`, `registry/delta_gate_registry.json`, `registry/future_crossing_annotations.json`
+- routing: `docket` routes to actionable successor crossing dashboard/delta gate registry, `watch` routes to false-future decay watchlist, and `suppressed` is excluded from actionable overlays.
+- safeguards: no canon mutation, no deployment execution, no governance-right mutation, no ranking of futures/successor orders/civilizations/communities/institutions, no implication that crossing visibility equals legitimate authority, no theory-competition closure, and no `new age confirmed` or `future secured` presentation.
+- UI signals: `crossingStatus`, `crossingClass`, `decayClass`, `gateStatus`, `viabilityScore`, `trustLegibility`, `memoryContinuity`, `pluralityRetention`, `captureExposure`, `provenanceMarkers`, `canonicalIntegrityMarkers` (if present).
+- Atlas styling: subtle classes only, reset clears successor-crossing markers, and trust degradation presentation is preserved when canonical integrity is degraded.
+
+```bash
+python3 scripts/build_successor_crossing_overlay.py
+python3 -m unittest tests/test_build_successor_crossing_overlay.py
+```
+
+Phase lock: successor / maturation / terrace / delta / trust / sovereignty / value context -> CoherenceLattice successor-crossing and false-future-decay formalization -> Sophia bounded crossing audit -> Publisher crossing/decay overlays -> human/community/scientific stewardship of viable and non-viable future formations.
+
+## New Delta Stabilization & Fragmented-Renewal Reversion Overlay (Phase BK)
+
+Publisher surfaces only Sophia-audited post-crossing stabilization materials; it does not declare new epochs, certify successor governance, or authorize institutional succession.
+
+Render stabilization as durable coherence under review, and reversion as fragmented renewal under stress — never as destiny or defeat.
+
+- script: `scripts/build_new_delta_stabilization_overlay.py`
+- inputs: `bridge/new_delta_stabilization_audit.json`, `bridge/new_delta_stabilization_recommendations.json`, `bridge/new_delta_stabilization_map.json`, `bridge/fragmented_renewal_reversion_report.json`, `bridge/crossing_resilience_scorecard.json`, `bridge/post_crossing_governance_gate.json`, `registry/successor_crossing_dashboard.json`, `registry/false_future_decay_watchlist.json`, `registry/delta_gate_registry.json`, `registry/successor_maturation_dashboard.json`, `registry/renewal_braid_dashboard.json`, `registry/terrace_health_dashboard.json`, `registry/epoch_dashboard.json`, `registry/delta_dashboard.json`, `registry/civilizational_memory_dashboard.json`, `registry/commons_sovereignty_dashboard.json`, `registry/trust_surface_dashboard.json`
+- outputs: `registry/new_delta_dashboard.json`, `registry/reversion_watchlist.json`, `registry/crossing_resilience_registry.json`, `registry/post_crossing_annotations.json`
+- routing: `docket` routes to actionable new delta dashboard/crossing resilience registry, `watch` routes to reversion watchlist, and `suppressed` is excluded from actionable overlays.
+- safeguards: no canon mutation, no deployment execution, no governance-right mutation, no ranking of futures/successor orders/civilizations/communities/institutions, no implication that stabilization visibility equals legitimate authority, no theory-competition closure, and no `new age confirmed` or `future secured permanently` presentation.
+- UI signals: `stabilizationStatus`, `stabilizationClass`, `reversionClass`, `resilienceClass`, `gateStatus`, `trustLegibility`, `memoryContinuity`, `pluralityRetention`, `renewalScatter`, `provenanceMarkers`, `canonicalIntegrityMarkers` (if present).
+- Atlas styling: subtle classes only, reset clears post-crossing stabilization markers, and trust degradation presentation is preserved when canonical integrity is degraded.
+
+```bash
+python3 scripts/build_new_delta_stabilization_overlay.py
+python3 -m unittest tests/test_build_new_delta_stabilization_overlay.py
+```
+
+Phase lock: crossing / successor / terrace / delta / trust / sovereignty / value context -> CoherenceLattice new-delta stabilization and fragmented-reversion formalization -> Sophia bounded stabilization audit -> Publisher stabilization/reversion overlays -> human/community/scientific stewardship of durable and non-durable post-crossing futures.
+
+## Terrace Seed Formation & Experimental Repluralization Overlay (Phase BL)
+
+Publisher surfaces only Sophia-audited terrace-seed materials; it does not declare new epochs, certify settled futures, or authorize institutional succession.
+
+Render terrace seeds as early sediment under review, and repluralization as healthy reopened experimentation — never as defeat.
+
+- script: `scripts/build_terrace_seed_overlay.py`
+- inputs: `bridge/terrace_seed_audit.json`, `bridge/terrace_seed_recommendations.json`, `bridge/terrace_seed_map.json`, `bridge/experimental_repluralization_report.json`, `bridge/sedimentation_readiness_scorecard.json`, `bridge/terrace_seed_gate.json`, `registry/new_delta_dashboard.json`, `registry/reversion_watchlist.json`, `registry/crossing_resilience_registry.json`, `registry/successor_crossing_dashboard.json`, `registry/successor_maturation_dashboard.json`, `registry/renewal_braid_dashboard.json`, `registry/terrace_health_dashboard.json`, `registry/epoch_dashboard.json`, `registry/delta_dashboard.json`, `registry/civilizational_memory_dashboard.json`, `registry/commons_sovereignty_dashboard.json`, `registry/trust_surface_dashboard.json`
+- outputs: `registry/terrace_seed_dashboard.json`, `registry/repluralization_watchlist.json`, `registry/sedimentation_readiness_registry.json`, `registry/terrace_seed_annotations.json`
+- routing: `docket` routes to actionable terrace seed dashboard/sedimentation readiness registry, `watch` routes to repluralization watchlist, and `suppressed` is excluded from actionable overlays.
+- safeguards: no canon mutation, no deployment execution, no governance-right mutation, no ranking of futures/successor orders/civilizations/communities/institutions, no implication that seed visibility equals settled authority, no theory-competition closure, and no `new age formed` or `future secured permanently` presentation.
+- UI signals: `seedStatus`, `terraceSeedClass`, `repluralizationClass`, `readinessClass`, `gateStatus`, `trustStability`, `memoryTeachability`, `pluralityDurability`, `experimentationRecovery`, `provenanceMarkers`, `canonicalIntegrityMarkers` (if present).
+- Atlas styling: subtle classes only, reset clears terrace-seed markers, and trust degradation presentation is preserved when canonical integrity is degraded.
+
+```bash
+python3 scripts/build_terrace_seed_overlay.py
+python3 -m unittest tests/test_build_terrace_seed_overlay.py
+```
+
+Phase lock: stabilization / crossing / successor / terrace / delta / trust / sovereignty / value context -> CoherenceLattice terrace-seed and repluralization formalization -> Sophia bounded terrace-seed audit -> Publisher terrace-seed / repluralization overlays -> human/community/scientific stewardship of early sediment and plural experimentation.
+
+## Epochal Surface Emergence & Reopened Experiment Cycling Overlay (Phase BM)
+
+Publisher surfaces only Sophia-audited epochal-surface materials; it does not declare new epochs, certify settled futures, or authorize institutional succession.
+
+Render habitable surfaces as living coherence under review, and reopened experimentation as healthy plural motion — never as defeat.
+
+- script: `scripts/build_epochal_surface_overlay.py`
+- inputs: `bridge/epochal_surface_audit.json`, `bridge/epochal_surface_recommendations.json`, `bridge/epochal_surface_map.json`, `bridge/habitable_plateau_report.json`, `bridge/reopened_experiment_registry.json`, `bridge/surface_emergence_gate.json`, `registry/terrace_seed_dashboard.json`, `registry/repluralization_watchlist.json`, `registry/sedimentation_readiness_registry.json`, `registry/new_delta_dashboard.json`, `registry/successor_crossing_dashboard.json`, `registry/successor_maturation_dashboard.json`, `registry/renewal_braid_dashboard.json`, `registry/terrace_health_dashboard.json`, `registry/epoch_dashboard.json`, `registry/delta_dashboard.json`, `registry/civilizational_memory_dashboard.json`, `registry/commons_sovereignty_dashboard.json`, `registry/trust_surface_dashboard.json`
+- outputs: `registry/epochal_surface_dashboard.json`, `registry/reopened_experiment_watchlist.json`, `registry/habitable_plateau_registry.json`, `registry/epochal_surface_annotations.json`
+- routing: `docket` routes to actionable epochal surface dashboard/habitable plateau registry, `watch` routes to reopened experiment watchlist, and `suppressed` is excluded from actionable overlays.
+- safeguards: no canon mutation, no deployment execution, no governance-right mutation, no ranking of futures/successor orders/civilizations/communities/institutions, no implication that surface visibility equals settled authority, no theory-competition closure, and no `new age formed` or `future secured permanently` presentation.
+- UI signals: `surfaceStatus`, `surfaceClass`, `plateauClass`, `experimentClass`, `gateStatus`, `trustStability`, `memoryTeachability`, `pluralityDurability`, `experimentationRecovery`, `provenanceMarkers`, `canonicalIntegrityMarkers` (if present).
+- Atlas styling: subtle classes only, reset clears epochal-surface markers, and trust degradation presentation is preserved when canonical integrity is degraded.
+
+```bash
+python3 scripts/build_epochal_surface_overlay.py
+python3 -m unittest tests/test_build_epochal_surface_overlay.py
+```
+
+Phase lock: terrace-seed / stabilization / crossing / successor / delta / trust / sovereignty / value context -> CoherenceLattice epochal-surface and reopened-experimentation formalization -> Sophia bounded epochal-surface audit -> Publisher epochal-surface / experiment overlays -> human/community/scientific stewardship of livable emergence and plural experimentation.
+
+## Living Terrace Consolidation & Commons Habitability Overlay (Phase BN)
+
+Publisher surfaces only Sophia-audited living-terrace materials; it does not declare new epochs, certify settled futures, or authorize institutional succession.
+
+Render living terraces as commons-habitable coherence under review, and plural habitation as healthy openness — never as incompleteness.
+
+- script: `scripts/build_living_terrace_overlay.py`
+- inputs: `bridge/living_terrace_audit.json`, `bridge/living_terrace_recommendations.json`, `bridge/living_terrace_map.json`, `bridge/commons_habitability_report.json`, `bridge/plural_habitation_registry.json`, `bridge/terrace_consolidation_gate.json`, `registry/epochal_surface_dashboard.json`, `registry/reopened_experiment_watchlist.json`, `registry/habitable_plateau_registry.json`, `registry/terrace_seed_dashboard.json`, `registry/new_delta_dashboard.json`, `registry/successor_crossing_dashboard.json`, `registry/terrace_health_dashboard.json`, `registry/epoch_dashboard.json`, `registry/delta_dashboard.json`, `registry/civilizational_memory_dashboard.json`, `registry/commons_sovereignty_dashboard.json`, `registry/trust_surface_dashboard.json`
+- outputs: `registry/living_terrace_dashboard.json`, `registry/plural_habitation_watchlist.json`, `registry/commons_habitability_registry.json`, `registry/living_terrace_annotations.json`
+- routing: `docket` routes to actionable living terrace dashboard/commons habitability registry, `watch` routes to plural habitation watchlist, and `suppressed` is excluded from actionable overlays.
+- safeguards: no canon mutation, no deployment execution, no governance-right mutation, no ranking of futures/successor orders/civilizations/communities/institutions, no implication that terrace visibility equals settled authority, no theory-competition closure, and no `new age settled` or `future secured permanently` presentation.
+- UI signals: `terraceStatus`, `livingTerraceClass`, `habitabilityClass`, `habitationClass`, `gateStatus`, `trustOrdinariness`, `memoryTeachability`, `pluralityMetabolization`, `ordinaryStewardUsability`, `provenanceMarkers`, `canonicalIntegrityMarkers` (if present).
+- Atlas styling: subtle classes only, reset clears living-terrace markers, and trust degradation presentation is preserved when canonical integrity is degraded.
+
+```bash
+python3 scripts/build_living_terrace_overlay.py
+python3 -m unittest tests/test_build_living_terrace_overlay.py
+```
+
+Phase lock: surface / terrace-seed / stabilization / successor / delta / trust / sovereignty / value context -> CoherenceLattice living-terrace and commons-habitability formalization -> Sophia bounded living-terrace audit -> Publisher living-terrace / plural-habitation overlays -> human/community/scientific stewardship of habitable emergence and open plurality.
+
+## Civilizational Normalization & Background Coherence Overlay (Phase BO)
+
+Publisher surfaces only Sophia-audited background-coherence materials; it does not declare final epochs, certify civilizational settlement, or authorize institutional succession.
+
+Render background coherence as quiet normality under review, not as final truth.
+
+- script: `scripts/build_background_coherence_overlay.py`
+- inputs: `bridge/background_coherence_audit.json`, `bridge/background_coherence_recommendations.json`, `bridge/background_coherence_map.json`, `bridge/civilizational_normalization_report.json`, `bridge/ambient_memory_registry.json`, `bridge/normalization_gate.json`, `registry/living_terrace_dashboard.json`, `registry/plural_habitation_watchlist.json`, `registry/commons_habitability_registry.json`, `registry/epochal_surface_dashboard.json`, `registry/terrace_seed_dashboard.json`, `registry/new_delta_dashboard.json`, `registry/epoch_dashboard.json`, `registry/delta_dashboard.json`, `registry/civilizational_memory_dashboard.json`, `registry/commons_sovereignty_dashboard.json`, `registry/trust_surface_dashboard.json`
+- outputs: `registry/background_coherence_dashboard.json`, `registry/ambient_memory_watchlist.json`, `registry/civilizational_normalization_registry.json`, `registry/background_coherence_annotations.json`
+- routing: `docket` routes to actionable background coherence dashboard/civilizational normalization registry, `watch` routes to ambient memory watchlist, and `suppressed` is excluded from actionable overlays.
+- safeguards: no canon mutation, no deployment execution, no governance-right mutation, no ranking of futures/civilizations/communities/institutions, no implication that background visibility equals final authority, no theory-competition closure, and no `epoch finalized` or `future settled permanently` presentation.
+- UI signals: `backgroundStatus`, `backgroundClass`, `normalizationClass`, `ambientMemoryClass`, `gateStatus`, `trustOrdinariness`, `pluralityMetabolization`, `commonsHabitability`, `pedagogyOrdinariness`, `provenanceMarkers`, `canonicalIntegrityMarkers` (if present).
+- Atlas styling: subtle classes only, reset clears background-coherence markers, and trust degradation presentation is preserved when canonical integrity is degraded.
+
+```bash
+python3 scripts/build_background_coherence_overlay.py
+python3 -m unittest tests/test_build_background_coherence_overlay.py
+```
+
+Phase lock: living-terrace / epochal-surface / terrace-seed / successor / delta / trust / sovereignty / value context -> CoherenceLattice background-coherence and civilizational-normalization formalization -> Sophia bounded background-coherence audit -> Publisher background-coherence / ambient-memory overlays -> human/community/scientific stewardship of ordinary, habitable, non-priestly civilizational coherence.
+
+## Legibility Overlay and Operator Navigation (Refinement LRQ v0.1)
+
+Purpose: improve legibility, lineage traceability, and queryability for bounded stewards, Agent Echo field testers, and non-founder operators without flattening complexity into priestly opacity.
+
+Publisher surfaces only Sophia-audited background-coherence materials; it does not declare final epochs, certify civilizational settlement, or authorize institutional succession.
+
+- script: `scripts/build_legibility_overlay.py`
+- inputs: `bridge/phase_lineage_registry.json`, `bridge/phase_glossary.json`, `bridge/coherence_memory_trace.json`, `bridge/governance_action_ledger.json`, `bridge/audit_lineage_registry.json`, `registry/background_coherence_dashboard.json`, `registry/living_terrace_dashboard.json`, `registry/epochal_surface_dashboard.json`, `registry/terrace_seed_dashboard.json`, `registry/new_delta_dashboard.json`, `registry/successor_crossing_dashboard.json`, `registry/terrace_health_dashboard.json`, `registry/delta_dashboard.json`, `registry/trust_surface_dashboard.json`
+- outputs: `registry/phase_lineage_dashboard.json`, `registry/operator_glossary_registry.json`, `registry/governance_breadcrumb_watchlist.json`, `registry/legibility_annotations.json`
+- routing: `docket` routes to actionable lineage dashboard/glossary registry, `watch` routes to governance breadcrumb watchlist, `suppressed` is excluded from actionable overlays while explanatory notes may remain in annotations.
+- safeguards: no canon mutation, no deployment execution, no governance-right mutation, no ranking of phases/civilizations/futures/institutions, no implication that lineage visibility equals settlement authority, no theory-competition closure, and no `final map complete` presentation.
+- Atlas signals/classes: `lineage-visible`, `glossary-available`, `governance-breadcrumb-visible`, `operator-legibility-weak`, `queryability-ready`, trust degradation marker propagation, and reset-safe class removal.
+- queryability / field-test value: exposes bounded pathways from raw artifacts to steward-usable summaries while preserving suppression context and executive-review visibility signals.
+
+```bash
+python3 scripts/build_legibility_overlay.py
+python3 -m unittest tests/test_build_legibility_overlay.py
+```
+
+Shared refinement phaselock: bridge formalization lineage -> audit lineage / governance breadcrumbs -> publisher legibility overlays -> bounded steward / Agent Echo usability -> Developer Echo synthesis.
+
+### Publisher Codex routes: lineage and memory
+
+To make lineage and memory tiers queryable for bounded stewards and Agent Echo field testing, Publisher includes lightweight dashboard routes:
+
+- `/lineage` (implemented at `lineage/index.html`): renders phase lineage rows from `registry/phase_lineage_dashboard.json`, including `phaseId`, key visibility fields, `canonicalBoundaryNote`, and upstream/downstream artifacts.
+- `/memory` (implemented at `memory/index.html`): renders memory-tier rows from `registry/civilizational_memory_dashboard.json`, including `memoryId`, `memoryTier`, `preservationCriticality`, and `invariantHash`.
+- overlay popup behavior (hover/click) on both routes loads `bridge/coherence_memory_trace.json` and renders `donorPatternsApplied` and `unresolvedTensions` for the selected `phaseId` as canonical legibility aids only.
+
+Deterministic handling is preserved via normalized/sorted rendering helpers in `atlas/components/legibilityRoutes.js`.
+
+Route fixtures/tests:
+- fixtures: `tests/fixtures/legibility_routes/lineage_route_sample.json`, `tests/fixtures/legibility_routes/memory_route_sample.json`
+- test: `tests/test_legibility_dashboard_routes.py`
+
+```bash
+python3 -m unittest tests/test_legibility_dashboard_routes.py
+```

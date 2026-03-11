@@ -1,0 +1,13 @@
+{
+  "entries": [
+    {
+      "phaseId": "phase-bo",
+      "phaseLineageVisibility": true,
+      "glossaryAvailability": true,
+      "canonicalBoundaryNote": "Canonical legibility aid only; no governance claim.",
+      "upstreamArtifacts": ["bridge/background_coherence_map.json"],
+      "downstreamArtifacts": ["registry/background_coherence_dashboard.json"],
+      "provenanceMarkers": ["prov:ok"]
+    }
+  ]
+}

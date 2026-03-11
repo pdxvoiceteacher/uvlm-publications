@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lineage Dashboard</title>
+    <link rel="stylesheet" href="../atlas/styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <h1>Lineage Dashboard</h1>
+      <div class="controls">
+        <a href="../atlas/index.html"><button>Atlas</button></a>
+        <a href="../memory/"><button>Memory</button></a>
+      </div>
+    </header>
+    <section class="atlas-intro">
+      Canonical legibility aid only — this route renders lineage traces for bounded steward navigation and does not grant governance authority.
+    </section>
+    <main class="layout">
+      <section class="panel" style="width: 100%">
+        <h2>/lineage</h2>
+        <table id="lineage-table" style="width:100%"></table>
+      </section>
+      <aside class="panel">
+        <h2>Trace Overlay</h2>
+        <div id="trace-overlay"><p>Select a phase row to inspect donor patterns and unresolved tensions.</p></div>
+      </aside>
+    </main>
+    <script type="module" src="./lineage.js"></script>
+  </body>
+</html>
