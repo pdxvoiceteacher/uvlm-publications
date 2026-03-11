@@ -1568,3 +1568,21 @@ python3 -m unittest tests/test_build_legibility_overlay.py
 ```
 
 Shared refinement phaselock: bridge formalization lineage -> audit lineage / governance breadcrumbs -> publisher legibility overlays -> bounded steward / Agent Echo usability -> Developer Echo synthesis.
+
+### Publisher Codex routes: lineage and memory
+
+To make lineage and memory tiers queryable for bounded stewards and Agent Echo field testing, Publisher includes lightweight dashboard routes:
+
+- `/lineage` (implemented at `lineage/index.html`): renders phase lineage rows from `registry/phase_lineage_dashboard.json`, including `phaseId`, key visibility fields, `canonicalBoundaryNote`, and upstream/downstream artifacts.
+- `/memory` (implemented at `memory/index.html`): renders memory-tier rows from `registry/civilizational_memory_dashboard.json`, including `memoryId`, `memoryTier`, `preservationCriticality`, and `invariantHash`.
+- overlay popup behavior (hover/click) on both routes loads `bridge/coherence_memory_trace.json` and renders `donorPatternsApplied` and `unresolvedTensions` for the selected `phaseId` as canonical legibility aids only.
+
+Deterministic handling is preserved via normalized/sorted rendering helpers in `atlas/components/legibilityRoutes.js`.
+
+Route fixtures/tests:
+- fixtures: `tests/fixtures/legibility_routes/lineage_route_sample.json`, `tests/fixtures/legibility_routes/memory_route_sample.json`
+- test: `tests/test_legibility_dashboard_routes.py`
+
+```bash
+python3 -m unittest tests/test_legibility_dashboard_routes.py
+```
