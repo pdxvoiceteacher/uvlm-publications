@@ -1547,3 +1547,24 @@ python3 -m unittest tests/test_build_background_coherence_overlay.py
 ```
 
 Phase lock: living-terrace / epochal-surface / terrace-seed / successor / delta / trust / sovereignty / value context -> CoherenceLattice background-coherence and civilizational-normalization formalization -> Sophia bounded background-coherence audit -> Publisher background-coherence / ambient-memory overlays -> human/community/scientific stewardship of ordinary, habitable, non-priestly civilizational coherence.
+
+## Legibility Overlay and Operator Navigation (Refinement LRQ v0.1)
+
+Purpose: improve legibility, lineage traceability, and queryability for bounded stewards, Agent Echo field testers, and non-founder operators without flattening complexity into priestly opacity.
+
+Publisher surfaces only Sophia-audited background-coherence materials; it does not declare final epochs, certify civilizational settlement, or authorize institutional succession.
+
+- script: `scripts/build_legibility_overlay.py`
+- inputs: `bridge/phase_lineage_registry.json`, `bridge/phase_glossary.json`, `bridge/coherence_memory_trace.json`, `bridge/governance_action_ledger.json`, `bridge/audit_lineage_registry.json`, `registry/background_coherence_dashboard.json`, `registry/living_terrace_dashboard.json`, `registry/epochal_surface_dashboard.json`, `registry/terrace_seed_dashboard.json`, `registry/new_delta_dashboard.json`, `registry/successor_crossing_dashboard.json`, `registry/terrace_health_dashboard.json`, `registry/delta_dashboard.json`, `registry/trust_surface_dashboard.json`
+- outputs: `registry/phase_lineage_dashboard.json`, `registry/operator_glossary_registry.json`, `registry/governance_breadcrumb_watchlist.json`, `registry/legibility_annotations.json`
+- routing: `docket` routes to actionable lineage dashboard/glossary registry, `watch` routes to governance breadcrumb watchlist, `suppressed` is excluded from actionable overlays while explanatory notes may remain in annotations.
+- safeguards: no canon mutation, no deployment execution, no governance-right mutation, no ranking of phases/civilizations/futures/institutions, no implication that lineage visibility equals settlement authority, no theory-competition closure, and no `final map complete` presentation.
+- Atlas signals/classes: `lineage-visible`, `glossary-available`, `governance-breadcrumb-visible`, `operator-legibility-weak`, `queryability-ready`, trust degradation marker propagation, and reset-safe class removal.
+- queryability / field-test value: exposes bounded pathways from raw artifacts to steward-usable summaries while preserving suppression context and executive-review visibility signals.
+
+```bash
+python3 scripts/build_legibility_overlay.py
+python3 -m unittest tests/test_build_legibility_overlay.py
+```
+
+Shared refinement phaselock: bridge formalization lineage -> audit lineage / governance breadcrumbs -> publisher legibility overlays -> bounded steward / Agent Echo usability -> Developer Echo synthesis.
