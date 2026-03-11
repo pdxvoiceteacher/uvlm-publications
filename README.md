@@ -1586,3 +1586,20 @@ Route fixtures/tests:
 ```bash
 python3 -m unittest tests/test_legibility_dashboard_routes.py
 ```
+
+### TEL terrace readiness overlay (Publisher)
+
+Publisher adds a bounded TEL terrace-readiness affordance in Atlas with:
+- node tinting: approaching terrace (`🟧`) and converged orthodoxy caution (`🟥`),
+- advisory-only language in node metadata (`bounded guidance`, never closure/finality),
+- a topbar toggle: `Show terrace readiness`, and
+- reset-safe class clearing through the Atlas reset flow.
+
+Implementation:
+- module: `atlas/telTerraceOverlay.js`
+- integration: `atlas/atlas.js`
+- legend/toggle UI: `atlas/index.html`
+
+```bash
+python3 -m unittest tests/test_tel_terrace_overlay.py
+```
