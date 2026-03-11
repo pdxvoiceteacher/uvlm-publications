@@ -38,6 +38,9 @@ export function buildTraceIndex(tracePayload) {
     idx.set(phaseId, {
       donorPatternsApplied: asArray(row.donorPatternsApplied).map((v) => String(v)),
       unresolvedTensions: asArray(row.unresolvedTensions).map((v) => String(v)),
+      orthodoxyScore: Number.parseFloat(row.orthodoxyScore ?? row.narrativeCoercionRisk ?? 0) || 0,
+      corridorPotential: Number.parseFloat(row.corridorPotential ?? row.discoveryCorridorPotential ?? 0) || 0,
+      signalArtifactHash: String(row.signalArtifactHash ?? row.artifactHash ?? 'unknown-artifact-hash'),
     });
   }
   return idx;

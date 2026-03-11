@@ -20,7 +20,10 @@ function renderTrace(phaseId, trace) {
     <div class="meta-key">phaseId</div><div class="meta-val">${phaseId}</div>
     <div class="meta-key">donorPatternsApplied</div><div class="meta-val">${(trace?.donorPatternsApplied ?? []).join(', ') || '—'}</div>
     <div class="meta-key">unresolvedTensions</div><div class="meta-val">${(trace?.unresolvedTensions ?? []).join(', ') || '—'}</div>
-    <div class="meta-key">boundary</div><div class="meta-val">Canonical legibility aid only; no governance claim.</div>
+    <div class="meta-key">orthodoxyScore</div><div class="meta-val">${trace?.orthodoxyScore ?? 0}</div>
+    <div class="meta-key">corridorPotential</div><div class="meta-val">${trace?.corridorPotential ?? 0}</div>
+    <div class="meta-key">signalArtifactHash</div><div class="meta-val">${trace?.signalArtifactHash ?? 'unknown-artifact-hash'}</div>
+    <div class="meta-key">boundary</div><div class="meta-val">Advisory indicators only; supportive overlays, not final conclusions or governance claims.</div>
   `;
 }
 

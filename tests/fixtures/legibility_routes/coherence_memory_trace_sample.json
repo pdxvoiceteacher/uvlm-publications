@@ -1,14 +1,20 @@
 {
   "entries": [
     {
-      "phaseId": "phase-bo",
-      "donorPatternsApplied": ["pattern:a"],
-      "unresolvedTensions": ["tension:x"]
+      "phaseId": "phase-alpha",
+      "donorPatternsApplied": ["pattern:a", "pattern:b"],
+      "unresolvedTensions": ["tension:x"],
+      "orthodoxyScore": 0.81,
+      "corridorPotential": 0.74,
+      "signalArtifactHash": "sig:alpha"
     },
     {
-      "phaseId": "phase-bn",
-      "donorPatternsApplied": ["pattern:b"],
-      "unresolvedTensions": []
+      "phaseId": "phase-beta",
+      "donorPatternsApplied": ["pattern:c"],
+      "unresolvedTensions": [],
+      "orthodoxyScore": 0.22,
+      "corridorPotential": 0.67,
+      "signalArtifactHash": "sig:beta"
     }
   ]
 }

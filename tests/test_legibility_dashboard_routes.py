@@ -31,16 +31,22 @@ class LegibilityDashboardRouteFixturesTests(unittest.TestCase):
         self.assertIn('phaseId', row)
         self.assertIn('donorPatternsApplied', row)
         self.assertIn('unresolvedTensions', row)
+        self.assertIn('orthodoxyScore', row)
+        self.assertIn('corridorPotential', row)
+        self.assertIn('signalArtifactHash', row)
 
     def test_route_pages_contain_boundary_label(self) -> None:
         lineage_html = Path('lineage/index.html').read_text(encoding='utf-8')
         memory_html = Path('memory/index.html').read_text(encoding='utf-8')
         self.assertIn('Canonical legibility aid only', lineage_html)
+        self.assertIn('advisory indicators', lineage_html)
         self.assertIn('Canonical legibility aid only', memory_html)
         lineage_js = Path('lineage/lineage.js').read_text(encoding='utf-8')
         memory_js = Path('memory/memory.js').read_text(encoding='utf-8')
         self.assertIn('fetchJsonWithFallback', lineage_js)
         self.assertIn('fetchJsonWithFallback', memory_js)
+        self.assertIn('orthodoxyScore', lineage_js)
+        self.assertIn('corridorPotential', lineage_js)
 
 
 if __name__ == '__main__':
