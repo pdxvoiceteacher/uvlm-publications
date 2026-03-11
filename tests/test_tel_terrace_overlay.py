@@ -16,6 +16,7 @@ class TelTerraceOverlayAssetsTests(unittest.TestCase):
         self.assertIn('toggle-river', html)
         self.assertIn('toggle-delta', html)
         self.assertIn('toggle-rupture', html)
+        self.assertIn('toggle-cascade', html)
         self.assertIn('Approaching Terrace', html)
         self.assertIn('Converged Orthodoxy', html)
         self.assertIn('Orthodoxy Alert (coercive coherence)', html)
@@ -28,6 +29,7 @@ class TelTerraceOverlayAssetsTests(unittest.TestCase):
         self.assertIn('Knowledge River (flow)', html)
         self.assertIn('Knowledge Delta (emergence)', html)
         self.assertIn('Rupture Signal (watch)', html)
+        self.assertIn('Cascade Hotspot (strong propagation)', html)
 
     def test_overlay_module_has_advisory_non_final_language(self) -> None:
         js = Path('atlas/telTerraceOverlay.js').read_text(encoding='utf-8')
@@ -55,10 +57,12 @@ class TelTerraceOverlayAssetsTests(unittest.TestCase):
         self.assertIn('applyRiverOverlay', js)
         self.assertIn('applyDeltaOverlay', js)
         self.assertIn('applyRuptureOverlay', js)
+        self.assertIn('applyCascadeOverlay', js)
         self.assertIn('bindCorridorOverlayToggle', js)
         self.assertIn('bindRiverOverlayToggle', js)
         self.assertIn('bindDeltaOverlayToggle', js)
         self.assertIn('bindRuptureOverlayToggle', js)
+        self.assertIn('bindCascadeOverlayToggle', js)
 
     def test_orthodoxy_overlay_module_has_advisory_labels(self) -> None:
         js = Path('atlas/telOrthodoxyOverlay.js').read_text(encoding='utf-8')
@@ -89,6 +93,12 @@ class TelTerraceOverlayAssetsTests(unittest.TestCase):
         self.assertIn('knowledge-river flow indicator', river_js)
         self.assertIn('civilizational delta emergence signal', delta_js)
         self.assertIn('rupture signal watch indicator', rupture_js)
+
+    def test_cascade_overlay_module_has_advisory_labels(self) -> None:
+        js = Path('atlas/telCascadeOverlay.js').read_text(encoding='utf-8')
+        self.assertIn('cascadeSignal', js)
+        self.assertIn('cascade-strong', js)
+        self.assertIn('Advisory only, not authoritative', js)
 
 if __name__ == '__main__':
     unittest.main()
