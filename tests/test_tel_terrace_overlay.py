@@ -10,10 +10,13 @@ class TelTerraceOverlayAssetsTests(unittest.TestCase):
         self.assertIn('show-terrace-readiness', html)
         self.assertIn('show-orthodoxy-risk', html)
         self.assertIn('show-discovery-corridor', html)
+        self.assertIn('show-schism-risk', html)
         self.assertIn('Approaching Terrace', html)
         self.assertIn('Converged Orthodoxy', html)
         self.assertIn('Orthodoxy Alert (coercive coherence)', html)
         self.assertIn('Discovery Corridor (reopening)', html)
+        self.assertIn('Schism Alert (double-helix)', html)
+        self.assertIn('Coupled Spirals', html)
 
     def test_overlay_module_has_advisory_non_final_language(self) -> None:
         js = Path('atlas/telTerraceOverlay.js').read_text(encoding='utf-8')
@@ -31,6 +34,9 @@ class TelTerraceOverlayAssetsTests(unittest.TestCase):
         self.assertIn('applyOrthodoxyCorridorOverlay', js)
         self.assertIn('bindOrthodoxyCorridorToggles', js)
         self.assertIn('orthodoxyResettableClasses', js)
+        self.assertIn('applySchismOverlay', js)
+        self.assertIn('bindSchismOverlayToggle', js)
+        self.assertIn('schismResettableClasses', js)
 
     def test_orthodoxy_overlay_module_has_advisory_labels(self) -> None:
         js = Path('atlas/telOrthodoxyOverlay.js').read_text(encoding='utf-8')
@@ -38,6 +44,12 @@ class TelTerraceOverlayAssetsTests(unittest.TestCase):
         self.assertIn('Corridor Forming', js)
         self.assertIn('supportive overlay, not a final conclusion', js)
 
+
+    def test_schism_overlay_module_has_advisory_labels(self) -> None:
+        js = Path('atlas/telSchismOverlay.js').read_text(encoding='utf-8')
+        self.assertIn('schismPotential', js)
+        self.assertIn('Schism', js)
+        self.assertIn('Advisory only, not authoritative', js)
 
 
 if __name__ == '__main__':

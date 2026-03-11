@@ -24,7 +24,9 @@ function renderTrace(phaseId, trace) {
     <div class="meta-key">phaseId</div><div class="meta-val">${phaseId}</div>
     <div class="meta-key">donorPatternsApplied</div><div class="meta-val">${(trace?.donorPatternsApplied ?? []).join(', ') || '—'}</div>
     <div class="meta-key">unresolvedTensions</div><div class="meta-val">${(trace?.unresolvedTensions ?? []).join(', ') || '—'}</div>
-    <div class="meta-key">boundary</div><div class="meta-val">Canonical legibility aid only; no governance claim.</div>
+    <div class="meta-key">schismPotential</div><div class="meta-val">${trace?.schismPotential ?? 0} (Advisory indicator: dual coherence emerging)</div>
+    <div class="meta-key">schismAlert</div><div class="meta-val">${trace?.schismAlert ?? 'bounded'}</div>
+    <div class="meta-key">boundary</div><div class="meta-val">Advisory indicators only; supportive overlays, not final conclusions or governance claims.</div>
   `;
 }
 

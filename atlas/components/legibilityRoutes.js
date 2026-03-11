@@ -41,6 +41,8 @@ export function buildTraceIndex(tracePayload) {
       orthodoxyScore: Number.parseFloat(row.orthodoxyScore ?? row.narrativeCoercionRisk ?? 0) || 0,
       corridorPotential: Number.parseFloat(row.corridorPotential ?? row.discoveryCorridorPotential ?? 0) || 0,
       signalArtifactHash: String(row.signalArtifactHash ?? row.artifactHash ?? 'unknown-artifact-hash'),
+      schismPotential: Number.parseFloat(row.schismPotential ?? 0) || 0,
+      schismAlert: String(row.schismAlert ?? 'bounded'),
     });
   }
   return idx;

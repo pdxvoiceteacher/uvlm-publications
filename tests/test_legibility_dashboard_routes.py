@@ -34,6 +34,8 @@ class LegibilityDashboardRouteFixturesTests(unittest.TestCase):
         self.assertIn('orthodoxyScore', row)
         self.assertIn('corridorPotential', row)
         self.assertIn('signalArtifactHash', row)
+        self.assertIn('schismPotential', row)
+        self.assertIn('schismAlert', row)
 
     def test_route_pages_contain_boundary_label(self) -> None:
         lineage_html = Path('lineage/index.html').read_text(encoding='utf-8')
@@ -47,6 +49,8 @@ class LegibilityDashboardRouteFixturesTests(unittest.TestCase):
         self.assertIn('fetchJsonWithFallback', memory_js)
         self.assertIn('orthodoxyScore', lineage_js)
         self.assertIn('corridorPotential', lineage_js)
+        self.assertIn('schismPotential', lineage_js)
+        self.assertIn('schismPotential', memory_js)
 
 
 if __name__ == '__main__':
