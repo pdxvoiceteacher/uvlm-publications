@@ -1,0 +1,14 @@
+{
+  "entries": [
+    {
+      "phaseId": "phase-bo",
+      "donorPatternsApplied": ["pattern:a"],
+      "unresolvedTensions": ["tension:x"]
+    },
+    {
+      "phaseId": "phase-bn",
+      "donorPatternsApplied": ["pattern:b"],
+      "unresolvedTensions": []
+    }
+  ]
+}
