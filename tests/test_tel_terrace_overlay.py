@@ -11,12 +11,15 @@ class TelTerraceOverlayAssetsTests(unittest.TestCase):
         self.assertIn('show-orthodoxy-risk', html)
         self.assertIn('show-discovery-corridor', html)
         self.assertIn('show-schism-risk', html)
+        self.assertIn('show-rebraid-signals', html)
         self.assertIn('Approaching Terrace', html)
         self.assertIn('Converged Orthodoxy', html)
         self.assertIn('Orthodoxy Alert (coercive coherence)', html)
         self.assertIn('Discovery Corridor (reopening)', html)
         self.assertIn('Schism Alert (double-helix)', html)
         self.assertIn('Coupled Spirals', html)
+        self.assertIn('Rebraiding (exchange zones)', html)
+        self.assertIn('Braid Coupling (shared structure)', html)
 
     def test_overlay_module_has_advisory_non_final_language(self) -> None:
         js = Path('atlas/telTerraceOverlay.js').read_text(encoding='utf-8')
@@ -37,6 +40,9 @@ class TelTerraceOverlayAssetsTests(unittest.TestCase):
         self.assertIn('applySchismOverlay', js)
         self.assertIn('bindSchismOverlayToggle', js)
         self.assertIn('schismResettableClasses', js)
+        self.assertIn('applyRebraidOverlay', js)
+        self.assertIn('bindRebraidOverlayToggle', js)
+        self.assertIn('rebraidResettableClasses', js)
 
     def test_orthodoxy_overlay_module_has_advisory_labels(self) -> None:
         js = Path('atlas/telOrthodoxyOverlay.js').read_text(encoding='utf-8')
@@ -51,6 +57,12 @@ class TelTerraceOverlayAssetsTests(unittest.TestCase):
         self.assertIn('Schism', js)
         self.assertIn('Advisory only, not authoritative', js)
 
+
+    def test_rebraid_overlay_module_has_advisory_labels(self) -> None:
+        js = Path('atlas/telRebraidOverlay.js').read_text(encoding='utf-8')
+        self.assertIn('rebraidPotential', js)
+        self.assertIn('preliminary mutual translation', js.lower())
+        self.assertIn('Advisory only, not authoritative', js)
 
 if __name__ == '__main__':
     unittest.main()

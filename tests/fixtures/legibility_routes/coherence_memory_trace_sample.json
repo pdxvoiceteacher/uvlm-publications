@@ -13,7 +13,9 @@
       "corridorPotential": 0.74,
       "signalArtifactHash": "sig:alpha",
       "schismPotential": 0.79,
-      "schismAlert": "high"
+      "schismAlert": "high",
+      "rebraidPotential": 0.83,
+      "rebraidAlert": "true"
     },
     {
       "phaseId": "phase-beta",
@@ -25,7 +27,9 @@
       "corridorPotential": 0.67,
       "signalArtifactHash": "sig:beta",
       "schismPotential": 0.34,
-      "schismAlert": "bounded"
+      "schismAlert": "bounded",
+      "rebraidPotential": 0.41,
+      "rebraidAlert": "false"
     }
   ]
 }

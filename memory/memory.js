@@ -26,6 +26,8 @@ function renderTrace(phaseId, trace) {
     <div class="meta-key">unresolvedTensions</div><div class="meta-val">${(trace?.unresolvedTensions ?? []).join(', ') || '—'}</div>
     <div class="meta-key">schismPotential</div><div class="meta-val">${trace?.schismPotential ?? 0} (Advisory indicator: dual coherence emerging)</div>
     <div class="meta-key">schismAlert</div><div class="meta-val">${trace?.schismAlert ?? 'bounded'}</div>
+    <div class="meta-key">rebraidPotential</div><div class="meta-val">${trace?.rebraidPotential ?? 0} (Advisory indicator: emergent information exchange)</div>
+    <div class="meta-key">rebraidAlert</div><div class="meta-val">${trace?.rebraidAlert ?? 'false'}</div>
     <div class="meta-key">boundary</div><div class="meta-val">Advisory indicators only; supportive overlays, not final conclusions or governance claims.</div>
   `;
 }

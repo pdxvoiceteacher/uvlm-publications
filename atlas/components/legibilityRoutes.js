@@ -43,6 +43,8 @@ export function buildTraceIndex(tracePayload) {
       signalArtifactHash: String(row.signalArtifactHash ?? row.artifactHash ?? 'unknown-artifact-hash'),
       schismPotential: Number.parseFloat(row.schismPotential ?? 0) || 0,
       schismAlert: String(row.schismAlert ?? 'bounded'),
+      rebraidPotential: Number.parseFloat(row.rebraidPotential ?? 0) || 0,
+      rebraidAlert: String(row.rebraidAlert ?? 'false'),
     });
   }
   return idx;
