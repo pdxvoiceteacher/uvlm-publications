@@ -1,16 +1,10 @@
-const RUPTURE_RESETTABLE_CLASSES = ['rupture-node', 'rupture-highlight'];
+export const ruptureResettableClasses = ['rupture-looming'];
 
 export function applyRuptureOverlay(cy, enabled = true) {
-  cy.nodes().removeClass(RUPTURE_RESETTABLE_CLASSES.join(' '));
+  cy.elements().removeClass(ruptureResettableClasses.join(' '));
   if (!enabled) return;
 
-  cy.nodes().forEach((node) => {
-    const ruptureAlert = String(node.data('ruptureAlert') ?? '').toLowerCase();
-    if (ruptureAlert === 'true' || ruptureAlert === 'alert' || ruptureAlert === 'high') {
-      node.addClass('rupture-node rupture-highlight');
-      node.data('ruptureAdvisory', 'Advisory only, not authoritative: rupture signal watch indicator.');
-    }
-  });
+  cy.elements().addClass('rupture-looming');
 }
 
 export function bindRuptureOverlayToggle(cy, toggleEl, reapply) {
@@ -19,8 +13,4 @@ export function bindRuptureOverlayToggle(cy, toggleEl, reapply) {
     applyRuptureOverlay(cy, Boolean(toggleEl.checked));
     if (typeof reapply === 'function') reapply();
   });
-}
-
-export function ruptureResettableClasses() {
-  return [...RUPTURE_RESETTABLE_CLASSES];
 }

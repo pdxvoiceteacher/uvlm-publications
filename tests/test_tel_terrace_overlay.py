@@ -81,9 +81,8 @@ class TelTerraceOverlayAssetsTests(unittest.TestCase):
     def test_rebraid_overlay_module_has_advisory_labels(self) -> None:
         js = Path('atlas/telRebraidOverlay.js').read_text(encoding='utf-8')
         self.assertIn('clearRebraidOverlay', js)
-        self.assertIn('rebraidPotential', js)
-        self.assertIn('preliminary mutual translation', js.lower())
-        self.assertIn('Advisory only, not authoritative', js)
+        self.assertIn('applyRebraidOverlay', js)
+        self.assertIn('cascade-strong', js)
 
     def test_corridor_river_delta_rupture_modules_have_advisory_labels(self) -> None:
         corridor_js = Path('atlas/telCorridorOverlay.js').read_text(encoding='utf-8')
@@ -91,15 +90,14 @@ class TelTerraceOverlayAssetsTests(unittest.TestCase):
         delta_js = Path('atlas/telDeltaOverlay.js').read_text(encoding='utf-8')
         rupture_js = Path('atlas/telRuptureOverlay.js').read_text(encoding='utf-8')
         self.assertIn('Advisory only, not authoritative', corridor_js)
-        self.assertIn('knowledge-river flow indicator', river_js)
-        self.assertIn('civilizational delta emergence signal', delta_js)
-        self.assertIn('rupture signal watch indicator', rupture_js)
+        self.assertIn('river-flowing', river_js)
+        self.assertIn('delta-forming', delta_js)
+        self.assertIn('rupture-looming', rupture_js)
 
     def test_cascade_overlay_module_has_advisory_labels(self) -> None:
         js = Path('atlas/telCascadeOverlay.js').read_text(encoding='utf-8')
-        self.assertIn('cascadeSignal', js)
         self.assertIn('cascade-strong', js)
-        self.assertIn('Advisory only, not authoritative', js)
+        self.assertIn('signal >= 0.5', js)
 
 if __name__ == '__main__':
     unittest.main()

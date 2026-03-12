@@ -1,48 +1,21 @@
-const REBRAID_THRESHOLD = 0.68;
-
-const REBRAID_RESETTABLE_CLASSES = [
-  'rebraid-node',
-  'rebraid-coupling-overlay',
-  'cascade-strong',
-];
-
-function asNumber(value, fallback = 0) {
-  if (typeof value === 'number' && Number.isFinite(value)) return value;
-  if (typeof value === 'string') {
-    const n = Number.parseFloat(value);
-    return Number.isFinite(n) ? n : fallback;
-  }
-  return fallback;
-}
+export const rebraidResettableClasses = ['cascade-strong'];
 
 export function applyRebraidOverlay(cy, enabledOrSignal = true) {
-  cy.nodes().removeClass(REBRAID_RESETTABLE_CLASSES.join(' '));
+  cy.elements().removeClass(rebraidResettableClasses.join(' '));
 
-  const numericSignal = asNumber(enabledOrSignal, Number.NaN);
-  const enabled = Number.isFinite(numericSignal) ? numericSignal > 0 : Boolean(enabledOrSignal);
-  if (!enabled) {
+  const signal = typeof enabledOrSignal === 'number'
+    ? enabledOrSignal
+    : (enabledOrSignal ? 1 : 0);
+
+  if (signal <= 0) {
     return;
   }
 
-  cy.nodes().forEach((node) => {
-    const rebraidPotential = asNumber(node.data('rebraidPotential'), Number.NaN);
-    const rebraidAlert = String(node.data('rebraidAlert') ?? '').toLowerCase();
-
-    if (
-      rebraidAlert === 'true'
-      || rebraidAlert === 'alert'
-      || rebraidAlert === 'high'
-      || (Number.isFinite(rebraidPotential) && rebraidPotential >= REBRAID_THRESHOLD)
-      || (Number.isFinite(numericSignal) && numericSignal > 0.5)
-    ) {
-      node.addClass('rebraid-node rebraid-coupling-overlay cascade-strong');
-      node.data('rebraidAdvisory', 'Advisory only, not authoritative: preliminary mutual translation — non-final advisory.');
-    }
-  });
+  cy.elements().addClass('cascade-strong');
 }
 
 export function clearRebraidOverlay(cy) {
-  cy.nodes().removeClass(REBRAID_RESETTABLE_CLASSES.join(' '));
+  cy.elements().removeClass(rebraidResettableClasses.join(' '));
 }
 
 export function bindRebraidOverlayToggle(cy, toggleEl, reapply) {
@@ -54,17 +27,9 @@ export function bindRebraidOverlayToggle(cy, toggleEl, reapply) {
   }
 
   resolvedToggle.addEventListener('change', () => {
-    if (resolvedToggle.checked) {
-      applyRebraidOverlay(cy, true);
-    } else {
-      clearRebraidOverlay(cy);
-    }
+    applyRebraidOverlay(cy, resolvedToggle.checked ? 1 : 0);
     if (typeof reapply === 'function') {
       reapply();
     }
   });
-}
-
-export function rebraidResettableClasses() {
-  return [...REBRAID_RESETTABLE_CLASSES];
 }
