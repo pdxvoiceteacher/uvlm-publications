@@ -17,6 +17,7 @@ class TelTerraceOverlayAssetsTests(unittest.TestCase):
         self.assertIn('toggle-delta', html)
         self.assertIn('toggle-rupture', html)
         self.assertIn('toggle-cascade', html)
+        self.assertIn('toggle-agent-telemetry', html)
         self.assertIn('Show Rebraid Waves (advisory: highlights rebraid alerts)', html)
         self.assertIn('Show Cascade Health (advisory: highlights high cascade health)', html)
         self.assertIn('Rebraid/Cascade = Advisory Highlights', html)
@@ -33,6 +34,7 @@ class TelTerraceOverlayAssetsTests(unittest.TestCase):
         self.assertIn('Knowledge Delta (emergence)', html)
         self.assertIn('Rupture Signal (watch)', html)
         self.assertIn('Cascade Hotspot (strong propagation)', html)
+        self.assertIn('AI Telemetry Hotspot', html)
 
     def test_overlay_module_has_advisory_non_final_language(self) -> None:
         js = Path('atlas/telTerraceOverlay.js').read_text(encoding='utf-8')
@@ -66,6 +68,9 @@ class TelTerraceOverlayAssetsTests(unittest.TestCase):
         self.assertIn('bindDeltaOverlayToggle', js)
         self.assertIn('bindRuptureOverlayToggle', js)
         self.assertIn('bindCascadeOverlayToggle', js)
+        self.assertIn('applyAgentTelemetryOverlay', js)
+        self.assertIn('clearAgentTelemetryOverlay', js)
+        self.assertIn('bindAgentTelemetryOverlayToggle', js)
 
     def test_orthodoxy_overlay_module_has_advisory_labels(self) -> None:
         js = Path('atlas/telOrthodoxyOverlay.js').read_text(encoding='utf-8')
@@ -122,6 +127,19 @@ class TelTerraceOverlayAssetsTests(unittest.TestCase):
         self.assertIn('applyCascadeOverlay', cascade_js)
         self.assertIn('clearCascadeOverlay', cascade_js)
         self.assertIn('if (toggleEl.checked)', cascade_js)
+
+
+    def test_agent_telemetry_overlay_assets(self) -> None:
+        js = Path('atlas/telAgentTelemetryOverlay.js').read_text(encoding='utf-8')
+        self.assertIn('AGENT_TELEMETRY_RESETTABLE_CLASSES', js)
+        self.assertIn('agent-novelty-hotspot', js)
+        self.assertIn('agent-contradiction-hotspot', js)
+        self.assertIn('applyAgentTelemetryOverlay', js)
+        self.assertIn('clearAgentTelemetryOverlay', js)
+        self.assertIn('bindAgentTelemetryOverlayToggle', js)
+        css = Path('atlas/styles.css').read_text(encoding='utf-8')
+        self.assertIn('.node.agent-novelty-hotspot', css)
+        self.assertIn('.node.agent-contradiction-hotspot', css)
 
     def test_cascade_overlay_module_has_advisory_labels(self) -> None:
         js = Path('atlas/telCascadeOverlay.js').read_text(encoding='utf-8')
