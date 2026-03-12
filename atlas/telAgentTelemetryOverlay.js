@@ -1,19 +1,12 @@
-export const AGENT_TELEMETRY_CLASSES = {
-  novelty: 'agent-novelty-hotspot',
-  contradiction: 'agent-contradiction-hotspot'
-};
+export const AGENT_TELEMETRY_CLASSES = ['agent-novelty-hotspot', 'agent-contradiction-hotspot'];
 
-export const AGENT_TELEMETRY_RESETTABLE_CLASSES = [
-  AGENT_TELEMETRY_CLASSES.novelty,
-  AGENT_TELEMETRY_CLASSES.contradiction
-];
+export const AGENT_TELEMETRY_RESETTABLE_CLASSES = [...AGENT_TELEMETRY_CLASSES];
 
 export function applyAgentTelemetryOverlay(cy, agentId) {
   if (!cy || !agentId) return;
   cy.nodes().forEach((node) => {
-    if (node.data('agentId') === agentId) {
-      node.addClass(AGENT_TELEMETRY_CLASSES.novelty);
-      node.addClass(AGENT_TELEMETRY_CLASSES.contradiction);
+    if (node.data('agent') === agentId || node.data('agentId') === agentId) {
+      node.addClass('agent-novelty-hotspot agent-contradiction-hotspot');
     }
   });
 }
@@ -21,32 +14,23 @@ export function applyAgentTelemetryOverlay(cy, agentId) {
 export function clearAgentTelemetryOverlay(cy) {
   if (!cy) return;
   cy.nodes().forEach((node) => {
-    node.removeClass(AGENT_TELEMETRY_CLASSES.novelty);
-    node.removeClass(AGENT_TELEMETRY_CLASSES.contradiction);
+    AGENT_TELEMETRY_CLASSES.forEach((cls) => node.removeClass(cls));
   });
 }
 
-export const agentTelemetryOverlay = {
-  apply: applyAgentTelemetryOverlay,
-  clear: clearAgentTelemetryOverlay
-};
-
-function toggleAgentTelemetry(toggleEl, cy) {
+function toggleAgentTelemetry(toggleEl) {
   if (!toggleEl) return;
-  toggleEl.addEventListener('change', (evt) => {
-    if (evt.target.checked) {
-      const artifacts = window.__bridgeArtifacts?.agent_telemetry_event_map;
-      const byAgent = artifacts?.summary?.byAgent ?? {};
-      Object.entries(byAgent).forEach(([agent, info]) => {
-        if ((info?.eventCount ?? 0) > 0) {
-          applyAgentTelemetryOverlay(cy, agent);
-        }
-      });
-    } else {
-      clearAgentTelemetryOverlay(cy);
+  toggleEl.addEventListener('change', () => {
+    const artifacts = window.__bridgeArtifacts?.agent_telemetry_event_map;
+    if (!artifacts && typeof window.toggleAgentTelemetry !== 'function') return;
+    if (typeof window.toggleAgentTelemetry === 'function') {
+      window.toggleAgentTelemetry(toggleEl.checked);
     }
   });
 }
 
-// Backwards-compatible alias.
+if (typeof window !== 'undefined') {
+  window.bindAgentTelemetryOverlayToggle = toggleAgentTelemetry;
+}
+
 export const bindAgentTelemetryOverlayToggle = toggleAgentTelemetry;
