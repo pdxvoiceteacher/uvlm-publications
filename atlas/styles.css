@@ -223,3 +223,21 @@ body {
   border-color: #ff00ff;
   border-style: dashed;
 }
+
+
+.node.cascade-strong {
+  border-color: #00FFFF;
+  border-width: 4px;
+}
+
+.node.cascade-risk {
+  border-style: dashed;
+  border-color: #FF00FF;
+  border-width: 3px;
+}
+
+.node.cascade-safe {
+  border-style: solid;
+  border-color: #00FF00;
+  border-width: 3px;
+}

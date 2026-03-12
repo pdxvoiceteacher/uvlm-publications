@@ -116,11 +116,18 @@ class TelTerraceOverlayAssetsTests(unittest.TestCase):
     def test_cascade_overlay_module_has_advisory_labels(self) -> None:
         js = Path('atlas/telCascadeOverlay.js').read_text(encoding='utf-8')
         self.assertIn('cascade-strong', js)
+        self.assertIn('cascade-risk', js)
+        self.assertIn('cascade-safe', js)
         self.assertIn('cascadeHealth', js)
+        self.assertIn('viabilityScore', js)
         self.assertIn('> 0.5', js)
         css = Path('atlas/styles.css').read_text(encoding='utf-8')
         self.assertIn('.cascade-strong', css)
-        self.assertIn('#00ffff', css)
+        self.assertIn('#00ffff', css.lower())
+        self.assertIn('.node.cascade-risk', css)
+        self.assertIn('#FF00FF', css)
+        self.assertIn('.node.cascade-safe', css)
+        self.assertIn('#00FF00', css)
 
 if __name__ == '__main__':
     unittest.main()

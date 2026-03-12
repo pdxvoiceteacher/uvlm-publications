@@ -619,12 +619,34 @@ async function main() {
           'background-color': '#00ffff',
           'line-color': '#00ffff',
           'target-arrow-color': '#00ffff',
-          'width': 3.2,
+          'width': 3.4,
           'border-color': '#00ffff',
-          'border-width': 3,
+          'border-width': 4,
           'overlay-color': 'rgba(0, 255, 255, 0.25)',
           'overlay-opacity': 0.18,
           'overlay-padding': 3
+        }
+      },
+      {
+        selector: '.cascade-risk',
+        style: {
+          'border-style': 'dashed',
+          'border-color': '#ff00ff',
+          'border-width': 3,
+          'overlay-color': 'rgba(255, 0, 255, 0.18)',
+          'overlay-opacity': 0.14,
+          'overlay-padding': 2
+        }
+      },
+      {
+        selector: '.cascade-safe',
+        style: {
+          'border-style': 'solid',
+          'border-color': '#00ff00',
+          'border-width': 3,
+          'overlay-color': 'rgba(0, 255, 0, 0.14)',
+          'overlay-opacity': 0.1,
+          'overlay-padding': 2
         }
       },
       {
