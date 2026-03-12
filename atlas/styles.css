@@ -271,13 +271,13 @@ body {
 
 
 .node.agent-novelty-hotspot {
-  border-color: cyan;
-  border-width: 3px;
-  border-style: solid;
+  border-color: cyan !important;
+  border-width: 3px !important;
+  border-style: solid !important;
 }
 
 .node.agent-contradiction-hotspot {
-  border-color: magenta;
-  border-width: 2px;
-  border-style: dashed;
+  border-color: magenta !important;
+  border-width: 2px !important;
+  border-style: dashed !important;
 }

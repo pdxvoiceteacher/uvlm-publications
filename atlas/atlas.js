@@ -18,7 +18,7 @@ import { applyRiverOverlay, clearRiverOverlay, bindRiverOverlayToggle, riverRese
 import { applyDeltaOverlay, clearDeltaOverlay, bindDeltaOverlayToggle, deltaResettableClasses } from './telDeltaOverlay.js';
 import { applyRuptureOverlay, clearRuptureOverlay, bindRuptureOverlayToggle, ruptureResettableClasses } from './telRuptureOverlay.js';
 import { applyCascadeOverlay, clearCascadeOverlay, bindCascadeOverlayToggle, cascadeResettableClasses } from './telCascadeOverlay.js';
-import { applyAgentTelemetryOverlay, clearAgentTelemetryOverlay, bindAgentTelemetryOverlayToggle, AGENT_TELEMETRY_RESETTABLE_CLASSES } from './telAgentTelemetryOverlay.js';
+import { applyAgentTelemetryOverlay, clearAgentTelemetryOverlay, AGENT_TELEMETRY_RESETTABLE_CLASSES } from './telAgentTelemetryOverlay.js';
 
 const graphContainer = document.getElementById('graph');
 const detailEl = document.getElementById('details');
@@ -2325,12 +2325,16 @@ async function main() {
   window.cy = cy;
 
   function toggleAgentTelemetry(enabled) {
-    if (!window.cy) return;
-    clearAgentTelemetryOverlay(window.cy);
-    const artifacts = window.__bridgeArtifacts?.agent_telemetry_event_map;
-    if (enabled && artifacts?.summary?.byAgent) {
-      const agents = Object.keys(artifacts.summary.byAgent);
-      agents.forEach((id) => applyAgentTelemetryOverlay(window.cy, id));
+    const summary = window.__bridgeArtifacts?.agent_telemetry_event_map;
+    if (!summary || !window.cy) return;
+    if (enabled) {
+      Object.keys(summary.summary?.byAgent || {}).forEach((id) => {
+        if ((summary.summary.byAgent[id]?.eventCount ?? 0) > 0) {
+          applyAgentTelemetryOverlay(window.cy, id);
+        }
+      });
+    } else {
+      clearAgentTelemetryOverlay(window.cy);
     }
   }
 
@@ -2453,10 +2457,7 @@ async function main() {
   });
 
   if (showAgentTelemetryEl) {
-    document.getElementById('toggle-agent-telemetry').addEventListener('change', (e) => {
-      toggleAgentTelemetry(Boolean(e.target.checked));
-    });
-    bindAgentTelemetryOverlayToggle(showAgentTelemetryEl);
+    document.getElementById('toggle-agent-telemetry').addEventListener('change', (evt) => window.toggleAgentTelemetry(evt.target.checked));
   }
 
   const constellationApi = bindConstellations({
