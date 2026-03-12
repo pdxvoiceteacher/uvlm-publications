@@ -150,6 +150,15 @@ class MemoryOverlayRegistryBuilderTests(unittest.TestCase):
         self.assertIn('phase_lineage_dashboard', overlay['provenance']['schemaVersions'])
         self.assertEqual(overlay['provenance']['schemaVersions']['phase_lineage_dashboard'], 'phase-lineage-v1')
 
+    def test_deployment_profiles_yaml_exists_with_federation_examples(self) -> None:
+        cfg = Path('config/deployment_profiles.yaml').read_text(encoding='utf-8')
+        self.assertIn('local_single_node', cfg)
+        self.assertIn('local_plus_dashboard', cfg)
+        self.assertIn('federated_two_node', cfg)
+        self.assertIn('federated_mesh', cfg)
+        self.assertIn('artifact_repos', cfg)
+
+
 
 if __name__ == '__main__':
     unittest.main()
