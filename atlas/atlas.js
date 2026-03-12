@@ -18,7 +18,7 @@ import { applyRiverOverlay, clearRiverOverlay, bindRiverOverlayToggle, riverRese
 import { applyDeltaOverlay, clearDeltaOverlay, bindDeltaOverlayToggle, deltaResettableClasses } from './telDeltaOverlay.js';
 import { applyRuptureOverlay, clearRuptureOverlay, bindRuptureOverlayToggle, ruptureResettableClasses } from './telRuptureOverlay.js';
 import { applyCascadeOverlay, clearCascadeOverlay, bindCascadeOverlayToggle, cascadeResettableClasses } from './telCascadeOverlay.js';
-import { agentTelemetryOverlay, applyAgentTelemetryOverlay, clearAgentTelemetryOverlay, bindAgentTelemetryOverlayToggle, AGENT_TELEMETRY_RESETTABLE_CLASSES } from './telAgentTelemetryOverlay.js';
+import { applyAgentTelemetryOverlay, clearAgentTelemetryOverlay, AGENT_TELEMETRY_RESETTABLE_CLASSES } from './telAgentTelemetryOverlay.js';
 
 const graphContainer = document.getElementById('graph');
 const detailEl = document.getElementById('details');
@@ -2322,30 +2322,23 @@ async function main() {
     numIter: 200
   }).run();
 
-  cy.toggleAgentTelemetry = function toggleAgentTelemetry(enabled) {
+  window.cy = cy;
+
+  function toggleAgentTelemetry(enabled) {
+    const artifacts = window.__bridgeArtifacts?.agent_telemetry_event_map;
+    if (!artifacts) return;
     if (enabled) {
-      const map = window.__bridgeArtifacts?.agent_telemetry_event_map ?? {};
-      const byAgent = map?.summary?.byAgent ?? {};
-      if (Object.keys(byAgent).length === 0) {
-        applyAgentTelemetryOverlay(this, map, true);
-        return;
-      }
-      Object.entries(byAgent).forEach(([agentId, summary]) => {
-        if ((summary?.eventCount ?? 0) > 0) {
-          agentTelemetryOverlay.apply(this, agentId);
+      Object.entries(artifacts.summary?.byAgent ?? {}).forEach(([agent, info]) => {
+        if ((info?.eventCount ?? 0) > 0) {
+          applyAgentTelemetryOverlay(window.cy, agent);
         }
       });
-      return;
+    } else {
+      clearAgentTelemetryOverlay(window.cy);
     }
+  }
 
-    const seenAgents = new Set();
-    this.nodes().forEach((n) => {
-      const agentId = n.data('agentId');
-      if (!agentId || seenAgents.has(agentId)) return;
-      seenAgents.add(agentId);
-      agentTelemetryOverlay.clear(this, agentId);
-    });
-  };
+  cy.toggleAgentTelemetry = toggleAgentTelemetry;
 
   annotateConceptStats(cy);
   setDefaultPanel(detailEl);
@@ -2408,9 +2401,9 @@ async function main() {
     if (showRuptureSignalsEl ? Boolean(showRuptureSignalsEl.checked) : true) applyRuptureOverlay(cy);
     applyCascadeOverlay(cy, showCascadeHealthEl ? Boolean(showCascadeHealthEl.checked) : true);
     if (showAgentTelemetryEl ? Boolean(showAgentTelemetryEl.checked) : false) {
-      cy.toggleAgentTelemetry(true);
+      toggleAgentTelemetry(true);
     } else {
-      cy.toggleAgentTelemetry(false);
+      toggleAgentTelemetry(false);
     }
   }
 
@@ -2456,15 +2449,15 @@ async function main() {
   bindCascadeOverlayToggle(cy, showCascadeHealthEl, () => {
     applyCascadeOverlay(cy, showCascadeHealthEl ? Boolean(showCascadeHealthEl.checked) : true);
     if (showAgentTelemetryEl ? Boolean(showAgentTelemetryEl.checked) : false) {
-      cy.toggleAgentTelemetry(true);
+      toggleAgentTelemetry(true);
     } else {
-      cy.toggleAgentTelemetry(false);
+      toggleAgentTelemetry(false);
     }
   });
 
   if (showAgentTelemetryEl) {
-    showAgentTelemetryEl.addEventListener('change', (e) => {
-      cy.toggleAgentTelemetry(Boolean(e.target.checked));
+    document.getElementById('toggle-agent-telemetry').addEventListener('change', (e) => {
+      toggleAgentTelemetry(Boolean(e.target.checked));
     });
   }
 
