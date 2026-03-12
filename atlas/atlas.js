@@ -18,7 +18,7 @@ import { applyRiverOverlay, clearRiverOverlay, bindRiverOverlayToggle, riverRese
 import { applyDeltaOverlay, clearDeltaOverlay, bindDeltaOverlayToggle, deltaResettableClasses } from './telDeltaOverlay.js';
 import { applyRuptureOverlay, clearRuptureOverlay, bindRuptureOverlayToggle, ruptureResettableClasses } from './telRuptureOverlay.js';
 import { applyCascadeOverlay, clearCascadeOverlay, bindCascadeOverlayToggle, cascadeResettableClasses } from './telCascadeOverlay.js';
-import { applyAgentTelemetryOverlay, clearAgentTelemetryOverlay, bindAgentTelemetryOverlayToggle, AGENT_TELEMETRY_RESETTABLE_CLASSES } from './telAgentTelemetryOverlay.js';
+import { agentTelemetryOverlay, applyAgentTelemetryOverlay, clearAgentTelemetryOverlay, bindAgentTelemetryOverlayToggle, AGENT_TELEMETRY_RESETTABLE_CLASSES } from './telAgentTelemetryOverlay.js';
 
 const graphContainer = document.getElementById('graph');
 const detailEl = document.getElementById('details');
@@ -414,6 +414,7 @@ async function main() {
   window.__bridgeArtifacts = {
     ...(window.__bridgeArtifacts ?? {}),
     agentTelemetryMap,
+    agent_telemetry_event_map: agentTelemetryMap,
     aiGuidance
   };
   const graph = computeAtlasLayout(sourceGraph);
@@ -2321,6 +2322,14 @@ async function main() {
     numIter: 200
   }).run();
 
+  cy.toggleAgentTelemetry = function toggleAgentTelemetry(enabled) {
+    if (enabled) {
+      agentTelemetryOverlay.apply(this);
+    } else {
+      agentTelemetryOverlay.clear(this);
+    }
+  };
+
   annotateConceptStats(cy);
   setDefaultPanel(detailEl);
 
@@ -2382,7 +2391,7 @@ async function main() {
     if (showRuptureSignalsEl ? Boolean(showRuptureSignalsEl.checked) : true) applyRuptureOverlay(cy);
     applyCascadeOverlay(cy, showCascadeHealthEl ? Boolean(showCascadeHealthEl.checked) : true);
     if (showAgentTelemetryEl ? Boolean(showAgentTelemetryEl.checked) : false) {
-      applyAgentTelemetryOverlay(cy, window.__bridgeArtifacts?.agentTelemetryMap, true);
+      agentTelemetryOverlay.apply(cy);
     } else {
       clearAgentTelemetryOverlay(cy);
     }
@@ -2430,7 +2439,7 @@ async function main() {
   bindCascadeOverlayToggle(cy, showCascadeHealthEl, () => {
     applyCascadeOverlay(cy, showCascadeHealthEl ? Boolean(showCascadeHealthEl.checked) : true);
     if (showAgentTelemetryEl ? Boolean(showAgentTelemetryEl.checked) : false) {
-      applyAgentTelemetryOverlay(cy, window.__bridgeArtifacts?.agentTelemetryMap, true);
+      agentTelemetryOverlay.apply(cy);
     } else {
       clearAgentTelemetryOverlay(cy);
     }

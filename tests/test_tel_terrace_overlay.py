@@ -71,6 +71,9 @@ class TelTerraceOverlayAssetsTests(unittest.TestCase):
         self.assertIn('applyAgentTelemetryOverlay', js)
         self.assertIn('clearAgentTelemetryOverlay', js)
         self.assertIn('bindAgentTelemetryOverlayToggle', js)
+        self.assertIn('agentTelemetryOverlay', js)
+        self.assertIn('agent_telemetry_event_map', js)
+        self.assertIn('toggleAgentTelemetry', Path('atlas/atlas.js').read_text(encoding='utf-8'))
 
     def test_orthodoxy_overlay_module_has_advisory_labels(self) -> None:
         js = Path('atlas/telOrthodoxyOverlay.js').read_text(encoding='utf-8')
@@ -137,6 +140,9 @@ class TelTerraceOverlayAssetsTests(unittest.TestCase):
         self.assertIn('applyAgentTelemetryOverlay', js)
         self.assertIn('clearAgentTelemetryOverlay', js)
         self.assertIn('bindAgentTelemetryOverlayToggle', js)
+        self.assertIn('agentTelemetryOverlay', js)
+        self.assertIn('agent_telemetry_event_map', js)
+        self.assertIn('toggleAgentTelemetry', Path('atlas/atlas.js').read_text(encoding='utf-8'))
         css = Path('atlas/styles.css').read_text(encoding='utf-8')
         self.assertIn('.node.agent-novelty-hotspot', css)
         self.assertIn('.node.agent-contradiction-hotspot', css)
