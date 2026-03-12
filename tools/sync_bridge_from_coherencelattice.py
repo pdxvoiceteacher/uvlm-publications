@@ -19,6 +19,7 @@ FILES_TO_SYNC = [
     'rupture_map.json',
     'agent_telemetry_event_map.json',
     'ai_guidance.json',
+    'navigation_state.json',
 ]
 
 

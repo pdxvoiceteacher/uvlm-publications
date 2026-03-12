@@ -281,3 +281,15 @@ body {
   border-width: 2px !important;
   border-style: dashed !important;
 }
+
+.cy .nav-psi-high {
+  border-color: cyan;
+  border-width: 3px;
+  border-style: solid;
+}
+
+.cy .nav-risk-high {
+  border-color: magenta;
+  border-width: 2px;
+  border-style: dashed;
+}

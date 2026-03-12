@@ -3,6 +3,7 @@ describe('Overlay toggles', function () {
     expect(document.getElementById('toggle-cascade')).not.toBeNull();
     expect(document.getElementById('toggle-rebraid')).not.toBeNull();
     expect(document.getElementById('toggle-agent-telemetry')).not.toBeNull();
+    expect(document.getElementById('toggle-navigation')).not.toBeNull();
   });
 
   it('should apply overlay classes correctly', function () {

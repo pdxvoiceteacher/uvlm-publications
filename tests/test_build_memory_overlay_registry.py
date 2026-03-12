@@ -133,6 +133,7 @@ class MemoryOverlayRegistryBuilderTests(unittest.TestCase):
         self.assertIn('phase_lineage_registry.json', helper)
         self.assertIn('civilizational_delta_map.json', helper)
         self.assertIn('rupture_map.json', helper)
+        self.assertIn('navigation_state.json', helper)
 
     def test_optional_registry_provenance_accepts_schema_version(self) -> None:
         payload = json.loads((self.registry / 'phase_lineage_dashboard.json').read_text(encoding='utf-8'))
@@ -150,6 +151,40 @@ class MemoryOverlayRegistryBuilderTests(unittest.TestCase):
         self.assertIn('phase_lineage_dashboard', overlay['provenance']['schemaVersions'])
         self.assertEqual(overlay['provenance']['schemaVersions']['phase_lineage_dashboard'], 'phase-lineage-v1')
 
+    def test_deployment_profiles_yaml_exists_with_federation_examples(self) -> None:
+        cfg = Path('config/deployment_profiles.yaml').read_text(encoding='utf-8')
+        self.assertIn('local_single_node', cfg)
+        self.assertIn('local_plus_dashboard', cfg)
+        self.assertIn('federated_two_node', cfg)
+        self.assertIn('federated_mesh', cfg)
+        self.assertIn('artifact_repos', cfg)
+
+
+
+    def test_publish_telemetry_generates_manifest_fields(self) -> None:
+        publish = Path('tools/publish_telemetry.py')
+        self.assertTrue(publish.exists())
+
+        artifact = self.root / 'telemetry.json'
+        artifact.write_text(json.dumps({'events': [{'agentId': 'a1', 'score': 0.8}]}, sort_keys=True), encoding='utf-8')
+        pubkey = self.root / 'mypub.key'
+        pubkey.write_text('PUBKEY_PLACEHOLDER', encoding='utf-8')
+        output = self.root / 'telemetry_manifest.json'
+
+        result = subprocess.run([
+            'python3', str(publish),
+            '--artifact', str(artifact),
+            '--pubkey', str(pubkey),
+            '--output', str(output),
+        ], text=True, capture_output=True)
+        self.assertEqual(result.returncode, 0)
+
+        manifest = json.loads(output.read_text(encoding='utf-8'))
+        self.assertEqual(manifest['artifact'], str(artifact))
+        self.assertIn('hash', manifest)
+        self.assertEqual(manifest['signature'], 'TODO_GENERATE_SIGNATURE')
+        self.assertEqual(manifest['origin'], 'node_local_001')
+        self.assertEqual(manifest['canonicalPhaselock'], 'local')
     def test_deployment_profiles_yaml_exists_with_federation_examples(self) -> None:
         cfg = Path('config/deployment_profiles.yaml').read_text(encoding='utf-8')
         self.assertIn('local_single_node', cfg)
