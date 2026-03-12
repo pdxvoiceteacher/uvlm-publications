@@ -135,6 +135,7 @@ class TelTerraceOverlayAssetsTests(unittest.TestCase):
     def test_agent_telemetry_overlay_assets(self) -> None:
         js = Path('atlas/telAgentTelemetryOverlay.js').read_text(encoding='utf-8')
         self.assertIn('AGENT_TELEMETRY_RESETTABLE_CLASSES', js)
+        self.assertIn('AGENT_TELEMETRY_CLASSES', js)
         self.assertIn('agent-novelty-hotspot', js)
         self.assertIn('agent-contradiction-hotspot', js)
         self.assertIn('applyAgentTelemetryOverlay', js)
@@ -143,6 +144,7 @@ class TelTerraceOverlayAssetsTests(unittest.TestCase):
         self.assertIn('agentTelemetryOverlay', js)
         self.assertIn('agent_telemetry_event_map', js)
         self.assertIn('toggleAgentTelemetry', Path('atlas/atlas.js').read_text(encoding='utf-8'))
+        self.assertIn("showAgentTelemetryEl.addEventListener('change'", Path('atlas/atlas.js').read_text(encoding='utf-8'))
         css = Path('atlas/styles.css').read_text(encoding='utf-8')
         self.assertIn('.node.agent-novelty-hotspot', css)
         self.assertIn('.node.agent-contradiction-hotspot', css)

@@ -1,6 +1,11 @@
+export const AGENT_TELEMETRY_CLASSES = {
+  novelty: 'agent-novelty-hotspot',
+  contradiction: 'agent-contradiction-hotspot'
+};
+
 export const AGENT_TELEMETRY_RESETTABLE_CLASSES = [
-  'agent-novelty-hotspot',
-  'agent-contradiction-hotspot'
+  AGENT_TELEMETRY_CLASSES.novelty,
+  AGENT_TELEMETRY_CLASSES.contradiction
 ];
 
 function getBridgeTelemetryMap() {
@@ -11,8 +16,29 @@ function getBridgeTelemetryMap() {
 
 export function clearAgentTelemetryOverlay(cy) {
   if (!cy) return;
-  cy.elements('.agent-novelty-hotspot').removeClass('agent-novelty-hotspot');
-  cy.elements('.agent-contradiction-hotspot').removeClass('agent-contradiction-hotspot');
+  cy.elements(`.${AGENT_TELEMETRY_CLASSES.novelty}`).removeClass(AGENT_TELEMETRY_CLASSES.novelty);
+  cy.elements(`.${AGENT_TELEMETRY_CLASSES.contradiction}`).removeClass(AGENT_TELEMETRY_CLASSES.contradiction);
+}
+
+function applyTelemetryEventsForAgent(cy, agentId, events = [], opts = {}) {
+  if (!agentId) return;
+  const noveltyThreshold = opts.noveltyThreshold ?? 0.8;
+  const contradictionThreshold = opts.contradictionThreshold ?? 0.8;
+
+  const node = cy.nodes().filter((n) => n.data('agentId') === agentId);
+  if (!node.length) return;
+
+  events.forEach((ev) => {
+    const novelty = typeof ev?.noveltyScore === 'number' ? ev.noveltyScore : 0;
+    const contradiction = typeof ev?.contradictionDensity === 'number' ? ev.contradictionDensity : 0;
+
+    if (novelty > noveltyThreshold) {
+      node.addClass(AGENT_TELEMETRY_CLASSES.novelty);
+    }
+    if (contradiction > contradictionThreshold) {
+      node.addClass(AGENT_TELEMETRY_CLASSES.contradiction);
+    }
+  });
 }
 
 export function applyAgentTelemetryOverlay(cy, agentTelemetryMap = null, enabled = true, opts = {}) {
@@ -20,31 +46,32 @@ export function applyAgentTelemetryOverlay(cy, agentTelemetryMap = null, enabled
   clearAgentTelemetryOverlay(cy);
   if (!enabled) return;
 
-  const noveltyThreshold = opts.noveltyThreshold ?? 0.8;
-  const contradictionThreshold = opts.contradictionThreshold ?? 0.8;
-
   const data = agentTelemetryMap ?? getBridgeTelemetryMap();
   const events = Array.isArray(data?.events) ? data.events : [];
 
   events.forEach((ev) => {
-    const novelty = typeof ev?.noveltyScore === 'number' ? ev.noveltyScore : 0;
-    const contradiction = typeof ev?.contradictionDensity === 'number' ? ev.contradictionDensity : 0;
-
-    if (novelty > noveltyThreshold && ev?.agentId) {
-      cy.getElementById(ev.agentId).addClass('agent-novelty-hotspot');
-    }
-    if (contradiction > contradictionThreshold && ev?.agentId) {
-      cy.getElementById(ev.agentId).addClass('agent-contradiction-hotspot');
-    }
+    applyTelemetryEventsForAgent(cy, ev?.agentId, [ev], opts);
   });
 }
 
 export const agentTelemetryOverlay = {
-  apply: (cy) => {
-    applyAgentTelemetryOverlay(cy, getBridgeTelemetryMap(), true);
+  apply: (cy, agentId, opts = {}) => {
+    if (!cy || !agentId) return;
+    const map = getBridgeTelemetryMap();
+    const events = Array.isArray(map?.events)
+      ? map.events.filter((ev) => ev?.agentId === agentId)
+      : [];
+    applyTelemetryEventsForAgent(cy, agentId, events, opts);
   },
-  clear: (cy) => {
-    clearAgentTelemetryOverlay(cy);
+  clear: (cy, agentId) => {
+    if (!cy) return;
+    if (!agentId) {
+      clearAgentTelemetryOverlay(cy);
+      return;
+    }
+    const nodes = cy.nodes().filter((n) => n.data('agentId') === agentId);
+    nodes.removeClass(AGENT_TELEMETRY_CLASSES.novelty);
+    nodes.removeClass(AGENT_TELEMETRY_CLASSES.contradiction);
   }
 };
 
@@ -52,6 +79,10 @@ export function bindAgentTelemetryOverlayToggle(toggleEl, cy, getAgentTelemetryM
   if (!toggleEl) return;
   toggleEl.addEventListener('change', () => {
     const enabled = Boolean(toggleEl.checked);
+    if (typeof cy?.toggleAgentTelemetry === 'function') {
+      cy.toggleAgentTelemetry(enabled);
+      return;
+    }
     const data = typeof getAgentTelemetryMap === 'function' ? getAgentTelemetryMap() : getBridgeTelemetryMap();
     if (!enabled) clearAgentTelemetryOverlay(cy);
     else applyAgentTelemetryOverlay(cy, data, true);

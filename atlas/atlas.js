@@ -2324,10 +2324,27 @@ async function main() {
 
   cy.toggleAgentTelemetry = function toggleAgentTelemetry(enabled) {
     if (enabled) {
-      agentTelemetryOverlay.apply(this);
-    } else {
-      agentTelemetryOverlay.clear(this);
+      const map = window.__bridgeArtifacts?.agent_telemetry_event_map ?? {};
+      const byAgent = map?.summary?.byAgent ?? {};
+      if (Object.keys(byAgent).length === 0) {
+        applyAgentTelemetryOverlay(this, map, true);
+        return;
+      }
+      Object.entries(byAgent).forEach(([agentId, summary]) => {
+        if ((summary?.eventCount ?? 0) > 0) {
+          agentTelemetryOverlay.apply(this, agentId);
+        }
+      });
+      return;
     }
+
+    const seenAgents = new Set();
+    this.nodes().forEach((n) => {
+      const agentId = n.data('agentId');
+      if (!agentId || seenAgents.has(agentId)) return;
+      seenAgents.add(agentId);
+      agentTelemetryOverlay.clear(this, agentId);
+    });
   };
 
   annotateConceptStats(cy);
@@ -2391,9 +2408,9 @@ async function main() {
     if (showRuptureSignalsEl ? Boolean(showRuptureSignalsEl.checked) : true) applyRuptureOverlay(cy);
     applyCascadeOverlay(cy, showCascadeHealthEl ? Boolean(showCascadeHealthEl.checked) : true);
     if (showAgentTelemetryEl ? Boolean(showAgentTelemetryEl.checked) : false) {
-      agentTelemetryOverlay.apply(cy);
+      cy.toggleAgentTelemetry(true);
     } else {
-      clearAgentTelemetryOverlay(cy);
+      cy.toggleAgentTelemetry(false);
     }
   }
 
@@ -2439,11 +2456,17 @@ async function main() {
   bindCascadeOverlayToggle(cy, showCascadeHealthEl, () => {
     applyCascadeOverlay(cy, showCascadeHealthEl ? Boolean(showCascadeHealthEl.checked) : true);
     if (showAgentTelemetryEl ? Boolean(showAgentTelemetryEl.checked) : false) {
-      agentTelemetryOverlay.apply(cy);
+      cy.toggleAgentTelemetry(true);
     } else {
-      clearAgentTelemetryOverlay(cy);
+      cy.toggleAgentTelemetry(false);
     }
   });
+
+  if (showAgentTelemetryEl) {
+    showAgentTelemetryEl.addEventListener('change', (e) => {
+      cy.toggleAgentTelemetry(Boolean(e.target.checked));
+    });
+  }
 
   const constellationApi = bindConstellations({
     cy,
