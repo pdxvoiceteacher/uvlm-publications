@@ -1,5 +1,4 @@
-const DELTA_THRESHOLD = 0.66;
-const DELTA_RESETTABLE_CLASSES = ['delta-node', 'delta-highlight'];
+export const deltaResettableClasses = ['delta-forming'];
 
 function asNumber(value, fallback = 0) {
   if (typeof value === 'number' && Number.isFinite(value)) return value;
@@ -10,28 +9,26 @@ function asNumber(value, fallback = 0) {
   return fallback;
 }
 
-export function applyDeltaOverlay(cy, enabled = true) {
-  cy.nodes().removeClass(DELTA_RESETTABLE_CLASSES.join(' '));
-  if (!enabled) return;
-
+export function applyDeltaOverlay(cy) {
   cy.nodes().forEach((node) => {
-    const isDeltaNode = Boolean(node.data('isDeltaNode'));
-    const deltaPotential = asNumber(node.data('deltaPotential'), NaN);
-    if (isDeltaNode || (Number.isFinite(deltaPotential) && deltaPotential >= DELTA_THRESHOLD)) {
-      node.addClass('delta-node delta-highlight');
-      node.data('deltaAdvisory', 'Advisory only, not authoritative: civilizational delta emergence signal.');
+    const strength = asNumber(node.data('deltaStrength'), 0);
+    if (strength > 0) {
+      node.addClass('delta-forming');
     }
   });
 }
 
-export function bindDeltaOverlayToggle(cy, toggleEl, reapply) {
-  if (!toggleEl) return;
-  toggleEl.addEventListener('change', () => {
-    applyDeltaOverlay(cy, Boolean(toggleEl.checked));
-    if (typeof reapply === 'function') reapply();
-  });
+export function clearDeltaOverlay(cy) {
+  cy.nodes().removeClass(deltaResettableClasses.join(' '));
 }
 
-export function deltaResettableClasses() {
-  return [...DELTA_RESETTABLE_CLASSES];
+export function bindDeltaOverlayToggle(cy, toggleEl, reapply) {
+  const checkbox = toggleEl ?? document.getElementById('toggle-delta');
+  if (!checkbox) return;
+
+  checkbox.addEventListener('change', () => {
+    if (checkbox.checked) applyDeltaOverlay(cy);
+    else clearDeltaOverlay(cy);
+    if (typeof reapply === 'function') reapply();
+  });
 }
