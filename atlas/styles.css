@@ -200,3 +200,44 @@ body {
   overlay-opacity: 0.14;
   overlay-padding: 2px;
 }
+
+.river-flowing {
+  border-color: #00f;
+}
+
+.delta-forming {
+  border-color: #0a0;
+}
+
+.rupture-looming {
+  border-color: #f00;
+}
+
+.cascade-strong {
+  border-color: #00ffff;
+  border-width: 3px;
+}
+
+
+.rebraid-strong {
+  border-color: #ff00ff;
+  border-style: dashed;
+}
+
+
+.node.cascade-strong {
+  border-color: #00FFFF;
+  border-width: 4px;
+}
+
+.node.cascade-risk {
+  border-style: dashed;
+  border-color: #FF00FF;
+  border-width: 3px;
+}
+
+.node.cascade-safe {
+  border-style: solid;
+  border-color: #00FF00;
+  border-width: 3px;
+}
