@@ -17,6 +17,9 @@ class TelTerraceOverlayAssetsTests(unittest.TestCase):
         self.assertIn('toggle-delta', html)
         self.assertIn('toggle-rupture', html)
         self.assertIn('toggle-cascade', html)
+        self.assertIn('Show Rebraid Waves (advisory: highlights rebraid alerts)', html)
+        self.assertIn('Show Cascade Health (advisory: highlights high cascade health)', html)
+        self.assertIn('Rebraid/Cascade = Advisory Highlights', html)
         self.assertIn('Approaching Terrace', html)
         self.assertIn('Converged Orthodoxy', html)
         self.assertIn('Orthodoxy Alert (coercive coherence)', html)
@@ -81,9 +84,11 @@ class TelTerraceOverlayAssetsTests(unittest.TestCase):
     def test_rebraid_overlay_module_has_advisory_labels(self) -> None:
         js = Path('atlas/telRebraidOverlay.js').read_text(encoding='utf-8')
         self.assertIn('clearRebraidOverlay', js)
-        self.assertIn('rebraidPotential', js)
-        self.assertIn('preliminary mutual translation', js.lower())
-        self.assertIn('Advisory only, not authoritative', js)
+        self.assertIn('applyRebraidOverlay', js)
+        self.assertIn('rebraid-strong', js)
+        css = Path('atlas/styles.css').read_text(encoding='utf-8')
+        self.assertIn('.rebraid-strong', css)
+        self.assertIn('border-style: dashed', css)
 
     def test_corridor_river_delta_rupture_modules_have_advisory_labels(self) -> None:
         corridor_js = Path('atlas/telCorridorOverlay.js').read_text(encoding='utf-8')
@@ -91,15 +96,31 @@ class TelTerraceOverlayAssetsTests(unittest.TestCase):
         delta_js = Path('atlas/telDeltaOverlay.js').read_text(encoding='utf-8')
         rupture_js = Path('atlas/telRuptureOverlay.js').read_text(encoding='utf-8')
         self.assertIn('Advisory only, not authoritative', corridor_js)
-        self.assertIn('knowledge-river flow indicator', river_js)
-        self.assertIn('civilizational delta emergence signal', delta_js)
-        self.assertIn('rupture signal watch indicator', rupture_js)
+        self.assertIn('river-flowing', river_js)
+        self.assertIn('delta-forming', delta_js)
+        self.assertIn('rupture-looming', rupture_js)
+
+
+    def test_rebraid_and_cascade_toggle_bindings_call_apply_and_clear(self) -> None:
+        rebraid_js = Path('atlas/telRebraidOverlay.js').read_text(encoding='utf-8')
+        cascade_js = Path('atlas/telCascadeOverlay.js').read_text(encoding='utf-8')
+        self.assertIn("addEventListener('change'", rebraid_js)
+        self.assertIn('applyRebraidOverlay', rebraid_js)
+        self.assertIn('clearRebraidOverlay', rebraid_js)
+        self.assertIn("if (resolvedToggle.checked)", rebraid_js)
+        self.assertIn("addEventListener('change'", cascade_js)
+        self.assertIn('applyCascadeOverlay', cascade_js)
+        self.assertIn('clearCascadeOverlay', cascade_js)
+        self.assertIn('if (toggleEl.checked)', cascade_js)
 
     def test_cascade_overlay_module_has_advisory_labels(self) -> None:
         js = Path('atlas/telCascadeOverlay.js').read_text(encoding='utf-8')
-        self.assertIn('cascadeSignal', js)
         self.assertIn('cascade-strong', js)
-        self.assertIn('Advisory only, not authoritative', js)
+        self.assertIn('cascadeHealth', js)
+        self.assertIn('> 0.5', js)
+        css = Path('atlas/styles.css').read_text(encoding='utf-8')
+        self.assertIn('.cascade-strong', css)
+        self.assertIn('#00ffff', css)
 
 if __name__ == '__main__':
     unittest.main()
