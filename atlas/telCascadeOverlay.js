@@ -2,14 +2,8 @@ export const cascadeResettableClasses = ['cascade-risk', 'cascade-safe', 'cascad
 
 const viabilityThreshold = 1.0;
 
-function asNumber(value, fallback = 0) {
-  if (typeof value === 'number' && Number.isFinite(value)) return value;
-  if (typeof value === 'string') {
-    const n = Number.parseFloat(value);
-    return Number.isFinite(n) ? n : fallback;
-  }
-  return fallback;
-}
+export function applyCascadeOverlay(cy, signal = 0) {
+  cy.elements().removeClass(cascadeResettableClasses.join(' '));
 
 export function applyCascadeOverlay(cy, enabled = true) {
   clearCascadeOverlay(cy);
