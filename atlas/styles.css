@@ -214,10 +214,12 @@ body {
 }
 
 .cascade-strong {
-  border-color: #aaffaa;
+  border-color: #00ffff;
+  border-width: 3px;
 }
 
 
 .rebraid-strong {
-  border-color: #aaaaff;
+  border-color: #ff00ff;
+  border-style: dashed;
 }

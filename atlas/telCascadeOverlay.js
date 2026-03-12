@@ -17,12 +17,20 @@ export function applyCascadeOverlay(cy, enabled = true) {
   });
 }
 
+export function clearCascadeOverlay(cy) {
+  cy.elements().removeClass(cascadeResettableClasses.join(' '));
+}
+
 export function bindCascadeOverlayToggle(cy, toggleEl, reapply) {
   if (!toggleEl) {
     return;
   }
   toggleEl.addEventListener('change', () => {
-    applyCascadeOverlay(cy, toggleEl.checked ? 1 : 0);
+    if (toggleEl.checked) {
+      applyCascadeOverlay(cy, true);
+    } else {
+      clearCascadeOverlay(cy);
+    }
     if (typeof reapply === 'function') {
       reapply();
     }

@@ -616,13 +616,13 @@ async function main() {
       {
         selector: '.cascade-strong',
         style: {
-          'background-color': '#aaffaa',
-          'line-color': '#aaffaa',
-          'target-arrow-color': '#aaffaa',
+          'background-color': '#00ffff',
+          'line-color': '#00ffff',
+          'target-arrow-color': '#00ffff',
           'width': 3.2,
-          'border-color': '#aaffaa',
-          'border-width': 2.8,
-          'overlay-color': 'rgba(170, 255, 170, 0.25)',
+          'border-color': '#00ffff',
+          'border-width': 3,
+          'overlay-color': 'rgba(0, 255, 255, 0.25)',
           'overlay-opacity': 0.18,
           'overlay-padding': 3
         }
@@ -630,10 +630,11 @@ async function main() {
       {
         selector: '.rebraid-strong',
         style: {
-          'background-color': '#aaaaff',
-          'border-color': '#aaaaff',
+          'background-color': '#ff00ff',
+          'border-color': '#ff00ff',
+          'border-style': 'dashed',
           'border-width': 2.8,
-          'overlay-color': 'rgba(170, 170, 255, 0.24)',
+          'overlay-color': 'rgba(255, 0, 255, 0.24)',
           'overlay-opacity': 0.18,
           'overlay-padding': 3
         }
