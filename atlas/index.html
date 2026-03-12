@@ -128,5 +128,15 @@
     </main>
 
     <script type="module" src="atlas.js"></script>
+    <script>
+      window.addEventListener('DOMContentLoaded', () => {
+        if (window.bindAgentTelemetryOverlayToggle) {
+          window.bindAgentTelemetryOverlayToggle('toggle-agent-telemetry');
+        }
+        if (window.bindNavigationToggle) {
+          window.bindNavigationToggle('toggle-navigation');
+        }
+      });
+    </script>
   </body>
 </html>

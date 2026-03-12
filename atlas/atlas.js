@@ -18,7 +18,7 @@ import { applyRiverOverlay, clearRiverOverlay, bindRiverOverlayToggle, riverRese
 import { applyDeltaOverlay, clearDeltaOverlay, bindDeltaOverlayToggle, deltaResettableClasses } from './telDeltaOverlay.js';
 import { applyRuptureOverlay, clearRuptureOverlay, bindRuptureOverlayToggle, ruptureResettableClasses } from './telRuptureOverlay.js';
 import { applyCascadeOverlay, clearCascadeOverlay, bindCascadeOverlayToggle, cascadeResettableClasses } from './telCascadeOverlay.js';
-import { applyAgentTelemetryOverlay, clearAgentTelemetryOverlay, AGENT_TELEMETRY_RESETTABLE_CLASSES } from './telAgentTelemetryOverlay.js';
+import { applyAgentTelemetryOverlay, clearAgentTelemetryOverlay, bindAgentTelemetryOverlayToggle, AGENT_TELEMETRY_RESETTABLE_CLASSES } from './telAgentTelemetryOverlay.js';
 import { applyNavigationOverlay, clearNavigationOverlay, bindNavigationToggle, NAVIGATION_RESETTABLE_CLASSES } from './telNavigationOverlay.js';
 
 const graphContainer = document.getElementById('graph');
@@ -2330,16 +2330,11 @@ async function main() {
   window.cy = cy;
 
   function toggleAgentTelemetry(enabled) {
-    const summary = window.__bridgeArtifacts?.agent_telemetry_event_map;
-    if (!summary || !window.cy) return;
+    if (!window.cy) return;
+    clearAgentTelemetryOverlay(window.cy);
     if (enabled) {
-      Object.keys(summary.summary?.byAgent || {}).forEach((id) => {
-        if ((summary.summary.byAgent[id]?.eventCount ?? 0) > 0) {
-          applyAgentTelemetryOverlay(window.cy, id);
-        }
-      });
-    } else {
-      clearAgentTelemetryOverlay(window.cy);
+      const agents = Object.keys(window.__bridgeArtifacts?.agent_telemetry_event_map?.summary?.byAgent || {});
+      agents.forEach((agentId) => applyAgentTelemetryOverlay(window.cy, agentId));
     }
   }
 
@@ -2413,7 +2408,7 @@ async function main() {
       toggleAgentTelemetry(false);
     }
     if (showNavigationEl ? Boolean(showNavigationEl.checked) : false) {
-      applyNavigationOverlay(cy, window.__bridgeArtifacts?.navigation_state?.result);
+      applyNavigationOverlay(cy, window.__bridgeArtifacts?.navigation_state);
     } else {
       clearNavigationOverlay(cy);
     }
@@ -2466,17 +2461,14 @@ async function main() {
       toggleAgentTelemetry(false);
     }
     if (showNavigationEl ? Boolean(showNavigationEl.checked) : false) {
-      applyNavigationOverlay(cy, window.__bridgeArtifacts?.navigation_state?.result);
+      applyNavigationOverlay(cy, window.__bridgeArtifacts?.navigation_state);
     } else {
       clearNavigationOverlay(cy);
     }
   });
 
-  if (showAgentTelemetryEl) {
-    document.getElementById('toggle-agent-telemetry').addEventListener('change', (evt) => window.toggleAgentTelemetry(evt.target.checked));
-  }
-
-  bindNavigationToggle();
+  bindAgentTelemetryOverlayToggle('toggle-agent-telemetry');
+  bindNavigationToggle('toggle-navigation');
 
   const constellationApi = bindConstellations({
     cy,

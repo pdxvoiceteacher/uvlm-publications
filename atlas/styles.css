@@ -293,3 +293,15 @@ body {
   border-width: 2px;
   border-style: dashed;
 }
+
+.node.telemetry-novelty {
+  border-color: cyan;
+  border-width: 3px;
+  border-style: solid;
+}
+
+.node.telemetry-contradiction {
+  border-color: magenta;
+  border-width: 2px;
+  border-style: dashed;
+}

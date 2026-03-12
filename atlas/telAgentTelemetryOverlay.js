@@ -1,36 +1,35 @@
-export const AGENT_TELEMETRY_CLASSES = ['agent-novelty-hotspot', 'agent-contradiction-hotspot'];
+export const AGENT_TELEMETRY_CLASSES = ['telemetry-novelty', 'telemetry-contradiction'];
 
 export const AGENT_TELEMETRY_RESETTABLE_CLASSES = [...AGENT_TELEMETRY_CLASSES];
 
-/** Apply telemetry hotspots for a given agent */
 export function applyAgentTelemetryOverlay(cy, agentId) {
   if (!cy || !agentId) return;
-  const nodes = cy.nodes().filter((node) => node.data('agentId') === agentId || node.data('agent') === agentId);
-  nodes.forEach((node) => {
-    node.addClass(AGENT_TELEMETRY_CLASSES.join(' '));
-  });
+  const events = window.__bridgeArtifacts?.agent_telemetry_event_map?.summary?.byAgent || {};
+  const count = (events[agentId]?.eventCount ?? events[agentId] ?? 0);
+  if (count > 0) {
+    cy.nodes(`[label = "${agentId}"]`).addClass(AGENT_TELEMETRY_CLASSES.join(' '));
+  }
 }
 
-/** Clear all agent telemetry overlays from the graph */
 export function clearAgentTelemetryOverlay(cy) {
   if (!cy) return;
   cy.nodes().removeClass(AGENT_TELEMETRY_CLASSES.join(' '));
 }
 
-function toggleAgentTelemetry(toggleEl) {
+export function bindAgentTelemetryOverlayToggle(toggleElemId) {
+  const toggleEl = document.getElementById(toggleElemId);
   if (!toggleEl) return;
-  toggleEl.addEventListener('change', () => {
-    const summary = window.__bridgeArtifacts?.agent_telemetry_event_map;
-    if (!summary && typeof window.toggleAgentTelemetry !== 'function') return;
-    if (typeof window.toggleAgentTelemetry === 'function') {
-      window.toggleAgentTelemetry(toggleEl.checked);
+  toggleEl.addEventListener('change', (e) => {
+    if (window.cy) {
+      clearAgentTelemetryOverlay(window.cy);
+      if (e.target.checked) {
+        const agents = Object.keys(window.__bridgeArtifacts?.agent_telemetry_event_map?.summary?.byAgent || {});
+        agents.forEach((agentId) => applyAgentTelemetryOverlay(window.cy, agentId));
+      }
     }
   });
 }
 
 if (typeof window !== 'undefined') {
-  window.bindAgentTelemetryOverlayToggle = toggleAgentTelemetry;
+  window.bindAgentTelemetryOverlayToggle = bindAgentTelemetryOverlayToggle;
 }
-
-/** Bind toggle element for agent telemetry (for backward compatibility) */
-export const bindAgentTelemetryOverlayToggle = toggleAgentTelemetry;

@@ -1,49 +1,40 @@
-profiles:
-  local_single_node:
-    description: "Single-node deployment"
-    services:
-      triadic_brain:
-        type: python
-        script: triadic_brain/run_wrapper.py
-        args:
-          --input-text: "Analyze coherence locally."
-          --out-dir: out/run_local
-          --emit-tel: true
-          --emit-tel-events: true
-        env:
-          UCC_TEL_EVENTS_OUT: "out/run_local/tel_events.jsonl"
-    telemetry:
-      enabled: true
-      semanticMode: "non-executive"
+local_single_node:
+  name: "local_single_node"
+  services:
+    - type: python
+      script: triadic_brain/run_wrapper.py
+      args: ["--input-text", "Example input", "--out-dir", "out/run_local", "--emit-tel", "--emit-tel-events"]
 
-  local_plus_dashboard:
-    description: "Local node with dashboard"
-    services:
-      triadic_brain: { }
-      dashboard:
-        type: http_server
-        root: out/run_dashboard
-        port: 8000
+local_plus_dashboard:
+  name: "local_plus_dashboard"
+  services:
+    - type: python
+      script: triadic_brain/run_wrapper.py
+      args: ["--input-text", "Dashboard input", "--out-dir", "out/run_dash", "--emit-tel", "--emit-tel-events"]
+    - type: http_server
+      root: out/run_dash
+      port: 8000
 
-  federated_two_node:
-    description: "Two-node federation"
-    nodes:
-      - name: nodeA
-        config: local_single_node
-      - name: nodeB
-        config: local_single_node
-    federation:
-      shared_artifacts: ["telemetry.json", "tel_summary.json", "artifact_manifest.json"]
+federated_two_node:
+  name: "federated_two_node"
+  nodes:
+    - name: nodeA
+      config: config/local_single_node.yaml
+    - name: nodeB
+      config: config/local_single_node.yaml
+  federation:
+    shared_artifacts: ["telemetry.json", "tel_summary.json", "artifact_manifest.json"]
 
-  federated_mesh:
-    description: "Mesh federation"
-    nodes:
-      - name: node1
-        config: local_plus_dashboard
-      - name: node2
-        config: local_plus_dashboard
-      - name: node3
-        config: local_plus_dashboard
-    federation:
-      protocol: P2P
-      artifact_repos: ["gh:uvlm/triadic-summaries"]
+federated_mesh:
+  name: "federated_mesh"
+  nodes:
+    - name: node1
+      config: config/local_plus_dashboard.yaml
+    - name: node2
+      config: config/local_plus_dashboard.yaml
+    - name: node3
+      config: config/local_plus_dashboard.yaml
+  federation:
+    protocol: "P2P"
+    artifact_repos: ["gh:uvlm/triadic-summaries"]
+    shared_artifacts: ["telemetry.json", "tel_summary.json", "artifact_manifest.json"]

@@ -1,38 +1,37 @@
-export const NAVIGATION_CLASSES = {
-  highPsi: 'nav-psi-high',
-  highRisk: 'nav-risk-high'
-};
+export const NAVIGATION_CLASSES = ['nav-psi-high', 'nav-risk-high'];
 
-export const NAVIGATION_RESETTABLE_CLASSES = [
-  NAVIGATION_CLASSES.highPsi,
-  NAVIGATION_CLASSES.highRisk
-];
+export const NAVIGATION_RESETTABLE_CLASSES = [...NAVIGATION_CLASSES];
 
 export function applyNavigationOverlay(cy, state) {
   if (!cy || !state) return;
-  if (state.advisory === 'watch' && state.next_state_id) {
-    cy.getElementById(state.next_state_id).addClass(NAVIGATION_CLASSES.highPsi);
+  const chosen = state.chosen_state ?? state.result?.chosen_state ?? {};
+  const psi = chosen.psi ?? 0;
+  if (psi > 0.8) {
+    cy.nodes().addClass('nav-psi-high');
   }
-  if (state.risk === 'high' && state.next_state_id) {
-    cy.getElementById(state.next_state_id).addClass(NAVIGATION_CLASSES.highRisk);
+  if ((chosen.lambda_critical ?? 0) > 0.8) {
+    cy.nodes().addClass('nav-risk-high');
   }
 }
 
 export function clearNavigationOverlay(cy) {
   if (!cy) return;
-  cy.nodes().removeClass(NAVIGATION_CLASSES.highPsi)
-    .removeClass(NAVIGATION_CLASSES.highRisk);
+  cy.nodes().removeClass(NAVIGATION_CLASSES.join(' '));
 }
 
-export function bindNavigationToggle() {
-  const toggleEl = document.getElementById('toggle-navigation');
+export function bindNavigationToggle(toggleElemId) {
+  const toggleEl = document.getElementById(toggleElemId);
   if (!toggleEl) return;
   toggleEl.addEventListener('change', (e) => {
-    if (e.target.checked) {
-      const state = window.__bridgeArtifacts?.navigation_state?.result;
-      if (state) applyNavigationOverlay(window.cy, state);
-    } else {
+    if (window.cy) {
       clearNavigationOverlay(window.cy);
+      if (e.target.checked) {
+        applyNavigationOverlay(window.cy, window.__bridgeArtifacts?.navigation_state);
+      }
     }
   });
+}
+
+if (typeof window !== 'undefined') {
+  window.bindNavigationToggle = bindNavigationToggle;
 }
