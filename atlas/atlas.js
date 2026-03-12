@@ -12,12 +12,12 @@ import { applyDriftVisualization, loadDriftOverlay } from './driftVisualization.
 import { applyTerraceOverlay, bindTerraceOverlayToggle, terraceResettableClasses } from './telTerraceOverlay.js';
 import { applyOrthodoxyCorridorOverlay, bindOrthodoxyCorridorToggles, orthodoxyResettableClasses } from './telOrthodoxyOverlay.js';
 import { applySchismOverlay, bindSchismOverlayToggle, schismResettableClasses } from './telSchismOverlay.js';
-import { applyRebraidOverlay, bindRebraidOverlayToggle, rebraidResettableClasses } from './telRebraidOverlay.js';
+import { applyRebraidOverlay, clearRebraidOverlay, bindRebraidOverlayToggle, rebraidResettableClasses } from './telRebraidOverlay.js';
 import { applyCorridorOverlay, bindCorridorOverlayToggle, corridorResettableClasses } from './telCorridorOverlay.js';
-import { applyRiverOverlay, bindRiverOverlayToggle, riverResettableClasses } from './telRiverOverlay.js';
-import { applyDeltaOverlay, bindDeltaOverlayToggle, deltaResettableClasses } from './telDeltaOverlay.js';
-import { applyRuptureOverlay, bindRuptureOverlayToggle, ruptureResettableClasses } from './telRuptureOverlay.js';
-import { applyCascadeOverlay, bindCascadeOverlayToggle, cascadeResettableClasses } from './telCascadeOverlay.js';
+import { applyRiverOverlay, clearRiverOverlay, bindRiverOverlayToggle, riverResettableClasses } from './telRiverOverlay.js';
+import { applyDeltaOverlay, clearDeltaOverlay, bindDeltaOverlayToggle, deltaResettableClasses } from './telDeltaOverlay.js';
+import { applyRuptureOverlay, clearRuptureOverlay, bindRuptureOverlayToggle, ruptureResettableClasses } from './telRuptureOverlay.js';
+import { applyCascadeOverlay, clearCascadeOverlay, bindCascadeOverlayToggle, cascadeResettableClasses } from './telCascadeOverlay.js';
 
 const graphContainer = document.getElementById('graph');
 const detailEl = document.getElementById('details');
@@ -589,7 +589,7 @@ async function main() {
         }
       },
       {
-        selector: '.river-node, .river-highlight',
+        selector: '.river-node, .river-highlight, .river-flowing',
         style: {
           'background-color': 'rgba(88, 221, 255, 0.84)',
           'border-color': '#bcf4ff',
@@ -597,7 +597,7 @@ async function main() {
         }
       },
       {
-        selector: '.delta-node, .delta-highlight',
+        selector: '.delta-node, .delta-highlight, .delta-forming',
         style: {
           'background-color': 'rgba(225, 98, 255, 0.84)',
           'border-color': '#f1b1ff',
@@ -605,10 +605,10 @@ async function main() {
         }
       },
       {
-        selector: '.rupture-node, .rupture-highlight',
+        selector: '.rupture-node, .rupture-highlight, .rupture-looming',
         style: {
-          'background-color': 'rgba(245, 74, 74, 0.86)',
-          'border-color': '#ffb1b1',
+          'background-color': 'rgba(255, 165, 0, 0.22)',
+          'border-color': '#ffa500',
           'border-width': 2.7
         }
       },
@@ -616,12 +616,47 @@ async function main() {
       {
         selector: '.cascade-strong',
         style: {
-          'line-color': '#ffd166',
-          'target-arrow-color': '#ffd166',
-          'width': 3.2,
-          'border-color': '#ffd166',
+          'background-color': '#00ffff',
+          'line-color': '#00ffff',
+          'target-arrow-color': '#00ffff',
+          'width': 3.4,
+          'border-color': '#00ffff',
+          'border-width': 4,
+          'overlay-color': 'rgba(0, 255, 255, 0.25)',
+          'overlay-opacity': 0.18,
+          'overlay-padding': 3
+        }
+      },
+      {
+        selector: '.cascade-risk',
+        style: {
+          'border-style': 'dashed',
+          'border-color': '#ff00ff',
+          'border-width': 3,
+          'overlay-color': 'rgba(255, 0, 255, 0.18)',
+          'overlay-opacity': 0.14,
+          'overlay-padding': 2
+        }
+      },
+      {
+        selector: '.cascade-safe',
+        style: {
+          'border-style': 'solid',
+          'border-color': '#00ff00',
+          'border-width': 3,
+          'overlay-color': 'rgba(0, 255, 0, 0.14)',
+          'overlay-opacity': 0.1,
+          'overlay-padding': 2
+        }
+      },
+      {
+        selector: '.rebraid-strong',
+        style: {
+          'background-color': '#ff00ff',
+          'border-color': '#ff00ff',
+          'border-style': 'dashed',
           'border-width': 2.8,
-          'overlay-color': 'rgba(255, 209, 102, 0.25)',
+          'overlay-color': 'rgba(255, 0, 255, 0.24)',
           'overlay-opacity': 0.18,
           'overlay-padding': 3
         }
@@ -2286,6 +2321,15 @@ async function main() {
     maxIndex: timeline.events.length - 1
   });
 
+
+  function resetOverlays() {
+    clearRiverOverlay(cy);
+    clearDeltaOverlay(cy);
+    clearRuptureOverlay(cy);
+    clearCascadeOverlay(cy);
+    clearRebraidOverlay(cy);
+  }
+
   function reapplyPublisherOverlays() {
     applyAttentionOverlay(cy, attentionOverlay);
     timelineEngine.refreshConceptVisuals();
@@ -2298,9 +2342,12 @@ async function main() {
     applySchismOverlay(cy, showSchismRiskEl ? Boolean(showSchismRiskEl.checked) : true);
     applyRebraidOverlay(cy, showRebraidSignalsEl ? Boolean(showRebraidSignalsEl.checked) : true);
     applyCorridorOverlay(cy, showCorridorPathsEl ? Boolean(showCorridorPathsEl.checked) : true);
-    applyRiverOverlay(cy, showRiverFlowEl ? Boolean(showRiverFlowEl.checked) : true);
-    applyDeltaOverlay(cy, showKnowledgeDeltasEl ? Boolean(showKnowledgeDeltasEl.checked) : true);
-    applyRuptureOverlay(cy, showRuptureSignalsEl ? Boolean(showRuptureSignalsEl.checked) : true);
+    clearRiverOverlay(cy);
+    if (showRiverFlowEl ? Boolean(showRiverFlowEl.checked) : true) applyRiverOverlay(cy);
+    clearDeltaOverlay(cy);
+    if (showKnowledgeDeltasEl ? Boolean(showKnowledgeDeltasEl.checked) : true) applyDeltaOverlay(cy);
+    clearRuptureOverlay(cy);
+    if (showRuptureSignalsEl ? Boolean(showRuptureSignalsEl.checked) : true) applyRuptureOverlay(cy);
     applyCascadeOverlay(cy, showCascadeHealthEl ? Boolean(showCascadeHealthEl.checked) : true);
   }
 
@@ -2329,15 +2376,18 @@ async function main() {
   });
 
   bindRiverOverlayToggle(cy, showRiverFlowEl, () => {
-    applyRiverOverlay(cy, showRiverFlowEl ? Boolean(showRiverFlowEl.checked) : true);
+    clearRiverOverlay(cy);
+    if (showRiverFlowEl ? Boolean(showRiverFlowEl.checked) : true) applyRiverOverlay(cy);
   });
 
   bindDeltaOverlayToggle(cy, showKnowledgeDeltasEl, () => {
-    applyDeltaOverlay(cy, showKnowledgeDeltasEl ? Boolean(showKnowledgeDeltasEl.checked) : true);
+    clearDeltaOverlay(cy);
+    if (showKnowledgeDeltasEl ? Boolean(showKnowledgeDeltasEl.checked) : true) applyDeltaOverlay(cy);
   });
 
   bindRuptureOverlayToggle(cy, showRuptureSignalsEl, () => {
-    applyRuptureOverlay(cy, showRuptureSignalsEl ? Boolean(showRuptureSignalsEl.checked) : true);
+    clearRuptureOverlay(cy);
+    if (showRuptureSignalsEl ? Boolean(showRuptureSignalsEl.checked) : true) applyRuptureOverlay(cy);
   });
 
   bindCascadeOverlayToggle(cy, showCascadeHealthEl, () => {
@@ -2351,6 +2401,7 @@ async function main() {
   });
 
   timelineEngine.onStateChange(() => {
+    resetOverlays();
     reapplyPublisherOverlays();
     constellationApi.refresh();
   });
@@ -2408,7 +2459,7 @@ async function main() {
   resetEl.addEventListener('click', () => {
     searchEl.value = '';
     typeFilterEl.value = 'all';
-    cy.elements().removeClass('zoom-hidden filter-hidden highlight spotlight-dim spotlight-focus sonya-candidate reasoning-thread reasoning-watch stability-positive stability-watch multimodal-donation multimodal-watch review-candidate watch-queue governance-review governance-watch constitutional-watch constitutional-freeze deliberation-docket deliberation-watch deliberation-urgent anti-capture-watch continuity-docket continuity-watch continuity-fragile continuity-freeze recovery-docket recovery-watch escrow-ready recovery-fragile attestation-docket attestation-watch witness-sufficient attestation-sensitive precedent-docket precedent-watch precedent-divergent precedent-strong scenario-docket scenario-watch scenario-freeze scenario-rehearse-recovery institutional-status-indicator chamber-conflict-indicator system-health-overview queue-health-actionable backlog-pressure-watch review-fatigue-watch metric-gaming-watch load-shedding-recommended priority-actionable triage-watch urgency-high priority-critical triage-conflict investigation-active investigation-stage-mid investigation-stage-late investigation-plan-progressing investigation-blocked dependency-graph-linked authority-gated weak-evidence-signal authority-mismatch propagation-restricted maturity-gated review-packet-ready review-packet-watch packet-ambiguity-high uncertainty-disclosed synthesis-bounded pattern-cluster-active cross-case-hints pattern-maturity-stable pattern-conflict pattern-timeline-active persistence-stable temporal-conflict-marker causal-bundle-active mechanism-candidate explanatory-gap-high prohibited-conclusion causal-conflict-marker collaborative-review-active consensus-provisional dissent-present collaborative-maturity-bound telemetry-field-active lattice-transition donor-pattern-active taf-elevated branch-novel branch-maturity-bound branch-lifecycle-active branch-conflict-graph branch-decay-indicator branch-reinforcement-trend branch-contradiction-trend forecast-accuracy-high calibration-improving branch-reliability-stable prediction-timeline-active experimental-active falsification-ready replication-defined theory-gate-hold theory-corpus-active theory-negative-results theory-revision-lineage theory-competition-open agency-mode-active agency-volitional-edge agency-deterministic-edge agency-vhat-provisional agency-governance-bounded agency-consent-required agency-blame-suppressed responsibility-active support-pathway-defined consent-required coercion-ceiling-strict sanction-suppressed intervention-bounded transfer-active transfer-asymmetry-high transfer-replication-gated transfer-prohibited-claims transfer-risk-elevated system-forecast-active regime-transition-probable entropy-accumulating branch-ecosystem-fragile trajectory-divergent uncertainty-gradient-high information-gain-high experiment-priority-high entropy-reduction-positive curiosity-active value-alignment-active knowledge-priority-top welfare-impact-positive fairness-impact-watch value-risk-flagged meta-active reasoning-efficiency-high donor-reliability-high governance-constraint-strong discovery-productive architecture-active module-performance-strong architecture-discovery-productive safeguard-performance-strong architecture-proposal-queued social-entropy-active social-status-fraying cohesion-fragile legitimacy-drift-elevated reviewer-concentration-high reviewer-fatigue-high repair-priority-high federation-active federation-status-coherent stewardship-node-distributed dissent-portable capture-risk-elevated mitigation-required emergent-domain-active domain-status-emergent invariant-pattern-convergent field-birth-pressure-high domain-boundary-failure-active commons-legibility-required trust-presentation-degraded commons-sovereignty-active commons-integrity-fragile institutional-capture-risk-elevated public-trust-unstable epistemic-diversity-high civilizational-dissent-portable civilizational-memory-active preservation-criticality-high legibility-drifting vocabulary-drift-risk-high notation-fragility-high memory-recoverability-strong custody-diversity-high operationalization-active operational-status-bounded-ready maturity-class-field-tested deployment-readiness-bounded dead-zone-adjacent translation-risk-watch safeguards-required commons-review-required discovery-navigation-active discovery-status-active discovery-vector-cross-domain discovery-bridge-emergent discovery-corridor-bounded discovery-dead-zone-adjacent discovery-memory-supported discovery-commons-review-required discovery-risk-watch discovery-repair-corridor discovery-distortion-risk discovery-river-seed discovery-river-formation ' + terraceResettableClasses().concat(orthodoxyResettableClasses(), schismResettableClasses(), rebraidResettableClasses(), corridorResettableClasses(), riverResettableClasses(), deltaResettableClasses(), ruptureResettableClasses(), cascadeResettableClasses()).join(' '));
+    cy.elements().removeClass('zoom-hidden filter-hidden highlight spotlight-dim spotlight-focus sonya-candidate reasoning-thread reasoning-watch stability-positive stability-watch multimodal-donation multimodal-watch review-candidate watch-queue governance-review governance-watch constitutional-watch constitutional-freeze deliberation-docket deliberation-watch deliberation-urgent anti-capture-watch continuity-docket continuity-watch continuity-fragile continuity-freeze recovery-docket recovery-watch escrow-ready recovery-fragile attestation-docket attestation-watch witness-sufficient attestation-sensitive precedent-docket precedent-watch precedent-divergent precedent-strong scenario-docket scenario-watch scenario-freeze scenario-rehearse-recovery institutional-status-indicator chamber-conflict-indicator system-health-overview queue-health-actionable backlog-pressure-watch review-fatigue-watch metric-gaming-watch load-shedding-recommended priority-actionable triage-watch urgency-high priority-critical triage-conflict investigation-active investigation-stage-mid investigation-stage-late investigation-plan-progressing investigation-blocked dependency-graph-linked authority-gated weak-evidence-signal authority-mismatch propagation-restricted maturity-gated review-packet-ready review-packet-watch packet-ambiguity-high uncertainty-disclosed synthesis-bounded pattern-cluster-active cross-case-hints pattern-maturity-stable pattern-conflict pattern-timeline-active persistence-stable temporal-conflict-marker causal-bundle-active mechanism-candidate explanatory-gap-high prohibited-conclusion causal-conflict-marker collaborative-review-active consensus-provisional dissent-present collaborative-maturity-bound telemetry-field-active lattice-transition donor-pattern-active taf-elevated branch-novel branch-maturity-bound branch-lifecycle-active branch-conflict-graph branch-decay-indicator branch-reinforcement-trend branch-contradiction-trend forecast-accuracy-high calibration-improving branch-reliability-stable prediction-timeline-active experimental-active falsification-ready replication-defined theory-gate-hold theory-corpus-active theory-negative-results theory-revision-lineage theory-competition-open agency-mode-active agency-volitional-edge agency-deterministic-edge agency-vhat-provisional agency-governance-bounded agency-consent-required agency-blame-suppressed responsibility-active support-pathway-defined consent-required coercion-ceiling-strict sanction-suppressed intervention-bounded transfer-active transfer-asymmetry-high transfer-replication-gated transfer-prohibited-claims transfer-risk-elevated system-forecast-active regime-transition-probable entropy-accumulating branch-ecosystem-fragile trajectory-divergent uncertainty-gradient-high information-gain-high experiment-priority-high entropy-reduction-positive curiosity-active value-alignment-active knowledge-priority-top welfare-impact-positive fairness-impact-watch value-risk-flagged meta-active reasoning-efficiency-high donor-reliability-high governance-constraint-strong discovery-productive architecture-active module-performance-strong architecture-discovery-productive safeguard-performance-strong architecture-proposal-queued social-entropy-active social-status-fraying cohesion-fragile legitimacy-drift-elevated reviewer-concentration-high reviewer-fatigue-high repair-priority-high federation-active federation-status-coherent stewardship-node-distributed dissent-portable capture-risk-elevated mitigation-required emergent-domain-active domain-status-emergent invariant-pattern-convergent field-birth-pressure-high domain-boundary-failure-active commons-legibility-required trust-presentation-degraded commons-sovereignty-active commons-integrity-fragile institutional-capture-risk-elevated public-trust-unstable epistemic-diversity-high civilizational-dissent-portable civilizational-memory-active preservation-criticality-high legibility-drifting vocabulary-drift-risk-high notation-fragility-high memory-recoverability-strong custody-diversity-high operationalization-active operational-status-bounded-ready maturity-class-field-tested deployment-readiness-bounded dead-zone-adjacent translation-risk-watch safeguards-required commons-review-required discovery-navigation-active discovery-status-active discovery-vector-cross-domain discovery-bridge-emergent discovery-corridor-bounded discovery-dead-zone-adjacent discovery-memory-supported discovery-commons-review-required discovery-risk-watch discovery-repair-corridor discovery-distortion-risk discovery-river-seed discovery-river-formation ' + terraceResettableClasses().concat(orthodoxyResettableClasses(), schismResettableClasses(), rebraidResettableClasses(), corridorResettableClasses(), riverResettableClasses, deltaResettableClasses, ruptureResettableClasses, cascadeResettableClasses).join(' '));
     constellationApi.clear();
     cy.fit(cy.elements(':visible'), 60);
     setDefaultPanel(detailEl);
