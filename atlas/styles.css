@@ -200,3 +200,19 @@ body {
   overlay-opacity: 0.14;
   overlay-padding: 2px;
 }
+
+.river-flowing {
+  border-color: #00f;
+}
+
+.delta-forming {
+  border-color: #0a0;
+}
+
+.rupture-looming {
+  border-color: #f00;
+}
+
+.cascade-strong {
+  border-color: #fa0;
+}
