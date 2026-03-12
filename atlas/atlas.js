@@ -616,12 +616,24 @@ async function main() {
       {
         selector: '.cascade-strong',
         style: {
-          'line-color': '#ffd166',
-          'target-arrow-color': '#ffd166',
+          'background-color': '#aaffaa',
+          'line-color': '#aaffaa',
+          'target-arrow-color': '#aaffaa',
           'width': 3.2,
-          'border-color': '#ffd166',
+          'border-color': '#aaffaa',
           'border-width': 2.8,
-          'overlay-color': 'rgba(255, 209, 102, 0.25)',
+          'overlay-color': 'rgba(170, 255, 170, 0.25)',
+          'overlay-opacity': 0.18,
+          'overlay-padding': 3
+        }
+      },
+      {
+        selector: '.rebraid-strong',
+        style: {
+          'background-color': '#aaaaff',
+          'border-color': '#aaaaff',
+          'border-width': 2.8,
+          'overlay-color': 'rgba(170, 170, 255, 0.24)',
           'overlay-opacity': 0.18,
           'overlay-padding': 3
         }

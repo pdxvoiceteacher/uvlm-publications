@@ -82,7 +82,7 @@ class TelTerraceOverlayAssetsTests(unittest.TestCase):
         js = Path('atlas/telRebraidOverlay.js').read_text(encoding='utf-8')
         self.assertIn('clearRebraidOverlay', js)
         self.assertIn('applyRebraidOverlay', js)
-        self.assertIn('cascade-strong', js)
+        self.assertIn('rebraid-strong', js)
 
     def test_corridor_river_delta_rupture_modules_have_advisory_labels(self) -> None:
         corridor_js = Path('atlas/telCorridorOverlay.js').read_text(encoding='utf-8')
@@ -97,7 +97,8 @@ class TelTerraceOverlayAssetsTests(unittest.TestCase):
     def test_cascade_overlay_module_has_advisory_labels(self) -> None:
         js = Path('atlas/telCascadeOverlay.js').read_text(encoding='utf-8')
         self.assertIn('cascade-strong', js)
-        self.assertIn('signal >= 0.5', js)
+        self.assertIn('cascadeHealth', js)
+        self.assertIn('> 0.5', js)
 
 if __name__ == '__main__':
     unittest.main()

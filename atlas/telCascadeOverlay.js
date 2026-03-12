@@ -3,9 +3,18 @@ export const cascadeResettableClasses = ['cascade-strong'];
 export function applyCascadeOverlay(cy, signal = 0) {
   cy.elements().removeClass(cascadeResettableClasses.join(' '));
 
-  if (signal >= 0.5) {
-    cy.elements().addClass('cascade-strong');
+export function applyCascadeOverlay(cy, enabled = true) {
+  cy.elements().removeClass(cascadeResettableClasses.join(' '));
+  if (!enabled) {
+    return;
   }
+
+  cy.nodes().forEach((node) => {
+    const health = asNumber(node.data('cascadeHealth'), NaN);
+    if (Number.isFinite(health) && health > 0.5) {
+      node.addClass('cascade-strong');
+    }
+  });
 }
 
 export function bindCascadeOverlayToggle(cy, toggleEl, reapply) {

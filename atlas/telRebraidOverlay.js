@@ -1,17 +1,22 @@
-export const rebraidResettableClasses = ['cascade-strong'];
+export const rebraidResettableClasses = ['rebraid-strong'];
 
-export function applyRebraidOverlay(cy, enabledOrSignal = true) {
+function asBoolean(value) {
+  if (typeof value === 'boolean') return value;
+  const normalized = String(value ?? '').toLowerCase();
+  return normalized === 'true' || normalized === '1' || normalized === 'yes' || normalized === 'alert' || normalized === 'high';
+}
+
+export function applyRebraidOverlay(cy, enabled = true) {
   cy.elements().removeClass(rebraidResettableClasses.join(' '));
-
-  const signal = typeof enabledOrSignal === 'number'
-    ? enabledOrSignal
-    : (enabledOrSignal ? 1 : 0);
-
-  if (signal <= 0) {
+  if (!enabled) {
     return;
   }
 
-  cy.elements().addClass('cascade-strong');
+  cy.nodes().forEach((node) => {
+    if (asBoolean(node.data('rebraidAlert'))) {
+      node.addClass('rebraid-strong');
+    }
+  });
 }
 
 export function clearRebraidOverlay(cy) {
@@ -27,7 +32,7 @@ export function bindRebraidOverlayToggle(cy, toggleEl, reapply) {
   }
 
   resolvedToggle.addEventListener('change', () => {
-    applyRebraidOverlay(cy, resolvedToggle.checked ? 1 : 0);
+    applyRebraidOverlay(cy, Boolean(resolvedToggle.checked));
     if (typeof reapply === 'function') {
       reapply();
     }
