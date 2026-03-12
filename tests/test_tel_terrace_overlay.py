@@ -97,8 +97,18 @@ class TelTerraceOverlayAssetsTests(unittest.TestCase):
         rupture_js = Path('atlas/telRuptureOverlay.js').read_text(encoding='utf-8')
         self.assertIn('Advisory only, not authoritative', corridor_js)
         self.assertIn('river-flowing', river_js)
+        self.assertIn('clearRiverOverlay', river_js)
+        self.assertIn('riverFlow', river_js)
         self.assertIn('delta-forming', delta_js)
+        self.assertIn('clearDeltaOverlay', delta_js)
+        self.assertIn('deltaStrength', delta_js)
         self.assertIn('rupture-looming', rupture_js)
+        self.assertIn('clearRuptureOverlay', rupture_js)
+        self.assertIn('ruptureAlert', rupture_js)
+        css = Path('atlas/styles.css').read_text(encoding='utf-8')
+        self.assertIn('.node.river-flowing', css)
+        self.assertIn('.node.delta-forming', css)
+        self.assertIn('.node.rupture-looming', css)
 
 
     def test_rebraid_and_cascade_toggle_bindings_call_apply_and_clear(self) -> None:

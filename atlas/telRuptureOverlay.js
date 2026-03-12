@@ -1,16 +1,30 @@
 export const ruptureResettableClasses = ['rupture-looming'];
 
-export function applyRuptureOverlay(cy, enabled = true) {
-  cy.elements().removeClass(ruptureResettableClasses.join(' '));
-  if (!enabled) return;
+function asBoolean(value) {
+  if (typeof value === 'boolean') return value;
+  const normalized = String(value ?? '').toLowerCase();
+  return normalized === 'true' || normalized === '1' || normalized === 'yes' || normalized === 'alert' || normalized === 'high';
+}
 
-  cy.elements().addClass('rupture-looming');
+export function applyRuptureOverlay(cy) {
+  cy.nodes().forEach((node) => {
+    if (asBoolean(node.data('ruptureAlert'))) {
+      node.addClass('rupture-looming');
+    }
+  });
+}
+
+export function clearRuptureOverlay(cy) {
+  cy.nodes().removeClass(ruptureResettableClasses.join(' '));
 }
 
 export function bindRuptureOverlayToggle(cy, toggleEl, reapply) {
-  if (!toggleEl) return;
-  toggleEl.addEventListener('change', () => {
-    applyRuptureOverlay(cy, Boolean(toggleEl.checked));
+  const checkbox = toggleEl ?? document.getElementById('toggle-rupture');
+  if (!checkbox) return;
+
+  checkbox.addEventListener('change', () => {
+    if (checkbox.checked) applyRuptureOverlay(cy);
+    else clearRuptureOverlay(cy);
     if (typeof reapply === 'function') reapply();
   });
 }

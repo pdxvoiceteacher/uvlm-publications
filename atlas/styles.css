@@ -202,15 +202,21 @@ body {
 }
 
 .river-flowing {
-  border-color: #00f;
+  border-color: blue;
+  border-width: 4px;
+  background-color: rgba(0,0,255,0.1);
 }
 
 .delta-forming {
-  border-color: #0a0;
+  border-color: green;
+  border-width: 4px;
+  background-color: rgba(0,255,0,0.1);
 }
 
 .rupture-looming {
-  border-color: #f00;
+  border-color: orange;
+  border-width: 4px;
+  background-color: rgba(255,165,0,0.1);
 }
 
 .cascade-strong {
@@ -240,4 +246,25 @@ body {
   border-style: solid;
   border-color: #00FF00;
   border-width: 3px;
+}
+
+
+.node.river-flowing {
+  border-color: blue;
+  border-width: 4px;
+  background-color: rgba(0,0,255,0.1);
+}
+
+
+.node.delta-forming {
+  border-color: green;
+  border-width: 4px;
+  background-color: rgba(0,255,0,0.1);
+}
+
+
+.node.rupture-looming {
+  border-color: orange;
+  border-width: 4px;
+  background-color: rgba(255,165,0,0.1);
 }

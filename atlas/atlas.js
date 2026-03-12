@@ -12,12 +12,12 @@ import { applyDriftVisualization, loadDriftOverlay } from './driftVisualization.
 import { applyTerraceOverlay, bindTerraceOverlayToggle, terraceResettableClasses } from './telTerraceOverlay.js';
 import { applyOrthodoxyCorridorOverlay, bindOrthodoxyCorridorToggles, orthodoxyResettableClasses } from './telOrthodoxyOverlay.js';
 import { applySchismOverlay, bindSchismOverlayToggle, schismResettableClasses } from './telSchismOverlay.js';
-import { applyRebraidOverlay, bindRebraidOverlayToggle, rebraidResettableClasses } from './telRebraidOverlay.js';
+import { applyRebraidOverlay, clearRebraidOverlay, bindRebraidOverlayToggle, rebraidResettableClasses } from './telRebraidOverlay.js';
 import { applyCorridorOverlay, bindCorridorOverlayToggle, corridorResettableClasses } from './telCorridorOverlay.js';
-import { applyRiverOverlay, bindRiverOverlayToggle, riverResettableClasses } from './telRiverOverlay.js';
-import { applyDeltaOverlay, bindDeltaOverlayToggle, deltaResettableClasses } from './telDeltaOverlay.js';
-import { applyRuptureOverlay, bindRuptureOverlayToggle, ruptureResettableClasses } from './telRuptureOverlay.js';
-import { applyCascadeOverlay, bindCascadeOverlayToggle, cascadeResettableClasses } from './telCascadeOverlay.js';
+import { applyRiverOverlay, clearRiverOverlay, bindRiverOverlayToggle, riverResettableClasses } from './telRiverOverlay.js';
+import { applyDeltaOverlay, clearDeltaOverlay, bindDeltaOverlayToggle, deltaResettableClasses } from './telDeltaOverlay.js';
+import { applyRuptureOverlay, clearRuptureOverlay, bindRuptureOverlayToggle, ruptureResettableClasses } from './telRuptureOverlay.js';
+import { applyCascadeOverlay, clearCascadeOverlay, bindCascadeOverlayToggle, cascadeResettableClasses } from './telCascadeOverlay.js';
 
 const graphContainer = document.getElementById('graph');
 const detailEl = document.getElementById('details');
@@ -589,7 +589,7 @@ async function main() {
         }
       },
       {
-        selector: '.river-node, .river-highlight',
+        selector: '.river-node, .river-highlight, .river-flowing',
         style: {
           'background-color': 'rgba(88, 221, 255, 0.84)',
           'border-color': '#bcf4ff',
@@ -597,7 +597,7 @@ async function main() {
         }
       },
       {
-        selector: '.delta-node, .delta-highlight',
+        selector: '.delta-node, .delta-highlight, .delta-forming',
         style: {
           'background-color': 'rgba(225, 98, 255, 0.84)',
           'border-color': '#f1b1ff',
@@ -605,10 +605,10 @@ async function main() {
         }
       },
       {
-        selector: '.rupture-node, .rupture-highlight',
+        selector: '.rupture-node, .rupture-highlight, .rupture-looming',
         style: {
-          'background-color': 'rgba(245, 74, 74, 0.86)',
-          'border-color': '#ffb1b1',
+          'background-color': 'rgba(255, 165, 0, 0.22)',
+          'border-color': '#ffa500',
           'border-width': 2.7
         }
       },
@@ -2321,6 +2321,15 @@ async function main() {
     maxIndex: timeline.events.length - 1
   });
 
+
+  function resetOverlays() {
+    clearRiverOverlay(cy);
+    clearDeltaOverlay(cy);
+    clearRuptureOverlay(cy);
+    clearCascadeOverlay(cy);
+    clearRebraidOverlay(cy);
+  }
+
   function reapplyPublisherOverlays() {
     applyAttentionOverlay(cy, attentionOverlay);
     timelineEngine.refreshConceptVisuals();
@@ -2333,9 +2342,12 @@ async function main() {
     applySchismOverlay(cy, showSchismRiskEl ? Boolean(showSchismRiskEl.checked) : true);
     applyRebraidOverlay(cy, showRebraidSignalsEl ? Boolean(showRebraidSignalsEl.checked) : true);
     applyCorridorOverlay(cy, showCorridorPathsEl ? Boolean(showCorridorPathsEl.checked) : true);
-    applyRiverOverlay(cy, showRiverFlowEl ? Boolean(showRiverFlowEl.checked) : true);
-    applyDeltaOverlay(cy, showKnowledgeDeltasEl ? Boolean(showKnowledgeDeltasEl.checked) : true);
-    applyRuptureOverlay(cy, showRuptureSignalsEl ? Boolean(showRuptureSignalsEl.checked) : true);
+    clearRiverOverlay(cy);
+    if (showRiverFlowEl ? Boolean(showRiverFlowEl.checked) : true) applyRiverOverlay(cy);
+    clearDeltaOverlay(cy);
+    if (showKnowledgeDeltasEl ? Boolean(showKnowledgeDeltasEl.checked) : true) applyDeltaOverlay(cy);
+    clearRuptureOverlay(cy);
+    if (showRuptureSignalsEl ? Boolean(showRuptureSignalsEl.checked) : true) applyRuptureOverlay(cy);
     applyCascadeOverlay(cy, showCascadeHealthEl ? Boolean(showCascadeHealthEl.checked) : true);
   }
 
@@ -2364,15 +2376,18 @@ async function main() {
   });
 
   bindRiverOverlayToggle(cy, showRiverFlowEl, () => {
-    applyRiverOverlay(cy, showRiverFlowEl ? Boolean(showRiverFlowEl.checked) : true);
+    clearRiverOverlay(cy);
+    if (showRiverFlowEl ? Boolean(showRiverFlowEl.checked) : true) applyRiverOverlay(cy);
   });
 
   bindDeltaOverlayToggle(cy, showKnowledgeDeltasEl, () => {
-    applyDeltaOverlay(cy, showKnowledgeDeltasEl ? Boolean(showKnowledgeDeltasEl.checked) : true);
+    clearDeltaOverlay(cy);
+    if (showKnowledgeDeltasEl ? Boolean(showKnowledgeDeltasEl.checked) : true) applyDeltaOverlay(cy);
   });
 
   bindRuptureOverlayToggle(cy, showRuptureSignalsEl, () => {
-    applyRuptureOverlay(cy, showRuptureSignalsEl ? Boolean(showRuptureSignalsEl.checked) : true);
+    clearRuptureOverlay(cy);
+    if (showRuptureSignalsEl ? Boolean(showRuptureSignalsEl.checked) : true) applyRuptureOverlay(cy);
   });
 
   bindCascadeOverlayToggle(cy, showCascadeHealthEl, () => {
@@ -2386,6 +2401,7 @@ async function main() {
   });
 
   timelineEngine.onStateChange(() => {
+    resetOverlays();
     reapplyPublisherOverlays();
     constellationApi.refresh();
   });
