@@ -1,5 +1,4 @@
-const CASCADE_THRESHOLD = 1.0;
-const CASCADE_RESETTABLE_CLASSES = ['cascade-strong'];
+export const cascadeResettableClasses = ['cascade-strong'];
 
 function asNumber(value, fallback = 0) {
   if (typeof value === 'number' && Number.isFinite(value)) return value;
@@ -11,16 +10,15 @@ function asNumber(value, fallback = 0) {
 }
 
 export function applyCascadeOverlay(cy, enabled = true) {
-  cy.elements().removeClass(CASCADE_RESETTABLE_CLASSES.join(' '));
+  cy.elements().removeClass(cascadeResettableClasses.join(' '));
   if (!enabled) {
     return;
   }
 
-  cy.elements().forEach((ele) => {
-    const signal = asNumber(ele.data('cascadeSignal'), NaN);
-    if (Number.isFinite(signal) && signal >= CASCADE_THRESHOLD) {
-      ele.addClass('cascade-strong');
-      ele.data('cascadeAdvisory', 'Advisory only, not authoritative: cascade hotspot (strong propagation) indicator.');
+  cy.nodes().forEach((node) => {
+    const health = asNumber(node.data('cascadeHealth'), NaN);
+    if (Number.isFinite(health) && health > 0.5) {
+      node.addClass('cascade-strong');
     }
   });
 }
@@ -35,8 +33,4 @@ export function bindCascadeOverlayToggle(cy, toggleEl, reapply) {
       reapply();
     }
   });
-}
-
-export function cascadeResettableClasses() {
-  return [...CASCADE_RESETTABLE_CLASSES];
 }
