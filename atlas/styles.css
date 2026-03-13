@@ -200,3 +200,108 @@ body {
   overlay-opacity: 0.14;
   overlay-padding: 2px;
 }
+
+.river-flowing {
+  border-color: blue;
+  border-width: 4px;
+  background-color: rgba(0,0,255,0.1);
+}
+
+.delta-forming {
+  border-color: green;
+  border-width: 4px;
+  background-color: rgba(0,255,0,0.1);
+}
+
+.rupture-looming {
+  border-color: orange;
+  border-width: 4px;
+  background-color: rgba(255,165,0,0.1);
+}
+
+.cascade-strong {
+  border-color: #00ffff;
+  border-width: 3px;
+}
+
+
+.rebraid-strong {
+  border-color: #ff00ff;
+  border-style: dashed;
+}
+
+
+.node.cascade-strong {
+  border-color: #00FFFF;
+  border-width: 4px;
+}
+
+.node.cascade-risk {
+  border-style: dashed;
+  border-color: #FF00FF;
+  border-width: 3px;
+}
+
+.node.cascade-safe {
+  border-style: solid;
+  border-color: #00FF00;
+  border-width: 3px;
+}
+
+
+.node.river-flowing {
+  border-color: blue;
+  border-width: 4px;
+  background-color: rgba(0,0,255,0.1);
+}
+
+
+.node.delta-forming {
+  border-color: green;
+  border-width: 4px;
+  background-color: rgba(0,255,0,0.1);
+}
+
+
+.node.rupture-looming {
+  border-color: orange;
+  border-width: 4px;
+  background-color: rgba(255,165,0,0.1);
+}
+
+
+.node.agent-novelty-hotspot {
+  border-color: cyan !important;
+  border-width: 3px !important;
+  border-style: solid !important;
+}
+
+.node.agent-contradiction-hotspot {
+  border-color: magenta !important;
+  border-width: 2px !important;
+  border-style: dashed !important;
+}
+
+.node.telemetry-novelty {
+  border: 3px solid cyan !important;
+}
+
+.node.telemetry-contradiction {
+  border: 2px dashed magenta !important;
+}
+
+.node.nav-psi-high {
+  background-color: rgba(0,255,0,0.3);
+}
+
+.node.nav-risk-high {
+  background-color: rgba(255,0,0,0.3);
+}
+
+.cy .nav-psi-high {
+  background-color: rgba(0,255,0,0.3);
+}
+
+.cy .nav-risk-high {
+  background-color: rgba(255,0,0,0.3);
+}
