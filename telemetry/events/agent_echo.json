@@ -1,0 +1,10 @@
+{
+  "telemetryId": "agent_Echo_123",
+  "agentId": "EchoAI",
+  "novelty": 0.85,
+  "transfer": 0.60,
+  "contradiction": 0.10,
+  "uncertainty": 0.15,
+  "ethicalSymmetry": 0.92,
+  "requiresExecutiveReview": false
+}
