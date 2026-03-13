@@ -1,0 +1,40 @@
+local_single_node:
+  name: "local_single_node"
+  services:
+    - type: python
+      script: triadic_brain/run_wrapper.py
+      args: ["--input-text", "Example input", "--out-dir", "out/run_local", "--emit-tel", "--emit-tel-events"]
+
+local_plus_dashboard:
+  name: "local_plus_dashboard"
+  services:
+    - type: python
+      script: triadic_brain/run_wrapper.py
+      args: ["--input-text", "Dashboard input", "--out-dir", "out/run_dash", "--emit-tel", "--emit-tel-events"]
+    - type: http_server
+      root: out/run_dash
+      port: 8000
+
+federated_two_node:
+  name: "federated_two_node"
+  nodes:
+    - name: nodeA
+      config: config/local_single_node.yaml
+    - name: nodeB
+      config: config/local_single_node.yaml
+  federation:
+    shared_artifacts: ["telemetry.json", "tel_summary.json", "artifact_manifest.json"]
+
+federated_mesh:
+  name: "federated_mesh"
+  nodes:
+    - name: node1
+      config: config/local_plus_dashboard.yaml
+    - name: node2
+      config: config/local_plus_dashboard.yaml
+    - name: node3
+      config: config/local_plus_dashboard.yaml
+  federation:
+    protocol: "P2P"
+    artifact_repos: ["gh:uvlm/triadic-summaries"]
+    shared_artifacts: ["telemetry.json", "tel_summary.json", "artifact_manifest.json"]
