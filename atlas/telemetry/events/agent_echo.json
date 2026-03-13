@@ -1,0 +1,6 @@
+{
+  "events": [
+    {"agentId": "EchoAI-1", "novelty": 0.8, "contradiction": 0.1},
+    {"agentId": "EchoAI-2", "novelty": 0.3, "contradiction": 0.05}
+  ]
+}
