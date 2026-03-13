@@ -46,7 +46,8 @@ function makeCy() {
     nodes(selector) {
       if (!selector) {
         return {
-          forEach(fn) { nodesById.forEach((n) => fn(n)); }
+          forEach(fn) { nodesById.forEach((n) => fn(n)); },
+          removeClass(name) { nodesById.forEach((n) => n.removeClass(name)); }
         };
       }
 
