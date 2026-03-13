@@ -14,13 +14,13 @@ export function applyAgentTelemetryOverlay(cy, agentId) {
   const map = window.__bridgeArtifacts?.agent_telemetry_event_map;
   if (!map) return;
 
-  const summary = map.summary?.byAgent || {};
-  const info = summary[agentId] || {};
-  const nodes = cy.nodes(`[agentId="${agentId}"]`);
-  if (Number(info.novelty ?? 0) > Number(info.contradiction ?? 0)) {
+  const byAgent = map.summary?.byAgent || {};
+  const info = byAgent[agentId] || {};
+  const nodes = cy.nodes(`[agentId = "${agentId}"]`);
+  if (info.novelty != null && info.novelty > (info.contradiction || 0)) {
     nodes.addClass('telemetry-novelty');
   }
-  if (Number(info.contradiction ?? 0) > Number(info.novelty ?? 0)) {
+  if (info.contradiction != null && info.contradiction > (info.novelty || 0)) {
     nodes.addClass('telemetry-contradiction');
   }
 }
@@ -30,8 +30,7 @@ export function bindAgentTelemetryOverlayToggle(toggleId) {
   if (!toggle) return;
 
   toggle.addEventListener('change', (e) => {
-    const isChecked = e?.target?.checked ?? toggle.checked;
-    if (isChecked) {
+    if (e.target.checked) {
       const map = window.__bridgeArtifacts?.agent_telemetry_event_map;
       if (!map) return;
       const agents = Object.keys(map.summary?.byAgent || {});

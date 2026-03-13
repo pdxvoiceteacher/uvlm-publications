@@ -136,18 +136,18 @@ function makeCy() {
   assert.ok(typeof listeners.navigation === 'function', 'Navigation toggle should register a change listener');
 
   toggles['toggle-agent-telemetry'].checked = true;
-  listeners.telemetry();
+  listeners.telemetry({ target: toggles['toggle-agent-telemetry'] });
   assert.ok(nodesById.get('B').hasClass('telemetry-contradiction'), 'Contradiction class should be applied to matching agent node');
 
   toggles['toggle-navigation'].checked = true;
-  listeners.navigation();
+  listeners.navigation({ target: toggles['toggle-navigation'] });
   assert.ok(nodesById.get('B').hasClass('nav-psi-high'), 'Chosen node should receive nav-psi-high');
   assert.ok(nodesById.get('B').hasClass('nav-risk-high'), 'High nav_risk_score nodes should receive nav-risk-high');
 
   toggles['toggle-agent-telemetry'].checked = false;
-  listeners.telemetry();
+  listeners.telemetry({ target: toggles['toggle-agent-telemetry'] });
   toggles['toggle-navigation'].checked = false;
-  listeners.navigation();
+  listeners.navigation({ target: toggles['toggle-navigation'] });
   assert.ok(!nodesById.get('B').hasClass('telemetry-contradiction'), 'Telemetry class should clear when toggle is off');
   assert.ok(!nodesById.get('B').hasClass('nav-psi-high'), 'Navigation class should clear when toggle is off');
 
