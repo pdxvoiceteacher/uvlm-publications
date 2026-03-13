@@ -16,11 +16,10 @@ export function applyAgentTelemetryOverlay(cy, agentId) {
 
   const byAgent = map.summary?.byAgent || {};
   const info = byAgent[agentId] || {};
-  const nodes = cy.nodes(`[agentId = "${agentId}"]`);
-  if (info.novelty != null && info.novelty > (info.contradiction || 0)) {
+  const nodes = cy.nodes(`[agentId="${agentId}"]`);
+  if (info.novelty > (info.contradiction || 0)) {
     nodes.addClass('telemetry-novelty');
-  }
-  if (info.contradiction != null && info.contradiction > (info.novelty || 0)) {
+  } else if (info.contradiction > (info.novelty || 0)) {
     nodes.addClass('telemetry-contradiction');
   }
 }
