@@ -1,52 +1,45 @@
-const TELEMETRY_CLASSES = ['telemetry-novelty', 'telemetry-contradiction'];
-
-export const AGENT_TELEMETRY_CLASSES = TELEMETRY_CLASSES;
-export const AGENT_TELEMETRY_RESETTABLE_CLASSES = [...TELEMETRY_CLASSES];
-
-function clearTelemetryClasses(cy) {
-  if (!cy) return;
-  cy.nodes(`.${TELEMETRY_CLASSES.join(', .')}`).removeClass(TELEMETRY_CLASSES.join(' '));
-}
+// Apply explicit novelty/contradiction classes to agent nodes
+export const AGENT_TELEMETRY_CLASSES = ['telemetry-novelty', 'telemetry-contradiction'];
+export const AGENT_TELEMETRY_RESETTABLE_CLASSES = [...AGENT_TELEMETRY_CLASSES];
 
 export function applyAgentTelemetryOverlay(cy, agentId) {
   if (!cy || !agentId) return;
 
-  clearTelemetryClasses(cy);
+  // Clear previous overlay classes
+  clearAgentTelemetryOverlay(cy);
 
-  const events = window.__bridgeArtifacts?.agent_telemetry_event_map?.summary?.byAgent || {};
-  const ev = events[agentId];
-  if (!ev || Number(ev.eventCount ?? 0) <= 0) return;
-
-  const novelty = Number(ev.novelty ?? 0);
-  const contradiction = Number(ev.contradiction ?? ev.contradictionCount ?? 0);
-  const cls = novelty >= contradiction ? 'telemetry-novelty' : 'telemetry-contradiction';
-
-  cy.nodes().forEach((node) => {
-    const agent = node.data('agent') ?? node.data('agentId');
-    if (agent === agentId) {
-      node.addClass(cls);
+  // Apply classes to nodes matching agentId in the telemetry event map
+  const map = window.__bridgeArtifacts?.agent_telemetry_event_map;
+  if (map && map.summary && map.summary.byAgent) {
+    const events = map.summary.byAgent[agentId] || {};
+    const node = cy.nodes(`[agentId = "${agentId}"]`);
+    if (!node.empty()) {
+      if (Number(events.novelty ?? 0) > 0) node.addClass('telemetry-novelty');
+      if (Number(events.contradiction ?? 0) > 0) node.addClass('telemetry-contradiction');
     }
-  });
+  }
 }
 
 export function clearAgentTelemetryOverlay(cy) {
-  clearTelemetryClasses(cy);
+  if (!cy) return;
+  AGENT_TELEMETRY_CLASSES.forEach((cls) => {
+    cy.elements(`.${cls}`).removeClass(cls);
+  });
 }
 
+// Bind toggle button (expects element id)
 export function bindAgentTelemetryOverlayToggle(toggleElemId) {
   const toggle = document.getElementById(toggleElemId);
-  if (!toggle) return;
-
+  const cy = window.cy;
+  if (!toggle || !cy) return;
   toggle.addEventListener('change', () => {
-    if (!window.cy) return;
-
     if (toggle.checked) {
       const byAgent = window.__bridgeArtifacts?.agent_telemetry_event_map?.summary?.byAgent || {};
       Object.keys(byAgent).forEach((agentId) => {
-        applyAgentTelemetryOverlay(window.cy, agentId);
+        applyAgentTelemetryOverlay(cy, agentId);
       });
     } else {
-      window.cy.nodes().removeClass(TELEMETRY_CLASSES.join(' '));
+      clearAgentTelemetryOverlay(cy);
     }
   });
 }

@@ -12,13 +12,14 @@ function loadOverlayModule(relativePath, context) {
 function makeCy() {
   const nodesById = new Map();
 
-  function makeNode(id, agent) {
+  function makeNode(id, agentId, navRiskScore = 0) {
     const classes = new Set();
+    const values = { id, agentId, nav_risk_score: navRiskScore };
     return {
       id,
       data(key) {
-        if (key === 'agent' || key === 'agentId') return agent;
-        return undefined;
+        if (!key) return values;
+        return values[key];
       },
       addClass(names) {
         String(names).split(/\s+/).filter(Boolean).forEach((n) => classes.add(n));
@@ -28,40 +29,63 @@ function makeCy() {
       },
       hasClass(name) {
         return classes.has(name);
-      },
-      empty() {
-        return false;
       }
     };
   }
 
-  nodesById.set('A', makeNode('A', 'X'));
-  nodesById.set('B', makeNode('B', 'Y'));
+  nodesById.set('A', makeNode('A', 'X', 0.3));
+  nodesById.set('B', makeNode('B', 'Y', 1.2));
+
+  const emptyCollection = {
+    addClass() {},
+    removeClass() {},
+    empty() { return true; }
+  };
 
   const api = {
     nodes(selector) {
-      if (typeof selector === 'string' && selector.startsWith('.')) {
-        const names = selector.replace(/\./g, ' ').replace(/,/g, ' ').trim().split(/\s+/).filter(Boolean);
+      if (!selector) {
         return {
-          removeClass(remove) {
-            nodesById.forEach((n) => {
-              if (names.some((cls) => n.hasClass(cls))) n.removeClass(remove);
-            });
-          }
+          forEach(fn) { nodesById.forEach((n) => fn(n)); }
         };
       }
-      return {
-        forEach(fn) {
-          nodesById.forEach((n) => fn(n));
-        },
-        removeClass(names) {
-          nodesById.forEach((n) => n.removeClass(names));
-        }
-      };
+
+      const classMatch = selector.match(/^\.(.+)$/);
+      if (classMatch) {
+        const cls = classMatch[1];
+        const matched = [...nodesById.values()].filter((n) => n.hasClass(cls));
+        return {
+          removeClass(name) { matched.forEach((n) => n.removeClass(name)); },
+          addClass(name) { matched.forEach((n) => n.addClass(name)); },
+          empty() { return matched.length === 0; }
+        };
+      }
+
+      const agentMatch = selector.match(/^\[agentId\s*=\s*"([^"]+)"\]$/);
+      if (agentMatch) {
+        const agentId = agentMatch[1];
+        const matched = [...nodesById.values()].filter((n) => n.data('agentId') === agentId);
+        return {
+          removeClass(name) { matched.forEach((n) => n.removeClass(name)); },
+          addClass(name) { matched.forEach((n) => n.addClass(name)); },
+          empty() { return matched.length === 0; }
+        };
+      }
+
+      const idMatch = selector.match(/^\[id\s*=\s*"([^"]+)"\]$/);
+      if (idMatch) {
+        const node = nodesById.get(idMatch[1]);
+        return node ? {
+          addClass(name) { node.addClass(name); },
+          removeClass(name) { node.removeClass(name); },
+          empty() { return false; }
+        } : emptyCollection;
+      }
+
+      return emptyCollection;
     },
-    getElementById(id) {
-      const node = nodesById.get(id);
-      return node || { empty: () => true, addClass() {}, removeClass() {} };
+    elements(selector) {
+      return this.nodes(selector);
     }
   };
 
@@ -83,14 +107,13 @@ function makeCy() {
         agent_telemetry_event_map: {
           summary: {
             byAgent: {
-              X: { eventCount: 5, novelty: 2, contradiction: 1 },
-              Y: { eventCount: 1, novelty: 0, contradiction: 3 }
+              X: { novelty: 0.8, contradiction: 0.1 },
+              Y: { novelty: 0.3, contradiction: 0.5 }
             }
           }
         },
         navigation_state: {
-          chosen_state: 'B',
-          risk_by_node: { B: 0.91 }
+          chosen_state: 'B'
         }
       }
     },
@@ -112,19 +135,19 @@ function makeCy() {
   assert.ok(typeof listeners.navigation === 'function', 'Navigation toggle should register a change listener');
 
   toggles['toggle-agent-telemetry'].checked = true;
-  listeners.telemetry({ target: toggles['toggle-agent-telemetry'] });
-  assert.ok(!nodesById.get('A').hasClass('telemetry-contradiction'), 'Novelty-dominant node should not be contradiction class');
-  assert.ok(nodesById.get('B').hasClass('telemetry-contradiction'), 'Contradiction-dominant node should be contradiction class');
+  listeners.telemetry();
+  assert.ok(nodesById.get('B').hasClass('telemetry-contradiction'), 'Contradiction class should be applied to matching agent node');
 
   toggles['toggle-navigation'].checked = true;
-  listeners.navigation({ target: toggles['toggle-navigation'] });
-  assert.ok(nodesById.get('B').hasClass('nav-psi-high'), 'Chosen state should be highlighted');
-  assert.ok(nodesById.get('B').hasClass('nav-risk-high'), 'High risk chosen state should be marked');
+  listeners.navigation();
+  assert.ok(nodesById.get('B').hasClass('nav-psi-high'), 'Chosen node should receive nav-psi-high');
+  assert.ok(nodesById.get('B').hasClass('nav-risk-high'), 'High nav_risk_score nodes should receive nav-risk-high');
 
   toggles['toggle-agent-telemetry'].checked = false;
-  listeners.telemetry({ target: toggles['toggle-agent-telemetry'] });
+  listeners.telemetry();
   toggles['toggle-navigation'].checked = false;
-  listeners.navigation({ target: toggles['toggle-navigation'] });
+  listeners.navigation();
+  assert.ok(!nodesById.get('B').hasClass('telemetry-contradiction'), 'Telemetry class should clear when toggle is off');
   assert.ok(!nodesById.get('B').hasClass('nav-psi-high'), 'Navigation class should clear when toggle is off');
 
   console.log('Overlay toggle integration checks passed.');

@@ -287,21 +287,21 @@ body {
 }
 
 .node.telemetry-contradiction {
-  border: 2px dashed magenta !important;
+  border: 3px dashed magenta !important;
 }
 
 .node.nav-psi-high {
-  background-color: #ffdb58 !important;
+  border: 3px solid orange !important;
 }
 
 .node.nav-risk-high {
-  background-color: #ff6347 !important;
+  border: 2px dashed red !important;
 }
 
 .cy .nav-psi-high {
-  background-color: #ffdb58 !important;
+  border: 3px solid orange;
 }
 
 .cy .nav-risk-high {
-  background-color: #ff6347 !important;
+  border: 2px dashed red;
 }

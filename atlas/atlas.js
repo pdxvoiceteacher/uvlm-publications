@@ -2408,7 +2408,7 @@ async function main() {
       toggleAgentTelemetry(false);
     }
     if (showNavigationEl ? Boolean(showNavigationEl.checked) : false) {
-      applyNavigationOverlay(cy, window.__bridgeArtifacts?.navigation_state?.chosen_state, window.__bridgeArtifacts?.navigation_state?.risk_by_node || {});
+      applyNavigationOverlay(cy, window.__bridgeArtifacts?.navigation_state || {});
     } else {
       clearNavigationOverlay(cy);
     }
@@ -2461,7 +2461,7 @@ async function main() {
       toggleAgentTelemetry(false);
     }
     if (showNavigationEl ? Boolean(showNavigationEl.checked) : false) {
-      applyNavigationOverlay(cy, window.__bridgeArtifacts?.navigation_state?.chosen_state, window.__bridgeArtifacts?.navigation_state?.risk_by_node || {});
+      applyNavigationOverlay(cy, window.__bridgeArtifacts?.navigation_state || {});
     } else {
       clearNavigationOverlay(cy);
     }
