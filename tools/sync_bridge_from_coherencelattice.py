@@ -17,6 +17,9 @@ FILES_TO_SYNC = [
     'river_capture_risk_report.json',
     'civilizational_delta_map.json',
     'rupture_map.json',
+    'agent_telemetry_event_map.json',
+    'ai_guidance.json',
+    'navigation_state.json',
 ]
 
 
