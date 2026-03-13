@@ -1,33 +1,53 @@
-export const NAVIGATION_CLASSES = ['nav-psi-high', 'nav-risk-high'];
+const NAV_CLASSES = {
+  psiHigh: 'nav-psi-high',
+  riskHigh: 'nav-risk-high'
+};
 
-export const NAVIGATION_RESETTABLE_CLASSES = [...NAVIGATION_CLASSES];
+export const NAVIGATION_RESETTABLE_CLASSES = [NAV_CLASSES.psiHigh, NAV_CLASSES.riskHigh];
 
-export function applyNavigationOverlay(cy, state) {
-  if (!cy || !state) return;
-  const chosen = state.chosen_state ?? state.result?.chosen_state ?? {};
-  const psi = chosen.psi ?? 0;
-  if (psi > 0.8) {
-    cy.nodes().addClass('nav-psi-high');
+function isRiskHigh(nodeId, state = {}) {
+  if (Array.isArray(state.governance_risk_high)) {
+    return state.governance_risk_high.includes(nodeId);
   }
-  if ((chosen.lambda_critical ?? 0) > 0.8) {
-    cy.nodes().addClass('nav-risk-high');
-  }
+
+  const score = Number(state.risk_by_node?.[nodeId] ?? state.chosen_state_risk?.[nodeId] ?? 0);
+  return score >= 0.8;
+}
+
+export function applyNavigationOverlay(cy, state = {}) {
+  if (!cy) return;
+
+  const chosenState = state.chosen_state || {};
+  Object.entries(chosenState).forEach(([nodeId]) => {
+    const node = cy.getElementById(nodeId);
+    if (!node || node.empty()) return;
+
+    node.addClass(NAV_CLASSES.psiHigh);
+    if (isRiskHigh(nodeId, state)) {
+      node.addClass(NAV_CLASSES.riskHigh);
+    }
+  });
 }
 
 export function clearNavigationOverlay(cy) {
   if (!cy) return;
-  cy.nodes().removeClass(NAVIGATION_CLASSES.join(' '));
+  cy.elements().removeClass(`${NAV_CLASSES.psiHigh} ${NAV_CLASSES.riskHigh}`);
 }
 
 export function bindNavigationToggle(toggleElemId) {
-  const toggleEl = document.getElementById(toggleElemId);
-  if (!toggleEl) return;
-  toggleEl.addEventListener('change', (e) => {
-    if (window.cy) {
-      clearNavigationOverlay(window.cy);
-      if (e.target.checked) {
-        applyNavigationOverlay(window.cy, window.__bridgeArtifacts?.navigation_state);
-      }
+  const toggleElem = document.getElementById(toggleElemId);
+  if (!toggleElem) return;
+
+  toggleElem.addEventListener('change', (e) => {
+    const cy = window.cy;
+    if (!cy) return;
+
+    if (e.target.checked) {
+      const navState = window.__bridgeArtifacts?.navigation_state || {};
+      clearNavigationOverlay(cy);
+      applyNavigationOverlay(cy, navState);
+    } else {
+      clearNavigationOverlay(cy);
     }
   });
 }

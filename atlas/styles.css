@@ -282,26 +282,26 @@ body {
   border-style: dashed !important;
 }
 
-.cy .nav-psi-high {
-  border-color: cyan;
-  border-width: 3px;
-  border-style: solid;
-}
-
-.cy .nav-risk-high {
-  border-color: magenta;
-  border-width: 2px;
-  border-style: dashed;
-}
-
 .node.telemetry-novelty {
-  border-color: cyan;
-  border-width: 3px;
-  border-style: solid;
+  border: 3px solid cyan !important;
 }
 
 .node.telemetry-contradiction {
-  border-color: magenta;
-  border-width: 2px;
-  border-style: dashed;
+  border: 2px dashed magenta !important;
+}
+
+.node.nav-psi-high {
+  background-color: rgba(0,255,0,0.3);
+}
+
+.node.nav-risk-high {
+  background-color: rgba(255,0,0,0.3);
+}
+
+.cy .nav-psi-high {
+  background-color: rgba(0,255,0,0.3);
+}
+
+.cy .nav-risk-high {
+  background-color: rgba(255,0,0,0.3);
 }
