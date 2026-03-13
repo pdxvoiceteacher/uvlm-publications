@@ -32,11 +32,7 @@ export function bindRebraidOverlayToggle(cy, toggleEl, reapply) {
   }
 
   resolvedToggle.addEventListener('change', () => {
-    if (resolvedToggle.checked) {
-      applyRebraidOverlay(cy, true);
-    } else {
-      clearRebraidOverlay(cy);
-    }
+    applyRebraidOverlay(cy, Boolean(resolvedToggle.checked));
     if (typeof reapply === 'function') {
       reapply();
     }
