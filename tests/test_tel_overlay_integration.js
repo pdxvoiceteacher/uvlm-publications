@@ -114,7 +114,8 @@ function makeCy() {
           }
         },
         navigation_state: {
-          chosen_state: 'B'
+          chosen_state: 'B',
+          risk_by_node: { B: 1.2 }
         }
       }
     },
@@ -142,7 +143,7 @@ function makeCy() {
   toggles['toggle-navigation'].checked = true;
   listeners.navigation({ target: toggles['toggle-navigation'] });
   assert.ok(nodesById.get('B').hasClass('nav-psi-high'), 'Chosen node should receive nav-psi-high');
-  assert.ok(nodesById.get('B').hasClass('nav-risk-high'), 'High nav_risk_score nodes should receive nav-risk-high');
+  assert.ok(nodesById.get('B').hasClass('nav-risk-high'), 'High risk_by_node values should receive nav-risk-high');
 
   toggles['toggle-agent-telemetry'].checked = false;
   listeners.telemetry({ target: toggles['toggle-agent-telemetry'] });
