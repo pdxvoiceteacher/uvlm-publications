@@ -12,12 +12,12 @@ function loadOverlayModule(relativePath, context) {
 function makeCy() {
   const nodesById = new Map();
 
-  function makeNode(id, agentId) {
+  function makeNode(id, agent) {
     const classes = new Set();
     return {
       id,
       data(key) {
-        if (key === 'agentId') return agentId;
+        if (key === 'agent' || key === 'agentId') return agent;
         return undefined;
       },
       addClass(names) {
@@ -35,22 +35,25 @@ function makeCy() {
     };
   }
 
-  nodesById.set('n1', makeNode('n1', 'EchoAI'));
-  nodesById.set('n2', makeNode('n2', 'OtherAI'));
+  nodesById.set('A', makeNode('A', 'X'));
+  nodesById.set('B', makeNode('B', 'Y'));
 
   const api = {
-    nodes() {
+    nodes(selector) {
+      if (typeof selector === 'string' && selector.startsWith('.')) {
+        const names = selector.replace(/\./g, ' ').replace(/,/g, ' ').trim().split(/\s+/).filter(Boolean);
+        return {
+          removeClass(remove) {
+            nodesById.forEach((n) => {
+              if (names.some((cls) => n.hasClass(cls))) n.removeClass(remove);
+            });
+          }
+        };
+      }
       return {
         forEach(fn) {
           nodesById.forEach((n) => fn(n));
         },
-        removeClass(names) {
-          nodesById.forEach((n) => n.removeClass(names));
-        }
-      };
-    },
-    elements() {
-      return {
         removeClass(names) {
           nodesById.forEach((n) => n.removeClass(names));
         }
@@ -68,8 +71,8 @@ function makeCy() {
 (function run() {
   const listeners = {};
   const toggles = {
-    'toggle-agent-telemetry': { addEventListener: (_evt, cb) => { listeners.telemetry = cb; } },
-    'toggle-navigation': { addEventListener: (_evt, cb) => { listeners.navigation = cb; } }
+    'toggle-agent-telemetry': { addEventListener: (_evt, cb) => { listeners.telemetry = cb; }, checked: false },
+    'toggle-navigation': { addEventListener: (_evt, cb) => { listeners.navigation = cb; }, checked: false }
   };
 
   const { api: cy, nodesById } = makeCy();
@@ -80,14 +83,14 @@ function makeCy() {
         agent_telemetry_event_map: {
           summary: {
             byAgent: {
-              EchoAI: { eventCount: 2, contradictionCount: 1 },
-              OtherAI: { eventCount: 0, contradictionCount: 0 }
+              X: { eventCount: 5, novelty: 2, contradiction: 1 },
+              Y: { eventCount: 1, novelty: 0, contradiction: 3 }
             }
           }
         },
         navigation_state: {
-          chosen_state: { n1: 'n2' },
-          risk_by_node: { n1: 0.9 }
+          chosen_state: 'B',
+          risk_by_node: { B: 0.91 }
         }
       }
     },
@@ -108,19 +111,21 @@ function makeCy() {
   assert.ok(typeof listeners.telemetry === 'function', 'Telemetry toggle should register a change listener');
   assert.ok(typeof listeners.navigation === 'function', 'Navigation toggle should register a change listener');
 
-  listeners.telemetry({ target: { checked: true } });
-  assert.ok(nodesById.get('n1').hasClass('telemetry-novelty'), 'Telemetry novelty class should be applied for active agent');
-  assert.ok(nodesById.get('n1').hasClass('telemetry-contradiction'), 'Telemetry contradiction class should be applied when contradiction count exists');
-  assert.ok(!nodesById.get('n2').hasClass('telemetry-novelty'), 'Telemetry class should not be applied when event count is zero');
+  toggles['toggle-agent-telemetry'].checked = true;
+  listeners.telemetry({ target: toggles['toggle-agent-telemetry'] });
+  assert.ok(!nodesById.get('A').hasClass('telemetry-contradiction'), 'Novelty-dominant node should not be contradiction class');
+  assert.ok(nodesById.get('B').hasClass('telemetry-contradiction'), 'Contradiction-dominant node should be contradiction class');
 
-  listeners.navigation({ target: { checked: true } });
-  assert.ok(nodesById.get('n1').hasClass('nav-psi-high'), 'Navigation psi class should be applied to chosen node');
-  assert.ok(nodesById.get('n1').hasClass('nav-risk-high'), 'Navigation risk class should be applied to high-risk chosen node');
+  toggles['toggle-navigation'].checked = true;
+  listeners.navigation({ target: toggles['toggle-navigation'] });
+  assert.ok(nodesById.get('B').hasClass('nav-psi-high'), 'Chosen state should be highlighted');
+  assert.ok(nodesById.get('B').hasClass('nav-risk-high'), 'High risk chosen state should be marked');
 
-  listeners.telemetry({ target: { checked: false } });
-  listeners.navigation({ target: { checked: false } });
-  assert.ok(!nodesById.get('n1').hasClass('telemetry-novelty'), 'Telemetry class should clear when toggle is off');
-  assert.ok(!nodesById.get('n1').hasClass('nav-psi-high'), 'Navigation class should clear when toggle is off');
+  toggles['toggle-agent-telemetry'].checked = false;
+  listeners.telemetry({ target: toggles['toggle-agent-telemetry'] });
+  toggles['toggle-navigation'].checked = false;
+  listeners.navigation({ target: toggles['toggle-navigation'] });
+  assert.ok(!nodesById.get('B').hasClass('nav-psi-high'), 'Navigation class should clear when toggle is off');
 
   console.log('Overlay toggle integration checks passed.');
 })();

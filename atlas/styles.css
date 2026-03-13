@@ -291,17 +291,17 @@ body {
 }
 
 .node.nav-psi-high {
-  background-color: rgba(0,255,0,0.3);
+  background-color: #ffdb58 !important;
 }
 
 .node.nav-risk-high {
-  background-color: rgba(255,0,0,0.3);
+  background-color: #ff6347 !important;
 }
 
 .cy .nav-psi-high {
-  background-color: rgba(0,255,0,0.3);
+  background-color: #ffdb58 !important;
 }
 
 .cy .nav-risk-high {
-  background-color: rgba(255,0,0,0.3);
+  background-color: #ff6347 !important;
 }

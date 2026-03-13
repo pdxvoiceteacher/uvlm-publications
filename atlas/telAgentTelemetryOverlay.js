@@ -1,59 +1,52 @@
-export const AGENT_TELEMETRY_CLASSES = {
-  novelty: 'telemetry-novelty',
-  contradiction: 'telemetry-contradiction'
-};
+const TELEMETRY_CLASSES = ['telemetry-novelty', 'telemetry-contradiction'];
 
-const TELEMETRY_CLASSES = AGENT_TELEMETRY_CLASSES;
+export const AGENT_TELEMETRY_CLASSES = TELEMETRY_CLASSES;
+export const AGENT_TELEMETRY_RESETTABLE_CLASSES = [...TELEMETRY_CLASSES];
 
-export const AGENT_TELEMETRY_RESETTABLE_CLASSES = [
-  TELEMETRY_CLASSES.novelty,
-  TELEMETRY_CLASSES.contradiction
-];
+function clearTelemetryClasses(cy) {
+  if (!cy) return;
+  cy.nodes(`.${TELEMETRY_CLASSES.join(', .')}`).removeClass(TELEMETRY_CLASSES.join(' '));
+}
 
 export function applyAgentTelemetryOverlay(cy, agentId) {
   if (!cy || !agentId) return;
 
-  const telemetrySummary = window.__bridgeArtifacts?.agent_telemetry_event_map?.summary?.byAgent || {};
-  const summary = telemetrySummary[agentId] || {};
-  const eventCount = Number(summary.eventCount ?? 0);
-  const contradictionCount = Number(summary.contradictionCount ?? 0);
+  clearTelemetryClasses(cy);
 
-  if (eventCount <= 0) return;
+  const events = window.__bridgeArtifacts?.agent_telemetry_event_map?.summary?.byAgent || {};
+  const ev = events[agentId];
+  if (!ev || Number(ev.eventCount ?? 0) <= 0) return;
+
+  const novelty = Number(ev.novelty ?? 0);
+  const contradiction = Number(ev.contradiction ?? ev.contradictionCount ?? 0);
+  const cls = novelty >= contradiction ? 'telemetry-novelty' : 'telemetry-contradiction';
 
   cy.nodes().forEach((node) => {
-    if (node.data('agentId') === agentId) {
-      node.addClass(TELEMETRY_CLASSES.novelty);
-      if (contradictionCount > 0) {
-        node.addClass(TELEMETRY_CLASSES.contradiction);
-      }
+    const agent = node.data('agent') ?? node.data('agentId');
+    if (agent === agentId) {
+      node.addClass(cls);
     }
   });
 }
 
 export function clearAgentTelemetryOverlay(cy) {
-  if (!cy) return;
-  cy.elements().removeClass(`${TELEMETRY_CLASSES.novelty} ${TELEMETRY_CLASSES.contradiction}`);
+  clearTelemetryClasses(cy);
 }
 
 export function bindAgentTelemetryOverlayToggle(toggleElemId) {
-  const toggleElem = document.getElementById(toggleElemId);
-  if (!toggleElem) return;
+  const toggle = document.getElementById(toggleElemId);
+  if (!toggle) return;
 
-  toggleElem.addEventListener('change', (e) => {
-    const cy = window.cy;
-    if (!cy) return;
+  toggle.addEventListener('change', () => {
+    if (!window.cy) return;
 
-    if (e.target.checked) {
-      clearAgentTelemetryOverlay(cy);
-      const artifacts = window.__bridgeArtifacts || {};
-      const summary = artifacts.agent_telemetry_event_map?.summary?.byAgent || {};
-      Object.keys(summary).forEach((agentId) => {
-        if (Number(summary[agentId]?.eventCount ?? 0) > 0) {
-          applyAgentTelemetryOverlay(cy, agentId);
-        }
+    if (toggle.checked) {
+      const byAgent = window.__bridgeArtifacts?.agent_telemetry_event_map?.summary?.byAgent || {};
+      Object.keys(byAgent).forEach((agentId) => {
+        applyAgentTelemetryOverlay(window.cy, agentId);
       });
     } else {
-      clearAgentTelemetryOverlay(cy);
+      window.cy.nodes().removeClass(TELEMETRY_CLASSES.join(' '));
     }
   });
 }
