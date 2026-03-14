@@ -62,6 +62,7 @@
         <label><input id="toggle-agent-telemetry" type="checkbox" /> Show Agent Telemetry</label>
         <label><input id="toggle-navigation" type="checkbox" /> Show Navigation Overlay</label>
         <button id="toggle-conservation">Show Conservation Drift</button>
+        <button id="toggle-kernel-metrics">Toggle Kernel Metrics</button>
         <button id="show-onboarding">Help</button>
         <button id="reset">Reset View</button>
       </div>
@@ -129,6 +130,7 @@
     </main>
 
     <script type="module" src="atlas.js"></script>
+    <script type="module" src="js/kernel_metrics_overlay.js"></script>
 
     <script>
       window.addEventListener('DOMContentLoaded', async () => {
