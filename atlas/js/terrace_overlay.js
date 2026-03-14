@@ -1,5 +1,5 @@
 export async function loadTerraceArtifact() {
-  const res = await fetch('/artifacts/terrace_formation_map.json');
+  const res = await fetch('/artifacts/terrace_map.json');
   return await res.json();
 }
 
