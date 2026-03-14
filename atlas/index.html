@@ -66,6 +66,7 @@
         <button id="toggle-kernel-metrics">Toggle Kernel Metrics</button>
         <button id="toggle-terrace">Show Terrace Formation</button>
         <button id="toggle-hypotheses">Show Hypotheses</button>
+        <button id="toggle-hypothesis-tests">Show Hypothesis Tests</button>
         <button id="show-onboarding">Help</button>
         <button id="reset">Reset View</button>
       </div>
@@ -147,6 +148,17 @@
     </script>
 
 
+
+    <script>
+      window.addEventListener('DOMContentLoaded', async () => {
+        const mod = await import('./js/hypothesis_test_overlay.js');
+        document.getElementById('toggle-hypothesis-tests')
+          .addEventListener('click', async () => {
+            const data = await mod.loadHypothesisTests();
+            mod.applyHypothesisTestOverlay(data);
+          });
+      });
+    </script>
     <script>
       window.addEventListener('DOMContentLoaded', async () => {
         const mod = await import('./js/hypothesis_overlay.js');
