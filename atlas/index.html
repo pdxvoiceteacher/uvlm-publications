@@ -64,6 +64,11 @@
         <label><input id="toggle-navigation" type="checkbox" /> Show Navigation Overlay</label>
         <button id="toggle-conservation">Show Conservation Drift</button>
         <button id="toggle-kernel-metrics">Toggle Kernel Metrics</button>
+        <button id="toggle-terrace">Show Terrace Formation</button>
+        <button id="toggle-hypotheses">Show Hypotheses</button>
+        <button id="toggle-hypothesis-tests">Show Hypothesis Tests</button>
+        <button id="toggle-theories">Show Theory Graph</button>
+        <button id="toggle-paradigm-shift">Show Paradigm Shifts</button>
         <button id="show-onboarding">Help</button>
         <button id="reset">Reset View</button>
       </div>
@@ -132,7 +137,72 @@
 
     <script type="module" src="atlas.js"></script>
     <script type="module" src="js/kernel_metrics_overlay.js"></script>
-    <script type="module" src="js/discovery_corridor_overlay.js"></script>
+
+    <script>
+      window.addEventListener('DOMContentLoaded', async () => {
+        const mod = await import('./js/corridor_overlay.js');
+        document.getElementById('toggle-corridors')
+          .addEventListener('click', async () => {
+            const artifact = await mod.loadCorridorArtifact();
+            mod.applyCorridorOverlay(artifact);
+          });
+      });
+    </script>
+
+
+
+
+
+    <script>
+      window.addEventListener('DOMContentLoaded', async () => {
+        const mod = await import('./js/paradigm_shift_overlay.js');
+        document.getElementById('toggle-paradigm-shift')
+          .addEventListener('click', async () => {
+            const data = await mod.loadParadigmShift();
+            mod.applyParadigmShiftOverlay(data);
+          });
+      });
+    </script>
+    <script>
+      window.addEventListener('DOMContentLoaded', async () => {
+        const mod = await import('./js/theory_overlay.js');
+        document.getElementById('toggle-theories')
+          .addEventListener('click', async () => {
+            const data = await mod.loadTheoryMap();
+            mod.applyTheoryOverlay(data);
+          });
+      });
+    </script>
+    <script>
+      window.addEventListener('DOMContentLoaded', async () => {
+        const mod = await import('./js/hypothesis_test_overlay.js');
+        document.getElementById('toggle-hypothesis-tests')
+          .addEventListener('click', async () => {
+            const data = await mod.loadHypothesisTests();
+            mod.applyHypothesisTestOverlay(data);
+          });
+      });
+    </script>
+    <script>
+      window.addEventListener('DOMContentLoaded', async () => {
+        const mod = await import('./js/hypothesis_overlay.js');
+        document.getElementById('toggle-hypotheses')
+          .addEventListener('click', async () => {
+            const artifact = await mod.loadHypotheses();
+            mod.applyHypothesisOverlay(artifact);
+          });
+      });
+    </script>
+    <script>
+      window.addEventListener('DOMContentLoaded', async () => {
+        const mod = await import('./js/terrace_overlay.js');
+        document.getElementById('toggle-terrace')
+          .addEventListener('click', async () => {
+            const artifact = await mod.loadTerraceArtifact();
+            mod.applyTerraceOverlay(artifact);
+          });
+      });
+    </script>
 
     <script>
       window.addEventListener('DOMContentLoaded', async () => {
