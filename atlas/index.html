@@ -61,6 +61,7 @@
         <label><input id="toggle-cascade" type="checkbox" checked /> Show Cascade Health (advisory: highlights high cascade health)</label>
         <label><input id="toggle-agent-telemetry" type="checkbox" /> Show Agent Telemetry</label>
         <label><input id="toggle-navigation" type="checkbox" /> Show Navigation Overlay</label>
+        <button id="toggle-conservation">Show Conservation Drift</button>
         <button id="show-onboarding">Help</button>
         <button id="reset">Reset View</button>
       </div>
@@ -130,13 +131,13 @@
     <script type="module" src="atlas.js"></script>
 
     <script>
-      window.addEventListener('DOMContentLoaded', () => {
-        if (window.bindAgentTelemetryOverlayToggle) {
-          window.bindAgentTelemetryOverlayToggle('toggle-agent-telemetry');
-        }
-        if (window.bindNavigationToggle) {
-          window.bindNavigationToggle('toggle-navigation');
-        }
+      window.addEventListener('DOMContentLoaded', async () => {
+        const mod = await import('./js/conservation_overlay.js');
+        document.getElementById('toggle-conservation')
+          .addEventListener('click', async () => {
+            const data = await mod.loadConservationArtifact();
+            mod.applyConservationOverlay(data.witnesses);
+          });
       });
     </script>
 
