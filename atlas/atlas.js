@@ -623,6 +623,48 @@ async function main() {
         }
       },
 
+
+      {
+        selector: '.visual-field-gradient-0',
+        style: { 'background-color': '#1b2a41' }
+      },
+      {
+        selector: '.visual-field-gradient-1',
+        style: { 'background-color': '#1e3a5f' }
+      },
+      {
+        selector: '.visual-field-gradient-2',
+        style: { 'background-color': '#1f4e79' }
+      },
+      {
+        selector: '.visual-field-gradient-3',
+        style: { 'background-color': '#21618c' }
+      },
+      {
+        selector: '.visual-field-gradient-4',
+        style: { 'background-color': '#277da1' }
+      },
+      {
+        selector: '.visual-field-gradient-5',
+        style: { 'background-color': '#2a9d8f' }
+      },
+      {
+        selector: '.visual-field-gradient-6',
+        style: { 'background-color': '#52b788' }
+      },
+      {
+        selector: '.visual-field-gradient-7',
+        style: { 'background-color': '#90be6d' }
+      },
+      {
+        selector: '.visual-field-gradient-8',
+        style: { 'background-color': '#f9c74f' }
+      },
+      {
+        selector: '.visual-field-gradient-9',
+        style: { 'background-color': '#f94144' }
+      },
+
       {
         selector: '.terrace-approaching',
         style: {
@@ -2500,6 +2542,11 @@ async function main() {
     clearRebraidOverlay(cy);
     clearAgentTelemetryOverlay(cy);
     clearNavigationOverlay(cy);
+    const visualFieldClasses = ['visual-field-gradient'];
+    for (let idx = 0; idx <= 9; idx += 1) {
+      visualFieldClasses.push(`visual-field-gradient-${idx}`);
+    }
+    cy.elements().removeClass(visualFieldClasses.join(' '));
   }
 
   function reapplyPublisherOverlays() {
