@@ -149,8 +149,8 @@
         const mod = await import('./js/corridor_overlay.js');
         document.getElementById('toggle-corridors')
           .addEventListener('click', async () => {
-            const artifact = await mod.loadCorridorArtifact();
-            mod.applyCorridorOverlay(artifact);
+            const data = await mod.loadCorridors();
+            mod.applyCorridorOverlay(data);
           });
       });
     </script>
@@ -161,11 +161,11 @@
 
     <script>
       window.addEventListener('DOMContentLoaded', async () => {
-        const mod = await import('./js/paradigm_shift_overlay.js');
+        const mod = await import('./js/paradigm_overlay.js');
         document.getElementById('toggle-paradigm-shift')
           .addEventListener('click', async () => {
-            const data = await mod.loadParadigmShift();
-            mod.applyParadigmShiftOverlay(data);
+            const data = await mod.loadParadigmEvents();
+            mod.applyParadigmOverlay(data);
           });
       });
     </script>
@@ -174,7 +174,7 @@
         const mod = await import('./js/theory_overlay.js');
         document.getElementById('toggle-theories')
           .addEventListener('click', async () => {
-            const data = await mod.loadTheoryMap();
+            const data = await mod.loadTheories();
             mod.applyTheoryOverlay(data);
           });
       });

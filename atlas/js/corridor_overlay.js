@@ -1,8 +1,19 @@
-export async function loadCorridorArtifact() {
-  const res = await fetch('/artifacts/corridor_map.json');
-  return await res.json();
+export async function loadCorridors() {
+
+  const res = await fetch('/artifacts/discovery_corridors.json', {cache:'no-store'})
+  return await res.json()
+
 }
 
-export function applyCorridorOverlay(artifact) {
-  console.log('Discovery corridors:', artifact.summary);
+export function applyCorridorOverlay(data){
+
+  data.corridors.forEach(c => {
+
+    const node = document.querySelector(`[data-node="${c.node}"]`)
+    if(node){
+      node.classList.add('overlay-corridor')
+    }
+
+  })
+
 }
