@@ -92,6 +92,7 @@
         <button id="toggle-global-coherence-field">Show Global Coherence Field</button>
         <button id="toggle-coherence-gradient">Show Coherence Gradients</button>
         <button id="toggle-homeostasis">Show Homeostasis</button>
+        <button id="toggle-anti-capture">Show Governance Capture Risk</button>
         <button id="show-onboarding">Help</button>
         <button id="reset">Reset View</button>
       </div>
@@ -163,6 +164,7 @@
         <div id="backtest-panel" class="atlas-panel">Backtest map overlay is inactive.</div>
         <div id="backtest-overlay-panel" class="atlas-panel">Backtest overlay is inactive.</div>
         <div id="visual-field-panel" class="atlas-panel">Visual input heatmap is inactive.</div>
+        <div id="anti-capture-panel" class="atlas-panel">Governance capture risk diagnostics will appear here.</div>
         <div id="homeostasis-panel" class="atlas-panel">
           <h3>Triadic Brain Homeostasis</h3>
           <div>Ψ: 0.82</div>
@@ -221,6 +223,7 @@
     <script src="js/triadic_dashboard.js"></script>
     <script src="js/triadic_health_panel.js"></script>
     <script src="js/homeostasis_overlay.js"></script>
+    <script src="js/anti_capture_overlay.js"></script>
 
     <script>
       window.addEventListener('DOMContentLoaded', async () => {
