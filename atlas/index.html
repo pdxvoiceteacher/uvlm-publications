@@ -152,19 +152,6 @@
     <script src="js/triadic_brain_dashboard.js"></script>
 
     <script>
-      async function runSimulation() {
-        const res = await fetch('/artifacts/civilizational_coherence_map.json');
-        const data = await res.json();
-        console.log('Triadic Brain Simulation Result:', data);
-      }
-
-      window.addEventListener('DOMContentLoaded', () => {
-        document.getElementById('toggle-simulation-run')
-          .addEventListener('click', runSimulation);
-      });
-    </script>
-
-    <script>
       window.addEventListener('DOMContentLoaded', async () => {
         const mod = await import('./js/corridor_overlay.js');
         document.getElementById('toggle-corridors')
