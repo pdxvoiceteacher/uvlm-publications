@@ -503,6 +503,91 @@ async function main() {
         selector: '.spotlight-focus',
         style: { opacity: 1 }
       },
+      {
+        selector: '.swarm-discovery',
+        style: {
+          'background-color': 'rgba(255, 223, 77, 0.92)',
+          'border-color': '#ffe88f',
+          'border-width': 3.2,
+          'overlay-color': 'rgba(255, 223, 77, 0.32)',
+          'overlay-opacity': 0.2,
+          'overlay-padding': 3
+        }
+      },
+
+      {
+        selector: '.theory-terrace',
+        style: {
+          'background-color': 'rgba(171, 110, 255, 0.9)',
+          'border-color': '#dcc0ff',
+          'border-width': 3.0,
+          'overlay-color': 'rgba(171, 110, 255, 0.28)',
+          'overlay-opacity': 0.2,
+          'overlay-padding': 3
+        }
+      },
+
+      {
+        selector: '.theory-evolution',
+        style: {
+          'background-color': 'rgba(114, 230, 182, 0.9)',
+          'border-color': '#b9ffe2',
+          'border-width': 3.0,
+          'overlay-color': 'rgba(114, 230, 182, 0.28)',
+          'overlay-opacity': 0.2,
+          'overlay-padding': 3
+        }
+      },
+
+      {
+        selector: '.backtest-corridor',
+        style: {
+          'background-color': 'rgba(255, 166, 77, 0.9)',
+          'border-color': '#ffd4a1',
+          'border-width': 2.8
+        }
+      },
+      {
+        selector: '.backtest-river',
+        style: {
+          'background-color': 'rgba(91, 224, 255, 0.9)',
+          'border-color': '#c9f6ff',
+          'border-width': 2.8
+        }
+      },
+      {
+        selector: '.backtest-terrace',
+        style: {
+          'background-color': 'rgba(177, 116, 255, 0.9)',
+          'border-color': '#e4c7ff',
+          'border-width': 2.8
+        }
+      },
+
+      {
+        selector: '.backtest-detected-corridor',
+        style: {
+          'background-color': 'rgba(252, 185, 76, 0.92)',
+          'border-color': '#ffe0ad',
+          'border-width': 3
+        }
+      },
+      {
+        selector: '.backtest-true-breakthrough',
+        style: {
+          'background-color': 'rgba(99, 223, 157, 0.92)',
+          'border-color': '#c8ffe4',
+          'border-width': 3
+        }
+      },
+      {
+        selector: '.backtest-false-positive',
+        style: {
+          'background-color': 'rgba(240, 88, 88, 0.92)',
+          'border-color': '#ffc5c5',
+          'border-width': 3
+        }
+      },
 
       {
         selector: '.terrace-approaching',
@@ -2535,7 +2620,7 @@ async function main() {
   resetEl.addEventListener('click', () => {
     searchEl.value = '';
     typeFilterEl.value = 'all';
-    cy.elements().removeClass('zoom-hidden filter-hidden highlight spotlight-dim spotlight-focus sonya-candidate reasoning-thread reasoning-watch stability-positive stability-watch multimodal-donation multimodal-watch review-candidate watch-queue governance-review governance-watch constitutional-watch constitutional-freeze deliberation-docket deliberation-watch deliberation-urgent anti-capture-watch continuity-docket continuity-watch continuity-fragile continuity-freeze recovery-docket recovery-watch escrow-ready recovery-fragile attestation-docket attestation-watch witness-sufficient attestation-sensitive precedent-docket precedent-watch precedent-divergent precedent-strong scenario-docket scenario-watch scenario-freeze scenario-rehearse-recovery institutional-status-indicator chamber-conflict-indicator system-health-overview queue-health-actionable backlog-pressure-watch review-fatigue-watch metric-gaming-watch load-shedding-recommended priority-actionable triage-watch urgency-high priority-critical triage-conflict investigation-active investigation-stage-mid investigation-stage-late investigation-plan-progressing investigation-blocked dependency-graph-linked authority-gated weak-evidence-signal authority-mismatch propagation-restricted maturity-gated review-packet-ready review-packet-watch packet-ambiguity-high uncertainty-disclosed synthesis-bounded pattern-cluster-active cross-case-hints pattern-maturity-stable pattern-conflict pattern-timeline-active persistence-stable temporal-conflict-marker causal-bundle-active mechanism-candidate explanatory-gap-high prohibited-conclusion causal-conflict-marker collaborative-review-active consensus-provisional dissent-present collaborative-maturity-bound telemetry-field-active lattice-transition donor-pattern-active taf-elevated branch-novel branch-maturity-bound branch-lifecycle-active branch-conflict-graph branch-decay-indicator branch-reinforcement-trend branch-contradiction-trend forecast-accuracy-high calibration-improving branch-reliability-stable prediction-timeline-active experimental-active falsification-ready replication-defined theory-gate-hold theory-corpus-active theory-negative-results theory-revision-lineage theory-competition-open agency-mode-active agency-volitional-edge agency-deterministic-edge agency-vhat-provisional agency-governance-bounded agency-consent-required agency-blame-suppressed responsibility-active support-pathway-defined consent-required coercion-ceiling-strict sanction-suppressed intervention-bounded transfer-active transfer-asymmetry-high transfer-replication-gated transfer-prohibited-claims transfer-risk-elevated system-forecast-active regime-transition-probable entropy-accumulating branch-ecosystem-fragile trajectory-divergent uncertainty-gradient-high information-gain-high experiment-priority-high entropy-reduction-positive curiosity-active value-alignment-active knowledge-priority-top welfare-impact-positive fairness-impact-watch value-risk-flagged meta-active reasoning-efficiency-high donor-reliability-high governance-constraint-strong discovery-productive architecture-active module-performance-strong architecture-discovery-productive safeguard-performance-strong architecture-proposal-queued social-entropy-active social-status-fraying cohesion-fragile legitimacy-drift-elevated reviewer-concentration-high reviewer-fatigue-high repair-priority-high federation-active federation-status-coherent stewardship-node-distributed dissent-portable capture-risk-elevated mitigation-required emergent-domain-active domain-status-emergent invariant-pattern-convergent field-birth-pressure-high domain-boundary-failure-active commons-legibility-required trust-presentation-degraded commons-sovereignty-active commons-integrity-fragile institutional-capture-risk-elevated public-trust-unstable epistemic-diversity-high civilizational-dissent-portable civilizational-memory-active preservation-criticality-high legibility-drifting vocabulary-drift-risk-high notation-fragility-high memory-recoverability-strong custody-diversity-high operationalization-active operational-status-bounded-ready maturity-class-field-tested deployment-readiness-bounded dead-zone-adjacent translation-risk-watch safeguards-required commons-review-required discovery-navigation-active discovery-status-active discovery-vector-cross-domain discovery-bridge-emergent discovery-corridor-bounded discovery-dead-zone-adjacent discovery-memory-supported discovery-commons-review-required discovery-risk-watch discovery-repair-corridor discovery-distortion-risk discovery-river-seed discovery-river-formation ' + terraceResettableClasses().concat(orthodoxyResettableClasses(), schismResettableClasses(), rebraidResettableClasses(), corridorResettableClasses(), riverResettableClasses, deltaResettableClasses, ruptureResettableClasses, cascadeResettableClasses, AGENT_TELEMETRY_RESETTABLE_CLASSES, NAVIGATION_RESETTABLE_CLASSES).join(' '));
+    cy.elements().removeClass('zoom-hidden filter-hidden highlight spotlight-dim spotlight-focus sonya-candidate reasoning-thread reasoning-watch stability-positive stability-watch multimodal-donation multimodal-watch review-candidate watch-queue governance-review governance-watch constitutional-watch constitutional-freeze deliberation-docket deliberation-watch deliberation-urgent anti-capture-watch continuity-docket continuity-watch continuity-fragile continuity-freeze recovery-docket recovery-watch escrow-ready recovery-fragile attestation-docket attestation-watch witness-sufficient attestation-sensitive precedent-docket precedent-watch precedent-divergent precedent-strong scenario-docket scenario-watch scenario-freeze scenario-rehearse-recovery institutional-status-indicator chamber-conflict-indicator system-health-overview queue-health-actionable backlog-pressure-watch review-fatigue-watch metric-gaming-watch load-shedding-recommended priority-actionable triage-watch urgency-high priority-critical triage-conflict investigation-active investigation-stage-mid investigation-stage-late investigation-plan-progressing investigation-blocked dependency-graph-linked authority-gated weak-evidence-signal authority-mismatch propagation-restricted maturity-gated review-packet-ready review-packet-watch packet-ambiguity-high uncertainty-disclosed synthesis-bounded pattern-cluster-active cross-case-hints pattern-maturity-stable pattern-conflict pattern-timeline-active persistence-stable temporal-conflict-marker causal-bundle-active mechanism-candidate explanatory-gap-high prohibited-conclusion causal-conflict-marker collaborative-review-active consensus-provisional dissent-present collaborative-maturity-bound telemetry-field-active lattice-transition donor-pattern-active taf-elevated branch-novel branch-maturity-bound branch-lifecycle-active branch-conflict-graph branch-decay-indicator branch-reinforcement-trend branch-contradiction-trend forecast-accuracy-high calibration-improving branch-reliability-stable prediction-timeline-active experimental-active falsification-ready replication-defined theory-gate-hold theory-corpus-active theory-negative-results theory-revision-lineage theory-competition-open agency-mode-active agency-volitional-edge agency-deterministic-edge agency-vhat-provisional agency-governance-bounded agency-consent-required agency-blame-suppressed responsibility-active support-pathway-defined consent-required coercion-ceiling-strict sanction-suppressed intervention-bounded transfer-active transfer-asymmetry-high transfer-replication-gated transfer-prohibited-claims transfer-risk-elevated system-forecast-active regime-transition-probable entropy-accumulating branch-ecosystem-fragile trajectory-divergent uncertainty-gradient-high information-gain-high experiment-priority-high entropy-reduction-positive curiosity-active value-alignment-active knowledge-priority-top welfare-impact-positive fairness-impact-watch value-risk-flagged meta-active reasoning-efficiency-high donor-reliability-high governance-constraint-strong discovery-productive architecture-active module-performance-strong architecture-discovery-productive safeguard-performance-strong architecture-proposal-queued social-entropy-active social-status-fraying cohesion-fragile legitimacy-drift-elevated reviewer-concentration-high reviewer-fatigue-high repair-priority-high federation-active federation-status-coherent stewardship-node-distributed dissent-portable capture-risk-elevated mitigation-required emergent-domain-active domain-status-emergent invariant-pattern-convergent field-birth-pressure-high domain-boundary-failure-active commons-legibility-required trust-presentation-degraded commons-sovereignty-active commons-integrity-fragile institutional-capture-risk-elevated public-trust-unstable epistemic-diversity-high civilizational-dissent-portable civilizational-memory-active preservation-criticality-high legibility-drifting vocabulary-drift-risk-high notation-fragility-high memory-recoverability-strong custody-diversity-high operationalization-active operational-status-bounded-ready maturity-class-field-tested deployment-readiness-bounded dead-zone-adjacent translation-risk-watch safeguards-required commons-review-required discovery-navigation-active discovery-status-active discovery-vector-cross-domain discovery-bridge-emergent discovery-corridor-bounded discovery-dead-zone-adjacent discovery-memory-supported discovery-commons-review-required discovery-risk-watch discovery-repair-corridor discovery-distortion-risk discovery-river-seed discovery-river-formation swarm-discovery theory-terrace theory-evolution backtest-corridor backtest-river backtest-terrace backtest-detected-corridor backtest-true-breakthrough backtest-false-positive ' + terraceResettableClasses().concat(orthodoxyResettableClasses(), schismResettableClasses(), rebraidResettableClasses(), corridorResettableClasses(), riverResettableClasses, deltaResettableClasses, ruptureResettableClasses, cascadeResettableClasses, AGENT_TELEMETRY_RESETTABLE_CLASSES, NAVIGATION_RESETTABLE_CLASSES).join(' '));
     constellationApi.clear();
     cy.fit(cy.elements(':visible'), 60);
     setDefaultPanel(detailEl);
