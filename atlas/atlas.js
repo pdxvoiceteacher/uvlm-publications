@@ -767,6 +767,15 @@ async function main() {
         }
       },
       {
+        selector: '.corridor-highlight',
+        style: {
+          'background-color': '#00FFFF',
+          'border-width': 3,
+          'border-color': 'white'
+        }
+      },
+
+      {
         selector: '.river-node, .river-highlight, .river-flowing',
         style: {
           'background-color': 'rgba(88, 221, 255, 0.84)',

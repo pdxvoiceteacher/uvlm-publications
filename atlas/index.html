@@ -55,8 +55,7 @@
         <label><input id="show-schism-risk" type="checkbox" checked /> Show Schism Risk</label>
         <label><input id="toggle-rebraid" type="checkbox" checked /> Show Rebraid Waves (advisory: highlights rebraid alerts)</label>
         <label><input id="toggle-corridor" type="checkbox" checked /> Show Corridor Paths</label>
-        <button id="toggle-corridors">Corridor Vectors</button>
-        <label><input id="toggle-river" type="checkbox" checked /> Show Knowledge River</label>
+                <label><input id="toggle-river" type="checkbox" checked /> Show Knowledge River</label>
         <label><input id="toggle-delta" type="checkbox" checked /> Show Civilizational Delta</label>
         <label><input id="toggle-rupture" type="checkbox" checked /> Show Rupture Signals</label>
         <label><input id="toggle-cascade" type="checkbox" checked /> Show Cascade Health (advisory: highlights high cascade health)</label>
@@ -163,6 +162,15 @@
         <div id="backtest-panel" class="atlas-panel">Backtest map overlay is inactive.</div>
         <div id="backtest-overlay-panel" class="atlas-panel">Backtest overlay is inactive.</div>
         <div id="visual-field-panel" class="atlas-panel">Visual input heatmap is inactive.</div>
+        <div id="triadic-dashboard" class="atlas-panel">
+          <h3>Triadic Brain Experiment Dashboard</h3>
+          <button id="run-hb01">Run HB-01 Relativity Test</button>
+          <button id="toggle-corridors">Show Corridors</button>
+          <button id="toggle-confidence">Show Confidence</button>
+          <button id="play-coherence-music">Play Coherence Music</button>
+          <div id="experiment-status"></div>
+          <div id="confidence-panel"></div>
+        </div>
       </aside>
     </main>
 
@@ -188,6 +196,7 @@
     <script src="js/hb03_quantum_overlay.js"></script>
     <script src="js/hb04_dl_overlay.js"></script>
     <script src="js/visual_field_overlay.js"></script>
+    <script src="js/triadic_dashboard.js"></script>
 
     <script>
       window.addEventListener('DOMContentLoaded', async () => {
