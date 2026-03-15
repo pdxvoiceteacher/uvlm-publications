@@ -70,6 +70,7 @@
         <button id="toggle-theories">Show Theory Graph</button>
         <button id="toggle-paradigm-shift">Show Paradigm Shifts</button>
         <button id="toggle-civilizational-coherence">Show Civilizational Coherence</button>
+        <button id="toggle-simulation-run">Run Triadic Brain Simulation</button>
         <button id="toggle-musical-coherence">Show Musical Coherence</button>
         <button id="toggle-global-coherence-field">Show Global Coherence Field</button>
         <button id="toggle-coherence-gradient">Show Coherence Gradients</button>
@@ -145,6 +146,19 @@
     <script src="js/global_coherence_field_overlay.js"></script>
     <script src="js/coherence_gradient_overlay.js"></script>
     <script src="js/audio_overlay.js"></script>
+
+    <script>
+      async function runSimulation() {
+        const res = await fetch('/artifacts/civilizational_coherence_map.json');
+        const data = await res.json();
+        console.log('Triadic Brain Simulation Result:', data);
+      }
+
+      window.addEventListener('DOMContentLoaded', () => {
+        document.getElementById('toggle-simulation-run')
+          .addEventListener('click', runSimulation);
+      });
+    </script>
 
     <script>
       window.addEventListener('DOMContentLoaded', async () => {
