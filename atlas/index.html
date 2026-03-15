@@ -91,6 +91,7 @@
         <button id="toggle-musical-coherence">Show Musical Coherence</button>
         <button id="toggle-global-coherence-field">Show Global Coherence Field</button>
         <button id="toggle-coherence-gradient">Show Coherence Gradients</button>
+        <button id="toggle-homeostasis">Show Homeostasis</button>
         <button id="show-onboarding">Help</button>
         <button id="reset">Reset View</button>
       </div>
@@ -162,6 +163,18 @@
         <div id="backtest-panel" class="atlas-panel">Backtest map overlay is inactive.</div>
         <div id="backtest-overlay-panel" class="atlas-panel">Backtest overlay is inactive.</div>
         <div id="visual-field-panel" class="atlas-panel">Visual input heatmap is inactive.</div>
+        <div id="homeostasis-panel" class="atlas-panel">
+          <h3>Triadic Brain Homeostasis</h3>
+          <div>Ψ: 0.82</div>
+          <div>P: 0.67</div>
+          <div>T: 0.73</div>
+          <div>ΔS: 0.18</div>
+          <div>Λ: 0.21</div>
+          <div style="margin-top:0.35rem;">H = <span id="homeostasis-h">0.76</span></div>
+          <div>State: <span id="homeostasis-state">Healthy Discovery</span></div>
+          <div id="homeostasis-band" style="margin-top:0.35rem;font-weight:600;color:#78ff9a;">green = stable discovery</div>
+          <div style="font-size:0.82rem;color:#d8deea;">yellow = exploration • red = collapse</div>
+        </div>
         <div id="triadic-health-panel" class="atlas-panel">
           <h3>Triadic Brain Health</h3>
           <div id="health-kernel">Kernel: stable</div>
@@ -207,6 +220,7 @@
     <script src="js/visual_field_overlay.js"></script>
     <script src="js/triadic_dashboard.js"></script>
     <script src="js/triadic_health_panel.js"></script>
+    <script src="js/homeostasis_overlay.js"></script>
 
     <script>
       window.addEventListener('DOMContentLoaded', async () => {
