@@ -32,6 +32,7 @@ function renderPhaseSurface(points) {
 
   const scene = new THREE.Scene();
   window.phaseSurfaceScene = scene;
+  window.atlasScene = scene;
 
   const camera = new THREE.PerspectiveCamera(60, width / height, 0.1, 1000);
 
