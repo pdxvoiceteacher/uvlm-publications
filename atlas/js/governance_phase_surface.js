@@ -31,10 +31,13 @@ function renderPhaseSurface(points) {
   const height = 600;
 
   const scene = new THREE.Scene();
+  window.phaseSurfaceScene = scene;
 
   const camera = new THREE.PerspectiveCamera(60, width / height, 0.1, 1000);
 
   const renderer = new THREE.WebGLRenderer({ antialias: true });
+  window.phaseSurfaceRenderer = renderer;
+  window.phaseSurfaceCamera = camera;
 
   renderer.setSize(width, height);
 

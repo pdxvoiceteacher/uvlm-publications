@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "coherence.multimodal_event.v1",
+  "title": "Coherence Multimodal Event V1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "type",
+    "timestamp",
+    "modality",
+    "source",
+    "target",
+    "payload"
+  ],
+  "properties": {
+    "type": {
+      "const": "coherence.multimodal_event.v1"
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "modality": {
+      "type": "string",
+      "enum": ["numerical", "text", "graph", "audio", "video", "motion", "midi"]
+    },
+    "source": {
+      "type": "string"
+    },
+    "target": {
+      "type": "string"
+    },
+    "kernel_step": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "payload": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "file": { "type": "string" },
+        "start_time": { "type": "number" },
+        "end_time": { "type": "number" }
+      }
+    }
+  }
+}
