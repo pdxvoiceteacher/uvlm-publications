@@ -9,6 +9,7 @@
     <script src="https://unpkg.com/layout-base/layout-base.js"></script>
     <script src="https://unpkg.com/cose-base/cose-base.js"></script>
     <script src="https://unpkg.com/cytoscape-fcose/cytoscape-fcose.js"></script>
+    <script src="https://unpkg.com/three@0.158.0/build/three.min.js"></script>
   </head>
   <body>
     <div id="onboarding" class="onboarding" hidden>
@@ -55,8 +56,7 @@
         <label><input id="show-schism-risk" type="checkbox" checked /> Show Schism Risk</label>
         <label><input id="toggle-rebraid" type="checkbox" checked /> Show Rebraid Waves (advisory: highlights rebraid alerts)</label>
         <label><input id="toggle-corridor" type="checkbox" checked /> Show Corridor Paths</label>
-        <button id="toggle-corridors">Show Discovery Corridors</button>
-        <label><input id="toggle-river" type="checkbox" checked /> Show Knowledge River</label>
+                <label><input id="toggle-river" type="checkbox" checked /> Show Knowledge River</label>
         <label><input id="toggle-delta" type="checkbox" checked /> Show Civilizational Delta</label>
         <label><input id="toggle-rupture" type="checkbox" checked /> Show Rupture Signals</label>
         <label><input id="toggle-cascade" type="checkbox" checked /> Show Cascade Health (advisory: highlights high cascade health)</label>
@@ -68,11 +68,37 @@
         <button id="toggle-hypotheses">Show Hypotheses</button>
         <button id="toggle-hypothesis-tests">Show Hypothesis Tests</button>
         <button id="toggle-theories">Show Theory Graph</button>
+        <button id="toggle-theory-terraces">Theory Terraces</button>
+        <button id="toggle-theory-evolution">Theory Evolution</button>
+        <button id="toggle-knowledge-ecosystem">Knowledge Ecosystem</button>
+        <button id="toggle-policy-feedback">Show Policy Feedback</button>
+        <button id="toggle-governance">Show Governance Policies</button>
+        <button id="toggle-cultural-transmission">Show Cultural Transmission</button>
+        <button id="toggle-civilization-forecast">Show Civilization Forecast</button>
+        <button id="toggle-backtest-map">Show Backtest Map</button>
+        <button id="toggle-backtest-overlay">Show Backtest Overlay</button>
+        <button id="toggle-hb01-relativity">Relativity Corridor</button>
+        <button id="toggle-hb02-dna">DNA Corridor</button>
+        <button id="toggle-hb03-quantum">Quantum Corridor</button>
+        <button id="toggle-hb04-dl">Deep Learning Corridor</button>
+        <button id="toggle-visual-field">Visual Input Heatmap</button>
         <button id="toggle-paradigm-shift">Show Paradigm Shifts</button>
         <button id="toggle-civilizational-coherence">Show Civilizational Coherence</button>
+        <button id="start-simulation">Start Simulation</button>
+        <button id="pause-simulation">Pause</button>
+        <button id="toggle-renorm">Renormalization Flow</button>
+        <button id="toggle-swarm-discoveries">Swarm Discoveries</button>
+        <button id="play-coherence-audio">Play Coherence Music</button>
         <button id="toggle-musical-coherence">Show Musical Coherence</button>
         <button id="toggle-global-coherence-field">Show Global Coherence Field</button>
         <button id="toggle-coherence-gradient">Show Coherence Gradients</button>
+        <button id="toggle-homeostasis">Show Homeostasis</button>
+        <button id="toggle-anti-capture">Show Governance Capture Risk</button>
+        <button id="toggle-governance-stability">Show Governance Stability</button>
+        <button id="toggle-phase-diagram">Show Governance Phase Diagram</button>
+        <button id="toggle-phase-surface">Show Governance Phase Surface</button>
+        <button id="toggle-discovery-vectors">Show Discovery Vectors</button>
+        <button id="toggle-relativity-corridor">Show Relativity Corridor</button>
         <button id="show-onboarding">Help</button>
         <button id="reset">Reset View</button>
       </div>
@@ -136,6 +162,48 @@
         <div id="details">
           <p>Select a node to inspect metadata.</p>
         </div>
+        <div id="ecosystem-panel" class="atlas-panel">Knowledge ecosystem metrics will appear here.</div>
+        <div id="policy-panel" class="atlas-panel">Policy feedback will appear here.</div>
+        <div id="governance-panel" class="atlas-panel">Governance policies will appear here.</div>
+        <div id="cultural-panel" class="atlas-panel">Cultural transmission metrics will appear here.</div>
+        <div id="forecast-panel" class="atlas-panel">Civilization forecast will appear here.</div>
+        <div id="backtest-panel" class="atlas-panel">Backtest map overlay is inactive.</div>
+        <div id="backtest-overlay-panel" class="atlas-panel">Backtest overlay is inactive.</div>
+        <div id="visual-field-panel" class="atlas-panel">Visual input heatmap is inactive.</div>
+        <div id="anti-capture-panel" class="atlas-panel">Governance capture risk diagnostics will appear here.</div>
+        <div id="governance-stability-panel" class="atlas-panel">Governance stability diagnostics will appear here.</div>
+        <div id="phase-diagram-panel" class="atlas-panel">Governance phase diagram is not loaded.</div>
+        <div id="phase-surface-container" class="atlas-panel"></div>
+        <div id="homeostasis-panel" class="atlas-panel">
+          <h3>Triadic Brain Homeostasis</h3>
+          <div>Ψ: 0.82</div>
+          <div>P: 0.67</div>
+          <div>T: 0.73</div>
+          <div>ΔS: 0.18</div>
+          <div>Λ: 0.21</div>
+          <div style="margin-top:0.35rem;">H = <span id="homeostasis-h">0.76</span></div>
+          <div>State: <span id="homeostasis-state">Healthy Discovery</span></div>
+          <div id="homeostasis-band" style="margin-top:0.35rem;font-weight:600;color:#78ff9a;">green = stable discovery</div>
+          <div style="font-size:0.82rem;color:#d8deea;">yellow = exploration • red = collapse</div>
+        </div>
+        <div id="triadic-health-panel" class="atlas-panel">
+          <h3>Triadic Brain Health</h3>
+          <div id="health-kernel">Kernel: stable</div>
+          <div id="health-governance">Governance: stable</div>
+          <div id="health-discovery">Discovery: active</div>
+          <div id="health-corridor">Corridor Stability: stable</div>
+          <div id="health-swarm">Swarm Stability: stable</div>
+          <div id="health-alerts">Alerts: none</div>
+        </div>
+        <div id="triadic-dashboard" class="atlas-panel">
+          <h3>Triadic Brain Experiment Dashboard</h3>
+          <button id="run-hb01">Run HB-01 Relativity Test</button>
+          <button id="toggle-corridors">Show Corridors</button>
+          <button id="toggle-confidence">Show Confidence</button>
+          <button id="play-coherence-music">Play Coherence Music</button>
+          <div id="experiment-status"></div>
+          <div id="confidence-panel"></div>
+        </div>
       </aside>
     </main>
 
@@ -145,6 +213,31 @@
     <script src="js/global_coherence_field_overlay.js"></script>
     <script src="js/coherence_gradient_overlay.js"></script>
     <script src="js/audio_overlay.js"></script>
+    <script src="js/triadic_brain_dashboard.js"></script>
+    <script src="js/swarm_discovery_overlay.js"></script>
+    <script src="js/theory_terrace_overlay.js"></script>
+    <script src="js/theory_evolution_overlay.js"></script>
+    <script src="js/knowledge_ecosystem_overlay.js"></script>
+    <script src="js/policy_feedback_overlay.js"></script>
+    <script src="js/governance_overlay.js"></script>
+    <script src="js/cultural_transmission_overlay.js"></script>
+    <script src="js/civilization_forecast_overlay.js"></script>
+    <script src="js/backtest_maps_overlay.js"></script>
+    <script src="js/backtest_overlay.js"></script>
+    <script src="js/hb01_relativity_overlay.js"></script>
+    <script src="js/hb02_dna_overlay.js"></script>
+    <script src="js/hb03_quantum_overlay.js"></script>
+    <script src="js/hb04_dl_overlay.js"></script>
+    <script src="js/visual_field_overlay.js"></script>
+    <script src="js/triadic_dashboard.js"></script>
+    <script src="js/triadic_health_panel.js"></script>
+    <script src="js/homeostasis_overlay.js"></script>
+    <script src="js/anti_capture_overlay.js"></script>
+    <script src="js/governance_stability_overlay.js"></script>
+    <script src="js/governance_phase_diagram_overlay.js"></script>
+    <script src="js/governance_phase_surface.js"></script>
+    <script src="js/discovery_vector_overlay.js"></script>
+    <script src="js/relativity_corridor_overlay.js"></script>
 
     <script>
       window.addEventListener('DOMContentLoaded', async () => {
