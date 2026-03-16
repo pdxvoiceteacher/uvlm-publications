@@ -9,6 +9,7 @@
     <script src="https://unpkg.com/layout-base/layout-base.js"></script>
     <script src="https://unpkg.com/cose-base/cose-base.js"></script>
     <script src="https://unpkg.com/cytoscape-fcose/cytoscape-fcose.js"></script>
+    <script src="https://unpkg.com/three@0.158.0/build/three.min.js"></script>
   </head>
   <body>
     <div id="onboarding" class="onboarding" hidden>
@@ -95,6 +96,7 @@
         <button id="toggle-anti-capture">Show Governance Capture Risk</button>
         <button id="toggle-governance-stability">Show Governance Stability</button>
         <button id="toggle-phase-diagram">Show Governance Phase Diagram</button>
+        <button id="toggle-phase-surface">Show Governance Phase Surface</button>
         <button id="show-onboarding">Help</button>
         <button id="reset">Reset View</button>
       </div>
@@ -169,6 +171,7 @@
         <div id="anti-capture-panel" class="atlas-panel">Governance capture risk diagnostics will appear here.</div>
         <div id="governance-stability-panel" class="atlas-panel">Governance stability diagnostics will appear here.</div>
         <div id="phase-diagram-panel" class="atlas-panel">Governance phase diagram is not loaded.</div>
+        <div id="phase-surface-container" class="atlas-panel"></div>
         <div id="homeostasis-panel" class="atlas-panel">
           <h3>Triadic Brain Homeostasis</h3>
           <div>Ψ: 0.82</div>
@@ -230,6 +233,7 @@
     <script src="js/anti_capture_overlay.js"></script>
     <script src="js/governance_stability_overlay.js"></script>
     <script src="js/governance_phase_diagram_overlay.js"></script>
+    <script src="js/governance_phase_surface.js"></script>
 
     <script>
       window.addEventListener('DOMContentLoaded', async () => {
