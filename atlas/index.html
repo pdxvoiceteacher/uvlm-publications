@@ -94,6 +94,7 @@
         <button id="toggle-homeostasis">Show Homeostasis</button>
         <button id="toggle-anti-capture">Show Governance Capture Risk</button>
         <button id="toggle-governance-stability">Show Governance Stability</button>
+        <button id="toggle-phase-diagram">Show Governance Phase Diagram</button>
         <button id="show-onboarding">Help</button>
         <button id="reset">Reset View</button>
       </div>
@@ -167,6 +168,7 @@
         <div id="visual-field-panel" class="atlas-panel">Visual input heatmap is inactive.</div>
         <div id="anti-capture-panel" class="atlas-panel">Governance capture risk diagnostics will appear here.</div>
         <div id="governance-stability-panel" class="atlas-panel">Governance stability diagnostics will appear here.</div>
+        <div id="phase-diagram-panel" class="atlas-panel">Governance phase diagram is not loaded.</div>
         <div id="homeostasis-panel" class="atlas-panel">
           <h3>Triadic Brain Homeostasis</h3>
           <div>Ψ: 0.82</div>
@@ -227,6 +229,7 @@
     <script src="js/homeostasis_overlay.js"></script>
     <script src="js/anti_capture_overlay.js"></script>
     <script src="js/governance_stability_overlay.js"></script>
+    <script src="js/governance_phase_diagram_overlay.js"></script>
 
     <script>
       window.addEventListener('DOMContentLoaded', async () => {
