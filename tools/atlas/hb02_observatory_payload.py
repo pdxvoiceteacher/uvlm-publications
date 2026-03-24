@@ -20,3 +20,13 @@ def build_hb02_observatory_card(packet: Dict[str, Any]) -> Dict[str, Any]:
         "conditioned_literal_preview": packet.get("conditioned", {}).get("literal_output", "")[:180],
         "conditioned_allegory_preview": packet.get("conditioned", {}).get("allegorical_output", "")[:180],
     }
+
+
+def build_multi_model_dashboard(results):
+    return {
+        "schema": "atlas.hb02.multi.v1",
+        "models": [
+            build_hb02_observatory_card(r)
+            for r in results
+        ],
+    }
