@@ -2,6 +2,7 @@ from pathlib import Path
 import json
 from fastapi import FastAPI
 from atlas.agency import adjudicate_candidate, persist_candidate, load_existing_priors
+from atlas.retrieval import build_atlas_prior_packet
 
 app = FastAPI(title="Atlas Agency API", version="0.1.0")
 
@@ -49,3 +50,18 @@ def atlas_persist():
 @app.get("/atlas/priors")
 def atlas_priors():
     return {"atlas_priors": load_existing_priors()}
+
+
+@app.post("/atlas/retrieve")
+def atlas_retrieve():
+    question_path = Path(r"C:\UVLM\CoherenceLattice\bridge\atlas_query.json")
+    if not question_path.exists():
+        return {"error": "atlas_query.json not found"}
+
+    query = json.loads(question_path.read_text(encoding="utf-8"))
+    packet = build_atlas_prior_packet(query.get("question_text", ""))
+
+    out_path = Path(r"C:\UVLM\CoherenceLattice\bridge\atlas_prior_packet.json")
+    out_path.write_text(json.dumps(packet, indent=2), encoding="utf-8")
+
+    return packet
