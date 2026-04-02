@@ -59,7 +59,7 @@ def atlas_retrieve():
         return {"error": "atlas_query.json not found"}
 
     query = json.loads(question_path.read_text(encoding="utf-8"))
-    packet = build_atlas_prior_packet(query.get("question_text", ""))
+    packet = build_atlas_prior_packet(query)
 
     out_path = Path(r"C:\UVLM\CoherenceLattice\bridge\atlas_prior_packet.json")
     out_path.write_text(json.dumps(packet, indent=2), encoding="utf-8")
