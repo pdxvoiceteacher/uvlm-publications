@@ -20,6 +20,10 @@ FILES_TO_SYNC = [
     'agent_telemetry_event_map.json',
     'ai_guidance.json',
     'navigation_state.json',
+    # New lens/audit artifacts (advisory-only)
+    'lan01_dataset_summary.json',
+    'lan01_lens_report.json',
+    'lan01_corridor_series_lens_adjusted.json',
 ]
 
 
