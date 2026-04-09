@@ -77,8 +77,11 @@
         <button id="toggle-civilization-forecast">Show Civilization Forecast</button>
         <button id="toggle-backtest-map">Show Backtest Map</button>
         <button id="toggle-backtest-overlay">Show Backtest Overlay</button>
-        <button id="toggle-hb01-relativity">Relativity Corridor</button>
-        <button id="toggle-hb02-dna">DNA Corridor</button>
+        <button id="toggle-hb01-relativity">Show HB-01 Relativity Corridor</button>
+        <button id="toggle-hb02-dna">Show DNA Corridor</button>
+        <button id="toggle-hb02-corridor">Show DNA Corridor</button>
+        <button id="toggle-hb02-breakthrough">DNA Breakthrough Test</button>
+        <button id="toggle-breakthrough-metrics">Breakthrough Metrics</button>
         <button id="toggle-hb03-quantum">Quantum Corridor</button>
         <button id="toggle-hb04-dl">Deep Learning Corridor</button>
         <button id="toggle-visual-field">Visual Input Heatmap</button>
@@ -99,6 +102,7 @@
         <button id="toggle-phase-surface">Show Governance Phase Surface</button>
         <button id="toggle-discovery-vectors">Show Discovery Vectors</button>
         <button id="toggle-relativity-corridor">Show Relativity Corridor</button>
+        <button id="toggle-corridor-series">Show Discovery Convergence</button>
         <button id="show-onboarding">Help</button>
         <button id="reset">Reset View</button>
       </div>
@@ -169,6 +173,12 @@
         <div id="forecast-panel" class="atlas-panel">Civilization forecast will appear here.</div>
         <div id="backtest-panel" class="atlas-panel">Backtest map overlay is inactive.</div>
         <div id="backtest-overlay-panel" class="atlas-panel">Backtest overlay is inactive.</div>
+        <div id="hb02-corridor-panel" class="atlas-panel">HB-02 DNA corridor metrics are not loaded.</div>
+        <div id="hb02-breakthrough-panel" class="atlas-panel">HB-02 breakthrough test is not loaded.</div>
+        <div id="metrics-panel" class="atlas-panel">Breakthrough metrics are not loaded.</div>
+        <div id="relativity-panel" class="atlas-panel">Relativity corridor score is not loaded.</div>
+        <div id="corridor-series-panel" class="atlas-panel">Discovery convergence series is not loaded.</div>
+        <div id="phaselock-provenance-panel" class="atlas-panel">Phaselock provenance state is not loaded.</div>
         <div id="visual-field-panel" class="atlas-panel">Visual input heatmap is inactive.</div>
         <div id="anti-capture-panel" class="atlas-panel">Governance capture risk diagnostics will appear here.</div>
         <div id="governance-stability-panel" class="atlas-panel">Governance stability diagnostics will appear here.</div>
@@ -226,10 +236,14 @@
     <script src="js/backtest_overlay.js"></script>
     <script src="js/hb01_relativity_overlay.js"></script>
     <script src="js/hb02_dna_overlay.js"></script>
+    <script src="js/hb02_corridor_overlay.js"></script>
+    <script src="js/hb02_breakthrough_overlay.js"></script>
+    <script src="js/breakthrough_metrics_overlay.js"></script>
     <script src="js/hb03_quantum_overlay.js"></script>
     <script src="js/hb04_dl_overlay.js"></script>
     <script src="js/visual_field_overlay.js"></script>
     <script src="js/triadic_dashboard.js"></script>
+    <script src="js/prediction_confidence_overlay.js"></script>
     <script src="js/triadic_health_panel.js"></script>
     <script src="js/homeostasis_overlay.js"></script>
     <script src="js/anti_capture_overlay.js"></script>
@@ -238,6 +252,7 @@
     <script src="js/governance_phase_surface.js"></script>
     <script src="js/discovery_vector_overlay.js"></script>
     <script src="js/relativity_corridor_overlay.js"></script>
+    <script src="js/corridor_time_series_overlay.js"></script>
 
     <script>
       window.addEventListener('DOMContentLoaded', async () => {

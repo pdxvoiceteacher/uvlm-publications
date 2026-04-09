@@ -9,6 +9,25 @@ function asList(values) {
   return values.join(', ');
 }
 
+function asYesNoUnknown(value) {
+  if (value === true) return 'yes';
+  if (value === false) return 'no';
+  return '—';
+}
+
+function renderProvenanceRows(data) {
+  return [
+    row('Canonical Run Hash', data.canonicalRunHash ?? '—'),
+    row('Grounded (canonical packet)', asYesNoUnknown(data.grounded)),
+    row('Citation Count (canonical packet)', data.citationCount ?? '—'),
+    row('Audited (canonical packet)', asYesNoUnknown(data.audited)),
+    row('Bundle Count (canonical packet)', data.bundleCount ?? '—'),
+    row('Source-First Clarification Suppressed', asYesNoUnknown(data.sourceFirstClarificationSuppressed)),
+    row('Attention Update Status', data.attentionUpdateStatus ?? 'ok'),
+    row('Provenance Warning', data.provenanceWarning ?? 'none')
+  ];
+}
+
 function renderConceptRelations(relatedConcepts) {
   if (!Array.isArray(relatedConcepts) || relatedConcepts.length === 0) {
     return row('Theory Relations', '—');
@@ -45,7 +64,8 @@ function renderPublication(data) {
     row('Keywords', asList(data.keywords)),
     row('Series', data.series),
     row('Type', data.type ?? data.publication_type),
-    row('Publication Page', pageLink)
+    row('Publication Page', pageLink),
+    ...renderProvenanceRows(data)
   ].join('');
 }
 
@@ -60,7 +80,7 @@ function renderConcept(data) {
     row('Attention Rank', data.attentionRank ?? '—'),
     row('Attention Weight', (data.attentionWeight ?? 0).toFixed(2)),
     row('Drift Score (formal)', (data.driftScore ?? 0).toFixed(2)),
-    row('Activity Mismatch Score (publisher-local)', data.activityMismatchScore == null ? '—' : Number(data.activityMismatchScore).toFixed(2)),
+    row('Activity Mismatch Score (publisher-local, non-canonical)', data.activityMismatchScore == null ? '—' : Number(data.activityMismatchScore).toFixed(2)),
     row('Drift Direction (formal)', data.driftDirection ?? '—'),
     row('Sophia Note', data.sophiaNote ?? '—'),
     row('Sonya Admitted Signals', data.sonyaAdmittedSignalCount ?? 0),
@@ -425,6 +445,7 @@ function renderConcept(data) {
     row('Discovery Navigation Schema Version', data.discoveryNavigationSchemaVersion ?? 'unknown'),
     row('Discovery Navigation Producer Commit(s)', data.discoveryNavigationProducerCommits ?? 'unknown'),
     row('Discovery Navigation Source Mode', data.discoveryNavigationSourceMode ?? 'unknown'),
+    ...renderProvenanceRows(data),
     row('Related Concepts', data.relatedConceptCount ?? 0),
     renderConceptRelations(data.relatedConcepts)
   ].join('');
