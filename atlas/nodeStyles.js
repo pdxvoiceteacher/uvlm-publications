@@ -24,6 +24,11 @@ export const nodeStyles = {
     color: '#42d4b8',
     borderColor: '#b4f0e5'
   },
+  provenanceWarning: {
+    size: 12,
+    color: '#ff8c8c',
+    borderColor: '#ffd0d0'
+  },
   fallback: {
     size: 12,
     color: '#a4b2cc',

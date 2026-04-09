@@ -1,0 +1,33 @@
+{
+  "activityMismatchScore_semantics": "publisher_local_ui_only_non_canonical",
+  "canonical_truth_origin": "coherencelattice_and_sophia",
+  "inputs": {
+    "optional": {
+      "attention_updates": "bridge/attention_updates.json"
+    },
+    "required": {
+      "coherence_drift_map": "bridge/coherence_drift_map.json",
+      "grounding_policy": "bridge/grounding_policy.json",
+      "source_evidence_packet": "bridge/source_evidence_packet.json",
+      "triadic_run_manifest": "bridge/triadic_run_manifest.json"
+    }
+  },
+  "nodes": {
+    "concept:phase-lock": {
+      "attention_warning": true,
+      "audited": true,
+      "bundle_count": 1,
+      "canonical_formal_drift": 0.12,
+      "canonical_run_hash": "tb05-sample-run",
+      "citation_count": 1,
+      "grounded": true,
+      "node_id": "concept:phase-lock",
+      "publisher_truth_origin": "external_canonical_inputs_only",
+      "source_first_clarification_suppressed": false
+    }
+  },
+  "schema": "atlas.phaselock.provenance.v1",
+  "warnings": [
+    "attention_updates_missing_bounded_warning"
+  ]
+}

@@ -184,6 +184,28 @@ Semantics used in this repo:
 
 Publisher may include local UI diagnostics, but they must be clearly separated from canonical policy metrics (e.g., `activityMismatchScore` is a local rendering diagnostic, not formal drift).
 
+### TB-05 phaselock provenance dashboard
+
+Atlas now surfaces bounded provenance/grounding chips from canonical bridge artifacts without recomputing truth:
+
+- `bridge/coherence_drift_map.json`
+- `bridge/attention_updates.json`
+- `bridge/triadic_run_manifest.json`
+- `bridge/grounding_policy.json`
+- `bridge/source_evidence_packet.json`
+- `registry/phaselock_provenance_dashboard.json` (deterministic Publisher dashboard output)
+
+Bounded metadata surfaced in node details includes:
+
+- grounded / ungrounded
+- citation count
+- audited / unaudited
+- bundle count
+- source-first clarification suppression
+- canonical run hash
+
+If `attention_updates.json` is missing, Atlas emits a bounded warning state and does **not** invent executive interpretation.
+
 ### Sonya memory ingestion gate (Phase C)
 
 Publisher memory artifacts ingest **only Sophia-audited Sonya decisions**.

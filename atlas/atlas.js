@@ -396,7 +396,7 @@ function bindConstellations({ cy, constellations, renderConstellationInfo }) {
 }
 
 async function main() {
-  const [graphResponse, timelineResponse, pathsResponse, constellationsResponse, attentionOverlay, driftOverlay, agentTelemetryResponse, aiGuidanceResponse, navigationStateResponse] = await Promise.all([
+  const [graphResponse, timelineResponse, pathsResponse, constellationsResponse, attentionOverlay, driftOverlay, agentTelemetryResponse, aiGuidanceResponse, navigationStateResponse, runManifestResponse, groundingPolicyResponse, sourceEvidenceResponse, attentionUpdatesResponse, phaselockDashboardResponse] = await Promise.all([
     fetch('../registry/knowledge_graph.json'),
     fetch('../registry/atlas_timeline.json'),
     fetch('../registry/atlas_paths.json').catch(() => null),
@@ -405,7 +405,12 @@ async function main() {
     loadDriftOverlay().catch(() => ({})),
     fetch('../bridge/agent_telemetry_event_map.json').catch(() => null),
     fetch('../bridge/ai_guidance.json').catch(() => null),
-    fetch('../bridge/navigation_state.json').catch(() => null)
+    fetch('../bridge/navigation_state.json').catch(() => null),
+    fetch('../bridge/triadic_run_manifest.json').catch(() => null),
+    fetch('../bridge/grounding_policy.json').catch(() => null),
+    fetch('../bridge/source_evidence_packet.json').catch(() => null),
+    fetch('../bridge/attention_updates.json').catch(() => null),
+    fetch('../registry/phaselock_provenance_dashboard.json').catch(() => null)
   ]);
 
   const sourceGraph = await graphResponse.json();
@@ -415,12 +420,29 @@ async function main() {
   const agentTelemetryMap = agentTelemetryResponse ? await agentTelemetryResponse.json().catch(() => ({})) : {};
   const aiGuidance = aiGuidanceResponse ? await aiGuidanceResponse.json().catch(() => ({})) : {};
   const navigationState = navigationStateResponse ? await navigationStateResponse.json().catch(() => ({})) : {};
+  const runManifest = runManifestResponse ? await runManifestResponse.json().catch(() => ({})) : {};
+  const groundingPolicy = groundingPolicyResponse ? await groundingPolicyResponse.json().catch(() => ({})) : {};
+  const sourceEvidencePacket = sourceEvidenceResponse ? await sourceEvidenceResponse.json().catch(() => ({})) : {};
+  const attentionUpdates = attentionUpdatesResponse ? await attentionUpdatesResponse.json().catch(() => null) : null;
+  const phaselockDashboard = phaselockDashboardResponse ? await phaselockDashboardResponse.json().catch(() => ({})) : {};
+  const attentionWarning = !attentionUpdates;
+  const canonicalRunHash = runManifest?.run_hash ?? runManifest?.canonical_run_hash ?? runManifest?.id ?? null;
+  const sourceFirstSuppressed = Boolean(
+    groundingPolicy?.source_first_clarification_suppressed
+      ?? groundingPolicy?.clarification?.source_first_suppressed
+  );
+  const phaselockByNode = phaselockDashboard?.nodes ?? {};
   window.__bridgeArtifacts = {
     ...(window.__bridgeArtifacts ?? {}),
     agentTelemetryMap,
     agent_telemetry_event_map: agentTelemetryMap,
     aiGuidance,
-    navigation_state: navigationState
+    navigation_state: navigationState,
+    triadic_run_manifest: runManifest,
+    grounding_policy: groundingPolicy,
+    source_evidence_packet: sourceEvidencePacket,
+    attention_updates: attentionUpdates,
+    phaselock_provenance_dashboard: phaselockDashboard
   };
   const graph = computeAtlasLayout(sourceGraph);
 
@@ -620,6 +642,17 @@ async function main() {
           'background-color': '#0984e3',
           'border-width': 3,
           'border-color': '#ffffff'
+        }
+      },
+      {
+        selector: '.phaselock-ungrounded',
+        style: {
+          'border-style': 'dashed',
+          'border-color': '#ff9b9b',
+          'border-width': 3,
+          'overlay-color': 'rgba(255, 120, 120, 0.24)',
+          'overlay-opacity': 0.16,
+          'overlay-padding': 2
         }
       },
 
@@ -2498,6 +2531,51 @@ async function main() {
   }).run();
 
   window.cy = cy;
+
+  const evidenceByNode = sourceEvidencePacket?.by_node ?? {};
+  cy.nodes().forEach((node) => {
+    const nodeId = node.id();
+    const fromDashboard = phaselockByNode?.[nodeId] ?? {};
+    const fromEvidence = evidenceByNode?.[nodeId] ?? {};
+    const citationCount = Number(fromDashboard.citation_count ?? fromEvidence.citation_count ?? 0);
+    const bundleCount = Number(fromDashboard.bundle_count ?? fromEvidence.bundle_count ?? 0);
+    const grounded = Boolean(
+      fromDashboard.grounded
+      ?? fromEvidence.grounded
+      ?? (citationCount > 0)
+    );
+    const audited = Boolean(
+      fromDashboard.audited
+      ?? fromEvidence.audited
+      ?? sourceEvidencePacket?.audited
+    );
+
+    node.data('canonicalRunHash', fromDashboard.canonical_run_hash ?? canonicalRunHash ?? '—');
+    node.data('grounded', grounded);
+    node.data('citationCount', citationCount);
+    node.data('audited', audited);
+    node.data('bundleCount', bundleCount);
+    node.data(
+      'sourceFirstClarificationSuppressed',
+      fromDashboard.source_first_clarification_suppressed ?? sourceFirstSuppressed
+    );
+    node.data('attentionUpdateStatus', attentionWarning ? 'missing (bounded warning)' : 'ok');
+    node.data('provenanceWarning', attentionWarning ? 'Missing Sophia attention_updates.json (bounded warning only)' : 'none');
+    if (!grounded) {
+      node.addClass('phaselock-ungrounded');
+    }
+  });
+
+  const provenancePanel = document.getElementById('phaselock-provenance-panel');
+  if (provenancePanel) {
+    provenancePanel.innerHTML = `
+      <h3>Phaselock Provenance</h3>
+      Canonical run: ${canonicalRunHash ?? '—'}<br>
+      Attention updates: ${attentionWarning ? 'missing (bounded warning)' : 'present'}<br>
+      Source-first clarification suppressed: ${sourceFirstSuppressed ? 'yes' : 'no'}<br>
+      activityMismatchScore is publisher-local and non-canonical.
+    `;
+  }
 
   function toggleAgentTelemetry(enabled) {
     if (!window.cy) return;
