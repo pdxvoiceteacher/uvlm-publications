@@ -188,23 +188,24 @@ Publisher may include local UI diagnostics, but they must be clearly separated f
 
 Atlas now surfaces bounded provenance/grounding chips from canonical bridge artifacts without recomputing truth:
 
-- `bridge/coherence_drift_map.json`
-- `bridge/attention_updates.json`
-- `bridge/triadic_run_manifest.json`
-- `bridge/grounding_policy.json`
-- `bridge/source_evidence_packet.json`
+- `../CoherenceLattice/bridge/triadic_run_manifest.json`
+- `../CoherenceLattice/bridge/grounding_policy.json`
+- `../CoherenceLattice/bridge/source_evidence_packet.json`
+- `../Sophia/bridge/attention_updates.json`
 - `registry/phaselock_provenance_dashboard.json` (deterministic Publisher dashboard output)
 
-Bounded metadata surfaced in node details includes:
+`registry/phaselock_provenance_dashboard.json` contract:
 
-- grounded / ungrounded
-- citation count
-- audited / unaudited
-- bundle count
-- source-first clarification suppression
-- canonical run hash
+- `grounded`
+- `grounding_count`
+- `normalized_sha256s`
+- `citation_count`
+- `citation_ready`
+- `source_context_mode`
+- `clarification_state`
+- `legacy_alias_projection`
 
-If `attention_updates.json` is missing, Atlas emits a bounded warning state and does **not** invent executive interpretation.
+If `attention_updates.json` is missing, Atlas emits a bounded warning state only and does **not** infer governance.
 
 ### Sonya memory ingestion gate (Phase C)
 
