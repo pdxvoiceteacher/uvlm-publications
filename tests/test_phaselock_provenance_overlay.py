@@ -13,58 +13,102 @@ def write_json(path: Path, payload: dict):
 
 
 class TestPhaselockProvenanceOverlay(unittest.TestCase):
-    def test_builds_dashboard_and_warns_when_attention_missing(self):
+    def test_builds_contract_and_is_deterministic(self):
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
-            bridge = root / "bridge"
-            registry = root / "registry"
+            coh_bridge = root / "CoherenceLattice" / "bridge"
+            sophia_bridge = root / "Sophia" / "bridge"
+            out = root / "registry" / "phaselock_provenance_dashboard.json"
 
-            write_json(bridge / "coherence_drift_map.json", {
-                "nodes": [{"node_id": "n1", "drift_score": 0.42}]
+            write_json(coh_bridge / "triadic_run_manifest.json", {
+                "normalized_sha256s": [
+                    "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+                ]
             })
-            write_json(bridge / "triadic_run_manifest.json", {
-                "run_hash": "run-abc-123"
+            write_json(coh_bridge / "grounding_policy.json", {
+                "source_context_mode": "bundle_compact",
+                "clarification_state": "source_resolved",
             })
-            write_json(bridge / "grounding_policy.json", {
-                "source_first_clarification_suppressed": True
-            })
-            write_json(bridge / "source_evidence_packet.json", {
-                "audited": True,
+            write_json(coh_bridge / "source_evidence_packet.json", {
                 "by_node": {
                     "n1": {
                         "grounded": True,
+                        "citation_count": 3,
+                        "sha256": "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
+                    },
+                    "n2": {
+                        "grounded": False,
                         "citation_count": 2,
-                        "bundle_count": 1,
-                        "audited": True,
-                    }
+                    },
                 }
             })
-            # no attention_updates.json on purpose
+            write_json(sophia_bridge / "attention_updates.json", {"legacy_alias_projection": True})
 
-            out = registry / "phaselock_provenance_dashboard.json"
+            cmd = [
+                "python",
+                str(SCRIPT),
+                "--triadic-run-manifest", str(coh_bridge / "triadic_run_manifest.json"),
+                "--grounding-policy", str(coh_bridge / "grounding_policy.json"),
+                "--source-evidence-packet", str(coh_bridge / "source_evidence_packet.json"),
+                "--attention-updates", str(sophia_bridge / "attention_updates.json"),
+                "--out-dashboard", str(out),
+            ]
+            subprocess.run(cmd, check=True)
+            first = out.read_text(encoding="utf-8")
+            subprocess.run(cmd, check=True)
+            second = out.read_text(encoding="utf-8")
+
+            self.assertEqual(first, second)
+            payload = json.loads(first)
+            self.assertEqual(
+                payload,
+                {
+                    "grounded": True,
+                    "grounding_count": 1,
+                    "normalized_sha256s": [
+                        "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+                        "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+                    ],
+                    "citation_count": 5,
+                    "citation_ready": True,
+                    "source_context_mode": "bundle_compact",
+                    "clarification_state": "source_resolved",
+                    "legacy_alias_projection": True,
+                },
+            )
+
+    def test_missing_attention_file_still_emits_dashboard(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            coh_bridge = root / "CoherenceLattice" / "bridge"
+            out = root / "registry" / "phaselock_provenance_dashboard.json"
+
+            write_json(coh_bridge / "triadic_run_manifest.json", {})
+            write_json(coh_bridge / "grounding_policy.json", {})
+            write_json(coh_bridge / "source_evidence_packet.json", {})
 
             subprocess.run(
                 [
                     "python",
                     str(SCRIPT),
-                    "--coherence-drift-map", str(bridge / "coherence_drift_map.json"),
-                    "--triadic-run-manifest", str(bridge / "triadic_run_manifest.json"),
-                    "--grounding-policy", str(bridge / "grounding_policy.json"),
-                    "--source-evidence-packet", str(bridge / "source_evidence_packet.json"),
-                    "--attention-updates", str(bridge / "attention_updates.json"),
+                    "--triadic-run-manifest", str(coh_bridge / "triadic_run_manifest.json"),
+                    "--grounding-policy", str(coh_bridge / "grounding_policy.json"),
+                    "--source-evidence-packet", str(coh_bridge / "source_evidence_packet.json"),
+                    "--attention-updates", str(root / "Sophia" / "bridge" / "attention_updates.json"),
                     "--out-dashboard", str(out),
                 ],
                 check=True,
             )
 
             payload = json.loads(out.read_text(encoding="utf-8"))
-            self.assertEqual(payload["schema"], "atlas.phaselock.provenance.v1")
-            self.assertIn("attention_updates_missing_bounded_warning", payload["warnings"])
-            self.assertEqual(payload["nodes"]["n1"]["canonical_run_hash"], "run-abc-123")
-            self.assertTrue(payload["nodes"]["n1"]["grounded"])
-            self.assertEqual(payload["nodes"]["n1"]["citation_count"], 2)
-            self.assertEqual(payload["nodes"]["n1"]["bundle_count"], 1)
-            self.assertTrue(payload["nodes"]["n1"]["source_first_clarification_suppressed"])
+            self.assertFalse(payload["grounded"])
+            self.assertEqual(payload["grounding_count"], 0)
+            self.assertEqual(payload["citation_count"], 0)
+            self.assertFalse(payload["citation_ready"])
+            self.assertEqual(payload["source_context_mode"], "bundle_compact")
+            self.assertEqual(payload["clarification_state"], "source_resolved")
+            self.assertTrue(payload["legacy_alias_projection"])
 
 
 if __name__ == "__main__":
