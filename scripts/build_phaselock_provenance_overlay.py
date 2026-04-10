@@ -1,180 +1,182 @@
 #!/usr/bin/env python3
-"""Build Atlas phaselock provenance dashboard from triadic bridge artifacts."""
+"""Build deterministic phaselock provenance dashboard from canonical bridge artifacts."""
 
 from __future__ import annotations
 
 import argparse
 import json
+import re
 from pathlib import Path
 from typing import Any
 
+DEFAULT_TRIADIC_RUN_MANIFEST = Path("../CoherenceLattice/bridge/triadic_run_manifest.json")
+DEFAULT_GROUNDING_POLICY = Path("../CoherenceLattice/bridge/grounding_policy.json")
+DEFAULT_SOURCE_EVIDENCE_PACKET = Path("../CoherenceLattice/bridge/source_evidence_packet.json")
+DEFAULT_ATTENTION_UPDATES = Path("../Sophia/bridge/attention_updates.json")
+DEFAULT_OUT_DASHBOARD = Path("registry/phaselock_provenance_dashboard.json")
 
-REQUIRED_INPUTS = {
-    "coherence_drift_map": Path("bridge/coherence_drift_map.json"),
-    "triadic_run_manifest": Path("bridge/triadic_run_manifest.json"),
-    "grounding_policy": Path("bridge/grounding_policy.json"),
-    "source_evidence_packet": Path("bridge/source_evidence_packet.json"),
-}
-
-OPTIONAL_INPUTS = {
-    "attention_updates": Path("bridge/attention_updates.json"),
-}
+_SHA256_RE = re.compile(r"^[0-9a-f]{64}$")
 
 
 def load_json(path: Path) -> dict[str, Any]:
-    return json.loads(path.read_text(encoding="utf-8"))
+    if not path.exists():
+        raise ValueError(f"Missing required input JSON: {path}")
+    try:
+        payload = json.loads(path.read_text(encoding="utf-8"))
+    except json.JSONDecodeError as exc:
+        raise ValueError(f"Invalid JSON at {path}: {exc}") from exc
+    if not isinstance(payload, dict):
+        raise ValueError(f"Expected top-level JSON object at {path}")
+    return payload
 
 
-def _extract_node_ids(drift: dict[str, Any], evidence: dict[str, Any]) -> set[str]:
-    node_ids: set[str] = set()
+def _extract_citation_count(source_evidence_packet: dict[str, Any]) -> int:
+    total = 0
 
-    for key in ("nodes", "entries", "concepts", "records"):
-        if isinstance(drift.get(key), list):
-            for item in drift[key]:
-                if isinstance(item, dict):
-                    nid = item.get("node_id") or item.get("nodeId") or item.get("id")
-                    if nid:
-                        node_ids.add(str(nid))
-
-    by_node = evidence.get("by_node") if isinstance(evidence, dict) else None
+    by_node = source_evidence_packet.get("by_node")
     if isinstance(by_node, dict):
-        node_ids.update(str(k) for k in by_node.keys())
+        for row in by_node.values():
+            if isinstance(row, dict):
+                total += int(row.get("citation_count", row.get("citations", 0)) or 0)
 
-    bundles = evidence.get("bundles") if isinstance(evidence, dict) else None
+    bundles = source_evidence_packet.get("bundles")
     if isinstance(bundles, list):
-        for item in bundles:
-            if isinstance(item, dict):
-                nid = item.get("node_id") or item.get("nodeId") or item.get("id")
-                if nid:
-                    node_ids.add(str(nid))
+        for row in bundles:
+            if isinstance(row, dict):
+                total += int(row.get("citation_count", row.get("citations", 0)) or 0)
 
-    return node_ids
+    if total == 0:
+        total = int(source_evidence_packet.get("citation_count", source_evidence_packet.get("citations", 0)) or 0)
 
-
-def _extract_drift_node_map(drift: dict[str, Any]) -> dict[str, dict[str, Any]]:
-    out: dict[str, dict[str, Any]] = {}
-    for key in ("nodes", "entries", "concepts", "records"):
-        items = drift.get(key)
-        if not isinstance(items, list):
-            continue
-        for item in items:
-            if not isinstance(item, dict):
-                continue
-            nid = item.get("node_id") or item.get("nodeId") or item.get("id")
-            if nid:
-                out[str(nid)] = item
-    return out
+    return max(total, 0)
 
 
-def _extract_evidence_by_node(evidence: dict[str, Any]) -> dict[str, dict[str, Any]]:
-    by_node = evidence.get("by_node")
+def _extract_grounding_count(source_evidence_packet: dict[str, Any]) -> int:
+    grounded = 0
+
+    by_node = source_evidence_packet.get("by_node")
     if isinstance(by_node, dict):
-        return {str(k): v for k, v in by_node.items() if isinstance(v, dict)}
+        for row in by_node.values():
+            if isinstance(row, dict) and bool(row.get("grounded")):
+                grounded += 1
 
-    out: dict[str, dict[str, Any]] = {}
-    bundles = evidence.get("bundles")
+    bundles = source_evidence_packet.get("bundles")
     if isinstance(bundles, list):
-        for item in bundles:
-            if not isinstance(item, dict):
+        for row in bundles:
+            if isinstance(row, dict) and bool(row.get("grounded")):
+                grounded += 1
+
+    if grounded == 0 and bool(source_evidence_packet.get("grounded")):
+        grounded = 1
+
+    return grounded
+
+
+def _extract_normalized_sha256s(
+    triadic_run_manifest: dict[str, Any],
+    source_evidence_packet: dict[str, Any],
+) -> list[str]:
+    candidates: list[str] = []
+
+    for key in ("normalized_sha256s", "sha256s"):
+        value = triadic_run_manifest.get(key)
+        if isinstance(value, list):
+            candidates.extend(str(v) for v in value)
+
+    for key in ("normalized_sha256s", "sha256s"):
+        value = source_evidence_packet.get(key)
+        if isinstance(value, list):
+            candidates.extend(str(v) for v in value)
+
+    for key in ("sha256", "normalized_sha256"):
+        value = triadic_run_manifest.get(key)
+        if isinstance(value, str):
+            candidates.append(value)
+        value = source_evidence_packet.get(key)
+        if isinstance(value, str):
+            candidates.append(value)
+
+    by_node = source_evidence_packet.get("by_node")
+    if isinstance(by_node, dict):
+        for row in by_node.values():
+            if not isinstance(row, dict):
                 continue
-            nid = item.get("node_id") or item.get("nodeId") or item.get("id")
-            if not nid:
+            for key in ("sha256", "normalized_sha256"):
+                value = row.get(key)
+                if isinstance(value, str):
+                    candidates.append(value)
+
+    bundles = source_evidence_packet.get("bundles")
+    if isinstance(bundles, list):
+        for row in bundles:
+            if not isinstance(row, dict):
                 continue
-            sid = str(nid)
-            prev = out.setdefault(sid, {"bundle_count": 0, "citation_count": 0})
-            prev["bundle_count"] = int(prev.get("bundle_count", 0)) + 1
-            prev["citation_count"] = int(prev.get("citation_count", 0)) + int(item.get("citation_count", 0) or 0)
-            prev["grounded"] = bool(item.get("grounded", prev.get("grounded", False)))
-            prev["audited"] = bool(item.get("audited", prev.get("audited", False)))
-    return out
+            for key in ("sha256", "normalized_sha256"):
+                value = row.get(key)
+                if isinstance(value, str):
+                    candidates.append(value)
+
+    normalized = sorted({c.strip().lower() for c in candidates if isinstance(c, str) and _SHA256_RE.match(c.strip().lower())})
+    return normalized
 
 
 def build_dashboard(
-    drift: dict[str, Any],
-    run_manifest: dict[str, Any],
+    triadic_run_manifest: dict[str, Any],
     grounding_policy: dict[str, Any],
     source_evidence_packet: dict[str, Any],
     attention_updates: dict[str, Any] | None,
 ) -> dict[str, Any]:
-    node_ids = _extract_node_ids(drift, source_evidence_packet)
-    drift_nodes = _extract_drift_node_map(drift)
-    evidence_by_node = _extract_evidence_by_node(source_evidence_packet)
+    citation_count = _extract_citation_count(source_evidence_packet)
+    grounding_count = _extract_grounding_count(source_evidence_packet)
+    grounded = grounding_count > 0 or bool(source_evidence_packet.get("grounded"))
 
-    warnings: list[str] = []
-    if attention_updates is None:
-        warnings.append("attention_updates_missing_bounded_warning")
+    source_context_mode = grounding_policy.get("source_context_mode", "bundle_compact")
+    clarification_state = grounding_policy.get("clarification_state", "source_resolved")
 
-    run_hash = (
-        run_manifest.get("run_hash")
-        or run_manifest.get("canonical_run_hash")
-        or run_manifest.get("id")
-    )
-
-    source_first_suppressed = bool(
-        grounding_policy.get("source_first_clarification_suppressed")
-        or grounding_policy.get("clarification", {}).get("source_first_suppressed")
-    )
-
-    node_dashboard: dict[str, dict[str, Any]] = {}
-    for node_id in sorted(node_ids):
-        drift_row = drift_nodes.get(node_id, {})
-        ev = evidence_by_node.get(node_id, {})
-
-        citation_count = int(ev.get("citation_count", ev.get("citations", 0) or 0) or 0)
-        bundle_count = int(ev.get("bundle_count", ev.get("bundles", 0) or 0) or 0)
-        grounded = bool(ev.get("grounded", citation_count > 0))
-        audited = bool(ev.get("audited", source_evidence_packet.get("audited", False)))
-
-        node_dashboard[node_id] = {
-            "node_id": node_id,
-            "grounded": grounded,
-            "citation_count": citation_count,
-            "audited": audited,
-            "bundle_count": bundle_count,
-            "source_first_clarification_suppressed": source_first_suppressed,
-            "canonical_run_hash": run_hash,
-            "canonical_formal_drift": drift_row.get("drift_score"),
-            "attention_warning": attention_updates is None,
-            "publisher_truth_origin": "external_canonical_inputs_only",
-        }
+    legacy_alias_projection = True
+    if isinstance(attention_updates, dict) and "legacy_alias_projection" in attention_updates:
+        legacy_alias_projection = bool(attention_updates.get("legacy_alias_projection"))
 
     return {
-        "schema": "atlas.phaselock.provenance.v1",
-        "activityMismatchScore_semantics": "publisher_local_ui_only_non_canonical",
-        "canonical_truth_origin": "coherencelattice_and_sophia",
-        "warnings": warnings,
-        "inputs": {
-            "required": {k: str(v) for k, v in REQUIRED_INPUTS.items()},
-            "optional": {k: str(v) for k, v in OPTIONAL_INPUTS.items()},
-        },
-        "nodes": node_dashboard,
+        "grounded": bool(grounded),
+        "grounding_count": int(grounding_count),
+        "normalized_sha256s": _extract_normalized_sha256s(triadic_run_manifest, source_evidence_packet),
+        "citation_count": int(citation_count),
+        "citation_ready": bool(citation_count > 0),
+        "source_context_mode": str(source_context_mode),
+        "clarification_state": str(clarification_state),
+        "legacy_alias_projection": bool(legacy_alias_projection),
     }
 
 
 def parse_args() -> argparse.Namespace:
     p = argparse.ArgumentParser(description=__doc__)
-    p.add_argument("--coherence-drift-map", type=Path, default=REQUIRED_INPUTS["coherence_drift_map"])
-    p.add_argument("--triadic-run-manifest", type=Path, default=REQUIRED_INPUTS["triadic_run_manifest"])
-    p.add_argument("--grounding-policy", type=Path, default=REQUIRED_INPUTS["grounding_policy"])
-    p.add_argument("--source-evidence-packet", type=Path, default=REQUIRED_INPUTS["source_evidence_packet"])
-    p.add_argument("--attention-updates", type=Path, default=OPTIONAL_INPUTS["attention_updates"])
-    p.add_argument("--out-dashboard", type=Path, default=Path("registry/phaselock_provenance_dashboard.json"))
+    p.add_argument("--triadic-run-manifest", type=Path, default=DEFAULT_TRIADIC_RUN_MANIFEST)
+    p.add_argument("--grounding-policy", type=Path, default=DEFAULT_GROUNDING_POLICY)
+    p.add_argument("--source-evidence-packet", type=Path, default=DEFAULT_SOURCE_EVIDENCE_PACKET)
+    p.add_argument("--attention-updates", type=Path, default=DEFAULT_ATTENTION_UPDATES)
+    p.add_argument("--out-dashboard", type=Path, default=DEFAULT_OUT_DASHBOARD)
     return p.parse_args()
 
 
 def main() -> int:
     args = parse_args()
 
-    drift = load_json(args.coherence_drift_map)
-    run_manifest = load_json(args.triadic_run_manifest)
+    triadic_run_manifest = load_json(args.triadic_run_manifest)
     grounding_policy = load_json(args.grounding_policy)
-    source_evidence = load_json(args.source_evidence_packet)
+    source_evidence_packet = load_json(args.source_evidence_packet)
 
-    attention = None
+    attention_updates = None
     if args.attention_updates.exists():
-        attention = load_json(args.attention_updates)
+        attention_updates = load_json(args.attention_updates)
 
-    dashboard = build_dashboard(drift, run_manifest, grounding_policy, source_evidence, attention)
+    dashboard = build_dashboard(
+        triadic_run_manifest=triadic_run_manifest,
+        grounding_policy=grounding_policy,
+        source_evidence_packet=source_evidence_packet,
+        attention_updates=attention_updates,
+    )
+
     args.out_dashboard.parent.mkdir(parents=True, exist_ok=True)
     args.out_dashboard.write_text(json.dumps(dashboard, indent=2, sort_keys=True) + "\n", encoding="utf-8")
     print(f"[OK] Wrote phaselock provenance dashboard: {args.out_dashboard}")
