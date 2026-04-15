@@ -1,6 +1,9 @@
-Write-Host "Starting Atlas Agency API..."
+param(
+    [switch]$RebuildVenv = $false
+)
 
-cd $PSScriptRoot
+$ErrorActionPreference = "Stop"
+Set-Location $PSScriptRoot
 
 function Test-HttpOk {
     param([string]$Uri)
@@ -17,14 +20,24 @@ if (Test-HttpOk -Uri "http://127.0.0.1:8100/health") {
     exit 0
 }
 
+if ($RebuildVenv -and (Test-Path ".venv")) {
+    Remove-Item -Recurse -Force ".venv"
+}
+
 if (!(Test-Path ".venv")) {
     python -m venv .venv
 }
 
 . .\.venv\Scripts\Activate.ps1
-
 python -m pip install --upgrade pip
 python -m pip install -e .
-python -m pip install fastapi uvicorn
 
-python -m atlas
+$cohRoot = Resolve-Path (Join-Path $PSScriptRoot "..\CoherenceLattice")
+$bridgeRoot = Join-Path $cohRoot.Path "bridge"
+New-Item -ItemType Directory -Force $bridgeRoot | Out-Null
+
+$env:COHERENCE_LATTICE_ROOT = $cohRoot.Path
+$env:TRIADIC_BRIDGE_ROOT = $bridgeRoot
+
+Write-Host "[Atlas] starting API on 127.0.0.1:8100"
+python -m uvicorn atlas.api_server:app --host 127.0.0.1 --port 8100
