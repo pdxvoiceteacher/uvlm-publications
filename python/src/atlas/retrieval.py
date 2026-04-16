@@ -6,8 +6,33 @@ import re
 ATLAS_STORE = Path(r"C:\UVLM\uvlm-publications\atlas_store")
 
 
-def _tokens(text: str) -> set[str]:
-    toks = re.findall(r"[A-Za-z][A-Za-z0-9_\-]{2,}", (text or "").lower())
+def _to_text(value) -> str:
+    if value is None:
+        return ""
+    if isinstance(value, str):
+        return value.strip()
+    if isinstance(value, (int, float, bool)):
+        return str(value)
+    if isinstance(value, dict):
+        for key in ("text", "constraint", "term", "display_term", "meaning", "label", "name", "value"):
+            v = value.get(key)
+            if isinstance(v, str) and v.strip():
+                return v.strip()
+        parts = []
+        for key in sorted(value.keys()):
+            v = value.get(key)
+            if isinstance(v, str) and v.strip():
+                parts.append(v.strip())
+        return " ".join(parts).strip()
+    if isinstance(value, (list, tuple, set)):
+        parts = [_to_text(v) for v in value]
+        return " ".join([p for p in parts if p]).strip()
+    return str(value).strip()
+
+
+def _tokens(text) -> set[str]:
+    normalized = _to_text(text).lower()
+    toks = re.findall(r"[A-Za-z][A-Za-z0-9_\-]{2,}", normalized)
     stop = {
         "the", "and", "for", "with", "what", "which", "when", "where", "why",
         "how", "that", "this", "from", "into", "your", "their", "they", "are",
@@ -53,7 +78,8 @@ def _prior_feature_tokens(prior: dict) -> set[str]:
 
 
 def _query_feature_tokens(query: dict) -> set[str]:
-    toks = set()
+    toks: set[str] = set()
+
     toks |= _tokens(query.get("question_text", ""))
 
     for t in query.get("source_terms", []):
@@ -79,21 +105,24 @@ def _structured_relevance_score(query: dict, prior: dict) -> float:
 
     # Bonus if source label aligns
     source_bonus = 0.0
-    if query.get("source_label") and prior.get("source_label"):
-        if query["source_label"].lower() == prior["source_label"].lower():
-            source_bonus += 0.15
+    q_source_label = _to_text(query.get("source_label"))
+    p_source_label = _to_text(prior.get("source_label"))
+    if q_source_label and p_source_label and q_source_label.lower() == p_source_label.lower():
+        source_bonus += 0.15
 
     # Bonus if query source terms appear in prior output
     term_bonus = 0.0
-    prior_text = (prior.get("ai_output", "") + " " + prior.get("question_text", "")).lower()
+    prior_text = (_to_text(prior.get("ai_output")) + " " + _to_text(prior.get("question_text"))).lower()
     for term in query.get("source_terms", []):
-        if term and term.lower() in prior_text:
+        normalized_term = _to_text(term).lower()
+        if normalized_term and normalized_term in prior_text:
             term_bonus += 0.03
 
     # Bonus if query variables appear
     variable_bonus = 0.0
     for var in query.get("source_variables", []):
-        if var and var.lower() in prior_text:
+        normalized_var = _to_text(var).lower()
+        if normalized_var and normalized_var in prior_text:
             variable_bonus += 0.03
 
     # Bonus if constraints overlap
