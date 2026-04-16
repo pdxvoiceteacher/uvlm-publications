@@ -6,6 +6,17 @@ import re
 ATLAS_STORE = Path(r"C:\UVLM\uvlm-publications\atlas_store")
 
 
+_SHORT_TOKEN_WHITELIST = {
+    "te",
+    "ggz",
+    "psi",
+    "r",
+    "p",
+    "t",
+    "e",
+}
+
+
 def _to_text(value) -> str:
     if value is None:
         return ""
@@ -32,13 +43,33 @@ def _to_text(value) -> str:
 
 def _tokens(text) -> set[str]:
     normalized = _to_text(text).lower()
-    toks = re.findall(r"[A-Za-z][A-Za-z0-9_\-]{2,}", normalized)
-    stop = {
-        "the", "and", "for", "with", "what", "which", "when", "where", "why",
-        "how", "that", "this", "from", "into", "your", "their", "they", "are",
-        "was", "were", "but", "can", "could", "should", "would", "have", "has"
-    }
-    return {t for t in toks if t not in stop}
+
+    # standard tokens
+    toks = set(re.findall(r"[A-Za-z][A-Za-z0-9_\-]{2,}", normalized))
+
+    # add short technical tokens from a bounded whitelist
+    shorts = set(re.findall(r"\b[A-Za-z][A-Za-z0-9]?\b", normalized))
+    toks |= {t for t in shorts if t in _SHORT_TOKEN_WHITELIST}
+
+    return toks
+
+
+def _query_feature_tokens(query: dict) -> set[str]:
+    toks: set[str] = set()
+
+    toks |= _tokens(query.get("question_text", ""))
+    toks |= _tokens(query.get("query_text_flat", ""))
+
+    for t in query.get("source_terms", []):
+        toks |= _tokens(t)
+
+    for v in query.get("source_variables", []):
+        toks |= _tokens(v)
+
+    for c in query.get("source_constraints", []):
+        toks |= _tokens(c)
+
+    return toks
 
 
 def _jaccard(a: set[str], b: set[str]) -> float:
@@ -73,26 +104,6 @@ def _prior_feature_tokens(prior: dict) -> set[str]:
     # Include coherence/source labels if available
     if prior.get("source_label"):
         toks |= _tokens(prior["source_label"])
-
-    return toks
-
-
-def _query_feature_tokens(query: dict) -> set[str]:
-    toks: set[str] = set()
-
-    toks |= _tokens(query.get("question_text", ""))
-
-    for t in query.get("source_terms", []):
-        toks |= _tokens(t)
-
-    for v in query.get("source_variables", []):
-        toks |= _tokens(v)
-
-    for c in query.get("source_constraints", []):
-        toks |= _tokens(c)
-
-    if query.get("source_label"):
-        toks |= _tokens(query["source_label"])
 
     return toks
 
