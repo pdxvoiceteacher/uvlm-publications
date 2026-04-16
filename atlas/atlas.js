@@ -409,7 +409,7 @@ async function main() {
     fetch('../bridge/triadic_run_manifest.json').catch(() => null),
     fetch('../bridge/grounding_policy.json').catch(() => null),
     fetch('../bridge/source_evidence_packet.json').catch(() => null),
-    fetch('../bridge/attention_updates.json').catch(() => null),
+    fetch('../../Sophia/bridge/attention_updates.json').catch(() => fetch('../bridge/attention_updates.json').catch(() => null)),
     fetch('../registry/phaselock_provenance_dashboard.json').catch(() => null)
   ]);
 
@@ -431,7 +431,6 @@ async function main() {
     groundingPolicy?.source_first_clarification_suppressed
       ?? groundingPolicy?.clarification?.source_first_suppressed
   );
-  const phaselockByNode = phaselockDashboard?.nodes ?? {};
   window.__bridgeArtifacts = {
     ...(window.__bridgeArtifacts ?? {}),
     agentTelemetryMap,
@@ -2532,35 +2531,31 @@ async function main() {
 
   window.cy = cy;
 
-  const evidenceByNode = sourceEvidencePacket?.by_node ?? {};
-  cy.nodes().forEach((node) => {
-    const nodeId = node.id();
-    const fromDashboard = phaselockByNode?.[nodeId] ?? {};
-    const fromEvidence = evidenceByNode?.[nodeId] ?? {};
-    const citationCount = Number(fromDashboard.citation_count ?? fromEvidence.citation_count ?? 0);
-    const bundleCount = Number(fromDashboard.bundle_count ?? fromEvidence.bundle_count ?? 0);
-    const grounded = Boolean(
-      fromDashboard.grounded
-      ?? fromEvidence.grounded
-      ?? (citationCount > 0)
-    );
-    const audited = Boolean(
-      fromDashboard.audited
-      ?? fromEvidence.audited
-      ?? sourceEvidencePacket?.audited
-    );
+  const citationCount = Number(phaselockDashboard?.citation_count ?? 0);
+  const bundleCount = Number(phaselockDashboard?.grounding_count ?? 0);
+  const grounded = Boolean(phaselockDashboard?.grounded ?? (citationCount > 0));
+  const audited = Boolean(sourceEvidencePacket?.audited);
+  const clarificationState = phaselockDashboard?.clarification_state ?? 'source_resolved';
+  const sourceContextMode = phaselockDashboard?.source_context_mode ?? 'bundle_compact';
+  const legacyAliasProjection = Boolean(phaselockDashboard?.legacy_alias_projection ?? true);
 
-    node.data('canonicalRunHash', fromDashboard.canonical_run_hash ?? canonicalRunHash ?? '—');
+  cy.nodes().forEach((node) => {
+    node.data('canonicalRunHash', canonicalRunHash ?? '—');
     node.data('grounded', grounded);
     node.data('citationCount', citationCount);
     node.data('audited', audited);
     node.data('bundleCount', bundleCount);
-    node.data(
-      'sourceFirstClarificationSuppressed',
-      fromDashboard.source_first_clarification_suppressed ?? sourceFirstSuppressed
-    );
+    node.data('clarificationState', clarificationState);
+    node.data('sourceContextMode', sourceContextMode);
+    node.data('legacyAliasProjection', legacyAliasProjection);
+    node.data('sourceFirstClarificationSuppressed', sourceFirstSuppressed);
     node.data('attentionUpdateStatus', attentionWarning ? 'missing (bounded warning)' : 'ok');
-    node.data('provenanceWarning', attentionWarning ? 'Missing Sophia attention_updates.json (bounded warning only)' : 'none');
+    node.data(
+      'provenanceWarning',
+      attentionWarning
+        ? 'Missing Sophia attention_updates.json (bounded warning only; no governance inference)'
+        : 'none'
+    );
     if (!grounded) {
       node.addClass('phaselock-ungrounded');
     }
@@ -2570,10 +2565,13 @@ async function main() {
   if (provenancePanel) {
     provenancePanel.innerHTML = `
       <h3>Phaselock Provenance</h3>
-      Canonical run: ${canonicalRunHash ?? '—'}<br>
-      Attention updates: ${attentionWarning ? 'missing (bounded warning)' : 'present'}<br>
-      Source-first clarification suppressed: ${sourceFirstSuppressed ? 'yes' : 'no'}<br>
-      activityMismatchScore is publisher-local and non-canonical.
+      Grounded: ${grounded ? 'yes' : 'no'}<br>
+      Bundle count: ${bundleCount}<br>
+      Citation count: ${citationCount}<br>
+      Clarification state: ${clarificationState}<br>
+      Source context mode: ${sourceContextMode}<br>
+      Attention updates: ${attentionWarning ? 'missing (bounded warning only; no governance inference)' : 'present'}<br>
+      Canonical provenance is sourced from bridge artifacts; activityMismatchScore remains local non-canonical UI diagnostics.
     `;
   }
 

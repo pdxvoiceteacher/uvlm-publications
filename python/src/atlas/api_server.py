@@ -98,7 +98,17 @@ def atlas_retrieve():
         return {"error": "atlas_query.json not found"}
 
     query = _read_json_file(ATLAS_QUERY_FILE)
-    packet = build_atlas_prior_packet(query)
+
+    try:
+        packet = build_atlas_prior_packet(query)
+    except Exception as e:
+        error_payload = {
+            "error": "atlas_retrieve_failed",
+            "reason": repr(e),
+            "query_keys": sorted(list(query.keys())) if isinstance(query, dict) else [],
+        }
+        _write_json_file(BRIDGE_ROOT / "atlas_prior_error.json", error_payload)
+        return error_payload
 
     _write_json_file(ATLAS_PRIOR_PACKET_FILE, packet)
     return packet

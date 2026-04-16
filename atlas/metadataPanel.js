@@ -15,16 +15,27 @@ function asYesNoUnknown(value) {
   return '—';
 }
 
+function renderProvenanceChips(data) {
+  const chips = [
+    `Grounded: ${asYesNoUnknown(data.grounded)}`,
+    `Bundle Count: ${data.bundleCount ?? '—'}`,
+    `Citation Count: ${data.citationCount ?? '—'}`,
+    `Clarification State: ${data.clarificationState ?? '—'}`,
+    `Source Context Mode: ${data.sourceContextMode ?? '—'}`
+  ];
+  return `<div class="meta-key">Canonical Provenance (bounded)</div><div class="meta-val">${chips.map((c) => `<span class="meta-chip">${c}</span>`).join(' ')}</div>`;
+}
+
 function renderProvenanceRows(data) {
   return [
+    renderProvenanceChips(data),
     row('Canonical Run Hash', data.canonicalRunHash ?? '—'),
-    row('Grounded (canonical packet)', asYesNoUnknown(data.grounded)),
-    row('Citation Count (canonical packet)', data.citationCount ?? '—'),
     row('Audited (canonical packet)', asYesNoUnknown(data.audited)),
-    row('Bundle Count (canonical packet)', data.bundleCount ?? '—'),
-    row('Source-First Clarification Suppressed', asYesNoUnknown(data.sourceFirstClarificationSuppressed)),
-    row('Attention Update Status', data.attentionUpdateStatus ?? 'ok'),
-    row('Provenance Warning', data.provenanceWarning ?? 'none')
+    row('Legacy Alias Projection', asYesNoUnknown(data.legacyAliasProjection)),
+    row('Canonical Provenance Source', 'External canonical bridge artifacts (not recomputed by Atlas).'),
+    row('Local UI Diagnostics', 'activityMismatchScore is publisher-local and non-canonical.'),
+    row('Attention Update Status (bounded)', data.attentionUpdateStatus ?? 'ok'),
+    row('Provenance Warning (bounded)', data.provenanceWarning ?? 'none')
   ];
 }
 
