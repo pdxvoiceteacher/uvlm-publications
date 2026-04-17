@@ -99,6 +99,18 @@ def atlas_retrieve():
 
     query = _read_json_file(ATLAS_QUERY_FILE)
 
+    if not query.get("question_integrity_ok", False):
+        error_payload = {
+            "error": "atlas_query_integrity_failed",
+            "reason": query.get("integrity_error", "question_text_failed_integrity"),
+            "question_integrity_ok": False,
+            "atlas_query_contract_version": query.get("atlas_query_contract_version"),
+            "source_id": query.get("source_id"),
+            "normalized_sha256": query.get("normalized_sha256"),
+        }
+        _write_json_file(BRIDGE_ROOT / "atlas_prior_error.json", error_payload)
+        return error_payload
+
     try:
         packet = build_atlas_prior_packet(query)
     except Exception as e:
@@ -106,6 +118,8 @@ def atlas_retrieve():
             "error": "atlas_retrieve_failed",
             "reason": repr(e),
             "query_keys": sorted(list(query.keys())) if isinstance(query, dict) else [],
+            "question_integrity_ok": query.get("question_integrity_ok"),
+            "atlas_query_contract_version": query.get("atlas_query_contract_version"),
         }
         _write_json_file(BRIDGE_ROOT / "atlas_prior_error.json", error_payload)
         return error_payload
