@@ -37,7 +37,7 @@ def test_same_question_same_source_prior_is_shadow_only(monkeypatch):
     assert match["allowed_use"] == "shadow_only"
 
     decision = packet["prior_injection_decision"][0]
-    assert decision["allowed_use"] in {"shadow_only", "context_only"}
+    assert decision["allowed_use"] == "shadow_only"
     assert "downgraded" in decision["reason"]
     assert any("downgraded" in line for line in packet["prior_injection_trace"])
 

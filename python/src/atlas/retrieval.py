@@ -320,7 +320,7 @@ def _build_injection_decision_trace(matches: list[dict]) -> tuple[list[dict], li
         decided_use = item.get("allowed_use", "shadow_only")
         reason = item.get("retrieval_reason", "")
         if item.get("same_question") and (item.get("same_bundle") or item.get("same_source")):
-            decided_use = "shadow_only" if item.get("same_bundle") else "context_only"
+            decided_use = "shadow_only"
             reason = "downgraded to prevent same-question same-source prior reinforcement loop"
 
         decisions.append(

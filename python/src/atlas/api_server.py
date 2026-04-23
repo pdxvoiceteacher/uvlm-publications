@@ -53,6 +53,20 @@ def _write_json_file(path: Path, payload: Any) -> None:
     path.write_text(json.dumps(payload, indent=2), encoding="utf-8")
 
 
+def _enforce_prior_injection_guard(packet: dict) -> dict:
+    decisions = packet.get("prior_injection_decision", [])
+    if not isinstance(decisions, list):
+        return packet
+
+    for decision in decisions:
+        if not isinstance(decision, dict):
+            continue
+        if decision.get("prior_scope") == "same_question_source_match" and decision.get("allowed_use") not in {"shadow_only", "context_only"}:
+            decision["allowed_use"] = "shadow_only"
+            decision["reason"] = "downgraded in atlas api server to prevent same-question same-source prior loop"
+    return packet
+
+
 @app.get("/health")
 def health():
     return {"status": "ok", "service": "atlas", "bridge_root": str(BRIDGE_ROOT)}
@@ -113,6 +127,7 @@ def atlas_retrieve():
 
     try:
         packet = build_atlas_prior_packet(query)
+        packet = _enforce_prior_injection_guard(packet)
     except Exception as e:
         error_payload = {
             "error": "atlas_retrieve_failed",
