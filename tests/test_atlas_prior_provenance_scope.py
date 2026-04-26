@@ -103,3 +103,51 @@ def test_verified_different_source_prior_can_support_answers(monkeypatch):
     assert match["allowed_use"] in {"answer_support", "cite_if_verified"}
     assert isinstance(match["provenance_hash"], str)
     assert len(match["provenance_hash"]) == 64
+
+
+def test_query_provenance_fields_are_preserved_in_packet_and_selected_priors(monkeypatch):
+    query = {
+        "atlas_query_contract_version": "v1",
+        "question_text": "What are the downstream risks?",
+        "query_text_flat": "what are the downstream risks",
+        "source_id": "grounding:sha256:source-a",
+        "source_sha256": "sha-source-a",
+        "normalized_sha256": "bundle-new",
+        "bundle_manifest_path": "/tmp/bundles/source-a/manifest.json",
+        "run_id": "run-query-1",
+        "preset": "atlas_default",
+        "source_label": "source-a",
+    }
+
+    prior = {
+        "question_text": "What are analogous risks in comparable systems?",
+        "question_sha256": "q-other",
+        "source_id": "grounding:sha256:source-b",
+        "source_sha256": "sha-source-b",
+        "normalized_sha256": "bundle-other",
+        "bundle_manifest_path": "/tmp/bundles/source-b/manifest.json",
+        "run_id": "run-3",
+        "track_id": "track-3",
+        "origin_type": "atlas_memory",
+        "preset": "atlas_default",
+        "ai_output": "Comparable system evidence with provenance.",
+    }
+
+    monkeypatch.setattr("atlas.retrieval.retrieve_relevant_priors", lambda q, top_k=3: [{"similarity_score": 0.66, "prior": prior}])
+
+    packet = build_atlas_prior_packet(query)
+    assert packet["source_id"] == query["source_id"]
+    assert packet["source_sha256"] == query["source_sha256"]
+    assert packet["normalized_sha256"] == query["normalized_sha256"]
+    assert packet["bundle_manifest_path"] == query["bundle_manifest_path"]
+    assert packet["run_id"] == query["run_id"]
+    assert packet["preset"] == query["preset"]
+    assert packet["query_text_flat"] == query["query_text_flat"]
+
+    selected = packet["selected_priors"][0]
+    assert selected["source_id"] == prior["source_id"]
+    assert selected["source_sha256"] == prior["source_sha256"]
+    assert selected["normalized_sha256"] == prior["normalized_sha256"]
+    assert selected["bundle_manifest_path"] == prior["bundle_manifest_path"]
+    assert selected["run_id"] == prior["run_id"]
+    assert selected["preset"] == prior["preset"]

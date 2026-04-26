@@ -55,15 +55,26 @@ def _write_json_file(path: Path, payload: Any) -> None:
 
 def _enforce_prior_injection_guard(packet: dict) -> dict:
     decisions = packet.get("prior_injection_decision", [])
+    trace = packet.get("prior_injection_trace", [])
+    if not isinstance(trace, list):
+        trace = []
     if not isinstance(decisions, list):
         return packet
 
     for decision in decisions:
         if not isinstance(decision, dict):
             continue
-        if decision.get("prior_scope") == "same_question_source_match" and decision.get("allowed_use") not in {"shadow_only", "context_only"}:
+        scope = decision.get("prior_scope")
+        allowed = decision.get("allowed_use")
+        should_downgrade = (
+            scope == "same_question_source_match"
+            or (decision.get("same_source") and decision.get("same_bundle"))
+        )
+        if should_downgrade and allowed not in {"shadow_only", "context_only"}:
             decision["allowed_use"] = "shadow_only"
             decision["reason"] = "downgraded in atlas api server to prevent same-question same-source prior loop"
+            trace.append(f"{decision.get('provenance_hash')}: {decision['reason']}")
+    packet["prior_injection_trace"] = trace
     return packet
 
 

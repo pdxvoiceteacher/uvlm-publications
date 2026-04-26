@@ -70,6 +70,17 @@ def _query_feature_tokens(query: dict) -> set[str]:
     for c in query.get("source_constraints", []):
         toks |= _tokens(c)
 
+    # Contract compatibility: include scalar provenance fields as lexical hints.
+    for key in (
+        "source_id",
+        "source_sha256",
+        "normalized_sha256",
+        "bundle_manifest_path",
+        "run_id",
+        "preset",
+    ):
+        toks |= _tokens(query.get(key, ""))
+
     return toks
 
 
@@ -255,7 +266,20 @@ def _allowed_use_and_reason(prior_scope: str, same_question: bool, same_bundle: 
 
 
 def _enrich_match_with_provenance(query: dict, match: dict) -> dict:
-    prior = match.get("prior", {})
+    prior = dict(match.get("prior", {}) or {})
+    for key in (
+        "source_id",
+        "source_sha256",
+        "normalized_sha256",
+        "bundle_manifest_path",
+        "run_id",
+        "preset",
+        "question_text",
+        "query_text_flat",
+    ):
+        if prior.get(key) in (None, "") and query.get(key) not in (None, ""):
+            prior[key] = query.get(key)
+
     prior_scope, same_question, same_bundle, same_source = _classify_prior_scope(query, prior)
     allowed_use, retrieval_reason = _allowed_use_and_reason(
         prior_scope=prior_scope,
@@ -296,6 +320,15 @@ def _enrich_match_with_provenance(query: dict, match: dict) -> dict:
     enriched = dict(match)
     enriched.update(
         {
+            "prior": prior,
+            "source_id": _safe_get(prior, "source_id", "source_label", "source"),
+            "source_sha256": _safe_get(prior, "source_sha256"),
+            "normalized_sha256": _safe_get(prior, "normalized_sha256", "bundle_normalized_sha256"),
+            "bundle_manifest_path": _safe_get(prior, "bundle_manifest_path"),
+            "run_id": _safe_get(prior, "run_id", "origin_run_id"),
+            "preset": _safe_get(prior, "preset"),
+            "question_text": _safe_get(prior, "question_text") or query.get("question_text", ""),
+            "query_text_flat": _safe_get(prior, "query_text_flat", "query_flat_text", "query_text"),
             "prior_scope": prior_scope,
             "prior_origin_run_id": prior_origin_run_id,
             "prior_origin_track_id": prior_origin_track_id,
@@ -327,6 +360,9 @@ def _build_injection_decision_trace(matches: list[dict]) -> tuple[list[dict], li
             {
                 "provenance_hash": item.get("provenance_hash"),
                 "prior_scope": item.get("prior_scope"),
+                "same_question": item.get("same_question"),
+                "same_source": item.get("same_source"),
+                "same_bundle": item.get("same_bundle"),
                 "allowed_use": decided_use,
                 "reason": reason,
             }
@@ -341,8 +377,16 @@ def build_atlas_prior_packet(query: dict) -> dict:
     prior_injection_decision, prior_injection_trace = _build_injection_decision_trace(matches)
 
     return {
+        "atlas_query_contract_version": query.get("atlas_query_contract_version"),
         "question_text": query.get("question_text", ""),
+        "query_text_flat": query.get("query_text_flat"),
         "source_label": query.get("source_label"),
+        "source_id": query.get("source_id"),
+        "source_sha256": query.get("source_sha256"),
+        "normalized_sha256": query.get("normalized_sha256"),
+        "bundle_manifest_path": query.get("bundle_manifest_path"),
+        "run_id": query.get("run_id"),
+        "preset": query.get("preset"),
         "source_terms": query.get("source_terms", []),
         "source_variables": query.get("source_variables", []),
         "source_constraints": query.get("source_constraints", []),
