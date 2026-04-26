@@ -1,4 +1,5 @@
 from pathlib import Path
+import hashlib
 import json
 import re
 
@@ -69,6 +70,17 @@ def _query_feature_tokens(query: dict) -> set[str]:
     for c in query.get("source_constraints", []):
         toks |= _tokens(c)
 
+    # Contract compatibility: include scalar provenance fields as lexical hints.
+    for key in (
+        "source_id",
+        "source_sha256",
+        "normalized_sha256",
+        "bundle_manifest_path",
+        "run_id",
+        "preset",
+    ):
+        toks |= _tokens(query.get(key, ""))
+
     return toks
 
 
@@ -78,6 +90,25 @@ def _jaccard(a: set[str], b: set[str]) -> float:
     if not a or not b:
         return 0.0
     return len(a & b) / len(a | b)
+
+
+def _sha256_text(value: str) -> str:
+    return hashlib.sha256((value or "").encode("utf-8")).hexdigest()
+
+
+def _normalized_bundle_sha256(payload: dict) -> str:
+    try:
+        canonical = json.dumps(payload, sort_keys=True, separators=(",", ":"), ensure_ascii=False)
+    except Exception:
+        canonical = _to_text(payload)
+    return _sha256_text(canonical)
+
+
+def _safe_get(d: dict, *keys: str):
+    for key in keys:
+        if key in d and d.get(key) not in (None, ""):
+            return d.get(key)
+    return None
 
 
 def load_existing_priors() -> list[dict]:
@@ -166,17 +197,218 @@ def retrieve_relevant_priors(query: dict, top_k: int = 3) -> list[dict]:
     ]
 
 
+def _classify_prior_scope(query: dict, prior: dict) -> tuple[str, bool, bool, bool]:
+    q_question_sha = _safe_get(query, "question_sha256")
+    p_question_sha = _safe_get(prior, "question_sha256")
+    if not q_question_sha:
+        q_question_sha = _sha256_text(_to_text(query.get("question_text")).lower())
+    if not p_question_sha:
+        p_question_sha = _sha256_text(_to_text(prior.get("question_text")).lower())
+    same_question = bool(q_question_sha and p_question_sha and q_question_sha == p_question_sha)
+
+    q_bundle_sha = _safe_get(query, "normalized_sha256", "bundle_normalized_sha256")
+    p_bundle_sha = _safe_get(prior, "normalized_sha256", "bundle_normalized_sha256")
+    if not q_bundle_sha:
+        q_bundle_sha = _normalized_bundle_sha256(
+            {
+                "source_label": query.get("source_label"),
+                "source_terms": query.get("source_terms", []),
+                "source_variables": query.get("source_variables", []),
+                "source_constraints": query.get("source_constraints", []),
+            }
+        )
+    if not p_bundle_sha:
+        p_bundle_sha = _normalized_bundle_sha256(
+            {
+                "source_label": prior.get("source_label"),
+                "source_terms": prior.get("source_terms", []),
+                "source_variables": prior.get("source_variables", []),
+                "source_constraints": prior.get("source_constraints", []),
+            }
+        )
+    same_bundle = bool(q_bundle_sha and p_bundle_sha and q_bundle_sha == p_bundle_sha)
+
+    q_source = _to_text(_safe_get(query, "source_id", "source_label")).lower()
+    p_source = _to_text(_safe_get(prior, "source_id", "source_label")).lower()
+    same_source = bool(q_source and p_source and q_source == p_source)
+
+    prior_scope = "durable_prior"
+    if same_question and (same_bundle or same_source):
+        prior_scope = "same_question_source_match"
+    elif same_source:
+        prior_scope = "same_source_context"
+    elif _safe_get(prior, "origin_type") == "bootstrap_fixture":
+        prior_scope = "bootstrap_fixture"
+    elif not _safe_get(prior, "run_id", "origin_run_id", "track_id", "origin_track_id"):
+        prior_scope = "unknown"
+
+    return prior_scope, same_question, same_bundle, same_source
+
+
+def _allowed_use_and_reason(prior_scope: str, same_question: bool, same_bundle: bool, same_source: bool, prior: dict) -> tuple[str, str]:
+    has_provenance = bool(
+        _safe_get(prior, "run_id", "origin_run_id")
+        and _safe_get(prior, "track_id", "origin_track_id")
+        and _safe_get(prior, "origin_type", "source_id", "source_label")
+    )
+
+    if same_question and (same_bundle or same_source):
+        return "shadow_only", "same-question and same-bundle/source prior; circularity guard enforced"
+    if same_source:
+        if has_provenance:
+            return "context_only", "same source with different question; usable only for contextual guidance"
+        return "shadow_only", "same source but provenance incomplete; shadow-only fallback"
+    if prior_scope == "unknown" or not has_provenance:
+        return "shadow_only", "unknown or unverifiable provenance; disallow direct answer support"
+    if prior_scope == "bootstrap_fixture":
+        return "cite_if_verified", "bootstrap fixture provenance requires independent verification before citation"
+    return "answer_support", "different source with verified provenance"
+
+
+def _enrich_match_with_provenance(query: dict, match: dict) -> dict:
+    prior = dict(match.get("prior", {}) or {})
+    original_prior = dict(prior)
+    for key in (
+        "source_id",
+        "source_sha256",
+        "normalized_sha256",
+        "bundle_manifest_path",
+        "source_filename",
+        "source_kind",
+        "run_id",
+        "preset",
+        "question_text",
+        "query_text_flat",
+    ):
+        if prior.get(key) in (None, "") and query.get(key) not in (None, ""):
+            prior[key] = query.get(key)
+
+    prior_scope, same_question, same_bundle, same_source = _classify_prior_scope(query, prior)
+    allowed_use, retrieval_reason = _allowed_use_and_reason(
+        prior_scope=prior_scope,
+        same_question=same_question,
+        same_bundle=same_bundle,
+        same_source=same_source,
+        prior=prior,
+    )
+
+    prior_origin_run_id = _safe_get(prior, "origin_run_id", "run_id")
+    prior_origin_track_id = _safe_get(prior, "origin_track_id", "track_id")
+    prior_origin_type = _safe_get(prior, "origin_type")
+    prior_question_sha256 = _safe_get(prior, "question_sha256") or _sha256_text(_to_text(prior.get("question_text")).lower())
+    prior_bundle_normalized_sha256 = _safe_get(prior, "bundle_normalized_sha256", "normalized_sha256")
+    if not prior_bundle_normalized_sha256:
+        prior_bundle_normalized_sha256 = _normalized_bundle_sha256(
+            {
+                "source_label": prior.get("source_label"),
+                "source_terms": prior.get("source_terms", []),
+                "source_variables": prior.get("source_variables", []),
+                "source_constraints": prior.get("source_constraints", []),
+            }
+        )
+
+    provenance_hash = _sha256_text(
+        "|".join(
+            [
+                str(prior_origin_run_id),
+                str(prior_origin_track_id),
+                str(prior_origin_type),
+                str(prior_question_sha256),
+                str(prior_bundle_normalized_sha256),
+                str(match.get("similarity_score", 0.0)),
+            ]
+        )
+    )
+
+    enriched = dict(match)
+    provenance_available = bool(
+        _safe_get(original_prior, "run_id", "origin_run_id")
+        and _safe_get(original_prior, "source_id", "source_label")
+        and _safe_get(original_prior, "normalized_sha256", "bundle_normalized_sha256")
+    )
+    enriched.update(
+        {
+            "prior": prior,
+            "source_id": _safe_get(prior, "source_id", "source_label", "source"),
+            "source_sha256": _safe_get(prior, "source_sha256"),
+            "normalized_sha256": _safe_get(prior, "normalized_sha256", "bundle_normalized_sha256"),
+            "bundle_manifest_path": _safe_get(prior, "bundle_manifest_path"),
+            "source_filename": _safe_get(prior, "source_filename"),
+            "source_kind": _safe_get(prior, "source_kind"),
+            "run_id": _safe_get(prior, "run_id", "origin_run_id"),
+            "preset": _safe_get(prior, "preset"),
+            "question_text": _safe_get(prior, "question_text") or query.get("question_text", ""),
+            "query_text_flat": _safe_get(prior, "query_text_flat", "query_flat_text", "query_text"),
+            "prior_scope": prior_scope,
+            "prior_origin_run_id": prior_origin_run_id,
+            "prior_origin_track_id": prior_origin_track_id,
+            "prior_origin_type": prior_origin_type,
+            "prior_question_sha256": prior_question_sha256,
+            "prior_bundle_normalized_sha256": prior_bundle_normalized_sha256,
+            "same_question": same_question,
+            "same_bundle": same_bundle,
+            "same_source": same_source,
+            "allowed_use": allowed_use,
+            "retrieval_reason": retrieval_reason,
+            "provenance_hash": provenance_hash,
+            "provenance_available": provenance_available,
+            "provenance_unavailable_reason": None if provenance_available else "missing run_id/source_id/normalized_sha256 in prior provenance",
+        }
+    )
+    return enriched
+
+
+def _build_injection_decision_trace(matches: list[dict]) -> tuple[list[dict], list[str]]:
+    decisions = []
+    trace = []
+    for item in matches:
+        decided_use = item.get("allowed_use", "shadow_only")
+        reason = item.get("retrieval_reason", "")
+        if item.get("same_question") and (item.get("same_bundle") or item.get("same_source")):
+            decided_use = "shadow_only"
+            reason = "downgraded to prevent same-question same-source prior reinforcement loop"
+
+        decisions.append(
+            {
+                "provenance_hash": item.get("provenance_hash"),
+                "prior_scope": item.get("prior_scope"),
+                "same_question": item.get("same_question"),
+                "same_source": item.get("same_source"),
+                "same_bundle": item.get("same_bundle"),
+                "allowed_use": decided_use,
+                "reason": reason,
+            }
+        )
+        trace.append(f"{item.get('provenance_hash')}: {reason}")
+    return decisions, trace
+
+
 def build_atlas_prior_packet(query: dict) -> dict:
-    matches = retrieve_relevant_priors(query)
+    raw_matches = retrieve_relevant_priors(query)
+    matches = [_enrich_match_with_provenance(query, match) for match in raw_matches]
+    prior_injection_decision, prior_injection_trace = _build_injection_decision_trace(matches)
 
     return {
+        "atlas_query_contract_version": query.get("atlas_query_contract_version"),
         "question_text": query.get("question_text", ""),
+        "query_text_flat": query.get("query_text_flat"),
         "source_label": query.get("source_label"),
+        "source_id": query.get("source_id"),
+        "source_sha256": query.get("source_sha256"),
+        "normalized_sha256": query.get("normalized_sha256"),
+        "bundle_manifest_path": query.get("bundle_manifest_path"),
+        "source_filename": query.get("source_filename"),
+        "source_kind": query.get("source_kind"),
+        "run_id": query.get("run_id"),
+        "preset": query.get("preset"),
         "source_terms": query.get("source_terms", []),
         "source_variables": query.get("source_variables", []),
         "source_constraints": query.get("source_constraints", []),
         "match_count": len(matches),
         "matches": matches,
+        "selected_priors": matches,
+        "prior_injection_decision": prior_injection_decision,
+        "prior_injection_trace": prior_injection_trace,
         "prior_packet_ready": len(matches) > 0,
         "retrieval_mode": "question_plus_source_evidence",
     }

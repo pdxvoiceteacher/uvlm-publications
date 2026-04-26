@@ -53,6 +53,47 @@ def _write_json_file(path: Path, payload: Any) -> None:
     path.write_text(json.dumps(payload, indent=2), encoding="utf-8")
 
 
+def _enforce_prior_injection_guard(packet: dict) -> dict:
+    decisions = packet.get("prior_injection_decision", [])
+    trace = packet.get("prior_injection_trace", [])
+    if not isinstance(trace, list):
+        trace = []
+    if not isinstance(decisions, list):
+        return packet
+
+    for decision in decisions:
+        if not isinstance(decision, dict):
+            continue
+        scope = decision.get("prior_scope")
+        allowed = decision.get("allowed_use")
+        should_downgrade = (
+            scope == "same_question_source_match"
+            or (decision.get("same_source") and decision.get("same_bundle"))
+        )
+        if should_downgrade and allowed not in {"shadow_only", "context_only"}:
+            decision["allowed_use"] = "shadow_only"
+            decision["reason"] = "downgraded in atlas api server to prevent same-question same-source prior loop"
+            trace.append(f"{decision.get('provenance_hash')}: {decision['reason']}")
+    packet["prior_injection_trace"] = trace
+    return packet
+
+
+def _preserve_query_provenance_fields(packet: dict, query: dict) -> dict:
+    for key in (
+        "run_id",
+        "preset",
+        "source_id",
+        "source_sha256",
+        "normalized_sha256",
+        "bundle_manifest_path",
+        "source_filename",
+        "source_kind",
+    ):
+        if packet.get(key) in (None, "") and query.get(key) not in (None, ""):
+            packet[key] = query.get(key)
+    return packet
+
+
 @app.get("/health")
 def health():
     return {"status": "ok", "service": "atlas", "bridge_root": str(BRIDGE_ROOT)}
@@ -113,6 +154,8 @@ def atlas_retrieve():
 
     try:
         packet = build_atlas_prior_packet(query)
+        packet = _preserve_query_provenance_fields(packet, query)
+        packet = _enforce_prior_injection_guard(packet)
     except Exception as e:
         error_payload = {
             "error": "atlas_retrieve_failed",
