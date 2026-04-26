@@ -78,6 +78,22 @@ def _enforce_prior_injection_guard(packet: dict) -> dict:
     return packet
 
 
+def _preserve_query_provenance_fields(packet: dict, query: dict) -> dict:
+    for key in (
+        "run_id",
+        "preset",
+        "source_id",
+        "source_sha256",
+        "normalized_sha256",
+        "bundle_manifest_path",
+        "source_filename",
+        "source_kind",
+    ):
+        if packet.get(key) in (None, "") and query.get(key) not in (None, ""):
+            packet[key] = query.get(key)
+    return packet
+
+
 @app.get("/health")
 def health():
     return {"status": "ok", "service": "atlas", "bridge_root": str(BRIDGE_ROOT)}
@@ -138,6 +154,7 @@ def atlas_retrieve():
 
     try:
         packet = build_atlas_prior_packet(query)
+        packet = _preserve_query_provenance_fields(packet, query)
         packet = _enforce_prior_injection_guard(packet)
     except Exception as e:
         error_payload = {

@@ -267,11 +267,14 @@ def _allowed_use_and_reason(prior_scope: str, same_question: bool, same_bundle: 
 
 def _enrich_match_with_provenance(query: dict, match: dict) -> dict:
     prior = dict(match.get("prior", {}) or {})
+    original_prior = dict(prior)
     for key in (
         "source_id",
         "source_sha256",
         "normalized_sha256",
         "bundle_manifest_path",
+        "source_filename",
+        "source_kind",
         "run_id",
         "preset",
         "question_text",
@@ -318,6 +321,11 @@ def _enrich_match_with_provenance(query: dict, match: dict) -> dict:
     )
 
     enriched = dict(match)
+    provenance_available = bool(
+        _safe_get(original_prior, "run_id", "origin_run_id")
+        and _safe_get(original_prior, "source_id", "source_label")
+        and _safe_get(original_prior, "normalized_sha256", "bundle_normalized_sha256")
+    )
     enriched.update(
         {
             "prior": prior,
@@ -325,6 +333,8 @@ def _enrich_match_with_provenance(query: dict, match: dict) -> dict:
             "source_sha256": _safe_get(prior, "source_sha256"),
             "normalized_sha256": _safe_get(prior, "normalized_sha256", "bundle_normalized_sha256"),
             "bundle_manifest_path": _safe_get(prior, "bundle_manifest_path"),
+            "source_filename": _safe_get(prior, "source_filename"),
+            "source_kind": _safe_get(prior, "source_kind"),
             "run_id": _safe_get(prior, "run_id", "origin_run_id"),
             "preset": _safe_get(prior, "preset"),
             "question_text": _safe_get(prior, "question_text") or query.get("question_text", ""),
@@ -341,6 +351,8 @@ def _enrich_match_with_provenance(query: dict, match: dict) -> dict:
             "allowed_use": allowed_use,
             "retrieval_reason": retrieval_reason,
             "provenance_hash": provenance_hash,
+            "provenance_available": provenance_available,
+            "provenance_unavailable_reason": None if provenance_available else "missing run_id/source_id/normalized_sha256 in prior provenance",
         }
     )
     return enriched
@@ -385,6 +397,8 @@ def build_atlas_prior_packet(query: dict) -> dict:
         "source_sha256": query.get("source_sha256"),
         "normalized_sha256": query.get("normalized_sha256"),
         "bundle_manifest_path": query.get("bundle_manifest_path"),
+        "source_filename": query.get("source_filename"),
+        "source_kind": query.get("source_kind"),
         "run_id": query.get("run_id"),
         "preset": query.get("preset"),
         "source_terms": query.get("source_terms", []),

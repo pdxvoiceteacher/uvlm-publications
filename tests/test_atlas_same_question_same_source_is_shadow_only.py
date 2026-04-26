@@ -43,6 +43,8 @@ def test_missing_prior_provenance_fields_fallback_to_query(monkeypatch):
         "source_sha256": "sha-src-1",
         "normalized_sha256": "bundle-1",
         "bundle_manifest_path": "/tmp/src-1/manifest.json",
+        "source_filename": "src-1.pdf",
+        "source_kind": "pdf",
         "run_id": "run-query",
         "preset": "atlas_default",
     }
@@ -62,5 +64,7 @@ def test_missing_prior_provenance_fields_fallback_to_query(monkeypatch):
     assert selected["source_sha256"] == query["source_sha256"]
     assert selected["normalized_sha256"] == query["normalized_sha256"]
     assert selected["bundle_manifest_path"] == query["bundle_manifest_path"]
+    assert selected["source_filename"] == query["source_filename"]
+    assert selected["source_kind"] == query["source_kind"]
     assert selected["run_id"] == query["run_id"]
     assert selected["preset"] == query["preset"]

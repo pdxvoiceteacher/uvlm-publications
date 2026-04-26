@@ -114,6 +114,8 @@ def test_query_provenance_fields_are_preserved_in_packet_and_selected_priors(mon
         "source_sha256": "sha-source-a",
         "normalized_sha256": "bundle-new",
         "bundle_manifest_path": "/tmp/bundles/source-a/manifest.json",
+        "source_filename": "source-a.pdf",
+        "source_kind": "pdf",
         "run_id": "run-query-1",
         "preset": "atlas_default",
         "source_label": "source-a",
@@ -126,6 +128,8 @@ def test_query_provenance_fields_are_preserved_in_packet_and_selected_priors(mon
         "source_sha256": "sha-source-b",
         "normalized_sha256": "bundle-other",
         "bundle_manifest_path": "/tmp/bundles/source-b/manifest.json",
+        "source_filename": "source-b.pdf",
+        "source_kind": "pdf",
         "run_id": "run-3",
         "track_id": "track-3",
         "origin_type": "atlas_memory",
@@ -140,6 +144,8 @@ def test_query_provenance_fields_are_preserved_in_packet_and_selected_priors(mon
     assert packet["source_sha256"] == query["source_sha256"]
     assert packet["normalized_sha256"] == query["normalized_sha256"]
     assert packet["bundle_manifest_path"] == query["bundle_manifest_path"]
+    assert packet["source_filename"] == query["source_filename"]
+    assert packet["source_kind"] == query["source_kind"]
     assert packet["run_id"] == query["run_id"]
     assert packet["preset"] == query["preset"]
     assert packet["query_text_flat"] == query["query_text_flat"]
@@ -149,5 +155,35 @@ def test_query_provenance_fields_are_preserved_in_packet_and_selected_priors(mon
     assert selected["source_sha256"] == prior["source_sha256"]
     assert selected["normalized_sha256"] == prior["normalized_sha256"]
     assert selected["bundle_manifest_path"] == prior["bundle_manifest_path"]
+    assert selected["source_filename"] == prior["source_filename"]
+    assert selected["source_kind"] == prior["source_kind"]
     assert selected["run_id"] == prior["run_id"]
     assert selected["preset"] == prior["preset"]
+    assert selected["provenance_available"] is True
+
+
+def test_selected_prior_explicitly_marks_unavailable_provenance(monkeypatch):
+    query = {
+        "question_text": "What changed in source context?",
+        "source_id": "grounding:sha256:source-a",
+        "source_sha256": "sha-source-a",
+        "normalized_sha256": "bundle-a",
+        "bundle_manifest_path": "/tmp/bundles/source-a/manifest.json",
+        "source_filename": "source-a.pdf",
+        "source_kind": "pdf",
+        "run_id": "run-query-9",
+    }
+    prior = {
+        "question_text": "What changed in source context?",
+        "source_label": "source-a",
+        "ai_output": "Partial prior without explicit provenance identifiers.",
+    }
+
+    monkeypatch.setattr("atlas.retrieval.retrieve_relevant_priors", lambda q, top_k=3: [{"similarity_score": 0.2, "prior": prior}])
+    packet = build_atlas_prior_packet(query)
+    selected = packet["selected_priors"][0]
+
+    assert selected["source_id"] == query["source_id"]
+    assert selected["normalized_sha256"] == query["normalized_sha256"]
+    assert selected["provenance_available"] is False
+    assert "missing run_id/source_id/normalized_sha256" in selected["provenance_unavailable_reason"]
