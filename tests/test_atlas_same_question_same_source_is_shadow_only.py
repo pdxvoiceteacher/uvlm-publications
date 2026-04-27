@@ -68,3 +68,34 @@ def test_missing_prior_provenance_fields_fallback_to_query(monkeypatch):
     assert selected["source_kind"] == query["source_kind"]
     assert selected["run_id"] == query["run_id"]
     assert selected["preset"] == query["preset"]
+
+
+def test_same_source_same_bundle_does_not_exceed_context_only(monkeypatch):
+    query = {
+        "question_text": "What is the updated margin?",
+        "question_sha256": "q-sha-new",
+        "source_id": "grounding:sha256:src-2",
+        "normalized_sha256": "bundle-2",
+        "source_label": "src-2",
+    }
+    prior = {
+        "question_text": "What was the previous margin?",
+        "question_sha256": "q-sha-old",
+        "source_id": "grounding:sha256:src-2",
+        "normalized_sha256": "bundle-2",
+        "source_label": "src-2",
+        "run_id": "run-2",
+        "track_id": "track-2",
+        "origin_type": "atlas_memory",
+        "ai_output": "Prior analysis from same source and bundle.",
+    }
+
+    monkeypatch.setattr("atlas.retrieval.retrieve_relevant_priors", lambda q, top_k=3: [{"similarity_score": 0.86, "prior": prior}])
+    packet = build_atlas_prior_packet(query)
+
+    selected = packet["selected_priors"][0]
+    decision = packet["prior_injection_decision"][0]
+    assert selected["same_source"] is True
+    assert selected["same_bundle"] is True
+    assert selected["allowed_use"] in {"shadow_only", "context_only"}
+    assert decision["allowed_use"] in {"shadow_only", "context_only"}

@@ -183,6 +183,23 @@ def test_selected_prior_explicitly_marks_unavailable_provenance(monkeypatch):
     packet = build_atlas_prior_packet(query)
     selected = packet["selected_priors"][0]
 
+    for key in (
+        "allowed_use",
+        "same_question",
+        "same_source",
+        "same_bundle",
+        "prior_scope",
+        "provenance_available",
+        "provenance_unavailable_reason",
+        "source_id",
+        "source_sha256",
+        "normalized_sha256",
+        "bundle_manifest_path",
+        "source_filename",
+        "source_kind",
+    ):
+        assert key in selected
+
     assert selected["source_id"] == query["source_id"]
     assert selected["normalized_sha256"] == query["normalized_sha256"]
     assert selected["provenance_available"] is False
