@@ -1,4 +1,6 @@
 from atlas.retrieval import build_atlas_prior_packet
+import importlib
+import json
 
 
 def test_same_question_same_source_prior_is_shadow_only(monkeypatch):
@@ -204,3 +206,90 @@ def test_selected_prior_explicitly_marks_unavailable_provenance(monkeypatch):
     assert selected["normalized_sha256"] == query["normalized_sha256"]
     assert selected["provenance_available"] is False
     assert "missing run_id/source_id/normalized_sha256" in selected["provenance_unavailable_reason"]
+
+
+def test_api_response_preserves_selected_prior_fields_after_guard(tmp_path, monkeypatch):
+    monkeypatch.setenv("TRIADIC_BRIDGE_ROOT", str(tmp_path))
+    api_server = importlib.import_module("atlas.api_server")
+    TestClient = importlib.import_module("fastapi.testclient").TestClient
+
+    query = {
+        "question_integrity_ok": True,
+        "question_text": "Q",
+        "source_id": "grounding:sha256:source-a",
+        "source_sha256": "sha-source-a",
+        "normalized_sha256": "bundle-a",
+        "bundle_manifest_path": "/tmp/a/manifest.json",
+        "source_filename": "a.pdf",
+        "source_kind": "pdf",
+        "run_id": "run-q",
+        "preset": "atlas_default",
+    }
+    (tmp_path / "atlas_query.json").write_text(json.dumps(query), encoding="utf-8")
+    monkeypatch.setattr(api_server, "ATLAS_QUERY_FILE", tmp_path / "atlas_query.json")
+    monkeypatch.setattr(api_server, "ATLAS_PRIOR_PACKET_FILE", tmp_path / "atlas_prior_packet.json")
+
+    monkeypatch.setattr(
+        api_server,
+        "build_atlas_prior_packet",
+        lambda q: {
+            "question_text": q["question_text"],
+            "source_id": q["source_id"],
+            "source_sha256": q["source_sha256"],
+            "normalized_sha256": q["normalized_sha256"],
+            "bundle_manifest_path": q["bundle_manifest_path"],
+            "source_filename": q["source_filename"],
+            "source_kind": q["source_kind"],
+            "run_id": q["run_id"],
+            "preset": q["preset"],
+            "selected_priors": [
+                {
+                    "provenance_hash": "ph-1",
+                    "allowed_use": "answer_support",
+                    "same_question": True,
+                    "same_source": True,
+                    "same_bundle": True,
+                    "prior_scope": "same_question_source_match",
+                    "provenance_available": False,
+                    "provenance_unavailable_reason": "missing run_id/source_id/normalized_sha256 in prior provenance",
+                    "source_id": q["source_id"],
+                    "source_sha256": q["source_sha256"],
+                    "normalized_sha256": q["normalized_sha256"],
+                    "bundle_manifest_path": q["bundle_manifest_path"],
+                    "source_filename": q["source_filename"],
+                    "source_kind": q["source_kind"],
+                }
+            ],
+            "prior_injection_decision": [
+                {
+                    "provenance_hash": "ph-1",
+                    "prior_scope": "same_question_source_match",
+                    "same_question": True,
+                    "same_source": True,
+                    "same_bundle": True,
+                    "allowed_use": "answer_support",
+                    "reason": "unsafe pre-guard state",
+                }
+            ],
+            "prior_injection_trace": [],
+            "matches": [],
+        },
+    )
+
+    client = TestClient(api_server.app)
+    payload = client.post("/atlas/retrieve").json()
+    selected = payload["selected_priors"][0]
+
+    assert selected["allowed_use"] == "shadow_only"
+    assert selected["same_question"] is True
+    assert selected["same_source"] is True
+    assert selected["same_bundle"] is True
+    assert selected["prior_scope"] == "same_question_source_match"
+    assert selected["provenance_available"] is False
+    assert selected["provenance_unavailable_reason"]
+    assert selected["source_id"] == query["source_id"]
+    assert selected["source_sha256"] == query["source_sha256"]
+    assert selected["normalized_sha256"] == query["normalized_sha256"]
+    assert selected["bundle_manifest_path"] == query["bundle_manifest_path"]
+    assert selected["source_filename"] == query["source_filename"]
+    assert selected["source_kind"] == query["source_kind"]

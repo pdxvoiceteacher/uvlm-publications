@@ -74,6 +74,26 @@ def _enforce_prior_injection_guard(packet: dict) -> dict:
             decision["allowed_use"] = "shadow_only"
             decision["reason"] = "downgraded in atlas api server to prevent same-question same-source prior loop"
             trace.append(f"{decision.get('provenance_hash')}: {decision['reason']}")
+
+    # Keep selected_priors aligned with post-guard decisions while preserving all
+    # provenance/scope fields already attached by retrieval.
+    selected = packet.get("selected_priors", [])
+    if isinstance(selected, list):
+        decision_by_hash = {
+            d.get("provenance_hash"): d
+            for d in decisions
+            if isinstance(d, dict) and d.get("provenance_hash")
+        }
+        for prior in selected:
+            if not isinstance(prior, dict):
+                continue
+            decision = decision_by_hash.get(prior.get("provenance_hash"))
+            if not decision:
+                continue
+            if decision.get("allowed_use") in {"shadow_only", "context_only", "answer_support", "cite_if_verified"}:
+                prior["allowed_use"] = decision["allowed_use"]
+            if decision.get("reason"):
+                prior["retrieval_reason"] = decision["reason"]
     packet["prior_injection_trace"] = trace
     return packet
 
