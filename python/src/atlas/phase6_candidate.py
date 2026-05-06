@@ -88,12 +88,14 @@ def _request_id(
     return None
 
 
-def _list_value(value: Any) -> list[Any]:
-    if value is None:
-        return []
-    if isinstance(value, list):
-        return list(value)
-    return [value]
+def _string_dict(value: Any) -> dict[str, str]:
+    if not isinstance(value, dict):
+        return {}
+    return {
+        str(key): str(item)
+        for key, item in value.items()
+        if item not in (None, "")
+    }
 
 
 def _dict_value(value: Any) -> dict[str, Any]:
@@ -102,16 +104,75 @@ def _dict_value(value: Any) -> dict[str, Any]:
     return {}
 
 
-def _handoff_artifact_refs(handoff_request: dict[str, Any]) -> list[Any]:
-    return _list_value(
-        _find_first_value(handoff_request, ("artifact_refs", "artifactRefs"))
+def _artifact_ref_bindings(
+    handoff_request: dict[str, Any],
+) -> tuple[list[str], dict[str, str]]:
+    raw_refs = _find_first_value(handoff_request, ("artifact_refs", "artifactRefs"))
+    explicit_refs_by_key = _string_dict(
+        _find_first_value(
+            handoff_request, ("artifact_refs_by_key", "artifactRefsByKey")
+        )
     )
 
+    refs: list[str] = []
+    refs_by_key: dict[str, str] = {}
 
-def _handoff_artifact_sha256s(handoff_request: dict[str, Any]) -> dict[str, Any]:
-    return _dict_value(
+    if isinstance(raw_refs, dict):
+        refs_by_key = _string_dict(raw_refs)
+        refs = list(refs_by_key.values())
+    elif isinstance(raw_refs, list):
+        for item in raw_refs:
+            if isinstance(item, str):
+                refs.append(item)
+            elif isinstance(item, dict):
+                item_refs_by_key = _string_dict(item)
+                refs.extend(item_refs_by_key.values())
+                refs_by_key.update(item_refs_by_key)
+            elif item not in (None, ""):
+                refs.append(str(item))
+    elif raw_refs not in (None, ""):
+        refs.append(str(raw_refs))
+
+    if explicit_refs_by_key:
+        refs_by_key = explicit_refs_by_key
+    if not refs and refs_by_key:
+        refs = list(refs_by_key.values())
+
+    return refs, refs_by_key
+
+
+def _artifact_sha256_bindings(
+    handoff_request: dict[str, Any], refs_by_key: dict[str, str]
+) -> tuple[dict[str, str], dict[str, str]]:
+    raw_sha256s = _string_dict(
         _find_first_value(handoff_request, ("artifact_sha256s", "artifactSha256s"))
     )
+    explicit_sha256s_by_key = _string_dict(
+        _find_first_value(
+            handoff_request, ("artifact_sha256s_by_key", "artifactSha256sByKey")
+        )
+    )
+
+    path_keyed: dict[str, str] = {}
+    role_keyed = dict(explicit_sha256s_by_key)
+
+    for key, sha256 in raw_sha256s.items():
+        if key in refs_by_key:
+            path_keyed[refs_by_key[key]] = sha256
+            role_keyed.setdefault(key, sha256)
+        else:
+            path_keyed[key] = sha256
+
+    for role, sha256 in explicit_sha256s_by_key.items():
+        ref = refs_by_key.get(role)
+        if ref:
+            path_keyed.setdefault(ref, sha256)
+
+    for role, ref in refs_by_key.items():
+        if ref in path_keyed:
+            role_keyed.setdefault(role, path_keyed[ref])
+
+    return path_keyed, role_keyed
 
 
 def _source_posture(handoff_request: dict[str, Any]) -> dict[str, Any]:
@@ -179,7 +240,10 @@ def _reason_codes(
 ) -> list[str]:
     reason_codes = list(BASE_REASON_CODES)
 
-    if source_posture.get("cross_domain_validation_status") in (None, "not_yet_tested"):
+    if source_posture.get("cross_domain_validation_status") in (
+        None,
+        "not_yet_tested",
+    ):
         reason_codes.append("cross_domain_validation_pending")
     if source_posture.get("ready_for_retrosynthesis_seed") is False:
         reason_codes.append("retrosynthesis_blocked")
@@ -208,6 +272,10 @@ def build_phase6_memory_candidate_packet(
     """
 
     source_posture = _source_posture(handoff_request)
+    artifact_refs, artifact_refs_by_key = _artifact_ref_bindings(handoff_request)
+    artifact_sha256s, artifact_sha256s_by_key = _artifact_sha256_bindings(
+        handoff_request, artifact_refs_by_key
+    )
 
     return {
         "schema": SCHEMA,
@@ -216,8 +284,10 @@ def build_phase6_memory_candidate_packet(
         "allowed_use": ALLOWED_USE,
         "memory_write_authorized": False,
         "reason_codes": _reason_codes(source_posture, sophia_adjudication),
-        "artifact_refs": _handoff_artifact_refs(handoff_request),
-        "artifact_sha256s": _handoff_artifact_sha256s(handoff_request),
+        "artifact_refs": artifact_refs,
+        "artifact_refs_by_key": artifact_refs_by_key,
+        "artifact_sha256s": artifact_sha256s,
+        "artifact_sha256s_by_key": artifact_sha256s_by_key,
         "handoff_request_ref": handoff_request_ref
         or _find_first_value(
             handoff_request, ("handoff_request_ref", "handoffRequestRef")
