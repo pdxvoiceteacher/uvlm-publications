@@ -2,13 +2,14 @@
 
 This module intentionally produces only a non-authoritative retrieval candidate
 packet. It reads the Phase 6 handoff and Sophia adjudication artifacts to carry
-forward the request identity, but it does not authorize an Atlas memory write and
-it does not alter retrieval behavior.
+forward the request identity and source artifact bindings, but it does not
+authorize an Atlas memory write and it does not alter retrieval behavior.
 """
 
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 from pathlib import Path
 from typing import Any
@@ -17,10 +18,9 @@ from typing import Any
 SCHEMA = "atlas.phase6_memory_candidate.v1"
 CANDIDATE_STATUS = "shadow_only"
 ALLOWED_USE = "retrieval_candidate"
-REASON_CODES = [
+BASE_REASON_CODES = [
     "not_truth_certification",
     "human_review_required",
-    "cross_domain_validation_pending",
 ]
 GUARDRAILS = {
     "not_authoritative_memory": True,
@@ -35,6 +35,14 @@ REQUEST_ID_KEYS = (
     "triadic_request_id",
     "triadicRequestId",
 )
+SOURCE_POSTURE_KEYS = (
+    "metrics_consistency_passed",
+    "ready_for_retrosynthesis_seed",
+    "application_portability_status",
+    "domain_boundedness_status",
+    "cross_domain_validation_status",
+    "universal_claim_status",
+)
 
 
 def _read_json(path: Path) -> dict[str, Any]:
@@ -42,6 +50,14 @@ def _read_json(path: Path) -> dict[str, Any]:
     if not isinstance(payload, dict):
         raise ValueError(f"Expected JSON object in {path}")
     return payload
+
+
+def _sha256_file(path: Path) -> str:
+    digest = hashlib.sha256()
+    with path.open("rb") as handle:
+        for chunk in iter(lambda: handle.read(1024 * 1024), b""):
+            digest.update(chunk)
+    return digest.hexdigest()
 
 
 def _find_first_value(payload: Any, keys: tuple[str, ...]) -> Any:
@@ -72,8 +88,117 @@ def _request_id(
     return None
 
 
+def _list_value(value: Any) -> list[Any]:
+    if value is None:
+        return []
+    if isinstance(value, list):
+        return list(value)
+    return [value]
+
+
+def _dict_value(value: Any) -> dict[str, Any]:
+    if isinstance(value, dict):
+        return dict(value)
+    return {}
+
+
+def _handoff_artifact_refs(handoff_request: dict[str, Any]) -> list[Any]:
+    return _list_value(
+        _find_first_value(handoff_request, ("artifact_refs", "artifactRefs"))
+    )
+
+
+def _handoff_artifact_sha256s(handoff_request: dict[str, Any]) -> dict[str, Any]:
+    return _dict_value(
+        _find_first_value(handoff_request, ("artifact_sha256s", "artifactSha256s"))
+    )
+
+
+def _source_posture(handoff_request: dict[str, Any]) -> dict[str, Any]:
+    posture = _dict_value(
+        _find_first_value(handoff_request, ("source_posture", "sourcePosture"))
+    )
+    return {
+        key: posture.get(key)
+        if key in posture
+        else _find_first_value(handoff_request, (key, _camel_case(key)))
+        for key in SOURCE_POSTURE_KEYS
+    }
+
+
+def _camel_case(value: str) -> str:
+    first, *rest = value.split("_")
+    return first + "".join(part.capitalize() for part in rest)
+
+
+def _sophia_blocks_authoritative_memory_write(
+    sophia_adjudication: dict[str, Any],
+) -> bool:
+    blocked = _find_first_value(
+        sophia_adjudication,
+        (
+            "authoritative_memory_write_blocked",
+            "authoritativeMemoryWriteBlocked",
+        ),
+    )
+    if blocked is True:
+        return True
+
+    authorized = _find_first_value(
+        sophia_adjudication,
+        (
+            "authoritative_memory_write",
+            "authoritativeMemoryWrite",
+            "memory_write_authorized",
+            "memoryWriteAuthorized",
+        ),
+    )
+    if authorized is False:
+        return True
+    if isinstance(authorized, str) and authorized.lower() in {
+        "blocked",
+        "deny",
+        "denied",
+        "false",
+        "no",
+    }:
+        return True
+
+    directive = _find_first_value(
+        sophia_adjudication, ("sophia_directive", "sophiaDirective", "directive")
+    )
+    return (
+        isinstance(directive, str)
+        and "authoritative_memory_write" in directive
+        and "block" in directive.lower()
+    )
+
+
+def _reason_codes(
+    source_posture: dict[str, Any], sophia_adjudication: dict[str, Any]
+) -> list[str]:
+    reason_codes = list(BASE_REASON_CODES)
+
+    if source_posture.get("cross_domain_validation_status") in (None, "not_yet_tested"):
+        reason_codes.append("cross_domain_validation_pending")
+    if source_posture.get("ready_for_retrosynthesis_seed") is False:
+        reason_codes.append("retrosynthesis_blocked")
+    if source_posture.get("metrics_consistency_passed") is True:
+        reason_codes.append("metrics_consistency_passed")
+    if _sophia_blocks_authoritative_memory_write(sophia_adjudication):
+        reason_codes.append("authoritative_memory_write_blocked")
+
+    return reason_codes
+
+
 def build_phase6_memory_candidate_packet(
-    handoff_request: dict[str, Any], sophia_adjudication: dict[str, Any]
+    handoff_request: dict[str, Any],
+    sophia_adjudication: dict[str, Any],
+    *,
+    handoff_request_ref: str | None = None,
+    handoff_request_sha256: str | None = None,
+    sophia_adjudication_ref: str | None = None,
+    sophia_adjudication_sha256: str | None = None,
 ) -> dict[str, Any]:
     """Build a shadow-only Phase 6 memory candidate packet.
 
@@ -82,15 +207,48 @@ def build_phase6_memory_candidate_packet(
     authoritative memory write could be considered by a separate workflow.
     """
 
+    source_posture = _source_posture(handoff_request)
+
     return {
         "schema": SCHEMA,
         "request_id": _request_id(handoff_request, sophia_adjudication),
         "candidate_status": CANDIDATE_STATUS,
         "allowed_use": ALLOWED_USE,
         "memory_write_authorized": False,
-        "reason_codes": list(REASON_CODES),
-        "artifact_refs": [],
-        "artifact_sha256s": {},
+        "reason_codes": _reason_codes(source_posture, sophia_adjudication),
+        "artifact_refs": _handoff_artifact_refs(handoff_request),
+        "artifact_sha256s": _handoff_artifact_sha256s(handoff_request),
+        "handoff_request_ref": handoff_request_ref
+        or _find_first_value(
+            handoff_request, ("handoff_request_ref", "handoffRequestRef")
+        ),
+        "handoff_request_sha256": handoff_request_sha256
+        or _find_first_value(
+            handoff_request, ("handoff_request_sha256", "handoffRequestSha256")
+        ),
+        "sophia_adjudication_ref": sophia_adjudication_ref
+        or _find_first_value(
+            sophia_adjudication,
+            ("sophia_adjudication_ref", "sophiaAdjudicationRef"),
+        ),
+        "sophia_adjudication_sha256": sophia_adjudication_sha256
+        or _find_first_value(
+            sophia_adjudication,
+            ("sophia_adjudication_sha256", "sophiaAdjudicationSha256"),
+        ),
+        "sophia_directive": _find_first_value(
+            sophia_adjudication, ("sophia_directive", "sophiaDirective", "directive")
+        ),
+        "sophia_retrosynthesis_status": _find_first_value(
+            sophia_adjudication,
+            (
+                "sophia_retrosynthesis_status",
+                "sophiaRetrosynthesisStatus",
+                "retrosynthesis_status",
+                "retrosynthesisStatus",
+            ),
+        ),
+        "source_posture": source_posture,
         "guardrails": dict(GUARDRAILS),
     }
 
@@ -100,7 +258,14 @@ def write_phase6_memory_candidate_packet(
 ) -> dict[str, Any]:
     handoff_request = _read_json(handoff_request_path)
     sophia_adjudication = _read_json(sophia_adjudication_path)
-    packet = build_phase6_memory_candidate_packet(handoff_request, sophia_adjudication)
+    packet = build_phase6_memory_candidate_packet(
+        handoff_request,
+        sophia_adjudication,
+        handoff_request_ref=str(handoff_request_path),
+        handoff_request_sha256=_sha256_file(handoff_request_path),
+        sophia_adjudication_ref=str(sophia_adjudication_path),
+        sophia_adjudication_sha256=_sha256_file(sophia_adjudication_path),
+    )
 
     out_path.parent.mkdir(parents=True, exist_ok=True)
     out_path.write_text(json.dumps(packet, indent=2) + "\n", encoding="utf-8")
