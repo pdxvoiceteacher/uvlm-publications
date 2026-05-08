@@ -12,6 +12,12 @@ dependencies = [
   "uvicorn>=0.30"
 ]
 
+[project.optional-dependencies]
+test = [
+  "pytest>=8",
+  "jsonschema>=4"
+]
+
 [tool.setuptools]
 package-dir = {"" = "python/src"}
 
