@@ -62,6 +62,18 @@ def _validate_disposition(packet: dict[str, Any]) -> None:
     ):
         _require_false(authority, key)
 
+    runtime = packet.get("runtime_boundary")
+    if not isinstance(runtime, dict):
+        raise ValueError("runtime_boundary must be an object")
+    for key in (
+        "live_atlas_call_performed",
+        "network_call_performed",
+        "model_call_performed",
+        "live_sophia_call_performed",
+        "live_sonya_call_performed",
+    ):
+        _require_false(runtime, key)
+
 
 def build_overlay_outputs(
     packet: dict[str, Any],
@@ -70,9 +82,14 @@ def build_overlay_outputs(
     disposition = packet["disposition"]
     status = disposition["status"]
 
+    coherence_escrow_status = packet.get("coherence_escrow_status", "review_escrow")
+    reversibility_index = packet.get("reversibility_index", "R2")
+
     base_entry = {
         "dispositionId": packet["disposition_id"],
         "memoryIntentId": packet["memory_intent_id"],
+        "coherenceEscrowStatus": coherence_escrow_status,
+        "reversibilityIndex": reversibility_index,
         "status": status,
         "allowedUse": disposition["allowed_use"],
         "retentionBand": disposition["retention_band"],
@@ -85,6 +102,8 @@ def build_overlay_outputs(
     registry = {
         "schema": REGISTRY_SCHEMA,
         "entries": [base_entry],
+        "coherenceEscrowStatus": coherence_escrow_status,
+        "reversibilityIndex": reversibility_index,
         "nonAuthoritativeOnly": True,
         "noMemoryIndexMutation": True,
         "noCanonicalPublicationMutation": True,
@@ -108,6 +127,8 @@ def build_overlay_outputs(
     review_queue = {
         "schema": QUEUE_SCHEMA,
         "entries": queue_entries,
+        "coherenceEscrowStatus": coherence_escrow_status,
+        "reversibilityIndex": reversibility_index,
         "ltmCandidatesRequireHumanReview": True,
         "noMemoryIndexMutation": True,
     }
@@ -118,6 +139,8 @@ def build_overlay_outputs(
     annotations = {
         "schema": ANNOTATIONS_SCHEMA,
         "entries": annotation_entries,
+        "coherenceEscrowStatus": coherence_escrow_status,
+        "reversibilityIndex": reversibility_index,
         "watchlistOnly": True,
         "noCanonicalPublicationMutation": True,
         "noDoiRegistryMutation": True,

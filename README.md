@@ -174,6 +174,8 @@ Atlas consumes CoherenceLattice `AtlasMemoryIntentPacket` candidates from the sh
 
 LTM candidates are routed to human review before any future memory posture change. Publisher overlays may surface disposition registries, review queues, and annotations, but they must not mutate canonical publications, catalog state, DOI state, or publication corpus memory. A future patch may implement human-reviewed memory promotion; this patch does not.
 
+Atlas memory disposition overlays now surface escrow and reversibility posture for review only; they do not authorize memory, canonization, truth, deployment, or publication.
+
 Local disposition-intake tests can be run in an editable test environment:
 
 ```bash

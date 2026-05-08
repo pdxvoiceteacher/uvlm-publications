@@ -9,6 +9,7 @@ from pathlib import Path
 import jsonschema
 import pytest
 
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "python" / "src"))
 
 from atlas.memory_disposition import (  # noqa: E402
@@ -322,8 +323,18 @@ def test_overlay_builder_writes_registry_review_queue_and_annotations(tmp_path):
         )
     )
     assert disposition_registry["nonAuthoritativeOnly"] is True
+    assert disposition_registry["coherenceEscrowStatus"] == "review_escrow"
+    assert disposition_registry["reversibilityIndex"] == "R2"
     assert disposition_registry["entries"][0]["status"] == "pending_human_review"
+    assert disposition_registry["entries"][0]["coherenceEscrowStatus"] == "review_escrow"
+    assert disposition_registry["entries"][0]["reversibilityIndex"] == "R2"
+    assert review_queue["coherenceEscrowStatus"] == "review_escrow"
+    assert review_queue["reversibilityIndex"] == "R2"
     assert review_queue["entries"][0]["memoryIntentId"] == "memory-intent-001"
+    assert review_queue["entries"][0]["coherenceEscrowStatus"] == "review_escrow"
+    assert review_queue["entries"][0]["reversibilityIndex"] == "R2"
+    assert annotations["coherenceEscrowStatus"] == "review_escrow"
+    assert annotations["reversibilityIndex"] == "R2"
     assert annotations["watchlistOnly"] is True
 
 
@@ -366,6 +377,21 @@ def test_overlay_builder_never_mutates_publication_catalog_or_doi_registries(tmp
 
     assert result.returncode == 0, result.stdout + result.stderr
     assert after == before
+
+
+def test_overlay_builder_rejects_authoritative_or_runtime_boundary_mutation():
+    authoritative_packet = build_packet()
+    authoritative_packet["authority_boundary"]["truth_certified"] = True
+    runtime_packet = build_packet()
+    runtime_packet["runtime_boundary"]["network_call_performed"] = True
+
+    for packet in (authoritative_packet, runtime_packet):
+        with pytest.raises(ValueError):
+            from scripts.build_atlas_memory_disposition_overlay import (
+                build_overlay_outputs,
+            )
+
+            build_overlay_outputs(packet)
 
 
 def test_disposition_sources_do_not_introduce_forbidden_runtime_tokens():
