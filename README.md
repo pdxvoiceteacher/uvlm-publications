@@ -168,6 +168,12 @@ python3 -m http.server 8000
 # open http://localhost:8000/atlas/
 ```
 
+### Atlas memory disposition intake
+
+Atlas consumes CoherenceLattice `AtlasMemoryIntentPacket` candidates from the shared triadic bridge and classifies memory posture only. The disposition intake does not authorize a memory write, does not canonize a prior, does not certify truth, and does not authorize deployment.
+
+LTM candidates are routed to human review before any future memory posture change. Publisher overlays may surface disposition registries, review queues, and annotations, but they must not mutate canonical publications, catalog state, DOI state, or publication corpus memory. A future patch may implement human-reviewed memory promotion; this patch does not.
+
 ### Phase-lock integration rule (CoherenceLattice → Sophia → Publisher)
 
 The atlas overlay pipeline follows a strict order:
