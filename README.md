@@ -174,6 +174,15 @@ Atlas consumes CoherenceLattice `AtlasMemoryIntentPacket` candidates from the sh
 
 LTM candidates are routed to human review before any future memory posture change. Publisher overlays may surface disposition registries, review queues, and annotations, but they must not mutate canonical publications, catalog state, DOI state, or publication corpus memory. A future patch may implement human-reviewed memory promotion; this patch does not.
 
+Local disposition-intake tests can be run in an editable test environment:
+
+```bash
+python3 -m venv .venv
+. .venv/bin/activate
+python -m pip install -e ".[test]"
+pytest -q tests/test_atlas_memory_disposition.py
+```
+
 ### Phase-lock integration rule (CoherenceLattice → Sophia → Publisher)
 
 The atlas overlay pipeline follows a strict order:

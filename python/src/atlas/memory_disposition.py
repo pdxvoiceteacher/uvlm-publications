@@ -228,6 +228,10 @@ def build_atlas_memory_disposition_packet(
         "grounding_refs": list(memory_intent_packet["grounding_refs"]),
         "tel_refs": list(memory_intent_packet["tel_refs"]),
         "coherence_metric_refs": list(memory_intent_packet["coherence_metric_refs"]),
+        "coherence_escrow_status": str(
+            memory_intent.get("coherence_escrow_status") or "review_escrow"
+        ),
+        "reversibility_index": str(memory_intent.get("reversibility_index") or "R2"),
         "disposition": {
             "status": status,
             "allowed_use": allowed_use,

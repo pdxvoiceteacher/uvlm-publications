@@ -41,6 +41,8 @@
     "grounding_refs": {"type": "array"},
     "tel_refs": {"type": "array"},
     "coherence_metric_refs": {"type": "array"},
+    "coherence_escrow_status": {"type": "string", "minLength": 1},
+    "reversibility_index": {"type": "string", "minLength": 1},
     "disposition": {
       "type": "object",
       "additionalProperties": false,

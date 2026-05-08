@@ -98,6 +98,8 @@ def test_valid_memory_intent_builds_deterministic_disposition_packet():
     assert packet["grounding_refs"] == ["grounding:001"]
     assert packet["tel_refs"] == ["tel:001"]
     assert packet["coherence_metric_refs"] == ["coherence:001"]
+    assert packet["coherence_escrow_status"] == "review_escrow"
+    assert packet["reversibility_index"] == "R2"
     assert packet["disposition"] == {
         "status": "pending_human_review",
         "allowed_use": "retrieval_candidate",
@@ -155,6 +157,19 @@ def test_changing_memory_intent_id_changes_disposition_id():
 def test_schema_validates():
     schema = json.loads(SCHEMA_PATH.read_text(encoding="utf-8"))
     jsonschema.Draft202012Validator(schema).validate(build_packet())
+
+
+def test_disposition_remains_non_authoritative_with_escrow_defaults():
+    packet = build_packet()
+
+    assert packet["coherence_escrow_status"] == "review_escrow"
+    assert packet["reversibility_index"] == "R2"
+    assert packet["review_requirements"]["requires_human_review"] is True
+    assert all(value is False for value in packet["authority_boundary"].values())
+    assert all(value is False for value in packet["runtime_boundary"].values())
+    assert "not_memory_write" in packet["disposition"]["reason_codes"]
+    assert "not_prior_canonization" in packet["disposition"]["reason_codes"]
+    assert "not_truth_certification" in packet["disposition"]["reason_codes"]
 
 
 def test_rejects_non_memory_intent_schema():
@@ -261,6 +276,8 @@ def test_cli_writes_output(tmp_path):
     packet = json.loads(out_path.read_text(encoding="utf-8"))
     assert packet["schema"] == "atlas.memory_disposition_packet.v1"
     assert packet["memory_intent_id"] == "memory-intent-001"
+    assert packet["coherence_escrow_status"] == "review_escrow"
+    assert packet["reversibility_index"] == "R2"
     assert packet["authority_boundary"]["memory_write_authorized"] is False
 
 
