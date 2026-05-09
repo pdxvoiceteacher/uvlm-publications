@@ -14,27 +14,36 @@ This appendix records reviewer-facing commands for reproducing the governed arti
 # 1. Enter the CoherenceLattice checkout.
 cd ../CoherenceLattice
 
-# 2. Run the SONYA-AEGIS-SMOKE-02 harness.
-python -m pytest -q tests/test_sonya_aegis_smoke_02.py
+# 2. Run accepted SONYA-AEGIS-SMOKE-02, finalizer, repro-pack, and WAVE tests.
+python -m pytest -q \
+  python/tests/integration/test_sonya_aegis_smoke_02_acceptance_harness.py \
+  python/tests/integration/test_sonya_aegis_publisher_boundary_finalizer.py \
+  python/tests/integration/test_experiment_suite_repro_pack.py \
+  python/tests/waveform/test_waveform_family_acceptance.py
 
-# 3. Run WAVE Gold-Physics family acceptance.
-python -m pytest -q tests/test_wave_gold_physics_family.py
+# 3. Build WAVE Gold-Physics family acceptance artifacts.
+python -m coherence.waveform.family_acceptance \
+  --bridge-root artifacts/wave_gold_physics_family
 
 # 4. Build the experiment suite reproducibility pack.
-python scripts/build_experiment_suite_repro_pack.py \
+python -m coherence.tools.build_experiment_suite_repro_pack \
   --registry experiments/experiment_suite_registry.json \
-  --out-dir artifacts/experiment_suite_repro_pack
+  --artifacts-root artifacts \
+  --sonya-aegis-smoke-02-report artifacts/sonya_aegis_smoke_02/sonya_aegis_smoke_02_acceptance_report.json \
+  --wave-family-report artifacts/wave_gold_physics_family/waveform_gold_physics_family_acceptance_packet.json \
+  --out-dir artifacts/experiment_suite_repro_pack \
+  --zip
 
 # 5. Inspect expected outputs.
 python - <<'PY'
 from pathlib import Path
 for path in [
-    'artifacts/sonya_aegis_smoke_02_acceptance_report.json',
+    'artifacts/sonya_aegis_smoke_02/sonya_aegis_smoke_02_acceptance_report.json',
     'artifacts/experiment_suite_repro_pack/experiment_suite_repro_pack.json',
     'artifacts/experiment_suite_repro_pack/acceptance_matrix.csv',
     'artifacts/experiment_suite_repro_pack/artifact_manifest.json',
     'artifacts/experiment_suite_repro_pack/experiment_suite_reproducibility_report.md',
-    'artifacts/waveform_gold_physics_family_acceptance_packet.json',
+    'artifacts/wave_gold_physics_family/waveform_gold_physics_family_acceptance_packet.json',
 ]:
     print(path, Path(path).exists())
 PY
@@ -44,27 +53,36 @@ PY
 
 ```powershell
 # 1. Enter the CoherenceLattice checkout.
-Set-Location ..\CoherenceLattice
+Set-Location C:\UVLM\CoherenceLattice
 
-# 2. Run the SONYA-AEGIS-SMOKE-02 harness.
-python -m pytest -q tests/test_sonya_aegis_smoke_02.py
+# 2. Run the accepted SONYA-AEGIS-SMOKE-02 harness.
+.\experiments\Run-SONYA-AEGIS-SMOKE02-Acceptance.ps1 `
+  -OutputRoot C:\UVLM\run_artifacts\sonya_aegis_smoke_02_hardened `
+  -LogDir C:\UVLM\run_artifacts\sonya_aegis_smoke_02_hardened_logs `
+  -CiMode
 
-# 3. Run WAVE Gold-Physics family acceptance.
-python -m pytest -q tests/test_wave_gold_physics_family.py
+# 3. Build WAVE Gold-Physics family acceptance artifacts.
+$waveBridge = "C:\UVLM\run_artifacts\wave_gold_physics_family"
+python -m coherence.waveform.family_acceptance `
+  --bridge-root $waveBridge
 
 # 4. Build the experiment suite reproducibility pack.
-python scripts/build_experiment_suite_repro_pack.py `
+python -m coherence.tools.build_experiment_suite_repro_pack `
   --registry experiments/experiment_suite_registry.json `
-  --out-dir artifacts/experiment_suite_repro_pack
+  --artifacts-root C:\UVLM\run_artifacts `
+  --sonya-aegis-smoke-02-report C:\UVLM\run_artifacts\sonya_aegis_smoke_02_hardened\sonya_aegis_smoke_02_acceptance_report.json `
+  --wave-family-report C:\UVLM\run_artifacts\wave_gold_physics_family\waveform_gold_physics_family_acceptance_packet.json `
+  --out-dir C:\UVLM\run_artifacts\experiment_suite_repro_pack_v3 `
+  --zip
 
 # 5. Inspect expected outputs.
 @(
-  'artifacts/sonya_aegis_smoke_02_acceptance_report.json',
-  'artifacts/experiment_suite_repro_pack/experiment_suite_repro_pack.json',
-  'artifacts/experiment_suite_repro_pack/acceptance_matrix.csv',
-  'artifacts/experiment_suite_repro_pack/artifact_manifest.json',
-  'artifacts/experiment_suite_repro_pack/experiment_suite_reproducibility_report.md',
-  'artifacts/waveform_gold_physics_family_acceptance_packet.json'
+  'C:\UVLM\run_artifacts\sonya_aegis_smoke_02_hardened\sonya_aegis_smoke_02_acceptance_report.json',
+  'C:\UVLM\run_artifacts\experiment_suite_repro_pack_v3\experiment_suite_repro_pack.json',
+  'C:\UVLM\run_artifacts\experiment_suite_repro_pack_v3\acceptance_matrix.csv',
+  'C:\UVLM\run_artifacts\experiment_suite_repro_pack_v3\artifact_manifest.json',
+  'C:\UVLM\run_artifacts\experiment_suite_repro_pack_v3\experiment_suite_reproducibility_report.md',
+  'C:\UVLM\run_artifacts\wave_gold_physics_family\waveform_gold_physics_family_acceptance_packet.json'
 ) | ForEach-Object { Write-Output "$($_) $((Test-Path $_))" }
 ```
 
@@ -73,32 +91,11 @@ python scripts/build_experiment_suite_repro_pack.py `
 From the `uvlm-publications` checkout:
 
 ```bash
-python - <<'PY'
-from pathlib import Path
-root = Path('papers/governed_artifact_cognition')
-required = [
-    'PUB_GOV_ARTIFACT_COG_01.md',
-    'reproducibility_appendix.md',
-    'claim_boundary_table.md',
-    'artifact_table.md',
-    'reviewer_quickstart.md',
-    'status.json',
-]
-missing = [name for name in required if not (root / name).exists()]
-if missing:
-    raise SystemExit(f'missing required draft files: {missing}')
-text = '\n'.join((root / name).read_text(encoding='utf-8') for name in required if name.endswith('.md'))
-for phrase in [
-    'not truth certification',
-    'not deployment authority',
-    'not final answer release',
-    'local fixture only',
-    'requires external peer review',
-]:
-    if phrase not in text:
-        raise SystemExit(f'missing non-claim phrase: {phrase}')
-print('governed artifact cognition draft checks passed')
-PY
+python tools/validate_publication_claims.py \
+  --paper papers/governed_artifact_cognition/PUB_GOV_ARTIFACT_COG_01.md \
+  --appendix papers/governed_artifact_cognition/reproducibility_appendix.md \
+  --quickstart papers/governed_artifact_cognition/reviewer_quickstart.md \
+  --status papers/governed_artifact_cognition/status.json
 ```
 
 ## Interpretation boundary
