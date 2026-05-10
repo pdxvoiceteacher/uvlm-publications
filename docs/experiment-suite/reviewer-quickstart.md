@@ -12,13 +12,46 @@
 
 ## CoherenceLattice commands
 
-POSIX: `python -m coherence.waveform.family_acceptance --bridge-root artifacts/wave_gold_physics_family`
+PowerShell SONYA-AEGIS-SMOKE-02:
 
-PowerShell: `experiments/Run-SONYA-AEGIS-SMOKE02-Acceptance.ps1 -CiMode`
+```powershell
+.\experiments\Run-SONYA-AEGIS-SMOKE02-Acceptance.ps1 `
+  -OutputRoot C:\UVLM\run_artifacts\sonya_aegis_smoke_02_hardened `
+  -LogDir C:\UVLM\run_artifacts\sonya_aegis_smoke_02_hardened_logs `
+  -CiMode
+```
+
+PowerShell WAVE Gold-Physics:
+
+```powershell
+python -m coherence.waveform.family_acceptance `
+  --bridge-root C:\UVLM\run_artifacts\wave_gold_physics_family
+```
+
+PowerShell UNI-02D Sonya gate:
+
+```powershell
+.\experiments\Run-UNI02D-Sonya-Gate-Acceptance.ps1 `
+  -OutputRoot C:\UVLM\run_artifacts\uni02d_sonya_gate `
+  -LogDir C:\UVLM\run_artifacts\uni02d_sonya_gate_logs `
+  -CiMode
+```
+
+PowerShell RETRO-LANE-00:
+
+```powershell
+.\experiments\Run-RETRO-LANE00-Acceptance.ps1 `
+  -OutputRoot C:\UVLM\run_artifacts\retro_lane_00 `
+  -LogDir C:\UVLM\run_artifacts\retro_lane_00_logs `
+  -CiMode
+```
 
 ## Sophia commands
 
-`python -m pytest -q python/tests/integration/test_sophia_ucc_route.py`
+```powershell
+cd C:\UVLM\Sophia
+python -m pytest -q tests/test_ucc_risk_control_route.py
+```
 
 ## uvlm-publications commands
 

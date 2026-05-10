@@ -40,6 +40,21 @@ REQUIRED_PHASES = {
     "RETRO-LANE-00",
 }
 
+REQUIRED_COMMAND_FRAGMENTS = (
+    "Run-SONYA-AEGIS-SMOKE02-Acceptance.ps1",
+    "Run-UNI02D-Sonya-Gate-Acceptance.ps1",
+    "Run-RETRO-LANE00-Acceptance.ps1",
+    "coherence.waveform.family_acceptance",
+    "tests/test_ucc_risk_control_route.py",
+)
+STALE_COMMAND_FRAGMENTS = (
+    "tests/test_sonya_aegis_smoke_02.py",
+    "tests/test_wave_gold_physics_family.py",
+    "scripts/build_experiment_suite_repro_pack.py",
+    "test_retro_lane_00_acceptance.py",
+    "test_sophia_ucc_route.py",
+)
+
 
 def run_builder(tmp_path: Path) -> tuple[Path, Path]:
     out_dir = tmp_path / "registry"
@@ -77,6 +92,26 @@ def test_dashboard_contains_all_accepted_phases(tmp_path):
     phase_ids = {entry["phase_id"] for entry in dashboard["accepted_phases"]}
     assert phase_ids == REQUIRED_PHASES
     assert dashboard["accepted_phase_count"] == 9
+
+
+def test_dashboard_command_summaries_use_accepted_harnesses(tmp_path):
+    out_dir, _docs_dir = run_builder(tmp_path)
+    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text())
+    summaries = "\n".join(
+        entry["reproduction_command_summary"] for entry in dashboard["accepted_phases"]
+    )
+    for fragment in REQUIRED_COMMAND_FRAGMENTS:
+        assert fragment in summaries
+
+
+def test_public_dashboard_outputs_do_not_include_stale_placeholder_commands(tmp_path):
+    out_dir, docs_dir = run_builder(tmp_path)
+    output_text = "\n".join(
+        path.read_text(encoding="utf-8")
+        for path in sorted([*out_dir.glob("*.json"), *docs_dir.rglob("*.md")])
+    )
+    for fragment in STALE_COMMAND_FRAGMENTS:
+        assert fragment not in output_text
 
 
 def test_claim_boundary_index_contains_non_authority_rules(tmp_path):

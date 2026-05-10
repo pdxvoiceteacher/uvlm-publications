@@ -2,7 +2,12 @@
 
 Purpose: closed-form waveform metric calibration.
 
-Run command: `python -m coherence.waveform.family_acceptance --bridge-root artifacts/wave_gold_physics_family`.
+Run command:
+
+```powershell
+python -m coherence.waveform.family_acceptance `
+  --bridge-root C:\UVLM\run_artifacts\wave_gold_physics_family
+```
 
 Evidence: `waveform_gold_physics_family_acceptance_packet.json`.
 

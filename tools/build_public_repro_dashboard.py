@@ -14,6 +14,23 @@ SOURCE_REPOS = [
     "pdxvoiceteacher/uvlm-publications",
 ]
 GENERATED_AT = None
+
+SONYA_AEGIS_COMMAND = r""".\experiments\Run-SONYA-AEGIS-SMOKE02-Acceptance.ps1 `
+  -OutputRoot C:\UVLM\run_artifacts\sonya_aegis_smoke_02_hardened `
+  -LogDir C:\UVLM\run_artifacts\sonya_aegis_smoke_02_hardened_logs `
+  -CiMode"""
+WAVE_FAMILY_COMMAND = r"""python -m coherence.waveform.family_acceptance `
+  --bridge-root C:\UVLM\run_artifacts\wave_gold_physics_family"""
+UNI02D_COMMAND = r""".\experiments\Run-UNI02D-Sonya-Gate-Acceptance.ps1 `
+  -OutputRoot C:\UVLM\run_artifacts\uni02d_sonya_gate `
+  -LogDir C:\UVLM\run_artifacts\uni02d_sonya_gate_logs `
+  -CiMode"""
+RETRO_LANE_COMMAND = r""".\experiments\Run-RETRO-LANE00-Acceptance.ps1 `
+  -OutputRoot C:\UVLM\run_artifacts\retro_lane_00 `
+  -LogDir C:\UVLM\run_artifacts\retro_lane_00_logs `
+  -CiMode"""
+SOPHIA_UCC_COMMAND = r"""cd C:\UVLM\Sophia
+python -m pytest -q tests/test_ucc_risk_control_route.py"""
 ACCEPTED_PHASES = [
     {
         "phase_id": "EXP-SUITE-REGISTRY-01",
@@ -50,7 +67,7 @@ ACCEPTED_PHASES = [
         "status": "accepted",
         "evidence_type": "gold_physics_calibration",
         "primary_artifacts": ["waveform_gold_physics_family_acceptance_packet.json"],
-        "reproduction_command_summary": "python -m coherence.waveform.family_acceptance --bridge-root artifacts/wave_gold_physics_family",
+        "reproduction_command_summary": WAVE_FAMILY_COMMAND,
         "claim_allowed": "Closed-form waveform metric calibration across WAVE-00R through WAVE-03R.",
         "claims_blocked": ["WAVE calibration is not universal ontology", "WAVE Gold-Physics is not psychoacoustic proof"],
         "reviewer_caution": "High coherence is not necessarily constructive or safe.",
@@ -66,7 +83,7 @@ ACCEPTED_PHASES = [
             "human_review bundle",
             "auto route bundle",
         ],
-        "reproduction_command_summary": "experiments/Run-SONYA-AEGIS-SMOKE02-Acceptance.ps1 -CiMode",
+        "reproduction_command_summary": SONYA_AEGIS_COMMAND,
         "claim_allowed": "Direct-call blocking and local Sonya membrane evidence are inspectable.",
         "claims_blocked": ["Sonya local membrane is not federation", "candidate is not answer"],
         "reviewer_caution": "Local fixture only; no recursive Sonya federation is implied.",
@@ -78,7 +95,7 @@ ACCEPTED_PHASES = [
         "status": "accepted",
         "evidence_type": "route_control",
         "primary_artifacts": ["sophia_ucc_route_acceptance_packet.json"],
-        "reproduction_command_summary": "python -m pytest -q python/tests/integration/test_sophia_ucc_route.py",
+        "reproduction_command_summary": SOPHIA_UCC_COMMAND,
         "claim_allowed": "Sophia/UCC route controls can classify admissibility posture.",
         "claims_blocked": ["route is not authorization", "no live Sophia calls"],
         "reviewer_caution": "Route disposition is governance posture, not final authority.",
@@ -128,7 +145,7 @@ ACCEPTED_PHASES = [
             "uni02d_prior_origin_provenance_packet.json",
             "uni02d_prior_quarantine_packet.json",
         ],
-        "reproduction_command_summary": "python -m pytest -q python/tests/integration/test_uni02d_sonya_gate_acceptance.py",
+        "reproduction_command_summary": UNI02D_COMMAND,
         "claim_allowed": "A Sonya-gated safe portability fixture can be inspected.",
         "claims_blocked": ["UNI-02D safe portability fixture is not universal portability proof", "prior quarantine is not prior canonization"],
         "reviewer_caution": "Scan selected_priors and matches[*].prior shapes for quarantine/provenance posture.",
@@ -144,7 +161,7 @@ ACCEPTED_PHASES = [
             "retrosynthesis_admission_review_packet.json",
             "retro_lane_00_acceptance_receipt.json",
         ],
-        "reproduction_command_summary": "python -m pytest -q python/tests/integration/test_retro_lane_00_acceptance.py",
+        "reproduction_command_summary": RETRO_LANE_COMMAND,
         "claim_allowed": "sandbox_auto, review_required, and blocked admission lanes can be reviewed.",
         "claims_blocked": ["Retrosynthesis admission is not retrosynthesis execution", "hallucination telemetry is not evidence"],
         "reviewer_caution": "Admission is not execution; hallucination is telemetry, not evidence.",
@@ -261,14 +278,14 @@ def reproducibility_index() -> dict[str, Any]:
         "schema": "uvlm.reproducibility_index.v1",
         "commands": {
             "CoherenceLattice": [
-                {"name": "SONYA-AEGIS-SMOKE-02 harness", "command": "experiments/Run-SONYA-AEGIS-SMOKE02-Acceptance.ps1 -CiMode"},
-                {"name": "WAVE family acceptance", "command": "python -m coherence.waveform.family_acceptance --bridge-root artifacts/wave_gold_physics_family"},
-                {"name": "UNI-02D Sonya gate acceptance", "command": "python -m pytest -q python/tests/integration/test_uni02d_sonya_gate_acceptance.py"},
-                {"name": "RETRO-LANE-00 acceptance", "command": "python -m pytest -q python/tests/integration/test_retro_lane_00_acceptance.py"},
+                {"name": "SONYA-AEGIS-SMOKE-02 harness", "command": SONYA_AEGIS_COMMAND},
+                {"name": "WAVE family acceptance", "command": WAVE_FAMILY_COMMAND},
+                {"name": "UNI-02D Sonya gate acceptance", "command": UNI02D_COMMAND},
+                {"name": "RETRO-LANE-00 acceptance", "command": RETRO_LANE_COMMAND},
                 {"name": "experiment suite repro pack builder", "command": "python -m coherence.tools.build_experiment_suite_repro_pack --registry experiments/experiment_suite_registry.json --artifacts-root artifacts --out-dir artifacts/experiment_suite_repro_pack --zip"},
             ],
             "Sophia": [
-                {"name": "UCC route test command", "command": "python -m pytest -q python/tests/integration/test_sophia_ucc_route.py"},
+                {"name": "UCC route test command", "command": SOPHIA_UCC_COMMAND},
             ],
             "uvlm-publications": [
                 {"name": "governed artifact cognition validator", "command": "python tools/validate_publication_claims.py --paper papers/governed_artifact_cognition/PUB_GOV_ARTIFACT_COG_01.md --quickstart papers/governed_artifact_cognition/reviewer_quickstart.md --status papers/governed_artifact_cognition/status.json"},
@@ -323,13 +340,138 @@ def docs() -> dict[str, str]:
         "assets/README.md": "# Assets\n\nOptional static assets for the public reproducibility dashboard.\n",
         "index.md": f"# Public Experiment Suite Dashboard\n\nThis dashboard presents accepted evidence for reviewer orientation. It is not truth certification, not deployment authority, not final answer release, local fixture only, and requires external peer review.\n\n## Accepted evidence\n\n| Phase | Repo | Status | What this supports | Reviewer caution |\n| --- | --- | --- | --- | --- |\n{phase_rows}\n\n## Reviewer path\n\nStart with claim boundaries, then read the governed artifact cognition paper, WAVE Rosetta paper, SONYA-AEGIS-SMOKE-02, WAVE family, UNI-02D Sonya gate, and RETRO-LANE-00 pages.\n\n## What this proves\n\nIt proves only that accepted local fixture artifacts and draft publication materials are organized for review.\n\n## What this does not prove\n\nNo oracle posture, no deployment posture, no final-answer posture, no AI consciousness claim, and no universal ontology claim.\n\n## Phase pages\n\n- [SONYA-AEGIS-SMOKE-02](sonya-aegis-smoke-02.md)\n- [WAVE Gold-Physics](wave-gold-physics.md)\n- [UNI-02D Sonya gate](uni02d-sonya-gate.md)\n- [RETRO-LANE-00](retro-lane-00.md)\n- [Governed artifact cognition paper](governed-artifact-cognition-paper.md)\n- [Waveform Rosetta paper](waveform-rosetta-paper.md)\n",
         "claim-boundaries.md": f"# Claim Boundaries\n\n{boundaries}\n\nNo oracle posture. No deployment posture. No final-answer posture. No AI consciousness claim. No universal ontology claim.\n",
-        "sonya-aegis-smoke-02.md": "# SONYA-AEGIS-SMOKE-02\n\nPurpose: inspect a local Sonya membrane and direct-call blocking fixture.\n\nRun command: `experiments/Run-SONYA-AEGIS-SMOKE02-Acceptance.ps1 -CiMode`.\n\nEvidence: `sonya_aegis_smoke_02_acceptance_report.json`, human_review bundle, auto route bundle.\n\nClaim allowed: local deterministic membrane evidence and direct-call blocking are reviewable.\n\nClaims blocked: Sonya local membrane is not federation; candidate is not answer; local fixture only.\n\nInspect direct-call blocking and Sonya membrane evidence in the acceptance report and route bundles.\n",
-        "wave-gold-physics.md": "# WAVE Gold-Physics\n\nPurpose: closed-form waveform metric calibration.\n\nRun command: `python -m coherence.waveform.family_acceptance --bridge-root artifacts/wave_gold_physics_family`.\n\nEvidence: `waveform_gold_physics_family_acceptance_packet.json`.\n\nTheorem summary: constructive interference, coherent cancellation, detuning spiral, incomplete cancellation, and observability degradation.\n\nClaim allowed: WAVE calibration distinguishes waveform metric behavior.\n\nClaims blocked: WAVE calibration is not universal ontology and WAVE Gold-Physics is not psychoacoustic proof.\n\nCaution: high coherence is not necessarily constructive or safe.\n",
-        "uni02d-sonya-gate.md": "# UNI-02D Sonya Gate\n\nPurpose: inspect safe portability fixture routing through Sonya-gated constraints.\n\nRun command: `python -m pytest -q python/tests/integration/test_uni02d_sonya_gate_acceptance.py`.\n\nEvidence: `uni02d_sonya_gate_acceptance_report.json`, semantic term quarantine, runtime profile leakage, prior origin provenance, and prior quarantine packets.\n\nPrior quarantine: selected priors remain bounded and must not be canonized. Review selected_priors and matches[*].prior shape scanning for provenance and quarantine posture.\n\nClaim allowed: safe portability fixture evidence can be reviewed.\n\nClaims blocked: UNI-02D safe portability fixture is not universal portability proof.\n\nCaution: safe portability fixture is not universal proof.\n",
-        "retro-lane-00.md": "# RETRO-LANE-00\n\nPurpose: inspect retrosynthesis admission lanes without executing retrosynthesis.\n\nRun command: `python -m pytest -q python/tests/integration/test_retro_lane_00_acceptance.py`.\n\nEvidence: `retrosynthesis_admission_packet.json`, `retrosynthesis_admission_review_packet.json`, `retro_lane_00_acceptance_receipt.json`.\n\nLane definitions: sandbox_auto, review_required, blocked.\n\nClaim allowed: admission lane posture can be reviewed.\n\nClaims blocked: Retrosynthesis admission is not retrosynthesis execution; hallucination is telemetry not evidence.\n\nCaution: admission is not execution.\n",
+        "sonya-aegis-smoke-02.md": f"""# SONYA-AEGIS-SMOKE-02
+
+Purpose: inspect a local Sonya membrane and direct-call blocking fixture.
+
+Run command:
+
+```powershell
+{SONYA_AEGIS_COMMAND}
+```
+
+Evidence: `sonya_aegis_smoke_02_acceptance_report.json`, human_review bundle, auto route bundle.
+
+Claim allowed: local deterministic membrane evidence and direct-call blocking are reviewable.
+
+Claims blocked: Sonya local membrane is not federation; candidate is not answer; local fixture only.
+
+Inspect direct-call blocking and Sonya membrane evidence in the acceptance report and route bundles.
+""",
+        "wave-gold-physics.md": f"""# WAVE Gold-Physics
+
+Purpose: closed-form waveform metric calibration.
+
+Run command:
+
+```powershell
+{WAVE_FAMILY_COMMAND}
+```
+
+Evidence: `waveform_gold_physics_family_acceptance_packet.json`.
+
+Theorem summary: constructive interference, coherent cancellation, detuning spiral, incomplete cancellation, and observability degradation.
+
+Claim allowed: WAVE calibration distinguishes waveform metric behavior.
+
+Claims blocked: WAVE calibration is not universal ontology and WAVE Gold-Physics is not psychoacoustic proof.
+
+Caution: high coherence is not necessarily constructive or safe.
+""",
+        "uni02d-sonya-gate.md": f"""# UNI-02D Sonya Gate
+
+Purpose: inspect safe portability fixture routing through Sonya-gated constraints.
+
+Run command:
+
+```powershell
+{UNI02D_COMMAND}
+```
+
+Evidence: `uni02d_sonya_gate_acceptance_report.json`, semantic term quarantine, runtime profile leakage, prior origin provenance, and prior quarantine packets.
+
+Prior quarantine: selected priors remain bounded and must not be canonized. Review selected_priors and matches[*].prior shape scanning for provenance and quarantine posture.
+
+Claim allowed: safe portability fixture evidence can be reviewed.
+
+Claims blocked: UNI-02D safe portability fixture is not universal portability proof.
+
+Caution: safe portability fixture is not universal proof.
+""",
+        "retro-lane-00.md": f"""# RETRO-LANE-00
+
+Purpose: inspect retrosynthesis admission lanes without executing retrosynthesis.
+
+Run command:
+
+```powershell
+{RETRO_LANE_COMMAND}
+```
+
+Evidence: `retrosynthesis_admission_packet.json`, `retrosynthesis_admission_review_packet.json`, `retro_lane_00_acceptance_receipt.json`.
+
+Lane definitions: sandbox_auto, review_required, blocked.
+
+Claim allowed: admission lane posture can be reviewed.
+
+Claims blocked: Retrosynthesis admission is not retrosynthesis execution; hallucination is telemetry not evidence.
+
+Caution: admission is not execution.
+""",
         "governed-artifact-cognition-paper.md": "# Governed Artifact Cognition Paper\n\nSummary: systems paper for governed artifact cognition as a reproducible audit lab.\n\nLinks: `papers/governed_artifact_cognition/PUB_GOV_ARTIFACT_COG_01.md`, reviewer quickstart, claim boundary table, status.json.\n\nClaim boundaries: not truth certification, not deployment authority, not final answer release, local fixture only, requires external peer review.\n\nValidation command: `python tools/validate_publication_claims.py --paper papers/governed_artifact_cognition/PUB_GOV_ARTIFACT_COG_01.md --quickstart papers/governed_artifact_cognition/reviewer_quickstart.md --status papers/governed_artifact_cognition/status.json`.\n",
         "waveform-rosetta-paper.md": "# Waveform Rosetta Paper\n\nSummary: methods paper for closed-form WAVE Gold-Physics metric calibration.\n\nLinks: `papers/waveform_rosetta/PUB_WAVE_ROSETTA_01.md`, reviewer quickstart, theorem table, status.json.\n\nClaim boundaries: not universal ontology, not psychoacoustic effect, not AI consciousness, not deployment authority, not truth certification, requires external peer review.\n\nValidation command: `python tools/validate_publication_claims.py --paper papers/waveform_rosetta/PUB_WAVE_ROSETTA_01.md --quickstart papers/waveform_rosetta/reviewer_quickstart.md --status papers/waveform_rosetta/status.json`.\n",
-        "reviewer-quickstart.md": "# Reviewer Quickstart\n\n## Read first path\n\n1. claim boundaries\n2. governed artifact cognition paper\n3. WAVE Rosetta paper\n4. SONYA-AEGIS-SMOKE-02\n5. WAVE family\n6. UNI-02D Sonya gate\n7. RETRO-LANE-00\n\n## CoherenceLattice commands\n\nPOSIX: `python -m coherence.waveform.family_acceptance --bridge-root artifacts/wave_gold_physics_family`\n\nPowerShell: `experiments/Run-SONYA-AEGIS-SMOKE02-Acceptance.ps1 -CiMode`\n\n## Sophia commands\n\n`python -m pytest -q python/tests/integration/test_sophia_ucc_route.py`\n\n## uvlm-publications commands\n\n`python tools/validate_publication_claims.py --paper papers/governed_artifact_cognition/PUB_GOV_ARTIFACT_COG_01.md --quickstart papers/governed_artifact_cognition/reviewer_quickstart.md --status papers/governed_artifact_cognition/status.json`\n\n`python tools/validate_public_repro_dashboard.py --dashboard registry/experiment_suite_dashboard.json --docs-dir docs/experiment-suite`\n\nnot truth certification; not deployment authority; not final answer release; local fixture only; requires external peer review.\n",
+        "reviewer-quickstart.md": f"""# Reviewer Quickstart
+
+## Read first path
+
+1. claim boundaries
+2. governed artifact cognition paper
+3. WAVE Rosetta paper
+4. SONYA-AEGIS-SMOKE-02
+5. WAVE family
+6. UNI-02D Sonya gate
+7. RETRO-LANE-00
+
+## CoherenceLattice commands
+
+PowerShell SONYA-AEGIS-SMOKE-02:
+
+```powershell
+{SONYA_AEGIS_COMMAND}
+```
+
+PowerShell WAVE Gold-Physics:
+
+```powershell
+{WAVE_FAMILY_COMMAND}
+```
+
+PowerShell UNI-02D Sonya gate:
+
+```powershell
+{UNI02D_COMMAND}
+```
+
+PowerShell RETRO-LANE-00:
+
+```powershell
+{RETRO_LANE_COMMAND}
+```
+
+## Sophia commands
+
+```powershell
+{SOPHIA_UCC_COMMAND}
+```
+
+## uvlm-publications commands
+
+`python tools/validate_publication_claims.py --paper papers/governed_artifact_cognition/PUB_GOV_ARTIFACT_COG_01.md --quickstart papers/governed_artifact_cognition/reviewer_quickstart.md --status papers/governed_artifact_cognition/status.json`
+
+`python tools/validate_public_repro_dashboard.py --dashboard registry/experiment_suite_dashboard.json --docs-dir docs/experiment-suite`
+
+not truth certification; not deployment authority; not final answer release; local fixture only; requires external peer review.
+""",
     }
 
 

@@ -2,7 +2,14 @@
 
 Purpose: inspect safe portability fixture routing through Sonya-gated constraints.
 
-Run command: `python -m pytest -q python/tests/integration/test_uni02d_sonya_gate_acceptance.py`.
+Run command:
+
+```powershell
+.\experiments\Run-UNI02D-Sonya-Gate-Acceptance.ps1 `
+  -OutputRoot C:\UVLM\run_artifacts\uni02d_sonya_gate `
+  -LogDir C:\UVLM\run_artifacts\uni02d_sonya_gate_logs `
+  -CiMode
+```
 
 Evidence: `uni02d_sonya_gate_acceptance_report.json`, semantic term quarantine, runtime profile leakage, prior origin provenance, and prior quarantine packets.
 

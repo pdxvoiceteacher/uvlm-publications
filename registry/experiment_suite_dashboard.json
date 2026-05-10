@@ -58,7 +58,7 @@
       "primary_artifacts": [
         "waveform_gold_physics_family_acceptance_packet.json"
       ],
-      "reproduction_command_summary": "python -m coherence.waveform.family_acceptance --bridge-root artifacts/wave_gold_physics_family",
+      "reproduction_command_summary": "python -m coherence.waveform.family_acceptance `\n  --bridge-root C:\\UVLM\\run_artifacts\\wave_gold_physics_family",
       "claim_allowed": "Closed-form waveform metric calibration across WAVE-00R through WAVE-03R.",
       "claims_blocked": [
         "WAVE calibration is not universal ontology",
@@ -77,7 +77,7 @@
         "human_review bundle",
         "auto route bundle"
       ],
-      "reproduction_command_summary": "experiments/Run-SONYA-AEGIS-SMOKE02-Acceptance.ps1 -CiMode",
+      "reproduction_command_summary": ".\\experiments\\Run-SONYA-AEGIS-SMOKE02-Acceptance.ps1 `\n  -OutputRoot C:\\UVLM\\run_artifacts\\sonya_aegis_smoke_02_hardened `\n  -LogDir C:\\UVLM\\run_artifacts\\sonya_aegis_smoke_02_hardened_logs `\n  -CiMode",
       "claim_allowed": "Direct-call blocking and local Sonya membrane evidence are inspectable.",
       "claims_blocked": [
         "Sonya local membrane is not federation",
@@ -94,7 +94,7 @@
       "primary_artifacts": [
         "sophia_ucc_route_acceptance_packet.json"
       ],
-      "reproduction_command_summary": "python -m pytest -q python/tests/integration/test_sophia_ucc_route.py",
+      "reproduction_command_summary": "cd C:\\UVLM\\Sophia\npython -m pytest -q tests/test_ucc_risk_control_route.py",
       "claim_allowed": "Sophia/UCC route controls can classify admissibility posture.",
       "claims_blocked": [
         "route is not authorization",
@@ -155,7 +155,7 @@
         "uni02d_prior_origin_provenance_packet.json",
         "uni02d_prior_quarantine_packet.json"
       ],
-      "reproduction_command_summary": "python -m pytest -q python/tests/integration/test_uni02d_sonya_gate_acceptance.py",
+      "reproduction_command_summary": ".\\experiments\\Run-UNI02D-Sonya-Gate-Acceptance.ps1 `\n  -OutputRoot C:\\UVLM\\run_artifacts\\uni02d_sonya_gate `\n  -LogDir C:\\UVLM\\run_artifacts\\uni02d_sonya_gate_logs `\n  -CiMode",
       "claim_allowed": "A Sonya-gated safe portability fixture can be inspected.",
       "claims_blocked": [
         "UNI-02D safe portability fixture is not universal portability proof",
@@ -174,7 +174,7 @@
         "retrosynthesis_admission_review_packet.json",
         "retro_lane_00_acceptance_receipt.json"
       ],
-      "reproduction_command_summary": "python -m pytest -q python/tests/integration/test_retro_lane_00_acceptance.py",
+      "reproduction_command_summary": ".\\experiments\\Run-RETRO-LANE00-Acceptance.ps1 `\n  -OutputRoot C:\\UVLM\\run_artifacts\\retro_lane_00 `\n  -LogDir C:\\UVLM\\run_artifacts\\retro_lane_00_logs `\n  -CiMode",
       "claim_allowed": "sandbox_auto, review_required, and blocked admission lanes can be reviewed.",
       "claims_blocked": [
         "Retrosynthesis admission is not retrosynthesis execution",

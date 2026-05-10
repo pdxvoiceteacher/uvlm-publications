@@ -2,7 +2,14 @@
 
 Purpose: inspect a local Sonya membrane and direct-call blocking fixture.
 
-Run command: `experiments/Run-SONYA-AEGIS-SMOKE02-Acceptance.ps1 -CiMode`.
+Run command:
+
+```powershell
+.\experiments\Run-SONYA-AEGIS-SMOKE02-Acceptance.ps1 `
+  -OutputRoot C:\UVLM\run_artifacts\sonya_aegis_smoke_02_hardened `
+  -LogDir C:\UVLM\run_artifacts\sonya_aegis_smoke_02_hardened_logs `
+  -CiMode
+```
 
 Evidence: `sonya_aegis_smoke_02_acceptance_report.json`, human_review bundle, auto route bundle.
 
