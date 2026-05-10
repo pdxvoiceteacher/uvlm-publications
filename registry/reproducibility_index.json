@@ -1,0 +1,48 @@
+{
+  "schema": "uvlm.reproducibility_index.v1",
+  "commands": {
+    "CoherenceLattice": [
+      {
+        "name": "SONYA-AEGIS-SMOKE-02 harness",
+        "command": ".\\experiments\\Run-SONYA-AEGIS-SMOKE02-Acceptance.ps1 `\n  -OutputRoot C:\\UVLM\\run_artifacts\\sonya_aegis_smoke_02_hardened `\n  -LogDir C:\\UVLM\\run_artifacts\\sonya_aegis_smoke_02_hardened_logs `\n  -CiMode"
+      },
+      {
+        "name": "WAVE family acceptance",
+        "command": "python -m coherence.waveform.family_acceptance `\n  --bridge-root C:\\UVLM\\run_artifacts\\wave_gold_physics_family"
+      },
+      {
+        "name": "UNI-02D Sonya gate acceptance",
+        "command": ".\\experiments\\Run-UNI02D-Sonya-Gate-Acceptance.ps1 `\n  -OutputRoot C:\\UVLM\\run_artifacts\\uni02d_sonya_gate `\n  -LogDir C:\\UVLM\\run_artifacts\\uni02d_sonya_gate_logs `\n  -CiMode"
+      },
+      {
+        "name": "RETRO-LANE-00 acceptance",
+        "command": ".\\experiments\\Run-RETRO-LANE00-Acceptance.ps1 `\n  -OutputRoot C:\\UVLM\\run_artifacts\\retro_lane_00 `\n  -LogDir C:\\UVLM\\run_artifacts\\retro_lane_00_logs `\n  -CiMode"
+      },
+      {
+        "name": "experiment suite repro pack builder",
+        "command": "python -m coherence.tools.build_experiment_suite_repro_pack --registry experiments/experiment_suite_registry.json --artifacts-root artifacts --out-dir artifacts/experiment_suite_repro_pack --zip"
+      }
+    ],
+    "Sophia": [
+      {
+        "name": "UCC route test command",
+        "command": "cd C:\\UVLM\\Sophia\npython -m pytest -q tests/test_ucc_risk_control_route.py"
+      }
+    ],
+    "uvlm-publications": [
+      {
+        "name": "governed artifact cognition validator",
+        "command": "python tools/validate_publication_claims.py --paper papers/governed_artifact_cognition/PUB_GOV_ARTIFACT_COG_01.md --quickstart papers/governed_artifact_cognition/reviewer_quickstart.md --status papers/governed_artifact_cognition/status.json"
+      },
+      {
+        "name": "waveform Rosetta validator",
+        "command": "python tools/validate_publication_claims.py --paper papers/waveform_rosetta/PUB_WAVE_ROSETTA_01.md --quickstart papers/waveform_rosetta/reviewer_quickstart.md --status papers/waveform_rosetta/status.json"
+      },
+      {
+        "name": "dashboard validator",
+        "command": "python tools/validate_public_repro_dashboard.py --dashboard registry/experiment_suite_dashboard.json --docs-dir docs/experiment-suite"
+      }
+    ]
+  },
+  "not_deployment_authority": true
+}
