@@ -1,0 +1,31 @@
+{
+  "schema": "uvlm.artifact_index.v1",
+  "phases": {
+    "SONYA-AEGIS-SMOKE-02": [
+      "sonya_aegis_smoke_02_acceptance_report.json",
+      "human_review bundle",
+      "auto route bundle"
+    ],
+    "WAVE": [
+      "waveform_gold_physics_family_acceptance_packet.json"
+    ],
+    "UNI-02D": [
+      "uni02d_sonya_gate_acceptance_report.json",
+      "semantic_term_quarantine_packet.json",
+      "runtime_profile_leakage_packet.json",
+      "uni02d_prior_origin_provenance_packet.json",
+      "uni02d_prior_quarantine_packet.json"
+    ],
+    "RETRO-LANE-00": [
+      "retrosynthesis_admission_packet.json",
+      "retrosynthesis_admission_review_packet.json",
+      "retro_lane_00_acceptance_receipt.json"
+    ],
+    "publications": [
+      "PUB_GOV_ARTIFACT_COG_01.md",
+      "PUB_WAVE_ROSETTA_01.md",
+      "reviewer quickstarts",
+      "status.json files"
+    ]
+  }
+}
