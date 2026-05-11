@@ -17,6 +17,7 @@ REQUIRED_PHASES = {
     "PUB-WAVE-ROSETTA-01",
     "UNI-02D-SONYA-GATE-01",
     "RETRO-LANE-00",
+    "PUBLIC-UTILITY-ALPHA-00",
 }
 REQUIRED_BOUNDARY_PHRASES = (
     "not truth certification",
@@ -29,6 +30,13 @@ REQUIRED_BOUNDARY_PHRASES = (
     "candidate is not answer",
     "admission is not execution",
     "dashboard is not deployment authority",
+    "public utility alpha",
+    "local reviewer demo",
+    "not live model execution",
+    "not live adapter execution",
+    "not remote provider call",
+    "not federation",
+    "not recursive braid",
 )
 FORBIDDEN_PHRASES = (
     "deployment readiness",
@@ -36,18 +44,28 @@ FORBIDDEN_PHRASES = (
     "truth certification",
     "truth certified",
     "final answer authority",
+    "final answer release",
     "universal ontology claim",
     "ai consciousness",
     "retrosynthesis runtime",
     "universal portability proof",
+    "live model execution",
+    "live adapter execution",
+    "remote provider call",
+    "federation",
+    "recursive braid",
     "recursive federation",
     "psychoacoustic proof",
+    "omega detection",
+    "publisher finalization",
 )
 ALLOWED_NEGATED = (
     "not ",
     "no ",
     "without ",
     "is not ",
+    "not a ",
+    "not an ",
 )
 
 

@@ -12,6 +12,7 @@
     "Retrosynthesis admission is not retrosynthesis execution.",
     "Admission is not execution.",
     "Reproducibility pack is not deployment authority.",
-    "Dashboard is not deployment authority."
+    "Dashboard is not deployment authority.",
+    "Public Utility Alpha is a local reviewer demo, not deployment authority."
   ]
 }

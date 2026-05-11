@@ -12,5 +12,6 @@
 - Admission is not execution.
 - Reproducibility pack is not deployment authority.
 - Dashboard is not deployment authority.
+- Public Utility Alpha is a local reviewer demo, not deployment authority.
 
 No oracle posture. No deployment posture. No final-answer posture. No AI consciousness claim. No universal ontology claim.

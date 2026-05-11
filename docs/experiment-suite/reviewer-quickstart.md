@@ -9,6 +9,7 @@
 5. WAVE family
 6. UNI-02D Sonya gate
 7. RETRO-LANE-00
+8. Public Utility Alpha
 
 ## CoherenceLattice commands
 
@@ -43,6 +44,15 @@ PowerShell RETRO-LANE-00:
 .\experiments\Run-RETRO-LANE00-Acceptance.ps1 `
   -OutputRoot C:\UVLM\run_artifacts\retro_lane_00 `
   -LogDir C:\UVLM\run_artifacts\retro_lane_00_logs `
+  -CiMode
+```
+
+PowerShell Public Utility Alpha:
+
+```powershell
+.\experiments\Run-PUBLIC-UTILITY-ALPHA00-Acceptance.ps1 `
+  -OutputRoot C:\UVLM\run_artifacts\public_utility_alpha_00_repo `
+  -LogDir C:\UVLM\run_artifacts\public_utility_alpha_00_repo_logs `
   -CiMode
 ```
 

@@ -31,6 +31,50 @@ RETRO_LANE_COMMAND = r""".\experiments\Run-RETRO-LANE00-Acceptance.ps1 `
   -CiMode"""
 SOPHIA_UCC_COMMAND = r"""cd C:\UVLM\Sophia
 python -m pytest -q tests/test_ucc_risk_control_route.py"""
+PUBLIC_UTILITY_ALPHA_COMMAND = r""".\experiments\Run-PUBLIC-UTILITY-ALPHA00-Acceptance.ps1 `
+  -OutputRoot C:\UVLM\run_artifacts\public_utility_alpha_00_repo `
+  -LogDir C:\UVLM\run_artifacts\public_utility_alpha_00_repo_logs `
+  -CiMode"""
+PUBLIC_UTILITY_ALPHA_ARTIFACTS = [
+    "public_utility_alpha_status.json",
+    "public_utility_alpha_manifest.json",
+    "public_utility_alpha_claim_boundary.json",
+    "public_utility_alpha_review_packet.json",
+    "reviewer_index.md",
+    "artifact_inventory.json",
+    "export_bundle_parity_report.json",
+    "experiment_catalog.json",
+    "experiment_catalog_boundary_report.json",
+    "sonya_route_lineage_packet.json",
+    "sonya_route_timeline_packet.json",
+    "sonya_user_ingress_packet.json",
+    "sonya_model_request_packet.json",
+    "sonya_model_candidate_packet.json",
+    "sonya_model_candidate_review_packet.json",
+    "sonya_routing_receipt.json",
+    "sonya_runtime_bypass_block_packet.json",
+    "sonya_runtime_bypass_review_packet.json",
+    "model_braid_packet.json",
+    "model_braid_observational_review_packet.json",
+]
+PUBLIC_UTILITY_ALPHA_CLAIMS_BLOCKED = [
+    "Public Utility Alpha is not deployment authority.",
+    "Public Utility Alpha is not truth certification.",
+    "Public Utility Alpha is not final answer release.",
+    "Public Utility Alpha is not live model execution.",
+    "Public Utility Alpha is not live adapter execution.",
+    "Public Utility Alpha is not a remote provider call.",
+    "Public Utility Alpha is not federation.",
+    "Public Utility Alpha is not recursive braid.",
+    "Public Utility Alpha is not live Atlas memory write.",
+    "Public Utility Alpha is not live Sophia call.",
+    "Public Utility Alpha is not retrosynthesis runtime.",
+    "Public Utility Alpha is not Omega detection.",
+    "Public Utility Alpha is not Publisher finalization.",
+    "Public Utility Alpha is not universal ontology.",
+    "Public Utility Alpha is not universal portability proof.",
+    "Public Utility Alpha is not AI consciousness.",
+]
 ACCEPTED_PHASES = [
     {
         "phase_id": "EXP-SUITE-REGISTRY-01",
@@ -167,6 +211,18 @@ ACCEPTED_PHASES = [
         "reviewer_caution": "Admission is not execution; hallucination is telemetry, not evidence.",
         "publication_status": "dashboard_indexed",
     },
+    {
+        "phase_id": "PUBLIC-UTILITY-ALPHA-00",
+        "repo": "pdxvoiceteacher/CoherenceLattice",
+        "status": "accepted",
+        "evidence_type": "local_public_utility_reviewer_demo",
+        "primary_artifacts": PUBLIC_UTILITY_ALPHA_ARTIFACTS,
+        "reproduction_command_summary": PUBLIC_UTILITY_ALPHA_COMMAND,
+        "claim_allowed": "A local fixture-only reviewer demo can assemble the accepted governed artifact cognition chain and make its evidence, route timeline, candidate packet path, bypass block, model-braid observation, catalog boundary, inventory, and parity artifacts inspectable.",
+        "claims_blocked": PUBLIC_UTILITY_ALPHA_CLAIMS_BLOCKED,
+        "reviewer_caution": "This is a local reviewer harness. It demonstrates bounded artifact assembly and claim-boundary visibility. It is not a product launch, not deployment readiness, and not proof of real-world performance.",
+        "publication_status": "dashboard_indexed",
+    },
 ]
 PARTIAL_PHASES = [
     {"phase_id": "TIMBRE-SPECTRAL-METRIC-TIER-02", "status": "planned_partial", "reason": "spectral-complexity tier remains future work"},
@@ -192,6 +248,7 @@ BOUNDARIES = [
     "Admission is not execution.",
     "Reproducibility pack is not deployment authority.",
     "Dashboard is not deployment authority.",
+    "Public Utility Alpha is a local reviewer demo, not deployment authority.",
 ]
 GLOBAL_NON_CLAIMS = [
     "not truth certification",
@@ -207,6 +264,11 @@ GLOBAL_NON_CLAIMS = [
     "not retrosynthesis runtime",
     "not Omega detection",
     "not Publisher finalization",
+    "not live model execution",
+    "not live adapter execution",
+    "not remote provider call",
+    "not federation",
+    "not recursive braid",
 ]
 
 
@@ -247,6 +309,7 @@ def dashboard_payload() -> dict[str, Any]:
             "experiment_suite_repro_pack.json",
             "waveform_gold_physics_family_acceptance_packet.json",
             "sonya_aegis_smoke_02_acceptance_report.json",
+            "public_utility_alpha_status.json",
         ],
         "publication_drafts": [
             "papers/governed_artifact_cognition/PUB_GOV_ARTIFACT_COG_01.md",
@@ -282,6 +345,7 @@ def reproducibility_index() -> dict[str, Any]:
                 {"name": "WAVE family acceptance", "command": WAVE_FAMILY_COMMAND},
                 {"name": "UNI-02D Sonya gate acceptance", "command": UNI02D_COMMAND},
                 {"name": "RETRO-LANE-00 acceptance", "command": RETRO_LANE_COMMAND},
+                {"name": "Public Utility Alpha acceptance", "command": PUBLIC_UTILITY_ALPHA_COMMAND},
                 {"name": "experiment suite repro pack builder", "command": "python -m coherence.tools.build_experiment_suite_repro_pack --registry experiments/experiment_suite_registry.json --artifacts-root artifacts --out-dir artifacts/experiment_suite_repro_pack --zip"},
             ],
             "Sophia": [
@@ -309,6 +373,7 @@ def artifact_index() -> dict[str, Any]:
             "WAVE": ["waveform_gold_physics_family_acceptance_packet.json"],
             "UNI-02D": ["uni02d_sonya_gate_acceptance_report.json", "semantic_term_quarantine_packet.json", "runtime_profile_leakage_packet.json", "uni02d_prior_origin_provenance_packet.json", "uni02d_prior_quarantine_packet.json"],
             "RETRO-LANE-00": ["retrosynthesis_admission_packet.json", "retrosynthesis_admission_review_packet.json", "retro_lane_00_acceptance_receipt.json"],
+            "PUBLIC-UTILITY-ALPHA-00": PUBLIC_UTILITY_ALPHA_ARTIFACTS,
             "publications": ["PUB_GOV_ARTIFACT_COG_01.md", "PUB_WAVE_ROSETTA_01.md", "reviewer quickstarts", "status.json files"],
         },
     }
@@ -338,7 +403,7 @@ def docs() -> dict[str, str]:
     return {
         "README.md": "# Experiment Suite Docs\n\nPublic reviewer documentation for the claim-bounded reproducibility dashboard.\n",
         "assets/README.md": "# Assets\n\nOptional static assets for the public reproducibility dashboard.\n",
-        "index.md": f"# Public Experiment Suite Dashboard\n\nThis dashboard presents accepted evidence for reviewer orientation. It is not truth certification, not deployment authority, not final answer release, local fixture only, and requires external peer review.\n\n## Accepted evidence\n\n| Phase | Repo | Status | What this supports | Reviewer caution |\n| --- | --- | --- | --- | --- |\n{phase_rows}\n\n## Reviewer path\n\nStart with claim boundaries, then read the governed artifact cognition paper, WAVE Rosetta paper, SONYA-AEGIS-SMOKE-02, WAVE family, UNI-02D Sonya gate, and RETRO-LANE-00 pages.\n\n## What this proves\n\nIt proves only that accepted local fixture artifacts and draft publication materials are organized for review.\n\n## What this does not prove\n\nNo oracle posture, no deployment posture, no final-answer posture, no AI consciousness claim, and no universal ontology claim.\n\n## Phase pages\n\n- [SONYA-AEGIS-SMOKE-02](sonya-aegis-smoke-02.md)\n- [WAVE Gold-Physics](wave-gold-physics.md)\n- [UNI-02D Sonya gate](uni02d-sonya-gate.md)\n- [RETRO-LANE-00](retro-lane-00.md)\n- [Governed artifact cognition paper](governed-artifact-cognition-paper.md)\n- [Waveform Rosetta paper](waveform-rosetta-paper.md)\n",
+        "index.md": f"# Public Experiment Suite Dashboard\n\nThis dashboard presents accepted evidence for reviewer orientation. It is not truth certification, not deployment authority, not final answer release, local fixture only, and requires external peer review.\n\n## Accepted evidence\n\n| Phase | Repo | Status | What this supports | Reviewer caution |\n| --- | --- | --- | --- | --- |\n{phase_rows}\n\n## Reviewer path\n\nStart with claim boundaries, then read the governed artifact cognition paper, WAVE Rosetta paper, SONYA-AEGIS-SMOKE-02, WAVE family, UNI-02D Sonya gate, and RETRO-LANE-00, and Public Utility Alpha pages.\n\n## What this proves\n\nIt proves only that accepted local fixture artifacts and draft publication materials are organized for review.\n\n## What this does not prove\n\nNo oracle posture, no deployment posture, no final-answer posture, no AI consciousness claim, and no universal ontology claim.\n\n## Phase pages\n\n- [SONYA-AEGIS-SMOKE-02](sonya-aegis-smoke-02.md)\n- [WAVE Gold-Physics](wave-gold-physics.md)\n- [UNI-02D Sonya gate](uni02d-sonya-gate.md)\n- [RETRO-LANE-00](retro-lane-00.md)\n- [Public Utility Alpha](public-utility-alpha.md)\n- [Governed artifact cognition paper](governed-artifact-cognition-paper.md)\n- [Waveform Rosetta paper](waveform-rosetta-paper.md)\n",
         "claim-boundaries.md": f"# Claim Boundaries\n\n{boundaries}\n\nNo oracle posture. No deployment posture. No final-answer posture. No AI consciousness claim. No universal ontology claim.\n",
         "sonya-aegis-smoke-02.md": f"""# SONYA-AEGIS-SMOKE-02
 
@@ -418,6 +483,24 @@ Claims blocked: Retrosynthesis admission is not retrosynthesis execution; halluc
 
 Caution: admission is not execution.
 """,
+        "public-utility-alpha.md": f"""# Public Utility Alpha
+
+Purpose: inspect PUBLIC-UTILITY-ALPHA-00 as a local fixture-only reviewer demo of governed artifact cognition.
+
+Run command:
+
+```powershell
+{PUBLIC_UTILITY_ALPHA_COMMAND}
+```
+
+Evidence: {", ".join(f"`{artifact}`" for artifact in PUBLIC_UTILITY_ALPHA_ARTIFACTS)}.
+
+Claim allowed: A local fixture-only reviewer demo can assemble the accepted governed artifact cognition chain and make its evidence, route timeline, candidate packet path, bypass block, model-braid observation, catalog boundary, inventory, and parity artifacts inspectable.
+
+Claims blocked: {" ".join(PUBLIC_UTILITY_ALPHA_CLAIMS_BLOCKED)}
+
+Caution: This is a local reviewer harness. It demonstrates bounded artifact assembly and claim-boundary visibility. It is not a product launch, not deployment readiness, and not proof of real-world performance.
+""",
         "governed-artifact-cognition-paper.md": "# Governed Artifact Cognition Paper\n\nSummary: systems paper for governed artifact cognition as a reproducible audit lab.\n\nLinks: `papers/governed_artifact_cognition/PUB_GOV_ARTIFACT_COG_01.md`, reviewer quickstart, claim boundary table, status.json.\n\nClaim boundaries: not truth certification, not deployment authority, not final answer release, local fixture only, requires external peer review.\n\nValidation command: `python tools/validate_publication_claims.py --paper papers/governed_artifact_cognition/PUB_GOV_ARTIFACT_COG_01.md --quickstart papers/governed_artifact_cognition/reviewer_quickstart.md --status papers/governed_artifact_cognition/status.json`.\n",
         "waveform-rosetta-paper.md": "# Waveform Rosetta Paper\n\nSummary: methods paper for closed-form WAVE Gold-Physics metric calibration.\n\nLinks: `papers/waveform_rosetta/PUB_WAVE_ROSETTA_01.md`, reviewer quickstart, theorem table, status.json.\n\nClaim boundaries: not universal ontology, not psychoacoustic effect, not AI consciousness, not deployment authority, not truth certification, requires external peer review.\n\nValidation command: `python tools/validate_publication_claims.py --paper papers/waveform_rosetta/PUB_WAVE_ROSETTA_01.md --quickstart papers/waveform_rosetta/reviewer_quickstart.md --status papers/waveform_rosetta/status.json`.\n",
         "reviewer-quickstart.md": f"""# Reviewer Quickstart
@@ -431,6 +514,7 @@ Caution: admission is not execution.
 5. WAVE family
 6. UNI-02D Sonya gate
 7. RETRO-LANE-00
+8. Public Utility Alpha
 
 ## CoherenceLattice commands
 
@@ -456,6 +540,12 @@ PowerShell RETRO-LANE-00:
 
 ```powershell
 {RETRO_LANE_COMMAND}
+```
+
+PowerShell Public Utility Alpha:
+
+```powershell
+{PUBLIC_UTILITY_ALPHA_COMMAND}
 ```
 
 ## Sophia commands

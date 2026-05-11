@@ -19,6 +19,10 @@
         "command": ".\\experiments\\Run-RETRO-LANE00-Acceptance.ps1 `\n  -OutputRoot C:\\UVLM\\run_artifacts\\retro_lane_00 `\n  -LogDir C:\\UVLM\\run_artifacts\\retro_lane_00_logs `\n  -CiMode"
       },
       {
+        "name": "Public Utility Alpha acceptance",
+        "command": ".\\experiments\\Run-PUBLIC-UTILITY-ALPHA00-Acceptance.ps1 `\n  -OutputRoot C:\\UVLM\\run_artifacts\\public_utility_alpha_00_repo `\n  -LogDir C:\\UVLM\\run_artifacts\\public_utility_alpha_00_repo_logs `\n  -CiMode"
+      },
+      {
         "name": "experiment suite repro pack builder",
         "command": "python -m coherence.tools.build_experiment_suite_repro_pack --registry experiments/experiment_suite_registry.json --artifacts-root artifacts --out-dir artifacts/experiment_suite_repro_pack --zip"
       }

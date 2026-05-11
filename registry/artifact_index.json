@@ -21,6 +21,28 @@
       "retrosynthesis_admission_review_packet.json",
       "retro_lane_00_acceptance_receipt.json"
     ],
+    "PUBLIC-UTILITY-ALPHA-00": [
+      "public_utility_alpha_status.json",
+      "public_utility_alpha_manifest.json",
+      "public_utility_alpha_claim_boundary.json",
+      "public_utility_alpha_review_packet.json",
+      "reviewer_index.md",
+      "artifact_inventory.json",
+      "export_bundle_parity_report.json",
+      "experiment_catalog.json",
+      "experiment_catalog_boundary_report.json",
+      "sonya_route_lineage_packet.json",
+      "sonya_route_timeline_packet.json",
+      "sonya_user_ingress_packet.json",
+      "sonya_model_request_packet.json",
+      "sonya_model_candidate_packet.json",
+      "sonya_model_candidate_review_packet.json",
+      "sonya_routing_receipt.json",
+      "sonya_runtime_bypass_block_packet.json",
+      "sonya_runtime_bypass_review_packet.json",
+      "model_braid_packet.json",
+      "model_braid_observational_review_packet.json"
+    ],
     "publications": [
       "PUB_GOV_ARTIFACT_COG_01.md",
       "PUB_WAVE_ROSETTA_01.md",
