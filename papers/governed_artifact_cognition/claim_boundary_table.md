@@ -1,15 +1,27 @@
 # Claim Boundary Table
 
-| Claim boundary | Allowed interpretation | Disallowed interpretation |
-| --- | --- | --- |
-| Artifact presence is not evidence by itself. | A typed artifact can be inspected as part of an evidence chain. | A file existing proves the underlying claim. |
-| Route is not authorization. | A route can require review, quarantine, rejection, or bounded candidate handling. | A route approves deployment or memory promotion. |
-| Receipt is not truth certification. | A receipt records execution, inputs, outputs, and checks. | A receipt certifies factual correctness. |
-| Model candidate is not answer. | Candidate text is review material. | Candidate text is binding answer authority. |
-| Publisher candidate is not final answer. | Publisher output can be a bounded publication candidate. | Publisher output is a final answer release. |
-| Memory intent is not memory write. | Atlas memory-intent artifacts can classify posture or require review. | Atlas has performed live memory writes. |
-| Sonya local membrane is not federation. | Local membrane evidence verifies a deterministic local path. | Recursive Sonya federation is demonstrated. |
-| WAVE calibration is not universal ontology. | Closed-form WAVE artifacts calibrate metrics and theorems in a bounded family. | WAVE proves universal ontology, psychoacoustics, or AI cognition. |
-| Reproducibility pack is not deployment authority. | Reproducibility materials support audit and reviewer inspection. | Reproducibility materials authorize deployment. |
-
-This table is a non-authority guardrail. It is not truth certification, not deployment authority, and not final answer release.
+| Boundary | Meaning |
+| --- | --- |
+| Not truth certification. | Receipts and reports are review artifacts, not truth certification. |
+| Not deployment authority. | No artifact authorizes deployment. |
+| Not final-answer release. | Candidate packets and publisher candidates are not final answers. |
+| Local fixture only. | Evidence is bounded to local reviewer fixtures. |
+| Requires external peer review. | Publication claims require independent review. |
+| Public Utility Alpha is not deployment authority. | The one-command demo is not product authorization. |
+| Public Utility Alpha is not truth certification. | Demo success does not certify claims as true. |
+| Public Utility Alpha is not final-answer release. | Demo outputs are review artifacts only. |
+| Public Utility Alpha is not live model execution. | The accepted demo does not claim live model execution. |
+| Sonya Gateway candidate packet is not answer. | Gateway output remains a candidate packet. |
+| Runtime bypass block is not model output. | A block receipt is governance evidence, not model result. |
+| Model braid is not consensus proof. | Observational telemetry does not prove consensus. |
+| Model braid is not recursive cognition. | The braid is not recursive cognition. |
+| Model braid is not answer selection. | The braid does not choose an answer. |
+| Model braid is not universal ontology. | The braid does not establish ontology. |
+| Experiment catalog is reviewer index, not authority. | Catalog inclusion does not authorize use. |
+| Dashboard is reviewer orientation, not deployment. | Public dashboard legibility is not deployment authority. |
+| Not AI consciousness. | No evidence is an AI consciousness claim. |
+| Not recursive Sonya federation. | Local Sonya evidence does not establish federation. |
+| Not retrosynthesis runtime. | RETRO-LANE-00 is admission policy only. |
+| Not Omega detection. | No Omega detection is claimed. |
+| Not live Atlas memory writes. | Atlas memory intent remains bounded. |
+| Not live Sophia calls. | Sophia evidence is route posture only. |

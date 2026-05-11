@@ -37,13 +37,25 @@ PAPER_CONFIGS: dict[str, dict[str, Any]] = {
             "not omega detection",
             "not live atlas memory writes",
             "not live sophia calls",
+            "public-utility-alpha-00",
+            "sonya gateway",
+            "model braid",
+            "not live model execution",
+            "not federation",
         ),
         "forbidden_overclaims": (
             "proves universal intelligence",
             "certifies truth",
             "deployment ready",
+            "deployment readiness",
             "ai consciousness proven",
             "final answer authority",
+            "final answer release",
+            "live model execution",
+            "federation",
+            "retrosynthesis runtime",
+            "consensus proof",
+            "answer selection",
             "universal wisdom machine",
             "recursive sonya federation demonstrated",
             "retrosynthesis runtime demonstrated",
@@ -58,6 +70,8 @@ PAPER_CONFIGS: dict[str, dict[str, Any]] = {
             "not_truth_certification": True,
             "not_deployment_authority": True,
             "not_final_answer_release": True,
+            "not_live_model_execution": True,
+            "not_federation": True,
             "not_ai_consciousness_claim": True,
         },
     },
@@ -140,8 +154,9 @@ def _normalize(text: str) -> str:
 
 
 def _is_negated(normalized_text: str, start: int) -> bool:
-    window = normalized_text[max(0, start - 80) : start]
-    return any(marker in window for marker in NEGATION_MARKERS)
+    window = normalized_text[max(0, start - 32) : start]
+    after = normalized_text[start : start + 80]
+    return any(marker in window for marker in NEGATION_MARKERS) or "performed = false" in after
 
 
 def _forbidden_hits(normalized_text: str, forbidden: tuple[str, ...]) -> list[str]:

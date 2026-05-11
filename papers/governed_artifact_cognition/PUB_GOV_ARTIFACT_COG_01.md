@@ -1,56 +1,56 @@
-# Governed Artifact Cognition: A Reproducible Sonya–AEGIS–CoherenceLattice Pipeline for Non-Authoritative AI Candidate Review
+# Governed Artifact Cognition: Public Utility Alpha and Sonya Gateway Evidence for Non-Authoritative AI Candidate Review
 
 ## Abstract
 
-This systems paper describes a reproducible audit lab for governed artifact cognition. The system is not an oracle, not a debate spectacle, and not a universal-wisdom machine. Instead, it emits typed, grounded, governed artifacts that can be inspected as bounded candidates before any human or institutional decision.
+This systems paper describes governed artifact cognition as a reproducible audit-lab pattern for AI-assisted candidate review. The system is not an oracle, not a universal-wisdom machine, and not a replacement for human or institutional judgment. It emits typed, grounded, governed artifacts whose route, evidence, receipt, and claim-boundary posture can be inspected before downstream use.
 
-The accepted SONYA-AEGIS-SMOKE-02 fixture proves a local deterministic governed episode: a model-adjacent request is routed through the Sonya local membrane, ingress artifacts, AEGIS-compatible request/evidence structures, finalizer receipts, export parity checks, and non-authority guardrails. The WAVE Gold-Physics family provides closed-form metric calibration through accepted WAVE-00R through WAVE-03R artifacts. The experiment suite registry and reproducibility pack preserve claim boundaries by recording accepted, partial, blocked, and planned phases alongside artifact manifests and non-authority checks.
+The accepted evidence now includes PUBLIC-UTILITY-ALPHA-00, a local fixture-only reviewer demo that assembles the accepted governed artifact chain: Sonya control schema, local broker, adapter registry, policy transition, governance readiness, route view, Sonya Gateway candidate path, runtime bypass block diagnostic, model-braid observational review, experiment catalog boundary report, artifact inventory, and export parity. PUBLIC-UTILITY-ALPHA-00 demonstrates one-command local assembly of that chain while remaining fixture-only, not deployment authority, not truth certification, not final answer release, not live model execution, and subject to external peer review.
 
-The claims in this draft are bounded to auditability, route disposition, artifact traceability, and non-authority guardrails. This draft is not truth certification, not deployment authority, and not final answer release. It is based on local fixture only evidence and requires external peer review.
+The claims in this draft are bounded to auditability, route disposition, artifact traceability, and non-authority guardrails. The evidence is local fixture only and requires external peer review.
 
 ## 1. Introduction
 
-Raw model outputs can appear authoritative when they are presented without source evidence, route discipline, memory-intent boundaries, or audit receipts. A single generated response may mix grounded observations, unsupported speculation, latent profile assumptions, and downstream action language without making those categories visible to reviewers. Multi-model comparison can expose disagreement, but it can still leave the reviewing institution without a typed receipt chain or explicit non-authority boundaries.
+Raw model outputs can appear authoritative when presented without source evidence, route discipline, memory-intent boundaries, or audit receipts. A generated response may mix grounded observations, unsupported speculation, latent profile assumptions, and downstream action language without making those categories visible to reviewers. Multi-model comparison can expose disagreement, but it can still leave a reviewing institution without a typed receipt chain or explicit non-authority boundaries.
 
 Governed artifact cognition is the alternative studied here. Rather than treating a model response as an answer, the pipeline treats model work as one bounded input into a sequence of inspectable artifacts. Each stage records what is admitted, what is blocked, what is routed for human review, and what remains outside the claim boundary.
 
 For this draft, the following terms are used:
 
 - **Typed artifact**: a structured file with an explicit schema or contract, such as a candidate packet, route disposition, acceptance report, manifest, or receipt.
-- **Grounding/evidence object**: a RequestEnvelope- or GroundingBundle-compatible object that links a candidate to source material, run context, or evidence references.
 - **Model candidate**: model-produced or model-adjacent content that remains a candidate and is not treated as an answer by default.
+- **Sonya Gateway candidate packet path**: the bounded path by which model-adjacent material becomes an admissible candidate packet under SONYA_REQUIRED.
 - **Route disposition**: a governance artifact that classifies what may happen next, such as human review, bounded publication candidate handling, rejection, quarantine, or retrieval-only use.
 - **Receipt**: a deterministic record that a stage ran, what inputs it admitted, what outputs it produced, and which guardrails were checked.
-- **Non-authority guardrail**: an explicit statement or boolean boundary preventing truth certification, deployment authority, prior canonization, memory write authority, or final-answer posture.
-- **Reproducibility pack**: the collection of JSON, CSV, Markdown, manifest, and archive artifacts that allows a reviewer to inspect what was run and what was claimed.
+- **Non-authority guardrail**: an explicit boundary preventing truth certification, deployment authority, prior canonization, memory write authority, or final-answer posture.
 
 ## 2. Architecture
 
-The governed artifact cognition stack evaluated in this draft is:
+The governed artifact cognition stack evaluated in this draft now includes the accepted gateway and public reviewer layers:
 
 ```text
-GroundingBundle / RequestEnvelope
-→ Sonya ingress / candidate membrane
-→ AEGIS canonicalization
-→ CoherenceLattice artifact production
-→ Sophia/UCC risk route
-→ Atlas memory-intent fixture
-→ route disposition artifact
-→ Publisher response candidate
-→ finalizer receipt
-→ artifact inventory
-→ run manifest
-→ export parity
-→ reproducibility pack
+sonya_control_schema
+→ sonya_local_broker
+→ sonya_adapter_registry
+→ sonya_policy_transition
+→ sonya_governance_readiness
+→ sonya_route_view
+→ sonya_gateway candidate packet path
+→ runtime_bypass_block diagnostic
+→ model_braid_observational review
+→ experiment_catalog_boundary
+→ public_utility_alpha reviewer bundle
+→ public reproducibility dashboard
 ```
+
+The Sonya Gateway is required for admissible model candidate packets under SONYA_REQUIRED. Raw model output is not admissible cognition. A candidate packet is not answer. A runtime bypass block is successful governance evidence, not a model result. The model-braid layer is observational telemetry only and not answer selection.
 
 The organ boundaries are deliberately narrow:
 
-- **CoherenceLattice** formalizes evidence and artifacts. It produces structured coherence, acceptance, and reproducibility materials.
+- **CoherenceLattice** formalizes evidence and artifacts. It produces structured coherence, acceptance, public utility alpha, and reproducibility materials.
+- **Sonya** is the local model/tool/sensor membrane and gateway. Its accepted evidence is local and does not establish federation.
 - **Sophia** governs route and admissibility. Its role is route control, not live truth declaration in this draft.
 - **Atlas** handles memory intent only within governance limits. It does not perform live Atlas memory writes in this paper.
 - **Publisher** emits candidates, not final answers. Publisher candidate artifacts remain bounded by route and receipt constraints.
-- **Sonya** is the local model/tool/sensor membrane. The accepted smoke evidence uses `execution_path = sonya_local_membrane` and does not establish recursive Sonya federation.
 - **UCC** supplies control grammar for route adequacy and non-authority constraints.
 - **TEL/telemetry** provides audit trace material for reviewers and reproducibility checks.
 
@@ -58,142 +58,123 @@ The organ boundaries are deliberately narrow:
 
 ### 3.1 SONYA-AEGIS-SMOKE-02
 
-The SONYA-AEGIS-SMOKE-02 evidence is treated as the primary local deterministic fixture. Its accepted posture is summarized as follows:
+Allowed claim: a local deterministic governed episode can be routed through the Sonya local membrane, canonical request/evidence structures, route controls, finalizer receipts, export parity checks, and non-authority guardrails.
 
-- `accepted = true`.
-- Human-review and automatic routes are represented.
-- Direct-call blocking is verified.
-- `execution_path = sonya_local_membrane`.
-- Forbidden artifacts are absent.
-- Non-authority guardrails are true.
-- Finalizer receipts and export parity artifacts are present.
-- Evidence status is described as `ingress_aegis_request_envelope_verified` in the hardened reproducibility report.
+Primary artifacts: `sonya_aegis_smoke_02_acceptance_report.json`, human-review route bundle, auto-route bundle, finalizer receipts, artifact inventory, and export parity reports.
 
-This fixture demonstrates that a governed episode can be routed through a local membrane, canonical request/evidence structures, route controls, finalizer receipts, and reproducibility artifacts without granting final-answer or deployment authority.
+Blocked claims: SONYA-AEGIS-SMOKE-02 is not deployment authority, not truth certification, not final answer release, and not recursive Sonya federation.
 
-### 3.2 WAVE Gold-Physics Family
+Reviewer caution: this fixture demonstrates local deterministic routing and direct-call blocking only.
 
-The WAVE Gold-Physics family is included as a calibration family, not as a universal ontology. The accepted family includes WAVE-00R through WAVE-03R. It provides:
+### 3.2 SONYA-GW-01 / SONYA-GW-01A
 
-- Closed-form waveform calibration.
-- A coherent cancellation theorem.
-- A detuning spiral theorem.
-- An incomplete cancellation theorem.
-- An observability degradation theorem.
+Allowed claim: the Sonya Gateway candidate path can route user ingress, model request, model candidate, candidate review, and routing receipt artifacts under SONYA_REQUIRED.
 
-The WAVE family does not prove psychoacoustics, universal ontology, AI cognition, or deployment readiness. Its value in this paper is that it supplies a closed-form metric testbed for calibrating artifact and acceptance mechanics.
+Primary artifacts: `sonya_user_ingress_packet.json`, `sonya_model_request_packet.json`, `sonya_model_candidate_packet.json`, `sonya_model_candidate_review_packet.json`, `sonya_routing_receipt.json`, `sonya_route_lineage_packet.json`, `sonya_route_timeline_packet.json`, and `sonya_route_view_review_packet.json`.
 
-### 3.3 Experiment Suite Registry
+Blocked claims: the Sonya Gateway candidate packet is not answer; raw model output is not admissible cognition; no live model execution is claimed; no live adapter execution is claimed; no remote provider calls are claimed; no live Sophia calls are claimed.
 
-The experiment suite registry is used as a claim-boundary artifact. It records:
+Reviewer caution: route-view evidence makes the candidate path visible, but visibility is not authorization.
 
-- Accepted phases.
-- Partial phases.
-- Blocked phases.
-- Planned phases.
-- Required blocked claims.
-- Required `does_not_test` statements.
-- Required acceptance artifacts.
+### 3.3 Runtime Bypass Block Diagnostic
 
-This allows the paper to state what the suite has accepted while preserving what remains partial, blocked, or planned.
+Allowed claim: runtime bypass attempts can be blocked and documented as governance diagnostics.
 
-### 3.4 Reproducibility Pack
+Primary artifacts: `sonya_runtime_bypass_block_packet.json` and `sonya_runtime_bypass_review_packet.json`.
 
-The reproducibility pack is the public-facing receipt bundle for the accepted local fixture set. It includes:
+Blocked claims: runtime bypass block is not model output, not final answer release, not deployment authority, and not proof of real-world performance.
 
-- A JSON pack.
-- An acceptance matrix CSV.
-- An artifact manifest.
-- A Markdown reproducibility report.
-- A zip bundle.
-- Non-authority guardrails.
+Reviewer caution: a block receipt is successful governance evidence, not a model result.
 
-The pack supports auditability and repeatable inspection; it is not deployment authority.
+### 3.4 MODEL-BRAID-DRIFT-01
 
-## 4. Claim Boundaries
+Allowed claim: MODEL-BRAID-DRIFT-01 treats model braid as profile-aware observational telemetry only.
 
-The detailed boundary table is maintained in `claim_boundary_table.md`. The core boundaries are:
+Primary artifacts: `model_braid_packet.json` and `model_braid_observational_review_packet.json`.
 
-| Boundary | Meaning |
-| --- | --- |
-| Artifact presence is not evidence by itself. | A file must be connected to route, source, and receipt context. |
-| Route is not authorization. | A route disposition can require review without approving action. |
-| Receipt is not truth certification. | A receipt records execution and checks, not truth. |
-| Model candidate is not answer. | Candidate text is review material, not final-answer authority. |
-| Publisher candidate is not final answer. | Publisher output remains bounded until external review or publication process. |
-| Memory intent is not memory write. | Memory-intent artifacts do not authorize live Atlas memory writes. |
-| Sonya local membrane is not federation. | Local deterministic membrane evidence does not establish recursive Sonya federation. |
-| WAVE calibration is not universal ontology. | Closed-form calibration does not prove universal meaning or psychoacoustics. |
-| Reproducibility pack is not deployment authority. | Reproducibility materials support inspection only. |
+Blocked claims: model braid is not recursive cognition, not answer selection, not consensus proof, not truth certification, and not universal ontology.
 
-## 5. Comparison Frame
+Reviewer caution: the model-braid observation can help reviewers inspect drift posture, but it does not choose an answer.
 
-This draft does not claim completed baseline comparison results. The comparison program is framed as planned work across three paths:
+### 3.5 EXPERIMENT-CATALOG-BOUNDARY-01
 
-1. Raw single-model path.
-2. Raw multi-model comparison.
-3. Governed Sonya→AEGIS→CoherenceLattice path.
+Allowed claim: the experiment catalog boundary report can organize accepted evidence and catalog review posture.
 
-The proposed comparison metrics are:
+Primary artifacts: `experiment_catalog.json` and `experiment_catalog_boundary_report.json`.
 
-- Unsupported claim rate.
-- Source-linkage rate.
-- Contradiction density.
-- Profile leakage rate.
-- Route correctness.
-- Review correction load.
-- Artifact completeness.
-- Forbidden artifact leakage.
+Blocked claims: experiment catalog is reviewer index, not authority; catalog inclusion is not deployment authority, not truth certification, and not final answer release.
 
-These metrics are hypotheses for evaluation design. They are not reported as completed evidence in this draft.
+Reviewer caution: the catalog helps reviewers find artifacts; it does not authorize them.
 
-## 6. Limitations
+### 3.6 PUBLIC-UTILITY-ALPHA-00
 
-This draft is bounded by the following limitations:
+Allowed claim: PUBLIC-UTILITY-ALPHA-00 is the first one-command local reviewer demo of the accepted governed artifact cognition chain. It demonstrates artifact assembly and claim-boundary visibility.
 
-- Local fixture only; the accepted evidence is a local deterministic fixture.
-- No recursive Sonya federation.
-- No live Atlas memory writes.
-- No live Sophia calls.
-- No retrosynthesis runtime.
-- No Omega detection.
-- No final answer release.
-- No deployment evidence.
-- No proof of hallucination reduction yet because raw-model comparison baselines have not been run.
-- No proof of universal portability yet because UNI-02D remains partial.
-- No AI consciousness claim.
-- No universal wisdom claim.
-- No Publisher finalization claim.
+Primary artifacts: `public_utility_alpha_status.json`, `public_utility_alpha_manifest.json`, `public_utility_alpha_claim_boundary.json`, `public_utility_alpha_review_packet.json`, `reviewer_index.md`, `artifact_inventory.json`, `export_bundle_parity_report.json`, Sonya Gateway packets, route timeline packets, runtime bypass packets, model-braid packets, and experiment catalog boundary packets.
 
-## 7. Future Work
+Blocked claims: Public Utility Alpha is not deployment authority, not truth certification, not final-answer release, not live model execution, not live adapter execution, not remote provider call, not federation, not recursive braid, not live Atlas memory write, not live Sophia call, not retrosynthesis runtime, not Omega detection, not Publisher finalization, not universal ontology, not universal portability proof, and not AI consciousness.
 
-The next-patch queue and adjacent work items are:
+Reviewer caution: Public Utility Alpha demonstrates local artifact assembly and claim-boundary visibility, not product readiness or deployment.
 
-- SONYA-INGRESS-HARDEN-03 completed.
-- SOPHIA-UCC-ROUTE-01.
-- UNI-02D-SONYA-GATE-01.
-- RETRO-LANE-00.
-- PUB-WAVE-ROSETTA-01.
-- PUBLIC-REPRO-DASHBOARD-01.
+### 3.7 PUBLIC-DASHBOARD-ALPHA-01
 
-Future work should add raw-model comparison baselines, external peer review, and stronger cross-domain portability tests before broader claims are considered.
+Allowed claim: the public dashboard can orient reviewers to accepted local fixtures, evidence artifacts, commands, and claim boundaries.
 
-## 8. Safety and Ethics
+Primary artifacts: `registry/experiment_suite_dashboard.json`, `registry/accepted_phase_matrix.json`, `registry/reproducibility_index.json`, `registry/artifact_index.json`, `registry/claim_boundary_index.json`, and `docs/experiment-suite/public-utility-alpha.md`.
 
-The safety posture is non-oracular and non-anthropomorphic. The pipeline should not be marketed as conscious, universally wise, ready for deployment, or finally correct. It must not monetize private data or human vulnerability. Human review is threshold-based rather than a default claim of correctness. UCC control adequacy is the invariant: if route control, source lineage, or non-authority boundaries fail, the system should narrow or block its claim posture.
+Blocked claims: dashboard is reviewer orientation, not deployment; dashboard is not truth certification and not final-answer release.
 
-## 9. References and Source Corpus Notes
+Reviewer caution: public legibility is not product authorization.
 
-This draft cites internal accepted artifacts by name:
+### 3.8 UNI-02D-SONYA-GATE-01
 
-- `sonya_aegis_smoke_02_acceptance_report.json`
-- `experiment_suite_repro_pack.json`
-- `experiment_suite_reproducibility_report.md`
-- `waveform_gold_physics_family_acceptance_packet.json`
-- `experiments/experiment_suite_registry.json`
-- `docs/REPRODUCIBILITY_PACK.md`
-- `docs/EXPERIMENT_SUITE_STATUS.md`
-- `docs/SONYA_AEGIS_SMOKE_02.md`
-- `docs/WAVE_GOLD_PHYSICS_FAMILY.md`
+UNI-02D-SONYA-GATE-01 is accepted as a safe generic portability/prior-quarantine fixture, but it is not universal portability proof and not universal ontology. It demonstrates bounded quarantine and provenance posture for selected priors, not general portability across domains.
 
-This draft is based on accepted local fixtures and should be revised after external peer review and raw-model comparison baselines. It is not truth certification, not deployment authority, and not final answer release.
+### 3.9 RETRO-LANE-00
+
+RETRO-LANE-00 is accepted as retrosynthesis admission policy, not retrosynthesis runtime. Admission is not execution. Its evidence is lane posture for sandbox_auto, review_required, and blocked handling.
+
+### 3.10 WAVE Gold-Physics Family
+
+The WAVE Gold-Physics family is included as closed-form waveform metric calibration. It is not universal ontology, not psychoacoustic proof, and not AI consciousness.
+
+## 4. Reproducibility and Public Review Posture
+
+The reproducibility posture is reviewer oriented. The public dashboard and paper appendix list commands for local artifact inspection, but the commands do not grant final answer release or deployment authority. PUBLIC-UTILITY-ALPHA-00 adds a one-command local reviewer demo for accepted artifact assembly, while the dashboard validation command checks that public-facing registry and docs remain bounded.
+
+## 5. Limitations
+
+Current limitations are explicit:
+
+- local fixture only.
+- no live model execution.
+- no live adapter execution.
+- no remote provider calls.
+- no federation.
+- no recursive braid.
+- no live Atlas memory writes.
+- no live Sophia calls.
+- no retrosynthesis runtime.
+- no Omega detection.
+- no Publisher finalization.
+- no final answer release.
+- no deployment evidence.
+- no proof of hallucination reduction until raw-model comparison baselines are run.
+- no universal portability proof.
+- no universal ontology.
+- no AI consciousness claim.
+
+## 6. Future Work
+
+Future work is limited to work not already accepted:
+
+- raw-model comparison baselines.
+- GroundingBundle / RequestEnvelope unification if needed.
+- governed user-facing utility shell only after reviewer demo remains green.
+- publication peer review.
+- external reproduction.
+- later discovery navigation only after operationalization boundaries are reviewed.
+
+## 7. Conclusion
+
+The accepted evidence through PUBLIC-UTILITY-ALPHA-00 and PUBLIC-DASHBOARD-ALPHA-01 supports a narrow claim: governed artifact cognition can be represented as a local, inspectable, non-authoritative artifact chain. The work remains not truth certification, not deployment authority, not final answer release, local fixture only, not AI consciousness, not recursive Sonya federation, not retrosynthesis runtime, not Omega detection, not live Atlas memory writes, not live Sophia calls, and requires external peer review.

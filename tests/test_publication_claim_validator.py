@@ -58,7 +58,7 @@ def test_claim_validator_cli_emits_json_and_supports_out(tmp_path):
 
 def test_claim_validator_rejects_unnegated_forbidden_overclaim(tmp_path):
     paper_root = tmp_path / "paper"
-    paper_root.mkdir()
+    paper_root.mkdir(parents=True)
     for name in (
         "reproducibility_appendix.md",
         "claim_boundary_table.md",
@@ -162,3 +162,89 @@ def test_reproducibility_docs_use_accepted_coherencelattice_commands():
         "scripts/build_experiment_suite_repro_pack.py",
     ):
         assert placeholder not in combined
+
+
+def test_governed_artifact_cognition_public_utility_alpha_updates_are_present():
+    paper = (ROOT / "PUB_GOV_ARTIFACT_COG_01.md").read_text(encoding="utf-8")
+    artifact_table = (ROOT / "artifact_table.md").read_text(encoding="utf-8")
+    boundary_table = (ROOT / "claim_boundary_table.md").read_text(encoding="utf-8")
+    quickstart = (ROOT / "reviewer_quickstart.md").read_text(encoding="utf-8")
+    appendix = (ROOT / "reproducibility_appendix.md").read_text(encoding="utf-8")
+
+    assert "PUBLIC-UTILITY-ALPHA-00" in paper
+    assert "SONYA-GW-01" in paper or "Sonya Gateway candidate path" in paper
+    assert "observational telemetry only" in paper
+    assert "UNI-02D remains partial" not in paper
+    assert "not universal portability proof" in paper
+    for artifact in (
+        "public_utility_alpha_status.json",
+        "public_utility_alpha_manifest.json",
+        "public_utility_alpha_claim_boundary.json",
+        "public_utility_alpha_review_packet.json",
+        "reviewer_index.md",
+        "sonya_user_ingress_packet.json",
+        "sonya_model_request_packet.json",
+        "sonya_model_candidate_packet.json",
+        "sonya_model_candidate_review_packet.json",
+        "sonya_routing_receipt.json",
+        "sonya_runtime_bypass_block_packet.json",
+        "sonya_runtime_bypass_review_packet.json",
+        "sonya_route_lineage_packet.json",
+        "sonya_route_timeline_packet.json",
+        "sonya_route_view_review_packet.json",
+        "model_braid_packet.json",
+        "model_braid_observational_review_packet.json",
+        "experiment_catalog_boundary_report.json",
+    ):
+        assert artifact in artifact_table
+    for boundary in (
+        "Public Utility Alpha is not deployment authority.",
+        "Public Utility Alpha is not truth certification.",
+        "Public Utility Alpha is not final-answer release.",
+        "Sonya Gateway candidate packet is not answer.",
+        "Runtime bypass block is not model output.",
+        "Model braid is not consensus proof.",
+        "Model braid is not recursive cognition.",
+        "Model braid is not answer selection.",
+        "Model braid is not universal ontology.",
+        "Experiment catalog is reviewer index, not authority.",
+        "Dashboard is reviewer orientation, not deployment.",
+    ):
+        assert boundary in boundary_table
+    assert "Run-PUBLIC-UTILITY-ALPHA00-Acceptance.ps1" in quickstart
+    assert "Run-PUBLIC-UTILITY-ALPHA00-Acceptance.ps1" in appendix
+
+
+def _copy_governed_paper(tmp_path: Path) -> Path:
+    paper_root = tmp_path / "paper"
+    paper_root.mkdir(parents=True)
+    for path in ROOT.rglob("*"):
+        if path.is_file():
+            target = paper_root / path.relative_to(ROOT)
+            target.parent.mkdir(parents=True, exist_ok=True)
+            target.write_text(path.read_text(encoding="utf-8"), encoding="utf-8")
+    return paper_root
+
+
+def test_claim_validator_rejects_new_governed_artifact_overclaims(tmp_path):
+    forbidden_claims = (
+        "deployment readiness",
+        "final-answer release",
+        "live model execution",
+        "federation",
+        "retrosynthesis runtime",
+        "model braid is consensus proof",
+        "model braid is answer selection",
+    )
+    for claim in forbidden_claims:
+        paper_root = _copy_governed_paper(tmp_path / claim.replace(" ", "_").replace("-", "_"))
+        paper = paper_root / "PUB_GOV_ARTIFACT_COG_01.md"
+        paper.write_text(paper.read_text(encoding="utf-8") + f"\nThis paper claims {claim}.\n", encoding="utf-8")
+        result = validate_publication_claims(
+            paper,
+            appendix=paper_root / "reproducibility_appendix.md",
+            quickstart=paper_root / "reviewer_quickstart.md",
+            status=paper_root / "status.json",
+        )
+        assert result["passed"] is False, claim
+        assert result["forbidden_overclaims_found"], result
