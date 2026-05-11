@@ -1,0 +1,12 @@
+{
+  "dashboard_id": "PUBLIC-REPRO-DASHBOARD-01",
+  "repo": "pdxvoiceteacher/uvlm-publications",
+  "status": "draft_public_review",
+  "claim_level": "public_reviewer_orientation",
+  "requires_external_peer_review": true,
+  "not_truth_certification": true,
+  "not_deployment_authority": true,
+  "not_final_answer_release": true,
+  "not_ai_consciousness_claim": true,
+  "not_universal_ontology_claim": true
+}

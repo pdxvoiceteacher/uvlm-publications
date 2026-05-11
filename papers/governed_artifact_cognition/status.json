@@ -1,0 +1,15 @@
+{
+  "paper_id": "PUB-GOV-ARTIFACT-COG-01",
+  "repo": "pdxvoiceteacher/uvlm-publications",
+  "status": "drafted",
+  "claim_level": "internal_preprint_draft",
+  "public_utility_alpha_indexed": true,
+  "public_dashboard_alpha_indexed": true,
+  "requires_external_peer_review": true,
+  "not_truth_certification": true,
+  "not_deployment_authority": true,
+  "not_final_answer_release": true,
+  "not_live_model_execution": true,
+  "not_federation": true,
+  "not_ai_consciousness_claim": true
+}

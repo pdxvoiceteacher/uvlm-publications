@@ -1,0 +1,225 @@
+{
+  "schema": "uvlm.accepted_phase_matrix.v1",
+  "entries": [
+    {
+      "phase_id": "EXP-SUITE-REGISTRY-01",
+      "repo": "pdxvoiceteacher/CoherenceLattice",
+      "status": "accepted",
+      "evidence_type": "experiment_suite_registry",
+      "primary_artifacts": [
+        "experiments/experiment_suite_registry.json"
+      ],
+      "reproduction_command_summary": "Inspect experiments/experiment_suite_registry.json and rebuild the suite repro pack.",
+      "claim_allowed": "Accepted/partial/blocked/planned phase registry is reviewable.",
+      "claims_blocked": [
+        "registry is not deployment authority",
+        "route is not authorization"
+      ],
+      "reviewer_caution": "Registry status is a claim-boundary map, not a product launch.",
+      "publication_status": "dashboard_indexed"
+    },
+    {
+      "phase_id": "EXP-SUITE-REPRO-01",
+      "repo": "pdxvoiceteacher/CoherenceLattice",
+      "status": "accepted",
+      "evidence_type": "reproducibility_pack",
+      "primary_artifacts": [
+        "experiment_suite_repro_pack.json",
+        "acceptance_matrix.csv",
+        "artifact_manifest.json",
+        "experiment_suite_reproducibility_report.md"
+      ],
+      "reproduction_command_summary": "python -m coherence.tools.build_experiment_suite_repro_pack --registry experiments/experiment_suite_registry.json --artifacts-root artifacts --out-dir artifacts/experiment_suite_repro_pack --zip",
+      "claim_allowed": "Reproducibility receipts and artifact manifests can be inspected.",
+      "claims_blocked": [
+        "reproducibility pack is not deployment authority",
+        "receipt is not truth certification"
+      ],
+      "reviewer_caution": "A receipt records checks; it does not certify truth.",
+      "publication_status": "dashboard_indexed"
+    },
+    {
+      "phase_id": "WAVE-FAMILY-CLOSEOUT-01",
+      "repo": "pdxvoiceteacher/CoherenceLattice",
+      "status": "accepted",
+      "evidence_type": "gold_physics_calibration",
+      "primary_artifacts": [
+        "waveform_gold_physics_family_acceptance_packet.json"
+      ],
+      "reproduction_command_summary": "python -m coherence.waveform.family_acceptance `\n  --bridge-root C:\\UVLM\\run_artifacts\\wave_gold_physics_family",
+      "claim_allowed": "Closed-form waveform metric calibration across WAVE-00R through WAVE-03R.",
+      "claims_blocked": [
+        "WAVE calibration is not universal ontology",
+        "WAVE Gold-Physics is not psychoacoustic proof"
+      ],
+      "reviewer_caution": "High coherence is not necessarily constructive or safe.",
+      "publication_status": "PUB-WAVE-ROSETTA-01 drafted"
+    },
+    {
+      "phase_id": "SONYA-INGRESS-HARDEN-03",
+      "repo": "pdxvoiceteacher/CoherenceLattice",
+      "status": "accepted",
+      "evidence_type": "sonya_membrane_acceptance",
+      "primary_artifacts": [
+        "sonya_aegis_smoke_02_acceptance_report.json",
+        "human_review bundle",
+        "auto route bundle"
+      ],
+      "reproduction_command_summary": ".\\experiments\\Run-SONYA-AEGIS-SMOKE02-Acceptance.ps1 `\n  -OutputRoot C:\\UVLM\\run_artifacts\\sonya_aegis_smoke_02_hardened `\n  -LogDir C:\\UVLM\\run_artifacts\\sonya_aegis_smoke_02_hardened_logs `\n  -CiMode",
+      "claim_allowed": "Direct-call blocking and local Sonya membrane evidence are inspectable.",
+      "claims_blocked": [
+        "Sonya local membrane is not federation",
+        "candidate is not answer"
+      ],
+      "reviewer_caution": "Local fixture only; no recursive Sonya federation is implied.",
+      "publication_status": "PUB-GOV-ARTIFACT-COG-01 drafted"
+    },
+    {
+      "phase_id": "SOPHIA-UCC-ROUTE-01",
+      "repo": "pdxvoiceteacher/Sophia",
+      "status": "accepted",
+      "evidence_type": "route_control",
+      "primary_artifacts": [
+        "sophia_ucc_route_acceptance_packet.json"
+      ],
+      "reproduction_command_summary": "cd C:\\UVLM\\Sophia\npython -m pytest -q tests/test_ucc_risk_control_route.py",
+      "claim_allowed": "Sophia/UCC route controls can classify admissibility posture.",
+      "claims_blocked": [
+        "route is not authorization",
+        "no live Sophia calls"
+      ],
+      "reviewer_caution": "Route disposition is governance posture, not final authority.",
+      "publication_status": "dashboard_indexed"
+    },
+    {
+      "phase_id": "PUB-GOV-ARTIFACT-COG-01",
+      "repo": "pdxvoiceteacher/uvlm-publications",
+      "status": "accepted",
+      "evidence_type": "publication_draft",
+      "primary_artifacts": [
+        "papers/governed_artifact_cognition/PUB_GOV_ARTIFACT_COG_01.md",
+        "papers/governed_artifact_cognition/reviewer_quickstart.md",
+        "papers/governed_artifact_cognition/status.json"
+      ],
+      "reproduction_command_summary": "python tools/validate_publication_claims.py --paper papers/governed_artifact_cognition/PUB_GOV_ARTIFACT_COG_01.md --quickstart papers/governed_artifact_cognition/reviewer_quickstart.md --status papers/governed_artifact_cognition/status.json",
+      "claim_allowed": "Governed artifact cognition paper is available as an internal preprint draft.",
+      "claims_blocked": [
+        "not truth certification",
+        "not deployment authority",
+        "not final answer release"
+      ],
+      "reviewer_caution": "Draft requires external peer review.",
+      "publication_status": "drafted"
+    },
+    {
+      "phase_id": "PUB-WAVE-ROSETTA-01",
+      "repo": "pdxvoiceteacher/uvlm-publications",
+      "status": "accepted",
+      "evidence_type": "publication_draft",
+      "primary_artifacts": [
+        "papers/waveform_rosetta/PUB_WAVE_ROSETTA_01.md",
+        "papers/waveform_rosetta/reviewer_quickstart.md",
+        "papers/waveform_rosetta/status.json"
+      ],
+      "reproduction_command_summary": "python tools/validate_publication_claims.py --paper papers/waveform_rosetta/PUB_WAVE_ROSETTA_01.md --quickstart papers/waveform_rosetta/reviewer_quickstart.md --status papers/waveform_rosetta/status.json",
+      "claim_allowed": "Waveform Rosetta methods paper is available as an internal preprint draft.",
+      "claims_blocked": [
+        "not universal ontology",
+        "not psychoacoustic effect",
+        "not truth certification"
+      ],
+      "reviewer_caution": "Closed-form calibration is not deployment evidence.",
+      "publication_status": "drafted"
+    },
+    {
+      "phase_id": "UNI-02D-SONYA-GATE-01",
+      "repo": "pdxvoiceteacher/CoherenceLattice",
+      "status": "accepted",
+      "evidence_type": "safe_portability_fixture",
+      "primary_artifacts": [
+        "uni02d_sonya_gate_acceptance_report.json",
+        "semantic_term_quarantine_packet.json",
+        "runtime_profile_leakage_packet.json",
+        "uni02d_prior_origin_provenance_packet.json",
+        "uni02d_prior_quarantine_packet.json"
+      ],
+      "reproduction_command_summary": ".\\experiments\\Run-UNI02D-Sonya-Gate-Acceptance.ps1 `\n  -OutputRoot C:\\UVLM\\run_artifacts\\uni02d_sonya_gate `\n  -LogDir C:\\UVLM\\run_artifacts\\uni02d_sonya_gate_logs `\n  -CiMode",
+      "claim_allowed": "A Sonya-gated safe portability fixture can be inspected.",
+      "claims_blocked": [
+        "UNI-02D safe portability fixture is not universal portability proof",
+        "prior quarantine is not prior canonization"
+      ],
+      "reviewer_caution": "Scan selected_priors and matches[*].prior shapes for quarantine/provenance posture.",
+      "publication_status": "dashboard_indexed"
+    },
+    {
+      "phase_id": "RETRO-LANE-00",
+      "repo": "pdxvoiceteacher/CoherenceLattice",
+      "status": "accepted",
+      "evidence_type": "retrosynthesis_admission_lanes",
+      "primary_artifacts": [
+        "retrosynthesis_admission_packet.json",
+        "retrosynthesis_admission_review_packet.json",
+        "retro_lane_00_acceptance_receipt.json"
+      ],
+      "reproduction_command_summary": ".\\experiments\\Run-RETRO-LANE00-Acceptance.ps1 `\n  -OutputRoot C:\\UVLM\\run_artifacts\\retro_lane_00 `\n  -LogDir C:\\UVLM\\run_artifacts\\retro_lane_00_logs `\n  -CiMode",
+      "claim_allowed": "sandbox_auto, review_required, and blocked admission lanes can be reviewed.",
+      "claims_blocked": [
+        "Retrosynthesis admission is not retrosynthesis execution",
+        "hallucination telemetry is not evidence"
+      ],
+      "reviewer_caution": "Admission is not execution; hallucination is telemetry, not evidence.",
+      "publication_status": "dashboard_indexed"
+    },
+    {
+      "phase_id": "PUBLIC-UTILITY-ALPHA-00",
+      "repo": "pdxvoiceteacher/CoherenceLattice",
+      "status": "accepted",
+      "evidence_type": "local_public_utility_reviewer_demo",
+      "primary_artifacts": [
+        "public_utility_alpha_status.json",
+        "public_utility_alpha_manifest.json",
+        "public_utility_alpha_claim_boundary.json",
+        "public_utility_alpha_review_packet.json",
+        "reviewer_index.md",
+        "artifact_inventory.json",
+        "export_bundle_parity_report.json",
+        "experiment_catalog.json",
+        "experiment_catalog_boundary_report.json",
+        "sonya_route_lineage_packet.json",
+        "sonya_route_timeline_packet.json",
+        "sonya_user_ingress_packet.json",
+        "sonya_model_request_packet.json",
+        "sonya_model_candidate_packet.json",
+        "sonya_model_candidate_review_packet.json",
+        "sonya_routing_receipt.json",
+        "sonya_runtime_bypass_block_packet.json",
+        "sonya_runtime_bypass_review_packet.json",
+        "model_braid_packet.json",
+        "model_braid_observational_review_packet.json"
+      ],
+      "reproduction_command_summary": ".\\experiments\\Run-PUBLIC-UTILITY-ALPHA00-Acceptance.ps1 `\n  -OutputRoot C:\\UVLM\\run_artifacts\\public_utility_alpha_00_repo `\n  -LogDir C:\\UVLM\\run_artifacts\\public_utility_alpha_00_repo_logs `\n  -CiMode",
+      "claim_allowed": "A local fixture-only reviewer demo can assemble the accepted governed artifact cognition chain and make its evidence, route timeline, candidate packet path, bypass block, model-braid observation, catalog boundary, inventory, and parity artifacts inspectable.",
+      "claims_blocked": [
+        "Public Utility Alpha is not deployment authority.",
+        "Public Utility Alpha is not truth certification.",
+        "Public Utility Alpha is not final answer release.",
+        "Public Utility Alpha is not live model execution.",
+        "Public Utility Alpha is not live adapter execution.",
+        "Public Utility Alpha is not a remote provider call.",
+        "Public Utility Alpha is not federation.",
+        "Public Utility Alpha is not recursive braid.",
+        "Public Utility Alpha is not live Atlas memory write.",
+        "Public Utility Alpha is not live Sophia call.",
+        "Public Utility Alpha is not retrosynthesis runtime.",
+        "Public Utility Alpha is not Omega detection.",
+        "Public Utility Alpha is not Publisher finalization.",
+        "Public Utility Alpha is not universal ontology.",
+        "Public Utility Alpha is not universal portability proof.",
+        "Public Utility Alpha is not AI consciousness."
+      ],
+      "reviewer_caution": "This is a local reviewer harness. It demonstrates bounded artifact assembly and claim-boundary visibility. It is not a product launch, not deployment readiness, and not proof of real-world performance.",
+      "publication_status": "dashboard_indexed"
+    }
+  ]
+}

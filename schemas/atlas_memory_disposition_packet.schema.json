@@ -1,0 +1,138 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://uvlm.local/schemas/atlas_memory_disposition_packet.schema.json",
+  "title": "Atlas Memory Disposition Packet",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "disposition_id",
+    "memory_intent_id",
+    "source_packet_schema",
+    "audit_pass_id",
+    "submission_id",
+    "sonya_ingress_id",
+    "aegis_trace_id",
+    "request_envelope_id",
+    "analysis_profile_id",
+    "semantic_taxonomy_id",
+    "grounding_refs",
+    "tel_refs",
+    "coherence_metric_refs",
+    "disposition",
+    "review_requirements",
+    "authority_boundary",
+    "runtime_boundary",
+    "created_at",
+    "meta"
+  ],
+  "properties": {
+    "schema": {"const": "atlas.memory_disposition_packet.v1"},
+    "disposition_id": {"type": "string", "minLength": 1},
+    "memory_intent_id": {"type": "string", "minLength": 1},
+    "source_packet_schema": {"const": "uvlm.atlas_memory_intent_packet.v1"},
+    "audit_pass_id": {"type": "string", "minLength": 1},
+    "submission_id": {"type": "string", "minLength": 1},
+    "sonya_ingress_id": {"type": "string", "minLength": 1},
+    "aegis_trace_id": {"type": "string", "minLength": 1},
+    "request_envelope_id": {"type": "string", "minLength": 1},
+    "analysis_profile_id": {"type": "string", "minLength": 1},
+    "semantic_taxonomy_id": {"type": "string", "minLength": 1},
+    "grounding_refs": {"type": "array"},
+    "tel_refs": {"type": "array"},
+    "coherence_metric_refs": {"type": "array"},
+    "coherence_escrow_status": {"type": "string", "minLength": 1},
+    "reversibility_index": {"type": "string", "minLength": 1},
+    "disposition": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status",
+        "allowed_use",
+        "retention_band",
+        "sensitivity_class",
+        "reason_codes"
+      ],
+      "properties": {
+        "status": {
+          "enum": [
+            "pending_human_review",
+            "retrieval_candidate",
+            "quarantine",
+            "reject",
+            "needs_more_evidence",
+            "ltm_candidate_review_required"
+          ]
+        },
+        "allowed_use": {
+          "enum": [
+            "retrieval_candidate",
+            "shadow_only",
+            "context_only",
+            "quarantine_only",
+            "rejected"
+          ]
+        },
+        "retention_band": {"type": "string", "minLength": 1},
+        "sensitivity_class": {"type": "string", "minLength": 1},
+        "reason_codes": {"type": "array", "items": {"type": "string"}}
+      }
+    },
+    "review_requirements": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "requires_human_review",
+        "requires_ltm_review",
+        "requires_prior_canonization_review",
+        "requires_source_lineage_review"
+      ],
+      "properties": {
+        "requires_human_review": {"const": true},
+        "requires_ltm_review": {"type": "boolean"},
+        "requires_prior_canonization_review": {"const": true},
+        "requires_source_lineage_review": {"const": true}
+      }
+    },
+    "authority_boundary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "memory_write_authorized",
+        "prior_canonized",
+        "truth_certified",
+        "deployment_authorized",
+        "publisher_finalized",
+        "canonical_publication_mutated"
+      ],
+      "properties": {
+        "memory_write_authorized": {"const": false},
+        "prior_canonized": {"const": false},
+        "truth_certified": {"const": false},
+        "deployment_authorized": {"const": false},
+        "publisher_finalized": {"const": false},
+        "canonical_publication_mutated": {"const": false}
+      }
+    },
+    "runtime_boundary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "live_atlas_call_performed",
+        "network_call_performed",
+        "model_call_performed",
+        "live_sophia_call_performed",
+        "live_sonya_call_performed"
+      ],
+      "properties": {
+        "live_atlas_call_performed": {"const": false},
+        "network_call_performed": {"const": false},
+        "model_call_performed": {"const": false},
+        "live_sophia_call_performed": {"const": false},
+        "live_sonya_call_performed": {"const": false}
+      }
+    },
+    "created_at": {"type": ["null", "string"]},
+    "meta": {"type": "object"}
+  }
+}
