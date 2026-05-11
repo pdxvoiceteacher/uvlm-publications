@@ -44,6 +44,17 @@ Legacy accepted test reference retained for reviewer traceability: `python/tests
 
 Expected posture: fixture-only, not live model execution, not live adapter execution, not remote provider calls, not federation, not recursive braid, and not final-answer release.
 
+## Raw Baseline Comparison
+
+```powershell
+.\experiments\Run-RAW-BASELINE-COMPARISON00-Acceptance.ps1 `
+  -OutputRoot C:\UVLM\run_artifacts\raw_baseline_comparison_00 `
+  -LogDir C:\UVLM\run_artifacts\raw_baseline_comparison_00_logs `
+  -CiMode
+```
+
+Expected posture: accepted fixture-only measurement scaffold, not hallucination reduction proof, not model quality benchmark, not model superiority proof, not live model execution, and not remote provider call.
+
 ## Dashboard validation
 
 ```bash

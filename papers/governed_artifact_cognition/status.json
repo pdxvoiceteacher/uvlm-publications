@@ -11,5 +11,9 @@
   "not_final_answer_release": true,
   "not_live_model_execution": true,
   "not_federation": true,
-  "not_ai_consciousness_claim": true
+  "not_ai_consciousness_claim": true,
+  "raw_baseline_comparison_indexed": true,
+  "not_hallucination_reduction_proof": true,
+  "not_model_quality_benchmark": true,
+  "not_remote_provider_call": true
 }

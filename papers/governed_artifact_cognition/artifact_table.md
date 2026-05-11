@@ -27,3 +27,8 @@
 | `model_braid_observational_review_packet.json` | MODEL-BRAID-DRIFT-01 | Inspect observational model-braid review. | Model braid is not answer selection. |
 | `experiment_catalog.json` | EXPERIMENT-CATALOG-BOUNDARY-01 | Inspect catalog entries. | Catalog is reviewer index, not authority. |
 | `experiment_catalog_boundary_report.json` | EXPERIMENT-CATALOG-BOUNDARY-01 | Inspect catalog boundary report. | Catalog boundary is not deployment authority. |
+| `raw_baseline_comparison_packet.json` | RAW-BASELINE-COMPARISON-00 | Inspect fixture-only raw-vs-governed comparison packet. | Fixture-only; not hallucination reduction proof; not model quality benchmark; not live model execution. |
+| `raw_baseline_comparison_review_packet.json` | RAW-BASELINE-COMPARISON-00 | Inspect review posture for the measurement scaffold. | Fixture-only; not hallucination reduction proof; not model quality benchmark; not live model execution. |
+| `raw_baseline_comparison_rows.jsonl` | RAW-BASELINE-COMPARISON-00 | Inspect deterministic fixture rows. | Fixture-only; not hallucination reduction proof; not model quality benchmark; not live model execution. |
+| `raw_baseline_comparison_summary.md` | RAW-BASELINE-COMPARISON-00 | Inspect scaffold summary. | Fixture-only; not hallucination reduction proof; not model quality benchmark; not live model execution. |
+| `raw_baseline_comparison_00_acceptance_receipt.json` | RAW-BASELINE-COMPARISON-00 | Inspect acceptance receipt. | Fixture-only; not hallucination reduction proof; not model quality benchmark; not live model execution. |

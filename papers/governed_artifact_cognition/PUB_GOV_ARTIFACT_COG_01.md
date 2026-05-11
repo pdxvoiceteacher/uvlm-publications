@@ -4,7 +4,7 @@
 
 This systems paper describes governed artifact cognition as a reproducible audit-lab pattern for AI-assisted candidate review. The system is not an oracle, not a universal-wisdom machine, and not a replacement for human or institutional judgment. It emits typed, grounded, governed artifacts whose route, evidence, receipt, and claim-boundary posture can be inspected before downstream use.
 
-The accepted evidence now includes PUBLIC-UTILITY-ALPHA-00, a local fixture-only reviewer demo that assembles the accepted governed artifact chain: Sonya control schema, local broker, adapter registry, policy transition, governance readiness, route view, Sonya Gateway candidate path, runtime bypass block diagnostic, model-braid observational review, experiment catalog boundary report, artifact inventory, and export parity. PUBLIC-UTILITY-ALPHA-00 demonstrates one-command local assembly of that chain while remaining fixture-only, not deployment authority, not truth certification, not final answer release, not live model execution, and subject to external peer review.
+The accepted evidence now includes PUBLIC-UTILITY-ALPHA-00, a local fixture-only reviewer demo that assembles the accepted governed artifact chain: Sonya control schema, local broker, adapter registry, policy transition, governance readiness, route view, Sonya Gateway candidate path, runtime bypass block diagnostic, model-braid observational review, experiment catalog boundary report, artifact inventory, and export parity. PUBLIC-UTILITY-ALPHA-00 demonstrates one-command local assembly of that chain while remaining fixture-only, not deployment authority, not truth certification, not final answer release, not live model execution, and subject to external peer review. RAW-BASELINE-COMPARISON-00 is a fixture-only measurement scaffold, not hallucination reduction proof and not a model quality benchmark. It compares raw-text-style baseline arms with the Sonya-governed candidate packet path across unsupported-claim, source-linkage, route-receipt, forbidden-artifact, and raw-output-admission posture.
 
 The claims in this draft are bounded to auditability, route disposition, artifact traceability, and non-authority guardrails. The evidence is local fixture only and requires external peer review.
 
@@ -126,15 +126,29 @@ Blocked claims: dashboard is reviewer orientation, not deployment; dashboard is 
 
 Reviewer caution: public legibility is not product authorization.
 
-### 3.8 UNI-02D-SONYA-GATE-01
+### 3.8 RAW-BASELINE-COMPARISON-00: measurement scaffold, not superiority claim
+
+Allowed claim: RAW-BASELINE-COMPARISON-00 exists as an accepted fixture-only measurement scaffold comparing raw-text-style baseline arms with the Sonya-governed candidate packet path.
+
+Primary artifacts: `raw_baseline_comparison_packet.json`, `raw_baseline_comparison_review_packet.json`, `raw_baseline_comparison_rows.jsonl`, `raw_baseline_comparison_summary.md`, and `raw_baseline_comparison_00_acceptance_receipt.json`.
+
+Measured fixture fields: `raw_single_model_fixture`, `raw_multi_model_fixture`, `sonya_governed_candidate_fixture`, `unsupported_claim_count`, `source_linkage_present`, `route_receipt_present`, `forbidden_artifacts_present`, `raw_model_output_admitted`, and `candidate_packet_present`.
+
+Clarification: the raw arms intentionally model raw-text-style fixture output, while the governed arm uses the Sonya candidate packet path. The comparison is deterministic fixture-only; no live model/provider call occurred and no real-world performance claim is authorized.
+
+Blocked claims: RAW-BASELINE-COMPARISON-00 is not hallucination reduction proof, not model superiority proof, not a model quality benchmark, not live model execution, not remote provider call, not production evaluation, not truth certification, not deployment authority, and not final-answer release.
+
+Reviewer caution: the scaffold makes future controlled comparisons easier to inspect, but it does not prove that governed artifact cognition reduces hallucinations or improves model quality.
+
+### 3.9 UNI-02D-SONYA-GATE-01
 
 UNI-02D-SONYA-GATE-01 is accepted as a safe generic portability/prior-quarantine fixture, but it is not universal portability proof and not universal ontology. It demonstrates bounded quarantine and provenance posture for selected priors, not general portability across domains.
 
-### 3.9 RETRO-LANE-00
+### 3.10 RETRO-LANE-00
 
 RETRO-LANE-00 is accepted as retrosynthesis admission policy, not retrosynthesis runtime. Admission is not execution. Its evidence is lane posture for sandbox_auto, review_required, and blocked handling.
 
-### 3.10 WAVE Gold-Physics Family
+### 3.11 WAVE Gold-Physics Family
 
 The WAVE Gold-Physics family is included as closed-form waveform metric calibration. It is not universal ontology, not psychoacoustic proof, and not AI consciousness.
 
@@ -159,7 +173,7 @@ Current limitations are explicit:
 - no Publisher finalization.
 - no final answer release.
 - no deployment evidence.
-- no proof of hallucination reduction until raw-model comparison baselines are run.
+- RAW-BASELINE-COMPARISON-00 supplies a fixture-only raw-vs-governed measurement scaffold, but it is not hallucination reduction proof, not a model quality benchmark, and not a real-world performance evaluation.
 - no universal portability proof.
 - no universal ontology.
 - no AI consciousness claim.
@@ -168,7 +182,11 @@ Current limitations are explicit:
 
 Future work is limited to work not already accepted:
 
-- raw-model comparison baselines.
+- live or externally reproduced raw-vs-governed benchmark studies using the accepted scaffold.
+- real-world benchmark manifest.
+- RAG-style comparison arm.
+- Triadic without Phase 6 arm.
+- full Triadic with Sonya/Sophia/Atlas quarantine/Phase 6/TEL/receipts arm.
 - GroundingBundle / RequestEnvelope unification if needed.
 - governed user-facing utility shell only after reviewer demo remains green.
 - publication peer review.

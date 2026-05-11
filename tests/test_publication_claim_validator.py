@@ -215,6 +215,43 @@ def test_governed_artifact_cognition_public_utility_alpha_updates_are_present():
     assert "Run-PUBLIC-UTILITY-ALPHA00-Acceptance.ps1" in appendix
 
 
+def test_governed_artifact_cognition_raw_baseline_updates_are_present():
+    paper = (ROOT / "PUB_GOV_ARTIFACT_COG_01.md").read_text(encoding="utf-8")
+    artifact_table = (ROOT / "artifact_table.md").read_text(encoding="utf-8")
+    boundary_table = (ROOT / "claim_boundary_table.md").read_text(encoding="utf-8")
+    quickstart = (ROOT / "reviewer_quickstart.md").read_text(encoding="utf-8")
+    status = json.loads((ROOT / "status.json").read_text(encoding="utf-8"))
+
+    assert "RAW-BASELINE-COMPARISON-00" in paper
+    assert "fixture-only measurement scaffold" in paper
+    assert "not hallucination reduction proof" in paper
+    assert "not a model quality benchmark" in paper
+    assert "raw-model comparison baselines" not in paper
+    assert "hallucination reduction proven" not in paper
+    assert "model superiority proven" not in paper
+    for artifact in (
+        "raw_baseline_comparison_packet.json",
+        "raw_baseline_comparison_review_packet.json",
+        "raw_baseline_comparison_rows.jsonl",
+        "raw_baseline_comparison_summary.md",
+        "raw_baseline_comparison_00_acceptance_receipt.json",
+    ):
+        assert artifact in artifact_table
+    for boundary in (
+        "Raw Baseline Comparison is not hallucination reduction proof.",
+        "Raw Baseline Comparison is not a model quality benchmark.",
+        "Raw Baseline Comparison is not model superiority proof.",
+        "Raw Baseline Comparison is not live model execution.",
+        "Raw Baseline Comparison is not remote provider evaluation.",
+        "Raw Baseline Comparison is not production evaluation.",
+    ):
+        assert boundary in boundary_table
+    assert "Run-RAW-BASELINE-COMPARISON00-Acceptance.ps1" in quickstart
+    assert status["raw_baseline_comparison_indexed"] is True
+    assert status["not_hallucination_reduction_proof"] is True
+    assert status["not_model_quality_benchmark"] is True
+
+
 def _copy_governed_paper(tmp_path: Path) -> Path:
     paper_root = tmp_path / "paper"
     paper_root.mkdir(parents=True)
@@ -235,6 +272,9 @@ def test_claim_validator_rejects_new_governed_artifact_overclaims(tmp_path):
         "retrosynthesis runtime",
         "model braid is consensus proof",
         "model braid is answer selection",
+        "hallucination reduction proven",
+        "model superiority proven",
+        "model quality benchmark",
     )
     for claim in forbidden_claims:
         paper_root = _copy_governed_paper(tmp_path / claim.replace(" ", "_").replace("-", "_"))

@@ -22,6 +22,26 @@ Expected posture:
 - `final_answer_release_performed = false`
 - `deployment_authority_granted = false`
 
+## How to reproduce RAW-BASELINE-COMPARISON-00
+
+```powershell
+.\experiments\Run-RAW-BASELINE-COMPARISON00-Acceptance.ps1 `
+  -OutputRoot C:\UVLM\run_artifacts\raw_baseline_comparison_00 `
+  -LogDir C:\UVLM\run_artifacts\raw_baseline_comparison_00_logs `
+  -CiMode
+```
+
+Expected posture:
+
+- `review_status = accepted_as_measurement_scaffold`
+- `local_fixture_only = true`
+- `live_model_execution_performed = false`
+- `remote_provider_call_performed = false`
+- `network_call_performed = false`
+- `not_hallucination_reduction_proof = true`
+- `not_model_quality_benchmark = true`
+- `promotion_blocked = true`
+
 ## Other accepted local commands
 
 ```powershell

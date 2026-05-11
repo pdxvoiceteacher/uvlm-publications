@@ -25,3 +25,9 @@
 | Not Omega detection. | No Omega detection is claimed. |
 | Not live Atlas memory writes. | Atlas memory intent remains bounded. |
 | Not live Sophia calls. | Sophia evidence is route posture only. |
+| Raw Baseline Comparison is not hallucination reduction proof. | The scaffold does not prove hallucination reduction. |
+| Raw Baseline Comparison is not a model quality benchmark. | The scaffold is not a model quality benchmark. |
+| Raw Baseline Comparison is not model superiority proof. | The scaffold does not prove model superiority. |
+| Raw Baseline Comparison is not live model execution. | The accepted scaffold uses fixture-only measurement. |
+| Raw Baseline Comparison is not remote provider evaluation. | No remote provider evaluation is claimed. |
+| Raw Baseline Comparison is not production evaluation. | The scaffold is not production evaluation. |
