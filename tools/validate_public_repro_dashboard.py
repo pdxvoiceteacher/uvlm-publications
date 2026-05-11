@@ -18,6 +18,7 @@ REQUIRED_PHASES = {
     "UNI-02D-SONYA-GATE-01",
     "RETRO-LANE-00",
     "PUBLIC-UTILITY-ALPHA-00",
+    "RAW-BASELINE-COMPARISON-00",
 }
 REQUIRED_BOUNDARY_PHRASES = (
     "not truth certification",
@@ -37,6 +38,10 @@ REQUIRED_BOUNDARY_PHRASES = (
     "not remote provider call",
     "not federation",
     "not recursive braid",
+    "raw baseline comparison",
+    "fixture-only measurement scaffold",
+    "not hallucination reduction proof",
+    "not model quality benchmark",
 )
 FORBIDDEN_PHRASES = (
     "deployment readiness",
@@ -58,6 +63,10 @@ FORBIDDEN_PHRASES = (
     "psychoacoustic proof",
     "omega detection",
     "publisher finalization",
+    "hallucination reduction proven",
+    "model quality benchmark",
+    "model superiority proven",
+    "production evaluation",
 )
 ALLOWED_NEGATED = (
     "not ",

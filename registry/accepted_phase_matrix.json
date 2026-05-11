@@ -220,6 +220,39 @@
       ],
       "reviewer_caution": "This is a local reviewer harness. It demonstrates bounded artifact assembly and claim-boundary visibility. It is not a product launch, not deployment readiness, and not proof of real-world performance.",
       "publication_status": "dashboard_indexed"
+    },
+    {
+      "phase_id": "RAW-BASELINE-COMPARISON-00",
+      "repo": "pdxvoiceteacher/CoherenceLattice",
+      "status": "accepted",
+      "evidence_type": "fixture_only_measurement_scaffold",
+      "primary_artifacts": [
+        "raw_baseline_comparison_packet.json",
+        "raw_baseline_comparison_review_packet.json",
+        "raw_baseline_comparison_rows.jsonl",
+        "raw_baseline_comparison_summary.md",
+        "artifact_inventory.json",
+        "run_artifact_manifest.json",
+        "export_bundle_manifest.json",
+        "export_bundle_parity_report.json",
+        "raw_baseline_comparison_00_acceptance_receipt.json"
+      ],
+      "reproduction_command_summary": ".\\experiments\\Run-RAW-BASELINE-COMPARISON00-Acceptance.ps1 `\n  -OutputRoot C:\\UVLM\\run_artifacts\\raw_baseline_comparison_00 `\n  -LogDir C:\\UVLM\\run_artifacts\\raw_baseline_comparison_00_logs `\n  -CiMode",
+      "claim_allowed": "RAW-BASELINE-COMPARISON-00 provides a fixture-only measurement scaffold for comparing raw-text-style baseline arms with the Sonya-governed candidate packet path across unsupported-claim count, source-linkage posture, route receipt posture, forbidden-artifact leakage, and raw-output admission.",
+      "claims_blocked": [
+        "not hallucination reduction proof",
+        "not model quality benchmark",
+        "not truth certification",
+        "not deployment authority",
+        "not final answer release",
+        "not live model execution",
+        "not remote provider call",
+        "not universal portability proof",
+        "not AI consciousness claim",
+        "not production evaluation"
+      ],
+      "reviewer_caution": "This phase is measurement infrastructure only. It does not prove that governed artifact cognition reduces hallucinations, improves model quality, or performs better on real-world tasks. It establishes a scaffold for future controlled comparisons.",
+      "publication_status": "dashboard_indexed"
     }
   ]
 }

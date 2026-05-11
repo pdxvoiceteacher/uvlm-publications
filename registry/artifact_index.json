@@ -43,6 +43,17 @@
       "model_braid_packet.json",
       "model_braid_observational_review_packet.json"
     ],
+    "RAW-BASELINE-COMPARISON-00": [
+      "raw_baseline_comparison_packet.json",
+      "raw_baseline_comparison_review_packet.json",
+      "raw_baseline_comparison_rows.jsonl",
+      "raw_baseline_comparison_summary.md",
+      "artifact_inventory.json",
+      "run_artifact_manifest.json",
+      "export_bundle_manifest.json",
+      "export_bundle_parity_report.json",
+      "raw_baseline_comparison_00_acceptance_receipt.json"
+    ],
     "publications": [
       "PUB_GOV_ARTIFACT_COG_01.md",
       "PUB_WAVE_ROSETTA_01.md",

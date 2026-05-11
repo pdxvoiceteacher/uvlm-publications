@@ -10,6 +10,7 @@
 6. UNI-02D Sonya gate
 7. RETRO-LANE-00
 8. Public Utility Alpha
+9. Raw Baseline Comparison
 
 ## CoherenceLattice commands
 
@@ -53,6 +54,15 @@ PowerShell Public Utility Alpha:
 .\experiments\Run-PUBLIC-UTILITY-ALPHA00-Acceptance.ps1 `
   -OutputRoot C:\UVLM\run_artifacts\public_utility_alpha_00_repo `
   -LogDir C:\UVLM\run_artifacts\public_utility_alpha_00_repo_logs `
+  -CiMode
+```
+
+PowerShell Raw Baseline Comparison:
+
+```powershell
+.\experiments\Run-RAW-BASELINE-COMPARISON00-Acceptance.ps1 `
+  -OutputRoot C:\UVLM\run_artifacts\raw_baseline_comparison_00 `
+  -LogDir C:\UVLM\run_artifacts\raw_baseline_comparison_00_logs `
   -CiMode
 ```
 

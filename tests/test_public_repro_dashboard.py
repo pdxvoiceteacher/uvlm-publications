@@ -29,6 +29,7 @@ REQUIRED_DOCS = {
     "reviewer-quickstart.md",
     "claim-boundaries.md",
     "public-utility-alpha.md",
+    "raw-baseline-comparison.md",
 }
 REQUIRED_PHASES = {
     "EXP-SUITE-REGISTRY-01",
@@ -41,6 +42,7 @@ REQUIRED_PHASES = {
     "UNI-02D-SONYA-GATE-01",
     "RETRO-LANE-00",
     "PUBLIC-UTILITY-ALPHA-00",
+    "RAW-BASELINE-COMPARISON-00",
 }
 
 REQUIRED_COMMAND_FRAGMENTS = (
@@ -50,6 +52,7 @@ REQUIRED_COMMAND_FRAGMENTS = (
     "coherence.waveform.family_acceptance",
     "tests/test_ucc_risk_control_route.py",
     "Run-PUBLIC-UTILITY-ALPHA00-Acceptance.ps1",
+    "Run-RAW-BASELINE-COMPARISON00-Acceptance.ps1",
 )
 STALE_COMMAND_FRAGMENTS = (
     "tests/test_sonya_aegis_smoke_02.py",
@@ -95,7 +98,7 @@ def test_dashboard_contains_all_accepted_phases(tmp_path):
     dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text())
     phase_ids = {entry["phase_id"] for entry in dashboard["accepted_phases"]}
     assert phase_ids == REQUIRED_PHASES
-    assert dashboard["accepted_phase_count"] == 10
+    assert dashboard["accepted_phase_count"] == 11
 
 
 def test_dashboard_command_summaries_use_accepted_harnesses(tmp_path):
@@ -108,8 +111,9 @@ def test_dashboard_command_summaries_use_accepted_harnesses(tmp_path):
         assert fragment in summaries
 
 
-def test_validator_required_phases_include_public_utility_alpha():
+def test_validator_required_phases_include_public_utility_alpha_and_raw_baseline():
     assert "PUBLIC-UTILITY-ALPHA-00" in VALIDATOR_REQUIRED_PHASES
+    assert "RAW-BASELINE-COMPARISON-00" in VALIDATOR_REQUIRED_PHASES
 
 
 def test_public_utility_alpha_indexes_and_docs_are_generated(tmp_path):
@@ -129,6 +133,25 @@ def test_public_utility_alpha_indexes_and_docs_are_generated(tmp_path):
         "Public Utility Alpha is a local reviewer demo, not deployment authority."
         in claim_boundaries["boundaries"]
     )
+
+
+def test_raw_baseline_indexes_and_docs_are_generated(tmp_path):
+    out_dir, docs_dir = run_builder(tmp_path)
+    reproducibility = json.loads((out_dir / "reproducibility_index.json").read_text())
+    artifact_index = json.loads((out_dir / "artifact_index.json").read_text())
+    claim_boundaries = json.loads((out_dir / "claim_boundary_index.json").read_text())
+    quickstart = (docs_dir / "reviewer-quickstart.md").read_text()
+
+    commands = json.dumps(reproducibility)
+    assert "Run-RAW-BASELINE-COMPARISON00-Acceptance.ps1" in commands
+    assert "RAW-BASELINE-COMPARISON-00" in artifact_index["phases"]
+    assert "raw_baseline_comparison_packet.json" in artifact_index["phases"]["RAW-BASELINE-COMPARISON-00"]
+    assert "raw_baseline_comparison_00_acceptance_receipt.json" in artifact_index["phases"]["RAW-BASELINE-COMPARISON-00"]
+    assert (docs_dir / "raw-baseline-comparison.md").exists()
+    assert "Raw Baseline Comparison" in quickstart
+    boundary_text = "\n".join(claim_boundaries["boundaries"]).lower()
+    assert "not hallucination reduction proof" in boundary_text
+    assert "not model quality benchmark" in boundary_text
 
 
 def test_public_dashboard_outputs_do_not_include_stale_placeholder_commands(tmp_path):
@@ -191,6 +214,21 @@ def test_validator_fails_if_public_utility_alpha_makes_forbidden_claims(tmp_path
         out_dir, docs_dir = run_builder(tmp_path / claim.replace(" ", "_"))
         alpha = docs_dir / "public-utility-alpha.md"
         alpha.write_text(alpha.read_text() + f"\nPublic Utility Alpha claims {claim}.\n")
+        result = validate_dashboard(out_dir / "experiment_suite_dashboard.json", docs_dir)
+        assert result["passed"] is False, claim
+        assert claim.lower() in result["forbidden_claims_found"], result
+
+
+def test_validator_fails_if_raw_baseline_makes_forbidden_claims(tmp_path):
+    forbidden_claims = (
+        "hallucination reduction proven",
+        "model superiority proven",
+        "model quality benchmark",
+    )
+    for claim in forbidden_claims:
+        out_dir, docs_dir = run_builder(tmp_path / claim.replace(" ", "_"))
+        raw = docs_dir / "raw-baseline-comparison.md"
+        raw.write_text(raw.read_text() + f"\nRAW-BASELINE-COMPARISON-00 claims {claim}.\n")
         result = validate_dashboard(out_dir / "experiment_suite_dashboard.json", docs_dir)
         assert result["passed"] is False, claim
         assert claim.lower() in result["forbidden_claims_found"], result

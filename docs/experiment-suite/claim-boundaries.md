@@ -13,5 +13,7 @@
 - Reproducibility pack is not deployment authority.
 - Dashboard is not deployment authority.
 - Public Utility Alpha is a local reviewer demo, not deployment authority.
+- Raw Baseline Comparison is not hallucination reduction proof.
+- Raw Baseline Comparison is not model quality benchmark.
 
 No oracle posture. No deployment posture. No final-answer posture. No AI consciousness claim. No universal ontology claim.

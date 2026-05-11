@@ -16,10 +16,11 @@ This dashboard presents accepted evidence for reviewer orientation. It is not tr
 | UNI-02D-SONYA-GATE-01 | pdxvoiceteacher/CoherenceLattice | accepted | A Sonya-gated safe portability fixture can be inspected. | Scan selected_priors and matches[*].prior shapes for quarantine/provenance posture. |
 | RETRO-LANE-00 | pdxvoiceteacher/CoherenceLattice | accepted | sandbox_auto, review_required, and blocked admission lanes can be reviewed. | Admission is not execution; hallucination is telemetry, not evidence. |
 | PUBLIC-UTILITY-ALPHA-00 | pdxvoiceteacher/CoherenceLattice | accepted | A local fixture-only reviewer demo can assemble the accepted governed artifact cognition chain and make its evidence, route timeline, candidate packet path, bypass block, model-braid observation, catalog boundary, inventory, and parity artifacts inspectable. | This is a local reviewer harness. It demonstrates bounded artifact assembly and claim-boundary visibility. It is not a product launch, not deployment readiness, and not proof of real-world performance. |
+| RAW-BASELINE-COMPARISON-00 | pdxvoiceteacher/CoherenceLattice | accepted | RAW-BASELINE-COMPARISON-00 provides a fixture-only measurement scaffold for comparing raw-text-style baseline arms with the Sonya-governed candidate packet path across unsupported-claim count, source-linkage posture, route receipt posture, forbidden-artifact leakage, and raw-output admission. | This phase is measurement infrastructure only. It does not prove that governed artifact cognition reduces hallucinations, improves model quality, or performs better on real-world tasks. It establishes a scaffold for future controlled comparisons. |
 
 ## Reviewer path
 
-Start with claim boundaries, then read the governed artifact cognition paper, WAVE Rosetta paper, SONYA-AEGIS-SMOKE-02, WAVE family, UNI-02D Sonya gate, and RETRO-LANE-00, and Public Utility Alpha pages.
+Start with claim boundaries, then read the governed artifact cognition paper, WAVE Rosetta paper, SONYA-AEGIS-SMOKE-02, WAVE family, UNI-02D Sonya gate, and RETRO-LANE-00, Public Utility Alpha, and Raw Baseline Comparison pages.
 
 ## What this proves
 
@@ -36,5 +37,6 @@ No oracle posture, no deployment posture, no final-answer posture, no AI conscio
 - [UNI-02D Sonya gate](uni02d-sonya-gate.md)
 - [RETRO-LANE-00](retro-lane-00.md)
 - [Public Utility Alpha](public-utility-alpha.md)
+- [Raw Baseline Comparison](raw-baseline-comparison.md)
 - [Governed artifact cognition paper](governed-artifact-cognition-paper.md)
 - [Waveform Rosetta paper](waveform-rosetta-paper.md)

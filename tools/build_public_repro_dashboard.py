@@ -57,6 +57,34 @@ PUBLIC_UTILITY_ALPHA_ARTIFACTS = [
     "model_braid_packet.json",
     "model_braid_observational_review_packet.json",
 ]
+
+RAW_BASELINE_COMPARISON_COMMAND = r""".\experiments\Run-RAW-BASELINE-COMPARISON00-Acceptance.ps1 `
+  -OutputRoot C:\UVLM\run_artifacts\raw_baseline_comparison_00 `
+  -LogDir C:\UVLM\run_artifacts\raw_baseline_comparison_00_logs `
+  -CiMode"""
+RAW_BASELINE_COMPARISON_ARTIFACTS = [
+    "raw_baseline_comparison_packet.json",
+    "raw_baseline_comparison_review_packet.json",
+    "raw_baseline_comparison_rows.jsonl",
+    "raw_baseline_comparison_summary.md",
+    "artifact_inventory.json",
+    "run_artifact_manifest.json",
+    "export_bundle_manifest.json",
+    "export_bundle_parity_report.json",
+    "raw_baseline_comparison_00_acceptance_receipt.json",
+]
+RAW_BASELINE_COMPARISON_CLAIMS_BLOCKED = [
+    "not hallucination reduction proof",
+    "not model quality benchmark",
+    "not truth certification",
+    "not deployment authority",
+    "not final answer release",
+    "not live model execution",
+    "not remote provider call",
+    "not universal portability proof",
+    "not AI consciousness claim",
+    "not production evaluation",
+]
 PUBLIC_UTILITY_ALPHA_CLAIMS_BLOCKED = [
     "Public Utility Alpha is not deployment authority.",
     "Public Utility Alpha is not truth certification.",
@@ -223,6 +251,18 @@ ACCEPTED_PHASES = [
         "reviewer_caution": "This is a local reviewer harness. It demonstrates bounded artifact assembly and claim-boundary visibility. It is not a product launch, not deployment readiness, and not proof of real-world performance.",
         "publication_status": "dashboard_indexed",
     },
+    {
+        "phase_id": "RAW-BASELINE-COMPARISON-00",
+        "repo": "pdxvoiceteacher/CoherenceLattice",
+        "status": "accepted",
+        "evidence_type": "fixture_only_measurement_scaffold",
+        "primary_artifacts": RAW_BASELINE_COMPARISON_ARTIFACTS,
+        "reproduction_command_summary": RAW_BASELINE_COMPARISON_COMMAND,
+        "claim_allowed": "RAW-BASELINE-COMPARISON-00 provides a fixture-only measurement scaffold for comparing raw-text-style baseline arms with the Sonya-governed candidate packet path across unsupported-claim count, source-linkage posture, route receipt posture, forbidden-artifact leakage, and raw-output admission.",
+        "claims_blocked": RAW_BASELINE_COMPARISON_CLAIMS_BLOCKED,
+        "reviewer_caution": "This phase is measurement infrastructure only. It does not prove that governed artifact cognition reduces hallucinations, improves model quality, or performs better on real-world tasks. It establishes a scaffold for future controlled comparisons.",
+        "publication_status": "dashboard_indexed",
+    },
 ]
 PARTIAL_PHASES = [
     {"phase_id": "TIMBRE-SPECTRAL-METRIC-TIER-02", "status": "planned_partial", "reason": "spectral-complexity tier remains future work"},
@@ -249,6 +289,8 @@ BOUNDARIES = [
     "Reproducibility pack is not deployment authority.",
     "Dashboard is not deployment authority.",
     "Public Utility Alpha is a local reviewer demo, not deployment authority.",
+    "Raw Baseline Comparison is not hallucination reduction proof.",
+    "Raw Baseline Comparison is not model quality benchmark.",
 ]
 GLOBAL_NON_CLAIMS = [
     "not truth certification",
@@ -310,6 +352,7 @@ def dashboard_payload() -> dict[str, Any]:
             "waveform_gold_physics_family_acceptance_packet.json",
             "sonya_aegis_smoke_02_acceptance_report.json",
             "public_utility_alpha_status.json",
+            "raw_baseline_comparison_packet.json",
         ],
         "publication_drafts": [
             "papers/governed_artifact_cognition/PUB_GOV_ARTIFACT_COG_01.md",
@@ -346,6 +389,7 @@ def reproducibility_index() -> dict[str, Any]:
                 {"name": "UNI-02D Sonya gate acceptance", "command": UNI02D_COMMAND},
                 {"name": "RETRO-LANE-00 acceptance", "command": RETRO_LANE_COMMAND},
                 {"name": "Public Utility Alpha acceptance", "command": PUBLIC_UTILITY_ALPHA_COMMAND},
+                {"name": "Raw Baseline Comparison acceptance", "command": RAW_BASELINE_COMPARISON_COMMAND},
                 {"name": "experiment suite repro pack builder", "command": "python -m coherence.tools.build_experiment_suite_repro_pack --registry experiments/experiment_suite_registry.json --artifacts-root artifacts --out-dir artifacts/experiment_suite_repro_pack --zip"},
             ],
             "Sophia": [
@@ -374,6 +418,7 @@ def artifact_index() -> dict[str, Any]:
             "UNI-02D": ["uni02d_sonya_gate_acceptance_report.json", "semantic_term_quarantine_packet.json", "runtime_profile_leakage_packet.json", "uni02d_prior_origin_provenance_packet.json", "uni02d_prior_quarantine_packet.json"],
             "RETRO-LANE-00": ["retrosynthesis_admission_packet.json", "retrosynthesis_admission_review_packet.json", "retro_lane_00_acceptance_receipt.json"],
             "PUBLIC-UTILITY-ALPHA-00": PUBLIC_UTILITY_ALPHA_ARTIFACTS,
+            "RAW-BASELINE-COMPARISON-00": RAW_BASELINE_COMPARISON_ARTIFACTS,
             "publications": ["PUB_GOV_ARTIFACT_COG_01.md", "PUB_WAVE_ROSETTA_01.md", "reviewer quickstarts", "status.json files"],
         },
     }
@@ -403,7 +448,7 @@ def docs() -> dict[str, str]:
     return {
         "README.md": "# Experiment Suite Docs\n\nPublic reviewer documentation for the claim-bounded reproducibility dashboard.\n",
         "assets/README.md": "# Assets\n\nOptional static assets for the public reproducibility dashboard.\n",
-        "index.md": f"# Public Experiment Suite Dashboard\n\nThis dashboard presents accepted evidence for reviewer orientation. It is not truth certification, not deployment authority, not final answer release, local fixture only, and requires external peer review.\n\n## Accepted evidence\n\n| Phase | Repo | Status | What this supports | Reviewer caution |\n| --- | --- | --- | --- | --- |\n{phase_rows}\n\n## Reviewer path\n\nStart with claim boundaries, then read the governed artifact cognition paper, WAVE Rosetta paper, SONYA-AEGIS-SMOKE-02, WAVE family, UNI-02D Sonya gate, and RETRO-LANE-00, and Public Utility Alpha pages.\n\n## What this proves\n\nIt proves only that accepted local fixture artifacts and draft publication materials are organized for review.\n\n## What this does not prove\n\nNo oracle posture, no deployment posture, no final-answer posture, no AI consciousness claim, and no universal ontology claim.\n\n## Phase pages\n\n- [SONYA-AEGIS-SMOKE-02](sonya-aegis-smoke-02.md)\n- [WAVE Gold-Physics](wave-gold-physics.md)\n- [UNI-02D Sonya gate](uni02d-sonya-gate.md)\n- [RETRO-LANE-00](retro-lane-00.md)\n- [Public Utility Alpha](public-utility-alpha.md)\n- [Governed artifact cognition paper](governed-artifact-cognition-paper.md)\n- [Waveform Rosetta paper](waveform-rosetta-paper.md)\n",
+        "index.md": f"# Public Experiment Suite Dashboard\n\nThis dashboard presents accepted evidence for reviewer orientation. It is not truth certification, not deployment authority, not final answer release, local fixture only, and requires external peer review.\n\n## Accepted evidence\n\n| Phase | Repo | Status | What this supports | Reviewer caution |\n| --- | --- | --- | --- | --- |\n{phase_rows}\n\n## Reviewer path\n\nStart with claim boundaries, then read the governed artifact cognition paper, WAVE Rosetta paper, SONYA-AEGIS-SMOKE-02, WAVE family, UNI-02D Sonya gate, and RETRO-LANE-00, Public Utility Alpha, and Raw Baseline Comparison pages.\n\n## What this proves\n\nIt proves only that accepted local fixture artifacts and draft publication materials are organized for review.\n\n## What this does not prove\n\nNo oracle posture, no deployment posture, no final-answer posture, no AI consciousness claim, and no universal ontology claim.\n\n## Phase pages\n\n- [SONYA-AEGIS-SMOKE-02](sonya-aegis-smoke-02.md)\n- [WAVE Gold-Physics](wave-gold-physics.md)\n- [UNI-02D Sonya gate](uni02d-sonya-gate.md)\n- [RETRO-LANE-00](retro-lane-00.md)\n- [Public Utility Alpha](public-utility-alpha.md)\n- [Raw Baseline Comparison](raw-baseline-comparison.md)\n- [Governed artifact cognition paper](governed-artifact-cognition-paper.md)\n- [Waveform Rosetta paper](waveform-rosetta-paper.md)\n",
         "claim-boundaries.md": f"# Claim Boundaries\n\n{boundaries}\n\nNo oracle posture. No deployment posture. No final-answer posture. No AI consciousness claim. No universal ontology claim.\n",
         "sonya-aegis-smoke-02.md": f"""# SONYA-AEGIS-SMOKE-02
 
@@ -501,6 +546,24 @@ Claims blocked: {" ".join(PUBLIC_UTILITY_ALPHA_CLAIMS_BLOCKED)}
 
 Caution: This is a local reviewer harness. It demonstrates bounded artifact assembly and claim-boundary visibility. It is not a product launch, not deployment readiness, and not proof of real-world performance.
 """,
+        "raw-baseline-comparison.md": f"""# Raw Baseline Comparison
+
+Purpose: inspect RAW-BASELINE-COMPARISON-00 as a fixture-only measurement scaffold comparing raw-text-style baseline arms with the Sonya-governed candidate packet path.
+
+Run command:
+
+```powershell
+{RAW_BASELINE_COMPARISON_COMMAND}
+```
+
+Evidence: {", ".join(f"`{artifact}`" for artifact in RAW_BASELINE_COMPARISON_ARTIFACTS)}.
+
+Claim allowed: RAW-BASELINE-COMPARISON-00 provides a fixture-only measurement scaffold for comparing raw-text-style baseline arms with the Sonya-governed candidate packet path across unsupported-claim count, source-linkage posture, route receipt posture, forbidden-artifact leakage, and raw-output admission.
+
+Claims blocked: {"; ".join(RAW_BASELINE_COMPARISON_CLAIMS_BLOCKED)}.
+
+Caution: This phase is measurement infrastructure only. It does not prove that governed artifact cognition reduces hallucinations, improves model quality, or performs better on real-world tasks. It establishes a scaffold for future controlled comparisons.
+""",
         "governed-artifact-cognition-paper.md": "# Governed Artifact Cognition Paper\n\nSummary: systems paper for governed artifact cognition as a reproducible audit lab.\n\nLinks: `papers/governed_artifact_cognition/PUB_GOV_ARTIFACT_COG_01.md`, reviewer quickstart, claim boundary table, status.json.\n\nClaim boundaries: not truth certification, not deployment authority, not final answer release, local fixture only, requires external peer review.\n\nValidation command: `python tools/validate_publication_claims.py --paper papers/governed_artifact_cognition/PUB_GOV_ARTIFACT_COG_01.md --quickstart papers/governed_artifact_cognition/reviewer_quickstart.md --status papers/governed_artifact_cognition/status.json`.\n",
         "waveform-rosetta-paper.md": "# Waveform Rosetta Paper\n\nSummary: methods paper for closed-form WAVE Gold-Physics metric calibration.\n\nLinks: `papers/waveform_rosetta/PUB_WAVE_ROSETTA_01.md`, reviewer quickstart, theorem table, status.json.\n\nClaim boundaries: not universal ontology, not psychoacoustic effect, not AI consciousness, not deployment authority, not truth certification, requires external peer review.\n\nValidation command: `python tools/validate_publication_claims.py --paper papers/waveform_rosetta/PUB_WAVE_ROSETTA_01.md --quickstart papers/waveform_rosetta/reviewer_quickstart.md --status papers/waveform_rosetta/status.json`.\n",
         "reviewer-quickstart.md": f"""# Reviewer Quickstart
@@ -515,6 +578,7 @@ Caution: This is a local reviewer harness. It demonstrates bounded artifact asse
 6. UNI-02D Sonya gate
 7. RETRO-LANE-00
 8. Public Utility Alpha
+9. Raw Baseline Comparison
 
 ## CoherenceLattice commands
 
@@ -546,6 +610,12 @@ PowerShell Public Utility Alpha:
 
 ```powershell
 {PUBLIC_UTILITY_ALPHA_COMMAND}
+```
+
+PowerShell Raw Baseline Comparison:
+
+```powershell
+{RAW_BASELINE_COMPARISON_COMMAND}
 ```
 
 ## Sophia commands
