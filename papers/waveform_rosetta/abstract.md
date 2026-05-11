@@ -1,0 +1,3 @@
+# Abstract
+
+WAVE Gold-Physics is a closed-form synthetic calibration family that calibrates CoherenceLattice metrics against known waveform behavior. WAVE-00R through WAVE-03R are accepted members. The family distinguishes constructive reinforcement, coherent cancellation, detuning drift, incomplete cancellation, and observability degradation, while showing that high coherence is not equivalent to constructive output. This paper does not prove universal ontology, psychoacoustic effects, AI consciousness, TCHES engineering performance, UNI-02 portability, retrosynthesis readiness, deployment authority, or truth certification; it requires external peer review.
