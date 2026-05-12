@@ -15,5 +15,8 @@
   "raw_baseline_comparison_indexed": true,
   "not_hallucination_reduction_proof": true,
   "not_model_quality_benchmark": true,
-  "not_remote_provider_call": true
+  "not_remote_provider_call": true,
+  "evidence_review_pack_indexed": true,
+  "not_professional_advice": true,
+  "not_compliance_certification": true
 }
