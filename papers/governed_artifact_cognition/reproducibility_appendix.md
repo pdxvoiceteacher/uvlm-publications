@@ -83,6 +83,19 @@ RW-COMP-01 is the first fixture-only raw-vs-governed comparison involving Eviden
 
 Expected posture: deterministic fixture-only comparison across raw summary, raw multi-model summary, RAG-style grounded summary, Triadic partial governance, and full Evidence Review Pack v0.1.
 
+## RW-COMP-02
+
+RW-COMP-02 is the first deterministic multi-fixture battery extending RW-COMP-01. It compares raw single-model, raw multi-model, RAG-style grounded, Triadic-without-Phase-6, and full Evidence Review Pack arms across six controlled fixture families. It shows structural visibility improvement in deterministic fixtures and is a step toward future hallucination-reduction evidence. It is not hallucination-reduction proof yet and not model-superiority proof.
+
+```powershell
+.\experiments\Run-RW-COMP02-Acceptance.ps1 `
+  -OutputRoot C:\UVLM\run_artifacts\rw_comp_02 `
+  -LogDir C:\UVLM\run_artifacts\rw_comp_02_logs `
+  -CiMode
+```
+
+Expected posture: accepted deterministic multi-fixture battery with `fixture_count = 6`, `total_rows = 30`, `arm_count_per_fixture = 5`, all fixture arms present, no live model evaluation, no remote provider evaluation, not hallucination reduction proof, and not model superiority proof.
+
 ## Dashboard validation
 
 ```bash

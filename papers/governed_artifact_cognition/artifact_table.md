@@ -47,3 +47,9 @@
 | `rw_comp_01_rows.jsonl` | RW-COMP-01 | Inspect deterministic comparison rows across raw, RAG-style, partial governance, and full Evidence Review Pack fixtures. | Fixture-only; not live model evaluation. |
 | `rw_comp_01_summary.md` | RW-COMP-01 | Inspect comparison summary and reviewer interpretation. | Step toward future hallucination-reduction evidence, not proof. |
 | `rw_comp_01_acceptance_receipt.json` | RW-COMP-01 | Inspect acceptance receipt. | Not deployment authority; not production evaluation. |
+| `rw_comp_02_packet.json` | RW-COMP-02 | Inspect deterministic fixture battery packet across six fixture families. | Deterministic fixture battery; not hallucination reduction proof; not model superiority proof; not live model evaluation. |
+| `rw_comp_02_review_packet.json` | RW-COMP-02 | Inspect deterministic fixture battery review posture. | Deterministic fixture battery; not hallucination reduction proof; not model superiority proof; not live model evaluation. |
+| `rw_comp_02_rows.jsonl` | RW-COMP-02 | Inspect deterministic fixture battery rows across all five arms. | Deterministic fixture battery; not hallucination reduction proof; not model superiority proof; not live model evaluation. |
+| `rw_comp_02_fixture_manifest.json` | RW-COMP-02 | Inspect deterministic fixture battery fixture manifest. | Deterministic fixture battery; not hallucination reduction proof; not model superiority proof; not live model evaluation. |
+| `rw_comp_02_summary.md` | RW-COMP-02 | Inspect deterministic fixture battery summary. | Deterministic fixture battery; not hallucination reduction proof; not model superiority proof; not live model evaluation. |
+| `rw_comp_02_acceptance_receipt.json` | RW-COMP-02 | Inspect deterministic fixture battery acceptance receipt. | Deterministic fixture battery; not hallucination reduction proof; not model superiority proof; not live model evaluation. |

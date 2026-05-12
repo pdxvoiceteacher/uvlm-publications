@@ -20,5 +20,8 @@
   "not_professional_advice": true,
   "not_compliance_certification": true,
   "rw_comp_01_indexed": true,
-  "not_model_superiority_proof": true
+  "not_model_superiority_proof": true,
+  "rw_comp_02_indexed": true,
+  "not_live_model_evaluation": true,
+  "not_production_evaluation": true
 }

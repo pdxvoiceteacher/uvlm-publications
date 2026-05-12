@@ -85,6 +85,30 @@ Expected posture:
 - `hallucination_reduction_proof = false`
 - `model_superiority_proof = false`
 
+## How to reproduce RW-COMP-02
+
+RW-COMP-02 is the first deterministic multi-fixture battery extending RW-COMP-01. It compares raw, RAG-style, partial-governed, and full Evidence Review Pack arms across six controlled fixture families. It shows structural visibility improvement in deterministic fixtures and is a step toward future hallucination-reduction evidence. It is not hallucination-reduction proof yet and not model-superiority proof.
+
+```powershell
+.\experiments\Run-RW-COMP02-Acceptance.ps1 `
+  -OutputRoot C:\UVLM\run_artifacts\rw_comp_02 `
+  -LogDir C:\UVLM\run_artifacts\rw_comp_02_logs `
+  -CiMode
+```
+
+Expected posture:
+
+- `review_status = accepted_as_multi_fixture_comparison_battery`
+- `fixture_count >= 6`
+- `all_arms_present_for_each_fixture = true`
+- `evidence_review_pack_arm_present_for_each_fixture = true`
+- `comparison_is_not_hallucination_reduction_proof = true`
+- `comparison_is_not_model_superiority_proof = true`
+- `live_model_execution_performed = false`
+- `remote_provider_call_performed = false`
+- `network_call_performed = false`
+- `promotion_blocked = true`
+
 ## Other accepted local commands
 
 ```powershell
@@ -123,3 +147,4 @@ python tools/validate_public_repro_dashboard.py --dashboard registry/experiment_
 - RETRO-LANE-00 is accepted as retrosynthesis admission policy, not retrosynthesis runtime.
 - Evidence Review Pack v0.1 is the first product-facing governed review receipt and AI review that shows its work, not truth certification, not professional advice, not compliance certification, not deployment authority, and not hallucination reduction proof.
 - RW-COMP-01 is the first fixture-only raw-vs-governed comparison involving Evidence Review Pack v0.1; it shows review-structure visibility in a deterministic fixture and is a step toward future hallucination-reduction evidence, not hallucination-reduction proof yet and not model superiority proof.
+- RW-COMP-02 is the first deterministic multi-fixture battery extending RW-COMP-01; it shows structural visibility improvement in deterministic fixtures, not hallucination-reduction proof yet and not model-superiority proof.

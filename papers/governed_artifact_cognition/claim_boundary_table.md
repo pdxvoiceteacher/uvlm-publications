@@ -41,3 +41,10 @@
 | RW-COMP-01 is a step toward future hallucination-reduction evidence. | It motivates future controlled work but does not prove reduction. |
 | RW-COMP-01 is not hallucination-reduction proof yet. | The comparison is a single deterministic fixture, not a hallucination-reduction result. |
 | RW-COMP-01 is not model superiority proof. | The comparison does not prove model or governance superiority. |
+| RW-COMP-02 is not hallucination reduction proof. | The deterministic multi-fixture battery does not prove hallucination reduction. |
+| RW-COMP-02 is not model superiority proof. | The battery does not prove model or governance superiority. |
+| RW-COMP-02 is not a model quality benchmark. | The battery is not a model quality benchmark. |
+| RW-COMP-02 is not live model evaluation. | The accepted battery is deterministic fixture evidence only. |
+| RW-COMP-02 is not professional advice. | The battery does not provide professional guidance. |
+| RW-COMP-02 is not compliance certification. | The battery does not certify compliance. |
+| RW-COMP-02 is not production evaluation. | The battery is not production evaluation. |
