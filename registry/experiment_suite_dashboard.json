@@ -8,7 +8,7 @@
   ],
   "dashboard_status": "draft_public_review",
   "generated_at": null,
-  "accepted_phase_count": 11,
+  "accepted_phase_count": 12,
   "partial_phase_count": 1,
   "blocked_phase_count": 1,
   "planned_phase_count": 3,
@@ -234,6 +234,56 @@
       "publication_status": "dashboard_indexed"
     },
     {
+      "phase_id": "EVIDENCE-REVIEW-PACK-00",
+      "repo": "pdxvoiceteacher/CoherenceLattice",
+      "status": "accepted",
+      "evidence_type": "fixture_only_evidence_review_receipt",
+      "product_posture": "first_product_facing_review_receipt",
+      "primary_artifacts": [
+        "evidence_review_pack_manifest.json",
+        "claim_evidence_map.json",
+        "unsupported_claim_report.json",
+        "uncertainty_retention_packet.json",
+        "source_bounded_counterevidence_packet.json",
+        "evidence_semantic_ecology_packet.json",
+        "evidence_review_action_recommendation_packet.json",
+        "evidence_review_pack_review_packet.json",
+        "reviewer_checklist.md",
+        "evidence_review_pack_summary.md",
+        "artifact_inventory.json",
+        "run_artifact_manifest.json",
+        "export_bundle_manifest.json",
+        "export_bundle_parity_report.json",
+        "evidence_review_pack_00_acceptance_receipt.json"
+      ],
+      "prerequisite_phases": [
+        "UNIVERSAL-EVIDENCE-INGRESS-00",
+        "UCC-CONTROL-PROFILE-SELECTOR-00",
+        "CANONICAL-METRIC-PACKET-01"
+      ],
+      "reproduction_command_summary": ".\\experiments\\Run-EVIDENCE-REVIEW-PACK00-Acceptance.ps1 `\n  -OutputRoot C:\\UVLM\\run_artifacts\\evidence_review_pack_00 `\n  -LogDir C:\\UVLM\\run_artifacts\\evidence_review_pack_00_logs `\n  -ControlProfileId generic_evidence_review.v1 `\n  -CiMode",
+      "claim_allowed": "EVIDENCE-REVIEW-PACK-00 demonstrates a fixture-only, source-bounded, UCC-control-profile-governed review receipt that makes supported claims, unsupported claims, missing uncertainty, preserved counterevidence, semantic drift signals, UCC threshold posture, reserved-authority blocks, and reviewer next actions inspectable. Evidence Review Pack v0.1 is AI review that shows its work.",
+      "claims_blocked": [
+        "not truth certification",
+        "not deployment authority",
+        "not final answer release",
+        "not legal advice",
+        "not medical advice",
+        "not tax advice",
+        "not compliance certification",
+        "not hallucination reduction proof",
+        "not model quality benchmark",
+        "not model superiority proof",
+        "not live model execution",
+        "not remote provider call",
+        "not production evaluation",
+        "not universal portability proof",
+        "not AI consciousness claim"
+      ],
+      "reviewer_caution": "Evidence Review Pack v0.1 is a fixture-only review receipt. It can show which claims are source-supported or unsupported in a controlled fixture and can expose missing uncertainty and counterevidence. It does not certify truth, provide professional advice, prove hallucination reduction, or authorize deployment.",
+      "publication_status": "dashboard_indexed"
+    },
+    {
       "phase_id": "RAW-BASELINE-COMPARISON-00",
       "repo": "pdxvoiceteacher/CoherenceLattice",
       "status": "accepted",
@@ -291,7 +341,8 @@
     "waveform_gold_physics_family_acceptance_packet.json",
     "sonya_aegis_smoke_02_acceptance_report.json",
     "public_utility_alpha_status.json",
-    "raw_baseline_comparison_packet.json"
+    "raw_baseline_comparison_packet.json",
+    "evidence_review_pack_manifest.json"
   ],
   "publication_drafts": [
     "papers/governed_artifact_cognition/PUB_GOV_ARTIFACT_COG_01.md",
@@ -314,6 +365,11 @@
     "not live model execution",
     "not live adapter execution",
     "not remote provider call",
+    "not legal advice",
+    "not medical advice",
+    "not tax advice",
+    "not compliance certification",
+    "not production evaluation",
     "not federation",
     "not recursive braid"
   ],

@@ -30,6 +30,7 @@ REQUIRED_DOCS = {
     "claim-boundaries.md",
     "public-utility-alpha.md",
     "raw-baseline-comparison.md",
+    "evidence-review-pack.md",
 }
 REQUIRED_PHASES = {
     "EXP-SUITE-REGISTRY-01",
@@ -43,6 +44,7 @@ REQUIRED_PHASES = {
     "RETRO-LANE-00",
     "PUBLIC-UTILITY-ALPHA-00",
     "RAW-BASELINE-COMPARISON-00",
+    "EVIDENCE-REVIEW-PACK-00",
 }
 
 REQUIRED_COMMAND_FRAGMENTS = (
@@ -53,6 +55,7 @@ REQUIRED_COMMAND_FRAGMENTS = (
     "tests/test_ucc_risk_control_route.py",
     "Run-PUBLIC-UTILITY-ALPHA00-Acceptance.ps1",
     "Run-RAW-BASELINE-COMPARISON00-Acceptance.ps1",
+    "Run-EVIDENCE-REVIEW-PACK00-Acceptance.ps1",
 )
 STALE_COMMAND_FRAGMENTS = (
     "tests/test_sonya_aegis_smoke_02.py",
@@ -98,7 +101,7 @@ def test_dashboard_contains_all_accepted_phases(tmp_path):
     dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text())
     phase_ids = {entry["phase_id"] for entry in dashboard["accepted_phases"]}
     assert phase_ids == REQUIRED_PHASES
-    assert dashboard["accepted_phase_count"] == 11
+    assert dashboard["accepted_phase_count"] == 12
 
 
 def test_dashboard_command_summaries_use_accepted_harnesses(tmp_path):
@@ -111,9 +114,10 @@ def test_dashboard_command_summaries_use_accepted_harnesses(tmp_path):
         assert fragment in summaries
 
 
-def test_validator_required_phases_include_public_utility_alpha_and_raw_baseline():
+def test_validator_required_phases_include_public_utility_alpha_raw_baseline_and_evidence_review_pack():
     assert "PUBLIC-UTILITY-ALPHA-00" in VALIDATOR_REQUIRED_PHASES
     assert "RAW-BASELINE-COMPARISON-00" in VALIDATOR_REQUIRED_PHASES
+    assert "EVIDENCE-REVIEW-PACK-00" in VALIDATOR_REQUIRED_PHASES
 
 
 def test_public_utility_alpha_indexes_and_docs_are_generated(tmp_path):
@@ -153,6 +157,32 @@ def test_raw_baseline_indexes_and_docs_are_generated(tmp_path):
     assert "not hallucination reduction proof" in boundary_text
     assert "not model quality benchmark" in boundary_text
 
+
+
+def test_evidence_review_pack_indexes_and_docs_are_generated(tmp_path):
+    out_dir, docs_dir = run_builder(tmp_path)
+    reproducibility = json.loads((out_dir / "reproducibility_index.json").read_text())
+    artifact_index = json.loads((out_dir / "artifact_index.json").read_text())
+    claim_boundaries = json.loads((out_dir / "claim_boundary_index.json").read_text())
+    quickstart = (docs_dir / "reviewer-quickstart.md").read_text()
+    boundaries = (docs_dir / "claim-boundaries.md").read_text()
+
+    commands = json.dumps(reproducibility)
+    assert "Run-EVIDENCE-REVIEW-PACK00-Acceptance.ps1" in commands
+    assert "EVIDENCE-REVIEW-PACK-00" in artifact_index["phases"]
+    assert "evidence_review_pack_manifest.json" in artifact_index["phases"]["EVIDENCE-REVIEW-PACK-00"]
+    assert "claim_evidence_map.json" in artifact_index["phases"]["EVIDENCE-REVIEW-PACK-00"]
+    assert (docs_dir / "evidence-review-pack.md").exists()
+    assert "Evidence Review Pack" in quickstart
+    assert "AI review that shows its work" in boundaries
+    boundary_text = "\n".join(claim_boundaries["boundaries"]).lower()
+    for phrase in (
+        "not legal advice",
+        "not medical advice",
+        "not tax advice",
+        "not compliance certification",
+    ):
+        assert phrase in boundary_text
 
 def test_public_dashboard_outputs_do_not_include_stale_placeholder_commands(tmp_path):
     out_dir, docs_dir = run_builder(tmp_path)
@@ -233,6 +263,42 @@ def test_validator_fails_if_raw_baseline_makes_forbidden_claims(tmp_path):
         assert result["passed"] is False, claim
         assert claim.lower() in result["forbidden_claims_found"], result
 
+
+
+def test_validator_fails_if_evidence_review_pack_phase_is_removed(tmp_path):
+    out_dir, docs_dir = run_builder(tmp_path)
+    dashboard_path = out_dir / "experiment_suite_dashboard.json"
+    dashboard = json.loads(dashboard_path.read_text())
+    dashboard["accepted_phases"] = [
+        phase
+        for phase in dashboard["accepted_phases"]
+        if phase["phase_id"] != "EVIDENCE-REVIEW-PACK-00"
+    ]
+    dashboard_path.write_text(json.dumps(dashboard), encoding="utf-8")
+    result = validate_dashboard(dashboard_path, docs_dir)
+    assert result["passed"] is False
+    assert "EVIDENCE-REVIEW-PACK-00" in result["missing_accepted_phases"]
+
+
+def test_validator_fails_if_evidence_review_pack_makes_forbidden_claims(tmp_path):
+    forbidden_claims = (
+        "truth certified",
+        "hallucination reduction proven",
+        "legal advice",
+        "medical advice",
+        "tax advice",
+        "compliance certification",
+        "deployment authorized",
+        "production evaluation",
+        "production ready",
+    )
+    for claim in forbidden_claims:
+        out_dir, docs_dir = run_builder(tmp_path / claim.replace(" ", "_"))
+        pack = docs_dir / "evidence-review-pack.md"
+        pack.write_text(pack.read_text() + f"\nEvidence Review Pack claims {claim}.\n")
+        result = validate_dashboard(out_dir / "experiment_suite_dashboard.json", docs_dir)
+        assert result["passed"] is False, claim
+        assert claim.lower() in result["forbidden_claims_found"], result
 
 def test_validator_fails_if_dashboard_claims_deployment_readiness(tmp_path):
     out_dir, docs_dir = run_builder(tmp_path)

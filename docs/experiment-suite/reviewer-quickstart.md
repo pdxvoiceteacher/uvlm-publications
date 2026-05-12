@@ -11,6 +11,7 @@
 7. RETRO-LANE-00
 8. Public Utility Alpha
 9. Raw Baseline Comparison
+10. Evidence Review Pack
 
 ## CoherenceLattice commands
 
@@ -65,6 +66,18 @@ PowerShell Raw Baseline Comparison:
   -LogDir C:\UVLM\run_artifacts\raw_baseline_comparison_00_logs `
   -CiMode
 ```
+
+PowerShell Evidence Review Pack:
+
+```powershell
+.\experiments\Run-EVIDENCE-REVIEW-PACK00-Acceptance.ps1 `
+  -OutputRoot C:\UVLM\run_artifacts\evidence_review_pack_00 `
+  -LogDir C:\UVLM\run_artifacts\evidence_review_pack_00_logs `
+  -ControlProfileId generic_evidence_review.v1 `
+  -CiMode
+```
+
+Evidence Review Pack v0.1 is AI review that shows its work. It is not legal advice, not medical advice, not tax advice, and not compliance certification.
 
 ## Sophia commands
 
