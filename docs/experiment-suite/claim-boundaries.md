@@ -15,5 +15,14 @@
 - Public Utility Alpha is a local reviewer demo, not deployment authority.
 - Raw Baseline Comparison is not hallucination reduction proof.
 - Raw Baseline Comparison is not model quality benchmark.
+- Evidence Review Pack v0.1 is AI review that shows its work.
+- Evidence Review Pack is not truth certification.
+- Evidence Review Pack is not legal advice.
+- Evidence Review Pack is not medical advice.
+- Evidence Review Pack is not tax advice.
+- Evidence Review Pack is not compliance certification.
+- Evidence Review Pack is not hallucination reduction proof.
+- Evidence Review Pack is not live model execution.
+- Evidence Review Pack is not production evaluation.
 
 No oracle posture. No deployment posture. No final-answer posture. No AI consciousness claim. No universal ontology claim.

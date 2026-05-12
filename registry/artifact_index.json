@@ -54,6 +54,23 @@
       "export_bundle_parity_report.json",
       "raw_baseline_comparison_00_acceptance_receipt.json"
     ],
+    "EVIDENCE-REVIEW-PACK-00": [
+      "evidence_review_pack_manifest.json",
+      "claim_evidence_map.json",
+      "unsupported_claim_report.json",
+      "uncertainty_retention_packet.json",
+      "source_bounded_counterevidence_packet.json",
+      "evidence_semantic_ecology_packet.json",
+      "evidence_review_action_recommendation_packet.json",
+      "evidence_review_pack_review_packet.json",
+      "reviewer_checklist.md",
+      "evidence_review_pack_summary.md",
+      "artifact_inventory.json",
+      "run_artifact_manifest.json",
+      "export_bundle_manifest.json",
+      "export_bundle_parity_report.json",
+      "evidence_review_pack_00_acceptance_receipt.json"
+    ],
     "publications": [
       "PUB_GOV_ARTIFACT_COG_01.md",
       "PUB_WAVE_ROSETTA_01.md",
