@@ -252,6 +252,148 @@ def test_governed_artifact_cognition_raw_baseline_updates_are_present():
     assert status["not_model_quality_benchmark"] is True
 
 
+def test_governed_artifact_cognition_evidence_review_pack_updates_are_present():
+    paper = (ROOT / "PUB_GOV_ARTIFACT_COG_01.md").read_text(encoding="utf-8")
+    artifact_table = (ROOT / "artifact_table.md").read_text(encoding="utf-8")
+    boundary_table = (ROOT / "claim_boundary_table.md").read_text(encoding="utf-8")
+    quickstart = (ROOT / "reviewer_quickstart.md").read_text(encoding="utf-8")
+    appendix = (ROOT / "reproducibility_appendix.md").read_text(encoding="utf-8")
+    status = json.loads((ROOT / "status.json").read_text(encoding="utf-8"))
+
+    for phrase in (
+        "EVIDENCE-REVIEW-PACK-00",
+        "Evidence Review Pack v0.1 is the first product-facing governed review receipt",
+        "Universal Evidence Ingress",
+        "UCC Control Profile Selector",
+        "AI review that shows its work",
+        "not truth certification",
+        "not professional advice",
+        "not compliance certification",
+        "not deployment authority",
+        "not hallucination reduction proof",
+    ):
+        assert phrase in paper
+    for artifact in (
+        "evidence_review_pack_manifest.json",
+        "claim_evidence_map.json",
+        "unsupported_claim_report.json",
+        "uncertainty_retention_packet.json",
+        "source_bounded_counterevidence_packet.json",
+        "evidence_semantic_ecology_packet.json",
+        "evidence_review_action_recommendation_packet.json",
+        "evidence_review_pack_review_packet.json",
+        "reviewer_checklist.md",
+        "evidence_review_pack_00_acceptance_receipt.json",
+    ):
+        assert artifact in artifact_table
+    for boundary in (
+        "Evidence Review Pack v0.1 is AI review that shows its work.",
+        "Evidence Review Pack v0.1 is not truth certification.",
+        "Evidence Review Pack v0.1 is not professional advice.",
+        "Evidence Review Pack v0.1 is not compliance certification.",
+        "Evidence Review Pack v0.1 is not deployment authority.",
+        "Evidence Review Pack v0.1 is not hallucination reduction proof.",
+    ):
+        assert boundary in boundary_table
+    assert "Run-EVIDENCE-REVIEW-PACK00-Acceptance.ps1" in quickstart
+    assert "Run-EVIDENCE-REVIEW-PACK00-Acceptance.ps1" in appendix
+    assert status["evidence_review_pack_indexed"] is True
+    assert status["not_professional_advice"] is True
+    assert status["not_compliance_certification"] is True
+
+
+def test_governed_artifact_cognition_rw_comp_01_updates_are_present():
+    paper = (ROOT / "PUB_GOV_ARTIFACT_COG_01.md").read_text(encoding="utf-8")
+    artifact_table = (ROOT / "artifact_table.md").read_text(encoding="utf-8")
+    boundary_table = (ROOT / "claim_boundary_table.md").read_text(encoding="utf-8")
+    quickstart = (ROOT / "reviewer_quickstart.md").read_text(encoding="utf-8")
+    appendix = (ROOT / "reproducibility_appendix.md").read_text(encoding="utf-8")
+    status = json.loads((ROOT / "status.json").read_text(encoding="utf-8"))
+
+    for phrase in (
+        "RW-COMP-01",
+        "first fixture-only raw-vs-governed comparison involving Evidence Review Pack v0.1",
+        "review-structure visibility",
+        "step toward future hallucination-reduction evidence",
+        "not hallucination-reduction proof yet",
+        "not model superiority proof",
+    ):
+        assert phrase in paper
+    for artifact in (
+        "rw_comp_01_packet.json",
+        "rw_comp_01_review_packet.json",
+        "rw_comp_01_rows.jsonl",
+        "rw_comp_01_summary.md",
+        "rw_comp_01_acceptance_receipt.json",
+    ):
+        assert artifact in artifact_table
+    for boundary in (
+        "RW-COMP-01 is the first fixture-only raw-vs-governed comparison involving Evidence Review Pack v0.1.",
+        "RW-COMP-01 is a step toward future hallucination-reduction evidence.",
+        "RW-COMP-01 is not hallucination-reduction proof yet.",
+        "RW-COMP-01 is not model superiority proof.",
+    ):
+        assert boundary in boundary_table
+    assert "Run-RW-COMP01-Acceptance.ps1" in quickstart
+    assert "Run-RW-COMP01-Acceptance.ps1" in appendix
+    assert status["rw_comp_01_indexed"] is True
+    assert status["not_model_superiority_proof"] is True
+
+
+def test_governed_artifact_cognition_rw_comp_02_updates_are_present():
+    paper = (ROOT / "PUB_GOV_ARTIFACT_COG_01.md").read_text(encoding="utf-8")
+    abstract = (ROOT / "abstract.md").read_text(encoding="utf-8")
+    artifact_table = (ROOT / "artifact_table.md").read_text(encoding="utf-8")
+    boundary_table = (ROOT / "claim_boundary_table.md").read_text(encoding="utf-8")
+    quickstart = (ROOT / "reviewer_quickstart.md").read_text(encoding="utf-8")
+    appendix = (ROOT / "reproducibility_appendix.md").read_text(encoding="utf-8")
+    status = json.loads((ROOT / "status.json").read_text(encoding="utf-8"))
+
+    combined_paper = paper + "\n" + abstract
+    for phrase in (
+        "RW-COMP-02",
+        "deterministic multi-fixture comparison battery",
+        "six controlled fixture families",
+        "raw single-model",
+        "raw multi-model",
+        "RAG-style grounded",
+        "Triadic-without-Phase-6",
+        "full Evidence Review Pack arms",
+        "structural visibility improvement",
+        "step toward future hallucination-reduction evidence",
+        "not hallucination reduction proof",
+        "not hallucination-reduction proof yet",
+        "not model-superiority proof",
+    ):
+        assert phrase in combined_paper
+    for artifact in (
+        "rw_comp_02_packet.json",
+        "rw_comp_02_review_packet.json",
+        "rw_comp_02_rows.jsonl",
+        "rw_comp_02_fixture_manifest.json",
+        "rw_comp_02_summary.md",
+        "rw_comp_02_acceptance_receipt.json",
+    ):
+        assert artifact in artifact_table
+    for boundary in (
+        "RW-COMP-02 is not hallucination reduction proof.",
+        "RW-COMP-02 is not model superiority proof.",
+        "RW-COMP-02 is not a model quality benchmark.",
+        "RW-COMP-02 is not live model evaluation.",
+        "RW-COMP-02 is not professional advice.",
+        "RW-COMP-02 is not compliance certification.",
+        "RW-COMP-02 is not production evaluation.",
+    ):
+        assert boundary in boundary_table
+    assert "Run-RW-COMP02-Acceptance.ps1" in quickstart
+    assert "Run-RW-COMP02-Acceptance.ps1" in appendix
+    assert "review_status = accepted_as_multi_fixture_comparison_battery" in quickstart
+    assert status["rw_comp_02_indexed"] is True
+    assert status["not_live_model_evaluation"] is True
+    assert status["not_production_evaluation"] is True
+
+
+
 def _copy_governed_paper(tmp_path: Path) -> Path:
     paper_root = tmp_path / "paper"
     paper_root.mkdir(parents=True)
@@ -274,7 +416,12 @@ def test_claim_validator_rejects_new_governed_artifact_overclaims(tmp_path):
         "model braid is answer selection",
         "hallucination reduction proven",
         "model superiority proven",
+        "model superiority proof",
+        "hallucination reduction proof",
+        "live model evaluation",
         "model quality benchmark",
+        "professional advice",
+        "compliance certification",
     )
     for claim in forbidden_claims:
         paper_root = _copy_governed_paper(tmp_path / claim.replace(" ", "_").replace("-", "_"))

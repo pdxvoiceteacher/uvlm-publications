@@ -32,3 +32,24 @@
 | `raw_baseline_comparison_rows.jsonl` | RAW-BASELINE-COMPARISON-00 | Inspect deterministic fixture rows. | Fixture-only; not hallucination reduction proof; not model quality benchmark; not live model execution. |
 | `raw_baseline_comparison_summary.md` | RAW-BASELINE-COMPARISON-00 | Inspect scaffold summary. | Fixture-only; not hallucination reduction proof; not model quality benchmark; not live model execution. |
 | `raw_baseline_comparison_00_acceptance_receipt.json` | RAW-BASELINE-COMPARISON-00 | Inspect acceptance receipt. | Fixture-only; not hallucination reduction proof; not model quality benchmark; not live model execution. |
+| `evidence_review_pack_manifest.json` | EVIDENCE-REVIEW-PACK-00 | Inspect Evidence Review Pack manifest. | First product-facing governed review receipt; not truth certification. |
+| `claim_evidence_map.json` | EVIDENCE-REVIEW-PACK-00 | Inspect source-bounded claim/evidence mapping. | AI review that shows its work; not professional advice. |
+| `unsupported_claim_report.json` | EVIDENCE-REVIEW-PACK-00 | Inspect unsupported-claim visibility. | Not hallucination reduction proof. |
+| `uncertainty_retention_packet.json` | EVIDENCE-REVIEW-PACK-00 | Inspect missing uncertainty retention. | Not final-answer release. |
+| `source_bounded_counterevidence_packet.json` | EVIDENCE-REVIEW-PACK-00 | Inspect preserved counterevidence. | Not truth certification. |
+| `evidence_semantic_ecology_packet.json` | EVIDENCE-REVIEW-PACK-00 | Inspect semantic ecology signals. | Not model quality benchmark. |
+| `evidence_review_action_recommendation_packet.json` | EVIDENCE-REVIEW-PACK-00 | Inspect reviewer next actions. | Recommendation is not deployment authority. |
+| `evidence_review_pack_review_packet.json` | EVIDENCE-REVIEW-PACK-00 | Inspect UCC threshold posture and reserved-authority blocks. | UCC posture is not compliance certification. |
+| `reviewer_checklist.md` | EVIDENCE-REVIEW-PACK-00 | Inspect reviewer checklist. | Checklist is not professional advice. |
+| `evidence_review_pack_00_acceptance_receipt.json` | EVIDENCE-REVIEW-PACK-00 | Inspect acceptance receipt. | Fixture-only; not deployment authority; not hallucination reduction proof. |
+| `rw_comp_01_packet.json` | RW-COMP-01 | Inspect fixture-only raw-vs-governed comparison packet involving Evidence Review Pack v0.1. | Shows review-structure visibility; not hallucination-reduction proof yet. |
+| `rw_comp_01_review_packet.json` | RW-COMP-01 | Inspect review posture for the deterministic fixture comparison. | Not model superiority proof. |
+| `rw_comp_01_rows.jsonl` | RW-COMP-01 | Inspect deterministic comparison rows across raw, RAG-style, partial governance, and full Evidence Review Pack fixtures. | Fixture-only; not live model evaluation. |
+| `rw_comp_01_summary.md` | RW-COMP-01 | Inspect comparison summary and reviewer interpretation. | Step toward future hallucination-reduction evidence, not proof. |
+| `rw_comp_01_acceptance_receipt.json` | RW-COMP-01 | Inspect acceptance receipt. | Not deployment authority; not production evaluation. |
+| `rw_comp_02_packet.json` | RW-COMP-02 | Inspect deterministic fixture battery packet across six fixture families. | Deterministic fixture battery; not hallucination reduction proof; not model superiority proof; not live model evaluation. |
+| `rw_comp_02_review_packet.json` | RW-COMP-02 | Inspect deterministic fixture battery review posture. | Deterministic fixture battery; not hallucination reduction proof; not model superiority proof; not live model evaluation. |
+| `rw_comp_02_rows.jsonl` | RW-COMP-02 | Inspect deterministic fixture battery rows across all five arms. | Deterministic fixture battery; not hallucination reduction proof; not model superiority proof; not live model evaluation. |
+| `rw_comp_02_fixture_manifest.json` | RW-COMP-02 | Inspect deterministic fixture battery fixture manifest. | Deterministic fixture battery; not hallucination reduction proof; not model superiority proof; not live model evaluation. |
+| `rw_comp_02_summary.md` | RW-COMP-02 | Inspect deterministic fixture battery summary. | Deterministic fixture battery; not hallucination reduction proof; not model superiority proof; not live model evaluation. |
+| `rw_comp_02_acceptance_receipt.json` | RW-COMP-02 | Inspect deterministic fixture battery acceptance receipt. | Deterministic fixture battery; not hallucination reduction proof; not model superiority proof; not live model evaluation. |
