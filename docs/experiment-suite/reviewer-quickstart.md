@@ -14,6 +14,7 @@
 10. Evidence Review Pack
 11. RW-COMP-01
 12. RW-COMP-02
+13. Retrosynthesis Sandbox Cycle
 
 ## CoherenceLattice commands
 
@@ -103,6 +104,18 @@ PowerShell RW-COMP-02:
 ```
 
 RW-COMP-02 is a deterministic multi-fixture comparison battery and remains not hallucination reduction proof. It is not model superiority proof, not professional advice, not compliance certification, and not production evaluation.
+
+PowerShell Retrosynthesis Sandbox Cycle:
+
+```powershell
+.\experiments\Run-RETROSYNTHESIS-SANDBOX-CYCLE01-Acceptance.ps1 `
+  -OutputRoot C:\UVLM\run_artifacts\retrosynthesis_sandbox_cycle_01 `
+  -LogDir C:\UVLM\run_artifacts\retrosynthesis_sandbox_cycle_01_logs `
+  -ControlProfileId generic_evidence_review.v1 `
+  -CiMode
+```
+
+Retrosynthesis Sandbox Cycle is candidate repair, not canon adoption. It is not memory write, not final answer release, not Publisher finalization, not Omega detection, not deployment authority, and not recursive self-improvement.
 
 ## Sophia commands
 

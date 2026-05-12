@@ -39,6 +39,10 @@
         "command": ".\\experiments\\Run-RW-COMP02-Acceptance.ps1 `\n  -OutputRoot C:\\UVLM\\run_artifacts\\rw_comp_02 `\n  -LogDir C:\\UVLM\\run_artifacts\\rw_comp_02_logs `\n  -CiMode"
       },
       {
+        "name": "Retrosynthesis Sandbox Cycle acceptance",
+        "command": ".\\experiments\\Run-RETROSYNTHESIS-SANDBOX-CYCLE01-Acceptance.ps1 `\n  -OutputRoot C:\\UVLM\\run_artifacts\\retrosynthesis_sandbox_cycle_01 `\n  -LogDir C:\\UVLM\\run_artifacts\\retrosynthesis_sandbox_cycle_01_logs `\n  -ControlProfileId generic_evidence_review.v1 `\n  -CiMode"
+      },
+      {
         "name": "experiment suite repro pack builder",
         "command": "python -m coherence.tools.build_experiment_suite_repro_pack --registry experiments/experiment_suite_registry.json --artifacts-root artifacts --out-dir artifacts/experiment_suite_repro_pack --zip"
       }

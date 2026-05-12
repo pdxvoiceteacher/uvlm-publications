@@ -96,6 +96,37 @@ RW-COMP-02 is the first deterministic multi-fixture battery extending RW-COMP-01
 
 Expected posture: accepted deterministic multi-fixture battery with `fixture_count = 6`, `total_rows = 30`, `arm_count_per_fixture = 5`, all fixture arms present, no live model evaluation, no remote provider evaluation, not hallucination reduction proof, and not model superiority proof.
 
+## RETROSYNTHESIS-SANDBOX-CYCLE-01
+
+Retrosynthesis Sandbox Cycle is candidate repair, not canon adoption. Expected posture is accepted bounded candidate repair with missing-evidence requests, claim-map revision candidates, uncertainty-restoration candidates, counterevidence-expansion candidates, next-experiment recommendations, no live model execution, no remote provider call, and no network call. It is not memory write, not final answer release, not Publisher finalization, not deployment authority, not Omega detection, not publication claim authorization, and not recursive self-improvement.
+
+```powershell
+.\experiments\Run-RETROSYNTHESIS-SANDBOX-CYCLE01-Acceptance.ps1 `
+  -OutputRoot C:\UVLM\run_artifacts\retrosynthesis_sandbox_cycle_01 `
+  -LogDir C:\UVLM\run_artifacts\retrosynthesis_sandbox_cycle_01_logs `
+  -ControlProfileId generic_evidence_review.v1 `
+  -CiMode
+```
+
+Expected posture:
+
+- `review_status = accepted_as_bounded_retrosynthesis_sandbox_cycle`
+- `candidate_repair_artifacts_emitted = true`
+- `missing_evidence_requests_visible = true`
+- `uncertainty_restoration_visible = true`
+- `counterevidence_preserved = true`
+- `hash_only_evidence_not_interpreted = true`
+- `canon_adoption_blocked = true`
+- `memory_write_blocked = true`
+- `final_answer_release_blocked = true`
+- `publisher_finalization_blocked = true`
+- `deployment_blocked = true`
+- `omega_detection_blocked = true`
+- `promotion_blocked = true`
+- `live_model_execution_performed = false`
+- `remote_provider_call_performed = false`
+- `network_call_performed = false`
+
 ## Dashboard validation
 
 ```bash
