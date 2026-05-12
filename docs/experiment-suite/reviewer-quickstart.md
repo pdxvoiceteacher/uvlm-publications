@@ -12,6 +12,7 @@
 8. Public Utility Alpha
 9. Raw Baseline Comparison
 10. Evidence Review Pack
+11. RW-COMP-01
 
 ## CoherenceLattice commands
 
@@ -78,6 +79,18 @@ PowerShell Evidence Review Pack:
 ```
 
 Evidence Review Pack v0.1 is AI review that shows its work. It is not legal advice, not medical advice, not tax advice, and not compliance certification.
+
+PowerShell RW-COMP-01:
+
+```powershell
+.\experiments\Run-RW-COMP01-Acceptance.ps1 `
+  -OutputRoot C:\UVLM\run_artifacts\rw_comp_01 `
+  -LogDir C:\UVLM\run_artifacts\rw_comp_01_logs `
+  -ControlProfileId generic_evidence_review.v1 `
+  -CiMode
+```
+
+RW-COMP-01 is a fixture-only comparison scaffold, not hallucination reduction proof. It is not model superiority proof, not professional advice, not compliance certification, and not production evaluation.
 
 ## Sophia commands
 

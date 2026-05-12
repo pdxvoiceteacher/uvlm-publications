@@ -20,6 +20,7 @@ REQUIRED_PHASES = {
     "PUBLIC-UTILITY-ALPHA-00",
     "RAW-BASELINE-COMPARISON-00",
     "EVIDENCE-REVIEW-PACK-00",
+    "RW-COMP-01",
 }
 REQUIRED_BOUNDARY_PHRASES = (
     "not truth certification",
@@ -51,6 +52,13 @@ REQUIRED_BOUNDARY_PHRASES = (
     "not compliance certification",
     "not live model execution",
     "not production evaluation",
+    "RW-COMP-01",
+    "fixture-only comparison scaffold",
+    "not model superiority proof",
+    "not model quality benchmark",
+    "not live model evaluation",
+    "not professional advice",
+    "not compliance certification",
 )
 FORBIDDEN_PHRASES = (
     "deployment readiness",
@@ -75,6 +83,11 @@ FORBIDDEN_PHRASES = (
     "hallucination reduction proven",
     "model quality benchmark",
     "model superiority proven",
+    "model superiority proof",
+    "hallucination reduction proof",
+    "live model evaluation",
+    "remote provider evaluation",
+    "professional advice",
     "legally compliant",
     "legal advice",
     "medical advice",
@@ -89,6 +102,7 @@ ALLOWED_NEGATED = (
     "not ",
     "no ",
     "without ",
+    "does not ",
     "is not ",
     "not a ",
     "not an ",

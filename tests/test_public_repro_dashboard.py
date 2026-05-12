@@ -31,6 +31,7 @@ REQUIRED_DOCS = {
     "public-utility-alpha.md",
     "raw-baseline-comparison.md",
     "evidence-review-pack.md",
+    "rw-comp-01.md",
 }
 REQUIRED_PHASES = {
     "EXP-SUITE-REGISTRY-01",
@@ -45,6 +46,7 @@ REQUIRED_PHASES = {
     "PUBLIC-UTILITY-ALPHA-00",
     "RAW-BASELINE-COMPARISON-00",
     "EVIDENCE-REVIEW-PACK-00",
+    "RW-COMP-01",
 }
 
 REQUIRED_COMMAND_FRAGMENTS = (
@@ -56,6 +58,7 @@ REQUIRED_COMMAND_FRAGMENTS = (
     "Run-PUBLIC-UTILITY-ALPHA00-Acceptance.ps1",
     "Run-RAW-BASELINE-COMPARISON00-Acceptance.ps1",
     "Run-EVIDENCE-REVIEW-PACK00-Acceptance.ps1",
+    "Run-RW-COMP01-Acceptance.ps1",
 )
 STALE_COMMAND_FRAGMENTS = (
     "tests/test_sonya_aegis_smoke_02.py",
@@ -101,7 +104,7 @@ def test_dashboard_contains_all_accepted_phases(tmp_path):
     dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text())
     phase_ids = {entry["phase_id"] for entry in dashboard["accepted_phases"]}
     assert phase_ids == REQUIRED_PHASES
-    assert dashboard["accepted_phase_count"] == 12
+    assert dashboard["accepted_phase_count"] == 13
 
 
 def test_dashboard_command_summaries_use_accepted_harnesses(tmp_path):
@@ -166,6 +169,7 @@ def test_evidence_review_pack_indexes_and_docs_are_generated(tmp_path):
     claim_boundaries = json.loads((out_dir / "claim_boundary_index.json").read_text())
     quickstart = (docs_dir / "reviewer-quickstart.md").read_text()
     boundaries = (docs_dir / "claim-boundaries.md").read_text()
+    index = (docs_dir / "index.md").read_text()
 
     commands = json.dumps(reproducibility)
     assert "Run-EVIDENCE-REVIEW-PACK00-Acceptance.ps1" in commands
@@ -180,6 +184,35 @@ def test_evidence_review_pack_indexes_and_docs_are_generated(tmp_path):
         "not legal advice",
         "not medical advice",
         "not tax advice",
+        "not compliance certification",
+    ):
+        assert phrase in boundary_text
+
+
+def test_rw_comp_01_indexes_and_docs_are_generated(tmp_path):
+    out_dir, docs_dir = run_builder(tmp_path)
+    reproducibility = json.loads((out_dir / "reproducibility_index.json").read_text())
+    artifact_index = json.loads((out_dir / "artifact_index.json").read_text())
+    claim_boundaries = json.loads((out_dir / "claim_boundary_index.json").read_text())
+    quickstart = (docs_dir / "reviewer-quickstart.md").read_text()
+    boundaries = (docs_dir / "claim-boundaries.md").read_text()
+    index = (docs_dir / "index.md").read_text()
+
+    commands = json.dumps(reproducibility)
+    assert "Run-RW-COMP01-Acceptance.ps1" in commands
+    assert "RW-COMP-01" in artifact_index["phases"]
+    assert "rw_comp_01_packet.json" in artifact_index["phases"]["RW-COMP-01"]
+    assert "rw_comp_01_acceptance_receipt.json" in artifact_index["phases"]["RW-COMP-01"]
+    assert (docs_dir / "rw-comp-01.md").exists()
+    assert "RW-COMP-01" in quickstart
+    assert "rw-comp-01.md" in index
+    assert "fixture-only comparison scaffold" in boundaries
+    boundary_text = "\n".join(claim_boundaries["boundaries"]).lower()
+    for phrase in (
+        "not hallucination reduction proof",
+        "not model superiority proof",
+        "not model quality benchmark",
+        "not professional advice",
         "not compliance certification",
     ):
         assert phrase in boundary_text
@@ -296,6 +329,45 @@ def test_validator_fails_if_evidence_review_pack_makes_forbidden_claims(tmp_path
         out_dir, docs_dir = run_builder(tmp_path / claim.replace(" ", "_"))
         pack = docs_dir / "evidence-review-pack.md"
         pack.write_text(pack.read_text() + f"\nEvidence Review Pack claims {claim}.\n")
+        result = validate_dashboard(out_dir / "experiment_suite_dashboard.json", docs_dir)
+        assert result["passed"] is False, claim
+        assert claim.lower() in result["forbidden_claims_found"], result
+
+
+def test_validator_fails_if_rw_comp_01_phase_is_removed(tmp_path):
+    out_dir, docs_dir = run_builder(tmp_path)
+    dashboard_path = out_dir / "experiment_suite_dashboard.json"
+    dashboard = json.loads(dashboard_path.read_text())
+    dashboard["accepted_phases"] = [
+        phase
+        for phase in dashboard["accepted_phases"]
+        if phase["phase_id"] != "RW-COMP-01"
+    ]
+    dashboard_path.write_text(json.dumps(dashboard), encoding="utf-8")
+    result = validate_dashboard(dashboard_path, docs_dir)
+    assert result["passed"] is False
+    assert "RW-COMP-01" in result["missing_accepted_phases"]
+
+
+def test_validator_fails_if_rw_comp_01_makes_forbidden_claims(tmp_path):
+    forbidden_claims = (
+        "hallucination reduction proof",
+        "hallucination reduction proven",
+        "model superiority proof",
+        "model superiority proven",
+        "professional advice",
+        "compliance certification",
+        "deployment authorized",
+        "production evaluation",
+        "production ready",
+        "live model evaluation",
+        "remote provider evaluation",
+        "final answer released",
+    )
+    for claim in forbidden_claims:
+        out_dir, docs_dir = run_builder(tmp_path / claim.replace(" ", "_"))
+        page = docs_dir / "rw-comp-01.md"
+        page.write_text(page.read_text() + f"\nRW-COMP-01 claims {claim}.\n")
         result = validate_dashboard(out_dir / "experiment_suite_dashboard.json", docs_dir)
         assert result["passed"] is False, claim
         assert claim.lower() in result["forbidden_claims_found"], result

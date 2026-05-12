@@ -22,4 +22,4 @@ Claim allowed: EVIDENCE-REVIEW-PACK-00 demonstrates a fixture-only, source-bound
 
 Claims blocked: not truth certification; not deployment authority; not final answer release; not legal advice; not medical advice; not tax advice; not compliance certification; not hallucination reduction proof; not model quality benchmark; not model superiority proof; not live model execution; not remote provider call; not production evaluation; not universal portability proof; not AI consciousness claim.
 
-Caution: Evidence Review Pack v0.1 is a fixture-only review receipt. It can show which claims are source-supported or unsupported in a controlled fixture and can expose missing uncertainty and counterevidence. It does not certify truth, provide professional advice, prove hallucination reduction, or authorize deployment.
+Caution: Evidence Review Pack v0.1 is a fixture-only review receipt. It can show which claims are source-supported or unsupported in a controlled fixture and can expose missing uncertainty and counterevidence. It does not certify truth, does not provide professional advice, does not prove hallucination reduction, and does not authorize deployment.
