@@ -8,7 +8,7 @@
   ],
   "dashboard_status": "draft_public_review",
   "generated_at": null,
-  "accepted_phase_count": 13,
+  "accepted_phase_count": 14,
   "partial_phase_count": 1,
   "blocked_phase_count": 1,
   "planned_phase_count": 3,
@@ -338,6 +338,73 @@
       "publication_status": "dashboard_indexed"
     },
     {
+      "phase_id": "RW-COMP-02",
+      "repo": "pdxvoiceteacher/CoherenceLattice",
+      "status": "accepted",
+      "evidence_type": "deterministic_multi_fixture_raw_vs_governed_review_comparison",
+      "product_posture": "multi_fixture_battery_for_evidence_review_pack_visibility",
+      "primary_artifacts": [
+        "rw_comp_02_packet.json",
+        "rw_comp_02_review_packet.json",
+        "rw_comp_02_rows.jsonl",
+        "rw_comp_02_fixture_manifest.json",
+        "rw_comp_02_summary.md",
+        "artifact_inventory.json",
+        "run_artifact_manifest.json",
+        "export_bundle_manifest.json",
+        "export_bundle_parity_report.json",
+        "rw_comp_02_acceptance_receipt.json"
+      ],
+      "prerequisite_phases": [
+        "UNIVERSAL-EVIDENCE-INGRESS-00",
+        "UCC-CONTROL-PROFILE-SELECTOR-00",
+        "EVIDENCE-REVIEW-PACK-00",
+        "CANONICAL-METRIC-PACKET-01",
+        "RAW-BASELINE-COMPARISON-00",
+        "RW-COMP-01"
+      ],
+      "dashboard_summary": {
+        "fixture_count": 6,
+        "total_rows": 30,
+        "arm_count_per_fixture": 5,
+        "compared_arms": [
+          "raw_single_model_summary_fixture",
+          "raw_multi_model_summary_fixture",
+          "rag_style_grounded_summary_fixture",
+          "triadic_without_phase6_fixture",
+          "full_evidence_review_pack_fixture"
+        ],
+        "reported_interpretation": "evidence_review_pack_structural_visibility_improved",
+        "interpretation_boundary": [
+          "fixture visibility descriptor only",
+          "not hallucination reduction proof",
+          "not model superiority proof"
+        ]
+      },
+      "reproduction_command_summary": ".\\experiments\\Run-RW-COMP02-Acceptance.ps1 `\n  -OutputRoot C:\\UVLM\\run_artifacts\\rw_comp_02 `\n  -LogDir C:\\UVLM\\run_artifacts\\rw_comp_02_logs `\n  -CiMode",
+      "claim_allowed": "RW-COMP-02 demonstrates a deterministic multi-fixture comparison battery where Evidence Review Pack v0.1 exposes review-relevant structure across multiple fixture families, including unsupported claims, source-reference validity, uncertainty retention, counterevidence preservation, artifact completeness, UCC threshold posture, and review burden indicators. RW-COMP-02 is a deterministic multi-fixture comparison battery and remains not hallucination reduction proof.",
+      "claims_blocked": [
+        "not hallucination reduction proof",
+        "not model superiority proof",
+        "not model quality benchmark",
+        "not live model evaluation",
+        "not remote provider evaluation",
+        "not professional advice",
+        "not legal advice",
+        "not medical advice",
+        "not tax advice",
+        "not compliance certification",
+        "not truth certification",
+        "not deployment authority",
+        "not final answer release",
+        "not production evaluation",
+        "not universal portability proof",
+        "not AI consciousness claim"
+      ],
+      "reviewer_caution": "RW-COMP-02 is a deterministic multi-fixture battery. It can show that the Evidence Review Pack exposes more review-relevant structure than raw or partially governed fixture baselines across several controlled examples. It does not prove hallucination reduction, does not prove model superiority, does not prove real-world performance, is not professional-advice quality, and is not production compliance. Future phases must add held-out fixtures, blinded scoring, statistical analysis, external reproduction, and controlled live-model/provider conditions before stronger claims are authorized.",
+      "publication_status": "dashboard_indexed"
+    },
+    {
       "phase_id": "RAW-BASELINE-COMPARISON-00",
       "repo": "pdxvoiceteacher/CoherenceLattice",
       "status": "accepted",
@@ -397,7 +464,8 @@
     "public_utility_alpha_status.json",
     "raw_baseline_comparison_packet.json",
     "evidence_review_pack_manifest.json",
-    "rw_comp_01_packet.json"
+    "rw_comp_01_packet.json",
+    "rw_comp_02_packet.json"
   ],
   "publication_drafts": [
     "papers/governed_artifact_cognition/PUB_GOV_ARTIFACT_COG_01.md",

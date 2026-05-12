@@ -21,6 +21,7 @@ REQUIRED_PHASES = {
     "RAW-BASELINE-COMPARISON-00",
     "EVIDENCE-REVIEW-PACK-00",
     "RW-COMP-01",
+    "RW-COMP-02",
 }
 REQUIRED_BOUNDARY_PHRASES = (
     "not truth certification",
@@ -59,6 +60,8 @@ REQUIRED_BOUNDARY_PHRASES = (
     "not live model evaluation",
     "not professional advice",
     "not compliance certification",
+    "RW-COMP-02",
+    "deterministic multi-fixture comparison battery",
 )
 FORBIDDEN_PHRASES = (
     "deployment readiness",

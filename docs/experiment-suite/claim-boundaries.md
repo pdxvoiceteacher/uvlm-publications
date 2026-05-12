@@ -32,5 +32,13 @@
 - RW-COMP-01 is not professional advice.
 - RW-COMP-01 is not compliance certification.
 - RW-COMP-01 is not production evaluation.
+- RW-COMP-02 is a deterministic multi-fixture comparison battery and remains not hallucination reduction proof.
+- RW-COMP-02 is not model superiority proof.
+- RW-COMP-02 is not model quality benchmark.
+- RW-COMP-02 is not live model evaluation.
+- RW-COMP-02 is not remote provider evaluation.
+- RW-COMP-02 is not professional advice.
+- RW-COMP-02 is not compliance certification.
+- RW-COMP-02 is not production evaluation.
 
 No oracle posture. No deployment posture. No final-answer posture. No AI consciousness claim. No universal ontology claim.

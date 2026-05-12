@@ -13,6 +13,7 @@
 9. Raw Baseline Comparison
 10. Evidence Review Pack
 11. RW-COMP-01
+12. RW-COMP-02
 
 ## CoherenceLattice commands
 
@@ -91,6 +92,17 @@ PowerShell RW-COMP-01:
 ```
 
 RW-COMP-01 is a fixture-only comparison scaffold, not hallucination reduction proof. It is not model superiority proof, not professional advice, not compliance certification, and not production evaluation.
+
+PowerShell RW-COMP-02:
+
+```powershell
+.\experiments\Run-RW-COMP02-Acceptance.ps1 `
+  -OutputRoot C:\UVLM\run_artifacts\rw_comp_02 `
+  -LogDir C:\UVLM\run_artifacts\rw_comp_02_logs `
+  -CiMode
+```
+
+RW-COMP-02 is a deterministic multi-fixture comparison battery and remains not hallucination reduction proof. It is not model superiority proof, not professional advice, not compliance certification, and not production evaluation.
 
 ## Sophia commands
 

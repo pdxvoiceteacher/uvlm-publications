@@ -82,6 +82,18 @@
       "export_bundle_parity_report.json",
       "rw_comp_01_acceptance_receipt.json"
     ],
+    "RW-COMP-02": [
+      "rw_comp_02_packet.json",
+      "rw_comp_02_review_packet.json",
+      "rw_comp_02_rows.jsonl",
+      "rw_comp_02_fixture_manifest.json",
+      "rw_comp_02_summary.md",
+      "artifact_inventory.json",
+      "run_artifact_manifest.json",
+      "export_bundle_manifest.json",
+      "export_bundle_parity_report.json",
+      "rw_comp_02_acceptance_receipt.json"
+    ],
     "publications": [
       "PUB_GOV_ARTIFACT_COG_01.md",
       "PUB_WAVE_ROSETTA_01.md",
