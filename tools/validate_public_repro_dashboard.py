@@ -22,6 +22,7 @@ REQUIRED_PHASES = {
     "EVIDENCE-REVIEW-PACK-00",
     "RW-COMP-01",
     "RW-COMP-02",
+    "RETROSYNTHESIS-SANDBOX-CYCLE-01",
 }
 REQUIRED_BOUNDARY_PHRASES = (
     "not truth certification",
@@ -62,6 +63,15 @@ REQUIRED_BOUNDARY_PHRASES = (
     "not compliance certification",
     "RW-COMP-02",
     "deterministic multi-fixture comparison battery",
+    "RETROSYNTHESIS-SANDBOX-CYCLE-01",
+    "candidate repair",
+    "not canon adoption",
+    "not memory write",
+    "not final answer release",
+    "not Publisher finalization",
+    "not Omega detection",
+    "not deployment authority",
+    "not recursive self-improvement",
 )
 FORBIDDEN_PHRASES = (
     "deployment readiness",
@@ -99,6 +109,12 @@ FORBIDDEN_PHRASES = (
     "production ready",
     "deployment authorized",
     "final answer released",
+    "publisher finalized",
+    "omega detected",
+    "canon adopted",
+    "memory written",
+    "publication claim authorized",
+    "recursive self-improvement achieved",
     "production evaluation",
 )
 ALLOWED_NEGATED = (

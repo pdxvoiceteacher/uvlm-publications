@@ -33,6 +33,7 @@ REQUIRED_DOCS = {
     "evidence-review-pack.md",
     "rw-comp-01.md",
     "rw-comp-02.md",
+    "retrosynthesis-sandbox-cycle.md",
 }
 REQUIRED_PHASES = {
     "EXP-SUITE-REGISTRY-01",
@@ -49,6 +50,7 @@ REQUIRED_PHASES = {
     "EVIDENCE-REVIEW-PACK-00",
     "RW-COMP-01",
     "RW-COMP-02",
+    "RETROSYNTHESIS-SANDBOX-CYCLE-01",
 }
 
 REQUIRED_COMMAND_FRAGMENTS = (
@@ -62,6 +64,7 @@ REQUIRED_COMMAND_FRAGMENTS = (
     "Run-EVIDENCE-REVIEW-PACK00-Acceptance.ps1",
     "Run-RW-COMP01-Acceptance.ps1",
     "Run-RW-COMP02-Acceptance.ps1",
+    "Run-RETROSYNTHESIS-SANDBOX-CYCLE01-Acceptance.ps1",
 )
 STALE_COMMAND_FRAGMENTS = (
     "tests/test_sonya_aegis_smoke_02.py",
@@ -107,7 +110,7 @@ def test_dashboard_contains_all_accepted_phases(tmp_path):
     dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text())
     phase_ids = {entry["phase_id"] for entry in dashboard["accepted_phases"]}
     assert phase_ids == REQUIRED_PHASES
-    assert dashboard["accepted_phase_count"] == 14
+    assert dashboard["accepted_phase_count"] == 15
 
 
 def test_dashboard_command_summaries_use_accepted_harnesses(tmp_path):
@@ -124,6 +127,7 @@ def test_validator_required_phases_include_public_utility_alpha_raw_baseline_and
     assert "PUBLIC-UTILITY-ALPHA-00" in VALIDATOR_REQUIRED_PHASES
     assert "RAW-BASELINE-COMPARISON-00" in VALIDATOR_REQUIRED_PHASES
     assert "EVIDENCE-REVIEW-PACK-00" in VALIDATOR_REQUIRED_PHASES
+    assert "RETROSYNTHESIS-SANDBOX-CYCLE-01" in VALIDATOR_REQUIRED_PHASES
 
 
 def test_public_utility_alpha_indexes_and_docs_are_generated(tmp_path):
@@ -249,6 +253,68 @@ def test_rw_comp_02_indexes_and_docs_are_generated(tmp_path):
         "not compliance certification",
     ):
         assert phrase in boundary_text
+
+
+def test_retrosynthesis_sandbox_cycle_indexes_and_docs_are_generated(tmp_path):
+    out_dir, docs_dir = run_builder(tmp_path)
+    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text())
+    reproducibility = json.loads((out_dir / "reproducibility_index.json").read_text())
+    artifact_index = json.loads((out_dir / "artifact_index.json").read_text())
+    claim_boundaries = json.loads((out_dir / "claim_boundary_index.json").read_text())
+    quickstart = (docs_dir / "reviewer-quickstart.md").read_text()
+    boundaries = (docs_dir / "claim-boundaries.md").read_text()
+    index = (docs_dir / "index.md").read_text()
+
+    phase = next(
+        entry
+        for entry in dashboard["accepted_phases"]
+        if entry["phase_id"] == "RETROSYNTHESIS-SANDBOX-CYCLE-01"
+    )
+    assert phase["status"] == "accepted"
+    assert phase["evidence_type"] == "bounded_retrosynthesis_candidate_repair_cycle"
+    assert phase["dashboard_summary"]["candidate_repair_artifacts_emitted"] is True
+    assert phase["dashboard_summary"]["canon_adoption_blocked"] is True
+    commands = json.dumps(reproducibility)
+    assert "Run-RETROSYNTHESIS-SANDBOX-CYCLE01-Acceptance.ps1" in commands
+    assert "RETROSYNTHESIS-SANDBOX-CYCLE-01" in artifact_index["phases"]
+    assert "retrosynthesis_sandbox_cycle_packet.json" in artifact_index["phases"]["RETROSYNTHESIS-SANDBOX-CYCLE-01"]
+    assert "retrosynthesis_claim_map_revision_candidate.json" in artifact_index["phases"]["RETROSYNTHESIS-SANDBOX-CYCLE-01"]
+    assert (docs_dir / "retrosynthesis-sandbox-cycle.md").exists()
+    assert "Retrosynthesis Sandbox Cycle" in quickstart
+    assert "retrosynthesis-sandbox-cycle.md" in index
+    assert "candidate repair, not canon adoption" in boundaries
+    boundary_text = "\n".join(claim_boundaries["boundaries"])
+    for phrase in (
+        "not memory write",
+        "not Publisher finalization",
+        "not Omega detection",
+        "not deployment authority",
+        "not recursive self-improvement",
+    ):
+        assert phrase in boundary_text
+
+
+def test_validator_fails_if_retrosynthesis_sandbox_cycle_makes_forbidden_claims(tmp_path):
+    forbidden_claims = (
+        "canon adopted",
+        "memory written",
+        "final answer released",
+        "Publisher finalized",
+        "Omega detected",
+        "deployment authorized",
+        "publication claim authorized",
+        "hallucination reduction proven",
+        "model superiority proven",
+        "recursive self-improvement achieved",
+    )
+    for claim in forbidden_claims:
+        out_dir, docs_dir = run_builder(tmp_path / claim.replace(" ", "_"))
+        page = docs_dir / "retrosynthesis-sandbox-cycle.md"
+        page.write_text(page.read_text() + f"\nRETROSYNTHESIS-SANDBOX-CYCLE-01 claims {claim}.\n")
+        result = validate_dashboard(out_dir / "experiment_suite_dashboard.json", docs_dir)
+        assert result["passed"] is False, claim
+        assert claim.lower() in result["forbidden_claims_found"], result
+
 
 def test_public_dashboard_outputs_do_not_include_stale_placeholder_commands(tmp_path):
     out_dir, docs_dir = run_builder(tmp_path)
