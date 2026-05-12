@@ -252,6 +252,56 @@ def test_governed_artifact_cognition_raw_baseline_updates_are_present():
     assert status["not_model_quality_benchmark"] is True
 
 
+def test_governed_artifact_cognition_evidence_review_pack_updates_are_present():
+    paper = (ROOT / "PUB_GOV_ARTIFACT_COG_01.md").read_text(encoding="utf-8")
+    artifact_table = (ROOT / "artifact_table.md").read_text(encoding="utf-8")
+    boundary_table = (ROOT / "claim_boundary_table.md").read_text(encoding="utf-8")
+    quickstart = (ROOT / "reviewer_quickstart.md").read_text(encoding="utf-8")
+    appendix = (ROOT / "reproducibility_appendix.md").read_text(encoding="utf-8")
+    status = json.loads((ROOT / "status.json").read_text(encoding="utf-8"))
+
+    for phrase in (
+        "EVIDENCE-REVIEW-PACK-00",
+        "Evidence Review Pack v0.1 is the first product-facing governed review receipt",
+        "Universal Evidence Ingress",
+        "UCC Control Profile Selector",
+        "AI review that shows its work",
+        "not truth certification",
+        "not professional advice",
+        "not compliance certification",
+        "not deployment authority",
+        "not hallucination reduction proof",
+    ):
+        assert phrase in paper
+    for artifact in (
+        "evidence_review_pack_manifest.json",
+        "claim_evidence_map.json",
+        "unsupported_claim_report.json",
+        "uncertainty_retention_packet.json",
+        "source_bounded_counterevidence_packet.json",
+        "evidence_semantic_ecology_packet.json",
+        "evidence_review_action_recommendation_packet.json",
+        "evidence_review_pack_review_packet.json",
+        "reviewer_checklist.md",
+        "evidence_review_pack_00_acceptance_receipt.json",
+    ):
+        assert artifact in artifact_table
+    for boundary in (
+        "Evidence Review Pack v0.1 is AI review that shows its work.",
+        "Evidence Review Pack v0.1 is not truth certification.",
+        "Evidence Review Pack v0.1 is not professional advice.",
+        "Evidence Review Pack v0.1 is not compliance certification.",
+        "Evidence Review Pack v0.1 is not deployment authority.",
+        "Evidence Review Pack v0.1 is not hallucination reduction proof.",
+    ):
+        assert boundary in boundary_table
+    assert "Run-EVIDENCE-REVIEW-PACK00-Acceptance.ps1" in quickstart
+    assert "Run-EVIDENCE-REVIEW-PACK00-Acceptance.ps1" in appendix
+    assert status["evidence_review_pack_indexed"] is True
+    assert status["not_professional_advice"] is True
+    assert status["not_compliance_certification"] is True
+
+
 def _copy_governed_paper(tmp_path: Path) -> Path:
     paper_root = tmp_path / "paper"
     paper_root.mkdir(parents=True)
@@ -275,6 +325,8 @@ def test_claim_validator_rejects_new_governed_artifact_overclaims(tmp_path):
         "hallucination reduction proven",
         "model superiority proven",
         "model quality benchmark",
+        "professional advice",
+        "compliance certification",
     )
     for claim in forbidden_claims:
         paper_root = _copy_governed_paper(tmp_path / claim.replace(" ", "_").replace("-", "_"))

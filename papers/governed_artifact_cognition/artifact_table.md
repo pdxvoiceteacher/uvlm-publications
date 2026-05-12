@@ -32,3 +32,13 @@
 | `raw_baseline_comparison_rows.jsonl` | RAW-BASELINE-COMPARISON-00 | Inspect deterministic fixture rows. | Fixture-only; not hallucination reduction proof; not model quality benchmark; not live model execution. |
 | `raw_baseline_comparison_summary.md` | RAW-BASELINE-COMPARISON-00 | Inspect scaffold summary. | Fixture-only; not hallucination reduction proof; not model quality benchmark; not live model execution. |
 | `raw_baseline_comparison_00_acceptance_receipt.json` | RAW-BASELINE-COMPARISON-00 | Inspect acceptance receipt. | Fixture-only; not hallucination reduction proof; not model quality benchmark; not live model execution. |
+| `evidence_review_pack_manifest.json` | EVIDENCE-REVIEW-PACK-00 | Inspect Evidence Review Pack manifest. | First product-facing governed review receipt; not truth certification. |
+| `claim_evidence_map.json` | EVIDENCE-REVIEW-PACK-00 | Inspect source-bounded claim/evidence mapping. | AI review that shows its work; not professional advice. |
+| `unsupported_claim_report.json` | EVIDENCE-REVIEW-PACK-00 | Inspect unsupported-claim visibility. | Not hallucination reduction proof. |
+| `uncertainty_retention_packet.json` | EVIDENCE-REVIEW-PACK-00 | Inspect missing uncertainty retention. | Not final-answer release. |
+| `source_bounded_counterevidence_packet.json` | EVIDENCE-REVIEW-PACK-00 | Inspect preserved counterevidence. | Not truth certification. |
+| `evidence_semantic_ecology_packet.json` | EVIDENCE-REVIEW-PACK-00 | Inspect semantic ecology signals. | Not model quality benchmark. |
+| `evidence_review_action_recommendation_packet.json` | EVIDENCE-REVIEW-PACK-00 | Inspect reviewer next actions. | Recommendation is not deployment authority. |
+| `evidence_review_pack_review_packet.json` | EVIDENCE-REVIEW-PACK-00 | Inspect UCC threshold posture and reserved-authority blocks. | UCC posture is not compliance certification. |
+| `reviewer_checklist.md` | EVIDENCE-REVIEW-PACK-00 | Inspect reviewer checklist. | Checklist is not professional advice. |
+| `evidence_review_pack_00_acceptance_receipt.json` | EVIDENCE-REVIEW-PACK-00 | Inspect acceptance receipt. | Fixture-only; not deployment authority; not hallucination reduction proof. |

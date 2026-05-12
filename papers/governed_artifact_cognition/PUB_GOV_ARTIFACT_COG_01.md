@@ -1,10 +1,10 @@
-# Governed Artifact Cognition: Public Utility Alpha and Sonya Gateway Evidence for Non-Authoritative AI Candidate Review
+# Governed Artifact Cognition: Public Utility Alpha, Evidence Review Pack, and Sonya Gateway Evidence for Non-Authoritative AI Candidate Review
 
 ## Abstract
 
 This systems paper describes governed artifact cognition as a reproducible audit-lab pattern for AI-assisted candidate review. The system is not an oracle, not a universal-wisdom machine, and not a replacement for human or institutional judgment. It emits typed, grounded, governed artifacts whose route, evidence, receipt, and claim-boundary posture can be inspected before downstream use.
 
-The accepted evidence now includes PUBLIC-UTILITY-ALPHA-00, a local fixture-only reviewer demo that assembles the accepted governed artifact chain: Sonya control schema, local broker, adapter registry, policy transition, governance readiness, route view, Sonya Gateway candidate path, runtime bypass block diagnostic, model-braid observational review, experiment catalog boundary report, artifact inventory, and export parity. PUBLIC-UTILITY-ALPHA-00 demonstrates one-command local assembly of that chain while remaining fixture-only, not deployment authority, not truth certification, not final answer release, not live model execution, and subject to external peer review. RAW-BASELINE-COMPARISON-00 is a fixture-only measurement scaffold, not hallucination reduction proof and not a model quality benchmark. It compares raw-text-style baseline arms with the Sonya-governed candidate packet path across unsupported-claim, source-linkage, route-receipt, forbidden-artifact, and raw-output-admission posture.
+The accepted evidence now includes PUBLIC-UTILITY-ALPHA-00, a local fixture-only reviewer demo that assembles the accepted governed artifact chain: Sonya control schema, local broker, adapter registry, policy transition, governance readiness, route view, Sonya Gateway candidate path, runtime bypass block diagnostic, model-braid observational review, experiment catalog boundary report, artifact inventory, and export parity. PUBLIC-UTILITY-ALPHA-00 demonstrates one-command local assembly of that chain while remaining fixture-only, not deployment authority, not truth certification, not final answer release, not live model execution, and subject to external peer review. RAW-BASELINE-COMPARISON-00 is a fixture-only measurement scaffold, not hallucination reduction proof and not a model quality benchmark. It compares raw-text-style baseline arms with the Sonya-governed candidate packet path across unsupported-claim, source-linkage, route-receipt, forbidden-artifact, and raw-output-admission posture. EVIDENCE-REVIEW-PACK-00 adds Evidence Review Pack v0.1 as the first product-facing governed review receipt. It consumes Universal Evidence Ingress and UCC Control Profile Selector artifacts. Evidence Review Pack v0.1 is AI review that shows its work, but it is not truth certification, not professional advice, not compliance certification, not deployment authority, and not hallucination reduction proof.
 
 The claims in this draft are bounded to auditability, route disposition, artifact traceability, and non-authority guardrails. The evidence is local fixture only and requires external peer review.
 
@@ -21,6 +21,7 @@ For this draft, the following terms are used:
 - **Sonya Gateway candidate packet path**: the bounded path by which model-adjacent material becomes an admissible candidate packet under SONYA_REQUIRED.
 - **Route disposition**: a governance artifact that classifies what may happen next, such as human review, bounded publication candidate handling, rejection, quarantine, or retrieval-only use.
 - **Receipt**: a deterministic record that a stage ran, what inputs it admitted, what outputs it produced, and which guardrails were checked.
+- **Evidence Review Pack v0.1**: the first product-facing governed review receipt in this paper. It consumes Universal Evidence Ingress and UCC Control Profile Selector artifacts so reviewers can inspect supported claims, unsupported claims, uncertainty retention, preserved counterevidence, semantic ecology signals, UCC threshold posture, and reviewer next actions.
 - **Non-authority guardrail**: an explicit boundary preventing truth certification, deployment authority, prior canonization, memory write authority, or final-answer posture.
 
 ## 2. Architecture
@@ -39,6 +40,9 @@ sonya_control_schema
 → model_braid_observational review
 → experiment_catalog_boundary
 → public_utility_alpha reviewer bundle
+→ universal_evidence_ingress
+→ ucc_control_profile_selector
+→ evidence_review_pack governed review receipt
 → public reproducibility dashboard
 ```
 
@@ -46,12 +50,12 @@ The Sonya Gateway is required for admissible model candidate packets under SONYA
 
 The organ boundaries are deliberately narrow:
 
-- **CoherenceLattice** formalizes evidence and artifacts. It produces structured coherence, acceptance, public utility alpha, and reproducibility materials.
+- **CoherenceLattice** formalizes evidence and artifacts. It produces structured coherence, acceptance, public utility alpha, Evidence Review Pack, and reproducibility materials.
 - **Sonya** is the local model/tool/sensor membrane and gateway. Its accepted evidence is local and does not establish federation.
 - **Sophia** governs route and admissibility. Its role is route control, not live truth declaration in this draft.
 - **Atlas** handles memory intent only within governance limits. It does not perform live Atlas memory writes in this paper.
 - **Publisher** emits candidates, not final answers. Publisher candidate artifacts remain bounded by route and receipt constraints.
-- **UCC** supplies control grammar for route adequacy and non-authority constraints.
+- **UCC** supplies control grammar for route adequacy, UCC Control Profile Selector posture, and non-authority constraints.
 - **TEL/telemetry** provides audit trace material for reviewers and reproducibility checks.
 
 ## 3. Experiments and Evidence
@@ -140,21 +144,31 @@ Blocked claims: RAW-BASELINE-COMPARISON-00 is not hallucination reduction proof,
 
 Reviewer caution: the scaffold makes future controlled comparisons easier to inspect, but it does not prove that governed artifact cognition reduces hallucinations or improves model quality.
 
-### 3.9 UNI-02D-SONYA-GATE-01
+### 3.9 EVIDENCE-REVIEW-PACK-00: first product-facing governed review receipt
+
+Allowed claim: Evidence Review Pack v0.1 is the first product-facing governed review receipt. It consumes Universal Evidence Ingress and UCC Control Profile Selector artifacts and produces source-bounded claim/evidence review artifacts, unsupported-claim visibility, uncertainty retention, counterevidence preservation, semantic ecology signals, UCC threshold posture, reviewer checklist, export parity, and reviewer next actions. Evidence Review Pack v0.1 is AI review that shows its work.
+
+Primary artifacts: `evidence_review_pack_manifest.json`, `claim_evidence_map.json`, `unsupported_claim_report.json`, `uncertainty_retention_packet.json`, `source_bounded_counterevidence_packet.json`, `evidence_semantic_ecology_packet.json`, `evidence_review_action_recommendation_packet.json`, `evidence_review_pack_review_packet.json`, `reviewer_checklist.md`, `evidence_review_pack_summary.md`, `export_bundle_parity_report.json`, and `evidence_review_pack_00_acceptance_receipt.json`.
+
+Blocked claims: Evidence Review Pack v0.1 is not truth certification, not professional advice, not compliance certification, not deployment authority, not final-answer release, not live model execution, not remote provider call, not production evaluation, and not hallucination reduction proof.
+
+Reviewer caution: the receipt shows which fixture claims are source-supported or unsupported, while preserving missing uncertainty and counterevidence for review. It does not certify truth, does not provide professional advice, does not certify compliance, does not authorize deployment, and does not prove hallucination reduction.
+
+### 3.10 UNI-02D-SONYA-GATE-01
 
 UNI-02D-SONYA-GATE-01 is accepted as a safe generic portability/prior-quarantine fixture, but it is not universal portability proof and not universal ontology. It demonstrates bounded quarantine and provenance posture for selected priors, not general portability across domains.
 
-### 3.10 RETRO-LANE-00
+### 3.11 RETRO-LANE-00
 
 RETRO-LANE-00 is accepted as retrosynthesis admission policy, not retrosynthesis runtime. Admission is not execution. Its evidence is lane posture for sandbox_auto, review_required, and blocked handling.
 
-### 3.11 WAVE Gold-Physics Family
+### 3.12 WAVE Gold-Physics Family
 
 The WAVE Gold-Physics family is included as closed-form waveform metric calibration. It is not universal ontology, not psychoacoustic proof, and not AI consciousness.
 
 ## 4. Reproducibility and Public Review Posture
 
-The reproducibility posture is reviewer oriented. The public dashboard and paper appendix list commands for local artifact inspection, but the commands do not grant final answer release or deployment authority. PUBLIC-UTILITY-ALPHA-00 adds a one-command local reviewer demo for accepted artifact assembly, while the dashboard validation command checks that public-facing registry and docs remain bounded.
+The reproducibility posture is reviewer oriented. The public dashboard and paper appendix list commands for local artifact inspection, but the commands do not grant final answer release or deployment authority. PUBLIC-UTILITY-ALPHA-00 adds a one-command local reviewer demo for accepted artifact assembly. EVIDENCE-REVIEW-PACK-00 adds a product-facing governed review receipt for source-bounded claim/evidence inspection, while the dashboard validation command checks that public-facing registry and docs remain bounded.
 
 ## 5. Limitations
 
@@ -174,6 +188,7 @@ Current limitations are explicit:
 - no final answer release.
 - no deployment evidence.
 - RAW-BASELINE-COMPARISON-00 supplies a fixture-only raw-vs-governed measurement scaffold, but it is not hallucination reduction proof, not a model quality benchmark, and not a real-world performance evaluation.
+- Evidence Review Pack v0.1 is AI review that shows its work, but it is not truth certification, not professional advice, not compliance certification, not deployment authority, and not hallucination reduction proof.
 - no universal portability proof.
 - no universal ontology.
 - no AI consciousness claim.
@@ -188,11 +203,11 @@ Future work is limited to work not already accepted:
 - Triadic without Phase 6 arm.
 - full Triadic with Sonya/Sophia/Atlas quarantine/Phase 6/TEL/receipts arm.
 - GroundingBundle / RequestEnvelope unification if needed.
-- governed user-facing utility shell only after reviewer demo remains green.
+- governed user-facing utility shell only after reviewer demo and Evidence Review Pack receipts remain green.
 - publication peer review.
 - external reproduction.
 - later discovery navigation only after operationalization boundaries are reviewed.
 
 ## 7. Conclusion
 
-The accepted evidence through PUBLIC-UTILITY-ALPHA-00 and PUBLIC-DASHBOARD-ALPHA-01 supports a narrow claim: governed artifact cognition can be represented as a local, inspectable, non-authoritative artifact chain. The work remains not truth certification, not deployment authority, not final answer release, local fixture only, not AI consciousness, not recursive Sonya federation, not retrosynthesis runtime, not Omega detection, not live Atlas memory writes, not live Sophia calls, and requires external peer review.
+The accepted evidence through PUBLIC-UTILITY-ALPHA-00, EVIDENCE-REVIEW-PACK-00, and PUBLIC-DASHBOARD-ALPHA-01 supports a narrow claim: governed artifact cognition can be represented as a local, inspectable, non-authoritative artifact chain with a product-facing governed review receipt. The work remains not truth certification, not professional advice, not compliance certification, not deployment authority, not hallucination reduction proof, not final answer release, local fixture only, not AI consciousness, not recursive Sonya federation, not retrosynthesis runtime, not Omega detection, not live Atlas memory writes, not live Sophia calls, and requires external peer review.
