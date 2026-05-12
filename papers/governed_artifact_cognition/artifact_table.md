@@ -42,3 +42,8 @@
 | `evidence_review_pack_review_packet.json` | EVIDENCE-REVIEW-PACK-00 | Inspect UCC threshold posture and reserved-authority blocks. | UCC posture is not compliance certification. |
 | `reviewer_checklist.md` | EVIDENCE-REVIEW-PACK-00 | Inspect reviewer checklist. | Checklist is not professional advice. |
 | `evidence_review_pack_00_acceptance_receipt.json` | EVIDENCE-REVIEW-PACK-00 | Inspect acceptance receipt. | Fixture-only; not deployment authority; not hallucination reduction proof. |
+| `rw_comp_01_packet.json` | RW-COMP-01 | Inspect fixture-only raw-vs-governed comparison packet involving Evidence Review Pack v0.1. | Shows review-structure visibility; not hallucination-reduction proof yet. |
+| `rw_comp_01_review_packet.json` | RW-COMP-01 | Inspect review posture for the deterministic fixture comparison. | Not model superiority proof. |
+| `rw_comp_01_rows.jsonl` | RW-COMP-01 | Inspect deterministic comparison rows across raw, RAG-style, partial governance, and full Evidence Review Pack fixtures. | Fixture-only; not live model evaluation. |
+| `rw_comp_01_summary.md` | RW-COMP-01 | Inspect comparison summary and reviewer interpretation. | Step toward future hallucination-reduction evidence, not proof. |
+| `rw_comp_01_acceptance_receipt.json` | RW-COMP-01 | Inspect acceptance receipt. | Not deployment authority; not production evaluation. |

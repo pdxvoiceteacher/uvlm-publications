@@ -69,6 +69,20 @@ Evidence Review Pack v0.1 is the first product-facing governed review receipt. I
 
 Expected posture: fixture-only source-bounded review receipt with unsupported-claim visibility, uncertainty retention, counterevidence preservation, UCC threshold posture, reviewer next actions, and export parity.
 
+## RW-COMP-01
+
+RW-COMP-01 is the first fixture-only raw-vs-governed comparison involving Evidence Review Pack v0.1. It shows review-structure visibility in a deterministic fixture and is a step toward future hallucination-reduction evidence. It is not hallucination-reduction proof yet and not model superiority proof.
+
+```powershell
+.\experiments\Run-RW-COMP01-Acceptance.ps1 `
+  -OutputRoot C:\UVLM\run_artifacts\rw_comp_01 `
+  -LogDir C:\UVLM\run_artifacts\rw_comp_01_logs `
+  -ControlProfileId generic_evidence_review.v1 `
+  -CiMode
+```
+
+Expected posture: deterministic fixture-only comparison across raw summary, raw multi-model summary, RAG-style grounded summary, Triadic partial governance, and full Evidence Review Pack v0.1.
+
 ## Dashboard validation
 
 ```bash

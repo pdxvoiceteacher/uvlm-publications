@@ -65,6 +65,26 @@ Expected posture:
 - `deployment_authority_granted = false`
 - `truth_certification_performed = false`
 
+## How to reproduce RW-COMP-01
+
+RW-COMP-01 is the first fixture-only raw-vs-governed comparison involving Evidence Review Pack v0.1. It shows review-structure visibility in a deterministic fixture and is a step toward future hallucination-reduction evidence. It is not hallucination-reduction proof yet and not model superiority proof.
+
+```powershell
+.\experiments\Run-RW-COMP01-Acceptance.ps1 `
+  -OutputRoot C:\UVLM\run_artifacts\rw_comp_01 `
+  -LogDir C:\UVLM\run_artifacts\rw_comp_01_logs `
+  -ControlProfileId generic_evidence_review.v1 `
+  -CiMode
+```
+
+Expected posture:
+
+- `fixture_only = true`
+- `deterministic_fixture_comparison = true`
+- `review_structure_visibility = true`
+- `hallucination_reduction_proof = false`
+- `model_superiority_proof = false`
+
 ## Other accepted local commands
 
 ```powershell
@@ -102,3 +122,4 @@ python tools/validate_public_repro_dashboard.py --dashboard registry/experiment_
 - UNI-02D-SONYA-GATE-01 is accepted as a safe generic portability/prior-quarantine fixture, but it is not universal portability proof.
 - RETRO-LANE-00 is accepted as retrosynthesis admission policy, not retrosynthesis runtime.
 - Evidence Review Pack v0.1 is the first product-facing governed review receipt and AI review that shows its work, not truth certification, not professional advice, not compliance certification, not deployment authority, and not hallucination reduction proof.
+- RW-COMP-01 is the first fixture-only raw-vs-governed comparison involving Evidence Review Pack v0.1; it shows review-structure visibility in a deterministic fixture and is a step toward future hallucination-reduction evidence, not hallucination-reduction proof yet and not model superiority proof.

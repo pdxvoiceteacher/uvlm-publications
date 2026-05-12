@@ -18,5 +18,7 @@
   "not_remote_provider_call": true,
   "evidence_review_pack_indexed": true,
   "not_professional_advice": true,
-  "not_compliance_certification": true
+  "not_compliance_certification": true,
+  "rw_comp_01_indexed": true,
+  "not_model_superiority_proof": true
 }

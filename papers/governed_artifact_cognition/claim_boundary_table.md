@@ -37,3 +37,7 @@
 | Evidence Review Pack v0.1 is not compliance certification. | UCC threshold posture is review posture, not compliance certification. |
 | Evidence Review Pack v0.1 is not deployment authority. | Product-facing review visibility does not authorize deployment. |
 | Evidence Review Pack v0.1 is not hallucination reduction proof. | Unsupported-claim visibility is not proof of hallucination reduction. |
+| RW-COMP-01 is the first fixture-only raw-vs-governed comparison involving Evidence Review Pack v0.1. | The comparison is deterministic fixture evidence for review-structure visibility. |
+| RW-COMP-01 is a step toward future hallucination-reduction evidence. | It motivates future controlled work but does not prove reduction. |
+| RW-COMP-01 is not hallucination-reduction proof yet. | The comparison is a single deterministic fixture, not a hallucination-reduction result. |
+| RW-COMP-01 is not model superiority proof. | The comparison does not prove model or governance superiority. |
