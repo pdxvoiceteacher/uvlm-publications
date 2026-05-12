@@ -31,3 +31,9 @@
 | Raw Baseline Comparison is not live model execution. | The accepted scaffold uses fixture-only measurement. |
 | Raw Baseline Comparison is not remote provider evaluation. | No remote provider evaluation is claimed. |
 | Raw Baseline Comparison is not production evaluation. | The scaffold is not production evaluation. |
+| Evidence Review Pack v0.1 is AI review that shows its work. | The receipt exposes claim/evidence review posture for reviewers. |
+| Evidence Review Pack v0.1 is not truth certification. | Source-bounded review receipts do not certify truth. |
+| Evidence Review Pack v0.1 is not professional advice. | The receipt does not provide legal, medical, tax, financial, or other professional guidance. |
+| Evidence Review Pack v0.1 is not compliance certification. | UCC threshold posture is review posture, not compliance certification. |
+| Evidence Review Pack v0.1 is not deployment authority. | Product-facing review visibility does not authorize deployment. |
+| Evidence Review Pack v0.1 is not hallucination reduction proof. | Unsupported-claim visibility is not proof of hallucination reduction. |

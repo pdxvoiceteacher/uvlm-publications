@@ -55,6 +55,20 @@ Expected posture: fixture-only, not live model execution, not live adapter execu
 
 Expected posture: accepted fixture-only measurement scaffold, not hallucination reduction proof, not model quality benchmark, not model superiority proof, not live model execution, and not remote provider call.
 
+## Evidence Review Pack v0.1
+
+Evidence Review Pack v0.1 is the first product-facing governed review receipt. It consumes Universal Evidence Ingress and UCC Control Profile Selector artifacts. It is AI review that shows its work, not truth certification, not professional advice, not compliance certification, not deployment authority, and not hallucination reduction proof.
+
+```powershell
+.\experiments\Run-EVIDENCE-REVIEW-PACK00-Acceptance.ps1 `
+  -OutputRoot C:\UVLM\run_artifacts\evidence_review_pack_00 `
+  -LogDir C:\UVLM\run_artifacts\evidence_review_pack_00_logs `
+  -ControlProfileId generic_evidence_review.v1 `
+  -CiMode
+```
+
+Expected posture: fixture-only source-bounded review receipt with unsupported-claim visibility, uncertainty retention, counterevidence preservation, UCC threshold posture, reviewer next actions, and export parity.
+
 ## Dashboard validation
 
 ```bash
