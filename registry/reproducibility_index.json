@@ -51,6 +51,22 @@
         "command": ".\\experiments\\Run-RW-COMP03-Acceptance.ps1 `\n  -OutputRoot C:\\UVLM\\run_artifacts\\rw_comp_03 `\n  -LogDir C:\\UVLM\\run_artifacts\\rw_comp_03_logs `\n  -CiMode"
       },
       {
+        "name": "Universal Stage Pipeline acceptance",
+        "command": "python -m pytest -q python/tests/pipeline/test_universal_stage_pipeline.py"
+      },
+      {
+        "name": "Artifact Contract Registry acceptance",
+        "command": "python -m pytest -q python/tests/integration/test_artifact_contract_registry.py"
+      },
+      {
+        "name": "Universal Compatibility Matrix acceptance",
+        "command": ".\\experiments\\Run-UNIVERSAL-COMPATIBILITY-MATRIX00-Acceptance.ps1 `\n  -OutputRoot C:\\UVLM\\run_artifacts\\universal_compatibility_matrix_00 `\n  -LogDir C:\\UVLM\\run_artifacts\\universal_compatibility_matrix_00_logs `\n  -CiMode"
+      },
+      {
+        "name": "Sonya Adapter Contract Registry acceptance",
+        "command": ".\\experiments\\Run-SONYA-ADAPTER-CONTRACT-REGISTRY01-Acceptance.ps1 `\n  -OutputRoot C:\\UVLM\\run_artifacts\\sonya_adapter_contract_registry_01 `\n  -LogDir C:\\UVLM\\run_artifacts\\sonya_adapter_contract_registry_01_logs `\n  -CiMode"
+      },
+      {
         "name": "experiment suite repro pack builder",
         "command": "python -m coherence.tools.build_experiment_suite_repro_pack --registry experiments/experiment_suite_registry.json --artifacts-root artifacts --out-dir artifacts/experiment_suite_repro_pack --zip"
       }

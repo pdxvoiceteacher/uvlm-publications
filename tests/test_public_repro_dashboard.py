@@ -36,6 +36,8 @@ REQUIRED_DOCS = {
     "retrosynthesis-sandbox-cycle.md",
     "evidence-review-pack-second-pass.md",
     "rw-comp-03.md",
+    "universal-architecture.md",
+    "sonya-adapter-contract-registry.md",
 }
 REQUIRED_PHASES = {
     "EXP-SUITE-REGISTRY-01",
@@ -55,6 +57,10 @@ REQUIRED_PHASES = {
     "RETROSYNTHESIS-SANDBOX-CYCLE-01",
     "EVIDENCE-REVIEW-PACK-01",
     "RW-COMP-03",
+    "UNIVERSAL-STAGE-PIPELINE-00",
+    "ARTIFACT-CONTRACT-REGISTRY-01",
+    "UNIVERSAL-COMPATIBILITY-MATRIX-00",
+    "SONYA-ADAPTER-CONTRACT-REGISTRY-01",
 }
 
 REQUIRED_COMMAND_FRAGMENTS = (
@@ -71,6 +77,10 @@ REQUIRED_COMMAND_FRAGMENTS = (
     "Run-RETROSYNTHESIS-SANDBOX-CYCLE01-Acceptance.ps1",
     "Run-EVIDENCE-REVIEW-PACK01-Acceptance.ps1",
     "Run-RW-COMP03-Acceptance.ps1",
+    "test_universal_stage_pipeline.py",
+    "test_artifact_contract_registry.py",
+    "Run-UNIVERSAL-COMPATIBILITY-MATRIX00-Acceptance.ps1",
+    "Run-SONYA-ADAPTER-CONTRACT-REGISTRY01-Acceptance.ps1",
 )
 STALE_COMMAND_FRAGMENTS = (
     "tests/test_sonya_aegis_smoke_02.py",
@@ -116,7 +126,7 @@ def test_dashboard_contains_all_accepted_phases(tmp_path):
     dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text())
     phase_ids = {entry["phase_id"] for entry in dashboard["accepted_phases"]}
     assert phase_ids == REQUIRED_PHASES
-    assert dashboard["accepted_phase_count"] == 17
+    assert dashboard["accepted_phase_count"] == 21
 
 
 def test_dashboard_command_summaries_use_accepted_harnesses(tmp_path):
@@ -136,6 +146,10 @@ def test_validator_required_phases_include_public_utility_alpha_raw_baseline_and
     assert "RETROSYNTHESIS-SANDBOX-CYCLE-01" in VALIDATOR_REQUIRED_PHASES
     assert "EVIDENCE-REVIEW-PACK-01" in VALIDATOR_REQUIRED_PHASES
     assert "RW-COMP-03" in VALIDATOR_REQUIRED_PHASES
+    assert "UNIVERSAL-STAGE-PIPELINE-00" in VALIDATOR_REQUIRED_PHASES
+    assert "ARTIFACT-CONTRACT-REGISTRY-01" in VALIDATOR_REQUIRED_PHASES
+    assert "UNIVERSAL-COMPATIBILITY-MATRIX-00" in VALIDATOR_REQUIRED_PHASES
+    assert "SONYA-ADAPTER-CONTRACT-REGISTRY-01" in VALIDATOR_REQUIRED_PHASES
 
 
 def test_public_utility_alpha_indexes_and_docs_are_generated(tmp_path):
@@ -455,6 +469,170 @@ def test_validator_fails_if_rw_comp_03_makes_forbidden_claims(tmp_path):
         forbidden_found = [found.lower() for found in result["forbidden_claims_found"]]
         assert claim.lower() in forbidden_found, result
 
+
+
+def test_universal_architecture_indexes_and_docs_are_generated(tmp_path):
+    out_dir, docs_dir = run_builder(tmp_path)
+    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text())
+    reproducibility = json.loads((out_dir / "reproducibility_index.json").read_text())
+    artifact_index = json.loads((out_dir / "artifact_index.json").read_text())
+    claim_boundaries = json.loads((out_dir / "claim_boundary_index.json").read_text())
+    quickstart = (docs_dir / "reviewer-quickstart.md").read_text()
+    boundaries = (docs_dir / "claim-boundaries.md").read_text()
+    index = (docs_dir / "index.md").read_text()
+    page = docs_dir / "universal-architecture.md"
+
+    phase_ids = {entry["phase_id"] for entry in dashboard["accepted_phases"]}
+    assert "UNIVERSAL-STAGE-PIPELINE-00" in phase_ids
+    assert "ARTIFACT-CONTRACT-REGISTRY-01" in phase_ids
+    assert "UNIVERSAL-COMPATIBILITY-MATRIX-00" in phase_ids
+    compatibility = next(
+        entry
+        for entry in dashboard["accepted_phases"]
+        if entry["phase_id"] == "UNIVERSAL-COMPATIBILITY-MATRIX-00"
+    )
+    assert compatibility["dashboard_summary"]["review_status"] == "accepted_as_universal_compatibility_scaffold"
+    assert compatibility["dashboard_summary"]["unsupported_inputs_failed_closed_or_hash_only"] is True
+    assert page.exists()
+    page_text = page.read_text()
+    assert "# Universal Architecture Scaffold" in page_text
+    assert "The brain runs cognition stages; experiments configure those stages." in page_text
+    assert "profiles are configuration" in page_text
+    assert "experiments are configurations" in page_text
+    assert "fail-closed receipts" in page_text
+    assert "hash-only" in page_text
+    assert "Universal Architecture Scaffold" in quickstart
+    assert "The brain runs cognition stages; experiments configure those stages." in boundaries
+    assert "universal-architecture.md" in index
+
+    commands = json.dumps(reproducibility)
+    assert "Run-UNIVERSAL-COMPATIBILITY-MATRIX00-Acceptance.ps1" in commands
+    assert "test_universal_stage_pipeline.py" in commands
+    assert "test_artifact_contract_registry.py" in commands
+    assert "UNIVERSAL-COMPATIBILITY-MATRIX-00" in artifact_index["phases"]
+    for artifact in (
+        "universal_compatibility_matrix_packet.json",
+        "universal_compatibility_matrix_review_packet.json",
+        "universal_stage_input_compatibility_rows.jsonl",
+        "universal_stage_failure_receipts.jsonl",
+        "universal_compatibility_matrix_00_acceptance_receipt.json",
+    ):
+        assert artifact in artifact_index["phases"]["UNIVERSAL-COMPATIBILITY-MATRIX-00"]
+    boundary_text = "\n".join(claim_boundaries["boundaries"])
+    for phrase in (
+        "not product release",
+        "not experiment result",
+        "not benchmark result",
+        "not hallucination reduction proof",
+        "not deployment authority",
+        "not recursive self-improvement",
+    ):
+        assert phrase in boundary_text
+
+
+def test_validator_fails_if_universal_architecture_makes_forbidden_claims(tmp_path):
+    forbidden_claims = (
+        "product release",
+        "product released",
+        "benchmark result",
+        "benchmark proven",
+        "hallucination reduction proof",
+        "hallucination reduction proven",
+        "model superiority proof",
+        "model superiority proven",
+        "deployment authorized",
+        "final answer released",
+        "recursive self-improvement achieved",
+        "AI consciousness demonstrated",
+    )
+    for claim in forbidden_claims:
+        out_dir, docs_dir = run_builder(tmp_path / claim.replace(" ", "_"))
+        page = docs_dir / "universal-architecture.md"
+        page.write_text(page.read_text() + f"\nUniversal Architecture Scaffold claims {claim}.\n")
+        result = validate_dashboard(out_dir / "experiment_suite_dashboard.json", docs_dir)
+        assert result["passed"] is False, claim
+        forbidden_found = [found.lower() for found in result["forbidden_claims_found"]]
+        assert claim.lower() in forbidden_found, result
+
+
+def test_sonya_adapter_contract_registry_indexes_and_docs_are_generated(tmp_path):
+    out_dir, docs_dir = run_builder(tmp_path)
+    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text())
+    reproducibility = json.loads((out_dir / "reproducibility_index.json").read_text())
+    artifact_index = json.loads((out_dir / "artifact_index.json").read_text())
+    claim_boundaries = json.loads((out_dir / "claim_boundary_index.json").read_text())
+    quickstart = (docs_dir / "reviewer-quickstart.md").read_text()
+    boundaries = (docs_dir / "claim-boundaries.md").read_text()
+    index = (docs_dir / "index.md").read_text()
+    page = docs_dir / "sonya-adapter-contract-registry.md"
+
+    phase = next(
+        entry
+        for entry in dashboard["accepted_phases"]
+        if entry["phase_id"] == "SONYA-ADAPTER-CONTRACT-REGISTRY-01"
+    )
+    assert phase["status"] == "accepted"
+    assert phase["evidence_type"] == "architecture_scaffold"
+    assert phase["product_posture"] == "versioned_sonya_adapter_contracts"
+    assert phase["dashboard_summary"]["review_status"] == "accepted_as_adapter_contract_registry_only"
+    assert phase["dashboard_summary"]["adapter_count"] == 11
+    assert phase["dashboard_summary"]["all_adapters_disabled_or_blocked"] is True
+    assert phase["dashboard_summary"]["enabled_live_adapter_count"] == 0
+    assert "Adapter capability is not adapter authorization." in phase["claim_allowed"]
+
+    commands = json.dumps(reproducibility)
+    assert "Run-SONYA-ADAPTER-CONTRACT-REGISTRY01-Acceptance.ps1" in commands
+    assert "SONYA-ADAPTER-CONTRACT-REGISTRY-01" in artifact_index["phases"]
+    for artifact in (
+        "sonya_adapter_contract_registry_packet.json",
+        "sonya_adapter_capability_matrix_packet.json",
+        "sonya_adapter_consent_matrix_packet.json",
+        "sonya_adapter_failure_policy_packet.json",
+        "sonya_adapter_telemetry_requirements_packet.json",
+        "sonya_adapter_provenance_training_policy_packet.json",
+        "sonya_adapter_contract_registry_01_acceptance_receipt.json",
+    ):
+        assert artifact in artifact_index["phases"]["SONYA-ADAPTER-CONTRACT-REGISTRY-01"]
+
+    assert page.exists()
+    page_text = page.read_text()
+    assert "# Sonya Adapter Contract Registry" in page_text
+    assert "Adapter capability is not adapter authorization." in page_text
+    assert "all adapters disabled or blocked" in page_text
+    assert "raw output is forbidden" in page_text
+    assert "candidate packet required" in page_text
+    assert "failure receipts required" in page_text
+    assert "provenance-training policy is present" in page_text
+    assert "Sonya Adapter Contract Registry" in quickstart
+    assert "sonya-adapter-contract-registry.md" in index
+    boundary_text = "\n".join(claim_boundaries["boundaries"])
+    assert "Adapter capability is not adapter authorization" in boundaries
+    assert "all adapters disabled or blocked" in boundary_text
+    assert "not adapter execution" in boundary_text
+    assert "not network authorization" in boundary_text
+
+
+def test_validator_fails_if_sonya_adapter_contract_registry_makes_forbidden_claims(tmp_path):
+    forbidden_claims = (
+        "adapter execution",
+        "adapter executed",
+        "network authorization",
+        "network authorized",
+        "remote provider called",
+        "remote provider call",
+        "model weight training",
+        "model weights trained",
+        "production readiness",
+        "production ready",
+    )
+    for claim in forbidden_claims:
+        out_dir, docs_dir = run_builder(tmp_path / claim.replace(" ", "_"))
+        page = docs_dir / "sonya-adapter-contract-registry.md"
+        page.write_text(page.read_text() + f"\nSonya Adapter Contract Registry claims {claim}.\n")
+        result = validate_dashboard(out_dir / "experiment_suite_dashboard.json", docs_dir)
+        assert result["passed"] is False, claim
+        forbidden_found = [found.lower() for found in result["forbidden_claims_found"]]
+        assert claim.lower() in forbidden_found, result
 
 def test_public_dashboard_outputs_do_not_include_stale_placeholder_commands(tmp_path):
     out_dir, docs_dir = run_builder(tmp_path)
