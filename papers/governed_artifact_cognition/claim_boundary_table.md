@@ -31,3 +31,29 @@
 | Raw Baseline Comparison is not live model execution. | The accepted scaffold uses fixture-only measurement. |
 | Raw Baseline Comparison is not remote provider evaluation. | No remote provider evaluation is claimed. |
 | Raw Baseline Comparison is not production evaluation. | The scaffold is not production evaluation. |
+| Evidence Review Pack v0.1 is AI review that shows its work. | The receipt exposes claim/evidence review posture for reviewers. |
+| Evidence Review Pack v0.1 is not truth certification. | Source-bounded review receipts do not certify truth. |
+| Evidence Review Pack v0.1 is not professional advice. | The receipt does not provide legal, medical, tax, financial, or other professional guidance. |
+| Evidence Review Pack v0.1 is not compliance certification. | UCC threshold posture is review posture, not compliance certification. |
+| Evidence Review Pack v0.1 is not deployment authority. | Product-facing review visibility does not authorize deployment. |
+| Evidence Review Pack v0.1 is not hallucination reduction proof. | Unsupported-claim visibility is not proof of hallucination reduction. |
+| RW-COMP-01 is the first fixture-only raw-vs-governed comparison involving Evidence Review Pack v0.1. | The comparison is deterministic fixture evidence for review-structure visibility. |
+| RW-COMP-01 is a step toward future hallucination-reduction evidence. | It motivates future controlled work but does not prove reduction. |
+| RW-COMP-01 is not hallucination-reduction proof yet. | The comparison is a single deterministic fixture, not a hallucination-reduction result. |
+| RW-COMP-01 is not model superiority proof. | The comparison does not prove model or governance superiority. |
+| RW-COMP-02 is not hallucination reduction proof. | The deterministic multi-fixture battery does not prove hallucination reduction. |
+| RW-COMP-02 is not model superiority proof. | The battery does not prove model or governance superiority. |
+| RW-COMP-02 is not a model quality benchmark. | The battery is not a model quality benchmark. |
+| RW-COMP-02 is not live model evaluation. | The accepted battery is deterministic fixture evidence only. |
+| RW-COMP-02 is not professional advice. | The battery does not provide professional guidance. |
+| RW-COMP-02 is not compliance certification. | The battery does not certify compliance. |
+| RW-COMP-02 is not production evaluation. | The battery is not production evaluation. |
+| RW-COMP-03 is a held-out blinded fixture scaffold, not hallucination reduction proof. | The scaffold is a fixture-only step toward future hallucination-reduction evidence, not proof. |
+| RW-COMP-03 is not model superiority proof. | The scaffold does not prove model or governance superiority. |
+| RW-COMP-03 is not a model quality benchmark. | The scaffold is not a model quality benchmark. |
+| RW-COMP-03 is not live model evaluation. | The scaffold does not evaluate live model behavior. |
+| RW-COMP-03 is not a live human study. | The scaffold uses simulated scores and collects no human-subject data. |
+| RW-COMP-03 is not human-subject study result. | The scaffold has no human-subject study result. |
+| RW-COMP-03 is not accepted evidence. | The scaffold is not accepted evidence for hallucination reduction or model superiority. |
+| RW-COMP-03 is not deployment authority. | The scaffold does not authorize deployment. |
+| RW-COMP-03 is not production evaluation. | The scaffold is not production evaluation. |

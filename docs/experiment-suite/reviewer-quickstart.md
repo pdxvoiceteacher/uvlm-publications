@@ -11,6 +11,9 @@
 7. RETRO-LANE-00
 8. Public Utility Alpha
 9. Raw Baseline Comparison
+10. Evidence Review Pack
+11. RW-COMP-01
+12. RW-COMP-02
 
 ## CoherenceLattice commands
 
@@ -65,6 +68,41 @@ PowerShell Raw Baseline Comparison:
   -LogDir C:\UVLM\run_artifacts\raw_baseline_comparison_00_logs `
   -CiMode
 ```
+
+PowerShell Evidence Review Pack:
+
+```powershell
+.\experiments\Run-EVIDENCE-REVIEW-PACK00-Acceptance.ps1 `
+  -OutputRoot C:\UVLM\run_artifacts\evidence_review_pack_00 `
+  -LogDir C:\UVLM\run_artifacts\evidence_review_pack_00_logs `
+  -ControlProfileId generic_evidence_review.v1 `
+  -CiMode
+```
+
+Evidence Review Pack v0.1 is AI review that shows its work. It is not legal advice, not medical advice, not tax advice, and not compliance certification.
+
+PowerShell RW-COMP-01:
+
+```powershell
+.\experiments\Run-RW-COMP01-Acceptance.ps1 `
+  -OutputRoot C:\UVLM\run_artifacts\rw_comp_01 `
+  -LogDir C:\UVLM\run_artifacts\rw_comp_01_logs `
+  -ControlProfileId generic_evidence_review.v1 `
+  -CiMode
+```
+
+RW-COMP-01 is a fixture-only comparison scaffold, not hallucination reduction proof. It is not model superiority proof, not professional advice, not compliance certification, and not production evaluation.
+
+PowerShell RW-COMP-02:
+
+```powershell
+.\experiments\Run-RW-COMP02-Acceptance.ps1 `
+  -OutputRoot C:\UVLM\run_artifacts\rw_comp_02 `
+  -LogDir C:\UVLM\run_artifacts\rw_comp_02_logs `
+  -CiMode
+```
+
+RW-COMP-02 is a deterministic multi-fixture comparison battery and remains not hallucination reduction proof. It is not model superiority proof, not professional advice, not compliance certification, and not production evaluation.
 
 ## Sophia commands
 

@@ -8,7 +8,7 @@
   ],
   "dashboard_status": "draft_public_review",
   "generated_at": null,
-  "accepted_phase_count": 11,
+  "accepted_phase_count": 14,
   "partial_phase_count": 1,
   "blocked_phase_count": 1,
   "planned_phase_count": 3,
@@ -234,6 +234,177 @@
       "publication_status": "dashboard_indexed"
     },
     {
+      "phase_id": "EVIDENCE-REVIEW-PACK-00",
+      "repo": "pdxvoiceteacher/CoherenceLattice",
+      "status": "accepted",
+      "evidence_type": "fixture_only_evidence_review_receipt",
+      "product_posture": "first_product_facing_review_receipt",
+      "primary_artifacts": [
+        "evidence_review_pack_manifest.json",
+        "claim_evidence_map.json",
+        "unsupported_claim_report.json",
+        "uncertainty_retention_packet.json",
+        "source_bounded_counterevidence_packet.json",
+        "evidence_semantic_ecology_packet.json",
+        "evidence_review_action_recommendation_packet.json",
+        "evidence_review_pack_review_packet.json",
+        "reviewer_checklist.md",
+        "evidence_review_pack_summary.md",
+        "artifact_inventory.json",
+        "run_artifact_manifest.json",
+        "export_bundle_manifest.json",
+        "export_bundle_parity_report.json",
+        "evidence_review_pack_00_acceptance_receipt.json"
+      ],
+      "prerequisite_phases": [
+        "UNIVERSAL-EVIDENCE-INGRESS-00",
+        "UCC-CONTROL-PROFILE-SELECTOR-00",
+        "CANONICAL-METRIC-PACKET-01"
+      ],
+      "reproduction_command_summary": ".\\experiments\\Run-EVIDENCE-REVIEW-PACK00-Acceptance.ps1 `\n  -OutputRoot C:\\UVLM\\run_artifacts\\evidence_review_pack_00 `\n  -LogDir C:\\UVLM\\run_artifacts\\evidence_review_pack_00_logs `\n  -ControlProfileId generic_evidence_review.v1 `\n  -CiMode",
+      "claim_allowed": "EVIDENCE-REVIEW-PACK-00 demonstrates a fixture-only, source-bounded, UCC-control-profile-governed review receipt that makes supported claims, unsupported claims, missing uncertainty, preserved counterevidence, semantic drift signals, UCC threshold posture, reserved-authority blocks, and reviewer next actions inspectable. Evidence Review Pack v0.1 is AI review that shows its work.",
+      "claims_blocked": [
+        "not truth certification",
+        "not deployment authority",
+        "not final answer release",
+        "not legal advice",
+        "not medical advice",
+        "not tax advice",
+        "not compliance certification",
+        "not hallucination reduction proof",
+        "not model quality benchmark",
+        "not model superiority proof",
+        "not live model execution",
+        "not remote provider call",
+        "not production evaluation",
+        "not universal portability proof",
+        "not AI consciousness claim"
+      ],
+      "reviewer_caution": "Evidence Review Pack v0.1 is a fixture-only review receipt. It can show which claims are source-supported or unsupported in a controlled fixture and can expose missing uncertainty and counterevidence. It does not certify truth, does not provide professional advice, does not prove hallucination reduction, and does not authorize deployment.",
+      "publication_status": "dashboard_indexed"
+    },
+    {
+      "phase_id": "RW-COMP-01",
+      "repo": "pdxvoiceteacher/CoherenceLattice",
+      "status": "accepted",
+      "evidence_type": "fixture_only_raw_vs_governed_review_comparison",
+      "product_posture": "comparison_scaffold_for_evidence_review_pack",
+      "primary_artifacts": [
+        "rw_comp_01_packet.json",
+        "rw_comp_01_review_packet.json",
+        "rw_comp_01_rows.jsonl",
+        "rw_comp_01_summary.md",
+        "artifact_inventory.json",
+        "run_artifact_manifest.json",
+        "export_bundle_manifest.json",
+        "export_bundle_parity_report.json",
+        "rw_comp_01_acceptance_receipt.json"
+      ],
+      "prerequisite_phases": [
+        "UNIVERSAL-EVIDENCE-INGRESS-00",
+        "UCC-CONTROL-PROFILE-SELECTOR-00",
+        "EVIDENCE-REVIEW-PACK-00",
+        "CANONICAL-METRIC-PACKET-01",
+        "RAW-BASELINE-COMPARISON-00"
+      ],
+      "fixture_summary": [
+        "raw_single_model_summary_fixture has higher unsupported claim count and zero valid source references in the deterministic fixture.",
+        "raw_multi_model_summary_fixture has higher unsupported claim count and zero valid source references in the deterministic fixture.",
+        "RAG-style grounded fixture improves source-reference posture but lacks full UCC/Sonya/Evidence Review Pack governance.",
+        "Triadic-without-Phase-6 fixture improves governance posture but lacks full semantic ecology.",
+        "Full Evidence Review Pack fixture exposes claim/evidence mapping, unsupported claims, uncertainty posture, counterevidence, threshold posture, and action recommendation."
+      ],
+      "reproduction_command_summary": ".\\experiments\\Run-RW-COMP01-Acceptance.ps1 `\n  -OutputRoot C:\\UVLM\\run_artifacts\\rw_comp_01 `\n  -LogDir C:\\UVLM\\run_artifacts\\rw_comp_01_logs `\n  -ControlProfileId generic_evidence_review.v1 `\n  -CiMode",
+      "claim_allowed": "RW-COMP-01 demonstrates a fixture-only comparison where full Evidence Review Pack v0.1 exposes supported claims, unsupported claims, source-reference posture, uncertainty omissions, counterevidence preservation, UCC threshold posture, and artifact completeness more explicitly than raw or partially governed fixture baselines. RW-COMP-01 is a fixture-only comparison scaffold, not hallucination reduction proof.",
+      "claims_blocked": [
+        "not hallucination reduction proof",
+        "not model superiority proof",
+        "not model quality benchmark",
+        "not live model evaluation",
+        "not remote provider evaluation",
+        "not professional advice",
+        "not legal advice",
+        "not medical advice",
+        "not tax advice",
+        "not compliance certification",
+        "not truth certification",
+        "not deployment authority",
+        "not final answer release",
+        "not production evaluation",
+        "not universal portability proof",
+        "not AI consciousness claim"
+      ],
+      "reviewer_caution": "RW-COMP-01 is a deterministic fixture comparison. It can show that the Evidence Review Pack exposes review-relevant structure in one controlled comparison, but it does not prove hallucination reduction, does not prove model superiority, does not prove real-world performance, is not professional-advice quality, and is not production compliance. Future RW-COMP phases must add larger fixture batteries, blinded scoring, held-out examples, external reproduction, and live-model/provider controls before stronger claims are authorized.",
+      "publication_status": "dashboard_indexed"
+    },
+    {
+      "phase_id": "RW-COMP-02",
+      "repo": "pdxvoiceteacher/CoherenceLattice",
+      "status": "accepted",
+      "evidence_type": "deterministic_multi_fixture_raw_vs_governed_review_comparison",
+      "product_posture": "multi_fixture_battery_for_evidence_review_pack_visibility",
+      "primary_artifacts": [
+        "rw_comp_02_packet.json",
+        "rw_comp_02_review_packet.json",
+        "rw_comp_02_rows.jsonl",
+        "rw_comp_02_fixture_manifest.json",
+        "rw_comp_02_summary.md",
+        "artifact_inventory.json",
+        "run_artifact_manifest.json",
+        "export_bundle_manifest.json",
+        "export_bundle_parity_report.json",
+        "rw_comp_02_acceptance_receipt.json"
+      ],
+      "prerequisite_phases": [
+        "UNIVERSAL-EVIDENCE-INGRESS-00",
+        "UCC-CONTROL-PROFILE-SELECTOR-00",
+        "EVIDENCE-REVIEW-PACK-00",
+        "CANONICAL-METRIC-PACKET-01",
+        "RAW-BASELINE-COMPARISON-00",
+        "RW-COMP-01"
+      ],
+      "dashboard_summary": {
+        "fixture_count": 6,
+        "total_rows": 30,
+        "arm_count_per_fixture": 5,
+        "compared_arms": [
+          "raw_single_model_summary_fixture",
+          "raw_multi_model_summary_fixture",
+          "rag_style_grounded_summary_fixture",
+          "triadic_without_phase6_fixture",
+          "full_evidence_review_pack_fixture"
+        ],
+        "reported_interpretation": "evidence_review_pack_structural_visibility_improved",
+        "interpretation_boundary": [
+          "fixture visibility descriptor only",
+          "not hallucination reduction proof",
+          "not model superiority proof"
+        ]
+      },
+      "reproduction_command_summary": ".\\experiments\\Run-RW-COMP02-Acceptance.ps1 `\n  -OutputRoot C:\\UVLM\\run_artifacts\\rw_comp_02 `\n  -LogDir C:\\UVLM\\run_artifacts\\rw_comp_02_logs `\n  -CiMode",
+      "claim_allowed": "RW-COMP-02 demonstrates a deterministic multi-fixture comparison battery where Evidence Review Pack v0.1 exposes review-relevant structure across multiple fixture families, including unsupported claims, source-reference validity, uncertainty retention, counterevidence preservation, artifact completeness, UCC threshold posture, and review burden indicators. RW-COMP-02 is a deterministic multi-fixture comparison battery and remains not hallucination reduction proof.",
+      "claims_blocked": [
+        "not hallucination reduction proof",
+        "not model superiority proof",
+        "not model quality benchmark",
+        "not live model evaluation",
+        "not remote provider evaluation",
+        "not professional advice",
+        "not legal advice",
+        "not medical advice",
+        "not tax advice",
+        "not compliance certification",
+        "not truth certification",
+        "not deployment authority",
+        "not final answer release",
+        "not production evaluation",
+        "not universal portability proof",
+        "not AI consciousness claim"
+      ],
+      "reviewer_caution": "RW-COMP-02 is a deterministic multi-fixture battery. It can show that the Evidence Review Pack exposes more review-relevant structure than raw or partially governed fixture baselines across several controlled examples. It does not prove hallucination reduction, does not prove model superiority, does not prove real-world performance, is not professional-advice quality, and is not production compliance. Future phases must add held-out fixtures, blinded scoring, statistical analysis, external reproduction, and controlled live-model/provider conditions before stronger claims are authorized.",
+      "publication_status": "dashboard_indexed"
+    },
+    {
       "phase_id": "RAW-BASELINE-COMPARISON-00",
       "repo": "pdxvoiceteacher/CoherenceLattice",
       "status": "accepted",
@@ -291,7 +462,10 @@
     "waveform_gold_physics_family_acceptance_packet.json",
     "sonya_aegis_smoke_02_acceptance_report.json",
     "public_utility_alpha_status.json",
-    "raw_baseline_comparison_packet.json"
+    "raw_baseline_comparison_packet.json",
+    "evidence_review_pack_manifest.json",
+    "rw_comp_01_packet.json",
+    "rw_comp_02_packet.json"
   ],
   "publication_drafts": [
     "papers/governed_artifact_cognition/PUB_GOV_ARTIFACT_COG_01.md",
@@ -314,6 +488,14 @@
     "not live model execution",
     "not live adapter execution",
     "not remote provider call",
+    "not live model evaluation",
+    "not remote provider evaluation",
+    "not professional advice",
+    "not legal advice",
+    "not medical advice",
+    "not tax advice",
+    "not compliance certification",
+    "not production evaluation",
     "not federation",
     "not recursive braid"
   ],

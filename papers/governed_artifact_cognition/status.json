@@ -15,5 +15,17 @@
   "raw_baseline_comparison_indexed": true,
   "not_hallucination_reduction_proof": true,
   "not_model_quality_benchmark": true,
-  "not_remote_provider_call": true
+  "not_remote_provider_call": true,
+  "evidence_review_pack_indexed": true,
+  "not_professional_advice": true,
+  "not_compliance_certification": true,
+  "rw_comp_01_indexed": true,
+  "not_model_superiority_proof": true,
+  "rw_comp_02_indexed": true,
+  "not_live_model_evaluation": true,
+  "not_production_evaluation": true,
+  "rw_comp_03_indexed": true,
+  "not_live_human_study": true,
+  "not_human_subject_study_result": true,
+  "not_accepted_evidence": true
 }
