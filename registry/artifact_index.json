@@ -110,6 +110,20 @@
       "export_bundle_parity_report.json",
       "retrosynthesis_sandbox_cycle_01_acceptance_receipt.json"
     ],
+    "EVIDENCE-REVIEW-PACK-01": [
+      "evidence_review_second_pass_packet.json",
+      "evidence_review_second_pass_review_packet.json",
+      "evidence_review_claim_map_revision_packet.json",
+      "evidence_review_uncertainty_revision_packet.json",
+      "evidence_review_counterevidence_revision_packet.json",
+      "evidence_review_second_pass_delta_packet.json",
+      "evidence_review_second_pass_summary.md",
+      "artifact_inventory.json",
+      "run_artifact_manifest.json",
+      "export_bundle_manifest.json",
+      "export_bundle_parity_report.json",
+      "evidence_review_pack_01_acceptance_receipt.json"
+    ],
     "publications": [
       "PUB_GOV_ARTIFACT_COG_01.md",
       "PUB_WAVE_ROSETTA_01.md",

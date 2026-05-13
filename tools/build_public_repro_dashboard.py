@@ -126,6 +126,59 @@ EVIDENCE_REVIEW_PACK_CLAIMS_BLOCKED = [
     "not AI consciousness claim",
 ]
 
+EVIDENCE_REVIEW_PACK_01_COMMAND = r""".\experiments\Run-EVIDENCE-REVIEW-PACK01-Acceptance.ps1 `
+  -OutputRoot C:\UVLM\run_artifacts\evidence_review_pack_01 `
+  -LogDir C:\UVLM\run_artifacts\evidence_review_pack_01_logs `
+  -ControlProfileId generic_evidence_review.v1 `
+  -CiMode"""
+EVIDENCE_REVIEW_PACK_01_ARTIFACTS = [
+    "evidence_review_second_pass_packet.json",
+    "evidence_review_second_pass_review_packet.json",
+    "evidence_review_claim_map_revision_packet.json",
+    "evidence_review_uncertainty_revision_packet.json",
+    "evidence_review_counterevidence_revision_packet.json",
+    "evidence_review_second_pass_delta_packet.json",
+    "evidence_review_second_pass_summary.md",
+    "artifact_inventory.json",
+    "run_artifact_manifest.json",
+    "export_bundle_manifest.json",
+    "export_bundle_parity_report.json",
+    "evidence_review_pack_01_acceptance_receipt.json",
+]
+EVIDENCE_REVIEW_PACK_01_DASHBOARD_SUMMARY = {
+    "accepted_as_second_pass_review_candidate": True,
+    "revision_candidates_emitted": True,
+    "retrosynthesis_inputs_bound": True,
+    "candidate_only_status_preserved": True,
+    "hash_only_evidence_not_interpreted": True,
+    "canon_adoption_blocked": True,
+    "memory_write_blocked": True,
+    "final_answer_release_blocked": True,
+    "publisher_finalization_blocked": True,
+    "deployment_blocked": True,
+    "omega_detection_blocked": True,
+    "publication_claim_blocked": True,
+    "promotion_blocked": True,
+}
+EVIDENCE_REVIEW_PACK_01_CLAIMS_BLOCKED = [
+    "not accepted evidence",
+    "not canon adoption",
+    "not memory write",
+    "not truth certification",
+    "not deployment authority",
+    "not final answer release",
+    "not Publisher finalization",
+    "not Omega detection",
+    "not publication claim",
+    "not hallucination reduction proof",
+    "not model superiority proof",
+    "not professional advice",
+    "not compliance certification",
+    "not live model execution",
+    "not remote provider call",
+    "not recursive self-improvement",
+]
+
 RW_COMP_01_COMMAND = r""".\experiments\Run-RW-COMP01-Acceptance.ps1 `
   -OutputRoot C:\UVLM\run_artifacts\rw_comp_01 `
   -LogDir C:\UVLM\run_artifacts\rw_comp_01_logs `
@@ -524,6 +577,28 @@ ACCEPTED_PHASES = [
         "publication_status": "dashboard_indexed",
     },
     {
+        "phase_id": "EVIDENCE-REVIEW-PACK-01",
+        "repo": "pdxvoiceteacher/CoherenceLattice",
+        "status": "accepted",
+        "evidence_type": "bounded_second_pass_review_candidate_loop",
+        "product_posture": "second_pass_candidate_revisions_from_retrosynthesis_sandbox",
+        "primary_artifacts": EVIDENCE_REVIEW_PACK_01_ARTIFACTS,
+        "prerequisite_phases": [
+            "EVIDENCE-REVIEW-PACK-00",
+            "RETROSYNTHESIS-SANDBOX-CYCLE-01",
+            "RW-COMP-02",
+            "UCC-CONTROL-PROFILE-SELECTOR-00",
+            "UNIVERSAL-EVIDENCE-INGRESS-00",
+            "CANONICAL-METRIC-PACKET-01",
+        ],
+        "dashboard_summary": EVIDENCE_REVIEW_PACK_01_DASHBOARD_SUMMARY,
+        "reproduction_command_summary": EVIDENCE_REVIEW_PACK_01_COMMAND,
+        "claim_allowed": "EVIDENCE-REVIEW-PACK-01 demonstrates a candidate-only second-pass review loop that consumes retrosynthesis sandbox repair candidates and emits bounded revision candidates for claim-map status, omitted uncertainty, counterevidence, and structural visibility deltas.",
+        "claims_blocked": EVIDENCE_REVIEW_PACK_01_CLAIMS_BLOCKED,
+        "reviewer_caution": "EVIDENCE-REVIEW-PACK-01 emits candidate revisions only. Its deltas are structural visibility descriptors, not hallucination-reduction proof. Claim-map revisions are not accepted evidence. Uncertainty and counterevidence revisions require future review gates before promotion. This phase does not write memory, does not adopt canon, does not publish claims, does not release final answers, does not perform Omega detection, does not finalize Publisher output, and does not authorize deployment.",
+        "publication_status": "dashboard_indexed",
+    },
+    {
         "phase_id": "RAW-BASELINE-COMPARISON-00",
         "repo": "pdxvoiceteacher/CoherenceLattice",
         "status": "accepted",
@@ -595,6 +670,15 @@ BOUNDARIES = [
     "RETROSYNTHESIS-SANDBOX-CYCLE-01 is not Omega detection.",
     "RETROSYNTHESIS-SANDBOX-CYCLE-01 is not deployment authority.",
     "RETROSYNTHESIS-SANDBOX-CYCLE-01 is not recursive self-improvement.",
+    "Evidence Review Pack second pass is candidate revision, not accepted evidence.",
+    "EVIDENCE-REVIEW-PACK-01 is not canon adoption.",
+    "EVIDENCE-REVIEW-PACK-01 is not memory write.",
+    "EVIDENCE-REVIEW-PACK-01 is not final answer release.",
+    "EVIDENCE-REVIEW-PACK-01 is not Publisher finalization.",
+    "EVIDENCE-REVIEW-PACK-01 is not Omega detection.",
+    "EVIDENCE-REVIEW-PACK-01 is not deployment authority.",
+    "EVIDENCE-REVIEW-PACK-01 is not hallucination reduction proof.",
+    "EVIDENCE-REVIEW-PACK-01 is not recursive self-improvement.",
 ]
 GLOBAL_NON_CLAIMS = [
     "not truth certification",
@@ -674,6 +758,7 @@ def dashboard_payload() -> dict[str, Any]:
             "rw_comp_01_packet.json",
             "rw_comp_02_packet.json",
             "retrosynthesis_sandbox_cycle_packet.json",
+            "evidence_review_second_pass_packet.json",
         ],
         "publication_drafts": [
             "papers/governed_artifact_cognition/PUB_GOV_ARTIFACT_COG_01.md",
@@ -715,6 +800,7 @@ def reproducibility_index() -> dict[str, Any]:
                 {"name": "RW-COMP-01 acceptance", "command": RW_COMP_01_COMMAND},
                 {"name": "RW-COMP-02 acceptance", "command": RW_COMP_02_COMMAND},
                 {"name": "Retrosynthesis Sandbox Cycle acceptance", "command": RETRO_SANDBOX_CYCLE_COMMAND},
+                {"name": "Evidence Review Pack second pass acceptance", "command": EVIDENCE_REVIEW_PACK_01_COMMAND},
                 {"name": "experiment suite repro pack builder", "command": "python -m coherence.tools.build_experiment_suite_repro_pack --registry experiments/experiment_suite_registry.json --artifacts-root artifacts --out-dir artifacts/experiment_suite_repro_pack --zip"},
             ],
             "Sophia": [
@@ -748,6 +834,7 @@ def artifact_index() -> dict[str, Any]:
             "RW-COMP-01": RW_COMP_01_ARTIFACTS,
             "RW-COMP-02": RW_COMP_02_ARTIFACTS,
             "RETROSYNTHESIS-SANDBOX-CYCLE-01": RETRO_SANDBOX_CYCLE_ARTIFACTS,
+            "EVIDENCE-REVIEW-PACK-01": EVIDENCE_REVIEW_PACK_01_ARTIFACTS,
             "publications": ["PUB_GOV_ARTIFACT_COG_01.md", "PUB_WAVE_ROSETTA_01.md", "reviewer quickstarts", "status.json files"],
         },
     }
@@ -763,6 +850,7 @@ def status_payload() -> dict[str, Any]:
         "latest_product_facing_receipt": "EVIDENCE-REVIEW-PACK-00",
         "latest_fixture_comparison": "RW-COMP-02",
         "latest_bounded_candidate_repair_cycle": "RETROSYNTHESIS-SANDBOX-CYCLE-01",
+        "latest_second_pass_review_candidate": "EVIDENCE-REVIEW-PACK-01",
         "requires_external_peer_review": True,
         "not_truth_certification": True,
         "not_deployment_authority": True,
@@ -781,7 +869,7 @@ def docs() -> dict[str, str]:
     return {
         "README.md": "# Experiment Suite Docs\n\nPublic reviewer documentation for the claim-bounded reproducibility dashboard.\n",
         "assets/README.md": "# Assets\n\nOptional static assets for the public reproducibility dashboard.\n",
-        "index.md": f"# Public Experiment Suite Dashboard\n\nThis dashboard presents accepted evidence for reviewer orientation. It is not truth certification, not deployment authority, not final answer release, local fixture only, and requires external peer review.\n\n## Accepted evidence\n\n| Phase | Repo | Status | What this supports | Reviewer caution |\n| --- | --- | --- | --- | --- |\n{phase_rows}\n\n## Reviewer path\n\nStart with claim boundaries, then read the governed artifact cognition paper, WAVE Rosetta paper, SONYA-AEGIS-SMOKE-02, WAVE family, UNI-02D Sonya gate, and RETRO-LANE-00, Public Utility Alpha, Raw Baseline Comparison, Evidence Review Pack, RW-COMP-01, RW-COMP-02, and Retrosynthesis Sandbox Cycle pages.\n\n## What this proves\n\nIt proves only that accepted local fixture artifacts and draft publication materials are organized for review.\n\n## What this does not prove\n\nNo oracle posture, no deployment posture, no final-answer posture, no AI consciousness claim, and no universal ontology claim.\n\n## Phase pages\n\n- [SONYA-AEGIS-SMOKE-02](sonya-aegis-smoke-02.md)\n- [WAVE Gold-Physics](wave-gold-physics.md)\n- [UNI-02D Sonya gate](uni02d-sonya-gate.md)\n- [RETRO-LANE-00](retro-lane-00.md)\n- [Public Utility Alpha](public-utility-alpha.md)\n- [Raw Baseline Comparison](raw-baseline-comparison.md)\n- [Evidence Review Pack](evidence-review-pack.md)\n- [RW-COMP-01](rw-comp-01.md)\n- [RW-COMP-02](rw-comp-02.md)\n- [Retrosynthesis Sandbox Cycle](retrosynthesis-sandbox-cycle.md)\n- [Governed artifact cognition paper](governed-artifact-cognition-paper.md)\n- [Waveform Rosetta paper](waveform-rosetta-paper.md)\n",
+        "index.md": f"# Public Experiment Suite Dashboard\n\nThis dashboard presents accepted evidence for reviewer orientation. It is not truth certification, not deployment authority, not final answer release, local fixture only, and requires external peer review.\n\n## Accepted evidence\n\n| Phase | Repo | Status | What this supports | Reviewer caution |\n| --- | --- | --- | --- | --- |\n{phase_rows}\n\n## Reviewer path\n\nStart with claim boundaries, then read the governed artifact cognition paper, WAVE Rosetta paper, SONYA-AEGIS-SMOKE-02, WAVE family, UNI-02D Sonya gate, and RETRO-LANE-00, Public Utility Alpha, Raw Baseline Comparison, Evidence Review Pack, RW-COMP-01, RW-COMP-02, Retrosynthesis Sandbox Cycle, and Evidence Review Pack second-pass pages.\n\n## What this proves\n\nIt proves only that accepted local fixture artifacts and draft publication materials are organized for review.\n\n## What this does not prove\n\nNo oracle posture, no deployment posture, no final-answer posture, no AI consciousness claim, and no universal ontology claim.\n\n## Phase pages\n\n- [SONYA-AEGIS-SMOKE-02](sonya-aegis-smoke-02.md)\n- [WAVE Gold-Physics](wave-gold-physics.md)\n- [UNI-02D Sonya gate](uni02d-sonya-gate.md)\n- [RETRO-LANE-00](retro-lane-00.md)\n- [Public Utility Alpha](public-utility-alpha.md)\n- [Raw Baseline Comparison](raw-baseline-comparison.md)\n- [Evidence Review Pack](evidence-review-pack.md)\n- [RW-COMP-01](rw-comp-01.md)\n- [RW-COMP-02](rw-comp-02.md)\n- [Retrosynthesis Sandbox Cycle](retrosynthesis-sandbox-cycle.md)\n- [Evidence Review Pack second pass](evidence-review-pack-second-pass.md)\n- [Governed artifact cognition paper](governed-artifact-cognition-paper.md)\n- [Waveform Rosetta paper](waveform-rosetta-paper.md)\n",
         "claim-boundaries.md": f"# Claim Boundaries\n\n{boundaries}\n\nNo oracle posture. No deployment posture. No final-answer posture. No AI consciousness claim. No universal ontology claim.\n",
         "sonya-aegis-smoke-02.md": f"""# SONYA-AEGIS-SMOKE-02
 
@@ -1002,6 +1090,32 @@ Claims blocked: {"; ".join(RETRO_SANDBOX_CYCLE_CLAIMS_BLOCKED)}.
 
 Reviewer caution: RETROSYNTHESIS-SANDBOX-CYCLE-01 emits repair candidates only. Missing evidence requests are not external fetches. Claim-map revisions are not accepted evidence. Uncertainty restoration and counterevidence expansion remain candidate artifacts until future review gates promote them. This phase does not write memory, does not adopt canon, does not publish claims, does not release final answers, does not perform Omega detection, and does not authorize deployment.
 """,
+        "evidence-review-pack-second-pass.md": f"""# Evidence Review Pack Second Pass
+
+Purpose: inspect EVIDENCE-REVIEW-PACK-01 as the first bounded second-pass review candidate loop over Retrosynthesis Sandbox Cycle repair candidates.
+
+Evidence Review Pack second pass is candidate revision, not accepted evidence.
+
+Run command:
+
+```powershell
+{EVIDENCE_REVIEW_PACK_01_COMMAND}
+```
+
+Evidence: {", ".join(f"`{artifact}`" for artifact in EVIDENCE_REVIEW_PACK_01_ARTIFACTS)}.
+
+Prerequisite phases: EVIDENCE-REVIEW-PACK-00, RETROSYNTHESIS-SANDBOX-CYCLE-01, RW-COMP-02, UCC-CONTROL-PROFILE-SELECTOR-00, UNIVERSAL-EVIDENCE-INGRESS-00, and CANONICAL-METRIC-PACKET-01.
+
+Claim allowed: EVIDENCE-REVIEW-PACK-01 demonstrates a candidate-only second-pass review loop that consumes retrosynthesis sandbox repair candidates and emits bounded revision candidates for claim-map status, omitted uncertainty, counterevidence, and structural visibility deltas.
+
+Dashboard summary:
+
+{chr(10).join(f"- {key} = {str(value).lower()}" for key, value in EVIDENCE_REVIEW_PACK_01_DASHBOARD_SUMMARY.items())}
+
+Claims blocked: {"; ".join(EVIDENCE_REVIEW_PACK_01_CLAIMS_BLOCKED)}.
+
+Reviewer caution: EVIDENCE-REVIEW-PACK-01 emits candidate revisions only. Its deltas are structural visibility descriptors, not hallucination-reduction proof. Claim-map revisions are not accepted evidence. Uncertainty and counterevidence revisions require future review gates before promotion. This phase does not write memory, does not adopt canon, does not publish claims, does not release final answers, does not perform Omega detection, does not finalize Publisher output, and does not authorize deployment.
+""",
         "governed-artifact-cognition-paper.md": "# Governed Artifact Cognition Paper\n\nSummary: systems paper for governed artifact cognition as a reproducible audit lab.\n\nLinks: `papers/governed_artifact_cognition/PUB_GOV_ARTIFACT_COG_01.md`, reviewer quickstart, claim boundary table, status.json.\n\nClaim boundaries: not truth certification, not deployment authority, not final answer release, local fixture only, requires external peer review.\n\nValidation command: `python tools/validate_publication_claims.py --paper papers/governed_artifact_cognition/PUB_GOV_ARTIFACT_COG_01.md --quickstart papers/governed_artifact_cognition/reviewer_quickstart.md --status papers/governed_artifact_cognition/status.json`.\n",
         "waveform-rosetta-paper.md": "# Waveform Rosetta Paper\n\nSummary: methods paper for closed-form WAVE Gold-Physics metric calibration.\n\nLinks: `papers/waveform_rosetta/PUB_WAVE_ROSETTA_01.md`, reviewer quickstart, theorem table, status.json.\n\nClaim boundaries: not universal ontology, not psychoacoustic effect, not AI consciousness, not deployment authority, not truth certification, requires external peer review.\n\nValidation command: `python tools/validate_publication_claims.py --paper papers/waveform_rosetta/PUB_WAVE_ROSETTA_01.md --quickstart papers/waveform_rosetta/reviewer_quickstart.md --status papers/waveform_rosetta/status.json`.\n",
         "reviewer-quickstart.md": f"""# Reviewer Quickstart
@@ -1021,6 +1135,7 @@ Reviewer caution: RETROSYNTHESIS-SANDBOX-CYCLE-01 emits repair candidates only. 
 11. RW-COMP-01
 12. RW-COMP-02
 13. Retrosynthesis Sandbox Cycle
+14. Evidence Review Pack second pass
 
 ## CoherenceLattice commands
 
@@ -1091,6 +1206,14 @@ PowerShell Retrosynthesis Sandbox Cycle:
 ```
 
 Retrosynthesis Sandbox Cycle is candidate repair, not canon adoption. It is not memory write, not final answer release, not Publisher finalization, not Omega detection, not deployment authority, and not recursive self-improvement.
+
+PowerShell Evidence Review Pack second pass:
+
+```powershell
+{EVIDENCE_REVIEW_PACK_01_COMMAND}
+```
+
+Evidence Review Pack second pass is candidate revision, not accepted evidence. It is not canon adoption, not memory write, not final answer release, not Publisher finalization, not Omega detection, not deployment authority, not hallucination reduction proof, and not recursive self-improvement.
 
 ## Sophia commands
 

@@ -15,6 +15,7 @@
 11. RW-COMP-01
 12. RW-COMP-02
 13. Retrosynthesis Sandbox Cycle
+14. Evidence Review Pack second pass
 
 ## CoherenceLattice commands
 
@@ -116,6 +117,18 @@ PowerShell Retrosynthesis Sandbox Cycle:
 ```
 
 Retrosynthesis Sandbox Cycle is candidate repair, not canon adoption. It is not memory write, not final answer release, not Publisher finalization, not Omega detection, not deployment authority, and not recursive self-improvement.
+
+PowerShell Evidence Review Pack second pass:
+
+```powershell
+.\experiments\Run-EVIDENCE-REVIEW-PACK01-Acceptance.ps1 `
+  -OutputRoot C:\UVLM\run_artifacts\evidence_review_pack_01 `
+  -LogDir C:\UVLM\run_artifacts\evidence_review_pack_01_logs `
+  -ControlProfileId generic_evidence_review.v1 `
+  -CiMode
+```
+
+Evidence Review Pack second pass is candidate revision, not accepted evidence. It is not canon adoption, not memory write, not final answer release, not Publisher finalization, not Omega detection, not deployment authority, not hallucination reduction proof, and not recursive self-improvement.
 
 ## Sophia commands
 

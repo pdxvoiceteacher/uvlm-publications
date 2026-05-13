@@ -34,6 +34,7 @@ REQUIRED_DOCS = {
     "rw-comp-01.md",
     "rw-comp-02.md",
     "retrosynthesis-sandbox-cycle.md",
+    "evidence-review-pack-second-pass.md",
 }
 REQUIRED_PHASES = {
     "EXP-SUITE-REGISTRY-01",
@@ -51,6 +52,7 @@ REQUIRED_PHASES = {
     "RW-COMP-01",
     "RW-COMP-02",
     "RETROSYNTHESIS-SANDBOX-CYCLE-01",
+    "EVIDENCE-REVIEW-PACK-01",
 }
 
 REQUIRED_COMMAND_FRAGMENTS = (
@@ -65,6 +67,7 @@ REQUIRED_COMMAND_FRAGMENTS = (
     "Run-RW-COMP01-Acceptance.ps1",
     "Run-RW-COMP02-Acceptance.ps1",
     "Run-RETROSYNTHESIS-SANDBOX-CYCLE01-Acceptance.ps1",
+    "Run-EVIDENCE-REVIEW-PACK01-Acceptance.ps1",
 )
 STALE_COMMAND_FRAGMENTS = (
     "tests/test_sonya_aegis_smoke_02.py",
@@ -110,7 +113,7 @@ def test_dashboard_contains_all_accepted_phases(tmp_path):
     dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text())
     phase_ids = {entry["phase_id"] for entry in dashboard["accepted_phases"]}
     assert phase_ids == REQUIRED_PHASES
-    assert dashboard["accepted_phase_count"] == 15
+    assert dashboard["accepted_phase_count"] == 16
 
 
 def test_dashboard_command_summaries_use_accepted_harnesses(tmp_path):
@@ -128,6 +131,7 @@ def test_validator_required_phases_include_public_utility_alpha_raw_baseline_and
     assert "RAW-BASELINE-COMPARISON-00" in VALIDATOR_REQUIRED_PHASES
     assert "EVIDENCE-REVIEW-PACK-00" in VALIDATOR_REQUIRED_PHASES
     assert "RETROSYNTHESIS-SANDBOX-CYCLE-01" in VALIDATOR_REQUIRED_PHASES
+    assert "EVIDENCE-REVIEW-PACK-01" in VALIDATOR_REQUIRED_PHASES
 
 
 def test_public_utility_alpha_indexes_and_docs_are_generated(tmp_path):
@@ -314,6 +318,70 @@ def test_validator_fails_if_retrosynthesis_sandbox_cycle_makes_forbidden_claims(
         result = validate_dashboard(out_dir / "experiment_suite_dashboard.json", docs_dir)
         assert result["passed"] is False, claim
         assert claim.lower() in result["forbidden_claims_found"], result
+
+
+def test_evidence_review_pack_second_pass_indexes_and_docs_are_generated(tmp_path):
+    out_dir, docs_dir = run_builder(tmp_path)
+    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text())
+    reproducibility = json.loads((out_dir / "reproducibility_index.json").read_text())
+    artifact_index = json.loads((out_dir / "artifact_index.json").read_text())
+    claim_boundaries = json.loads((out_dir / "claim_boundary_index.json").read_text())
+    quickstart = (docs_dir / "reviewer-quickstart.md").read_text()
+    boundaries = (docs_dir / "claim-boundaries.md").read_text()
+    index = (docs_dir / "index.md").read_text()
+
+    phase = next(
+        entry
+        for entry in dashboard["accepted_phases"]
+        if entry["phase_id"] == "EVIDENCE-REVIEW-PACK-01"
+    )
+    assert phase["status"] == "accepted"
+    assert phase["evidence_type"] == "bounded_second_pass_review_candidate_loop"
+    assert phase["dashboard_summary"]["revision_candidates_emitted"] is True
+    assert phase["dashboard_summary"]["candidate_only_status_preserved"] is True
+    commands = json.dumps(reproducibility)
+    assert "Run-EVIDENCE-REVIEW-PACK01-Acceptance.ps1" in commands
+    assert "EVIDENCE-REVIEW-PACK-01" in artifact_index["phases"]
+    assert "evidence_review_second_pass_packet.json" in artifact_index["phases"]["EVIDENCE-REVIEW-PACK-01"]
+    assert "evidence_review_second_pass_review_packet.json" in artifact_index["phases"]["EVIDENCE-REVIEW-PACK-01"]
+    assert "evidence_review_claim_map_revision_packet.json" in artifact_index["phases"]["EVIDENCE-REVIEW-PACK-01"]
+    assert "evidence_review_uncertainty_revision_packet.json" in artifact_index["phases"]["EVIDENCE-REVIEW-PACK-01"]
+    assert (docs_dir / "evidence-review-pack-second-pass.md").exists()
+    assert "Evidence Review Pack second pass" in quickstart
+    assert "evidence-review-pack-second-pass.md" in index
+    assert "candidate revision, not accepted evidence" in boundaries
+    boundary_text = "\n".join(claim_boundaries["boundaries"])
+    for phrase in (
+        "not canon adoption",
+        "not memory write",
+        "not Publisher finalization",
+        "not Omega detection",
+    ):
+        assert phrase in boundary_text
+
+
+def test_validator_fails_if_evidence_review_pack_second_pass_makes_forbidden_claims(tmp_path):
+    forbidden_claims = (
+        "claims accepted evidence",
+        "claims canon adoption",
+        "claims memory write",
+        "claims final answer release",
+        "claims Publisher finalization",
+        "claims Omega detection",
+        "deployment authorized",
+        "publication claim authorized",
+        "hallucination reduction proven",
+        "model superiority proven",
+        "claims recursive self-improvement",
+    )
+    for claim in forbidden_claims:
+        out_dir, docs_dir = run_builder(tmp_path / claim.replace(" ", "_"))
+        page = docs_dir / "evidence-review-pack-second-pass.md"
+        page.write_text(page.read_text() + f"\nEVIDENCE-REVIEW-PACK-01 {claim}.\n")
+        result = validate_dashboard(out_dir / "experiment_suite_dashboard.json", docs_dir)
+        assert result["passed"] is False, claim
+        forbidden_found = [found.lower() for found in result["forbidden_claims_found"]]
+        assert claim.lower() in forbidden_found, result
 
 
 def test_public_dashboard_outputs_do_not_include_stale_placeholder_commands(tmp_path):

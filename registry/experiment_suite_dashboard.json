@@ -8,7 +8,7 @@
   ],
   "dashboard_status": "draft_public_review",
   "generated_at": null,
-  "accepted_phase_count": 15,
+  "accepted_phase_count": 16,
   "partial_phase_count": 1,
   "blocked_phase_count": 1,
   "planned_phase_count": 3,
@@ -472,6 +472,72 @@
       "publication_status": "dashboard_indexed"
     },
     {
+      "phase_id": "EVIDENCE-REVIEW-PACK-01",
+      "repo": "pdxvoiceteacher/CoherenceLattice",
+      "status": "accepted",
+      "evidence_type": "bounded_second_pass_review_candidate_loop",
+      "product_posture": "second_pass_candidate_revisions_from_retrosynthesis_sandbox",
+      "primary_artifacts": [
+        "evidence_review_second_pass_packet.json",
+        "evidence_review_second_pass_review_packet.json",
+        "evidence_review_claim_map_revision_packet.json",
+        "evidence_review_uncertainty_revision_packet.json",
+        "evidence_review_counterevidence_revision_packet.json",
+        "evidence_review_second_pass_delta_packet.json",
+        "evidence_review_second_pass_summary.md",
+        "artifact_inventory.json",
+        "run_artifact_manifest.json",
+        "export_bundle_manifest.json",
+        "export_bundle_parity_report.json",
+        "evidence_review_pack_01_acceptance_receipt.json"
+      ],
+      "prerequisite_phases": [
+        "EVIDENCE-REVIEW-PACK-00",
+        "RETROSYNTHESIS-SANDBOX-CYCLE-01",
+        "RW-COMP-02",
+        "UCC-CONTROL-PROFILE-SELECTOR-00",
+        "UNIVERSAL-EVIDENCE-INGRESS-00",
+        "CANONICAL-METRIC-PACKET-01"
+      ],
+      "dashboard_summary": {
+        "accepted_as_second_pass_review_candidate": true,
+        "revision_candidates_emitted": true,
+        "retrosynthesis_inputs_bound": true,
+        "candidate_only_status_preserved": true,
+        "hash_only_evidence_not_interpreted": true,
+        "canon_adoption_blocked": true,
+        "memory_write_blocked": true,
+        "final_answer_release_blocked": true,
+        "publisher_finalization_blocked": true,
+        "deployment_blocked": true,
+        "omega_detection_blocked": true,
+        "publication_claim_blocked": true,
+        "promotion_blocked": true
+      },
+      "reproduction_command_summary": ".\\experiments\\Run-EVIDENCE-REVIEW-PACK01-Acceptance.ps1 `\n  -OutputRoot C:\\UVLM\\run_artifacts\\evidence_review_pack_01 `\n  -LogDir C:\\UVLM\\run_artifacts\\evidence_review_pack_01_logs `\n  -ControlProfileId generic_evidence_review.v1 `\n  -CiMode",
+      "claim_allowed": "EVIDENCE-REVIEW-PACK-01 demonstrates a candidate-only second-pass review loop that consumes retrosynthesis sandbox repair candidates and emits bounded revision candidates for claim-map status, omitted uncertainty, counterevidence, and structural visibility deltas.",
+      "claims_blocked": [
+        "not accepted evidence",
+        "not canon adoption",
+        "not memory write",
+        "not truth certification",
+        "not deployment authority",
+        "not final answer release",
+        "not Publisher finalization",
+        "not Omega detection",
+        "not publication claim",
+        "not hallucination reduction proof",
+        "not model superiority proof",
+        "not professional advice",
+        "not compliance certification",
+        "not live model execution",
+        "not remote provider call",
+        "not recursive self-improvement"
+      ],
+      "reviewer_caution": "EVIDENCE-REVIEW-PACK-01 emits candidate revisions only. Its deltas are structural visibility descriptors, not hallucination-reduction proof. Claim-map revisions are not accepted evidence. Uncertainty and counterevidence revisions require future review gates before promotion. This phase does not write memory, does not adopt canon, does not publish claims, does not release final answers, does not perform Omega detection, does not finalize Publisher output, and does not authorize deployment.",
+      "publication_status": "dashboard_indexed"
+    },
+    {
       "phase_id": "RAW-BASELINE-COMPARISON-00",
       "repo": "pdxvoiceteacher/CoherenceLattice",
       "status": "accepted",
@@ -533,7 +599,8 @@
     "evidence_review_pack_manifest.json",
     "rw_comp_01_packet.json",
     "rw_comp_02_packet.json",
-    "retrosynthesis_sandbox_cycle_packet.json"
+    "retrosynthesis_sandbox_cycle_packet.json",
+    "evidence_review_second_pass_packet.json"
   ],
   "publication_drafts": [
     "papers/governed_artifact_cognition/PUB_GOV_ARTIFACT_COG_01.md",
