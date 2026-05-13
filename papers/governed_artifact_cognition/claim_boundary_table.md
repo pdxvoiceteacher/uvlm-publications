@@ -78,3 +78,14 @@
 | RW-COMP-03 is not accepted evidence. | The scaffold is not accepted evidence for hallucination reduction or model superiority. |
 | RW-COMP-03 is not deployment authority. | The scaffold does not authorize deployment. |
 | RW-COMP-03 is not production evaluation. | The scaffold is not production evaluation. |
+
+| Universal Architecture Scaffold | Universal Architecture Scaffold is not product release. | Keep architecture scaffold claims separate from product, benchmark, experiment, performance, deployment, and truth claims. |
+| Universal Architecture Scaffold | Universal Architecture Scaffold is not benchmark result. | Keep architecture scaffold claims separate from product, benchmark, experiment, performance, deployment, and truth claims. |
+| Universal Architecture Scaffold | Universal Architecture Scaffold is not experiment result. | Keep architecture scaffold claims separate from product, benchmark, experiment, performance, deployment, and truth claims. |
+| Universal Stage Pipeline | Universal Stage Pipeline is not runtime deployment. | Keep architecture scaffold claims separate from product, benchmark, experiment, performance, deployment, and truth claims. |
+| Artifact Contract Registry | Artifact Contract Registry is not ontology authority. | Keep architecture scaffold claims separate from product, benchmark, experiment, performance, deployment, and truth claims. |
+| Universal Compatibility Matrix | Universal Compatibility Matrix is not hallucination reduction proof. | Keep architecture scaffold claims separate from product, benchmark, experiment, performance, deployment, and truth claims. |
+| Universal Compatibility Matrix | Universal Compatibility Matrix is not model superiority proof. | Keep architecture scaffold claims separate from product, benchmark, experiment, performance, deployment, and truth claims. |
+| Fail-closed receipts | Fail-closed receipts are control evidence, not performance failure hiding. | Keep architecture scaffold claims separate from product, benchmark, experiment, performance, deployment, and truth claims. |
+| Hash-only preservation | Hash-only preservation is not semantic interpretation. | Keep architecture scaffold claims separate from product, benchmark, experiment, performance, deployment, and truth claims. |
+| Experiments configure stages | Experiments configure stages; they do not define the kernel. | Keep architecture scaffold claims separate from product, benchmark, experiment, performance, deployment, and truth claims. |

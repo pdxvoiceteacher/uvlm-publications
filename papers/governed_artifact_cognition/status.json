@@ -35,5 +35,11 @@
   "not_accepted_evidence": true,
   "rw_comp_03_indexed": true,
   "not_live_human_study": true,
-  "not_human_subject_study_result": true
+  "not_human_subject_study_result": true,
+  "universal_stage_pipeline_indexed": true,
+  "artifact_contract_registry_indexed": true,
+  "universal_compatibility_matrix_indexed": true,
+  "not_product_release": true,
+  "not_experiment_result": true,
+  "not_benchmark_result": true
 }
