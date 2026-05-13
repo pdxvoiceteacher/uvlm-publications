@@ -272,7 +272,9 @@ Future work is limited to work not already accepted:
 - governed user-facing utility shell only after reviewer demo, Evidence Review Pack receipts, and RW-COMP battery comparisons remain green.
 - publication peer review.
 - external reproduction.
-- later discovery navigation only after operationalization boundaries are reviewed.
+- controlled live-model/provider study only after fixture discipline is stable.
+- explicit Atlas memory-intent review before any memory write.
+- telemetry braid / memory loop only after promotion gates are stable.
 
 ## 7. Conclusion
 
