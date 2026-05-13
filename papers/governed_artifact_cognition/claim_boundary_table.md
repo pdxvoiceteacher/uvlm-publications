@@ -48,3 +48,24 @@
 | RW-COMP-02 is not professional advice. | The battery does not provide professional guidance. |
 | RW-COMP-02 is not compliance certification. | The battery does not certify compliance. |
 | RW-COMP-02 is not production evaluation. | The battery is not production evaluation. |
+| Retrosynthesis Sandbox Cycle is candidate repair, not canon adoption. | Candidate repair artifacts do not adopt canon. |
+| Retrosynthesis Sandbox Cycle is not memory write. | No Atlas or other memory write is authorized. |
+| Retrosynthesis Sandbox Cycle is not final answer release. | Repair candidates are not final answers. |
+| Retrosynthesis Sandbox Cycle is not Publisher finalization. | Publisher finalization remains blocked. |
+| Retrosynthesis Sandbox Cycle is not deployment authority. | The cycle does not authorize deployment. |
+| Retrosynthesis Sandbox Cycle is not Omega detection. | No Omega detection is claimed. |
+| Retrosynthesis Sandbox Cycle is not publication claim authorization. | The cycle does not authorize publication claims. |
+| Retrosynthesis Sandbox Cycle is not recursive self-improvement. | The cycle is bounded candidate repair, not recursive self-improvement. |
+| Retrosynthesis Sandbox Cycle is not hallucination reduction proof. | Candidate repair visibility does not prove hallucination reduction. |
+| Retrosynthesis Sandbox Cycle is not model superiority proof. | Candidate repair visibility does not prove model superiority. |
+| Evidence Review Pack second pass is candidate revision, not accepted evidence. | Second-pass revisions remain candidates. |
+| Evidence Review Pack second pass is not canon adoption. | Candidate revisions do not adopt canon. |
+| Evidence Review Pack second pass is not memory write. | No Atlas or other memory write is authorized. |
+| Evidence Review Pack second pass is not final answer release. | Second-pass candidates are not final answers. |
+| Evidence Review Pack second pass is not Publisher finalization. | Publisher finalization remains blocked. |
+| Evidence Review Pack second pass is not deployment authority. | The loop does not authorize deployment. |
+| Evidence Review Pack second pass is not Omega detection. | No Omega detection is claimed. |
+| Evidence Review Pack second pass is not publication claim authorization. | The loop does not authorize publication claims. |
+| Evidence Review Pack second pass is not recursive self-improvement. | The loop is bounded candidate revision, not recursive self-improvement. |
+| Evidence Review Pack second pass is not hallucination reduction proof. | Structural visibility deltas do not prove hallucination reduction. |
+| Evidence Review Pack second pass is not model superiority proof. | Candidate revision visibility does not prove model superiority. |
