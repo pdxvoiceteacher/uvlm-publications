@@ -14,6 +14,10 @@
 10. Evidence Review Pack
 11. RW-COMP-01
 12. RW-COMP-02
+13. Retrosynthesis Sandbox Cycle
+14. Evidence Review Pack second pass
+15. RW-COMP-03
+16. Sonya Adapter Smoke
 
 ## CoherenceLattice commands
 
@@ -103,6 +107,52 @@ PowerShell RW-COMP-02:
 ```
 
 RW-COMP-02 is a deterministic multi-fixture comparison battery and remains not hallucination reduction proof. It is not model superiority proof, not professional advice, not compliance certification, and not production evaluation.
+
+PowerShell Retrosynthesis Sandbox Cycle:
+
+```powershell
+.\experiments\Run-RETROSYNTHESIS-SANDBOX-CYCLE01-Acceptance.ps1 `
+  -OutputRoot C:\UVLM\run_artifacts\retrosynthesis_sandbox_cycle_01 `
+  -LogDir C:\UVLM\run_artifacts\retrosynthesis_sandbox_cycle_01_logs `
+  -ControlProfileId generic_evidence_review.v1 `
+  -CiMode
+```
+
+Retrosynthesis Sandbox Cycle is candidate repair, not canon adoption. It is not memory write, not final answer release, not Publisher finalization, not Omega detection, not deployment authority, and not recursive self-improvement.
+
+PowerShell Evidence Review Pack second pass:
+
+```powershell
+.\experiments\Run-EVIDENCE-REVIEW-PACK01-Acceptance.ps1 `
+  -OutputRoot C:\UVLM\run_artifacts\evidence_review_pack_01 `
+  -LogDir C:\UVLM\run_artifacts\evidence_review_pack_01_logs `
+  -ControlProfileId generic_evidence_review.v1 `
+  -CiMode
+```
+
+Evidence Review Pack second pass is candidate revision, not accepted evidence. It is not canon adoption, not memory write, not final answer release, not Publisher finalization, not Omega detection, not deployment authority, not hallucination reduction proof, and not recursive self-improvement.
+
+PowerShell RW-COMP-03:
+
+```powershell
+.\experiments\Run-RW-COMP03-Acceptance.ps1 `
+  -OutputRoot C:\UVLM\run_artifacts\rw_comp_03 `
+  -LogDir C:\UVLM\run_artifacts\rw_comp_03_logs `
+  -CiMode
+```
+
+RW-COMP-03 is a held-out blinded fixture scaffold with simulated scores and a statistics plan. It includes a second-pass candidate arm and is a step toward future hallucination-reduction evidence, not hallucination reduction proof, not model superiority proof, not live model evaluation, and not live human study.
+
+PowerShell Sonya Adapter Smoke:
+
+```powershell
+.\experiments\Run-SONYA-ADAPTER-SMOKE00-Acceptance.ps1 `
+  -OutputRoot C:\UVLM\run_artifacts\sonya_adapter_smoke_00 `
+  -LogDir C:\UVLM\run_artifacts\sonya_adapter_smoke_00_logs `
+  -CiMode
+```
+
+Sonya Adapter Smoke exercises contracts, not live adapters. It inspects fixture-only adapter selection, consent checks, capability checks, Sonya gateway requirements, raw output rejected or absent, candidate packet emission, failure receipts, telemetry events, and provenance events. It is not live adapter execution, not network authorization, not remote provider call, not live model execution, not model weight training, not memory write, not final answer release, not deployment authority, and not production readiness.
 
 ## Sophia commands
 

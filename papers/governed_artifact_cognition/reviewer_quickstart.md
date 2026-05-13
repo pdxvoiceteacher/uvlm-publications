@@ -109,6 +109,68 @@ Expected posture:
 - `network_call_performed = false`
 - `promotion_blocked = true`
 
+## How to reproduce RETROSYNTHESIS-SANDBOX-CYCLE-01
+
+RETROSYNTHESIS-SANDBOX-CYCLE-01 is the first bounded candidate-repair cycle for incomplete or contradiction-bearing Evidence Review Pack artifacts. Retrosynthesis Sandbox Cycle is candidate repair, not canon adoption. It is not memory write, not final answer release, not Publisher finalization, not deployment authority, not Omega detection, not publication claim authorization, and not recursive self-improvement.
+
+```powershell
+.\experiments\Run-RETROSYNTHESIS-SANDBOX-CYCLE01-Acceptance.ps1 `
+  -OutputRoot C:\UVLM\run_artifacts\retrosynthesis_sandbox_cycle_01 `
+  -LogDir C:\UVLM\run_artifacts\retrosynthesis_sandbox_cycle_01_logs `
+  -ControlProfileId generic_evidence_review.v1 `
+  -CiMode
+```
+
+Expected posture:
+
+- `review_status = accepted_as_bounded_retrosynthesis_sandbox_cycle`
+- `candidate_repair_artifacts_emitted = true`
+- `missing_evidence_requests_visible = true`
+- `uncertainty_restoration_visible = true`
+- `counterevidence_preserved = true`
+- `hash_only_evidence_not_interpreted = true`
+- `canon_adoption_blocked = true`
+- `memory_write_blocked = true`
+- `final_answer_release_blocked = true`
+- `publisher_finalization_blocked = true`
+- `deployment_blocked = true`
+- `omega_detection_blocked = true`
+- `promotion_blocked = true`
+- `live_model_execution_performed = false`
+- `remote_provider_call_performed = false`
+- `network_call_performed = false`
+
+## How to reproduce EVIDENCE-REVIEW-PACK-01
+
+EVIDENCE-REVIEW-PACK-01 is the first bounded second-pass candidate loop generated from Retrosynthesis Sandbox Cycle repair candidates. Evidence Review Pack second pass is candidate revision, not accepted evidence. It is not canon adoption, not memory write, not final answer release, not Publisher finalization, not deployment authority, not Omega detection, not publication claim authorization, not recursive self-improvement, and not hallucination reduction proof.
+
+```powershell
+.\experiments\Run-EVIDENCE-REVIEW-PACK01-Acceptance.ps1 `
+  -OutputRoot C:\UVLM\run_artifacts\evidence_review_pack_01 `
+  -LogDir C:\UVLM\run_artifacts\evidence_review_pack_01_logs `
+  -ControlProfileId generic_evidence_review.v1 `
+  -CiMode
+```
+
+Expected posture:
+
+- `review_status = accepted_as_second_pass_review_candidate`
+- `revision_candidates_emitted = true`
+- `retrosynthesis_inputs_bound = true`
+- `candidate_only_status_preserved = true`
+- `hash_only_evidence_not_interpreted = true`
+- `canon_adoption_blocked = true`
+- `memory_write_blocked = true`
+- `final_answer_release_blocked = true`
+- `publisher_finalization_blocked = true`
+- `deployment_blocked = true`
+- `omega_detection_blocked = true`
+- `publication_claim_blocked = true`
+- `promotion_blocked = true`
+- `live_model_execution_performed = false`
+- `remote_provider_call_performed = false`
+- `network_call_performed = false`
+
 ## Other accepted local commands
 
 ```powershell
@@ -148,3 +210,5 @@ python tools/validate_public_repro_dashboard.py --dashboard registry/experiment_
 - Evidence Review Pack v0.1 is the first product-facing governed review receipt and AI review that shows its work, not truth certification, not professional advice, not compliance certification, not deployment authority, and not hallucination reduction proof.
 - RW-COMP-01 is the first fixture-only raw-vs-governed comparison involving Evidence Review Pack v0.1; it shows review-structure visibility in a deterministic fixture and is a step toward future hallucination-reduction evidence, not hallucination-reduction proof yet and not model superiority proof.
 - RW-COMP-02 is the first deterministic multi-fixture battery extending RW-COMP-01; it shows structural visibility improvement in deterministic fixtures, not hallucination-reduction proof yet and not model-superiority proof.
+- RETROSYNTHESIS-SANDBOX-CYCLE-01 is accepted as bounded candidate repair over incomplete Evidence Review Pack artifacts; it is not canon adoption, not memory write, not final answer release, not Publisher finalization, not deployment authority, not Omega detection, not publication claim authorization, and not recursive self-improvement.
+- EVIDENCE-REVIEW-PACK-01 is candidate revision, not accepted evidence; structural visibility delta is not hallucination-reduction proof, claim-map revision candidate is not truth certification, and uncertainty/counterevidence revision candidate is not canon.
