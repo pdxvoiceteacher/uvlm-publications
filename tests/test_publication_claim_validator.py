@@ -394,6 +394,92 @@ def test_governed_artifact_cognition_rw_comp_02_updates_are_present():
 
 
 
+def test_governed_artifact_cognition_retrosynthesis_sandbox_cycle_updates_are_present():
+    paper = (ROOT / "PUB_GOV_ARTIFACT_COG_01.md").read_text(encoding="utf-8")
+    abstract = (ROOT / "abstract.md").read_text(encoding="utf-8")
+    artifact_table = (ROOT / "artifact_table.md").read_text(encoding="utf-8")
+    boundary_table = (ROOT / "claim_boundary_table.md").read_text(encoding="utf-8")
+    quickstart = (ROOT / "reviewer_quickstart.md").read_text(encoding="utf-8")
+    appendix = (ROOT / "reproducibility_appendix.md").read_text(encoding="utf-8")
+    status = json.loads((ROOT / "status.json").read_text(encoding="utf-8"))
+
+    combined_paper = paper + "\n" + abstract
+    for phrase in (
+        "RETROSYNTHESIS-SANDBOX-CYCLE-01",
+        "first bounded candidate-repair cycle",
+        "incomplete or contradiction-bearing Evidence Review Pack artifacts",
+        "Retrosynthesis Sandbox Cycle is candidate repair, not canon adoption",
+        "not memory write",
+        "not final answer release",
+        "not Publisher finalization",
+        "not Omega detection",
+        "not recursive self-improvement",
+    ):
+        assert phrase in combined_paper
+    for artifact in (
+        "retrosynthesis_sandbox_cycle_packet.json",
+        "retrosynthesis_sandbox_cycle_review_packet.json",
+        "retrosynthesis_candidate_repair_plan.json",
+        "retrosynthesis_missing_evidence_request_packet.json",
+        "retrosynthesis_claim_map_revision_candidate.json",
+        "retrosynthesis_uncertainty_restoration_candidate.json",
+        "retrosynthesis_counterevidence_expansion_candidate.json",
+        "retrosynthesis_next_experiment_recommendation.json",
+        "retrosynthesis_sandbox_cycle_summary.md",
+        "retrosynthesis_sandbox_cycle_01_acceptance_receipt.json",
+    ):
+        assert artifact in artifact_table
+    for boundary in (
+        "Retrosynthesis Sandbox Cycle is candidate repair, not canon adoption.",
+        "Retrosynthesis Sandbox Cycle is not memory write.",
+        "Retrosynthesis Sandbox Cycle is not final answer release.",
+        "Retrosynthesis Sandbox Cycle is not Publisher finalization.",
+        "Retrosynthesis Sandbox Cycle is not deployment authority.",
+        "Retrosynthesis Sandbox Cycle is not Omega detection.",
+        "Retrosynthesis Sandbox Cycle is not publication claim authorization.",
+        "Retrosynthesis Sandbox Cycle is not recursive self-improvement.",
+        "Retrosynthesis Sandbox Cycle is not hallucination reduction proof.",
+        "Retrosynthesis Sandbox Cycle is not model superiority proof.",
+    ):
+        assert boundary in boundary_table
+    assert "Run-RETROSYNTHESIS-SANDBOX-CYCLE01-Acceptance.ps1" in quickstart
+    assert "Run-RETROSYNTHESIS-SANDBOX-CYCLE01-Acceptance.ps1" in appendix
+    assert "review_status = accepted_as_bounded_retrosynthesis_sandbox_cycle" in quickstart
+    assert status["retrosynthesis_sandbox_cycle_indexed"] is True
+    assert status["not_canon_adoption"] is True
+    assert status["not_memory_write"] is True
+    assert status["not_publisher_finalization"] is True
+    assert status["not_omega_detection"] is True
+    assert status["not_publication_claim"] is True
+    assert status["not_recursive_self_improvement"] is True
+
+
+def test_claim_validator_rejects_retrosynthesis_sandbox_cycle_overclaims(tmp_path):
+    forbidden_claims = (
+        "canon adoption",
+        "memory write",
+        "final answer release",
+        "Publisher finalization",
+        "Omega detection",
+        "recursive self-improvement achieved",
+    )
+    for claim in forbidden_claims:
+        paper_root = _copy_governed_paper(tmp_path / claim.replace(" ", "_").replace("-", "_"))
+        paper = paper_root / "PUB_GOV_ARTIFACT_COG_01.md"
+        paper.write_text(
+            paper.read_text(encoding="utf-8") + f"\nThis paper claims {claim}.\n",
+            encoding="utf-8",
+        )
+        result = validate_publication_claims(
+            paper,
+            appendix=paper_root / "reproducibility_appendix.md",
+            quickstart=paper_root / "reviewer_quickstart.md",
+            status=paper_root / "status.json",
+        )
+        assert result["passed"] is False, claim
+        assert result["forbidden_overclaims_found"], result
+
+
 def _copy_governed_paper(tmp_path: Path) -> Path:
     paper_root = tmp_path / "paper"
     paper_root.mkdir(parents=True)
