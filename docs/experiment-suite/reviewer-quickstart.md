@@ -17,6 +17,7 @@
 13. Retrosynthesis Sandbox Cycle
 14. Evidence Review Pack second pass
 15. RW-COMP-03
+16. Universal Architecture Scaffold
 
 ## CoherenceLattice commands
 
@@ -141,6 +142,36 @@ PowerShell RW-COMP-03:
 ```
 
 RW-COMP-03 is a held-out blinded fixture scaffold with simulated scores and a statistics plan. It includes a second-pass candidate arm and is a step toward future hallucination-reduction evidence, not hallucination reduction proof, not model superiority proof, not live model evaluation, and not live human study.
+
+
+## Universal Architecture Scaffold
+
+The brain runs cognition stages; experiments configure those stages.
+
+Universal Architecture Scaffold covers UNIVERSAL-STAGE-PIPELINE-00, ARTIFACT-CONTRACT-REGISTRY-01, and UNIVERSAL-COMPATIBILITY-MATRIX-00. Profiles are configuration, experiments are configurations, and unsupported inputs are preserved with fail-closed receipts or hash-only receipts instead of semantic interpretation.
+
+Universal Stage Pipeline:
+
+```powershell
+python -m pytest -q python/tests/pipeline/test_universal_stage_pipeline.py
+```
+
+Artifact Contract Registry:
+
+```powershell
+python -m pytest -q python/tests/integration/test_artifact_contract_registry.py
+```
+
+Universal Compatibility Matrix:
+
+```powershell
+.\experiments\Run-UNIVERSAL-COMPATIBILITY-MATRIX00-Acceptance.ps1 `
+  -OutputRoot C:\UVLM\run_artifacts\universal_compatibility_matrix_00 `
+  -LogDir C:\UVLM\run_artifacts\universal_compatibility_matrix_00_logs `
+  -CiMode
+```
+
+This scaffold is not product release, not experiment result, not benchmark result, not hallucination reduction proof, not deployment authority, and not recursive self-improvement.
 
 ## Sophia commands
 
