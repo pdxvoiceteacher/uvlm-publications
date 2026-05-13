@@ -28,6 +28,7 @@ REQUIRED_PHASES = {
     "UNIVERSAL-STAGE-PIPELINE-00",
     "ARTIFACT-CONTRACT-REGISTRY-01",
     "UNIVERSAL-COMPATIBILITY-MATRIX-00",
+    "SONYA-ADAPTER-CONTRACT-REGISTRY-01",
 }
 REQUIRED_BOUNDARY_PHRASES = (
     "not truth certification",
@@ -109,6 +110,16 @@ REQUIRED_BOUNDARY_PHRASES = (
     "not hallucination reduction proof",
     "not deployment authority",
     "not recursive self-improvement",
+    "Sonya Adapter Contract Registry",
+    "Adapter capability is not adapter authorization",
+    "all adapters disabled or blocked",
+    "not adapter execution",
+    "not network authorization",
+    "not remote provider call",
+    "not model weight training",
+    "raw output is forbidden",
+    "candidate packet required",
+    "failure receipts required",
 )
 FORBIDDEN_PHRASES = (
     "deployment readiness",
@@ -171,6 +182,16 @@ FORBIDDEN_PHRASES = (
     "benchmark proven",
     "experiment result",
     "AI consciousness demonstrated",
+    "adapter executed",
+    "adapter execution",
+    "network authorized",
+    "network authorization",
+    "remote provider called",
+    "live model executed",
+    "model weights trained",
+    "model weight training",
+    "production ready",
+    "production readiness",
 )
 ALLOWED_NEGATED = (
     "not ",

@@ -167,6 +167,21 @@
       "export_bundle_parity_report.json",
       "universal_compatibility_matrix_00_acceptance_receipt.json"
     ],
+    "SONYA-ADAPTER-CONTRACT-REGISTRY-01": [
+      "sonya_adapter_contract_registry_packet.json",
+      "sonya_adapter_contract_review_packet.json",
+      "sonya_adapter_capability_matrix_packet.json",
+      "sonya_adapter_consent_matrix_packet.json",
+      "sonya_adapter_failure_policy_packet.json",
+      "sonya_adapter_telemetry_requirements_packet.json",
+      "sonya_adapter_provenance_training_policy_packet.json",
+      "sonya_adapter_contract_summary.md",
+      "artifact_inventory.json",
+      "run_artifact_manifest.json",
+      "export_bundle_manifest.json",
+      "export_bundle_parity_report.json",
+      "sonya_adapter_contract_registry_01_acceptance_receipt.json"
+    ],
     "publications": [
       "PUB_GOV_ARTIFACT_COG_01.md",
       "PUB_WAVE_ROSETTA_01.md",

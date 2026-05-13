@@ -400,6 +400,56 @@ UNIVERSAL_ARCHITECTURE_CLAIMS_BLOCKED = [
     "not AI consciousness claim",
 ]
 
+SONYA_ADAPTER_CONTRACT_REGISTRY_COMMAND = r""".\experiments\Run-SONYA-ADAPTER-CONTRACT-REGISTRY01-Acceptance.ps1 `
+  -OutputRoot C:\UVLM\run_artifacts\sonya_adapter_contract_registry_01 `
+  -LogDir C:\UVLM\run_artifacts\sonya_adapter_contract_registry_01_logs `
+  -CiMode"""
+SONYA_ADAPTER_CONTRACT_REGISTRY_ARTIFACTS = [
+    "sonya_adapter_contract_registry_packet.json",
+    "sonya_adapter_contract_review_packet.json",
+    "sonya_adapter_capability_matrix_packet.json",
+    "sonya_adapter_consent_matrix_packet.json",
+    "sonya_adapter_failure_policy_packet.json",
+    "sonya_adapter_telemetry_requirements_packet.json",
+    "sonya_adapter_provenance_training_policy_packet.json",
+    "sonya_adapter_contract_summary.md",
+    "artifact_inventory.json",
+    "run_artifact_manifest.json",
+    "export_bundle_manifest.json",
+    "export_bundle_parity_report.json",
+    "sonya_adapter_contract_registry_01_acceptance_receipt.json",
+]
+SONYA_ADAPTER_CONTRACT_REGISTRY_DASHBOARD_SUMMARY = {
+    "review_status": "accepted_as_adapter_contract_registry_only",
+    "adapter_count": 11,
+    "disabled_or_blocked_adapter_count": 11,
+    "enabled_live_adapter_count": 0,
+    "all_adapters_disabled_or_blocked": True,
+    "no_live_adapter_execution": True,
+    "no_network_calls": True,
+    "no_remote_provider_calls": True,
+    "sonya_gateway_required": True,
+    "raw_output_forbidden": True,
+    "candidate_packet_required": True,
+    "failure_receipts_required": True,
+    "provenance_training_policy_present": True,
+    "promotion_blocked": True,
+}
+SONYA_ADAPTER_CONTRACT_REGISTRY_CLAIMS_BLOCKED = [
+    "not adapter execution",
+    "not live model execution",
+    "not remote provider call",
+    "not network authorization",
+    "not memory write",
+    "not final answer release",
+    "not deployment authority",
+    "not truth certification",
+    "not model weight training",
+    "not hallucination reduction proof",
+    "not recursive self-improvement",
+    "not production readiness",
+]
+
 RETRO_SANDBOX_CYCLE_COMMAND = r""".\experiments\Run-RETROSYNTHESIS-SANDBOX-CYCLE01-Acceptance.ps1 `
   -OutputRoot C:\UVLM\run_artifacts\retrosynthesis_sandbox_cycle_01 `
   -LogDir C:\UVLM\run_artifacts\retrosynthesis_sandbox_cycle_01_logs `
@@ -472,6 +522,20 @@ PUBLIC_UTILITY_ALPHA_CLAIMS_BLOCKED = [
     "Public Utility Alpha is not AI consciousness.",
 ]
 ACCEPTED_PHASES = [
+    {
+        "phase_id": "SONYA-ADAPTER-CONTRACT-REGISTRY-01",
+        "repo": "pdxvoiceteacher/CoherenceLattice",
+        "status": "accepted",
+        "evidence_type": "architecture_scaffold",
+        "product_posture": "versioned_sonya_adapter_contracts",
+        "primary_artifacts": SONYA_ADAPTER_CONTRACT_REGISTRY_ARTIFACTS,
+        "dashboard_summary": SONYA_ADAPTER_CONTRACT_REGISTRY_DASHBOARD_SUMMARY,
+        "reproduction_command_summary": SONYA_ADAPTER_CONTRACT_REGISTRY_COMMAND,
+        "claim_allowed": "SONYA-ADAPTER-CONTRACT-REGISTRY-01 demonstrates a fixture-only versioned adapter-contract scaffold that declares adapter capabilities, consent profiles, failure policies, telemetry requirements, and provenance-training policies while keeping all adapters disabled or blocked and forbidding raw output admission. Adapter capability is not adapter authorization.",
+        "claims_blocked": SONYA_ADAPTER_CONTRACT_REGISTRY_CLAIMS_BLOCKED,
+        "reviewer_caution": "SONYA-ADAPTER-CONTRACT-REGISTRY-01 defines adapter contracts only. It does not execute adapters, does not call providers, does not authorize network use, does not admit raw output as cognition, does not write memory, does not release final answers, does not train models, and does not deploy.",
+        "publication_status": "dashboard_indexed",
+    },
     {
         "phase_id": "UNIVERSAL-STAGE-PIPELINE-00",
         "repo": "pdxvoiceteacher/CoherenceLattice",
@@ -813,6 +877,10 @@ PLANNED_PHASES = [
     "Raw-model comparison baselines",
 ]
 BOUNDARIES = [
+    "Sonya Adapter Contract Registry: Adapter capability is not adapter authorization.",
+    "Sonya Adapter Contract Registry keeps all adapters disabled or blocked; all adapters disabled or blocked means not adapter execution and not network authorization.",
+    "Sonya Adapter Contract Registry boundaries: not adapter execution, not network authorization, not remote provider call, not model weight training.",
+    "Sonya Adapter Contract Registry requires that raw output is forbidden, candidate packet required, and failure receipts required.",
     "Universal Architecture Scaffold: The brain runs cognition stages; experiments configure those stages.",
     "Universal architecture scaffold: profiles are configuration; experiments are configurations over reusable stages and versioned artifact contracts.",
     "Universal compatibility inputs use fail-closed receipts or hash-only receipts when unsupported inputs cannot be semantically interpreted.",
@@ -966,6 +1034,7 @@ def dashboard_payload() -> dict[str, Any]:
             "universal_pipeline_manifest.json",
             "artifact_contract_registry_review.json",
             "universal_compatibility_matrix_packet.json",
+            "sonya_adapter_contract_registry_packet.json",
         ],
         "publication_drafts": [
             "papers/governed_artifact_cognition/PUB_GOV_ARTIFACT_COG_01.md",
@@ -1012,6 +1081,7 @@ def reproducibility_index() -> dict[str, Any]:
                 {"name": "Universal Stage Pipeline acceptance", "command": UNIVERSAL_STAGE_PIPELINE_COMMAND},
                 {"name": "Artifact Contract Registry acceptance", "command": ARTIFACT_CONTRACT_REGISTRY_COMMAND},
                 {"name": "Universal Compatibility Matrix acceptance", "command": UNIVERSAL_COMPATIBILITY_MATRIX_COMMAND},
+                {"name": "Sonya Adapter Contract Registry acceptance", "command": SONYA_ADAPTER_CONTRACT_REGISTRY_COMMAND},
                 {"name": "experiment suite repro pack builder", "command": "python -m coherence.tools.build_experiment_suite_repro_pack --registry experiments/experiment_suite_registry.json --artifacts-root artifacts --out-dir artifacts/experiment_suite_repro_pack --zip"},
             ],
             "Sophia": [
@@ -1050,6 +1120,7 @@ def artifact_index() -> dict[str, Any]:
             "UNIVERSAL-STAGE-PIPELINE-00": UNIVERSAL_STAGE_PIPELINE_ARTIFACTS,
             "ARTIFACT-CONTRACT-REGISTRY-01": ARTIFACT_CONTRACT_REGISTRY_ARTIFACTS,
             "UNIVERSAL-COMPATIBILITY-MATRIX-00": UNIVERSAL_COMPATIBILITY_MATRIX_ARTIFACTS,
+            "SONYA-ADAPTER-CONTRACT-REGISTRY-01": SONYA_ADAPTER_CONTRACT_REGISTRY_ARTIFACTS,
             "publications": ["PUB_GOV_ARTIFACT_COG_01.md", "PUB_WAVE_ROSETTA_01.md", "reviewer quickstarts", "status.json files"],
         },
     }
@@ -1068,6 +1139,7 @@ def status_payload() -> dict[str, Any]:
         "latest_second_pass_review_candidate": "EVIDENCE-REVIEW-PACK-01",
         "latest_heldout_blinded_fixture_scaffold": "RW-COMP-03",
         "latest_universal_architecture_scaffold": "UNIVERSAL-COMPATIBILITY-MATRIX-00",
+        "latest_sonya_adapter_contract_registry": "SONYA-ADAPTER-CONTRACT-REGISTRY-01",
         "requires_external_peer_review": True,
         "not_truth_certification": True,
         "not_deployment_authority": True,
@@ -1086,7 +1158,7 @@ def docs() -> dict[str, str]:
     return {
         "README.md": "# Experiment Suite Docs\n\nPublic reviewer documentation for the claim-bounded reproducibility dashboard.\n",
         "assets/README.md": "# Assets\n\nOptional static assets for the public reproducibility dashboard.\n",
-        "index.md": f"# Public Experiment Suite Dashboard\n\nThis dashboard presents accepted evidence for reviewer orientation. It is not truth certification, not deployment authority, not final answer release, local fixture only, and requires external peer review.\n\n## Accepted evidence\n\n| Phase | Repo | Status | What this supports | Reviewer caution |\n| --- | --- | --- | --- | --- |\n{phase_rows}\n\n## Reviewer path\n\nStart with claim boundaries, then read the governed artifact cognition paper, WAVE Rosetta paper, SONYA-AEGIS-SMOKE-02, WAVE family, UNI-02D Sonya gate, and RETRO-LANE-00, Public Utility Alpha, Raw Baseline Comparison, Evidence Review Pack, RW-COMP-01, RW-COMP-02, Retrosynthesis Sandbox Cycle, Evidence Review Pack second-pass, RW-COMP-03, and Universal Architecture Scaffold pages.\n\n## What this proves\n\nIt proves only that accepted local fixture artifacts and draft publication materials are organized for review.\n\n## What this does not prove\n\nNo oracle posture, no deployment posture, no final-answer posture, no AI consciousness claim, and no universal ontology claim.\n\n## Phase pages\n\n- [SONYA-AEGIS-SMOKE-02](sonya-aegis-smoke-02.md)\n- [WAVE Gold-Physics](wave-gold-physics.md)\n- [UNI-02D Sonya gate](uni02d-sonya-gate.md)\n- [RETRO-LANE-00](retro-lane-00.md)\n- [Public Utility Alpha](public-utility-alpha.md)\n- [Raw Baseline Comparison](raw-baseline-comparison.md)\n- [Evidence Review Pack](evidence-review-pack.md)\n- [RW-COMP-01](rw-comp-01.md)\n- [RW-COMP-02](rw-comp-02.md)\n- [Retrosynthesis Sandbox Cycle](retrosynthesis-sandbox-cycle.md)\n- [Evidence Review Pack second pass](evidence-review-pack-second-pass.md)\n- [RW-COMP-03](rw-comp-03.md)\n- [Universal Architecture Scaffold](universal-architecture.md)\n- [Governed artifact cognition paper](governed-artifact-cognition-paper.md)\n- [Waveform Rosetta paper](waveform-rosetta-paper.md)\n",
+        "index.md": f"# Public Experiment Suite Dashboard\n\nThis dashboard presents accepted evidence for reviewer orientation. It is not truth certification, not deployment authority, not final answer release, local fixture only, and requires external peer review.\n\n## Accepted evidence\n\n| Phase | Repo | Status | What this supports | Reviewer caution |\n| --- | --- | --- | --- | --- |\n{phase_rows}\n\n## Reviewer path\n\nStart with claim boundaries, then read the governed artifact cognition paper, WAVE Rosetta paper, SONYA-AEGIS-SMOKE-02, WAVE family, UNI-02D Sonya gate, and RETRO-LANE-00, Public Utility Alpha, Raw Baseline Comparison, Evidence Review Pack, RW-COMP-01, RW-COMP-02, Retrosynthesis Sandbox Cycle, Evidence Review Pack second-pass, RW-COMP-03, Universal Architecture Scaffold, and Sonya Adapter Contract Registry pages.\n\n## What this proves\n\nIt proves only that accepted local fixture artifacts and draft publication materials are organized for review.\n\n## What this does not prove\n\nNo oracle posture, no deployment posture, no final-answer posture, no AI consciousness claim, and no universal ontology claim.\n\n## Phase pages\n\n- [SONYA-AEGIS-SMOKE-02](sonya-aegis-smoke-02.md)\n- [WAVE Gold-Physics](wave-gold-physics.md)\n- [UNI-02D Sonya gate](uni02d-sonya-gate.md)\n- [RETRO-LANE-00](retro-lane-00.md)\n- [Public Utility Alpha](public-utility-alpha.md)\n- [Raw Baseline Comparison](raw-baseline-comparison.md)\n- [Evidence Review Pack](evidence-review-pack.md)\n- [RW-COMP-01](rw-comp-01.md)\n- [RW-COMP-02](rw-comp-02.md)\n- [Retrosynthesis Sandbox Cycle](retrosynthesis-sandbox-cycle.md)\n- [Evidence Review Pack second pass](evidence-review-pack-second-pass.md)\n- [RW-COMP-03](rw-comp-03.md)\n- [Universal Architecture Scaffold](universal-architecture.md)\n- [Sonya Adapter Contract Registry](sonya-adapter-contract-registry.md)\n- [Governed artifact cognition paper](governed-artifact-cognition-paper.md)\n- [Waveform Rosetta paper](waveform-rosetta-paper.md)\n",
         "claim-boundaries.md": f"# Claim Boundaries\n\n{boundaries}\n\nNo oracle posture. No deployment posture. No final-answer posture. No AI consciousness claim. No universal ontology claim.\n",
         "sonya-aegis-smoke-02.md": f"""# SONYA-AEGIS-SMOKE-02
 
@@ -1359,6 +1431,45 @@ Claims blocked: {"; ".join(EVIDENCE_REVIEW_PACK_01_CLAIMS_BLOCKED)}.
 
 Reviewer caution: EVIDENCE-REVIEW-PACK-01 emits candidate revisions only. Its deltas are structural visibility descriptors, not hallucination-reduction proof. Claim-map revisions are not accepted evidence. Uncertainty and counterevidence revisions require future review gates before promotion. This phase does not write memory, does not adopt canon, does not publish claims, does not release final answers, does not perform Omega detection, does not finalize Publisher output, and does not authorize deployment.
 """,
+        "sonya-adapter-contract-registry.md": f"""# Sonya Adapter Contract Registry
+
+Adapter capability is not adapter authorization.
+
+Purpose: describe SONYA-ADAPTER-CONTRACT-REGISTRY-01 as a fixture-only versioned adapter-contract scaffold for future Sonya adapters. Adapter contracts are versioned configuration; they declare capability, consent, failure, telemetry, and provenance-training policy without enabling live adapters.
+
+## Allowed claim
+
+SONYA-ADAPTER-CONTRACT-REGISTRY-01 demonstrates a fixture-only versioned adapter-contract scaffold that declares adapter capabilities, consent profiles, failure policies, telemetry requirements, and provenance-training policies while keeping all adapters disabled or blocked and forbidding raw output admission.
+
+## Reproduction command
+
+```powershell
+{SONYA_ADAPTER_CONTRACT_REGISTRY_COMMAND}
+```
+
+## Evidence artifacts
+
+{chr(10).join(f"- `{artifact}`" for artifact in SONYA_ADAPTER_CONTRACT_REGISTRY_ARTIFACTS)}
+
+## Dashboard summary
+
+{chr(10).join(f"- {key} = {str(value).lower()}" for key, value in SONYA_ADAPTER_CONTRACT_REGISTRY_DASHBOARD_SUMMARY.items())}
+
+## Reviewer boundaries
+
+- adapter contracts are versioned configuration.
+- all adapters disabled or blocked.
+- no live adapter execution occurred.
+- no network calls occurred.
+- raw output is forbidden.
+- candidate packet required.
+- failure receipts required.
+- provenance-training policy is present.
+
+Claims blocked: {"; ".join(SONYA_ADAPTER_CONTRACT_REGISTRY_CLAIMS_BLOCKED)}.
+
+Reviewer caution: SONYA-ADAPTER-CONTRACT-REGISTRY-01 defines adapter contracts only. It does not execute adapters, does not call providers, does not authorize network use, does not admit raw output as cognition, does not write memory, does not release final answers, does not train models, and does not deploy.
+""",
         "universal-architecture.md": f"""# Universal Architecture Scaffold
 
 The brain runs cognition stages; experiments configure those stages.
@@ -1435,6 +1546,7 @@ Reviewer caution: this is not product release, not experiment result, not benchm
 14. Evidence Review Pack second pass
 15. RW-COMP-03
 16. Universal Architecture Scaffold
+17. Sonya Adapter Contract Registry
 
 ## CoherenceLattice commands
 
@@ -1548,6 +1660,23 @@ Universal Compatibility Matrix:
 ```
 
 This scaffold is not product release, not experiment result, not benchmark result, not hallucination reduction proof, not deployment authority, and not recursive self-improvement.
+
+
+## Sonya Adapter Contract Registry
+
+Adapter capability is not adapter authorization.
+
+Sonya Adapter Contract Registry covers SONYA-ADAPTER-CONTRACT-REGISTRY-01. Adapter contracts are versioned configuration. All adapters disabled or blocked means not adapter execution and not network authorization; raw output is forbidden, candidate packet required, failure receipts required, and provenance-training policy is present.
+
+```powershell
+{SONYA_ADAPTER_CONTRACT_REGISTRY_COMMAND}
+```
+
+Expected posture:
+
+{chr(10).join(f"- `{key} = {str(value).lower()}`" for key, value in SONYA_ADAPTER_CONTRACT_REGISTRY_DASHBOARD_SUMMARY.items())}
+
+This scaffold is not adapter execution, not live model execution, not remote provider call, not network authorization, not memory write, not final answer release, not deployment authority, not truth certification, not model weight training, not hallucination reduction proof, not recursive self-improvement, and not production readiness.
 
 ## Sophia commands
 

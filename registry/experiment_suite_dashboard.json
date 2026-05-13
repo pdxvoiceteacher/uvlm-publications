@@ -8,11 +8,67 @@
   ],
   "dashboard_status": "draft_public_review",
   "generated_at": null,
-  "accepted_phase_count": 20,
+  "accepted_phase_count": 21,
   "partial_phase_count": 1,
   "blocked_phase_count": 1,
   "planned_phase_count": 3,
   "accepted_phases": [
+    {
+      "phase_id": "SONYA-ADAPTER-CONTRACT-REGISTRY-01",
+      "repo": "pdxvoiceteacher/CoherenceLattice",
+      "status": "accepted",
+      "evidence_type": "architecture_scaffold",
+      "product_posture": "versioned_sonya_adapter_contracts",
+      "primary_artifacts": [
+        "sonya_adapter_contract_registry_packet.json",
+        "sonya_adapter_contract_review_packet.json",
+        "sonya_adapter_capability_matrix_packet.json",
+        "sonya_adapter_consent_matrix_packet.json",
+        "sonya_adapter_failure_policy_packet.json",
+        "sonya_adapter_telemetry_requirements_packet.json",
+        "sonya_adapter_provenance_training_policy_packet.json",
+        "sonya_adapter_contract_summary.md",
+        "artifact_inventory.json",
+        "run_artifact_manifest.json",
+        "export_bundle_manifest.json",
+        "export_bundle_parity_report.json",
+        "sonya_adapter_contract_registry_01_acceptance_receipt.json"
+      ],
+      "dashboard_summary": {
+        "review_status": "accepted_as_adapter_contract_registry_only",
+        "adapter_count": 11,
+        "disabled_or_blocked_adapter_count": 11,
+        "enabled_live_adapter_count": 0,
+        "all_adapters_disabled_or_blocked": true,
+        "no_live_adapter_execution": true,
+        "no_network_calls": true,
+        "no_remote_provider_calls": true,
+        "sonya_gateway_required": true,
+        "raw_output_forbidden": true,
+        "candidate_packet_required": true,
+        "failure_receipts_required": true,
+        "provenance_training_policy_present": true,
+        "promotion_blocked": true
+      },
+      "reproduction_command_summary": ".\\experiments\\Run-SONYA-ADAPTER-CONTRACT-REGISTRY01-Acceptance.ps1 `\n  -OutputRoot C:\\UVLM\\run_artifacts\\sonya_adapter_contract_registry_01 `\n  -LogDir C:\\UVLM\\run_artifacts\\sonya_adapter_contract_registry_01_logs `\n  -CiMode",
+      "claim_allowed": "SONYA-ADAPTER-CONTRACT-REGISTRY-01 demonstrates a fixture-only versioned adapter-contract scaffold that declares adapter capabilities, consent profiles, failure policies, telemetry requirements, and provenance-training policies while keeping all adapters disabled or blocked and forbidding raw output admission. Adapter capability is not adapter authorization.",
+      "claims_blocked": [
+        "not adapter execution",
+        "not live model execution",
+        "not remote provider call",
+        "not network authorization",
+        "not memory write",
+        "not final answer release",
+        "not deployment authority",
+        "not truth certification",
+        "not model weight training",
+        "not hallucination reduction proof",
+        "not recursive self-improvement",
+        "not production readiness"
+      ],
+      "reviewer_caution": "SONYA-ADAPTER-CONTRACT-REGISTRY-01 defines adapter contracts only. It does not execute adapters, does not call providers, does not authorize network use, does not admit raw output as cognition, does not write memory, does not release final answers, does not train models, and does not deploy.",
+      "publication_status": "dashboard_indexed"
+    },
     {
       "phase_id": "UNIVERSAL-STAGE-PIPELINE-00",
       "repo": "pdxvoiceteacher/CoherenceLattice",
@@ -790,7 +846,8 @@
     "rw_comp_03_packet.json",
     "universal_pipeline_manifest.json",
     "artifact_contract_registry_review.json",
-    "universal_compatibility_matrix_packet.json"
+    "universal_compatibility_matrix_packet.json",
+    "sonya_adapter_contract_registry_packet.json"
   ],
   "publication_drafts": [
     "papers/governed_artifact_cognition/PUB_GOV_ARTIFACT_COG_01.md",

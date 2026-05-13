@@ -18,6 +18,7 @@
 14. Evidence Review Pack second pass
 15. RW-COMP-03
 16. Universal Architecture Scaffold
+17. Sonya Adapter Contract Registry
 
 ## CoherenceLattice commands
 
@@ -172,6 +173,39 @@ Universal Compatibility Matrix:
 ```
 
 This scaffold is not product release, not experiment result, not benchmark result, not hallucination reduction proof, not deployment authority, and not recursive self-improvement.
+
+
+## Sonya Adapter Contract Registry
+
+Adapter capability is not adapter authorization.
+
+Sonya Adapter Contract Registry covers SONYA-ADAPTER-CONTRACT-REGISTRY-01. Adapter contracts are versioned configuration. All adapters disabled or blocked means not adapter execution and not network authorization; raw output is forbidden, candidate packet required, failure receipts required, and provenance-training policy is present.
+
+```powershell
+.\experiments\Run-SONYA-ADAPTER-CONTRACT-REGISTRY01-Acceptance.ps1 `
+  -OutputRoot C:\UVLM\run_artifacts\sonya_adapter_contract_registry_01 `
+  -LogDir C:\UVLM\run_artifacts\sonya_adapter_contract_registry_01_logs `
+  -CiMode
+```
+
+Expected posture:
+
+- `review_status = accepted_as_adapter_contract_registry_only`
+- `adapter_count = 11`
+- `disabled_or_blocked_adapter_count = 11`
+- `enabled_live_adapter_count = 0`
+- `all_adapters_disabled_or_blocked = true`
+- `no_live_adapter_execution = true`
+- `no_network_calls = true`
+- `no_remote_provider_calls = true`
+- `sonya_gateway_required = true`
+- `raw_output_forbidden = true`
+- `candidate_packet_required = true`
+- `failure_receipts_required = true`
+- `provenance_training_policy_present = true`
+- `promotion_blocked = true`
+
+This scaffold is not adapter execution, not live model execution, not remote provider call, not network authorization, not memory write, not final answer release, not deployment authority, not truth certification, not model weight training, not hallucination reduction proof, not recursive self-improvement, and not production readiness.
 
 ## Sophia commands
 

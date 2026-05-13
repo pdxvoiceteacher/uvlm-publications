@@ -6,6 +6,7 @@ This dashboard presents accepted evidence for reviewer orientation. It is not tr
 
 | Phase | Repo | Status | What this supports | Reviewer caution |
 | --- | --- | --- | --- | --- |
+| SONYA-ADAPTER-CONTRACT-REGISTRY-01 | pdxvoiceteacher/CoherenceLattice | accepted | SONYA-ADAPTER-CONTRACT-REGISTRY-01 demonstrates a fixture-only versioned adapter-contract scaffold that declares adapter capabilities, consent profiles, failure policies, telemetry requirements, and provenance-training policies while keeping all adapters disabled or blocked and forbidding raw output admission. Adapter capability is not adapter authorization. | SONYA-ADAPTER-CONTRACT-REGISTRY-01 defines adapter contracts only. It does not execute adapters, does not call providers, does not authorize network use, does not admit raw output as cognition, does not write memory, does not release final answers, does not train models, and does not deploy. |
 | UNIVERSAL-STAGE-PIPELINE-00 | pdxvoiceteacher/CoherenceLattice | accepted | UNIVERSAL-STAGE-PIPELINE-00 defines reusable cognition-stage contracts for a universal architecture scaffold. | Cognition-stage contracts are not product release, not experiment result, not benchmark result, and not deployment authority. |
 | ARTIFACT-CONTRACT-REGISTRY-01 | pdxvoiceteacher/CoherenceLattice | accepted | ARTIFACT-CONTRACT-REGISTRY-01 externalizes artifact roles and profile contracts into versioned configuration. | Artifact profile contracts show that profiles are configuration; they are not truth certification or deployment authority. |
 | UNIVERSAL-COMPATIBILITY-MATRIX-00 | pdxvoiceteacher/CoherenceLattice | accepted | The universal architecture scaffold demonstrates that accepted experiments can be described as configurations over reusable stages and versioned artifact contracts, with unsupported inputs preserved by hash-only or failed-closed receipts. | The compatibility matrix is architecture scaffold evidence only: not product release, not experiment result, not benchmark result, not hallucination reduction proof, and not recursive self-improvement. |
@@ -29,7 +30,7 @@ This dashboard presents accepted evidence for reviewer orientation. It is not tr
 
 ## Reviewer path
 
-Start with claim boundaries, then read the governed artifact cognition paper, WAVE Rosetta paper, SONYA-AEGIS-SMOKE-02, WAVE family, UNI-02D Sonya gate, and RETRO-LANE-00, Public Utility Alpha, Raw Baseline Comparison, Evidence Review Pack, RW-COMP-01, RW-COMP-02, Retrosynthesis Sandbox Cycle, Evidence Review Pack second-pass, RW-COMP-03, and Universal Architecture Scaffold pages.
+Start with claim boundaries, then read the governed artifact cognition paper, WAVE Rosetta paper, SONYA-AEGIS-SMOKE-02, WAVE family, UNI-02D Sonya gate, and RETRO-LANE-00, Public Utility Alpha, Raw Baseline Comparison, Evidence Review Pack, RW-COMP-01, RW-COMP-02, Retrosynthesis Sandbox Cycle, Evidence Review Pack second-pass, RW-COMP-03, Universal Architecture Scaffold, and Sonya Adapter Contract Registry pages.
 
 ## What this proves
 
@@ -54,5 +55,6 @@ No oracle posture, no deployment posture, no final-answer posture, no AI conscio
 - [Evidence Review Pack second pass](evidence-review-pack-second-pass.md)
 - [RW-COMP-03](rw-comp-03.md)
 - [Universal Architecture Scaffold](universal-architecture.md)
+- [Sonya Adapter Contract Registry](sonya-adapter-contract-registry.md)
 - [Governed artifact cognition paper](governed-artifact-cognition-paper.md)
 - [Waveform Rosetta paper](waveform-rosetta-paper.md)
