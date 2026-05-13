@@ -1,6 +1,6 @@
 # Reviewer Quickstart
 
-Read the paper, claim-boundary table, artifact table, and this quickstart before interpreting artifacts. The review posture is local fixture only, not truth certification, not deployment authority, not final answer release, not AI consciousness, not recursive Sonya federation, not retrosynthesis runtime, not Omega detection, not live Atlas memory writes, not live Sophia calls, and requires external peer review.
+Read the paper, claim-boundary table, artifact table, and this quickstart before interpreting artifacts. The review posture is local fixture only, not truth certification, not professional advice, not compliance certification, not deployment authority, not final answer release, not hallucination reduction proof, not AI consciousness, not recursive Sonya federation, not retrosynthesis runtime, not Omega detection, not live Atlas memory writes, not live Sophia calls, and requires external peer review.
 
 ## How to reproduce Public Utility Alpha
 
@@ -42,6 +42,163 @@ Expected posture:
 - `not_model_quality_benchmark = true`
 - `promotion_blocked = true`
 
+## How to reproduce Evidence Review Pack v0.1
+
+Evidence Review Pack v0.1 is the first product-facing governed review receipt. It consumes Universal Evidence Ingress and UCC Control Profile Selector artifacts. Evidence Review Pack v0.1 is AI review that shows its work. It is not truth certification, not professional advice, not compliance certification, not deployment authority, and not hallucination reduction proof.
+
+```powershell
+.\experiments\Run-EVIDENCE-REVIEW-PACK00-Acceptance.ps1 `
+  -OutputRoot C:\UVLM\run_artifacts\evidence_review_pack_00 `
+  -LogDir C:\UVLM\run_artifacts\evidence_review_pack_00_logs `
+  -ControlProfileId generic_evidence_review.v1 `
+  -CiMode
+```
+
+Expected posture:
+
+- `fixture_only = true`
+- `source_bounded_review_receipt = true`
+- `unsupported_claim_visibility = true`
+- `uncertainty_retention_present = true`
+- `counterevidence_preserved = true`
+- `ucc_threshold_posture_present = true`
+- `deployment_authority_granted = false`
+- `truth_certification_performed = false`
+
+## How to reproduce RW-COMP-01
+
+RW-COMP-01 is the first fixture-only raw-vs-governed comparison involving Evidence Review Pack v0.1. It shows review-structure visibility in a deterministic fixture and is a step toward future hallucination-reduction evidence. It is not hallucination-reduction proof yet and not model superiority proof.
+
+```powershell
+.\experiments\Run-RW-COMP01-Acceptance.ps1 `
+  -OutputRoot C:\UVLM\run_artifacts\rw_comp_01 `
+  -LogDir C:\UVLM\run_artifacts\rw_comp_01_logs `
+  -ControlProfileId generic_evidence_review.v1 `
+  -CiMode
+```
+
+Expected posture:
+
+- `fixture_only = true`
+- `deterministic_fixture_comparison = true`
+- `review_structure_visibility = true`
+- `hallucination_reduction_proof = false`
+- `model_superiority_proof = false`
+
+## How to reproduce RW-COMP-02
+
+RW-COMP-02 is the first deterministic multi-fixture battery extending RW-COMP-01. It compares raw, RAG-style, partial-governed, and full Evidence Review Pack arms across six controlled fixture families. It shows structural visibility improvement in deterministic fixtures and is a step toward future hallucination-reduction evidence. It is not hallucination-reduction proof yet and not model-superiority proof.
+
+```powershell
+.\experiments\Run-RW-COMP02-Acceptance.ps1 `
+  -OutputRoot C:\UVLM\run_artifacts\rw_comp_02 `
+  -LogDir C:\UVLM\run_artifacts\rw_comp_02_logs `
+  -CiMode
+```
+
+Expected posture:
+
+- `review_status = accepted_as_multi_fixture_comparison_battery`
+- `fixture_count >= 6`
+- `all_arms_present_for_each_fixture = true`
+- `evidence_review_pack_arm_present_for_each_fixture = true`
+- `comparison_is_not_hallucination_reduction_proof = true`
+- `comparison_is_not_model_superiority_proof = true`
+- `live_model_execution_performed = false`
+- `remote_provider_call_performed = false`
+- `network_call_performed = false`
+- `promotion_blocked = true`
+
+## How to reproduce RETROSYNTHESIS-SANDBOX-CYCLE-01
+
+RETROSYNTHESIS-SANDBOX-CYCLE-01 is the first bounded candidate-repair cycle for incomplete or contradiction-bearing Evidence Review Pack artifacts. Retrosynthesis Sandbox Cycle is candidate repair, not canon adoption. It is not memory write, not final answer release, not Publisher finalization, not deployment authority, not Omega detection, not publication claim authorization, and not recursive self-improvement.
+
+```powershell
+.\experiments\Run-RETROSYNTHESIS-SANDBOX-CYCLE01-Acceptance.ps1 `
+  -OutputRoot C:\UVLM\run_artifacts\retrosynthesis_sandbox_cycle_01 `
+  -LogDir C:\UVLM\run_artifacts\retrosynthesis_sandbox_cycle_01_logs `
+  -ControlProfileId generic_evidence_review.v1 `
+  -CiMode
+```
+
+Expected posture:
+
+- `review_status = accepted_as_bounded_retrosynthesis_sandbox_cycle`
+- `candidate_repair_artifacts_emitted = true`
+- `missing_evidence_requests_visible = true`
+- `uncertainty_restoration_visible = true`
+- `counterevidence_preserved = true`
+- `hash_only_evidence_not_interpreted = true`
+- `canon_adoption_blocked = true`
+- `memory_write_blocked = true`
+- `final_answer_release_blocked = true`
+- `publisher_finalization_blocked = true`
+- `deployment_blocked = true`
+- `omega_detection_blocked = true`
+- `promotion_blocked = true`
+- `live_model_execution_performed = false`
+- `remote_provider_call_performed = false`
+- `network_call_performed = false`
+
+## How to reproduce EVIDENCE-REVIEW-PACK-01
+
+EVIDENCE-REVIEW-PACK-01 is the first bounded second-pass candidate loop generated from Retrosynthesis Sandbox Cycle repair candidates. Evidence Review Pack second pass is candidate revision, not accepted evidence. It is not canon adoption, not memory write, not final answer release, not Publisher finalization, not deployment authority, not Omega detection, not publication claim authorization, not recursive self-improvement, and not hallucination reduction proof.
+
+```powershell
+.\experiments\Run-EVIDENCE-REVIEW-PACK01-Acceptance.ps1 `
+  -OutputRoot C:\UVLM\run_artifacts\evidence_review_pack_01 `
+  -LogDir C:\UVLM\run_artifacts\evidence_review_pack_01_logs `
+  -ControlProfileId generic_evidence_review.v1 `
+  -CiMode
+```
+
+Expected posture:
+
+- `review_status = accepted_as_second_pass_review_candidate`
+- `revision_candidates_emitted = true`
+- `retrosynthesis_inputs_bound = true`
+- `candidate_only_status_preserved = true`
+- `hash_only_evidence_not_interpreted = true`
+- `canon_adoption_blocked = true`
+- `memory_write_blocked = true`
+- `final_answer_release_blocked = true`
+- `publisher_finalization_blocked = true`
+- `deployment_blocked = true`
+- `omega_detection_blocked = true`
+- `publication_claim_blocked = true`
+- `promotion_blocked = true`
+- `live_model_execution_performed = false`
+- `remote_provider_call_performed = false`
+- `network_call_performed = false`
+
+## How to reproduce RW-COMP-03
+
+RW-COMP-03 is a held-out blinded fixture scaffold with simulated scores only. It extends RW-COMP-02 with held-out fixture IDs, blind labels, a scoring rubric, simulated reviewer score packet, statistics plan, statistics packet, and second-pass Evidence Review Pack candidate arm. It is not hallucination reduction proof, not model superiority proof, not live model evaluation, not a live human study, and not accepted evidence.
+
+```powershell
+.\experiments\Run-RW-COMP03-Acceptance.ps1 `
+  -OutputRoot C:\UVLM\run_artifacts\rw_comp_03 `
+  -LogDir C:\UVLM\run_artifacts\rw_comp_03_logs `
+  -CiMode
+```
+
+Expected posture:
+
+- `review_status = accepted_as_heldout_blinded_fixture_scaffold`
+- `heldout_fixtures_present = true`
+- `blind_labels_present = true`
+- `scoring_rubric_present = true`
+- `statistics_plan_present = true`
+- `statistics_packet_present = true`
+- `all_arms_present_for_each_fixture = true`
+- `second_pass_candidate_arm_present = true`
+- `candidate_only_boundaries_preserved = true`
+- `no_human_subject_data_collected = true`
+- `no_live_human_study_performed = true`
+- `comparison_is_not_hallucination_reduction_proof = true`
+- `comparison_is_not_model_superiority_proof = true`
+- `promotion_blocked = true`
+
 ## Other accepted local commands
 
 ```powershell
@@ -78,3 +235,9 @@ python tools/validate_public_repro_dashboard.py --dashboard registry/experiment_
 - Model braid is observational only, not consensus proof and not answer selection.
 - UNI-02D-SONYA-GATE-01 is accepted as a safe generic portability/prior-quarantine fixture, but it is not universal portability proof.
 - RETRO-LANE-00 is accepted as retrosynthesis admission policy, not retrosynthesis runtime.
+- Evidence Review Pack v0.1 is the first product-facing governed review receipt and AI review that shows its work, not truth certification, not professional advice, not compliance certification, not deployment authority, and not hallucination reduction proof.
+- RW-COMP-01 is the first fixture-only raw-vs-governed comparison involving Evidence Review Pack v0.1; it shows review-structure visibility in a deterministic fixture and is a step toward future hallucination-reduction evidence, not hallucination-reduction proof yet and not model superiority proof.
+- RW-COMP-02 is the first deterministic multi-fixture battery extending RW-COMP-01; it shows structural visibility improvement in deterministic fixtures, not hallucination-reduction proof yet and not model-superiority proof.
+- RETROSYNTHESIS-SANDBOX-CYCLE-01 is accepted as bounded candidate repair over incomplete Evidence Review Pack artifacts; it is not canon adoption, not memory write, not final answer release, not Publisher finalization, not deployment authority, not Omega detection, not publication claim authorization, and not recursive self-improvement.
+- EVIDENCE-REVIEW-PACK-01 is candidate revision, not accepted evidence; structural visibility delta is not hallucination-reduction proof, claim-map revision candidate is not truth certification, and uncertainty/counterevidence revision candidate is not canon.
+- RW-COMP-03 is a held-out blinded fixture scaffold with simulated scores only; it is not hallucination reduction proof, not model superiority proof, not live model evaluation, not a live human study, and not accepted evidence.

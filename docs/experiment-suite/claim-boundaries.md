@@ -15,5 +15,53 @@
 - Public Utility Alpha is a local reviewer demo, not deployment authority.
 - Raw Baseline Comparison is not hallucination reduction proof.
 - Raw Baseline Comparison is not model quality benchmark.
+- Evidence Review Pack v0.1 is AI review that shows its work.
+- Evidence Review Pack is not truth certification.
+- Evidence Review Pack is not legal advice.
+- Evidence Review Pack is not medical advice.
+- Evidence Review Pack is not tax advice.
+- Evidence Review Pack is not compliance certification.
+- Evidence Review Pack is not hallucination reduction proof.
+- Evidence Review Pack is not live model execution.
+- Evidence Review Pack is not production evaluation.
+- RW-COMP-01 is a fixture-only comparison scaffold, not hallucination reduction proof.
+- RW-COMP-01 is not model superiority proof.
+- RW-COMP-01 is not model quality benchmark.
+- RW-COMP-01 is not live model evaluation.
+- RW-COMP-01 is not remote provider evaluation.
+- RW-COMP-01 is not professional advice.
+- RW-COMP-01 is not compliance certification.
+- RW-COMP-01 is not production evaluation.
+- RW-COMP-02 is a deterministic multi-fixture comparison battery and remains not hallucination reduction proof.
+- RW-COMP-02 is not model superiority proof.
+- RW-COMP-02 is not model quality benchmark.
+- RW-COMP-02 is not live model evaluation.
+- RW-COMP-02 is not remote provider evaluation.
+- RW-COMP-02 is not professional advice.
+- RW-COMP-02 is not compliance certification.
+- RW-COMP-02 is not production evaluation.
+- Retrosynthesis Sandbox Cycle is candidate repair, not canon adoption.
+- RETROSYNTHESIS-SANDBOX-CYCLE-01 is not memory write.
+- RETROSYNTHESIS-SANDBOX-CYCLE-01 is not final answer release.
+- RETROSYNTHESIS-SANDBOX-CYCLE-01 is not Publisher finalization.
+- RETROSYNTHESIS-SANDBOX-CYCLE-01 is not Omega detection.
+- RETROSYNTHESIS-SANDBOX-CYCLE-01 is not deployment authority.
+- RETROSYNTHESIS-SANDBOX-CYCLE-01 is not recursive self-improvement.
+- Evidence Review Pack second pass is candidate revision, not accepted evidence.
+- EVIDENCE-REVIEW-PACK-01 is not canon adoption.
+- EVIDENCE-REVIEW-PACK-01 is not memory write.
+- EVIDENCE-REVIEW-PACK-01 is not final answer release.
+- EVIDENCE-REVIEW-PACK-01 is not Publisher finalization.
+- EVIDENCE-REVIEW-PACK-01 is not Omega detection.
+- EVIDENCE-REVIEW-PACK-01 is not deployment authority.
+- EVIDENCE-REVIEW-PACK-01 is not hallucination reduction proof.
+- EVIDENCE-REVIEW-PACK-01 is not recursive self-improvement.
+- RW-COMP-03 is a held-out blinded fixture scaffold, not hallucination reduction proof.
+- RW-COMP-03 is not model superiority proof.
+- RW-COMP-03 is not live model evaluation.
+- RW-COMP-03 is not live human study.
+- RW-COMP-03 uses simulated scores.
+- RW-COMP-03 is not accepted evidence.
+- RW-COMP-03 is not production evaluation.
 
 No oracle posture. No deployment posture. No final-answer posture. No AI consciousness claim. No universal ontology claim.
