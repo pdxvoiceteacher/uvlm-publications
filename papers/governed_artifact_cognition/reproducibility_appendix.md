@@ -127,6 +127,37 @@ Expected posture:
 - `remote_provider_call_performed = false`
 - `network_call_performed = false`
 
+## EVIDENCE-REVIEW-PACK-01
+
+Evidence Review Pack second pass is candidate revision, not accepted evidence. Expected posture is accepted second-pass review candidate with revision candidates emitted from bounded retrosynthesis inputs, no live model execution, no remote provider call, and no network call. Structural visibility delta is not hallucination-reduction proof; claim-map revision candidate is not truth certification; uncertainty/counterevidence revision candidate is not canon.
+
+```powershell
+.\experiments\Run-EVIDENCE-REVIEW-PACK01-Acceptance.ps1 `
+  -OutputRoot C:\UVLM\run_artifacts\evidence_review_pack_01 `
+  -LogDir C:\UVLM\run_artifacts\evidence_review_pack_01_logs `
+  -ControlProfileId generic_evidence_review.v1 `
+  -CiMode
+```
+
+Expected posture:
+
+- `review_status = accepted_as_second_pass_review_candidate`
+- `revision_candidates_emitted = true`
+- `retrosynthesis_inputs_bound = true`
+- `candidate_only_status_preserved = true`
+- `hash_only_evidence_not_interpreted = true`
+- `canon_adoption_blocked = true`
+- `memory_write_blocked = true`
+- `final_answer_release_blocked = true`
+- `publisher_finalization_blocked = true`
+- `deployment_blocked = true`
+- `omega_detection_blocked = true`
+- `publication_claim_blocked = true`
+- `promotion_blocked = true`
+- `live_model_execution_performed = false`
+- `remote_provider_call_performed = false`
+- `network_call_performed = false`
+
 ## Dashboard validation
 
 ```bash

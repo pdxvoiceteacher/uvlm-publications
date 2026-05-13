@@ -30,5 +30,7 @@
   "not_publisher_finalization": true,
   "not_omega_detection": true,
   "not_publication_claim": true,
-  "not_recursive_self_improvement": true
+  "not_recursive_self_improvement": true,
+  "evidence_review_pack_01_indexed": true,
+  "not_accepted_evidence": true
 }

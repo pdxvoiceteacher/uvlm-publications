@@ -480,6 +480,97 @@ def test_claim_validator_rejects_retrosynthesis_sandbox_cycle_overclaims(tmp_pat
         assert result["forbidden_overclaims_found"], result
 
 
+def test_governed_artifact_cognition_evidence_review_pack_01_updates_are_present():
+    paper = (ROOT / "PUB_GOV_ARTIFACT_COG_01.md").read_text(encoding="utf-8")
+    abstract = (ROOT / "abstract.md").read_text(encoding="utf-8")
+    artifact_table = (ROOT / "artifact_table.md").read_text(encoding="utf-8")
+    boundary_table = (ROOT / "claim_boundary_table.md").read_text(encoding="utf-8")
+    quickstart = (ROOT / "reviewer_quickstart.md").read_text(encoding="utf-8")
+    appendix = (ROOT / "reproducibility_appendix.md").read_text(encoding="utf-8")
+    status = json.loads((ROOT / "status.json").read_text(encoding="utf-8"))
+
+    combined_paper = paper + "\n" + abstract
+    for phrase in (
+        "EVIDENCE-REVIEW-PACK-01",
+        "second-pass candidate loop",
+        "Evidence Review Pack second pass is candidate revision, not accepted evidence",
+        "not canon adoption",
+        "not memory write",
+        "not final answer release",
+        "not Publisher finalization",
+        "not Omega detection",
+        "not recursive self-improvement",
+        "structural visibility delta is not hallucination-reduction proof",
+        "claim-map revision candidate is not truth certification",
+        "uncertainty/counterevidence revision candidate is not canon",
+    ):
+        assert phrase in combined_paper
+    for artifact in (
+        "evidence_review_second_pass_packet.json",
+        "evidence_review_second_pass_review_packet.json",
+        "evidence_review_claim_map_revision_packet.json",
+        "evidence_review_second_pass_delta_packet.json",
+        "evidence_review_uncertainty_revision_packet.json",
+        "evidence_review_counterevidence_revision_packet.json",
+        "evidence_review_second_pass_summary.md",
+        "evidence_review_pack_01_acceptance_receipt.json",
+    ):
+        assert artifact in artifact_table
+    for boundary in (
+        "Evidence Review Pack second pass is candidate revision, not accepted evidence.",
+        "Evidence Review Pack second pass is not canon adoption.",
+        "Evidence Review Pack second pass is not memory write.",
+        "Evidence Review Pack second pass is not final answer release.",
+        "Evidence Review Pack second pass is not Publisher finalization.",
+        "Evidence Review Pack second pass is not deployment authority.",
+        "Evidence Review Pack second pass is not Omega detection.",
+        "Evidence Review Pack second pass is not publication claim authorization.",
+        "Evidence Review Pack second pass is not recursive self-improvement.",
+        "Evidence Review Pack second pass is not hallucination reduction proof.",
+        "Evidence Review Pack second pass is not model superiority proof.",
+    ):
+        assert boundary in boundary_table
+    assert "Run-EVIDENCE-REVIEW-PACK01-Acceptance.ps1" in quickstart
+    assert "Run-EVIDENCE-REVIEW-PACK01-Acceptance.ps1" in appendix
+    assert "review_status = accepted_as_second_pass_review_candidate" in quickstart
+    assert status["evidence_review_pack_01_indexed"] is True
+    assert status["not_accepted_evidence"] is True
+    assert status["not_canon_adoption"] is True
+    assert status["not_memory_write"] is True
+    assert status["not_publisher_finalization"] is True
+    assert status["not_omega_detection"] is True
+    assert status["not_publication_claim"] is True
+    assert status["not_recursive_self_improvement"] is True
+
+
+def test_claim_validator_rejects_evidence_review_pack_01_overclaims(tmp_path):
+    forbidden_claims = (
+        "claims accepted evidence",
+        "claims canon adoption",
+        "claims memory write",
+        "final answer release",
+        "claims Publisher finalization",
+        "claims Omega detection",
+        "claims recursive self-improvement",
+        "hallucination reduction proven",
+    )
+    for claim in forbidden_claims:
+        paper_root = _copy_governed_paper(tmp_path / claim.replace(" ", "_").replace("-", "_"))
+        paper = paper_root / "PUB_GOV_ARTIFACT_COG_01.md"
+        paper.write_text(
+            paper.read_text(encoding="utf-8") + f"\nThis paper {claim}.\n",
+            encoding="utf-8",
+        )
+        result = validate_publication_claims(
+            paper,
+            appendix=paper_root / "reproducibility_appendix.md",
+            quickstart=paper_root / "reviewer_quickstart.md",
+            status=paper_root / "status.json",
+        )
+        assert result["passed"] is False, claim
+        assert result["forbidden_overclaims_found"], result
+
+
 def _copy_governed_paper(tmp_path: Path) -> Path:
     paper_root = tmp_path / "paper"
     paper_root.mkdir(parents=True)
