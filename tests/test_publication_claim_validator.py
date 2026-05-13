@@ -571,6 +571,83 @@ def test_claim_validator_rejects_evidence_review_pack_01_overclaims(tmp_path):
         assert result["forbidden_overclaims_found"], result
 
 
+def test_governed_artifact_cognition_rw_comp_03_updates_are_present():
+    paper = (ROOT / "PUB_GOV_ARTIFACT_COG_01.md").read_text(encoding="utf-8")
+    abstract = (ROOT / "abstract.md").read_text(encoding="utf-8")
+    artifact_table = (ROOT / "artifact_table.md").read_text(encoding="utf-8")
+    boundary_table = (ROOT / "claim_boundary_table.md").read_text(encoding="utf-8")
+    quickstart = (ROOT / "reviewer_quickstart.md").read_text(encoding="utf-8")
+    appendix = (ROOT / "reproducibility_appendix.md").read_text(encoding="utf-8")
+    status = json.loads((ROOT / "status.json").read_text(encoding="utf-8"))
+
+    combined_paper = paper + "\n" + abstract
+    for phrase in (
+        "RW-COMP-03",
+        "held-out blinded fixture scaffold",
+        "held-out, blinded, pre-registered fixture-scoring scaffold",
+        "simulated scores only",
+        "not hallucination reduction proof",
+        "not model superiority proof",
+        "not live model evaluation",
+        "not live human study",
+        "not human-subject study result",
+        "not accepted evidence",
+        "review_status = accepted_as_heldout_blinded_fixture_scaffold",
+        "fixture_count = 8",
+        "arm_count_per_fixture = 6",
+        "blind_labels_present = true",
+        "statistics_plan_present = true",
+        "statistics_packet_present = true",
+        "second_pass_candidate_arm_present = true",
+    ):
+        assert phrase in combined_paper
+    for artifact in (
+        "rw_comp_03_packet.json",
+        "rw_comp_03_review_packet.json",
+        "rw_comp_03_rows.jsonl",
+        "rw_comp_03_fixture_manifest.json",
+        "rw_comp_03_blind_labels.json",
+        "rw_comp_03_scoring_rubric.json",
+        "rw_comp_03_reviewer_score_packet.json",
+        "rw_comp_03_statistics_plan.json",
+        "rw_comp_03_statistics_packet.json",
+        "rw_comp_03_summary.md",
+        "rw_comp_03_acceptance_receipt.json",
+    ):
+        assert artifact in artifact_table
+    for boundary in (
+        "RW-COMP-03 is a held-out blinded fixture scaffold, not hallucination reduction proof.",
+        "RW-COMP-03 is not model superiority proof.",
+        "RW-COMP-03 is not a model quality benchmark.",
+        "RW-COMP-03 is not live model evaluation.",
+        "RW-COMP-03 is not a live human study.",
+        "RW-COMP-03 is not human-subject study result.",
+        "RW-COMP-03 is not accepted evidence.",
+        "RW-COMP-03 is not deployment authority.",
+        "RW-COMP-03 is not production evaluation.",
+    ):
+        assert boundary in boundary_table
+    assert "Run-RW-COMP03-Acceptance.ps1" in quickstart
+    assert "Run-RW-COMP03-Acceptance.ps1" in appendix
+    assert status["retrosynthesis_sandbox_cycle_indexed"] is True
+    assert status["evidence_review_pack_01_indexed"] is True
+    assert status["not_canon_adoption"] is True
+    assert status["not_memory_write"] is True
+    assert status["not_publisher_finalization"] is True
+    assert status["not_omega_detection"] is True
+    assert status["not_publication_claim"] is True
+    assert status["not_recursive_self_improvement"] is True
+    assert status["not_accepted_evidence"] is True
+    assert status["rw_comp_03_indexed"] is True
+    assert status["not_live_human_study"] is True
+    assert status["not_human_subject_study_result"] is True
+    assert status["not_hallucination_reduction_proof"] is True
+    assert status["not_model_superiority_proof"] is True
+    assert status["not_model_quality_benchmark"] is True
+    assert status["not_live_model_evaluation"] is True
+    assert status["not_production_evaluation"] is True
+
+
 def _copy_governed_paper(tmp_path: Path) -> Path:
     paper_root = tmp_path / "paper"
     paper_root.mkdir(parents=True)
@@ -599,6 +676,10 @@ def test_claim_validator_rejects_new_governed_artifact_overclaims(tmp_path):
         "model quality benchmark",
         "professional advice",
         "compliance certification",
+        "live human study",
+        "human-subject study result",
+        "accepted evidence",
+        "production readiness",
     )
     for claim in forbidden_claims:
         paper_root = _copy_governed_paper(tmp_path / claim.replace(" ", "_").replace("-", "_"))

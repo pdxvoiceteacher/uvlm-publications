@@ -1,10 +1,10 @@
-# Governed Artifact Cognition: Public Utility Alpha, Evidence Review Pack Second Pass Candidate Revision Loop, Retrosynthesis Sandbox Cycle, RW-COMP-02 Multi-Fixture Battery, and Sonya Gateway Evidence for Non-Authoritative AI Candidate Review
+# Governed Artifact Cognition: Public Utility Alpha, Evidence Review Pack Second Pass Candidate Revision Loop, Retrosynthesis Sandbox Cycle, RW-COMP-03 Held-Out Blinded Scaffold, and Sonya Gateway Evidence for Non-Authoritative AI Candidate Review
 
 ## Abstract
 
 This systems paper describes governed artifact cognition as a reproducible audit-lab pattern for AI-assisted candidate review. The system is not an oracle, not a universal-wisdom machine, and not a replacement for human or institutional judgment. It emits typed, grounded, governed artifacts whose route, evidence, receipt, and claim-boundary posture can be inspected before downstream use.
 
-The accepted evidence now includes PUBLIC-UTILITY-ALPHA-00, a local fixture-only reviewer demo that assembles the accepted governed artifact chain: Sonya control schema, local broker, adapter registry, policy transition, governance readiness, route view, Sonya Gateway candidate path, runtime bypass block diagnostic, model-braid observational review, experiment catalog boundary report, artifact inventory, and export parity. PUBLIC-UTILITY-ALPHA-00 demonstrates one-command local assembly of that chain while remaining fixture-only, not deployment authority, not truth certification, not final answer release, not live model execution, and subject to external peer review. RAW-BASELINE-COMPARISON-00 is a fixture-only measurement scaffold, not hallucination reduction proof and not a model quality benchmark. It compares raw-text-style baseline arms with the Sonya-governed candidate packet path across unsupported-claim, source-linkage, route-receipt, forbidden-artifact, and raw-output-admission posture. EVIDENCE-REVIEW-PACK-00 adds Evidence Review Pack v0.1 as the first product-facing governed review receipt. It consumes Universal Evidence Ingress and UCC Control Profile Selector artifacts. Evidence Review Pack v0.1 is AI review that shows its work, but it is not truth certification, not professional advice, not compliance certification, not deployment authority, and not hallucination reduction proof. RW-COMP-01 is the first fixture-only raw-vs-governed comparison involving Evidence Review Pack v0.1. It shows review-structure visibility in a deterministic fixture and is a step toward future hallucination-reduction evidence, but it is not hallucination-reduction proof yet and not model superiority proof. RW-COMP-02 is the first deterministic multi-fixture battery extending RW-COMP-01. It compares raw single-model, raw multi-model, RAG-style grounded, Triadic-without-Phase-6, and full Evidence Review Pack arms across six controlled fixture families. It shows Evidence Review Pack structural visibility improvement in deterministic fixtures and is a step toward future hallucination-reduction evidence. RW-COMP-02 is a deterministic multi-fixture comparison battery and remains not hallucination reduction proof. It is not hallucination-reduction proof yet and not model-superiority proof.
+The accepted phase record now includes PUBLIC-UTILITY-ALPHA-00, a local fixture-only reviewer demo that assembles the accepted governed artifact chain: Sonya control schema, local broker, adapter registry, policy transition, governance readiness, route view, Sonya Gateway candidate path, runtime bypass block diagnostic, model-braid observational review, experiment catalog boundary report, artifact inventory, and export parity. PUBLIC-UTILITY-ALPHA-00 demonstrates one-command local assembly of that chain while remaining fixture-only, not deployment authority, not truth certification, not final answer release, not live model execution, and subject to external peer review. RAW-BASELINE-COMPARISON-00 is a fixture-only measurement scaffold, not hallucination reduction proof and not a model quality benchmark. It compares raw-text-style baseline arms with the Sonya-governed candidate packet path across unsupported-claim, source-linkage, route-receipt, forbidden-artifact, and raw-output-admission posture. EVIDENCE-REVIEW-PACK-00 adds Evidence Review Pack v0.1 as the first product-facing governed review receipt. It consumes Universal Evidence Ingress and UCC Control Profile Selector artifacts. Evidence Review Pack v0.1 is AI review that shows its work, but it is not truth certification, not professional advice, not compliance certification, not deployment authority, and not hallucination reduction proof. RW-COMP-01 is the first fixture-only raw-vs-governed comparison involving Evidence Review Pack v0.1. It shows review-structure visibility in a deterministic fixture and is a step toward future hallucination-reduction evidence, but it is not hallucination-reduction proof yet and not model superiority proof. RW-COMP-02 is the first deterministic multi-fixture battery extending RW-COMP-01. It compares raw single-model, raw multi-model, RAG-style grounded, Triadic-without-Phase-6, and full Evidence Review Pack arms across six controlled fixture families. It shows Evidence Review Pack structural visibility improvement in deterministic fixtures and is a step toward future hallucination-reduction evidence. RW-COMP-02 is a deterministic multi-fixture comparison battery and remains not hallucination reduction proof. It is not hallucination-reduction proof yet and not model-superiority proof. RW-COMP-03 is the first held-out, blinded, pre-registered fixture-scoring scaffold. It extends RW-COMP-02 with held-out fixture IDs, blind labels, a scoring rubric, simulated reviewer scores, a statistics plan, a statistics packet, and a second-pass Evidence Review Pack candidate arm. RW-COMP-03 is a held-out blinded fixture scaffold, not hallucination reduction proof. It is not model superiority proof, not live model evaluation, not live human study, and not accepted evidence.
 
 
 RETROSYNTHESIS-SANDBOX-CYCLE-01 is now accepted as the first bounded retrosynthesis candidate-repair cycle over incomplete or contradiction-bearing Evidence Review Pack artifacts. Retrosynthesis Sandbox Cycle is candidate repair, not canon adoption. It emits missing-evidence requests, claim-map revision candidates, uncertainty-restoration candidates, counterevidence-expansion candidates, and next-experiment recommendations while remaining not memory write, not final answer release, not Publisher finalization, not deployment authority, not Omega detection, not publication claim authorization, not recursive self-improvement, not truth certification, not hallucination reduction proof, and not model-superiority proof.
@@ -30,6 +30,7 @@ For this draft, the following terms are used:
 - **Evidence Review Pack v0.1**: the first product-facing governed review receipt in this paper. It consumes Universal Evidence Ingress and UCC Control Profile Selector artifacts so reviewers can inspect supported claims, unsupported claims, uncertainty retention, preserved counterevidence, semantic ecology signals, UCC threshold posture, and reviewer next actions.
 - **RW-COMP-01**: the first fixture-only raw-vs-governed comparison involving Evidence Review Pack v0.1. It compares deterministic raw, RAG-style, partially governed, and full Evidence Review Pack fixture outputs to show review-structure visibility; it is not hallucination-reduction proof yet and not model superiority proof.
 - **RW-COMP-02**: the first deterministic multi-fixture battery extending RW-COMP-01. It compares raw single-model, raw multi-model, RAG-style grounded, Triadic-without-Phase-6, and full Evidence Review Pack arms across six controlled fixture families and records Evidence Review Pack structural visibility improvement as a deterministic fixture descriptor; it is not hallucination-reduction proof and not model-superiority proof.
+- **RW-COMP-03**: the first held-out, blinded, pre-registered fixture-scoring scaffold. It extends RW-COMP-02 with held-out fixture IDs, blind arm labels, a scoring rubric, a simulated reviewer score packet, a statistics plan, a statistics packet, and a second-pass Evidence Review Pack candidate arm. It remains fixture-only and simulated-score-only; it is not hallucination reduction proof, not model superiority proof, not live model evaluation, not live human study, not human-subject study result, and not accepted evidence.
 
 - **Retrosynthesis Sandbox Cycle**: RETROSYNTHESIS-SANDBOX-CYCLE-01 is the first bounded candidate-repair cycle beyond RETRO-LANE-00 admission. It consumes incomplete or contradiction-bearing Evidence Review Pack artifacts and emits missing-evidence requests, claim-map revision candidates, uncertainty-restoration candidates, counterevidence-expansion candidates, and next-experiment recommendations. Retrosynthesis Sandbox Cycle is candidate repair, not canon adoption; it is not memory write, not final answer release, not Publisher finalization, not deployment authority, not Omega detection, not publication claim authorization, and not recursive self-improvement.
 
@@ -60,18 +61,19 @@ sonya_control_schema
 → retro_lane_00 admission policy
 → retrosynthesis_sandbox_cycle_01 candidate repair
 → evidence_review_pack_01 second-pass candidate revision
+→ rw_comp_03 held-out blinded fixture scaffold
 → public reproducibility dashboard
 ```
 
 
-The accepted evidence chain can also be read as Universal Evidence Ingress → UCC Control Profile Selector → Evidence Review Pack v0.1 → RW-COMP-01 / RW-COMP-02 comparison scaffold → Retrosynthesis Sandbox Cycle candidate repair → EVIDENCE-REVIEW-PACK-01 second-pass candidate revision. Evidence Review Pack v0.1 produces first-pass review receipts. Retrosynthesis Sandbox Cycle emits candidate repair artifacts. Evidence Review Pack second pass emits candidate revisions only. No artifact in this chain authorizes truth, canon, memory, final answer, deployment, Publisher finalization, Omega detection, or publication claims.
+The accepted phase chain can also be read as Universal Evidence Ingress → UCC Control Profile Selector → Evidence Review Pack v0.1 → RW-COMP-01 / RW-COMP-02 comparison scaffold → Retrosynthesis Sandbox Cycle candidate repair → EVIDENCE-REVIEW-PACK-01 second-pass candidate revision → RW-COMP-03 held-out blinded fixture scaffold. Evidence Review Pack v0.1 produces first-pass review receipts. Retrosynthesis Sandbox Cycle emits candidate repair artifacts. Evidence Review Pack second pass emits candidate revisions only. RW-COMP-01 was a single-fixture comparison. RW-COMP-02 was a deterministic multi-fixture battery. RW-COMP-03 adds held-out fixture IDs, blind labels, simulated scoring, and statistics planning while remaining fixture-only and simulated-score-only. No artifact in this chain authorizes truth, canon, memory, final answer, deployment, Publisher finalization, Omega detection, or publication claims.
 
 The Sonya Gateway is required for admissible model candidate packets under SONYA_REQUIRED. Raw model output is not admissible cognition. A candidate packet is not answer. A runtime bypass block is successful governance evidence, not a model result. The model-braid layer is observational telemetry only and not answer selection.
 
 The organ boundaries are deliberately narrow:
 
-- **CoherenceLattice** formalizes evidence and artifacts. It produces structured coherence, acceptance, public utility alpha, Evidence Review Pack, RW-COMP-01 comparison, RW-COMP-02 multi-fixture battery, and reproducibility materials.
-- **Sonya** is the local model/tool/sensor membrane and gateway. Its accepted evidence is local and does not establish federation.
+- **CoherenceLattice** formalizes evidence and artifacts. It produces structured coherence, acceptance, public utility alpha, Evidence Review Pack, RW-COMP-01 comparison, RW-COMP-02 multi-fixture battery, RW-COMP-03 held-out blinded fixture scaffold, and reproducibility materials.
+- **Sonya** is the local model/tool/sensor membrane and gateway. Its accepted local fixture material is local and does not establish federation.
 - **Sophia** governs route and admissibility. Its role is route control, not live truth declaration in this draft.
 - **Atlas** handles memory intent only within governance limits. It does not perform live Atlas memory writes in this paper.
 - **Publisher** emits candidates, not final answers. Publisher candidate artifacts remain bounded by route and receipt constraints.
@@ -122,7 +124,7 @@ Reviewer caution: the model-braid observation can help reviewers inspect drift p
 
 ### 3.5 EXPERIMENT-CATALOG-BOUNDARY-01
 
-Allowed claim: the experiment catalog boundary report can organize accepted evidence and catalog review posture.
+Allowed claim: the experiment catalog boundary report can organize accepted fixture/documentation material and catalog review posture.
 
 Primary artifacts: `experiment_catalog.json` and `experiment_catalog_boundary_report.json`.
 
@@ -252,21 +254,45 @@ Interpretation boundary: structural visibility delta is not hallucination-reduct
 
 Reviewer caution: EVIDENCE-REVIEW-PACK-01 emits candidate revision artifacts only. Claim-map revisions are not accepted evidence. Uncertainty and counterevidence revisions require future review gates before promotion. Structural visibility deltas are not hallucination-reduction proof.
 
-### 3.14 UNI-02D-SONYA-GATE-01
+### 3.14 RW-COMP-03: held-out blinded fixture-scoring scaffold
+
+Allowed claim: RW-COMP-03 is the first held-out, blinded, pre-registered fixture-scoring scaffold. It extends RW-COMP-02 with held-out fixture IDs, blind arm labels, a scoring rubric, simulated reviewer score packet, statistics plan, statistics packet, and a second-pass Evidence Review Pack candidate arm. RW-COMP-03 is a step toward future hallucination-reduction evidence. RW-COMP-03 is a held-out blinded fixture scaffold, not hallucination reduction proof.
+
+Primary posture fields:
+
+- `review_status = accepted_as_heldout_blinded_fixture_scaffold`
+- `fixture_count = 8`
+- `arm_count_per_fixture = 6`
+- `blind_labels_present = true`
+- `scoring_rubric_present = true`
+- `statistics_plan_present = true`
+- `statistics_packet_present = true`
+- `second_pass_candidate_arm_present = true`
+- `no_human_subject_data_collected = true`
+- `no_live_human_study_performed = true`
+- `comparison_is_not_hallucination_reduction_proof = true`
+- `comparison_is_not_model_superiority_proof = true`
+- `promotion_blocked = true`
+
+Blocked claims: RW-COMP-03 is not hallucination reduction proof, not model superiority proof, not a model quality benchmark, not live model evaluation, not a live human study, not human-subject study result, not accepted evidence, not deployment authority, not production evaluation, not professional advice, not compliance certification, and not production readiness.
+
+Reviewer caution: RW-COMP-03 remains fixture-only and simulated scores only. It does not report live reviewer performance, live model behavior, or remote provider behavior; it is not deployment authority, not production readiness, and not evidence accepted for hallucination-reduction claims.
+
+### 3.15 UNI-02D-SONYA-GATE-01
 
 UNI-02D-SONYA-GATE-01 is accepted as a safe generic portability/prior-quarantine fixture, but it is not universal portability proof and not universal ontology. It demonstrates bounded quarantine and provenance posture for selected priors, not general portability across domains.
 
-### 3.15 RETRO-LANE-00
+### 3.16 RETRO-LANE-00
 
 RETRO-LANE-00 is accepted as retrosynthesis admission policy, not retrosynthesis runtime. Admission is not execution. Its evidence is lane posture for sandbox_auto, review_required, and blocked handling.
 
-### 3.16 WAVE Gold-Physics Family
+### 3.17 WAVE Gold-Physics Family
 
 The WAVE Gold-Physics family is included as closed-form waveform metric calibration. It is not universal ontology, not psychoacoustic proof, and not AI consciousness.
 
 ## 4. Reproducibility and Public Review Posture
 
-The reproducibility posture is reviewer oriented. The public dashboard and paper appendix list commands for local artifact inspection, but the commands do not grant final answer release or deployment authority. PUBLIC-UTILITY-ALPHA-00 adds a one-command local reviewer demo for accepted artifact assembly. EVIDENCE-REVIEW-PACK-00 adds a product-facing governed review receipt for source-bounded claim/evidence inspection. RW-COMP-01 adds the first fixture-only raw-vs-governed comparison involving Evidence Review Pack v0.1. RW-COMP-02 extends RW-COMP-01 into the first deterministic multi-fixture battery across six fixture families and five comparison arms. RETROSYNTHESIS-SANDBOX-CYCLE-01 adds bounded candidate repair over incomplete Evidence Review Pack artifacts. EVIDENCE-REVIEW-PACK-01 adds the candidate-only second-pass review loop from Retrosynthesis Sandbox Cycle repair candidates, while the dashboard validation command checks that public-facing registry and docs remain bounded.
+The reproducibility posture is reviewer oriented. The public dashboard and paper appendix list commands for local artifact inspection, but the commands do not grant final answer release or deployment authority. PUBLIC-UTILITY-ALPHA-00 adds a one-command local reviewer demo for accepted artifact assembly. EVIDENCE-REVIEW-PACK-00 adds a product-facing governed review receipt for source-bounded claim/evidence inspection. RW-COMP-01 adds the first fixture-only raw-vs-governed comparison involving Evidence Review Pack v0.1. RW-COMP-02 extends RW-COMP-01 into the first deterministic multi-fixture battery across six fixture families and five comparison arms. RETROSYNTHESIS-SANDBOX-CYCLE-01 adds bounded candidate repair over incomplete Evidence Review Pack artifacts. EVIDENCE-REVIEW-PACK-01 adds the candidate-only second-pass review loop from Retrosynthesis Sandbox Cycle repair candidates. RW-COMP-03 extends RW-COMP-02 into a held-out blinded fixture scaffold with eight held-out fixture IDs, six arms per fixture, blind labels, simulated scores only, a scoring rubric, statistics plan, statistics packet, and second-pass Evidence Review Pack candidate arm, while the dashboard validation command checks that public-facing registry and docs remain bounded.
 
 ## 5. Limitations
 
@@ -293,6 +319,7 @@ Current limitations are explicit:
 - RETROSYNTHESIS-SANDBOX-CYCLE-01 emits candidate repair artifacts only. Missing evidence requests are not external fetches. Claim-map revisions are not accepted evidence. Uncertainty restoration and counterevidence expansion remain candidate artifacts until future review gates promote them. This phase does not prove hallucination reduction or model superiority and does not establish recursive self-improvement.
 
 - EVIDENCE-REVIEW-PACK-01 emits candidate revision artifacts only. Claim-map revisions are not accepted evidence. Uncertainty and counterevidence revisions require future review gates before promotion. Structural visibility deltas are not hallucination-reduction proof. This phase does not establish recursive self-improvement.
+- RW-COMP-03 is a held-out blinded fixture scaffold with simulated scores only. It does not prove hallucination reduction, model superiority, live model behavior, or human reviewer performance. It is not professional advice quality, not compliance certification, and not production readiness. It is not live model evaluation, not a live human study, not human-subject study result, not accepted evidence, and not deployment authority.
 - no universal portability proof.
 - no universal ontology.
 - no AI consciousness claim.
@@ -303,14 +330,15 @@ Future work is limited to work not already accepted:
 
 - promotion gates for second-pass candidate revisions.
 - correction-capacity diagnostics as readiness signals, not authorization.
-- RW-COMP-03 held-out fixture set.
-- blinded reviewer scoring.
-- statistical analysis plan.
-- external reproduction.
-- controlled live-model/provider study only after fixture discipline is stable.
+- external reproduction scaffold.
+- real independent reviewer scoring, only after human-subject and ethics boundaries are defined.
+- held-out fixture preregistration.
+- statistical analysis with live reviewer data.
+- controlled live-model/provider study only after fixture and external reproduction discipline is stable.
+- explicit claim gate before any hallucination-reduction claim is authorized.
 - explicit Atlas memory-intent review before any memory write.
 - telemetry braid / memory loop only after promotion gates are stable.
 
 ## 7. Conclusion
 
-The accepted phase record through PUBLIC-UTILITY-ALPHA-00, EVIDENCE-REVIEW-PACK-00, RW-COMP-01, RW-COMP-02, RETROSYNTHESIS-SANDBOX-CYCLE-01, EVIDENCE-REVIEW-PACK-01, and PUBLIC-DASHBOARD-ALPHA-01 supports a narrow claim: governed artifact cognition can be represented as a local, inspectable, non-authoritative artifact chain with a product-facing governed review receipt and deterministic fixture comparisons that show structural visibility improvement. RW-COMP-02 is a step toward future hallucination-reduction evidence, but the work remains not truth certification, not professional advice, not compliance certification, not deployment authority, not hallucination-reduction proof yet, not model-superiority proof, not final answer release, local fixture only, not AI consciousness, not recursive Sonya federation, not retrosynthesis runtime, not Omega detection, not canon adoption, not memory write, not Publisher finalization, not publication claim authorization, not accepted evidence, not recursive self-improvement, not live Atlas memory writes, not live Sophia calls, and requires external peer review.
+The accepted phase record through PUBLIC-UTILITY-ALPHA-00, EVIDENCE-REVIEW-PACK-00, RW-COMP-01, RW-COMP-02, RETROSYNTHESIS-SANDBOX-CYCLE-01, EVIDENCE-REVIEW-PACK-01, RW-COMP-03, and PUBLIC-DASHBOARD-ALPHA-01 supports a narrow claim: governed artifact cognition can be represented as a local, inspectable, non-authoritative artifact chain with a product-facing governed review receipt and deterministic fixture comparisons that show structural visibility improvement. RW-COMP-03 is a step toward future hallucination-reduction evidence, but the work remains not truth certification, not professional advice, not compliance certification, not deployment authority, not hallucination-reduction proof yet, not model-superiority proof, not live model evaluation, not a live human study, not human-subject study result, not final answer release, local fixture only, not AI consciousness, not recursive Sonya federation, not retrosynthesis runtime, not Omega detection, not canon adoption, not memory write, not Publisher finalization, not publication claim authorization, not accepted evidence, not recursive self-improvement, not live Atlas memory writes, not live Sophia calls, and requires external peer review.

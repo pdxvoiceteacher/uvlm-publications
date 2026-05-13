@@ -69,3 +69,12 @@
 | Evidence Review Pack second pass is not recursive self-improvement. | The loop is bounded candidate revision, not recursive self-improvement. |
 | Evidence Review Pack second pass is not hallucination reduction proof. | Structural visibility deltas do not prove hallucination reduction. |
 | Evidence Review Pack second pass is not model superiority proof. | Candidate revision visibility does not prove model superiority. |
+| RW-COMP-03 is a held-out blinded fixture scaffold, not hallucination reduction proof. | The scaffold is a fixture-only step toward future hallucination-reduction evidence, not proof. |
+| RW-COMP-03 is not model superiority proof. | The scaffold does not prove model or governance superiority. |
+| RW-COMP-03 is not a model quality benchmark. | The scaffold is not a model quality benchmark. |
+| RW-COMP-03 is not live model evaluation. | The scaffold does not evaluate live model behavior. |
+| RW-COMP-03 is not a live human study. | The scaffold uses simulated scores and collects no human-subject data. |
+| RW-COMP-03 is not human-subject study result. | The scaffold has no human-subject study result. |
+| RW-COMP-03 is not accepted evidence. | The scaffold is not accepted evidence for hallucination reduction or model superiority. |
+| RW-COMP-03 is not deployment authority. | The scaffold does not authorize deployment. |
+| RW-COMP-03 is not production evaluation. | The scaffold is not production evaluation. |

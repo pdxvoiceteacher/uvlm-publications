@@ -32,5 +32,8 @@
   "not_publication_claim": true,
   "not_recursive_self_improvement": true,
   "evidence_review_pack_01_indexed": true,
-  "not_accepted_evidence": true
+  "not_accepted_evidence": true,
+  "rw_comp_03_indexed": true,
+  "not_live_human_study": true,
+  "not_human_subject_study_result": true
 }

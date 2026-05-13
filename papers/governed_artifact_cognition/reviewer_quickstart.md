@@ -171,6 +171,34 @@ Expected posture:
 - `remote_provider_call_performed = false`
 - `network_call_performed = false`
 
+## How to reproduce RW-COMP-03
+
+RW-COMP-03 is a held-out blinded fixture scaffold with simulated scores only. It extends RW-COMP-02 with held-out fixture IDs, blind labels, a scoring rubric, simulated reviewer score packet, statistics plan, statistics packet, and second-pass Evidence Review Pack candidate arm. It is not hallucination reduction proof, not model superiority proof, not live model evaluation, not a live human study, and not accepted evidence.
+
+```powershell
+.\experiments\Run-RW-COMP03-Acceptance.ps1 `
+  -OutputRoot C:\UVLM\run_artifacts\rw_comp_03 `
+  -LogDir C:\UVLM\run_artifacts\rw_comp_03_logs `
+  -CiMode
+```
+
+Expected posture:
+
+- `review_status = accepted_as_heldout_blinded_fixture_scaffold`
+- `heldout_fixtures_present = true`
+- `blind_labels_present = true`
+- `scoring_rubric_present = true`
+- `statistics_plan_present = true`
+- `statistics_packet_present = true`
+- `all_arms_present_for_each_fixture = true`
+- `second_pass_candidate_arm_present = true`
+- `candidate_only_boundaries_preserved = true`
+- `no_human_subject_data_collected = true`
+- `no_live_human_study_performed = true`
+- `comparison_is_not_hallucination_reduction_proof = true`
+- `comparison_is_not_model_superiority_proof = true`
+- `promotion_blocked = true`
+
 ## Other accepted local commands
 
 ```powershell
@@ -212,3 +240,4 @@ python tools/validate_public_repro_dashboard.py --dashboard registry/experiment_
 - RW-COMP-02 is the first deterministic multi-fixture battery extending RW-COMP-01; it shows structural visibility improvement in deterministic fixtures, not hallucination-reduction proof yet and not model-superiority proof.
 - RETROSYNTHESIS-SANDBOX-CYCLE-01 is accepted as bounded candidate repair over incomplete Evidence Review Pack artifacts; it is not canon adoption, not memory write, not final answer release, not Publisher finalization, not deployment authority, not Omega detection, not publication claim authorization, and not recursive self-improvement.
 - EVIDENCE-REVIEW-PACK-01 is candidate revision, not accepted evidence; structural visibility delta is not hallucination-reduction proof, claim-map revision candidate is not truth certification, and uncertainty/counterevidence revision candidate is not canon.
+- RW-COMP-03 is a held-out blinded fixture scaffold with simulated scores only; it is not hallucination reduction proof, not model superiority proof, not live model evaluation, not a live human study, and not accepted evidence.
