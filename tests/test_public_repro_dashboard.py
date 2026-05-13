@@ -35,6 +35,7 @@ REQUIRED_DOCS = {
     "rw-comp-02.md",
     "retrosynthesis-sandbox-cycle.md",
     "evidence-review-pack-second-pass.md",
+    "rw-comp-03.md",
 }
 REQUIRED_PHASES = {
     "EXP-SUITE-REGISTRY-01",
@@ -53,6 +54,7 @@ REQUIRED_PHASES = {
     "RW-COMP-02",
     "RETROSYNTHESIS-SANDBOX-CYCLE-01",
     "EVIDENCE-REVIEW-PACK-01",
+    "RW-COMP-03",
 }
 
 REQUIRED_COMMAND_FRAGMENTS = (
@@ -68,6 +70,7 @@ REQUIRED_COMMAND_FRAGMENTS = (
     "Run-RW-COMP02-Acceptance.ps1",
     "Run-RETROSYNTHESIS-SANDBOX-CYCLE01-Acceptance.ps1",
     "Run-EVIDENCE-REVIEW-PACK01-Acceptance.ps1",
+    "Run-RW-COMP03-Acceptance.ps1",
 )
 STALE_COMMAND_FRAGMENTS = (
     "tests/test_sonya_aegis_smoke_02.py",
@@ -113,7 +116,7 @@ def test_dashboard_contains_all_accepted_phases(tmp_path):
     dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text())
     phase_ids = {entry["phase_id"] for entry in dashboard["accepted_phases"]}
     assert phase_ids == REQUIRED_PHASES
-    assert dashboard["accepted_phase_count"] == 16
+    assert dashboard["accepted_phase_count"] == 17
 
 
 def test_dashboard_command_summaries_use_accepted_harnesses(tmp_path):
@@ -132,6 +135,7 @@ def test_validator_required_phases_include_public_utility_alpha_raw_baseline_and
     assert "EVIDENCE-REVIEW-PACK-00" in VALIDATOR_REQUIRED_PHASES
     assert "RETROSYNTHESIS-SANDBOX-CYCLE-01" in VALIDATOR_REQUIRED_PHASES
     assert "EVIDENCE-REVIEW-PACK-01" in VALIDATOR_REQUIRED_PHASES
+    assert "RW-COMP-03" in VALIDATOR_REQUIRED_PHASES
 
 
 def test_public_utility_alpha_indexes_and_docs_are_generated(tmp_path):
@@ -378,6 +382,74 @@ def test_validator_fails_if_evidence_review_pack_second_pass_makes_forbidden_cla
         out_dir, docs_dir = run_builder(tmp_path / claim.replace(" ", "_"))
         page = docs_dir / "evidence-review-pack-second-pass.md"
         page.write_text(page.read_text() + f"\nEVIDENCE-REVIEW-PACK-01 {claim}.\n")
+        result = validate_dashboard(out_dir / "experiment_suite_dashboard.json", docs_dir)
+        assert result["passed"] is False, claim
+        forbidden_found = [found.lower() for found in result["forbidden_claims_found"]]
+        assert claim.lower() in forbidden_found, result
+
+
+def test_rw_comp_03_indexes_and_docs_are_generated(tmp_path):
+    out_dir, docs_dir = run_builder(tmp_path)
+    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text())
+    reproducibility = json.loads((out_dir / "reproducibility_index.json").read_text())
+    artifact_index = json.loads((out_dir / "artifact_index.json").read_text())
+    claim_boundaries = json.loads((out_dir / "claim_boundary_index.json").read_text())
+    quickstart = (docs_dir / "reviewer-quickstart.md").read_text()
+    boundaries = (docs_dir / "claim-boundaries.md").read_text()
+    index = (docs_dir / "index.md").read_text()
+
+    phase = next(
+        entry
+        for entry in dashboard["accepted_phases"]
+        if entry["phase_id"] == "RW-COMP-03"
+    )
+    assert phase["status"] == "accepted"
+    assert phase["evidence_type"] == "heldout_blinded_fixture_scoring_scaffold"
+    assert phase["dashboard_summary"]["review_status"] == "accepted_as_heldout_blinded_fixture_scaffold"
+    assert phase["dashboard_summary"]["second_pass_candidate_arm_present"] is True
+    commands = json.dumps(reproducibility)
+    assert "Run-RW-COMP03-Acceptance.ps1" in commands
+    assert "RW-COMP-03" in artifact_index["phases"]
+    for artifact in (
+        "rw_comp_03_packet.json",
+        "rw_comp_03_review_packet.json",
+        "rw_comp_03_blind_labels.json",
+        "rw_comp_03_scoring_rubric.json",
+        "rw_comp_03_statistics_plan.json",
+        "rw_comp_03_statistics_packet.json",
+        "rw_comp_03_acceptance_receipt.json",
+    ):
+        assert artifact in artifact_index["phases"]["RW-COMP-03"]
+    assert (docs_dir / "rw-comp-03.md").exists()
+    assert "RW-COMP-03" in quickstart
+    assert "rw-comp-03.md" in index
+    assert "held-out blinded fixture scaffold" in boundaries
+    boundary_text = "\n".join(claim_boundaries["boundaries"])
+    for phrase in (
+        "not hallucination reduction proof",
+        "not model superiority proof",
+        "not live model evaluation",
+        "not live human study",
+    ):
+        assert phrase in boundary_text
+
+
+def test_validator_fails_if_rw_comp_03_makes_forbidden_claims(tmp_path):
+    forbidden_claims = (
+        "hallucination reduction proof",
+        "model superiority proof",
+        "live model evaluation",
+        "claims live human study",
+        "claims accepted evidence",
+        "deployment authorized",
+        "production evaluation",
+        "production ready",
+        "recursive self-improvement achieved",
+    )
+    for claim in forbidden_claims:
+        out_dir, docs_dir = run_builder(tmp_path / claim.replace(" ", "_"))
+        page = docs_dir / "rw-comp-03.md"
+        page.write_text(page.read_text() + f"\nRW-COMP-03 claims {claim}.\n")
         result = validate_dashboard(out_dir / "experiment_suite_dashboard.json", docs_dir)
         assert result["passed"] is False, claim
         forbidden_found = [found.lower() for found in result["forbidden_claims_found"]]

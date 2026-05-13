@@ -24,6 +24,7 @@ REQUIRED_PHASES = {
     "RW-COMP-02",
     "RETROSYNTHESIS-SANDBOX-CYCLE-01",
     "EVIDENCE-REVIEW-PACK-01",
+    "RW-COMP-03",
 }
 REQUIRED_BOUNDARY_PHRASES = (
     "not truth certification",
@@ -84,6 +85,15 @@ REQUIRED_BOUNDARY_PHRASES = (
     "not deployment authority",
     "not recursive self-improvement",
     "not hallucination reduction proof",
+    "RW-COMP-03",
+    "held-out blinded fixture scaffold",
+    "not hallucination reduction proof",
+    "not model superiority proof",
+    "not live model evaluation",
+    "not live human study",
+    "simulated scores",
+    "not accepted evidence",
+    "not production evaluation",
 )
 FORBIDDEN_PHRASES = (
     "deployment readiness",
@@ -134,6 +144,9 @@ FORBIDDEN_PHRASES = (
     "claims Publisher finalization",
     "claims Omega detection",
     "claims recursive self-improvement",
+    "live human study performed",
+    "claims live human study",
+    "claims accepted evidence",
     "canon adoption",
     "memory write",
     "production evaluation",

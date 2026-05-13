@@ -274,6 +274,63 @@ RW_COMP_02_CLAIMS_BLOCKED = [
     "not AI consciousness claim",
 ]
 
+RW_COMP_03_COMMAND = r""".\experiments\Run-RW-COMP03-Acceptance.ps1 `
+  -OutputRoot C:\UVLM\run_artifacts\rw_comp_03 `
+  -LogDir C:\UVLM\run_artifacts\rw_comp_03_logs `
+  -CiMode"""
+RW_COMP_03_ARTIFACTS = [
+    "rw_comp_03_packet.json",
+    "rw_comp_03_review_packet.json",
+    "rw_comp_03_rows.jsonl",
+    "rw_comp_03_fixture_manifest.json",
+    "rw_comp_03_blind_labels.json",
+    "rw_comp_03_scoring_rubric.json",
+    "rw_comp_03_reviewer_score_packet.json",
+    "rw_comp_03_statistics_plan.json",
+    "rw_comp_03_statistics_packet.json",
+    "rw_comp_03_summary.md",
+    "artifact_inventory.json",
+    "run_artifact_manifest.json",
+    "export_bundle_manifest.json",
+    "export_bundle_parity_report.json",
+    "rw_comp_03_acceptance_receipt.json",
+]
+RW_COMP_03_DASHBOARD_SUMMARY = {
+    "review_status": "accepted_as_heldout_blinded_fixture_scaffold",
+    "fixture_count": 8,
+    "arm_count_per_fixture": 6,
+    "blind_labels_present": True,
+    "scoring_rubric_present": True,
+    "statistics_plan_present": True,
+    "statistics_packet_present": True,
+    "second_pass_candidate_arm_present": True,
+    "no_human_subject_data_collected": True,
+    "no_live_human_study_performed": True,
+    "comparison_is_not_hallucination_reduction_proof": True,
+    "comparison_is_not_model_superiority_proof": True,
+    "promotion_blocked": True,
+}
+RW_COMP_03_CLAIMS_BLOCKED = [
+    "not hallucination reduction proof",
+    "not model superiority proof",
+    "not model quality benchmark",
+    "not live model evaluation",
+    "not remote provider evaluation",
+    "not live human study",
+    "not human-subject study result",
+    "not accepted evidence",
+    "not canon adoption",
+    "not memory write",
+    "not professional advice",
+    "not compliance certification",
+    "not truth certification",
+    "not deployment authority",
+    "not final answer release",
+    "not production evaluation",
+    "not recursive self-improvement",
+    "not AI consciousness claim",
+]
+
 RETRO_SANDBOX_CYCLE_COMMAND = r""".\experiments\Run-RETROSYNTHESIS-SANDBOX-CYCLE01-Acceptance.ps1 `
   -OutputRoot C:\UVLM\run_artifacts\retrosynthesis_sandbox_cycle_01 `
   -LogDir C:\UVLM\run_artifacts\retrosynthesis_sandbox_cycle_01_logs `
@@ -555,6 +612,30 @@ ACCEPTED_PHASES = [
         "publication_status": "dashboard_indexed",
     },
     {
+        "phase_id": "RW-COMP-03",
+        "repo": "pdxvoiceteacher/CoherenceLattice",
+        "status": "accepted",
+        "evidence_type": "heldout_blinded_fixture_scoring_scaffold",
+        "product_posture": "pre_registered_fixture_scaffold_for_future_hallucination_reduction_evidence",
+        "primary_artifacts": RW_COMP_03_ARTIFACTS,
+        "prerequisite_phases": [
+            "RW-COMP-02",
+            "EVIDENCE-REVIEW-PACK-01",
+            "RETROSYNTHESIS-SANDBOX-CYCLE-01",
+            "EVIDENCE-REVIEW-PACK-00",
+            "UCC-CONTROL-PROFILE-SELECTOR-00",
+            "UNIVERSAL-EVIDENCE-INGRESS-00",
+            "CANONICAL-METRIC-PACKET-01",
+            "RAW-BASELINE-COMPARISON-00",
+        ],
+        "dashboard_summary": RW_COMP_03_DASHBOARD_SUMMARY,
+        "reproduction_command_summary": RW_COMP_03_COMMAND,
+        "claim_allowed": "RW-COMP-03 demonstrates a held-out blinded fixture-scoring scaffold with simulated scores, blind labels, pre-registered scoring dimensions, statistics planning, and a second-pass Evidence Review Pack candidate arm.",
+        "claims_blocked": RW_COMP_03_CLAIMS_BLOCKED,
+        "reviewer_caution": "RW-COMP-03 is a held-out blinded fixture scaffold with simulated scoring only. It introduces a pre-registered scoring and statistics structure for future evaluation, but it does not prove hallucination reduction, does not prove model superiority, does not show live model behavior, does not measure human reviewer performance, is not professional-advice quality, is not compliance certification, and is not production readiness.",
+        "publication_status": "dashboard_indexed",
+    },
+    {
         "phase_id": "RETROSYNTHESIS-SANDBOX-CYCLE-01",
         "repo": "pdxvoiceteacher/CoherenceLattice",
         "status": "accepted",
@@ -679,6 +760,13 @@ BOUNDARIES = [
     "EVIDENCE-REVIEW-PACK-01 is not deployment authority.",
     "EVIDENCE-REVIEW-PACK-01 is not hallucination reduction proof.",
     "EVIDENCE-REVIEW-PACK-01 is not recursive self-improvement.",
+    "RW-COMP-03 is a held-out blinded fixture scaffold, not hallucination reduction proof.",
+    "RW-COMP-03 is not model superiority proof.",
+    "RW-COMP-03 is not live model evaluation.",
+    "RW-COMP-03 is not live human study.",
+    "RW-COMP-03 uses simulated scores.",
+    "RW-COMP-03 is not accepted evidence.",
+    "RW-COMP-03 is not production evaluation.",
 ]
 GLOBAL_NON_CLAIMS = [
     "not truth certification",
@@ -689,6 +777,8 @@ GLOBAL_NON_CLAIMS = [
     "not Publisher finalization",
     "not Omega detection",
     "not recursive self-improvement",
+    "not live human study",
+    "not accepted evidence",
     "local fixture only",
     "requires external peer review",
     "not AI consciousness",
@@ -759,6 +849,7 @@ def dashboard_payload() -> dict[str, Any]:
             "rw_comp_02_packet.json",
             "retrosynthesis_sandbox_cycle_packet.json",
             "evidence_review_second_pass_packet.json",
+            "rw_comp_03_packet.json",
         ],
         "publication_drafts": [
             "papers/governed_artifact_cognition/PUB_GOV_ARTIFACT_COG_01.md",
@@ -801,6 +892,7 @@ def reproducibility_index() -> dict[str, Any]:
                 {"name": "RW-COMP-02 acceptance", "command": RW_COMP_02_COMMAND},
                 {"name": "Retrosynthesis Sandbox Cycle acceptance", "command": RETRO_SANDBOX_CYCLE_COMMAND},
                 {"name": "Evidence Review Pack second pass acceptance", "command": EVIDENCE_REVIEW_PACK_01_COMMAND},
+                {"name": "RW-COMP-03 acceptance", "command": RW_COMP_03_COMMAND},
                 {"name": "experiment suite repro pack builder", "command": "python -m coherence.tools.build_experiment_suite_repro_pack --registry experiments/experiment_suite_registry.json --artifacts-root artifacts --out-dir artifacts/experiment_suite_repro_pack --zip"},
             ],
             "Sophia": [
@@ -835,6 +927,7 @@ def artifact_index() -> dict[str, Any]:
             "RW-COMP-02": RW_COMP_02_ARTIFACTS,
             "RETROSYNTHESIS-SANDBOX-CYCLE-01": RETRO_SANDBOX_CYCLE_ARTIFACTS,
             "EVIDENCE-REVIEW-PACK-01": EVIDENCE_REVIEW_PACK_01_ARTIFACTS,
+            "RW-COMP-03": RW_COMP_03_ARTIFACTS,
             "publications": ["PUB_GOV_ARTIFACT_COG_01.md", "PUB_WAVE_ROSETTA_01.md", "reviewer quickstarts", "status.json files"],
         },
     }
@@ -851,6 +944,7 @@ def status_payload() -> dict[str, Any]:
         "latest_fixture_comparison": "RW-COMP-02",
         "latest_bounded_candidate_repair_cycle": "RETROSYNTHESIS-SANDBOX-CYCLE-01",
         "latest_second_pass_review_candidate": "EVIDENCE-REVIEW-PACK-01",
+        "latest_heldout_blinded_fixture_scaffold": "RW-COMP-03",
         "requires_external_peer_review": True,
         "not_truth_certification": True,
         "not_deployment_authority": True,
@@ -869,7 +963,7 @@ def docs() -> dict[str, str]:
     return {
         "README.md": "# Experiment Suite Docs\n\nPublic reviewer documentation for the claim-bounded reproducibility dashboard.\n",
         "assets/README.md": "# Assets\n\nOptional static assets for the public reproducibility dashboard.\n",
-        "index.md": f"# Public Experiment Suite Dashboard\n\nThis dashboard presents accepted evidence for reviewer orientation. It is not truth certification, not deployment authority, not final answer release, local fixture only, and requires external peer review.\n\n## Accepted evidence\n\n| Phase | Repo | Status | What this supports | Reviewer caution |\n| --- | --- | --- | --- | --- |\n{phase_rows}\n\n## Reviewer path\n\nStart with claim boundaries, then read the governed artifact cognition paper, WAVE Rosetta paper, SONYA-AEGIS-SMOKE-02, WAVE family, UNI-02D Sonya gate, and RETRO-LANE-00, Public Utility Alpha, Raw Baseline Comparison, Evidence Review Pack, RW-COMP-01, RW-COMP-02, Retrosynthesis Sandbox Cycle, and Evidence Review Pack second-pass pages.\n\n## What this proves\n\nIt proves only that accepted local fixture artifacts and draft publication materials are organized for review.\n\n## What this does not prove\n\nNo oracle posture, no deployment posture, no final-answer posture, no AI consciousness claim, and no universal ontology claim.\n\n## Phase pages\n\n- [SONYA-AEGIS-SMOKE-02](sonya-aegis-smoke-02.md)\n- [WAVE Gold-Physics](wave-gold-physics.md)\n- [UNI-02D Sonya gate](uni02d-sonya-gate.md)\n- [RETRO-LANE-00](retro-lane-00.md)\n- [Public Utility Alpha](public-utility-alpha.md)\n- [Raw Baseline Comparison](raw-baseline-comparison.md)\n- [Evidence Review Pack](evidence-review-pack.md)\n- [RW-COMP-01](rw-comp-01.md)\n- [RW-COMP-02](rw-comp-02.md)\n- [Retrosynthesis Sandbox Cycle](retrosynthesis-sandbox-cycle.md)\n- [Evidence Review Pack second pass](evidence-review-pack-second-pass.md)\n- [Governed artifact cognition paper](governed-artifact-cognition-paper.md)\n- [Waveform Rosetta paper](waveform-rosetta-paper.md)\n",
+        "index.md": f"# Public Experiment Suite Dashboard\n\nThis dashboard presents accepted evidence for reviewer orientation. It is not truth certification, not deployment authority, not final answer release, local fixture only, and requires external peer review.\n\n## Accepted evidence\n\n| Phase | Repo | Status | What this supports | Reviewer caution |\n| --- | --- | --- | --- | --- |\n{phase_rows}\n\n## Reviewer path\n\nStart with claim boundaries, then read the governed artifact cognition paper, WAVE Rosetta paper, SONYA-AEGIS-SMOKE-02, WAVE family, UNI-02D Sonya gate, and RETRO-LANE-00, Public Utility Alpha, Raw Baseline Comparison, Evidence Review Pack, RW-COMP-01, RW-COMP-02, Retrosynthesis Sandbox Cycle, Evidence Review Pack second-pass, and RW-COMP-03 pages.\n\n## What this proves\n\nIt proves only that accepted local fixture artifacts and draft publication materials are organized for review.\n\n## What this does not prove\n\nNo oracle posture, no deployment posture, no final-answer posture, no AI consciousness claim, and no universal ontology claim.\n\n## Phase pages\n\n- [SONYA-AEGIS-SMOKE-02](sonya-aegis-smoke-02.md)\n- [WAVE Gold-Physics](wave-gold-physics.md)\n- [UNI-02D Sonya gate](uni02d-sonya-gate.md)\n- [RETRO-LANE-00](retro-lane-00.md)\n- [Public Utility Alpha](public-utility-alpha.md)\n- [Raw Baseline Comparison](raw-baseline-comparison.md)\n- [Evidence Review Pack](evidence-review-pack.md)\n- [RW-COMP-01](rw-comp-01.md)\n- [RW-COMP-02](rw-comp-02.md)\n- [Retrosynthesis Sandbox Cycle](retrosynthesis-sandbox-cycle.md)\n- [Evidence Review Pack second pass](evidence-review-pack-second-pass.md)\n- [RW-COMP-03](rw-comp-03.md)\n- [Governed artifact cognition paper](governed-artifact-cognition-paper.md)\n- [Waveform Rosetta paper](waveform-rosetta-paper.md)\n",
         "claim-boundaries.md": f"# Claim Boundaries\n\n{boundaries}\n\nNo oracle posture. No deployment posture. No final-answer posture. No AI consciousness claim. No universal ontology claim.\n",
         "sonya-aegis-smoke-02.md": f"""# SONYA-AEGIS-SMOKE-02
 
@@ -1064,6 +1158,32 @@ Claims blocked: {"; ".join(RW_COMP_02_CLAIMS_BLOCKED)}.
 
 Caution: RW-COMP-02 is a deterministic multi-fixture battery. It can show that the Evidence Review Pack exposes more review-relevant structure than raw or partially governed fixture baselines across several controlled examples. It does not prove hallucination reduction, does not prove model superiority, does not prove real-world performance, is not professional-advice quality, and is not production compliance. Future phases must add held-out fixtures, blinded scoring, statistical analysis, external reproduction, and controlled live-model/provider conditions before stronger claims are authorized.
 """,
+        "rw-comp-03.md": f"""# RW-COMP-03
+
+Purpose: inspect RW-COMP-03 as an accepted held-out, blinded, pre-registered fixture-scoring scaffold extending RW-COMP-02 with held-out fixture IDs, blinded arm labels, simulated scores, a statistics plan, and a second-pass Evidence Review Pack candidate arm.
+
+RW-COMP-03 is a held-out blinded fixture scaffold, not hallucination reduction proof.
+
+Run command:
+
+```powershell
+{RW_COMP_03_COMMAND}
+```
+
+Evidence: {", ".join(f"`{artifact}`" for artifact in RW_COMP_03_ARTIFACTS)}.
+
+Prerequisite phases: RW-COMP-02, EVIDENCE-REVIEW-PACK-01, RETROSYNTHESIS-SANDBOX-CYCLE-01, EVIDENCE-REVIEW-PACK-00, UCC-CONTROL-PROFILE-SELECTOR-00, UNIVERSAL-EVIDENCE-INGRESS-00, CANONICAL-METRIC-PACKET-01, and RAW-BASELINE-COMPARISON-00.
+
+Claim allowed: RW-COMP-03 demonstrates a held-out blinded fixture-scoring scaffold with simulated scores, blind labels, pre-registered scoring dimensions, statistics planning, and a second-pass Evidence Review Pack candidate arm. It is a step toward future hallucination-reduction evidence, not hallucination reduction proof, not model superiority proof, not live model evaluation, and not live human study.
+
+Dashboard summary:
+
+{chr(10).join(f"- {key} = {str(value).lower()}" for key, value in RW_COMP_03_DASHBOARD_SUMMARY.items())}
+
+Claims blocked: {"; ".join(RW_COMP_03_CLAIMS_BLOCKED)}.
+
+Reviewer caution: RW-COMP-03 is a held-out blinded fixture scaffold with simulated scoring only. It introduces a pre-registered scoring and statistics structure for future evaluation, but it does not prove hallucination reduction, does not prove model superiority, does not show live model behavior, does not measure human reviewer performance, is not professional-advice quality, is not compliance certification, and is not production readiness.
+""",
         "retrosynthesis-sandbox-cycle.md": f"""# Retrosynthesis Sandbox Cycle
 
 Purpose: inspect RETROSYNTHESIS-SANDBOX-CYCLE-01 as the first bounded candidate repair cycle for incomplete or contradiction-bearing Evidence Review Pack-style artifacts.
@@ -1136,6 +1256,7 @@ Reviewer caution: EVIDENCE-REVIEW-PACK-01 emits candidate revisions only. Its de
 12. RW-COMP-02
 13. Retrosynthesis Sandbox Cycle
 14. Evidence Review Pack second pass
+15. RW-COMP-03
 
 ## CoherenceLattice commands
 
@@ -1214,6 +1335,14 @@ PowerShell Evidence Review Pack second pass:
 ```
 
 Evidence Review Pack second pass is candidate revision, not accepted evidence. It is not canon adoption, not memory write, not final answer release, not Publisher finalization, not Omega detection, not deployment authority, not hallucination reduction proof, and not recursive self-improvement.
+
+PowerShell RW-COMP-03:
+
+```powershell
+{RW_COMP_03_COMMAND}
+```
+
+RW-COMP-03 is a held-out blinded fixture scaffold with simulated scores and a statistics plan. It includes a second-pass candidate arm and is a step toward future hallucination-reduction evidence, not hallucination reduction proof, not model superiority proof, not live model evaluation, and not live human study.
 
 ## Sophia commands
 

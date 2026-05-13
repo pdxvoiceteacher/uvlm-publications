@@ -56,5 +56,12 @@
 - EVIDENCE-REVIEW-PACK-01 is not deployment authority.
 - EVIDENCE-REVIEW-PACK-01 is not hallucination reduction proof.
 - EVIDENCE-REVIEW-PACK-01 is not recursive self-improvement.
+- RW-COMP-03 is a held-out blinded fixture scaffold, not hallucination reduction proof.
+- RW-COMP-03 is not model superiority proof.
+- RW-COMP-03 is not live model evaluation.
+- RW-COMP-03 is not live human study.
+- RW-COMP-03 uses simulated scores.
+- RW-COMP-03 is not accepted evidence.
+- RW-COMP-03 is not production evaluation.
 
 No oracle posture. No deployment posture. No final-answer posture. No AI consciousness claim. No universal ontology claim.

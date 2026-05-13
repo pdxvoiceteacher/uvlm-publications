@@ -16,6 +16,7 @@
 12. RW-COMP-02
 13. Retrosynthesis Sandbox Cycle
 14. Evidence Review Pack second pass
+15. RW-COMP-03
 
 ## CoherenceLattice commands
 
@@ -129,6 +130,17 @@ PowerShell Evidence Review Pack second pass:
 ```
 
 Evidence Review Pack second pass is candidate revision, not accepted evidence. It is not canon adoption, not memory write, not final answer release, not Publisher finalization, not Omega detection, not deployment authority, not hallucination reduction proof, and not recursive self-improvement.
+
+PowerShell RW-COMP-03:
+
+```powershell
+.\experiments\Run-RW-COMP03-Acceptance.ps1 `
+  -OutputRoot C:\UVLM\run_artifacts\rw_comp_03 `
+  -LogDir C:\UVLM\run_artifacts\rw_comp_03_logs `
+  -CiMode
+```
+
+RW-COMP-03 is a held-out blinded fixture scaffold with simulated scores and a statistics plan. It includes a second-pass candidate arm and is a step toward future hallucination-reduction evidence, not hallucination reduction proof, not model superiority proof, not live model evaluation, and not live human study.
 
 ## Sophia commands
 
