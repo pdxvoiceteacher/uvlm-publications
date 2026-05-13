@@ -25,6 +25,9 @@ REQUIRED_PHASES = {
     "RETROSYNTHESIS-SANDBOX-CYCLE-01",
     "EVIDENCE-REVIEW-PACK-01",
     "RW-COMP-03",
+    "UNIVERSAL-STAGE-PIPELINE-00",
+    "ARTIFACT-CONTRACT-REGISTRY-01",
+    "UNIVERSAL-COMPATIBILITY-MATRIX-00",
 }
 REQUIRED_BOUNDARY_PHRASES = (
     "not truth certification",
@@ -94,6 +97,18 @@ REQUIRED_BOUNDARY_PHRASES = (
     "simulated scores",
     "not accepted evidence",
     "not production evaluation",
+    "universal architecture scaffold",
+    "The brain runs cognition stages; experiments configure those stages.",
+    "profiles are configuration",
+    "experiments are configurations",
+    "fail-closed receipts",
+    "hash-only",
+    "not product release",
+    "not experiment result",
+    "not benchmark result",
+    "not hallucination reduction proof",
+    "not deployment authority",
+    "not recursive self-improvement",
 )
 FORBIDDEN_PHRASES = (
     "deployment readiness",
@@ -150,6 +165,12 @@ FORBIDDEN_PHRASES = (
     "canon adoption",
     "memory write",
     "production evaluation",
+    "product release",
+    "product released",
+    "benchmark result",
+    "benchmark proven",
+    "experiment result",
+    "AI consciousness demonstrated",
 )
 ALLOWED_NEGATED = (
     "not ",

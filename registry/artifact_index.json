@@ -141,6 +141,32 @@
       "export_bundle_parity_report.json",
       "rw_comp_03_acceptance_receipt.json"
     ],
+    "UNIVERSAL-STAGE-PIPELINE-00": [
+      "universal_pipeline_manifest.json",
+      "universal_pipeline_review_packet.json",
+      "universal_pipeline_stage_records.jsonl"
+    ],
+    "ARTIFACT-CONTRACT-REGISTRY-01": [
+      "config/artifact_contracts/artifact_roles.v1.json",
+      "config/artifact_contracts/package_profiles.v1.json",
+      "config/artifact_contracts/required_artifacts.v1.json",
+      "config/artifact_contracts/optional_artifacts.v1.json",
+      "config/artifact_contracts/forbidden_artifacts.v1.json",
+      "config/artifact_contracts/profile_composition.v1.json",
+      "artifact_contract_registry_review.json"
+    ],
+    "UNIVERSAL-COMPATIBILITY-MATRIX-00": [
+      "universal_compatibility_matrix_packet.json",
+      "universal_compatibility_matrix_review_packet.json",
+      "universal_stage_input_compatibility_rows.jsonl",
+      "universal_stage_failure_receipts.jsonl",
+      "universal_compatibility_matrix_summary.md",
+      "artifact_inventory.json",
+      "run_artifact_manifest.json",
+      "export_bundle_manifest.json",
+      "export_bundle_parity_report.json",
+      "universal_compatibility_matrix_00_acceptance_receipt.json"
+    ],
     "publications": [
       "PUB_GOV_ARTIFACT_COG_01.md",
       "PUB_WAVE_ROSETTA_01.md",
