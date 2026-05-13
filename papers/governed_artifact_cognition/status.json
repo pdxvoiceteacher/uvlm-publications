@@ -23,5 +23,14 @@
   "not_model_superiority_proof": true,
   "rw_comp_02_indexed": true,
   "not_live_model_evaluation": true,
-  "not_production_evaluation": true
+  "not_production_evaluation": true,
+  "retrosynthesis_sandbox_cycle_indexed": true,
+  "not_canon_adoption": true,
+  "not_memory_write": true,
+  "not_publisher_finalization": true,
+  "not_omega_detection": true,
+  "not_publication_claim": true,
+  "not_recursive_self_improvement": true,
+  "evidence_review_pack_01_indexed": true,
+  "not_accepted_evidence": true
 }

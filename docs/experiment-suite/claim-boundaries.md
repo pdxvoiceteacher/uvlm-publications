@@ -40,5 +40,21 @@
 - RW-COMP-02 is not professional advice.
 - RW-COMP-02 is not compliance certification.
 - RW-COMP-02 is not production evaluation.
+- Retrosynthesis Sandbox Cycle is candidate repair, not canon adoption.
+- RETROSYNTHESIS-SANDBOX-CYCLE-01 is not memory write.
+- RETROSYNTHESIS-SANDBOX-CYCLE-01 is not final answer release.
+- RETROSYNTHESIS-SANDBOX-CYCLE-01 is not Publisher finalization.
+- RETROSYNTHESIS-SANDBOX-CYCLE-01 is not Omega detection.
+- RETROSYNTHESIS-SANDBOX-CYCLE-01 is not deployment authority.
+- RETROSYNTHESIS-SANDBOX-CYCLE-01 is not recursive self-improvement.
+- Evidence Review Pack second pass is candidate revision, not accepted evidence.
+- EVIDENCE-REVIEW-PACK-01 is not canon adoption.
+- EVIDENCE-REVIEW-PACK-01 is not memory write.
+- EVIDENCE-REVIEW-PACK-01 is not final answer release.
+- EVIDENCE-REVIEW-PACK-01 is not Publisher finalization.
+- EVIDENCE-REVIEW-PACK-01 is not Omega detection.
+- EVIDENCE-REVIEW-PACK-01 is not deployment authority.
+- EVIDENCE-REVIEW-PACK-01 is not hallucination reduction proof.
+- EVIDENCE-REVIEW-PACK-01 is not recursive self-improvement.
 
 No oracle posture. No deployment posture. No final-answer posture. No AI consciousness claim. No universal ontology claim.
