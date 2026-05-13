@@ -462,6 +462,10 @@ def test_claim_validator_rejects_retrosynthesis_sandbox_cycle_overclaims(tmp_pat
         "Publisher finalization",
         "Omega detection",
         "recursive self-improvement achieved",
+        "claims adapter execution",
+        "claims network authorization",
+        "remote provider call",
+        "claims model-weight training",
     )
     for claim in forbidden_claims:
         paper_root = _copy_governed_paper(tmp_path / claim.replace(" ", "_").replace("-", "_"))
@@ -783,3 +787,87 @@ def test_claim_validator_rejects_universal_architecture_overclaims(tmp_path):
         assert result["passed"] is False, claim
         forbidden_found = [found.lower() for found in result["forbidden_overclaims_found"]]
         assert claim.lower() in forbidden_found, result
+
+
+def test_governed_artifact_cognition_sonya_adapter_contract_registry_updates_are_present():
+    paper = (ROOT / "PUB_GOV_ARTIFACT_COG_01.md").read_text(encoding="utf-8")
+    abstract = (ROOT / "abstract.md").read_text(encoding="utf-8")
+    artifact_table = (ROOT / "artifact_table.md").read_text(encoding="utf-8")
+    boundary_table = (ROOT / "claim_boundary_table.md").read_text(encoding="utf-8")
+    quickstart = (ROOT / "reviewer_quickstart.md").read_text(encoding="utf-8")
+    appendix = (ROOT / "reproducibility_appendix.md").read_text(encoding="utf-8")
+    status = json.loads((ROOT / "status.json").read_text(encoding="utf-8"))
+
+    combined_paper = paper + "\n" + abstract
+    for phrase in (
+        "SONYA-ADAPTER-CONTRACT-REGISTRY-01",
+        "Adapter capability is not adapter authorization.",
+        "not adapter execution",
+        "not network authorization",
+        "Raw output is forbidden",
+        "Candidate packets are required",
+        "Failure receipts are required",
+        "not model-weight training",
+        "Universal Stage Pipeline → Artifact Contract Registry → Universal Compatibility Matrix → Provenance Training Ledger → Sonya Adapter Contract Registry",
+        "review_status = accepted_as_adapter_contract_registry_only",
+        "adapter_count = 11",
+        "disabled_or_blocked_adapter_count = 11",
+        "enabled_live_adapter_count = 0",
+        "all_adapters_disabled_or_blocked = true",
+        "no_live_adapter_execution = true",
+        "no_network_calls = true",
+        "no_remote_provider_calls = true",
+        "sonya_gateway_required = true",
+        "raw_output_forbidden = true",
+        "candidate_packet_required = true",
+        "failure_receipts_required = true",
+        "provenance_training_policy_present = true",
+        "promotion_blocked = true",
+    ):
+        assert phrase in combined_paper
+
+    for artifact in (
+        "sonya_adapter_contract_registry_packet.json",
+        "sonya_adapter_contract_review_packet.json",
+        "sonya_adapter_capability_matrix_packet.json",
+        "sonya_adapter_consent_matrix_packet.json",
+        "sonya_adapter_provenance_training_policy_packet.json",
+    ):
+        assert artifact in artifact_table
+    for boundary in (
+        "Sonya Adapter Contract Registry is not adapter execution.",
+        "Adapter capability is not adapter authorization.",
+        "Sonya Adapter Contract Registry is not network authorization.",
+        "Sonya Adapter Contract Registry is not remote provider call.",
+        "Sonya Adapter Contract Registry is not model-weight training.",
+    ):
+        assert boundary in boundary_table
+    assert "Run-SONYA-ADAPTER-CONTRACT-REGISTRY01-Acceptance.ps1" in quickstart
+    assert "Run-SONYA-ADAPTER-CONTRACT-REGISTRY01-Acceptance.ps1" in appendix
+    assert status["sonya_adapter_contract_registry_indexed"] is True
+    assert status["not_adapter_execution"] is True
+    assert status["not_network_authorization"] is True
+    assert status["not_model_weight_training"] is True
+
+
+def test_claim_validator_rejects_sonya_adapter_contract_overclaims(tmp_path):
+    forbidden_claims = (
+        "claims adapter execution",
+        "claims network authorization",
+        "remote provider call",
+        "claims model-weight training",
+        "claims deployment authority",
+        "production readiness",
+    )
+    for claim in forbidden_claims:
+        paper_root = _copy_governed_paper(tmp_path / claim.replace(" ", "_").replace("-", "_"))
+        paper = paper_root / "PUB_GOV_ARTIFACT_COG_01.md"
+        paper.write_text(paper.read_text(encoding="utf-8") + f"\nThis paper {claim}.\n", encoding="utf-8")
+        result = validate_publication_claims(
+            paper,
+            appendix=paper_root / "reproducibility_appendix.md",
+            quickstart=paper_root / "reviewer_quickstart.md",
+            status=paper_root / "status.json",
+        )
+        assert result["passed"] is False, claim
+        assert result["forbidden_overclaims_found"], result

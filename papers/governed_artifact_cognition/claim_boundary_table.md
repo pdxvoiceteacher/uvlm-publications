@@ -89,3 +89,15 @@
 | Fail-closed receipts | Fail-closed receipts are control evidence, not performance failure hiding. | Keep architecture scaffold claims separate from product, benchmark, experiment, performance, deployment, and truth claims. |
 | Hash-only preservation | Hash-only preservation is not semantic interpretation. | Keep architecture scaffold claims separate from product, benchmark, experiment, performance, deployment, and truth claims. |
 | Experiments configure stages | Experiments configure stages; they do not define the kernel. | Keep architecture scaffold claims separate from product, benchmark, experiment, performance, deployment, and truth claims. |
+
+| Sonya Adapter Contract Registry | Sonya Adapter Contract Registry is not adapter execution. | Adapter contracts are fixture-only configuration, not runtime authorization. |
+| Adapter capability | Adapter capability is not adapter authorization. | Adapter contracts are fixture-only configuration, not runtime authorization. |
+| Sonya Adapter Contract Registry | Sonya Adapter Contract Registry is not network authorization. | Adapter contracts are fixture-only configuration, not runtime authorization. |
+| Sonya Adapter Contract Registry | Sonya Adapter Contract Registry is not remote provider call. | Adapter contracts are fixture-only configuration, not runtime authorization. |
+| Sonya Adapter Contract Registry | Sonya Adapter Contract Registry is not live model execution. | Adapter contracts are fixture-only configuration, not runtime authorization. |
+| Sonya Adapter Contract Registry | Sonya Adapter Contract Registry is not memory write. | Adapter contracts are fixture-only configuration, not runtime authorization. |
+| Sonya Adapter Contract Registry | Sonya Adapter Contract Registry is not final answer release. | Adapter contracts are fixture-only configuration, not runtime authorization. |
+| Sonya Adapter Contract Registry | Sonya Adapter Contract Registry is not deployment authority. | Adapter contracts are fixture-only configuration, not runtime authorization. |
+| Sonya Adapter Contract Registry | Sonya Adapter Contract Registry is not model-weight training. | Adapter contracts are fixture-only configuration, not runtime authorization. |
+| Sonya Adapter Contract Registry | Sonya Adapter Contract Registry is not hallucination reduction proof. | Adapter contracts are fixture-only configuration, not runtime authorization. |
+| Sonya Adapter Contract Registry | Sonya Adapter Contract Registry is not recursive self-improvement. | Adapter contracts are fixture-only configuration, not runtime authorization. |
