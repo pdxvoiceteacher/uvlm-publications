@@ -1,5 +1,9 @@
 # Claim Boundaries
 
+- Universal Architecture Scaffold: The brain runs cognition stages; experiments configure those stages.
+- Universal architecture scaffold: profiles are configuration; experiments are configurations over reusable stages and versioned artifact contracts.
+- Universal compatibility inputs use fail-closed receipts or hash-only receipts when unsupported inputs cannot be semantically interpreted.
+- Universal Architecture Scaffold is not product release, not experiment result, not benchmark result, not hallucination reduction proof, not deployment authority, and not recursive self-improvement.
 - Route is not authorization.
 - Receipt is not truth certification.
 - Model candidate is not answer.

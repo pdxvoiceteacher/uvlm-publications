@@ -183,3 +183,36 @@ python tools/validate_public_repro_dashboard.py --dashboard registry/experiment_
 ```bash
 python tools/validate_publication_claims.py --paper papers/governed_artifact_cognition/PUB_GOV_ARTIFACT_COG_01.md --quickstart papers/governed_artifact_cognition/reviewer_quickstart.md --status papers/governed_artifact_cognition/status.json
 ```
+
+
+## How to reproduce the Universal Architecture Scaffold
+
+The brain runs cognition stages; experiments configure those stages. This reproduces architecture scaffold checks for Universal Stage Pipeline, Artifact Contract Registry, and Universal Compatibility Matrix. It is not product release, not benchmark result, not experiment result, not hallucination reduction proof, and not deployment authority.
+
+```powershell
+python -m pytest -q python/tests/pipeline/test_universal_stage_pipeline.py
+```
+
+```powershell
+python -m pytest -q python/tests/integration/test_artifact_contract_registry.py
+```
+
+```powershell
+.\experiments\Run-UNIVERSAL-COMPATIBILITY-MATRIX00-Acceptance.ps1 `
+  -OutputRoot C:\UVLM\run_artifacts\universal_compatibility_matrix_00 `
+  -LogDir C:\UVLM\run_artifacts\universal_compatibility_matrix_00_logs `
+  -CiMode
+```
+
+Expected:
+
+- `review_status = accepted_as_universal_compatibility_scaffold`
+- `all_required_stage_ids_present = true`
+- `all_required_input_classes_present = true`
+- `all_required_control_profiles_present = true`
+- `unsupported_inputs_failed_closed_or_hash_only = true`
+- `hash_only_inputs_not_semantically_interpreted = true`
+- `model_facing_stages_require_sonya = true`
+- `no_experiment_specific_kernel_logic_used = true`
+- `failure_receipts_visible = true`
+- `promotion_blocked = true`
