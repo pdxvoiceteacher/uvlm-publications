@@ -12,6 +12,12 @@ RETROSYNTHESIS-SANDBOX-CYCLE-01 is now accepted as the first bounded retrosynthe
 
 EVIDENCE-REVIEW-PACK-01 is now included as the first candidate-only second-pass Evidence Review Pack loop generated from Retrosynthesis Sandbox Cycle repair candidates. Evidence Review Pack second pass is candidate revision, not accepted evidence. It consumes bounded repair candidates and emits claim-map revision candidates, uncertainty revision candidates, counterevidence revision candidates, and structural visibility delta artifacts. Structural visibility delta is not hallucination-reduction proof; claim-map revision candidate is not truth certification; uncertainty/counterevidence revision candidate is not canon. The loop performs no memory write, no final answer release, no Publisher finalization, no deployment, no Omega detection, and no recursive self-improvement claim.
 
+
+Universal Architecture Scaffold update: The brain runs cognition stages; experiments configure those stages. CoherenceLattice has moved from experiment accumulation toward a reusable artifact-cognition substrate. The accepted anti-experimentware correction is a stage-driven pipeline with externalized artifact contracts, a compatibility matrix, fail-closed/hash-only receipts, and experiments as configurations. Universal Stage Pipeline defines reusable cognition-stage contracts. Artifact Contract Registry externalizes artifact roles and package/profile contracts into versioned configuration. Universal Compatibility Matrix tests whether the same stage/contracts handle multiple input classes or emit deterministic fail-closed/hash-only receipts. This scaffold is not product release, not benchmark result, not experiment result, and not performance proof.
+
+
+Sonya Adapter Contract Registry update: Adapter capability is not adapter authorization. SONYA-ADAPTER-CONTRACT-REGISTRY-01 is accepted as a fixture-only versioned adapter-contract scaffold. Adapter contracts declare capabilities, consent profiles, failure policies, telemetry requirements, and provenance-training policies. All adapters remain disabled or blocked. No live adapter execution occurred. No network calls occurred. Raw output is forbidden. Candidate packets are required. Failure receipts are required. Adapter events may support mechanism-level provenance training only when lineage, consent, and control receipts exist. Adapter events may not train model weights. This is not adapter execution, not live model execution, not remote provider call, not network authorization, not memory write, not final-answer release, not deployment authority, not truth certification, not model-weight training, not hallucination reduction proof, not recursive self-improvement, and not production readiness.
+
 The claims in this draft are bounded to auditability, route disposition, artifact traceability, and non-authority guardrails. The evidence is local fixture only and requires external peer review.
 
 ## 1. Introduction
@@ -35,6 +41,8 @@ For this draft, the following terms are used:
 - **Retrosynthesis Sandbox Cycle**: RETROSYNTHESIS-SANDBOX-CYCLE-01 is the first bounded candidate-repair cycle beyond RETRO-LANE-00 admission. It consumes incomplete or contradiction-bearing Evidence Review Pack artifacts and emits missing-evidence requests, claim-map revision candidates, uncertainty-restoration candidates, counterevidence-expansion candidates, and next-experiment recommendations. Retrosynthesis Sandbox Cycle is candidate repair, not canon adoption; it is not memory write, not final answer release, not Publisher finalization, not deployment authority, not Omega detection, not publication claim authorization, and not recursive self-improvement.
 
 - **Evidence Review Pack second pass**: EVIDENCE-REVIEW-PACK-01 is the first bounded second-pass candidate loop after Retrosynthesis Sandbox Cycle candidate repair. It consumes Retrosynthesis Sandbox Cycle repair candidates and emits bounded revision candidates for claim-map status, omitted uncertainty, counterevidence, and structural visibility deltas. Evidence Review Pack second pass is candidate revision, not accepted evidence; it is not canon adoption, not memory write, not final answer release, not Publisher finalization, not deployment authority, not Omega detection, not publication claim authorization, and not recursive self-improvement.
+- **Sonya Adapter Contract Registry**: SONYA-ADAPTER-CONTRACT-REGISTRY-01 is a fixture-only versioned adapter-contract scaffold. Adapter capability is not adapter authorization. Adapter contracts are versioned configuration and declare capabilities, consent profiles, failure policies, telemetry requirements, and provenance-training policies. All adapters remain disabled or blocked. No live adapter execution occurred. No network calls occurred. Raw output is forbidden. Candidate packets are required. Failure receipts are required. Adapter events may support mechanism-level provenance training only when lineage, consent, and control receipts exist. Adapter events may not train model weights. It is not adapter execution, not network authorization, not remote provider call, not memory write, not final answer release, not model-weight training, and not deployment authority.
+- **Universal Architecture Scaffold**: the anti-experimentware architecture correction. The brain runs cognition stages; experiments configure those stages. Stages are the kernel; artifact roles are versioned configuration; profiles are configuration; artifact contracts are versioned configuration; experiments are configurations; bridge artifacts are ephemeral run state; unsupported inputs fail closed or hash-only; hash-only preservation is not semantic interpretation; and model-facing stages require Sonya. Universal Stage Pipeline defines reusable cognition-stage contracts. Artifact Contract Registry externalizes artifact roles and package/profile contracts into versioned configuration. Universal Compatibility Matrix tests whether the same stage/contracts handle multiple input classes or emit deterministic fail-closed/hash-only receipts. These architecture phases reduce experimentware/bloatware drift and are not product release, not benchmark result, not experiment result, and not performance proof.
 - **Non-authority guardrail**: an explicit boundary preventing truth certification, deployment authority, prior canonization, memory write authority, or final-answer posture.
 
 ## 2. Architecture
@@ -61,12 +69,17 @@ sonya_control_schema
 → retro_lane_00 admission policy
 → retrosynthesis_sandbox_cycle_01 candidate repair
 → evidence_review_pack_01 second-pass candidate revision
-→ rw_comp_03 held-out blinded fixture scaffold
+→ rw_comp_01/rw_comp_02/rw_comp_03 comparison scaffolds
+→ universal_stage_pipeline cognition-stage contracts
+→ artifact_contract_registry versioned artifact/profile contracts
+→ universal_compatibility_matrix fail-closed/hash-only compatibility receipts
+→ provenance_training_ledger mechanism-level provenance controls
+→ sonya_adapter_contract_registry versioned adapter contracts
 → public reproducibility dashboard
 ```
 
 
-The accepted phase chain can also be read as Universal Evidence Ingress → UCC Control Profile Selector → Evidence Review Pack v0.1 → RW-COMP-01 / RW-COMP-02 comparison scaffold → Retrosynthesis Sandbox Cycle candidate repair → EVIDENCE-REVIEW-PACK-01 second-pass candidate revision → RW-COMP-03 held-out blinded fixture scaffold. Evidence Review Pack v0.1 produces first-pass review receipts. Retrosynthesis Sandbox Cycle emits candidate repair artifacts. Evidence Review Pack second pass emits candidate revisions only. RW-COMP-01 was a single-fixture comparison. RW-COMP-02 was a deterministic multi-fixture battery. RW-COMP-03 adds held-out fixture IDs, blind labels, simulated scoring, and statistics planning while remaining fixture-only and simulated-score-only. No artifact in this chain authorizes truth, canon, memory, final answer, deployment, Publisher finalization, Omega detection, or publication claims.
+The accepted phase chain can also be read as Universal Evidence Ingress → UCC Control Profile Selector → Evidence Review Pack → Retrosynthesis Sandbox Cycle → Evidence Review Pack second-pass candidate → RW-COMP comparison scaffolds → Universal Stage Pipeline → Artifact Contract Registry → Universal Compatibility Matrix → Provenance Training Ledger → Sonya Adapter Contract Registry. Evidence Review Pack v0.1 produces first-pass review receipts. Retrosynthesis Sandbox Cycle emits candidate repair artifacts. Evidence Review Pack second pass emits candidate revisions only. RW-COMP-01 was a single-fixture comparison. RW-COMP-02 was a deterministic multi-fixture battery. RW-COMP-03 adds held-out fixture IDs, blind labels, simulated scoring, and statistics planning while remaining fixture-only and simulated-score-only. No artifact in this chain authorizes truth, canon, memory, final answer, deployment, Publisher finalization, Omega detection, or publication claims.
 
 The Sonya Gateway is required for admissible model candidate packets under SONYA_REQUIRED. Raw model output is not admissible cognition. A candidate packet is not answer. A runtime bypass block is successful governance evidence, not a model result. The model-braid layer is observational telemetry only and not answer selection.
 
@@ -79,6 +92,20 @@ The organ boundaries are deliberately narrow:
 - **Publisher** emits candidates, not final answers. Publisher candidate artifacts remain bounded by route and receipt constraints.
 - **UCC** supplies control grammar for route adequacy, UCC Control Profile Selector posture, and non-authority constraints.
 - **TEL/telemetry** provides audit trace material for reviewers and reproducibility checks.
+
+
+### 2.1 Universal Architecture Scaffold
+
+The brain runs cognition stages; experiments configure those stages. The Universal Architecture Scaffold reframes CoherenceLattice as a reusable artifact-cognition substrate rather than a growing catalog of bespoke experiment wrappers. Stages are the kernel. Artifact roles are versioned configuration. Profiles are configuration. Artifact contracts are versioned configuration. Experiments are configurations. Bridge artifacts are ephemeral run state. Unsupported inputs fail closed or hash-only, and hash-only preservation is not semantic interpretation. Model-facing stages require Sonya.
+
+Universal Stage Pipeline defines reusable cognition-stage contracts. Artifact Contract Registry externalizes artifact roles and package/profile contracts into versioned configuration. Universal Compatibility Matrix tests whether the same stage/contracts handle multiple input classes or emit deterministic fail-closed/hash-only receipts. These architecture phases reduce experimentware/bloatware drift while remaining not product release, not benchmark result, not experiment result, and not performance proof.
+
+
+### 2.2 Sonya Adapter Contract Registry
+
+Adapter capability is not adapter authorization. SONYA-ADAPTER-CONTRACT-REGISTRY-01 adds versioned Sonya adapter contracts after the Universal Stage Pipeline, Artifact Contract Registry, Universal Compatibility Matrix, and Provenance Training Ledger. Adapter contracts declare capabilities, consent profiles, failure policies, telemetry requirements, and provenance-training policies, but all adapters remain disabled or blocked. No live adapter execution occurred. No network calls occurred. Raw output is forbidden. Candidate packets are required. Failure receipts are required. Adapter events may support mechanism-level provenance training only when lineage, consent, and control receipts exist; adapter events may not train model weights.
+
+The adapter-contract layer keeps future adapter smoke and live-provider work behind explicit consent, network, privacy, failure, telemetry, and provenance-training gates. It is not adapter execution, not live model execution, not remote provider call, not network authorization, not memory write, not final-answer release, not deployment authority, not truth certification, not model-weight training, not hallucination reduction proof, not recursive self-improvement, and not production readiness.
 
 ## 3. Experiments and Evidence
 
@@ -278,21 +305,71 @@ Blocked claims: RW-COMP-03 is not hallucination reduction proof, not model super
 
 Reviewer caution: RW-COMP-03 remains fixture-only and simulated scores only. It does not report live reviewer performance, live model behavior, or remote provider behavior; it is not deployment authority, not production readiness, and not evidence accepted for hallucination-reduction claims.
 
-### 3.15 UNI-02D-SONYA-GATE-01
+### 3.15 Universal architecture scaffold: anti-experimentware controls
+
+Allowed claim: The Universal Architecture Scaffold shows that accepted governed-artifact work can be described as configurations over reusable cognition stages and versioned artifact contracts. UNIVERSAL-STAGE-PIPELINE-00 defines reusable cognition-stage contracts. ARTIFACT-CONTRACT-REGISTRY-01 externalizes artifact roles and package/profile contracts into versioned configuration. UNIVERSAL-COMPATIBILITY-MATRIX-00 tests whether the same stage/contracts handle multiple input classes or emit deterministic fail-closed/hash-only receipts. These controls reduce experimentware/bloatware drift.
+
+Primary artifacts: `universal_pipeline_manifest.json`, `universal_pipeline_review_packet.json`, `universal_pipeline_stage_records.jsonl`, `config/artifact_contracts/artifact_roles.v1.json`, `config/artifact_contracts/package_profiles.v1.json`, `config/artifact_contracts/required_artifacts.v1.json`, `config/artifact_contracts/optional_artifacts.v1.json`, `config/artifact_contracts/forbidden_artifacts.v1.json`, `config/artifact_contracts/profile_composition.v1.json`, `artifact_contract_registry_review.json`, `universal_compatibility_matrix_packet.json`, `universal_compatibility_matrix_review_packet.json`, `universal_stage_input_compatibility_rows.jsonl`, `universal_stage_failure_receipts.jsonl`, `universal_compatibility_matrix_summary.md`, and `universal_compatibility_matrix_00_acceptance_receipt.json`.
+
+Universal Compatibility Matrix summary:
+
+- `review_status = accepted_as_universal_compatibility_scaffold`
+- `all_required_stage_ids_present = true`
+- `all_required_input_classes_present = true`
+- `all_required_control_profiles_present = true`
+- `unsupported_inputs_failed_closed_or_hash_only = true`
+- `hash_only_inputs_not_semantically_interpreted = true`
+- `model_facing_stages_require_sonya = true`
+- `no_experiment_specific_kernel_logic_used = true`
+- `failure_receipts_visible = true`
+- `promotion_blocked = true`
+
+Blocked claims: Universal Architecture Scaffold is not product release, not benchmark result, not experiment result, not truth certification, not deployment authority, not final answer release, not hallucination reduction proof, not model superiority proof, not live model evaluation, not live human study, not recursive self-improvement, and not AI consciousness claim.
+
+Reviewer caution: fail-closed receipts are control evidence, not performance failure hiding. Hash-only preservation is not semantic interpretation. Experiments configure stages; they do not define the kernel.
+
+### 3.16 SONYA-ADAPTER-CONTRACT-REGISTRY-01: versioned adapter contracts
+
+Allowed claim: SONYA-ADAPTER-CONTRACT-REGISTRY-01 is a fixture-only versioned adapter-contract scaffold. Adapter capability is not adapter authorization. Adapter contracts declare capabilities, consent profiles, failure policies, telemetry requirements, and provenance-training policies while all adapters remain disabled or blocked. Raw output is forbidden; candidate packets are required; failure receipts are required; provenance-training policy is present. Adapter events may support mechanism-level provenance training only when lineage, consent, and control receipts exist, and adapter events may not train model weights.
+
+Primary artifacts: `sonya_adapter_contract_registry_packet.json`, `sonya_adapter_contract_review_packet.json`, `sonya_adapter_capability_matrix_packet.json`, `sonya_adapter_consent_matrix_packet.json`, `sonya_adapter_failure_policy_packet.json`, `sonya_adapter_telemetry_requirements_packet.json`, `sonya_adapter_provenance_training_policy_packet.json`, `sonya_adapter_contract_summary.md`, and `sonya_adapter_contract_registry_01_acceptance_receipt.json`.
+
+Dashboard summary:
+
+- `review_status = accepted_as_adapter_contract_registry_only`
+- `adapter_count = 11`
+- `disabled_or_blocked_adapter_count = 11`
+- `enabled_live_adapter_count = 0`
+- `all_adapters_disabled_or_blocked = true`
+- `no_live_adapter_execution = true`
+- `no_network_calls = true`
+- `no_remote_provider_calls = true`
+- `sonya_gateway_required = true`
+- `raw_output_forbidden = true`
+- `candidate_packet_required = true`
+- `failure_receipts_required = true`
+- `provenance_training_policy_present = true`
+- `promotion_blocked = true`
+
+Blocked claims: Sonya Adapter Contract Registry is not adapter execution, not live model execution, not remote provider call, not network authorization, not memory write, not final answer release, not deployment authority, not truth certification, not model-weight training, not hallucination reduction proof, not recursive self-improvement, and not production readiness.
+
+Reviewer caution: SONYA-ADAPTER-CONTRACT-REGISTRY-01 defines adapter contracts only. It does not execute adapters, call providers, authorize network access, admit raw output as cognition, write memory, release final answers, train models, prove hallucination reduction, or deploy.
+
+### 3.17 UNI-02D-SONYA-GATE-01
 
 UNI-02D-SONYA-GATE-01 is accepted as a safe generic portability/prior-quarantine fixture, but it is not universal portability proof and not universal ontology. It demonstrates bounded quarantine and provenance posture for selected priors, not general portability across domains.
 
-### 3.16 RETRO-LANE-00
+### 3.18 RETRO-LANE-00
 
 RETRO-LANE-00 is accepted as retrosynthesis admission policy, not retrosynthesis runtime. Admission is not execution. Its evidence is lane posture for sandbox_auto, review_required, and blocked handling.
 
-### 3.17 WAVE Gold-Physics Family
+### 3.19 WAVE Gold-Physics Family
 
 The WAVE Gold-Physics family is included as closed-form waveform metric calibration. It is not universal ontology, not psychoacoustic proof, and not AI consciousness.
 
 ## 4. Reproducibility and Public Review Posture
 
-The reproducibility posture is reviewer oriented. The public dashboard and paper appendix list commands for local artifact inspection, but the commands do not grant final answer release or deployment authority. PUBLIC-UTILITY-ALPHA-00 adds a one-command local reviewer demo for accepted artifact assembly. EVIDENCE-REVIEW-PACK-00 adds a product-facing governed review receipt for source-bounded claim/evidence inspection. RW-COMP-01 adds the first fixture-only raw-vs-governed comparison involving Evidence Review Pack v0.1. RW-COMP-02 extends RW-COMP-01 into the first deterministic multi-fixture battery across six fixture families and five comparison arms. RETROSYNTHESIS-SANDBOX-CYCLE-01 adds bounded candidate repair over incomplete Evidence Review Pack artifacts. EVIDENCE-REVIEW-PACK-01 adds the candidate-only second-pass review loop from Retrosynthesis Sandbox Cycle repair candidates. RW-COMP-03 extends RW-COMP-02 into a held-out blinded fixture scaffold with eight held-out fixture IDs, six arms per fixture, blind labels, simulated scores only, a scoring rubric, statistics plan, statistics packet, and second-pass Evidence Review Pack candidate arm, while the dashboard validation command checks that public-facing registry and docs remain bounded.
+The reproducibility posture is reviewer oriented. The public dashboard and paper appendix list commands for local artifact inspection, but the commands do not grant final answer release or deployment authority. PUBLIC-UTILITY-ALPHA-00 adds a one-command local reviewer demo for accepted artifact assembly. EVIDENCE-REVIEW-PACK-00 adds a product-facing governed review receipt for source-bounded claim/evidence inspection. RW-COMP-01 adds the first fixture-only raw-vs-governed comparison involving Evidence Review Pack v0.1. RW-COMP-02 extends RW-COMP-01 into the first deterministic multi-fixture battery across six fixture families and five comparison arms. RETROSYNTHESIS-SANDBOX-CYCLE-01 adds bounded candidate repair over incomplete Evidence Review Pack artifacts. EVIDENCE-REVIEW-PACK-01 adds the candidate-only second-pass review loop from Retrosynthesis Sandbox Cycle repair candidates. RW-COMP-03 extends RW-COMP-02 into a held-out blinded fixture scaffold with eight held-out fixture IDs, six arms per fixture, blind labels, simulated scores only, a scoring rubric, statistics plan, statistics packet, and second-pass Evidence Review Pack candidate arm, while the dashboard validation command checks that public-facing registry and docs remain bounded. The Universal Architecture Scaffold commands reproduce the Universal Stage Pipeline, Artifact Contract Registry, and Universal Compatibility Matrix posture without product release, without benchmark result, without experiment result, or without performance proof. The Sonya Adapter Contract Registry command reproduces adapter capability, consent, failure, telemetry, and provenance-training contract posture while keeping all adapters disabled or blocked and remaining not adapter execution and not network authorization.
 
 ## 5. Limitations
 
@@ -322,15 +399,28 @@ Current limitations are explicit:
 - RW-COMP-03 is a held-out blinded fixture scaffold with simulated scores only. It does not prove hallucination reduction, model superiority, live model behavior, or human reviewer performance. It is not professional advice quality, not compliance certification, and not production readiness. It is not live model evaluation, not a live human study, not human-subject study result, not accepted evidence, and not deployment authority.
 - no universal portability proof.
 - no universal ontology.
+- The Universal Architecture Scaffold is architecture evidence only. It proves not product readiness, not benchmark performance, not hallucination reduction, not model superiority, not live model behavior, not live human study behavior, not recursive self-improvement, not deployment readiness, and not truth certification.
 - no AI consciousness claim.
 
 ## 6. Future Work
 
 Future work is limited to work not already accepted:
 
+- Sonya adapter fixture smoke.
+- adapter telemetry event validation.
+- adapter failure receipt replay.
+- consent-profile enforcement tests.
+- local-only adapter execution smoke.
+- remote-provider placeholder remains blocked until consent/network/privacy gates exist.
+
+- Sonya adapter contract registry.
+- external reproduction scaffold.
+- external reviewer scoring package.
+- Atlas memory-intent promotion gates.
+- telemetry braid integration.
+- live-provider study only after adapter contracts, consent, privacy, and external reproduction gates are stable.
 - promotion gates for second-pass candidate revisions.
 - correction-capacity diagnostics as readiness signals, not authorization.
-- external reproduction scaffold.
 - real independent reviewer scoring, only after human-subject and ethics boundaries are defined.
 - held-out fixture preregistration.
 - statistical analysis with live reviewer data.
@@ -341,4 +431,4 @@ Future work is limited to work not already accepted:
 
 ## 7. Conclusion
 
-The accepted phase record through PUBLIC-UTILITY-ALPHA-00, EVIDENCE-REVIEW-PACK-00, RW-COMP-01, RW-COMP-02, RETROSYNTHESIS-SANDBOX-CYCLE-01, EVIDENCE-REVIEW-PACK-01, RW-COMP-03, and PUBLIC-DASHBOARD-ALPHA-01 supports a narrow claim: governed artifact cognition can be represented as a local, inspectable, non-authoritative artifact chain with a product-facing governed review receipt and deterministic fixture comparisons that show structural visibility improvement. RW-COMP-03 is a step toward future hallucination-reduction evidence, but the work remains not truth certification, not professional advice, not compliance certification, not deployment authority, not hallucination-reduction proof yet, not model-superiority proof, not live model evaluation, not a live human study, not human-subject study result, not final answer release, local fixture only, not AI consciousness, not recursive Sonya federation, not retrosynthesis runtime, not Omega detection, not canon adoption, not memory write, not Publisher finalization, not publication claim authorization, not accepted evidence, not recursive self-improvement, not live Atlas memory writes, not live Sophia calls, and requires external peer review.
+The accepted phase record through PUBLIC-UTILITY-ALPHA-00, EVIDENCE-REVIEW-PACK-00, RW-COMP-01, RW-COMP-02, RETROSYNTHESIS-SANDBOX-CYCLE-01, EVIDENCE-REVIEW-PACK-01, RW-COMP-03, UNIVERSAL-STAGE-PIPELINE-00, ARTIFACT-CONTRACT-REGISTRY-01, UNIVERSAL-COMPATIBILITY-MATRIX-00, SONYA-ADAPTER-CONTRACT-REGISTRY-01, and PUBLIC-DASHBOARD-ALPHA-01 supports a narrow claim: governed artifact cognition can be represented as a local, inspectable, non-authoritative artifact chain with a product-facing governed review receipt and deterministic fixture comparisons that show structural visibility improvement. RW-COMP-03 is a step toward future hallucination-reduction evidence, but the work remains not truth certification, not professional advice, not compliance certification, not deployment authority, not hallucination-reduction proof yet, not model-superiority proof, not live model evaluation, not a live human study, not human-subject study result, not final answer release, local fixture only, not AI consciousness, not recursive Sonya federation, not retrosynthesis runtime, not Omega detection, not canon adoption, not memory write, not Publisher finalization, not publication claim authorization, not accepted evidence, not recursive self-improvement, not live Atlas memory writes, not live Sophia calls, and requires external peer review.

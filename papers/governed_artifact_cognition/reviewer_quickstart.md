@@ -199,6 +199,65 @@ Expected posture:
 - `comparison_is_not_model_superiority_proof = true`
 - `promotion_blocked = true`
 
+
+## How to reproduce the Universal Architecture Scaffold
+
+The brain runs cognition stages; experiments configure those stages. This reproduces architecture scaffold checks for Universal Stage Pipeline, Artifact Contract Registry, and Universal Compatibility Matrix. It is not product release, not benchmark result, not experiment result, not hallucination reduction proof, and not deployment authority.
+
+```powershell
+python -m pytest -q python/tests/pipeline/test_universal_stage_pipeline.py
+```
+
+```powershell
+python -m pytest -q python/tests/integration/test_artifact_contract_registry.py
+```
+
+```powershell
+.\experiments\Run-UNIVERSAL-COMPATIBILITY-MATRIX00-Acceptance.ps1 `
+  -OutputRoot C:\UVLM\run_artifacts\universal_compatibility_matrix_00 `
+  -LogDir C:\UVLM\run_artifacts\universal_compatibility_matrix_00_logs `
+  -CiMode
+```
+
+Expected:
+
+- `review_status = accepted_as_universal_compatibility_scaffold`
+- `all_required_stage_ids_present = true`
+- `all_required_input_classes_present = true`
+- `all_required_control_profiles_present = true`
+- `unsupported_inputs_failed_closed_or_hash_only = true`
+- `hash_only_inputs_not_semantically_interpreted = true`
+- `model_facing_stages_require_sonya = true`
+- `no_experiment_specific_kernel_logic_used = true`
+- `failure_receipts_visible = true`
+- `promotion_blocked = true`
+
+
+## How to reproduce SONYA-ADAPTER-CONTRACT-REGISTRY-01
+
+Adapter capability is not adapter authorization. SONYA-ADAPTER-CONTRACT-REGISTRY-01 is a fixture-only versioned adapter-contract scaffold. All adapters remain disabled or blocked; no live adapter execution occurred; no network calls occurred; raw output is forbidden; candidate packets are required; failure receipts are required; provenance-training policy is present. This is not adapter execution, not network authorization, not remote provider call, not model-weight training, not deployment authority, and not production readiness.
+
+```powershell
+.\experiments\Run-SONYA-ADAPTER-CONTRACT-REGISTRY01-Acceptance.ps1 `
+  -OutputRoot C:\UVLM\run_artifacts\sonya_adapter_contract_registry_01 `
+  -LogDir C:\UVLM\run_artifacts\sonya_adapter_contract_registry_01_logs `
+  -CiMode
+```
+
+Expected:
+
+- `review_status = accepted_as_adapter_contract_registry_only`
+- `all_adapters_disabled_or_blocked = true`
+- `no_live_adapter_execution = true`
+- `no_network_calls = true`
+- `no_remote_provider_calls = true`
+- `sonya_gateway_required = true`
+- `raw_output_forbidden = true`
+- `candidate_packet_required = true`
+- `failure_receipts_required = true`
+- `provenance_training_policy_present = true`
+- `promotion_blocked = true`
+
 ## Other accepted local commands
 
 ```powershell
