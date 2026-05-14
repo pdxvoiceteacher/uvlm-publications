@@ -289,6 +289,38 @@ Expected:
 - `deployment_blocked = true`
 - `promotion_blocked = true`
 
+## How to reproduce SONYA-LOCAL-FIXTURE-ADAPTER-01
+
+Sonya Local Fixture Adapter executes deterministic local fixtures, not live adapters. SONYA-LOCAL-FIXTURE-ADAPTER-01 is deterministic local-only fixture adapter execution under Sonya adapter contracts. It emits candidate packets, failure receipts, telemetry events, and provenance events while remaining not live adapter execution, not network authorization, no remote provider call, not live model execution, not memory write, not final answer release, not deployment authority, not model-weight training, and not hallucination reduction proof.
+
+```powershell
+.\experiments\Run-SONYA-LOCAL-FIXTURE-ADAPTER01-Acceptance.ps1 `
+  -OutputRoot C:\UVLM\run_artifacts\sonya_local_fixture_adapter_01 `
+  -LogDir C:\UVLM\run_artifacts\sonya_local_fixture_adapter_01_logs `
+  -CiMode
+```
+
+Expected:
+
+- `review_status = accepted_as_local_fixture_adapter_execution`
+- `adapter_contract_registry_bound = true`
+- `adapter_smoke_bound = true`
+- `local_fixture_adapter_execution_performed = true`
+- `no_live_adapter_execution = true`
+- `no_network_calls = true`
+- `no_remote_provider_calls = true`
+- `no_live_model_execution = true`
+- `raw_output_rejected_or_absent = true`
+- `candidate_packets_emitted = true`
+- `failure_receipts_visible = true`
+- `telemetry_events_visible = true`
+- `provenance_events_visible = true`
+- `model_weight_training_blocked = true`
+- `memory_write_blocked = true`
+- `final_answer_release_blocked = true`
+- `deployment_blocked = true`
+- `promotion_blocked = true`
+
 ## Other accepted local commands
 
 ```powershell

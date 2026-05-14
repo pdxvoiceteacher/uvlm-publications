@@ -113,3 +113,14 @@
 | Sonya Adapter Smoke is not model-weight training. | SONYA-ADAPTER-SMOKE-00 | fixture-only adapter smoke boundary. |
 | Sonya Adapter Smoke is not hallucination reduction proof. | SONYA-ADAPTER-SMOKE-00 | fixture-only adapter smoke boundary. |
 | Sonya Adapter Smoke is not recursive self-improvement. | SONYA-ADAPTER-SMOKE-00 | fixture-only adapter smoke boundary. |
+| Sonya Local Fixture Adapter executes deterministic local fixtures, not live adapters. | SONYA-LOCAL-FIXTURE-ADAPTER-01 | deterministic local fixture adapter execution boundary. |
+| Sonya Local Fixture Adapter is not live adapter execution. | SONYA-LOCAL-FIXTURE-ADAPTER-01 | deterministic local fixture adapter execution boundary. |
+| Sonya Local Fixture Adapter is not network authorization. | SONYA-LOCAL-FIXTURE-ADAPTER-01 | deterministic local fixture adapter execution boundary. |
+| Sonya Local Fixture Adapter is not remote provider call. | SONYA-LOCAL-FIXTURE-ADAPTER-01 | deterministic local fixture adapter execution boundary. |
+| Sonya Local Fixture Adapter is not live model execution. | SONYA-LOCAL-FIXTURE-ADAPTER-01 | deterministic local fixture adapter execution boundary. |
+| Sonya Local Fixture Adapter is not memory write. | SONYA-LOCAL-FIXTURE-ADAPTER-01 | deterministic local fixture adapter execution boundary. |
+| Sonya Local Fixture Adapter is not final answer release. | SONYA-LOCAL-FIXTURE-ADAPTER-01 | deterministic local fixture adapter execution boundary. |
+| Sonya Local Fixture Adapter is not deployment authority. | SONYA-LOCAL-FIXTURE-ADAPTER-01 | deterministic local fixture adapter execution boundary. |
+| Sonya Local Fixture Adapter is not model-weight training. | SONYA-LOCAL-FIXTURE-ADAPTER-01 | deterministic local fixture adapter execution boundary. |
+| Sonya Local Fixture Adapter is not hallucination reduction proof. | SONYA-LOCAL-FIXTURE-ADAPTER-01 | deterministic local fixture adapter execution boundary. |
+| Sonya Local Fixture Adapter is not recursive self-improvement. | SONYA-LOCAL-FIXTURE-ADAPTER-01 | deterministic local fixture adapter execution boundary. |
