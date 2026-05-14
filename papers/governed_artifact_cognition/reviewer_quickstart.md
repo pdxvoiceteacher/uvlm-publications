@@ -321,6 +321,34 @@ Expected:
 - `deployment_blocked = true`
 - `promotion_blocked = true`
 
+## How to reproduce EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER-01
+
+Adapter output is not accepted as cognition directly. Local adapter candidates become reviewable only through the Evidence Review Pack path. Candidate packets require UCC-controlled review. The claim map is not truth certification. The candidate is not final answer.
+
+```powershell
+.\experiments\Run-EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER01-Acceptance.ps1 `
+  -OutputRoot C:\UVLM\run_artifacts\evidence_review_pack_local_adapter_01 `
+  -LogDir C:\UVLM\run_artifacts\evidence_review_pack_local_adapter_01_logs `
+  -CiMode
+```
+
+Expected:
+
+- `review_status = accepted_as_local_adapter_candidate_review`
+- `local_adapter_candidate_bound = true`
+- `evidence_review_pack_path_used = true`
+- `ucc_control_profile_applied = true`
+- `candidate_packet_reviewed = true`
+- `raw_output_rejected_or_absent = true`
+- `unsupported_claims_listed = true`
+- `uncertainty_preserved_or_flagged = true`
+- `provenance_events_visible = true`
+- `model_weight_training_blocked = true`
+- `memory_write_blocked = true`
+- `final_answer_release_blocked = true`
+- `deployment_blocked = true`
+- `promotion_blocked = true`
+
 ## Other accepted local commands
 
 ```powershell

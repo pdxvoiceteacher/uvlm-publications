@@ -31,6 +31,7 @@ REQUIRED_PHASES = {
     "SONYA-ADAPTER-CONTRACT-REGISTRY-01",
     "SONYA-ADAPTER-SMOKE-00",
     "SONYA-LOCAL-FIXTURE-ADAPTER-01",
+    "EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER-01",
 }
 REQUIRED_BOUNDARY_PHRASES = (
     "not truth certification",
@@ -144,6 +145,14 @@ REQUIRED_BOUNDARY_PHRASES = (
     "failure receipts",
     "telemetry events",
     "provenance events",
+    "Adapter output is not accepted as cognition directly.",
+    "Local adapter candidates become reviewable only through the Evidence Review Pack path.",
+    "Evidence Review Pack local-adapter route",
+    "not accepted evidence",
+    "not adapter authorization",
+    "Candidate packets require UCC-controlled review.",
+    "The claim map is not truth certification.",
+    "The candidate is not final answer.",
 )
 FORBIDDEN_PHRASES = (
     "deployment readiness",
@@ -188,6 +197,9 @@ FORBIDDEN_PHRASES = (
     "publication claim authorized",
     "recursive self-improvement achieved",
     "claims accepted evidence",
+    "claims adapter authorization",
+    "adapter authorization",
+    "adapter authorized",
     "claims canon adoption",
     "claims memory write",
     "claims final answer release",

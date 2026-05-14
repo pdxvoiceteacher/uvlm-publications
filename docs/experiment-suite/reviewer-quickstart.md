@@ -21,6 +21,7 @@
 17. Sonya Adapter Contract Registry
 18. Sonya Adapter Smoke
 19. Sonya Local Fixture Adapter
+20. Evidence Review Pack local adapter
 
 ## CoherenceLattice commands
 
@@ -285,6 +286,38 @@ Expected posture:
 - `blocked_adapter_ids = ['hash_only_evidence_adapter', 'remote_provider_placeholder_adapter', 'browser_placeholder_adapter', 'atlas_memory_placeholder_adapter', 'sophia_route_placeholder_adapter']`
 
 Reviewer caution: SONYA-LOCAL-FIXTURE-ADAPTER-01 executes deterministic local fixture adapters only. It does not execute live adapters, does not call providers, does not authorize network use, does not admit raw output as cognition, does not write memory, does not release final answers, does not train models, and does not deploy. It is not truth certification, not hallucination reduction proof, not recursive self-improvement, and not production readiness.
+
+## Evidence Review Pack local adapter
+
+Adapter output is not accepted as cognition directly.
+
+EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER-01 routes Sonya local fixture adapter candidates into Evidence Review Pack. Candidate packets require UCC-controlled review. The claim map is not truth certification. The candidate is not final answer. No memory write is authorized. No deployment is authorized. No network authorization is granted. No provider call is made. No model-weight training is authorized. No hallucination-reduction proof is authorized.
+
+```powershell
+.\experiments\Run-EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER01-Acceptance.ps1 `
+  -OutputRoot C:\UVLM\run_artifacts\evidence_review_pack_local_adapter_01 `
+  -LogDir C:\UVLM\run_artifacts\evidence_review_pack_local_adapter_01_logs `
+  -CiMode
+```
+
+Expected posture:
+
+- `review_status = accepted_as_local_adapter_candidate_review`
+- `local_adapter_candidate_bound = true`
+- `evidence_review_pack_path_used = true`
+- `ucc_control_profile_applied = true`
+- `candidate_packet_reviewed = true`
+- `raw_output_rejected_or_absent = true`
+- `unsupported_claims_listed = true`
+- `uncertainty_preserved_or_flagged = true`
+- `provenance_events_visible = true`
+- `model_weight_training_blocked = true`
+- `memory_write_blocked = true`
+- `final_answer_release_blocked = true`
+- `deployment_blocked = true`
+- `promotion_blocked = true`
+
+Reviewer caution: EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER-01 routes a local fixture adapter candidate into review only. It is not accepted evidence, not adapter authorization, not memory write, not final answer release, not deployment authority, not truth certification, not model weight training, not hallucination reduction proof, and not recursive self-improvement.
 
 ## Sophia commands
 

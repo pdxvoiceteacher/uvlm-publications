@@ -8,7 +8,7 @@
   ],
   "dashboard_status": "draft_public_review",
   "generated_at": null,
-  "accepted_phase_count": 23,
+  "accepted_phase_count": 24,
   "partial_phase_count": 1,
   "blocked_phase_count": 1,
   "planned_phase_count": 3,
@@ -222,6 +222,75 @@
         "not production readiness"
       ],
       "reviewer_caution": "SONYA-LOCAL-FIXTURE-ADAPTER-01 executes deterministic local fixture adapters only. It does not execute live adapters, does not call providers, does not authorize network use, does not admit raw output as cognition, does not write memory, does not release final answers, does not train models, and does not deploy.",
+      "publication_status": "dashboard_indexed"
+    },
+    {
+      "phase_id": "EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER-01",
+      "repo": "pdxvoiceteacher/CoherenceLattice",
+      "status": "accepted",
+      "evidence_type": "local_adapter_candidate_review",
+      "product_posture": "local_adapter_candidate_routed_through_evidence_review_pack",
+      "primary_artifacts": [
+        "evidence_review_local_adapter_route_packet.json",
+        "evidence_review_local_adapter_review_packet.json",
+        "evidence_review_local_adapter_candidate_binding.json",
+        "evidence_review_local_adapter_claim_map.json",
+        "evidence_review_local_adapter_provenance_packet.json",
+        "evidence_review_local_adapter_summary.md",
+        "artifact_inventory.json",
+        "run_artifact_manifest.json",
+        "export_bundle_manifest.json",
+        "export_bundle_parity_report.json",
+        "evidence_review_pack_local_adapter_01_acceptance_receipt.json"
+      ],
+      "dashboard_summary": {
+        "review_status": "accepted_as_local_adapter_candidate_review",
+        "local_adapter_candidate_bound": true,
+        "evidence_review_pack_path_used": true,
+        "ucc_control_profile_applied": true,
+        "candidate_packet_reviewed": true,
+        "raw_output_rejected_or_absent": true,
+        "unsupported_claims_listed": true,
+        "uncertainty_preserved_or_flagged": true,
+        "provenance_events_visible": true,
+        "model_weight_training_blocked": true,
+        "memory_write_blocked": true,
+        "final_answer_release_blocked": true,
+        "deployment_blocked": true,
+        "promotion_blocked": true
+      },
+      "prerequisite_phases": [
+        "SONYA-LOCAL-FIXTURE-ADAPTER-01",
+        "SONYA-ADAPTER-SMOKE-00",
+        "SONYA-ADAPTER-CONTRACT-REGISTRY-01",
+        "PROVENANCE-TRAINING-LEDGER-00",
+        "UNIVERSAL-EVIDENCE-INGRESS-00",
+        "UCC-CONTROL-PROFILE-SELECTOR-00",
+        "EVIDENCE-REVIEW-PACK-00",
+        "UNIVERSAL-STAGE-PIPELINE-00",
+        "ARTIFACT-CONTRACT-REGISTRY-01",
+        "UNIVERSAL-COMPATIBILITY-MATRIX-00"
+      ],
+      "reproduction_command_summary": ".\\experiments\\Run-EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER01-Acceptance.ps1 `\n  -OutputRoot C:\\UVLM\\run_artifacts\\evidence_review_pack_local_adapter_01 `\n  -LogDir C:\\UVLM\\run_artifacts\\evidence_review_pack_local_adapter_01_logs `\n  -CiMode",
+      "claim_allowed": "EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER-01 demonstrates that a Sonya local fixture adapter candidate can be bound to review, governed by a UCC control profile, evaluated through claim/evidence mapping, and recorded through provenance events without accepting raw adapter output as cognition. Adapter output is not accepted as cognition directly.",
+      "claims_blocked": [
+        "not accepted evidence",
+        "not adapter authorization",
+        "not live adapter execution",
+        "not network authorization",
+        "not remote provider call",
+        "not live model execution",
+        "not memory write",
+        "not final answer release",
+        "not deployment authority",
+        "not truth certification",
+        "not model weight training",
+        "not hallucination reduction proof",
+        "not model superiority proof",
+        "not recursive self-improvement",
+        "not production readiness"
+      ],
+      "reviewer_caution": "EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER-01 routes a local fixture adapter candidate into review only. It does not accept adapter output as cognition directly, does not authorize adapter execution, does not write memory, does not release final answers, does not deploy, does not train model weights, and does not prove hallucination reduction.",
       "publication_status": "dashboard_indexed"
     },
     {
@@ -1003,7 +1072,8 @@
     "artifact_contract_registry_review.json",
     "universal_compatibility_matrix_packet.json",
     "sonya_adapter_contract_registry_packet.json",
-    "sonya_local_fixture_adapter_packet.json"
+    "sonya_local_fixture_adapter_packet.json",
+    "evidence_review_local_adapter_route_packet.json"
   ],
   "publication_drafts": [
     "papers/governed_artifact_cognition/PUB_GOV_ARTIFACT_COG_01.md",

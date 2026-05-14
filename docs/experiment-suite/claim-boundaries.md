@@ -92,5 +92,18 @@
 - Sonya Local Fixture Adapter is not deployment authority.
 - Sonya Local Fixture Adapter is not model weight training.
 - Sonya Local Fixture Adapter emits candidate packets, failure receipts, telemetry events, and provenance events.
+- Adapter output is not accepted as cognition directly.
+- Local adapter candidates become reviewable only through the Evidence Review Pack path.
+- Evidence Review Pack local-adapter route is not accepted evidence.
+- Evidence Review Pack local-adapter route is not adapter authorization.
+- Evidence Review Pack local-adapter route is not memory write.
+- Evidence Review Pack local-adapter route is not final answer release.
+- Evidence Review Pack local-adapter route is not deployment authority.
+- Evidence Review Pack local-adapter route is not model weight training.
+- Evidence Review Pack local-adapter route is not hallucination reduction proof.
+- Evidence Review Pack local-adapter route is not recursive self-improvement.
+- Candidate packets require UCC-controlled review.
+- The claim map is not truth certification.
+- The candidate is not final answer.
 
 No oracle posture. No deployment posture. No final-answer posture. No AI consciousness claim. No universal ontology claim.

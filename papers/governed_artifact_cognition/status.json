@@ -48,5 +48,7 @@
   "not_model_weight_training": true,
   "sonya_adapter_smoke_indexed": true,
   "not_live_adapter_execution": true,
-  "sonya_local_fixture_adapter_indexed": true
+  "sonya_local_fixture_adapter_indexed": true,
+  "evidence_review_pack_local_adapter_indexed": true,
+  "not_adapter_authorization": true
 }

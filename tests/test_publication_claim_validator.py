@@ -1005,6 +1005,81 @@ def test_governed_artifact_cognition_sonya_local_fixture_adapter_updates_are_pre
     assert status["not_recursive_self_improvement"] is True
 
 
+def test_governed_artifact_cognition_evidence_review_pack_local_adapter_updates_are_present():
+    paper = (ROOT / "PUB_GOV_ARTIFACT_COG_01.md").read_text(encoding="utf-8")
+    abstract = (ROOT / "abstract.md").read_text(encoding="utf-8")
+    artifact_table = (ROOT / "artifact_table.md").read_text(encoding="utf-8")
+    boundary_table = (ROOT / "claim_boundary_table.md").read_text(encoding="utf-8")
+    quickstart = (ROOT / "reviewer_quickstart.md").read_text(encoding="utf-8")
+    appendix = (ROOT / "reproducibility_appendix.md").read_text(encoding="utf-8")
+    status = json.loads((ROOT / "status.json").read_text(encoding="utf-8"))
+
+    combined_paper = paper + "\n" + abstract
+    for phrase in (
+        "EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER-01",
+        "Local adapter candidates become reviewable only through the Evidence Review Pack path.",
+        "Adapter output is not accepted as cognition directly.",
+        "UCC control profile applied",
+        "Unsupported claims listed",
+        "Provenance events visible",
+        "consumes SONYA-LOCAL-FIXTURE-ADAPTER-01",
+        "fixture_summary_generator_adapter candidate output",
+        "adapter candidate binding packet",
+        "local-adapter claim map",
+        "does not produce accepted evidence",
+        "does not authorize adapter execution",
+    ):
+        assert phrase in combined_paper
+
+    for artifact in (
+        "evidence_review_local_adapter_route_packet.json",
+        "evidence_review_local_adapter_claim_map.json",
+        "evidence_review_local_adapter_provenance_packet.json",
+    ):
+        assert artifact in artifact_table
+
+    for boundary in (
+        "Adapter output is not accepted as cognition directly.",
+        "Local adapter candidates become reviewable only through the Evidence Review Pack path.",
+        "Evidence Review Pack local-adapter route is not accepted evidence.",
+        "Evidence Review Pack local-adapter route is not adapter authorization.",
+        "Evidence Review Pack local-adapter route is not memory write.",
+        "Evidence Review Pack local-adapter route is not final answer release.",
+        "Evidence Review Pack local-adapter route is not deployment authority.",
+        "Evidence Review Pack local-adapter route is not model-weight training.",
+        "Evidence Review Pack local-adapter route is not hallucination reduction proof.",
+        "Evidence Review Pack local-adapter route is not recursive self-improvement.",
+    ):
+        assert boundary in boundary_table
+
+    assert "Run-EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER01-Acceptance.ps1" in quickstart
+    assert "Run-EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER01-Acceptance.ps1" in appendix
+    assert status["evidence_review_pack_local_adapter_indexed"] is True
+    assert status["not_adapter_authorization"] is True
+
+
+def test_claim_validator_rejects_evidence_review_pack_local_adapter_overclaims(tmp_path):
+    forbidden_claims = (
+        "accepted evidence",
+        "adapter authorization",
+        "final answer release",
+        "claims deployment authority",
+        "claims model-weight training",
+    )
+    for claim in forbidden_claims:
+        paper_root = _copy_governed_paper(tmp_path / claim.replace(" ", "_").replace("-", "_"))
+        paper = paper_root / "PUB_GOV_ARTIFACT_COG_01.md"
+        paper.write_text(paper.read_text(encoding="utf-8") + f"\nThis paper {claim}.\n", encoding="utf-8")
+        result = validate_publication_claims(
+            paper,
+            appendix=paper_root / "reproducibility_appendix.md",
+            quickstart=paper_root / "reviewer_quickstart.md",
+            status=paper_root / "status.json",
+        )
+        assert result["passed"] is False, claim
+        assert result["forbidden_overclaims_found"], result
+
+
 def test_claim_validator_rejects_sonya_local_fixture_adapter_overclaims(tmp_path):
     forbidden_claims = (
         "live adapter execution",

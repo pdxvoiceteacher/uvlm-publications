@@ -40,6 +40,7 @@ REQUIRED_DOCS = {
     "sonya-adapter-contract-registry.md",
     "sonya-adapter-smoke.md",
     "sonya-local-fixture-adapter.md",
+    "evidence-review-pack-local-adapter.md",
 }
 REQUIRED_PHASES = {
     "EXP-SUITE-REGISTRY-01",
@@ -65,6 +66,7 @@ REQUIRED_PHASES = {
     "SONYA-ADAPTER-CONTRACT-REGISTRY-01",
     "SONYA-ADAPTER-SMOKE-00",
     "SONYA-LOCAL-FIXTURE-ADAPTER-01",
+    "EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER-01",
 }
 
 REQUIRED_COMMAND_FRAGMENTS = (
@@ -87,6 +89,7 @@ REQUIRED_COMMAND_FRAGMENTS = (
     "Run-SONYA-ADAPTER-CONTRACT-REGISTRY01-Acceptance.ps1",
     "Run-SONYA-ADAPTER-SMOKE00-Acceptance.ps1",
     "Run-SONYA-LOCAL-FIXTURE-ADAPTER01-Acceptance.ps1",
+    "Run-EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER01-Acceptance.ps1",
 )
 STALE_COMMAND_FRAGMENTS = (
     "tests/test_sonya_aegis_smoke_02.py",
@@ -132,7 +135,7 @@ def test_dashboard_contains_all_accepted_phases(tmp_path):
     dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text())
     phase_ids = {entry["phase_id"] for entry in dashboard["accepted_phases"]}
     assert phase_ids == REQUIRED_PHASES
-    assert dashboard["accepted_phase_count"] == 23
+    assert dashboard["accepted_phase_count"] == 24
 
 
 def test_dashboard_command_summaries_use_accepted_harnesses(tmp_path):
@@ -157,6 +160,7 @@ def test_validator_required_phases_include_public_utility_alpha_raw_baseline_and
     assert "UNIVERSAL-COMPATIBILITY-MATRIX-00" in VALIDATOR_REQUIRED_PHASES
     assert "SONYA-ADAPTER-CONTRACT-REGISTRY-01" in VALIDATOR_REQUIRED_PHASES
     assert "SONYA-LOCAL-FIXTURE-ADAPTER-01" in VALIDATOR_REQUIRED_PHASES
+    assert "EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER-01" in VALIDATOR_REQUIRED_PHASES
 
 
 def test_public_utility_alpha_indexes_and_docs_are_generated(tmp_path):
@@ -777,6 +781,74 @@ def test_validator_fails_if_sonya_local_fixture_adapter_makes_forbidden_claims(t
         out_dir, docs_dir = run_builder(tmp_path / claim.replace(" ", "_"))
         page = docs_dir / "sonya-local-fixture-adapter.md"
         page.write_text(page.read_text() + f"\nSonya Local Fixture Adapter claims {claim}.\n")
+        result = validate_dashboard(out_dir / "experiment_suite_dashboard.json", docs_dir)
+        assert result["passed"] is False, claim
+        forbidden_found = [found.lower() for found in result["forbidden_claims_found"]]
+        assert claim.lower() in forbidden_found, result
+
+
+def test_evidence_review_pack_local_adapter_indexes_docs_and_boundaries_are_generated(tmp_path):
+    out_dir, docs_dir = run_builder(tmp_path)
+    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text())
+    reproducibility = json.loads((out_dir / "reproducibility_index.json").read_text())
+    artifact_index = json.loads((out_dir / "artifact_index.json").read_text())
+    quickstart = (docs_dir / "reviewer-quickstart.md").read_text()
+    boundaries = (docs_dir / "claim-boundaries.md").read_text()
+    index = (docs_dir / "index.md").read_text()
+    page = docs_dir / "evidence-review-pack-local-adapter.md"
+
+    phase = next(
+        entry
+        for entry in dashboard["accepted_phases"]
+        if entry["phase_id"] == "EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER-01"
+    )
+    assert phase["status"] == "accepted"
+    assert phase["evidence_type"] == "local_adapter_candidate_review"
+    assert phase["product_posture"] == "local_adapter_candidate_routed_through_evidence_review_pack"
+    assert phase["dashboard_summary"]["review_status"] == "accepted_as_local_adapter_candidate_review"
+    assert phase["dashboard_summary"]["local_adapter_candidate_bound"] is True
+    assert phase["dashboard_summary"]["evidence_review_pack_path_used"] is True
+    assert phase["dashboard_summary"]["ucc_control_profile_applied"] is True
+    assert phase["dashboard_summary"]["raw_output_rejected_or_absent"] is True
+    assert phase["dashboard_summary"]["unsupported_claims_listed"] is True
+    assert phase["dashboard_summary"]["provenance_events_visible"] is True
+    assert "Adapter output is not accepted as cognition directly." in phase["claim_allowed"]
+    assert "SONYA-LOCAL-FIXTURE-ADAPTER-01" in phase["prerequisite_phases"]
+    assert "EVIDENCE-REVIEW-PACK-00" in phase["prerequisite_phases"]
+
+    commands = json.dumps(reproducibility)
+    assert "Run-EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER01-Acceptance.ps1" in commands
+    assert "EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER-01" in artifact_index["phases"]
+    assert "evidence_review_local_adapter_route_packet.json" in artifact_index["phases"]["EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER-01"]
+    assert "evidence_review_local_adapter_claim_map.json" in artifact_index["phases"]["EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER-01"]
+
+    assert page.exists()
+    page_text = page.read_text()
+    assert "Adapter output is not accepted as cognition directly." in page_text
+    assert "Candidate packets require UCC-controlled review." in page_text
+    assert "The claim map is not truth certification." in page_text
+    assert "The candidate is not final answer." in page_text
+    assert "Evidence Review Pack local adapter" in quickstart
+    assert "evidence-review-pack-local-adapter.md" in index
+    assert "Adapter output is not accepted as cognition directly." in boundaries
+    assert "not accepted evidence" in boundaries
+    assert "not adapter authorization" in boundaries
+
+
+def test_validator_required_phases_include_evidence_review_pack_local_adapter():
+    assert "EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER-01" in VALIDATOR_REQUIRED_PHASES
+
+
+def test_validator_fails_if_evidence_review_pack_local_adapter_makes_forbidden_claims(tmp_path):
+    forbidden_claims = (
+        "claims accepted evidence",
+        "claims adapter authorization",
+        "model weight training",
+    )
+    for claim in forbidden_claims:
+        out_dir, docs_dir = run_builder(tmp_path / claim.replace(" ", "_"))
+        page = docs_dir / "evidence-review-pack-local-adapter.md"
+        page.write_text(page.read_text() + f"\nEvidence Review Pack local-adapter route {claim}.\n")
         result = validate_dashboard(out_dir / "experiment_suite_dashboard.json", docs_dir)
         assert result["passed"] is False, claim
         forbidden_found = [found.lower() for found in result["forbidden_claims_found"]]
