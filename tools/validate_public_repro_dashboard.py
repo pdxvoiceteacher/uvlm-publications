@@ -33,6 +33,7 @@ REQUIRED_PHASES = {
     "SONYA-LOCAL-FIXTURE-ADAPTER-01",
     "EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER-01",
     "SONYA-LOCAL-FIXTURE-ADAPTER-02",
+    "SONYA-LOCAL-FIXTURE-ADAPTER-03",
 }
 REQUIRED_BOUNDARY_PHRASES = (
     "not truth certification",
@@ -159,6 +160,18 @@ REQUIRED_BOUNDARY_PHRASES = (
     "Sonya Local Fixture Adapter multi-route",
     "not adapter authorization",
     "not model quality benchmark",
+    "Source fixture references are not stale identity leakage.",
+    "Nested SONYA-LOCAL-FIXTURE-ADAPTER-01 references are source fixture dependencies, not stale identity leakage.",
+    "Current route identity is explicit.",
+    "Source fixture identity is explicit.",
+    "Evidence Review Pack local-adapter route references are explicit.",
+    "Lineage does not grant authority.",
+    "Sonya local adapter lineage packet is not adapter execution.",
+    "Sonya local adapter lineage packet is not network authorization.",
+    "Sonya local adapter lineage packet is not memory write.",
+    "Sonya local adapter lineage packet is not final answer release.",
+    "Sonya local adapter lineage packet is not deployment authority.",
+    "Sonya local adapter lineage packet is not truth certification.",
 )
 FORBIDDEN_PHRASES = (
     "deployment readiness",
@@ -237,6 +250,9 @@ FORBIDDEN_PHRASES = (
     "model weight training",
     "production ready",
     "production readiness",
+    "lineage authority",
+    "lineage grants authority",
+    "stale identity proof of execution",
 )
 ALLOWED_NEGATED = (
     "not ",
@@ -296,7 +312,11 @@ def _forbidden_hits(text: str) -> list[str]:
             index = text.find(normalized_phrase, start)
             if index == -1:
                 break
-            if phrase in {"adapter execution", "adapter executed"} and _is_allowed_local_adapter_context(text, index):
+            if (
+                phrase in {"adapter execution", "adapter executed"}
+                and _is_allowed_local_adapter_context(text, index)
+                and "lineage claims" not in text[max(0, index - 80) : index]
+            ):
                 start = index + len(normalized_phrase)
                 continue
             if not _is_negated(text, index):

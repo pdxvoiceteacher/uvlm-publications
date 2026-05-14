@@ -115,5 +115,17 @@
 - Sonya Local Fixture Adapter multi-route is not deployment authority.
 - Sonya Local Fixture Adapter multi-route is not model weight training.
 - Sonya Local Fixture Adapter multi-route is not hallucination reduction proof.
+- Source fixture references are not stale identity leakage.
+- Nested SONYA-LOCAL-FIXTURE-ADAPTER-01 references are source fixture dependencies, not stale identity leakage.
+- Current route identity is explicit.
+- Source fixture identity is explicit.
+- Evidence Review Pack local-adapter route references are explicit.
+- Lineage does not grant authority.
+- Sonya local adapter lineage packet is not adapter execution.
+- Sonya local adapter lineage packet is not network authorization.
+- Sonya local adapter lineage packet is not memory write.
+- Sonya local adapter lineage packet is not final answer release.
+- Sonya local adapter lineage packet is not deployment authority.
+- Sonya local adapter lineage packet is not truth certification.
 
 No oracle posture. No deployment posture. No final-answer posture. No AI consciousness claim. No universal ontology claim.

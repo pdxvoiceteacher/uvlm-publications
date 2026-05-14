@@ -1206,3 +1206,66 @@ def test_claim_validator_rejects_sonya_adapter_contract_overclaims(tmp_path):
         )
         assert result["passed"] is False, claim
         assert result["forbidden_overclaims_found"], result
+
+
+def test_governed_artifact_cognition_sonya_local_fixture_adapter_lineage_clarity_updates_are_present():
+    paper = (ROOT / "PUB_GOV_ARTIFACT_COG_01.md").read_text(encoding="utf-8")
+    abstract = (ROOT / "abstract.md").read_text(encoding="utf-8")
+    artifact_table = (ROOT / "artifact_table.md").read_text(encoding="utf-8")
+    boundary_table = (ROOT / "claim_boundary_table.md").read_text(encoding="utf-8")
+    quickstart = (ROOT / "reviewer_quickstart.md").read_text(encoding="utf-8")
+    status = json.loads((ROOT / "status.json").read_text(encoding="utf-8"))
+    combined = paper + "\n" + abstract
+    for phrase in (
+        "SONYA-LOCAL-FIXTURE-ADAPTER-03",
+        "Nested SONYA-LOCAL-FIXTURE-ADAPTER-01 references are source fixture dependencies, not stale identity leakage.",
+        "Current route identity is explicit.",
+        "Source fixture identity is explicit.",
+        "Evidence Review Pack local-adapter route references are explicit.",
+        "Lineage does not grant authority.",
+    ):
+        assert phrase in combined
+    for artifact in (
+        "sonya_local_adapter_lineage_packet.json",
+        "sonya_local_adapter_lineage_review_packet.json",
+        "sonya_local_fixture_adapter_03_acceptance_receipt.json",
+    ):
+        assert artifact in artifact_table
+    for boundary in (
+        "Source fixture references are not stale identity leakage.",
+        "Nested SONYA-LOCAL-FIXTURE-ADAPTER-01 references are source fixture dependencies, not stale identity leakage.",
+        "Sonya local adapter lineage packet is not adapter execution.",
+        "Sonya local adapter lineage packet is not network authorization.",
+        "Sonya local adapter lineage packet is not memory write.",
+        "Sonya local adapter lineage packet is not final answer release.",
+        "Sonya local adapter lineage packet is not deployment authority.",
+        "Sonya local adapter lineage packet is not truth certification.",
+    ):
+        assert boundary in boundary_table
+    assert "Run-SONYA-LOCAL-FIXTURE-ADAPTER03-Acceptance.ps1" in quickstart
+    assert status["sonya_local_fixture_adapter_03_indexed"] is True
+    assert status["not_stale_identity_leakage"] is True
+    assert status["not_lineage_authority"] is True
+
+
+def test_claim_validator_rejects_sonya_local_fixture_adapter_lineage_overclaims(tmp_path):
+    forbidden_claims = (
+        "claims adapter execution",
+        "claims stale identity proof of execution",
+        "claims lineage authority",
+        "lineage grants authority",
+        "claims deployment authority",
+        "claims model-weight training",
+    )
+    for claim in forbidden_claims:
+        paper_root = _copy_governed_paper(tmp_path / claim.replace(" ", "_").replace("-", "_"))
+        paper = paper_root / "PUB_GOV_ARTIFACT_COG_01.md"
+        paper.write_text(paper.read_text(encoding="utf-8") + f"\nThis paper {claim}.\n", encoding="utf-8")
+        result = validate_publication_claims(
+            paper,
+            appendix=paper_root / "reproducibility_appendix.md",
+            quickstart=paper_root / "reviewer_quickstart.md",
+            status=paper_root / "status.json",
+        )
+        assert result["passed"] is False, claim
+        assert result["forbidden_overclaims_found"], result

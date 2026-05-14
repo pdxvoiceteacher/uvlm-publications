@@ -695,6 +695,49 @@ SONYA_LOCAL_FIXTURE_ADAPTER_02_CLAIMS_BLOCKED = [
     "not production readiness",
 ]
 
+SONYA_LOCAL_FIXTURE_ADAPTER_03_COMMAND = r""".\experiments\Run-SONYA-LOCAL-FIXTURE-ADAPTER03-Acceptance.ps1 `
+  -OutputRoot C:\UVLM\run_artifacts\sonya_local_fixture_adapter_03 `
+  -LogDir C:\UVLM\run_artifacts\sonya_local_fixture_adapter_03_logs `
+  -CiMode"""
+SONYA_LOCAL_FIXTURE_ADAPTER_03_ARTIFACTS = [
+    "sonya_local_adapter_lineage_packet.json",
+    "sonya_local_adapter_lineage_review_packet.json",
+    "sonya_local_adapter_multi_route_packet.json",
+    "sonya_local_adapter_multi_route_review_packet.json",
+    "artifact_inventory.json",
+    "run_artifact_manifest.json",
+    "export_bundle_manifest.json",
+    "export_bundle_parity_report.json",
+    "sonya_local_fixture_adapter_03_acceptance_receipt.json",
+]
+SONYA_LOCAL_FIXTURE_ADAPTER_03_DASHBOARD_SUMMARY = {
+    "lineage_review_status": "accepted_as_lineage_clarity_packet",
+    "current_experiment_id": "SONYA-LOCAL-FIXTURE-ADAPTER-02",
+    "source_fixture_experiment_id_present": True,
+    "source_fixture_role_present": True,
+    "nested_source_identity_explained": True,
+    "ambiguous_experiment_id_inheritance_blocked": True,
+    "lineage_complete": True,
+    "lineage_is_not_authority": True,
+    "promotion_blocked": True,
+    "source_fixture_reference_not_stale_identity": True,
+}
+SONYA_LOCAL_FIXTURE_ADAPTER_03_CLAIMS_BLOCKED = [
+    "not adapter execution",
+    "not network authorization",
+    "not remote provider call",
+    "not live model execution",
+    "not memory write",
+    "not final answer release",
+    "not deployment authority",
+    "not truth certification",
+    "not model weight training",
+    "not hallucination reduction proof",
+    "not recursive self-improvement",
+    "not stale identity proof of execution",
+    "not production readiness",
+]
+
 RETRO_SANDBOX_CYCLE_COMMAND = r""".\experiments\Run-RETROSYNTHESIS-SANDBOX-CYCLE01-Acceptance.ps1 `
   -OutputRoot C:\UVLM\run_artifacts\retrosynthesis_sandbox_cycle_01 `
   -LogDir C:\UVLM\run_artifacts\retrosynthesis_sandbox_cycle_01_logs `
@@ -877,6 +920,28 @@ ACCEPTED_PHASES = [
         "claim_allowed": "SONYA-LOCAL-FIXTURE-ADAPTER-02 demonstrates local-only comparison of deterministic fixture adapter candidates, applies a selection policy, and records that the selected candidate still requires Evidence Review Pack routing. Selection policy is not final answer.",
         "claims_blocked": SONYA_LOCAL_FIXTURE_ADAPTER_02_CLAIMS_BLOCKED,
         "reviewer_caution": "SONYA-LOCAL-FIXTURE-ADAPTER-02 compares deterministic local fixture adapter candidates only. Selection is not final answer, not adapter authorization, not truth certification, and not a model quality benchmark. The selected candidate still requires Evidence Review Pack routing before it can be reviewed as cognition.",
+        "publication_status": "dashboard_indexed",
+    },
+
+    {
+        "phase_id": "SONYA-LOCAL-FIXTURE-ADAPTER-03",
+        "repo": "pdxvoiceteacher/CoherenceLattice",
+        "status": "accepted",
+        "evidence_type": "methods_lineage_clarity",
+        "product_posture": "source_current_experiment_lineage_clarity",
+        "primary_artifacts": SONYA_LOCAL_FIXTURE_ADAPTER_03_ARTIFACTS,
+        "dashboard_summary": SONYA_LOCAL_FIXTURE_ADAPTER_03_DASHBOARD_SUMMARY,
+        "prerequisite_phases": [
+            "SONYA-LOCAL-FIXTURE-ADAPTER-01",
+            "SONYA-LOCAL-FIXTURE-ADAPTER-02",
+            "EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER-01",
+            "SONYA-ADAPTER-SMOKE-00",
+            "SONYA-ADAPTER-CONTRACT-REGISTRY-01",
+        ],
+        "reproduction_command_summary": SONYA_LOCAL_FIXTURE_ADAPTER_03_COMMAND,
+        "claim_allowed": "SONYA-LOCAL-FIXTURE-ADAPTER-03 demonstrates explicit lineage clarity for Sonya local fixture adapter multi-route artifacts by distinguishing current route identity, source fixture identity, source fixture role, and Evidence Review Pack local-adapter route references.",
+        "claims_blocked": SONYA_LOCAL_FIXTURE_ADAPTER_03_CLAIMS_BLOCKED,
+        "reviewer_caution": "SONYA-LOCAL-FIXTURE-ADAPTER-03 is a lineage clarity packet only. It clarifies that nested source fixture references are dependencies and not stale identity leakage. It does not execute adapters, authorize network, call providers, write memory, release final answers, train models, or deploy.",
         "publication_status": "dashboard_indexed",
     },
     {
@@ -1335,6 +1400,18 @@ BOUNDARIES = [
     "Sonya Local Fixture Adapter multi-route is not deployment authority.",
     "Sonya Local Fixture Adapter multi-route is not model weight training.",
     "Sonya Local Fixture Adapter multi-route is not hallucination reduction proof.",
+    "Source fixture references are not stale identity leakage.",
+    "Nested SONYA-LOCAL-FIXTURE-ADAPTER-01 references are source fixture dependencies, not stale identity leakage.",
+    "Current route identity is explicit.",
+    "Source fixture identity is explicit.",
+    "Evidence Review Pack local-adapter route references are explicit.",
+    "Lineage does not grant authority.",
+    "Sonya local adapter lineage packet is not adapter execution.",
+    "Sonya local adapter lineage packet is not network authorization.",
+    "Sonya local adapter lineage packet is not memory write.",
+    "Sonya local adapter lineage packet is not final answer release.",
+    "Sonya local adapter lineage packet is not deployment authority.",
+    "Sonya local adapter lineage packet is not truth certification.",
 ]
 GLOBAL_NON_CLAIMS = [
     "not truth certification",
@@ -1425,6 +1502,7 @@ def dashboard_payload() -> dict[str, Any]:
             "sonya_local_fixture_adapter_packet.json",
             "evidence_review_local_adapter_route_packet.json",
             "sonya_local_adapter_multi_route_packet.json",
+            "sonya_local_adapter_lineage_packet.json",
         ],
         "publication_drafts": [
             "papers/governed_artifact_cognition/PUB_GOV_ARTIFACT_COG_01.md",
@@ -1476,6 +1554,7 @@ def reproducibility_index() -> dict[str, Any]:
                 {"name": "Sonya Local Fixture Adapter acceptance", "command": SONYA_LOCAL_FIXTURE_ADAPTER_COMMAND},
                 {"name": "Evidence Review Pack local adapter acceptance", "command": EVIDENCE_REVIEW_PACK_LOCAL_ADAPTER_COMMAND},
                 {"name": "Sonya Local Fixture Adapter multi-route acceptance", "command": SONYA_LOCAL_FIXTURE_ADAPTER_02_COMMAND},
+                {"name": "Sonya Local Fixture Adapter lineage clarity acceptance", "command": SONYA_LOCAL_FIXTURE_ADAPTER_03_COMMAND},
                 {"name": "experiment suite repro pack builder", "command": "python -m coherence.tools.build_experiment_suite_repro_pack --registry experiments/experiment_suite_registry.json --artifacts-root artifacts --out-dir artifacts/experiment_suite_repro_pack --zip"},
             ],
             "Sophia": [
@@ -1519,6 +1598,7 @@ def artifact_index() -> dict[str, Any]:
             "SONYA-LOCAL-FIXTURE-ADAPTER-01": SONYA_LOCAL_FIXTURE_ADAPTER_ARTIFACTS,
             "EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER-01": EVIDENCE_REVIEW_PACK_LOCAL_ADAPTER_ARTIFACTS,
             "SONYA-LOCAL-FIXTURE-ADAPTER-02": SONYA_LOCAL_FIXTURE_ADAPTER_02_ARTIFACTS,
+            "SONYA-LOCAL-FIXTURE-ADAPTER-03": SONYA_LOCAL_FIXTURE_ADAPTER_03_ARTIFACTS,
             "publications": ["PUB_GOV_ARTIFACT_COG_01.md", "PUB_WAVE_ROSETTA_01.md", "reviewer quickstarts", "status.json files"],
         },
     }
@@ -1541,6 +1621,10 @@ def status_payload() -> dict[str, Any]:
         "latest_sonya_local_fixture_adapter": "SONYA-LOCAL-FIXTURE-ADAPTER-01",
         "latest_evidence_review_pack_local_adapter": "EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER-01",
         "latest_sonya_local_fixture_adapter_multi_route": "SONYA-LOCAL-FIXTURE-ADAPTER-02",
+        "latest_sonya_local_fixture_adapter_lineage_clarity": "SONYA-LOCAL-FIXTURE-ADAPTER-03",
+        "sonya_local_fixture_adapter_03_indexed": True,
+        "not_stale_identity_leakage": True,
+        "not_lineage_authority": True,
         "requires_external_peer_review": True,
         "not_truth_certification": True,
         "not_deployment_authority": True,
@@ -1559,7 +1643,7 @@ def docs() -> dict[str, str]:
     return {
         "README.md": "# Experiment Suite Docs\n\nPublic reviewer documentation for the claim-bounded reproducibility dashboard.\n",
         "assets/README.md": "# Assets\n\nOptional static assets for the public reproducibility dashboard.\n",
-        "index.md": f"# Public Experiment Suite Dashboard\n\nThis dashboard presents accepted evidence for reviewer orientation. It is not truth certification, not deployment authority, not final answer release, local fixture only, and requires external peer review.\n\n## Accepted evidence\n\n| Phase | Repo | Status | What this supports | Reviewer caution |\n| --- | --- | --- | --- | --- |\n{phase_rows}\n\n## Reviewer path\n\nStart with claim boundaries, then read the governed artifact cognition paper, WAVE Rosetta paper, SONYA-AEGIS-SMOKE-02, WAVE family, UNI-02D Sonya gate, and RETRO-LANE-00, Public Utility Alpha, Raw Baseline Comparison, Evidence Review Pack, RW-COMP-01, RW-COMP-02, Retrosynthesis Sandbox Cycle, Evidence Review Pack second-pass, RW-COMP-03, Universal Architecture Scaffold, Sonya Adapter Contract Registry, Sonya Adapter Smoke, Sonya Local Fixture Adapter, and Evidence Review Pack local adapter, and Sonya Local Fixture Adapter multi-route pages.\n\n## What this proves\n\nIt proves only that accepted local fixture artifacts and draft publication materials are organized for review.\n\n## What this does not prove\n\nNo oracle posture, no deployment posture, no final-answer posture, no AI consciousness claim, and no universal ontology claim.\n\n## Phase pages\n\n- [SONYA-AEGIS-SMOKE-02](sonya-aegis-smoke-02.md)\n- [WAVE Gold-Physics](wave-gold-physics.md)\n- [UNI-02D Sonya gate](uni02d-sonya-gate.md)\n- [RETRO-LANE-00](retro-lane-00.md)\n- [Public Utility Alpha](public-utility-alpha.md)\n- [Raw Baseline Comparison](raw-baseline-comparison.md)\n- [Evidence Review Pack](evidence-review-pack.md)\n- [RW-COMP-01](rw-comp-01.md)\n- [RW-COMP-02](rw-comp-02.md)\n- [Retrosynthesis Sandbox Cycle](retrosynthesis-sandbox-cycle.md)\n- [Evidence Review Pack second pass](evidence-review-pack-second-pass.md)\n- [RW-COMP-03](rw-comp-03.md)\n- [Universal Architecture Scaffold](universal-architecture.md)\n- [Sonya Adapter Contract Registry](sonya-adapter-contract-registry.md)\n- [Sonya Adapter Smoke](sonya-adapter-smoke.md)\n- [Sonya Local Fixture Adapter](sonya-local-fixture-adapter.md)\n- [Evidence Review Pack local adapter](evidence-review-pack-local-adapter.md)\n- [Sonya Local Fixture Adapter multi-route](sonya-local-fixture-adapter-multi-route.md)\n- [Governed artifact cognition paper](governed-artifact-cognition-paper.md)\n- [Waveform Rosetta paper](waveform-rosetta-paper.md)\n",
+        "index.md": f"# Public Experiment Suite Dashboard\n\nThis dashboard presents accepted evidence for reviewer orientation. It is not truth certification, not deployment authority, not final answer release, local fixture only, and requires external peer review.\n\n## Accepted evidence\n\n| Phase | Repo | Status | What this supports | Reviewer caution |\n| --- | --- | --- | --- | --- |\n{phase_rows}\n\n## Reviewer path\n\nStart with claim boundaries, then read the governed artifact cognition paper, WAVE Rosetta paper, SONYA-AEGIS-SMOKE-02, WAVE family, UNI-02D Sonya gate, and RETRO-LANE-00, Public Utility Alpha, Raw Baseline Comparison, Evidence Review Pack, RW-COMP-01, RW-COMP-02, Retrosynthesis Sandbox Cycle, Evidence Review Pack second-pass, RW-COMP-03, Universal Architecture Scaffold, Sonya Adapter Contract Registry, Sonya Adapter Smoke, Sonya Local Fixture Adapter, and Evidence Review Pack local adapter, Sonya Local Fixture Adapter multi-route, and Sonya Local Fixture Adapter lineage clarity pages.\n\n## What this proves\n\nIt proves only that accepted local fixture artifacts and draft publication materials are organized for review.\n\n## What this does not prove\n\nNo oracle posture, no deployment posture, no final-answer posture, no AI consciousness claim, and no universal ontology claim.\n\n## Phase pages\n\n- [SONYA-AEGIS-SMOKE-02](sonya-aegis-smoke-02.md)\n- [WAVE Gold-Physics](wave-gold-physics.md)\n- [UNI-02D Sonya gate](uni02d-sonya-gate.md)\n- [RETRO-LANE-00](retro-lane-00.md)\n- [Public Utility Alpha](public-utility-alpha.md)\n- [Raw Baseline Comparison](raw-baseline-comparison.md)\n- [Evidence Review Pack](evidence-review-pack.md)\n- [RW-COMP-01](rw-comp-01.md)\n- [RW-COMP-02](rw-comp-02.md)\n- [Retrosynthesis Sandbox Cycle](retrosynthesis-sandbox-cycle.md)\n- [Evidence Review Pack second pass](evidence-review-pack-second-pass.md)\n- [RW-COMP-03](rw-comp-03.md)\n- [Universal Architecture Scaffold](universal-architecture.md)\n- [Sonya Adapter Contract Registry](sonya-adapter-contract-registry.md)\n- [Sonya Adapter Smoke](sonya-adapter-smoke.md)\n- [Sonya Local Fixture Adapter](sonya-local-fixture-adapter.md)\n- [Evidence Review Pack local adapter](evidence-review-pack-local-adapter.md)\n- [Sonya Local Fixture Adapter multi-route](sonya-local-fixture-adapter-multi-route.md)\n- [Sonya Local Fixture Adapter lineage clarity](sonya-local-fixture-adapter-lineage.md)\n- [Governed artifact cognition paper](governed-artifact-cognition-paper.md)\n- [Waveform Rosetta paper](waveform-rosetta-paper.md)\n",
         "claim-boundaries.md": f"# Claim Boundaries\n\n{boundaries}\n\nNo oracle posture. No deployment posture. No final-answer posture. No AI consciousness claim. No universal ontology claim.\n",
         "sonya-aegis-smoke-02.md": f"""# SONYA-AEGIS-SMOKE-02
 
@@ -2027,6 +2111,37 @@ SONYA-LOCAL-FIXTURE-ADAPTER-02 demonstrates local-only comparison of determinist
 
 Reviewer caution: SONYA-LOCAL-FIXTURE-ADAPTER-02 compares deterministic local fixture adapter candidates only. Selection is not final answer, not adapter authorization, not truth certification, and not a model quality benchmark. The selected candidate still requires Evidence Review Pack routing before it can be reviewed as cognition.
 """,
+
+        "sonya-local-fixture-adapter-lineage.md": f"""# Sonya Local Fixture Adapter lineage clarity
+
+Required phrase: Source fixture references are not stale identity leakage.
+
+Purpose: describe SONYA-LOCAL-FIXTURE-ADAPTER-03 as an accepted methods-lineage clarity phase for Sonya local fixture adapter multi-route artifacts. Nested SONYA-LOCAL-FIXTURE-ADAPTER-01 references are source fixture dependencies, not stale identity leakage. Current route identity is explicit. Source fixture identity is explicit. Evidence Review Pack local-adapter route references are explicit. Lineage does not grant authority.
+
+## Allowed claim
+
+SONYA-LOCAL-FIXTURE-ADAPTER-03 demonstrates explicit lineage clarity for Sonya local fixture adapter multi-route artifacts by distinguishing current route identity, source fixture identity, source fixture role, and Evidence Review Pack local-adapter route references.
+
+## Reproduction command
+
+```powershell
+{SONYA_LOCAL_FIXTURE_ADAPTER_03_COMMAND}
+```
+
+## Primary artifacts
+
+{chr(10).join(f"- `{artifact}`" for artifact in SONYA_LOCAL_FIXTURE_ADAPTER_03_ARTIFACTS)}
+
+## Dashboard posture
+
+{chr(10).join(f"- `{key} = {str(value).lower()}`" for key, value in SONYA_LOCAL_FIXTURE_ADAPTER_03_DASHBOARD_SUMMARY.items())}
+
+## Blocked claims
+
+{chr(10).join(f"- {claim}" for claim in SONYA_LOCAL_FIXTURE_ADAPTER_03_CLAIMS_BLOCKED)}
+
+Reviewer caution: SONYA-LOCAL-FIXTURE-ADAPTER-03 is a lineage clarity packet only. It clarifies that nested source fixture references are dependencies and not stale identity leakage. It does not execute adapters, authorize network, call providers, write memory, release final answers, train models, or deploy.
+""",
         "universal-architecture.md": f"""# Universal Architecture Scaffold
 
 The brain runs cognition stages; experiments configure those stages.
@@ -2302,6 +2417,22 @@ Expected posture:
 {chr(10).join(f"- `{key} = {str(value).lower()}`" for key, value in SONYA_LOCAL_FIXTURE_ADAPTER_02_DASHBOARD_SUMMARY.items())}
 
 Reviewer caution: SONYA-LOCAL-FIXTURE-ADAPTER-02 compares deterministic local fixture adapter candidates only. Selection is not final answer, not adapter authorization, not truth certification, and not a model quality benchmark.
+
+## Sonya Local Fixture Adapter lineage clarity
+
+Source fixture references are not stale identity leakage.
+
+SONYA-LOCAL-FIXTURE-ADAPTER-03 clarifies source/current experiment lineage for Sonya local fixture adapter multi-route artifacts. Current route identity is explicit. Source fixture identity is explicit. Evidence Review Pack local-adapter route references are explicit. Lineage does not grant authority.
+
+```powershell
+{SONYA_LOCAL_FIXTURE_ADAPTER_03_COMMAND}
+```
+
+Expected posture:
+
+{chr(10).join(f"- `{key} = {str(value).lower()}`" for key, value in SONYA_LOCAL_FIXTURE_ADAPTER_03_DASHBOARD_SUMMARY.items())}
+
+Reviewer caution: SONYA-LOCAL-FIXTURE-ADAPTER-03 is a lineage clarity packet only. It clarifies that nested source fixture references are dependencies and not stale identity leakage. It does not execute adapters, authorize network, call providers, write memory, release final answers, train models, or deploy.
 
 ## Sophia commands
 
