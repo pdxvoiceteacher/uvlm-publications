@@ -29,6 +29,7 @@ REQUIRED_PHASES = {
     "ARTIFACT-CONTRACT-REGISTRY-01",
     "UNIVERSAL-COMPATIBILITY-MATRIX-00",
     "SONYA-ADAPTER-CONTRACT-REGISTRY-01",
+    "SONYA-ADAPTER-SMOKE-00",
 }
 REQUIRED_BOUNDARY_PHRASES = (
     "not truth certification",
@@ -120,6 +121,17 @@ REQUIRED_BOUNDARY_PHRASES = (
     "raw output is forbidden",
     "candidate packet required",
     "failure receipts required",
+    "Sonya Adapter Smoke",
+    "exercises contracts, not live adapters",
+    "not live adapter execution",
+    "not network authorization",
+    "not remote provider call",
+    "not model weight training",
+    "raw output rejected",
+    "candidate packet",
+    "failure receipts",
+    "telemetry events",
+    "provenance events",
 )
 FORBIDDEN_PHRASES = (
     "deployment readiness",
@@ -187,6 +199,7 @@ FORBIDDEN_PHRASES = (
     "network authorized",
     "network authorization",
     "remote provider called",
+    "remote provider calls",
     "live model executed",
     "model weights trained",
     "model weight training",

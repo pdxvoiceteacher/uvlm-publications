@@ -67,6 +67,10 @@
         "command": ".\\experiments\\Run-SONYA-ADAPTER-CONTRACT-REGISTRY01-Acceptance.ps1 `\n  -OutputRoot C:\\UVLM\\run_artifacts\\sonya_adapter_contract_registry_01 `\n  -LogDir C:\\UVLM\\run_artifacts\\sonya_adapter_contract_registry_01_logs `\n  -CiMode"
       },
       {
+        "name": "Sonya Adapter Smoke acceptance",
+        "command": ".\\experiments\\Run-SONYA-ADAPTER-SMOKE00-Acceptance.ps1 `\n  -OutputRoot C:\\UVLM\\run_artifacts\\sonya_adapter_smoke_00 `\n  -LogDir C:\\UVLM\\run_artifacts\\sonya_adapter_smoke_00_logs `\n  -CiMode"
+      },
+      {
         "name": "experiment suite repro pack builder",
         "command": "python -m coherence.tools.build_experiment_suite_repro_pack --registry experiments/experiment_suite_registry.json --artifacts-root artifacts --out-dir artifacts/experiment_suite_repro_pack --zip"
       }

@@ -182,6 +182,23 @@
       "export_bundle_parity_report.json",
       "sonya_adapter_contract_registry_01_acceptance_receipt.json"
     ],
+    "SONYA-ADAPTER-SMOKE-00": [
+      "sonya_adapter_smoke_packet.json",
+      "sonya_adapter_smoke_review_packet.json",
+      "sonya_adapter_selection_packet.json",
+      "sonya_adapter_consent_check_packet.json",
+      "sonya_adapter_capability_check_packet.json",
+      "sonya_adapter_failure_receipt.json",
+      "sonya_adapter_telemetry_packet.json",
+      "sonya_adapter_provenance_event_packet.json",
+      "sonya_adapter_fixture_candidate_packet.json",
+      "sonya_adapter_smoke_summary.md",
+      "artifact_inventory.json",
+      "run_artifact_manifest.json",
+      "export_bundle_manifest.json",
+      "export_bundle_parity_report.json",
+      "sonya_adapter_smoke_00_acceptance_receipt.json"
+    ],
     "publications": [
       "PUB_GOV_ARTIFACT_COG_01.md",
       "PUB_WAVE_ROSETTA_01.md",
