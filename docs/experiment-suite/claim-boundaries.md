@@ -81,5 +81,29 @@
 - Sonya Adapter Smoke makes failure receipts visible.
 - Sonya Adapter Smoke makes telemetry events visible.
 - Sonya Adapter Smoke makes provenance events visible.
+- Sonya Local Fixture Adapter executes deterministic local fixtures, not live adapters.
+- Sonya Local Fixture Adapter records that local fixture adapter execution occurred under Sonya adapter contracts.
+- Sonya Local Fixture Adapter is not live adapter execution.
+- Sonya Local Fixture Adapter is not network authorization.
+- Sonya Local Fixture Adapter is not remote provider call.
+- Sonya Local Fixture Adapter is not live model execution.
+- Sonya Local Fixture Adapter is not memory write.
+- Sonya Local Fixture Adapter is not final answer release.
+- Sonya Local Fixture Adapter is not deployment authority.
+- Sonya Local Fixture Adapter is not model weight training.
+- Sonya Local Fixture Adapter emits candidate packets, failure receipts, telemetry events, and provenance events.
+- Adapter output is not accepted as cognition directly.
+- Local adapter candidates become reviewable only through the Evidence Review Pack path.
+- Evidence Review Pack local-adapter route is not accepted evidence.
+- Evidence Review Pack local-adapter route is not adapter authorization.
+- Evidence Review Pack local-adapter route is not memory write.
+- Evidence Review Pack local-adapter route is not final answer release.
+- Evidence Review Pack local-adapter route is not deployment authority.
+- Evidence Review Pack local-adapter route is not model weight training.
+- Evidence Review Pack local-adapter route is not hallucination reduction proof.
+- Evidence Review Pack local-adapter route is not recursive self-improvement.
+- Candidate packets require UCC-controlled review.
+- The claim map is not truth certification.
+- The candidate is not final answer.
 
 No oracle posture. No deployment posture. No final-answer posture. No AI consciousness claim. No universal ontology claim.

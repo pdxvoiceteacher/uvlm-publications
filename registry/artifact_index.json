@@ -199,6 +199,34 @@
       "export_bundle_parity_report.json",
       "sonya_adapter_smoke_00_acceptance_receipt.json"
     ],
+    "SONYA-LOCAL-FIXTURE-ADAPTER-01": [
+      "sonya_local_fixture_adapter_packet.json",
+      "sonya_local_fixture_adapter_review_packet.json",
+      "sonya_local_adapter_execution_packet.json",
+      "sonya_local_adapter_candidate_packet.json",
+      "sonya_local_adapter_failure_receipt.json",
+      "sonya_local_adapter_telemetry_packet.json",
+      "sonya_local_adapter_provenance_event_packet.json",
+      "sonya_local_fixture_adapter_summary.md",
+      "artifact_inventory.json",
+      "run_artifact_manifest.json",
+      "export_bundle_manifest.json",
+      "export_bundle_parity_report.json",
+      "sonya_local_fixture_adapter_01_acceptance_receipt.json"
+    ],
+    "EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER-01": [
+      "evidence_review_local_adapter_route_packet.json",
+      "evidence_review_local_adapter_review_packet.json",
+      "evidence_review_local_adapter_candidate_binding.json",
+      "evidence_review_local_adapter_claim_map.json",
+      "evidence_review_local_adapter_provenance_packet.json",
+      "evidence_review_local_adapter_summary.md",
+      "artifact_inventory.json",
+      "run_artifact_manifest.json",
+      "export_bundle_manifest.json",
+      "export_bundle_parity_report.json",
+      "evidence_review_pack_local_adapter_01_acceptance_receipt.json"
+    ],
     "publications": [
       "PUB_GOV_ARTIFACT_COG_01.md",
       "PUB_WAVE_ROSETTA_01.md",

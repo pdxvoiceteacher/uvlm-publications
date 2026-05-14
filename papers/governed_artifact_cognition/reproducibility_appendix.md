@@ -273,3 +273,72 @@ Expected:
 - `final_answer_release_blocked = true`
 - `deployment_blocked = true`
 - `promotion_blocked = true`
+
+## How to reproduce SONYA-LOCAL-FIXTURE-ADAPTER-01
+
+SONYA-LOCAL-FIXTURE-ADAPTER-01 is deterministic local-only fixture adapter execution. It consumes SONYA-ADAPTER-CONTRACT-REGISTRY-01 and SONYA-ADAPTER-SMOKE-00, executes fixture_text_model_adapter, fixture_summary_generator_adapter, and local_file_transform_adapter, blocks hash_only_evidence_adapter, remote_provider_placeholder_adapter, browser_placeholder_adapter, atlas_memory_placeholder_adapter, and sophia_route_placeholder_adapter, and emits candidate packets, failure receipts, telemetry events, and provenance events. It rejects or avoids raw output admission and remains not live adapter execution, not network authorization, no remote provider call, not live model execution, not model-weight training, not memory write, not final answer release, and not deployment authority.
+
+```powershell
+.\experiments\Run-SONYA-LOCAL-FIXTURE-ADAPTER01-Acceptance.ps1 `
+  -OutputRoot C:\UVLM\run_artifacts\sonya_local_fixture_adapter_01 `
+  -LogDir C:\UVLM\run_artifacts\sonya_local_fixture_adapter_01_logs `
+  -CiMode
+```
+
+Expected:
+
+- `review_status = accepted_as_local_fixture_adapter_execution`
+- `adapter_contract_registry_bound = true`
+- `adapter_smoke_bound = true`
+- `local_fixture_adapter_execution_performed = true`
+- `no_live_adapter_execution = true`
+- `no_network_calls = true`
+- `no_remote_provider_calls = true`
+- `no_live_model_execution = true`
+- `raw_output_rejected_or_absent = true`
+- `candidate_packets_emitted = true`
+- `failure_receipts_visible = true`
+- `telemetry_events_visible = true`
+- `provenance_events_visible = true`
+- `model_weight_training_blocked = true`
+- `memory_write_blocked = true`
+- `final_answer_release_blocked = true`
+- `deployment_blocked = true`
+- `promotion_blocked = true`
+
+Observed fixture counts:
+
+- `candidate_packet_count = 3`
+- `failure_receipt_count = 6`
+- `telemetry_event_count = 52`
+- `provenance_event_count = 35`
+- `executed_local_adapter_ids = fixture_text_model_adapter, fixture_summary_generator_adapter, local_file_transform_adapter`
+- `blocked_adapter_ids = hash_only_evidence_adapter, remote_provider_placeholder_adapter, browser_placeholder_adapter, atlas_memory_placeholder_adapter, sophia_route_placeholder_adapter`
+
+## How to reproduce EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER-01
+
+EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER-01 routes Sonya local fixture adapter candidates into Evidence Review Pack. It consumes SONYA-LOCAL-FIXTURE-ADAPTER-01, binds fixture_summary_generator_adapter candidate output to review, applies a UCC control profile, emits an adapter candidate binding packet, emits a local-adapter claim map, emits provenance events, lists unsupported claims, and flags uncertainty. Adapter output is not accepted as cognition directly. It is not accepted evidence, not adapter authorization, not memory write, not final answer release, not deployment authority, not model-weight training, and not hallucination reduction proof.
+
+```powershell
+.\experiments\Run-EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER01-Acceptance.ps1 `
+  -OutputRoot C:\UVLM\run_artifacts\evidence_review_pack_local_adapter_01 `
+  -LogDir C:\UVLM\run_artifacts\evidence_review_pack_local_adapter_01_logs `
+  -CiMode
+```
+
+Expected:
+
+- `review_status = accepted_as_local_adapter_candidate_review`
+- `local_adapter_candidate_bound = true`
+- `evidence_review_pack_path_used = true`
+- `ucc_control_profile_applied = true`
+- `candidate_packet_reviewed = true`
+- `raw_output_rejected_or_absent = true`
+- `unsupported_claims_listed = true`
+- `uncertainty_preserved_or_flagged = true`
+- `provenance_events_visible = true`
+- `model_weight_training_blocked = true`
+- `memory_write_blocked = true`
+- `final_answer_release_blocked = true`
+- `deployment_blocked = true`
+- `promotion_blocked = true`

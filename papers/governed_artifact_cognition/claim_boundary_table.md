@@ -113,3 +113,24 @@
 | Sonya Adapter Smoke is not model-weight training. | SONYA-ADAPTER-SMOKE-00 | fixture-only adapter smoke boundary. |
 | Sonya Adapter Smoke is not hallucination reduction proof. | SONYA-ADAPTER-SMOKE-00 | fixture-only adapter smoke boundary. |
 | Sonya Adapter Smoke is not recursive self-improvement. | SONYA-ADAPTER-SMOKE-00 | fixture-only adapter smoke boundary. |
+| Sonya Local Fixture Adapter executes deterministic local fixtures, not live adapters. | SONYA-LOCAL-FIXTURE-ADAPTER-01 | deterministic local fixture adapter execution boundary. |
+| Sonya Local Fixture Adapter is not live adapter execution. | SONYA-LOCAL-FIXTURE-ADAPTER-01 | deterministic local fixture adapter execution boundary. |
+| Sonya Local Fixture Adapter is not network authorization. | SONYA-LOCAL-FIXTURE-ADAPTER-01 | deterministic local fixture adapter execution boundary. |
+| Sonya Local Fixture Adapter is not remote provider call. | SONYA-LOCAL-FIXTURE-ADAPTER-01 | deterministic local fixture adapter execution boundary. |
+| Sonya Local Fixture Adapter is not live model execution. | SONYA-LOCAL-FIXTURE-ADAPTER-01 | deterministic local fixture adapter execution boundary. |
+| Sonya Local Fixture Adapter is not memory write. | SONYA-LOCAL-FIXTURE-ADAPTER-01 | deterministic local fixture adapter execution boundary. |
+| Sonya Local Fixture Adapter is not final answer release. | SONYA-LOCAL-FIXTURE-ADAPTER-01 | deterministic local fixture adapter execution boundary. |
+| Sonya Local Fixture Adapter is not deployment authority. | SONYA-LOCAL-FIXTURE-ADAPTER-01 | deterministic local fixture adapter execution boundary. |
+| Sonya Local Fixture Adapter is not model-weight training. | SONYA-LOCAL-FIXTURE-ADAPTER-01 | deterministic local fixture adapter execution boundary. |
+| Sonya Local Fixture Adapter is not hallucination reduction proof. | SONYA-LOCAL-FIXTURE-ADAPTER-01 | deterministic local fixture adapter execution boundary. |
+| Sonya Local Fixture Adapter is not recursive self-improvement. | SONYA-LOCAL-FIXTURE-ADAPTER-01 | deterministic local fixture adapter execution boundary. |
+| Adapter output is not accepted as cognition directly. | EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER-01 | local adapter candidate review boundary. |
+| Local adapter candidates become reviewable only through the Evidence Review Pack path. | EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER-01 | local adapter candidate review boundary. |
+| Evidence Review Pack local-adapter route is not accepted evidence. | EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER-01 | local adapter candidate review boundary. |
+| Evidence Review Pack local-adapter route is not adapter authorization. | EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER-01 | local adapter candidate review boundary. |
+| Evidence Review Pack local-adapter route is not memory write. | EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER-01 | local adapter candidate review boundary. |
+| Evidence Review Pack local-adapter route is not final answer release. | EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER-01 | local adapter candidate review boundary. |
+| Evidence Review Pack local-adapter route is not deployment authority. | EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER-01 | local adapter candidate review boundary. |
+| Evidence Review Pack local-adapter route is not model-weight training. | EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER-01 | local adapter candidate review boundary. |
+| Evidence Review Pack local-adapter route is not hallucination reduction proof. | EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER-01 | local adapter candidate review boundary. |
+| Evidence Review Pack local-adapter route is not recursive self-improvement. | EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER-01 | local adapter candidate review boundary. |
