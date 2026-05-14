@@ -105,6 +105,16 @@
     "Evidence Review Pack local-adapter route is not recursive self-improvement.",
     "Candidate packets require UCC-controlled review.",
     "The claim map is not truth certification.",
-    "The candidate is not final answer."
+    "The candidate is not final answer.",
+    "Selection policy is not final answer.",
+    "Multi-adapter local fixture selection still requires Evidence Review Pack review.",
+    "Sonya Local Fixture Adapter multi-route is not adapter authorization.",
+    "Sonya Local Fixture Adapter multi-route is not a model quality benchmark.",
+    "Sonya Local Fixture Adapter multi-route is not model superiority proof.",
+    "Sonya Local Fixture Adapter multi-route is not memory write.",
+    "Sonya Local Fixture Adapter multi-route is not final answer release.",
+    "Sonya Local Fixture Adapter multi-route is not deployment authority.",
+    "Sonya Local Fixture Adapter multi-route is not model weight training.",
+    "Sonya Local Fixture Adapter multi-route is not hallucination reduction proof."
   ]
 }

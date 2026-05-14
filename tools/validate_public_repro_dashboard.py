@@ -32,6 +32,7 @@ REQUIRED_PHASES = {
     "SONYA-ADAPTER-SMOKE-00",
     "SONYA-LOCAL-FIXTURE-ADAPTER-01",
     "EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER-01",
+    "SONYA-LOCAL-FIXTURE-ADAPTER-02",
 }
 REQUIRED_BOUNDARY_PHRASES = (
     "not truth certification",
@@ -153,6 +154,11 @@ REQUIRED_BOUNDARY_PHRASES = (
     "Candidate packets require UCC-controlled review.",
     "The claim map is not truth certification.",
     "The candidate is not final answer.",
+    "Selection policy is not final answer.",
+    "Multi-adapter local fixture selection still requires Evidence Review Pack review.",
+    "Sonya Local Fixture Adapter multi-route",
+    "not adapter authorization",
+    "not model quality benchmark",
 )
 FORBIDDEN_PHRASES = (
     "deployment readiness",
@@ -160,6 +166,7 @@ FORBIDDEN_PHRASES = (
     "truth certification",
     "truth certified",
     "final answer authority",
+    "final answer selection",
     "final answer release",
     "universal ontology claim",
     "ai consciousness",
@@ -179,6 +186,7 @@ FORBIDDEN_PHRASES = (
     "model superiority proven",
     "model superiority proof",
     "hallucination reduction proof",
+    "model quality benchmark",
     "live model evaluation",
     "remote provider evaluation",
     "professional advice",

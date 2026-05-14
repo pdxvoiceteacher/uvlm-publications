@@ -8,6 +8,8 @@ The accepted phase record now includes PUBLIC-UTILITY-ALPHA-00, a local fixture-
 
 SONYA-LOCAL-FIXTURE-ADAPTER-01 is accepted as deterministic local-only fixture adapter execution under Sonya adapter contracts. Sonya Local Fixture Adapter executes deterministic local fixtures, not live adapters. It consumes SONYA-ADAPTER-CONTRACT-REGISTRY-01 and SONYA-ADAPTER-SMOKE-00, executes fixture_text_model_adapter, fixture_summary_generator_adapter, and local_file_transform_adapter, blocks hash_only_evidence_adapter, remote_provider_placeholder_adapter, browser_placeholder_adapter, atlas_memory_placeholder_adapter, and sophia_route_placeholder_adapter, and emits candidate packets, failure receipts, telemetry events, and provenance events while remaining not live adapter execution, not network authorization, no remote provider call, not live model execution, not memory write, not final answer release, not deployment authority, not model-weight training, and not hallucination reduction proof.
 
+SONYA-LOCAL-FIXTURE-ADAPTER-02 demonstrates a local-only multi-adapter fixture route where multiple deterministic local fixture adapter candidates were compared, selection policy was applied, and the selected candidate still requires Evidence Review Pack route. Multi-adapter local fixture selection still requires Evidence Review Pack review. Selection policy is not final answer. Selection is not adapter authorization. Candidate comparison is not model quality benchmark. No live/network/provider/memory/final/deployment authority is granted.
+
 EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER-01 routes Sonya local fixture adapter candidates into Evidence Review Pack. Local adapter candidates become reviewable only through the Evidence Review Pack path. Adapter output is not accepted as cognition directly. Candidate packets require UCC-controlled review. The claim map is not truth certification. The candidate is not final answer. No memory write is authorized. No deployment is authorized. No network authorization is granted. No provider call is made. No model-weight training is authorized. No hallucination-reduction proof is authorized.
 
 RETROSYNTHESIS-SANDBOX-CYCLE-01 is now accepted as the first bounded retrosynthesis candidate-repair cycle over incomplete or contradiction-bearing Evidence Review Pack artifacts. Retrosynthesis Sandbox Cycle is candidate repair, not canon adoption. It emits missing-evidence requests, claim-map revision candidates, uncertainty-restoration candidates, counterevidence-expansion candidates, and next-experiment recommendations while remaining not memory write, not final answer release, not Publisher finalization, not deployment authority, not Omega detection, not publication claim authorization, not recursive self-improvement, not truth certification, not hallucination reduction proof, and not model-superiority proof.
@@ -83,11 +85,12 @@ sonya_control_schema
 → sonya_adapter_smoke fixture-only adapter contract smoke
 → sonya_local_fixture_adapter deterministic local fixtures
 → evidence_review_pack_local_adapter review-only route
+→ sonya_local_fixture_adapter_02 multi-adapter local fixture route
 → public reproducibility dashboard
 ```
 
 
-The accepted phase chain can also be read as Universal Evidence Ingress → UCC Control Profile Selector → Evidence Review Pack → Retrosynthesis Sandbox Cycle → Evidence Review Pack second-pass candidate → RW-COMP comparison scaffolds → Universal Stage Pipeline → Artifact Contract Registry → Universal Compatibility Matrix → Provenance Training Ledger → Sonya Adapter Contract Registry → Sonya Adapter Smoke → Sonya Local Fixture Adapter → Evidence Review Pack local-adapter route. Evidence Review Pack v0.1 produces first-pass review receipts. Retrosynthesis Sandbox Cycle emits candidate repair artifacts. Evidence Review Pack second pass emits candidate revisions only. RW-COMP-01 was a single-fixture comparison. RW-COMP-02 was a deterministic multi-fixture battery. RW-COMP-03 adds held-out fixture IDs, blind labels, simulated scoring, and statistics planning while remaining fixture-only and simulated-score-only. No artifact in this chain authorizes truth, canon, memory, final answer, deployment, Publisher finalization, Omega detection, or publication claims.
+The accepted phase chain can also be read as Universal Evidence Ingress → UCC Control Profile Selector → Evidence Review Pack → Retrosynthesis Sandbox Cycle → Evidence Review Pack second-pass candidate → RW-COMP comparison scaffolds → Universal Stage Pipeline → Artifact Contract Registry → Universal Compatibility Matrix → Provenance Training Ledger → Sonya Adapter Contract Registry → Sonya Adapter Smoke → Sonya Local Fixture Adapter → Evidence Review Pack local-adapter route → Sonya Local Fixture Adapter multi-route. Evidence Review Pack v0.1 produces first-pass review receipts. Retrosynthesis Sandbox Cycle emits candidate repair artifacts. Evidence Review Pack second pass emits candidate revisions only. RW-COMP-01 was a single-fixture comparison. RW-COMP-02 was a deterministic multi-fixture battery. RW-COMP-03 adds held-out fixture IDs, blind labels, simulated scoring, and statistics planning while remaining fixture-only and simulated-score-only. No artifact in this chain authorizes truth, canon, memory, final answer, deployment, Publisher finalization, Omega detection, or publication claims.
 
 The Sonya Gateway is required for admissible model candidate packets under SONYA_REQUIRED. Raw model output is not admissible cognition. A candidate packet is not answer. A runtime bypass block is successful governance evidence, not a model result. The model-braid layer is observational telemetry only and not answer selection.
 
@@ -119,13 +122,13 @@ The adapter-contract layer keeps future adapter smoke and live-provider work beh
 
 Sonya Adapter Smoke exercises contracts, not live adapters. SONYA-ADAPTER-SMOKE-00 is a fixture-only adapter-contract smoke test that consumes SONYA-ADAPTER-CONTRACT-REGISTRY-01. It exercises adapter selection, consent checks, capability checks, Sonya gateway requirement, raw-output rejection, candidate-packet requirement, failure receipts, telemetry events, and provenance events. It emits fixture candidate artifacts only. It does not execute adapters. It does not authorize network. It does not call remote providers. It does not train model weights. It does not write memory. It does not release final answers. It does not deploy.
 
-Architecture sequence: Universal Stage Pipeline → Artifact Contract Registry → Universal Compatibility Matrix → Provenance Training Ledger → Sonya Adapter Contract Registry → Sonya Adapter Smoke → Sonya Local Fixture Adapter → Evidence Review Pack local-adapter route.
+Architecture sequence: Universal Stage Pipeline → Artifact Contract Registry → Universal Compatibility Matrix → Provenance Training Ledger → Sonya Adapter Contract Registry → Sonya Adapter Smoke → Sonya Local Fixture Adapter → Evidence Review Pack local-adapter route → Sonya Local Fixture Adapter multi-route.
 
 ### 2.4 Sonya Local Fixture Adapter
 
 Sonya Local Fixture Adapter executes deterministic local fixtures, not live adapters. SONYA-LOCAL-FIXTURE-ADAPTER-01 is deterministic local-only fixture adapter execution. It consumes SONYA-ADAPTER-CONTRACT-REGISTRY-01 and SONYA-ADAPTER-SMOKE-00. It executes fixture_text_model_adapter, fixture_summary_generator_adapter, and local_file_transform_adapter. It blocks hash_only_evidence_adapter, remote_provider_placeholder_adapter, browser_placeholder_adapter, atlas_memory_placeholder_adapter, and sophia_route_placeholder_adapter. It emits candidate packets, failure receipts, telemetry events, and provenance events. It rejects or avoids raw output admission. It does not execute live adapters. It does not authorize network. It does not call remote providers. It does not execute live models. It does not train model weights. It does not write memory. It does not release final answers. It does not deploy.
 
-Architecture sequence: Universal Stage Pipeline → Artifact Contract Registry → Universal Compatibility Matrix → Provenance Training Ledger → Sonya Adapter Contract Registry → Sonya Adapter Smoke → Sonya Local Fixture Adapter → Evidence Review Pack local-adapter route.
+Architecture sequence: Universal Stage Pipeline → Artifact Contract Registry → Universal Compatibility Matrix → Provenance Training Ledger → Sonya Adapter Contract Registry → Sonya Adapter Smoke → Sonya Local Fixture Adapter → Evidence Review Pack local-adapter route → Sonya Local Fixture Adapter multi-route.
 
 ## 3. Experiments and Evidence
 
@@ -470,15 +473,47 @@ Dashboard summary:
 
 Blocked claims: not accepted evidence, not adapter authorization, not live adapter execution, not network authorization, not remote provider call, not live model execution, not memory write, not final answer release, not deployment authority, not truth certification, not model-weight training, not hallucination reduction proof, not model superiority proof, not recursive self-improvement, and not production readiness.
 
-### 3.20 UNI-02D-SONYA-GATE-01
+### 3.20 SONYA-LOCAL-FIXTURE-ADAPTER-02: multi-adapter local fixture route
+
+Allowed claim: SONYA-LOCAL-FIXTURE-ADAPTER-02 demonstrates local-only comparison of deterministic fixture adapter candidates, applies a selection policy, and records that the selected candidate still requires Evidence Review Pack routing.
+
+Multi-adapter local fixture selection still requires Evidence Review Pack review. It consumes SONYA-LOCAL-FIXTURE-ADAPTER-01 and EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER-01. It compares candidates from fixture_text_model_adapter, fixture_summary_generator_adapter, and local_file_transform_adapter. It blocks hash_only_evidence_adapter, remote_provider_placeholder_adapter, browser_placeholder_adapter, atlas_memory_placeholder_adapter, and sophia_route_placeholder_adapter. It selects candidate-fixture-summary from fixture_summary_generator_adapter. Selection policy is applied. Selected candidate requires Evidence Review Pack route.
+
+Selection policy is not final answer. Candidate comparison is not model quality benchmark. Selection is not adapter authorization. It keeps live_adapter_execution_blocked, network_calls_blocked, remote_provider_calls_blocked, model_weight_training_blocked, memory_write_blocked, final_answer_release_blocked, deployment_blocked, and promotion_blocked set to true.
+
+Dashboard summary:
+
+- `review_status = accepted_as_multi_adapter_local_fixture_route`
+- `local_adapter_candidates_compared = true`
+- `selection_policy_applied = true`
+- `selected_candidate_requires_review = true`
+- `evidence_review_pack_path_required = true`
+- `raw_output_rejected_or_absent = true`
+- `live_adapter_execution_blocked = true`
+- `network_calls_blocked = true`
+- `remote_provider_calls_blocked = true`
+- `model_weight_training_blocked = true`
+- `memory_write_blocked = true`
+- `final_answer_release_blocked = true`
+- `deployment_blocked = true`
+- `promotion_blocked = true`
+- `candidate_count = 3`
+- `selected_candidate_id = candidate-fixture-summary`
+- `selected_candidate_source_adapter_id = fixture_summary_generator_adapter`
+- `executed_local_adapter_ids = fixture_text_model_adapter, fixture_summary_generator_adapter, local_file_transform_adapter`
+- `blocked_adapter_ids = hash_only_evidence_adapter, remote_provider_placeholder_adapter, browser_placeholder_adapter, atlas_memory_placeholder_adapter, sophia_route_placeholder_adapter`
+
+Blocked claims: not final answer selection, not adapter authorization, not live adapter execution, not network authorization, not remote provider call, not live model execution, not model quality benchmark, not model superiority proof, not memory write, not final answer release, not deployment authority, not truth certification, not model-weight training, not hallucination reduction proof, not recursive self-improvement, and not production readiness.
+
+### 3.21 UNI-02D-SONYA-GATE-01
 
 UNI-02D-SONYA-GATE-01 is accepted as a safe generic portability/prior-quarantine fixture, but it is not universal portability proof and not universal ontology. It demonstrates bounded quarantine and provenance posture for selected priors, not general portability across domains.
 
-### 3.21 RETRO-LANE-00
+### 3.22 RETRO-LANE-00
 
 RETRO-LANE-00 is accepted as retrosynthesis admission policy, not retrosynthesis runtime. Admission is not execution. Its evidence is lane posture for sandbox_auto, review_required, and blocked handling.
 
-### 3.22 WAVE Gold-Physics Family
+### 3.23 WAVE Gold-Physics Family
 
 The WAVE Gold-Physics family is included as closed-form waveform metric calibration. It is not universal ontology, not psychoacoustic proof, and not AI consciousness.
 
@@ -518,6 +553,7 @@ Current limitations are explicit:
 - SONYA-ADAPTER-SMOKE-00 exercises adapter contracts only. It does not execute adapters, authorize network, call providers, admit raw output as cognition, write memory, release final answers, train models, prove hallucination reduction, or deploy.
 - SONYA-LOCAL-FIXTURE-ADAPTER-01 executes deterministic local fixture adapters only. It does not execute live adapters, authorize network, call providers, admit raw output as cognition, write memory, release final answers, train models, prove hallucination reduction, or deploy.
 - EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER-01 routes a local fixture adapter candidate into review only. It is not accepted evidence, not adapter authorization, not memory write, not final answer release, not deployment authority, not truth certification, not model-weight training, not hallucination reduction proof, and not recursive self-improvement.
+- SONYA-LOCAL-FIXTURE-ADAPTER-02 compares deterministic local fixture adapter candidates only. Selection is not final answer selection, not adapter authorization, not model quality benchmark, not memory write, not final answer release, not deployment authority, and not model-weight training.
 - no AI consciousness claim.
 
 ## 6. Future Work
@@ -552,4 +588,4 @@ Future work is limited to work not already accepted:
 
 ## 7. Conclusion
 
-The accepted phase record through PUBLIC-UTILITY-ALPHA-00, EVIDENCE-REVIEW-PACK-00, RW-COMP-01, RW-COMP-02, RETROSYNTHESIS-SANDBOX-CYCLE-01, EVIDENCE-REVIEW-PACK-01, RW-COMP-03, UNIVERSAL-STAGE-PIPELINE-00, ARTIFACT-CONTRACT-REGISTRY-01, UNIVERSAL-COMPATIBILITY-MATRIX-00, SONYA-ADAPTER-CONTRACT-REGISTRY-01, SONYA-ADAPTER-SMOKE-00, SONYA-LOCAL-FIXTURE-ADAPTER-01, EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER-01, and PUBLIC-DASHBOARD-ALPHA-01 supports a narrow claim: governed artifact cognition can be represented as a local, inspectable, non-authoritative artifact chain with a product-facing governed review receipt and deterministic fixture comparisons that show structural visibility improvement. RW-COMP-03 is a step toward future hallucination-reduction evidence, but the work remains not truth certification, not professional advice, not compliance certification, not deployment authority, not hallucination-reduction proof yet, not model-superiority proof, not live model evaluation, not a live human study, not human-subject study result, not final answer release, local fixture only, not AI consciousness, not recursive Sonya federation, not retrosynthesis runtime, not Omega detection, not canon adoption, not memory write, not Publisher finalization, not publication claim authorization, not accepted evidence, not recursive self-improvement, not live Atlas memory writes, not live Sophia calls, and requires external peer review.
+The accepted phase record through PUBLIC-UTILITY-ALPHA-00, EVIDENCE-REVIEW-PACK-00, RW-COMP-01, RW-COMP-02, RETROSYNTHESIS-SANDBOX-CYCLE-01, EVIDENCE-REVIEW-PACK-01, RW-COMP-03, UNIVERSAL-STAGE-PIPELINE-00, ARTIFACT-CONTRACT-REGISTRY-01, UNIVERSAL-COMPATIBILITY-MATRIX-00, SONYA-ADAPTER-CONTRACT-REGISTRY-01, SONYA-ADAPTER-SMOKE-00, SONYA-LOCAL-FIXTURE-ADAPTER-01, EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER-01, SONYA-LOCAL-FIXTURE-ADAPTER-02, and PUBLIC-DASHBOARD-ALPHA-01 supports a narrow claim: governed artifact cognition can be represented as a local, inspectable, non-authoritative artifact chain with a product-facing governed review receipt and deterministic fixture comparisons that show structural visibility improvement. RW-COMP-03 is a step toward future hallucination-reduction evidence, but the work remains not truth certification, not professional advice, not compliance certification, not deployment authority, not hallucination-reduction proof yet, not model-superiority proof, not live model evaluation, not a live human study, not human-subject study result, not final answer release, local fixture only, not AI consciousness, not recursive Sonya federation, not retrosynthesis runtime, not Omega detection, not canon adoption, not memory write, not Publisher finalization, not publication claim authorization, not accepted evidence, not recursive self-improvement, not live Atlas memory writes, not live Sophia calls, and requires external peer review.

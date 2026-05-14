@@ -1080,6 +1080,64 @@ def test_claim_validator_rejects_evidence_review_pack_local_adapter_overclaims(t
         assert result["forbidden_overclaims_found"], result
 
 
+def test_governed_artifact_cognition_sonya_local_fixture_adapter_multi_route_updates_are_present():
+    paper = (ROOT / "PUB_GOV_ARTIFACT_COG_01.md").read_text(encoding="utf-8")
+    abstract = (ROOT / "abstract.md").read_text(encoding="utf-8")
+    artifact_table = (ROOT / "artifact_table.md").read_text(encoding="utf-8")
+    boundary_table = (ROOT / "claim_boundary_table.md").read_text(encoding="utf-8")
+    quickstart = (ROOT / "reviewer_quickstart.md").read_text(encoding="utf-8")
+    status = json.loads((ROOT / "status.json").read_text(encoding="utf-8"))
+    combined = paper + "\n" + abstract
+    for phrase in (
+        "SONYA-LOCAL-FIXTURE-ADAPTER-02",
+        "Multi-adapter local fixture selection still requires Evidence Review Pack review.",
+        "Selection policy is not final answer.",
+        "Candidate comparison is not model quality benchmark.",
+        "Selection is not adapter authorization.",
+        "candidate-fixture-summary",
+    ):
+        assert phrase in combined
+    for artifact in (
+        "sonya_local_adapter_multi_route_packet.json",
+        "sonya_local_adapter_candidate_comparison_packet.json",
+        "sonya_local_adapter_selection_policy_packet.json",
+        "sonya_local_adapter_selected_candidate_packet.json",
+    ):
+        assert artifact in artifact_table
+    for boundary in (
+        "Selection policy is not final answer.",
+        "Multi-adapter local fixture selection still requires Evidence Review Pack review.",
+        "Sonya Local Fixture Adapter multi-route is not adapter authorization.",
+        "Sonya Local Fixture Adapter multi-route is not a model quality benchmark.",
+    ):
+        assert boundary in boundary_table
+    assert "Run-SONYA-LOCAL-FIXTURE-ADAPTER02-Acceptance.ps1" in quickstart
+    assert status["sonya_local_fixture_adapter_02_indexed"] is True
+    assert status["not_final_answer_selection"] is True
+
+
+def test_claim_validator_rejects_sonya_local_fixture_adapter_multi_route_overclaims(tmp_path):
+    forbidden_claims = (
+        "final answer selection",
+        "adapter authorization",
+        "model quality benchmark",
+        "claims deployment authority",
+        "claims model-weight training",
+    )
+    for claim in forbidden_claims:
+        paper_root = _copy_governed_paper(tmp_path / claim.replace(" ", "_").replace("-", "_"))
+        paper = paper_root / "PUB_GOV_ARTIFACT_COG_01.md"
+        paper.write_text(paper.read_text(encoding="utf-8") + f"\nThis paper {claim}.\n", encoding="utf-8")
+        result = validate_publication_claims(
+            paper,
+            appendix=paper_root / "reproducibility_appendix.md",
+            quickstart=paper_root / "reviewer_quickstart.md",
+            status=paper_root / "status.json",
+        )
+        assert result["passed"] is False, claim
+        assert result["forbidden_overclaims_found"], result
+
+
 def test_claim_validator_rejects_sonya_local_fixture_adapter_overclaims(tmp_path):
     forbidden_claims = (
         "live adapter execution",

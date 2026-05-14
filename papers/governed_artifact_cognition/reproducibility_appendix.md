@@ -342,3 +342,36 @@ Expected:
 - `final_answer_release_blocked = true`
 - `deployment_blocked = true`
 - `promotion_blocked = true`
+
+## How to reproduce SONYA-LOCAL-FIXTURE-ADAPTER-02
+
+SONYA-LOCAL-FIXTURE-ADAPTER-02 compares multiple deterministic local fixture adapter candidates, applies a selection policy, selects candidate-fixture-summary from fixture_summary_generator_adapter, and records that the selected candidate still requires Evidence Review Pack route. Selection is not final answer and not adapter authorization. Candidate comparison is not model quality benchmark. No live/network/provider/memory/final/deployment authority is granted.
+
+```powershell
+.\experiments\Run-SONYA-LOCAL-FIXTURE-ADAPTER02-Acceptance.ps1 `
+  -OutputRoot C:\UVLM\run_artifacts\sonya_local_fixture_adapter_02 `
+  -LogDir C:\UVLM\run_artifacts\sonya_local_fixture_adapter_02_logs `
+  -CiMode
+```
+
+Expected:
+
+- `review_status = accepted_as_multi_adapter_local_fixture_route`
+- `local_adapter_candidates_compared = true`
+- `selection_policy_applied = true`
+- `selected_candidate_requires_review = true`
+- `evidence_review_pack_path_required = true`
+- `raw_output_rejected_or_absent = true`
+- `live_adapter_execution_blocked = true`
+- `network_calls_blocked = true`
+- `remote_provider_calls_blocked = true`
+- `model_weight_training_blocked = true`
+- `memory_write_blocked = true`
+- `final_answer_release_blocked = true`
+- `deployment_blocked = true`
+- `promotion_blocked = true`
+- `candidate_count = 3`
+- `selected_candidate_id = candidate-fixture-summary`
+- `selected_candidate_source_adapter_id = fixture_summary_generator_adapter`
+- `executed_local_adapter_ids = fixture_text_model_adapter, fixture_summary_generator_adapter, local_file_transform_adapter`
+- `blocked_adapter_ids = hash_only_evidence_adapter, remote_provider_placeholder_adapter, browser_placeholder_adapter, atlas_memory_placeholder_adapter, sophia_route_placeholder_adapter`

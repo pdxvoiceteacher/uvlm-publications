@@ -134,3 +134,13 @@
 | Evidence Review Pack local-adapter route is not model-weight training. | EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER-01 | local adapter candidate review boundary. |
 | Evidence Review Pack local-adapter route is not hallucination reduction proof. | EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER-01 | local adapter candidate review boundary. |
 | Evidence Review Pack local-adapter route is not recursive self-improvement. | EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER-01 | local adapter candidate review boundary. |
+| Selection policy is not final answer. | SONYA-LOCAL-FIXTURE-ADAPTER-02 | multi-adapter local fixture route boundary. |
+| Multi-adapter local fixture selection still requires Evidence Review Pack review. | SONYA-LOCAL-FIXTURE-ADAPTER-02 | multi-adapter local fixture route boundary. |
+| Sonya Local Fixture Adapter multi-route is not adapter authorization. | SONYA-LOCAL-FIXTURE-ADAPTER-02 | multi-adapter local fixture route boundary. |
+| Sonya Local Fixture Adapter multi-route is not a model quality benchmark. | SONYA-LOCAL-FIXTURE-ADAPTER-02 | multi-adapter local fixture route boundary. |
+| Sonya Local Fixture Adapter multi-route is not model superiority proof. | SONYA-LOCAL-FIXTURE-ADAPTER-02 | multi-adapter local fixture route boundary. |
+| Sonya Local Fixture Adapter multi-route is not memory write. | SONYA-LOCAL-FIXTURE-ADAPTER-02 | multi-adapter local fixture route boundary. |
+| Sonya Local Fixture Adapter multi-route is not final answer release. | SONYA-LOCAL-FIXTURE-ADAPTER-02 | multi-adapter local fixture route boundary. |
+| Sonya Local Fixture Adapter multi-route is not deployment authority. | SONYA-LOCAL-FIXTURE-ADAPTER-02 | multi-adapter local fixture route boundary. |
+| Sonya Local Fixture Adapter multi-route is not model-weight training. | SONYA-LOCAL-FIXTURE-ADAPTER-02 | multi-adapter local fixture route boundary. |
+| Sonya Local Fixture Adapter multi-route is not hallucination reduction proof. | SONYA-LOCAL-FIXTURE-ADAPTER-02 | multi-adapter local fixture route boundary. |

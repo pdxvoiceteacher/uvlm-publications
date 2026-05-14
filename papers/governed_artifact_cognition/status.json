@@ -50,5 +50,7 @@
   "not_live_adapter_execution": true,
   "sonya_local_fixture_adapter_indexed": true,
   "evidence_review_pack_local_adapter_indexed": true,
-  "not_adapter_authorization": true
+  "not_adapter_authorization": true,
+  "sonya_local_fixture_adapter_02_indexed": true,
+  "not_final_answer_selection": true
 }

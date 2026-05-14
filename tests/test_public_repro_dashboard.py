@@ -41,6 +41,7 @@ REQUIRED_DOCS = {
     "sonya-adapter-smoke.md",
     "sonya-local-fixture-adapter.md",
     "evidence-review-pack-local-adapter.md",
+    "sonya-local-fixture-adapter-multi-route.md",
 }
 REQUIRED_PHASES = {
     "EXP-SUITE-REGISTRY-01",
@@ -67,6 +68,7 @@ REQUIRED_PHASES = {
     "SONYA-ADAPTER-SMOKE-00",
     "SONYA-LOCAL-FIXTURE-ADAPTER-01",
     "EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER-01",
+    "SONYA-LOCAL-FIXTURE-ADAPTER-02",
 }
 
 REQUIRED_COMMAND_FRAGMENTS = (
@@ -90,6 +92,7 @@ REQUIRED_COMMAND_FRAGMENTS = (
     "Run-SONYA-ADAPTER-SMOKE00-Acceptance.ps1",
     "Run-SONYA-LOCAL-FIXTURE-ADAPTER01-Acceptance.ps1",
     "Run-EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER01-Acceptance.ps1",
+    "Run-SONYA-LOCAL-FIXTURE-ADAPTER02-Acceptance.ps1",
 )
 STALE_COMMAND_FRAGMENTS = (
     "tests/test_sonya_aegis_smoke_02.py",
@@ -135,7 +138,7 @@ def test_dashboard_contains_all_accepted_phases(tmp_path):
     dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text())
     phase_ids = {entry["phase_id"] for entry in dashboard["accepted_phases"]}
     assert phase_ids == REQUIRED_PHASES
-    assert dashboard["accepted_phase_count"] == 24
+    assert dashboard["accepted_phase_count"] == 25
 
 
 def test_dashboard_command_summaries_use_accepted_harnesses(tmp_path):
@@ -161,6 +164,7 @@ def test_validator_required_phases_include_public_utility_alpha_raw_baseline_and
     assert "SONYA-ADAPTER-CONTRACT-REGISTRY-01" in VALIDATOR_REQUIRED_PHASES
     assert "SONYA-LOCAL-FIXTURE-ADAPTER-01" in VALIDATOR_REQUIRED_PHASES
     assert "EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER-01" in VALIDATOR_REQUIRED_PHASES
+    assert "SONYA-LOCAL-FIXTURE-ADAPTER-02" in VALIDATOR_REQUIRED_PHASES
 
 
 def test_public_utility_alpha_indexes_and_docs_are_generated(tmp_path):
@@ -849,6 +853,57 @@ def test_validator_fails_if_evidence_review_pack_local_adapter_makes_forbidden_c
         out_dir, docs_dir = run_builder(tmp_path / claim.replace(" ", "_"))
         page = docs_dir / "evidence-review-pack-local-adapter.md"
         page.write_text(page.read_text() + f"\nEvidence Review Pack local-adapter route {claim}.\n")
+        result = validate_dashboard(out_dir / "experiment_suite_dashboard.json", docs_dir)
+        assert result["passed"] is False, claim
+        forbidden_found = [found.lower() for found in result["forbidden_claims_found"]]
+        assert claim.lower() in forbidden_found, result
+
+
+def test_sonya_local_fixture_adapter_multi_route_indexes_docs_and_boundaries_are_generated(tmp_path):
+    out_dir, docs_dir = run_builder(tmp_path)
+    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text())
+    reproducibility = json.loads((out_dir / "reproducibility_index.json").read_text())
+    artifact_index = json.loads((out_dir / "artifact_index.json").read_text())
+    boundaries = (docs_dir / "claim-boundaries.md").read_text()
+    index = (docs_dir / "index.md").read_text()
+    page = docs_dir / "sonya-local-fixture-adapter-multi-route.md"
+
+    phase = next(entry for entry in dashboard["accepted_phases"] if entry["phase_id"] == "SONYA-LOCAL-FIXTURE-ADAPTER-02")
+    assert phase["evidence_type"] == "multi_adapter_local_fixture_route"
+    assert phase["dashboard_summary"]["review_status"] == "accepted_as_multi_adapter_local_fixture_route"
+    assert phase["dashboard_summary"]["local_adapter_candidates_compared"] is True
+    assert phase["dashboard_summary"]["selection_policy_applied"] is True
+    assert phase["dashboard_summary"]["selected_candidate_requires_review"] is True
+    assert phase["dashboard_summary"]["candidate_count"] == 3
+    assert phase["dashboard_summary"]["selected_candidate_id"] == "candidate-fixture-summary"
+    assert "Selection policy is not final answer." in phase["claim_allowed"]
+
+    assert "Run-SONYA-LOCAL-FIXTURE-ADAPTER02-Acceptance.ps1" in json.dumps(reproducibility)
+    assert "sonya_local_adapter_multi_route_packet.json" in artifact_index["phases"]["SONYA-LOCAL-FIXTURE-ADAPTER-02"]
+    assert page.exists()
+    page_text = page.read_text()
+    assert "Selection policy is not final answer." in page_text
+    assert "candidate comparison is not model quality benchmark" in page_text.lower()
+    assert "sonya-local-fixture-adapter-multi-route.md" in index
+    assert "Selection policy is not final answer." in boundaries
+    assert "not adapter authorization" in boundaries
+    assert "not a model quality benchmark" in boundaries
+
+
+def test_validator_required_phases_include_sonya_local_fixture_adapter_multi_route():
+    assert "SONYA-LOCAL-FIXTURE-ADAPTER-02" in VALIDATOR_REQUIRED_PHASES
+
+
+def test_validator_fails_if_sonya_local_fixture_adapter_multi_route_makes_forbidden_claims(tmp_path):
+    forbidden_claims = (
+        "final answer selection",
+        "claims adapter authorization",
+        "model quality benchmark",
+    )
+    for claim in forbidden_claims:
+        out_dir, docs_dir = run_builder(tmp_path / claim.replace(" ", "_"))
+        page = docs_dir / "sonya-local-fixture-adapter-multi-route.md"
+        page.write_text(page.read_text() + f"\nSonya Local Fixture Adapter multi-route claims {claim}.\n")
         result = validate_dashboard(out_dir / "experiment_suite_dashboard.json", docs_dir)
         assert result["passed"] is False, claim
         forbidden_found = [found.lower() for found in result["forbidden_claims_found"]]
