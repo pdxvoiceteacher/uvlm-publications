@@ -71,6 +71,18 @@
         "command": ".\\experiments\\Run-SONYA-ADAPTER-SMOKE00-Acceptance.ps1 `\n  -OutputRoot C:\\UVLM\\run_artifacts\\sonya_adapter_smoke_00 `\n  -LogDir C:\\UVLM\\run_artifacts\\sonya_adapter_smoke_00_logs `\n  -CiMode"
       },
       {
+        "name": "Sonya Local Fixture Adapter acceptance",
+        "command": ".\\experiments\\Run-SONYA-LOCAL-FIXTURE-ADAPTER01-Acceptance.ps1 `\n  -OutputRoot C:\\UVLM\\run_artifacts\\sonya_local_fixture_adapter_01 `\n  -LogDir C:\\UVLM\\run_artifacts\\sonya_local_fixture_adapter_01_logs `\n  -CiMode"
+      },
+      {
+        "name": "Evidence Review Pack local adapter acceptance",
+        "command": ".\\experiments\\Run-EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER01-Acceptance.ps1 `\n  -OutputRoot C:\\UVLM\\run_artifacts\\evidence_review_pack_local_adapter_01 `\n  -LogDir C:\\UVLM\\run_artifacts\\evidence_review_pack_local_adapter_01_logs `\n  -CiMode"
+      },
+      {
+        "name": "Sonya Local Fixture Adapter multi-route acceptance",
+        "command": ".\\experiments\\Run-SONYA-LOCAL-FIXTURE-ADAPTER02-Acceptance.ps1 `\n  -OutputRoot C:\\UVLM\\run_artifacts\\sonya_local_fixture_adapter_02 `\n  -LogDir C:\\UVLM\\run_artifacts\\sonya_local_fixture_adapter_02_logs `\n  -CiMode"
+      },
+      {
         "name": "experiment suite repro pack builder",
         "command": "python -m coherence.tools.build_experiment_suite_repro_pack --registry experiments/experiment_suite_registry.json --artifacts-root artifacts --out-dir artifacts/experiment_suite_repro_pack --zip"
       }

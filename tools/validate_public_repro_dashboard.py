@@ -30,6 +30,9 @@ REQUIRED_PHASES = {
     "UNIVERSAL-COMPATIBILITY-MATRIX-00",
     "SONYA-ADAPTER-CONTRACT-REGISTRY-01",
     "SONYA-ADAPTER-SMOKE-00",
+    "SONYA-LOCAL-FIXTURE-ADAPTER-01",
+    "EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER-01",
+    "SONYA-LOCAL-FIXTURE-ADAPTER-02",
 }
 REQUIRED_BOUNDARY_PHRASES = (
     "not truth certification",
@@ -132,6 +135,30 @@ REQUIRED_BOUNDARY_PHRASES = (
     "failure receipts",
     "telemetry events",
     "provenance events",
+    "Sonya Local Fixture Adapter",
+    "deterministic local fixtures",
+    "not live adapters",
+    "not live adapter execution",
+    "not network authorization",
+    "not remote provider call",
+    "not model weight training",
+    "candidate packets",
+    "failure receipts",
+    "telemetry events",
+    "provenance events",
+    "Adapter output is not accepted as cognition directly.",
+    "Local adapter candidates become reviewable only through the Evidence Review Pack path.",
+    "Evidence Review Pack local-adapter route",
+    "not accepted evidence",
+    "not adapter authorization",
+    "Candidate packets require UCC-controlled review.",
+    "The claim map is not truth certification.",
+    "The candidate is not final answer.",
+    "Selection policy is not final answer.",
+    "Multi-adapter local fixture selection still requires Evidence Review Pack review.",
+    "Sonya Local Fixture Adapter multi-route",
+    "not adapter authorization",
+    "not model quality benchmark",
 )
 FORBIDDEN_PHRASES = (
     "deployment readiness",
@@ -139,6 +166,7 @@ FORBIDDEN_PHRASES = (
     "truth certification",
     "truth certified",
     "final answer authority",
+    "final answer selection",
     "final answer release",
     "universal ontology claim",
     "ai consciousness",
@@ -158,6 +186,7 @@ FORBIDDEN_PHRASES = (
     "model superiority proven",
     "model superiority proof",
     "hallucination reduction proof",
+    "model quality benchmark",
     "live model evaluation",
     "remote provider evaluation",
     "professional advice",
@@ -176,6 +205,9 @@ FORBIDDEN_PHRASES = (
     "publication claim authorized",
     "recursive self-improvement achieved",
     "claims accepted evidence",
+    "claims adapter authorization",
+    "adapter authorization",
+    "adapter authorized",
     "claims canon adoption",
     "claims memory write",
     "claims final answer release",
@@ -239,6 +271,22 @@ def _is_negated(text: str, index: int) -> bool:
     return any(marker in window for marker in ALLOWED_NEGATED)
 
 
+def _is_allowed_local_adapter_context(text: str, index: int) -> bool:
+    window = text[max(0, index - 48) : index]
+    return any(
+        marker in window
+        for marker in (
+            "local fixture ",
+            "local only fixture ",
+            "local only ",
+            "local ",
+            "fixture adapter ",
+            "fixture only ",
+            "deterministic local ",
+        )
+    )
+
+
 def _forbidden_hits(text: str) -> list[str]:
     hits: list[str] = []
     for phrase in FORBIDDEN_PHRASES:
@@ -248,6 +296,9 @@ def _forbidden_hits(text: str) -> list[str]:
             index = text.find(normalized_phrase, start)
             if index == -1:
                 break
+            if phrase in {"adapter execution", "adapter executed"} and _is_allowed_local_adapter_context(text, index):
+                start = index + len(normalized_phrase)
+                continue
             if not _is_negated(text, index):
                 hits.append(phrase)
                 break

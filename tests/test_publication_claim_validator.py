@@ -876,12 +876,12 @@ def test_governed_artifact_cognition_sonya_adapter_smoke_updates_are_present():
         "not model-weight training",
         "Universal Stage Pipeline → Artifact Contract Registry → Universal Compatibility Matrix → Provenance Training Ledger → Sonya Adapter Contract Registry → Sonya Adapter Smoke",
         "SONYA-ADAPTER-SMOKE-00 exercises adapter contracts only",
-        "local fixture adapter execution with deterministic transform only",
+        "connect local fixture adapter candidates into Evidence Review Pack path",
         "adapter failure receipt replay",
         "adapter telemetry event validation",
-        "consent-profile enforcement tests",
         "adapter provenance credit calibration",
-        "remote-provider placeholder remains blocked until consent/network/privacy gates exist",
+        "local-only adapter execution expansion",
+        "remote/provider placeholders remain blocked until consent/network/privacy gates exist",
     ):
         assert phrase in combined_paper
 
@@ -914,6 +914,252 @@ def test_governed_artifact_cognition_sonya_adapter_smoke_updates_are_present():
     assert "Run-SONYA-ADAPTER-SMOKE00-Acceptance.ps1" in appendix
     assert status["sonya_adapter_smoke_indexed"] is True
     assert status["not_live_adapter_execution"] is True
+
+
+def test_governed_artifact_cognition_sonya_local_fixture_adapter_updates_are_present():
+    paper = (ROOT / "PUB_GOV_ARTIFACT_COG_01.md").read_text(encoding="utf-8")
+    abstract = (ROOT / "abstract.md").read_text(encoding="utf-8")
+    artifact_table = (ROOT / "artifact_table.md").read_text(encoding="utf-8")
+    boundary_table = (ROOT / "claim_boundary_table.md").read_text(encoding="utf-8")
+    quickstart = (ROOT / "reviewer_quickstart.md").read_text(encoding="utf-8")
+    appendix = (ROOT / "reproducibility_appendix.md").read_text(encoding="utf-8")
+    status = json.loads((ROOT / "status.json").read_text(encoding="utf-8"))
+
+    combined_paper = paper + "\n" + abstract
+    for phrase in (
+        "SONYA-LOCAL-FIXTURE-ADAPTER-01",
+        "Sonya Local Fixture Adapter executes deterministic local fixtures, not live adapters.",
+        "deterministic local-only fixture adapter execution",
+        "consumes SONYA-ADAPTER-CONTRACT-REGISTRY-01 and SONYA-ADAPTER-SMOKE-00",
+        "fixture_text_model_adapter",
+        "fixture_summary_generator_adapter",
+        "local_file_transform_adapter",
+        "hash_only_evidence_adapter",
+        "remote_provider_placeholder_adapter",
+        "browser_placeholder_adapter",
+        "atlas_memory_placeholder_adapter",
+        "sophia_route_placeholder_adapter",
+        "candidate packets emitted",
+        "failure receipts visible",
+        "telemetry events visible",
+        "provenance events visible",
+        "not live adapter execution",
+        "not network authorization",
+        "no remote provider call",
+        "not model-weight training",
+        "Universal Stage Pipeline → Artifact Contract Registry → Universal Compatibility Matrix → Provenance Training Ledger → Sonya Adapter Contract Registry → Sonya Adapter Smoke → Sonya Local Fixture Adapter",
+        "review_status = accepted_as_local_fixture_adapter_execution",
+        "local_fixture_adapter_execution_performed = true",
+        "candidate_packet_count = 3",
+        "failure_receipt_count = 6",
+        "telemetry_event_count = 52",
+        "provenance_event_count = 35",
+        "connect local fixture adapter candidates into Evidence Review Pack path",
+        "adapter failure receipt replay",
+        "adapter telemetry event validation",
+        "adapter provenance credit calibration",
+        "local-only adapter execution expansion",
+        "remote/provider placeholders remain blocked until consent/network/privacy gates exist",
+    ):
+        assert phrase in combined_paper
+
+    for artifact in (
+        "sonya_local_fixture_adapter_packet.json",
+        "sonya_local_fixture_adapter_review_packet.json",
+        "sonya_local_adapter_execution_packet.json",
+        "sonya_local_adapter_candidate_packet.json",
+        "sonya_local_adapter_failure_receipt.json",
+        "sonya_local_adapter_telemetry_packet.json",
+        "sonya_local_adapter_provenance_event_packet.json",
+        "sonya_local_fixture_adapter_summary.md",
+        "sonya_local_fixture_adapter_01_acceptance_receipt.json",
+    ):
+        assert artifact in artifact_table
+
+    for boundary in (
+        "Sonya Local Fixture Adapter executes deterministic local fixtures, not live adapters.",
+        "Sonya Local Fixture Adapter is not live adapter execution.",
+        "Sonya Local Fixture Adapter is not network authorization.",
+        "Sonya Local Fixture Adapter is not remote provider call.",
+        "Sonya Local Fixture Adapter is not live model execution.",
+        "Sonya Local Fixture Adapter is not memory write.",
+        "Sonya Local Fixture Adapter is not final answer release.",
+        "Sonya Local Fixture Adapter is not deployment authority.",
+        "Sonya Local Fixture Adapter is not model-weight training.",
+        "Sonya Local Fixture Adapter is not hallucination reduction proof.",
+        "Sonya Local Fixture Adapter is not recursive self-improvement.",
+    ):
+        assert boundary in boundary_table
+
+    assert "Run-SONYA-LOCAL-FIXTURE-ADAPTER01-Acceptance.ps1" in quickstart
+    assert "Run-SONYA-LOCAL-FIXTURE-ADAPTER01-Acceptance.ps1" in appendix
+    assert status["sonya_local_fixture_adapter_indexed"] is True
+    assert status["sonya_adapter_smoke_indexed"] is True
+    assert status["sonya_adapter_contract_registry_indexed"] is True
+    assert status["not_adapter_execution"] is True
+    assert status["not_live_adapter_execution"] is True
+    assert status["not_network_authorization"] is True
+    assert status["not_model_weight_training"] is True
+    assert status["not_remote_provider_call"] is True
+    assert status["not_hallucination_reduction_proof"] is True
+    assert status["not_recursive_self_improvement"] is True
+
+
+def test_governed_artifact_cognition_evidence_review_pack_local_adapter_updates_are_present():
+    paper = (ROOT / "PUB_GOV_ARTIFACT_COG_01.md").read_text(encoding="utf-8")
+    abstract = (ROOT / "abstract.md").read_text(encoding="utf-8")
+    artifact_table = (ROOT / "artifact_table.md").read_text(encoding="utf-8")
+    boundary_table = (ROOT / "claim_boundary_table.md").read_text(encoding="utf-8")
+    quickstart = (ROOT / "reviewer_quickstart.md").read_text(encoding="utf-8")
+    appendix = (ROOT / "reproducibility_appendix.md").read_text(encoding="utf-8")
+    status = json.loads((ROOT / "status.json").read_text(encoding="utf-8"))
+
+    combined_paper = paper + "\n" + abstract
+    for phrase in (
+        "EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER-01",
+        "Local adapter candidates become reviewable only through the Evidence Review Pack path.",
+        "Adapter output is not accepted as cognition directly.",
+        "UCC control profile applied",
+        "Unsupported claims listed",
+        "Provenance events visible",
+        "consumes SONYA-LOCAL-FIXTURE-ADAPTER-01",
+        "fixture_summary_generator_adapter candidate output",
+        "adapter candidate binding packet",
+        "local-adapter claim map",
+        "does not produce accepted evidence",
+        "does not authorize adapter execution",
+    ):
+        assert phrase in combined_paper
+
+    for artifact in (
+        "evidence_review_local_adapter_route_packet.json",
+        "evidence_review_local_adapter_claim_map.json",
+        "evidence_review_local_adapter_provenance_packet.json",
+    ):
+        assert artifact in artifact_table
+
+    for boundary in (
+        "Adapter output is not accepted as cognition directly.",
+        "Local adapter candidates become reviewable only through the Evidence Review Pack path.",
+        "Evidence Review Pack local-adapter route is not accepted evidence.",
+        "Evidence Review Pack local-adapter route is not adapter authorization.",
+        "Evidence Review Pack local-adapter route is not memory write.",
+        "Evidence Review Pack local-adapter route is not final answer release.",
+        "Evidence Review Pack local-adapter route is not deployment authority.",
+        "Evidence Review Pack local-adapter route is not model-weight training.",
+        "Evidence Review Pack local-adapter route is not hallucination reduction proof.",
+        "Evidence Review Pack local-adapter route is not recursive self-improvement.",
+    ):
+        assert boundary in boundary_table
+
+    assert "Run-EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER01-Acceptance.ps1" in quickstart
+    assert "Run-EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER01-Acceptance.ps1" in appendix
+    assert status["evidence_review_pack_local_adapter_indexed"] is True
+    assert status["not_adapter_authorization"] is True
+
+
+def test_claim_validator_rejects_evidence_review_pack_local_adapter_overclaims(tmp_path):
+    forbidden_claims = (
+        "accepted evidence",
+        "adapter authorization",
+        "final answer release",
+        "claims deployment authority",
+        "claims model-weight training",
+    )
+    for claim in forbidden_claims:
+        paper_root = _copy_governed_paper(tmp_path / claim.replace(" ", "_").replace("-", "_"))
+        paper = paper_root / "PUB_GOV_ARTIFACT_COG_01.md"
+        paper.write_text(paper.read_text(encoding="utf-8") + f"\nThis paper {claim}.\n", encoding="utf-8")
+        result = validate_publication_claims(
+            paper,
+            appendix=paper_root / "reproducibility_appendix.md",
+            quickstart=paper_root / "reviewer_quickstart.md",
+            status=paper_root / "status.json",
+        )
+        assert result["passed"] is False, claim
+        assert result["forbidden_overclaims_found"], result
+
+
+def test_governed_artifact_cognition_sonya_local_fixture_adapter_multi_route_updates_are_present():
+    paper = (ROOT / "PUB_GOV_ARTIFACT_COG_01.md").read_text(encoding="utf-8")
+    abstract = (ROOT / "abstract.md").read_text(encoding="utf-8")
+    artifact_table = (ROOT / "artifact_table.md").read_text(encoding="utf-8")
+    boundary_table = (ROOT / "claim_boundary_table.md").read_text(encoding="utf-8")
+    quickstart = (ROOT / "reviewer_quickstart.md").read_text(encoding="utf-8")
+    status = json.loads((ROOT / "status.json").read_text(encoding="utf-8"))
+    combined = paper + "\n" + abstract
+    for phrase in (
+        "SONYA-LOCAL-FIXTURE-ADAPTER-02",
+        "Multi-adapter local fixture selection still requires Evidence Review Pack review.",
+        "Selection policy is not final answer.",
+        "Candidate comparison is not model quality benchmark.",
+        "Selection is not adapter authorization.",
+        "candidate-fixture-summary",
+    ):
+        assert phrase in combined
+    for artifact in (
+        "sonya_local_adapter_multi_route_packet.json",
+        "sonya_local_adapter_candidate_comparison_packet.json",
+        "sonya_local_adapter_selection_policy_packet.json",
+        "sonya_local_adapter_selected_candidate_packet.json",
+    ):
+        assert artifact in artifact_table
+    for boundary in (
+        "Selection policy is not final answer.",
+        "Multi-adapter local fixture selection still requires Evidence Review Pack review.",
+        "Sonya Local Fixture Adapter multi-route is not adapter authorization.",
+        "Sonya Local Fixture Adapter multi-route is not a model quality benchmark.",
+    ):
+        assert boundary in boundary_table
+    assert "Run-SONYA-LOCAL-FIXTURE-ADAPTER02-Acceptance.ps1" in quickstart
+    assert status["sonya_local_fixture_adapter_02_indexed"] is True
+    assert status["not_final_answer_selection"] is True
+
+
+def test_claim_validator_rejects_sonya_local_fixture_adapter_multi_route_overclaims(tmp_path):
+    forbidden_claims = (
+        "final answer selection",
+        "adapter authorization",
+        "model quality benchmark",
+        "claims deployment authority",
+        "claims model-weight training",
+    )
+    for claim in forbidden_claims:
+        paper_root = _copy_governed_paper(tmp_path / claim.replace(" ", "_").replace("-", "_"))
+        paper = paper_root / "PUB_GOV_ARTIFACT_COG_01.md"
+        paper.write_text(paper.read_text(encoding="utf-8") + f"\nThis paper {claim}.\n", encoding="utf-8")
+        result = validate_publication_claims(
+            paper,
+            appendix=paper_root / "reproducibility_appendix.md",
+            quickstart=paper_root / "reviewer_quickstart.md",
+            status=paper_root / "status.json",
+        )
+        assert result["passed"] is False, claim
+        assert result["forbidden_overclaims_found"], result
+
+
+def test_claim_validator_rejects_sonya_local_fixture_adapter_overclaims(tmp_path):
+    forbidden_claims = (
+        "live adapter execution",
+        "claims network authorization",
+        "remote provider call",
+        "remote provider calls",
+        "claims model-weight training",
+        "claims deployment authority",
+        "production readiness",
+    )
+    for claim in forbidden_claims:
+        paper_root = _copy_governed_paper(tmp_path / claim.replace(" ", "_").replace("-", "_"))
+        paper = paper_root / "PUB_GOV_ARTIFACT_COG_01.md"
+        paper.write_text(paper.read_text(encoding="utf-8") + f"\nThis paper {claim}.\n", encoding="utf-8")
+        result = validate_publication_claims(
+            paper,
+            appendix=paper_root / "reproducibility_appendix.md",
+            quickstart=paper_root / "reviewer_quickstart.md",
+            status=paper_root / "status.json",
+        )
+        assert result["passed"] is False, claim
+        assert result["forbidden_overclaims_found"], result
 
 
 def test_claim_validator_rejects_sonya_adapter_smoke_overclaims(tmp_path):

@@ -20,6 +20,9 @@
 16. Universal Architecture Scaffold
 17. Sonya Adapter Contract Registry
 18. Sonya Adapter Smoke
+19. Sonya Local Fixture Adapter
+20. Evidence Review Pack local adapter
+21. Sonya Local Fixture Adapter multi-route
 
 ## CoherenceLattice commands
 
@@ -242,6 +245,117 @@ Expected posture:
 - `promotion_blocked = true`
 
 This smoke test is not adapter execution, not live adapter execution, not network authorization, not remote provider call, not live model execution, not memory write, not final answer release, not deployment authority, not truth certification, not model weight training, not hallucination reduction proof, not recursive self-improvement, and not production readiness.
+
+## Sonya Local Fixture Adapter
+
+Sonya Local Fixture Adapter executes deterministic local fixtures, not live adapters.
+
+SONYA-LOCAL-FIXTURE-ADAPTER-01 covers accepted local-only fixture adapter execution under Sonya adapter contracts. Deterministic local fixture adapters emitted candidate packets, failure receipts, telemetry events, and provenance events. Boundary posture: not live adapter execution, not network authorization, not remote provider call, not live model execution, not memory write, not final answer release, not deployment authority, and not model weight training.
+
+```powershell
+.\experiments\Run-SONYA-LOCAL-FIXTURE-ADAPTER01-Acceptance.ps1 `
+  -OutputRoot C:\UVLM\run_artifacts\sonya_local_fixture_adapter_01 `
+  -LogDir C:\UVLM\run_artifacts\sonya_local_fixture_adapter_01_logs `
+  -CiMode
+```
+
+Expected posture:
+
+- `review_status = accepted_as_local_fixture_adapter_execution`
+- `adapter_contract_registry_bound = true`
+- `adapter_smoke_bound = true`
+- `local_fixture_adapter_execution_performed = true`
+- `no_live_adapter_execution = true`
+- `no_network_calls = true`
+- `no_remote_provider_calls = true`
+- `no_live_model_execution = true`
+- `raw_output_rejected_or_absent = true`
+- `candidate_packets_emitted = true`
+- `failure_receipts_visible = true`
+- `telemetry_events_visible = true`
+- `provenance_events_visible = true`
+- `model_weight_training_blocked = true`
+- `memory_write_blocked = true`
+- `final_answer_release_blocked = true`
+- `deployment_blocked = true`
+- `promotion_blocked = true`
+- `candidate_packet_count = 3`
+- `failure_receipt_count = 6`
+- `telemetry_event_count = 52`
+- `provenance_event_count = 35`
+- `executed_local_adapter_ids = ['fixture_text_model_adapter', 'fixture_summary_generator_adapter', 'local_file_transform_adapter']`
+- `blocked_adapter_ids = ['hash_only_evidence_adapter', 'remote_provider_placeholder_adapter', 'browser_placeholder_adapter', 'atlas_memory_placeholder_adapter', 'sophia_route_placeholder_adapter']`
+
+Reviewer caution: SONYA-LOCAL-FIXTURE-ADAPTER-01 executes deterministic local fixture adapters only. It does not execute live adapters, does not call providers, does not authorize network use, does not admit raw output as cognition, does not write memory, does not release final answers, does not train models, and does not deploy. It is not truth certification, not hallucination reduction proof, not recursive self-improvement, and not production readiness.
+
+## Evidence Review Pack local adapter
+
+Adapter output is not accepted as cognition directly.
+
+EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER-01 routes Sonya local fixture adapter candidates into Evidence Review Pack. Candidate packets require UCC-controlled review. The claim map is not truth certification. The candidate is not final answer. No memory write is authorized. No deployment is authorized. No network authorization is granted. No provider call is made. No model-weight training is authorized. No hallucination-reduction proof is authorized.
+
+```powershell
+.\experiments\Run-EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER01-Acceptance.ps1 `
+  -OutputRoot C:\UVLM\run_artifacts\evidence_review_pack_local_adapter_01 `
+  -LogDir C:\UVLM\run_artifacts\evidence_review_pack_local_adapter_01_logs `
+  -CiMode
+```
+
+Expected posture:
+
+- `review_status = accepted_as_local_adapter_candidate_review`
+- `local_adapter_candidate_bound = true`
+- `evidence_review_pack_path_used = true`
+- `ucc_control_profile_applied = true`
+- `candidate_packet_reviewed = true`
+- `raw_output_rejected_or_absent = true`
+- `unsupported_claims_listed = true`
+- `uncertainty_preserved_or_flagged = true`
+- `provenance_events_visible = true`
+- `model_weight_training_blocked = true`
+- `memory_write_blocked = true`
+- `final_answer_release_blocked = true`
+- `deployment_blocked = true`
+- `promotion_blocked = true`
+
+Reviewer caution: EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER-01 routes a local fixture adapter candidate into review only. It is not accepted evidence, not adapter authorization, not memory write, not final answer release, not deployment authority, not truth certification, not model weight training, not hallucination reduction proof, and not recursive self-improvement.
+
+## Sonya Local Fixture Adapter multi-route
+
+Selection policy is not final answer.
+
+SONYA-LOCAL-FIXTURE-ADAPTER-02 compares multiple deterministic local fixture adapter candidates, applies a selection policy, and records that the selected candidate still requires Evidence Review Pack route. Selection is not adapter authorization. Candidate comparison is not model quality benchmark. No live/network/provider/memory/final/deployment authority is granted.
+
+```powershell
+.\experiments\Run-SONYA-LOCAL-FIXTURE-ADAPTER02-Acceptance.ps1 `
+  -OutputRoot C:\UVLM\run_artifacts\sonya_local_fixture_adapter_02 `
+  -LogDir C:\UVLM\run_artifacts\sonya_local_fixture_adapter_02_logs `
+  -CiMode
+```
+
+Expected posture:
+
+- `review_status = accepted_as_multi_adapter_local_fixture_route`
+- `local_adapter_candidates_compared = true`
+- `selection_policy_applied = true`
+- `selected_candidate_requires_review = true`
+- `evidence_review_pack_path_required = true`
+- `raw_output_rejected_or_absent = true`
+- `live_adapter_execution_blocked = true`
+- `network_calls_blocked = true`
+- `remote_provider_calls_blocked = true`
+- `model_weight_training_blocked = true`
+- `memory_write_blocked = true`
+- `final_answer_release_blocked = true`
+- `deployment_blocked = true`
+- `promotion_blocked = true`
+- `candidate_count = 3`
+- `selected_candidate_id = candidate-fixture-summary`
+- `selected_candidate_source_adapter_id = fixture_summary_generator_adapter`
+- `executed_local_adapter_ids = ['fixture_text_model_adapter', 'fixture_summary_generator_adapter', 'local_file_transform_adapter']`
+- `blocked_adapter_ids = ['hash_only_evidence_adapter', 'remote_provider_placeholder_adapter', 'browser_placeholder_adapter', 'atlas_memory_placeholder_adapter', 'sophia_route_placeholder_adapter']`
+
+Reviewer caution: SONYA-LOCAL-FIXTURE-ADAPTER-02 compares deterministic local fixture adapter candidates only. Selection is not final answer, not adapter authorization, not truth certification, and not a model quality benchmark.
 
 ## Sophia commands
 
