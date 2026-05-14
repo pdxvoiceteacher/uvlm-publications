@@ -157,3 +157,14 @@
 | Sonya local adapter lineage packet is not final answer release. | SONYA-LOCAL-FIXTURE-ADAPTER-03 | methods-lineage clarity boundary. |
 | Sonya local adapter lineage packet is not deployment authority. | SONYA-LOCAL-FIXTURE-ADAPTER-03 | methods-lineage clarity boundary. |
 | Sonya local adapter lineage packet is not truth certification. | SONYA-LOCAL-FIXTURE-ADAPTER-03 | methods-lineage clarity boundary. |
+
+| Deltas are structural review descriptors, not hallucination reduction proof. | EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER-02 | local adapter revision loop boundary. |
+| Revised local adapter candidate remains candidate-only, not accepted evidence. | EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER-02 | local adapter revision loop boundary. |
+| Evidence Review Pack local-adapter revision loop is not final answer selection. | EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER-02 | local adapter revision loop boundary. |
+| Evidence Review Pack local-adapter revision loop is not model quality benchmark. | EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER-02 | local adapter revision loop boundary. |
+| Evidence Review Pack local-adapter revision loop is not model superiority proof. | EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER-02 | local adapter revision loop boundary. |
+| Evidence Review Pack local-adapter revision loop is not adapter authorization. | EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER-02 | local adapter revision loop boundary. |
+| Evidence Review Pack local-adapter revision loop is not memory write. | EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER-02 | local adapter revision loop boundary. |
+| Evidence Review Pack local-adapter revision loop is not model-weight training. | EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER-02 | local adapter revision loop boundary. |
+| Evidence Review Pack local-adapter revision loop is not deployment authority. | EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER-02 | local adapter revision loop boundary. |
+| Evidence Review Pack local-adapter revision loop is not recursive self-improvement. | EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER-02 | local adapter revision loop boundary. |

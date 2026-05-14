@@ -320,6 +320,42 @@ Expected posture:
 
 Reviewer caution: EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER-01 routes a local fixture adapter candidate into review only. It is not accepted evidence, not adapter authorization, not memory write, not final answer release, not deployment authority, not truth certification, not model weight training, not hallucination reduction proof, and not recursive self-improvement.
 
+## Evidence Review Pack local adapter revision
+
+Deltas are structural review descriptors, not hallucination reduction proof.
+
+EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER-02 consumes the revise_summary recommendation, emits a revised candidate, reruns Evidence Review Pack review, and reports candidate-level structural review deltas. The revised candidate is not final answer and not accepted evidence.
+
+```powershell
+.\experiments\Run-EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER02-Acceptance.ps1 `
+  -OutputRoot C:\UVLM\run_artifacts\evidence_review_pack_local_adapter_02 `
+  -LogDir C:\UVLM\run_artifacts\evidence_review_pack_local_adapter_02_logs `
+  -CiMode
+```
+
+Expected posture:
+
+- `review_status = accepted_as_local_adapter_revision_loop`
+- `revise_summary_recommendation_consumed = true`
+- `revised_candidate_emitted = true`
+- `evidence_review_rerun_performed = true`
+- `deltas_reported = true`
+- `unsupported_claim_delta_reported = true`
+- `uncertainty_missing_delta_reported = true`
+- `candidate_remains_not_final_answer = true`
+- `candidate_remains_not_accepted_evidence = true`
+- `model_weight_training_blocked = true`
+- `memory_write_blocked = true`
+- `final_answer_release_blocked = true`
+- `deployment_blocked = true`
+- `promotion_blocked = true`
+- `unsupported_claim_count_delta = -1`
+- `uncertainty_missing_count_delta = -1`
+- `source_reference_visibility_delta = 1`
+- `structural_visibility_improved_candidate = true`
+
+Reviewer caution: EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER-02 reports candidate-level structural review deltas only. It does not prove hallucination reduction, benchmark model quality, select a final answer, accept evidence, authorize adapters, write memory, train models, or deploy.
+
 ## Sonya Local Fixture Adapter multi-route
 
 Selection policy is not final answer.

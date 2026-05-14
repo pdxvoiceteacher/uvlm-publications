@@ -55,5 +55,7 @@
   "not_final_answer_selection": true,
   "sonya_local_fixture_adapter_03_indexed": true,
   "not_stale_identity_leakage": true,
-  "not_lineage_authority": true
+  "not_lineage_authority": true,
+  "evidence_review_pack_local_adapter_02_indexed": true,
+  "not_structural_delta_proof": true
 }

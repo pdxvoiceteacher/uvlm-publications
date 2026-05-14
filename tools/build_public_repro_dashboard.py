@@ -627,6 +627,64 @@ EVIDENCE_REVIEW_PACK_LOCAL_ADAPTER_CLAIMS_BLOCKED = [
     "not production readiness",
 ]
 
+EVIDENCE_REVIEW_PACK_LOCAL_ADAPTER_02_COMMAND = r""".\experiments\Run-EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER02-Acceptance.ps1 `
+  -OutputRoot C:\UVLM\run_artifacts\evidence_review_pack_local_adapter_02 `
+  -LogDir C:\UVLM\run_artifacts\evidence_review_pack_local_adapter_02_logs `
+  -CiMode"""
+EVIDENCE_REVIEW_PACK_LOCAL_ADAPTER_02_ARTIFACTS = [
+    "evidence_review_local_adapter_revision_packet.json",
+    "evidence_review_local_adapter_revision_plan.json",
+    "evidence_review_local_adapter_revised_candidate.json",
+    "evidence_review_local_adapter_revision_claim_map.json",
+    "evidence_review_local_adapter_revision_delta.json",
+    "evidence_review_local_adapter_revision_review_packet.json",
+    "evidence_review_local_adapter_revision_summary.md",
+    "artifact_inventory.json",
+    "run_artifact_manifest.json",
+    "export_bundle_manifest.json",
+    "export_bundle_parity_report.json",
+    "evidence_review_pack_local_adapter_02_acceptance_receipt.json",
+]
+EVIDENCE_REVIEW_PACK_LOCAL_ADAPTER_02_DASHBOARD_SUMMARY = {
+    "review_status": "accepted_as_local_adapter_revision_loop",
+    "revise_summary_recommendation_consumed": True,
+    "revised_candidate_emitted": True,
+    "evidence_review_rerun_performed": True,
+    "deltas_reported": True,
+    "unsupported_claim_delta_reported": True,
+    "uncertainty_missing_delta_reported": True,
+    "candidate_remains_not_final_answer": True,
+    "candidate_remains_not_accepted_evidence": True,
+    "model_weight_training_blocked": True,
+    "memory_write_blocked": True,
+    "final_answer_release_blocked": True,
+    "deployment_blocked": True,
+    "promotion_blocked": True,
+    "unsupported_claim_count_delta": -1,
+    "uncertainty_missing_count_delta": -1,
+    "source_reference_visibility_delta": 1,
+    "structural_visibility_improved_candidate": True,
+}
+EVIDENCE_REVIEW_PACK_LOCAL_ADAPTER_02_CLAIMS_BLOCKED = [
+    "not hallucination reduction proof",
+    "not model quality benchmark",
+    "not model superiority proof",
+    "not final answer selection",
+    "not accepted evidence",
+    "not adapter authorization",
+    "not live adapter execution",
+    "not network authorization",
+    "not remote provider call",
+    "not live model execution",
+    "not memory write",
+    "not final answer release",
+    "not deployment authority",
+    "not truth certification",
+    "not model weight training",
+    "not recursive self-improvement",
+    "not production readiness",
+]
+
 SONYA_LOCAL_FIXTURE_ADAPTER_02_COMMAND = r""".\experiments\Run-SONYA-LOCAL-FIXTURE-ADAPTER02-Acceptance.ps1 `
   -OutputRoot C:\UVLM\run_artifacts\sonya_local_fixture_adapter_02 `
   -LogDir C:\UVLM\run_artifacts\sonya_local_fixture_adapter_02_logs `
@@ -893,6 +951,32 @@ ACCEPTED_PHASES = [
         "claim_allowed": "EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER-01 demonstrates that a Sonya local fixture adapter candidate can be bound to review, governed by a UCC control profile, evaluated through claim/evidence mapping, and recorded through provenance events without accepting raw adapter output as cognition. Adapter output is not accepted as cognition directly.",
         "claims_blocked": EVIDENCE_REVIEW_PACK_LOCAL_ADAPTER_CLAIMS_BLOCKED,
         "reviewer_caution": "EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER-01 routes a local fixture adapter candidate into review only. It does not accept adapter output as cognition directly, does not authorize adapter execution, does not write memory, does not release final answers, does not deploy, does not train model weights, and does not prove hallucination reduction.",
+        "publication_status": "dashboard_indexed",
+    },
+
+    {
+        "phase_id": "EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER-02",
+        "repo": "pdxvoiceteacher/CoherenceLattice",
+        "status": "accepted",
+        "evidence_type": "local_adapter_revision_loop",
+        "product_posture": "candidate_revision_loop_with_structural_review_deltas",
+        "primary_artifacts": EVIDENCE_REVIEW_PACK_LOCAL_ADAPTER_02_ARTIFACTS,
+        "dashboard_summary": EVIDENCE_REVIEW_PACK_LOCAL_ADAPTER_02_DASHBOARD_SUMMARY,
+        "prerequisite_phases": [
+            "EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER-01",
+            "SONYA-LOCAL-FIXTURE-ADAPTER-02",
+            "SONYA-LOCAL-FIXTURE-ADAPTER-03",
+            "SONYA-LOCAL-FIXTURE-ADAPTER-01",
+            "SONYA-ADAPTER-SMOKE-00",
+            "SONYA-ADAPTER-CONTRACT-REGISTRY-01",
+            "PROVENANCE-TRAINING-LEDGER-00",
+            "UCC-CONTROL-PROFILE-SELECTOR-00",
+            "EVIDENCE-REVIEW-PACK-00",
+        ],
+        "reproduction_command_summary": EVIDENCE_REVIEW_PACK_LOCAL_ADAPTER_02_COMMAND,
+        "claim_allowed": "EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER-02 demonstrates a local-only candidate revision loop that consumes a revise_summary recommendation, emits a revised candidate, reruns Evidence Review Pack review, and reports candidate-level deltas while preserving non-authority boundaries.",
+        "claims_blocked": EVIDENCE_REVIEW_PACK_LOCAL_ADAPTER_02_CLAIMS_BLOCKED,
+        "reviewer_caution": "EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER-02 reports candidate-level structural review deltas only. It does not prove hallucination reduction, benchmark model quality, select a final answer, accept evidence, authorize adapters, write memory, train models, or deploy.",
         "publication_status": "dashboard_indexed",
     },
     {
@@ -1412,6 +1496,16 @@ BOUNDARIES = [
     "Sonya local adapter lineage packet is not final answer release.",
     "Sonya local adapter lineage packet is not deployment authority.",
     "Sonya local adapter lineage packet is not truth certification.",
+    "Deltas are structural review descriptors, not hallucination reduction proof.",
+    "Revised local adapter candidate remains candidate-only, not accepted evidence.",
+    "Evidence Review Pack local-adapter revision loop is not final answer selection.",
+    "Evidence Review Pack local-adapter revision loop is not model quality benchmark.",
+    "Evidence Review Pack local-adapter revision loop is not model superiority proof.",
+    "Evidence Review Pack local-adapter revision loop is not adapter authorization.",
+    "Evidence Review Pack local-adapter revision loop is not memory write.",
+    "Evidence Review Pack local-adapter revision loop is not model-weight training.",
+    "Evidence Review Pack local-adapter revision loop is not deployment authority.",
+    "Evidence Review Pack local-adapter revision loop is not recursive self-improvement.",
 ]
 GLOBAL_NON_CLAIMS = [
     "not truth certification",
@@ -1503,6 +1597,7 @@ def dashboard_payload() -> dict[str, Any]:
             "evidence_review_local_adapter_route_packet.json",
             "sonya_local_adapter_multi_route_packet.json",
             "sonya_local_adapter_lineage_packet.json",
+            "evidence_review_local_adapter_revision_packet.json",
         ],
         "publication_drafts": [
             "papers/governed_artifact_cognition/PUB_GOV_ARTIFACT_COG_01.md",
@@ -1553,6 +1648,7 @@ def reproducibility_index() -> dict[str, Any]:
                 {"name": "Sonya Adapter Smoke acceptance", "command": SONYA_ADAPTER_SMOKE_COMMAND},
                 {"name": "Sonya Local Fixture Adapter acceptance", "command": SONYA_LOCAL_FIXTURE_ADAPTER_COMMAND},
                 {"name": "Evidence Review Pack local adapter acceptance", "command": EVIDENCE_REVIEW_PACK_LOCAL_ADAPTER_COMMAND},
+                {"name": "Evidence Review Pack local adapter revision acceptance", "command": EVIDENCE_REVIEW_PACK_LOCAL_ADAPTER_02_COMMAND},
                 {"name": "Sonya Local Fixture Adapter multi-route acceptance", "command": SONYA_LOCAL_FIXTURE_ADAPTER_02_COMMAND},
                 {"name": "Sonya Local Fixture Adapter lineage clarity acceptance", "command": SONYA_LOCAL_FIXTURE_ADAPTER_03_COMMAND},
                 {"name": "experiment suite repro pack builder", "command": "python -m coherence.tools.build_experiment_suite_repro_pack --registry experiments/experiment_suite_registry.json --artifacts-root artifacts --out-dir artifacts/experiment_suite_repro_pack --zip"},
@@ -1597,6 +1693,7 @@ def artifact_index() -> dict[str, Any]:
             "SONYA-ADAPTER-SMOKE-00": SONYA_ADAPTER_SMOKE_ARTIFACTS,
             "SONYA-LOCAL-FIXTURE-ADAPTER-01": SONYA_LOCAL_FIXTURE_ADAPTER_ARTIFACTS,
             "EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER-01": EVIDENCE_REVIEW_PACK_LOCAL_ADAPTER_ARTIFACTS,
+            "EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER-02": EVIDENCE_REVIEW_PACK_LOCAL_ADAPTER_02_ARTIFACTS,
             "SONYA-LOCAL-FIXTURE-ADAPTER-02": SONYA_LOCAL_FIXTURE_ADAPTER_02_ARTIFACTS,
             "SONYA-LOCAL-FIXTURE-ADAPTER-03": SONYA_LOCAL_FIXTURE_ADAPTER_03_ARTIFACTS,
             "publications": ["PUB_GOV_ARTIFACT_COG_01.md", "PUB_WAVE_ROSETTA_01.md", "reviewer quickstarts", "status.json files"],
@@ -1620,6 +1717,9 @@ def status_payload() -> dict[str, Any]:
         "latest_sonya_adapter_contract_registry": "SONYA-ADAPTER-CONTRACT-REGISTRY-01",
         "latest_sonya_local_fixture_adapter": "SONYA-LOCAL-FIXTURE-ADAPTER-01",
         "latest_evidence_review_pack_local_adapter": "EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER-01",
+        "latest_evidence_review_pack_local_adapter_revision": "EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER-02",
+        "evidence_review_pack_local_adapter_02_indexed": True,
+        "not_structural_delta_proof": True,
         "latest_sonya_local_fixture_adapter_multi_route": "SONYA-LOCAL-FIXTURE-ADAPTER-02",
         "latest_sonya_local_fixture_adapter_lineage_clarity": "SONYA-LOCAL-FIXTURE-ADAPTER-03",
         "sonya_local_fixture_adapter_03_indexed": True,
@@ -1643,7 +1743,7 @@ def docs() -> dict[str, str]:
     return {
         "README.md": "# Experiment Suite Docs\n\nPublic reviewer documentation for the claim-bounded reproducibility dashboard.\n",
         "assets/README.md": "# Assets\n\nOptional static assets for the public reproducibility dashboard.\n",
-        "index.md": f"# Public Experiment Suite Dashboard\n\nThis dashboard presents accepted evidence for reviewer orientation. It is not truth certification, not deployment authority, not final answer release, local fixture only, and requires external peer review.\n\n## Accepted evidence\n\n| Phase | Repo | Status | What this supports | Reviewer caution |\n| --- | --- | --- | --- | --- |\n{phase_rows}\n\n## Reviewer path\n\nStart with claim boundaries, then read the governed artifact cognition paper, WAVE Rosetta paper, SONYA-AEGIS-SMOKE-02, WAVE family, UNI-02D Sonya gate, and RETRO-LANE-00, Public Utility Alpha, Raw Baseline Comparison, Evidence Review Pack, RW-COMP-01, RW-COMP-02, Retrosynthesis Sandbox Cycle, Evidence Review Pack second-pass, RW-COMP-03, Universal Architecture Scaffold, Sonya Adapter Contract Registry, Sonya Adapter Smoke, Sonya Local Fixture Adapter, and Evidence Review Pack local adapter, Sonya Local Fixture Adapter multi-route, and Sonya Local Fixture Adapter lineage clarity pages.\n\n## What this proves\n\nIt proves only that accepted local fixture artifacts and draft publication materials are organized for review.\n\n## What this does not prove\n\nNo oracle posture, no deployment posture, no final-answer posture, no AI consciousness claim, and no universal ontology claim.\n\n## Phase pages\n\n- [SONYA-AEGIS-SMOKE-02](sonya-aegis-smoke-02.md)\n- [WAVE Gold-Physics](wave-gold-physics.md)\n- [UNI-02D Sonya gate](uni02d-sonya-gate.md)\n- [RETRO-LANE-00](retro-lane-00.md)\n- [Public Utility Alpha](public-utility-alpha.md)\n- [Raw Baseline Comparison](raw-baseline-comparison.md)\n- [Evidence Review Pack](evidence-review-pack.md)\n- [RW-COMP-01](rw-comp-01.md)\n- [RW-COMP-02](rw-comp-02.md)\n- [Retrosynthesis Sandbox Cycle](retrosynthesis-sandbox-cycle.md)\n- [Evidence Review Pack second pass](evidence-review-pack-second-pass.md)\n- [RW-COMP-03](rw-comp-03.md)\n- [Universal Architecture Scaffold](universal-architecture.md)\n- [Sonya Adapter Contract Registry](sonya-adapter-contract-registry.md)\n- [Sonya Adapter Smoke](sonya-adapter-smoke.md)\n- [Sonya Local Fixture Adapter](sonya-local-fixture-adapter.md)\n- [Evidence Review Pack local adapter](evidence-review-pack-local-adapter.md)\n- [Sonya Local Fixture Adapter multi-route](sonya-local-fixture-adapter-multi-route.md)\n- [Sonya Local Fixture Adapter lineage clarity](sonya-local-fixture-adapter-lineage.md)\n- [Governed artifact cognition paper](governed-artifact-cognition-paper.md)\n- [Waveform Rosetta paper](waveform-rosetta-paper.md)\n",
+        "index.md": f"# Public Experiment Suite Dashboard\n\nThis dashboard presents accepted evidence for reviewer orientation. It is not truth certification, not deployment authority, not final answer release, local fixture only, and requires external peer review.\n\n## Accepted evidence\n\n| Phase | Repo | Status | What this supports | Reviewer caution |\n| --- | --- | --- | --- | --- |\n{phase_rows}\n\n## Reviewer path\n\nStart with claim boundaries, then read the governed artifact cognition paper, WAVE Rosetta paper, SONYA-AEGIS-SMOKE-02, WAVE family, UNI-02D Sonya gate, and RETRO-LANE-00, Public Utility Alpha, Raw Baseline Comparison, Evidence Review Pack, RW-COMP-01, RW-COMP-02, Retrosynthesis Sandbox Cycle, Evidence Review Pack second-pass, RW-COMP-03, Universal Architecture Scaffold, Sonya Adapter Contract Registry, Sonya Adapter Smoke, Sonya Local Fixture Adapter, and Evidence Review Pack local adapter, Evidence Review Pack local adapter revision, Sonya Local Fixture Adapter multi-route, and Sonya Local Fixture Adapter lineage clarity pages.\n\n## What this proves\n\nIt proves only that accepted local fixture artifacts and draft publication materials are organized for review.\n\n## What this does not prove\n\nNo oracle posture, no deployment posture, no final-answer posture, no AI consciousness claim, and no universal ontology claim.\n\n## Phase pages\n\n- [SONYA-AEGIS-SMOKE-02](sonya-aegis-smoke-02.md)\n- [WAVE Gold-Physics](wave-gold-physics.md)\n- [UNI-02D Sonya gate](uni02d-sonya-gate.md)\n- [RETRO-LANE-00](retro-lane-00.md)\n- [Public Utility Alpha](public-utility-alpha.md)\n- [Raw Baseline Comparison](raw-baseline-comparison.md)\n- [Evidence Review Pack](evidence-review-pack.md)\n- [RW-COMP-01](rw-comp-01.md)\n- [RW-COMP-02](rw-comp-02.md)\n- [Retrosynthesis Sandbox Cycle](retrosynthesis-sandbox-cycle.md)\n- [Evidence Review Pack second pass](evidence-review-pack-second-pass.md)\n- [RW-COMP-03](rw-comp-03.md)\n- [Universal Architecture Scaffold](universal-architecture.md)\n- [Sonya Adapter Contract Registry](sonya-adapter-contract-registry.md)\n- [Sonya Adapter Smoke](sonya-adapter-smoke.md)\n- [Sonya Local Fixture Adapter](sonya-local-fixture-adapter.md)\n- [Evidence Review Pack local adapter](evidence-review-pack-local-adapter.md)\n- [Evidence Review Pack local adapter revision](evidence-review-pack-local-adapter-revision.md)\n- [Sonya Local Fixture Adapter multi-route](sonya-local-fixture-adapter-multi-route.md)\n- [Sonya Local Fixture Adapter lineage clarity](sonya-local-fixture-adapter-lineage.md)\n- [Governed artifact cognition paper](governed-artifact-cognition-paper.md)\n- [Waveform Rosetta paper](waveform-rosetta-paper.md)\n",
         "claim-boundaries.md": f"# Claim Boundaries\n\n{boundaries}\n\nNo oracle posture. No deployment posture. No final-answer posture. No AI consciousness claim. No universal ontology claim.\n",
         "sonya-aegis-smoke-02.md": f"""# SONYA-AEGIS-SMOKE-02
 
@@ -2081,6 +2181,37 @@ EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER-01 demonstrates that a Sonya local fixture ad
 
 Reviewer caution: EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER-01 routes a local fixture adapter candidate into review only. It does not accept adapter output as cognition directly, does not authorize adapter execution, does not write memory, does not release final answers, does not deploy, does not train model weights, and does not prove hallucination reduction.
 """,
+
+        "evidence-review-pack-local-adapter-revision.md": f"""# Evidence Review Pack local adapter revision
+
+Required phrase: Deltas are structural review descriptors, not hallucination reduction proof.
+
+Purpose: describe EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER-02 as an accepted local-only candidate revision loop. The revise_summary recommendation was consumed. A revised candidate was emitted. Evidence Review Pack rerun occurred. Deltas were reported. Deltas are structural review descriptors, not hallucination reduction proof. The revised candidate is not final answer and not accepted evidence.
+
+## Allowed claim
+
+EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER-02 demonstrates a local-only candidate revision loop that consumes a revise_summary recommendation, emits a revised candidate, reruns Evidence Review Pack review, and reports candidate-level deltas while preserving non-authority boundaries.
+
+## Reproduction command
+
+```powershell
+{EVIDENCE_REVIEW_PACK_LOCAL_ADAPTER_02_COMMAND}
+```
+
+## Primary artifacts
+
+{chr(10).join(f"- `{artifact}`" for artifact in EVIDENCE_REVIEW_PACK_LOCAL_ADAPTER_02_ARTIFACTS)}
+
+## Dashboard posture
+
+{chr(10).join(f"- `{key} = {str(value).lower()}`" for key, value in EVIDENCE_REVIEW_PACK_LOCAL_ADAPTER_02_DASHBOARD_SUMMARY.items())}
+
+## Blocked claims
+
+{chr(10).join(f"- {claim}" for claim in EVIDENCE_REVIEW_PACK_LOCAL_ADAPTER_02_CLAIMS_BLOCKED)}
+
+Reviewer caution: EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER-02 reports candidate-level structural review deltas only. It does not prove hallucination reduction, benchmark model quality, select a final answer, accept evidence, authorize adapters, write memory, train models, or deploy.
+""",
         "sonya-local-fixture-adapter-multi-route.md": f"""# Sonya Local Fixture Adapter multi-route
 
 Required phrase: Selection policy is not final answer.
@@ -2401,6 +2532,22 @@ Expected posture:
 {chr(10).join(f"- `{key} = {str(value).lower()}`" for key, value in EVIDENCE_REVIEW_PACK_LOCAL_ADAPTER_DASHBOARD_SUMMARY.items())}
 
 Reviewer caution: EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER-01 routes a local fixture adapter candidate into review only. It is not accepted evidence, not adapter authorization, not memory write, not final answer release, not deployment authority, not truth certification, not model weight training, not hallucination reduction proof, and not recursive self-improvement.
+
+## Evidence Review Pack local adapter revision
+
+Deltas are structural review descriptors, not hallucination reduction proof.
+
+EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER-02 consumes the revise_summary recommendation, emits a revised candidate, reruns Evidence Review Pack review, and reports candidate-level structural review deltas. The revised candidate is not final answer and not accepted evidence.
+
+```powershell
+{EVIDENCE_REVIEW_PACK_LOCAL_ADAPTER_02_COMMAND}
+```
+
+Expected posture:
+
+{chr(10).join(f"- `{key} = {str(value).lower()}`" for key, value in EVIDENCE_REVIEW_PACK_LOCAL_ADAPTER_02_DASHBOARD_SUMMARY.items())}
+
+Reviewer caution: EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER-02 reports candidate-level structural review deltas only. It does not prove hallucination reduction, benchmark model quality, select a final answer, accept evidence, authorize adapters, write memory, train models, or deploy.
 
 ## Sonya Local Fixture Adapter multi-route
 

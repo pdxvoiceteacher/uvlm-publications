@@ -34,6 +34,7 @@ REQUIRED_PHASES = {
     "EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER-01",
     "SONYA-LOCAL-FIXTURE-ADAPTER-02",
     "SONYA-LOCAL-FIXTURE-ADAPTER-03",
+    "EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER-02",
 }
 REQUIRED_BOUNDARY_PHRASES = (
     "not truth certification",
@@ -172,6 +173,16 @@ REQUIRED_BOUNDARY_PHRASES = (
     "Sonya local adapter lineage packet is not final answer release.",
     "Sonya local adapter lineage packet is not deployment authority.",
     "Sonya local adapter lineage packet is not truth certification.",
+    "Deltas are structural review descriptors, not hallucination reduction proof.",
+    "Revised local adapter candidate remains candidate-only, not accepted evidence.",
+    "Evidence Review Pack local-adapter revision loop is not final answer selection.",
+    "Evidence Review Pack local-adapter revision loop is not model quality benchmark.",
+    "Evidence Review Pack local-adapter revision loop is not model superiority proof.",
+    "Evidence Review Pack local-adapter revision loop is not adapter authorization.",
+    "Evidence Review Pack local-adapter revision loop is not memory write.",
+    "Evidence Review Pack local-adapter revision loop is not model-weight training.",
+    "Evidence Review Pack local-adapter revision loop is not deployment authority.",
+    "Evidence Review Pack local-adapter revision loop is not recursive self-improvement.",
 )
 FORBIDDEN_PHRASES = (
     "deployment readiness",
@@ -253,6 +264,8 @@ FORBIDDEN_PHRASES = (
     "lineage authority",
     "lineage grants authority",
     "stale identity proof of execution",
+    "hallucination reduction proof",
+    "model quality benchmark",
 )
 ALLOWED_NEGATED = (
     "not ",

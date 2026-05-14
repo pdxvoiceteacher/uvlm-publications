@@ -1269,3 +1269,69 @@ def test_claim_validator_rejects_sonya_local_fixture_adapter_lineage_overclaims(
         )
         assert result["passed"] is False, claim
         assert result["forbidden_overclaims_found"], result
+
+
+def test_governed_artifact_cognition_evidence_review_pack_local_adapter_revision_updates_are_present():
+    paper = (ROOT / "PUB_GOV_ARTIFACT_COG_01.md").read_text(encoding="utf-8")
+    abstract = (ROOT / "abstract.md").read_text(encoding="utf-8")
+    artifact_table = (ROOT / "artifact_table.md").read_text(encoding="utf-8")
+    boundary_table = (ROOT / "claim_boundary_table.md").read_text(encoding="utf-8")
+    quickstart = (ROOT / "reviewer_quickstart.md").read_text(encoding="utf-8")
+    status = json.loads((ROOT / "status.json").read_text(encoding="utf-8"))
+    combined = paper + "\n" + abstract
+    for phrase in (
+        "EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER-02",
+        "The revised local adapter candidate remains candidate-only, not accepted evidence.",
+        "Deltas are structural review descriptors",
+        "not hallucination-reduction proof",
+        "not model quality benchmark",
+        "unsupported_claim_count_delta = -1",
+        "uncertainty_missing_count_delta = -1",
+        "source_reference_visibility_delta = 1",
+        "structural_visibility_improved_candidate = true",
+    ):
+        assert phrase in combined
+    for artifact in (
+        "evidence_review_local_adapter_revision_packet.json",
+        "evidence_review_local_adapter_revision_plan.json",
+        "evidence_review_local_adapter_revised_candidate.json",
+        "evidence_review_local_adapter_revision_claim_map.json",
+        "evidence_review_local_adapter_revision_delta.json",
+        "evidence_review_local_adapter_revision_review_packet.json",
+        "evidence_review_local_adapter_revision_summary.md",
+        "evidence_review_pack_local_adapter_02_acceptance_receipt.json",
+    ):
+        assert artifact in artifact_table
+    for boundary in (
+        "Deltas are structural review descriptors, not hallucination reduction proof.",
+        "Revised local adapter candidate remains candidate-only, not accepted evidence.",
+        "Evidence Review Pack local-adapter revision loop is not final answer selection.",
+        "Evidence Review Pack local-adapter revision loop is not model quality benchmark.",
+        "Evidence Review Pack local-adapter revision loop is not model superiority proof.",
+        "Evidence Review Pack local-adapter revision loop is not adapter authorization.",
+    ):
+        assert boundary in boundary_table
+    assert "Run-EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER02-Acceptance.ps1" in quickstart
+    assert status["evidence_review_pack_local_adapter_02_indexed"] is True
+    assert status["not_structural_delta_proof"] is True
+
+
+def test_claim_validator_rejects_evidence_review_pack_local_adapter_revision_overclaims(tmp_path):
+    forbidden_claims = (
+        "claims hallucination reduction proof",
+        "claims model quality benchmark",
+        "claims final answer selection",
+        "claims accepted evidence",
+    )
+    for claim in forbidden_claims:
+        paper_root = _copy_governed_paper(tmp_path / claim.replace(" ", "_").replace("-", "_"))
+        paper = paper_root / "PUB_GOV_ARTIFACT_COG_01.md"
+        paper.write_text(paper.read_text(encoding="utf-8") + f"\nThis paper {claim}.\n", encoding="utf-8")
+        result = validate_publication_claims(
+            paper,
+            appendix=paper_root / "reproducibility_appendix.md",
+            quickstart=paper_root / "reviewer_quickstart.md",
+            status=paper_root / "status.json",
+        )
+        assert result["passed"] is False, claim
+        assert result["forbidden_overclaims_found"], result
