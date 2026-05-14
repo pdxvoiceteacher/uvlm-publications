@@ -38,6 +38,7 @@ REQUIRED_DOCS = {
     "rw-comp-03.md",
     "universal-architecture.md",
     "sonya-adapter-contract-registry.md",
+    "sonya-adapter-smoke.md",
 }
 REQUIRED_PHASES = {
     "EXP-SUITE-REGISTRY-01",
@@ -61,6 +62,7 @@ REQUIRED_PHASES = {
     "ARTIFACT-CONTRACT-REGISTRY-01",
     "UNIVERSAL-COMPATIBILITY-MATRIX-00",
     "SONYA-ADAPTER-CONTRACT-REGISTRY-01",
+    "SONYA-ADAPTER-SMOKE-00",
 }
 
 REQUIRED_COMMAND_FRAGMENTS = (
@@ -81,6 +83,7 @@ REQUIRED_COMMAND_FRAGMENTS = (
     "test_artifact_contract_registry.py",
     "Run-UNIVERSAL-COMPATIBILITY-MATRIX00-Acceptance.ps1",
     "Run-SONYA-ADAPTER-CONTRACT-REGISTRY01-Acceptance.ps1",
+    "Run-SONYA-ADAPTER-SMOKE00-Acceptance.ps1",
 )
 STALE_COMMAND_FRAGMENTS = (
     "tests/test_sonya_aegis_smoke_02.py",
@@ -126,7 +129,7 @@ def test_dashboard_contains_all_accepted_phases(tmp_path):
     dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text())
     phase_ids = {entry["phase_id"] for entry in dashboard["accepted_phases"]}
     assert phase_ids == REQUIRED_PHASES
-    assert dashboard["accepted_phase_count"] == 21
+    assert dashboard["accepted_phase_count"] == 22
 
 
 def test_dashboard_command_summaries_use_accepted_harnesses(tmp_path):
@@ -611,6 +614,97 @@ def test_sonya_adapter_contract_registry_indexes_and_docs_are_generated(tmp_path
     assert "not adapter execution" in boundary_text
     assert "not network authorization" in boundary_text
 
+
+
+def test_sonya_adapter_smoke_indexes_docs_and_boundaries_are_generated(tmp_path):
+    out_dir, docs_dir = run_builder(tmp_path)
+    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text())
+    reproducibility = json.loads((out_dir / "reproducibility_index.json").read_text())
+    artifact_index = json.loads((out_dir / "artifact_index.json").read_text())
+    quickstart = (docs_dir / "reviewer-quickstart.md").read_text()
+    boundaries = (docs_dir / "claim-boundaries.md").read_text()
+    index = (docs_dir / "index.md").read_text()
+    page = docs_dir / "sonya-adapter-smoke.md"
+
+    phase = next(
+        entry
+        for entry in dashboard["accepted_phases"]
+        if entry["phase_id"] == "SONYA-ADAPTER-SMOKE-00"
+    )
+    assert phase["status"] == "accepted"
+    assert phase["evidence_type"] == "fixture_adapter_contract_smoke"
+    assert phase["product_posture"] == "adapter_contract_smoke_without_live_execution"
+    assert phase["dashboard_summary"]["review_status"] == "accepted_as_fixture_adapter_contract_smoke"
+    assert phase["dashboard_summary"]["adapter_contract_registry_bound"] is True
+    assert phase["dashboard_summary"]["no_live_adapter_execution"] is True
+    assert phase["dashboard_summary"]["no_network_calls"] is True
+    assert phase["dashboard_summary"]["no_remote_provider_calls"] is True
+    assert phase["dashboard_summary"]["raw_output_rejected_or_absent"] is True
+    assert phase["dashboard_summary"]["candidate_packet_emitted_for_fixture_model"] is True
+    assert "Sonya Adapter Smoke exercises contracts, not live adapters." in phase["claim_allowed"]
+    assert "SONYA-ADAPTER-CONTRACT-REGISTRY-01" in phase["prerequisite_phases"]
+
+    commands = json.dumps(reproducibility)
+    assert "Run-SONYA-ADAPTER-SMOKE00-Acceptance.ps1" in commands
+    assert "SONYA-ADAPTER-SMOKE-00" in artifact_index["phases"]
+    for artifact in (
+        "sonya_adapter_smoke_packet.json",
+        "sonya_adapter_smoke_review_packet.json",
+        "sonya_adapter_selection_packet.json",
+        "sonya_adapter_consent_check_packet.json",
+        "sonya_adapter_capability_check_packet.json",
+        "sonya_adapter_failure_receipt.json",
+        "sonya_adapter_telemetry_packet.json",
+        "sonya_adapter_provenance_event_packet.json",
+        "sonya_adapter_fixture_candidate_packet.json",
+        "sonya_adapter_smoke_00_acceptance_receipt.json",
+    ):
+        assert artifact in artifact_index["phases"]["SONYA-ADAPTER-SMOKE-00"]
+
+    assert page.exists()
+    page_text = page.read_text()
+    assert "# Sonya Adapter Smoke" in page_text
+    assert "Sonya Adapter Smoke exercises contracts, not live adapters." in page_text
+    assert "raw output rejected" in page_text
+    assert "candidate packet" in page_text
+    assert "failure receipts" in page_text
+    assert "telemetry events" in page_text
+    assert "provenance events" in page_text
+    assert "Sonya Adapter Smoke" in quickstart
+    assert "sonya-adapter-smoke.md" in index
+    assert "exercises contracts, not live adapters" in boundaries
+    assert "not live adapter execution" in boundaries
+    assert "not network authorization" in boundaries
+    assert "failure receipts" in boundaries
+    assert "telemetry events" in boundaries
+    assert "provenance events" in boundaries
+
+
+def test_validator_required_phases_include_sonya_adapter_smoke():
+    assert "SONYA-ADAPTER-SMOKE-00" in VALIDATOR_REQUIRED_PHASES
+
+
+def test_validator_fails_if_sonya_adapter_smoke_makes_forbidden_claims(tmp_path):
+    forbidden_claims = (
+        "adapter execution",
+        "adapter executed",
+        "network authorization",
+        "network authorized",
+        "remote provider calls",
+        "remote provider called",
+        "model weight training",
+        "model weights trained",
+        "production readiness",
+        "production ready",
+    )
+    for claim in forbidden_claims:
+        out_dir, docs_dir = run_builder(tmp_path / claim.replace(" ", "_"))
+        page = docs_dir / "sonya-adapter-smoke.md"
+        page.write_text(page.read_text() + f"\nSonya Adapter Smoke claims {claim}.\n")
+        result = validate_dashboard(out_dir / "experiment_suite_dashboard.json", docs_dir)
+        assert result["passed"] is False, claim
+        forbidden_found = [found.lower() for found in result["forbidden_claims_found"]]
+        assert claim.lower() in forbidden_found, result
 
 def test_validator_fails_if_sonya_adapter_contract_registry_makes_forbidden_claims(tmp_path):
     forbidden_claims = (

@@ -18,6 +18,8 @@ Universal Architecture Scaffold update: The brain runs cognition stages; experim
 
 Sonya Adapter Contract Registry update: Adapter capability is not adapter authorization. SONYA-ADAPTER-CONTRACT-REGISTRY-01 is accepted as a fixture-only versioned adapter-contract scaffold. Adapter contracts declare capabilities, consent profiles, failure policies, telemetry requirements, and provenance-training policies. All adapters remain disabled or blocked. No live adapter execution occurred. No network calls occurred. Raw output is forbidden. Candidate packets are required. Failure receipts are required. Adapter events may support mechanism-level provenance training only when lineage, consent, and control receipts exist. Adapter events may not train model weights. This is not adapter execution, not live model execution, not remote provider call, not network authorization, not memory write, not final-answer release, not deployment authority, not truth certification, not model-weight training, not hallucination reduction proof, not recursive self-improvement, and not production readiness.
 
+Sonya Adapter Smoke update: Sonya Adapter Smoke exercises contracts, not live adapters. SONYA-ADAPTER-SMOKE-00 is accepted as a fixture-only adapter-contract smoke test and consumes SONYA-ADAPTER-CONTRACT-REGISTRY-01. It exercises adapter selection, consent checks, capability checks, Sonya gateway requirement, raw-output rejection, candidate-packet requirement, failure receipts, telemetry events, and provenance events. It emits fixture candidate artifacts only. It is not adapter execution, not live adapter execution, not network authorization, no remote provider call, not live model execution, not memory write, not final-answer release, not deployment authority, not model-weight training, not hallucination reduction proof, not recursive self-improvement, and not production readiness.
+
 The claims in this draft are bounded to auditability, route disposition, artifact traceability, and non-authority guardrails. The evidence is local fixture only and requires external peer review.
 
 ## 1. Introduction
@@ -79,7 +81,7 @@ sonya_control_schema
 ```
 
 
-The accepted phase chain can also be read as Universal Evidence Ingress → UCC Control Profile Selector → Evidence Review Pack → Retrosynthesis Sandbox Cycle → Evidence Review Pack second-pass candidate → RW-COMP comparison scaffolds → Universal Stage Pipeline → Artifact Contract Registry → Universal Compatibility Matrix → Provenance Training Ledger → Sonya Adapter Contract Registry. Evidence Review Pack v0.1 produces first-pass review receipts. Retrosynthesis Sandbox Cycle emits candidate repair artifacts. Evidence Review Pack second pass emits candidate revisions only. RW-COMP-01 was a single-fixture comparison. RW-COMP-02 was a deterministic multi-fixture battery. RW-COMP-03 adds held-out fixture IDs, blind labels, simulated scoring, and statistics planning while remaining fixture-only and simulated-score-only. No artifact in this chain authorizes truth, canon, memory, final answer, deployment, Publisher finalization, Omega detection, or publication claims.
+The accepted phase chain can also be read as Universal Evidence Ingress → UCC Control Profile Selector → Evidence Review Pack → Retrosynthesis Sandbox Cycle → Evidence Review Pack second-pass candidate → RW-COMP comparison scaffolds → Universal Stage Pipeline → Artifact Contract Registry → Universal Compatibility Matrix → Provenance Training Ledger → Sonya Adapter Contract Registry → Sonya Adapter Smoke. Evidence Review Pack v0.1 produces first-pass review receipts. Retrosynthesis Sandbox Cycle emits candidate repair artifacts. Evidence Review Pack second pass emits candidate revisions only. RW-COMP-01 was a single-fixture comparison. RW-COMP-02 was a deterministic multi-fixture battery. RW-COMP-03 adds held-out fixture IDs, blind labels, simulated scoring, and statistics planning while remaining fixture-only and simulated-score-only. No artifact in this chain authorizes truth, canon, memory, final answer, deployment, Publisher finalization, Omega detection, or publication claims.
 
 The Sonya Gateway is required for admissible model candidate packets under SONYA_REQUIRED. Raw model output is not admissible cognition. A candidate packet is not answer. A runtime bypass block is successful governance evidence, not a model result. The model-braid layer is observational telemetry only and not answer selection.
 
@@ -106,6 +108,12 @@ Universal Stage Pipeline defines reusable cognition-stage contracts. Artifact Co
 Adapter capability is not adapter authorization. SONYA-ADAPTER-CONTRACT-REGISTRY-01 adds versioned Sonya adapter contracts after the Universal Stage Pipeline, Artifact Contract Registry, Universal Compatibility Matrix, and Provenance Training Ledger. Adapter contracts declare capabilities, consent profiles, failure policies, telemetry requirements, and provenance-training policies, but all adapters remain disabled or blocked. No live adapter execution occurred. No network calls occurred. Raw output is forbidden. Candidate packets are required. Failure receipts are required. Adapter events may support mechanism-level provenance training only when lineage, consent, and control receipts exist; adapter events may not train model weights.
 
 The adapter-contract layer keeps future adapter smoke and live-provider work behind explicit consent, network, privacy, failure, telemetry, and provenance-training gates. It is not adapter execution, not live model execution, not remote provider call, not network authorization, not memory write, not final-answer release, not deployment authority, not truth certification, not model-weight training, not hallucination reduction proof, not recursive self-improvement, and not production readiness.
+
+### 2.3 Sonya Adapter Smoke
+
+Sonya Adapter Smoke exercises contracts, not live adapters. SONYA-ADAPTER-SMOKE-00 is a fixture-only adapter-contract smoke test that consumes SONYA-ADAPTER-CONTRACT-REGISTRY-01. It exercises adapter selection, consent checks, capability checks, Sonya gateway requirement, raw-output rejection, candidate-packet requirement, failure receipts, telemetry events, and provenance events. It emits fixture candidate artifacts only. It does not execute adapters. It does not authorize network. It does not call remote providers. It does not train model weights. It does not write memory. It does not release final answers. It does not deploy.
+
+Architecture sequence: Universal Stage Pipeline → Artifact Contract Registry → Universal Compatibility Matrix → Provenance Training Ledger → Sonya Adapter Contract Registry → Sonya Adapter Smoke.
 
 ## 3. Experiments and Evidence
 
@@ -355,7 +363,37 @@ Blocked claims: Sonya Adapter Contract Registry is not adapter execution, not li
 
 Reviewer caution: SONYA-ADAPTER-CONTRACT-REGISTRY-01 defines adapter contracts only. It does not execute adapters, call providers, authorize network access, admit raw output as cognition, write memory, release final answers, train models, prove hallucination reduction, or deploy.
 
-### 3.17 UNI-02D-SONYA-GATE-01
+### 3.17 SONYA-ADAPTER-SMOKE-00: fixture-only adapter contract smoke
+
+Allowed claim: SONYA-ADAPTER-SMOKE-00 is a fixture-only adapter-contract smoke test. Sonya Adapter Smoke exercises contracts, not live adapters. It consumes SONYA-ADAPTER-CONTRACT-REGISTRY-01 and demonstrates adapter selection, consent checks, capability checks, Sonya gateway requirement, raw-output rejection, candidate-packet requirement, failure receipts, telemetry events, and provenance events. It emits fixture candidate artifacts only.
+
+Primary artifacts: `sonya_adapter_smoke_packet.json`, `sonya_adapter_smoke_review_packet.json`, `sonya_adapter_selection_packet.json`, `sonya_adapter_consent_check_packet.json`, `sonya_adapter_capability_check_packet.json`, `sonya_adapter_failure_receipt.json`, `sonya_adapter_telemetry_packet.json`, `sonya_adapter_provenance_event_packet.json`, `sonya_adapter_fixture_candidate_packet.json`, `sonya_adapter_smoke_summary.md`, and `sonya_adapter_smoke_00_acceptance_receipt.json`.
+
+Dashboard summary:
+
+- `review_status = accepted_as_fixture_adapter_contract_smoke`
+- `adapter_contract_registry_bound = true`
+- `all_adapters_disabled_or_blocked_or_fixture_only = true`
+- `no_live_adapter_execution = true`
+- `no_network_calls = true`
+- `no_remote_provider_calls = true`
+- `no_live_model_execution = true`
+- `raw_output_rejected_or_absent = true`
+- `candidate_packet_emitted_for_fixture_model = true`
+- `failure_receipts_visible = true`
+- `telemetry_events_visible = true`
+- `provenance_events_visible = true`
+- `model_weight_training_blocked = true`
+- `memory_write_blocked = true`
+- `final_answer_release_blocked = true`
+- `deployment_blocked = true`
+- `promotion_blocked = true`
+
+Blocked claims: Sonya Adapter Smoke is not adapter execution, not live adapter execution, not network authorization, no remote provider call, not live model execution, not memory write, not final answer release, not deployment authority, not truth certification, not model-weight training, not hallucination reduction proof, not recursive self-improvement, and not production readiness.
+
+Reviewer caution: SONYA-ADAPTER-SMOKE-00 exercises adapter contracts only. It does not execute adapters, authorize network, call providers, admit raw output as cognition, write memory, release final answers, train models, prove hallucination reduction, or deploy.
+
+### 3.18 UNI-02D-SONYA-GATE-01
 
 UNI-02D-SONYA-GATE-01 is accepted as a safe generic portability/prior-quarantine fixture, but it is not universal portability proof and not universal ontology. It demonstrates bounded quarantine and provenance posture for selected priors, not general portability across domains.
 
@@ -400,17 +438,18 @@ Current limitations are explicit:
 - no universal portability proof.
 - no universal ontology.
 - The Universal Architecture Scaffold is architecture evidence only. It proves not product readiness, not benchmark performance, not hallucination reduction, not model superiority, not live model behavior, not live human study behavior, not recursive self-improvement, not deployment readiness, and not truth certification.
+- SONYA-ADAPTER-SMOKE-00 exercises adapter contracts only. It does not execute adapters, authorize network, call providers, admit raw output as cognition, write memory, release final answers, train models, prove hallucination reduction, or deploy.
 - no AI consciousness claim.
 
 ## 6. Future Work
 
 Future work is limited to work not already accepted:
 
-- Sonya adapter fixture smoke.
-- adapter telemetry event validation.
+- local fixture adapter execution with deterministic transform only.
 - adapter failure receipt replay.
+- adapter telemetry event validation.
 - consent-profile enforcement tests.
-- local-only adapter execution smoke.
+- adapter provenance credit calibration.
 - remote-provider placeholder remains blocked until consent/network/privacy gates exist.
 
 - Sonya adapter contract registry.

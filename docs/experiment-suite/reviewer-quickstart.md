@@ -19,6 +19,7 @@
 15. RW-COMP-03
 16. Universal Architecture Scaffold
 17. Sonya Adapter Contract Registry
+18. Sonya Adapter Smoke
 
 ## CoherenceLattice commands
 
@@ -206,6 +207,41 @@ Expected posture:
 - `promotion_blocked = true`
 
 This scaffold is not adapter execution, not live model execution, not remote provider call, not network authorization, not memory write, not final answer release, not deployment authority, not truth certification, not model weight training, not hallucination reduction proof, not recursive self-improvement, and not production readiness.
+
+## Sonya Adapter Smoke
+
+Sonya Adapter Smoke exercises contracts, not live adapters.
+
+Sonya Adapter Smoke covers SONYA-ADAPTER-SMOKE-00 as an accepted fixture-only adapter-contract smoke test. It exercises adapter selection, consent checks, capability checks, Sonya gateway requirements, raw output rejected or absent posture, candidate packet requirement, failure receipts, telemetry events, and provenance events. Boundary posture: not live adapter execution, not network authorization, not remote provider call, not live model execution, not memory write, not final answer release, not deployment authority, and not model weight training.
+
+```powershell
+.\experiments\Run-SONYA-ADAPTER-SMOKE00-Acceptance.ps1 `
+  -OutputRoot C:\UVLM\run_artifacts\sonya_adapter_smoke_00 `
+  -LogDir C:\UVLM\run_artifacts\sonya_adapter_smoke_00_logs `
+  -CiMode
+```
+
+Expected posture:
+
+- `review_status = accepted_as_fixture_adapter_contract_smoke`
+- `adapter_contract_registry_bound = true`
+- `all_adapters_disabled_or_blocked_or_fixture_only = true`
+- `no_live_adapter_execution = true`
+- `no_network_calls = true`
+- `no_remote_provider_calls = true`
+- `no_live_model_execution = true`
+- `raw_output_rejected_or_absent = true`
+- `candidate_packet_emitted_for_fixture_model = true`
+- `failure_receipts_visible = true`
+- `telemetry_events_visible = true`
+- `provenance_events_visible = true`
+- `model_weight_training_blocked = true`
+- `memory_write_blocked = true`
+- `final_answer_release_blocked = true`
+- `deployment_blocked = true`
+- `promotion_blocked = true`
+
+This smoke test is not adapter execution, not live adapter execution, not network authorization, not remote provider call, not live model execution, not memory write, not final answer release, not deployment authority, not truth certification, not model weight training, not hallucination reduction proof, not recursive self-improvement, and not production readiness.
 
 ## Sophia commands
 

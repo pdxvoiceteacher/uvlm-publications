@@ -258,6 +258,37 @@ Expected:
 - `provenance_training_policy_present = true`
 - `promotion_blocked = true`
 
+## How to reproduce SONYA-ADAPTER-SMOKE-00
+
+Sonya Adapter Smoke exercises contracts, not live adapters. SONYA-ADAPTER-SMOKE-00 is a fixture-only adapter-contract smoke test that consumes SONYA-ADAPTER-CONTRACT-REGISTRY-01. It exercises adapter selection, consent checks, capability checks, Sonya gateway requirement, raw-output rejection, candidate-packet requirement, failure receipts, telemetry events, and provenance events. It is not adapter execution, not live adapter execution, not network authorization, no remote provider call, not live model execution, not memory write, not final answer release, not deployment authority, not model-weight training, and not hallucination reduction proof.
+
+```powershell
+.\experiments\Run-SONYA-ADAPTER-SMOKE00-Acceptance.ps1 `
+  -OutputRoot C:\UVLM\run_artifacts\sonya_adapter_smoke_00 `
+  -LogDir C:\UVLM\run_artifacts\sonya_adapter_smoke_00_logs `
+  -CiMode
+```
+
+Expected:
+
+- `review_status = accepted_as_fixture_adapter_contract_smoke`
+- `adapter_contract_registry_bound = true`
+- `all_adapters_disabled_or_blocked_or_fixture_only = true`
+- `no_live_adapter_execution = true`
+- `no_network_calls = true`
+- `no_remote_provider_calls = true`
+- `no_live_model_execution = true`
+- `raw_output_rejected_or_absent = true`
+- `candidate_packet_emitted_for_fixture_model = true`
+- `failure_receipts_visible = true`
+- `telemetry_events_visible = true`
+- `provenance_events_visible = true`
+- `model_weight_training_blocked = true`
+- `memory_write_blocked = true`
+- `final_answer_release_blocked = true`
+- `deployment_blocked = true`
+- `promotion_blocked = true`
+
 ## Other accepted local commands
 
 ```powershell

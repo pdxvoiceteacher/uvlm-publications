@@ -45,5 +45,7 @@
   "sonya_adapter_contract_registry_indexed": true,
   "not_adapter_execution": true,
   "not_network_authorization": true,
-  "not_model_weight_training": true
+  "not_model_weight_training": true,
+  "sonya_adapter_smoke_indexed": true,
+  "not_live_adapter_execution": true
 }
