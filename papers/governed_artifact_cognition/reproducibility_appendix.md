@@ -375,3 +375,17 @@ Expected:
 - `selected_candidate_source_adapter_id = fixture_summary_generator_adapter`
 - `executed_local_adapter_ids = fixture_text_model_adapter, fixture_summary_generator_adapter, local_file_transform_adapter`
 - `blocked_adapter_ids = hash_only_evidence_adapter, remote_provider_placeholder_adapter, browser_placeholder_adapter, atlas_memory_placeholder_adapter, sophia_route_placeholder_adapter`
+
+
+## How to reproduce SONYA-LOCAL-FIXTURE-ADAPTER-03
+
+SONYA-LOCAL-FIXTURE-ADAPTER-03 is a methods-lineage clarity phase only. Nested SONYA-LOCAL-FIXTURE-ADAPTER-01 references are source fixture dependencies, not stale identity leakage. Current route identity is explicit. Source fixture identity is explicit. Evidence Review Pack local-adapter route references are explicit. Lineage does not grant authority.
+
+```powershell
+.\experiments\Run-SONYA-LOCAL-FIXTURE-ADAPTER03-Acceptance.ps1 `
+  -OutputRoot C:\UVLM\run_artifacts\sonya_local_fixture_adapter_03 `
+  -LogDir C:\UVLM\run_artifacts\sonya_local_fixture_adapter_03_logs `
+  -CiMode
+```
+
+Review `sonya_local_adapter_lineage_packet.json`, `sonya_local_adapter_lineage_review_packet.json`, and `sonya_local_fixture_adapter_03_acceptance_receipt.json`. The packet is lineage clarity only: not adapter execution, not memory write, not final answer release, and not deployment authority.

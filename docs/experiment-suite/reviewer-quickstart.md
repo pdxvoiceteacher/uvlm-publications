@@ -357,6 +357,34 @@ Expected posture:
 
 Reviewer caution: SONYA-LOCAL-FIXTURE-ADAPTER-02 compares deterministic local fixture adapter candidates only. Selection is not final answer, not adapter authorization, not truth certification, and not a model quality benchmark.
 
+## Sonya Local Fixture Adapter lineage clarity
+
+Source fixture references are not stale identity leakage.
+
+SONYA-LOCAL-FIXTURE-ADAPTER-03 clarifies source/current experiment lineage for Sonya local fixture adapter multi-route artifacts. Current route identity is explicit. Source fixture identity is explicit. Evidence Review Pack local-adapter route references are explicit. Lineage does not grant authority.
+
+```powershell
+.\experiments\Run-SONYA-LOCAL-FIXTURE-ADAPTER03-Acceptance.ps1 `
+  -OutputRoot C:\UVLM\run_artifacts\sonya_local_fixture_adapter_03 `
+  -LogDir C:\UVLM\run_artifacts\sonya_local_fixture_adapter_03_logs `
+  -CiMode
+```
+
+Expected posture:
+
+- `lineage_review_status = accepted_as_lineage_clarity_packet`
+- `current_experiment_id = sonya-local-fixture-adapter-02`
+- `source_fixture_experiment_id_present = true`
+- `source_fixture_role_present = true`
+- `nested_source_identity_explained = true`
+- `ambiguous_experiment_id_inheritance_blocked = true`
+- `lineage_complete = true`
+- `lineage_is_not_authority = true`
+- `promotion_blocked = true`
+- `source_fixture_reference_not_stale_identity = true`
+
+Reviewer caution: SONYA-LOCAL-FIXTURE-ADAPTER-03 is a lineage clarity packet only. It clarifies that nested source fixture references are dependencies and not stale identity leakage. It does not execute adapters, authorize network, call providers, write memory, release final answers, train models, or deploy.
+
 ## Sophia commands
 
 ```powershell

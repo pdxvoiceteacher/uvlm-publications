@@ -369,6 +369,62 @@
       "publication_status": "dashboard_indexed"
     },
     {
+      "phase_id": "SONYA-LOCAL-FIXTURE-ADAPTER-03",
+      "repo": "pdxvoiceteacher/CoherenceLattice",
+      "status": "accepted",
+      "evidence_type": "methods_lineage_clarity",
+      "product_posture": "source_current_experiment_lineage_clarity",
+      "primary_artifacts": [
+        "sonya_local_adapter_lineage_packet.json",
+        "sonya_local_adapter_lineage_review_packet.json",
+        "sonya_local_adapter_multi_route_packet.json",
+        "sonya_local_adapter_multi_route_review_packet.json",
+        "artifact_inventory.json",
+        "run_artifact_manifest.json",
+        "export_bundle_manifest.json",
+        "export_bundle_parity_report.json",
+        "sonya_local_fixture_adapter_03_acceptance_receipt.json"
+      ],
+      "dashboard_summary": {
+        "lineage_review_status": "accepted_as_lineage_clarity_packet",
+        "current_experiment_id": "SONYA-LOCAL-FIXTURE-ADAPTER-02",
+        "source_fixture_experiment_id_present": true,
+        "source_fixture_role_present": true,
+        "nested_source_identity_explained": true,
+        "ambiguous_experiment_id_inheritance_blocked": true,
+        "lineage_complete": true,
+        "lineage_is_not_authority": true,
+        "promotion_blocked": true,
+        "source_fixture_reference_not_stale_identity": true
+      },
+      "prerequisite_phases": [
+        "SONYA-LOCAL-FIXTURE-ADAPTER-01",
+        "SONYA-LOCAL-FIXTURE-ADAPTER-02",
+        "EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER-01",
+        "SONYA-ADAPTER-SMOKE-00",
+        "SONYA-ADAPTER-CONTRACT-REGISTRY-01"
+      ],
+      "reproduction_command_summary": ".\\experiments\\Run-SONYA-LOCAL-FIXTURE-ADAPTER03-Acceptance.ps1 `\n  -OutputRoot C:\\UVLM\\run_artifacts\\sonya_local_fixture_adapter_03 `\n  -LogDir C:\\UVLM\\run_artifacts\\sonya_local_fixture_adapter_03_logs `\n  -CiMode",
+      "claim_allowed": "SONYA-LOCAL-FIXTURE-ADAPTER-03 demonstrates explicit lineage clarity for Sonya local fixture adapter multi-route artifacts by distinguishing current route identity, source fixture identity, source fixture role, and Evidence Review Pack local-adapter route references.",
+      "claims_blocked": [
+        "not adapter execution",
+        "not network authorization",
+        "not remote provider call",
+        "not live model execution",
+        "not memory write",
+        "not final answer release",
+        "not deployment authority",
+        "not truth certification",
+        "not model weight training",
+        "not hallucination reduction proof",
+        "not recursive self-improvement",
+        "not stale identity proof of execution",
+        "not production readiness"
+      ],
+      "reviewer_caution": "SONYA-LOCAL-FIXTURE-ADAPTER-03 is a lineage clarity packet only. It clarifies that nested source fixture references are dependencies and not stale identity leakage. It does not execute adapters, authorize network, call providers, write memory, release final answers, train models, or deploy.",
+      "publication_status": "dashboard_indexed"
+    },
+    {
       "phase_id": "UNIVERSAL-STAGE-PIPELINE-00",
       "repo": "pdxvoiceteacher/CoherenceLattice",
       "status": "accepted",

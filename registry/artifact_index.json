@@ -241,6 +241,17 @@
       "export_bundle_parity_report.json",
       "sonya_local_fixture_adapter_02_acceptance_receipt.json"
     ],
+    "SONYA-LOCAL-FIXTURE-ADAPTER-03": [
+      "sonya_local_adapter_lineage_packet.json",
+      "sonya_local_adapter_lineage_review_packet.json",
+      "sonya_local_adapter_multi_route_packet.json",
+      "sonya_local_adapter_multi_route_review_packet.json",
+      "artifact_inventory.json",
+      "run_artifact_manifest.json",
+      "export_bundle_manifest.json",
+      "export_bundle_parity_report.json",
+      "sonya_local_fixture_adapter_03_acceptance_receipt.json"
+    ],
     "publications": [
       "PUB_GOV_ARTIFACT_COG_01.md",
       "PUB_WAVE_ROSETTA_01.md",

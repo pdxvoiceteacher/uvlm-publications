@@ -144,3 +144,16 @@
 | Sonya Local Fixture Adapter multi-route is not deployment authority. | SONYA-LOCAL-FIXTURE-ADAPTER-02 | multi-adapter local fixture route boundary. |
 | Sonya Local Fixture Adapter multi-route is not model-weight training. | SONYA-LOCAL-FIXTURE-ADAPTER-02 | multi-adapter local fixture route boundary. |
 | Sonya Local Fixture Adapter multi-route is not hallucination reduction proof. | SONYA-LOCAL-FIXTURE-ADAPTER-02 | multi-adapter local fixture route boundary. |
+
+| Source fixture references are not stale identity leakage. | SONYA-LOCAL-FIXTURE-ADAPTER-03 | methods-lineage clarity boundary. |
+| Nested SONYA-LOCAL-FIXTURE-ADAPTER-01 references are source fixture dependencies, not stale identity leakage. | SONYA-LOCAL-FIXTURE-ADAPTER-03 | methods-lineage clarity boundary. |
+| Current route identity is explicit. | SONYA-LOCAL-FIXTURE-ADAPTER-03 | methods-lineage clarity boundary. |
+| Source fixture identity is explicit. | SONYA-LOCAL-FIXTURE-ADAPTER-03 | methods-lineage clarity boundary. |
+| Evidence Review Pack local-adapter route references are explicit. | SONYA-LOCAL-FIXTURE-ADAPTER-03 | methods-lineage clarity boundary. |
+| Lineage does not grant authority. | SONYA-LOCAL-FIXTURE-ADAPTER-03 | methods-lineage clarity boundary. |
+| Sonya local adapter lineage packet is not adapter execution. | SONYA-LOCAL-FIXTURE-ADAPTER-03 | methods-lineage clarity boundary. |
+| Sonya local adapter lineage packet is not network authorization. | SONYA-LOCAL-FIXTURE-ADAPTER-03 | methods-lineage clarity boundary. |
+| Sonya local adapter lineage packet is not memory write. | SONYA-LOCAL-FIXTURE-ADAPTER-03 | methods-lineage clarity boundary. |
+| Sonya local adapter lineage packet is not final answer release. | SONYA-LOCAL-FIXTURE-ADAPTER-03 | methods-lineage clarity boundary. |
+| Sonya local adapter lineage packet is not deployment authority. | SONYA-LOCAL-FIXTURE-ADAPTER-03 | methods-lineage clarity boundary. |
+| Sonya local adapter lineage packet is not truth certification. | SONYA-LOCAL-FIXTURE-ADAPTER-03 | methods-lineage clarity boundary. |
