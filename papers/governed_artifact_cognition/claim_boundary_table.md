@@ -144,3 +144,38 @@
 | Sonya Local Fixture Adapter multi-route is not deployment authority. | SONYA-LOCAL-FIXTURE-ADAPTER-02 | multi-adapter local fixture route boundary. |
 | Sonya Local Fixture Adapter multi-route is not model-weight training. | SONYA-LOCAL-FIXTURE-ADAPTER-02 | multi-adapter local fixture route boundary. |
 | Sonya Local Fixture Adapter multi-route is not hallucination reduction proof. | SONYA-LOCAL-FIXTURE-ADAPTER-02 | multi-adapter local fixture route boundary. |
+
+| Source fixture references are not stale identity leakage. | SONYA-LOCAL-FIXTURE-ADAPTER-03 | methods-lineage clarity boundary. |
+| Nested SONYA-LOCAL-FIXTURE-ADAPTER-01 references are source fixture dependencies, not stale identity leakage. | SONYA-LOCAL-FIXTURE-ADAPTER-03 | methods-lineage clarity boundary. |
+| Current route identity is explicit. | SONYA-LOCAL-FIXTURE-ADAPTER-03 | methods-lineage clarity boundary. |
+| Source fixture identity is explicit. | SONYA-LOCAL-FIXTURE-ADAPTER-03 | methods-lineage clarity boundary. |
+| Evidence Review Pack local-adapter route references are explicit. | SONYA-LOCAL-FIXTURE-ADAPTER-03 | methods-lineage clarity boundary. |
+| Lineage does not grant authority. | SONYA-LOCAL-FIXTURE-ADAPTER-03 | methods-lineage clarity boundary. |
+| Sonya local adapter lineage packet is not adapter execution. | SONYA-LOCAL-FIXTURE-ADAPTER-03 | methods-lineage clarity boundary. |
+| Sonya local adapter lineage packet is not network authorization. | SONYA-LOCAL-FIXTURE-ADAPTER-03 | methods-lineage clarity boundary. |
+| Sonya local adapter lineage packet is not memory write. | SONYA-LOCAL-FIXTURE-ADAPTER-03 | methods-lineage clarity boundary. |
+| Sonya local adapter lineage packet is not final answer release. | SONYA-LOCAL-FIXTURE-ADAPTER-03 | methods-lineage clarity boundary. |
+| Sonya local adapter lineage packet is not deployment authority. | SONYA-LOCAL-FIXTURE-ADAPTER-03 | methods-lineage clarity boundary. |
+| Sonya local adapter lineage packet is not truth certification. | SONYA-LOCAL-FIXTURE-ADAPTER-03 | methods-lineage clarity boundary. |
+
+| Deltas are structural review descriptors, not hallucination reduction proof. | EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER-02 | local adapter revision loop boundary. |
+| Revised local adapter candidate remains candidate-only, not accepted evidence. | EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER-02 | local adapter revision loop boundary. |
+| Evidence Review Pack local-adapter revision loop is not final answer selection. | EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER-02 | local adapter revision loop boundary. |
+| Evidence Review Pack local-adapter revision loop is not model quality benchmark. | EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER-02 | local adapter revision loop boundary. |
+| Evidence Review Pack local-adapter revision loop is not model superiority proof. | EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER-02 | local adapter revision loop boundary. |
+| Evidence Review Pack local-adapter revision loop is not adapter authorization. | EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER-02 | local adapter revision loop boundary. |
+| Evidence Review Pack local-adapter revision loop is not memory write. | EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER-02 | local adapter revision loop boundary. |
+| Evidence Review Pack local-adapter revision loop is not model-weight training. | EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER-02 | local adapter revision loop boundary. |
+| Evidence Review Pack local-adapter revision loop is not deployment authority. | EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER-02 | local adapter revision loop boundary. |
+| Evidence Review Pack local-adapter revision loop is not recursive self-improvement. | EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER-02 | local adapter revision loop boundary. |
+
+| Deltas are structural review descriptors only. | RW-COMP-LOCAL-ADAPTER-01 | local adapter comparison scaffold boundary. |
+| RW-COMP local-adapter comparison is not hallucination reduction proof or a model quality benchmark. | RW-COMP-LOCAL-ADAPTER-01 | local adapter comparison scaffold boundary. |
+| RW-COMP local-adapter comparison is not model superiority proof. | RW-COMP-LOCAL-ADAPTER-01 | local adapter comparison scaffold boundary. |
+| RW-COMP local-adapter comparison is not final answer selection. | RW-COMP-LOCAL-ADAPTER-01 | local adapter comparison scaffold boundary. |
+| RW-COMP local-adapter comparison is not accepted evidence. | RW-COMP-LOCAL-ADAPTER-01 | local adapter comparison scaffold boundary. |
+| RW-COMP local-adapter comparison is not adapter authorization. | RW-COMP-LOCAL-ADAPTER-01 | local adapter comparison scaffold boundary. |
+| RW-COMP local-adapter comparison is not memory write. | RW-COMP-LOCAL-ADAPTER-01 | local adapter comparison scaffold boundary. |
+| RW-COMP local-adapter comparison is not model-weight training. | RW-COMP-LOCAL-ADAPTER-01 | local adapter comparison scaffold boundary. |
+| RW-COMP local-adapter comparison is not deployment authority. | RW-COMP-LOCAL-ADAPTER-01 | local adapter comparison scaffold boundary. |
+| RW-COMP local-adapter comparison is not recursive self-improvement. | RW-COMP-LOCAL-ADAPTER-01 | local adapter comparison scaffold boundary. |

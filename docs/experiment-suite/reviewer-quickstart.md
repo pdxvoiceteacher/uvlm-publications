@@ -320,6 +320,81 @@ Expected posture:
 
 Reviewer caution: EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER-01 routes a local fixture adapter candidate into review only. It is not accepted evidence, not adapter authorization, not memory write, not final answer release, not deployment authority, not truth certification, not model weight training, not hallucination reduction proof, and not recursive self-improvement.
 
+## Evidence Review Pack local adapter revision
+
+Deltas are structural review descriptors, not hallucination reduction proof.
+
+EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER-02 consumes the revise_summary recommendation, emits a revised candidate, reruns Evidence Review Pack review, and reports candidate-level structural review deltas. The revised candidate is not final answer and not accepted evidence.
+
+```powershell
+.\experiments\Run-EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER02-Acceptance.ps1 `
+  -OutputRoot C:\UVLM\run_artifacts\evidence_review_pack_local_adapter_02 `
+  -LogDir C:\UVLM\run_artifacts\evidence_review_pack_local_adapter_02_logs `
+  -CiMode
+```
+
+Expected posture:
+
+- `review_status = accepted_as_local_adapter_revision_loop`
+- `revise_summary_recommendation_consumed = true`
+- `revised_candidate_emitted = true`
+- `evidence_review_rerun_performed = true`
+- `deltas_reported = true`
+- `unsupported_claim_delta_reported = true`
+- `uncertainty_missing_delta_reported = true`
+- `candidate_remains_not_final_answer = true`
+- `candidate_remains_not_accepted_evidence = true`
+- `model_weight_training_blocked = true`
+- `memory_write_blocked = true`
+- `final_answer_release_blocked = true`
+- `deployment_blocked = true`
+- `promotion_blocked = true`
+- `unsupported_claim_count_delta = -1`
+- `uncertainty_missing_count_delta = -1`
+- `source_reference_visibility_delta = 1`
+- `structural_visibility_improved_candidate = true`
+
+Reviewer caution: EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER-02 reports candidate-level structural review deltas only. It does not prove hallucination reduction, benchmark model quality, select a final answer, accept evidence, authorize adapters, write memory, train models, or deploy.
+
+## RW-COMP local adapter
+
+Deltas are structural review descriptors only.
+
+RW-COMP-LOCAL-ADAPTER-01 compares raw local summary fixture, original local adapter candidate, Evidence Review Pack reviewed original candidate, revised local adapter candidate, and Evidence Review Pack reviewed revised candidate. Candidate comparison is not final answer selection.
+
+```powershell
+.\experiments\Run-RW-COMP-LOCAL-ADAPTER01-Acceptance.ps1 `
+  -OutputRoot C:\UVLM\run_artifacts\rw_comp_local_adapter_01 `
+  -LogDir C:\UVLM\run_artifacts\rw_comp_local_adapter_01_logs `
+  -CiMode
+```
+
+Expected posture:
+
+- `review_status = accepted_as_local_adapter_comparison_scaffold`
+- `all_comparison_arms_present = true`
+- `original_and_revised_candidates_compared = true`
+- `evidence_review_path_used_for_reviewed_arms = true`
+- `deltas_reported = true`
+- `structural_visibility_descriptors_only = true`
+- `comparison_is_not_hallucination_reduction_proof = true`
+- `comparison_is_not_model_quality_benchmark = true`
+- `comparison_is_not_model_superiority_proof = true`
+- `comparison_is_not_final_answer_selection = true`
+- `candidate_remains_not_accepted_evidence = true`
+- `model_weight_training_blocked = true`
+- `memory_write_blocked = true`
+- `final_answer_release_blocked = true`
+- `deployment_blocked = true`
+- `promotion_blocked = true`
+- `unsupported_claim_count_delta = -1`
+- `uncertainty_missing_count_delta = -1`
+- `source_reference_visibility_delta = 1`
+- `supported_claim_count_delta = 2`
+- `structural_visibility_improved_candidate = true`
+
+Reviewer caution: RW-COMP-LOCAL-ADAPTER-01 reports structural review deltas only. It does not prove hallucination reduction, benchmark model quality, select a final answer, accept evidence, authorize adapters, write memory, train models, or deploy.
+
 ## Sonya Local Fixture Adapter multi-route
 
 Selection policy is not final answer.
@@ -356,6 +431,34 @@ Expected posture:
 - `blocked_adapter_ids = ['hash_only_evidence_adapter', 'remote_provider_placeholder_adapter', 'browser_placeholder_adapter', 'atlas_memory_placeholder_adapter', 'sophia_route_placeholder_adapter']`
 
 Reviewer caution: SONYA-LOCAL-FIXTURE-ADAPTER-02 compares deterministic local fixture adapter candidates only. Selection is not final answer, not adapter authorization, not truth certification, and not a model quality benchmark.
+
+## Sonya Local Fixture Adapter lineage clarity
+
+Source fixture references are not stale identity leakage.
+
+SONYA-LOCAL-FIXTURE-ADAPTER-03 clarifies source/current experiment lineage for Sonya local fixture adapter multi-route artifacts. Current route identity is explicit. Source fixture identity is explicit. Evidence Review Pack local-adapter route references are explicit. Lineage does not grant authority.
+
+```powershell
+.\experiments\Run-SONYA-LOCAL-FIXTURE-ADAPTER03-Acceptance.ps1 `
+  -OutputRoot C:\UVLM\run_artifacts\sonya_local_fixture_adapter_03 `
+  -LogDir C:\UVLM\run_artifacts\sonya_local_fixture_adapter_03_logs `
+  -CiMode
+```
+
+Expected posture:
+
+- `lineage_review_status = accepted_as_lineage_clarity_packet`
+- `current_experiment_id = sonya-local-fixture-adapter-02`
+- `source_fixture_experiment_id_present = true`
+- `source_fixture_role_present = true`
+- `nested_source_identity_explained = true`
+- `ambiguous_experiment_id_inheritance_blocked = true`
+- `lineage_complete = true`
+- `lineage_is_not_authority = true`
+- `promotion_blocked = true`
+- `source_fixture_reference_not_stale_identity = true`
+
+Reviewer caution: SONYA-LOCAL-FIXTURE-ADAPTER-03 is a lineage clarity packet only. It clarifies that nested source fixture references are dependencies and not stale identity leakage. It does not execute adapters, authorize network, call providers, write memory, release final answers, train models, or deploy.
 
 ## Sophia commands
 
