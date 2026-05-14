@@ -57,5 +57,6 @@
   "not_stale_identity_leakage": true,
   "not_lineage_authority": true,
   "evidence_review_pack_local_adapter_02_indexed": true,
-  "not_structural_delta_proof": true
+  "not_structural_delta_proof": true,
+  "rw_comp_local_adapter_indexed": true
 }

@@ -35,6 +35,7 @@ REQUIRED_PHASES = {
     "SONYA-LOCAL-FIXTURE-ADAPTER-02",
     "SONYA-LOCAL-FIXTURE-ADAPTER-03",
     "EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER-02",
+    "RW-COMP-LOCAL-ADAPTER-01",
 }
 REQUIRED_BOUNDARY_PHRASES = (
     "not truth certification",
@@ -183,6 +184,16 @@ REQUIRED_BOUNDARY_PHRASES = (
     "Evidence Review Pack local-adapter revision loop is not model-weight training.",
     "Evidence Review Pack local-adapter revision loop is not deployment authority.",
     "Evidence Review Pack local-adapter revision loop is not recursive self-improvement.",
+    "Deltas are structural review descriptors only.",
+    "RW-COMP local-adapter comparison is not hallucination reduction proof or a model quality benchmark.",
+    "RW-COMP local-adapter comparison is not model superiority proof.",
+    "RW-COMP local-adapter comparison is not final answer selection.",
+    "RW-COMP local-adapter comparison is not accepted evidence.",
+    "RW-COMP local-adapter comparison is not adapter authorization.",
+    "RW-COMP local-adapter comparison is not memory write.",
+    "RW-COMP local-adapter comparison is not model-weight training.",
+    "RW-COMP local-adapter comparison is not deployment authority.",
+    "RW-COMP local-adapter comparison is not recursive self-improvement.",
 )
 FORBIDDEN_PHRASES = (
     "deployment readiness",
@@ -329,6 +340,12 @@ def _forbidden_hits(text: str) -> list[str]:
                 phrase in {"adapter execution", "adapter executed"}
                 and _is_allowed_local_adapter_context(text, index)
                 and "lineage claims" not in text[max(0, index - 80) : index]
+            ):
+                start = index + len(normalized_phrase)
+                continue
+            if (
+                phrase == "model quality benchmark"
+                and "not hallucination reduction proof or a" in text[max(0, index - 56) : index]
             ):
                 start = index + len(normalized_phrase)
                 continue

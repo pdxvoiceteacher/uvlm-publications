@@ -42,6 +42,7 @@ REQUIRED_DOCS = {
     "sonya-local-fixture-adapter.md",
     "evidence-review-pack-local-adapter.md",
     "evidence-review-pack-local-adapter-revision.md",
+    "rw-comp-local-adapter.md",
     "sonya-local-fixture-adapter-multi-route.md",
     "sonya-local-fixture-adapter-lineage.md",
 }
@@ -71,6 +72,7 @@ REQUIRED_PHASES = {
     "SONYA-LOCAL-FIXTURE-ADAPTER-01",
     "EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER-01",
     "EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER-02",
+    "RW-COMP-LOCAL-ADAPTER-01",
     "SONYA-LOCAL-FIXTURE-ADAPTER-02",
     "SONYA-LOCAL-FIXTURE-ADAPTER-03",
 }
@@ -97,6 +99,7 @@ REQUIRED_COMMAND_FRAGMENTS = (
     "Run-SONYA-LOCAL-FIXTURE-ADAPTER01-Acceptance.ps1",
     "Run-EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER01-Acceptance.ps1",
     "Run-EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER02-Acceptance.ps1",
+    "Run-RW-COMP-LOCAL-ADAPTER01-Acceptance.ps1",
     "Run-SONYA-LOCAL-FIXTURE-ADAPTER02-Acceptance.ps1",
     "Run-SONYA-LOCAL-FIXTURE-ADAPTER03-Acceptance.ps1",
 )
@@ -144,7 +147,7 @@ def test_dashboard_contains_all_accepted_phases(tmp_path):
     dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text())
     phase_ids = {entry["phase_id"] for entry in dashboard["accepted_phases"]}
     assert phase_ids == REQUIRED_PHASES
-    assert dashboard["accepted_phase_count"] == 27
+    assert dashboard["accepted_phase_count"] == 28
 
 
 def test_dashboard_command_summaries_use_accepted_harnesses(tmp_path):
@@ -1364,6 +1367,72 @@ def test_validator_fails_if_evidence_review_pack_local_adapter_revision_makes_fo
         out_dir, docs_dir = run_builder(tmp_path / claim.replace(" ", "_"))
         page = docs_dir / "evidence-review-pack-local-adapter-revision.md"
         page.write_text(page.read_text() + f"\nRevision loop claims {claim}.\n")
+        result = validate_dashboard(out_dir / "experiment_suite_dashboard.json", docs_dir)
+        assert result["passed"] is False, claim
+        forbidden_found = [found.lower() for found in result["forbidden_claims_found"]]
+        assert claim.lower() in forbidden_found, result
+
+
+def test_rw_comp_local_adapter_indexes_docs_and_boundaries_are_generated(tmp_path):
+    out_dir, docs_dir = run_builder(tmp_path)
+    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text())
+    reproducibility = json.loads((out_dir / "reproducibility_index.json").read_text())
+    artifact_index = json.loads((out_dir / "artifact_index.json").read_text())
+    quickstart = (docs_dir / "reviewer-quickstart.md").read_text()
+    boundaries = (docs_dir / "claim-boundaries.md").read_text()
+    index = (docs_dir / "index.md").read_text()
+    page = docs_dir / "rw-comp-local-adapter.md"
+
+    phase = next(entry for entry in dashboard["accepted_phases"] if entry["phase_id"] == "RW-COMP-LOCAL-ADAPTER-01")
+    assert phase["status"] == "accepted"
+    assert phase["evidence_type"] == "local_adapter_comparison_scaffold"
+    assert phase["product_posture"] == "original_vs_revised_local_adapter_candidate_structural_review_delta"
+    assert phase["dashboard_summary"]["review_status"] == "accepted_as_local_adapter_comparison_scaffold"
+    assert phase["dashboard_summary"]["all_comparison_arms_present"] is True
+    assert phase["dashboard_summary"]["original_and_revised_candidates_compared"] is True
+    assert phase["dashboard_summary"]["evidence_review_path_used_for_reviewed_arms"] is True
+    assert phase["dashboard_summary"]["structural_visibility_descriptors_only"] is True
+    assert phase["dashboard_summary"]["comparison_is_not_hallucination_reduction_proof"] is True
+    assert phase["dashboard_summary"]["comparison_is_not_model_quality_benchmark"] is True
+    assert phase["dashboard_summary"]["comparison_is_not_final_answer_selection"] is True
+    assert phase["dashboard_summary"]["unsupported_claim_count_delta"] == -1
+    assert phase["dashboard_summary"]["uncertainty_missing_count_delta"] == -1
+    assert phase["dashboard_summary"]["source_reference_visibility_delta"] == 1
+    assert phase["dashboard_summary"]["supported_claim_count_delta"] == 2
+    assert "EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER-02" in phase["prerequisite_phases"]
+    assert "SONYA-LOCAL-FIXTURE-ADAPTER-02" in phase["prerequisite_phases"]
+
+    commands = json.dumps(reproducibility)
+    assert "Run-RW-COMP-LOCAL-ADAPTER01-Acceptance.ps1" in commands
+    assert "RW-COMP-LOCAL-ADAPTER-01" in artifact_index["phases"]
+    assert "rw_comp_local_adapter_packet.json" in artifact_index["phases"]["RW-COMP-LOCAL-ADAPTER-01"]
+    assert "rw_comp_local_adapter_delta_packet.json" in artifact_index["phases"]["RW-COMP-LOCAL-ADAPTER-01"]
+
+    assert page.exists()
+    page_text = page.read_text()
+    assert "Deltas are structural review descriptors only." in page_text
+    assert "Candidate comparison is not final answer selection." in page_text
+    assert "RW-COMP-LOCAL-ADAPTER-01" in quickstart
+    assert "rw-comp-local-adapter.md" in index
+    assert "Deltas are structural review descriptors only." in boundaries
+    assert "RW-COMP local-adapter comparison is not hallucination reduction proof or a model quality benchmark." in boundaries
+    assert "RW-COMP local-adapter comparison is not final answer selection." in boundaries
+
+
+def test_validator_required_phases_include_rw_comp_local_adapter():
+    assert "RW-COMP-LOCAL-ADAPTER-01" in VALIDATOR_REQUIRED_PHASES
+
+
+def test_validator_fails_if_rw_comp_local_adapter_makes_forbidden_claims(tmp_path):
+    forbidden_claims = (
+        "hallucination reduction proof",
+        "model quality benchmark",
+        "final answer selection",
+    )
+    for claim in forbidden_claims:
+        out_dir, docs_dir = run_builder(tmp_path / claim.replace(" ", "_"))
+        page = docs_dir / "rw-comp-local-adapter.md"
+        page.write_text(page.read_text() + f"\nRW-COMP local adapter claims {claim}.\n")
         result = validate_dashboard(out_dir / "experiment_suite_dashboard.json", docs_dir)
         assert result["passed"] is False, claim
         forbidden_found = [found.lower() for found in result["forbidden_claims_found"]]

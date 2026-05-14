@@ -168,3 +168,14 @@
 | Evidence Review Pack local-adapter revision loop is not model-weight training. | EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER-02 | local adapter revision loop boundary. |
 | Evidence Review Pack local-adapter revision loop is not deployment authority. | EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER-02 | local adapter revision loop boundary. |
 | Evidence Review Pack local-adapter revision loop is not recursive self-improvement. | EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER-02 | local adapter revision loop boundary. |
+
+| Deltas are structural review descriptors only. | RW-COMP-LOCAL-ADAPTER-01 | local adapter comparison scaffold boundary. |
+| RW-COMP local-adapter comparison is not hallucination reduction proof or a model quality benchmark. | RW-COMP-LOCAL-ADAPTER-01 | local adapter comparison scaffold boundary. |
+| RW-COMP local-adapter comparison is not model superiority proof. | RW-COMP-LOCAL-ADAPTER-01 | local adapter comparison scaffold boundary. |
+| RW-COMP local-adapter comparison is not final answer selection. | RW-COMP-LOCAL-ADAPTER-01 | local adapter comparison scaffold boundary. |
+| RW-COMP local-adapter comparison is not accepted evidence. | RW-COMP-LOCAL-ADAPTER-01 | local adapter comparison scaffold boundary. |
+| RW-COMP local-adapter comparison is not adapter authorization. | RW-COMP-LOCAL-ADAPTER-01 | local adapter comparison scaffold boundary. |
+| RW-COMP local-adapter comparison is not memory write. | RW-COMP-LOCAL-ADAPTER-01 | local adapter comparison scaffold boundary. |
+| RW-COMP local-adapter comparison is not model-weight training. | RW-COMP-LOCAL-ADAPTER-01 | local adapter comparison scaffold boundary. |
+| RW-COMP local-adapter comparison is not deployment authority. | RW-COMP-LOCAL-ADAPTER-01 | local adapter comparison scaffold boundary. |
+| RW-COMP local-adapter comparison is not recursive self-improvement. | RW-COMP-LOCAL-ADAPTER-01 | local adapter comparison scaffold boundary. |

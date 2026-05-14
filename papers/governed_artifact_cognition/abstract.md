@@ -31,3 +31,6 @@ SONYA-LOCAL-FIXTURE-ADAPTER-03 update: Nested SONYA-LOCAL-FIXTURE-ADAPTER-01 ref
 
 
 EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER-02 update: The revise_summary recommendation was consumed, a revised candidate was emitted, Evidence Review Pack rerun occurred, and deltas were reported. Deltas are structural review descriptors, not hallucination-reduction proof. The revised local adapter candidate remains candidate-only, not accepted evidence. This phase is not model quality benchmark, not final answer selection, not memory write, not model-weight training, not deployment authority, and not production readiness.
+
+
+RW-COMP-LOCAL-ADAPTER-01 update: Original and revised local adapter candidates are compared, and Evidence Review Pack reviewed arms are compared. Deltas are structural review descriptors only. RW-COMP local-adapter comparison is not hallucination reduction proof or a model quality benchmark. Candidate comparison is not final answer selection, not accepted evidence, not model superiority proof, not model-weight training, and not deployment authority.

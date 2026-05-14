@@ -403,3 +403,17 @@ EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER-02 is a local-only candidate revision loop. T
 ```
 
 Review `evidence_review_local_adapter_revision_packet.json`, `evidence_review_local_adapter_revision_delta.json`, and `evidence_review_pack_local_adapter_02_acceptance_receipt.json`. Expected deltas include `unsupported_claim_count_delta = -1`, `uncertainty_missing_count_delta = -1`, `source_reference_visibility_delta = 1`, and `structural_visibility_improved_candidate = true`. The revised candidate is not final answer selection, not model quality benchmark, not memory write, not model-weight training, and not deployment authority.
+
+
+## How to reproduce RW-COMP-LOCAL-ADAPTER-01
+
+RW-COMP-LOCAL-ADAPTER-01 compares raw local summary fixture, original local adapter candidate, Evidence Review Pack reviewed original candidate, revised local adapter candidate, and Evidence Review Pack reviewed revised candidate. Deltas are structural review descriptors only. RW-COMP local-adapter comparison is not hallucination reduction proof or a model quality benchmark. Candidate comparison is not final answer selection and candidate remains not accepted evidence.
+
+```powershell
+.\experiments\Run-RW-COMP-LOCAL-ADAPTER01-Acceptance.ps1 `
+  -OutputRoot C:\UVLM\run_artifacts\rw_comp_local_adapter_01 `
+  -LogDir C:\UVLM\run_artifacts\rw_comp_local_adapter_01_logs `
+  -CiMode
+```
+
+Review `rw_comp_local_adapter_packet.json`, `rw_comp_local_adapter_delta_packet.json`, and `rw_comp_local_adapter_01_acceptance_receipt.json`. Expected deltas include `unsupported_claim_count_delta = -1`, `uncertainty_missing_count_delta = -1`, `source_reference_visibility_delta = 1`, `supported_claim_count_delta = 2`, and `structural_visibility_improved_candidate = true`. No model-weight training, no memory write, no final-answer release, no deployment, and no promotion is authorized.

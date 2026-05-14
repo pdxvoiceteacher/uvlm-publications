@@ -1335,3 +1335,57 @@ def test_claim_validator_rejects_evidence_review_pack_local_adapter_revision_ove
         )
         assert result["passed"] is False, claim
         assert result["forbidden_overclaims_found"], result
+
+
+def test_governed_artifact_cognition_rw_comp_local_adapter_updates_are_present():
+    paper = (ROOT / "PUB_GOV_ARTIFACT_COG_01.md").read_text(encoding="utf-8")
+    abstract = (ROOT / "abstract.md").read_text(encoding="utf-8")
+    artifact_table = (ROOT / "artifact_table.md").read_text(encoding="utf-8")
+    boundary_table = (ROOT / "claim_boundary_table.md").read_text(encoding="utf-8")
+    quickstart = (ROOT / "reviewer_quickstart.md").read_text(encoding="utf-8")
+    status = json.loads((ROOT / "status.json").read_text(encoding="utf-8"))
+    combined = paper + "\n" + abstract
+    for phrase in (
+        "RW-COMP-LOCAL-ADAPTER-01",
+        "RW-COMP local-adapter comparison is not hallucination reduction proof or a model quality benchmark.",
+        "Deltas are structural review descriptors only.",
+        "unsupported_claim_count_delta = -1",
+        "uncertainty_missing_count_delta = -1",
+        "source_reference_visibility_delta = 1",
+    ):
+        assert phrase in combined
+    for artifact in (
+        "rw_comp_local_adapter_packet.json",
+        "rw_comp_local_adapter_delta_packet.json",
+    ):
+        assert artifact in artifact_table
+    for boundary in (
+        "Deltas are structural review descriptors only.",
+        "RW-COMP local-adapter comparison is not hallucination reduction proof or a model quality benchmark.",
+        "RW-COMP local-adapter comparison is not final answer selection.",
+        "RW-COMP local-adapter comparison is not accepted evidence.",
+    ):
+        assert boundary in boundary_table
+    assert "Run-RW-COMP-LOCAL-ADAPTER01-Acceptance.ps1" in quickstart
+    assert status["rw_comp_local_adapter_indexed"] is True
+
+
+def test_claim_validator_rejects_rw_comp_local_adapter_overclaims(tmp_path):
+    forbidden_claims = (
+        "claims hallucination reduction proof",
+        "claims model quality benchmark",
+        "claims final answer selection",
+        "claims accepted evidence",
+    )
+    for claim in forbidden_claims:
+        paper_root = _copy_governed_paper(tmp_path / claim.replace(" ", "_").replace("-", "_"))
+        paper = paper_root / "PUB_GOV_ARTIFACT_COG_01.md"
+        paper.write_text(paper.read_text(encoding="utf-8") + f"\nThis paper {claim}.\n", encoding="utf-8")
+        result = validate_publication_claims(
+            paper,
+            appendix=paper_root / "reproducibility_appendix.md",
+            quickstart=paper_root / "reviewer_quickstart.md",
+            status=paper_root / "status.json",
+        )
+        assert result["passed"] is False, claim
+        assert result["forbidden_overclaims_found"], result

@@ -137,5 +137,15 @@
 - Evidence Review Pack local-adapter revision loop is not model-weight training.
 - Evidence Review Pack local-adapter revision loop is not deployment authority.
 - Evidence Review Pack local-adapter revision loop is not recursive self-improvement.
+- Deltas are structural review descriptors only.
+- RW-COMP local-adapter comparison is not hallucination reduction proof or a model quality benchmark.
+- RW-COMP local-adapter comparison is not model superiority proof.
+- RW-COMP local-adapter comparison is not final answer selection.
+- RW-COMP local-adapter comparison is not accepted evidence.
+- RW-COMP local-adapter comparison is not adapter authorization.
+- RW-COMP local-adapter comparison is not memory write.
+- RW-COMP local-adapter comparison is not model-weight training.
+- RW-COMP local-adapter comparison is not deployment authority.
+- RW-COMP local-adapter comparison is not recursive self-improvement.
 
 No oracle posture. No deployment posture. No final-answer posture. No AI consciousness claim. No universal ontology claim.
