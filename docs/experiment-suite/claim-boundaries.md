@@ -81,5 +81,16 @@
 - Sonya Adapter Smoke makes failure receipts visible.
 - Sonya Adapter Smoke makes telemetry events visible.
 - Sonya Adapter Smoke makes provenance events visible.
+- Sonya Local Fixture Adapter executes deterministic local fixtures, not live adapters.
+- Sonya Local Fixture Adapter records that local fixture adapter execution occurred under Sonya adapter contracts.
+- Sonya Local Fixture Adapter is not live adapter execution.
+- Sonya Local Fixture Adapter is not network authorization.
+- Sonya Local Fixture Adapter is not remote provider call.
+- Sonya Local Fixture Adapter is not live model execution.
+- Sonya Local Fixture Adapter is not memory write.
+- Sonya Local Fixture Adapter is not final answer release.
+- Sonya Local Fixture Adapter is not deployment authority.
+- Sonya Local Fixture Adapter is not model weight training.
+- Sonya Local Fixture Adapter emits candidate packets, failure receipts, telemetry events, and provenance events.
 
 No oracle posture. No deployment posture. No final-answer posture. No AI consciousness claim. No universal ontology claim.
