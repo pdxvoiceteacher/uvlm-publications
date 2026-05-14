@@ -101,3 +101,15 @@
 | Sonya Adapter Contract Registry | Sonya Adapter Contract Registry is not model-weight training. | Adapter contracts are fixture-only configuration, not runtime authorization. |
 | Sonya Adapter Contract Registry | Sonya Adapter Contract Registry is not hallucination reduction proof. | Adapter contracts are fixture-only configuration, not runtime authorization. |
 | Sonya Adapter Contract Registry | Sonya Adapter Contract Registry is not recursive self-improvement. | Adapter contracts are fixture-only configuration, not runtime authorization. |
+| Sonya Adapter Smoke exercises contracts, not live adapters. | SONYA-ADAPTER-SMOKE-00 | fixture-only adapter smoke boundary. |
+| Sonya Adapter Smoke is not adapter execution. | SONYA-ADAPTER-SMOKE-00 | fixture-only adapter smoke boundary. |
+| Sonya Adapter Smoke is not live adapter execution. | SONYA-ADAPTER-SMOKE-00 | fixture-only adapter smoke boundary. |
+| Sonya Adapter Smoke is not network authorization. | SONYA-ADAPTER-SMOKE-00 | fixture-only adapter smoke boundary. |
+| Sonya Adapter Smoke is not remote provider call. | SONYA-ADAPTER-SMOKE-00 | fixture-only adapter smoke boundary. |
+| Sonya Adapter Smoke is not live model execution. | SONYA-ADAPTER-SMOKE-00 | fixture-only adapter smoke boundary. |
+| Sonya Adapter Smoke is not memory write. | SONYA-ADAPTER-SMOKE-00 | fixture-only adapter smoke boundary. |
+| Sonya Adapter Smoke is not final answer release. | SONYA-ADAPTER-SMOKE-00 | fixture-only adapter smoke boundary. |
+| Sonya Adapter Smoke is not deployment authority. | SONYA-ADAPTER-SMOKE-00 | fixture-only adapter smoke boundary. |
+| Sonya Adapter Smoke is not model-weight training. | SONYA-ADAPTER-SMOKE-00 | fixture-only adapter smoke boundary. |
+| Sonya Adapter Smoke is not hallucination reduction proof. | SONYA-ADAPTER-SMOKE-00 | fixture-only adapter smoke boundary. |
+| Sonya Adapter Smoke is not recursive self-improvement. | SONYA-ADAPTER-SMOKE-00 | fixture-only adapter smoke boundary. |

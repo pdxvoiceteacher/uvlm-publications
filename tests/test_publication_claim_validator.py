@@ -850,6 +850,95 @@ def test_governed_artifact_cognition_sonya_adapter_contract_registry_updates_are
     assert status["not_model_weight_training"] is True
 
 
+
+def test_governed_artifact_cognition_sonya_adapter_smoke_updates_are_present():
+    paper = (ROOT / "PUB_GOV_ARTIFACT_COG_01.md").read_text(encoding="utf-8")
+    abstract = (ROOT / "abstract.md").read_text(encoding="utf-8")
+    artifact_table = (ROOT / "artifact_table.md").read_text(encoding="utf-8")
+    boundary_table = (ROOT / "claim_boundary_table.md").read_text(encoding="utf-8")
+    quickstart = (ROOT / "reviewer_quickstart.md").read_text(encoding="utf-8")
+    appendix = (ROOT / "reproducibility_appendix.md").read_text(encoding="utf-8")
+    status = json.loads((ROOT / "status.json").read_text(encoding="utf-8"))
+
+    combined_paper = paper + "\n" + abstract
+    for phrase in (
+        "SONYA-ADAPTER-SMOKE-00",
+        "Sonya Adapter Smoke exercises contracts, not live adapters.",
+        "not adapter execution",
+        "not live adapter execution",
+        "not network authorization",
+        "no remote provider call",
+        "raw_output_rejected_or_absent = true",
+        "candidate_packet_emitted_for_fixture_model = true",
+        "failure_receipts_visible = true",
+        "telemetry_events_visible = true",
+        "provenance_events_visible = true",
+        "not model-weight training",
+        "Universal Stage Pipeline → Artifact Contract Registry → Universal Compatibility Matrix → Provenance Training Ledger → Sonya Adapter Contract Registry → Sonya Adapter Smoke",
+        "SONYA-ADAPTER-SMOKE-00 exercises adapter contracts only",
+        "local fixture adapter execution with deterministic transform only",
+        "adapter failure receipt replay",
+        "adapter telemetry event validation",
+        "consent-profile enforcement tests",
+        "adapter provenance credit calibration",
+        "remote-provider placeholder remains blocked until consent/network/privacy gates exist",
+    ):
+        assert phrase in combined_paper
+
+    for artifact in (
+        "sonya_adapter_smoke_packet.json",
+        "sonya_adapter_smoke_review_packet.json",
+        "sonya_adapter_failure_receipt.json",
+        "sonya_adapter_telemetry_packet.json",
+        "sonya_adapter_provenance_event_packet.json",
+    ):
+        assert artifact in artifact_table
+
+    for boundary in (
+        "Sonya Adapter Smoke exercises contracts, not live adapters.",
+        "Sonya Adapter Smoke is not adapter execution.",
+        "Sonya Adapter Smoke is not live adapter execution.",
+        "Sonya Adapter Smoke is not network authorization.",
+        "Sonya Adapter Smoke is not remote provider call.",
+        "Sonya Adapter Smoke is not live model execution.",
+        "Sonya Adapter Smoke is not memory write.",
+        "Sonya Adapter Smoke is not final answer release.",
+        "Sonya Adapter Smoke is not deployment authority.",
+        "Sonya Adapter Smoke is not model-weight training.",
+        "Sonya Adapter Smoke is not hallucination reduction proof.",
+        "Sonya Adapter Smoke is not recursive self-improvement.",
+    ):
+        assert boundary in boundary_table
+
+    assert "Run-SONYA-ADAPTER-SMOKE00-Acceptance.ps1" in quickstart
+    assert "Run-SONYA-ADAPTER-SMOKE00-Acceptance.ps1" in appendix
+    assert status["sonya_adapter_smoke_indexed"] is True
+    assert status["not_live_adapter_execution"] is True
+
+
+def test_claim_validator_rejects_sonya_adapter_smoke_overclaims(tmp_path):
+    forbidden_claims = (
+        "claims adapter execution",
+        "claims live adapter execution",
+        "claims network authorization",
+        "remote provider call",
+        "claims model-weight training",
+        "claims deployment authority",
+        "production readiness",
+    )
+    for claim in forbidden_claims:
+        paper_root = _copy_governed_paper(tmp_path / claim.replace(" ", "_").replace("-", "_"))
+        paper = paper_root / "PUB_GOV_ARTIFACT_COG_01.md"
+        paper.write_text(paper.read_text(encoding="utf-8") + f"\nThis paper {claim}.\n", encoding="utf-8")
+        result = validate_publication_claims(
+            paper,
+            appendix=paper_root / "reproducibility_appendix.md",
+            quickstart=paper_root / "reviewer_quickstart.md",
+            status=paper_root / "status.json",
+        )
+        assert result["passed"] is False, claim
+        assert result["forbidden_overclaims_found"], result
+
 def test_claim_validator_rejects_sonya_adapter_contract_overclaims(tmp_path):
     forbidden_claims = (
         "claims adapter execution",
