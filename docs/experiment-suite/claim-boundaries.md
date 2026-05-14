@@ -71,5 +71,15 @@
 - RW-COMP-03 uses simulated scores.
 - RW-COMP-03 is not accepted evidence.
 - RW-COMP-03 is not production evaluation.
+- Sonya Adapter Smoke exercises contracts, not live adapters.
+- Sonya Adapter Smoke is not live adapter execution.
+- Sonya Adapter Smoke is not network authorization.
+- Sonya Adapter Smoke is not remote provider call.
+- Sonya Adapter Smoke is not model weight training.
+- Sonya Adapter Smoke keeps raw output rejected or absent.
+- Sonya Adapter Smoke requires a candidate packet for fixture model output.
+- Sonya Adapter Smoke makes failure receipts visible.
+- Sonya Adapter Smoke makes telemetry events visible.
+- Sonya Adapter Smoke makes provenance events visible.
 
 No oracle posture. No deployment posture. No final-answer posture. No AI consciousness claim. No universal ontology claim.

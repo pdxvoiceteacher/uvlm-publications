@@ -450,6 +450,62 @@ SONYA_ADAPTER_CONTRACT_REGISTRY_CLAIMS_BLOCKED = [
     "not production readiness",
 ]
 
+SONYA_ADAPTER_SMOKE_COMMAND = r""".\experiments\Run-SONYA-ADAPTER-SMOKE00-Acceptance.ps1 `
+  -OutputRoot C:\UVLM\run_artifacts\sonya_adapter_smoke_00 `
+  -LogDir C:\UVLM\run_artifacts\sonya_adapter_smoke_00_logs `
+  -CiMode"""
+SONYA_ADAPTER_SMOKE_ARTIFACTS = [
+    "sonya_adapter_smoke_packet.json",
+    "sonya_adapter_smoke_review_packet.json",
+    "sonya_adapter_selection_packet.json",
+    "sonya_adapter_consent_check_packet.json",
+    "sonya_adapter_capability_check_packet.json",
+    "sonya_adapter_failure_receipt.json",
+    "sonya_adapter_telemetry_packet.json",
+    "sonya_adapter_provenance_event_packet.json",
+    "sonya_adapter_fixture_candidate_packet.json",
+    "sonya_adapter_smoke_summary.md",
+    "artifact_inventory.json",
+    "run_artifact_manifest.json",
+    "export_bundle_manifest.json",
+    "export_bundle_parity_report.json",
+    "sonya_adapter_smoke_00_acceptance_receipt.json",
+]
+SONYA_ADAPTER_SMOKE_DASHBOARD_SUMMARY = {
+    "review_status": "accepted_as_fixture_adapter_contract_smoke",
+    "adapter_contract_registry_bound": True,
+    "all_adapters_disabled_or_blocked_or_fixture_only": True,
+    "no_live_adapter_execution": True,
+    "no_network_calls": True,
+    "no_remote_provider_calls": True,
+    "no_live_model_execution": True,
+    "raw_output_rejected_or_absent": True,
+    "candidate_packet_emitted_for_fixture_model": True,
+    "failure_receipts_visible": True,
+    "telemetry_events_visible": True,
+    "provenance_events_visible": True,
+    "model_weight_training_blocked": True,
+    "memory_write_blocked": True,
+    "final_answer_release_blocked": True,
+    "deployment_blocked": True,
+    "promotion_blocked": True,
+}
+SONYA_ADAPTER_SMOKE_CLAIMS_BLOCKED = [
+    "not adapter execution",
+    "not live adapter execution",
+    "not network authorization",
+    "not remote provider call",
+    "not live model execution",
+    "not memory write",
+    "not final answer release",
+    "not deployment authority",
+    "not truth certification",
+    "not model weight training",
+    "not hallucination reduction proof",
+    "not recursive self-improvement",
+    "not production readiness",
+]
+
 RETRO_SANDBOX_CYCLE_COMMAND = r""".\experiments\Run-RETROSYNTHESIS-SANDBOX-CYCLE01-Acceptance.ps1 `
   -OutputRoot C:\UVLM\run_artifacts\retrosynthesis_sandbox_cycle_01 `
   -LogDir C:\UVLM\run_artifacts\retrosynthesis_sandbox_cycle_01_logs `
@@ -534,6 +590,28 @@ ACCEPTED_PHASES = [
         "claim_allowed": "SONYA-ADAPTER-CONTRACT-REGISTRY-01 demonstrates a fixture-only versioned adapter-contract scaffold that declares adapter capabilities, consent profiles, failure policies, telemetry requirements, and provenance-training policies while keeping all adapters disabled or blocked and forbidding raw output admission. Adapter capability is not adapter authorization.",
         "claims_blocked": SONYA_ADAPTER_CONTRACT_REGISTRY_CLAIMS_BLOCKED,
         "reviewer_caution": "SONYA-ADAPTER-CONTRACT-REGISTRY-01 defines adapter contracts only. It does not execute adapters, does not call providers, does not authorize network use, does not admit raw output as cognition, does not write memory, does not release final answers, does not train models, and does not deploy.",
+        "publication_status": "dashboard_indexed",
+    },
+    {
+        "phase_id": "SONYA-ADAPTER-SMOKE-00",
+        "repo": "pdxvoiceteacher/CoherenceLattice",
+        "status": "accepted",
+        "evidence_type": "fixture_adapter_contract_smoke",
+        "product_posture": "adapter_contract_smoke_without_live_execution",
+        "primary_artifacts": SONYA_ADAPTER_SMOKE_ARTIFACTS,
+        "dashboard_summary": SONYA_ADAPTER_SMOKE_DASHBOARD_SUMMARY,
+        "prerequisite_phases": [
+            "SONYA-ADAPTER-CONTRACT-REGISTRY-01",
+            "PROVENANCE-TRAINING-LEDGER-00",
+            "UNIVERSAL-STAGE-PIPELINE-00",
+            "ARTIFACT-CONTRACT-REGISTRY-01",
+            "UNIVERSAL-COMPATIBILITY-MATRIX-00",
+            "SONYA-GW-01",
+        ],
+        "reproduction_command_summary": SONYA_ADAPTER_SMOKE_COMMAND,
+        "claim_allowed": "SONYA-ADAPTER-SMOKE-00 demonstrates fixture-only adapter contract exercise: adapter selection, consent and capability checks, Sonya gateway requirement, raw-output rejection, candidate-packet requirement, failure receipt emission, telemetry event emission, and provenance event emission without live adapter execution or network/provider calls. Sonya Adapter Smoke exercises contracts, not live adapters.",
+        "claims_blocked": SONYA_ADAPTER_SMOKE_CLAIMS_BLOCKED,
+        "reviewer_caution": "SONYA-ADAPTER-SMOKE-00 exercises contracts only. It does not execute adapters, does not call providers, does not authorize network use, does not admit raw output as cognition, does not write memory, does not release final answers, does not train models, and does not deploy.",
         "publication_status": "dashboard_indexed",
     },
     {
@@ -948,6 +1026,16 @@ BOUNDARIES = [
     "RW-COMP-03 uses simulated scores.",
     "RW-COMP-03 is not accepted evidence.",
     "RW-COMP-03 is not production evaluation.",
+    "Sonya Adapter Smoke exercises contracts, not live adapters.",
+    "Sonya Adapter Smoke is not live adapter execution.",
+    "Sonya Adapter Smoke is not network authorization.",
+    "Sonya Adapter Smoke is not remote provider call.",
+    "Sonya Adapter Smoke is not model weight training.",
+    "Sonya Adapter Smoke keeps raw output rejected or absent.",
+    "Sonya Adapter Smoke requires a candidate packet for fixture model output.",
+    "Sonya Adapter Smoke makes failure receipts visible.",
+    "Sonya Adapter Smoke makes telemetry events visible.",
+    "Sonya Adapter Smoke makes provenance events visible.",
 ]
 GLOBAL_NON_CLAIMS = [
     "not truth certification",
@@ -1082,6 +1170,7 @@ def reproducibility_index() -> dict[str, Any]:
                 {"name": "Artifact Contract Registry acceptance", "command": ARTIFACT_CONTRACT_REGISTRY_COMMAND},
                 {"name": "Universal Compatibility Matrix acceptance", "command": UNIVERSAL_COMPATIBILITY_MATRIX_COMMAND},
                 {"name": "Sonya Adapter Contract Registry acceptance", "command": SONYA_ADAPTER_CONTRACT_REGISTRY_COMMAND},
+                {"name": "Sonya Adapter Smoke acceptance", "command": SONYA_ADAPTER_SMOKE_COMMAND},
                 {"name": "experiment suite repro pack builder", "command": "python -m coherence.tools.build_experiment_suite_repro_pack --registry experiments/experiment_suite_registry.json --artifacts-root artifacts --out-dir artifacts/experiment_suite_repro_pack --zip"},
             ],
             "Sophia": [
@@ -1121,6 +1210,7 @@ def artifact_index() -> dict[str, Any]:
             "ARTIFACT-CONTRACT-REGISTRY-01": ARTIFACT_CONTRACT_REGISTRY_ARTIFACTS,
             "UNIVERSAL-COMPATIBILITY-MATRIX-00": UNIVERSAL_COMPATIBILITY_MATRIX_ARTIFACTS,
             "SONYA-ADAPTER-CONTRACT-REGISTRY-01": SONYA_ADAPTER_CONTRACT_REGISTRY_ARTIFACTS,
+            "SONYA-ADAPTER-SMOKE-00": SONYA_ADAPTER_SMOKE_ARTIFACTS,
             "publications": ["PUB_GOV_ARTIFACT_COG_01.md", "PUB_WAVE_ROSETTA_01.md", "reviewer quickstarts", "status.json files"],
         },
     }
@@ -1158,7 +1248,7 @@ def docs() -> dict[str, str]:
     return {
         "README.md": "# Experiment Suite Docs\n\nPublic reviewer documentation for the claim-bounded reproducibility dashboard.\n",
         "assets/README.md": "# Assets\n\nOptional static assets for the public reproducibility dashboard.\n",
-        "index.md": f"# Public Experiment Suite Dashboard\n\nThis dashboard presents accepted evidence for reviewer orientation. It is not truth certification, not deployment authority, not final answer release, local fixture only, and requires external peer review.\n\n## Accepted evidence\n\n| Phase | Repo | Status | What this supports | Reviewer caution |\n| --- | --- | --- | --- | --- |\n{phase_rows}\n\n## Reviewer path\n\nStart with claim boundaries, then read the governed artifact cognition paper, WAVE Rosetta paper, SONYA-AEGIS-SMOKE-02, WAVE family, UNI-02D Sonya gate, and RETRO-LANE-00, Public Utility Alpha, Raw Baseline Comparison, Evidence Review Pack, RW-COMP-01, RW-COMP-02, Retrosynthesis Sandbox Cycle, Evidence Review Pack second-pass, RW-COMP-03, Universal Architecture Scaffold, and Sonya Adapter Contract Registry pages.\n\n## What this proves\n\nIt proves only that accepted local fixture artifacts and draft publication materials are organized for review.\n\n## What this does not prove\n\nNo oracle posture, no deployment posture, no final-answer posture, no AI consciousness claim, and no universal ontology claim.\n\n## Phase pages\n\n- [SONYA-AEGIS-SMOKE-02](sonya-aegis-smoke-02.md)\n- [WAVE Gold-Physics](wave-gold-physics.md)\n- [UNI-02D Sonya gate](uni02d-sonya-gate.md)\n- [RETRO-LANE-00](retro-lane-00.md)\n- [Public Utility Alpha](public-utility-alpha.md)\n- [Raw Baseline Comparison](raw-baseline-comparison.md)\n- [Evidence Review Pack](evidence-review-pack.md)\n- [RW-COMP-01](rw-comp-01.md)\n- [RW-COMP-02](rw-comp-02.md)\n- [Retrosynthesis Sandbox Cycle](retrosynthesis-sandbox-cycle.md)\n- [Evidence Review Pack second pass](evidence-review-pack-second-pass.md)\n- [RW-COMP-03](rw-comp-03.md)\n- [Universal Architecture Scaffold](universal-architecture.md)\n- [Sonya Adapter Contract Registry](sonya-adapter-contract-registry.md)\n- [Governed artifact cognition paper](governed-artifact-cognition-paper.md)\n- [Waveform Rosetta paper](waveform-rosetta-paper.md)\n",
+        "index.md": f"# Public Experiment Suite Dashboard\n\nThis dashboard presents accepted evidence for reviewer orientation. It is not truth certification, not deployment authority, not final answer release, local fixture only, and requires external peer review.\n\n## Accepted evidence\n\n| Phase | Repo | Status | What this supports | Reviewer caution |\n| --- | --- | --- | --- | --- |\n{phase_rows}\n\n## Reviewer path\n\nStart with claim boundaries, then read the governed artifact cognition paper, WAVE Rosetta paper, SONYA-AEGIS-SMOKE-02, WAVE family, UNI-02D Sonya gate, and RETRO-LANE-00, Public Utility Alpha, Raw Baseline Comparison, Evidence Review Pack, RW-COMP-01, RW-COMP-02, Retrosynthesis Sandbox Cycle, Evidence Review Pack second-pass, RW-COMP-03, Universal Architecture Scaffold, Sonya Adapter Contract Registry, and Sonya Adapter Smoke pages.\n\n## What this proves\n\nIt proves only that accepted local fixture artifacts and draft publication materials are organized for review.\n\n## What this does not prove\n\nNo oracle posture, no deployment posture, no final-answer posture, no AI consciousness claim, and no universal ontology claim.\n\n## Phase pages\n\n- [SONYA-AEGIS-SMOKE-02](sonya-aegis-smoke-02.md)\n- [WAVE Gold-Physics](wave-gold-physics.md)\n- [UNI-02D Sonya gate](uni02d-sonya-gate.md)\n- [RETRO-LANE-00](retro-lane-00.md)\n- [Public Utility Alpha](public-utility-alpha.md)\n- [Raw Baseline Comparison](raw-baseline-comparison.md)\n- [Evidence Review Pack](evidence-review-pack.md)\n- [RW-COMP-01](rw-comp-01.md)\n- [RW-COMP-02](rw-comp-02.md)\n- [Retrosynthesis Sandbox Cycle](retrosynthesis-sandbox-cycle.md)\n- [Evidence Review Pack second pass](evidence-review-pack-second-pass.md)\n- [RW-COMP-03](rw-comp-03.md)\n- [Universal Architecture Scaffold](universal-architecture.md)\n- [Sonya Adapter Contract Registry](sonya-adapter-contract-registry.md)\n- [Sonya Adapter Smoke](sonya-adapter-smoke.md)\n- [Governed artifact cognition paper](governed-artifact-cognition-paper.md)\n- [Waveform Rosetta paper](waveform-rosetta-paper.md)\n",
         "claim-boundaries.md": f"# Claim Boundaries\n\n{boundaries}\n\nNo oracle posture. No deployment posture. No final-answer posture. No AI consciousness claim. No universal ontology claim.\n",
         "sonya-aegis-smoke-02.md": f"""# SONYA-AEGIS-SMOKE-02
 
@@ -1470,6 +1560,63 @@ Claims blocked: {"; ".join(SONYA_ADAPTER_CONTRACT_REGISTRY_CLAIMS_BLOCKED)}.
 
 Reviewer caution: SONYA-ADAPTER-CONTRACT-REGISTRY-01 defines adapter contracts only. It does not execute adapters, does not call providers, does not authorize network use, does not admit raw output as cognition, does not write memory, does not release final answers, does not train models, and does not deploy.
 """,
+        "sonya-adapter-smoke.md": f"""# Sonya Adapter Smoke
+
+Sonya Adapter Smoke exercises contracts, not live adapters.
+
+Purpose: describe SONYA-ADAPTER-SMOKE-00 as an accepted fixture-only adapter-contract smoke test. It exercises adapter selection, consent checks, capability checks, Sonya gateway requirements, raw output rejected or absent posture, candidate packet requirement, failure receipts, telemetry events, and provenance events. Boundary posture: not live adapter execution, not network authorization, not remote provider call, not live model execution, not memory write, not final answer release, not deployment authority, and not model weight training.
+
+## Allowed claim
+
+SONYA-ADAPTER-SMOKE-00 demonstrates fixture-only adapter contract exercise: adapter selection, consent and capability checks, Sonya gateway requirement, raw-output rejection, candidate-packet requirement, failure receipt emission, telemetry event emission, and provenance event emission without live adapter execution or network/provider calls.
+
+## Reproduction command
+
+```powershell
+{SONYA_ADAPTER_SMOKE_COMMAND}
+```
+
+## Evidence artifacts
+
+{chr(10).join(f"- `{artifact}`" for artifact in SONYA_ADAPTER_SMOKE_ARTIFACTS)}
+
+## Prerequisite phases
+
+- SONYA-ADAPTER-CONTRACT-REGISTRY-01
+- PROVENANCE-TRAINING-LEDGER-00
+- UNIVERSAL-STAGE-PIPELINE-00
+- ARTIFACT-CONTRACT-REGISTRY-01
+- UNIVERSAL-COMPATIBILITY-MATRIX-00
+- SONYA-GW-01
+
+## Dashboard summary
+
+{chr(10).join(f"- {key} = {str(value).lower()}" for key, value in SONYA_ADAPTER_SMOKE_DASHBOARD_SUMMARY.items())}
+
+## Reviewer boundaries
+
+- Sonya Adapter Smoke exercises contracts, not live adapters.
+- adapter selection, consent checks, capability checks, and Sonya gateway requirements are fixture-only contract checks.
+- not adapter execution.
+- not live adapter execution.
+- not network authorization.
+- not remote provider call.
+- not live model execution.
+- raw output rejected or absent.
+- candidate packet required for fixture model output.
+- failure receipts visible.
+- telemetry events visible.
+- provenance events visible.
+- not memory write.
+- not final answer release.
+- not deployment authority.
+- not model weight training.
+- not production readiness.
+
+Claims blocked: {"; ".join(SONYA_ADAPTER_SMOKE_CLAIMS_BLOCKED)}.
+
+Reviewer caution: SONYA-ADAPTER-SMOKE-00 exercises contracts only. It does not execute adapters, does not call providers, does not authorize network use, does not admit raw output as cognition, does not write memory, does not release final answers, does not train models, and does not deploy.
+""",
         "universal-architecture.md": f"""# Universal Architecture Scaffold
 
 The brain runs cognition stages; experiments configure those stages.
@@ -1547,6 +1694,7 @@ Reviewer caution: this is not product release, not experiment result, not benchm
 15. RW-COMP-03
 16. Universal Architecture Scaffold
 17. Sonya Adapter Contract Registry
+18. Sonya Adapter Smoke
 
 ## CoherenceLattice commands
 
@@ -1677,6 +1825,22 @@ Expected posture:
 {chr(10).join(f"- `{key} = {str(value).lower()}`" for key, value in SONYA_ADAPTER_CONTRACT_REGISTRY_DASHBOARD_SUMMARY.items())}
 
 This scaffold is not adapter execution, not live model execution, not remote provider call, not network authorization, not memory write, not final answer release, not deployment authority, not truth certification, not model weight training, not hallucination reduction proof, not recursive self-improvement, and not production readiness.
+
+## Sonya Adapter Smoke
+
+Sonya Adapter Smoke exercises contracts, not live adapters.
+
+Sonya Adapter Smoke covers SONYA-ADAPTER-SMOKE-00 as an accepted fixture-only adapter-contract smoke test. It exercises adapter selection, consent checks, capability checks, Sonya gateway requirements, raw output rejected or absent posture, candidate packet requirement, failure receipts, telemetry events, and provenance events. Boundary posture: not live adapter execution, not network authorization, not remote provider call, not live model execution, not memory write, not final answer release, not deployment authority, and not model weight training.
+
+```powershell
+{SONYA_ADAPTER_SMOKE_COMMAND}
+```
+
+Expected posture:
+
+{chr(10).join(f"- `{key} = {str(value).lower()}`" for key, value in SONYA_ADAPTER_SMOKE_DASHBOARD_SUMMARY.items())}
+
+This smoke test is not adapter execution, not live adapter execution, not network authorization, not remote provider call, not live model execution, not memory write, not final answer release, not deployment authority, not truth certification, not model weight training, not hallucination reduction proof, not recursive self-improvement, and not production readiness.
 
 ## Sophia commands
 
