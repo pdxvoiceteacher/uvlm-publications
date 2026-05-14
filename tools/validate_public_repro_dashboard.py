@@ -30,6 +30,7 @@ REQUIRED_PHASES = {
     "UNIVERSAL-COMPATIBILITY-MATRIX-00",
     "SONYA-ADAPTER-CONTRACT-REGISTRY-01",
     "SONYA-ADAPTER-SMOKE-00",
+    "SONYA-LOCAL-FIXTURE-ADAPTER-01",
 }
 REQUIRED_BOUNDARY_PHRASES = (
     "not truth certification",
@@ -129,6 +130,17 @@ REQUIRED_BOUNDARY_PHRASES = (
     "not model weight training",
     "raw output rejected",
     "candidate packet",
+    "failure receipts",
+    "telemetry events",
+    "provenance events",
+    "Sonya Local Fixture Adapter",
+    "deterministic local fixtures",
+    "not live adapters",
+    "not live adapter execution",
+    "not network authorization",
+    "not remote provider call",
+    "not model weight training",
+    "candidate packets",
     "failure receipts",
     "telemetry events",
     "provenance events",
@@ -239,6 +251,22 @@ def _is_negated(text: str, index: int) -> bool:
     return any(marker in window for marker in ALLOWED_NEGATED)
 
 
+def _is_allowed_local_adapter_context(text: str, index: int) -> bool:
+    window = text[max(0, index - 48) : index]
+    return any(
+        marker in window
+        for marker in (
+            "local fixture ",
+            "local only fixture ",
+            "local only ",
+            "local ",
+            "fixture adapter ",
+            "fixture only ",
+            "deterministic local ",
+        )
+    )
+
+
 def _forbidden_hits(text: str) -> list[str]:
     hits: list[str] = []
     for phrase in FORBIDDEN_PHRASES:
@@ -248,6 +276,9 @@ def _forbidden_hits(text: str) -> list[str]:
             index = text.find(normalized_phrase, start)
             if index == -1:
                 break
+            if phrase in {"adapter execution", "adapter executed"} and _is_allowed_local_adapter_context(text, index):
+                start = index + len(normalized_phrase)
+                continue
             if not _is_negated(text, index):
                 hits.append(phrase)
                 break
