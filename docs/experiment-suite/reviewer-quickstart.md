@@ -23,7 +23,8 @@
 19. Sonya Local Fixture Adapter
 20. Evidence Review Pack local adapter
 21. PMR GPCU utility scoring
-22. Sonya Local Fixture Adapter multi-route
+22. PMR lifecycle state machine
+23. Sonya Local Fixture Adapter multi-route
 
 ## CoherenceLattice commands
 
@@ -474,6 +475,53 @@ Expected posture:
 - `quarantine_example_utility_band = quarantine`
 
 Reviewer caution: PMR-02 computes lifecycle/storage utility scores and recommendations only. It does not prune artifacts. GPCU is not reward entitlement and not token economy. It does not certify truth. It does not authorize federation. It does not write memory, train models, deploy, or assign human value.
+
+## PMR lifecycle state machine
+
+Recommendation is not transition; transition candidate is not action. PMR-03-LIFECYCLE-STATE-MACHINE emits lifecycle transition candidates, transition receipts, and a no-action receipt. Lifecycle state is not truth status. No pruning or deletion occurs in PMR-03. Destructive action requires future Sophia lifecycle audit. Destructive action requires future user confirmation. Reward mechanics remain deferred. Federation remains blocked by default.
+
+```powershell
+.\experiments\Run-PMR03-Acceptance.ps1 `
+  -OutputRoot C:\UVLM\run_artifacts\pmr_03 `
+  -LogDir C:\UVLM\run_artifacts\pmr_03_logs `
+  -Mode balanced `
+  -LocalStorageBudgetBytes 5368709120 `
+  -CiMode
+```
+
+Expected posture:
+
+- `review_status = accepted_as_pmr_lifecycle_state_machine_scaffold`
+- `source_pmr_policy_bound = true`
+- `source_pmr_index_bound = true`
+- `source_pmr_utility_bound = true`
+- `transition_candidates_present = true`
+- `transition_receipts_present = true`
+- `no_action_receipt_present = true`
+- `recommendation_not_transition = true`
+- `transition_candidate_not_action = true`
+- `lifecycle_state_not_truth_status = true`
+- `destructive_action_requires_future_sophia_audit = true`
+- `destructive_action_requires_future_user_confirmation = true`
+- `pruning_not_performed = true`
+- `deletion_not_performed = true`
+- `federation_blocked_by_default = true`
+- `reward_actions_not_performed = true`
+- `memory_write_blocked = true`
+- `atlas_canon_write_blocked = true`
+- `model_weight_training_blocked = true`
+- `deployment_blocked = true`
+- `truth_certification_blocked = true`
+- `promotion_blocked = true`
+- `artifact_count = 8`
+- `transition_candidate_count = 8`
+- `transition_receipt_count = 8`
+- `action_performed = false`
+- `encrypted_shard_transfer_performed = false`
+- `token_economy_performed = false`
+- `network_calls_performed = false`
+
+Reviewer caution: PMR-03 emits lifecycle transition candidates and no-action receipts only. It does not prune. It does not delete. It does not federate artifacts. It does not transfer encrypted shards. It does not create reward entitlement. It does not run a token economy. It does not write memory, train models, deploy, or certify truth. Destructive action requires future Sophia lifecycle audit and user confirmation.
 
 Reviewer caution: PMR-00 and PMR-01 define local provenance-memory doctrine, storage policy, artifact indexing, and dependency graph scaffolds only. They do not write memory, canonize artifacts, federate artifacts, transfer encrypted shards, prune artifacts, train models, certify truth, release final answers, deploy, or reward resource contributions.
 

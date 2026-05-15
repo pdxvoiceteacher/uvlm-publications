@@ -465,3 +465,20 @@ PMR-02 scores local PMR-indexed artifacts for lifecycle/storage utility and emit
   -LocalStorageBudgetBytes 5368709120 `
   -CiMode
 ```
+
+## PMR-03 Lifecycle State Machine
+
+PMR-03-LIFECYCLE-STATE-MACHINE adds a publication-indexed PMR lifecycle state-machine scaffold for local PMR-indexed artifacts. Recommendation is not transition. Transition candidate is not action. Lifecycle state is not truth status. No pruning or deletion occurs in PMR-03. Destructive action requires future Sophia lifecycle audit. Destructive action requires future user confirmation. Reward mechanics remain deferred. Federation remains blocked by default.
+
+PMR-03 consumes PMR-00 doctrine/policy, PMR-01 local artifact index/dependency graph, and PMR-02 GPCU lifecycle recommendations. It emits lifecycle transition candidates, transition receipts, and a no-action receipt while preserving non-action and non-authority boundaries. It is not pruning execution, not deletion execution, not federation authorization, not encrypted shard transfer, not reward entitlement, not token economy, not Atlas canon, not memory write authorization, not model-weight training, not deployment authority, not truth certification, not final answer release, not hallucination reduction proof, not recursive self-improvement, and not production readiness.
+
+### PMR-03 acceptance command
+
+```powershell
+.\experiments\Run-PMR03-Acceptance.ps1 `
+  -OutputRoot C:\UVLM\run_artifacts\pmr_03 `
+  -LogDir C:\UVLM\run_artifacts\pmr_03_logs `
+  -Mode balanced `
+  -LocalStorageBudgetBytes 5368709120 `
+  -CiMode
+```

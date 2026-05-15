@@ -63,6 +63,10 @@
         "command": ".\\experiments\\Run-PMR02-Acceptance.ps1 `\n  -OutputRoot C:\\UVLM\\run_artifacts\\pmr_02 `\n  -LogDir C:\\UVLM\\run_artifacts\\pmr_02_logs `\n  -Mode balanced `\n  -LocalStorageBudgetBytes 5368709120 `\n  -CiMode"
       },
       {
+        "name": "PMR lifecycle state machine acceptance",
+        "command": ".\\experiments\\Run-PMR03-Acceptance.ps1 `\n  -OutputRoot C:\\UVLM\\run_artifacts\\pmr_03 `\n  -LogDir C:\\UVLM\\run_artifacts\\pmr_03_logs `\n  -Mode balanced `\n  -LocalStorageBudgetBytes 5368709120 `\n  -CiMode"
+      },
+      {
         "name": "Universal Stage Pipeline acceptance",
         "command": "python -m pytest -q python/tests/pipeline/test_universal_stage_pipeline.py"
       },

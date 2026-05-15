@@ -205,3 +205,17 @@
 | PMR-02 is not model-weight training. | Utility scoring does not train model weights. |
 | PMR-02 is not deployment authority. | Utility scoring does not deploy systems. |
 | PMR-02 is not hallucination reduction proof. | Utility scoring is not model-quality evidence. |
+| Recommendation is not transition. | PMR-03 recommendations do not change lifecycle state. |
+| Transition candidate is not action. | PMR-03 candidates remain reviewable candidates only. |
+| Lifecycle state is not truth status. | Lifecycle metadata is not truth certification. |
+| Destructive action requires future Sophia lifecycle audit. | PMR-03 does not perform destructive actions. |
+| Destructive action requires future user confirmation. | PMR-03 does not authorize deletion or pruning. |
+| No pruning or deletion occurs in PMR-03. | PMR-03 emits no-action receipts and candidates only. |
+| PMR-03 is not federation authorization. | Lifecycle candidates do not authorize federation. |
+| PMR-03 is not reward entitlement. | Lifecycle candidates do not allocate rewards. |
+| PMR-03 is not token economy. | Lifecycle candidates do not run token mechanics. |
+| PMR-03 is not Atlas canon. | Lifecycle candidates do not canonize artifacts. |
+| PMR-03 is not memory write authorization. | Lifecycle candidates do not authorize memory writes. |
+| PMR-03 is not model-weight training. | Lifecycle candidates do not train model weights. |
+| PMR-03 is not deployment authority. | Lifecycle candidates do not deploy systems. |
+| PMR-03 is not truth certification. | Lifecycle candidates do not certify truth. |

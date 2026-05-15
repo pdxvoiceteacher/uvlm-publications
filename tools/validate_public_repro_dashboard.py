@@ -39,6 +39,7 @@ REQUIRED_PHASES = {
     "PMR-00-PROVENANCE-MEMORY-RESERVOIR",
     "PMR-01-LOCAL-ARTIFACT-INDEX",
     "PMR-02-GLOBAL-PROVENANCE-COHERENCE-UTILITY",
+    "PMR-03-LIFECYCLE-STATE-MACHINE",
 }
 REQUIRED_BOUNDARY_PHRASES = (
     "not truth certification",
@@ -220,6 +221,21 @@ REQUIRED_BOUNDARY_PHRASES = (
     "PMR-02 is not model-weight training.",
     "PMR-02 is not deployment authority.",
     "PMR-02 is not hallucination reduction proof.",
+    "Recommendation is not transition; transition candidate is not action.",
+    "Recommendation is not transition.",
+    "Transition candidate is not action.",
+    "Lifecycle state is not truth status.",
+    "Destructive action requires future Sophia lifecycle audit.",
+    "Destructive action requires future user confirmation.",
+    "No pruning or deletion occurs in PMR-03.",
+    "PMR-03 is not federation authorization.",
+    "PMR-03 is not reward entitlement.",
+    "PMR-03 is not token economy.",
+    "PMR-03 is not Atlas canon.",
+    "PMR-03 is not memory write authorization.",
+    "PMR-03 is not model-weight training.",
+    "PMR-03 is not deployment authority.",
+    "PMR-03 is not truth certification.",
     "Governed provenance resources may be future infrastructure rewards, but truth is not for sale.",
 )
 FORBIDDEN_PHRASES = (
@@ -313,6 +329,8 @@ FORBIDDEN_PHRASES = (
     "truth score",
     "reward entitlement",
     "human value score",
+    "deletion execution",
+    "encrypted shard transfer",
 )
 ALLOWED_NEGATED = (
     "not ",

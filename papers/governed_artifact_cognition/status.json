@@ -70,5 +70,8 @@
   "pmr_02_indexed": true,
   "not_truth_score": true,
   "not_reward_entitlement": true,
-  "not_human_value_score": true
+  "not_human_value_score": true,
+  "pmr_03_indexed": true,
+  "not_lifecycle_action": true,
+  "not_deletion_execution": true
 }

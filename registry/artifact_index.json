@@ -176,6 +176,19 @@
       "export_bundle_parity_report.json",
       "pmr_02_acceptance_receipt.json"
     ],
+    "PMR-03-LIFECYCLE-STATE-MACHINE": [
+      "pmr_lifecycle_state_machine_packet.json",
+      "pmr_lifecycle_transition_candidates.jsonl",
+      "pmr_lifecycle_transition_receipts.jsonl",
+      "pmr_lifecycle_no_action_receipt.json",
+      "pmr_lifecycle_state_review_packet.json",
+      "pmr_lifecycle_state_summary.md",
+      "artifact_inventory.json",
+      "run_artifact_manifest.json",
+      "export_bundle_manifest.json",
+      "export_bundle_parity_report.json",
+      "pmr_03_acceptance_receipt.json"
+    ],
     "UNIVERSAL-STAGE-PIPELINE-00": [
       "universal_pipeline_manifest.json",
       "universal_pipeline_review_packet.json",

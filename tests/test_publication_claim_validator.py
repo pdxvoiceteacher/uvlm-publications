@@ -1488,3 +1488,45 @@ def test_governed_validator_rejects_pmr_02_overclaims(tmp_path):
         assert result["passed"] is False
         found = [hit.lower() for hit in result["forbidden_overclaims_found"]]
         assert claim.lower() in found, result
+
+
+def test_governed_paper_includes_pmr_03_lifecycle_state_machine_boundaries():
+    root = Path("papers/governed_artifact_cognition")
+    paper = (root / "PUB_GOV_ARTIFACT_COG_01.md").read_text()
+    artifact_table = (root / "artifact_table.md").read_text()
+    quickstart = (root / "reviewer_quickstart.md").read_text()
+    status = json.loads((root / "status.json").read_text())
+
+    assert "PMR-03-LIFECYCLE-STATE-MACHINE" in paper
+    assert "Lifecycle state is not truth status." in paper
+    assert "Recommendation is not transition." in paper
+    assert "Transition candidate is not action." in paper
+    assert "Destructive action requires future Sophia lifecycle audit." in paper
+    assert "Destructive action requires future user confirmation." in paper
+    assert "No pruning or deletion occurs in PMR-03." in paper
+    assert "pmr_lifecycle_state_machine_packet.json" in artifact_table
+    assert "pmr_lifecycle_no_action_receipt.json" in artifact_table
+    assert "Run-PMR03-Acceptance.ps1" in quickstart
+    assert status["pmr_03_indexed"] is True
+    assert status["not_lifecycle_action"] is True
+
+
+def test_governed_validator_rejects_pmr_03_overclaims(tmp_path):
+    root = Path("papers/governed_artifact_cognition")
+    for claim in ("pruning execution", "deletion execution", "reward entitlement", "token economy"):
+        case = tmp_path / claim.replace(" ", "_")
+        case.mkdir()
+        for source in root.iterdir():
+            if source.is_file():
+                (case / source.name).write_text(source.read_text())
+        paper = case / "PUB_GOV_ARTIFACT_COG_01.md"
+        paper.write_text(paper.read_text() + f"\nPMR-03 claims {claim}.\n")
+        result = validate_publication_claims(
+            paper,
+            case / "reproducibility_appendix.md",
+            case / "reviewer_quickstart.md",
+            case / "status.json",
+        )
+        assert result["passed"] is False
+        found = [hit.lower() for hit in result["forbidden_overclaims_found"]]
+        assert claim.lower() in found, result
