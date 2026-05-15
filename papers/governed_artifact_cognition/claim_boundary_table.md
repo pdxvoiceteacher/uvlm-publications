@@ -179,3 +179,17 @@
 | RW-COMP local-adapter comparison is not model-weight training. | RW-COMP-LOCAL-ADAPTER-01 | local adapter comparison scaffold boundary. |
 | RW-COMP local-adapter comparison is not deployment authority. | RW-COMP-LOCAL-ADAPTER-01 | local adapter comparison scaffold boundary. |
 | RW-COMP local-adapter comparison is not recursive self-improvement. | RW-COMP-LOCAL-ADAPTER-01 | local adapter comparison scaffold boundary. |
+
+| Memory is governed provenance under resource constraints. | PMR-00/PMR-01 | Provenance Memory Reservoir boundary. |
+| Memory is not storage. | PMR-00/PMR-01 | Provenance Memory Reservoir boundary. |
+| Hash is not encryption. | PMR-00/PMR-01 | Provenance Memory Reservoir boundary. |
+| User controls local memory budget. | PMR-00/PMR-01 | Provenance Memory Reservoir boundary. |
+| PMR is not Atlas canon. | PMR-00/PMR-01 | Provenance Memory Reservoir boundary. |
+| PMR is not model-weight training data. | PMR-00/PMR-01 | Provenance Memory Reservoir boundary. |
+| PMR artifact index is not generic cache. | PMR-00/PMR-01 | Provenance Memory Reservoir boundary. |
+| PMR artifact lifecycle state is not truth status. | PMR-00/PMR-01 | Provenance Memory Reservoir boundary. |
+| PMR dependency graph is not canon graph. | PMR-00/PMR-01 | Provenance Memory Reservoir boundary. |
+| PMR-01 performs indexing only, not pruning. | PMR-00/PMR-01 | Provenance Memory Reservoir boundary. |
+| Federation is blocked by default. | PMR-00/PMR-01 | Provenance Memory Reservoir boundary. |
+| PMR is not resource economy or token economy. | PMR-00/PMR-01 | Provenance Memory Reservoir boundary. |
+| Governed provenance resources may be future infrastructure rewards, but truth is not for sale. | PMR-00/PMR-01 | Provenance Memory Reservoir boundary. |

@@ -141,6 +141,29 @@
       "export_bundle_parity_report.json",
       "rw_comp_03_acceptance_receipt.json"
     ],
+    "PMR-00-PROVENANCE-MEMORY-RESERVOIR": [
+      "pmr_doctrine_packet.json",
+      "pmr_local_storage_policy.json",
+      "pmr_artifact_retention_classes.json",
+      "pmr_review_packet.json",
+      "pmr_summary.md",
+      "artifact_inventory.json",
+      "run_artifact_manifest.json",
+      "export_bundle_manifest.json",
+      "export_bundle_parity_report.json",
+      "pmr_00_acceptance_receipt.json"
+    ],
+    "PMR-01-LOCAL-ARTIFACT-INDEX": [
+      "pmr_local_artifact_index.json",
+      "pmr_dependency_graph.json",
+      "pmr_local_artifact_index_review_packet.json",
+      "pmr_local_artifact_index_summary.md",
+      "artifact_inventory.json",
+      "run_artifact_manifest.json",
+      "export_bundle_manifest.json",
+      "export_bundle_parity_report.json",
+      "pmr_01_acceptance_receipt.json"
+    ],
     "UNIVERSAL-STAGE-PIPELINE-00": [
       "universal_pipeline_manifest.json",
       "universal_pipeline_review_packet.json",

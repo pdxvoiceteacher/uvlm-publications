@@ -417,3 +417,34 @@ RW-COMP-LOCAL-ADAPTER-01 compares raw local summary fixture, original local adap
 ```
 
 Review `rw_comp_local_adapter_packet.json`, `rw_comp_local_adapter_delta_packet.json`, and `rw_comp_local_adapter_01_acceptance_receipt.json`. Expected deltas include `unsupported_claim_count_delta = -1`, `uncertainty_missing_count_delta = -1`, `source_reference_visibility_delta = 1`, `supported_claim_count_delta = 2`, and `structural_visibility_improved_candidate = true`. No model-weight training, no memory write, no final-answer release, no deployment, and no promotion is authorized.
+
+
+## How to reproduce PMR-00-PROVENANCE-MEMORY-RESERVOIR
+
+Memory is governed provenance under resource constraints. PMR-00 records local-only doctrine and storage policy. Memory is not storage. Hash is not encryption. User controls local memory budget. Federation is blocked by default. PMR is not Atlas canon and not model-weight training data.
+
+```powershell
+.\experiments\Run-PMR00-Acceptance.ps1 `
+  -OutputRoot C:\UVLM\run_artifacts\pmr_00 `
+  -LogDir C:\UVLM\run_artifacts\pmr_00_logs `
+  -Mode balanced `
+  -LocalStorageBudgetBytes 5368709120 `
+  -CiMode
+```
+
+Review `pmr_doctrine_packet.json`, `pmr_local_storage_policy.json`, and `pmr_00_acceptance_receipt.json`.
+
+## How to reproduce PMR-01-LOCAL-ARTIFACT-INDEX
+
+PMR artifact lifecycle state is not truth status. PMR artifact index is not generic cache. Dependency graph is not canon graph. No pruning occurs in PMR-01. PMR-01 performs indexing only, not pruning.
+
+```powershell
+.\experiments\Run-PMR01-Acceptance.ps1 `
+  -OutputRoot C:\UVLM\run_artifacts\pmr_01 `
+  -LogDir C:\UVLM\run_artifacts\pmr_01_logs `
+  -Mode balanced `
+  -LocalStorageBudgetBytes 5368709120 `
+  -CiMode
+```
+
+Review `pmr_local_artifact_index.json`, `pmr_dependency_graph.json`, and `pmr_01_acceptance_receipt.json`. These are PMR architecture scaffold artifacts only: not Atlas canon, not memory write authorization, not model-weight training, not federation authorization, not pruning execution, not truth certification, and not deployment authority.

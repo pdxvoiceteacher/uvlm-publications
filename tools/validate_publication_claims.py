@@ -250,6 +250,18 @@ PAPER_CONFIGS: dict[str, dict[str, Any]] = {
             "rw_comp_local_adapter_packet.json",
             "rw_comp_local_adapter_delta_packet.json",
             "Run-RW-COMP-LOCAL-ADAPTER01-Acceptance.ps1",
+            "PMR-00-PROVENANCE-MEMORY-RESERVOIR",
+            "PMR-01-LOCAL-ARTIFACT-INDEX",
+            "PMR artifact lifecycle state is not truth status.",
+            "memory is governed provenance under resource constraints",
+            "hash is not encryption",
+            "dependency graph is not canon graph",
+            "no pruning occurs in PMR-01",
+            "federation is blocked by default",
+            "pmr_local_artifact_index.json",
+            "pmr_dependency_graph.json",
+            "Run-PMR00-Acceptance.ps1",
+            "Run-PMR01-Acceptance.ps1",
         ),
         "forbidden_overclaims": (
             "proves universal intelligence",
@@ -332,6 +344,11 @@ PAPER_CONFIGS: dict[str, dict[str, Any]] = {
             "claims model quality benchmark",
             "claims final answer selection",
             "claims accepted evidence",
+            "claims Atlas canon",
+            "claims memory write authorization",
+            "claims pruning execution",
+            "claims resource economy",
+            "claims federation authorization",
         ),
         "status_required": {
             "paper_id": "PUB-GOV-ARTIFACT-COG-01",
@@ -392,6 +409,14 @@ PAPER_CONFIGS: dict[str, dict[str, Any]] = {
             "evidence_review_pack_local_adapter_02_indexed": True,
             "not_structural_delta_proof": True,
             "rw_comp_local_adapter_indexed": True,
+            "pmr_00_indexed": True,
+            "pmr_01_indexed": True,
+            "not_atlas_canon": True,
+            "not_memory_write_authorization": True,
+            "not_federation_authorization": True,
+            "not_pruning_execution": True,
+            "not_resource_economy": True,
+            "not_token_economy": True,
         },
     },
     "PUB-WAVE-ROSETTA-01": {
@@ -490,6 +515,12 @@ def _forbidden_hits(normalized_text: str, forbidden: tuple[str, ...]) -> list[st
             if (
                 phrase in {"model quality benchmark", "model quality benchmark"}
                 and "not hallucination reduction proof or a" in normalized_text[max(0, index - 56) : index]
+            ):
+                search_from = index + len(normalized_phrase)
+                continue
+            if phrase == "federation" and (
+                normalized_text[index : index + 40].startswith("federation is blocked by default")
+                or normalized_text[index : index + 40].startswith("federation_authorization")
             ):
                 search_from = index + len(normalized_phrase)
                 continue

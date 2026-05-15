@@ -36,6 +36,8 @@ REQUIRED_PHASES = {
     "SONYA-LOCAL-FIXTURE-ADAPTER-03",
     "EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER-02",
     "RW-COMP-LOCAL-ADAPTER-01",
+    "PMR-00-PROVENANCE-MEMORY-RESERVOIR",
+    "PMR-01-LOCAL-ARTIFACT-INDEX",
 }
 REQUIRED_BOUNDARY_PHRASES = (
     "not truth certification",
@@ -194,6 +196,19 @@ REQUIRED_BOUNDARY_PHRASES = (
     "RW-COMP local-adapter comparison is not model-weight training.",
     "RW-COMP local-adapter comparison is not deployment authority.",
     "RW-COMP local-adapter comparison is not recursive self-improvement.",
+    "Memory is governed provenance under resource constraints.",
+    "Memory is not storage.",
+    "Hash is not encryption.",
+    "User controls local memory budget.",
+    "PMR is not Atlas canon.",
+    "PMR is not model-weight training data.",
+    "PMR artifact index is not generic cache.",
+    "PMR artifact lifecycle state is not truth status.",
+    "PMR dependency graph is not canon graph.",
+    "PMR-01 performs indexing only, not pruning.",
+    "Federation is blocked by default.",
+    "PMR is not resource economy or token economy.",
+    "Governed provenance resources may be future infrastructure rewards, but truth is not for sale.",
 )
 FORBIDDEN_PHRASES = (
     "deployment readiness",
@@ -277,6 +292,12 @@ FORBIDDEN_PHRASES = (
     "stale identity proof of execution",
     "hallucination reduction proof",
     "model quality benchmark",
+    "Atlas canon",
+    "memory write authorization",
+    "federation authorization",
+    "pruning execution",
+    "resource economy",
+    "token economy",
 )
 ALLOWED_NEGATED = (
     "not ",
@@ -346,6 +367,13 @@ def _forbidden_hits(text: str) -> list[str]:
             if (
                 phrase == "model quality benchmark"
                 and "not hallucination reduction proof or a" in text[max(0, index - 56) : index]
+            ):
+                start = index + len(normalized_phrase)
+                continue
+            if phrase == "federation" and (
+                text[index : index + 40].startswith("federation is blocked by default")
+                or text[index : index + 40].startswith("federation_blocked")
+                or text[index : index + 40].startswith("federation_authorization")
             ):
                 start = index + len(normalized_phrase)
                 continue

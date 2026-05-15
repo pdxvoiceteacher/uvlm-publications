@@ -1389,3 +1389,59 @@ def test_claim_validator_rejects_rw_comp_local_adapter_overclaims(tmp_path):
         )
         assert result["passed"] is False, claim
         assert result["forbidden_overclaims_found"], result
+
+
+def test_governed_artifact_cognition_pmr_updates_are_present():
+    paper = (ROOT / "PUB_GOV_ARTIFACT_COG_01.md").read_text(encoding="utf-8")
+    abstract = (ROOT / "abstract.md").read_text(encoding="utf-8")
+    artifact_table = (ROOT / "artifact_table.md").read_text(encoding="utf-8")
+    boundary_table = (ROOT / "claim_boundary_table.md").read_text(encoding="utf-8")
+    quickstart = (ROOT / "reviewer_quickstart.md").read_text(encoding="utf-8")
+    status = json.loads((ROOT / "status.json").read_text(encoding="utf-8"))
+    combined = paper + "\n" + abstract
+    for phrase in (
+        "PMR-00-PROVENANCE-MEMORY-RESERVOIR",
+        "PMR-01-LOCAL-ARTIFACT-INDEX",
+        "PMR artifact lifecycle state is not truth status.",
+        "Memory is governed provenance under resource constraints.",
+        "Hash is not encryption.",
+        "dependency graph is not canon graph",
+        "No pruning occurs in PMR-01.",
+        "Federation is blocked by default.",
+    ):
+        assert phrase in combined
+    for artifact in (
+        "pmr_local_artifact_index.json",
+        "pmr_dependency_graph.json",
+    ):
+        assert artifact in artifact_table
+    assert "Run-PMR00-Acceptance.ps1" in quickstart
+    assert "Run-PMR01-Acceptance.ps1" in quickstart
+    assert status["pmr_00_indexed"] is True
+    assert status["pmr_01_indexed"] is True
+    assert status["not_atlas_canon"] is True
+    assert status["not_federation_authorization"] is True
+    assert "Memory is governed provenance under resource constraints." in boundary_table
+    assert "PMR artifact lifecycle state is not truth status." in boundary_table
+
+
+def test_claim_validator_rejects_pmr_overclaims(tmp_path):
+    forbidden_claims = (
+        "claims Atlas canon",
+        "claims memory write authorization",
+        "claims pruning execution",
+        "claims resource economy",
+        "claims federation authorization",
+    )
+    for claim in forbidden_claims:
+        paper_root = _copy_governed_paper(tmp_path / claim.replace(" ", "_").replace("-", "_"))
+        paper = paper_root / "PUB_GOV_ARTIFACT_COG_01.md"
+        paper.write_text(paper.read_text(encoding="utf-8") + f"\nThis paper {claim}.\n", encoding="utf-8")
+        result = validate_publication_claims(
+            paper,
+            appendix=paper_root / "reproducibility_appendix.md",
+            quickstart=paper_root / "reviewer_quickstart.md",
+            status=paper_root / "status.json",
+        )
+        assert result["passed"] is False, claim
+        assert result["forbidden_overclaims_found"], result

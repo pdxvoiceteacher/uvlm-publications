@@ -43,6 +43,8 @@ REQUIRED_DOCS = {
     "evidence-review-pack-local-adapter.md",
     "evidence-review-pack-local-adapter-revision.md",
     "rw-comp-local-adapter.md",
+    "provenance-memory-reservoir.md",
+    "pmr-local-artifact-index.md",
     "sonya-local-fixture-adapter-multi-route.md",
     "sonya-local-fixture-adapter-lineage.md",
 }
@@ -73,6 +75,8 @@ REQUIRED_PHASES = {
     "EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER-01",
     "EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER-02",
     "RW-COMP-LOCAL-ADAPTER-01",
+    "PMR-00-PROVENANCE-MEMORY-RESERVOIR",
+    "PMR-01-LOCAL-ARTIFACT-INDEX",
     "SONYA-LOCAL-FIXTURE-ADAPTER-02",
     "SONYA-LOCAL-FIXTURE-ADAPTER-03",
 }
@@ -100,6 +104,8 @@ REQUIRED_COMMAND_FRAGMENTS = (
     "Run-EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER01-Acceptance.ps1",
     "Run-EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER02-Acceptance.ps1",
     "Run-RW-COMP-LOCAL-ADAPTER01-Acceptance.ps1",
+    "Run-PMR00-Acceptance.ps1",
+    "Run-PMR01-Acceptance.ps1",
     "Run-SONYA-LOCAL-FIXTURE-ADAPTER02-Acceptance.ps1",
     "Run-SONYA-LOCAL-FIXTURE-ADAPTER03-Acceptance.ps1",
 )
@@ -147,7 +153,7 @@ def test_dashboard_contains_all_accepted_phases(tmp_path):
     dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text())
     phase_ids = {entry["phase_id"] for entry in dashboard["accepted_phases"]}
     assert phase_ids == REQUIRED_PHASES
-    assert dashboard["accepted_phase_count"] == 28
+    assert dashboard["accepted_phase_count"] == 30
 
 
 def test_dashboard_command_summaries_use_accepted_harnesses(tmp_path):
@@ -1433,6 +1439,68 @@ def test_validator_fails_if_rw_comp_local_adapter_makes_forbidden_claims(tmp_pat
         out_dir, docs_dir = run_builder(tmp_path / claim.replace(" ", "_"))
         page = docs_dir / "rw-comp-local-adapter.md"
         page.write_text(page.read_text() + f"\nRW-COMP local adapter claims {claim}.\n")
+        result = validate_dashboard(out_dir / "experiment_suite_dashboard.json", docs_dir)
+        assert result["passed"] is False, claim
+        forbidden_found = [found.lower() for found in result["forbidden_claims_found"]]
+        assert claim.lower() in forbidden_found, result
+
+
+def test_pmr_doctrine_and_local_artifact_index_are_generated(tmp_path):
+    out_dir, docs_dir = run_builder(tmp_path)
+    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text())
+    reproducibility = json.loads((out_dir / "reproducibility_index.json").read_text())
+    artifact_index = json.loads((out_dir / "artifact_index.json").read_text())
+    boundaries = (docs_dir / "claim-boundaries.md").read_text()
+    index = (docs_dir / "index.md").read_text()
+    pmr00_page = docs_dir / "provenance-memory-reservoir.md"
+    pmr01_page = docs_dir / "pmr-local-artifact-index.md"
+
+    phase_ids = {entry["phase_id"] for entry in dashboard["accepted_phases"]}
+    assert "PMR-00-PROVENANCE-MEMORY-RESERVOIR" in phase_ids
+    assert "PMR-01-LOCAL-ARTIFACT-INDEX" in phase_ids
+    pmr00 = next(entry for entry in dashboard["accepted_phases"] if entry["phase_id"] == "PMR-00-PROVENANCE-MEMORY-RESERVOIR")
+    pmr01 = next(entry for entry in dashboard["accepted_phases"] if entry["phase_id"] == "PMR-01-LOCAL-ARTIFACT-INDEX")
+    assert pmr00["dashboard_summary"]["review_status"] == "accepted_as_pmr_doctrine_and_policy_scaffold"
+    assert pmr00["dashboard_summary"]["local_budget_policy_present"] is True
+    assert pmr00["dashboard_summary"]["hash_encryption_distinction_present"] is True
+    assert pmr00["dashboard_summary"]["federation_blocked_by_default"] is True
+    assert pmr01["dashboard_summary"]["review_status"] == "accepted_as_pmr_local_artifact_index_scaffold"
+    assert pmr01["dashboard_summary"]["artifact_count"] == 8
+    assert pmr01["dashboard_summary"]["node_count"] == 8
+    assert pmr01["dashboard_summary"]["edge_count"] == 9
+    assert pmr01["dashboard_summary"]["graph_is_not_canon_graph"] is True
+
+    commands = json.dumps(reproducibility)
+    assert "Run-PMR00-Acceptance.ps1" in commands
+    assert "Run-PMR01-Acceptance.ps1" in commands
+    assert "pmr_doctrine_packet.json" in artifact_index["phases"]["PMR-00-PROVENANCE-MEMORY-RESERVOIR"]
+    assert "pmr_local_artifact_index.json" in artifact_index["phases"]["PMR-01-LOCAL-ARTIFACT-INDEX"]
+    assert "pmr_dependency_graph.json" in artifact_index["phases"]["PMR-01-LOCAL-ARTIFACT-INDEX"]
+    assert pmr00_page.exists()
+    assert pmr01_page.exists()
+    assert "provenance-memory-reservoir.md" in index
+    assert "pmr-local-artifact-index.md" in index
+    assert "Memory is governed provenance under resource constraints." in boundaries
+    assert "Hash is not encryption." in boundaries
+
+
+def test_validator_required_phases_include_pmr_phases():
+    assert "PMR-00-PROVENANCE-MEMORY-RESERVOIR" in VALIDATOR_REQUIRED_PHASES
+    assert "PMR-01-LOCAL-ARTIFACT-INDEX" in VALIDATOR_REQUIRED_PHASES
+
+
+def test_validator_fails_if_pmr_makes_forbidden_claims(tmp_path):
+    forbidden_claims = (
+        "Atlas canon",
+        "memory write authorization",
+        "federation authorization",
+        "resource economy",
+        "token economy",
+    )
+    for claim in forbidden_claims:
+        out_dir, docs_dir = run_builder(tmp_path / claim.replace(" ", "_"))
+        page = docs_dir / "provenance-memory-reservoir.md"
+        page.write_text(page.read_text() + f"\nPMR claims {claim}.\n")
         result = validate_dashboard(out_dir / "experiment_suite_dashboard.json", docs_dir)
         assert result["passed"] is False, claim
         forbidden_found = [found.lower() for found in result["forbidden_claims_found"]]

@@ -356,6 +356,77 @@ Expected posture:
 
 Reviewer caution: EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER-02 reports candidate-level structural review deltas only. It does not prove hallucination reduction, benchmark model quality, select a final answer, accept evidence, authorize adapters, write memory, train models, or deploy.
 
+## Provenance Memory Reservoir
+
+Memory is governed provenance under resource constraints.
+
+PMR-00-PROVENANCE-MEMORY-RESERVOIR establishes local-only PMR doctrine and storage policy. Memory is not storage. Hash is not encryption. User controls local memory budget. Federation is blocked by default. PMR is not Atlas canon and not model-weight training data.
+
+```powershell
+.\experiments\Run-PMR00-Acceptance.ps1 `
+  -OutputRoot C:\UVLM\run_artifacts\pmr_00 `
+  -LogDir C:\UVLM\run_artifacts\pmr_00_logs `
+  -Mode balanced `
+  -LocalStorageBudgetBytes 5368709120 `
+  -CiMode
+```
+
+Expected posture:
+
+- `review_status = accepted_as_pmr_doctrine_and_policy_scaffold`
+- `local_budget_policy_present = true`
+- `retention_classes_present = true`
+- `hash_encryption_distinction_present = true`
+- `federation_blocked_by_default = true`
+- `raw_private_data_federation_blocked = true`
+- `model_weight_training_blocked = true`
+- `memory_write_blocked = true`
+- `canon_adoption_blocked = true`
+- `deployment_blocked = true`
+- `truth_certification_blocked = true`
+- `promotion_blocked = true`
+
+## PMR local artifact index
+
+PMR artifact lifecycle state is not truth status. PMR index is not generic cache. Dependency graph is not canon graph. PMR-01 performs indexing only, not pruning.
+
+```powershell
+.\experiments\Run-PMR01-Acceptance.ps1 `
+  -OutputRoot C:\UVLM\run_artifacts\pmr_01 `
+  -LogDir C:\UVLM\run_artifacts\pmr_01_logs `
+  -Mode balanced `
+  -LocalStorageBudgetBytes 5368709120 `
+  -CiMode
+```
+
+Expected posture:
+
+- `review_status = accepted_as_pmr_local_artifact_index_scaffold`
+- `source_pmr_policy_bound = true`
+- `artifact_entries_present = true`
+- `dependency_graph_present = true`
+- `retention_classes_assigned = true`
+- `lifecycle_states_assigned = true`
+- `hash_encryption_distinction_preserved = true`
+- `user_budget_policy_preserved = true`
+- `federation_blocked_by_default = true`
+- `pruning_not_performed = true`
+- `memory_write_blocked = true`
+- `atlas_canon_write_blocked = true`
+- `model_weight_training_blocked = true`
+- `deployment_blocked = true`
+- `truth_certification_blocked = true`
+- `promotion_blocked = true`
+- `artifact_count = 8`
+- `node_count = 8`
+- `edge_count = 9`
+- `revocation_backpropagation_supported = true`
+- `pruning_dependency_checks_supported = true`
+- `graph_is_not_truth_graph = true`
+- `graph_is_not_canon_graph = true`
+
+Reviewer caution: PMR-00 and PMR-01 define local provenance-memory doctrine, storage policy, artifact indexing, and dependency graph scaffolds only. They do not write memory, canonize artifacts, federate artifacts, transfer encrypted shards, prune artifacts, train models, certify truth, release final answers, deploy, or reward resource contributions.
+
 ## RW-COMP local adapter
 
 Deltas are structural review descriptors only.

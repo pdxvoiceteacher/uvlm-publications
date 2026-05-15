@@ -34,3 +34,6 @@ EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER-02 update: The revise_summary recommendation 
 
 
 RW-COMP-LOCAL-ADAPTER-01 update: Original and revised local adapter candidates are compared, and Evidence Review Pack reviewed arms are compared. Deltas are structural review descriptors only. RW-COMP local-adapter comparison is not hallucination reduction proof or a model quality benchmark. Candidate comparison is not final answer selection, not accepted evidence, not model superiority proof, not model-weight training, and not deployment authority.
+
+
+PMR-00-PROVENANCE-MEMORY-RESERVOIR and PMR-01-LOCAL-ARTIFACT-INDEX update: Memory is governed provenance under resource constraints. Memory is not storage. Hash is not encryption. User controls local memory budget. Federation is blocked by default. PMR is not Atlas canon and not model-weight training data. PMR artifact lifecycle state is not truth status, PMR artifact index is not generic cache, dependency graph is not canon graph, and no pruning occurs in PMR-01.
