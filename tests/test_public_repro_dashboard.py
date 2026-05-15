@@ -45,6 +45,8 @@ REQUIRED_DOCS = {
     "rw-comp-local-adapter.md",
     "provenance-memory-reservoir.md",
     "pmr-local-artifact-index.md",
+    "pmr-provenance-coherence-utility.md",
+    "pmr-lifecycle-state-machine.md",
     "sonya-local-fixture-adapter-multi-route.md",
     "sonya-local-fixture-adapter-lineage.md",
 }
@@ -77,6 +79,8 @@ REQUIRED_PHASES = {
     "RW-COMP-LOCAL-ADAPTER-01",
     "PMR-00-PROVENANCE-MEMORY-RESERVOIR",
     "PMR-01-LOCAL-ARTIFACT-INDEX",
+    "PMR-02-GLOBAL-PROVENANCE-COHERENCE-UTILITY",
+    "PMR-03-LIFECYCLE-STATE-MACHINE",
     "SONYA-LOCAL-FIXTURE-ADAPTER-02",
     "SONYA-LOCAL-FIXTURE-ADAPTER-03",
 }
@@ -106,6 +110,8 @@ REQUIRED_COMMAND_FRAGMENTS = (
     "Run-RW-COMP-LOCAL-ADAPTER01-Acceptance.ps1",
     "Run-PMR00-Acceptance.ps1",
     "Run-PMR01-Acceptance.ps1",
+    "Run-PMR02-Acceptance.ps1",
+    "Run-PMR03-Acceptance.ps1",
     "Run-SONYA-LOCAL-FIXTURE-ADAPTER02-Acceptance.ps1",
     "Run-SONYA-LOCAL-FIXTURE-ADAPTER03-Acceptance.ps1",
 )
@@ -153,7 +159,7 @@ def test_dashboard_contains_all_accepted_phases(tmp_path):
     dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text())
     phase_ids = {entry["phase_id"] for entry in dashboard["accepted_phases"]}
     assert phase_ids == REQUIRED_PHASES
-    assert dashboard["accepted_phase_count"] == 30
+    assert dashboard["accepted_phase_count"] == 32
 
 
 def test_dashboard_command_summaries_use_accepted_harnesses(tmp_path):
@@ -1487,6 +1493,8 @@ def test_pmr_doctrine_and_local_artifact_index_are_generated(tmp_path):
 def test_validator_required_phases_include_pmr_phases():
     assert "PMR-00-PROVENANCE-MEMORY-RESERVOIR" in VALIDATOR_REQUIRED_PHASES
     assert "PMR-01-LOCAL-ARTIFACT-INDEX" in VALIDATOR_REQUIRED_PHASES
+    assert "PMR-02-GLOBAL-PROVENANCE-COHERENCE-UTILITY" in VALIDATOR_REQUIRED_PHASES
+    assert "PMR-03-LIFECYCLE-STATE-MACHINE" in VALIDATOR_REQUIRED_PHASES
 
 
 def test_validator_fails_if_pmr_makes_forbidden_claims(tmp_path):
@@ -1503,5 +1511,82 @@ def test_validator_fails_if_pmr_makes_forbidden_claims(tmp_path):
         page.write_text(page.read_text() + f"\nPMR claims {claim}.\n")
         result = validate_dashboard(out_dir / "experiment_suite_dashboard.json", docs_dir)
         assert result["passed"] is False, claim
+        forbidden_found = [found.lower() for found in result["forbidden_claims_found"]]
+        assert claim.lower() in forbidden_found, result
+
+
+def test_pmr_02_gpcu_indexes_and_docs_are_generated(tmp_path):
+    out_dir, docs_dir = run_builder(tmp_path)
+    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text())
+    reproducibility = json.loads((out_dir / "reproducibility_index.json").read_text())
+    artifact_index = json.loads((out_dir / "artifact_index.json").read_text())
+    claim_boundaries = json.loads((out_dir / "claim_boundary_index.json").read_text())
+
+    phase_ids = {entry["phase_id"] for entry in dashboard["accepted_phases"]}
+    assert "PMR-02-GLOBAL-PROVENANCE-COHERENCE-UTILITY" in phase_ids
+    commands = json.dumps(reproducibility)
+    assert "Run-PMR02-Acceptance.ps1" in commands
+    artifacts = artifact_index["phases"]["PMR-02-GLOBAL-PROVENANCE-COHERENCE-UTILITY"]
+    assert "pmr_provenance_coherence_utility_packet.json" in artifacts
+    assert "pmr_artifact_utility_scores.jsonl" in artifacts
+    assert "pmr_lifecycle_recommendation_packet.json" in artifacts
+    assert (docs_dir / "pmr-provenance-coherence-utility.md").exists()
+    boundary_text = "\n".join(claim_boundaries["boundaries"])
+    assert "GPCU is lifecycle/storage utility, not truth score." in boundary_text
+    assert "GPCU is not reward entitlement." in boundary_text
+    assert "GPCU is not token economy." in boundary_text
+
+
+def test_validator_fails_if_pmr_02_makes_forbidden_claims(tmp_path):
+    forbidden_claims = (
+        "truth score",
+        "reward entitlement",
+        "token economy",
+        "pruning execution",
+    )
+    for claim in forbidden_claims:
+        out_dir, docs_dir = run_builder(tmp_path / claim.replace(" ", "_"))
+        page = docs_dir / "pmr-provenance-coherence-utility.md"
+        page.write_text(page.read_text() + f"\nPMR-02 claims {claim}.\n")
+        result = validate_dashboard(out_dir / "experiment_suite_dashboard.json", docs_dir)
+        assert result["passed"] is False
+        forbidden_found = [found.lower() for found in result["forbidden_claims_found"]]
+        assert claim.lower() in forbidden_found, result
+
+
+def test_pmr_03_lifecycle_state_machine_indexes_and_docs_are_generated(tmp_path):
+    out_dir, docs_dir = run_builder(tmp_path)
+    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text())
+    reproducibility = json.loads((out_dir / "reproducibility_index.json").read_text())
+    artifact_index = json.loads((out_dir / "artifact_index.json").read_text())
+    claim_boundaries = json.loads((out_dir / "claim_boundary_index.json").read_text())
+
+    phase_ids = {entry["phase_id"] for entry in dashboard["accepted_phases"]}
+    assert "PMR-03-LIFECYCLE-STATE-MACHINE" in phase_ids
+    commands = json.dumps(reproducibility)
+    assert "Run-PMR03-Acceptance.ps1" in commands
+    artifacts = artifact_index["phases"]["PMR-03-LIFECYCLE-STATE-MACHINE"]
+    assert "pmr_lifecycle_state_machine_packet.json" in artifacts
+    assert "pmr_lifecycle_no_action_receipt.json" in artifacts
+    assert "pmr_lifecycle_transition_candidates.jsonl" in artifacts
+    assert (docs_dir / "pmr-lifecycle-state-machine.md").exists()
+    boundary_text = "\n".join(claim_boundaries["boundaries"])
+    assert "Recommendation is not transition." in boundary_text
+    assert "Transition candidate is not action." in boundary_text
+
+
+def test_validator_fails_if_pmr_03_makes_forbidden_claims(tmp_path):
+    forbidden_claims = (
+        "pruning execution",
+        "deletion execution",
+        "reward entitlement",
+        "token economy",
+    )
+    for claim in forbidden_claims:
+        out_dir, docs_dir = run_builder(tmp_path / claim.replace(" ", "_"))
+        page = docs_dir / "pmr-lifecycle-state-machine.md"
+        page.write_text(page.read_text() + f"\nPMR-03 claims {claim}.\n")
+        result = validate_dashboard(out_dir / "experiment_suite_dashboard.json", docs_dir)
+        assert result["passed"] is False
         forbidden_found = [found.lower() for found in result["forbidden_claims_found"]]
         assert claim.lower() in forbidden_found, result

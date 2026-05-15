@@ -159,6 +159,33 @@
 - PMR-01 performs indexing only, not pruning.
 - Federation is blocked by default.
 - PMR is not resource economy or token economy.
+- GPCU is lifecycle/storage utility, not truth score.
+- GPCU is not reward entitlement.
+- GPCU is not token economy.
+- GPCU is not human value score.
+- Lifecycle recommendation is not pruning.
+- Reward mechanics are deferred.
+- Federation remains blocked by default.
+- PMR-02 is not Atlas canon.
+- PMR-02 is not memory write authorization.
+- PMR-02 is not model-weight training.
+- PMR-02 is not deployment authority.
+- PMR-02 is not hallucination reduction proof.
+- Recommendation is not transition; transition candidate is not action.
+- Recommendation is not transition.
+- Transition candidate is not action.
+- Lifecycle state is not truth status.
+- Destructive action requires future Sophia lifecycle audit.
+- Destructive action requires future user confirmation.
+- No pruning or deletion occurs in PMR-03.
+- PMR-03 is not federation authorization.
+- PMR-03 is not reward entitlement.
+- PMR-03 is not token economy.
+- PMR-03 is not Atlas canon.
+- PMR-03 is not memory write authorization.
+- PMR-03 is not model-weight training.
+- PMR-03 is not deployment authority.
+- PMR-03 is not truth certification.
 - Governed provenance resources may be future infrastructure rewards, but truth is not for sale.
 
 No oracle posture. No deployment posture. No final-answer posture. No AI consciousness claim. No universal ontology claim.
