@@ -66,5 +66,18 @@
   "not_federation_authorization": true,
   "not_pruning_execution": true,
   "not_resource_economy": true,
-  "not_token_economy": true
+  "not_token_economy": true,
+  "pmr_02_indexed": true,
+  "not_truth_score": true,
+  "not_reward_entitlement": true,
+  "not_human_value_score": true,
+  "pmr_03_indexed": true,
+  "not_lifecycle_action": true,
+  "not_deletion_execution": true,
+  "pmr_04_indexed": true,
+  "not_sophia_approval": true,
+  "not_audit_action": true,
+  "pmr_05_indexed": true,
+  "not_sophia_review_approval": true,
+  "not_audit_recommendation_action": true
 }
