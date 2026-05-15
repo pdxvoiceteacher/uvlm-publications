@@ -193,3 +193,15 @@
 | Federation is blocked by default. | PMR-00/PMR-01 | Provenance Memory Reservoir boundary. |
 | PMR is not resource economy or token economy. | PMR-00/PMR-01 | Provenance Memory Reservoir boundary. |
 | Governed provenance resources may be future infrastructure rewards, but truth is not for sale. | PMR-00/PMR-01 | Provenance Memory Reservoir boundary. |
+| GPCU is lifecycle/storage utility, not truth score. | PMR-02 utility scores are storage-lifecycle signals only. |
+| GPCU is not reward entitlement. | PMR-02 does not assign reward rights. |
+| GPCU is not token economy. | PMR-02 does not run or define token mechanics. |
+| GPCU is not human value score. | PMR-02 does not score people or human worth. |
+| Lifecycle recommendation is not pruning. | PMR-02 emits recommendations only; pruning execution remains blocked. |
+| Reward mechanics are deferred. | Any reward mechanics are outside this paper and patch. |
+| Federation remains blocked by default. | PMR-02 does not authorize federation. |
+| PMR-02 is not Atlas canon. | Utility scoring does not canonize artifacts. |
+| PMR-02 is not memory write authorization. | Utility scoring does not authorize memory writes. |
+| PMR-02 is not model-weight training. | Utility scoring does not train model weights. |
+| PMR-02 is not deployment authority. | Utility scoring does not deploy systems. |
+| PMR-02 is not hallucination reduction proof. | Utility scoring is not model-quality evidence. |

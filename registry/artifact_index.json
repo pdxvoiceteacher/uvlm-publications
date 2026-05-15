@@ -164,6 +164,18 @@
       "export_bundle_parity_report.json",
       "pmr_01_acceptance_receipt.json"
     ],
+    "PMR-02-GLOBAL-PROVENANCE-COHERENCE-UTILITY": [
+      "pmr_provenance_coherence_utility_packet.json",
+      "pmr_artifact_utility_scores.jsonl",
+      "pmr_lifecycle_recommendation_packet.json",
+      "pmr_utility_review_packet.json",
+      "pmr_utility_summary.md",
+      "artifact_inventory.json",
+      "run_artifact_manifest.json",
+      "export_bundle_manifest.json",
+      "export_bundle_parity_report.json",
+      "pmr_02_acceptance_receipt.json"
+    ],
     "UNIVERSAL-STAGE-PIPELINE-00": [
       "universal_pipeline_manifest.json",
       "universal_pipeline_review_packet.json",

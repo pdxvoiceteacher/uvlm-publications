@@ -22,7 +22,8 @@
 18. Sonya Adapter Smoke
 19. Sonya Local Fixture Adapter
 20. Evidence Review Pack local adapter
-21. Sonya Local Fixture Adapter multi-route
+21. PMR GPCU utility scoring
+22. Sonya Local Fixture Adapter multi-route
 
 ## CoherenceLattice commands
 
@@ -424,6 +425,55 @@ Expected posture:
 - `pruning_dependency_checks_supported = true`
 - `graph_is_not_truth_graph = true`
 - `graph_is_not_canon_graph = true`
+
+## PMR GPCU utility scoring
+
+GPCU is lifecycle/storage utility, not truth score. PMR-02-GLOBAL-PROVENANCE-COHERENCE-UTILITY emits lifecycle recommendations. Lifecycle recommendation is not pruning. Reward mechanics are deferred. Federation remains blocked by default.
+
+```powershell
+.\experiments\Run-PMR02-Acceptance.ps1 `
+  -OutputRoot C:\UVLM\run_artifacts\pmr_02 `
+  -LogDir C:\UVLM\run_artifacts\pmr_02_logs `
+  -Mode balanced `
+  -LocalStorageBudgetBytes 5368709120 `
+  -CiMode
+```
+
+Expected posture:
+
+- `review_status = accepted_as_pmr_utility_scoring_scaffold`
+- `source_pmr_policy_bound = true`
+- `source_pmr_index_bound = true`
+- `utility_scores_present = true`
+- `lifecycle_recommendations_present = true`
+- `scoring_dimensions_present = true`
+- `gpcu_not_truth_score = true`
+- `gpcu_not_reward_entitlement = true`
+- `gpcu_not_pruning_execution = true`
+- `gpcu_not_federation_authorization = true`
+- `lifecycle_recommendations_not_actions = true`
+- `hash_encryption_distinction_preserved = true`
+- `user_budget_policy_preserved = true`
+- `federation_blocked_by_default = true`
+- `pruning_not_performed = true`
+- `reward_actions_not_performed = true`
+- `memory_write_blocked = true`
+- `atlas_canon_write_blocked = true`
+- `model_weight_training_blocked = true`
+- `deployment_blocked = true`
+- `truth_certification_blocked = true`
+- `promotion_blocked = true`
+- `artifact_count = 8`
+- `scored_artifact_count = 8`
+- `pmr00_doctrine_utility_band = retain_locked`
+- `pmr00_policy_utility_band = retain_locked`
+- `pmr00_retention_utility_band = retain_priority`
+- `rw_comp_local_adapter_anchor_utility_band = retain_priority`
+- `ephemeral_summary_utility_band = compress_candidate`
+- `revoked_hash_tombstone_utility_band = revoked`
+- `quarantine_example_utility_band = quarantine`
+
+Reviewer caution: PMR-02 computes lifecycle/storage utility scores and recommendations only. It does not prune artifacts. GPCU is not reward entitlement and not token economy. It does not certify truth. It does not authorize federation. It does not write memory, train models, deploy, or assign human value.
 
 Reviewer caution: PMR-00 and PMR-01 define local provenance-memory doctrine, storage policy, artifact indexing, and dependency graph scaffolds only. They do not write memory, canonize artifacts, federate artifacts, transfer encrypted shards, prune artifacts, train models, certify truth, release final answers, deploy, or reward resource contributions.
 
