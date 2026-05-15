@@ -71,6 +71,10 @@
         "command": ".\\experiments\\Run-PMR04-Acceptance.ps1 `\n  -OutputRoot C:\\UVLM\\run_artifacts\\pmr_04 `\n  -LogDir C:\\UVLM\\run_artifacts\\pmr_04_logs `\n  -Mode balanced `\n  -LocalStorageBudgetBytes 5368709120 `\n  -CiMode"
       },
       {
+        "name": "PMR Sophia lifecycle audit review acceptance",
+        "command": ".\\experiments\\Run-PMR05-Acceptance.ps1 `\n  -OutputRoot C:\\UVLM\\run_artifacts\\pmr_05 `\n  -LogDir C:\\UVLM\\run_artifacts\\pmr_05_logs `\n  -Mode balanced `\n  -LocalStorageBudgetBytes 5368709120 `\n  -CiMode"
+      },
+      {
         "name": "Universal Stage Pipeline acceptance",
         "command": "python -m pytest -q python/tests/pipeline/test_universal_stage_pipeline.py"
       },

@@ -202,6 +202,19 @@
       "export_bundle_parity_report.json",
       "pmr_04_acceptance_receipt.json"
     ],
+    "PMR-05-SOPHIA-LIFECYCLE-AUDIT-REVIEW": [
+      "pmr_sophia_lifecycle_audit_packet.json",
+      "pmr_sophia_lifecycle_audit_rows.jsonl",
+      "pmr_sophia_lifecycle_recommendation_packet.json",
+      "pmr_sophia_lifecycle_no_approval_receipt.json",
+      "pmr_sophia_lifecycle_review_packet.json",
+      "pmr_sophia_lifecycle_audit_summary.md",
+      "artifact_inventory.json",
+      "run_artifact_manifest.json",
+      "export_bundle_manifest.json",
+      "export_bundle_parity_report.json",
+      "pmr_05_acceptance_receipt.json"
+    ],
     "UNIVERSAL-STAGE-PIPELINE-00": [
       "universal_pipeline_manifest.json",
       "universal_pipeline_review_packet.json",

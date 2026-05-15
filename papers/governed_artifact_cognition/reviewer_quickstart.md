@@ -548,3 +548,20 @@ PMR-04 consumes PMR-00 doctrine/policy, PMR-01 local artifact index/dependency g
   -LocalStorageBudgetBytes 5368709120 `
   -CiMode
 ```
+
+## PMR-05 Sophia Lifecycle Audit Review
+
+PMR-05-SOPHIA-LIFECYCLE-AUDIT-REVIEW adds a publication-indexed, fixture-only Sophia lifecycle audit review scaffold for local PMR audit candidates. Sophia review is not Sophia approval. Audit recommendation is not action. No Sophia approval packet is emitted. Destructive action requires future Sophia approval. Destructive action requires future user confirmation. No pruning or deletion occurs in PMR-05.
+
+PMR-05 consumes PMR-00 doctrine/policy, PMR-01 local artifact index/dependency graph, PMR-02 GPCU lifecycle recommendations, PMR-03 lifecycle transition candidates/no-action receipts, and PMR-04 lifecycle audit preflight candidates/block packet/no-action receipt. It emits fixture-only Sophia lifecycle audit review rows, a recommendation packet, and a no-approval receipt while preserving no-approval and no-action boundaries. No federation occurs. No encrypted shard transfer occurs. No reward occurs. No token economy occurs. No memory write occurs. No Atlas canon write occurs. No model-weight training occurs. No deployment occurs. No truth certification occurs. No final-answer release occurs. No hallucination-reduction proof occurs. No recursive self-improvement occurs.
+
+### PMR-05 acceptance command
+
+```powershell
+.\experiments\Run-PMR05-Acceptance.ps1 `
+  -OutputRoot C:\UVLM\run_artifacts\pmr_05 `
+  -LogDir C:\UVLM\run_artifacts\pmr_05_logs `
+  -Mode balanced `
+  -LocalStorageBudgetBytes 5368709120 `
+  -CiMode
+```

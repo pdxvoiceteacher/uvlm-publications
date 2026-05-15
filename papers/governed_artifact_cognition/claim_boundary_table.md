@@ -234,3 +234,17 @@
 | PMR-04 is not model-weight training. | Audit preflight does not train model weights. |
 | PMR-04 is not deployment authority. | Audit preflight does not deploy systems. |
 | PMR-04 is not truth certification. | Audit preflight does not certify truth. |
+| Sophia review is not Sophia approval. | PMR-05 review rows do not approve lifecycle actions. |
+| Audit recommendation is not action. | PMR-05 recommendations do not perform lifecycle actions. |
+| No Sophia approval packet is emitted. | PMR-05 emits a no-approval receipt only. |
+| Destructive action requires future Sophia approval. | PMR-05 does not approve destructive action. |
+| Destructive action requires future user confirmation. | PMR-05 does not authorize destructive local action. |
+| No pruning or deletion occurs in PMR-05. | PMR-05 is review-only and no-action. |
+| PMR-05 is not federation authorization. | Review recommendations do not authorize federation. |
+| PMR-05 is not reward entitlement. | Review recommendations do not allocate rewards. |
+| PMR-05 is not token economy. | Review recommendations do not run token mechanics. |
+| PMR-05 is not Atlas canon. | Review recommendations do not canonize artifacts. |
+| PMR-05 is not memory write authorization. | Review recommendations do not authorize memory writes. |
+| PMR-05 is not model-weight training. | Review recommendations do not train model weights. |
+| PMR-05 is not deployment authority. | Review recommendations do not deploy systems. |
+| PMR-05 is not truth certification. | Review recommendations do not certify truth. |

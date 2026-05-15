@@ -41,6 +41,7 @@ REQUIRED_PHASES = {
     "PMR-02-GLOBAL-PROVENANCE-COHERENCE-UTILITY",
     "PMR-03-LIFECYCLE-STATE-MACHINE",
     "PMR-04-LIFECYCLE-AUDIT-PREFLIGHT",
+    "PMR-05-SOPHIA-LIFECYCLE-AUDIT-REVIEW",
 }
 REQUIRED_BOUNDARY_PHRASES = (
     "not truth certification",
@@ -249,6 +250,20 @@ REQUIRED_BOUNDARY_PHRASES = (
     "PMR-04 is not memory write authorization.",
     "PMR-04 is not deployment authority.",
     "PMR-04 is not truth certification.",
+    "Sophia review is not Sophia approval.",
+    "Audit recommendation is not action.",
+    "No Sophia approval packet is emitted.",
+    "Destructive action requires future Sophia approval.",
+    "Destructive action requires future user confirmation.",
+    "No pruning or deletion occurs in PMR-05.",
+    "PMR-05 is not federation authorization.",
+    "PMR-05 is not reward entitlement.",
+    "PMR-05 is not token economy.",
+    "PMR-05 is not Atlas canon.",
+    "PMR-05 is not memory write authorization.",
+    "PMR-05 is not model-weight training.",
+    "PMR-05 is not deployment authority.",
+    "PMR-05 is not truth certification.",
     "Governed provenance resources may be future infrastructure rewards, but truth is not for sale.",
 )
 FORBIDDEN_PHRASES = (
@@ -414,9 +429,19 @@ def _forbidden_hits(text: str) -> list[str]:
                 start = index + len(normalized_phrase)
                 continue
             if (
+                phrase == "Sophia approval"
+                and "requires future " in text[max(0, index - 32) : index]
+            ):
+                start = index + len(normalized_phrase)
+                continue
+            if (
                 phrase == "token economy"
-                and "does not prune, delete, federate, transfer encrypted shards, reward users, run a"
-                in text[max(0, index - 104) : index]
+                and (
+                    "does not prune, delete, federate, transfer encrypted shards, reward users, run a"
+                    in text[max(0, index - 104) : index]
+                    or "does not approve, prune, delete, federate, transfer encrypted shards, reward users, run a"
+                    in text[max(0, index - 112) : index]
+                )
             ):
                 start = index + len(normalized_phrase)
                 continue

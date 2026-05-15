@@ -76,5 +76,8 @@
   "not_deletion_execution": true,
   "pmr_04_indexed": true,
   "not_sophia_approval": true,
-  "not_audit_action": true
+  "not_audit_action": true,
+  "pmr_05_indexed": true,
+  "not_sophia_review_approval": true,
+  "not_audit_recommendation_action": true
 }

@@ -294,6 +294,16 @@ PAPER_CONFIGS: dict[str, dict[str, Any]] = {
             "pmr_lifecycle_audit_preflight_packet.json",
             "pmr_lifecycle_audit_no_action_receipt.json",
             "Run-PMR04-Acceptance.ps1",
+            "PMR-05-SOPHIA-LIFECYCLE-AUDIT-REVIEW",
+            "Sophia review is not Sophia approval.",
+            "Audit recommendation is not action.",
+            "No Sophia approval packet is emitted.",
+            "Destructive action requires future Sophia approval.",
+            "Destructive action requires future user confirmation.",
+            "No pruning or deletion occurs in PMR-05.",
+            "pmr_sophia_lifecycle_audit_packet.json",
+            "pmr_sophia_lifecycle_no_approval_receipt.json",
+            "Run-PMR05-Acceptance.ps1",
         ),
         "forbidden_overclaims": (
             "proves universal intelligence",
@@ -461,6 +471,9 @@ PAPER_CONFIGS: dict[str, dict[str, Any]] = {
             "pmr_02_indexed": True,
             "pmr_03_indexed": True,
             "pmr_04_indexed": True,
+            "pmr_05_indexed": True,
+            "not_sophia_review_approval": True,
+            "not_audit_recommendation_action": True,
             "not_sophia_approval": True,
             "not_audit_action": True,
             "not_lifecycle_action": True,
@@ -574,9 +587,19 @@ def _forbidden_hits(normalized_text: str, forbidden: tuple[str, ...]) -> list[st
             if index == -1:
                 break
             if (
+                phrase == "Sophia approval"
+                and "requires future " in normalized_text[max(0, index - 32) : index]
+            ):
+                search_from = index + len(normalized_phrase)
+                continue
+            if (
                 phrase == "token economy"
-                and "does not prune, delete, federate, transfer encrypted shards, reward users, run a"
-                in normalized_text[max(0, index - 104) : index]
+                and (
+                    "does not prune, delete, federate, transfer encrypted shards, reward users, run a"
+                    in normalized_text[max(0, index - 104) : index]
+                    or "does not approve, prune, delete, federate, transfer encrypted shards, reward users, run a"
+                    in normalized_text[max(0, index - 112) : index]
+                )
             ):
                 search_from = index + len(normalized_phrase)
                 continue

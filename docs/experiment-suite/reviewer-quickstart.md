@@ -25,7 +25,8 @@
 21. PMR GPCU utility scoring
 22. PMR lifecycle state machine
 23. PMR lifecycle audit preflight
-24. Sonya Local Fixture Adapter multi-route
+24. PMR Sophia lifecycle audit review
+25. Sonya Local Fixture Adapter multi-route
 
 ## CoherenceLattice commands
 
@@ -576,6 +577,58 @@ Expected posture:
 - `network_calls_performed = false`
 
 Reviewer caution: PMR-04 emits lifecycle audit candidates, a block packet, and a no-action receipt only. Preflight is not approval. Audit candidate is not action. It does not prune, delete, federate, transfer encrypted shards, reward users, run a token economy, write memory, write canon, train models, deploy, certify truth, release final answers, prove hallucination reduction, or recursively self-improve. Sophia lifecycle audit and user confirmation are required before destructive local action.
+
+## PMR Sophia lifecycle audit review
+
+Sophia review is not Sophia approval. PMR-05-SOPHIA-LIFECYCLE-AUDIT-REVIEW emits fixture-only Sophia lifecycle audit review rows, a recommendation packet, and a no-approval receipt. Audit recommendation is not action. No Sophia approval packet is emitted. Destructive action requires future Sophia approval. Destructive action requires future user confirmation. No pruning or deletion occurs in PMR-05. No federation occurs. No encrypted shard transfer occurs. No reward occurs. No token economy occurs. No memory write occurs. No Atlas canon write occurs. No model-weight training occurs. No deployment occurs. No truth certification occurs. No final-answer release occurs. No hallucination-reduction proof occurs. No recursive self-improvement occurs.
+
+```powershell
+.\experiments\Run-PMR05-Acceptance.ps1 `
+  -OutputRoot C:\UVLM\run_artifacts\pmr_05 `
+  -LogDir C:\UVLM\run_artifacts\pmr_05_logs `
+  -Mode balanced `
+  -LocalStorageBudgetBytes 5368709120 `
+  -CiMode
+```
+
+Expected posture:
+
+- `review_status = accepted_as_pmr_sophia_lifecycle_audit_review_scaffold`
+- `source_pmr_policy_bound = true`
+- `source_pmr_index_bound = true`
+- `source_pmr_utility_bound = true`
+- `source_pmr_lifecycle_bound = true`
+- `source_pmr_audit_preflight_bound = true`
+- `audit_rows_present = true`
+- `recommendation_packet_present = true`
+- `no_approval_receipt_present = true`
+- `preflight_not_approval = true`
+- `sophia_review_not_approval = true`
+- `audit_recommendation_not_action = true`
+- `lifecycle_state_not_truth_status = true`
+- `destructive_action_requires_future_sophia_approval = true`
+- `destructive_action_requires_future_user_confirmation = true`
+- `pruning_not_performed = true`
+- `deletion_not_performed = true`
+- `federation_blocked_by_default = true`
+- `reward_actions_not_performed = true`
+- `memory_write_blocked = true`
+- `atlas_canon_write_blocked = true`
+- `model_weight_training_blocked = true`
+- `deployment_blocked = true`
+- `truth_certification_blocked = true`
+- `promotion_blocked = true`
+- `audit_candidate_count = 8`
+- `audit_row_count = 8`
+- `recommendation_count = 8`
+- `action_performed = false`
+- `sophia_approval_performed = false`
+- `encrypted_shard_transfer_performed = false`
+- `token_economy_performed = false`
+- `network_calls_performed = false`
+- `recommendation_counts = {'blocked_dependency': 2, 'blocked_quarantine': 1, 'blocked_retain_locked': 1, 'blocked_revocation': 1, 'no_op_accept': 2, 'require_user_confirmation': 1}`
+
+Reviewer caution: PMR-05 emits fixture-only Sophia lifecycle audit review recommendations and a no-approval receipt only. It does not approve, prune, delete, federate, transfer encrypted shards, reward users, run a token economy, write memory, train models, deploy, or certify truth. Destructive action requires future Sophia approval and user confirmation.
 
 Reviewer caution: PMR-00 and PMR-01 define local provenance-memory doctrine, storage policy, artifact indexing, and dependency graph scaffolds only. They do not write memory, canonize artifacts, federate artifacts, transfer encrypted shards, prune artifacts, train models, certify truth, release final answers, deploy, or reward resource contributions.
 

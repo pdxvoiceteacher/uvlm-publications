@@ -204,6 +204,20 @@
 - PMR-04 is not final-answer release.
 - PMR-04 is not hallucination-reduction proof.
 - PMR-04 is not recursive self-improvement.
+- Sophia review is not Sophia approval.
+- Audit recommendation is not action.
+- No Sophia approval packet is emitted.
+- Destructive action requires future Sophia approval.
+- Destructive action requires future user confirmation.
+- No pruning or deletion occurs in PMR-05.
+- PMR-05 is not federation authorization.
+- PMR-05 is not reward entitlement.
+- PMR-05 is not token economy.
+- PMR-05 is not Atlas canon.
+- PMR-05 is not memory write authorization.
+- PMR-05 is not model-weight training.
+- PMR-05 is not deployment authority.
+- PMR-05 is not truth certification.
 - Governed provenance resources may be future infrastructure rewards, but truth is not for sale.
 
 No oracle posture. No deployment posture. No final-answer posture. No AI consciousness claim. No universal ontology claim.

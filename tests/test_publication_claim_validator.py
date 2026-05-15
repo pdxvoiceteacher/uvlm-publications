@@ -1573,3 +1573,46 @@ def test_governed_validator_rejects_pmr_04_overclaims(tmp_path):
         assert result["passed"] is False
         found = [hit.lower() for hit in result["forbidden_overclaims_found"]]
         assert claim.lower() in found or f"claims {claim.lower()}" in found, result
+
+
+def test_governed_paper_includes_pmr_05_sophia_lifecycle_audit_review_boundaries():
+    root = Path("papers/governed_artifact_cognition")
+    paper = (root / "PUB_GOV_ARTIFACT_COG_01.md").read_text()
+    artifact_table = (root / "artifact_table.md").read_text()
+    quickstart = (root / "reviewer_quickstart.md").read_text()
+    status = json.loads((root / "status.json").read_text())
+
+    assert "PMR-05-SOPHIA-LIFECYCLE-AUDIT-REVIEW" in paper
+    assert "Sophia review is not Sophia approval." in paper
+    assert "Audit recommendation is not action." in paper
+    assert "No Sophia approval packet is emitted." in paper
+    assert "Destructive action requires future Sophia approval." in paper
+    assert "Destructive action requires future user confirmation." in paper
+    assert "No pruning or deletion occurs in PMR-05." in paper
+    assert "pmr_sophia_lifecycle_audit_packet.json" in artifact_table
+    assert "pmr_sophia_lifecycle_no_approval_receipt.json" in artifact_table
+    assert "Run-PMR05-Acceptance.ps1" in quickstart
+    assert status["pmr_05_indexed"] is True
+    assert status["not_sophia_review_approval"] is True
+    assert status["not_audit_recommendation_action"] is True
+
+
+def test_governed_validator_rejects_pmr_05_overclaims(tmp_path):
+    root = Path("papers/governed_artifact_cognition")
+    for claim in ("Sophia approval", "pruning execution", "deletion execution", "reward entitlement"):
+        case = tmp_path / claim.replace(" ", "_")
+        case.mkdir()
+        for source in root.iterdir():
+            if source.is_file():
+                (case / source.name).write_text(source.read_text())
+        paper = case / "PUB_GOV_ARTIFACT_COG_01.md"
+        paper.write_text(paper.read_text() + f"\nPMR-05 claims {claim}.\n")
+        result = validate_publication_claims(
+            paper,
+            case / "reproducibility_appendix.md",
+            case / "reviewer_quickstart.md",
+            case / "status.json",
+        )
+        assert result["passed"] is False
+        found = [hit.lower() for hit in result["forbidden_overclaims_found"]]
+        assert claim.lower() in found or f"claims {claim.lower()}" in found, result
