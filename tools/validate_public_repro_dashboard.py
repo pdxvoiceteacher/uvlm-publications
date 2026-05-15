@@ -38,6 +38,7 @@ REQUIRED_PHASES = {
     "RW-COMP-LOCAL-ADAPTER-01",
     "PMR-00-PROVENANCE-MEMORY-RESERVOIR",
     "PMR-01-LOCAL-ARTIFACT-INDEX",
+    "PMR-02-GLOBAL-PROVENANCE-COHERENCE-UTILITY",
 }
 REQUIRED_BOUNDARY_PHRASES = (
     "not truth certification",
@@ -208,6 +209,17 @@ REQUIRED_BOUNDARY_PHRASES = (
     "PMR-01 performs indexing only, not pruning.",
     "Federation is blocked by default.",
     "PMR is not resource economy or token economy.",
+    "GPCU is lifecycle/storage utility, not truth score.",
+    "GPCU is not reward entitlement.",
+    "GPCU is not token economy.",
+    "Lifecycle recommendation is not pruning.",
+    "Reward mechanics are deferred.",
+    "Federation remains blocked by default.",
+    "PMR-02 is not Atlas canon.",
+    "PMR-02 is not memory write authorization.",
+    "PMR-02 is not model-weight training.",
+    "PMR-02 is not deployment authority.",
+    "PMR-02 is not hallucination reduction proof.",
     "Governed provenance resources may be future infrastructure rewards, but truth is not for sale.",
 )
 FORBIDDEN_PHRASES = (
@@ -298,6 +310,9 @@ FORBIDDEN_PHRASES = (
     "pruning execution",
     "resource economy",
     "token economy",
+    "truth score",
+    "reward entitlement",
+    "human value score",
 )
 ALLOWED_NEGATED = (
     "not ",
@@ -372,6 +387,7 @@ def _forbidden_hits(text: str) -> list[str]:
                 continue
             if phrase == "federation" and (
                 text[index : index + 40].startswith("federation is blocked by default")
+                or text[index : index + 48].startswith("federation remains blocked by default")
                 or text[index : index + 40].startswith("federation_blocked")
                 or text[index : index + 40].startswith("federation_authorization")
             ):

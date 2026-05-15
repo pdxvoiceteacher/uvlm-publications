@@ -262,6 +262,18 @@ PAPER_CONFIGS: dict[str, dict[str, Any]] = {
             "pmr_dependency_graph.json",
             "Run-PMR00-Acceptance.ps1",
             "Run-PMR01-Acceptance.ps1",
+            "PMR-02-GLOBAL-PROVENANCE-COHERENCE-UTILITY",
+            "GPCU is lifecycle/storage utility, not truth score.",
+            "GPCU is not reward entitlement.",
+            "GPCU is not token economy.",
+            "GPCU is not human value score.",
+            "Lifecycle recommendation is not pruning.",
+            "Reward mechanics are deferred.",
+            "Federation remains blocked by default.",
+            "pmr_provenance_coherence_utility_packet.json",
+            "pmr_artifact_utility_scores.jsonl",
+            "pmr_lifecycle_recommendation_packet.json",
+            "Run-PMR02-Acceptance.ps1",
         ),
         "forbidden_overclaims": (
             "proves universal intelligence",
@@ -347,8 +359,16 @@ PAPER_CONFIGS: dict[str, dict[str, Any]] = {
             "claims Atlas canon",
             "claims memory write authorization",
             "claims pruning execution",
+            "pruning execution",
             "claims resource economy",
             "claims federation authorization",
+            "truth score",
+            "claims truth score",
+            "reward entitlement",
+            "claims reward entitlement",
+            "token economy",
+            "claims token economy",
+            "human value score",
         ),
         "status_required": {
             "paper_id": "PUB-GOV-ARTIFACT-COG-01",
@@ -411,6 +431,10 @@ PAPER_CONFIGS: dict[str, dict[str, Any]] = {
             "rw_comp_local_adapter_indexed": True,
             "pmr_00_indexed": True,
             "pmr_01_indexed": True,
+            "pmr_02_indexed": True,
+            "not_truth_score": True,
+            "not_reward_entitlement": True,
+            "not_human_value_score": True,
             "not_atlas_canon": True,
             "not_memory_write_authorization": True,
             "not_federation_authorization": True,
@@ -500,7 +524,11 @@ def _normalize(text: str) -> str:
 def _is_negated(normalized_text: str, start: int) -> bool:
     window = normalized_text[max(0, start - 32) : start]
     after = normalized_text[start : start + 80]
-    return any(marker in window for marker in NEGATION_MARKERS) or "performed = false" in after
+    return (
+        any(marker in window for marker in NEGATION_MARKERS)
+        or "performed = false" in after
+        or "blocked" in after[:48]
+    )
 
 
 def _forbidden_hits(normalized_text: str, forbidden: tuple[str, ...]) -> list[str]:
@@ -520,6 +548,7 @@ def _forbidden_hits(normalized_text: str, forbidden: tuple[str, ...]) -> list[st
                 continue
             if phrase == "federation" and (
                 normalized_text[index : index + 40].startswith("federation is blocked by default")
+                or normalized_text[index : index + 48].startswith("federation remains blocked by default")
                 or normalized_text[index : index + 40].startswith("federation_authorization")
             ):
                 search_from = index + len(normalized_phrase)
