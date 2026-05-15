@@ -448,3 +448,54 @@ PMR artifact lifecycle state is not truth status. PMR artifact index is not gene
 ```
 
 Review `pmr_local_artifact_index.json`, `pmr_dependency_graph.json`, and `pmr_01_acceptance_receipt.json`. These are PMR architecture scaffold artifacts only: not Atlas canon, not memory write authorization, not model-weight training, not federation authorization, not pruning execution, not truth certification, and not deployment authority.
+
+## PMR-02 Global Provenance Coherence Utility
+
+PMR-02-GLOBAL-PROVENANCE-COHERENCE-UTILITY adds a publication-indexed PMR utility scoring scaffold for local PMR-indexed artifacts. GPCU is lifecycle/storage utility, not truth score. GPCU is not reward entitlement. GPCU is not token economy. GPCU is not human value score. Lifecycle recommendation is not pruning. Reward mechanics are deferred. Federation remains blocked by default.
+
+PMR-02 scores local PMR-indexed artifacts for lifecycle/storage utility and emits lifecycle recommendations while preserving non-authority boundaries. It is not Atlas canon, not memory write authorization, not model-weight training, not deployment authority, not hallucination reduction proof, not truth certification, not final answer release, not recursive self-improvement, and not production readiness.
+
+### PMR-02 acceptance command
+
+```powershell
+.\experiments\Run-PMR02-Acceptance.ps1 `
+  -OutputRoot C:\UVLM\run_artifacts\pmr_02 `
+  -LogDir C:\UVLM\run_artifacts\pmr_02_logs `
+  -Mode balanced `
+  -LocalStorageBudgetBytes 5368709120 `
+  -CiMode
+```
+
+## PMR-03 Lifecycle State Machine
+
+PMR-03-LIFECYCLE-STATE-MACHINE adds a publication-indexed PMR lifecycle state-machine scaffold for local PMR-indexed artifacts. Recommendation is not transition. Transition candidate is not action. Lifecycle state is not truth status. No pruning or deletion occurs in PMR-03. Destructive action requires future Sophia lifecycle audit. Destructive action requires future user confirmation. Reward mechanics remain deferred. Federation remains blocked by default.
+
+PMR-03 consumes PMR-00 doctrine/policy, PMR-01 local artifact index/dependency graph, and PMR-02 GPCU lifecycle recommendations. It emits lifecycle transition candidates, transition receipts, and a no-action receipt while preserving non-action and non-authority boundaries. It is not pruning execution, not deletion execution, not federation authorization, not encrypted shard transfer, not reward entitlement, not token economy, not Atlas canon, not memory write authorization, not model-weight training, not deployment authority, not truth certification, not final answer release, not hallucination reduction proof, not recursive self-improvement, and not production readiness.
+
+### PMR-03 acceptance command
+
+```powershell
+.\experiments\Run-PMR03-Acceptance.ps1 `
+  -OutputRoot C:\UVLM\run_artifacts\pmr_03 `
+  -LogDir C:\UVLM\run_artifacts\pmr_03_logs `
+  -Mode balanced `
+  -LocalStorageBudgetBytes 5368709120 `
+  -CiMode
+```
+
+## PMR-04 Lifecycle Audit Preflight
+
+PMR-04-LIFECYCLE-AUDIT-PREFLIGHT adds a publication-indexed PMR lifecycle audit preflight scaffold for local PMR-indexed artifacts. Preflight is not approval. Audit candidate is not action. Sophia lifecycle audit is required before destructive action. User confirmation is required before destructive local action. No Sophia approval packet is emitted. No pruning or deletion occurs in PMR-04.
+
+PMR-04 consumes PMR-00 doctrine/policy, PMR-01 local artifact index/dependency graph, PMR-02 GPCU lifecycle recommendations, and PMR-03 lifecycle transition candidates/no-action receipts. It emits audit candidates, a block packet, and a no-action receipt while preserving non-approval, non-action, and non-authority boundaries. No federation occurs. No encrypted shard transfer occurs. No reward occurs. No token economy occurs. No memory write occurs. No Atlas canon write occurs. No model-weight training occurs. No deployment occurs. No truth certification occurs. No final-answer release occurs. No hallucination-reduction proof occurs. No recursive self-improvement occurs.
+
+### PMR-04 acceptance command
+
+```powershell
+.\experiments\Run-PMR04-Acceptance.ps1 `
+  -OutputRoot C:\UVLM\run_artifacts\pmr_04 `
+  -LogDir C:\UVLM\run_artifacts\pmr_04_logs `
+  -Mode balanced `
+  -LocalStorageBudgetBytes 5368709120 `
+  -CiMode
+```

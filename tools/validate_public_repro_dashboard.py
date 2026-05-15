@@ -38,6 +38,9 @@ REQUIRED_PHASES = {
     "RW-COMP-LOCAL-ADAPTER-01",
     "PMR-00-PROVENANCE-MEMORY-RESERVOIR",
     "PMR-01-LOCAL-ARTIFACT-INDEX",
+    "PMR-02-GLOBAL-PROVENANCE-COHERENCE-UTILITY",
+    "PMR-03-LIFECYCLE-STATE-MACHINE",
+    "PMR-04-LIFECYCLE-AUDIT-PREFLIGHT",
 }
 REQUIRED_BOUNDARY_PHRASES = (
     "not truth certification",
@@ -208,6 +211,44 @@ REQUIRED_BOUNDARY_PHRASES = (
     "PMR-01 performs indexing only, not pruning.",
     "Federation is blocked by default.",
     "PMR is not resource economy or token economy.",
+    "GPCU is lifecycle/storage utility, not truth score.",
+    "GPCU is not reward entitlement.",
+    "GPCU is not token economy.",
+    "Lifecycle recommendation is not pruning.",
+    "Reward mechanics are deferred.",
+    "Federation remains blocked by default.",
+    "PMR-02 is not Atlas canon.",
+    "PMR-02 is not memory write authorization.",
+    "PMR-02 is not model-weight training.",
+    "PMR-02 is not deployment authority.",
+    "PMR-02 is not hallucination reduction proof.",
+    "Recommendation is not transition; transition candidate is not action.",
+    "Recommendation is not transition.",
+    "Transition candidate is not action.",
+    "Lifecycle state is not truth status.",
+    "Destructive action requires future Sophia lifecycle audit.",
+    "Destructive action requires future user confirmation.",
+    "No pruning or deletion occurs in PMR-03.",
+    "PMR-03 is not federation authorization.",
+    "PMR-03 is not reward entitlement.",
+    "PMR-03 is not token economy.",
+    "PMR-03 is not Atlas canon.",
+    "PMR-03 is not memory write authorization.",
+    "PMR-03 is not model-weight training.",
+    "PMR-03 is not deployment authority.",
+    "PMR-03 is not truth certification.",
+    "Preflight is not approval.",
+    "Audit candidate is not action.",
+    "Sophia lifecycle audit is required before destructive action.",
+    "User confirmation is required before destructive local action.",
+    "No Sophia approval packet is emitted.",
+    "No pruning or deletion occurs in PMR-04.",
+    "PMR-04 is not federation authorization.",
+    "PMR-04 is not reward entitlement.",
+    "PMR-04 is not token economy.",
+    "PMR-04 is not memory write authorization.",
+    "PMR-04 is not deployment authority.",
+    "PMR-04 is not truth certification.",
     "Governed provenance resources may be future infrastructure rewards, but truth is not for sale.",
 )
 FORBIDDEN_PHRASES = (
@@ -247,6 +288,7 @@ FORBIDDEN_PHRASES = (
     "compliance certification",
     "production ready",
     "deployment authorized",
+    "claims deployment authority",
     "final answer released",
     "publisher finalized",
     "omega detected",
@@ -298,6 +340,13 @@ FORBIDDEN_PHRASES = (
     "pruning execution",
     "resource economy",
     "token economy",
+    "truth score",
+    "reward entitlement",
+    "human value score",
+    "deletion execution",
+    "encrypted shard transfer",
+    "Sophia approval",
+    "audit action",
 )
 ALLOWED_NEGATED = (
     "not ",
@@ -365,6 +414,13 @@ def _forbidden_hits(text: str) -> list[str]:
                 start = index + len(normalized_phrase)
                 continue
             if (
+                phrase == "token economy"
+                and "does not prune, delete, federate, transfer encrypted shards, reward users, run a"
+                in text[max(0, index - 104) : index]
+            ):
+                start = index + len(normalized_phrase)
+                continue
+            if (
                 phrase == "model quality benchmark"
                 and "not hallucination reduction proof or a" in text[max(0, index - 56) : index]
             ):
@@ -372,6 +428,7 @@ def _forbidden_hits(text: str) -> list[str]:
                 continue
             if phrase == "federation" and (
                 text[index : index + 40].startswith("federation is blocked by default")
+                or text[index : index + 48].startswith("federation remains blocked by default")
                 or text[index : index + 40].startswith("federation_blocked")
                 or text[index : index + 40].startswith("federation_authorization")
             ):
