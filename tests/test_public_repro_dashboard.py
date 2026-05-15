@@ -41,7 +41,12 @@ REQUIRED_DOCS = {
     "sonya-adapter-smoke.md",
     "sonya-local-fixture-adapter.md",
     "evidence-review-pack-local-adapter.md",
+    "evidence-review-pack-local-adapter-revision.md",
+    "rw-comp-local-adapter.md",
+    "provenance-memory-reservoir.md",
+    "pmr-local-artifact-index.md",
     "sonya-local-fixture-adapter-multi-route.md",
+    "sonya-local-fixture-adapter-lineage.md",
 }
 REQUIRED_PHASES = {
     "EXP-SUITE-REGISTRY-01",
@@ -68,7 +73,12 @@ REQUIRED_PHASES = {
     "SONYA-ADAPTER-SMOKE-00",
     "SONYA-LOCAL-FIXTURE-ADAPTER-01",
     "EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER-01",
+    "EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER-02",
+    "RW-COMP-LOCAL-ADAPTER-01",
+    "PMR-00-PROVENANCE-MEMORY-RESERVOIR",
+    "PMR-01-LOCAL-ARTIFACT-INDEX",
     "SONYA-LOCAL-FIXTURE-ADAPTER-02",
+    "SONYA-LOCAL-FIXTURE-ADAPTER-03",
 }
 
 REQUIRED_COMMAND_FRAGMENTS = (
@@ -92,7 +102,12 @@ REQUIRED_COMMAND_FRAGMENTS = (
     "Run-SONYA-ADAPTER-SMOKE00-Acceptance.ps1",
     "Run-SONYA-LOCAL-FIXTURE-ADAPTER01-Acceptance.ps1",
     "Run-EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER01-Acceptance.ps1",
+    "Run-EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER02-Acceptance.ps1",
+    "Run-RW-COMP-LOCAL-ADAPTER01-Acceptance.ps1",
+    "Run-PMR00-Acceptance.ps1",
+    "Run-PMR01-Acceptance.ps1",
     "Run-SONYA-LOCAL-FIXTURE-ADAPTER02-Acceptance.ps1",
+    "Run-SONYA-LOCAL-FIXTURE-ADAPTER03-Acceptance.ps1",
 )
 STALE_COMMAND_FRAGMENTS = (
     "tests/test_sonya_aegis_smoke_02.py",
@@ -138,7 +153,7 @@ def test_dashboard_contains_all_accepted_phases(tmp_path):
     dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text())
     phase_ids = {entry["phase_id"] for entry in dashboard["accepted_phases"]}
     assert phase_ids == REQUIRED_PHASES
-    assert dashboard["accepted_phase_count"] == 25
+    assert dashboard["accepted_phase_count"] == 30
 
 
 def test_dashboard_command_summaries_use_accepted_harnesses(tmp_path):
@@ -1220,3 +1235,273 @@ def test_validator_cli_passes(tmp_path):
         text=True,
     )
     assert completed.returncode == 0, completed.stdout + completed.stderr
+
+
+def test_sonya_local_fixture_adapter_lineage_clarity_indexes_docs_and_boundaries_are_generated(tmp_path):
+    out_dir, docs_dir = run_builder(tmp_path)
+    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text())
+    reproducibility = json.loads((out_dir / "reproducibility_index.json").read_text())
+    artifact_index = json.loads((out_dir / "artifact_index.json").read_text())
+    quickstart = (docs_dir / "reviewer-quickstart.md").read_text()
+    boundaries = (docs_dir / "claim-boundaries.md").read_text()
+    index = (docs_dir / "index.md").read_text()
+    page = docs_dir / "sonya-local-fixture-adapter-lineage.md"
+
+    phase = next(
+        entry
+        for entry in dashboard["accepted_phases"]
+        if entry["phase_id"] == "SONYA-LOCAL-FIXTURE-ADAPTER-03"
+    )
+    assert phase["status"] == "accepted"
+    assert phase["evidence_type"] == "methods_lineage_clarity"
+    assert phase["product_posture"] == "source_current_experiment_lineage_clarity"
+    assert phase["dashboard_summary"]["lineage_review_status"] == "accepted_as_lineage_clarity_packet"
+    assert phase["dashboard_summary"]["current_experiment_id"] == "SONYA-LOCAL-FIXTURE-ADAPTER-02"
+    assert phase["dashboard_summary"]["source_fixture_experiment_id_present"] is True
+    assert phase["dashboard_summary"]["source_fixture_role_present"] is True
+    assert phase["dashboard_summary"]["nested_source_identity_explained"] is True
+    assert phase["dashboard_summary"]["ambiguous_experiment_id_inheritance_blocked"] is True
+    assert phase["dashboard_summary"]["lineage_complete"] is True
+    assert phase["dashboard_summary"]["lineage_is_not_authority"] is True
+    assert phase["dashboard_summary"]["promotion_blocked"] is True
+    assert phase["dashboard_summary"]["source_fixture_reference_not_stale_identity"] is True
+    assert "SONYA-LOCAL-FIXTURE-ADAPTER-01" in phase["prerequisite_phases"]
+    assert "SONYA-LOCAL-FIXTURE-ADAPTER-02" in phase["prerequisite_phases"]
+    assert "EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER-01" in phase["prerequisite_phases"]
+
+    commands = json.dumps(reproducibility)
+    assert "Run-SONYA-LOCAL-FIXTURE-ADAPTER03-Acceptance.ps1" in commands
+    assert "SONYA-LOCAL-FIXTURE-ADAPTER-03" in artifact_index["phases"]
+    assert "sonya_local_adapter_lineage_packet.json" in artifact_index["phases"]["SONYA-LOCAL-FIXTURE-ADAPTER-03"]
+    assert "sonya_local_adapter_lineage_review_packet.json" in artifact_index["phases"]["SONYA-LOCAL-FIXTURE-ADAPTER-03"]
+
+    assert page.exists()
+    page_text = page.read_text()
+    assert "Source fixture references are not stale identity leakage." in page_text
+    assert "Nested SONYA-LOCAL-FIXTURE-ADAPTER-01 references are source fixture dependencies, not stale identity leakage." in page_text
+    assert "Current route identity is explicit." in page_text
+    assert "Source fixture identity is explicit." in page_text
+    assert "Evidence Review Pack local-adapter route references are explicit." in page_text
+    assert "Lineage does not grant authority." in page_text
+    assert "SONYA-LOCAL-FIXTURE-ADAPTER-03" in quickstart
+    assert "sonya-local-fixture-adapter-lineage.md" in index
+    assert "Source fixture references are not stale identity leakage." in boundaries
+
+
+def test_validator_required_phases_include_sonya_local_fixture_adapter_lineage_clarity():
+    assert "SONYA-LOCAL-FIXTURE-ADAPTER-03" in VALIDATOR_REQUIRED_PHASES
+
+
+def test_validator_fails_if_sonya_local_fixture_adapter_lineage_clarity_makes_forbidden_claims(tmp_path):
+    forbidden_claims = (
+        "adapter execution",
+        "lineage authority",
+        "network authorization",
+        "remote provider calls",
+        "stale identity proof of execution",
+    )
+    for claim in forbidden_claims:
+        out_dir, docs_dir = run_builder(tmp_path / claim.replace(" ", "_"))
+        page = docs_dir / "sonya-local-fixture-adapter-lineage.md"
+        page.write_text(page.read_text() + f"\nSonya Local Fixture Adapter lineage claims {claim}.\n")
+        result = validate_dashboard(out_dir / "experiment_suite_dashboard.json", docs_dir)
+        assert result["passed"] is False, claim
+        forbidden_found = [found.lower() for found in result["forbidden_claims_found"]]
+        assert claim.lower() in forbidden_found, result
+
+
+def test_evidence_review_pack_local_adapter_revision_indexes_docs_and_boundaries_are_generated(tmp_path):
+    out_dir, docs_dir = run_builder(tmp_path)
+    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text())
+    reproducibility = json.loads((out_dir / "reproducibility_index.json").read_text())
+    artifact_index = json.loads((out_dir / "artifact_index.json").read_text())
+    quickstart = (docs_dir / "reviewer-quickstart.md").read_text()
+    boundaries = (docs_dir / "claim-boundaries.md").read_text()
+    index = (docs_dir / "index.md").read_text()
+    page = docs_dir / "evidence-review-pack-local-adapter-revision.md"
+
+    phase = next(
+        entry
+        for entry in dashboard["accepted_phases"]
+        if entry["phase_id"] == "EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER-02"
+    )
+    assert phase["status"] == "accepted"
+    assert phase["evidence_type"] == "local_adapter_revision_loop"
+    assert phase["product_posture"] == "candidate_revision_loop_with_structural_review_deltas"
+    assert phase["dashboard_summary"]["review_status"] == "accepted_as_local_adapter_revision_loop"
+    assert phase["dashboard_summary"]["revise_summary_recommendation_consumed"] is True
+    assert phase["dashboard_summary"]["revised_candidate_emitted"] is True
+    assert phase["dashboard_summary"]["evidence_review_rerun_performed"] is True
+    assert phase["dashboard_summary"]["deltas_reported"] is True
+    assert phase["dashboard_summary"]["candidate_remains_not_final_answer"] is True
+    assert phase["dashboard_summary"]["candidate_remains_not_accepted_evidence"] is True
+    assert phase["dashboard_summary"]["unsupported_claim_count_delta"] == -1
+    assert phase["dashboard_summary"]["uncertainty_missing_count_delta"] == -1
+    assert phase["dashboard_summary"]["source_reference_visibility_delta"] == 1
+    assert phase["dashboard_summary"]["structural_visibility_improved_candidate"] is True
+    assert "EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER-01" in phase["prerequisite_phases"]
+    assert "SONYA-LOCAL-FIXTURE-ADAPTER-03" in phase["prerequisite_phases"]
+
+    commands = json.dumps(reproducibility)
+    assert "Run-EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER02-Acceptance.ps1" in commands
+    assert "EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER-02" in artifact_index["phases"]
+    assert "evidence_review_local_adapter_revision_packet.json" in artifact_index["phases"]["EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER-02"]
+    assert "evidence_review_local_adapter_revision_delta.json" in artifact_index["phases"]["EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER-02"]
+
+    assert page.exists()
+    page_text = page.read_text()
+    assert "Deltas are structural review descriptors, not hallucination reduction proof." in page_text
+    assert "The revised candidate is not final answer and not accepted evidence." in page_text
+    assert "EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER-02" in quickstart
+    assert "evidence-review-pack-local-adapter-revision.md" in index
+    assert "Deltas are structural review descriptors, not hallucination reduction proof." in boundaries
+    assert "Evidence Review Pack local-adapter revision loop is not model quality benchmark." in boundaries
+    assert "Evidence Review Pack local-adapter revision loop is not final answer selection." in boundaries
+
+
+def test_validator_required_phases_include_evidence_review_pack_local_adapter_revision():
+    assert "EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER-02" in VALIDATOR_REQUIRED_PHASES
+
+
+def test_validator_fails_if_evidence_review_pack_local_adapter_revision_makes_forbidden_claims(tmp_path):
+    forbidden_claims = (
+        "hallucination reduction proof",
+        "model quality benchmark",
+        "claims accepted evidence",
+    )
+    for claim in forbidden_claims:
+        out_dir, docs_dir = run_builder(tmp_path / claim.replace(" ", "_"))
+        page = docs_dir / "evidence-review-pack-local-adapter-revision.md"
+        page.write_text(page.read_text() + f"\nRevision loop claims {claim}.\n")
+        result = validate_dashboard(out_dir / "experiment_suite_dashboard.json", docs_dir)
+        assert result["passed"] is False, claim
+        forbidden_found = [found.lower() for found in result["forbidden_claims_found"]]
+        assert claim.lower() in forbidden_found, result
+
+
+def test_rw_comp_local_adapter_indexes_docs_and_boundaries_are_generated(tmp_path):
+    out_dir, docs_dir = run_builder(tmp_path)
+    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text())
+    reproducibility = json.loads((out_dir / "reproducibility_index.json").read_text())
+    artifact_index = json.loads((out_dir / "artifact_index.json").read_text())
+    quickstart = (docs_dir / "reviewer-quickstart.md").read_text()
+    boundaries = (docs_dir / "claim-boundaries.md").read_text()
+    index = (docs_dir / "index.md").read_text()
+    page = docs_dir / "rw-comp-local-adapter.md"
+
+    phase = next(entry for entry in dashboard["accepted_phases"] if entry["phase_id"] == "RW-COMP-LOCAL-ADAPTER-01")
+    assert phase["status"] == "accepted"
+    assert phase["evidence_type"] == "local_adapter_comparison_scaffold"
+    assert phase["product_posture"] == "original_vs_revised_local_adapter_candidate_structural_review_delta"
+    assert phase["dashboard_summary"]["review_status"] == "accepted_as_local_adapter_comparison_scaffold"
+    assert phase["dashboard_summary"]["all_comparison_arms_present"] is True
+    assert phase["dashboard_summary"]["original_and_revised_candidates_compared"] is True
+    assert phase["dashboard_summary"]["evidence_review_path_used_for_reviewed_arms"] is True
+    assert phase["dashboard_summary"]["structural_visibility_descriptors_only"] is True
+    assert phase["dashboard_summary"]["comparison_is_not_hallucination_reduction_proof"] is True
+    assert phase["dashboard_summary"]["comparison_is_not_model_quality_benchmark"] is True
+    assert phase["dashboard_summary"]["comparison_is_not_final_answer_selection"] is True
+    assert phase["dashboard_summary"]["unsupported_claim_count_delta"] == -1
+    assert phase["dashboard_summary"]["uncertainty_missing_count_delta"] == -1
+    assert phase["dashboard_summary"]["source_reference_visibility_delta"] == 1
+    assert phase["dashboard_summary"]["supported_claim_count_delta"] == 2
+    assert "EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER-02" in phase["prerequisite_phases"]
+    assert "SONYA-LOCAL-FIXTURE-ADAPTER-02" in phase["prerequisite_phases"]
+
+    commands = json.dumps(reproducibility)
+    assert "Run-RW-COMP-LOCAL-ADAPTER01-Acceptance.ps1" in commands
+    assert "RW-COMP-LOCAL-ADAPTER-01" in artifact_index["phases"]
+    assert "rw_comp_local_adapter_packet.json" in artifact_index["phases"]["RW-COMP-LOCAL-ADAPTER-01"]
+    assert "rw_comp_local_adapter_delta_packet.json" in artifact_index["phases"]["RW-COMP-LOCAL-ADAPTER-01"]
+
+    assert page.exists()
+    page_text = page.read_text()
+    assert "Deltas are structural review descriptors only." in page_text
+    assert "Candidate comparison is not final answer selection." in page_text
+    assert "RW-COMP-LOCAL-ADAPTER-01" in quickstart
+    assert "rw-comp-local-adapter.md" in index
+    assert "Deltas are structural review descriptors only." in boundaries
+    assert "RW-COMP local-adapter comparison is not hallucination reduction proof or a model quality benchmark." in boundaries
+    assert "RW-COMP local-adapter comparison is not final answer selection." in boundaries
+
+
+def test_validator_required_phases_include_rw_comp_local_adapter():
+    assert "RW-COMP-LOCAL-ADAPTER-01" in VALIDATOR_REQUIRED_PHASES
+
+
+def test_validator_fails_if_rw_comp_local_adapter_makes_forbidden_claims(tmp_path):
+    forbidden_claims = (
+        "hallucination reduction proof",
+        "model quality benchmark",
+        "final answer selection",
+    )
+    for claim in forbidden_claims:
+        out_dir, docs_dir = run_builder(tmp_path / claim.replace(" ", "_"))
+        page = docs_dir / "rw-comp-local-adapter.md"
+        page.write_text(page.read_text() + f"\nRW-COMP local adapter claims {claim}.\n")
+        result = validate_dashboard(out_dir / "experiment_suite_dashboard.json", docs_dir)
+        assert result["passed"] is False, claim
+        forbidden_found = [found.lower() for found in result["forbidden_claims_found"]]
+        assert claim.lower() in forbidden_found, result
+
+
+def test_pmr_doctrine_and_local_artifact_index_are_generated(tmp_path):
+    out_dir, docs_dir = run_builder(tmp_path)
+    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text())
+    reproducibility = json.loads((out_dir / "reproducibility_index.json").read_text())
+    artifact_index = json.loads((out_dir / "artifact_index.json").read_text())
+    boundaries = (docs_dir / "claim-boundaries.md").read_text()
+    index = (docs_dir / "index.md").read_text()
+    pmr00_page = docs_dir / "provenance-memory-reservoir.md"
+    pmr01_page = docs_dir / "pmr-local-artifact-index.md"
+
+    phase_ids = {entry["phase_id"] for entry in dashboard["accepted_phases"]}
+    assert "PMR-00-PROVENANCE-MEMORY-RESERVOIR" in phase_ids
+    assert "PMR-01-LOCAL-ARTIFACT-INDEX" in phase_ids
+    pmr00 = next(entry for entry in dashboard["accepted_phases"] if entry["phase_id"] == "PMR-00-PROVENANCE-MEMORY-RESERVOIR")
+    pmr01 = next(entry for entry in dashboard["accepted_phases"] if entry["phase_id"] == "PMR-01-LOCAL-ARTIFACT-INDEX")
+    assert pmr00["dashboard_summary"]["review_status"] == "accepted_as_pmr_doctrine_and_policy_scaffold"
+    assert pmr00["dashboard_summary"]["local_budget_policy_present"] is True
+    assert pmr00["dashboard_summary"]["hash_encryption_distinction_present"] is True
+    assert pmr00["dashboard_summary"]["federation_blocked_by_default"] is True
+    assert pmr01["dashboard_summary"]["review_status"] == "accepted_as_pmr_local_artifact_index_scaffold"
+    assert pmr01["dashboard_summary"]["artifact_count"] == 8
+    assert pmr01["dashboard_summary"]["node_count"] == 8
+    assert pmr01["dashboard_summary"]["edge_count"] == 9
+    assert pmr01["dashboard_summary"]["graph_is_not_canon_graph"] is True
+
+    commands = json.dumps(reproducibility)
+    assert "Run-PMR00-Acceptance.ps1" in commands
+    assert "Run-PMR01-Acceptance.ps1" in commands
+    assert "pmr_doctrine_packet.json" in artifact_index["phases"]["PMR-00-PROVENANCE-MEMORY-RESERVOIR"]
+    assert "pmr_local_artifact_index.json" in artifact_index["phases"]["PMR-01-LOCAL-ARTIFACT-INDEX"]
+    assert "pmr_dependency_graph.json" in artifact_index["phases"]["PMR-01-LOCAL-ARTIFACT-INDEX"]
+    assert pmr00_page.exists()
+    assert pmr01_page.exists()
+    assert "provenance-memory-reservoir.md" in index
+    assert "pmr-local-artifact-index.md" in index
+    assert "Memory is governed provenance under resource constraints." in boundaries
+    assert "Hash is not encryption." in boundaries
+
+
+def test_validator_required_phases_include_pmr_phases():
+    assert "PMR-00-PROVENANCE-MEMORY-RESERVOIR" in VALIDATOR_REQUIRED_PHASES
+    assert "PMR-01-LOCAL-ARTIFACT-INDEX" in VALIDATOR_REQUIRED_PHASES
+
+
+def test_validator_fails_if_pmr_makes_forbidden_claims(tmp_path):
+    forbidden_claims = (
+        "Atlas canon",
+        "memory write authorization",
+        "federation authorization",
+        "resource economy",
+        "token economy",
+    )
+    for claim in forbidden_claims:
+        out_dir, docs_dir = run_builder(tmp_path / claim.replace(" ", "_"))
+        page = docs_dir / "provenance-memory-reservoir.md"
+        page.write_text(page.read_text() + f"\nPMR claims {claim}.\n")
+        result = validate_dashboard(out_dir / "experiment_suite_dashboard.json", docs_dir)
+        assert result["passed"] is False, claim
+        forbidden_found = [found.lower() for found in result["forbidden_claims_found"]]
+        assert claim.lower() in forbidden_found, result

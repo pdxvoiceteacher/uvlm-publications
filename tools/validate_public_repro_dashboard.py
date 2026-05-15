@@ -33,6 +33,11 @@ REQUIRED_PHASES = {
     "SONYA-LOCAL-FIXTURE-ADAPTER-01",
     "EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER-01",
     "SONYA-LOCAL-FIXTURE-ADAPTER-02",
+    "SONYA-LOCAL-FIXTURE-ADAPTER-03",
+    "EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER-02",
+    "RW-COMP-LOCAL-ADAPTER-01",
+    "PMR-00-PROVENANCE-MEMORY-RESERVOIR",
+    "PMR-01-LOCAL-ARTIFACT-INDEX",
 }
 REQUIRED_BOUNDARY_PHRASES = (
     "not truth certification",
@@ -159,6 +164,51 @@ REQUIRED_BOUNDARY_PHRASES = (
     "Sonya Local Fixture Adapter multi-route",
     "not adapter authorization",
     "not model quality benchmark",
+    "Source fixture references are not stale identity leakage.",
+    "Nested SONYA-LOCAL-FIXTURE-ADAPTER-01 references are source fixture dependencies, not stale identity leakage.",
+    "Current route identity is explicit.",
+    "Source fixture identity is explicit.",
+    "Evidence Review Pack local-adapter route references are explicit.",
+    "Lineage does not grant authority.",
+    "Sonya local adapter lineage packet is not adapter execution.",
+    "Sonya local adapter lineage packet is not network authorization.",
+    "Sonya local adapter lineage packet is not memory write.",
+    "Sonya local adapter lineage packet is not final answer release.",
+    "Sonya local adapter lineage packet is not deployment authority.",
+    "Sonya local adapter lineage packet is not truth certification.",
+    "Deltas are structural review descriptors, not hallucination reduction proof.",
+    "Revised local adapter candidate remains candidate-only, not accepted evidence.",
+    "Evidence Review Pack local-adapter revision loop is not final answer selection.",
+    "Evidence Review Pack local-adapter revision loop is not model quality benchmark.",
+    "Evidence Review Pack local-adapter revision loop is not model superiority proof.",
+    "Evidence Review Pack local-adapter revision loop is not adapter authorization.",
+    "Evidence Review Pack local-adapter revision loop is not memory write.",
+    "Evidence Review Pack local-adapter revision loop is not model-weight training.",
+    "Evidence Review Pack local-adapter revision loop is not deployment authority.",
+    "Evidence Review Pack local-adapter revision loop is not recursive self-improvement.",
+    "Deltas are structural review descriptors only.",
+    "RW-COMP local-adapter comparison is not hallucination reduction proof or a model quality benchmark.",
+    "RW-COMP local-adapter comparison is not model superiority proof.",
+    "RW-COMP local-adapter comparison is not final answer selection.",
+    "RW-COMP local-adapter comparison is not accepted evidence.",
+    "RW-COMP local-adapter comparison is not adapter authorization.",
+    "RW-COMP local-adapter comparison is not memory write.",
+    "RW-COMP local-adapter comparison is not model-weight training.",
+    "RW-COMP local-adapter comparison is not deployment authority.",
+    "RW-COMP local-adapter comparison is not recursive self-improvement.",
+    "Memory is governed provenance under resource constraints.",
+    "Memory is not storage.",
+    "Hash is not encryption.",
+    "User controls local memory budget.",
+    "PMR is not Atlas canon.",
+    "PMR is not model-weight training data.",
+    "PMR artifact index is not generic cache.",
+    "PMR artifact lifecycle state is not truth status.",
+    "PMR dependency graph is not canon graph.",
+    "PMR-01 performs indexing only, not pruning.",
+    "Federation is blocked by default.",
+    "PMR is not resource economy or token economy.",
+    "Governed provenance resources may be future infrastructure rewards, but truth is not for sale.",
 )
 FORBIDDEN_PHRASES = (
     "deployment readiness",
@@ -237,6 +287,17 @@ FORBIDDEN_PHRASES = (
     "model weight training",
     "production ready",
     "production readiness",
+    "lineage authority",
+    "lineage grants authority",
+    "stale identity proof of execution",
+    "hallucination reduction proof",
+    "model quality benchmark",
+    "Atlas canon",
+    "memory write authorization",
+    "federation authorization",
+    "pruning execution",
+    "resource economy",
+    "token economy",
 )
 ALLOWED_NEGATED = (
     "not ",
@@ -296,7 +357,24 @@ def _forbidden_hits(text: str) -> list[str]:
             index = text.find(normalized_phrase, start)
             if index == -1:
                 break
-            if phrase in {"adapter execution", "adapter executed"} and _is_allowed_local_adapter_context(text, index):
+            if (
+                phrase in {"adapter execution", "adapter executed"}
+                and _is_allowed_local_adapter_context(text, index)
+                and "lineage claims" not in text[max(0, index - 80) : index]
+            ):
+                start = index + len(normalized_phrase)
+                continue
+            if (
+                phrase == "model quality benchmark"
+                and "not hallucination reduction proof or a" in text[max(0, index - 56) : index]
+            ):
+                start = index + len(normalized_phrase)
+                continue
+            if phrase == "federation" and (
+                text[index : index + 40].startswith("federation is blocked by default")
+                or text[index : index + 40].startswith("federation_blocked")
+                or text[index : index + 40].startswith("federation_authorization")
+            ):
                 start = index + len(normalized_phrase)
                 continue
             if not _is_negated(text, index):

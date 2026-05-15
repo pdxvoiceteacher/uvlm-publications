@@ -375,3 +375,76 @@ Expected:
 - `selected_candidate_source_adapter_id = fixture_summary_generator_adapter`
 - `executed_local_adapter_ids = fixture_text_model_adapter, fixture_summary_generator_adapter, local_file_transform_adapter`
 - `blocked_adapter_ids = hash_only_evidence_adapter, remote_provider_placeholder_adapter, browser_placeholder_adapter, atlas_memory_placeholder_adapter, sophia_route_placeholder_adapter`
+
+
+## How to reproduce SONYA-LOCAL-FIXTURE-ADAPTER-03
+
+SONYA-LOCAL-FIXTURE-ADAPTER-03 is a methods-lineage clarity phase only. Nested SONYA-LOCAL-FIXTURE-ADAPTER-01 references are source fixture dependencies, not stale identity leakage. Current route identity is explicit. Source fixture identity is explicit. Evidence Review Pack local-adapter route references are explicit. Lineage does not grant authority.
+
+```powershell
+.\experiments\Run-SONYA-LOCAL-FIXTURE-ADAPTER03-Acceptance.ps1 `
+  -OutputRoot C:\UVLM\run_artifacts\sonya_local_fixture_adapter_03 `
+  -LogDir C:\UVLM\run_artifacts\sonya_local_fixture_adapter_03_logs `
+  -CiMode
+```
+
+Review `sonya_local_adapter_lineage_packet.json`, `sonya_local_adapter_lineage_review_packet.json`, and `sonya_local_fixture_adapter_03_acceptance_receipt.json`. The packet is lineage clarity only: not adapter execution, not memory write, not final answer release, and not deployment authority.
+
+
+## How to reproduce EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER-02
+
+EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER-02 is a local-only candidate revision loop. The revise_summary recommendation was consumed, a revised candidate was emitted, Evidence Review Pack rerun occurred, and deltas were reported. Deltas are structural review descriptors, not hallucination reduction proof. The revised local adapter candidate remains candidate-only, not accepted evidence.
+
+```powershell
+.\experiments\Run-EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER02-Acceptance.ps1 `
+  -OutputRoot C:\UVLM\run_artifacts\evidence_review_pack_local_adapter_02 `
+  -LogDir C:\UVLM\run_artifacts\evidence_review_pack_local_adapter_02_logs `
+  -CiMode
+```
+
+Review `evidence_review_local_adapter_revision_packet.json`, `evidence_review_local_adapter_revision_delta.json`, and `evidence_review_pack_local_adapter_02_acceptance_receipt.json`. Expected deltas include `unsupported_claim_count_delta = -1`, `uncertainty_missing_count_delta = -1`, `source_reference_visibility_delta = 1`, and `structural_visibility_improved_candidate = true`. The revised candidate is not final answer selection, not model quality benchmark, not memory write, not model-weight training, and not deployment authority.
+
+
+## How to reproduce RW-COMP-LOCAL-ADAPTER-01
+
+RW-COMP-LOCAL-ADAPTER-01 compares raw local summary fixture, original local adapter candidate, Evidence Review Pack reviewed original candidate, revised local adapter candidate, and Evidence Review Pack reviewed revised candidate. Deltas are structural review descriptors only. RW-COMP local-adapter comparison is not hallucination reduction proof or a model quality benchmark. Candidate comparison is not final answer selection and candidate remains not accepted evidence.
+
+```powershell
+.\experiments\Run-RW-COMP-LOCAL-ADAPTER01-Acceptance.ps1 `
+  -OutputRoot C:\UVLM\run_artifacts\rw_comp_local_adapter_01 `
+  -LogDir C:\UVLM\run_artifacts\rw_comp_local_adapter_01_logs `
+  -CiMode
+```
+
+Review `rw_comp_local_adapter_packet.json`, `rw_comp_local_adapter_delta_packet.json`, and `rw_comp_local_adapter_01_acceptance_receipt.json`. Expected deltas include `unsupported_claim_count_delta = -1`, `uncertainty_missing_count_delta = -1`, `source_reference_visibility_delta = 1`, `supported_claim_count_delta = 2`, and `structural_visibility_improved_candidate = true`. No model-weight training, no memory write, no final-answer release, no deployment, and no promotion is authorized.
+
+
+## How to reproduce PMR-00-PROVENANCE-MEMORY-RESERVOIR
+
+Memory is governed provenance under resource constraints. PMR-00 records local-only doctrine and storage policy. Memory is not storage. Hash is not encryption. User controls local memory budget. Federation is blocked by default. PMR is not Atlas canon and not model-weight training data.
+
+```powershell
+.\experiments\Run-PMR00-Acceptance.ps1 `
+  -OutputRoot C:\UVLM\run_artifacts\pmr_00 `
+  -LogDir C:\UVLM\run_artifacts\pmr_00_logs `
+  -Mode balanced `
+  -LocalStorageBudgetBytes 5368709120 `
+  -CiMode
+```
+
+Review `pmr_doctrine_packet.json`, `pmr_local_storage_policy.json`, and `pmr_00_acceptance_receipt.json`.
+
+## How to reproduce PMR-01-LOCAL-ARTIFACT-INDEX
+
+PMR artifact lifecycle state is not truth status. PMR artifact index is not generic cache. Dependency graph is not canon graph. No pruning occurs in PMR-01. PMR-01 performs indexing only, not pruning.
+
+```powershell
+.\experiments\Run-PMR01-Acceptance.ps1 `
+  -OutputRoot C:\UVLM\run_artifacts\pmr_01 `
+  -LogDir C:\UVLM\run_artifacts\pmr_01_logs `
+  -Mode balanced `
+  -LocalStorageBudgetBytes 5368709120 `
+  -CiMode
+```
+
+Review `pmr_local_artifact_index.json`, `pmr_dependency_graph.json`, and `pmr_01_acceptance_receipt.json`. These are PMR architecture scaffold artifacts only: not Atlas canon, not memory write authorization, not model-weight training, not federation authorization, not pruning execution, not truth certification, and not deployment authority.

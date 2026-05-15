@@ -218,6 +218,50 @@ PAPER_CONFIGS: dict[str, dict[str, Any]] = {
             "selection_policy_applied = true",
             "selected_candidate_requires_review = true",
             "Run-SONYA-LOCAL-FIXTURE-ADAPTER02-Acceptance.ps1",
+            "SONYA-LOCAL-FIXTURE-ADAPTER-03",
+            "Nested SONYA-LOCAL-FIXTURE-ADAPTER-01 references are source fixture dependencies, not stale identity leakage.",
+            "current route identity is explicit",
+            "source fixture identity is explicit",
+            "Evidence Review Pack local-adapter route references are explicit",
+            "Lineage does not grant authority.",
+            "sonya_local_adapter_lineage_packet.json",
+            "sonya_local_adapter_lineage_review_packet.json",
+            "sonya_local_fixture_adapter_03_acceptance_receipt.json",
+            "Run-SONYA-LOCAL-FIXTURE-ADAPTER03-Acceptance.ps1",
+            "EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER-02",
+            "The revised local adapter candidate remains candidate-only, not accepted evidence.",
+            "deltas are structural review descriptors",
+            "not hallucination-reduction proof",
+            "not model quality benchmark",
+            "unsupported_claim_count_delta = -1",
+            "uncertainty_missing_count_delta = -1",
+            "source_reference_visibility_delta = 1",
+            "structural_visibility_improved_candidate = true",
+            "evidence_review_local_adapter_revision_packet.json",
+            "evidence_review_local_adapter_revision_delta.json",
+            "Run-EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER02-Acceptance.ps1",
+            "RW-COMP-LOCAL-ADAPTER-01",
+            "RW-COMP local-adapter comparison is not hallucination reduction proof or a model quality benchmark.",
+            "deltas are structural review descriptors only",
+            "unsupported_claim_count_delta = -1",
+            "uncertainty_missing_count_delta = -1",
+            "source_reference_visibility_delta = 1",
+            "supported_claim_count_delta = 2",
+            "rw_comp_local_adapter_packet.json",
+            "rw_comp_local_adapter_delta_packet.json",
+            "Run-RW-COMP-LOCAL-ADAPTER01-Acceptance.ps1",
+            "PMR-00-PROVENANCE-MEMORY-RESERVOIR",
+            "PMR-01-LOCAL-ARTIFACT-INDEX",
+            "PMR artifact lifecycle state is not truth status.",
+            "memory is governed provenance under resource constraints",
+            "hash is not encryption",
+            "dependency graph is not canon graph",
+            "no pruning occurs in PMR-01",
+            "federation is blocked by default",
+            "pmr_local_artifact_index.json",
+            "pmr_dependency_graph.json",
+            "Run-PMR00-Acceptance.ps1",
+            "Run-PMR01-Acceptance.ps1",
         ),
         "forbidden_overclaims": (
             "proves universal intelligence",
@@ -291,6 +335,20 @@ PAPER_CONFIGS: dict[str, dict[str, Any]] = {
             "live adapter executed",
             "network authorized",
             "model weights trained",
+            "claims lineage authority",
+            "lineage authority",
+            "lineage grants authority",
+            "claims stale identity proof of execution",
+            "stale identity proof of execution",
+            "claims hallucination reduction proof",
+            "claims model quality benchmark",
+            "claims final answer selection",
+            "claims accepted evidence",
+            "claims Atlas canon",
+            "claims memory write authorization",
+            "claims pruning execution",
+            "claims resource economy",
+            "claims federation authorization",
         ),
         "status_required": {
             "paper_id": "PUB-GOV-ARTIFACT-COG-01",
@@ -345,6 +403,20 @@ PAPER_CONFIGS: dict[str, dict[str, Any]] = {
             "sonya_local_fixture_adapter_02_indexed": True,
             "not_final_answer_selection": True,
             "not_live_adapter_execution": True,
+            "sonya_local_fixture_adapter_03_indexed": True,
+            "not_stale_identity_leakage": True,
+            "not_lineage_authority": True,
+            "evidence_review_pack_local_adapter_02_indexed": True,
+            "not_structural_delta_proof": True,
+            "rw_comp_local_adapter_indexed": True,
+            "pmr_00_indexed": True,
+            "pmr_01_indexed": True,
+            "not_atlas_canon": True,
+            "not_memory_write_authorization": True,
+            "not_federation_authorization": True,
+            "not_pruning_execution": True,
+            "not_resource_economy": True,
+            "not_token_economy": True,
         },
     },
     "PUB-WAVE-ROSETTA-01": {
@@ -440,6 +512,18 @@ def _forbidden_hits(normalized_text: str, forbidden: tuple[str, ...]) -> list[st
             index = normalized_text.find(normalized_phrase, search_from)
             if index == -1:
                 break
+            if (
+                phrase in {"model quality benchmark", "model quality benchmark"}
+                and "not hallucination reduction proof or a" in normalized_text[max(0, index - 56) : index]
+            ):
+                search_from = index + len(normalized_phrase)
+                continue
+            if phrase == "federation" and (
+                normalized_text[index : index + 40].startswith("federation is blocked by default")
+                or normalized_text[index : index + 40].startswith("federation_authorization")
+            ):
+                search_from = index + len(normalized_phrase)
+                continue
             if not _is_negated(normalized_text, index):
                 hits.append(phrase)
                 break

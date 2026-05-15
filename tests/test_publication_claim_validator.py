@@ -1206,3 +1206,242 @@ def test_claim_validator_rejects_sonya_adapter_contract_overclaims(tmp_path):
         )
         assert result["passed"] is False, claim
         assert result["forbidden_overclaims_found"], result
+
+
+def test_governed_artifact_cognition_sonya_local_fixture_adapter_lineage_clarity_updates_are_present():
+    paper = (ROOT / "PUB_GOV_ARTIFACT_COG_01.md").read_text(encoding="utf-8")
+    abstract = (ROOT / "abstract.md").read_text(encoding="utf-8")
+    artifact_table = (ROOT / "artifact_table.md").read_text(encoding="utf-8")
+    boundary_table = (ROOT / "claim_boundary_table.md").read_text(encoding="utf-8")
+    quickstart = (ROOT / "reviewer_quickstart.md").read_text(encoding="utf-8")
+    status = json.loads((ROOT / "status.json").read_text(encoding="utf-8"))
+    combined = paper + "\n" + abstract
+    for phrase in (
+        "SONYA-LOCAL-FIXTURE-ADAPTER-03",
+        "Nested SONYA-LOCAL-FIXTURE-ADAPTER-01 references are source fixture dependencies, not stale identity leakage.",
+        "Current route identity is explicit.",
+        "Source fixture identity is explicit.",
+        "Evidence Review Pack local-adapter route references are explicit.",
+        "Lineage does not grant authority.",
+    ):
+        assert phrase in combined
+    for artifact in (
+        "sonya_local_adapter_lineage_packet.json",
+        "sonya_local_adapter_lineage_review_packet.json",
+        "sonya_local_fixture_adapter_03_acceptance_receipt.json",
+    ):
+        assert artifact in artifact_table
+    for boundary in (
+        "Source fixture references are not stale identity leakage.",
+        "Nested SONYA-LOCAL-FIXTURE-ADAPTER-01 references are source fixture dependencies, not stale identity leakage.",
+        "Sonya local adapter lineage packet is not adapter execution.",
+        "Sonya local adapter lineage packet is not network authorization.",
+        "Sonya local adapter lineage packet is not memory write.",
+        "Sonya local adapter lineage packet is not final answer release.",
+        "Sonya local adapter lineage packet is not deployment authority.",
+        "Sonya local adapter lineage packet is not truth certification.",
+    ):
+        assert boundary in boundary_table
+    assert "Run-SONYA-LOCAL-FIXTURE-ADAPTER03-Acceptance.ps1" in quickstart
+    assert status["sonya_local_fixture_adapter_03_indexed"] is True
+    assert status["not_stale_identity_leakage"] is True
+    assert status["not_lineage_authority"] is True
+
+
+def test_claim_validator_rejects_sonya_local_fixture_adapter_lineage_overclaims(tmp_path):
+    forbidden_claims = (
+        "claims adapter execution",
+        "claims stale identity proof of execution",
+        "claims lineage authority",
+        "lineage grants authority",
+        "claims deployment authority",
+        "claims model-weight training",
+    )
+    for claim in forbidden_claims:
+        paper_root = _copy_governed_paper(tmp_path / claim.replace(" ", "_").replace("-", "_"))
+        paper = paper_root / "PUB_GOV_ARTIFACT_COG_01.md"
+        paper.write_text(paper.read_text(encoding="utf-8") + f"\nThis paper {claim}.\n", encoding="utf-8")
+        result = validate_publication_claims(
+            paper,
+            appendix=paper_root / "reproducibility_appendix.md",
+            quickstart=paper_root / "reviewer_quickstart.md",
+            status=paper_root / "status.json",
+        )
+        assert result["passed"] is False, claim
+        assert result["forbidden_overclaims_found"], result
+
+
+def test_governed_artifact_cognition_evidence_review_pack_local_adapter_revision_updates_are_present():
+    paper = (ROOT / "PUB_GOV_ARTIFACT_COG_01.md").read_text(encoding="utf-8")
+    abstract = (ROOT / "abstract.md").read_text(encoding="utf-8")
+    artifact_table = (ROOT / "artifact_table.md").read_text(encoding="utf-8")
+    boundary_table = (ROOT / "claim_boundary_table.md").read_text(encoding="utf-8")
+    quickstart = (ROOT / "reviewer_quickstart.md").read_text(encoding="utf-8")
+    status = json.loads((ROOT / "status.json").read_text(encoding="utf-8"))
+    combined = paper + "\n" + abstract
+    for phrase in (
+        "EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER-02",
+        "The revised local adapter candidate remains candidate-only, not accepted evidence.",
+        "Deltas are structural review descriptors",
+        "not hallucination-reduction proof",
+        "not model quality benchmark",
+        "unsupported_claim_count_delta = -1",
+        "uncertainty_missing_count_delta = -1",
+        "source_reference_visibility_delta = 1",
+        "structural_visibility_improved_candidate = true",
+    ):
+        assert phrase in combined
+    for artifact in (
+        "evidence_review_local_adapter_revision_packet.json",
+        "evidence_review_local_adapter_revision_plan.json",
+        "evidence_review_local_adapter_revised_candidate.json",
+        "evidence_review_local_adapter_revision_claim_map.json",
+        "evidence_review_local_adapter_revision_delta.json",
+        "evidence_review_local_adapter_revision_review_packet.json",
+        "evidence_review_local_adapter_revision_summary.md",
+        "evidence_review_pack_local_adapter_02_acceptance_receipt.json",
+    ):
+        assert artifact in artifact_table
+    for boundary in (
+        "Deltas are structural review descriptors, not hallucination reduction proof.",
+        "Revised local adapter candidate remains candidate-only, not accepted evidence.",
+        "Evidence Review Pack local-adapter revision loop is not final answer selection.",
+        "Evidence Review Pack local-adapter revision loop is not model quality benchmark.",
+        "Evidence Review Pack local-adapter revision loop is not model superiority proof.",
+        "Evidence Review Pack local-adapter revision loop is not adapter authorization.",
+    ):
+        assert boundary in boundary_table
+    assert "Run-EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER02-Acceptance.ps1" in quickstart
+    assert status["evidence_review_pack_local_adapter_02_indexed"] is True
+    assert status["not_structural_delta_proof"] is True
+
+
+def test_claim_validator_rejects_evidence_review_pack_local_adapter_revision_overclaims(tmp_path):
+    forbidden_claims = (
+        "claims hallucination reduction proof",
+        "claims model quality benchmark",
+        "claims final answer selection",
+        "claims accepted evidence",
+    )
+    for claim in forbidden_claims:
+        paper_root = _copy_governed_paper(tmp_path / claim.replace(" ", "_").replace("-", "_"))
+        paper = paper_root / "PUB_GOV_ARTIFACT_COG_01.md"
+        paper.write_text(paper.read_text(encoding="utf-8") + f"\nThis paper {claim}.\n", encoding="utf-8")
+        result = validate_publication_claims(
+            paper,
+            appendix=paper_root / "reproducibility_appendix.md",
+            quickstart=paper_root / "reviewer_quickstart.md",
+            status=paper_root / "status.json",
+        )
+        assert result["passed"] is False, claim
+        assert result["forbidden_overclaims_found"], result
+
+
+def test_governed_artifact_cognition_rw_comp_local_adapter_updates_are_present():
+    paper = (ROOT / "PUB_GOV_ARTIFACT_COG_01.md").read_text(encoding="utf-8")
+    abstract = (ROOT / "abstract.md").read_text(encoding="utf-8")
+    artifact_table = (ROOT / "artifact_table.md").read_text(encoding="utf-8")
+    boundary_table = (ROOT / "claim_boundary_table.md").read_text(encoding="utf-8")
+    quickstart = (ROOT / "reviewer_quickstart.md").read_text(encoding="utf-8")
+    status = json.loads((ROOT / "status.json").read_text(encoding="utf-8"))
+    combined = paper + "\n" + abstract
+    for phrase in (
+        "RW-COMP-LOCAL-ADAPTER-01",
+        "RW-COMP local-adapter comparison is not hallucination reduction proof or a model quality benchmark.",
+        "Deltas are structural review descriptors only.",
+        "unsupported_claim_count_delta = -1",
+        "uncertainty_missing_count_delta = -1",
+        "source_reference_visibility_delta = 1",
+    ):
+        assert phrase in combined
+    for artifact in (
+        "rw_comp_local_adapter_packet.json",
+        "rw_comp_local_adapter_delta_packet.json",
+    ):
+        assert artifact in artifact_table
+    for boundary in (
+        "Deltas are structural review descriptors only.",
+        "RW-COMP local-adapter comparison is not hallucination reduction proof or a model quality benchmark.",
+        "RW-COMP local-adapter comparison is not final answer selection.",
+        "RW-COMP local-adapter comparison is not accepted evidence.",
+    ):
+        assert boundary in boundary_table
+    assert "Run-RW-COMP-LOCAL-ADAPTER01-Acceptance.ps1" in quickstart
+    assert status["rw_comp_local_adapter_indexed"] is True
+
+
+def test_claim_validator_rejects_rw_comp_local_adapter_overclaims(tmp_path):
+    forbidden_claims = (
+        "claims hallucination reduction proof",
+        "claims model quality benchmark",
+        "claims final answer selection",
+        "claims accepted evidence",
+    )
+    for claim in forbidden_claims:
+        paper_root = _copy_governed_paper(tmp_path / claim.replace(" ", "_").replace("-", "_"))
+        paper = paper_root / "PUB_GOV_ARTIFACT_COG_01.md"
+        paper.write_text(paper.read_text(encoding="utf-8") + f"\nThis paper {claim}.\n", encoding="utf-8")
+        result = validate_publication_claims(
+            paper,
+            appendix=paper_root / "reproducibility_appendix.md",
+            quickstart=paper_root / "reviewer_quickstart.md",
+            status=paper_root / "status.json",
+        )
+        assert result["passed"] is False, claim
+        assert result["forbidden_overclaims_found"], result
+
+
+def test_governed_artifact_cognition_pmr_updates_are_present():
+    paper = (ROOT / "PUB_GOV_ARTIFACT_COG_01.md").read_text(encoding="utf-8")
+    abstract = (ROOT / "abstract.md").read_text(encoding="utf-8")
+    artifact_table = (ROOT / "artifact_table.md").read_text(encoding="utf-8")
+    boundary_table = (ROOT / "claim_boundary_table.md").read_text(encoding="utf-8")
+    quickstart = (ROOT / "reviewer_quickstart.md").read_text(encoding="utf-8")
+    status = json.loads((ROOT / "status.json").read_text(encoding="utf-8"))
+    combined = paper + "\n" + abstract
+    for phrase in (
+        "PMR-00-PROVENANCE-MEMORY-RESERVOIR",
+        "PMR-01-LOCAL-ARTIFACT-INDEX",
+        "PMR artifact lifecycle state is not truth status.",
+        "Memory is governed provenance under resource constraints.",
+        "Hash is not encryption.",
+        "dependency graph is not canon graph",
+        "No pruning occurs in PMR-01.",
+        "Federation is blocked by default.",
+    ):
+        assert phrase in combined
+    for artifact in (
+        "pmr_local_artifact_index.json",
+        "pmr_dependency_graph.json",
+    ):
+        assert artifact in artifact_table
+    assert "Run-PMR00-Acceptance.ps1" in quickstart
+    assert "Run-PMR01-Acceptance.ps1" in quickstart
+    assert status["pmr_00_indexed"] is True
+    assert status["pmr_01_indexed"] is True
+    assert status["not_atlas_canon"] is True
+    assert status["not_federation_authorization"] is True
+    assert "Memory is governed provenance under resource constraints." in boundary_table
+    assert "PMR artifact lifecycle state is not truth status." in boundary_table
+
+
+def test_claim_validator_rejects_pmr_overclaims(tmp_path):
+    forbidden_claims = (
+        "claims Atlas canon",
+        "claims memory write authorization",
+        "claims pruning execution",
+        "claims resource economy",
+        "claims federation authorization",
+    )
+    for claim in forbidden_claims:
+        paper_root = _copy_governed_paper(tmp_path / claim.replace(" ", "_").replace("-", "_"))
+        paper = paper_root / "PUB_GOV_ARTIFACT_COG_01.md"
+        paper.write_text(paper.read_text(encoding="utf-8") + f"\nThis paper {claim}.\n", encoding="utf-8")
+        result = validate_publication_claims(
+            paper,
+            appendix=paper_root / "reproducibility_appendix.md",
+            quickstart=paper_root / "reviewer_quickstart.md",
+            status=paper_root / "status.json",
+        )
+        assert result["passed"] is False, claim
+        assert result["forbidden_overclaims_found"], result

@@ -141,6 +141,29 @@
       "export_bundle_parity_report.json",
       "rw_comp_03_acceptance_receipt.json"
     ],
+    "PMR-00-PROVENANCE-MEMORY-RESERVOIR": [
+      "pmr_doctrine_packet.json",
+      "pmr_local_storage_policy.json",
+      "pmr_artifact_retention_classes.json",
+      "pmr_review_packet.json",
+      "pmr_summary.md",
+      "artifact_inventory.json",
+      "run_artifact_manifest.json",
+      "export_bundle_manifest.json",
+      "export_bundle_parity_report.json",
+      "pmr_00_acceptance_receipt.json"
+    ],
+    "PMR-01-LOCAL-ARTIFACT-INDEX": [
+      "pmr_local_artifact_index.json",
+      "pmr_dependency_graph.json",
+      "pmr_local_artifact_index_review_packet.json",
+      "pmr_local_artifact_index_summary.md",
+      "artifact_inventory.json",
+      "run_artifact_manifest.json",
+      "export_bundle_manifest.json",
+      "export_bundle_parity_report.json",
+      "pmr_01_acceptance_receipt.json"
+    ],
     "UNIVERSAL-STAGE-PIPELINE-00": [
       "universal_pipeline_manifest.json",
       "universal_pipeline_review_packet.json",
@@ -227,6 +250,33 @@
       "export_bundle_parity_report.json",
       "evidence_review_pack_local_adapter_01_acceptance_receipt.json"
     ],
+    "EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER-02": [
+      "evidence_review_local_adapter_revision_packet.json",
+      "evidence_review_local_adapter_revision_plan.json",
+      "evidence_review_local_adapter_revised_candidate.json",
+      "evidence_review_local_adapter_revision_claim_map.json",
+      "evidence_review_local_adapter_revision_delta.json",
+      "evidence_review_local_adapter_revision_review_packet.json",
+      "evidence_review_local_adapter_revision_summary.md",
+      "artifact_inventory.json",
+      "run_artifact_manifest.json",
+      "export_bundle_manifest.json",
+      "export_bundle_parity_report.json",
+      "evidence_review_pack_local_adapter_02_acceptance_receipt.json"
+    ],
+    "RW-COMP-LOCAL-ADAPTER-01": [
+      "rw_comp_local_adapter_packet.json",
+      "rw_comp_local_adapter_review_packet.json",
+      "rw_comp_local_adapter_rows.jsonl",
+      "rw_comp_local_adapter_delta_packet.json",
+      "rw_comp_local_adapter_fixture_manifest.json",
+      "rw_comp_local_adapter_summary.md",
+      "artifact_inventory.json",
+      "run_artifact_manifest.json",
+      "export_bundle_manifest.json",
+      "export_bundle_parity_report.json",
+      "rw_comp_local_adapter_01_acceptance_receipt.json"
+    ],
     "SONYA-LOCAL-FIXTURE-ADAPTER-02": [
       "sonya_local_adapter_multi_route_packet.json",
       "sonya_local_adapter_multi_route_review_packet.json",
@@ -240,6 +290,17 @@
       "export_bundle_manifest.json",
       "export_bundle_parity_report.json",
       "sonya_local_fixture_adapter_02_acceptance_receipt.json"
+    ],
+    "SONYA-LOCAL-FIXTURE-ADAPTER-03": [
+      "sonya_local_adapter_lineage_packet.json",
+      "sonya_local_adapter_lineage_review_packet.json",
+      "sonya_local_adapter_multi_route_packet.json",
+      "sonya_local_adapter_multi_route_review_packet.json",
+      "artifact_inventory.json",
+      "run_artifact_manifest.json",
+      "export_bundle_manifest.json",
+      "export_bundle_parity_report.json",
+      "sonya_local_fixture_adapter_03_acceptance_receipt.json"
     ],
     "publications": [
       "PUB_GOV_ARTIFACT_COG_01.md",
