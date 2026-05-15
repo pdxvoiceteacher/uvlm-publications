@@ -193,3 +193,29 @@
 | Federation is blocked by default. | PMR-00/PMR-01 | Provenance Memory Reservoir boundary. |
 | PMR is not resource economy or token economy. | PMR-00/PMR-01 | Provenance Memory Reservoir boundary. |
 | Governed provenance resources may be future infrastructure rewards, but truth is not for sale. | PMR-00/PMR-01 | Provenance Memory Reservoir boundary. |
+| GPCU is lifecycle/storage utility, not truth score. | PMR-02 utility scores are storage-lifecycle signals only. |
+| GPCU is not reward entitlement. | PMR-02 does not assign reward rights. |
+| GPCU is not token economy. | PMR-02 does not run or define token mechanics. |
+| GPCU is not human value score. | PMR-02 does not score people or human worth. |
+| Lifecycle recommendation is not pruning. | PMR-02 emits recommendations only; pruning execution remains blocked. |
+| Reward mechanics are deferred. | Any reward mechanics are outside this paper and patch. |
+| Federation remains blocked by default. | PMR-02 does not authorize federation. |
+| PMR-02 is not Atlas canon. | Utility scoring does not canonize artifacts. |
+| PMR-02 is not memory write authorization. | Utility scoring does not authorize memory writes. |
+| PMR-02 is not model-weight training. | Utility scoring does not train model weights. |
+| PMR-02 is not deployment authority. | Utility scoring does not deploy systems. |
+| PMR-02 is not hallucination reduction proof. | Utility scoring is not model-quality evidence. |
+| Recommendation is not transition. | PMR-03 recommendations do not change lifecycle state. |
+| Transition candidate is not action. | PMR-03 candidates remain reviewable candidates only. |
+| Lifecycle state is not truth status. | Lifecycle metadata is not truth certification. |
+| Destructive action requires future Sophia lifecycle audit. | PMR-03 does not perform destructive actions. |
+| Destructive action requires future user confirmation. | PMR-03 does not authorize deletion or pruning. |
+| No pruning or deletion occurs in PMR-03. | PMR-03 emits no-action receipts and candidates only. |
+| PMR-03 is not federation authorization. | Lifecycle candidates do not authorize federation. |
+| PMR-03 is not reward entitlement. | Lifecycle candidates do not allocate rewards. |
+| PMR-03 is not token economy. | Lifecycle candidates do not run token mechanics. |
+| PMR-03 is not Atlas canon. | Lifecycle candidates do not canonize artifacts. |
+| PMR-03 is not memory write authorization. | Lifecycle candidates do not authorize memory writes. |
+| PMR-03 is not model-weight training. | Lifecycle candidates do not train model weights. |
+| PMR-03 is not deployment authority. | Lifecycle candidates do not deploy systems. |
+| PMR-03 is not truth certification. | Lifecycle candidates do not certify truth. |
