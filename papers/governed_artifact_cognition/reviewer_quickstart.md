@@ -531,3 +531,20 @@ PMR-03 consumes PMR-00 doctrine/policy, PMR-01 local artifact index/dependency g
   -LocalStorageBudgetBytes 5368709120 `
   -CiMode
 ```
+
+## PMR-04 Lifecycle Audit Preflight
+
+PMR-04-LIFECYCLE-AUDIT-PREFLIGHT adds a publication-indexed PMR lifecycle audit preflight scaffold for local PMR-indexed artifacts. Preflight is not approval. Audit candidate is not action. Sophia lifecycle audit is required before destructive action. User confirmation is required before destructive local action. No Sophia approval packet is emitted. No pruning or deletion occurs in PMR-04.
+
+PMR-04 consumes PMR-00 doctrine/policy, PMR-01 local artifact index/dependency graph, PMR-02 GPCU lifecycle recommendations, and PMR-03 lifecycle transition candidates/no-action receipts. It emits audit candidates, a block packet, and a no-action receipt while preserving non-approval, non-action, and non-authority boundaries. No federation occurs. No encrypted shard transfer occurs. No reward occurs. No token economy occurs. No memory write occurs. No Atlas canon write occurs. No model-weight training occurs. No deployment occurs. No truth certification occurs. No final-answer release occurs. No hallucination-reduction proof occurs. No recursive self-improvement occurs.
+
+### PMR-04 acceptance command
+
+```powershell
+.\experiments\Run-PMR04-Acceptance.ps1 `
+  -OutputRoot C:\UVLM\run_artifacts\pmr_04 `
+  -LogDir C:\UVLM\run_artifacts\pmr_04_logs `
+  -Mode balanced `
+  -LocalStorageBudgetBytes 5368709120 `
+  -CiMode
+```

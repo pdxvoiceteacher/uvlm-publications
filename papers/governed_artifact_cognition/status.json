@@ -73,5 +73,8 @@
   "not_human_value_score": true,
   "pmr_03_indexed": true,
   "not_lifecycle_action": true,
-  "not_deletion_execution": true
+  "not_deletion_execution": true,
+  "pmr_04_indexed": true,
+  "not_sophia_approval": true,
+  "not_audit_action": true
 }

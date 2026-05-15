@@ -24,7 +24,8 @@
 20. Evidence Review Pack local adapter
 21. PMR GPCU utility scoring
 22. PMR lifecycle state machine
-23. Sonya Local Fixture Adapter multi-route
+23. PMR lifecycle audit preflight
+24. Sonya Local Fixture Adapter multi-route
 
 ## CoherenceLattice commands
 
@@ -522,6 +523,59 @@ Expected posture:
 - `network_calls_performed = false`
 
 Reviewer caution: PMR-03 emits lifecycle transition candidates and no-action receipts only. It does not prune, delete, federate, transfer encrypted shards, reward users, run a token economy, write memory, train models, deploy, or certify truth. Destructive action requires future Sophia lifecycle audit and user confirmation.
+
+## PMR lifecycle audit preflight
+
+Preflight is not approval. PMR-04-LIFECYCLE-AUDIT-PREFLIGHT emits audit candidates, a block packet, and a no-action receipt. Audit candidate is not action. Sophia lifecycle audit is required before destructive action. User confirmation is required before destructive local action. No Sophia approval packet is emitted. No pruning or deletion occurs in PMR-04. No federation occurs. No encrypted shard transfer occurs. No reward occurs. No token economy occurs. No memory write occurs. No Atlas canon write occurs. No model-weight training occurs. No deployment occurs. No truth certification occurs. No final-answer release occurs. No hallucination-reduction proof occurs. No recursive self-improvement occurs.
+
+```powershell
+.\experiments\Run-PMR04-Acceptance.ps1 `
+  -OutputRoot C:\UVLM\run_artifacts\pmr_04 `
+  -LogDir C:\UVLM\run_artifacts\pmr_04_logs `
+  -Mode balanced `
+  -LocalStorageBudgetBytes 5368709120 `
+  -CiMode
+```
+
+Expected posture:
+
+- `review_status = accepted_as_pmr_lifecycle_audit_preflight_scaffold`
+- `source_pmr_policy_bound = true`
+- `source_pmr_index_bound = true`
+- `source_pmr_utility_bound = true`
+- `source_pmr_lifecycle_bound = true`
+- `audit_candidates_present = true`
+- `block_packet_present = true`
+- `no_action_receipt_present = true`
+- `recommendation_not_transition = true`
+- `transition_candidate_not_action = true`
+- `preflight_not_approval = true`
+- `lifecycle_state_not_truth_status = true`
+- `destructive_action_requires_future_sophia_audit = true`
+- `destructive_action_requires_future_user_confirmation = true`
+- `pruning_not_performed = true`
+- `deletion_not_performed = true`
+- `federation_blocked_by_default = true`
+- `reward_actions_not_performed = true`
+- `memory_write_blocked = true`
+- `atlas_canon_write_blocked = true`
+- `model_weight_training_blocked = true`
+- `deployment_blocked = true`
+- `truth_certification_blocked = true`
+- `promotion_blocked = true`
+- `transition_candidate_count = 8`
+- `audit_candidate_count = 8`
+- `blocked_candidate_count = 5`
+- `no_op_candidate_count = 3`
+- `user_confirmation_required_count = 5`
+- `sophia_audit_required_count = 4`
+- `action_performed = false`
+- `sophia_approval_performed = false`
+- `encrypted_shard_transfer_performed = false`
+- `token_economy_performed = false`
+- `network_calls_performed = false`
+
+Reviewer caution: PMR-04 emits lifecycle audit candidates, a block packet, and a no-action receipt only. Preflight is not approval. Audit candidate is not action. It does not prune, delete, federate, transfer encrypted shards, reward users, run a token economy, write memory, write canon, train models, deploy, certify truth, release final answers, prove hallucination reduction, or recursively self-improve. Sophia lifecycle audit and user confirmation are required before destructive local action.
 
 Reviewer caution: PMR-00 and PMR-01 define local provenance-memory doctrine, storage policy, artifact indexing, and dependency graph scaffolds only. They do not write memory, canonize artifacts, federate artifacts, transfer encrypted shards, prune artifacts, train models, certify truth, release final answers, deploy, or reward resource contributions.
 

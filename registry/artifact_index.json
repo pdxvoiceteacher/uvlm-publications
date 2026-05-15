@@ -189,6 +189,19 @@
       "export_bundle_parity_report.json",
       "pmr_03_acceptance_receipt.json"
     ],
+    "PMR-04-LIFECYCLE-AUDIT-PREFLIGHT": [
+      "pmr_lifecycle_audit_preflight_packet.json",
+      "pmr_lifecycle_audit_candidates.jsonl",
+      "pmr_lifecycle_audit_block_packet.json",
+      "pmr_lifecycle_audit_no_action_receipt.json",
+      "pmr_lifecycle_audit_review_packet.json",
+      "pmr_lifecycle_audit_preflight_summary.md",
+      "artifact_inventory.json",
+      "run_artifact_manifest.json",
+      "export_bundle_manifest.json",
+      "export_bundle_parity_report.json",
+      "pmr_04_acceptance_receipt.json"
+    ],
     "UNIVERSAL-STAGE-PIPELINE-00": [
       "universal_pipeline_manifest.json",
       "universal_pipeline_review_packet.json",

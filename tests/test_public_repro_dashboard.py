@@ -47,6 +47,7 @@ REQUIRED_DOCS = {
     "pmr-local-artifact-index.md",
     "pmr-provenance-coherence-utility.md",
     "pmr-lifecycle-state-machine.md",
+    "pmr-lifecycle-audit-preflight.md",
     "sonya-local-fixture-adapter-multi-route.md",
     "sonya-local-fixture-adapter-lineage.md",
 }
@@ -81,6 +82,7 @@ REQUIRED_PHASES = {
     "PMR-01-LOCAL-ARTIFACT-INDEX",
     "PMR-02-GLOBAL-PROVENANCE-COHERENCE-UTILITY",
     "PMR-03-LIFECYCLE-STATE-MACHINE",
+    "PMR-04-LIFECYCLE-AUDIT-PREFLIGHT",
     "SONYA-LOCAL-FIXTURE-ADAPTER-02",
     "SONYA-LOCAL-FIXTURE-ADAPTER-03",
 }
@@ -112,6 +114,7 @@ REQUIRED_COMMAND_FRAGMENTS = (
     "Run-PMR01-Acceptance.ps1",
     "Run-PMR02-Acceptance.ps1",
     "Run-PMR03-Acceptance.ps1",
+    "Run-PMR04-Acceptance.ps1",
     "Run-SONYA-LOCAL-FIXTURE-ADAPTER02-Acceptance.ps1",
     "Run-SONYA-LOCAL-FIXTURE-ADAPTER03-Acceptance.ps1",
 )
@@ -159,7 +162,7 @@ def test_dashboard_contains_all_accepted_phases(tmp_path):
     dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text())
     phase_ids = {entry["phase_id"] for entry in dashboard["accepted_phases"]}
     assert phase_ids == REQUIRED_PHASES
-    assert dashboard["accepted_phase_count"] == 32
+    assert dashboard["accepted_phase_count"] == 33
 
 
 def test_dashboard_command_summaries_use_accepted_harnesses(tmp_path):
@@ -435,7 +438,7 @@ def test_validator_fails_if_evidence_review_pack_second_pass_makes_forbidden_cla
         result = validate_dashboard(out_dir / "experiment_suite_dashboard.json", docs_dir)
         assert result["passed"] is False, claim
         forbidden_found = [found.lower() for found in result["forbidden_claims_found"]]
-        assert claim.lower() in forbidden_found, result
+        assert claim.lower() in forbidden_found or f"claims {claim.lower()}" in forbidden_found, result
 
 
 def test_rw_comp_03_indexes_and_docs_are_generated(tmp_path):
@@ -503,7 +506,7 @@ def test_validator_fails_if_rw_comp_03_makes_forbidden_claims(tmp_path):
         result = validate_dashboard(out_dir / "experiment_suite_dashboard.json", docs_dir)
         assert result["passed"] is False, claim
         forbidden_found = [found.lower() for found in result["forbidden_claims_found"]]
-        assert claim.lower() in forbidden_found, result
+        assert claim.lower() in forbidden_found or f"claims {claim.lower()}" in forbidden_found, result
 
 
 
@@ -588,7 +591,7 @@ def test_validator_fails_if_universal_architecture_makes_forbidden_claims(tmp_pa
         result = validate_dashboard(out_dir / "experiment_suite_dashboard.json", docs_dir)
         assert result["passed"] is False, claim
         forbidden_found = [found.lower() for found in result["forbidden_claims_found"]]
-        assert claim.lower() in forbidden_found, result
+        assert claim.lower() in forbidden_found or f"claims {claim.lower()}" in forbidden_found, result
 
 
 def test_sonya_adapter_contract_registry_indexes_and_docs_are_generated(tmp_path):
@@ -809,7 +812,7 @@ def test_validator_fails_if_sonya_local_fixture_adapter_makes_forbidden_claims(t
         result = validate_dashboard(out_dir / "experiment_suite_dashboard.json", docs_dir)
         assert result["passed"] is False, claim
         forbidden_found = [found.lower() for found in result["forbidden_claims_found"]]
-        assert claim.lower() in forbidden_found, result
+        assert claim.lower() in forbidden_found or f"claims {claim.lower()}" in forbidden_found, result
 
 
 def test_evidence_review_pack_local_adapter_indexes_docs_and_boundaries_are_generated(tmp_path):
@@ -877,7 +880,7 @@ def test_validator_fails_if_evidence_review_pack_local_adapter_makes_forbidden_c
         result = validate_dashboard(out_dir / "experiment_suite_dashboard.json", docs_dir)
         assert result["passed"] is False, claim
         forbidden_found = [found.lower() for found in result["forbidden_claims_found"]]
-        assert claim.lower() in forbidden_found, result
+        assert claim.lower() in forbidden_found or f"claims {claim.lower()}" in forbidden_found, result
 
 
 def test_sonya_local_fixture_adapter_multi_route_indexes_docs_and_boundaries_are_generated(tmp_path):
@@ -928,7 +931,7 @@ def test_validator_fails_if_sonya_local_fixture_adapter_multi_route_makes_forbid
         result = validate_dashboard(out_dir / "experiment_suite_dashboard.json", docs_dir)
         assert result["passed"] is False, claim
         forbidden_found = [found.lower() for found in result["forbidden_claims_found"]]
-        assert claim.lower() in forbidden_found, result
+        assert claim.lower() in forbidden_found or f"claims {claim.lower()}" in forbidden_found, result
 
 
 def test_validator_fails_if_sonya_adapter_smoke_makes_forbidden_claims(tmp_path):
@@ -951,7 +954,7 @@ def test_validator_fails_if_sonya_adapter_smoke_makes_forbidden_claims(tmp_path)
         result = validate_dashboard(out_dir / "experiment_suite_dashboard.json", docs_dir)
         assert result["passed"] is False, claim
         forbidden_found = [found.lower() for found in result["forbidden_claims_found"]]
-        assert claim.lower() in forbidden_found, result
+        assert claim.lower() in forbidden_found or f"claims {claim.lower()}" in forbidden_found, result
 
 def test_validator_fails_if_sonya_adapter_contract_registry_makes_forbidden_claims(tmp_path):
     forbidden_claims = (
@@ -973,7 +976,7 @@ def test_validator_fails_if_sonya_adapter_contract_registry_makes_forbidden_clai
         result = validate_dashboard(out_dir / "experiment_suite_dashboard.json", docs_dir)
         assert result["passed"] is False, claim
         forbidden_found = [found.lower() for found in result["forbidden_claims_found"]]
-        assert claim.lower() in forbidden_found, result
+        assert claim.lower() in forbidden_found or f"claims {claim.lower()}" in forbidden_found, result
 
 def test_public_dashboard_outputs_do_not_include_stale_placeholder_commands(tmp_path):
     out_dir, docs_dir = run_builder(tmp_path)
@@ -1313,7 +1316,7 @@ def test_validator_fails_if_sonya_local_fixture_adapter_lineage_clarity_makes_fo
         result = validate_dashboard(out_dir / "experiment_suite_dashboard.json", docs_dir)
         assert result["passed"] is False, claim
         forbidden_found = [found.lower() for found in result["forbidden_claims_found"]]
-        assert claim.lower() in forbidden_found, result
+        assert claim.lower() in forbidden_found or f"claims {claim.lower()}" in forbidden_found, result
 
 
 def test_evidence_review_pack_local_adapter_revision_indexes_docs_and_boundaries_are_generated(tmp_path):
@@ -1382,7 +1385,7 @@ def test_validator_fails_if_evidence_review_pack_local_adapter_revision_makes_fo
         result = validate_dashboard(out_dir / "experiment_suite_dashboard.json", docs_dir)
         assert result["passed"] is False, claim
         forbidden_found = [found.lower() for found in result["forbidden_claims_found"]]
-        assert claim.lower() in forbidden_found, result
+        assert claim.lower() in forbidden_found or f"claims {claim.lower()}" in forbidden_found, result
 
 
 def test_rw_comp_local_adapter_indexes_docs_and_boundaries_are_generated(tmp_path):
@@ -1448,7 +1451,7 @@ def test_validator_fails_if_rw_comp_local_adapter_makes_forbidden_claims(tmp_pat
         result = validate_dashboard(out_dir / "experiment_suite_dashboard.json", docs_dir)
         assert result["passed"] is False, claim
         forbidden_found = [found.lower() for found in result["forbidden_claims_found"]]
-        assert claim.lower() in forbidden_found, result
+        assert claim.lower() in forbidden_found or f"claims {claim.lower()}" in forbidden_found, result
 
 
 def test_pmr_doctrine_and_local_artifact_index_are_generated(tmp_path):
@@ -1495,6 +1498,7 @@ def test_validator_required_phases_include_pmr_phases():
     assert "PMR-01-LOCAL-ARTIFACT-INDEX" in VALIDATOR_REQUIRED_PHASES
     assert "PMR-02-GLOBAL-PROVENANCE-COHERENCE-UTILITY" in VALIDATOR_REQUIRED_PHASES
     assert "PMR-03-LIFECYCLE-STATE-MACHINE" in VALIDATOR_REQUIRED_PHASES
+    assert "PMR-04-LIFECYCLE-AUDIT-PREFLIGHT" in VALIDATOR_REQUIRED_PHASES
 
 
 def test_validator_fails_if_pmr_makes_forbidden_claims(tmp_path):
@@ -1512,7 +1516,7 @@ def test_validator_fails_if_pmr_makes_forbidden_claims(tmp_path):
         result = validate_dashboard(out_dir / "experiment_suite_dashboard.json", docs_dir)
         assert result["passed"] is False, claim
         forbidden_found = [found.lower() for found in result["forbidden_claims_found"]]
-        assert claim.lower() in forbidden_found, result
+        assert claim.lower() in forbidden_found or f"claims {claim.lower()}" in forbidden_found, result
 
 
 def test_pmr_02_gpcu_indexes_and_docs_are_generated(tmp_path):
@@ -1551,7 +1555,7 @@ def test_validator_fails_if_pmr_02_makes_forbidden_claims(tmp_path):
         result = validate_dashboard(out_dir / "experiment_suite_dashboard.json", docs_dir)
         assert result["passed"] is False
         forbidden_found = [found.lower() for found in result["forbidden_claims_found"]]
-        assert claim.lower() in forbidden_found, result
+        assert claim.lower() in forbidden_found or f"claims {claim.lower()}" in forbidden_found, result
 
 
 def test_pmr_03_lifecycle_state_machine_indexes_and_docs_are_generated(tmp_path):
@@ -1589,4 +1593,45 @@ def test_validator_fails_if_pmr_03_makes_forbidden_claims(tmp_path):
         result = validate_dashboard(out_dir / "experiment_suite_dashboard.json", docs_dir)
         assert result["passed"] is False
         forbidden_found = [found.lower() for found in result["forbidden_claims_found"]]
-        assert claim.lower() in forbidden_found, result
+        assert claim.lower() in forbidden_found or f"claims {claim.lower()}" in forbidden_found, result
+
+
+def test_pmr_04_lifecycle_audit_preflight_indexes_and_docs_are_generated(tmp_path):
+    out_dir, docs_dir = run_builder(tmp_path)
+    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text())
+    reproducibility = json.loads((out_dir / "reproducibility_index.json").read_text())
+    artifact_index = json.loads((out_dir / "artifact_index.json").read_text())
+    claim_boundaries = json.loads((out_dir / "claim_boundary_index.json").read_text())
+
+    phase_ids = {entry["phase_id"] for entry in dashboard["accepted_phases"]}
+    assert "PMR-04-LIFECYCLE-AUDIT-PREFLIGHT" in phase_ids
+    commands = json.dumps(reproducibility)
+    assert "Run-PMR04-Acceptance.ps1" in commands
+    artifacts = artifact_index["phases"]["PMR-04-LIFECYCLE-AUDIT-PREFLIGHT"]
+    assert "pmr_lifecycle_audit_preflight_packet.json" in artifacts
+    assert "pmr_lifecycle_audit_candidates.jsonl" in artifacts
+    assert "pmr_lifecycle_audit_no_action_receipt.json" in artifacts
+    assert (docs_dir / "pmr-lifecycle-audit-preflight.md").exists()
+    boundary_text = "\n".join(claim_boundaries["boundaries"])
+    assert "Preflight is not approval." in boundary_text
+    assert "Audit candidate is not action." in boundary_text
+
+
+def test_validator_fails_if_pmr_04_makes_forbidden_claims(tmp_path):
+    forbidden_claims = (
+        "Sophia approval",
+        "pruning execution",
+        "deletion execution",
+        "reward entitlement",
+        "token economy",
+        "memory write authorization",
+        "deployment authority",
+    )
+    for claim in forbidden_claims:
+        out_dir, docs_dir = run_builder(tmp_path / claim.replace(" ", "_"))
+        page = docs_dir / "pmr-lifecycle-audit-preflight.md"
+        page.write_text(page.read_text() + f"\nPMR-04 claims {claim}.\n")
+        result = validate_dashboard(out_dir / "experiment_suite_dashboard.json", docs_dir)
+        assert result["passed"] is False
+        forbidden_found = [found.lower() for found in result["forbidden_claims_found"]]
+        assert claim.lower() in forbidden_found or f"claims {claim.lower()}" in forbidden_found, result

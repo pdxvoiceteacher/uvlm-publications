@@ -219,3 +219,18 @@
 | PMR-03 is not model-weight training. | Lifecycle candidates do not train model weights. |
 | PMR-03 is not deployment authority. | Lifecycle candidates do not deploy systems. |
 | PMR-03 is not truth certification. | Lifecycle candidates do not certify truth. |
+| Preflight is not approval. | PMR-04 preflight emits candidates and blocks only. |
+| Audit candidate is not action. | PMR-04 audit candidates do not perform lifecycle actions. |
+| Sophia lifecycle audit is required before destructive action. | PMR-04 does not emit Sophia approval. |
+| User confirmation is required before destructive local action. | PMR-04 does not authorize destructive local action. |
+| No Sophia approval packet is emitted. | PMR-04 produces no approval packet. |
+| No pruning or deletion occurs in PMR-04. | PMR-04 emits no-action receipts and blocks only. |
+| PMR-04 is not federation authorization. | Audit preflight does not authorize federation. |
+| PMR-04 is not encrypted shard transfer. | Audit preflight does not transfer encrypted shards. |
+| PMR-04 is not reward entitlement. | Audit preflight does not allocate rewards. |
+| PMR-04 is not token economy. | Audit preflight does not run token mechanics. |
+| PMR-04 is not memory write authorization. | Audit preflight does not authorize memory writes. |
+| PMR-04 is not Atlas canon write. | Audit preflight does not write Atlas canon. |
+| PMR-04 is not model-weight training. | Audit preflight does not train model weights. |
+| PMR-04 is not deployment authority. | Audit preflight does not deploy systems. |
+| PMR-04 is not truth certification. | Audit preflight does not certify truth. |

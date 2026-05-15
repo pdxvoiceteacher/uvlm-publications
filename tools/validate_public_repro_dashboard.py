@@ -40,6 +40,7 @@ REQUIRED_PHASES = {
     "PMR-01-LOCAL-ARTIFACT-INDEX",
     "PMR-02-GLOBAL-PROVENANCE-COHERENCE-UTILITY",
     "PMR-03-LIFECYCLE-STATE-MACHINE",
+    "PMR-04-LIFECYCLE-AUDIT-PREFLIGHT",
 }
 REQUIRED_BOUNDARY_PHRASES = (
     "not truth certification",
@@ -236,6 +237,18 @@ REQUIRED_BOUNDARY_PHRASES = (
     "PMR-03 is not model-weight training.",
     "PMR-03 is not deployment authority.",
     "PMR-03 is not truth certification.",
+    "Preflight is not approval.",
+    "Audit candidate is not action.",
+    "Sophia lifecycle audit is required before destructive action.",
+    "User confirmation is required before destructive local action.",
+    "No Sophia approval packet is emitted.",
+    "No pruning or deletion occurs in PMR-04.",
+    "PMR-04 is not federation authorization.",
+    "PMR-04 is not reward entitlement.",
+    "PMR-04 is not token economy.",
+    "PMR-04 is not memory write authorization.",
+    "PMR-04 is not deployment authority.",
+    "PMR-04 is not truth certification.",
     "Governed provenance resources may be future infrastructure rewards, but truth is not for sale.",
 )
 FORBIDDEN_PHRASES = (
@@ -275,6 +288,7 @@ FORBIDDEN_PHRASES = (
     "compliance certification",
     "production ready",
     "deployment authorized",
+    "claims deployment authority",
     "final answer released",
     "publisher finalized",
     "omega detected",
@@ -331,6 +345,8 @@ FORBIDDEN_PHRASES = (
     "human value score",
     "deletion execution",
     "encrypted shard transfer",
+    "Sophia approval",
+    "audit action",
 )
 ALLOWED_NEGATED = (
     "not ",
