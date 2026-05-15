@@ -521,7 +521,7 @@ Expected posture:
 - `token_economy_performed = false`
 - `network_calls_performed = false`
 
-Reviewer caution: PMR-03 emits lifecycle transition candidates and no-action receipts only. It does not prune. It does not delete. It does not federate artifacts. It does not transfer encrypted shards. It does not create reward entitlement. It does not run a token economy. It does not write memory, train models, deploy, or certify truth. Destructive action requires future Sophia lifecycle audit and user confirmation.
+Reviewer caution: PMR-03 emits lifecycle transition candidates and no-action receipts only. It does not prune, delete, federate, transfer encrypted shards, reward users, run a token economy, write memory, train models, deploy, or certify truth. Destructive action requires future Sophia lifecycle audit and user confirmation.
 
 Reviewer caution: PMR-00 and PMR-01 define local provenance-memory doctrine, storage policy, artifact indexing, and dependency graph scaffolds only. They do not write memory, canonize artifacts, federate artifacts, transfer encrypted shards, prune artifacts, train models, certify truth, release final answers, deploy, or reward resource contributions.
 

@@ -1402,7 +1402,7 @@ ACCEPTED_PHASES = [
         "reproduction_command_summary": PMR_03_COMMAND,
         "claim_allowed": "PMR-03-LIFECYCLE-STATE-MACHINE demonstrates lifecycle transition candidates and no-action receipts for PMR-indexed artifacts while preserving non-action and non-authority boundaries.",
         "claims_blocked": PMR_03_CLAIMS_BLOCKED,
-        "reviewer_caution": "PMR-03 emits lifecycle transition candidates and no-action receipts only. It does not prune. It does not delete. It does not federate artifacts. It does not transfer encrypted shards. It does not create reward entitlement. It does not run a token economy. It does not write memory, train models, deploy, or certify truth. Destructive action requires future Sophia lifecycle audit and user confirmation.",
+        "reviewer_caution": "PMR-03 emits lifecycle transition candidates and no-action receipts only. It does not prune, delete, federate, transfer encrypted shards, reward users, run a token economy, write memory, train models, deploy, or certify truth. Destructive action requires future Sophia lifecycle audit and user confirmation.",
         "publication_status": "dashboard_indexed",
     },
     {
@@ -2821,7 +2821,7 @@ PMR-03-LIFECYCLE-STATE-MACHINE demonstrates lifecycle transition candidates and 
 
 {chr(10).join(f"- {claim}" for claim in PMR_03_CLAIMS_BLOCKED)}
 
-Reviewer caution: PMR-03 emits lifecycle transition candidates and no-action receipts only. It does not prune. It does not delete. It does not federate artifacts. It does not transfer encrypted shards. It does not create reward entitlement. It does not run a token economy. It does not write memory, train models, deploy, or certify truth. Destructive action requires future Sophia lifecycle audit and user confirmation.
+Reviewer caution: PMR-03 emits lifecycle transition candidates and no-action receipts only. It does not prune, delete, federate, transfer encrypted shards, reward users, run a token economy, write memory, train models, deploy, or certify truth. Destructive action requires future Sophia lifecycle audit and user confirmation.
 """,
         "rw-comp-local-adapter.md": f"""# RW-COMP local adapter
 
@@ -3252,7 +3252,7 @@ Expected posture:
 
 {chr(10).join(f"- `{key} = {str(value).lower()}`" for key, value in PMR_03_DASHBOARD_SUMMARY.items())}
 
-Reviewer caution: PMR-03 emits lifecycle transition candidates and no-action receipts only. It does not prune. It does not delete. It does not federate artifacts. It does not transfer encrypted shards. It does not create reward entitlement. It does not run a token economy. It does not write memory, train models, deploy, or certify truth. Destructive action requires future Sophia lifecycle audit and user confirmation.
+Reviewer caution: PMR-03 emits lifecycle transition candidates and no-action receipts only. It does not prune, delete, federate, transfer encrypted shards, reward users, run a token economy, write memory, train models, deploy, or certify truth. Destructive action requires future Sophia lifecycle audit and user confirmation.
 
 Reviewer caution: PMR-00 and PMR-01 define local provenance-memory doctrine, storage policy, artifact indexing, and dependency graph scaffolds only. They do not write memory, canonize artifacts, federate artifacts, transfer encrypted shards, prune artifacts, train models, certify truth, release final answers, deploy, or reward resource contributions.
 

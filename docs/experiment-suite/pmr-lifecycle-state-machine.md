@@ -85,4 +85,4 @@ PMR-03-LIFECYCLE-STATE-MACHINE demonstrates lifecycle transition candidates and 
 - not recursive self-improvement
 - not production readiness
 
-Reviewer caution: PMR-03 emits lifecycle transition candidates and no-action receipts only. It does not prune. It does not delete. It does not federate artifacts. It does not transfer encrypted shards. It does not create reward entitlement. It does not run a token economy. It does not write memory, train models, deploy, or certify truth. Destructive action requires future Sophia lifecycle audit and user confirmation.
+Reviewer caution: PMR-03 emits lifecycle transition candidates and no-action receipts only. It does not prune, delete, federate, transfer encrypted shards, reward users, run a token economy, write memory, train models, deploy, or certify truth. Destructive action requires future Sophia lifecycle audit and user confirmation.

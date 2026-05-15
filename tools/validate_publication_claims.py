@@ -557,6 +557,13 @@ def _forbidden_hits(normalized_text: str, forbidden: tuple[str, ...]) -> list[st
             if index == -1:
                 break
             if (
+                phrase == "token economy"
+                and "does not prune, delete, federate, transfer encrypted shards, reward users, run a"
+                in normalized_text[max(0, index - 104) : index]
+            ):
+                search_from = index + len(normalized_phrase)
+                continue
+            if (
                 phrase in {"model quality benchmark", "model quality benchmark"}
                 and "not hallucination reduction proof or a" in normalized_text[max(0, index - 56) : index]
             ):
