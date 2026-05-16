@@ -248,3 +248,18 @@
 | PMR-05 is not model-weight training. | Review recommendations do not train model weights. |
 | PMR-05 is not deployment authority. | Review recommendations do not deploy systems. |
 | PMR-05 is not truth certification. | Review recommendations do not certify truth. |
+| User confirmation request is not user confirmation. | PMR-06 request candidates do not confirm user intent. |
+| User confirmation is not action. | PMR-06 confirmation preflight does not perform lifecycle actions. |
+| No user confirmation receipt is emitted. | PMR-06 emits a no-action receipt only. |
+| Destructive action requires future Sophia approval. | PMR-06 does not approve destructive action. |
+| Destructive action requires future user confirmation. | PMR-06 does not confirm destructive local action. |
+| No pruning or deletion occurs in PMR-06. | PMR-06 is preflight-only and no-action. |
+| PMR-06 is not Sophia approval. | User confirmation preflight does not approve lifecycle actions. |
+| PMR-06 is not federation authorization. | User confirmation requests do not authorize federation. |
+| PMR-06 is not reward entitlement. | User confirmation requests do not allocate rewards. |
+| PMR-06 is not token economy. | User confirmation requests do not run token mechanics. |
+| PMR-06 is not Atlas canon. | User confirmation requests do not canonize artifacts. |
+| PMR-06 is not memory write authorization. | User confirmation requests do not authorize memory writes. |
+| PMR-06 is not model-weight training. | User confirmation requests do not train model weights. |
+| PMR-06 is not deployment authority. | User confirmation requests do not deploy systems. |
+| PMR-06 is not truth certification. | User confirmation requests do not certify truth. |

@@ -215,6 +215,20 @@
       "export_bundle_parity_report.json",
       "pmr_05_acceptance_receipt.json"
     ],
+    "PMR-06-USER-CONFIRMATION-PREFLIGHT": [
+      "pmr_user_confirmation_preflight_packet.json",
+      "pmr_user_confirmation_requests.jsonl",
+      "pmr_user_confirmation_prompt_packet.json",
+      "pmr_user_confirmation_block_packet.json",
+      "pmr_user_confirmation_no_action_receipt.json",
+      "pmr_user_confirmation_review_packet.json",
+      "pmr_user_confirmation_preflight_summary.md",
+      "artifact_inventory.json",
+      "run_artifact_manifest.json",
+      "export_bundle_manifest.json",
+      "export_bundle_parity_report.json",
+      "pmr_06_acceptance_receipt.json"
+    ],
     "UNIVERSAL-STAGE-PIPELINE-00": [
       "universal_pipeline_manifest.json",
       "universal_pipeline_review_packet.json",

@@ -79,5 +79,8 @@
   "not_audit_action": true,
   "pmr_05_indexed": true,
   "not_sophia_review_approval": true,
-  "not_audit_recommendation_action": true
+  "not_audit_recommendation_action": true,
+  "pmr_06_indexed": true,
+  "not_user_confirmation": true,
+  "not_user_confirmation_receipt": true
 }

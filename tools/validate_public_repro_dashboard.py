@@ -42,6 +42,7 @@ REQUIRED_PHASES = {
     "PMR-03-LIFECYCLE-STATE-MACHINE",
     "PMR-04-LIFECYCLE-AUDIT-PREFLIGHT",
     "PMR-05-SOPHIA-LIFECYCLE-AUDIT-REVIEW",
+    "PMR-06-USER-CONFIRMATION-PREFLIGHT",
 }
 REQUIRED_BOUNDARY_PHRASES = (
     "not truth certification",
@@ -264,6 +265,21 @@ REQUIRED_BOUNDARY_PHRASES = (
     "PMR-05 is not model-weight training.",
     "PMR-05 is not deployment authority.",
     "PMR-05 is not truth certification.",
+    "User confirmation request is not user confirmation.",
+    "User confirmation is not action.",
+    "No user confirmation receipt is emitted.",
+    "Destructive action requires future Sophia approval.",
+    "Destructive action requires future user confirmation.",
+    "No pruning or deletion occurs in PMR-06.",
+    "PMR-06 is not Sophia approval.",
+    "PMR-06 is not federation authorization.",
+    "PMR-06 is not reward entitlement.",
+    "PMR-06 is not token economy.",
+    "PMR-06 is not Atlas canon.",
+    "PMR-06 is not memory write authorization.",
+    "PMR-06 is not model-weight training.",
+    "PMR-06 is not deployment authority.",
+    "PMR-06 is not truth certification.",
     "Governed provenance resources may be future infrastructure rewards, but truth is not for sale.",
 )
 FORBIDDEN_PHRASES = (
@@ -360,6 +376,9 @@ FORBIDDEN_PHRASES = (
     "human value score",
     "deletion execution",
     "encrypted shard transfer",
+    "user confirmation execution",
+    "user confirmation receipt",
+    "claims user confirmation",
     "Sophia approval",
     "audit action",
 )
@@ -441,6 +460,8 @@ def _forbidden_hits(text: str) -> list[str]:
                     in text[max(0, index - 104) : index]
                     or "does not approve, prune, delete, federate, transfer encrypted shards, reward users, run a"
                     in text[max(0, index - 112) : index]
+                    or "does not confirm, approve, prune, delete, federate, transfer encrypted shards, reward users, run a"
+                    in text[max(0, index - 122) : index]
                 )
             ):
                 start = index + len(normalized_phrase)

@@ -304,6 +304,14 @@ PAPER_CONFIGS: dict[str, dict[str, Any]] = {
             "pmr_sophia_lifecycle_audit_packet.json",
             "pmr_sophia_lifecycle_no_approval_receipt.json",
             "Run-PMR05-Acceptance.ps1",
+            "PMR-06-USER-CONFIRMATION-PREFLIGHT",
+            "User confirmation request is not user confirmation.",
+            "User confirmation is not action.",
+            "No user confirmation receipt is emitted.",
+            "No pruning or deletion occurs in PMR-06.",
+            "pmr_user_confirmation_preflight_packet.json",
+            "pmr_user_confirmation_no_action_receipt.json",
+            "Run-PMR06-Acceptance.ps1",
         ),
         "forbidden_overclaims": (
             "proves universal intelligence",
@@ -403,6 +411,9 @@ PAPER_CONFIGS: dict[str, dict[str, Any]] = {
             "deletion execution",
             "claims deletion execution",
             "encrypted shard transfer",
+            "user confirmation execution",
+            "user confirmation receipt",
+            "claims user confirmation",
             "Sophia approval",
             "claims Sophia approval",
             "audit action",
@@ -474,6 +485,9 @@ PAPER_CONFIGS: dict[str, dict[str, Any]] = {
             "pmr_05_indexed": True,
             "not_sophia_review_approval": True,
             "not_audit_recommendation_action": True,
+            "pmr_06_indexed": True,
+            "not_user_confirmation": True,
+            "not_user_confirmation_receipt": True,
             "not_sophia_approval": True,
             "not_audit_action": True,
             "not_lifecycle_action": True,
@@ -599,6 +613,8 @@ def _forbidden_hits(normalized_text: str, forbidden: tuple[str, ...]) -> list[st
                     in normalized_text[max(0, index - 104) : index]
                     or "does not approve, prune, delete, federate, transfer encrypted shards, reward users, run a"
                     in normalized_text[max(0, index - 112) : index]
+                    or "does not confirm, approve, prune, delete, federate, transfer encrypted shards, reward users, run a"
+                    in normalized_text[max(0, index - 122) : index]
                 )
             ):
                 search_from = index + len(normalized_phrase)

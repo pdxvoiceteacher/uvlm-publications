@@ -516,3 +516,19 @@ PMR-05 consumes PMR-00 doctrine/policy, PMR-01 local artifact index/dependency g
   -LocalStorageBudgetBytes 5368709120 `
   -CiMode
 ```
+## PMR-06 User Confirmation Preflight
+
+PMR-06-USER-CONFIRMATION-PREFLIGHT adds a publication-indexed, fixture-only user confirmation request preflight scaffold for PMR lifecycle recommendations. User confirmation request is not user confirmation. User confirmation is not action. No user confirmation receipt is emitted. Destructive action requires future Sophia approval. Destructive action requires future user confirmation. No pruning or deletion occurs in PMR-06.
+
+PMR-06 consumes PMR-00 doctrine/policy, PMR-01 local artifact index/dependency graph, PMR-02 GPCU lifecycle recommendations, PMR-03 lifecycle transition candidates/no-action receipts, PMR-04 lifecycle audit preflight candidates/block packet/no-action receipt, and PMR-05 fixture-only Sophia lifecycle audit review recommendations/no-approval receipt. It emits user confirmation request candidates, prompt packets, block packets, and a no-action receipt while preserving no-confirmation and no-action boundaries. No federation occurs. No encrypted shard transfer occurs. No reward occurs. No token economy occurs. No memory write occurs. No Atlas canon write occurs. No model-weight training occurs. No deployment occurs. No truth certification occurs. No final-answer release occurs. No hallucination-reduction proof occurs. No recursive self-improvement occurs.
+
+### PMR-06 acceptance command
+
+```powershell
+.\experiments\Run-PMR06-Acceptance.ps1 `
+  -OutputRoot C:\UVLM\run_artifacts\pmr_06 `
+  -LogDir C:\UVLM\run_artifacts\pmr_06_logs `
+  -Mode balanced `
+  -LocalStorageBudgetBytes 5368709120 `
+  -CiMode
+```

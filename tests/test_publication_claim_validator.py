@@ -1616,3 +1616,52 @@ def test_governed_validator_rejects_pmr_05_overclaims(tmp_path):
         assert result["passed"] is False
         found = [hit.lower() for hit in result["forbidden_overclaims_found"]]
         assert claim.lower() in found or f"claims {claim.lower()}" in found, result
+
+
+def test_governed_paper_includes_pmr_06_user_confirmation_preflight_boundaries():
+    root = Path("papers/governed_artifact_cognition")
+    paper = (root / "PUB_GOV_ARTIFACT_COG_01.md").read_text()
+    artifact_table = (root / "artifact_table.md").read_text()
+    quickstart = (root / "reviewer_quickstart.md").read_text()
+    status = json.loads((root / "status.json").read_text())
+
+    assert "PMR-06-USER-CONFIRMATION-PREFLIGHT" in paper
+    assert "User confirmation request is not user confirmation." in paper
+    assert "User confirmation is not action." in paper
+    assert "No user confirmation receipt is emitted." in paper
+    assert "Destructive action requires future Sophia approval." in paper
+    assert "Destructive action requires future user confirmation." in paper
+    assert "No pruning or deletion occurs in PMR-06." in paper
+    assert "pmr_user_confirmation_preflight_packet.json" in artifact_table
+    assert "pmr_user_confirmation_no_action_receipt.json" in artifact_table
+    assert "Run-PMR06-Acceptance.ps1" in quickstart
+    assert status["pmr_06_indexed"] is True
+    assert status["not_user_confirmation"] is True
+    assert status["not_user_confirmation_receipt"] is True
+
+
+def test_governed_validator_rejects_pmr_06_overclaims(tmp_path):
+    root = Path("papers/governed_artifact_cognition")
+    for claim in (
+        "user confirmation execution",
+        "user confirmation receipt",
+        "pruning execution",
+        "deletion execution",
+        "reward entitlement",
+    ):
+        case = tmp_path / claim.replace(" ", "_")
+        case.mkdir()
+        for source in root.iterdir():
+            if source.is_file():
+                (case / source.name).write_text(source.read_text())
+        paper = case / "PUB_GOV_ARTIFACT_COG_01.md"
+        paper.write_text(paper.read_text() + f"\nPMR-06 claims {claim}.\n")
+        result = validate_publication_claims(
+            paper,
+            case / "reproducibility_appendix.md",
+            case / "reviewer_quickstart.md",
+            case / "status.json",
+        )
+        assert result["passed"] is False
+        found = [hit.lower() for hit in result["forbidden_overclaims_found"]]
+        assert claim.lower() in found or f"claims {claim.lower()}" in found, result
