@@ -82,5 +82,8 @@
   "not_audit_recommendation_action": true,
   "pmr_06_indexed": true,
   "not_user_confirmation": true,
-  "not_user_confirmation_receipt": true
+  "not_user_confirmation_receipt": true,
+  "pmr_07_indexed": true,
+  "not_valid_user_confirmation": true,
+  "not_confirmation_authority": true
 }

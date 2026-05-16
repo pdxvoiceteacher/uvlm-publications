@@ -229,6 +229,19 @@
       "export_bundle_parity_report.json",
       "pmr_06_acceptance_receipt.json"
     ],
+    "PMR-07-USER-CONFIRMATION-NEGATIVE-CONTROL": [
+      "pmr_user_confirmation_negative_control_packet.json",
+      "pmr_invalid_user_confirmation_attempts.jsonl",
+      "pmr_user_confirmation_negative_control_block_packet.json",
+      "pmr_user_confirmation_negative_control_no_action_receipt.json",
+      "pmr_user_confirmation_negative_control_review_packet.json",
+      "pmr_user_confirmation_negative_control_summary.md",
+      "artifact_inventory.json",
+      "run_artifact_manifest.json",
+      "export_bundle_manifest.json",
+      "export_bundle_parity_report.json",
+      "pmr_07_acceptance_receipt.json"
+    ],
     "UNIVERSAL-STAGE-PIPELINE-00": [
       "universal_pipeline_manifest.json",
       "universal_pipeline_review_packet.json",

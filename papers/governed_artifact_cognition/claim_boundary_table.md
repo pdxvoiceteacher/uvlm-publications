@@ -263,3 +263,22 @@
 | PMR-06 is not model-weight training. | User confirmation requests do not train model weights. |
 | PMR-06 is not deployment authority. | User confirmation requests do not deploy systems. |
 | PMR-06 is not truth certification. | User confirmation requests do not certify truth. |
+| Invalid confirmation is not confirmation. | PMR-07 invalid attempts fail closed. |
+| Missing confirmation is not confirmation. | PMR-07 missing-confirmation attempts fail closed. |
+| Ambiguous confirmation is not confirmation. | PMR-07 ambiguous attempts fail closed. |
+| Forged confirmation is not confirmation. | PMR-07 forged attempts fail closed. |
+| Expired confirmation is not confirmation. | PMR-07 expired attempts fail closed. |
+| Scope-mismatched confirmation is not confirmation. | PMR-07 scope-mismatched attempts fail closed. |
+| Confirmation without Sophia approval is insufficient. | PMR-07 blocks confirmation attempts missing Sophia approval. |
+| Confirmation cannot override retain-lock, quarantine, revocation, or dependency blocks. | PMR-07 keeps policy blocks authoritative over invalid confirmation attempts. |
+| No user confirmation receipt is emitted in PMR-07. | PMR-07 emits no-action receipts only. |
+| No pruning or deletion occurs in PMR-07. | PMR-07 is negative-control only and no-action. |
+| PMR-07 is not Sophia approval. | Negative controls do not approve lifecycle actions. |
+| PMR-07 is not federation authorization. | Negative controls do not authorize federation. |
+| PMR-07 is not reward entitlement. | Negative controls do not allocate rewards. |
+| PMR-07 is not token economy. | Negative controls do not run token mechanics. |
+| PMR-07 is not Atlas canon. | Negative controls do not canonize artifacts. |
+| PMR-07 is not memory write authorization. | Negative controls do not authorize memory writes. |
+| PMR-07 is not model-weight training. | Negative controls do not train model weights. |
+| PMR-07 is not deployment authority. | Negative controls do not deploy systems. |
+| PMR-07 is not truth certification. | Negative controls do not certify truth. |

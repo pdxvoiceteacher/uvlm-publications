@@ -581,3 +581,19 @@ PMR-06 consumes PMR-00 doctrine/policy, PMR-01 local artifact index/dependency g
   -LocalStorageBudgetBytes 5368709120 `
   -CiMode
 ```
+## PMR-07 User Confirmation Negative Control
+
+PMR-07-USER-CONFIRMATION-NEGATIVE-CONTROL adds a publication-indexed negative-control scaffold for user confirmation attempts across PMR lifecycle recommendations. Invalid confirmation is not confirmation. Missing confirmation is not confirmation. Forged confirmation is not confirmation. Expired confirmation is not confirmation. Scope-mismatched confirmation is not confirmation. Confirmation without Sophia approval is insufficient. Confirmation cannot override retain-lock, quarantine, revocation, or dependency blocks. No user confirmation receipt is emitted. No pruning or deletion occurs in PMR-07.
+
+PMR-07 consumes PMR-00 through PMR-06 artifacts and emits invalid user confirmation attempts, a block packet, a no-action receipt, and a negative-control review packet. Missing, ambiguous, forged, expired, wrong-artifact, wrong-action, wrong-principal, scope-mismatched, post-revocation, quarantined, retain-locked, dependency-blocked, or Sophia-approval-missing confirmation attempts fail closed and cannot authorize destructive PMR action. No federation occurs. No encrypted shard transfer occurs. No reward occurs. No token economy occurs. No memory write occurs. No Atlas canon write occurs. No model-weight training occurs. No deployment occurs. No truth certification occurs. No final-answer release occurs. No hallucination-reduction proof occurs. No recursive self-improvement occurs.
+
+### PMR-07 acceptance command
+
+```powershell
+.\experiments\Run-PMR07-Acceptance.ps1 `
+  -OutputRoot C:\UVLM\run_artifacts\pmr_07 `
+  -LogDir C:\UVLM\run_artifacts\pmr_07_logs `
+  -Mode balanced `
+  -LocalStorageBudgetBytes 5368709120 `
+  -CiMode
+```

@@ -312,6 +312,16 @@ PAPER_CONFIGS: dict[str, dict[str, Any]] = {
             "pmr_user_confirmation_preflight_packet.json",
             "pmr_user_confirmation_no_action_receipt.json",
             "Run-PMR06-Acceptance.ps1",
+            "PMR-07-USER-CONFIRMATION-NEGATIVE-CONTROL",
+            "Invalid confirmation is not confirmation.",
+            "Scope-mismatched confirmation is not confirmation.",
+            "Confirmation without Sophia approval is insufficient.",
+            "Confirmation cannot override retain-lock, quarantine, revocation, or dependency blocks.",
+            "No user confirmation receipt is emitted.",
+            "pmr_user_confirmation_negative_control_packet.json",
+            "pmr_invalid_user_confirmation_attempts.jsonl",
+            "pmr_user_confirmation_negative_control_no_action_receipt.json",
+            "Run-PMR07-Acceptance.ps1",
         ),
         "forbidden_overclaims": (
             "proves universal intelligence",
@@ -411,6 +421,7 @@ PAPER_CONFIGS: dict[str, dict[str, Any]] = {
             "deletion execution",
             "claims deletion execution",
             "encrypted shard transfer",
+            "valid user confirmation",
             "user confirmation execution",
             "user confirmation receipt",
             "claims user confirmation",
@@ -488,6 +499,9 @@ PAPER_CONFIGS: dict[str, dict[str, Any]] = {
             "pmr_06_indexed": True,
             "not_user_confirmation": True,
             "not_user_confirmation_receipt": True,
+            "pmr_07_indexed": True,
+            "not_valid_user_confirmation": True,
+            "not_confirmation_authority": True,
             "not_sophia_approval": True,
             "not_audit_action": True,
             "not_lifecycle_action": True,
@@ -601,8 +615,19 @@ def _forbidden_hits(normalized_text: str, forbidden: tuple[str, ...]) -> list[st
             if index == -1:
                 break
             if (
+                phrase == "valid user confirmation"
+                and "invalid " in normalized_text[max(0, index - 24) : index] or normalized_text[max(0, index - 2) : index].endswith("in")
+            ):
+                search_from = index + len(normalized_phrase)
+                continue
+            if (
                 phrase == "Sophia approval"
-                and "requires future " in normalized_text[max(0, index - 32) : index]
+                and (
+                    "requires future " in normalized_text[max(0, index - 32) : index]
+                    or "without " in normalized_text[max(0, index - 32) : index]
+                    or "missing " in normalized_text[max(0, index - 16) : index]
+                    or normalized_text[index : index + 40].startswith("sophia approval missing")
+                )
             ):
                 search_from = index + len(normalized_phrase)
                 continue

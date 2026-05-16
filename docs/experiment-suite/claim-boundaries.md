@@ -233,6 +233,25 @@
 - PMR-06 is not model-weight training.
 - PMR-06 is not deployment authority.
 - PMR-06 is not truth certification.
+- Invalid confirmation is not confirmation.
+- Missing confirmation is not confirmation.
+- Ambiguous confirmation is not confirmation.
+- Forged confirmation is not confirmation.
+- Expired confirmation is not confirmation.
+- Scope-mismatched confirmation is not confirmation.
+- Confirmation without Sophia approval is insufficient.
+- Confirmation cannot override retain-lock, quarantine, revocation, or dependency blocks.
+- No user confirmation receipt is emitted in PMR-07.
+- No pruning or deletion occurs in PMR-07.
+- PMR-07 is not Sophia approval.
+- PMR-07 is not federation authorization.
+- PMR-07 is not reward entitlement.
+- PMR-07 is not token economy.
+- PMR-07 is not Atlas canon.
+- PMR-07 is not memory write authorization.
+- PMR-07 is not model-weight training.
+- PMR-07 is not deployment authority.
+- PMR-07 is not truth certification.
 - Governed provenance resources may be future infrastructure rewards, but truth is not for sale.
 
 No oracle posture. No deployment posture. No final-answer posture. No AI consciousness claim. No universal ontology claim.

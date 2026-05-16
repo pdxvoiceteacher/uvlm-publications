@@ -86,6 +86,7 @@ REQUIRED_PHASES = {
     "PMR-04-LIFECYCLE-AUDIT-PREFLIGHT",
     "PMR-05-SOPHIA-LIFECYCLE-AUDIT-REVIEW",
     "PMR-06-USER-CONFIRMATION-PREFLIGHT",
+    "PMR-07-USER-CONFIRMATION-NEGATIVE-CONTROL",
     "SONYA-LOCAL-FIXTURE-ADAPTER-02",
     "SONYA-LOCAL-FIXTURE-ADAPTER-03",
 }
@@ -166,7 +167,7 @@ def test_dashboard_contains_all_accepted_phases(tmp_path):
     dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text())
     phase_ids = {entry["phase_id"] for entry in dashboard["accepted_phases"]}
     assert phase_ids == REQUIRED_PHASES
-    assert dashboard["accepted_phase_count"] == 35
+    assert dashboard["accepted_phase_count"] == 36
 
 
 def test_dashboard_command_summaries_use_accepted_harnesses(tmp_path):
@@ -1715,6 +1716,45 @@ def test_validator_fails_if_pmr_06_makes_forbidden_claims(tmp_path):
         out_dir, docs_dir = run_builder(tmp_path / claim.replace(" ", "_"))
         page = docs_dir / "pmr-user-confirmation-preflight.md"
         page.write_text(page.read_text() + f"\nPMR-06 claims {claim}.\n")
+        result = validate_dashboard(out_dir / "experiment_suite_dashboard.json", docs_dir)
+        assert result["passed"] is False
+        forbidden_found = [found.lower() for found in result["forbidden_claims_found"]]
+        assert claim.lower() in forbidden_found or f"claims {claim.lower()}" in forbidden_found, result
+
+
+def test_pmr_07_user_confirmation_negative_control_indexes_and_docs_are_generated(tmp_path):
+    out_dir, docs_dir = run_builder(tmp_path)
+    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text())
+    reproducibility = json.loads((out_dir / "reproducibility_index.json").read_text())
+    artifact_index = json.loads((out_dir / "artifact_index.json").read_text())
+    claim_boundaries = json.loads((out_dir / "claim_boundary_index.json").read_text())
+
+    phase_ids = {entry["phase_id"] for entry in dashboard["accepted_phases"]}
+    assert "PMR-07-USER-CONFIRMATION-NEGATIVE-CONTROL" in phase_ids
+    commands = json.dumps(reproducibility)
+    assert "Run-PMR07-Acceptance.ps1" in commands
+    artifacts = artifact_index["phases"]["PMR-07-USER-CONFIRMATION-NEGATIVE-CONTROL"]
+    assert "pmr_user_confirmation_negative_control_packet.json" in artifacts
+    assert "pmr_invalid_user_confirmation_attempts.jsonl" in artifacts
+    assert "pmr_user_confirmation_negative_control_no_action_receipt.json" in artifacts
+    assert (docs_dir / "pmr-user-confirmation-negative-control.md").exists()
+    boundary_text = "\n".join(claim_boundaries["boundaries"])
+    assert "Invalid confirmation is not confirmation." in boundary_text
+    assert "Scope-mismatched confirmation is not confirmation." in boundary_text
+
+
+def test_validator_fails_if_pmr_07_makes_forbidden_claims(tmp_path):
+    forbidden_claims = (
+        "valid user confirmation",
+        "user confirmation receipt",
+        "pruning execution",
+        "deletion execution",
+        "reward entitlement",
+    )
+    for claim in forbidden_claims:
+        out_dir, docs_dir = run_builder(tmp_path / claim.replace(" ", "_"))
+        page = docs_dir / "pmr-user-confirmation-negative-control.md"
+        page.write_text(page.read_text() + f"\nPMR-07 claims {claim}.\n")
         result = validate_dashboard(out_dir / "experiment_suite_dashboard.json", docs_dir)
         assert result["passed"] is False
         forbidden_found = [found.lower() for found in result["forbidden_claims_found"]]

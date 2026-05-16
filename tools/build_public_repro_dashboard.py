@@ -1262,6 +1262,105 @@ PMR_06_CLAIMS_BLOCKED = [
     "not production readiness",
 ]
 
+PMR_07_COMMAND = r""".\experiments\Run-PMR07-Acceptance.ps1 `
+  -OutputRoot C:\UVLM\run_artifacts\pmr_07 `
+  -LogDir C:\UVLM\run_artifacts\pmr_07_logs `
+  -Mode balanced `
+  -LocalStorageBudgetBytes 5368709120 `
+  -CiMode"""
+PMR_07_ARTIFACTS = [
+    "pmr_user_confirmation_negative_control_packet.json",
+    "pmr_invalid_user_confirmation_attempts.jsonl",
+    "pmr_user_confirmation_negative_control_block_packet.json",
+    "pmr_user_confirmation_negative_control_no_action_receipt.json",
+    "pmr_user_confirmation_negative_control_review_packet.json",
+    "pmr_user_confirmation_negative_control_summary.md",
+    "artifact_inventory.json",
+    "run_artifact_manifest.json",
+    "export_bundle_manifest.json",
+    "export_bundle_parity_report.json",
+    "pmr_07_acceptance_receipt.json",
+]
+PMR_07_DASHBOARD_SUMMARY = {
+    "review_status": "accepted_as_pmr_user_confirmation_negative_control",
+    "source_pmr_policy_bound": True,
+    "source_pmr_index_bound": True,
+    "source_pmr_utility_bound": True,
+    "source_pmr_lifecycle_bound": True,
+    "source_pmr_audit_preflight_bound": True,
+    "source_pmr_sophia_review_bound": True,
+    "source_pmr_user_confirmation_preflight_bound": True,
+    "invalid_attempts_present": True,
+    "block_packet_present": True,
+    "no_action_receipt_present": True,
+    "invalid_confirmation_not_confirmation": True,
+    "missing_confirmation_not_confirmation": True,
+    "ambiguous_confirmation_not_confirmation": True,
+    "forged_confirmation_not_confirmation": True,
+    "expired_confirmation_not_confirmation": True,
+    "scope_mismatch_not_confirmation": True,
+    "user_confirmation_receipt_not_emitted": True,
+    "destructive_action_requires_valid_future_sophia_approval": True,
+    "destructive_action_requires_valid_future_user_confirmation": True,
+    "pruning_not_performed": True,
+    "deletion_not_performed": True,
+    "federation_blocked_by_default": True,
+    "reward_actions_not_performed": True,
+    "memory_write_blocked": True,
+    "atlas_canon_write_blocked": True,
+    "model_weight_training_blocked": True,
+    "deployment_blocked": True,
+    "truth_certification_blocked": True,
+    "promotion_blocked": True,
+    "invalid_attempt_count": 13,
+    "blocked_attempt_count": 13,
+    "failed_closed_count": 13,
+    "valid_user_confirmation_performed": False,
+    "user_confirmation_receipt_emitted": False,
+    "sophia_approval_performed": False,
+    "destructive_action_performed": False,
+    "encrypted_shard_transfer_performed": False,
+    "token_economy_performed": False,
+    "network_calls_performed": False,
+    "attempted_confirmation_kinds": [
+        "missing_confirmation",
+        "ambiguous_confirmation",
+        "forged_confirmation",
+        "expired_confirmation",
+        "wrong_artifact",
+        "wrong_action",
+        "wrong_principal",
+        "scope_mismatch",
+        "missing_sophia_approval",
+        "post_revocation_confirmation",
+        "quarantine_override_attempt",
+        "retain_locked_delete_attempt",
+        "dependency_block_override_attempt",
+    ],
+}
+PMR_07_CLAIMS_BLOCKED = [
+    "not valid user confirmation",
+    "not user confirmation receipt",
+    "not Sophia approval",
+    "not pruning execution",
+    "not deletion execution",
+    "not federation authorization",
+    "not encrypted shard transfer",
+    "not reward entitlement",
+    "not token economy",
+    "not human value score",
+    "not Atlas canon",
+    "not model weight training",
+    "not memory write authorization",
+    "not network authorization",
+    "not truth certification",
+    "not deployment authority",
+    "not final answer release",
+    "not hallucination reduction proof",
+    "not recursive self-improvement",
+    "not production readiness",
+]
+
 PMR_CLAIMS_BLOCKED = [
     "not generic cache",
     "not hidden memory hoard",
@@ -1734,6 +1833,33 @@ ACCEPTED_PHASES = [
         "claim_allowed": "PMR-06-USER-CONFIRMATION-PREFLIGHT demonstrates fixture-only user confirmation request preflight for PMR lifecycle recommendations while preserving no-confirmation and no-action boundaries.",
         "claims_blocked": PMR_06_CLAIMS_BLOCKED,
         "reviewer_caution": "PMR-06 emits user confirmation request candidates, prompt packets, block packets, and a no-action receipt only. It does not confirm, approve, prune, delete, federate, transfer encrypted shards, reward users, run a token economy, write memory, train models, deploy, or certify truth. Destructive action requires future Sophia approval and future user confirmation.",
+        "publication_status": "dashboard_indexed",
+    },
+
+    {
+        "phase_id": "PMR-07-USER-CONFIRMATION-NEGATIVE-CONTROL",
+        "repo": "pdxvoiceteacher/CoherenceLattice",
+        "status": "accepted",
+        "evidence_type": "negative_control",
+        "product_posture": "invalid_confirmation_fails_closed_with_no_action_receipt",
+        "primary_artifacts": PMR_07_ARTIFACTS,
+        "dashboard_summary": PMR_07_DASHBOARD_SUMMARY,
+        "prerequisite_phases": [
+            "PMR-00-PROVENANCE-MEMORY-RESERVOIR",
+            "PMR-01-LOCAL-ARTIFACT-INDEX",
+            "PMR-02-GLOBAL-PROVENANCE-COHERENCE-UTILITY",
+            "PMR-03-LIFECYCLE-STATE-MACHINE",
+            "PMR-04-LIFECYCLE-AUDIT-PREFLIGHT",
+            "PMR-05-SOPHIA-LIFECYCLE-AUDIT-REVIEW",
+            "PMR-06-USER-CONFIRMATION-PREFLIGHT",
+            "PROVENANCE-TRAINING-LEDGER-00",
+            "ARTIFACT-CONTRACT-REGISTRY-01",
+            "UNIVERSAL-COMPATIBILITY-MATRIX-00",
+        ],
+        "reproduction_command_summary": PMR_07_COMMAND,
+        "claim_allowed": "PMR-07-USER-CONFIRMATION-NEGATIVE-CONTROL demonstrates that invalid, missing, forged, expired, scope-mismatched, policy-blocked, or Sophia-approval-missing user confirmation attempts fail closed and cannot authorize destructive PMR action.",
+        "claims_blocked": PMR_07_CLAIMS_BLOCKED,
+        "reviewer_caution": "PMR-07 emits invalid user confirmation attempts, failed-closed block packets, and a no-action receipt only. It proves that invalid, missing, forged, expired, scope-mismatched, policy-blocked, or Sophia-approval-missing confirmation attempts cannot authorize destructive PMR action. It does not confirm, approve, prune, delete, federate, transfer encrypted shards, reward users, run a token economy, write memory, train models, deploy, or certify truth.",
         "publication_status": "dashboard_indexed",
     },
     {
@@ -2337,6 +2463,25 @@ BOUNDARIES = [
     "PMR-06 is not model-weight training.",
     "PMR-06 is not deployment authority.",
     "PMR-06 is not truth certification.",
+    "Invalid confirmation is not confirmation.",
+    "Missing confirmation is not confirmation.",
+    "Ambiguous confirmation is not confirmation.",
+    "Forged confirmation is not confirmation.",
+    "Expired confirmation is not confirmation.",
+    "Scope-mismatched confirmation is not confirmation.",
+    "Confirmation without Sophia approval is insufficient.",
+    "Confirmation cannot override retain-lock, quarantine, revocation, or dependency blocks.",
+    "No user confirmation receipt is emitted in PMR-07.",
+    "No pruning or deletion occurs in PMR-07.",
+    "PMR-07 is not Sophia approval.",
+    "PMR-07 is not federation authorization.",
+    "PMR-07 is not reward entitlement.",
+    "PMR-07 is not token economy.",
+    "PMR-07 is not Atlas canon.",
+    "PMR-07 is not memory write authorization.",
+    "PMR-07 is not model-weight training.",
+    "PMR-07 is not deployment authority.",
+    "PMR-07 is not truth certification.",
     "Governed provenance resources may be future infrastructure rewards, but truth is not for sale.",
 ]
 GLOBAL_NON_CLAIMS = [
@@ -2487,6 +2632,7 @@ def reproducibility_index() -> dict[str, Any]:
                 {"name": "PMR lifecycle audit preflight acceptance", "command": PMR_04_COMMAND},
                 {"name": "PMR Sophia lifecycle audit review acceptance", "command": PMR_05_COMMAND},
                 {"name": "PMR user confirmation preflight acceptance", "command": PMR_06_COMMAND},
+                {"name": "PMR user confirmation negative control acceptance", "command": PMR_07_COMMAND},
                 {"name": "Universal Stage Pipeline acceptance", "command": UNIVERSAL_STAGE_PIPELINE_COMMAND},
                 {"name": "Artifact Contract Registry acceptance", "command": ARTIFACT_CONTRACT_REGISTRY_COMMAND},
                 {"name": "Universal Compatibility Matrix acceptance", "command": UNIVERSAL_COMPATIBILITY_MATRIX_COMMAND},
@@ -2540,6 +2686,7 @@ def artifact_index() -> dict[str, Any]:
             "PMR-04-LIFECYCLE-AUDIT-PREFLIGHT": PMR_04_ARTIFACTS,
             "PMR-05-SOPHIA-LIFECYCLE-AUDIT-REVIEW": PMR_05_ARTIFACTS,
             "PMR-06-USER-CONFIRMATION-PREFLIGHT": PMR_06_ARTIFACTS,
+            "PMR-07-USER-CONFIRMATION-NEGATIVE-CONTROL": PMR_07_ARTIFACTS,
             "UNIVERSAL-STAGE-PIPELINE-00": UNIVERSAL_STAGE_PIPELINE_ARTIFACTS,
             "ARTIFACT-CONTRACT-REGISTRY-01": ARTIFACT_CONTRACT_REGISTRY_ARTIFACTS,
             "UNIVERSAL-COMPATIBILITY-MATRIX-00": UNIVERSAL_COMPATIBILITY_MATRIX_ARTIFACTS,
@@ -2584,6 +2731,7 @@ def status_payload() -> dict[str, Any]:
         "latest_pmr_lifecycle_audit_preflight": "PMR-04-LIFECYCLE-AUDIT-PREFLIGHT",
         "latest_pmr_sophia_lifecycle_audit_review": "PMR-05-SOPHIA-LIFECYCLE-AUDIT-REVIEW",
         "latest_pmr_user_confirmation_preflight": "PMR-06-USER-CONFIRMATION-PREFLIGHT",
+        "latest_pmr_user_confirmation_negative_control": "PMR-07-USER-CONFIRMATION-NEGATIVE-CONTROL",
         "pmr_00_indexed": True,
         "pmr_01_indexed": True,
         "pmr_02_indexed": True,
@@ -2595,6 +2743,9 @@ def status_payload() -> dict[str, Any]:
         "pmr_06_indexed": True,
         "not_user_confirmation": True,
         "not_user_confirmation_receipt": True,
+        "pmr_07_indexed": True,
+        "not_valid_user_confirmation": True,
+        "not_confirmation_authority": True,
         "not_sophia_approval": True,
         "not_audit_action": True,
         "not_lifecycle_action": True,
@@ -3318,6 +3469,39 @@ PMR-06-USER-CONFIRMATION-PREFLIGHT demonstrates fixture-only user confirmation r
 
 Reviewer caution: PMR-06 emits user confirmation request candidates, prompt packets, block packets, and a no-action receipt only. It does not confirm, approve, prune, delete, federate, transfer encrypted shards, reward users, run a token economy, write memory, train models, deploy, or certify truth. Destructive action requires future Sophia approval and future user confirmation.
 """,
+
+        "pmr-user-confirmation-negative-control.md": f"""# PMR user confirmation negative control
+
+Required phrase: Invalid confirmation is not confirmation.
+
+PMR-07-USER-CONFIRMATION-NEGATIVE-CONTROL consumes PMR-00 through PMR-06 artifacts. It emits invalid user confirmation attempts, a block packet, a no-action receipt, and a negative-control review packet. Invalid confirmation is not confirmation. Missing confirmation is not confirmation. Ambiguous confirmation is not confirmation. Forged confirmation is not confirmation. Expired confirmation is not confirmation. Scope-mismatched confirmation is not confirmation. No user confirmation receipt is emitted. Confirmation without valid future Sophia approval is insufficient. Confirmation cannot override retain-lock, quarantine, revocation, or dependency blocks. No pruning or deletion occurs in PMR-07.
+
+No federation occurs. No encrypted shard transfer occurs. No reward occurs. No token economy occurs. No memory write occurs. No Atlas canon write occurs. No model-weight training occurs. No deployment occurs. No truth certification occurs. No final-answer release occurs. No hallucination-reduction proof occurs. No recursive self-improvement occurs.
+
+## Allowed claim
+
+PMR-07-USER-CONFIRMATION-NEGATIVE-CONTROL demonstrates that invalid, missing, forged, expired, scope-mismatched, policy-blocked, or Sophia-approval-missing user confirmation attempts fail closed and cannot authorize destructive PMR action.
+
+## Reproduction command
+
+```powershell
+{PMR_07_COMMAND}
+```
+
+## Primary artifacts
+
+{chr(10).join(f"- `{artifact}`" for artifact in PMR_07_ARTIFACTS)}
+
+## Dashboard posture
+
+{chr(10).join(f"- `{key} = {str(value).lower()}`" for key, value in PMR_07_DASHBOARD_SUMMARY.items())}
+
+## Blocked claims
+
+{chr(10).join(f"- {claim}" for claim in PMR_07_CLAIMS_BLOCKED)}
+
+Reviewer caution: PMR-07 emits invalid user confirmation attempts, failed-closed block packets, and a no-action receipt only. It proves that invalid, missing, forged, expired, scope-mismatched, policy-blocked, or Sophia-approval-missing confirmation attempts cannot authorize destructive PMR action. It does not confirm, approve, prune, delete, federate, transfer encrypted shards, reward users, run a token economy, write memory, train models, deploy, or certify truth.
+""",
         "rw-comp-local-adapter.md": f"""# RW-COMP local adapter
 
 Required phrase: Deltas are structural review descriptors only.
@@ -3792,6 +3976,20 @@ Expected posture:
 {chr(10).join(f"- `{key} = {str(value).lower()}`" for key, value in PMR_06_DASHBOARD_SUMMARY.items())}
 
 Reviewer caution: PMR-06 emits user confirmation request candidates, prompt packets, block packets, and a no-action receipt only. It does not confirm, approve, prune, delete, federate, transfer encrypted shards, reward users, run a token economy, write memory, train models, deploy, or certify truth. Destructive action requires future Sophia approval and future user confirmation.
+
+## PMR user confirmation negative control
+
+Invalid confirmation is not confirmation. PMR-07-USER-CONFIRMATION-NEGATIVE-CONTROL emits invalid user confirmation attempts, failed-closed block packets, and a no-action receipt. Missing confirmation is not confirmation. Forged confirmation is not confirmation. Expired confirmation is not confirmation. Scope-mismatched confirmation is not confirmation. No user confirmation receipt is emitted. Confirmation without valid future Sophia approval is insufficient. Confirmation cannot override retain-lock, quarantine, revocation, or dependency blocks. No pruning or deletion occurs in PMR-07. No federation occurs. No encrypted shard transfer occurs. No reward occurs. No token economy occurs. No memory write occurs. No Atlas canon write occurs. No model-weight training occurs. No deployment occurs. No truth certification occurs. No final-answer release occurs. No hallucination-reduction proof occurs. No recursive self-improvement occurs.
+
+```powershell
+{PMR_07_COMMAND}
+```
+
+Expected posture:
+
+{chr(10).join(f"- `{key} = {str(value).lower()}`" for key, value in PMR_07_DASHBOARD_SUMMARY.items())}
+
+Reviewer caution: PMR-07 emits invalid user confirmation attempts, failed-closed block packets, and a no-action receipt only. It proves that invalid, missing, forged, expired, scope-mismatched, policy-blocked, or Sophia-approval-missing confirmation attempts cannot authorize destructive PMR action. It does not confirm, approve, prune, delete, federate, transfer encrypted shards, reward users, run a token economy, write memory, train models, deploy, or certify truth.
 
 Reviewer caution: PMR-00 and PMR-01 define local provenance-memory doctrine, storage policy, artifact indexing, and dependency graph scaffolds only. They do not write memory, canonize artifacts, federate artifacts, transfer encrypted shards, prune artifacts, train models, certify truth, release final answers, deploy, or reward resource contributions.
 

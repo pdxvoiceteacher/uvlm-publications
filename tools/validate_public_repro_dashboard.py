@@ -43,6 +43,7 @@ REQUIRED_PHASES = {
     "PMR-04-LIFECYCLE-AUDIT-PREFLIGHT",
     "PMR-05-SOPHIA-LIFECYCLE-AUDIT-REVIEW",
     "PMR-06-USER-CONFIRMATION-PREFLIGHT",
+    "PMR-07-USER-CONFIRMATION-NEGATIVE-CONTROL",
 }
 REQUIRED_BOUNDARY_PHRASES = (
     "not truth certification",
@@ -280,6 +281,25 @@ REQUIRED_BOUNDARY_PHRASES = (
     "PMR-06 is not model-weight training.",
     "PMR-06 is not deployment authority.",
     "PMR-06 is not truth certification.",
+    "Invalid confirmation is not confirmation.",
+    "Missing confirmation is not confirmation.",
+    "Ambiguous confirmation is not confirmation.",
+    "Forged confirmation is not confirmation.",
+    "Expired confirmation is not confirmation.",
+    "Scope-mismatched confirmation is not confirmation.",
+    "Confirmation without Sophia approval is insufficient.",
+    "Confirmation cannot override retain-lock, quarantine, revocation, or dependency blocks.",
+    "No user confirmation receipt is emitted in PMR-07.",
+    "No pruning or deletion occurs in PMR-07.",
+    "PMR-07 is not Sophia approval.",
+    "PMR-07 is not federation authorization.",
+    "PMR-07 is not reward entitlement.",
+    "PMR-07 is not token economy.",
+    "PMR-07 is not Atlas canon.",
+    "PMR-07 is not memory write authorization.",
+    "PMR-07 is not model-weight training.",
+    "PMR-07 is not deployment authority.",
+    "PMR-07 is not truth certification.",
     "Governed provenance resources may be future infrastructure rewards, but truth is not for sale.",
 )
 FORBIDDEN_PHRASES = (
@@ -376,6 +396,7 @@ FORBIDDEN_PHRASES = (
     "human value score",
     "deletion execution",
     "encrypted shard transfer",
+    "valid user confirmation",
     "user confirmation execution",
     "user confirmation receipt",
     "claims user confirmation",
@@ -448,8 +469,19 @@ def _forbidden_hits(text: str) -> list[str]:
                 start = index + len(normalized_phrase)
                 continue
             if (
+                phrase == "valid user confirmation"
+                and "invalid " in text[max(0, index - 24) : index] or text[max(0, index - 2) : index].endswith("in")
+            ):
+                start = index + len(normalized_phrase)
+                continue
+            if (
                 phrase == "Sophia approval"
-                and "requires future " in text[max(0, index - 32) : index]
+                and (
+                    "requires future " in text[max(0, index - 32) : index]
+                    or "without " in text[max(0, index - 32) : index]
+                    or "missing " in text[max(0, index - 16) : index]
+                    or text[index : index + 40].startswith("sophia approval missing")
+                )
             ):
                 start = index + len(normalized_phrase)
                 continue
