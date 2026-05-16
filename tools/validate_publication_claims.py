@@ -262,6 +262,76 @@ PAPER_CONFIGS: dict[str, dict[str, Any]] = {
             "pmr_dependency_graph.json",
             "Run-PMR00-Acceptance.ps1",
             "Run-PMR01-Acceptance.ps1",
+            "PMR-02-GLOBAL-PROVENANCE-COHERENCE-UTILITY",
+            "GPCU is lifecycle/storage utility, not truth score.",
+            "GPCU is not reward entitlement.",
+            "GPCU is not token economy.",
+            "GPCU is not human value score.",
+            "Lifecycle recommendation is not pruning.",
+            "Reward mechanics are deferred.",
+            "Federation remains blocked by default.",
+            "pmr_provenance_coherence_utility_packet.json",
+            "pmr_artifact_utility_scores.jsonl",
+            "pmr_lifecycle_recommendation_packet.json",
+            "Run-PMR02-Acceptance.ps1",
+            "PMR-03-LIFECYCLE-STATE-MACHINE",
+            "Lifecycle state is not truth status.",
+            "Recommendation is not transition.",
+            "Transition candidate is not action.",
+            "Destructive action requires future Sophia lifecycle audit.",
+            "Destructive action requires future user confirmation.",
+            "No pruning or deletion occurs in PMR-03.",
+            "pmr_lifecycle_state_machine_packet.json",
+            "pmr_lifecycle_no_action_receipt.json",
+            "Run-PMR03-Acceptance.ps1",
+            "PMR-04-LIFECYCLE-AUDIT-PREFLIGHT",
+            "Preflight is not approval.",
+            "Audit candidate is not action.",
+            "Sophia lifecycle audit is required before destructive action.",
+            "User confirmation is required before destructive local action.",
+            "No Sophia approval packet is emitted.",
+            "No pruning or deletion occurs in PMR-04.",
+            "pmr_lifecycle_audit_preflight_packet.json",
+            "pmr_lifecycle_audit_no_action_receipt.json",
+            "Run-PMR04-Acceptance.ps1",
+            "PMR-05-SOPHIA-LIFECYCLE-AUDIT-REVIEW",
+            "Sophia review is not Sophia approval.",
+            "Audit recommendation is not action.",
+            "No Sophia approval packet is emitted.",
+            "Destructive action requires future Sophia approval.",
+            "Destructive action requires future user confirmation.",
+            "No pruning or deletion occurs in PMR-05.",
+            "pmr_sophia_lifecycle_audit_packet.json",
+            "pmr_sophia_lifecycle_no_approval_receipt.json",
+            "Run-PMR05-Acceptance.ps1",
+            "PMR-06-USER-CONFIRMATION-PREFLIGHT",
+            "User confirmation request is not user confirmation.",
+            "User confirmation is not action.",
+            "No user confirmation receipt is emitted.",
+            "No pruning or deletion occurs in PMR-06.",
+            "pmr_user_confirmation_preflight_packet.json",
+            "pmr_user_confirmation_no_action_receipt.json",
+            "Run-PMR06-Acceptance.ps1",
+            "PMR-07-USER-CONFIRMATION-NEGATIVE-CONTROL",
+            "Invalid confirmation is not confirmation.",
+            "Scope-mismatched confirmation is not confirmation.",
+            "Confirmation without Sophia approval is insufficient.",
+            "Confirmation cannot override retain-lock, quarantine, revocation, or dependency blocks.",
+            "No user confirmation receipt is emitted.",
+            "pmr_user_confirmation_negative_control_packet.json",
+            "pmr_invalid_user_confirmation_attempts.jsonl",
+            "pmr_user_confirmation_negative_control_no_action_receipt.json",
+            "Run-PMR07-Acceptance.ps1",
+            "PMR-08-VALID-USER-CONFIRMATION-RECEIPT-SCAFFOLD",
+            "Valid user confirmation receipt is not action.",
+            "Confirmation authorizes eligibility for later action review, not action itself.",
+            "Scope validation is not action.",
+            "No pruning or deletion occurs in PMR-08.",
+            "pmr_valid_user_confirmation_receipt_packet.json",
+            "pmr_valid_user_confirmation_receipts.jsonl",
+            "pmr_user_confirmation_scope_validation_packet.json",
+            "pmr_user_confirmation_receipt_no_action_receipt.json",
+            "Run-PMR08-Acceptance.ps1",
         ),
         "forbidden_overclaims": (
             "proves universal intelligence",
@@ -345,10 +415,30 @@ PAPER_CONFIGS: dict[str, dict[str, Any]] = {
             "claims final answer selection",
             "claims accepted evidence",
             "claims Atlas canon",
+            "memory write authorization",
             "claims memory write authorization",
             "claims pruning execution",
+            "pruning execution",
             "claims resource economy",
             "claims federation authorization",
+            "truth score",
+            "claims truth score",
+            "reward entitlement",
+            "claims reward entitlement",
+            "token economy",
+            "claims token economy",
+            "human value score",
+            "deletion execution",
+            "claims deletion execution",
+            "encrypted shard transfer",
+            "claims destructive action",
+            "claims valid user confirmation",
+            "user confirmation execution",
+            "claims user confirmation receipt",
+            "claims user confirmation",
+            "Sophia approval",
+            "claims Sophia approval",
+            "audit action",
         ),
         "status_required": {
             "paper_id": "PUB-GOV-ARTIFACT-COG-01",
@@ -411,6 +501,28 @@ PAPER_CONFIGS: dict[str, dict[str, Any]] = {
             "rw_comp_local_adapter_indexed": True,
             "pmr_00_indexed": True,
             "pmr_01_indexed": True,
+            "pmr_02_indexed": True,
+            "pmr_03_indexed": True,
+            "pmr_04_indexed": True,
+            "pmr_05_indexed": True,
+            "not_sophia_review_approval": True,
+            "not_audit_recommendation_action": True,
+            "pmr_06_indexed": True,
+            "not_user_confirmation": True,
+            "not_user_confirmation_receipt": True,
+            "pmr_07_indexed": True,
+            "not_valid_user_confirmation": True,
+            "not_confirmation_authority": True,
+            "pmr_08_indexed": True,
+            "not_confirmation_action": True,
+            "not_scope_validation_action": True,
+            "not_sophia_approval": True,
+            "not_audit_action": True,
+            "not_lifecycle_action": True,
+            "not_deletion_execution": True,
+            "not_truth_score": True,
+            "not_reward_entitlement": True,
+            "not_human_value_score": True,
             "not_atlas_canon": True,
             "not_memory_write_authorization": True,
             "not_federation_authorization": True,
@@ -500,7 +612,11 @@ def _normalize(text: str) -> str:
 def _is_negated(normalized_text: str, start: int) -> bool:
     window = normalized_text[max(0, start - 32) : start]
     after = normalized_text[start : start + 80]
-    return any(marker in window for marker in NEGATION_MARKERS) or "performed = false" in after
+    return (
+        any(marker in window for marker in NEGATION_MARKERS)
+        or "performed = false" in after
+        or "blocked" in after[:48]
+    )
 
 
 def _forbidden_hits(normalized_text: str, forbidden: tuple[str, ...]) -> list[str]:
@@ -513,6 +629,32 @@ def _forbidden_hits(normalized_text: str, forbidden: tuple[str, ...]) -> list[st
             if index == -1:
                 break
             if (
+                phrase == "Sophia approval"
+                and (
+                    "requires future " in normalized_text[max(0, index - 32) : index]
+                    or "without " in normalized_text[max(0, index - 32) : index]
+                    or "missing " in normalized_text[max(0, index - 16) : index]
+                    or normalized_text[index : index + 40].startswith("sophia approval missing")
+                )
+            ):
+                search_from = index + len(normalized_phrase)
+                continue
+            if (
+                phrase == "token economy"
+                and (
+                    "does not prune, delete, federate, transfer encrypted shards, reward users, run a"
+                    in normalized_text[max(0, index - 104) : index]
+                    or "does not approve, prune, delete, federate, transfer encrypted shards, reward users, run a"
+                    in normalized_text[max(0, index - 112) : index]
+                    or "does not confirm, approve, prune, delete, federate, transfer encrypted shards, reward users, run a"
+                    in normalized_text[max(0, index - 122) : index]
+                    or "does not perform destructive action, approve, prune, delete, federate, transfer encrypted shards, reward users, run a"
+                    in normalized_text[max(0, index - 142) : index]
+                )
+            ):
+                search_from = index + len(normalized_phrase)
+                continue
+            if (
                 phrase in {"model quality benchmark", "model quality benchmark"}
                 and "not hallucination reduction proof or a" in normalized_text[max(0, index - 56) : index]
             ):
@@ -520,6 +662,7 @@ def _forbidden_hits(normalized_text: str, forbidden: tuple[str, ...]) -> list[st
                 continue
             if phrase == "federation" and (
                 normalized_text[index : index + 40].startswith("federation is blocked by default")
+                or normalized_text[index : index + 48].startswith("federation remains blocked by default")
                 or normalized_text[index : index + 40].startswith("federation_authorization")
             ):
                 search_from = index + len(normalized_phrase)

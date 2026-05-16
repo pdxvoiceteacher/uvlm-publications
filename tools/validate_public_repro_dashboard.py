@@ -38,6 +38,13 @@ REQUIRED_PHASES = {
     "RW-COMP-LOCAL-ADAPTER-01",
     "PMR-00-PROVENANCE-MEMORY-RESERVOIR",
     "PMR-01-LOCAL-ARTIFACT-INDEX",
+    "PMR-02-GLOBAL-PROVENANCE-COHERENCE-UTILITY",
+    "PMR-03-LIFECYCLE-STATE-MACHINE",
+    "PMR-04-LIFECYCLE-AUDIT-PREFLIGHT",
+    "PMR-05-SOPHIA-LIFECYCLE-AUDIT-REVIEW",
+    "PMR-06-USER-CONFIRMATION-PREFLIGHT",
+    "PMR-07-USER-CONFIRMATION-NEGATIVE-CONTROL",
+    "PMR-08-VALID-USER-CONFIRMATION-RECEIPT-SCAFFOLD",
 }
 REQUIRED_BOUNDARY_PHRASES = (
     "not truth certification",
@@ -208,6 +215,107 @@ REQUIRED_BOUNDARY_PHRASES = (
     "PMR-01 performs indexing only, not pruning.",
     "Federation is blocked by default.",
     "PMR is not resource economy or token economy.",
+    "GPCU is lifecycle/storage utility, not truth score.",
+    "GPCU is not reward entitlement.",
+    "GPCU is not token economy.",
+    "Lifecycle recommendation is not pruning.",
+    "Reward mechanics are deferred.",
+    "Federation remains blocked by default.",
+    "PMR-02 is not Atlas canon.",
+    "PMR-02 is not memory write authorization.",
+    "PMR-02 is not model-weight training.",
+    "PMR-02 is not deployment authority.",
+    "PMR-02 is not hallucination reduction proof.",
+    "Recommendation is not transition; transition candidate is not action.",
+    "Recommendation is not transition.",
+    "Transition candidate is not action.",
+    "Lifecycle state is not truth status.",
+    "Destructive action requires future Sophia lifecycle audit.",
+    "Destructive action requires future user confirmation.",
+    "No pruning or deletion occurs in PMR-03.",
+    "PMR-03 is not federation authorization.",
+    "PMR-03 is not reward entitlement.",
+    "PMR-03 is not token economy.",
+    "PMR-03 is not Atlas canon.",
+    "PMR-03 is not memory write authorization.",
+    "PMR-03 is not model-weight training.",
+    "PMR-03 is not deployment authority.",
+    "PMR-03 is not truth certification.",
+    "Preflight is not approval.",
+    "Audit candidate is not action.",
+    "Sophia lifecycle audit is required before destructive action.",
+    "User confirmation is required before destructive local action.",
+    "No Sophia approval packet is emitted.",
+    "No pruning or deletion occurs in PMR-04.",
+    "PMR-04 is not federation authorization.",
+    "PMR-04 is not reward entitlement.",
+    "PMR-04 is not token economy.",
+    "PMR-04 is not memory write authorization.",
+    "PMR-04 is not deployment authority.",
+    "PMR-04 is not truth certification.",
+    "Sophia review is not Sophia approval.",
+    "Audit recommendation is not action.",
+    "No Sophia approval packet is emitted.",
+    "Destructive action requires future Sophia approval.",
+    "Destructive action requires future user confirmation.",
+    "No pruning or deletion occurs in PMR-05.",
+    "PMR-05 is not federation authorization.",
+    "PMR-05 is not reward entitlement.",
+    "PMR-05 is not token economy.",
+    "PMR-05 is not Atlas canon.",
+    "PMR-05 is not memory write authorization.",
+    "PMR-05 is not model-weight training.",
+    "PMR-05 is not deployment authority.",
+    "PMR-05 is not truth certification.",
+    "User confirmation request is not user confirmation.",
+    "User confirmation is not action.",
+    "No user confirmation receipt is emitted.",
+    "Destructive action requires future Sophia approval.",
+    "Destructive action requires future user confirmation.",
+    "No pruning or deletion occurs in PMR-06.",
+    "PMR-06 is not Sophia approval.",
+    "PMR-06 is not federation authorization.",
+    "PMR-06 is not reward entitlement.",
+    "PMR-06 is not token economy.",
+    "PMR-06 is not Atlas canon.",
+    "PMR-06 is not memory write authorization.",
+    "PMR-06 is not model-weight training.",
+    "PMR-06 is not deployment authority.",
+    "PMR-06 is not truth certification.",
+    "Invalid confirmation is not confirmation.",
+    "Missing confirmation is not confirmation.",
+    "Ambiguous confirmation is not confirmation.",
+    "Forged confirmation is not confirmation.",
+    "Expired confirmation is not confirmation.",
+    "Scope-mismatched confirmation is not confirmation.",
+    "Confirmation without Sophia approval is insufficient.",
+    "Confirmation cannot override retain-lock, quarantine, revocation, or dependency blocks.",
+    "No user confirmation receipt is emitted in PMR-07.",
+    "No pruning or deletion occurs in PMR-07.",
+    "PMR-07 is not Sophia approval.",
+    "PMR-07 is not federation authorization.",
+    "PMR-07 is not reward entitlement.",
+    "PMR-07 is not token economy.",
+    "PMR-07 is not Atlas canon.",
+    "PMR-07 is not memory write authorization.",
+    "PMR-07 is not model-weight training.",
+    "PMR-07 is not deployment authority.",
+    "PMR-07 is not truth certification.",
+    "Valid user confirmation receipt is not action.",
+    "Confirmation authorizes eligibility for later action review, not action itself.",
+    "Scope validation is not action.",
+    "Destructive action still requires future Sophia approval.",
+    "Destructive action still requires future explicit action request.",
+    "Negative-control invalid confirmations remain blocked.",
+    "No pruning or deletion occurs in PMR-08.",
+    "PMR-08 is not federation authorization.",
+    "PMR-08 is not reward entitlement.",
+    "PMR-08 is not token economy.",
+    "PMR-08 is not Atlas canon.",
+    "PMR-08 is not memory write authorization.",
+    "PMR-08 is not model-weight training.",
+    "PMR-08 is not deployment authority.",
+    "PMR-08 is not truth certification.",
     "Governed provenance resources may be future infrastructure rewards, but truth is not for sale.",
 )
 FORBIDDEN_PHRASES = (
@@ -247,6 +355,7 @@ FORBIDDEN_PHRASES = (
     "compliance certification",
     "production ready",
     "deployment authorized",
+    "claims deployment authority",
     "final answer released",
     "publisher finalized",
     "omega detected",
@@ -298,6 +407,18 @@ FORBIDDEN_PHRASES = (
     "pruning execution",
     "resource economy",
     "token economy",
+    "truth score",
+    "reward entitlement",
+    "human value score",
+    "deletion execution",
+    "encrypted shard transfer",
+    "claims destructive action",
+    "claims valid user confirmation",
+    "user confirmation execution",
+    "claims user confirmation receipt",
+    "claims user confirmation",
+    "Sophia approval",
+    "audit action",
 )
 ALLOWED_NEGATED = (
     "not ",
@@ -365,6 +486,32 @@ def _forbidden_hits(text: str) -> list[str]:
                 start = index + len(normalized_phrase)
                 continue
             if (
+                phrase == "Sophia approval"
+                and (
+                    "requires future " in text[max(0, index - 32) : index]
+                    or "without " in text[max(0, index - 32) : index]
+                    or "missing " in text[max(0, index - 16) : index]
+                    or text[index : index + 40].startswith("sophia approval missing")
+                )
+            ):
+                start = index + len(normalized_phrase)
+                continue
+            if (
+                phrase == "token economy"
+                and (
+                    "does not prune, delete, federate, transfer encrypted shards, reward users, run a"
+                    in text[max(0, index - 104) : index]
+                    or "does not approve, prune, delete, federate, transfer encrypted shards, reward users, run a"
+                    in text[max(0, index - 112) : index]
+                    or "does not confirm, approve, prune, delete, federate, transfer encrypted shards, reward users, run a"
+                    in text[max(0, index - 122) : index]
+                    or "does not perform destructive action, approve, prune, delete, federate, transfer encrypted shards, reward users, run a"
+                    in text[max(0, index - 142) : index]
+                )
+            ):
+                start = index + len(normalized_phrase)
+                continue
+            if (
                 phrase == "model quality benchmark"
                 and "not hallucination reduction proof or a" in text[max(0, index - 56) : index]
             ):
@@ -372,8 +519,11 @@ def _forbidden_hits(text: str) -> list[str]:
                 continue
             if phrase == "federation" and (
                 text[index : index + 40].startswith("federation is blocked by default")
+                or text[index : index + 48].startswith("federation remains blocked by default")
                 or text[index : index + 40].startswith("federation_blocked")
                 or text[index : index + 40].startswith("federation_authorization")
+                or text[index : index + 40].startswith("federation = true")
+                or text[index : index + 40].startswith('federation": true')
             ):
                 start = index + len(normalized_phrase)
                 continue
