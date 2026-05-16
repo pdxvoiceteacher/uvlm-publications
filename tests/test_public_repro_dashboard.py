@@ -5,6 +5,7 @@ import subprocess
 import sys
 from pathlib import Path
 
+from tools.build_public_repro_dashboard import _dedupe_accepted_phases
 from tools.validate_public_repro_dashboard import REQUIRED_PHASES as VALIDATOR_REQUIRED_PHASES
 from tools.validate_public_repro_dashboard import validate_dashboard
 
@@ -168,12 +169,27 @@ def test_builder_writes_all_docs_pages(tmp_path):
     assert REQUIRED_DOCS <= {path.name for path in docs_dir.glob("*.md")}
 
 
+def test_dedupe_accepted_phases_preserves_order_and_lets_later_entries_win():
+    phases = [
+        {"phase_id": "PHASE-A", "primary_artifacts": ["old.json"], "status": "accepted"},
+        {"phase_id": "PHASE-B", "primary_artifacts": ["b.json"], "status": "accepted"},
+        {"phase_id": "PHASE-A", "primary_artifacts": ["new.json"], "status": "accepted"},
+    ]
+
+    deduped = _dedupe_accepted_phases(phases)
+
+    assert [phase["phase_id"] for phase in deduped] == ["PHASE-A", "PHASE-B"]
+    assert deduped[0]["primary_artifacts"] == ["new.json"]
+
+
 def test_dashboard_contains_all_accepted_phases(tmp_path):
     out_dir, _docs_dir = run_builder(tmp_path)
     dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text())
-    phase_ids = {entry["phase_id"] for entry in dashboard["accepted_phases"]}
+    accepted_phases = dashboard["accepted_phases"]
+    phase_ids = {entry["phase_id"] for entry in accepted_phases}
+    assert len(accepted_phases) == len(phase_ids)
     assert phase_ids == REQUIRED_PHASES
-    assert dashboard["accepted_phase_count"] == 38
+    assert dashboard["accepted_phase_count"] == len(REQUIRED_PHASES)
 
 
 def test_dashboard_command_summaries_use_accepted_harnesses(tmp_path):
