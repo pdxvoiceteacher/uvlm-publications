@@ -59,6 +59,30 @@
         "command": ".\\experiments\\Run-PMR01-Acceptance.ps1 `\n  -OutputRoot C:\\UVLM\\run_artifacts\\pmr_01 `\n  -LogDir C:\\UVLM\\run_artifacts\\pmr_01_logs `\n  -Mode balanced `\n  -LocalStorageBudgetBytes 5368709120 `\n  -CiMode"
       },
       {
+        "name": "PMR GPCU utility scoring acceptance",
+        "command": ".\\experiments\\Run-PMR02-Acceptance.ps1 `\n  -OutputRoot C:\\UVLM\\run_artifacts\\pmr_02 `\n  -LogDir C:\\UVLM\\run_artifacts\\pmr_02_logs `\n  -Mode balanced `\n  -LocalStorageBudgetBytes 5368709120 `\n  -CiMode"
+      },
+      {
+        "name": "PMR lifecycle state machine acceptance",
+        "command": ".\\experiments\\Run-PMR03-Acceptance.ps1 `\n  -OutputRoot C:\\UVLM\\run_artifacts\\pmr_03 `\n  -LogDir C:\\UVLM\\run_artifacts\\pmr_03_logs `\n  -Mode balanced `\n  -LocalStorageBudgetBytes 5368709120 `\n  -CiMode"
+      },
+      {
+        "name": "PMR lifecycle audit preflight acceptance",
+        "command": ".\\experiments\\Run-PMR04-Acceptance.ps1 `\n  -OutputRoot C:\\UVLM\\run_artifacts\\pmr_04 `\n  -LogDir C:\\UVLM\\run_artifacts\\pmr_04_logs `\n  -Mode balanced `\n  -LocalStorageBudgetBytes 5368709120 `\n  -CiMode"
+      },
+      {
+        "name": "PMR Sophia lifecycle audit review acceptance",
+        "command": ".\\experiments\\Run-PMR05-Acceptance.ps1 `\n  -OutputRoot C:\\UVLM\\run_artifacts\\pmr_05 `\n  -LogDir C:\\UVLM\\run_artifacts\\pmr_05_logs `\n  -Mode balanced `\n  -LocalStorageBudgetBytes 5368709120 `\n  -CiMode"
+      },
+      {
+        "name": "PMR user confirmation preflight acceptance",
+        "command": ".\\experiments\\Run-PMR06-Acceptance.ps1 `\n  -OutputRoot C:\\UVLM\\run_artifacts\\pmr_06 `\n  -LogDir C:\\UVLM\\run_artifacts\\pmr_06_logs `\n  -Mode balanced `\n  -LocalStorageBudgetBytes 5368709120 `\n  -CiMode"
+      },
+      {
+        "name": "PMR user confirmation negative control acceptance",
+        "command": ".\\experiments\\Run-PMR07-Acceptance.ps1 `\n  -OutputRoot C:\\UVLM\\run_artifacts\\pmr_07 `\n  -LogDir C:\\UVLM\\run_artifacts\\pmr_07_logs `\n  -Mode balanced `\n  -LocalStorageBudgetBytes 5368709120 `\n  -CiMode"
+      },
+      {
         "name": "Universal Stage Pipeline acceptance",
         "command": "python -m pytest -q python/tests/pipeline/test_universal_stage_pipeline.py"
       },
