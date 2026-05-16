@@ -253,6 +253,21 @@
     "PMR-07 is not model-weight training.",
     "PMR-07 is not deployment authority.",
     "PMR-07 is not truth certification.",
+    "Valid user confirmation receipt is not action.",
+    "Confirmation authorizes eligibility for later action review, not action itself.",
+    "Scope validation is not action.",
+    "Destructive action still requires future Sophia approval.",
+    "Destructive action still requires future explicit action request.",
+    "Negative-control invalid confirmations remain blocked.",
+    "No pruning or deletion occurs in PMR-08.",
+    "PMR-08 is not federation authorization.",
+    "PMR-08 is not reward entitlement.",
+    "PMR-08 is not token economy.",
+    "PMR-08 is not Atlas canon.",
+    "PMR-08 is not memory write authorization.",
+    "PMR-08 is not model-weight training.",
+    "PMR-08 is not deployment authority.",
+    "PMR-08 is not truth certification.",
     "Governed provenance resources may be future infrastructure rewards, but truth is not for sale."
   ]
 }

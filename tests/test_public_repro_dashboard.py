@@ -87,6 +87,7 @@ REQUIRED_PHASES = {
     "PMR-05-SOPHIA-LIFECYCLE-AUDIT-REVIEW",
     "PMR-06-USER-CONFIRMATION-PREFLIGHT",
     "PMR-07-USER-CONFIRMATION-NEGATIVE-CONTROL",
+    "PMR-08-VALID-USER-CONFIRMATION-RECEIPT-SCAFFOLD",
     "SONYA-LOCAL-FIXTURE-ADAPTER-02",
     "SONYA-LOCAL-FIXTURE-ADAPTER-03",
 }
@@ -167,7 +168,7 @@ def test_dashboard_contains_all_accepted_phases(tmp_path):
     dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text())
     phase_ids = {entry["phase_id"] for entry in dashboard["accepted_phases"]}
     assert phase_ids == REQUIRED_PHASES
-    assert dashboard["accepted_phase_count"] == 36
+    assert dashboard["accepted_phase_count"] == 37
 
 
 def test_dashboard_command_summaries_use_accepted_harnesses(tmp_path):
@@ -1755,6 +1756,44 @@ def test_validator_fails_if_pmr_07_makes_forbidden_claims(tmp_path):
         out_dir, docs_dir = run_builder(tmp_path / claim.replace(" ", "_"))
         page = docs_dir / "pmr-user-confirmation-negative-control.md"
         page.write_text(page.read_text() + f"\nPMR-07 claims {claim}.\n")
+        result = validate_dashboard(out_dir / "experiment_suite_dashboard.json", docs_dir)
+        assert result["passed"] is False
+        forbidden_found = [found.lower() for found in result["forbidden_claims_found"]]
+        assert claim.lower() in forbidden_found or f"claims {claim.lower()}" in forbidden_found, result
+
+
+def test_pmr_08_valid_user_confirmation_receipt_scaffold_indexes_and_docs_are_generated(tmp_path):
+    out_dir, docs_dir = run_builder(tmp_path)
+    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text())
+    reproducibility = json.loads((out_dir / "reproducibility_index.json").read_text())
+    artifact_index = json.loads((out_dir / "artifact_index.json").read_text())
+    claim_boundaries = json.loads((out_dir / "claim_boundary_index.json").read_text())
+
+    phase_ids = {entry["phase_id"] for entry in dashboard["accepted_phases"]}
+    assert "PMR-08-VALID-USER-CONFIRMATION-RECEIPT-SCAFFOLD" in phase_ids
+    commands = json.dumps(reproducibility)
+    assert "Run-PMR08-Acceptance.ps1" in commands
+    artifacts = artifact_index["phases"]["PMR-08-VALID-USER-CONFIRMATION-RECEIPT-SCAFFOLD"]
+    assert "pmr_valid_user_confirmation_receipt_packet.json" in artifacts
+    assert "pmr_valid_user_confirmation_receipts.jsonl" in artifacts
+    assert "pmr_user_confirmation_receipt_no_action_receipt.json" in artifacts
+    assert (docs_dir / "pmr-user-confirmation-receipt-scaffold.md").exists()
+    boundary_text = "\n".join(claim_boundaries["boundaries"])
+    assert "Valid user confirmation receipt is not action." in boundary_text
+    assert "Confirmation authorizes eligibility for later action review, not action itself." in boundary_text
+
+
+def test_validator_fails_if_pmr_08_makes_forbidden_claims(tmp_path):
+    forbidden_claims = (
+        "destructive action",
+        "pruning execution",
+        "deletion execution",
+        "reward entitlement",
+    )
+    for claim in forbidden_claims:
+        out_dir, docs_dir = run_builder(tmp_path / claim.replace(" ", "_"))
+        page = docs_dir / "pmr-user-confirmation-receipt-scaffold.md"
+        page.write_text(page.read_text() + f"\nPMR-08 claims {claim}.\n")
         result = validate_dashboard(out_dir / "experiment_suite_dashboard.json", docs_dir)
         assert result["passed"] is False
         forbidden_found = [found.lower() for found in result["forbidden_claims_found"]]

@@ -597,3 +597,19 @@ PMR-07 consumes PMR-00 through PMR-06 artifacts and emits invalid user confirmat
   -LocalStorageBudgetBytes 5368709120 `
   -CiMode
 ```
+## PMR-08 Valid User Confirmation Receipt Scaffold
+
+PMR-08-VALID-USER-CONFIRMATION-RECEIPT-SCAFFOLD adds a publication-indexed receipt scaffold for valid scoped user confirmation receipts in eligible non-action cases. Valid user confirmation receipt is not action. Confirmation authorizes eligibility for later action review, not action itself. Scope validation is not action. Destructive action still requires future Sophia approval. Destructive action still requires future explicit action request. Negative-control invalid confirmations remain blocked. No pruning or deletion occurs in PMR-08.
+
+PMR-08 consumes PMR-00 through PMR-07 artifacts, emits valid scoped user confirmation receipts, validates scope, and emits a no-action receipt while preserving non-authority boundaries. No federation occurs. No encrypted shard transfer occurs. No reward occurs. No token economy occurs. No memory write occurs. No Atlas canon write occurs. No model-weight training occurs. No deployment occurs. No truth certification occurs.
+
+### PMR-08 acceptance command
+
+```powershell
+.\experiments\Run-PMR08-Acceptance.ps1 `
+  -OutputRoot C:\UVLM\run_artifacts\pmr_08 `
+  -LogDir C:\UVLM\run_artifacts\pmr_08_logs `
+  -Mode balanced `
+  -LocalStorageBudgetBytes 5368709120 `
+  -CiMode
+```

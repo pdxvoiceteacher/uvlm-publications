@@ -322,6 +322,16 @@ PAPER_CONFIGS: dict[str, dict[str, Any]] = {
             "pmr_invalid_user_confirmation_attempts.jsonl",
             "pmr_user_confirmation_negative_control_no_action_receipt.json",
             "Run-PMR07-Acceptance.ps1",
+            "PMR-08-VALID-USER-CONFIRMATION-RECEIPT-SCAFFOLD",
+            "Valid user confirmation receipt is not action.",
+            "Confirmation authorizes eligibility for later action review, not action itself.",
+            "Scope validation is not action.",
+            "No pruning or deletion occurs in PMR-08.",
+            "pmr_valid_user_confirmation_receipt_packet.json",
+            "pmr_valid_user_confirmation_receipts.jsonl",
+            "pmr_user_confirmation_scope_validation_packet.json",
+            "pmr_user_confirmation_receipt_no_action_receipt.json",
+            "Run-PMR08-Acceptance.ps1",
         ),
         "forbidden_overclaims": (
             "proves universal intelligence",
@@ -421,9 +431,10 @@ PAPER_CONFIGS: dict[str, dict[str, Any]] = {
             "deletion execution",
             "claims deletion execution",
             "encrypted shard transfer",
-            "valid user confirmation",
+            "claims destructive action",
+            "claims valid user confirmation",
             "user confirmation execution",
-            "user confirmation receipt",
+            "claims user confirmation receipt",
             "claims user confirmation",
             "Sophia approval",
             "claims Sophia approval",
@@ -502,6 +513,9 @@ PAPER_CONFIGS: dict[str, dict[str, Any]] = {
             "pmr_07_indexed": True,
             "not_valid_user_confirmation": True,
             "not_confirmation_authority": True,
+            "pmr_08_indexed": True,
+            "not_confirmation_action": True,
+            "not_scope_validation_action": True,
             "not_sophia_approval": True,
             "not_audit_action": True,
             "not_lifecycle_action": True,
@@ -615,12 +629,6 @@ def _forbidden_hits(normalized_text: str, forbidden: tuple[str, ...]) -> list[st
             if index == -1:
                 break
             if (
-                phrase == "valid user confirmation"
-                and "invalid " in normalized_text[max(0, index - 24) : index] or normalized_text[max(0, index - 2) : index].endswith("in")
-            ):
-                search_from = index + len(normalized_phrase)
-                continue
-            if (
                 phrase == "Sophia approval"
                 and (
                     "requires future " in normalized_text[max(0, index - 32) : index]
@@ -640,6 +648,8 @@ def _forbidden_hits(normalized_text: str, forbidden: tuple[str, ...]) -> list[st
                     in normalized_text[max(0, index - 112) : index]
                     or "does not confirm, approve, prune, delete, federate, transfer encrypted shards, reward users, run a"
                     in normalized_text[max(0, index - 122) : index]
+                    or "does not perform destructive action, approve, prune, delete, federate, transfer encrypted shards, reward users, run a"
+                    in normalized_text[max(0, index - 142) : index]
                 )
             ):
                 search_from = index + len(normalized_phrase)

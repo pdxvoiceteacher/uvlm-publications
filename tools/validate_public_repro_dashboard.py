@@ -44,6 +44,7 @@ REQUIRED_PHASES = {
     "PMR-05-SOPHIA-LIFECYCLE-AUDIT-REVIEW",
     "PMR-06-USER-CONFIRMATION-PREFLIGHT",
     "PMR-07-USER-CONFIRMATION-NEGATIVE-CONTROL",
+    "PMR-08-VALID-USER-CONFIRMATION-RECEIPT-SCAFFOLD",
 }
 REQUIRED_BOUNDARY_PHRASES = (
     "not truth certification",
@@ -300,6 +301,21 @@ REQUIRED_BOUNDARY_PHRASES = (
     "PMR-07 is not model-weight training.",
     "PMR-07 is not deployment authority.",
     "PMR-07 is not truth certification.",
+    "Valid user confirmation receipt is not action.",
+    "Confirmation authorizes eligibility for later action review, not action itself.",
+    "Scope validation is not action.",
+    "Destructive action still requires future Sophia approval.",
+    "Destructive action still requires future explicit action request.",
+    "Negative-control invalid confirmations remain blocked.",
+    "No pruning or deletion occurs in PMR-08.",
+    "PMR-08 is not federation authorization.",
+    "PMR-08 is not reward entitlement.",
+    "PMR-08 is not token economy.",
+    "PMR-08 is not Atlas canon.",
+    "PMR-08 is not memory write authorization.",
+    "PMR-08 is not model-weight training.",
+    "PMR-08 is not deployment authority.",
+    "PMR-08 is not truth certification.",
     "Governed provenance resources may be future infrastructure rewards, but truth is not for sale.",
 )
 FORBIDDEN_PHRASES = (
@@ -396,9 +412,10 @@ FORBIDDEN_PHRASES = (
     "human value score",
     "deletion execution",
     "encrypted shard transfer",
-    "valid user confirmation",
+    "claims destructive action",
+    "claims valid user confirmation",
     "user confirmation execution",
-    "user confirmation receipt",
+    "claims user confirmation receipt",
     "claims user confirmation",
     "Sophia approval",
     "audit action",
@@ -469,12 +486,6 @@ def _forbidden_hits(text: str) -> list[str]:
                 start = index + len(normalized_phrase)
                 continue
             if (
-                phrase == "valid user confirmation"
-                and "invalid " in text[max(0, index - 24) : index] or text[max(0, index - 2) : index].endswith("in")
-            ):
-                start = index + len(normalized_phrase)
-                continue
-            if (
                 phrase == "Sophia approval"
                 and (
                     "requires future " in text[max(0, index - 32) : index]
@@ -494,6 +505,8 @@ def _forbidden_hits(text: str) -> list[str]:
                     in text[max(0, index - 112) : index]
                     or "does not confirm, approve, prune, delete, federate, transfer encrypted shards, reward users, run a"
                     in text[max(0, index - 122) : index]
+                    or "does not perform destructive action, approve, prune, delete, federate, transfer encrypted shards, reward users, run a"
+                    in text[max(0, index - 142) : index]
                 )
             ):
                 start = index + len(normalized_phrase)
@@ -509,6 +522,8 @@ def _forbidden_hits(text: str) -> list[str]:
                 or text[index : index + 48].startswith("federation remains blocked by default")
                 or text[index : index + 40].startswith("federation_blocked")
                 or text[index : index + 40].startswith("federation_authorization")
+                or text[index : index + 40].startswith("federation = true")
+                or text[index : index + 40].startswith('federation": true')
             ):
                 start = index + len(normalized_phrase)
                 continue

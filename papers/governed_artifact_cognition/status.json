@@ -85,5 +85,8 @@
   "not_user_confirmation_receipt": true,
   "pmr_07_indexed": true,
   "not_valid_user_confirmation": true,
-  "not_confirmation_authority": true
+  "not_confirmation_authority": true,
+  "pmr_08_indexed": true,
+  "not_confirmation_action": true,
+  "not_scope_validation_action": true
 }

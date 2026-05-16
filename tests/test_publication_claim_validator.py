@@ -1714,3 +1714,51 @@ def test_governed_validator_rejects_pmr_07_overclaims(tmp_path):
         assert result["passed"] is False
         found = [hit.lower() for hit in result["forbidden_overclaims_found"]]
         assert claim.lower() in found or f"claims {claim.lower()}" in found, result
+
+
+def test_governed_paper_includes_pmr_08_valid_user_confirmation_receipt_boundaries():
+    root = Path("papers/governed_artifact_cognition")
+    paper = (root / "PUB_GOV_ARTIFACT_COG_01.md").read_text()
+    artifact_table = (root / "artifact_table.md").read_text()
+    quickstart = (root / "reviewer_quickstart.md").read_text()
+    status = json.loads((root / "status.json").read_text())
+
+    assert "PMR-08-VALID-USER-CONFIRMATION-RECEIPT-SCAFFOLD" in paper
+    assert "Valid user confirmation receipt is not action." in paper
+    assert "Confirmation authorizes eligibility for later action review, not action itself." in paper
+    assert "Scope validation is not action." in paper
+    assert "No pruning or deletion occurs in PMR-08." in paper
+    assert "pmr_valid_user_confirmation_receipt_packet.json" in artifact_table
+    assert "pmr_valid_user_confirmation_receipts.jsonl" in artifact_table
+    assert "pmr_user_confirmation_scope_validation_packet.json" in artifact_table
+    assert "pmr_user_confirmation_receipt_no_action_receipt.json" in artifact_table
+    assert "Run-PMR08-Acceptance.ps1" in quickstart
+    assert status["pmr_08_indexed"] is True
+    assert status["not_confirmation_action"] is True
+    assert status["not_scope_validation_action"] is True
+
+
+def test_governed_validator_rejects_pmr_08_overclaims(tmp_path):
+    root = Path("papers/governed_artifact_cognition")
+    for claim in (
+        "destructive action",
+        "pruning execution",
+        "deletion execution",
+        "reward entitlement",
+    ):
+        case = tmp_path / claim.replace(" ", "_")
+        case.mkdir()
+        for source in root.iterdir():
+            if source.is_file():
+                (case / source.name).write_text(source.read_text())
+        paper = case / "PUB_GOV_ARTIFACT_COG_01.md"
+        paper.write_text(paper.read_text() + f"\nPMR-08 claims {claim}.\n")
+        result = validate_publication_claims(
+            paper,
+            case / "reproducibility_appendix.md",
+            case / "reviewer_quickstart.md",
+            case / "status.json",
+        )
+        assert result["passed"] is False
+        found = [hit.lower() for hit in result["forbidden_overclaims_found"]]
+        assert claim.lower() in found or f"claims {claim.lower()}" in found, result

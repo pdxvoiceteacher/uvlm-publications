@@ -242,6 +242,19 @@
       "export_bundle_parity_report.json",
       "pmr_07_acceptance_receipt.json"
     ],
+    "PMR-08-VALID-USER-CONFIRMATION-RECEIPT-SCAFFOLD": [
+      "pmr_valid_user_confirmation_receipt_packet.json",
+      "pmr_valid_user_confirmation_receipts.jsonl",
+      "pmr_user_confirmation_scope_validation_packet.json",
+      "pmr_user_confirmation_receipt_no_action_receipt.json",
+      "pmr_user_confirmation_receipt_review_packet.json",
+      "pmr_user_confirmation_receipt_summary.md",
+      "artifact_inventory.json",
+      "run_artifact_manifest.json",
+      "export_bundle_manifest.json",
+      "export_bundle_parity_report.json",
+      "pmr_08_acceptance_receipt.json"
+    ],
     "UNIVERSAL-STAGE-PIPELINE-00": [
       "universal_pipeline_manifest.json",
       "universal_pipeline_review_packet.json",

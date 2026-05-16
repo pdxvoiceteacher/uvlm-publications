@@ -83,6 +83,10 @@
         "command": ".\\experiments\\Run-PMR07-Acceptance.ps1 `\n  -OutputRoot C:\\UVLM\\run_artifacts\\pmr_07 `\n  -LogDir C:\\UVLM\\run_artifacts\\pmr_07_logs `\n  -Mode balanced `\n  -LocalStorageBudgetBytes 5368709120 `\n  -CiMode"
       },
       {
+        "name": "PMR valid user confirmation receipt scaffold acceptance",
+        "command": ".\\experiments\\Run-PMR08-Acceptance.ps1 `\n  -OutputRoot C:\\UVLM\\run_artifacts\\pmr_08 `\n  -LogDir C:\\UVLM\\run_artifacts\\pmr_08_logs `\n  -Mode balanced `\n  -LocalStorageBudgetBytes 5368709120 `\n  -CiMode"
+      },
+      {
         "name": "Universal Stage Pipeline acceptance",
         "command": "python -m pytest -q python/tests/pipeline/test_universal_stage_pipeline.py"
       },

@@ -282,3 +282,18 @@
 | PMR-07 is not model-weight training. | Negative controls do not train model weights. |
 | PMR-07 is not deployment authority. | Negative controls do not deploy systems. |
 | PMR-07 is not truth certification. | Negative controls do not certify truth. |
+| Valid user confirmation receipt is not action. | PMR-08 receipts do not perform lifecycle actions. |
+| Confirmation authorizes eligibility for later action review, not action itself. | PMR-08 records eligibility only. |
+| Scope validation is not action. | Scope checks do not perform lifecycle actions. |
+| Destructive action still requires future Sophia approval. | PMR-08 does not approve destructive action. |
+| Destructive action still requires future explicit action request. | PMR-08 does not request destructive action. |
+| Negative-control invalid confirmations remain blocked. | PMR-08 does not unblock PMR-07 failures. |
+| No pruning or deletion occurs in PMR-08. | PMR-08 is receipt-only and no-action. |
+| PMR-08 is not federation authorization. | Receipt scaffolds do not authorize federation. |
+| PMR-08 is not reward entitlement. | Receipt scaffolds do not allocate rewards. |
+| PMR-08 is not token economy. | Receipt scaffolds do not run token mechanics. |
+| PMR-08 is not Atlas canon. | Receipt scaffolds do not canonize artifacts. |
+| PMR-08 is not memory write authorization. | Receipt scaffolds do not authorize memory writes. |
+| PMR-08 is not model-weight training. | Receipt scaffolds do not train model weights. |
+| PMR-08 is not deployment authority. | Receipt scaffolds do not deploy systems. |
+| PMR-08 is not truth certification. | Receipt scaffolds do not certify truth. |
