@@ -297,3 +297,18 @@
 | PMR-08 is not model-weight training. | Receipt scaffolds do not train model weights. |
 | PMR-08 is not deployment authority. | Receipt scaffolds do not deploy systems. |
 | PMR-08 is not truth certification. | Receipt scaffolds do not certify truth. |
+| Valid confirmation receipt plus Sophia recommendation is not action authorization. | PMR-09 blocks authorization attempts without required future packets. |
+| Explicit future action request and Sophia approval packet are required before destructive action. | PMR-09 emits neither required packet. |
+| No explicit action request packet is emitted in PMR-09. | PMR-09 does not request destructive action. |
+| No Sophia approval packet is emitted in PMR-09. | PMR-09 does not approve destructive action. |
+| No destructive action authorization packet is emitted in PMR-09. | PMR-09 emits block and no-action receipts only. |
+| No destructive action receipt is emitted in PMR-09. | PMR-09 performs no destructive action. |
+| No pruning or deletion occurs in PMR-09. | PMR-09 is negative-control only and no-action. |
+| PMR-09 is not federation authorization. | Negative controls do not authorize federation. |
+| PMR-09 is not reward entitlement. | Negative controls do not allocate rewards. |
+| PMR-09 is not token economy. | Negative controls do not run token mechanics. |
+| PMR-09 is not Atlas canon. | Negative controls do not canonize artifacts. |
+| PMR-09 is not memory write authorization. | Negative controls do not authorize memory writes. |
+| PMR-09 is not model-weight training. | Negative controls do not train model weights. |
+| PMR-09 is not deployment authority. | Negative controls do not deploy systems. |
+| PMR-09 is not truth certification. | Negative controls do not certify truth. |

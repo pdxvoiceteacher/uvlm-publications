@@ -267,6 +267,21 @@
 - PMR-08 is not model-weight training.
 - PMR-08 is not deployment authority.
 - PMR-08 is not truth certification.
+- Valid confirmation receipt plus Sophia recommendation is not action authorization.
+- Explicit future action request and Sophia approval packet are required before destructive action.
+- No explicit action request packet is emitted in PMR-09.
+- No Sophia approval packet is emitted in PMR-09.
+- No destructive action authorization packet is emitted in PMR-09.
+- No destructive action receipt is emitted in PMR-09.
+- No pruning or deletion occurs in PMR-09.
+- PMR-09 is not federation authorization.
+- PMR-09 is not reward entitlement.
+- PMR-09 is not token economy.
+- PMR-09 is not Atlas canon.
+- PMR-09 is not memory write authorization.
+- PMR-09 is not model-weight training.
+- PMR-09 is not deployment authority.
+- PMR-09 is not truth certification.
 - Governed provenance resources may be future infrastructure rewards, but truth is not for sale.
 
 No oracle posture. No deployment posture. No final-answer posture. No AI consciousness claim. No universal ontology claim.

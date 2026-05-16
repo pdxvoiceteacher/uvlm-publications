@@ -87,6 +87,10 @@
         "command": ".\\experiments\\Run-PMR08-Acceptance.ps1 `\n  -OutputRoot C:\\UVLM\\run_artifacts\\pmr_08 `\n  -LogDir C:\\UVLM\\run_artifacts\\pmr_08_logs `\n  -Mode balanced `\n  -LocalStorageBudgetBytes 5368709120 `\n  -CiMode"
       },
       {
+        "name": "PMR destructive action authorization negative control acceptance",
+        "command": ".\\experiments\\Run-PMR09-Acceptance.ps1 `\n  -OutputRoot C:\\UVLM\\run_artifacts\\pmr_09 `\n  -LogDir C:\\UVLM\\run_artifacts\\pmr_09_logs `\n  -Mode balanced `\n  -LocalStorageBudgetBytes 5368709120 `\n  -CiMode"
+      },
+      {
         "name": "Universal Stage Pipeline acceptance",
         "command": "python -m pytest -q python/tests/pipeline/test_universal_stage_pipeline.py"
       },

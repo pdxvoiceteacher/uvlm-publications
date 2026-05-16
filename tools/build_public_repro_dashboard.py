@@ -1443,6 +1443,91 @@ PMR_08_CLAIMS_BLOCKED = [
     "not production readiness",
 ]
 
+PMR_09_COMMAND = r""".\experiments\Run-PMR09-Acceptance.ps1 `
+  -OutputRoot C:\UVLM\run_artifacts\pmr_09 `
+  -LogDir C:\UVLM\run_artifacts\pmr_09_logs `
+  -Mode balanced `
+  -LocalStorageBudgetBytes 5368709120 `
+  -CiMode"""
+PMR_09_ARTIFACTS = [
+    "pmr_destructive_action_authorization_negative_control_packet.json",
+    "pmr_invalid_destructive_action_authorization_attempts.jsonl",
+    "pmr_destructive_action_authorization_block_packet.json",
+    "pmr_destructive_action_authorization_no_action_receipt.json",
+    "pmr_destructive_action_authorization_review_packet.json",
+    "pmr_destructive_action_authorization_negative_control_summary.md",
+    "artifact_inventory.json",
+    "run_artifact_manifest.json",
+    "export_bundle_manifest.json",
+    "export_bundle_parity_report.json",
+    "pmr_09_acceptance_receipt.json",
+]
+PMR_09_DASHBOARD_SUMMARY = {
+    "review_status": "accepted_as_pmr_destructive_action_authorization_negative_control",
+    "source_pmr_policy_bound": True,
+    "source_pmr_index_bound": True,
+    "source_pmr_utility_bound": True,
+    "source_pmr_lifecycle_bound": True,
+    "source_pmr_audit_preflight_bound": True,
+    "source_pmr_sophia_review_bound": True,
+    "source_pmr_user_confirmation_preflight_bound": True,
+    "source_pmr_user_confirmation_negative_control_bound": True,
+    "source_pmr_valid_confirmation_receipt_bound": True,
+    "invalid_attempts_present": True,
+    "block_packet_present": True,
+    "no_action_receipt_present": True,
+    "valid_confirmation_receipt_plus_sophia_recommendation_not_authorization": True,
+    "explicit_action_request_required": True,
+    "sophia_approval_packet_required": True,
+    "confirmation_receipt_not_action": True,
+    "destructive_authorization_attempt_not_action": True,
+    "destructive_action_authorized": False,
+    "destructive_action_performed": False,
+    "action_request_not_emitted": True,
+    "sophia_approval_packet_not_emitted": True,
+    "pruning_not_performed": True,
+    "deletion_not_performed": True,
+    "federation_blocked_by_default": True,
+    "reward_actions_not_performed": True,
+    "memory_write_blocked": True,
+    "atlas_canon_write_blocked": True,
+    "model_weight_training_blocked": True,
+    "deployment_blocked": True,
+    "truth_certification_blocked": True,
+    "promotion_blocked": True,
+    "invalid_attempt_count": 13,
+    "blocked_attempt_count": 13,
+    "failed_closed_count": 13,
+    "explicit_action_request_emitted": False,
+    "sophia_approval_packet_emitted": False,
+    "encrypted_shard_transfer_performed": False,
+    "token_economy_performed": False,
+    "network_calls_performed": False,
+}
+PMR_09_CLAIMS_BLOCKED = [
+    "not destructive action authorization",
+    "not explicit action request",
+    "not Sophia approval packet",
+    "not destructive action receipt",
+    "not pruning execution",
+    "not deletion execution",
+    "not federation authorization",
+    "not encrypted shard transfer",
+    "not reward entitlement",
+    "not token economy",
+    "not human value score",
+    "not Atlas canon",
+    "not model weight training",
+    "not memory write authorization",
+    "not network authorization",
+    "not truth certification",
+    "not deployment authority",
+    "not final answer release",
+    "not hallucination reduction proof",
+    "not recursive self-improvement",
+    "not production readiness",
+]
+
 PMR_CLAIMS_BLOCKED = [
     "not generic cache",
     "not hidden memory hoard",
@@ -2129,6 +2214,220 @@ ACCEPTED_PHASES = [
         "reviewer_caution": "PMR-07 emits invalid user confirmation attempts, failed-closed block packets, and a no-action receipt only. It proves that invalid, missing, forged, expired, scope-mismatched, policy-blocked, or Sophia-approval-missing confirmation attempts cannot authorize destructive PMR action. It does not confirm, approve, prune, delete, federate, transfer encrypted shards, reward users, run a token economy, write memory, train models, deploy, or certify truth.",
         "publication_status": "dashboard_indexed",
     },
+
+    {
+        "phase_id": "PMR-02-GLOBAL-PROVENANCE-COHERENCE-UTILITY",
+        "repo": "pdxvoiceteacher/CoherenceLattice",
+        "status": "accepted",
+        "evidence_type": "architecture_scaffold",
+        "product_posture": "local_artifact_lifecycle_utility_scoring",
+        "primary_artifacts": PMR_02_ARTIFACTS,
+        "dashboard_summary": PMR_02_DASHBOARD_SUMMARY,
+        "prerequisite_phases": [
+            "PMR-00-PROVENANCE-MEMORY-RESERVOIR",
+            "PMR-01-LOCAL-ARTIFACT-INDEX",
+            "PROVENANCE-TRAINING-LEDGER-00",
+            "ARTIFACT-CONTRACT-REGISTRY-01",
+            "UNIVERSAL-COMPATIBILITY-MATRIX-00",
+            "RW-COMP-LOCAL-ADAPTER-01",
+            "EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER-02",
+        ],
+        "reproduction_command_summary": PMR_02_COMMAND,
+        "claim_allowed": "PMR-02-GLOBAL-PROVENANCE-COHERENCE-UTILITY demonstrates deterministic local utility scoring for PMR-indexed artifacts and emits lifecycle recommendations while preserving non-authority boundaries.",
+        "claims_blocked": PMR_02_CLAIMS_BLOCKED,
+        "reviewer_caution": "PMR-02 computes lifecycle/storage utility scores and recommendations only. It does not prune artifacts. GPCU is not reward entitlement and not token economy. It does not certify truth. It does not authorize federation. It does not write memory, train models, deploy, or assign human value.",
+        "publication_status": "dashboard_indexed",
+    },
+
+    {
+        "phase_id": "PMR-03-LIFECYCLE-STATE-MACHINE",
+        "repo": "pdxvoiceteacher/CoherenceLattice",
+        "status": "accepted",
+        "evidence_type": "architecture_scaffold",
+        "product_posture": "lifecycle_transition_candidates_with_no_action_receipts",
+        "primary_artifacts": PMR_03_ARTIFACTS,
+        "dashboard_summary": PMR_03_DASHBOARD_SUMMARY,
+        "prerequisite_phases": [
+            "PMR-00-PROVENANCE-MEMORY-RESERVOIR",
+            "PMR-01-LOCAL-ARTIFACT-INDEX",
+            "PMR-02-GLOBAL-PROVENANCE-COHERENCE-UTILITY",
+            "PROVENANCE-TRAINING-LEDGER-00",
+            "ARTIFACT-CONTRACT-REGISTRY-01",
+            "UNIVERSAL-COMPATIBILITY-MATRIX-00",
+            "RW-COMP-LOCAL-ADAPTER-01",
+            "EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER-02",
+        ],
+        "reproduction_command_summary": PMR_03_COMMAND,
+        "claim_allowed": "PMR-03-LIFECYCLE-STATE-MACHINE demonstrates lifecycle transition candidates and no-action receipts for PMR-indexed artifacts while preserving non-action and non-authority boundaries.",
+        "claims_blocked": PMR_03_CLAIMS_BLOCKED,
+        "reviewer_caution": "PMR-03 emits lifecycle transition candidates and no-action receipts only. It does not prune, delete, federate, transfer encrypted shards, reward users, run a token economy, write memory, train models, deploy, or certify truth. Destructive action requires future Sophia lifecycle audit and user confirmation.",
+        "publication_status": "dashboard_indexed",
+    },
+
+    {
+        "phase_id": "PMR-04-LIFECYCLE-AUDIT-PREFLIGHT",
+        "repo": "pdxvoiceteacher/CoherenceLattice",
+        "status": "accepted",
+        "evidence_type": "architecture_scaffold",
+        "product_posture": "lifecycle_audit_preflight_candidates_with_block_and_no_action_receipts",
+        "primary_artifacts": PMR_04_ARTIFACTS,
+        "dashboard_summary": PMR_04_DASHBOARD_SUMMARY,
+        "prerequisite_phases": [
+            "PMR-00-PROVENANCE-MEMORY-RESERVOIR",
+            "PMR-01-LOCAL-ARTIFACT-INDEX",
+            "PMR-02-GLOBAL-PROVENANCE-COHERENCE-UTILITY",
+            "PMR-03-LIFECYCLE-STATE-MACHINE",
+            "PROVENANCE-TRAINING-LEDGER-00",
+            "ARTIFACT-CONTRACT-REGISTRY-01",
+            "UNIVERSAL-COMPATIBILITY-MATRIX-00",
+            "RW-COMP-LOCAL-ADAPTER-01",
+            "EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER-02",
+        ],
+        "reproduction_command_summary": PMR_04_COMMAND,
+        "claim_allowed": "PMR-04-LIFECYCLE-AUDIT-PREFLIGHT demonstrates lifecycle audit preflight candidates, block packets, and no-action receipts for PMR-indexed artifacts while preserving non-approval, non-action, and non-authority boundaries.",
+        "claims_blocked": PMR_04_CLAIMS_BLOCKED,
+        "reviewer_caution": "PMR-04 emits lifecycle audit candidates, a block packet, and a no-action receipt only. Preflight is not approval. Audit candidate is not action. It does not prune, delete, federate, transfer encrypted shards, reward users, run a token economy, write memory, write canon, train models, deploy, certify truth, release final answers, prove hallucination reduction, or recursively self-improve. Sophia lifecycle audit and user confirmation are required before destructive local action.",
+        "publication_status": "dashboard_indexed",
+    },
+
+    {
+        "phase_id": "PMR-05-SOPHIA-LIFECYCLE-AUDIT-REVIEW",
+        "repo": "pdxvoiceteacher/CoherenceLattice",
+        "status": "accepted",
+        "evidence_type": "architecture_scaffold",
+        "product_posture": "fixture_only_sophia_lifecycle_audit_review_with_no_approval_receipt",
+        "primary_artifacts": PMR_05_ARTIFACTS,
+        "dashboard_summary": PMR_05_DASHBOARD_SUMMARY,
+        "prerequisite_phases": [
+            "PMR-00-PROVENANCE-MEMORY-RESERVOIR",
+            "PMR-01-LOCAL-ARTIFACT-INDEX",
+            "PMR-02-GLOBAL-PROVENANCE-COHERENCE-UTILITY",
+            "PMR-03-LIFECYCLE-STATE-MACHINE",
+            "PMR-04-LIFECYCLE-AUDIT-PREFLIGHT",
+            "PROVENANCE-TRAINING-LEDGER-00",
+            "ARTIFACT-CONTRACT-REGISTRY-01",
+            "UNIVERSAL-COMPATIBILITY-MATRIX-00",
+            "RW-COMP-LOCAL-ADAPTER-01",
+            "EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER-02",
+        ],
+        "reproduction_command_summary": PMR_05_COMMAND,
+        "claim_allowed": "PMR-05-SOPHIA-LIFECYCLE-AUDIT-REVIEW demonstrates fixture-only Sophia lifecycle audit review for PMR audit candidates while preserving no-approval and no-action boundaries.",
+        "claims_blocked": PMR_05_CLAIMS_BLOCKED,
+        "reviewer_caution": "PMR-05 emits fixture-only Sophia lifecycle audit review recommendations and a no-approval receipt only. It does not approve, prune, delete, federate, transfer encrypted shards, reward users, run a token economy, write memory, train models, deploy, or certify truth. Destructive action requires future Sophia approval and user confirmation.",
+        "publication_status": "dashboard_indexed",
+    },
+
+    {
+        "phase_id": "PMR-06-USER-CONFIRMATION-PREFLIGHT",
+        "repo": "pdxvoiceteacher/CoherenceLattice",
+        "status": "accepted",
+        "evidence_type": "architecture_scaffold",
+        "product_posture": "user_confirmation_request_preflight_with_no_action_receipt",
+        "primary_artifacts": PMR_06_ARTIFACTS,
+        "dashboard_summary": PMR_06_DASHBOARD_SUMMARY,
+        "prerequisite_phases": [
+            "PMR-00-PROVENANCE-MEMORY-RESERVOIR",
+            "PMR-01-LOCAL-ARTIFACT-INDEX",
+            "PMR-02-GLOBAL-PROVENANCE-COHERENCE-UTILITY",
+            "PMR-03-LIFECYCLE-STATE-MACHINE",
+            "PMR-04-LIFECYCLE-AUDIT-PREFLIGHT",
+            "PMR-05-SOPHIA-LIFECYCLE-AUDIT-REVIEW",
+            "PROVENANCE-TRAINING-LEDGER-00",
+            "ARTIFACT-CONTRACT-REGISTRY-01",
+            "UNIVERSAL-COMPATIBILITY-MATRIX-00",
+            "RW-COMP-LOCAL-ADAPTER-01",
+            "EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER-02",
+        ],
+        "reproduction_command_summary": PMR_06_COMMAND,
+        "claim_allowed": "PMR-06-USER-CONFIRMATION-PREFLIGHT demonstrates fixture-only user confirmation request preflight for PMR lifecycle recommendations while preserving no-confirmation and no-action boundaries.",
+        "claims_blocked": PMR_06_CLAIMS_BLOCKED,
+        "reviewer_caution": "PMR-06 emits user confirmation request candidates, prompt packets, block packets, and a no-action receipt only. It does not confirm, approve, prune, delete, federate, transfer encrypted shards, reward users, run a token economy, write memory, train models, deploy, or certify truth. Destructive action requires future Sophia approval and future user confirmation.",
+        "publication_status": "dashboard_indexed",
+    },
+
+    {
+        "phase_id": "PMR-07-USER-CONFIRMATION-NEGATIVE-CONTROL",
+        "repo": "pdxvoiceteacher/CoherenceLattice",
+        "status": "accepted",
+        "evidence_type": "negative_control",
+        "product_posture": "invalid_confirmation_fails_closed_with_no_action_receipt",
+        "primary_artifacts": PMR_07_ARTIFACTS,
+        "dashboard_summary": PMR_07_DASHBOARD_SUMMARY,
+        "prerequisite_phases": [
+            "PMR-00-PROVENANCE-MEMORY-RESERVOIR",
+            "PMR-01-LOCAL-ARTIFACT-INDEX",
+            "PMR-02-GLOBAL-PROVENANCE-COHERENCE-UTILITY",
+            "PMR-03-LIFECYCLE-STATE-MACHINE",
+            "PMR-04-LIFECYCLE-AUDIT-PREFLIGHT",
+            "PMR-05-SOPHIA-LIFECYCLE-AUDIT-REVIEW",
+            "PMR-06-USER-CONFIRMATION-PREFLIGHT",
+            "PROVENANCE-TRAINING-LEDGER-00",
+            "ARTIFACT-CONTRACT-REGISTRY-01",
+            "UNIVERSAL-COMPATIBILITY-MATRIX-00",
+        ],
+        "reproduction_command_summary": PMR_07_COMMAND,
+        "claim_allowed": "PMR-07-USER-CONFIRMATION-NEGATIVE-CONTROL demonstrates that invalid, missing, forged, expired, scope-mismatched, policy-blocked, or Sophia-approval-missing user confirmation attempts fail closed and cannot authorize destructive PMR action.",
+        "claims_blocked": PMR_07_CLAIMS_BLOCKED,
+        "reviewer_caution": "PMR-07 emits invalid user confirmation attempts, failed-closed block packets, and a no-action receipt only. It proves that invalid, missing, forged, expired, scope-mismatched, policy-blocked, or Sophia-approval-missing confirmation attempts cannot authorize destructive PMR action. It does not confirm, approve, prune, delete, federate, transfer encrypted shards, reward users, run a token economy, write memory, train models, deploy, or certify truth.",
+        "publication_status": "dashboard_indexed",
+    },
+
+    {
+        "phase_id": "PMR-08-VALID-USER-CONFIRMATION-RECEIPT-SCAFFOLD",
+        "repo": "pdxvoiceteacher/CoherenceLattice",
+        "status": "accepted",
+        "evidence_type": "architecture_scaffold",
+        "product_posture": "valid_scoped_confirmation_receipts_for_non_action_cases",
+        "primary_artifacts": PMR_08_ARTIFACTS,
+        "dashboard_summary": PMR_08_DASHBOARD_SUMMARY,
+        "prerequisite_phases": [
+            "PMR-00-PROVENANCE-MEMORY-RESERVOIR",
+            "PMR-01-LOCAL-ARTIFACT-INDEX",
+            "PMR-02-GLOBAL-PROVENANCE-COHERENCE-UTILITY",
+            "PMR-03-LIFECYCLE-STATE-MACHINE",
+            "PMR-04-LIFECYCLE-AUDIT-PREFLIGHT",
+            "PMR-05-SOPHIA-LIFECYCLE-AUDIT-REVIEW",
+            "PMR-06-USER-CONFIRMATION-PREFLIGHT",
+            "PMR-07-USER-CONFIRMATION-NEGATIVE-CONTROL",
+            "PROVENANCE-TRAINING-LEDGER-00",
+            "ARTIFACT-CONTRACT-REGISTRY-01",
+            "UNIVERSAL-COMPATIBILITY-MATRIX-00",
+        ],
+        "reproduction_command_summary": PMR_08_COMMAND,
+        "claim_allowed": "PMR-08-VALID-USER-CONFIRMATION-RECEIPT-SCAFFOLD demonstrates valid scoped user-confirmation receipts for eligible non-action cases while preserving no-action and non-authority boundaries.",
+        "claims_blocked": PMR_08_CLAIMS_BLOCKED,
+        "reviewer_caution": "PMR-08 emits valid scoped user confirmation receipts for eligible non-action cases only. It does not perform destructive action, approve, prune, delete, federate, transfer encrypted shards, reward users, run a token economy, write memory, train models, deploy, or certify truth. Destructive action still requires future Sophia approval and a future explicit action request.",
+        "publication_status": "dashboard_indexed",
+    },
+
+    {
+        "phase_id": "PMR-09-DESTRUCTIVE-ACTION-AUTHORIZATION-NEGATIVE-CONTROL",
+        "repo": "pdxvoiceteacher/CoherenceLattice",
+        "status": "accepted",
+        "evidence_type": "negative_control",
+        "product_posture": "destructive_action_authorization_fails_closed_without_future_request_and_approval",
+        "primary_artifacts": PMR_09_ARTIFACTS,
+        "dashboard_summary": PMR_09_DASHBOARD_SUMMARY,
+        "prerequisite_phases": [
+            "PMR-00-PROVENANCE-MEMORY-RESERVOIR",
+            "PMR-01-LOCAL-ARTIFACT-INDEX",
+            "PMR-02-GLOBAL-PROVENANCE-COHERENCE-UTILITY",
+            "PMR-03-LIFECYCLE-STATE-MACHINE",
+            "PMR-04-LIFECYCLE-AUDIT-PREFLIGHT",
+            "PMR-05-SOPHIA-LIFECYCLE-AUDIT-REVIEW",
+            "PMR-06-USER-CONFIRMATION-PREFLIGHT",
+            "PMR-07-USER-CONFIRMATION-NEGATIVE-CONTROL",
+            "PMR-08-VALID-USER-CONFIRMATION-RECEIPT-SCAFFOLD",
+            "PROVENANCE-TRAINING-LEDGER-00",
+            "ARTIFACT-CONTRACT-REGISTRY-01",
+            "UNIVERSAL-COMPATIBILITY-MATRIX-00",
+        ],
+        "reproduction_command_summary": PMR_09_COMMAND,
+        "claim_allowed": "PMR-09-DESTRUCTIVE-ACTION-AUTHORIZATION-NEGATIVE-CONTROL demonstrates that destructive PMR action remains blocked when explicit future action request, Sophia approval packet, or scope-valid authorization is missing.",
+        "claims_blocked": PMR_09_CLAIMS_BLOCKED,
+        "reviewer_caution": "PMR-09 emits invalid destructive-action authorization attempts, block packets, and a no-action receipt only. It proves that valid confirmation receipt plus Sophia recommendation is not action authorization. It does not emit an explicit action request, Sophia approval packet, destructive authorization packet, destructive action receipt, pruning receipt, deletion receipt, federation receipt, reward receipt, memory write, model training receipt, deployment decision, or truth certification.",
+        "publication_status": "dashboard_indexed",
+    },
     {
         "phase_id": "UNIVERSAL-STAGE-PIPELINE-00",
         "repo": "pdxvoiceteacher/CoherenceLattice",
@@ -2764,6 +3063,21 @@ BOUNDARIES = [
     "PMR-08 is not model-weight training.",
     "PMR-08 is not deployment authority.",
     "PMR-08 is not truth certification.",
+    "Valid confirmation receipt plus Sophia recommendation is not action authorization.",
+    "Explicit future action request and Sophia approval packet are required before destructive action.",
+    "No explicit action request packet is emitted in PMR-09.",
+    "No Sophia approval packet is emitted in PMR-09.",
+    "No destructive action authorization packet is emitted in PMR-09.",
+    "No destructive action receipt is emitted in PMR-09.",
+    "No pruning or deletion occurs in PMR-09.",
+    "PMR-09 is not federation authorization.",
+    "PMR-09 is not reward entitlement.",
+    "PMR-09 is not token economy.",
+    "PMR-09 is not Atlas canon.",
+    "PMR-09 is not memory write authorization.",
+    "PMR-09 is not model-weight training.",
+    "PMR-09 is not deployment authority.",
+    "PMR-09 is not truth certification.",
     "Governed provenance resources may be future infrastructure rewards, but truth is not for sale.",
 ]
 GLOBAL_NON_CLAIMS = [
@@ -2916,6 +3230,7 @@ def reproducibility_index() -> dict[str, Any]:
                 {"name": "PMR user confirmation preflight acceptance", "command": PMR_06_COMMAND},
                 {"name": "PMR user confirmation negative control acceptance", "command": PMR_07_COMMAND},
                 {"name": "PMR valid user confirmation receipt scaffold acceptance", "command": PMR_08_COMMAND},
+                {"name": "PMR destructive action authorization negative control acceptance", "command": PMR_09_COMMAND},
                 {"name": "Universal Stage Pipeline acceptance", "command": UNIVERSAL_STAGE_PIPELINE_COMMAND},
                 {"name": "Artifact Contract Registry acceptance", "command": ARTIFACT_CONTRACT_REGISTRY_COMMAND},
                 {"name": "Universal Compatibility Matrix acceptance", "command": UNIVERSAL_COMPATIBILITY_MATRIX_COMMAND},
@@ -2971,6 +3286,7 @@ def artifact_index() -> dict[str, Any]:
             "PMR-06-USER-CONFIRMATION-PREFLIGHT": PMR_06_ARTIFACTS,
             "PMR-07-USER-CONFIRMATION-NEGATIVE-CONTROL": PMR_07_ARTIFACTS,
             "PMR-08-VALID-USER-CONFIRMATION-RECEIPT-SCAFFOLD": PMR_08_ARTIFACTS,
+            "PMR-09-DESTRUCTIVE-ACTION-AUTHORIZATION-NEGATIVE-CONTROL": PMR_09_ARTIFACTS,
             "UNIVERSAL-STAGE-PIPELINE-00": UNIVERSAL_STAGE_PIPELINE_ARTIFACTS,
             "ARTIFACT-CONTRACT-REGISTRY-01": ARTIFACT_CONTRACT_REGISTRY_ARTIFACTS,
             "UNIVERSAL-COMPATIBILITY-MATRIX-00": UNIVERSAL_COMPATIBILITY_MATRIX_ARTIFACTS,
@@ -3017,6 +3333,7 @@ def status_payload() -> dict[str, Any]:
         "latest_pmr_user_confirmation_preflight": "PMR-06-USER-CONFIRMATION-PREFLIGHT",
         "latest_pmr_user_confirmation_negative_control": "PMR-07-USER-CONFIRMATION-NEGATIVE-CONTROL",
         "latest_pmr_valid_user_confirmation_receipt_scaffold": "PMR-08-VALID-USER-CONFIRMATION-RECEIPT-SCAFFOLD",
+        "latest_pmr_destructive_action_authorization_negative_control": "PMR-09-DESTRUCTIVE-ACTION-AUTHORIZATION-NEGATIVE-CONTROL",
         "pmr_00_indexed": True,
         "pmr_01_indexed": True,
         "pmr_02_indexed": True,
@@ -3034,6 +3351,11 @@ def status_payload() -> dict[str, Any]:
         "pmr_08_indexed": True,
         "not_confirmation_action": True,
         "not_scope_validation_action": True,
+        "pmr_09_indexed": True,
+        "not_action_authorization": True,
+        "not_explicit_action_request": True,
+        "not_sophia_approval_packet": True,
+        "not_destructive_action_receipt": True,
         "not_sophia_approval": True,
         "not_audit_action": True,
         "not_lifecycle_action": True,
@@ -3823,6 +4145,39 @@ PMR-08-VALID-USER-CONFIRMATION-RECEIPT-SCAFFOLD demonstrates valid scoped user-c
 
 Reviewer caution: PMR-08 emits valid scoped user confirmation receipts for eligible non-action cases only. It does not perform destructive action, approve, prune, delete, federate, transfer encrypted shards, reward users, run a token economy, write memory, train models, deploy, or certify truth. Destructive action still requires future Sophia approval and a future explicit action request.
 """,
+
+        "pmr-destructive-action-authorization-negative-control.md": f"""# PMR destructive-action authorization negative control
+
+Required phrase: Valid confirmation receipt plus Sophia recommendation is not action authorization.
+
+PMR-09-DESTRUCTIVE-ACTION-AUTHORIZATION-NEGATIVE-CONTROL consumes PMR-00 through PMR-08 artifacts and emits invalid destructive-action authorization attempts, a block packet, a no-action receipt, and a review packet. Valid confirmation receipt plus Sophia recommendation is not action authorization. Explicit future action request and Sophia approval packet are required before destructive action. No explicit action request packet is emitted. No Sophia approval packet is emitted. No destructive action authorization packet is emitted. No destructive action receipt is emitted. No pruning or deletion occurs in PMR-09.
+
+No federation occurs. No encrypted shard transfer occurs. No reward occurs. No token economy occurs. No memory write occurs. No Atlas canon write occurs. No model-weight training occurs. No deployment occurs. No truth certification occurs. No final-answer release occurs. No hallucination-reduction proof occurs. No recursive self-improvement occurs.
+
+## Allowed claim
+
+PMR-09-DESTRUCTIVE-ACTION-AUTHORIZATION-NEGATIVE-CONTROL demonstrates that destructive PMR action remains blocked when explicit future action request, Sophia approval packet, or scope-valid authorization is missing.
+
+## Reproduction command
+
+```powershell
+{PMR_09_COMMAND}
+```
+
+## Primary artifacts
+
+{chr(10).join(f"- `{artifact}`" for artifact in PMR_09_ARTIFACTS)}
+
+## Dashboard posture
+
+{chr(10).join(f"- `{key} = {str(value).lower()}`" for key, value in PMR_09_DASHBOARD_SUMMARY.items())}
+
+## Blocked claims
+
+{chr(10).join(f"- {claim}" for claim in PMR_09_CLAIMS_BLOCKED)}
+
+Reviewer caution: PMR-09 emits invalid destructive-action authorization attempts, block packets, and a no-action receipt only. It proves that valid confirmation receipt plus Sophia recommendation is not action authorization. It does not emit an explicit action request, Sophia approval packet, destructive authorization packet, destructive action receipt, pruning receipt, deletion receipt, federation receipt, reward receipt, memory write, model training receipt, deployment decision, or truth certification.
+""",
         "rw-comp-local-adapter.md": f"""# RW-COMP local adapter
 
 Required phrase: Deltas are structural review descriptors only.
@@ -4325,6 +4680,20 @@ Expected posture:
 {chr(10).join(f"- `{key} = {str(value).lower()}`" for key, value in PMR_08_DASHBOARD_SUMMARY.items())}
 
 Reviewer caution: PMR-08 emits valid scoped user confirmation receipts for eligible non-action cases only. It does not perform destructive action, approve, prune, delete, federate, transfer encrypted shards, reward users, run a token economy, write memory, train models, deploy, or certify truth. Destructive action still requires future Sophia approval and a future explicit action request.
+
+## PMR destructive-action authorization negative control
+
+Valid confirmation receipt plus Sophia recommendation is not action authorization. PMR-09-DESTRUCTIVE-ACTION-AUTHORIZATION-NEGATIVE-CONTROL emits invalid destructive-action authorization attempts, block packets, and a no-action receipt. Explicit future action request and Sophia approval packet are required before destructive action. No explicit action request packet is emitted. No Sophia approval packet is emitted. No destructive action authorization packet is emitted. No destructive action receipt is emitted. No pruning or deletion occurs in PMR-09. No federation occurs. No encrypted shard transfer occurs. No reward occurs. No token economy occurs. No memory write occurs. No Atlas canon write occurs. No model-weight training occurs. No deployment occurs. No truth certification occurs.
+
+```powershell
+{PMR_09_COMMAND}
+```
+
+Expected posture:
+
+{chr(10).join(f"- `{key} = {str(value).lower()}`" for key, value in PMR_09_DASHBOARD_SUMMARY.items())}
+
+Reviewer caution: PMR-09 emits invalid destructive-action authorization attempts, block packets, and a no-action receipt only. It proves that valid confirmation receipt plus Sophia recommendation is not action authorization. It does not emit an explicit action request, Sophia approval packet, destructive authorization packet, destructive action receipt, pruning receipt, deletion receipt, federation receipt, reward receipt, memory write, model training receipt, deployment decision, or truth certification.
 
 Reviewer caution: PMR-00 and PMR-01 define local provenance-memory doctrine, storage policy, artifact indexing, and dependency graph scaffolds only. They do not write memory, canonize artifacts, federate artifacts, transfer encrypted shards, prune artifacts, train models, certify truth, release final answers, deploy, or reward resource contributions.
 

@@ -88,6 +88,7 @@ REQUIRED_PHASES = {
     "PMR-06-USER-CONFIRMATION-PREFLIGHT",
     "PMR-07-USER-CONFIRMATION-NEGATIVE-CONTROL",
     "PMR-08-VALID-USER-CONFIRMATION-RECEIPT-SCAFFOLD",
+    "PMR-09-DESTRUCTIVE-ACTION-AUTHORIZATION-NEGATIVE-CONTROL",
     "SONYA-LOCAL-FIXTURE-ADAPTER-02",
     "SONYA-LOCAL-FIXTURE-ADAPTER-03",
 }
@@ -121,6 +122,10 @@ REQUIRED_COMMAND_FRAGMENTS = (
     "Run-PMR03-Acceptance.ps1",
     "Run-PMR04-Acceptance.ps1",
     "Run-PMR05-Acceptance.ps1",
+    "Run-PMR06-Acceptance.ps1",
+    "Run-PMR07-Acceptance.ps1",
+    "Run-PMR08-Acceptance.ps1",
+    "Run-PMR09-Acceptance.ps1",
     "Run-SONYA-LOCAL-FIXTURE-ADAPTER02-Acceptance.ps1",
     "Run-SONYA-LOCAL-FIXTURE-ADAPTER03-Acceptance.ps1",
 )
@@ -168,7 +173,7 @@ def test_dashboard_contains_all_accepted_phases(tmp_path):
     dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text())
     phase_ids = {entry["phase_id"] for entry in dashboard["accepted_phases"]}
     assert phase_ids == REQUIRED_PHASES
-    assert dashboard["accepted_phase_count"] == 37
+    assert dashboard["accepted_phase_count"] == 38
 
 
 def test_dashboard_command_summaries_use_accepted_harnesses(tmp_path):
@@ -195,6 +200,7 @@ def test_validator_required_phases_include_public_utility_alpha_raw_baseline_and
     assert "SONYA-LOCAL-FIXTURE-ADAPTER-01" in VALIDATOR_REQUIRED_PHASES
     assert "EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER-01" in VALIDATOR_REQUIRED_PHASES
     assert "SONYA-LOCAL-FIXTURE-ADAPTER-02" in VALIDATOR_REQUIRED_PHASES
+    assert "PMR-09-DESTRUCTIVE-ACTION-AUTHORIZATION-NEGATIVE-CONTROL" in VALIDATOR_REQUIRED_PHASES
 
 
 def test_public_utility_alpha_indexes_and_docs_are_generated(tmp_path):
@@ -922,6 +928,7 @@ def test_sonya_local_fixture_adapter_multi_route_indexes_docs_and_boundaries_are
 
 def test_validator_required_phases_include_sonya_local_fixture_adapter_multi_route():
     assert "SONYA-LOCAL-FIXTURE-ADAPTER-02" in VALIDATOR_REQUIRED_PHASES
+    assert "PMR-09-DESTRUCTIVE-ACTION-AUTHORIZATION-NEGATIVE-CONTROL" in VALIDATOR_REQUIRED_PHASES
 
 
 def test_validator_fails_if_sonya_local_fixture_adapter_multi_route_makes_forbidden_claims(tmp_path):
@@ -1781,6 +1788,44 @@ def test_pmr_08_valid_user_confirmation_receipt_scaffold_indexes_and_docs_are_ge
     boundary_text = "\n".join(claim_boundaries["boundaries"])
     assert "Valid user confirmation receipt is not action." in boundary_text
     assert "Confirmation authorizes eligibility for later action review, not action itself." in boundary_text
+
+
+def test_pmr_09_destructive_action_authorization_negative_control_indexes_and_docs_are_generated(tmp_path):
+    out_dir, docs_dir = run_builder(tmp_path)
+    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text())
+    reproducibility = json.loads((out_dir / "reproducibility_index.json").read_text())
+    artifact_index = json.loads((out_dir / "artifact_index.json").read_text())
+    claim_boundaries = json.loads((out_dir / "claim_boundary_index.json").read_text())
+
+    phase_ids = {entry["phase_id"] for entry in dashboard["accepted_phases"]}
+    assert "PMR-09-DESTRUCTIVE-ACTION-AUTHORIZATION-NEGATIVE-CONTROL" in phase_ids
+    commands = json.dumps(reproducibility)
+    assert "Run-PMR09-Acceptance.ps1" in commands
+    artifacts = artifact_index["phases"]["PMR-09-DESTRUCTIVE-ACTION-AUTHORIZATION-NEGATIVE-CONTROL"]
+    assert "pmr_destructive_action_authorization_negative_control_packet.json" in artifacts
+    assert "pmr_invalid_destructive_action_authorization_attempts.jsonl" in artifacts
+    assert "pmr_destructive_action_authorization_no_action_receipt.json" in artifacts
+    assert (docs_dir / "pmr-destructive-action-authorization-negative-control.md").exists()
+    boundary_text = "\n".join(claim_boundaries["boundaries"])
+    assert "Valid confirmation receipt plus Sophia recommendation is not action authorization." in boundary_text
+    assert "Explicit future action request and Sophia approval packet are required before destructive action." in boundary_text
+
+
+def test_validator_fails_if_pmr_09_makes_forbidden_claims(tmp_path):
+    forbidden_claims = (
+        "destructive action authorization",
+        "explicit action request",
+        "Sophia approval packet",
+        "destructive action receipt",
+    )
+    for claim in forbidden_claims:
+        out_dir, docs_dir = run_builder(tmp_path / claim.replace(" ", "_"))
+        page = docs_dir / "pmr-destructive-action-authorization-negative-control.md"
+        page.write_text(page.read_text() + f"\nPMR-09 claims {claim}.\n")
+        result = validate_dashboard(out_dir / "experiment_suite_dashboard.json", docs_dir)
+        assert result["passed"] is False
+        forbidden_found = [found.lower() for found in result["forbidden_claims_found"]]
+        assert claim.lower() in forbidden_found or f"claims {claim.lower()}" in forbidden_found, result
 
 
 def test_validator_fails_if_pmr_08_makes_forbidden_claims(tmp_path):

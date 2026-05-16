@@ -255,6 +255,19 @@
       "export_bundle_parity_report.json",
       "pmr_08_acceptance_receipt.json"
     ],
+    "PMR-09-DESTRUCTIVE-ACTION-AUTHORIZATION-NEGATIVE-CONTROL": [
+      "pmr_destructive_action_authorization_negative_control_packet.json",
+      "pmr_invalid_destructive_action_authorization_attempts.jsonl",
+      "pmr_destructive_action_authorization_block_packet.json",
+      "pmr_destructive_action_authorization_no_action_receipt.json",
+      "pmr_destructive_action_authorization_review_packet.json",
+      "pmr_destructive_action_authorization_negative_control_summary.md",
+      "artifact_inventory.json",
+      "run_artifact_manifest.json",
+      "export_bundle_manifest.json",
+      "export_bundle_parity_report.json",
+      "pmr_09_acceptance_receipt.json"
+    ],
     "UNIVERSAL-STAGE-PIPELINE-00": [
       "universal_pipeline_manifest.json",
       "universal_pipeline_review_packet.json",

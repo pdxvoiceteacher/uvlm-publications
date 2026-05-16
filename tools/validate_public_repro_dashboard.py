@@ -45,6 +45,7 @@ REQUIRED_PHASES = {
     "PMR-06-USER-CONFIRMATION-PREFLIGHT",
     "PMR-07-USER-CONFIRMATION-NEGATIVE-CONTROL",
     "PMR-08-VALID-USER-CONFIRMATION-RECEIPT-SCAFFOLD",
+    "PMR-09-DESTRUCTIVE-ACTION-AUTHORIZATION-NEGATIVE-CONTROL",
 }
 REQUIRED_BOUNDARY_PHRASES = (
     "not truth certification",
@@ -316,6 +317,21 @@ REQUIRED_BOUNDARY_PHRASES = (
     "PMR-08 is not model-weight training.",
     "PMR-08 is not deployment authority.",
     "PMR-08 is not truth certification.",
+    "Valid confirmation receipt plus Sophia recommendation is not action authorization.",
+    "Explicit future action request and Sophia approval packet are required before destructive action.",
+    "No explicit action request packet is emitted in PMR-09.",
+    "No Sophia approval packet is emitted in PMR-09.",
+    "No destructive action authorization packet is emitted in PMR-09.",
+    "No destructive action receipt is emitted in PMR-09.",
+    "No pruning or deletion occurs in PMR-09.",
+    "PMR-09 is not federation authorization.",
+    "PMR-09 is not reward entitlement.",
+    "PMR-09 is not token economy.",
+    "PMR-09 is not Atlas canon.",
+    "PMR-09 is not memory write authorization.",
+    "PMR-09 is not model-weight training.",
+    "PMR-09 is not deployment authority.",
+    "PMR-09 is not truth certification.",
     "Governed provenance resources may be future infrastructure rewards, but truth is not for sale.",
 )
 FORBIDDEN_PHRASES = (
@@ -412,6 +428,10 @@ FORBIDDEN_PHRASES = (
     "human value score",
     "deletion execution",
     "encrypted shard transfer",
+    "claims destructive action authorization",
+    "claims explicit action request",
+    "claims Sophia approval packet",
+    "claims destructive action receipt",
     "claims destructive action",
     "claims valid user confirmation",
     "user confirmation execution",
@@ -453,6 +473,31 @@ def _is_negated(text: str, index: int) -> bool:
     return any(marker in window for marker in ALLOWED_NEGATED)
 
 
+def _is_allowed_no_emit_receipt_context(text: str, index: int) -> bool:
+    window = text[max(0, index - 320) : index]
+    no_emit_index = window.rfind("does not emit")
+    claims_index = window.rfind("claims")
+    return (
+        no_emit_index != -1
+        and claims_index < no_emit_index
+        and any(
+            marker in window
+            for marker in (
+                "explicit action request",
+                "destructive authorization packet",
+                "destructive action receipt",
+                "pruning receipt",
+                "deletion receipt",
+                "federation receipt",
+                "reward receipt",
+                "memory write",
+                "model training receipt",
+                "deployment decision",
+            )
+        )
+    )
+
+
 def _is_allowed_local_adapter_context(text: str, index: int) -> bool:
     window = text[max(0, index - 48) : index]
     return any(
@@ -478,6 +523,9 @@ def _forbidden_hits(text: str) -> list[str]:
             index = text.find(normalized_phrase, start)
             if index == -1:
                 break
+            if phrase.startswith("claims ") and not _is_negated(text, index):
+                hits.append(phrase)
+                break
             if (
                 phrase in {"adapter execution", "adapter executed"}
                 and _is_allowed_local_adapter_context(text, index)
@@ -488,9 +536,14 @@ def _forbidden_hits(text: str) -> list[str]:
             if (
                 phrase == "Sophia approval"
                 and (
-                    "requires future " in text[max(0, index - 32) : index]
-                    or "without " in text[max(0, index - 32) : index]
-                    or "missing " in text[max(0, index - 16) : index]
+                    "requires future " in text[max(0, index - 64) : index]
+                    or "required before" in text[index : index + 96]
+                    or "without " in text[max(0, index - 64) : index]
+                    or "missing " in text[max(0, index - 32) : index]
+                    or (
+                        "blocked when" in text[max(0, index - 96) : index]
+                        and "missing" in text[index : index + 96]
+                    )
                     or text[index : index + 40].startswith("sophia approval missing")
                 )
             ):
@@ -521,10 +574,15 @@ def _forbidden_hits(text: str) -> list[str]:
                 text[index : index + 40].startswith("federation is blocked by default")
                 or text[index : index + 48].startswith("federation remains blocked by default")
                 or text[index : index + 40].startswith("federation_blocked")
+                or text[index : index + 40].startswith("federation blocked")
                 or text[index : index + 40].startswith("federation_authorization")
+                or text[index : index + 40].startswith("federation authorization")
                 or text[index : index + 40].startswith("federation = true")
                 or text[index : index + 40].startswith('federation": true')
             ):
+                start = index + len(normalized_phrase)
+                continue
+            if _is_allowed_no_emit_receipt_context(text, index):
                 start = index + len(normalized_phrase)
                 continue
             if not _is_negated(text, index):

@@ -797,6 +797,64 @@ Expected posture:
 
 Reviewer caution: PMR-08 emits valid scoped user confirmation receipts for eligible non-action cases only. It does not perform destructive action, approve, prune, delete, federate, transfer encrypted shards, reward users, run a token economy, write memory, train models, deploy, or certify truth. Destructive action still requires future Sophia approval and a future explicit action request.
 
+## PMR destructive-action authorization negative control
+
+Valid confirmation receipt plus Sophia recommendation is not action authorization. PMR-09-DESTRUCTIVE-ACTION-AUTHORIZATION-NEGATIVE-CONTROL emits invalid destructive-action authorization attempts, block packets, and a no-action receipt. Explicit future action request and Sophia approval packet are required before destructive action. No explicit action request packet is emitted. No Sophia approval packet is emitted. No destructive action authorization packet is emitted. No destructive action receipt is emitted. No pruning or deletion occurs in PMR-09. No federation occurs. No encrypted shard transfer occurs. No reward occurs. No token economy occurs. No memory write occurs. No Atlas canon write occurs. No model-weight training occurs. No deployment occurs. No truth certification occurs.
+
+```powershell
+.\experiments\Run-PMR09-Acceptance.ps1 `
+  -OutputRoot C:\UVLM\run_artifacts\pmr_09 `
+  -LogDir C:\UVLM\run_artifacts\pmr_09_logs `
+  -Mode balanced `
+  -LocalStorageBudgetBytes 5368709120 `
+  -CiMode
+```
+
+Expected posture:
+
+- `review_status = accepted_as_pmr_destructive_action_authorization_negative_control`
+- `source_pmr_policy_bound = true`
+- `source_pmr_index_bound = true`
+- `source_pmr_utility_bound = true`
+- `source_pmr_lifecycle_bound = true`
+- `source_pmr_audit_preflight_bound = true`
+- `source_pmr_sophia_review_bound = true`
+- `source_pmr_user_confirmation_preflight_bound = true`
+- `source_pmr_user_confirmation_negative_control_bound = true`
+- `source_pmr_valid_confirmation_receipt_bound = true`
+- `invalid_attempts_present = true`
+- `block_packet_present = true`
+- `no_action_receipt_present = true`
+- `valid_confirmation_receipt_plus_sophia_recommendation_not_authorization = true`
+- `explicit_action_request_required = true`
+- `sophia_approval_packet_required = true`
+- `confirmation_receipt_not_action = true`
+- `destructive_authorization_attempt_not_action = true`
+- `destructive_action_authorized = false`
+- `destructive_action_performed = false`
+- `action_request_not_emitted = true`
+- `sophia_approval_packet_not_emitted = true`
+- `pruning_not_performed = true`
+- `deletion_not_performed = true`
+- `federation_blocked_by_default = true`
+- `reward_actions_not_performed = true`
+- `memory_write_blocked = true`
+- `atlas_canon_write_blocked = true`
+- `model_weight_training_blocked = true`
+- `deployment_blocked = true`
+- `truth_certification_blocked = true`
+- `promotion_blocked = true`
+- `invalid_attempt_count = 13`
+- `blocked_attempt_count = 13`
+- `failed_closed_count = 13`
+- `explicit_action_request_emitted = false`
+- `sophia_approval_packet_emitted = false`
+- `encrypted_shard_transfer_performed = false`
+- `token_economy_performed = false`
+- `network_calls_performed = false`
+
+Reviewer caution: PMR-09 emits invalid destructive-action authorization attempts, block packets, and a no-action receipt only. It proves that valid confirmation receipt plus Sophia recommendation is not action authorization. It does not emit an explicit action request, Sophia approval packet, destructive authorization packet, destructive action receipt, pruning receipt, deletion receipt, federation receipt, reward receipt, memory write, model training receipt, deployment decision, or truth certification.
+
 Reviewer caution: PMR-00 and PMR-01 define local provenance-memory doctrine, storage policy, artifact indexing, and dependency graph scaffolds only. They do not write memory, canonize artifacts, federate artifacts, transfer encrypted shards, prune artifacts, train models, certify truth, release final answers, deploy, or reward resource contributions.
 
 ## RW-COMP local adapter

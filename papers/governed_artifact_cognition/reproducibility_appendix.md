@@ -564,3 +564,19 @@ PMR-08 consumes PMR-00 through PMR-07 artifacts, emits valid scoped user confirm
   -LocalStorageBudgetBytes 5368709120 `
   -CiMode
 ```
+## PMR-09 Destructive-Action Authorization Negative Control
+
+PMR-09-DESTRUCTIVE-ACTION-AUTHORIZATION-NEGATIVE-CONTROL adds a publication-indexed negative-control scaffold for destructive-action authorization attempts. Valid confirmation receipt plus Sophia recommendation is not action authorization. Explicit future action request and Sophia approval packet are required before destructive action. No explicit action request packet is emitted. No Sophia approval packet is emitted. No destructive action authorization packet is emitted. No destructive action receipt is emitted. No pruning or deletion occurs in PMR-09.
+
+PMR-09 consumes PMR-00 through PMR-08 artifacts and emits invalid destructive-action authorization attempts, a block packet, a no-action receipt, and a review packet. Valid user confirmation receipt plus Sophia lifecycle review recommendation is not sufficient to authorize destructive action without a future explicit action request and future Sophia approval packet. No federation occurs. No encrypted shard transfer occurs. No reward occurs. No token economy occurs. No memory write occurs. No Atlas canon write occurs. No model-weight training occurs. No deployment occurs. No truth certification occurs.
+
+### PMR-09 acceptance command
+
+```powershell
+.\experiments\Run-PMR09-Acceptance.ps1 `
+  -OutputRoot C:\UVLM\run_artifacts\pmr_09 `
+  -LogDir C:\UVLM\run_artifacts\pmr_09_logs `
+  -Mode balanced `
+  -LocalStorageBudgetBytes 5368709120 `
+  -CiMode
+```

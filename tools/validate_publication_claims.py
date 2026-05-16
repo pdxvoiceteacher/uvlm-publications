@@ -332,6 +332,17 @@ PAPER_CONFIGS: dict[str, dict[str, Any]] = {
             "pmr_user_confirmation_scope_validation_packet.json",
             "pmr_user_confirmation_receipt_no_action_receipt.json",
             "Run-PMR08-Acceptance.ps1",
+            "PMR-09-DESTRUCTIVE-ACTION-AUTHORIZATION-NEGATIVE-CONTROL",
+            "Valid confirmation receipt plus Sophia recommendation is not action authorization.",
+            "Explicit future action request and Sophia approval packet are required before destructive action.",
+            "No explicit action request packet is emitted.",
+            "No Sophia approval packet is emitted.",
+            "No destructive action receipt is emitted.",
+            "No pruning or deletion occurs in PMR-09.",
+            "pmr_destructive_action_authorization_negative_control_packet.json",
+            "pmr_invalid_destructive_action_authorization_attempts.jsonl",
+            "pmr_destructive_action_authorization_no_action_receipt.json",
+            "Run-PMR09-Acceptance.ps1",
         ),
         "forbidden_overclaims": (
             "proves universal intelligence",
@@ -431,6 +442,10 @@ PAPER_CONFIGS: dict[str, dict[str, Any]] = {
             "deletion execution",
             "claims deletion execution",
             "encrypted shard transfer",
+            "claims destructive action authorization",
+            "claims explicit action request",
+            "claims Sophia approval packet",
+            "claims destructive action receipt",
             "claims destructive action",
             "claims valid user confirmation",
             "user confirmation execution",
@@ -516,6 +531,11 @@ PAPER_CONFIGS: dict[str, dict[str, Any]] = {
             "pmr_08_indexed": True,
             "not_confirmation_action": True,
             "not_scope_validation_action": True,
+            "pmr_09_indexed": True,
+            "not_action_authorization": True,
+            "not_explicit_action_request": True,
+            "not_sophia_approval_packet": True,
+            "not_destructive_action_receipt": True,
             "not_sophia_approval": True,
             "not_audit_action": True,
             "not_lifecycle_action": True,
@@ -631,9 +651,11 @@ def _forbidden_hits(normalized_text: str, forbidden: tuple[str, ...]) -> list[st
             if (
                 phrase == "Sophia approval"
                 and (
-                    "requires future " in normalized_text[max(0, index - 32) : index]
-                    or "without " in normalized_text[max(0, index - 32) : index]
-                    or "missing " in normalized_text[max(0, index - 16) : index]
+                    "requires future " in normalized_text[max(0, index - 64) : index]
+                    or "required before" in normalized_text[index : index + 96]
+                    or "packet is required" in normalized_text[index : index + 64]
+                    or "without " in normalized_text[max(0, index - 64) : index]
+                    or "missing " in normalized_text[max(0, index - 32) : index]
                     or normalized_text[index : index + 40].startswith("sophia approval missing")
                 )
             ):

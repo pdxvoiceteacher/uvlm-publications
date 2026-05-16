@@ -88,5 +88,10 @@
   "not_confirmation_authority": true,
   "pmr_08_indexed": true,
   "not_confirmation_action": true,
-  "not_scope_validation_action": true
+  "not_scope_validation_action": true,
+  "pmr_09_indexed": true,
+  "not_action_authorization": true,
+  "not_explicit_action_request": true,
+  "not_sophia_approval_packet": true,
+  "not_destructive_action_receipt": true
 }
