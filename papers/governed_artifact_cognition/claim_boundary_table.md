@@ -193,3 +193,122 @@
 | Federation is blocked by default. | PMR-00/PMR-01 | Provenance Memory Reservoir boundary. |
 | PMR is not resource economy or token economy. | PMR-00/PMR-01 | Provenance Memory Reservoir boundary. |
 | Governed provenance resources may be future infrastructure rewards, but truth is not for sale. | PMR-00/PMR-01 | Provenance Memory Reservoir boundary. |
+| GPCU is lifecycle/storage utility, not truth score. | PMR-02 utility scores are storage-lifecycle signals only. |
+| GPCU is not reward entitlement. | PMR-02 does not assign reward rights. |
+| GPCU is not token economy. | PMR-02 does not run or define token mechanics. |
+| GPCU is not human value score. | PMR-02 does not score people or human worth. |
+| Lifecycle recommendation is not pruning. | PMR-02 emits recommendations only; pruning execution remains blocked. |
+| Reward mechanics are deferred. | Any reward mechanics are outside this paper and patch. |
+| Federation remains blocked by default. | PMR-02 does not authorize federation. |
+| PMR-02 is not Atlas canon. | Utility scoring does not canonize artifacts. |
+| PMR-02 is not memory write authorization. | Utility scoring does not authorize memory writes. |
+| PMR-02 is not model-weight training. | Utility scoring does not train model weights. |
+| PMR-02 is not deployment authority. | Utility scoring does not deploy systems. |
+| PMR-02 is not hallucination reduction proof. | Utility scoring is not model-quality evidence. |
+| Recommendation is not transition. | PMR-03 recommendations do not change lifecycle state. |
+| Transition candidate is not action. | PMR-03 candidates remain reviewable candidates only. |
+| Lifecycle state is not truth status. | Lifecycle metadata is not truth certification. |
+| Destructive action requires future Sophia lifecycle audit. | PMR-03 does not perform destructive actions. |
+| Destructive action requires future user confirmation. | PMR-03 does not authorize deletion or pruning. |
+| No pruning or deletion occurs in PMR-03. | PMR-03 emits no-action receipts and candidates only. |
+| PMR-03 is not federation authorization. | Lifecycle candidates do not authorize federation. |
+| PMR-03 is not reward entitlement. | Lifecycle candidates do not allocate rewards. |
+| PMR-03 is not token economy. | Lifecycle candidates do not run token mechanics. |
+| PMR-03 is not Atlas canon. | Lifecycle candidates do not canonize artifacts. |
+| PMR-03 is not memory write authorization. | Lifecycle candidates do not authorize memory writes. |
+| PMR-03 is not model-weight training. | Lifecycle candidates do not train model weights. |
+| PMR-03 is not deployment authority. | Lifecycle candidates do not deploy systems. |
+| PMR-03 is not truth certification. | Lifecycle candidates do not certify truth. |
+| Preflight is not approval. | PMR-04 preflight emits candidates and blocks only. |
+| Audit candidate is not action. | PMR-04 audit candidates do not perform lifecycle actions. |
+| Sophia lifecycle audit is required before destructive action. | PMR-04 does not emit Sophia approval. |
+| User confirmation is required before destructive local action. | PMR-04 does not authorize destructive local action. |
+| No Sophia approval packet is emitted. | PMR-04 produces no approval packet. |
+| No pruning or deletion occurs in PMR-04. | PMR-04 emits no-action receipts and blocks only. |
+| PMR-04 is not federation authorization. | Audit preflight does not authorize federation. |
+| PMR-04 is not encrypted shard transfer. | Audit preflight does not transfer encrypted shards. |
+| PMR-04 is not reward entitlement. | Audit preflight does not allocate rewards. |
+| PMR-04 is not token economy. | Audit preflight does not run token mechanics. |
+| PMR-04 is not memory write authorization. | Audit preflight does not authorize memory writes. |
+| PMR-04 is not Atlas canon write. | Audit preflight does not write Atlas canon. |
+| PMR-04 is not model-weight training. | Audit preflight does not train model weights. |
+| PMR-04 is not deployment authority. | Audit preflight does not deploy systems. |
+| PMR-04 is not truth certification. | Audit preflight does not certify truth. |
+| Sophia review is not Sophia approval. | PMR-05 review rows do not approve lifecycle actions. |
+| Audit recommendation is not action. | PMR-05 recommendations do not perform lifecycle actions. |
+| No Sophia approval packet is emitted. | PMR-05 emits a no-approval receipt only. |
+| Destructive action requires future Sophia approval. | PMR-05 does not approve destructive action. |
+| Destructive action requires future user confirmation. | PMR-05 does not authorize destructive local action. |
+| No pruning or deletion occurs in PMR-05. | PMR-05 is review-only and no-action. |
+| PMR-05 is not federation authorization. | Review recommendations do not authorize federation. |
+| PMR-05 is not reward entitlement. | Review recommendations do not allocate rewards. |
+| PMR-05 is not token economy. | Review recommendations do not run token mechanics. |
+| PMR-05 is not Atlas canon. | Review recommendations do not canonize artifacts. |
+| PMR-05 is not memory write authorization. | Review recommendations do not authorize memory writes. |
+| PMR-05 is not model-weight training. | Review recommendations do not train model weights. |
+| PMR-05 is not deployment authority. | Review recommendations do not deploy systems. |
+| PMR-05 is not truth certification. | Review recommendations do not certify truth. |
+| User confirmation request is not user confirmation. | PMR-06 request candidates do not confirm user intent. |
+| User confirmation is not action. | PMR-06 confirmation preflight does not perform lifecycle actions. |
+| No user confirmation receipt is emitted. | PMR-06 emits a no-action receipt only. |
+| Destructive action requires future Sophia approval. | PMR-06 does not approve destructive action. |
+| Destructive action requires future user confirmation. | PMR-06 does not confirm destructive local action. |
+| No pruning or deletion occurs in PMR-06. | PMR-06 is preflight-only and no-action. |
+| PMR-06 is not Sophia approval. | User confirmation preflight does not approve lifecycle actions. |
+| PMR-06 is not federation authorization. | User confirmation requests do not authorize federation. |
+| PMR-06 is not reward entitlement. | User confirmation requests do not allocate rewards. |
+| PMR-06 is not token economy. | User confirmation requests do not run token mechanics. |
+| PMR-06 is not Atlas canon. | User confirmation requests do not canonize artifacts. |
+| PMR-06 is not memory write authorization. | User confirmation requests do not authorize memory writes. |
+| PMR-06 is not model-weight training. | User confirmation requests do not train model weights. |
+| PMR-06 is not deployment authority. | User confirmation requests do not deploy systems. |
+| PMR-06 is not truth certification. | User confirmation requests do not certify truth. |
+| Invalid confirmation is not confirmation. | PMR-07 invalid attempts fail closed. |
+| Missing confirmation is not confirmation. | PMR-07 missing-confirmation attempts fail closed. |
+| Ambiguous confirmation is not confirmation. | PMR-07 ambiguous attempts fail closed. |
+| Forged confirmation is not confirmation. | PMR-07 forged attempts fail closed. |
+| Expired confirmation is not confirmation. | PMR-07 expired attempts fail closed. |
+| Scope-mismatched confirmation is not confirmation. | PMR-07 scope-mismatched attempts fail closed. |
+| Confirmation without Sophia approval is insufficient. | PMR-07 blocks confirmation attempts missing Sophia approval. |
+| Confirmation cannot override retain-lock, quarantine, revocation, or dependency blocks. | PMR-07 keeps policy blocks authoritative over invalid confirmation attempts. |
+| No user confirmation receipt is emitted in PMR-07. | PMR-07 emits no-action receipts only. |
+| No pruning or deletion occurs in PMR-07. | PMR-07 is negative-control only and no-action. |
+| PMR-07 is not Sophia approval. | Negative controls do not approve lifecycle actions. |
+| PMR-07 is not federation authorization. | Negative controls do not authorize federation. |
+| PMR-07 is not reward entitlement. | Negative controls do not allocate rewards. |
+| PMR-07 is not token economy. | Negative controls do not run token mechanics. |
+| PMR-07 is not Atlas canon. | Negative controls do not canonize artifacts. |
+| PMR-07 is not memory write authorization. | Negative controls do not authorize memory writes. |
+| PMR-07 is not model-weight training. | Negative controls do not train model weights. |
+| PMR-07 is not deployment authority. | Negative controls do not deploy systems. |
+| PMR-07 is not truth certification. | Negative controls do not certify truth. |
+| Valid user confirmation receipt is not action. | PMR-08 receipts do not perform lifecycle actions. |
+| Confirmation authorizes eligibility for later action review, not action itself. | PMR-08 records eligibility only. |
+| Scope validation is not action. | Scope checks do not perform lifecycle actions. |
+| Destructive action still requires future Sophia approval. | PMR-08 does not approve destructive action. |
+| Destructive action still requires future explicit action request. | PMR-08 does not request destructive action. |
+| Negative-control invalid confirmations remain blocked. | PMR-08 does not unblock PMR-07 failures. |
+| No pruning or deletion occurs in PMR-08. | PMR-08 is receipt-only and no-action. |
+| PMR-08 is not federation authorization. | Receipt scaffolds do not authorize federation. |
+| PMR-08 is not reward entitlement. | Receipt scaffolds do not allocate rewards. |
+| PMR-08 is not token economy. | Receipt scaffolds do not run token mechanics. |
+| PMR-08 is not Atlas canon. | Receipt scaffolds do not canonize artifacts. |
+| PMR-08 is not memory write authorization. | Receipt scaffolds do not authorize memory writes. |
+| PMR-08 is not model-weight training. | Receipt scaffolds do not train model weights. |
+| PMR-08 is not deployment authority. | Receipt scaffolds do not deploy systems. |
+| PMR-08 is not truth certification. | Receipt scaffolds do not certify truth. |
+| Valid confirmation receipt plus Sophia recommendation is not action authorization. | PMR-09 blocks authorization attempts without required future packets. |
+| Explicit future action request and Sophia approval packet are required before destructive action. | PMR-09 emits neither required packet. |
+| No explicit action request packet is emitted in PMR-09. | PMR-09 does not request destructive action. |
+| No Sophia approval packet is emitted in PMR-09. | PMR-09 does not approve destructive action. |
+| No destructive action authorization packet is emitted in PMR-09. | PMR-09 emits block and no-action receipts only. |
+| No destructive action receipt is emitted in PMR-09. | PMR-09 performs no destructive action. |
+| No pruning or deletion occurs in PMR-09. | PMR-09 is negative-control only and no-action. |
+| PMR-09 is not federation authorization. | Negative controls do not authorize federation. |
+| PMR-09 is not reward entitlement. | Negative controls do not allocate rewards. |
+| PMR-09 is not token economy. | Negative controls do not run token mechanics. |
+| PMR-09 is not Atlas canon. | Negative controls do not canonize artifacts. |
+| PMR-09 is not memory write authorization. | Negative controls do not authorize memory writes. |
+| PMR-09 is not model-weight training. | Negative controls do not train model weights. |
+| PMR-09 is not deployment authority. | Negative controls do not deploy systems. |
+| PMR-09 is not truth certification. | Negative controls do not certify truth. |
