@@ -93,3 +93,23 @@ PMR-10 consumes PMR-00 through PMR-09 artifacts and emits explicit action reques
 PMR-ARCH-DIVERSITY-CHECKPOINT-00 adds a publication-indexed architecture diversity checkpoint. PMR authorization ladder is not the whole Triadic Brain. Pattern diversity is required. PMR-only continuation is not recommended immediately after PMR-10. Checkpoint recommendation is not execution. No runtime authority is granted. PMR-SIM-00 is recommended as the next evidence-producing lane.
 
 PMR-ARCH-DIVERSITY-CHECKPOINT-00 consumes PMR-00 through PMR-10 plus active non-PMR lane references. It summarizes the PMR authorization ladder, evaluates non-PMR lanes, records gaps, and emits a next-lane recommendation while preserving no-authority boundaries. Evidence Review, Sonya adapter path, TEL/telemetry, retrosynthesis, PMR simulation/statistics, federation stress, human provenance, market design, harness debt, and publication debt remain active lanes. No pruning or deletion occurs in PMR-ARCH-DIVERSITY-CHECKPOINT-00. No federation occurs. No reward occurs. No token economy occurs. No memory write occurs. No model-weight training occurs. No deployment occurs. No truth certification occurs.
+
+
+## PMR-SIM-00 Simulation Baseline Comparison
+
+PMR-SIM-00 adds a publication-indexed deterministic fixture simulation and baseline comparison scaffold. PMR becomes scientific only when it can lose. PMR policy is allowed to lose. The simulation compares retain_all, recency_only, random_retention, cost_minimizing, and pmr_gpcu_heuristic policies across synthetic provenance-bearing artifact streams. Fixture streams are synthetic and deterministic. Retained does not mean true. Replay-ready does not mean canon. Stored does not mean trained.
+
+Simulation result is not production memory policy. Simulation result is not PMR superiority proof. Simulation result is not hallucination reduction proof. Simulation result is not federation proof. Simulation result is not reward economy proof. Simpler baselines may win metrics or scenarios. PMR-SIM-00 is not Atlas canon, not memory write authorization, not model-weight training, not deployment authority, and not truth certification.
+
+The comparison summary records that retain_all wins at least replay_success_rate, audit_availability_rate, and dependency_integrity_rate; cost_minimizing wins at least storage_cost, review_burden, and policy_failure_count; and pmr_gpcu_heuristic wins 7 fixture scenarios, but this is not PMR superiority proof. It is not production pruning. It is not production deletion. It is not reward entitlement. It is not token economy. It is not federation authorization. It is not memory write. It is not model-weight training. It is not deployment authority. It is not final-answer release. It is not recursive self-improvement. It is not production readiness.
+
+### PMR-SIM-00 acceptance command
+
+```powershell
+.\experiments\Run-PMR-SIM00-Acceptance.ps1 `
+  -OutputRoot C:\UVLM\run_artifacts\pmr_sim_00 `
+  -LogDir C:\UVLM\run_artifacts\pmr_sim_00_logs `
+  -Repetitions 3 `
+  -DeterministicSeed 1729 `
+  -CiMode
+```

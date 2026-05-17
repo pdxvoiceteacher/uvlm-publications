@@ -101,5 +101,10 @@
   "pmr_arch_diversity_checkpoint_indexed": true,
   "not_product_completion": true,
   "not_runtime_authority": true,
-  "not_checkpoint_execution": true
+  "not_checkpoint_execution": true,
+  "pmr_sim_00_indexed": true,
+  "not_production_memory_policy": true,
+  "not_pmr_superiority_proof": true,
+  "not_federation_proof": true,
+  "not_reward_economy_proof": true
 }

@@ -1057,6 +1057,60 @@ Expected posture:
 
 Reviewer caution: SONYA-LOCAL-FIXTURE-ADAPTER-03 is a lineage clarity packet only. It clarifies that nested source fixture references are dependencies and not stale identity leakage. It does not execute adapters, authorize network, call providers, write memory, release final answers, train models, or deploy.
 
+
+## PMR simulation baseline comparison
+
+PMR becomes scientific only when it can lose. PMR policy is allowed to lose. PMR-SIM-00 compares retain_all, recency_only, random_retention, cost_minimizing, and pmr_gpcu_heuristic over synthetic deterministic fixture streams. Retained does not mean true. Replay-ready does not mean canon. Stored does not mean trained.
+
+```powershell
+.\experiments\Run-PMR-SIM00-Acceptance.ps1 `
+  -OutputRoot C:\UVLM\run_artifacts\pmr_sim_00 `
+  -LogDir C:\UVLM\run_artifacts\pmr_sim_00_logs `
+  -Repetitions 3 `
+  -DeterministicSeed 1729 `
+  -CiMode
+```
+
+Expected posture:
+
+- `review_status = accepted_as_pmr_simulation_baseline_scaffold`
+- `simulation_id = pmr-sim-00-806c5904ee0ff6a7`
+- `deterministic_seed = 1729`
+- `simulation_repetition_count = 3`
+- `row_count = 120`
+- `source_pmr_ladder_bound = true`
+- `architecture_checkpoint_bound = true`
+- `fixture_streams_present = true`
+- `baseline_policies_present = true`
+- `pmr_policy_present = true`
+- `result_rows_present = true`
+- `comparison_packet_present = true`
+- `statistics_packet_present = true`
+- `pmr_policy_allowed_to_lose = true`
+- `simulation_not_production_policy = true`
+- `simulation_not_superiority_proof = true`
+- `simulation_not_hallucination_reduction_proof = true`
+- `simulation_not_federation_proof = true`
+- `simulation_not_reward_economy_proof = true`
+- `federation_blocked_by_default = true`
+- `reward_actions_not_performed = true`
+- `memory_write_blocked = true`
+- `atlas_canon_write_blocked = true`
+- `model_weight_training_blocked = true`
+- `deployment_blocked = true`
+- `truth_certification_blocked = true`
+- `promotion_blocked = true`
+- `production_policy_selected = false`
+- `federation_performed = false`
+- `reward_actions_performed = false`
+- `token_economy_performed = false`
+- `memory_write_performed = false`
+- `atlas_canon_write_performed = false`
+- `model_weight_training_performed = false`
+- `export_parity_passed = true`
+
+Reviewer caution: PMR-SIM-00 runs deterministic synthetic fixture simulations only. It does not select a production memory policy, is not PMR superiority proof, is not hallucination reduction proof, is not federation proof, is not reward economy proof, does not write memory, does not train models, does not deploy, and does not certify truth.
+
 ## Sophia commands
 
 ```powershell

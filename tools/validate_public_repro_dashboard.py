@@ -48,6 +48,7 @@ REQUIRED_PHASES = {
     "PMR-09-DESTRUCTIVE-ACTION-AUTHORIZATION-NEGATIVE-CONTROL",
     "PMR-10-DESTRUCTIVE-ACTION-AUTHORIZATION-PREFLIGHT",
     "PMR-ARCH-DIVERSITY-CHECKPOINT-00",
+    "PMR-SIM-00",
 }
 REQUIRED_BOUNDARY_PHRASES = (
     "not truth certification",
@@ -357,6 +358,23 @@ REQUIRED_BOUNDARY_PHRASES = (
     "Checkpoint is not product completion.",
     "No runtime authority is granted.",
     "PMR-SIM-00 is recommended as the next evidence-producing lane.",
+    "PMR becomes scientific only when it can lose.",
+    "PMR policy is allowed to lose.",
+    "Simulation result is not production memory policy.",
+    "Simulation result is not PMR superiority proof.",
+    "Simulation result is not hallucination reduction proof.",
+    "Simulation result is not federation proof.",
+    "Simulation result is not reward economy proof.",
+    "Fixture streams are synthetic and deterministic.",
+    "Retained does not mean true.",
+    "Replay-ready does not mean canon.",
+    "Stored does not mean trained.",
+    "Simpler baselines may win metrics or scenarios.",
+    "Run-PMR-SIM00-Acceptance.ps1",
+    "pmr_simulation_manifest.json",
+    "pmr_simulation_result_rows.jsonl",
+    "pmr_simulation_comparison_packet.json",
+    "pmr_simulation_statistics_packet.json",
     "Evidence Review, Sonya adapter path, TEL/telemetry, retrosynthesis, PMR simulation/statistics, federation stress, human provenance, market design, harness debt, and publication debt remain active lanes.",
     "No pruning or deletion occurs in PMR-ARCH-DIVERSITY-CHECKPOINT-00.",
     "PMR-ARCH-DIVERSITY-CHECKPOINT-00 is not federation authorization.",
@@ -395,6 +413,10 @@ FORBIDDEN_PHRASES = (
     "model superiority proven",
     "model superiority proof",
     "hallucination reduction proof",
+    "PMR superiority proof",
+    "production memory policy",
+    "federation proof",
+    "reward economy proof",
     "model quality benchmark",
     "live model evaluation",
     "remote provider evaluation",
@@ -620,9 +642,14 @@ def _forbidden_hits(text: str) -> list[str]:
                 or text[index : index + 48].startswith("federation remains blocked by default")
                 or text[index : index + 40].startswith("federation_blocked")
                 or text[index : index + 40].startswith("federation blocked")
+                or (text[index : index + 40].startswith("federation proof") and _is_negated(text, index))
                 or text[index : index + 40].startswith("federation_authorization")
+                or text[max(0, index - 20) : index].endswith("not_")
                 or text[index : index + 40].startswith("federation authorization")
                 or text[index : index + 40].startswith("federation stress")
+                or text[index : index + 40].startswith("federation occurs")
+                or text[index : index + 40].startswith("federation performed")
+                or text[index : index + 40].startswith("federation_performed")
                 or text[index : index + 40].startswith("federation_stress")
                 or text[index : index + 40].startswith("federation = true")
                 or text[index : index + 40].startswith('federation": true')

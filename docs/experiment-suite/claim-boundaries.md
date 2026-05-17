@@ -315,6 +315,23 @@
 - PMR-ARCH-DIVERSITY-CHECKPOINT-00 is not model-weight training.
 - PMR-ARCH-DIVERSITY-CHECKPOINT-00 is not deployment authority.
 - PMR-ARCH-DIVERSITY-CHECKPOINT-00 is not truth certification.
+- PMR becomes scientific only when it can lose.
+- PMR policy is allowed to lose.
+- Simulation result is not production memory policy.
+- Simulation result is not PMR superiority proof.
+- Simulation result is not hallucination reduction proof.
+- Simulation result is not federation proof.
+- Simulation result is not reward economy proof.
+- Fixture streams are synthetic and deterministic.
+- Retained does not mean true.
+- Replay-ready does not mean canon.
+- Stored does not mean trained.
+- Simpler baselines may win metrics or scenarios.
+- PMR-SIM-00 is not Atlas canon.
+- PMR-SIM-00 is not memory write authorization.
+- PMR-SIM-00 is not model-weight training.
+- PMR-SIM-00 is not deployment authority.
+- PMR-SIM-00 is not truth certification.
 - Governed provenance resources may be future infrastructure rewards, but truth is not for sale.
 
 No oracle posture. No deployment posture. No final-answer posture. No AI consciousness claim. No universal ontology claim.
