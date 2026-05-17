@@ -159,6 +159,145 @@
 - PMR-01 performs indexing only, not pruning.
 - Federation is blocked by default.
 - PMR is not resource economy or token economy.
+- GPCU is lifecycle/storage utility, not truth score.
+- GPCU is not reward entitlement.
+- GPCU is not token economy.
+- GPCU is not human value score.
+- Lifecycle recommendation is not pruning.
+- Reward mechanics are deferred.
+- Federation remains blocked by default.
+- PMR-02 is not Atlas canon.
+- PMR-02 is not memory write authorization.
+- PMR-02 is not model-weight training.
+- PMR-02 is not deployment authority.
+- PMR-02 is not hallucination reduction proof.
+- Recommendation is not transition; transition candidate is not action.
+- Recommendation is not transition.
+- Transition candidate is not action.
+- Lifecycle state is not truth status.
+- Destructive action requires future Sophia lifecycle audit.
+- Destructive action requires future user confirmation.
+- No pruning or deletion occurs in PMR-03.
+- PMR-03 is not federation authorization.
+- PMR-03 is not reward entitlement.
+- PMR-03 is not token economy.
+- PMR-03 is not Atlas canon.
+- PMR-03 is not memory write authorization.
+- PMR-03 is not model-weight training.
+- PMR-03 is not deployment authority.
+- PMR-03 is not truth certification.
+- Preflight is not approval.
+- Audit candidate is not action.
+- Sophia lifecycle audit is required before destructive action.
+- User confirmation is required before destructive local action.
+- No Sophia approval packet is emitted.
+- No pruning or deletion occurs in PMR-04.
+- PMR-04 is not federation authorization.
+- PMR-04 is not encrypted shard transfer.
+- PMR-04 is not reward entitlement.
+- PMR-04 is not token economy.
+- PMR-04 is not memory write authorization.
+- PMR-04 is not Atlas canon write.
+- PMR-04 is not model-weight training.
+- PMR-04 is not deployment authority.
+- PMR-04 is not truth certification.
+- PMR-04 is not final-answer release.
+- PMR-04 is not hallucination-reduction proof.
+- PMR-04 is not recursive self-improvement.
+- Sophia review is not Sophia approval.
+- Audit recommendation is not action.
+- No Sophia approval packet is emitted.
+- Destructive action requires future Sophia approval.
+- Destructive action requires future user confirmation.
+- No pruning or deletion occurs in PMR-05.
+- PMR-05 is not federation authorization.
+- PMR-05 is not reward entitlement.
+- PMR-05 is not token economy.
+- PMR-05 is not Atlas canon.
+- PMR-05 is not memory write authorization.
+- PMR-05 is not model-weight training.
+- PMR-05 is not deployment authority.
+- PMR-05 is not truth certification.
+- User confirmation request is not user confirmation.
+- User confirmation is not action.
+- No user confirmation receipt is emitted.
+- Destructive action requires future Sophia approval.
+- Destructive action requires future user confirmation.
+- No pruning or deletion occurs in PMR-06.
+- PMR-06 is not Sophia approval.
+- PMR-06 is not federation authorization.
+- PMR-06 is not reward entitlement.
+- PMR-06 is not token economy.
+- PMR-06 is not Atlas canon.
+- PMR-06 is not memory write authorization.
+- PMR-06 is not model-weight training.
+- PMR-06 is not deployment authority.
+- PMR-06 is not truth certification.
+- Invalid confirmation is not confirmation.
+- Missing confirmation is not confirmation.
+- Ambiguous confirmation is not confirmation.
+- Forged confirmation is not confirmation.
+- Expired confirmation is not confirmation.
+- Scope-mismatched confirmation is not confirmation.
+- Confirmation without Sophia approval is insufficient.
+- Confirmation cannot override retain-lock, quarantine, revocation, or dependency blocks.
+- No user confirmation receipt is emitted in PMR-07.
+- No pruning or deletion occurs in PMR-07.
+- PMR-07 is not Sophia approval.
+- PMR-07 is not federation authorization.
+- PMR-07 is not reward entitlement.
+- PMR-07 is not token economy.
+- PMR-07 is not Atlas canon.
+- PMR-07 is not memory write authorization.
+- PMR-07 is not model-weight training.
+- PMR-07 is not deployment authority.
+- PMR-07 is not truth certification.
+- Valid user confirmation receipt is not action.
+- Confirmation authorizes eligibility for later action review, not action itself.
+- Scope validation is not action.
+- Destructive action still requires future Sophia approval.
+- Destructive action still requires future explicit action request.
+- Negative-control invalid confirmations remain blocked.
+- No pruning or deletion occurs in PMR-08.
+- PMR-08 is not federation authorization.
+- PMR-08 is not reward entitlement.
+- PMR-08 is not token economy.
+- PMR-08 is not Atlas canon.
+- PMR-08 is not memory write authorization.
+- PMR-08 is not model-weight training.
+- PMR-08 is not deployment authority.
+- PMR-08 is not truth certification.
+- Valid confirmation receipt plus Sophia recommendation is not action authorization.
+- Explicit future action request and Sophia approval packet are required before destructive action.
+- No explicit action request packet is emitted in PMR-09.
+- No Sophia approval packet is emitted in PMR-09.
+- No destructive action authorization packet is emitted in PMR-09.
+- No destructive action receipt is emitted in PMR-09.
+- No pruning or deletion occurs in PMR-09.
+- PMR-09 is not federation authorization.
+- PMR-09 is not reward entitlement.
+- PMR-09 is not token economy.
+- PMR-09 is not Atlas canon.
+- PMR-09 is not memory write authorization.
+- PMR-09 is not model-weight training.
+- PMR-09 is not deployment authority.
+- PMR-09 is not truth certification.
+- Action request candidate is not explicit action request.
+- Sophia approval request candidate is not Sophia approval.
+- Authorization preflight is not authorization.
+- No explicit action request packet is emitted in PMR-10.
+- No Sophia approval packet is emitted in PMR-10.
+- No destructive action authorization packet is emitted in PMR-10.
+- No destructive action receipt is emitted in PMR-10.
+- No pruning or deletion occurs in PMR-10.
+- PMR-10 is not federation authorization.
+- PMR-10 is not reward entitlement.
+- PMR-10 is not token economy.
+- PMR-10 is not Atlas canon.
+- PMR-10 is not memory write authorization.
+- PMR-10 is not model-weight training.
+- PMR-10 is not deployment authority.
+- PMR-10 is not truth certification.
 - Governed provenance resources may be future infrastructure rewards, but truth is not for sale.
 
 No oracle posture. No deployment posture. No final-answer posture. No AI consciousness claim. No universal ontology claim.
