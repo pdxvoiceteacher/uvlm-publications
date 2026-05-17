@@ -3631,7 +3631,36 @@ Purpose: inspect EVIDENCE-REVIEW-PACK-01 as the first bounded second-pass review
 
 Evidence Review Pack second pass is candidate revision, not accepted evidence.
 
-Run command:
+Purpose: describe SONYA-ADAPTER-CONTRACT-REGISTRY-01 as a fixture-only versioned adapter-contract scaffold for future Sonya adapters. Adapter contracts are versioned configuration; they declare capability, consent, failure, telemetry, and provenance-training policy without enabling live adapters.
+
+## Allowed claim
+
+SONYA-ADAPTER-CONTRACT-REGISTRY-01 demonstrates a fixture-only versioned adapter-contract scaffold that declares adapter capabilities, consent profiles, failure policies, telemetry requirements, and provenance-training policies while keeping all adapters disabled or blocked and forbidding raw output admission.
+
+## Reproduction command
+
+```powershell
+{SONYA_ADAPTER_CONTRACT_REGISTRY_COMMAND}
+```
+
+## Evidence artifacts
+
+{chr(10).join(f"- `{artifact}`" for artifact in SONYA_ADAPTER_CONTRACT_REGISTRY_ARTIFACTS)}
+
+## Dashboard summary
+
+{chr(10).join(f"- {key} = {str(value).lower()}" for key, value in SONYA_ADAPTER_CONTRACT_REGISTRY_DASHBOARD_SUMMARY.items())}
+
+## Reviewer boundaries
+
+- adapter contracts are versioned configuration.
+- all adapters disabled or blocked.
+- no live adapter execution occurred.
+- no network calls occurred.
+- raw output is forbidden.
+- candidate packet required.
+- failure receipts required.
+- provenance-training policy is present.
 
 ```powershell
 {EVIDENCE_REVIEW_PACK_01_COMMAND}
