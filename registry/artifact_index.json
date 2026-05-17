@@ -440,6 +440,43 @@
       "PUB_WAVE_ROSETTA_01.md",
       "reviewer quickstarts",
       "status.json files"
+    ],
+    "EXP-SUITE-REGISTRY-01": [
+      "experiments/experiment_suite_registry.json"
+    ],
+    "EXP-SUITE-REPRO-01": [
+      "experiment_suite_repro_pack.json",
+      "acceptance_matrix.csv",
+      "artifact_manifest.json",
+      "experiment_suite_reproducibility_report.md"
+    ],
+    "WAVE-FAMILY-CLOSEOUT-01": [
+      "waveform_gold_physics_family_acceptance_packet.json"
+    ],
+    "SONYA-INGRESS-HARDEN-03": [
+      "sonya_aegis_smoke_02_acceptance_report.json",
+      "human_review bundle",
+      "auto route bundle"
+    ],
+    "SOPHIA-UCC-ROUTE-01": [
+      "sophia_ucc_route_acceptance_packet.json"
+    ],
+    "PUB-GOV-ARTIFACT-COG-01": [
+      "papers/governed_artifact_cognition/PUB_GOV_ARTIFACT_COG_01.md",
+      "papers/governed_artifact_cognition/reviewer_quickstart.md",
+      "papers/governed_artifact_cognition/status.json"
+    ],
+    "PUB-WAVE-ROSETTA-01": [
+      "papers/waveform_rosetta/PUB_WAVE_ROSETTA_01.md",
+      "papers/waveform_rosetta/reviewer_quickstart.md",
+      "papers/waveform_rosetta/status.json"
+    ],
+    "UNI-02D-SONYA-GATE-01": [
+      "uni02d_sonya_gate_acceptance_report.json",
+      "semantic_term_quarantine_packet.json",
+      "runtime_profile_leakage_packet.json",
+      "uni02d_prior_origin_provenance_packet.json",
+      "uni02d_prior_quarantine_packet.json"
     ]
   }
 }

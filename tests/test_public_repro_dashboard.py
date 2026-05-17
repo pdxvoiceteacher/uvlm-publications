@@ -185,6 +185,7 @@ def test_dedupe_accepted_phases_preserves_order_and_lets_later_entries_win():
     deduped = _dedupe_accepted_phases(phases)
 
     assert [phase["phase_id"] for phase in deduped] == ["PHASE-A", "PHASE-B"]
+    assert len(deduped) == 2
     assert deduped[0]["primary_artifacts"] == ["new.json"]
 
 
@@ -196,6 +197,13 @@ def test_dashboard_contains_all_accepted_phases(tmp_path):
     assert len(accepted_phases) == len(phase_ids)
     assert phase_ids == REQUIRED_PHASES
     assert dashboard["accepted_phase_count"] == len(REQUIRED_PHASES)
+
+
+def test_artifact_index_contains_all_accepted_phases(tmp_path):
+    out_dir, _docs_dir = run_builder(tmp_path)
+    artifact_index = json.loads((out_dir / "artifact_index.json").read_text())
+
+    assert REQUIRED_PHASES <= set(artifact_index["phases"])
 
 
 def test_dashboard_command_summaries_use_accepted_harnesses(tmp_path):
