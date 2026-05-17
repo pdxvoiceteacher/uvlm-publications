@@ -345,3 +345,26 @@
 | PMR-ARCH-DIVERSITY-CHECKPOINT-00 is not model-weight training. | The checkpoint does not train model weights. |
 | PMR-ARCH-DIVERSITY-CHECKPOINT-00 is not deployment authority. | The checkpoint does not deploy systems. |
 | PMR-ARCH-DIVERSITY-CHECKPOINT-00 is not truth certification. | The checkpoint does not certify truth. |
+
+
+## PMR-SIM-00 claim boundaries
+
+| Boundary | Rationale |
+| --- | --- |
+| PMR becomes scientific only when it can lose. | PMR-SIM-00 remains a deterministic synthetic fixture simulation scaffold, not production authority. |
+| PMR policy is allowed to lose. | PMR-SIM-00 remains a deterministic synthetic fixture simulation scaffold, not production authority. |
+| Simulation result is not production memory policy. | PMR-SIM-00 remains a deterministic synthetic fixture simulation scaffold, not production authority. |
+| Simulation result is not PMR superiority proof. | PMR-SIM-00 remains a deterministic synthetic fixture simulation scaffold, not production authority. |
+| Simulation result is not hallucination reduction proof. | PMR-SIM-00 remains a deterministic synthetic fixture simulation scaffold, not production authority. |
+| Simulation result is not federation proof. | PMR-SIM-00 remains a deterministic synthetic fixture simulation scaffold, not production authority. |
+| Simulation result is not reward economy proof. | PMR-SIM-00 remains a deterministic synthetic fixture simulation scaffold, not production authority. |
+| Fixture streams are synthetic and deterministic. | PMR-SIM-00 remains a deterministic synthetic fixture simulation scaffold, not production authority. |
+| Retained does not mean true. | PMR-SIM-00 remains a deterministic synthetic fixture simulation scaffold, not production authority. |
+| Replay-ready does not mean canon. | PMR-SIM-00 remains a deterministic synthetic fixture simulation scaffold, not production authority. |
+| Stored does not mean trained. | PMR-SIM-00 remains a deterministic synthetic fixture simulation scaffold, not production authority. |
+| Simpler baselines may win metrics or scenarios. | PMR-SIM-00 remains a deterministic synthetic fixture simulation scaffold, not production authority. |
+| PMR-SIM-00 is not Atlas canon. | PMR-SIM-00 remains a deterministic synthetic fixture simulation scaffold, not production authority. |
+| PMR-SIM-00 is not memory write authorization. | PMR-SIM-00 remains a deterministic synthetic fixture simulation scaffold, not production authority. |
+| PMR-SIM-00 is not model-weight training. | PMR-SIM-00 remains a deterministic synthetic fixture simulation scaffold, not production authority. |
+| PMR-SIM-00 is not deployment authority. | PMR-SIM-00 remains a deterministic synthetic fixture simulation scaffold, not production authority. |
+| PMR-SIM-00 is not truth certification. | PMR-SIM-00 remains a deterministic synthetic fixture simulation scaffold, not production authority. |

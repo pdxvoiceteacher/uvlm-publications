@@ -612,3 +612,19 @@ PMR-ARCH-DIVERSITY-CHECKPOINT-00 consumes PMR-00 through PMR-10 plus active non-
   -LogDir C:\UVLM\run_artifacts\pmr_arch_diversity_checkpoint_00_logs `
   -CiMode
 ```
+
+
+## PMR-SIM-00 Simulation Baseline Comparison
+
+PMR becomes scientific only when it can lose. PMR policy is allowed to lose. Fixture streams are synthetic and deterministic. Retained does not mean true. Replay-ready does not mean canon. Stored does not mean trained.
+
+```powershell
+.\experiments\Run-PMR-SIM00-Acceptance.ps1 `
+  -OutputRoot C:\UVLM\run_artifacts\pmr_sim_00 `
+  -LogDir C:\UVLM\run_artifacts\pmr_sim_00_logs `
+  -Repetitions 3 `
+  -DeterministicSeed 1729 `
+  -CiMode
+```
+
+Reviewer caution: PMR-SIM-00 runs deterministic synthetic fixture simulations only. It does not select a production memory policy, is not PMR superiority proof, is not hallucination reduction proof, is not federation proof, is not reward economy proof, does not write memory, does not train models, does not deploy, and does not certify truth. Simulation result is not production memory policy. Simulation result is not PMR superiority proof. Simulation result is not hallucination reduction proof. Simulation result is not federation proof. Simulation result is not reward economy proof.
