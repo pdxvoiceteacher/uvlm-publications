@@ -268,6 +268,21 @@
       "export_bundle_parity_report.json",
       "pmr_09_acceptance_receipt.json"
     ],
+    "PMR-10-DESTRUCTIVE-ACTION-AUTHORIZATION-PREFLIGHT": [
+      "pmr_destructive_action_authorization_preflight_packet.json",
+      "pmr_explicit_action_request_candidates.jsonl",
+      "pmr_sophia_approval_request_candidates.jsonl",
+      "pmr_authorization_scope_validation_packet.json",
+      "pmr_destructive_action_authorization_preflight_block_packet.json",
+      "pmr_destructive_action_authorization_preflight_no_action_receipt.json",
+      "pmr_destructive_action_authorization_preflight_review_packet.json",
+      "pmr_destructive_action_authorization_preflight_summary.md",
+      "artifact_inventory.json",
+      "run_artifact_manifest.json",
+      "export_bundle_manifest.json",
+      "export_bundle_parity_report.json",
+      "pmr_10_acceptance_receipt.json"
+    ],
     "UNIVERSAL-STAGE-PIPELINE-00": [
       "universal_pipeline_manifest.json",
       "universal_pipeline_review_packet.json",

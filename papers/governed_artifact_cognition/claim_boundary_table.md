@@ -312,3 +312,19 @@
 | PMR-09 is not model-weight training. | Negative controls do not train model weights. |
 | PMR-09 is not deployment authority. | Negative controls do not deploy systems. |
 | PMR-09 is not truth certification. | Negative controls do not certify truth. |
+| Action request candidate is not explicit action request. | PMR-10 emits candidates only, not explicit requests. |
+| Sophia approval request candidate is not Sophia approval. | PMR-10 emits candidates only, not approvals. |
+| Authorization preflight is not authorization. | PMR-10 preserves no-authorization boundaries. |
+| No explicit action request packet is emitted in PMR-10. | PMR-10 does not request destructive action. |
+| No Sophia approval packet is emitted in PMR-10. | PMR-10 does not approve destructive action. |
+| No destructive action authorization packet is emitted in PMR-10. | PMR-10 emits preflight, block, and no-action receipts only. |
+| No destructive action receipt is emitted in PMR-10. | PMR-10 performs no destructive action. |
+| No pruning or deletion occurs in PMR-10. | PMR-10 is preflight only and no-action. |
+| PMR-10 is not federation authorization. | Authorization preflight does not authorize federation. |
+| PMR-10 is not reward entitlement. | Authorization preflight does not allocate rewards. |
+| PMR-10 is not token economy. | Authorization preflight does not run token mechanics. |
+| PMR-10 is not Atlas canon. | Authorization preflight does not canonize artifacts. |
+| PMR-10 is not memory write authorization. | Authorization preflight does not authorize memory writes. |
+| PMR-10 is not model-weight training. | Authorization preflight does not train model weights. |
+| PMR-10 is not deployment authority. | Authorization preflight does not deploy systems. |
+| PMR-10 is not truth certification. | Authorization preflight does not certify truth. |

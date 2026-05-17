@@ -93,5 +93,9 @@
   "not_action_authorization": true,
   "not_explicit_action_request": true,
   "not_sophia_approval_packet": true,
-  "not_destructive_action_receipt": true
+  "not_destructive_action_receipt": true,
+  "pmr_10_indexed": true,
+  "not_action_request": true,
+  "not_sophia_approval_request": true,
+  "not_authorization_preflight_authority": true
 }

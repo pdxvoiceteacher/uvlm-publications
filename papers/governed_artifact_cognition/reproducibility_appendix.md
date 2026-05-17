@@ -580,3 +580,20 @@ PMR-09 consumes PMR-00 through PMR-08 artifacts and emits invalid destructive-ac
   -LocalStorageBudgetBytes 5368709120 `
   -CiMode
 ```
+
+## PMR-10 Destructive-Action Authorization Preflight
+
+PMR-10-DESTRUCTIVE-ACTION-AUTHORIZATION-PREFLIGHT adds a publication-indexed destructive-action authorization preflight scaffold. Action request candidate is not explicit action request. Sophia approval request candidate is not Sophia approval. Authorization preflight is not authorization. No explicit action request packet is emitted. No Sophia approval packet is emitted. No destructive action authorization packet is emitted. No destructive action receipt is emitted. No pruning or deletion occurs in PMR-10.
+
+PMR-10 consumes PMR-00 through PMR-09 artifacts and emits explicit action request candidates, Sophia approval request candidates, authorization scope validation, a block packet, a no-action receipt, and a review packet while preserving no-authorization and no-action boundaries. No federation occurs. No encrypted shard transfer occurs. No reward occurs. No token economy occurs. No memory write occurs. No Atlas canon write occurs. No model-weight training occurs. No deployment occurs. No truth certification occurs. No final-answer release occurs. No hallucination-reduction proof occurs. No recursive self-improvement occurs.
+
+### PMR-10 acceptance command
+
+```powershell
+.\experiments\Run-PMR10-Acceptance.ps1 `
+  -OutputRoot C:\UVLM\run_artifacts\pmr_10 `
+  -LogDir C:\UVLM\run_artifacts\pmr_10_logs `
+  -Mode balanced `
+  -LocalStorageBudgetBytes 5368709120 `
+  -CiMode
+```

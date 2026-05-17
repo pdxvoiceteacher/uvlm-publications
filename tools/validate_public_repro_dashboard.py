@@ -46,6 +46,7 @@ REQUIRED_PHASES = {
     "PMR-07-USER-CONFIRMATION-NEGATIVE-CONTROL",
     "PMR-08-VALID-USER-CONFIRMATION-RECEIPT-SCAFFOLD",
     "PMR-09-DESTRUCTIVE-ACTION-AUTHORIZATION-NEGATIVE-CONTROL",
+    "PMR-10-DESTRUCTIVE-ACTION-AUTHORIZATION-PREFLIGHT",
 }
 REQUIRED_BOUNDARY_PHRASES = (
     "not truth certification",
@@ -332,6 +333,22 @@ REQUIRED_BOUNDARY_PHRASES = (
     "PMR-09 is not model-weight training.",
     "PMR-09 is not deployment authority.",
     "PMR-09 is not truth certification.",
+    "Action request candidate is not explicit action request.",
+    "Sophia approval request candidate is not Sophia approval.",
+    "Authorization preflight is not authorization.",
+    "No explicit action request packet is emitted in PMR-10.",
+    "No Sophia approval packet is emitted in PMR-10.",
+    "No destructive action authorization packet is emitted in PMR-10.",
+    "No destructive action receipt is emitted in PMR-10.",
+    "No pruning or deletion occurs in PMR-10.",
+    "PMR-10 is not federation authorization.",
+    "PMR-10 is not reward entitlement.",
+    "PMR-10 is not token economy.",
+    "PMR-10 is not Atlas canon.",
+    "PMR-10 is not memory write authorization.",
+    "PMR-10 is not model-weight training.",
+    "PMR-10 is not deployment authority.",
+    "PMR-10 is not truth certification.",
     "Governed provenance resources may be future infrastructure rewards, but truth is not for sale.",
 )
 FORBIDDEN_PHRASES = (
@@ -431,6 +448,7 @@ FORBIDDEN_PHRASES = (
     "claims destructive action authorization",
     "claims explicit action request",
     "claims Sophia approval packet",
+    "claims Sophia approval",
     "claims destructive action receipt",
     "claims destructive action",
     "claims valid user confirmation",
@@ -537,6 +555,9 @@ def _forbidden_hits(text: str) -> list[str]:
                 phrase == "Sophia approval"
                 and (
                     "requires future " in text[max(0, index - 64) : index]
+                    or text[index : index + 42].startswith("sophia approval request candidate")
+                    or text[index : index + 43].startswith("sophia approval request candidates")
+                    or text[index : index + 32].startswith("sophia approval request")
                     or "required before" in text[index : index + 96]
                     or "without " in text[max(0, index - 64) : index]
                     or "missing " in text[max(0, index - 32) : index]

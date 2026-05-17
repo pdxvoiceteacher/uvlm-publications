@@ -343,6 +343,19 @@ PAPER_CONFIGS: dict[str, dict[str, Any]] = {
             "pmr_invalid_destructive_action_authorization_attempts.jsonl",
             "pmr_destructive_action_authorization_no_action_receipt.json",
             "Run-PMR09-Acceptance.ps1",
+            "PMR-10-DESTRUCTIVE-ACTION-AUTHORIZATION-PREFLIGHT",
+            "Action request candidate is not explicit action request.",
+            "Sophia approval request candidate is not Sophia approval.",
+            "Authorization preflight is not authorization.",
+            "No explicit action request packet is emitted.",
+            "No Sophia approval packet is emitted.",
+            "No destructive action receipt is emitted.",
+            "No pruning or deletion occurs in PMR-10.",
+            "pmr_destructive_action_authorization_preflight_packet.json",
+            "pmr_explicit_action_request_candidates.jsonl",
+            "pmr_sophia_approval_request_candidates.jsonl",
+            "pmr_destructive_action_authorization_preflight_no_action_receipt.json",
+            "Run-PMR10-Acceptance.ps1",
         ),
         "forbidden_overclaims": (
             "proves universal intelligence",
@@ -445,6 +458,7 @@ PAPER_CONFIGS: dict[str, dict[str, Any]] = {
             "claims destructive action authorization",
             "claims explicit action request",
             "claims Sophia approval packet",
+            "claims Sophia approval",
             "claims destructive action receipt",
             "claims destructive action",
             "claims valid user confirmation",
@@ -536,6 +550,10 @@ PAPER_CONFIGS: dict[str, dict[str, Any]] = {
             "not_explicit_action_request": True,
             "not_sophia_approval_packet": True,
             "not_destructive_action_receipt": True,
+            "pmr_10_indexed": True,
+            "not_action_request": True,
+            "not_sophia_approval_request": True,
+            "not_authorization_preflight_authority": True,
             "not_sophia_approval": True,
             "not_audit_action": True,
             "not_lifecycle_action": True,
@@ -652,6 +670,9 @@ def _forbidden_hits(normalized_text: str, forbidden: tuple[str, ...]) -> list[st
                 phrase == "Sophia approval"
                 and (
                     "requires future " in normalized_text[max(0, index - 64) : index]
+                    or normalized_text[index : index + 42].startswith("sophia approval request candidate")
+                    or normalized_text[index : index + 43].startswith("sophia approval request candidates")
+                    or normalized_text[index : index + 32].startswith("sophia approval request")
                     or "required before" in normalized_text[index : index + 96]
                     or "packet is required" in normalized_text[index : index + 64]
                     or "without " in normalized_text[max(0, index - 64) : index]
