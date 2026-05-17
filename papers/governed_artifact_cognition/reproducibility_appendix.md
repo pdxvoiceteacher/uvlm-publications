@@ -597,3 +597,18 @@ PMR-10 consumes PMR-00 through PMR-09 artifacts and emits explicit action reques
   -LocalStorageBudgetBytes 5368709120 `
   -CiMode
 ```
+
+## PMR Architecture Diversity Checkpoint
+
+PMR-ARCH-DIVERSITY-CHECKPOINT-00 adds a publication-indexed architecture diversity checkpoint. PMR authorization ladder is not the whole Triadic Brain. Pattern diversity is required. PMR-only continuation is not recommended immediately after PMR-10. Checkpoint recommendation is not execution. No runtime authority is granted. PMR-SIM-00 is recommended as the next evidence-producing lane.
+
+PMR-ARCH-DIVERSITY-CHECKPOINT-00 consumes PMR-00 through PMR-10 plus active non-PMR lane references. It summarizes the PMR authorization ladder, evaluates non-PMR lanes, records gaps, and emits a next-lane recommendation while preserving no-authority boundaries. Evidence Review, Sonya adapter path, TEL/telemetry, retrosynthesis, PMR simulation/statistics, federation stress, human provenance, market design, harness debt, and publication debt remain active lanes. No pruning or deletion occurs in PMR-ARCH-DIVERSITY-CHECKPOINT-00. No federation occurs. No reward occurs. No token economy occurs. No memory write occurs. No model-weight training occurs. No deployment occurs. No truth certification occurs.
+
+### PMR architecture diversity checkpoint acceptance command
+
+```powershell
+.\experiments\Run-PMR-ARCH-DIVERSITY-CHECKPOINT00-Acceptance.ps1 `
+  -OutputRoot C:\UVLM\run_artifacts\pmr_arch_diversity_checkpoint_00 `
+  -LogDir C:\UVLM\run_artifacts\pmr_arch_diversity_checkpoint_00_logs `
+  -CiMode
+```

@@ -95,6 +95,10 @@
         "command": ".\\experiments\\Run-PMR10-Acceptance.ps1 `\n  -OutputRoot C:\\UVLM\\run_artifacts\\pmr_10 `\n  -LogDir C:\\UVLM\\run_artifacts\\pmr_10_logs `\n  -Mode balanced `\n  -LocalStorageBudgetBytes 5368709120 `\n  -CiMode"
       },
       {
+        "name": "PMR architecture diversity checkpoint acceptance",
+        "command": ".\\experiments\\Run-PMR-ARCH-DIVERSITY-CHECKPOINT00-Acceptance.ps1 `\n  -OutputRoot C:\\UVLM\\run_artifacts\\pmr_arch_diversity_checkpoint_00 `\n  -LogDir C:\\UVLM\\run_artifacts\\pmr_arch_diversity_checkpoint_00_logs `\n  -CiMode"
+      },
+      {
         "name": "Universal Stage Pipeline acceptance",
         "command": "python -m pytest -q python/tests/pipeline/test_universal_stage_pipeline.py"
       },

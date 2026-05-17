@@ -97,5 +97,9 @@
   "pmr_10_indexed": true,
   "not_action_request": true,
   "not_sophia_approval_request": true,
-  "not_authorization_preflight_authority": true
+  "not_authorization_preflight_authority": true,
+  "pmr_arch_diversity_checkpoint_indexed": true,
+  "not_product_completion": true,
+  "not_runtime_authority": true,
+  "not_checkpoint_execution": true
 }

@@ -356,6 +356,17 @@ PAPER_CONFIGS: dict[str, dict[str, Any]] = {
             "pmr_sophia_approval_request_candidates.jsonl",
             "pmr_destructive_action_authorization_preflight_no_action_receipt.json",
             "Run-PMR10-Acceptance.ps1",
+            "PMR-ARCH-DIVERSITY-CHECKPOINT-00",
+            "PMR authorization ladder is not the whole Triadic Brain.",
+            "Pattern diversity is required.",
+            "Checkpoint recommendation is not execution.",
+            "No runtime authority is granted.",
+            "PMR-SIM-00 is recommended as the next evidence-producing lane.",
+            "pmr_architecture_diversity_checkpoint_packet.json",
+            "pmr_architecture_coverage_map.json",
+            "pmr_architecture_gap_register.json",
+            "pmr_next_lane_recommendation_packet.json",
+            "Run-PMR-ARCH-DIVERSITY-CHECKPOINT00-Acceptance.ps1",
         ),
         "forbidden_overclaims": (
             "proves universal intelligence",
@@ -408,6 +419,10 @@ PAPER_CONFIGS: dict[str, dict[str, Any]] = {
             "omega detected",
             "publication claim authorized",
             "recursive self-improvement achieved",
+            "product completion",
+            "claims product completion",
+            "runtime authority",
+            "claims runtime authority",
             "product release",
             "benchmark result",
             "experiment result",
@@ -554,6 +569,10 @@ PAPER_CONFIGS: dict[str, dict[str, Any]] = {
             "not_action_request": True,
             "not_sophia_approval_request": True,
             "not_authorization_preflight_authority": True,
+            "pmr_arch_diversity_checkpoint_indexed": True,
+            "not_product_completion": True,
+            "not_runtime_authority": True,
+            "not_checkpoint_execution": True,
             "not_sophia_approval": True,
             "not_audit_action": True,
             "not_lifecycle_action": True,
@@ -686,13 +705,15 @@ def _forbidden_hits(normalized_text: str, forbidden: tuple[str, ...]) -> list[st
                 phrase == "token economy"
                 and (
                     "does not prune, delete, federate, transfer encrypted shards, reward users, run a"
-                    in normalized_text[max(0, index - 104) : index]
+                    in normalized_text[max(0, index - 180) : index]
                     or "does not approve, prune, delete, federate, transfer encrypted shards, reward users, run a"
-                    in normalized_text[max(0, index - 112) : index]
+                    in normalized_text[max(0, index - 180) : index]
                     or "does not confirm, approve, prune, delete, federate, transfer encrypted shards, reward users, run a"
-                    in normalized_text[max(0, index - 122) : index]
+                    in normalized_text[max(0, index - 180) : index]
                     or "does not perform destructive action, approve, prune, delete, federate, transfer encrypted shards, reward users, run a"
-                    in normalized_text[max(0, index - 142) : index]
+                    in normalized_text[max(0, index - 180) : index]
+                    or "does not execute, authorize, approve, prune, delete, federate, transfer encrypted shards, reward users, run a"
+                    in normalized_text[max(0, index - 200) : index]
                 )
             ):
                 search_from = index + len(normalized_phrase)
@@ -707,6 +728,8 @@ def _forbidden_hits(normalized_text: str, forbidden: tuple[str, ...]) -> list[st
                 normalized_text[index : index + 40].startswith("federation is blocked by default")
                 or normalized_text[index : index + 48].startswith("federation remains blocked by default")
                 or normalized_text[index : index + 40].startswith("federation_authorization")
+                or normalized_text[index : index + 40].startswith("federation stress")
+                or normalized_text[index : index + 40].startswith("federation_stress")
             ):
                 search_from = index + len(normalized_phrase)
                 continue

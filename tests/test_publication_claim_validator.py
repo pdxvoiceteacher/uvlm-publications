@@ -1812,3 +1812,52 @@ def test_governed_validator_rejects_pmr_10_overclaims(tmp_path):
         assert result["passed"] is False
         found = [hit.lower() for hit in result["forbidden_overclaims_found"]]
         assert claim.lower() in found or f"claims {claim.lower()}" in found, result
+
+def test_governed_paper_includes_pmr_architecture_diversity_checkpoint_boundaries():
+    root = Path("papers/governed_artifact_cognition")
+    paper = (root / "PUB_GOV_ARTIFACT_COG_01.md").read_text()
+    artifact_table = (root / "artifact_table.md").read_text()
+    quickstart = (root / "reviewer_quickstart.md").read_text()
+    status = json.loads((root / "status.json").read_text())
+
+    assert "PMR-ARCH-DIVERSITY-CHECKPOINT-00" in paper
+    assert "PMR authorization ladder is not the whole Triadic Brain." in paper
+    assert "Pattern diversity is required." in paper
+    assert "Checkpoint recommendation is not execution." in paper
+    assert "No runtime authority is granted." in paper
+    assert "PMR-SIM-00 is recommended as the next evidence-producing lane." in paper
+    assert "pmr_architecture_diversity_checkpoint_packet.json" in artifact_table
+    assert "pmr_architecture_coverage_map.json" in artifact_table
+    assert "pmr_architecture_gap_register.json" in artifact_table
+    assert "pmr_next_lane_recommendation_packet.json" in artifact_table
+    assert "Run-PMR-ARCH-DIVERSITY-CHECKPOINT00-Acceptance.ps1" in quickstart
+    assert status["pmr_arch_diversity_checkpoint_indexed"] is True
+    assert status["not_product_completion"] is True
+    assert status["not_runtime_authority"] is True
+    assert status["not_checkpoint_execution"] is True
+
+
+def test_governed_validator_rejects_pmr_architecture_diversity_checkpoint_overclaims(tmp_path):
+    root = Path("papers/governed_artifact_cognition")
+    for claim in (
+        "product completion",
+        "runtime authority",
+        "pruning execution",
+        "reward entitlement",
+    ):
+        case = tmp_path / claim.replace(" ", "_")
+        case.mkdir()
+        for source in root.iterdir():
+            if source.is_file():
+                (case / source.name).write_text(source.read_text())
+        paper = case / "PUB_GOV_ARTIFACT_COG_01.md"
+        paper.write_text(paper.read_text() + f"\nPMR-ARCH-DIVERSITY-CHECKPOINT-00 claims {claim}.\n")
+        result = validate_publication_claims(
+            paper,
+            case / "reproducibility_appendix.md",
+            case / "reviewer_quickstart.md",
+            case / "status.json",
+        )
+        assert result["passed"] is False
+        found = [hit.lower() for hit in result["forbidden_overclaims_found"]]
+        assert claim.lower() in found or f"claims {claim.lower()}" in found, result

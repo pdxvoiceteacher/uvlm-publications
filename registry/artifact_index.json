@@ -283,6 +283,20 @@
       "export_bundle_parity_report.json",
       "pmr_10_acceptance_receipt.json"
     ],
+    "PMR-ARCH-DIVERSITY-CHECKPOINT-00": [
+      "pmr_architecture_diversity_checkpoint_packet.json",
+      "pmr_architecture_coverage_map.json",
+      "pmr_architecture_gap_register.json",
+      "pmr_next_lane_recommendation_packet.json",
+      "pmr_architecture_diversity_review_packet.json",
+      "pmr_architecture_diversity_summary.md",
+      "artifact_inventory.json",
+      "run_artifact_manifest.json",
+      "triadic_run_manifest.json",
+      "export_bundle_manifest.json",
+      "export_bundle_parity_report.json",
+      "pmr_arch_diversity_checkpoint_00_acceptance_receipt.json"
+    ],
     "UNIVERSAL-STAGE-PIPELINE-00": [
       "universal_pipeline_manifest.json",
       "universal_pipeline_review_packet.json",

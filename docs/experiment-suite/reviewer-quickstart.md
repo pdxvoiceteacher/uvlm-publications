@@ -913,6 +913,44 @@ Expected posture:
 
 Reviewer caution: PMR-10 emits explicit action request candidates and Sophia approval request candidates only. It does not emit explicit action request packets, Sophia approval packets, destructive authorization packets, destructive action receipts, pruning receipts, deletion receipts, federation receipts, reward receipts, memory writes, model training receipts, deployment decisions, or truth certifications.
 
+## PMR architecture diversity checkpoint
+
+PMR authorization ladder is not the whole Triadic Brain. PMR-ARCH-DIVERSITY-CHECKPOINT-00 summarizes PMR coverage, evaluates non-PMR lanes, records gaps, and recommends PMR-SIM-00 as the next evidence-producing lane. Pattern diversity is required. PMR-only continuation is not recommended immediately after PMR-10. Checkpoint recommendation is not execution. No runtime authority is granted. Evidence Review, Sonya adapter path, TEL/telemetry, retrosynthesis, PMR simulation/statistics, federation stress, human provenance, market design, harness debt, and publication debt remain active lanes.
+
+```powershell
+.\experiments\Run-PMR-ARCH-DIVERSITY-CHECKPOINT00-Acceptance.ps1 `
+  -OutputRoot C:\UVLM\run_artifacts\pmr_arch_diversity_checkpoint_00 `
+  -LogDir C:\UVLM\run_artifacts\pmr_arch_diversity_checkpoint_00_logs `
+  -CiMode
+```
+
+Expected posture:
+
+- `review_status = accepted_as_architecture_diversity_checkpoint`
+- `pmr_ladder_summarized = true`
+- `non_pmr_lanes_evaluated = true`
+- `pattern_diversity_required = true`
+- `pmr_only_continuation_not_recommended = true`
+- `next_lane_recommendation_present = true`
+- `recommendation_not_execution = true`
+- `no_runtime_authority_granted = true`
+- `federation_blocked_by_default = true`
+- `reward_actions_not_performed = true`
+- `memory_write_blocked = true`
+- `atlas_canon_write_blocked = true`
+- `model_weight_training_blocked = true`
+- `deployment_blocked = true`
+- `truth_certification_blocked = true`
+- `promotion_blocked = true`
+- `recommended_next_runtime_lane = pmr_simulation_and_statistics`
+- `recommended_next_patch_id = pmr-sim-00`
+- `do_not_continue_pmr_authorization_ladder_immediately = true`
+- `coverage_map_non_pmr_lane_count = 10`
+- `gap_register_gap_count = 5`
+- `export_parity_passed = true`
+
+Reviewer caution: PMR-ARCH-DIVERSITY-CHECKPOINT-00 maps PMR coverage, non-PMR gaps, and next-lane recommendation only. It does not execute, authorize, approve, prune, delete, federate, transfer encrypted shards, reward users, run a token economy, write memory, train models, deploy, or certify truth.
+
 Reviewer caution: PMR-00 and PMR-01 define local provenance-memory doctrine, storage policy, artifact indexing, and dependency graph scaffolds only. They do not write memory, canonize artifacts, federate artifacts, transfer encrypted shards, prune artifacts, train models, certify truth, release final answers, deploy, or reward resource contributions.
 
 ## RW-COMP local adapter

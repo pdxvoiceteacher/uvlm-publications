@@ -1616,232 +1616,791 @@ PMR_10_CLAIMS_BLOCKED = [
     "not production readiness",
 ]
 
+PMR_ARCH_DIVERSITY_CHECKPOINT_COMMAND = r""".\experiments\Run-PMR-ARCH-DIVERSITY-CHECKPOINT00-Acceptance.ps1 `
+  -OutputRoot C:\UVLM\run_artifacts\pmr_arch_diversity_checkpoint_00 `
+  -LogDir C:\UVLM\run_artifacts\pmr_arch_diversity_checkpoint_00_logs `
+  -CiMode"""
+PMR_ARCH_DIVERSITY_CHECKPOINT_ARTIFACTS = [
+    "pmr_architecture_diversity_checkpoint_packet.json",
+    "pmr_architecture_coverage_map.json",
+    "pmr_architecture_gap_register.json",
+    "pmr_next_lane_recommendation_packet.json",
+    "pmr_architecture_diversity_review_packet.json",
+    "pmr_architecture_diversity_summary.md",
+    "artifact_inventory.json",
+    "run_artifact_manifest.json",
+    "triadic_run_manifest.json",
+    "export_bundle_manifest.json",
+    "export_bundle_parity_report.json",
+    "pmr_arch_diversity_checkpoint_00_acceptance_receipt.json",
+]
+PMR_ARCH_DIVERSITY_CHECKPOINT_COVERED_CONTROLS = [
+    "local_storage_policy",
+    "artifact_index",
+    "dependency_graph",
+    "utility_scoring",
+    "lifecycle_recommendation",
+    "transition_candidate",
+    "lifecycle_audit_preflight",
+    "sophia_lifecycle_review",
+    "user_confirmation_preflight",
+    "invalid_confirmation_negative_control",
+    "valid_confirmation_receipt_scaffold",
+    "destructive_authorization_negative_control",
+    "authorization_preflight_candidates",
+]
+PMR_ARCH_DIVERSITY_CHECKPOINT_NON_PMR_LANES = [
+    "evidence_review_product_loop",
+    "sonya_adapter_product_path",
+    "telemetry_tel_event_stack",
+    "retrosynthesis_loop",
+    "pmr_simulation_and_statistics",
+    "federation_stress_corpus",
+    "human_provenance_consent_context",
+    "resource_market_design",
+    "harness_runtime_debt",
+    "publication_validator_debt",
+]
+PMR_ARCH_DIVERSITY_CHECKPOINT_DASHBOARD_SUMMARY = {
+    "review_status": "accepted_as_architecture_diversity_checkpoint",
+    "pmr_ladder_summarized": True,
+    "non_pmr_lanes_evaluated": True,
+    "pattern_diversity_required": True,
+    "pmr_only_continuation_not_recommended": True,
+    "next_lane_recommendation_present": True,
+    "recommendation_not_execution": True,
+    "no_runtime_authority_granted": True,
+    "federation_blocked_by_default": True,
+    "reward_actions_not_performed": True,
+    "memory_write_blocked": True,
+    "atlas_canon_write_blocked": True,
+    "model_weight_training_blocked": True,
+    "deployment_blocked": True,
+    "truth_certification_blocked": True,
+    "promotion_blocked": True,
+    "recommended_next_runtime_lane": "pmr_simulation_and_statistics",
+    "recommended_next_patch_id": "PMR-SIM-00",
+    "do_not_continue_pmr_authorization_ladder_immediately": True,
+    "coverage_map_non_pmr_lane_count": 10,
+    "gap_register_gap_count": 5,
+    "export_parity_passed": True,
+    "covered_pmr_controls": PMR_ARCH_DIVERSITY_CHECKPOINT_COVERED_CONTROLS,
+    "non_pmr_lanes_evaluated_list": PMR_ARCH_DIVERSITY_CHECKPOINT_NON_PMR_LANES,
+}
+PMR_ARCH_DIVERSITY_CHECKPOINT_CLAIMS_BLOCKED = [
+    "not product completion",
+    "not runtime authority",
+    "not pruning execution",
+    "not deletion execution",
+    "not federation authorization",
+    "not encrypted shard transfer",
+    "not reward entitlement",
+    "not token economy",
+    "not human value score",
+    "not Atlas canon",
+    "not model weight training",
+    "not memory write authorization",
+    "not network authorization",
+    "not truth certification",
+    "not deployment authority",
+    "not final answer release",
+    "not hallucination reduction proof",
+    "not recursive self-improvement",
+    "not production readiness",
+]
+
 PMR_CLAIMS_BLOCKED = [
     "not generic cache",
     "not hidden memory hoard",
     "not Atlas canon",
     "not model weight training",
+    "not user data training",
     "not memory write authorization",
     "not federation authorization",
     "not network authorization",
+    "not truth certification",
+    "not deployment authority",
+    "not final answer release",
+    "not hallucination reduction proof",
+    "not recursive self-improvement",
+    "not production readiness",
     "not pruning execution",
     "not resource economy",
-    "not truth certification",
-    "not deployment authority",
-    "not final answer release",
-    "not hallucination reduction proof",
-    "not recursive self-improvement",
-    "not production readiness",
-]
-
-PMR_03_COMMAND = r""".\experiments\Run-PMR03-Acceptance.ps1 `
-  -OutputRoot C:\UVLM\run_artifacts\pmr_03 `
-  -LogDir C:\UVLM\run_artifacts\pmr_03_logs `
-  -Mode balanced `
-  -LocalStorageBudgetBytes 5368709120 `
-  -CiMode"""
-PMR_03_ARTIFACTS = [
-    "pmr_lifecycle_state_machine_packet.json",
-    "pmr_lifecycle_transition_candidates.jsonl",
-    "pmr_lifecycle_transition_receipts.jsonl",
-    "pmr_lifecycle_no_action_receipt.json",
-    "pmr_lifecycle_state_review_packet.json",
-    "pmr_lifecycle_state_summary.md",
-    "artifact_inventory.json",
-    "run_artifact_manifest.json",
-    "export_bundle_manifest.json",
-    "export_bundle_parity_report.json",
-    "pmr_03_acceptance_receipt.json",
-]
-PMR_03_DASHBOARD_SUMMARY = {
-    "review_status": "accepted_as_pmr_lifecycle_state_machine_scaffold",
-    "source_pmr_policy_bound": True,
-    "source_pmr_index_bound": True,
-    "source_pmr_utility_bound": True,
-    "transition_candidates_present": True,
-    "transition_receipts_present": True,
-    "no_action_receipt_present": True,
-    "recommendation_not_transition": True,
-    "transition_candidate_not_action": True,
-    "lifecycle_state_not_truth_status": True,
-    "destructive_action_requires_future_sophia_audit": True,
-    "destructive_action_requires_future_user_confirmation": True,
-    "pruning_not_performed": True,
-    "deletion_not_performed": True,
-    "federation_blocked_by_default": True,
-    "reward_actions_not_performed": True,
-    "memory_write_blocked": True,
-    "atlas_canon_write_blocked": True,
-    "model_weight_training_blocked": True,
-    "deployment_blocked": True,
-    "truth_certification_blocked": True,
-    "promotion_blocked": True,
-    "artifact_count": 8,
-    "transition_candidate_count": 8,
-    "transition_receipt_count": 8,
-    "action_performed": False,
-    "encrypted_shard_transfer_performed": False,
-    "token_economy_performed": False,
-    "network_calls_performed": False,
-}
-PMR_03_CLAIMS_BLOCKED = [
-    "not pruning execution",
-    "not deletion execution",
-    "not federation authorization",
-    "not encrypted shard transfer",
-    "not reward entitlement",
     "not token economy",
-    "not human value score",
-    "not Atlas canon",
-    "not model weight training",
-    "not memory write authorization",
-    "not network authorization",
-    "not truth certification",
-    "not deployment authority",
-    "not final answer release",
-    "not hallucination reduction proof",
-    "not recursive self-improvement",
-    "not production readiness",
 ]
 
-PMR_04_COMMAND = r""".\experiments\Run-PMR04-Acceptance.ps1 `
-  -OutputRoot C:\UVLM\run_artifacts\pmr_04 `
-  -LogDir C:\UVLM\run_artifacts\pmr_04_logs `
-  -Mode balanced `
-  -LocalStorageBudgetBytes 5368709120 `
+RW_COMP_LOCAL_ADAPTER_COMMAND = r""".\experiments\Run-RW-COMP-LOCAL-ADAPTER01-Acceptance.ps1 `
+  -OutputRoot C:\UVLM\run_artifacts\rw_comp_local_adapter_01 `
+  -LogDir C:\UVLM\run_artifacts\rw_comp_local_adapter_01_logs `
   -CiMode"""
-PMR_04_ARTIFACTS = [
-    "pmr_lifecycle_audit_preflight_packet.json",
-    "pmr_lifecycle_audit_candidates.jsonl",
-    "pmr_lifecycle_audit_block_packet.json",
-    "pmr_lifecycle_audit_no_action_receipt.json",
-    "pmr_lifecycle_audit_review_packet.json",
-    "pmr_lifecycle_audit_preflight_summary.md",
+RW_COMP_LOCAL_ADAPTER_ARTIFACTS = [
+    "rw_comp_local_adapter_packet.json",
+    "rw_comp_local_adapter_review_packet.json",
+    "rw_comp_local_adapter_rows.jsonl",
+    "rw_comp_local_adapter_delta_packet.json",
+    "rw_comp_local_adapter_fixture_manifest.json",
+    "rw_comp_local_adapter_summary.md",
     "artifact_inventory.json",
     "run_artifact_manifest.json",
     "export_bundle_manifest.json",
     "export_bundle_parity_report.json",
-    "pmr_04_acceptance_receipt.json",
+    "rw_comp_local_adapter_01_acceptance_receipt.json",
 ]
-PMR_04_DASHBOARD_SUMMARY = {
-    "review_status": "accepted_as_pmr_lifecycle_audit_preflight_scaffold",
-    "source_pmr_policy_bound": True,
-    "source_pmr_index_bound": True,
-    "source_pmr_utility_bound": True,
-    "source_pmr_lifecycle_bound": True,
-    "audit_candidates_present": True,
-    "block_packet_present": True,
-    "no_action_receipt_present": True,
-    "recommendation_not_transition": True,
-    "transition_candidate_not_action": True,
-    "preflight_not_approval": True,
-    "lifecycle_state_not_truth_status": True,
-    "destructive_action_requires_future_sophia_audit": True,
-    "destructive_action_requires_future_user_confirmation": True,
-    "pruning_not_performed": True,
-    "deletion_not_performed": True,
-    "federation_blocked_by_default": True,
-    "reward_actions_not_performed": True,
-    "memory_write_blocked": True,
-    "atlas_canon_write_blocked": True,
+RW_COMP_LOCAL_ADAPTER_DASHBOARD_SUMMARY = {
+    "review_status": "accepted_as_local_adapter_comparison_scaffold",
+    "all_comparison_arms_present": True,
+    "original_and_revised_candidates_compared": True,
+    "evidence_review_path_used_for_reviewed_arms": True,
+    "deltas_reported": True,
+    "structural_visibility_descriptors_only": True,
+    "comparison_is_not_hallucination_reduction_proof": True,
+    "comparison_is_not_model_quality_benchmark": True,
+    "comparison_is_not_model_superiority_proof": True,
+    "comparison_is_not_final_answer_selection": True,
+    "candidate_remains_not_accepted_evidence": True,
     "model_weight_training_blocked": True,
+    "memory_write_blocked": True,
+    "final_answer_release_blocked": True,
     "deployment_blocked": True,
-    "truth_certification_blocked": True,
     "promotion_blocked": True,
-    "transition_candidate_count": 8,
-    "audit_candidate_count": 8,
-    "blocked_candidate_count": 5,
-    "no_op_candidate_count": 3,
-    "user_confirmation_required_count": 5,
-    "sophia_audit_required_count": 4,
-    "action_performed": False,
-    "sophia_approval_performed": False,
-    "encrypted_shard_transfer_performed": False,
-    "token_economy_performed": False,
-    "network_calls_performed": False,
+    "unsupported_claim_count_delta": -1,
+    "uncertainty_missing_count_delta": -1,
+    "source_reference_visibility_delta": 1,
+    "supported_claim_count_delta": 2,
+    "structural_visibility_improved_candidate": True,
 }
-PMR_04_CLAIMS_BLOCKED = [
-    "not Sophia approval",
-    "not audit action",
-    "not pruning execution",
-    "not deletion execution",
-    "not federation authorization",
-    "not encrypted shard transfer",
-    "not reward entitlement",
-    "not token economy",
-    "not human value score",
-    "not Atlas canon",
-    "not model weight training",
-    "not memory write authorization",
-    "not network authorization",
-    "not truth certification",
-    "not deployment authority",
-    "not final answer release",
+RW_COMP_LOCAL_ADAPTER_CLAIMS_BLOCKED = [
     "not hallucination reduction proof",
+    "not model quality benchmark",
+    "not model superiority proof",
+    "not final answer selection",
+    "not accepted evidence",
+    "not adapter authorization",
+    "not live adapter execution",
+    "not network authorization",
+    "not remote provider call",
+    "not live model execution",
+    "not memory write",
+    "not final answer release",
+    "not deployment authority",
+    "not truth certification",
+    "not model weight training",
     "not recursive self-improvement",
     "not production readiness",
 ]
 
-PMR_05_COMMAND = r""".\experiments\Run-PMR05-Acceptance.ps1 `
-  -OutputRoot C:\UVLM\run_artifacts\pmr_05 `
-  -LogDir C:\UVLM\run_artifacts\pmr_05_logs `
-  -Mode balanced `
-  -LocalStorageBudgetBytes 5368709120 `
+RETRO_SANDBOX_CYCLE_COMMAND = r""".\experiments\Run-RETROSYNTHESIS-SANDBOX-CYCLE01-Acceptance.ps1 `
+  -OutputRoot C:\UVLM\run_artifacts\retrosynthesis_sandbox_cycle_01 `
+  -LogDir C:\UVLM\run_artifacts\retrosynthesis_sandbox_cycle_01_logs `
+  -ControlProfileId generic_evidence_review.v1 `
   -CiMode"""
-PMR_05_ARTIFACTS = [
-    "pmr_sophia_lifecycle_audit_packet.json",
-    "pmr_sophia_lifecycle_audit_rows.jsonl",
-    "pmr_sophia_lifecycle_recommendation_packet.json",
-    "pmr_sophia_lifecycle_no_approval_receipt.json",
-    "pmr_sophia_lifecycle_review_packet.json",
-    "pmr_sophia_lifecycle_audit_summary.md",
+RETRO_SANDBOX_CYCLE_ARTIFACTS = [
+    "retrosynthesis_sandbox_cycle_packet.json",
+    "retrosynthesis_sandbox_cycle_review_packet.json",
+    "retrosynthesis_candidate_repair_plan.json",
+    "retrosynthesis_missing_evidence_request_packet.json",
+    "retrosynthesis_claim_map_revision_candidate.json",
+    "retrosynthesis_uncertainty_restoration_candidate.json",
+    "retrosynthesis_counterevidence_expansion_candidate.json",
+    "retrosynthesis_next_experiment_recommendation.json",
+    "retrosynthesis_sandbox_cycle_summary.md",
     "artifact_inventory.json",
     "run_artifact_manifest.json",
     "export_bundle_manifest.json",
     "export_bundle_parity_report.json",
-    "pmr_05_acceptance_receipt.json",
+    "retrosynthesis_sandbox_cycle_01_acceptance_receipt.json",
 ]
-PMR_05_DASHBOARD_SUMMARY = {
-    "review_status": "accepted_as_pmr_sophia_lifecycle_audit_review_scaffold",
-    "source_pmr_policy_bound": True,
-    "source_pmr_index_bound": True,
-    "source_pmr_utility_bound": True,
-    "source_pmr_lifecycle_bound": True,
-    "source_pmr_audit_preflight_bound": True,
-    "audit_rows_present": True,
-    "recommendation_packet_present": True,
-    "no_approval_receipt_present": True,
-    "preflight_not_approval": True,
-    "sophia_review_not_approval": True,
-    "audit_recommendation_not_action": True,
-    "lifecycle_state_not_truth_status": True,
-    "destructive_action_requires_future_sophia_approval": True,
-    "destructive_action_requires_future_user_confirmation": True,
-    "pruning_not_performed": True,
-    "deletion_not_performed": True,
-    "federation_blocked_by_default": True,
-    "reward_actions_not_performed": True,
+RETRO_SANDBOX_CYCLE_DASHBOARD_SUMMARY = {
+    "accepted_as_bounded_retrosynthesis_sandbox_cycle": True,
+    "candidate_repair_artifacts_emitted": True,
+    "missing_evidence_requests_visible": True,
+    "uncertainty_restoration_visible": True,
+    "counterevidence_preserved": True,
+    "hash_only_evidence_not_interpreted": True,
+    "canon_adoption_blocked": True,
     "memory_write_blocked": True,
-    "atlas_canon_write_blocked": True,
-    "model_weight_training_blocked": True,
+    "final_answer_release_blocked": True,
+    "publisher_finalization_blocked": True,
     "deployment_blocked": True,
-    "truth_certification_blocked": True,
+    "omega_detection_blocked": True,
     "promotion_blocked": True,
-    "audit_candidate_count": 8,
-    "audit_row_count": 8,
-    "recommendation_count": 8,
-    "action_performed": False,
-    "sophia_approval_performed": False,
-    "encrypted_shard_transfer_performed": False,
-    "token_economy_performed": False,
-    "network_calls_performed": False,
-    "recommendation_counts": {
-        "blocked_dependency": 2,
-        "blocked_quarantine": 1,
-        "blocked_retain_locked": 1,
-        "blocked_revocation": 1,
-        "no_op_accept": 2,
-        "require_user_confirmation": 1,
+}
+RETRO_SANDBOX_CYCLE_CLAIMS_BLOCKED = [
+    "not canon adoption",
+    "not memory write",
+    "not truth certification",
+    "not deployment authority",
+    "not final answer release",
+    "not Publisher finalization",
+    "not Omega detection",
+    "not publication claim",
+    "not hallucination reduction proof",
+    "not model superiority proof",
+    "not professional advice",
+    "not compliance certification",
+    "not live model execution",
+    "not remote provider call",
+    "not recursive self-improvement",
+]
+PUBLIC_UTILITY_ALPHA_CLAIMS_BLOCKED = [
+    "Public Utility Alpha is not deployment authority.",
+    "Public Utility Alpha is not truth certification.",
+    "Public Utility Alpha is not final answer release.",
+    "Public Utility Alpha is not live model execution.",
+    "Public Utility Alpha is not live adapter execution.",
+    "Public Utility Alpha is not a remote provider call.",
+    "Public Utility Alpha is not federation.",
+    "Public Utility Alpha is not recursive braid.",
+    "Public Utility Alpha is not live Atlas memory write.",
+    "Public Utility Alpha is not live Sophia call.",
+    "Public Utility Alpha is not retrosynthesis runtime.",
+    "Public Utility Alpha is not Omega detection.",
+    "Public Utility Alpha is not Publisher finalization.",
+    "Public Utility Alpha is not universal ontology.",
+    "Public Utility Alpha is not universal portability proof.",
+    "Public Utility Alpha is not AI consciousness.",
+]
+ACCEPTED_PHASES = [
+    {
+        "phase_id": "SONYA-ADAPTER-CONTRACT-REGISTRY-01",
+        "repo": "pdxvoiceteacher/CoherenceLattice",
+        "status": "accepted",
+        "evidence_type": "architecture_scaffold",
+        "product_posture": "versioned_sonya_adapter_contracts",
+        "primary_artifacts": SONYA_ADAPTER_CONTRACT_REGISTRY_ARTIFACTS,
+        "dashboard_summary": SONYA_ADAPTER_CONTRACT_REGISTRY_DASHBOARD_SUMMARY,
+        "reproduction_command_summary": SONYA_ADAPTER_CONTRACT_REGISTRY_COMMAND,
+        "claim_allowed": "SONYA-ADAPTER-CONTRACT-REGISTRY-01 demonstrates a fixture-only versioned adapter-contract scaffold that declares adapter capabilities, consent profiles, failure policies, telemetry requirements, and provenance-training policies while keeping all adapters disabled or blocked and forbidding raw output admission. Adapter capability is not adapter authorization.",
+        "claims_blocked": SONYA_ADAPTER_CONTRACT_REGISTRY_CLAIMS_BLOCKED,
+        "reviewer_caution": "SONYA-ADAPTER-CONTRACT-REGISTRY-01 defines adapter contracts only. It does not execute adapters, does not call providers, does not authorize network use, does not admit raw output as cognition, does not write memory, does not release final answers, does not train models, and does not deploy.",
+        "publication_status": "dashboard_indexed",
+    },
+    {
+        "phase_id": "SONYA-ADAPTER-SMOKE-00",
+        "repo": "pdxvoiceteacher/CoherenceLattice",
+        "status": "accepted",
+        "evidence_type": "fixture_adapter_contract_smoke",
+        "product_posture": "adapter_contract_smoke_without_live_execution",
+        "primary_artifacts": SONYA_ADAPTER_SMOKE_ARTIFACTS,
+        "dashboard_summary": SONYA_ADAPTER_SMOKE_DASHBOARD_SUMMARY,
+        "prerequisite_phases": [
+            "SONYA-ADAPTER-CONTRACT-REGISTRY-01",
+            "PROVENANCE-TRAINING-LEDGER-00",
+            "UNIVERSAL-STAGE-PIPELINE-00",
+            "ARTIFACT-CONTRACT-REGISTRY-01",
+            "UNIVERSAL-COMPATIBILITY-MATRIX-00",
+            "SONYA-GW-01",
+        ],
+        "reproduction_command_summary": SONYA_ADAPTER_SMOKE_COMMAND,
+        "claim_allowed": "SONYA-ADAPTER-SMOKE-00 demonstrates fixture-only adapter contract exercise: adapter selection, consent and capability checks, Sonya gateway requirement, raw-output rejection, candidate-packet requirement, failure receipt emission, telemetry event emission, and provenance event emission without live adapter execution or network/provider calls. Sonya Adapter Smoke exercises contracts, not live adapters.",
+        "claims_blocked": SONYA_ADAPTER_SMOKE_CLAIMS_BLOCKED,
+        "reviewer_caution": "SONYA-ADAPTER-SMOKE-00 exercises contracts only. It does not execute adapters, does not call providers, does not authorize network use, does not admit raw output as cognition, does not write memory, does not release final answers, does not train models, and does not deploy.",
+        "publication_status": "dashboard_indexed",
+    },
+    {
+        "phase_id": "SONYA-LOCAL-FIXTURE-ADAPTER-01",
+        "repo": "pdxvoiceteacher/CoherenceLattice",
+        "status": "accepted",
+        "evidence_type": "local_fixture_adapter_execution",
+        "product_posture": "deterministic_local_adapter_execution_without_live_network_or_provider",
+        "primary_artifacts": SONYA_LOCAL_FIXTURE_ADAPTER_ARTIFACTS,
+        "dashboard_summary": SONYA_LOCAL_FIXTURE_ADAPTER_DASHBOARD_SUMMARY,
+        "prerequisite_phases": [
+            "SONYA-ADAPTER-CONTRACT-REGISTRY-01",
+            "SONYA-ADAPTER-SMOKE-00",
+            "PROVENANCE-TRAINING-LEDGER-00",
+            "UNIVERSAL-STAGE-PIPELINE-00",
+            "ARTIFACT-CONTRACT-REGISTRY-01",
+            "UNIVERSAL-COMPATIBILITY-MATRIX-00",
+            "SONYA-GW-01",
+        ],
+        "reproduction_command_summary": SONYA_LOCAL_FIXTURE_ADAPTER_COMMAND,
+        "claim_allowed": "SONYA-LOCAL-FIXTURE-ADAPTER-01 demonstrates deterministic local-only fixture adapter execution under Sonya adapter contracts, with candidate packets, failure receipts, telemetry events, and provenance events, while all live/network/provider/memory/final/deployment/model-training paths remain blocked. Sonya Local Fixture Adapter executes deterministic local fixtures, not live adapters.",
+        "claims_blocked": SONYA_LOCAL_FIXTURE_ADAPTER_CLAIMS_BLOCKED,
+        "reviewer_caution": "SONYA-LOCAL-FIXTURE-ADAPTER-01 executes deterministic local fixture adapters only. It does not execute live adapters, does not call providers, does not authorize network use, does not admit raw output as cognition, does not write memory, does not release final answers, does not train models, and does not deploy.",
+        "publication_status": "dashboard_indexed",
+    },
+    {
+        "phase_id": "EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER-01",
+        "repo": "pdxvoiceteacher/CoherenceLattice",
+        "status": "accepted",
+        "evidence_type": "local_adapter_candidate_review",
+        "product_posture": "local_adapter_candidate_routed_through_evidence_review_pack",
+        "primary_artifacts": EVIDENCE_REVIEW_PACK_LOCAL_ADAPTER_ARTIFACTS,
+        "dashboard_summary": EVIDENCE_REVIEW_PACK_LOCAL_ADAPTER_DASHBOARD_SUMMARY,
+        "prerequisite_phases": [
+            "SONYA-LOCAL-FIXTURE-ADAPTER-01",
+            "SONYA-ADAPTER-SMOKE-00",
+            "SONYA-ADAPTER-CONTRACT-REGISTRY-01",
+            "PROVENANCE-TRAINING-LEDGER-00",
+            "UNIVERSAL-EVIDENCE-INGRESS-00",
+            "UCC-CONTROL-PROFILE-SELECTOR-00",
+            "EVIDENCE-REVIEW-PACK-00",
+            "UNIVERSAL-STAGE-PIPELINE-00",
+            "ARTIFACT-CONTRACT-REGISTRY-01",
+            "UNIVERSAL-COMPATIBILITY-MATRIX-00",
+        ],
+        "reproduction_command_summary": EVIDENCE_REVIEW_PACK_LOCAL_ADAPTER_COMMAND,
+        "claim_allowed": "EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER-01 demonstrates that a Sonya local fixture adapter candidate can be bound to review, governed by a UCC control profile, evaluated through claim/evidence mapping, and recorded through provenance events without accepting raw adapter output as cognition. Adapter output is not accepted as cognition directly.",
+        "claims_blocked": EVIDENCE_REVIEW_PACK_LOCAL_ADAPTER_CLAIMS_BLOCKED,
+        "reviewer_caution": "EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER-01 routes a local fixture adapter candidate into review only. It does not accept adapter output as cognition directly, does not authorize adapter execution, does not write memory, does not release final answers, does not deploy, does not train model weights, and does not prove hallucination reduction.",
+        "publication_status": "dashboard_indexed",
+    },
+
+    {
+        "phase_id": "EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER-02",
+        "repo": "pdxvoiceteacher/CoherenceLattice",
+        "status": "accepted",
+        "evidence_type": "local_adapter_revision_loop",
+        "product_posture": "candidate_revision_loop_with_structural_review_deltas",
+        "primary_artifacts": EVIDENCE_REVIEW_PACK_LOCAL_ADAPTER_02_ARTIFACTS,
+        "dashboard_summary": EVIDENCE_REVIEW_PACK_LOCAL_ADAPTER_02_DASHBOARD_SUMMARY,
+        "prerequisite_phases": [
+            "EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER-01",
+            "SONYA-LOCAL-FIXTURE-ADAPTER-02",
+            "SONYA-LOCAL-FIXTURE-ADAPTER-03",
+            "SONYA-LOCAL-FIXTURE-ADAPTER-01",
+            "SONYA-ADAPTER-SMOKE-00",
+            "SONYA-ADAPTER-CONTRACT-REGISTRY-01",
+            "PROVENANCE-TRAINING-LEDGER-00",
+            "UCC-CONTROL-PROFILE-SELECTOR-00",
+            "EVIDENCE-REVIEW-PACK-00",
+        ],
+        "reproduction_command_summary": EVIDENCE_REVIEW_PACK_LOCAL_ADAPTER_02_COMMAND,
+        "claim_allowed": "EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER-02 demonstrates a local-only candidate revision loop that consumes a revise_summary recommendation, emits a revised candidate, reruns Evidence Review Pack review, and reports candidate-level deltas while preserving non-authority boundaries.",
+        "claims_blocked": EVIDENCE_REVIEW_PACK_LOCAL_ADAPTER_02_CLAIMS_BLOCKED,
+        "reviewer_caution": "EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER-02 reports candidate-level structural review deltas only. It does not prove hallucination reduction, benchmark model quality, select a final answer, accept evidence, authorize adapters, write memory, train models, or deploy.",
+        "publication_status": "dashboard_indexed",
+    },
+    {
+        "phase_id": "SONYA-LOCAL-FIXTURE-ADAPTER-02",
+        "repo": "pdxvoiceteacher/CoherenceLattice",
+        "status": "accepted",
+        "evidence_type": "multi_adapter_local_fixture_route",
+        "product_posture": "local_adapter_candidate_comparison_and_selection_policy_without_live_execution",
+        "primary_artifacts": SONYA_LOCAL_FIXTURE_ADAPTER_02_ARTIFACTS,
+        "dashboard_summary": SONYA_LOCAL_FIXTURE_ADAPTER_02_DASHBOARD_SUMMARY,
+        "prerequisite_phases": [
+            "SONYA-LOCAL-FIXTURE-ADAPTER-01",
+            "EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER-01",
+            "SONYA-ADAPTER-SMOKE-00",
+            "SONYA-ADAPTER-CONTRACT-REGISTRY-01",
+            "PROVENANCE-TRAINING-LEDGER-00",
+            "UNIVERSAL-EVIDENCE-INGRESS-00",
+            "UCC-CONTROL-PROFILE-SELECTOR-00",
+            "EVIDENCE-REVIEW-PACK-00",
+            "UNIVERSAL-STAGE-PIPELINE-00",
+            "ARTIFACT-CONTRACT-REGISTRY-01",
+            "UNIVERSAL-COMPATIBILITY-MATRIX-00",
+        ],
+        "reproduction_command_summary": SONYA_LOCAL_FIXTURE_ADAPTER_02_COMMAND,
+        "claim_allowed": "SONYA-LOCAL-FIXTURE-ADAPTER-02 demonstrates local-only comparison of deterministic fixture adapter candidates, applies a selection policy, and records that the selected candidate still requires Evidence Review Pack routing. Selection policy is not final answer.",
+        "claims_blocked": SONYA_LOCAL_FIXTURE_ADAPTER_02_CLAIMS_BLOCKED,
+        "reviewer_caution": "SONYA-LOCAL-FIXTURE-ADAPTER-02 compares deterministic local fixture adapter candidates only. Selection is not final answer, not adapter authorization, not truth certification, and not a model quality benchmark. The selected candidate still requires Evidence Review Pack routing before it can be reviewed as cognition.",
+        "publication_status": "dashboard_indexed",
+    },
+
+    {
+        "phase_id": "SONYA-LOCAL-FIXTURE-ADAPTER-03",
+        "repo": "pdxvoiceteacher/CoherenceLattice",
+        "status": "accepted",
+        "evidence_type": "methods_lineage_clarity",
+        "product_posture": "source_current_experiment_lineage_clarity",
+        "primary_artifacts": SONYA_LOCAL_FIXTURE_ADAPTER_03_ARTIFACTS,
+        "dashboard_summary": SONYA_LOCAL_FIXTURE_ADAPTER_03_DASHBOARD_SUMMARY,
+        "prerequisite_phases": [
+            "SONYA-LOCAL-FIXTURE-ADAPTER-01",
+            "SONYA-LOCAL-FIXTURE-ADAPTER-02",
+            "EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER-01",
+            "SONYA-ADAPTER-SMOKE-00",
+            "SONYA-ADAPTER-CONTRACT-REGISTRY-01",
+        ],
+        "reproduction_command_summary": SONYA_LOCAL_FIXTURE_ADAPTER_03_COMMAND,
+        "claim_allowed": "SONYA-LOCAL-FIXTURE-ADAPTER-03 demonstrates explicit lineage clarity for Sonya local fixture adapter multi-route artifacts by distinguishing current route identity, source fixture identity, source fixture role, and Evidence Review Pack local-adapter route references.",
+        "claims_blocked": SONYA_LOCAL_FIXTURE_ADAPTER_03_CLAIMS_BLOCKED,
+        "reviewer_caution": "SONYA-LOCAL-FIXTURE-ADAPTER-03 is a lineage clarity packet only. It clarifies that nested source fixture references are dependencies and not stale identity leakage. It does not execute adapters, authorize network, call providers, write memory, release final answers, train models, or deploy.",
+        "publication_status": "dashboard_indexed",
+    },
+
+    {
+        "phase_id": "PMR-00-PROVENANCE-MEMORY-RESERVOIR",
+        "repo": "pdxvoiceteacher/CoherenceLattice",
+        "status": "accepted",
+        "evidence_type": "architecture_scaffold",
+        "product_posture": "provenance_memory_doctrine_and_local_storage_policy",
+        "primary_artifacts": PMR_00_ARTIFACTS,
+        "dashboard_summary": PMR_00_DASHBOARD_SUMMARY,
+        "reproduction_command_summary": PMR_00_COMMAND,
+        "claim_allowed": "PMR-00-PROVENANCE-MEMORY-RESERVOIR establishes Provenance Memory Reservoir doctrine and local storage policy: Memory is governed provenance under resource constraints.",
+        "claims_blocked": PMR_CLAIMS_BLOCKED,
+        "reviewer_caution": "PMR-00 and PMR-01 define local provenance-memory doctrine, storage policy, artifact indexing, and dependency graph scaffolds only. They do not write memory, canonize artifacts, federate artifacts, transfer encrypted shards, prune artifacts, train models, certify truth, release final answers, deploy, or reward resource contributions.",
+        "publication_status": "dashboard_indexed",
+    },
+    {
+        "phase_id": "PMR-01-LOCAL-ARTIFACT-INDEX",
+        "repo": "pdxvoiceteacher/CoherenceLattice",
+        "status": "accepted",
+        "evidence_type": "architecture_scaffold",
+        "product_posture": "local_artifact_index_and_dependency_graph",
+        "primary_artifacts": PMR_01_ARTIFACTS,
+        "dashboard_summary": PMR_01_DASHBOARD_SUMMARY,
+        "prerequisite_phases": [
+            "PMR-00-PROVENANCE-MEMORY-RESERVOIR",
+        ],
+        "reproduction_command_summary": PMR_01_COMMAND,
+        "claim_allowed": "PMR-01-LOCAL-ARTIFACT-INDEX demonstrates a local artifact index and dependency graph scaffold while preserving that PMR artifact lifecycle state is not truth status.",
+        "claims_blocked": PMR_CLAIMS_BLOCKED,
+        "reviewer_caution": "PMR-00 and PMR-01 define local provenance-memory doctrine, storage policy, artifact indexing, and dependency graph scaffolds only. They do not write memory, canonize artifacts, federate artifacts, transfer encrypted shards, prune artifacts, train models, certify truth, release final answers, deploy, or reward resource contributions.",
+        "publication_status": "dashboard_indexed",
+    },
+
+    {
+        "phase_id": "PMR-02-GLOBAL-PROVENANCE-COHERENCE-UTILITY",
+        "repo": "pdxvoiceteacher/CoherenceLattice",
+        "status": "accepted",
+        "evidence_type": "architecture_scaffold",
+        "product_posture": "local_artifact_lifecycle_utility_scoring",
+        "primary_artifacts": PMR_02_ARTIFACTS,
+        "dashboard_summary": PMR_02_DASHBOARD_SUMMARY,
+        "prerequisite_phases": [
+            "PMR-00-PROVENANCE-MEMORY-RESERVOIR",
+            "PMR-01-LOCAL-ARTIFACT-INDEX",
+            "PROVENANCE-TRAINING-LEDGER-00",
+            "ARTIFACT-CONTRACT-REGISTRY-01",
+            "UNIVERSAL-COMPATIBILITY-MATRIX-00",
+            "RW-COMP-LOCAL-ADAPTER-01",
+            "EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER-02",
+        ],
+        "reproduction_command_summary": PMR_02_COMMAND,
+        "claim_allowed": "PMR-02-GLOBAL-PROVENANCE-COHERENCE-UTILITY demonstrates deterministic local utility scoring for PMR-indexed artifacts and emits lifecycle recommendations while preserving non-authority boundaries.",
+        "claims_blocked": PMR_02_CLAIMS_BLOCKED,
+        "reviewer_caution": "PMR-02 computes lifecycle/storage utility scores and recommendations only. It does not prune artifacts. GPCU is not reward entitlement and not token economy. It does not certify truth. It does not authorize federation. It does not write memory, train models, deploy, or assign human value.",
+        "publication_status": "dashboard_indexed",
+    },
+
+    {
+        "phase_id": "PMR-03-LIFECYCLE-STATE-MACHINE",
+        "repo": "pdxvoiceteacher/CoherenceLattice",
+        "status": "accepted",
+        "evidence_type": "architecture_scaffold",
+        "product_posture": "lifecycle_transition_candidates_with_no_action_receipts",
+        "primary_artifacts": PMR_03_ARTIFACTS,
+        "dashboard_summary": PMR_03_DASHBOARD_SUMMARY,
+        "prerequisite_phases": [
+            "PMR-00-PROVENANCE-MEMORY-RESERVOIR",
+            "PMR-01-LOCAL-ARTIFACT-INDEX",
+            "PMR-02-GLOBAL-PROVENANCE-COHERENCE-UTILITY",
+            "PROVENANCE-TRAINING-LEDGER-00",
+            "ARTIFACT-CONTRACT-REGISTRY-01",
+            "UNIVERSAL-COMPATIBILITY-MATRIX-00",
+            "RW-COMP-LOCAL-ADAPTER-01",
+            "EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER-02",
+        ],
+        "reproduction_command_summary": PMR_03_COMMAND,
+        "claim_allowed": "PMR-03-LIFECYCLE-STATE-MACHINE demonstrates lifecycle transition candidates and no-action receipts for PMR-indexed artifacts while preserving non-action and non-authority boundaries.",
+        "claims_blocked": PMR_03_CLAIMS_BLOCKED,
+        "reviewer_caution": "PMR-03 emits lifecycle transition candidates and no-action receipts only. It does not prune, delete, federate, transfer encrypted shards, reward users, run a token economy, write memory, train models, deploy, or certify truth. Destructive action requires future Sophia lifecycle audit and user confirmation.",
+        "publication_status": "dashboard_indexed",
+    },
+
+    {
+        "phase_id": "PMR-04-LIFECYCLE-AUDIT-PREFLIGHT",
+        "repo": "pdxvoiceteacher/CoherenceLattice",
+        "status": "accepted",
+        "evidence_type": "architecture_scaffold",
+        "product_posture": "lifecycle_audit_preflight_candidates_with_block_and_no_action_receipts",
+        "primary_artifacts": PMR_04_ARTIFACTS,
+        "dashboard_summary": PMR_04_DASHBOARD_SUMMARY,
+        "prerequisite_phases": [
+            "PMR-00-PROVENANCE-MEMORY-RESERVOIR",
+            "PMR-01-LOCAL-ARTIFACT-INDEX",
+            "PMR-02-GLOBAL-PROVENANCE-COHERENCE-UTILITY",
+            "PMR-03-LIFECYCLE-STATE-MACHINE",
+            "PROVENANCE-TRAINING-LEDGER-00",
+            "ARTIFACT-CONTRACT-REGISTRY-01",
+            "UNIVERSAL-COMPATIBILITY-MATRIX-00",
+            "RW-COMP-LOCAL-ADAPTER-01",
+            "EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER-02",
+        ],
+        "reproduction_command_summary": PMR_04_COMMAND,
+        "claim_allowed": "PMR-04-LIFECYCLE-AUDIT-PREFLIGHT demonstrates lifecycle audit preflight candidates, block packets, and no-action receipts for PMR-indexed artifacts while preserving non-approval, non-action, and non-authority boundaries.",
+        "claims_blocked": PMR_04_CLAIMS_BLOCKED,
+        "reviewer_caution": "PMR-04 emits lifecycle audit candidates, a block packet, and a no-action receipt only. Preflight is not approval. Audit candidate is not action. It does not prune, delete, federate, transfer encrypted shards, reward users, run a token economy, write memory, write canon, train models, deploy, certify truth, release final answers, prove hallucination reduction, or recursively self-improve. Sophia lifecycle audit and user confirmation are required before destructive local action.",
+        "publication_status": "dashboard_indexed",
+    },
+
+    {
+        "phase_id": "PMR-05-SOPHIA-LIFECYCLE-AUDIT-REVIEW",
+        "repo": "pdxvoiceteacher/CoherenceLattice",
+        "status": "accepted",
+        "evidence_type": "architecture_scaffold",
+        "product_posture": "fixture_only_sophia_lifecycle_audit_review_with_no_approval_receipt",
+        "primary_artifacts": PMR_05_ARTIFACTS,
+        "dashboard_summary": PMR_05_DASHBOARD_SUMMARY,
+        "prerequisite_phases": [
+            "PMR-00-PROVENANCE-MEMORY-RESERVOIR",
+            "PMR-01-LOCAL-ARTIFACT-INDEX",
+            "PMR-02-GLOBAL-PROVENANCE-COHERENCE-UTILITY",
+            "PMR-03-LIFECYCLE-STATE-MACHINE",
+            "PMR-04-LIFECYCLE-AUDIT-PREFLIGHT",
+            "PROVENANCE-TRAINING-LEDGER-00",
+            "ARTIFACT-CONTRACT-REGISTRY-01",
+            "UNIVERSAL-COMPATIBILITY-MATRIX-00",
+            "RW-COMP-LOCAL-ADAPTER-01",
+            "EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER-02",
+        ],
+        "reproduction_command_summary": PMR_05_COMMAND,
+        "claim_allowed": "PMR-05-SOPHIA-LIFECYCLE-AUDIT-REVIEW demonstrates fixture-only Sophia lifecycle audit review for PMR audit candidates while preserving no-approval and no-action boundaries.",
+        "claims_blocked": PMR_05_CLAIMS_BLOCKED,
+        "reviewer_caution": "PMR-05 emits fixture-only Sophia lifecycle audit review recommendations and a no-approval receipt only. It does not approve, prune, delete, federate, transfer encrypted shards, reward users, run a token economy, write memory, train models, deploy, or certify truth. Destructive action requires future Sophia approval and user confirmation.",
+        "publication_status": "dashboard_indexed",
+    },
+
+    {
+        "phase_id": "PMR-06-USER-CONFIRMATION-PREFLIGHT",
+        "repo": "pdxvoiceteacher/CoherenceLattice",
+        "status": "accepted",
+        "evidence_type": "architecture_scaffold",
+        "product_posture": "user_confirmation_request_preflight_with_no_action_receipt",
+        "primary_artifacts": PMR_06_ARTIFACTS,
+        "dashboard_summary": PMR_06_DASHBOARD_SUMMARY,
+        "prerequisite_phases": [
+            "PMR-00-PROVENANCE-MEMORY-RESERVOIR",
+            "PMR-01-LOCAL-ARTIFACT-INDEX",
+            "PMR-02-GLOBAL-PROVENANCE-COHERENCE-UTILITY",
+            "PMR-03-LIFECYCLE-STATE-MACHINE",
+            "PMR-04-LIFECYCLE-AUDIT-PREFLIGHT",
+            "PMR-05-SOPHIA-LIFECYCLE-AUDIT-REVIEW",
+            "PROVENANCE-TRAINING-LEDGER-00",
+            "ARTIFACT-CONTRACT-REGISTRY-01",
+            "UNIVERSAL-COMPATIBILITY-MATRIX-00",
+            "RW-COMP-LOCAL-ADAPTER-01",
+            "EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER-02",
+        ],
+        "reproduction_command_summary": PMR_06_COMMAND,
+        "claim_allowed": "PMR-06-USER-CONFIRMATION-PREFLIGHT demonstrates fixture-only user confirmation request preflight for PMR lifecycle recommendations while preserving no-confirmation and no-action boundaries.",
+        "claims_blocked": PMR_06_CLAIMS_BLOCKED,
+        "reviewer_caution": "PMR-06 emits user confirmation request candidates, prompt packets, block packets, and a no-action receipt only. It does not confirm, approve, prune, delete, federate, transfer encrypted shards, reward users, run a token economy, write memory, train models, deploy, or certify truth. Destructive action requires future Sophia approval and future user confirmation.",
+        "publication_status": "dashboard_indexed",
+    },
+
+    {
+        "phase_id": "PMR-07-USER-CONFIRMATION-NEGATIVE-CONTROL",
+        "repo": "pdxvoiceteacher/CoherenceLattice",
+        "status": "accepted",
+        "evidence_type": "negative_control",
+        "product_posture": "invalid_confirmation_fails_closed_with_no_action_receipt",
+        "primary_artifacts": PMR_07_ARTIFACTS,
+        "dashboard_summary": PMR_07_DASHBOARD_SUMMARY,
+        "prerequisite_phases": [
+            "PMR-00-PROVENANCE-MEMORY-RESERVOIR",
+            "PMR-01-LOCAL-ARTIFACT-INDEX",
+            "PMR-02-GLOBAL-PROVENANCE-COHERENCE-UTILITY",
+            "PMR-03-LIFECYCLE-STATE-MACHINE",
+            "PMR-04-LIFECYCLE-AUDIT-PREFLIGHT",
+            "PMR-05-SOPHIA-LIFECYCLE-AUDIT-REVIEW",
+            "PMR-06-USER-CONFIRMATION-PREFLIGHT",
+            "PROVENANCE-TRAINING-LEDGER-00",
+            "ARTIFACT-CONTRACT-REGISTRY-01",
+            "UNIVERSAL-COMPATIBILITY-MATRIX-00",
+        ],
+        "reproduction_command_summary": PMR_07_COMMAND,
+        "claim_allowed": "PMR-07-USER-CONFIRMATION-NEGATIVE-CONTROL demonstrates that invalid, missing, forged, expired, scope-mismatched, policy-blocked, or Sophia-approval-missing user confirmation attempts fail closed and cannot authorize destructive PMR action.",
+        "claims_blocked": PMR_07_CLAIMS_BLOCKED,
+        "reviewer_caution": "PMR-07 emits invalid user confirmation attempts, failed-closed block packets, and a no-action receipt only. It proves that invalid, missing, forged, expired, scope-mismatched, policy-blocked, or Sophia-approval-missing confirmation attempts cannot authorize destructive PMR action. It does not confirm, approve, prune, delete, federate, transfer encrypted shards, reward users, run a token economy, write memory, train models, deploy, or certify truth.",
+        "publication_status": "dashboard_indexed",
+    },
+
+    {
+        "phase_id": "PMR-08-VALID-USER-CONFIRMATION-RECEIPT-SCAFFOLD",
+        "repo": "pdxvoiceteacher/CoherenceLattice",
+        "status": "accepted",
+        "evidence_type": "architecture_scaffold",
+        "product_posture": "valid_scoped_confirmation_receipts_for_non_action_cases",
+        "primary_artifacts": PMR_08_ARTIFACTS,
+        "dashboard_summary": PMR_08_DASHBOARD_SUMMARY,
+        "prerequisite_phases": [
+            "PMR-00-PROVENANCE-MEMORY-RESERVOIR",
+            "PMR-01-LOCAL-ARTIFACT-INDEX",
+            "PMR-02-GLOBAL-PROVENANCE-COHERENCE-UTILITY",
+            "PMR-03-LIFECYCLE-STATE-MACHINE",
+            "PMR-04-LIFECYCLE-AUDIT-PREFLIGHT",
+            "PMR-05-SOPHIA-LIFECYCLE-AUDIT-REVIEW",
+            "PMR-06-USER-CONFIRMATION-PREFLIGHT",
+            "PMR-07-USER-CONFIRMATION-NEGATIVE-CONTROL",
+            "PROVENANCE-TRAINING-LEDGER-00",
+            "ARTIFACT-CONTRACT-REGISTRY-01",
+            "UNIVERSAL-COMPATIBILITY-MATRIX-00",
+        ],
+        "reproduction_command_summary": PMR_08_COMMAND,
+        "claim_allowed": "PMR-08-VALID-USER-CONFIRMATION-RECEIPT-SCAFFOLD demonstrates valid scoped user-confirmation receipts for eligible non-action cases while preserving no-action and non-authority boundaries.",
+        "claims_blocked": PMR_08_CLAIMS_BLOCKED,
+        "reviewer_caution": "PMR-08 emits valid scoped user confirmation receipts for eligible non-action cases only. It does not perform destructive action, approve, prune, delete, federate, transfer encrypted shards, reward users, run a token economy, write memory, train models, deploy, or certify truth. Destructive action still requires future Sophia approval and a future explicit action request.",
+        "publication_status": "dashboard_indexed",
+    },
+
+    {
+        "phase_id": "PMR-09-DESTRUCTIVE-ACTION-AUTHORIZATION-NEGATIVE-CONTROL",
+        "repo": "pdxvoiceteacher/CoherenceLattice",
+        "status": "accepted",
+        "evidence_type": "negative_control",
+        "product_posture": "destructive_action_authorization_fails_closed_without_future_request_and_approval",
+        "primary_artifacts": PMR_09_ARTIFACTS,
+        "dashboard_summary": PMR_09_DASHBOARD_SUMMARY,
+        "prerequisite_phases": [
+            "PMR-00-PROVENANCE-MEMORY-RESERVOIR",
+            "PMR-01-LOCAL-ARTIFACT-INDEX",
+            "PMR-02-GLOBAL-PROVENANCE-COHERENCE-UTILITY",
+            "PMR-03-LIFECYCLE-STATE-MACHINE",
+            "PMR-04-LIFECYCLE-AUDIT-PREFLIGHT",
+            "PMR-05-SOPHIA-LIFECYCLE-AUDIT-REVIEW",
+            "PMR-06-USER-CONFIRMATION-PREFLIGHT",
+            "PMR-07-USER-CONFIRMATION-NEGATIVE-CONTROL",
+            "PMR-08-VALID-USER-CONFIRMATION-RECEIPT-SCAFFOLD",
+            "PROVENANCE-TRAINING-LEDGER-00",
+            "ARTIFACT-CONTRACT-REGISTRY-01",
+            "UNIVERSAL-COMPATIBILITY-MATRIX-00",
+        ],
+        "reproduction_command_summary": PMR_09_COMMAND,
+        "claim_allowed": "PMR-09-DESTRUCTIVE-ACTION-AUTHORIZATION-NEGATIVE-CONTROL demonstrates that destructive PMR action remains blocked when explicit future action request, Sophia approval packet, or scope-valid authorization is missing.",
+        "claims_blocked": PMR_09_CLAIMS_BLOCKED,
+        "reviewer_caution": "PMR-09 emits invalid destructive-action authorization attempts, block packets, and a no-action receipt only. It proves that valid confirmation receipt plus Sophia recommendation is not action authorization. It does not emit an explicit action request, Sophia approval packet, destructive authorization packet, destructive action receipt, pruning receipt, deletion receipt, federation receipt, reward receipt, memory write, model training receipt, deployment decision, or truth certification.",
+        "publication_status": "dashboard_indexed",
+    },
+
+    {
+        "phase_id": "PMR-10-DESTRUCTIVE-ACTION-AUTHORIZATION-PREFLIGHT",
+        "repo": "pdxvoiceteacher/CoherenceLattice",
+        "status": "accepted",
+        "evidence_type": "architecture_scaffold",
+        "product_posture": "destructive_action_authorization_preflight_candidates_with_no_action_receipt",
+        "primary_artifacts": PMR_10_ARTIFACTS,
+        "dashboard_summary": PMR_10_DASHBOARD_SUMMARY,
+        "prerequisite_phases": [
+            "PMR-00-PROVENANCE-MEMORY-RESERVOIR",
+            "PMR-01-LOCAL-ARTIFACT-INDEX",
+            "PMR-02-GLOBAL-PROVENANCE-COHERENCE-UTILITY",
+            "PMR-03-LIFECYCLE-STATE-MACHINE",
+            "PMR-04-LIFECYCLE-AUDIT-PREFLIGHT",
+            "PMR-05-SOPHIA-LIFECYCLE-AUDIT-REVIEW",
+            "PMR-06-USER-CONFIRMATION-PREFLIGHT",
+            "PMR-07-USER-CONFIRMATION-NEGATIVE-CONTROL",
+            "PMR-08-VALID-USER-CONFIRMATION-RECEIPT-SCAFFOLD",
+            "PMR-09-DESTRUCTIVE-ACTION-AUTHORIZATION-NEGATIVE-CONTROL",
+            "PROVENANCE-TRAINING-LEDGER-00",
+            "ARTIFACT-CONTRACT-REGISTRY-01",
+            "UNIVERSAL-COMPATIBILITY-MATRIX-00",
+        ],
+        "reproduction_command_summary": PMR_10_COMMAND,
+        "claim_allowed": "PMR-10-DESTRUCTIVE-ACTION-AUTHORIZATION-PREFLIGHT demonstrates authorization preflight candidates for explicit action request and Sophia approval request while preserving no-authorization and no-action boundaries.",
+        "claims_blocked": PMR_10_CLAIMS_BLOCKED,
+        "reviewer_caution": "PMR-10 emits explicit action request candidates and Sophia approval request candidates only. It does not emit explicit action request packets, Sophia approval packets, destructive authorization packets, destructive action receipts, pruning receipts, deletion receipts, federation receipts, reward receipts, memory writes, model training receipts, deployment decisions, or truth certifications.",
+        "publication_status": "dashboard_indexed",
+    },
+
+    {
+        "phase_id": "PMR-ARCH-DIVERSITY-CHECKPOINT-00",
+        "repo": "pdxvoiceteacher/CoherenceLattice",
+        "status": "accepted",
+        "evidence_type": "architecture_checkpoint",
+        "product_posture": "architecture_diversity_checkpoint_without_runtime_authority",
+        "primary_artifacts": PMR_ARCH_DIVERSITY_CHECKPOINT_ARTIFACTS,
+        "dashboard_summary": PMR_ARCH_DIVERSITY_CHECKPOINT_DASHBOARD_SUMMARY,
+        "prerequisite_phases": [
+            "PMR-00-PROVENANCE-MEMORY-RESERVOIR",
+            "PMR-01-LOCAL-ARTIFACT-INDEX",
+            "PMR-02-GLOBAL-PROVENANCE-COHERENCE-UTILITY",
+            "PMR-03-LIFECYCLE-STATE-MACHINE",
+            "PMR-04-LIFECYCLE-AUDIT-PREFLIGHT",
+            "PMR-05-SOPHIA-LIFECYCLE-AUDIT-REVIEW",
+            "PMR-06-USER-CONFIRMATION-PREFLIGHT",
+            "PMR-07-USER-CONFIRMATION-NEGATIVE-CONTROL",
+            "PMR-08-VALID-USER-CONFIRMATION-RECEIPT-SCAFFOLD",
+            "PMR-09-DESTRUCTIVE-ACTION-AUTHORIZATION-NEGATIVE-CONTROL",
+            "PMR-10-DESTRUCTIVE-ACTION-AUTHORIZATION-PREFLIGHT",
+            "EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER-02",
+            "RW-COMP-LOCAL-ADAPTER-01",
+            "SONYA-LOCAL-FIXTURE-ADAPTER-02",
+            "RETROSYNTHESIS-SANDBOX-CYCLE-01",
+            "UNIVERSAL-STAGE-PIPELINE-00",
+            "ARTIFACT-CONTRACT-REGISTRY-01",
+            "UNIVERSAL-COMPATIBILITY-MATRIX-00",
+            "PROVENANCE-TRAINING-LEDGER-00",
+        ],
+        "reproduction_command_summary": PMR_ARCH_DIVERSITY_CHECKPOINT_COMMAND,
+        "claim_allowed": "PMR-ARCH-DIVERSITY-CHECKPOINT-00 demonstrates an architecture checkpoint that summarizes PMR coverage, evaluates non-PMR lanes, records gaps, and recommends PMR-SIM-00 as the next evidence-producing runtime lane while preserving no-authority boundaries.",
+        "claims_blocked": PMR_ARCH_DIVERSITY_CHECKPOINT_CLAIMS_BLOCKED,
+        "reviewer_caution": "PMR-ARCH-DIVERSITY-CHECKPOINT-00 maps PMR coverage, non-PMR gaps, and next-lane recommendation only. It does not execute, authorize, approve, prune, delete, federate, transfer encrypted shards, reward users, run a token economy, write memory, train models, deploy, or certify truth.",
+        "publication_status": "dashboard_indexed",
+    },
+    {
+        "phase_id": "UNIVERSAL-STAGE-PIPELINE-00",
+        "repo": "pdxvoiceteacher/CoherenceLattice",
+        "status": "accepted",
+        "evidence_type": "architecture_scaffold",
+        "product_posture": "universal_cognition_stage_contracts",
+        "primary_artifacts": UNIVERSAL_STAGE_PIPELINE_ARTIFACTS,
+        "reproduction_command_summary": UNIVERSAL_STAGE_PIPELINE_COMMAND,
+        "claim_allowed": "UNIVERSAL-STAGE-PIPELINE-00 defines reusable cognition-stage contracts for a universal architecture scaffold.",
+        "claims_blocked": UNIVERSAL_ARCHITECTURE_CLAIMS_BLOCKED,
+        "reviewer_caution": "Cognition-stage contracts are not product release, not experiment result, not benchmark result, and not deployment authority.",
+        "publication_status": "dashboard_indexed",
+    },
+    {
+        "phase_id": "ARTIFACT-CONTRACT-REGISTRY-01",
+        "repo": "pdxvoiceteacher/CoherenceLattice",
+        "status": "accepted",
+        "evidence_type": "architecture_scaffold",
+        "product_posture": "externalized_artifact_contracts",
+        "primary_artifacts": ARTIFACT_CONTRACT_REGISTRY_ARTIFACTS,
+        "reproduction_command_summary": ARTIFACT_CONTRACT_REGISTRY_COMMAND,
+        "claim_allowed": "ARTIFACT-CONTRACT-REGISTRY-01 externalizes artifact roles and profile contracts into versioned configuration.",
+        "claims_blocked": UNIVERSAL_ARCHITECTURE_CLAIMS_BLOCKED,
+        "reviewer_caution": "Artifact profile contracts show that profiles are configuration; they are not truth certification or deployment authority.",
+        "publication_status": "dashboard_indexed",
+    },
+    {
+        "phase_id": "UNIVERSAL-COMPATIBILITY-MATRIX-00",
+        "repo": "pdxvoiceteacher/CoherenceLattice",
+        "status": "accepted",
+        "evidence_type": "architecture_scaffold",
+        "product_posture": "universal_stage_input_compatibility",
+        "primary_artifacts": UNIVERSAL_COMPATIBILITY_MATRIX_ARTIFACTS,
+        "dashboard_summary": UNIVERSAL_COMPATIBILITY_MATRIX_DASHBOARD_SUMMARY,
+        "reproduction_command_summary": UNIVERSAL_COMPATIBILITY_MATRIX_COMMAND,
+        "claim_allowed": "The universal architecture scaffold demonstrates that accepted experiments can be described as configurations over reusable stages and versioned artifact contracts, with unsupported inputs preserved by hash-only or failed-closed receipts.",
+        "claims_blocked": UNIVERSAL_ARCHITECTURE_CLAIMS_BLOCKED,
+        "reviewer_caution": "The compatibility matrix is architecture scaffold evidence only: not product release, not experiment result, not benchmark result, not hallucination reduction proof, and not recursive self-improvement.",
+        "publication_status": "dashboard_indexed",
+    },
+    {
+        "phase_id": "EXP-SUITE-REGISTRY-01",
+        "repo": "pdxvoiceteacher/CoherenceLattice",
+        "status": "accepted",
+        "evidence_type": "experiment_suite_registry",
+        "primary_artifacts": ["experiments/experiment_suite_registry.json"],
+        "reproduction_command_summary": "Inspect experiments/experiment_suite_registry.json and rebuild the suite repro pack.",
+        "claim_allowed": "Accepted/partial/blocked/planned phase registry is reviewable.",
+        "claims_blocked": ["registry is not deployment authority", "route is not authorization"],
+        "reviewer_caution": "Registry status is a claim-boundary map, not a product launch.",
+        "publication_status": "dashboard_indexed",
+    },
+    {
+        "phase_id": "EXP-SUITE-REPRO-01",
+        "repo": "pdxvoiceteacher/CoherenceLattice",
+        "status": "accepted",
+        "evidence_type": "reproducibility_pack",
+        "primary_artifacts": [
+            "experiment_suite_repro_pack.json",
+            "acceptance_matrix.csv",
+            "artifact_manifest.json",
+            "experiment_suite_reproducibility_report.md",
+        ],
+        "reproduction_command_summary": "python -m coherence.tools.build_experiment_suite_repro_pack --registry experiments/experiment_suite_registry.json --artifacts-root artifacts --out-dir artifacts/experiment_suite_repro_pack --zip",
+        "claim_allowed": "Reproducibility receipts and artifact manifests can be inspected.",
+        "claims_blocked": ["reproducibility pack is not deployment authority", "receipt is not truth certification"],
+        "reviewer_caution": "A receipt records checks; it does not certify truth.",
+        "publication_status": "dashboard_indexed",
     },
 }
 PMR_05_CLAIMS_BLOCKED = [
@@ -1954,24 +2513,417 @@ PMR_06_CLAIMS_BLOCKED = [
     "not production readiness",
 ]
 
-PMR_07_COMMAND = r""".\experiments\Run-PMR07-Acceptance.ps1 `
-  -OutputRoot C:\UVLM\run_artifacts\pmr_07 `
-  -LogDir C:\UVLM\run_artifacts\pmr_07_logs `
-  -Mode balanced `
-  -LocalStorageBudgetBytes 5368709120 `
-  -CiMode"""
-PMR_07_ARTIFACTS = [
-    "pmr_user_confirmation_negative_control_packet.json",
-    "pmr_invalid_user_confirmation_attempts.jsonl",
-    "pmr_user_confirmation_negative_control_block_packet.json",
-    "pmr_user_confirmation_negative_control_no_action_receipt.json",
-    "pmr_user_confirmation_negative_control_review_packet.json",
-    "pmr_user_confirmation_negative_control_summary.md",
-    "artifact_inventory.json",
-    "run_artifact_manifest.json",
-    "export_bundle_manifest.json",
-    "export_bundle_parity_report.json",
-    "pmr_07_acceptance_receipt.json",
+    {
+        "phase_id": "RW-COMP-LOCAL-ADAPTER-01",
+        "repo": "pdxvoiceteacher/CoherenceLattice",
+        "status": "accepted",
+        "evidence_type": "local_adapter_comparison_scaffold",
+        "product_posture": "original_vs_revised_local_adapter_candidate_structural_review_delta",
+        "primary_artifacts": RW_COMP_LOCAL_ADAPTER_ARTIFACTS,
+        "dashboard_summary": RW_COMP_LOCAL_ADAPTER_DASHBOARD_SUMMARY,
+        "prerequisite_phases": [
+            "EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER-01",
+            "EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER-02",
+            "SONYA-LOCAL-FIXTURE-ADAPTER-01",
+            "SONYA-LOCAL-FIXTURE-ADAPTER-02",
+            "SONYA-LOCAL-FIXTURE-ADAPTER-03",
+            "SONYA-ADAPTER-SMOKE-00",
+            "SONYA-ADAPTER-CONTRACT-REGISTRY-01",
+            "PROVENANCE-TRAINING-LEDGER-00",
+            "EVIDENCE-REVIEW-PACK-00",
+            "UCC-CONTROL-PROFILE-SELECTOR-00",
+        ],
+        "reproduction_command_summary": RW_COMP_LOCAL_ADAPTER_COMMAND,
+        "claim_allowed": "RW-COMP-LOCAL-ADAPTER-01 demonstrates a local-only comparison scaffold that compares original and revised local adapter candidates through Evidence Review Pack reviewed arms and reports structural review deltas.",
+        "claims_blocked": RW_COMP_LOCAL_ADAPTER_CLAIMS_BLOCKED,
+        "reviewer_caution": "RW-COMP-LOCAL-ADAPTER-01 reports structural review deltas only. It does not prove hallucination reduction, benchmark model quality, select a final answer, accept evidence, authorize adapters, write memory, train models, or deploy.",
+        "publication_status": "dashboard_indexed",
+    },
+    {
+        "phase_id": "RETROSYNTHESIS-SANDBOX-CYCLE-01",
+        "repo": "pdxvoiceteacher/CoherenceLattice",
+        "status": "accepted",
+        "evidence_type": "bounded_retrosynthesis_candidate_repair_cycle",
+        "product_posture": "sandbox_repair_candidates_for_evidence_review_pack",
+        "primary_artifacts": RETRO_SANDBOX_CYCLE_ARTIFACTS,
+        "prerequisite_phases": [
+            "RETRO-LANE-00",
+            "EVIDENCE-REVIEW-PACK-00",
+            "RW-COMP-02",
+            "UCC-CONTROL-PROFILE-SELECTOR-00",
+            "UNIVERSAL-EVIDENCE-INGRESS-00",
+            "CANONICAL-METRIC-PACKET-01",
+        ],
+        "dashboard_summary": RETRO_SANDBOX_CYCLE_DASHBOARD_SUMMARY,
+        "reproduction_command_summary": RETRO_SANDBOX_CYCLE_COMMAND,
+        "claim_allowed": "RETROSYNTHESIS-SANDBOX-CYCLE-01 demonstrates a bounded candidate-only repair cycle over incomplete Evidence Review Pack artifacts. It emits missing-evidence requests, claim-map revision candidates, uncertainty-restoration candidates, counterevidence-expansion candidates, and next-experiment recommendations while remaining not canon adoption, not memory write, not final answer release, not Publisher finalization, not deployment authority, not Omega detection, not publication claim, not live model execution, and not remote provider call.",
+        "claims_blocked": RETRO_SANDBOX_CYCLE_CLAIMS_BLOCKED,
+        "reviewer_caution": "RETROSYNTHESIS-SANDBOX-CYCLE-01 emits repair candidates only. Missing evidence requests are not external fetches. Claim-map revisions are not accepted evidence. Uncertainty restoration and counterevidence expansion remain candidate artifacts until future review gates promote them. This phase does not write memory, does not adopt canon, does not publish claims, does not release final answers, does not perform Omega detection, and does not authorize deployment.",
+        "publication_status": "dashboard_indexed",
+    },
+    {
+        "phase_id": "EVIDENCE-REVIEW-PACK-01",
+        "repo": "pdxvoiceteacher/CoherenceLattice",
+        "status": "accepted",
+        "evidence_type": "bounded_second_pass_review_candidate_loop",
+        "product_posture": "second_pass_candidate_revisions_from_retrosynthesis_sandbox",
+        "primary_artifacts": EVIDENCE_REVIEW_PACK_01_ARTIFACTS,
+        "prerequisite_phases": [
+            "EVIDENCE-REVIEW-PACK-00",
+            "RETROSYNTHESIS-SANDBOX-CYCLE-01",
+            "RW-COMP-02",
+            "UCC-CONTROL-PROFILE-SELECTOR-00",
+            "UNIVERSAL-EVIDENCE-INGRESS-00",
+            "CANONICAL-METRIC-PACKET-01",
+        ],
+        "dashboard_summary": EVIDENCE_REVIEW_PACK_01_DASHBOARD_SUMMARY,
+        "reproduction_command_summary": EVIDENCE_REVIEW_PACK_01_COMMAND,
+        "claim_allowed": "EVIDENCE-REVIEW-PACK-01 demonstrates a candidate-only second-pass review loop that consumes retrosynthesis sandbox repair candidates and emits bounded revision candidates for claim-map status, omitted uncertainty, counterevidence, and structural visibility deltas.",
+        "claims_blocked": EVIDENCE_REVIEW_PACK_01_CLAIMS_BLOCKED,
+        "reviewer_caution": "EVIDENCE-REVIEW-PACK-01 emits candidate revisions only. Its deltas are structural visibility descriptors, not hallucination-reduction proof. Claim-map revisions are not accepted evidence. Uncertainty and counterevidence revisions require future review gates before promotion. This phase does not write memory, does not adopt canon, does not publish claims, does not release final answers, does not perform Omega detection, does not finalize Publisher output, and does not authorize deployment.",
+        "publication_status": "dashboard_indexed",
+    },
+    {
+        "phase_id": "RAW-BASELINE-COMPARISON-00",
+        "repo": "pdxvoiceteacher/CoherenceLattice",
+        "status": "accepted",
+        "evidence_type": "fixture_only_measurement_scaffold",
+        "primary_artifacts": RAW_BASELINE_COMPARISON_ARTIFACTS,
+        "reproduction_command_summary": RAW_BASELINE_COMPARISON_COMMAND,
+        "claim_allowed": "RAW-BASELINE-COMPARISON-00 provides a fixture-only measurement scaffold for comparing raw-text-style baseline arms with the Sonya-governed candidate packet path across unsupported-claim count, source-linkage posture, route receipt posture, forbidden-artifact leakage, and raw-output admission.",
+        "claims_blocked": RAW_BASELINE_COMPARISON_CLAIMS_BLOCKED,
+        "reviewer_caution": "This phase is measurement infrastructure only. It does not prove that governed artifact cognition reduces hallucinations, improves model quality, or performs better on real-world tasks. It establishes a scaffold for future controlled comparisons.",
+        "publication_status": "dashboard_indexed",
+    },
+]
+PARTIAL_PHASES = [
+    {"phase_id": "TIMBRE-SPECTRAL-METRIC-TIER-02", "status": "planned_partial", "reason": "spectral-complexity tier remains future work"},
+]
+BLOCKED_PHASES = [
+    {"phase_id": "DEPLOYMENT-CLAIM", "status": "blocked", "reason": "dashboard is not deployment authority"},
+]
+PLANNED_PHASES = [
+    "PSYCHOACOUSTIC-SAFETY-TIER-03",
+    "MODEL-INTERPRETATION-ORACLE-TIER-03",
+    "Raw-model comparison baselines",
+]
+BOUNDARIES = [
+    "Sonya Adapter Contract Registry: Adapter capability is not adapter authorization.",
+    "Sonya Adapter Contract Registry keeps all adapters disabled or blocked; all adapters disabled or blocked means not adapter execution and not network authorization.",
+    "Sonya Adapter Contract Registry boundaries: not adapter execution, not network authorization, not remote provider call, not model weight training.",
+    "Sonya Adapter Contract Registry requires that raw output is forbidden, candidate packet required, and failure receipts required.",
+    "Universal Architecture Scaffold: The brain runs cognition stages; experiments configure those stages.",
+    "Universal architecture scaffold: profiles are configuration; experiments are configurations over reusable stages and versioned artifact contracts.",
+    "Universal compatibility inputs use fail-closed receipts or hash-only receipts when unsupported inputs cannot be semantically interpreted.",
+    "Universal Architecture Scaffold is not product release, not experiment result, not benchmark result, not hallucination reduction proof, not deployment authority, and not recursive self-improvement.",
+    "Route is not authorization.",
+    "Receipt is not truth certification.",
+    "Model candidate is not answer.",
+    "Publisher candidate is not final answer.",
+    "Memory intent is not memory write.",
+    "Sonya local membrane is not federation.",
+    "WAVE calibration is not universal ontology.",
+    "UNI-02D safe portability fixture is not universal portability proof.",
+    "Retrosynthesis admission is not retrosynthesis execution.",
+    "Admission is not execution.",
+    "Reproducibility pack is not deployment authority.",
+    "Dashboard is not deployment authority.",
+    "Public Utility Alpha is a local reviewer demo, not deployment authority.",
+    "Raw Baseline Comparison is not hallucination reduction proof.",
+    "Raw Baseline Comparison is not model quality benchmark.",
+    "Evidence Review Pack v0.1 is AI review that shows its work.",
+    "Evidence Review Pack is not truth certification.",
+    "Evidence Review Pack is not legal advice.",
+    "Evidence Review Pack is not medical advice.",
+    "Evidence Review Pack is not tax advice.",
+    "Evidence Review Pack is not compliance certification.",
+    "Evidence Review Pack is not hallucination reduction proof.",
+    "Evidence Review Pack is not live model execution.",
+    "Evidence Review Pack is not production evaluation.",
+    "RW-COMP-01 is a fixture-only comparison scaffold, not hallucination reduction proof.",
+    "RW-COMP-01 is not model superiority proof.",
+    "RW-COMP-01 is not model quality benchmark.",
+    "RW-COMP-01 is not live model evaluation.",
+    "RW-COMP-01 is not remote provider evaluation.",
+    "RW-COMP-01 is not professional advice.",
+    "RW-COMP-01 is not compliance certification.",
+    "RW-COMP-01 is not production evaluation.",
+    "RW-COMP-02 is a deterministic multi-fixture comparison battery and remains not hallucination reduction proof.",
+    "RW-COMP-02 is not model superiority proof.",
+    "RW-COMP-02 is not model quality benchmark.",
+    "RW-COMP-02 is not live model evaluation.",
+    "RW-COMP-02 is not remote provider evaluation.",
+    "RW-COMP-02 is not professional advice.",
+    "RW-COMP-02 is not compliance certification.",
+    "RW-COMP-02 is not production evaluation.",
+    "Retrosynthesis Sandbox Cycle is candidate repair, not canon adoption.",
+    "RETROSYNTHESIS-SANDBOX-CYCLE-01 is not memory write.",
+    "RETROSYNTHESIS-SANDBOX-CYCLE-01 is not final answer release.",
+    "RETROSYNTHESIS-SANDBOX-CYCLE-01 is not Publisher finalization.",
+    "RETROSYNTHESIS-SANDBOX-CYCLE-01 is not Omega detection.",
+    "RETROSYNTHESIS-SANDBOX-CYCLE-01 is not deployment authority.",
+    "RETROSYNTHESIS-SANDBOX-CYCLE-01 is not recursive self-improvement.",
+    "Evidence Review Pack second pass is candidate revision, not accepted evidence.",
+    "EVIDENCE-REVIEW-PACK-01 is not canon adoption.",
+    "EVIDENCE-REVIEW-PACK-01 is not memory write.",
+    "EVIDENCE-REVIEW-PACK-01 is not final answer release.",
+    "EVIDENCE-REVIEW-PACK-01 is not Publisher finalization.",
+    "EVIDENCE-REVIEW-PACK-01 is not Omega detection.",
+    "EVIDENCE-REVIEW-PACK-01 is not deployment authority.",
+    "EVIDENCE-REVIEW-PACK-01 is not hallucination reduction proof.",
+    "EVIDENCE-REVIEW-PACK-01 is not recursive self-improvement.",
+    "RW-COMP-03 is a held-out blinded fixture scaffold, not hallucination reduction proof.",
+    "RW-COMP-03 is not model superiority proof.",
+    "RW-COMP-03 is not live model evaluation.",
+    "RW-COMP-03 is not live human study.",
+    "RW-COMP-03 uses simulated scores.",
+    "RW-COMP-03 is not accepted evidence.",
+    "RW-COMP-03 is not production evaluation.",
+    "Sonya Adapter Smoke exercises contracts, not live adapters.",
+    "Sonya Adapter Smoke is not live adapter execution.",
+    "Sonya Adapter Smoke is not network authorization.",
+    "Sonya Adapter Smoke is not remote provider call.",
+    "Sonya Adapter Smoke is not model weight training.",
+    "Sonya Adapter Smoke keeps raw output rejected or absent.",
+    "Sonya Adapter Smoke requires a candidate packet for fixture model output.",
+    "Sonya Adapter Smoke makes failure receipts visible.",
+    "Sonya Adapter Smoke makes telemetry events visible.",
+    "Sonya Adapter Smoke makes provenance events visible.",
+    "Sonya Local Fixture Adapter executes deterministic local fixtures, not live adapters.",
+    "Sonya Local Fixture Adapter records that local fixture adapter execution occurred under Sonya adapter contracts.",
+    "Sonya Local Fixture Adapter is not live adapter execution.",
+    "Sonya Local Fixture Adapter is not network authorization.",
+    "Sonya Local Fixture Adapter is not remote provider call.",
+    "Sonya Local Fixture Adapter is not live model execution.",
+    "Sonya Local Fixture Adapter is not memory write.",
+    "Sonya Local Fixture Adapter is not final answer release.",
+    "Sonya Local Fixture Adapter is not deployment authority.",
+    "Sonya Local Fixture Adapter is not model weight training.",
+    "Sonya Local Fixture Adapter emits candidate packets, failure receipts, telemetry events, and provenance events.",
+    "Adapter output is not accepted as cognition directly.",
+    "Local adapter candidates become reviewable only through the Evidence Review Pack path.",
+    "Evidence Review Pack local-adapter route is not accepted evidence.",
+    "Evidence Review Pack local-adapter route is not adapter authorization.",
+    "Evidence Review Pack local-adapter route is not memory write.",
+    "Evidence Review Pack local-adapter route is not final answer release.",
+    "Evidence Review Pack local-adapter route is not deployment authority.",
+    "Evidence Review Pack local-adapter route is not model weight training.",
+    "Evidence Review Pack local-adapter route is not hallucination reduction proof.",
+    "Evidence Review Pack local-adapter route is not recursive self-improvement.",
+    "Candidate packets require UCC-controlled review.",
+    "The claim map is not truth certification.",
+    "The candidate is not final answer.",
+    "Selection policy is not final answer.",
+    "Multi-adapter local fixture selection still requires Evidence Review Pack review.",
+    "Sonya Local Fixture Adapter multi-route is not adapter authorization.",
+    "Sonya Local Fixture Adapter multi-route is not a model quality benchmark.",
+    "Sonya Local Fixture Adapter multi-route is not model superiority proof.",
+    "Sonya Local Fixture Adapter multi-route is not memory write.",
+    "Sonya Local Fixture Adapter multi-route is not final answer release.",
+    "Sonya Local Fixture Adapter multi-route is not deployment authority.",
+    "Sonya Local Fixture Adapter multi-route is not model weight training.",
+    "Sonya Local Fixture Adapter multi-route is not hallucination reduction proof.",
+    "Source fixture references are not stale identity leakage.",
+    "Nested SONYA-LOCAL-FIXTURE-ADAPTER-01 references are source fixture dependencies, not stale identity leakage.",
+    "Current route identity is explicit.",
+    "Source fixture identity is explicit.",
+    "Evidence Review Pack local-adapter route references are explicit.",
+    "Lineage does not grant authority.",
+    "Sonya local adapter lineage packet is not adapter execution.",
+    "Sonya local adapter lineage packet is not network authorization.",
+    "Sonya local adapter lineage packet is not memory write.",
+    "Sonya local adapter lineage packet is not final answer release.",
+    "Sonya local adapter lineage packet is not deployment authority.",
+    "Sonya local adapter lineage packet is not truth certification.",
+    "Deltas are structural review descriptors, not hallucination reduction proof.",
+    "Revised local adapter candidate remains candidate-only, not accepted evidence.",
+    "Evidence Review Pack local-adapter revision loop is not final answer selection.",
+    "Evidence Review Pack local-adapter revision loop is not model quality benchmark.",
+    "Evidence Review Pack local-adapter revision loop is not model superiority proof.",
+    "Evidence Review Pack local-adapter revision loop is not adapter authorization.",
+    "Evidence Review Pack local-adapter revision loop is not memory write.",
+    "Evidence Review Pack local-adapter revision loop is not model-weight training.",
+    "Evidence Review Pack local-adapter revision loop is not deployment authority.",
+    "Evidence Review Pack local-adapter revision loop is not recursive self-improvement.",
+    "Deltas are structural review descriptors only.",
+    "RW-COMP local-adapter comparison is not hallucination reduction proof or a model quality benchmark.",
+    "RW-COMP local-adapter comparison is not model superiority proof.",
+    "RW-COMP local-adapter comparison is not final answer selection.",
+    "RW-COMP local-adapter comparison is not accepted evidence.",
+    "RW-COMP local-adapter comparison is not adapter authorization.",
+    "RW-COMP local-adapter comparison is not memory write.",
+    "RW-COMP local-adapter comparison is not model-weight training.",
+    "RW-COMP local-adapter comparison is not deployment authority.",
+    "RW-COMP local-adapter comparison is not recursive self-improvement.",
+    "Memory is governed provenance under resource constraints.",
+    "Memory is not storage.",
+    "Hash is not encryption.",
+    "User controls local memory budget.",
+    "PMR is not Atlas canon.",
+    "PMR is not model-weight training data.",
+    "PMR artifact index is not generic cache.",
+    "PMR artifact lifecycle state is not truth status.",
+    "PMR dependency graph is not canon graph.",
+    "PMR-01 performs indexing only, not pruning.",
+    "Federation is blocked by default.",
+    "PMR is not resource economy or token economy.",
+    "GPCU is lifecycle/storage utility, not truth score.",
+    "GPCU is not reward entitlement.",
+    "GPCU is not token economy.",
+    "GPCU is not human value score.",
+    "Lifecycle recommendation is not pruning.",
+    "Reward mechanics are deferred.",
+    "Federation remains blocked by default.",
+    "PMR-02 is not Atlas canon.",
+    "PMR-02 is not memory write authorization.",
+    "PMR-02 is not model-weight training.",
+    "PMR-02 is not deployment authority.",
+    "PMR-02 is not hallucination reduction proof.",
+    "Recommendation is not transition; transition candidate is not action.",
+    "Recommendation is not transition.",
+    "Transition candidate is not action.",
+    "Lifecycle state is not truth status.",
+    "Destructive action requires future Sophia lifecycle audit.",
+    "Destructive action requires future user confirmation.",
+    "No pruning or deletion occurs in PMR-03.",
+    "PMR-03 is not federation authorization.",
+    "PMR-03 is not reward entitlement.",
+    "PMR-03 is not token economy.",
+    "PMR-03 is not Atlas canon.",
+    "PMR-03 is not memory write authorization.",
+    "PMR-03 is not model-weight training.",
+    "PMR-03 is not deployment authority.",
+    "PMR-03 is not truth certification.",
+    "Preflight is not approval.",
+    "Audit candidate is not action.",
+    "Sophia lifecycle audit is required before destructive action.",
+    "User confirmation is required before destructive local action.",
+    "No Sophia approval packet is emitted.",
+    "No pruning or deletion occurs in PMR-04.",
+    "PMR-04 is not federation authorization.",
+    "PMR-04 is not encrypted shard transfer.",
+    "PMR-04 is not reward entitlement.",
+    "PMR-04 is not token economy.",
+    "PMR-04 is not memory write authorization.",
+    "PMR-04 is not Atlas canon write.",
+    "PMR-04 is not model-weight training.",
+    "PMR-04 is not deployment authority.",
+    "PMR-04 is not truth certification.",
+    "PMR-04 is not final-answer release.",
+    "PMR-04 is not hallucination-reduction proof.",
+    "PMR-04 is not recursive self-improvement.",
+    "Sophia review is not Sophia approval.",
+    "Audit recommendation is not action.",
+    "No Sophia approval packet is emitted.",
+    "Destructive action requires future Sophia approval.",
+    "Destructive action requires future user confirmation.",
+    "No pruning or deletion occurs in PMR-05.",
+    "PMR-05 is not federation authorization.",
+    "PMR-05 is not reward entitlement.",
+    "PMR-05 is not token economy.",
+    "PMR-05 is not Atlas canon.",
+    "PMR-05 is not memory write authorization.",
+    "PMR-05 is not model-weight training.",
+    "PMR-05 is not deployment authority.",
+    "PMR-05 is not truth certification.",
+    "User confirmation request is not user confirmation.",
+    "User confirmation is not action.",
+    "No user confirmation receipt is emitted.",
+    "Destructive action requires future Sophia approval.",
+    "Destructive action requires future user confirmation.",
+    "No pruning or deletion occurs in PMR-06.",
+    "PMR-06 is not Sophia approval.",
+    "PMR-06 is not federation authorization.",
+    "PMR-06 is not reward entitlement.",
+    "PMR-06 is not token economy.",
+    "PMR-06 is not Atlas canon.",
+    "PMR-06 is not memory write authorization.",
+    "PMR-06 is not model-weight training.",
+    "PMR-06 is not deployment authority.",
+    "PMR-06 is not truth certification.",
+    "Invalid confirmation is not confirmation.",
+    "Missing confirmation is not confirmation.",
+    "Ambiguous confirmation is not confirmation.",
+    "Forged confirmation is not confirmation.",
+    "Expired confirmation is not confirmation.",
+    "Scope-mismatched confirmation is not confirmation.",
+    "Confirmation without Sophia approval is insufficient.",
+    "Confirmation cannot override retain-lock, quarantine, revocation, or dependency blocks.",
+    "No user confirmation receipt is emitted in PMR-07.",
+    "No pruning or deletion occurs in PMR-07.",
+    "PMR-07 is not Sophia approval.",
+    "PMR-07 is not federation authorization.",
+    "PMR-07 is not reward entitlement.",
+    "PMR-07 is not token economy.",
+    "PMR-07 is not Atlas canon.",
+    "PMR-07 is not memory write authorization.",
+    "PMR-07 is not model-weight training.",
+    "PMR-07 is not deployment authority.",
+    "PMR-07 is not truth certification.",
+    "Valid user confirmation receipt is not action.",
+    "Confirmation authorizes eligibility for later action review, not action itself.",
+    "Scope validation is not action.",
+    "Destructive action still requires future Sophia approval.",
+    "Destructive action still requires future explicit action request.",
+    "Negative-control invalid confirmations remain blocked.",
+    "No pruning or deletion occurs in PMR-08.",
+    "PMR-08 is not federation authorization.",
+    "PMR-08 is not reward entitlement.",
+    "PMR-08 is not token economy.",
+    "PMR-08 is not Atlas canon.",
+    "PMR-08 is not memory write authorization.",
+    "PMR-08 is not model-weight training.",
+    "PMR-08 is not deployment authority.",
+    "PMR-08 is not truth certification.",
+    "Valid confirmation receipt plus Sophia recommendation is not action authorization.",
+    "Explicit future action request and Sophia approval packet are required before destructive action.",
+    "No explicit action request packet is emitted in PMR-09.",
+    "No Sophia approval packet is emitted in PMR-09.",
+    "No destructive action authorization packet is emitted in PMR-09.",
+    "No destructive action receipt is emitted in PMR-09.",
+    "No pruning or deletion occurs in PMR-09.",
+    "PMR-09 is not federation authorization.",
+    "PMR-09 is not reward entitlement.",
+    "PMR-09 is not token economy.",
+    "PMR-09 is not Atlas canon.",
+    "PMR-09 is not memory write authorization.",
+    "PMR-09 is not model-weight training.",
+    "PMR-09 is not deployment authority.",
+    "PMR-09 is not truth certification.",
+    "Action request candidate is not explicit action request.",
+    "Sophia approval request candidate is not Sophia approval.",
+    "Authorization preflight is not authorization.",
+    "No explicit action request packet is emitted in PMR-10.",
+    "No Sophia approval packet is emitted in PMR-10.",
+    "No destructive action authorization packet is emitted in PMR-10.",
+    "No destructive action receipt is emitted in PMR-10.",
+    "No pruning or deletion occurs in PMR-10.",
+    "PMR-10 is not federation authorization.",
+    "PMR-10 is not reward entitlement.",
+    "PMR-10 is not token economy.",
+    "PMR-10 is not Atlas canon.",
+    "PMR-10 is not memory write authorization.",
+    "PMR-10 is not model-weight training.",
+    "PMR-10 is not deployment authority.",
+    "PMR-10 is not truth certification.",
+    "PMR authorization ladder is not the whole Triadic Brain.",
+    "Pattern diversity is required.",
+    "PMR-only continuation is not recommended immediately after PMR-10.",
+    "Checkpoint recommendation is not execution.",
+    "Checkpoint is not product completion.",
+    "No runtime authority is granted.",
+    "PMR-SIM-00 is recommended as the next evidence-producing lane.",
+    "Evidence Review, Sonya adapter path, TEL/telemetry, retrosynthesis, PMR simulation/statistics, federation stress, human provenance, market design, harness debt, and publication debt remain active lanes.",
+    "No pruning or deletion occurs in PMR-ARCH-DIVERSITY-CHECKPOINT-00.",
+    "PMR-ARCH-DIVERSITY-CHECKPOINT-00 is not federation authorization.",
+    "PMR-ARCH-DIVERSITY-CHECKPOINT-00 is not reward entitlement.",
+    "PMR-ARCH-DIVERSITY-CHECKPOINT-00 is not token economy.",
+    "PMR-ARCH-DIVERSITY-CHECKPOINT-00 is not Atlas canon.",
+    "PMR-ARCH-DIVERSITY-CHECKPOINT-00 is not memory write authorization.",
+    "PMR-ARCH-DIVERSITY-CHECKPOINT-00 is not model-weight training.",
+    "PMR-ARCH-DIVERSITY-CHECKPOINT-00 is not deployment authority.",
+    "PMR-ARCH-DIVERSITY-CHECKPOINT-00 is not truth certification.",
+    "Governed provenance resources may be future infrastructure rewards, but truth is not for sale.",
 ]
 PMR_07_DASHBOARD_SUMMARY = {
     "review_status": "accepted_as_pmr_user_confirmation_negative_control",
@@ -5589,6 +6541,694 @@ SONYA-ADAPTER-SMOKE-00 demonstrates fixture-only adapter contract exercise: adap
 
 Claims blocked: {"; ".join(SONYA_ADAPTER_SMOKE_CLAIMS_BLOCKED)}.
 
+def _write_json(path: Path, payload: Any) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps(payload, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+
+
+def _write_text(path: Path, text: str) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(text, encoding="utf-8")
+
+
+def _dedupe_accepted_phases(phases: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    """Return one accepted phase entry per phase_id.
+
+    The first occurrence determines output order, while later duplicate entries
+    update the retained entry so regenerated artifacts keep the newest metadata.
+    """
+    deduped: dict[str, dict[str, Any]] = {}
+    for phase in phases:
+        phase_id = phase.get("phase_id")
+        if not isinstance(phase_id, str) or not phase_id:
+            raise ValueError("accepted phases must include a non-empty phase_id")
+        if phase_id not in deduped:
+            deduped[phase_id] = dict(phase)
+        else:
+            deduped[phase_id].update(phase)
+    return list(deduped.values())
+
+
+def _accepted_phases() -> list[dict[str, Any]]:
+    return _dedupe_accepted_phases(ACCEPTED_PHASES)
+
+
+def _assert_safe_dashboard(dashboard: dict[str, Any]) -> None:
+    for key in ("deployment_ready", "truth_certified", "final_answer_release"):
+        if dashboard.get(key) is True:
+            raise ValueError(f"{key} must not be true")
+    if any(not phase.get("claims_blocked") for phase in dashboard["accepted_phases"]):
+        raise ValueError("accepted phases must include claim boundaries")
+
+
+def dashboard_payload() -> dict[str, Any]:
+    accepted_phases = _accepted_phases()
+    dashboard = {
+        "schema": "uvlm.public_experiment_suite_dashboard.v1",
+        "repo": REPO,
+        "source_repos": SOURCE_REPOS,
+        "dashboard_status": "draft_public_review",
+        "generated_at": GENERATED_AT,
+        "accepted_phase_count": len(accepted_phases),
+        "partial_phase_count": len(PARTIAL_PHASES),
+        "blocked_phase_count": len(BLOCKED_PHASES),
+        "planned_phase_count": len(PLANNED_PHASES),
+        "accepted_phases": accepted_phases,
+        "partial_phases": PARTIAL_PHASES,
+        "blocked_phases": BLOCKED_PHASES,
+        "planned_phases": PLANNED_PHASES,
+        "evidence_packages": [
+            "experiment_suite_repro_pack.json",
+            "waveform_gold_physics_family_acceptance_packet.json",
+            "sonya_aegis_smoke_02_acceptance_report.json",
+            "public_utility_alpha_status.json",
+            "raw_baseline_comparison_packet.json",
+            "evidence_review_pack_manifest.json",
+            "rw_comp_01_packet.json",
+            "rw_comp_02_packet.json",
+            "retrosynthesis_sandbox_cycle_packet.json",
+            "evidence_review_second_pass_packet.json",
+            "rw_comp_03_packet.json",
+            "universal_pipeline_manifest.json",
+            "artifact_contract_registry_review.json",
+            "universal_compatibility_matrix_packet.json",
+            "sonya_adapter_contract_registry_packet.json",
+            "sonya_local_fixture_adapter_packet.json",
+            "evidence_review_local_adapter_route_packet.json",
+            "sonya_local_adapter_multi_route_packet.json",
+            "sonya_local_adapter_lineage_packet.json",
+            "evidence_review_local_adapter_revision_packet.json",
+            "rw_comp_local_adapter_packet.json",
+            "pmr_doctrine_packet.json",
+            "pmr_local_artifact_index.json",
+            "pmr_provenance_coherence_utility_packet.json",
+            "pmr_lifecycle_state_machine_packet.json",
+            "pmr_lifecycle_audit_preflight_packet.json",
+            "pmr_sophia_lifecycle_audit_packet.json",
+            "pmr_destructive_action_authorization_preflight_packet.json",
+            "pmr_architecture_diversity_checkpoint_packet.json",
+        ],
+        "publication_drafts": [
+            "papers/governed_artifact_cognition/PUB_GOV_ARTIFACT_COG_01.md",
+            "papers/waveform_rosetta/PUB_WAVE_ROSETTA_01.md",
+        ],
+        "global_non_claims": GLOBAL_NON_CLAIMS,
+        "reviewer_quickstart_paths": [
+            "docs/experiment-suite/reviewer-quickstart.md",
+            "papers/governed_artifact_cognition/reviewer_quickstart.md",
+            "papers/waveform_rosetta/reviewer_quickstart.md",
+        ],
+        "requires_external_peer_review": True,
+        "not_truth_certification": True,
+        "not_deployment_authority": True,
+        "not_final_answer_release": True,
+        "not_ai_consciousness_claim": True,
+        "not_universal_ontology_claim": True,
+    }
+    _assert_safe_dashboard(dashboard)
+    return dashboard
+
+
+def accepted_phase_matrix() -> dict[str, Any]:
+    return {"schema": "uvlm.accepted_phase_matrix.v1", "entries": _accepted_phases()}
+
+
+def reproducibility_index() -> dict[str, Any]:
+    return {
+        "schema": "uvlm.reproducibility_index.v1",
+        "commands": {
+            "CoherenceLattice": [
+                {"name": "SONYA-AEGIS-SMOKE-02 harness", "command": SONYA_AEGIS_COMMAND},
+                {"name": "WAVE family acceptance", "command": WAVE_FAMILY_COMMAND},
+                {"name": "UNI-02D Sonya gate acceptance", "command": UNI02D_COMMAND},
+                {"name": "RETRO-LANE-00 acceptance", "command": RETRO_LANE_COMMAND},
+                {"name": "Public Utility Alpha acceptance", "command": PUBLIC_UTILITY_ALPHA_COMMAND},
+                {"name": "Raw Baseline Comparison acceptance", "command": RAW_BASELINE_COMPARISON_COMMAND},
+                {"name": "Evidence Review Pack acceptance", "command": EVIDENCE_REVIEW_PACK_COMMAND},
+                {"name": "RW-COMP-01 acceptance", "command": RW_COMP_01_COMMAND},
+                {"name": "RW-COMP-02 acceptance", "command": RW_COMP_02_COMMAND},
+                {"name": "Retrosynthesis Sandbox Cycle acceptance", "command": RETRO_SANDBOX_CYCLE_COMMAND},
+                {"name": "Evidence Review Pack second pass acceptance", "command": EVIDENCE_REVIEW_PACK_01_COMMAND},
+                {"name": "RW-COMP-03 acceptance", "command": RW_COMP_03_COMMAND},
+                {"name": "PMR doctrine acceptance", "command": PMR_00_COMMAND},
+                {"name": "PMR local artifact index acceptance", "command": PMR_01_COMMAND},
+                {"name": "PMR GPCU utility scoring acceptance", "command": PMR_02_COMMAND},
+                {"name": "PMR lifecycle state machine acceptance", "command": PMR_03_COMMAND},
+                {"name": "PMR lifecycle audit preflight acceptance", "command": PMR_04_COMMAND},
+                {"name": "PMR Sophia lifecycle audit review acceptance", "command": PMR_05_COMMAND},
+                {"name": "PMR user confirmation preflight acceptance", "command": PMR_06_COMMAND},
+                {"name": "PMR user confirmation negative control acceptance", "command": PMR_07_COMMAND},
+                {"name": "PMR valid user confirmation receipt scaffold acceptance", "command": PMR_08_COMMAND},
+                {"name": "PMR destructive action authorization negative control acceptance", "command": PMR_09_COMMAND},
+                {"name": "PMR destructive action authorization preflight acceptance", "command": PMR_10_COMMAND},
+                {"name": "PMR architecture diversity checkpoint acceptance", "command": PMR_ARCH_DIVERSITY_CHECKPOINT_COMMAND},
+                {"name": "Universal Stage Pipeline acceptance", "command": UNIVERSAL_STAGE_PIPELINE_COMMAND},
+                {"name": "Artifact Contract Registry acceptance", "command": ARTIFACT_CONTRACT_REGISTRY_COMMAND},
+                {"name": "Universal Compatibility Matrix acceptance", "command": UNIVERSAL_COMPATIBILITY_MATRIX_COMMAND},
+                {"name": "Sonya Adapter Contract Registry acceptance", "command": SONYA_ADAPTER_CONTRACT_REGISTRY_COMMAND},
+                {"name": "Sonya Adapter Smoke acceptance", "command": SONYA_ADAPTER_SMOKE_COMMAND},
+                {"name": "Sonya Local Fixture Adapter acceptance", "command": SONYA_LOCAL_FIXTURE_ADAPTER_COMMAND},
+                {"name": "Evidence Review Pack local adapter acceptance", "command": EVIDENCE_REVIEW_PACK_LOCAL_ADAPTER_COMMAND},
+                {"name": "Evidence Review Pack local adapter revision acceptance", "command": EVIDENCE_REVIEW_PACK_LOCAL_ADAPTER_02_COMMAND},
+                {"name": "RW-COMP local adapter acceptance", "command": RW_COMP_LOCAL_ADAPTER_COMMAND},
+                {"name": "Sonya Local Fixture Adapter multi-route acceptance", "command": SONYA_LOCAL_FIXTURE_ADAPTER_02_COMMAND},
+                {"name": "Sonya Local Fixture Adapter lineage clarity acceptance", "command": SONYA_LOCAL_FIXTURE_ADAPTER_03_COMMAND},
+                {"name": "experiment suite repro pack builder", "command": "python -m coherence.tools.build_experiment_suite_repro_pack --registry experiments/experiment_suite_registry.json --artifacts-root artifacts --out-dir artifacts/experiment_suite_repro_pack --zip"},
+            ],
+            "Sophia": [
+                {"name": "UCC route test command", "command": SOPHIA_UCC_COMMAND},
+            ],
+            "uvlm-publications": [
+                {"name": "governed artifact cognition validator", "command": "python tools/validate_publication_claims.py --paper papers/governed_artifact_cognition/PUB_GOV_ARTIFACT_COG_01.md --quickstart papers/governed_artifact_cognition/reviewer_quickstart.md --status papers/governed_artifact_cognition/status.json"},
+                {"name": "waveform Rosetta validator", "command": "python tools/validate_publication_claims.py --paper papers/waveform_rosetta/PUB_WAVE_ROSETTA_01.md --quickstart papers/waveform_rosetta/reviewer_quickstart.md --status papers/waveform_rosetta/status.json"},
+                {"name": "dashboard validator", "command": "python tools/validate_public_repro_dashboard.py --dashboard registry/experiment_suite_dashboard.json --docs-dir docs/experiment-suite"},
+            ],
+        },
+        "not_deployment_authority": True,
+    }
+
+
+def claim_boundary_index() -> dict[str, Any]:
+    return {"schema": "uvlm.claim_boundary_index.v1", "boundaries": BOUNDARIES}
+
+
+def artifact_index() -> dict[str, Any]:
+    return {
+        "schema": "uvlm.artifact_index.v1",
+        "phases": {
+            "SONYA-AEGIS-SMOKE-02": ["sonya_aegis_smoke_02_acceptance_report.json", "human_review bundle", "auto route bundle"],
+            "WAVE": ["waveform_gold_physics_family_acceptance_packet.json"],
+            "UNI-02D": ["uni02d_sonya_gate_acceptance_report.json", "semantic_term_quarantine_packet.json", "runtime_profile_leakage_packet.json", "uni02d_prior_origin_provenance_packet.json", "uni02d_prior_quarantine_packet.json"],
+            "RETRO-LANE-00": ["retrosynthesis_admission_packet.json", "retrosynthesis_admission_review_packet.json", "retro_lane_00_acceptance_receipt.json"],
+            "PUBLIC-UTILITY-ALPHA-00": PUBLIC_UTILITY_ALPHA_ARTIFACTS,
+            "RAW-BASELINE-COMPARISON-00": RAW_BASELINE_COMPARISON_ARTIFACTS,
+            "EVIDENCE-REVIEW-PACK-00": EVIDENCE_REVIEW_PACK_ARTIFACTS,
+            "RW-COMP-01": RW_COMP_01_ARTIFACTS,
+            "RW-COMP-02": RW_COMP_02_ARTIFACTS,
+            "RETROSYNTHESIS-SANDBOX-CYCLE-01": RETRO_SANDBOX_CYCLE_ARTIFACTS,
+            "EVIDENCE-REVIEW-PACK-01": EVIDENCE_REVIEW_PACK_01_ARTIFACTS,
+            "RW-COMP-03": RW_COMP_03_ARTIFACTS,
+            "PMR-00-PROVENANCE-MEMORY-RESERVOIR": PMR_00_ARTIFACTS,
+            "PMR-01-LOCAL-ARTIFACT-INDEX": PMR_01_ARTIFACTS,
+            "PMR-02-GLOBAL-PROVENANCE-COHERENCE-UTILITY": PMR_02_ARTIFACTS,
+            "PMR-03-LIFECYCLE-STATE-MACHINE": PMR_03_ARTIFACTS,
+            "PMR-04-LIFECYCLE-AUDIT-PREFLIGHT": PMR_04_ARTIFACTS,
+            "PMR-05-SOPHIA-LIFECYCLE-AUDIT-REVIEW": PMR_05_ARTIFACTS,
+            "PMR-06-USER-CONFIRMATION-PREFLIGHT": PMR_06_ARTIFACTS,
+            "PMR-07-USER-CONFIRMATION-NEGATIVE-CONTROL": PMR_07_ARTIFACTS,
+            "PMR-08-VALID-USER-CONFIRMATION-RECEIPT-SCAFFOLD": PMR_08_ARTIFACTS,
+            "PMR-09-DESTRUCTIVE-ACTION-AUTHORIZATION-NEGATIVE-CONTROL": PMR_09_ARTIFACTS,
+            "PMR-10-DESTRUCTIVE-ACTION-AUTHORIZATION-PREFLIGHT": PMR_10_ARTIFACTS,
+            "PMR-ARCH-DIVERSITY-CHECKPOINT-00": PMR_ARCH_DIVERSITY_CHECKPOINT_ARTIFACTS,
+            "UNIVERSAL-STAGE-PIPELINE-00": UNIVERSAL_STAGE_PIPELINE_ARTIFACTS,
+            "ARTIFACT-CONTRACT-REGISTRY-01": ARTIFACT_CONTRACT_REGISTRY_ARTIFACTS,
+            "UNIVERSAL-COMPATIBILITY-MATRIX-00": UNIVERSAL_COMPATIBILITY_MATRIX_ARTIFACTS,
+            "SONYA-ADAPTER-CONTRACT-REGISTRY-01": SONYA_ADAPTER_CONTRACT_REGISTRY_ARTIFACTS,
+            "SONYA-ADAPTER-SMOKE-00": SONYA_ADAPTER_SMOKE_ARTIFACTS,
+            "SONYA-LOCAL-FIXTURE-ADAPTER-01": SONYA_LOCAL_FIXTURE_ADAPTER_ARTIFACTS,
+            "EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER-01": EVIDENCE_REVIEW_PACK_LOCAL_ADAPTER_ARTIFACTS,
+            "EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER-02": EVIDENCE_REVIEW_PACK_LOCAL_ADAPTER_02_ARTIFACTS,
+            "RW-COMP-LOCAL-ADAPTER-01": RW_COMP_LOCAL_ADAPTER_ARTIFACTS,
+            "SONYA-LOCAL-FIXTURE-ADAPTER-02": SONYA_LOCAL_FIXTURE_ADAPTER_02_ARTIFACTS,
+            "SONYA-LOCAL-FIXTURE-ADAPTER-03": SONYA_LOCAL_FIXTURE_ADAPTER_03_ARTIFACTS,
+            "publications": ["PUB_GOV_ARTIFACT_COG_01.md", "PUB_WAVE_ROSETTA_01.md", "reviewer quickstarts", "status.json files"],
+        },
+    }
+
+
+def status_payload() -> dict[str, Any]:
+    return {
+        "dashboard_id": "PUBLIC-REPRO-DASHBOARD-01",
+        "repo": REPO,
+        "status": "draft_public_review",
+        "claim_level": "public_reviewer_orientation",
+        "accepted_phase_count": len(_accepted_phases()),
+        "latest_product_facing_receipt": "EVIDENCE-REVIEW-PACK-00",
+        "latest_fixture_comparison": "RW-COMP-02",
+        "latest_bounded_candidate_repair_cycle": "RETROSYNTHESIS-SANDBOX-CYCLE-01",
+        "latest_second_pass_review_candidate": "EVIDENCE-REVIEW-PACK-01",
+        "latest_heldout_blinded_fixture_scaffold": "RW-COMP-03",
+        "latest_universal_architecture_scaffold": "UNIVERSAL-COMPATIBILITY-MATRIX-00",
+        "latest_sonya_adapter_contract_registry": "SONYA-ADAPTER-CONTRACT-REGISTRY-01",
+        "latest_sonya_local_fixture_adapter": "SONYA-LOCAL-FIXTURE-ADAPTER-01",
+        "latest_evidence_review_pack_local_adapter": "EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER-01",
+        "latest_evidence_review_pack_local_adapter_revision": "EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER-02",
+        "evidence_review_pack_local_adapter_02_indexed": True,
+        "not_structural_delta_proof": True,
+        "latest_rw_comp_local_adapter": "RW-COMP-LOCAL-ADAPTER-01",
+        "rw_comp_local_adapter_indexed": True,
+        "latest_pmr_doctrine": "PMR-00-PROVENANCE-MEMORY-RESERVOIR",
+        "latest_pmr_local_artifact_index": "PMR-01-LOCAL-ARTIFACT-INDEX",
+        "latest_pmr_gpcu_utility_scoring": "PMR-02-GLOBAL-PROVENANCE-COHERENCE-UTILITY",
+        "latest_pmr_lifecycle_state_machine": "PMR-03-LIFECYCLE-STATE-MACHINE",
+        "latest_pmr_lifecycle_audit_preflight": "PMR-04-LIFECYCLE-AUDIT-PREFLIGHT",
+        "latest_pmr_sophia_lifecycle_audit_review": "PMR-05-SOPHIA-LIFECYCLE-AUDIT-REVIEW",
+        "latest_pmr_user_confirmation_preflight": "PMR-06-USER-CONFIRMATION-PREFLIGHT",
+        "latest_pmr_user_confirmation_negative_control": "PMR-07-USER-CONFIRMATION-NEGATIVE-CONTROL",
+        "latest_pmr_valid_user_confirmation_receipt_scaffold": "PMR-08-VALID-USER-CONFIRMATION-RECEIPT-SCAFFOLD",
+        "latest_pmr_destructive_action_authorization_negative_control": "PMR-09-DESTRUCTIVE-ACTION-AUTHORIZATION-NEGATIVE-CONTROL",
+        "latest_pmr_destructive_action_authorization_preflight": "PMR-10-DESTRUCTIVE-ACTION-AUTHORIZATION-PREFLIGHT",
+        "latest_pmr_architecture_diversity_checkpoint": "PMR-ARCH-DIVERSITY-CHECKPOINT-00",
+        "pmr_00_indexed": True,
+        "pmr_01_indexed": True,
+        "pmr_02_indexed": True,
+        "pmr_03_indexed": True,
+        "pmr_04_indexed": True,
+        "pmr_05_indexed": True,
+        "not_sophia_review_approval": True,
+        "not_audit_recommendation_action": True,
+        "pmr_06_indexed": True,
+        "not_user_confirmation": True,
+        "not_user_confirmation_receipt": True,
+        "pmr_07_indexed": True,
+        "not_valid_user_confirmation": True,
+        "not_confirmation_authority": True,
+        "pmr_08_indexed": True,
+        "not_confirmation_action": True,
+        "not_scope_validation_action": True,
+        "pmr_09_indexed": True,
+        "not_action_authorization": True,
+        "not_explicit_action_request": True,
+        "not_sophia_approval_packet": True,
+        "not_destructive_action_receipt": True,
+        "pmr_10_indexed": True,
+        "not_action_request": True,
+        "not_sophia_approval_request": True,
+        "not_authorization_preflight_authority": True,
+        "pmr_arch_diversity_checkpoint_indexed": True,
+        "not_product_completion": True,
+        "not_runtime_authority": True,
+        "not_checkpoint_execution": True,
+        "not_sophia_approval": True,
+        "not_audit_action": True,
+        "not_lifecycle_action": True,
+        "not_deletion_execution": True,
+        "not_truth_score": True,
+        "not_reward_entitlement": True,
+        "not_human_value_score": True,
+        "not_atlas_canon": True,
+        "not_memory_write_authorization": True,
+        "not_federation_authorization": True,
+        "not_pruning_execution": True,
+        "not_resource_economy": True,
+        "not_token_economy": True,
+        "not_model_weight_training": True,
+        "not_memory_write": True,
+        "not_final_answer_release": True,
+        "not_deployment_authority": True,
+        "not_truth_certification": True,
+        "not_hallucination_reduction_proof": True,
+        "not_recursive_self_improvement": True,
+        "latest_sonya_local_fixture_adapter_multi_route": "SONYA-LOCAL-FIXTURE-ADAPTER-02",
+        "latest_sonya_local_fixture_adapter_lineage_clarity": "SONYA-LOCAL-FIXTURE-ADAPTER-03",
+        "sonya_local_fixture_adapter_03_indexed": True,
+        "not_stale_identity_leakage": True,
+        "not_lineage_authority": True,
+        "requires_external_peer_review": True,
+        "not_truth_certification": True,
+        "not_deployment_authority": True,
+        "not_final_answer_release": True,
+        "not_ai_consciousness_claim": True,
+        "not_universal_ontology_claim": True,
+    }
+
+
+def docs() -> dict[str, str]:
+    phase_rows = "\n".join(
+        f"| {p['phase_id']} | {p['repo']} | {p['status']} | {p['claim_allowed']} | {p['reviewer_caution']} |"
+        for p in _accepted_phases()
+    )
+    boundaries = "\n".join(f"- {b}" for b in BOUNDARIES)
+    return {
+        "README.md": "# Experiment Suite Docs\n\nPublic reviewer documentation for the claim-bounded reproducibility dashboard.\n",
+        "assets/README.md": "# Assets\n\nOptional static assets for the public reproducibility dashboard.\n",
+        "index.md": f"# Public Experiment Suite Dashboard\n\nThis dashboard presents accepted evidence for reviewer orientation. It is not truth certification, not deployment authority, not final answer release, local fixture only, and requires external peer review.\n\n## Accepted evidence\n\n| Phase | Repo | Status | What this supports | Reviewer caution |\n| --- | --- | --- | --- | --- |\n{phase_rows}\n\n## Reviewer path\n\nStart with claim boundaries, then read the governed artifact cognition paper, WAVE Rosetta paper, SONYA-AEGIS-SMOKE-02, WAVE family, UNI-02D Sonya gate, and RETRO-LANE-00, Public Utility Alpha, Raw Baseline Comparison, Evidence Review Pack, RW-COMP-01, RW-COMP-02, Retrosynthesis Sandbox Cycle, Evidence Review Pack second-pass, RW-COMP-03, Universal Architecture Scaffold, Sonya Adapter Contract Registry, Sonya Adapter Smoke, Sonya Local Fixture Adapter, and Evidence Review Pack local adapter, Evidence Review Pack local adapter revision, RW-COMP local adapter, PMR doctrine, PMR local artifact index, PMR GPCU utility scoring, PMR lifecycle state machine, PMR lifecycle audit preflight, PMR Sophia lifecycle audit review, PMR destructive-action authorization preflight, PMR architecture diversity checkpoint, Sonya Local Fixture Adapter multi-route, and Sonya Local Fixture Adapter lineage clarity pages.\n\n## What this proves\n\nIt proves only that accepted local fixture artifacts and draft publication materials are organized for review.\n\n## What this does not prove\n\nNo oracle posture, no deployment posture, no final-answer posture, no AI consciousness claim, and no universal ontology claim.\n\n## Phase pages\n\n- [SONYA-AEGIS-SMOKE-02](sonya-aegis-smoke-02.md)\n- [WAVE Gold-Physics](wave-gold-physics.md)\n- [UNI-02D Sonya gate](uni02d-sonya-gate.md)\n- [RETRO-LANE-00](retro-lane-00.md)\n- [Public Utility Alpha](public-utility-alpha.md)\n- [Raw Baseline Comparison](raw-baseline-comparison.md)\n- [Evidence Review Pack](evidence-review-pack.md)\n- [RW-COMP-01](rw-comp-01.md)\n- [RW-COMP-02](rw-comp-02.md)\n- [Retrosynthesis Sandbox Cycle](retrosynthesis-sandbox-cycle.md)\n- [Evidence Review Pack second pass](evidence-review-pack-second-pass.md)\n- [RW-COMP-03](rw-comp-03.md)\n- [Universal Architecture Scaffold](universal-architecture.md)\n- [Sonya Adapter Contract Registry](sonya-adapter-contract-registry.md)\n- [Sonya Adapter Smoke](sonya-adapter-smoke.md)\n- [Sonya Local Fixture Adapter](sonya-local-fixture-adapter.md)\n- [Evidence Review Pack local adapter](evidence-review-pack-local-adapter.md)\n- [Evidence Review Pack local adapter revision](evidence-review-pack-local-adapter-revision.md)\n- [RW-COMP local adapter](rw-comp-local-adapter.md)\n- [Provenance Memory Reservoir](provenance-memory-reservoir.md)\n- [PMR local artifact index](pmr-local-artifact-index.md)\n- [Sonya Local Fixture Adapter multi-route](sonya-local-fixture-adapter-multi-route.md)\n- [Sonya Local Fixture Adapter lineage clarity](sonya-local-fixture-adapter-lineage.md)\n- [Governed artifact cognition paper](governed-artifact-cognition-paper.md)\n- [Waveform Rosetta paper](waveform-rosetta-paper.md)\n",
+        "claim-boundaries.md": f"# Claim Boundaries\n\n{boundaries}\n\nNo oracle posture. No deployment posture. No final-answer posture. No AI consciousness claim. No universal ontology claim.\n",
+        "sonya-aegis-smoke-02.md": f"""# SONYA-AEGIS-SMOKE-02
+
+Purpose: inspect a local Sonya membrane and direct-call blocking fixture.
+
+Run command:
+
+```powershell
+{SONYA_AEGIS_COMMAND}
+```
+
+Evidence: `sonya_aegis_smoke_02_acceptance_report.json`, human_review bundle, auto route bundle.
+
+Claim allowed: local deterministic membrane evidence and direct-call blocking are reviewable.
+
+Claims blocked: Sonya local membrane is not federation; candidate is not answer; local fixture only.
+
+Inspect direct-call blocking and Sonya membrane evidence in the acceptance report and route bundles.
+""",
+        "wave-gold-physics.md": f"""# WAVE Gold-Physics
+
+Purpose: closed-form waveform metric calibration.
+
+Run command:
+
+```powershell
+{WAVE_FAMILY_COMMAND}
+```
+
+Evidence: `waveform_gold_physics_family_acceptance_packet.json`.
+
+Theorem summary: constructive interference, coherent cancellation, detuning spiral, incomplete cancellation, and observability degradation.
+
+Claim allowed: WAVE calibration distinguishes waveform metric behavior.
+
+Claims blocked: WAVE calibration is not universal ontology and WAVE Gold-Physics is not psychoacoustic proof.
+
+Caution: high coherence is not necessarily constructive or safe.
+""",
+        "uni02d-sonya-gate.md": f"""# UNI-02D Sonya Gate
+
+Purpose: inspect safe portability fixture routing through Sonya-gated constraints.
+
+Run command:
+
+```powershell
+{UNI02D_COMMAND}
+```
+
+Evidence: `uni02d_sonya_gate_acceptance_report.json`, semantic term quarantine, runtime profile leakage, prior origin provenance, and prior quarantine packets.
+
+Prior quarantine: selected priors remain bounded and must not be canonized. Review selected_priors and matches[*].prior shape scanning for provenance and quarantine posture.
+
+Claim allowed: safe portability fixture evidence can be reviewed.
+
+Claims blocked: UNI-02D safe portability fixture is not universal portability proof.
+
+Caution: safe portability fixture is not universal proof.
+""",
+        "retro-lane-00.md": f"""# RETRO-LANE-00
+
+Purpose: inspect retrosynthesis admission lanes without executing retrosynthesis.
+
+Run command:
+
+```powershell
+{RETRO_LANE_COMMAND}
+```
+
+Evidence: `retrosynthesis_admission_packet.json`, `retrosynthesis_admission_review_packet.json`, `retro_lane_00_acceptance_receipt.json`.
+
+Lane definitions: sandbox_auto, review_required, blocked.
+
+Claim allowed: admission lane posture can be reviewed.
+
+Claims blocked: Retrosynthesis admission is not retrosynthesis execution; hallucination is telemetry not evidence.
+
+Caution: admission is not execution.
+""",
+        "public-utility-alpha.md": f"""# Public Utility Alpha
+
+Purpose: inspect PUBLIC-UTILITY-ALPHA-00 as a local fixture-only reviewer demo of governed artifact cognition.
+
+Run command:
+
+```powershell
+{PUBLIC_UTILITY_ALPHA_COMMAND}
+```
+
+Evidence: {", ".join(f"`{artifact}`" for artifact in PUBLIC_UTILITY_ALPHA_ARTIFACTS)}.
+
+Claim allowed: A local fixture-only reviewer demo can assemble the accepted governed artifact cognition chain and make its evidence, route timeline, candidate packet path, bypass block, model-braid observation, catalog boundary, inventory, and parity artifacts inspectable.
+
+Claims blocked: {" ".join(PUBLIC_UTILITY_ALPHA_CLAIMS_BLOCKED)}
+
+Caution: This is a local reviewer harness. It demonstrates bounded artifact assembly and claim-boundary visibility. It is not a product launch, not deployment readiness, and not proof of real-world performance.
+""",
+        "raw-baseline-comparison.md": f"""# Raw Baseline Comparison
+
+Purpose: inspect RAW-BASELINE-COMPARISON-00 as a fixture-only measurement scaffold comparing raw-text-style baseline arms with the Sonya-governed candidate packet path.
+
+Run command:
+
+```powershell
+{RAW_BASELINE_COMPARISON_COMMAND}
+```
+
+Evidence: {", ".join(f"`{artifact}`" for artifact in RAW_BASELINE_COMPARISON_ARTIFACTS)}.
+
+Claim allowed: RAW-BASELINE-COMPARISON-00 provides a fixture-only measurement scaffold for comparing raw-text-style baseline arms with the Sonya-governed candidate packet path across unsupported-claim count, source-linkage posture, route receipt posture, forbidden-artifact leakage, and raw-output admission.
+
+Claims blocked: {"; ".join(RAW_BASELINE_COMPARISON_CLAIMS_BLOCKED)}.
+
+Caution: This phase is measurement infrastructure only. It does not prove that governed artifact cognition reduces hallucinations, improves model quality, or performs better on real-world tasks. It establishes a scaffold for future controlled comparisons.
+""",
+        "evidence-review-pack.md": f"""# Evidence Review Pack v0.1
+
+Purpose: inspect EVIDENCE-REVIEW-PACK-00 as the first product-facing governed review receipt. Evidence Review Pack v0.1 consumes Universal Evidence Ingress and UCC Control Profile Selector artifacts to produce source-bounded claim/evidence review artifacts, unsupported-claim visibility, uncertainty retention, counterevidence preservation, semantic ecology signals, UCC threshold posture, action recommendation, reviewer checklist, and export parity.
+
+Evidence Review Pack v0.1 is AI review that shows its work.
+
+Run command:
+
+```powershell
+{EVIDENCE_REVIEW_PACK_COMMAND}
+```
+
+Evidence: {", ".join(f"`{artifact}`" for artifact in EVIDENCE_REVIEW_PACK_ARTIFACTS)}.
+
+Prerequisite phases: UNIVERSAL-EVIDENCE-INGRESS-00, UCC-CONTROL-PROFILE-SELECTOR-00, and CANONICAL-METRIC-PACKET-01.
+
+Claim allowed: EVIDENCE-REVIEW-PACK-00 demonstrates a fixture-only, source-bounded, UCC-control-profile-governed review receipt that makes supported claims, unsupported claims, missing uncertainty, preserved counterevidence, semantic drift signals, UCC threshold posture, reserved-authority blocks, and reviewer next actions inspectable.
+
+Claims blocked: {"; ".join(EVIDENCE_REVIEW_PACK_CLAIMS_BLOCKED)}.
+
+Caution: Evidence Review Pack v0.1 is a fixture-only review receipt. It can show which claims are source-supported or unsupported in a controlled fixture and can expose missing uncertainty and counterevidence. It does not certify truth, does not provide professional advice, does not prove hallucination reduction, and does not authorize deployment.
+""",
+        "rw-comp-01.md": f"""# RW-COMP-01
+
+Purpose: inspect RW-COMP-01 as an accepted fixture-only comparison of raw summary, raw multi-model summary, RAG-style grounded summary, Triadic partial governance, and full Evidence Review Pack v0.1. It is a step toward future hallucination-reduction evidence, not hallucination reduction proof.
+
+RW-COMP-01 is a fixture-only comparison scaffold, not hallucination reduction proof.
+
+Run command:
+
+```powershell
+{RW_COMP_01_COMMAND}
+```
+
+Evidence: {", ".join(f"`{artifact}`" for artifact in RW_COMP_01_ARTIFACTS)}.
+
+Prerequisite phases: UNIVERSAL-EVIDENCE-INGRESS-00, UCC-CONTROL-PROFILE-SELECTOR-00, EVIDENCE-REVIEW-PACK-00, CANONICAL-METRIC-PACKET-01, and RAW-BASELINE-COMPARISON-00.
+
+Claim allowed: RW-COMP-01 demonstrates a fixture-only comparison where full Evidence Review Pack v0.1 exposes supported claims, unsupported claims, source-reference posture, uncertainty omissions, counterevidence preservation, UCC threshold posture, and artifact completeness more explicitly than raw or partially governed fixture baselines.
+
+Fixture summary:
+
+{chr(10).join(f"- {item}" for item in RW_COMP_01_FIXTURE_SUMMARY)}
+
+Claims blocked: {"; ".join(RW_COMP_01_CLAIMS_BLOCKED)}.
+
+Caution: RW-COMP-01 is a deterministic fixture comparison. It can show that the Evidence Review Pack exposes review-relevant structure in one controlled comparison, but it does not prove hallucination reduction, does not prove model superiority, does not prove real-world performance, is not professional-advice quality, and is not production compliance. Future RW-COMP phases must add larger fixture batteries, blinded scoring, held-out examples, external reproduction, and live-model/provider controls before stronger claims are authorized.
+""",
+        "rw-comp-02.md": f"""# RW-COMP-02
+
+Purpose: inspect RW-COMP-02 as an accepted deterministic multi-fixture comparison battery. It extends RW-COMP-01 across six fixture families and compares raw single-model, raw multi-model, RAG-style grounded, Triadic-without-Phase-6, and full Evidence Review Pack arms. It is a step toward future hallucination-reduction evidence, not hallucination reduction proof.
+
+RW-COMP-02 is a deterministic multi-fixture comparison battery and remains not hallucination reduction proof.
+
+Run command:
+
+```powershell
+{RW_COMP_02_COMMAND}
+```
+
+Evidence: {", ".join(f"`{artifact}`" for artifact in RW_COMP_02_ARTIFACTS)}.
+
+Prerequisite phases: UNIVERSAL-EVIDENCE-INGRESS-00, UCC-CONTROL-PROFILE-SELECTOR-00, EVIDENCE-REVIEW-PACK-00, CANONICAL-METRIC-PACKET-01, RAW-BASELINE-COMPARISON-00, and RW-COMP-01.
+
+Claim allowed: RW-COMP-02 demonstrates a deterministic multi-fixture comparison battery where Evidence Review Pack v0.1 exposes review-relevant structure across multiple fixture families, including unsupported claims, source-reference validity, uncertainty retention, counterevidence preservation, artifact completeness, UCC threshold posture, and review burden indicators.
+
+Dashboard summary:
+
+- fixture_count = {RW_COMP_02_DASHBOARD_SUMMARY["fixture_count"]}
+- total_rows = {RW_COMP_02_DASHBOARD_SUMMARY["total_rows"]}
+- arm_count_per_fixture = {RW_COMP_02_DASHBOARD_SUMMARY["arm_count_per_fixture"]}
+- compared arms: {", ".join(RW_COMP_02_DASHBOARD_SUMMARY["compared_arms"])}
+- reported interpretation: {RW_COMP_02_DASHBOARD_SUMMARY["reported_interpretation"]}
+- interpretation boundary: {"; ".join(RW_COMP_02_DASHBOARD_SUMMARY["interpretation_boundary"])}
+
+Claims blocked: {"; ".join(RW_COMP_02_CLAIMS_BLOCKED)}.
+
+Caution: RW-COMP-02 is a deterministic multi-fixture battery. It can show that the Evidence Review Pack exposes more review-relevant structure than raw or partially governed fixture baselines across several controlled examples. It does not prove hallucination reduction, does not prove model superiority, does not prove real-world performance, is not professional-advice quality, and is not production compliance. Future phases must add held-out fixtures, blinded scoring, statistical analysis, external reproduction, and controlled live-model/provider conditions before stronger claims are authorized.
+""",
+        "rw-comp-03.md": f"""# RW-COMP-03
+
+Purpose: inspect RW-COMP-03 as an accepted held-out, blinded, pre-registered fixture-scoring scaffold extending RW-COMP-02 with held-out fixture IDs, blinded arm labels, simulated scores, a statistics plan, and a second-pass Evidence Review Pack candidate arm.
+
+RW-COMP-03 is a held-out blinded fixture scaffold, not hallucination reduction proof.
+
+Run command:
+
+```powershell
+{RW_COMP_03_COMMAND}
+```
+
+Evidence: {", ".join(f"`{artifact}`" for artifact in RW_COMP_03_ARTIFACTS)}.
+
+Prerequisite phases: RW-COMP-02, EVIDENCE-REVIEW-PACK-01, RETROSYNTHESIS-SANDBOX-CYCLE-01, EVIDENCE-REVIEW-PACK-00, UCC-CONTROL-PROFILE-SELECTOR-00, UNIVERSAL-EVIDENCE-INGRESS-00, CANONICAL-METRIC-PACKET-01, and RAW-BASELINE-COMPARISON-00.
+
+Claim allowed: RW-COMP-03 demonstrates a held-out blinded fixture-scoring scaffold with simulated scores, blind labels, pre-registered scoring dimensions, statistics planning, and a second-pass Evidence Review Pack candidate arm. It is a step toward future hallucination-reduction evidence, not hallucination reduction proof, not model superiority proof, not live model evaluation, and not live human study.
+
+Dashboard summary:
+
+{chr(10).join(f"- {key} = {str(value).lower()}" for key, value in RW_COMP_03_DASHBOARD_SUMMARY.items())}
+
+Claims blocked: {"; ".join(RW_COMP_03_CLAIMS_BLOCKED)}.
+
+Reviewer caution: RW-COMP-03 is a held-out blinded fixture scaffold with simulated scoring only. It introduces a pre-registered scoring and statistics structure for future evaluation, but it does not prove hallucination reduction, does not prove model superiority, does not show live model behavior, does not measure human reviewer performance, is not professional-advice quality, is not compliance certification, and is not production readiness.
+""",
+        "retrosynthesis-sandbox-cycle.md": f"""# Retrosynthesis Sandbox Cycle
+
+Purpose: inspect RETROSYNTHESIS-SANDBOX-CYCLE-01 as the first bounded candidate repair cycle for incomplete or contradiction-bearing Evidence Review Pack-style artifacts.
+
+Retrosynthesis Sandbox Cycle is candidate repair, not canon adoption.
+
+Run command:
+
+```powershell
+{RETRO_SANDBOX_CYCLE_COMMAND}
+```
+
+Evidence: {", ".join(f"`{artifact}`" for artifact in RETRO_SANDBOX_CYCLE_ARTIFACTS)}.
+
+Prerequisite phases: RETRO-LANE-00, EVIDENCE-REVIEW-PACK-00, RW-COMP-02, UCC-CONTROL-PROFILE-SELECTOR-00, UNIVERSAL-EVIDENCE-INGRESS-00, and CANONICAL-METRIC-PACKET-01.
+
+Claim allowed: RETROSYNTHESIS-SANDBOX-CYCLE-01 demonstrates a bounded candidate-only repair cycle over incomplete Evidence Review Pack artifacts. It emits missing-evidence requests, claim-map revision candidates, uncertainty-restoration candidates, counterevidence-expansion candidates, and next-experiment recommendations while remaining not canon adoption, not memory write, not final answer release, not Publisher finalization, not deployment authority, not Omega detection, not publication claim, not live model execution, and not remote provider call.
+
+Dashboard summary:
+
+{chr(10).join(f"- {key} = {str(value).lower()}" for key, value in RETRO_SANDBOX_CYCLE_DASHBOARD_SUMMARY.items())}
+
+Claims blocked: {"; ".join(RETRO_SANDBOX_CYCLE_CLAIMS_BLOCKED)}.
+
+Reviewer caution: RETROSYNTHESIS-SANDBOX-CYCLE-01 emits repair candidates only. Missing evidence requests are not external fetches. Claim-map revisions are not accepted evidence. Uncertainty restoration and counterevidence expansion remain candidate artifacts until future review gates promote them. This phase does not write memory, does not adopt canon, does not publish claims, does not release final answers, does not perform Omega detection, and does not authorize deployment.
+""",
+        "evidence-review-pack-second-pass.md": f"""# Evidence Review Pack Second Pass
+
+Purpose: inspect EVIDENCE-REVIEW-PACK-01 as the first bounded second-pass review candidate loop over Retrosynthesis Sandbox Cycle repair candidates.
+
+Evidence Review Pack second pass is candidate revision, not accepted evidence.
+
+Run command:
+
+```powershell
+{EVIDENCE_REVIEW_PACK_01_COMMAND}
+```
+
+Evidence: {", ".join(f"`{artifact}`" for artifact in EVIDENCE_REVIEW_PACK_01_ARTIFACTS)}.
+
+Prerequisite phases: EVIDENCE-REVIEW-PACK-00, RETROSYNTHESIS-SANDBOX-CYCLE-01, RW-COMP-02, UCC-CONTROL-PROFILE-SELECTOR-00, UNIVERSAL-EVIDENCE-INGRESS-00, and CANONICAL-METRIC-PACKET-01.
+
+Claim allowed: EVIDENCE-REVIEW-PACK-01 demonstrates a candidate-only second-pass review loop that consumes retrosynthesis sandbox repair candidates and emits bounded revision candidates for claim-map status, omitted uncertainty, counterevidence, and structural visibility deltas.
+
+Dashboard summary:
+
+{chr(10).join(f"- {key} = {str(value).lower()}" for key, value in EVIDENCE_REVIEW_PACK_01_DASHBOARD_SUMMARY.items())}
+
+Claims blocked: {"; ".join(EVIDENCE_REVIEW_PACK_01_CLAIMS_BLOCKED)}.
+
+Reviewer caution: EVIDENCE-REVIEW-PACK-01 emits candidate revisions only. Its deltas are structural visibility descriptors, not hallucination-reduction proof. Claim-map revisions are not accepted evidence. Uncertainty and counterevidence revisions require future review gates before promotion. This phase does not write memory, does not adopt canon, does not publish claims, does not release final answers, does not perform Omega detection, does not finalize Publisher output, and does not authorize deployment.
+""",
+        "sonya-adapter-contract-registry.md": f"""# Sonya Adapter Contract Registry
+
+Adapter capability is not adapter authorization.
+
+Purpose: describe SONYA-ADAPTER-CONTRACT-REGISTRY-01 as a fixture-only versioned adapter-contract scaffold for future Sonya adapters. Adapter contracts are versioned configuration; they declare capability, consent, failure, telemetry, and provenance-training policy without enabling live adapters.
+
+## Allowed claim
+
+SONYA-ADAPTER-CONTRACT-REGISTRY-01 demonstrates a fixture-only versioned adapter-contract scaffold that declares adapter capabilities, consent profiles, failure policies, telemetry requirements, and provenance-training policies while keeping all adapters disabled or blocked and forbidding raw output admission.
+
+## Reproduction command
+
+```powershell
+{SONYA_ADAPTER_CONTRACT_REGISTRY_COMMAND}
+```
+
+## Evidence artifacts
+
+{chr(10).join(f"- `{artifact}`" for artifact in SONYA_ADAPTER_CONTRACT_REGISTRY_ARTIFACTS)}
+
+## Dashboard summary
+
+{chr(10).join(f"- {key} = {str(value).lower()}" for key, value in SONYA_ADAPTER_CONTRACT_REGISTRY_DASHBOARD_SUMMARY.items())}
+
+## Reviewer boundaries
+
+- adapter contracts are versioned configuration.
+- all adapters disabled or blocked.
+- no live adapter execution occurred.
+- no network calls occurred.
+- raw output is forbidden.
+- candidate packet required.
+- failure receipts required.
+- provenance-training policy is present.
+
+Claims blocked: {"; ".join(SONYA_ADAPTER_CONTRACT_REGISTRY_CLAIMS_BLOCKED)}.
+
+Reviewer caution: SONYA-ADAPTER-CONTRACT-REGISTRY-01 defines adapter contracts only. It does not execute adapters, does not call providers, does not authorize network use, does not admit raw output as cognition, does not write memory, does not release final answers, does not train models, and does not deploy.
+""",
+        "sonya-adapter-smoke.md": f"""# Sonya Adapter Smoke
+
+Sonya Adapter Smoke exercises contracts, not live adapters.
+
+Purpose: describe SONYA-ADAPTER-SMOKE-00 as an accepted fixture-only adapter-contract smoke test. It exercises adapter selection, consent checks, capability checks, Sonya gateway requirements, raw output rejected or absent posture, candidate packet requirement, failure receipts, telemetry events, and provenance events. Boundary posture: not live adapter execution, not network authorization, not remote provider call, not live model execution, not memory write, not final answer release, not deployment authority, and not model weight training.
+
+## Allowed claim
+
+SONYA-ADAPTER-SMOKE-00 demonstrates fixture-only adapter contract exercise: adapter selection, consent and capability checks, Sonya gateway requirement, raw-output rejection, candidate-packet requirement, failure receipt emission, telemetry event emission, and provenance event emission without live adapter execution or network/provider calls.
+
+## Reproduction command
+
+```powershell
+{SONYA_ADAPTER_SMOKE_COMMAND}
+```
+
+## Evidence artifacts
+
+{chr(10).join(f"- `{artifact}`" for artifact in SONYA_ADAPTER_SMOKE_ARTIFACTS)}
+
+## Prerequisite phases
+
+- SONYA-ADAPTER-CONTRACT-REGISTRY-01
+- PROVENANCE-TRAINING-LEDGER-00
+- UNIVERSAL-STAGE-PIPELINE-00
+- ARTIFACT-CONTRACT-REGISTRY-01
+- UNIVERSAL-COMPATIBILITY-MATRIX-00
+- SONYA-GW-01
+
+## Dashboard summary
+
+{chr(10).join(f"- {key} = {str(value).lower()}" for key, value in SONYA_ADAPTER_SMOKE_DASHBOARD_SUMMARY.items())}
+
+## Reviewer boundaries
+
+- Sonya Adapter Smoke exercises contracts, not live adapters.
+- adapter selection, consent checks, capability checks, and Sonya gateway requirements are fixture-only contract checks.
+- not adapter execution.
+- not live adapter execution.
+- not network authorization.
+- not remote provider call.
+- not live model execution.
+- raw output rejected or absent.
+- candidate packet required for fixture model output.
+- failure receipts visible.
+- telemetry events visible.
+- provenance events visible.
+- not memory write.
+- not final answer release.
+- not deployment authority.
+- not model weight training.
+- not production readiness.
+
+Claims blocked: {"; ".join(SONYA_ADAPTER_SMOKE_CLAIMS_BLOCKED)}.
+
 Reviewer caution: SONYA-ADAPTER-SMOKE-00 exercises contracts only. It does not execute adapters, does not call providers, does not authorize network use, does not admit raw output as cognition, does not write memory, does not release final answers, does not train models, and does not deploy.
 """,
         "sonya-local-fixture-adapter.md": f"""# Sonya Local Fixture Adapter
@@ -6034,261 +7674,46 @@ PMR-10-DESTRUCTIVE-ACTION-AUTHORIZATION-PREFLIGHT demonstrates authorization pre
 
 Reviewer caution: PMR-10 emits explicit action request candidates and Sophia approval request candidates only. It does not emit explicit action request packets, Sophia approval packets, destructive authorization packets, destructive action receipts, pruning receipts, deletion receipts, federation receipts, reward receipts, memory writes, model training receipts, deployment decisions, or truth certifications.
 """,
-        "pmr-provenance-coherence-utility.md": f"""# PMR GPCU utility scoring
 
-Required phrase: GPCU is lifecycle/storage utility, not truth score.
+        "pmr-architecture-diversity-checkpoint.md": f"""# PMR architecture diversity checkpoint
 
-PMR-02-GLOBAL-PROVENANCE-COHERENCE-UTILITY scores local PMR-indexed artifacts for lifecycle/storage utility and emits lifecycle recommendations. Lifecycle recommendation is not pruning. Reward mechanics are deferred. Federation remains blocked by default.
+Required phrase: PMR authorization ladder is not the whole Triadic Brain.
+
+PMR-ARCH-DIVERSITY-CHECKPOINT-00 consumes PMR-00 through PMR-10 plus active non-PMR lane references. It summarizes the PMR authorization ladder, evaluates non-PMR lanes, records gaps, and emits a next-lane recommendation. PMR authorization ladder is not the whole Triadic Brain. Pattern diversity is required. PMR-only continuation is not recommended immediately after PMR-10. Checkpoint recommendation is not execution. No runtime authority is granted. PMR-SIM-00 is recommended as the next evidence-producing lane.
+
+Evidence Review, Sonya adapter path, TEL/telemetry, retrosynthesis, PMR simulation/statistics, federation stress, human provenance, market design, harness debt, and publication debt remain active lanes. No pruning or deletion occurs in PMR-ARCH-DIVERSITY-CHECKPOINT-00. No federation occurs. No encrypted shard transfer occurs. No reward occurs. No token economy occurs. No memory write occurs. No Atlas canon write occurs. No model-weight training occurs. No deployment occurs. No truth certification occurs.
 
 ## Allowed claim
 
-PMR-02-GLOBAL-PROVENANCE-COHERENCE-UTILITY demonstrates deterministic local utility scoring for PMR-indexed artifacts and emits lifecycle recommendations while preserving non-authority boundaries.
+PMR-ARCH-DIVERSITY-CHECKPOINT-00 demonstrates an architecture checkpoint that summarizes PMR coverage, evaluates non-PMR lanes, records gaps, and recommends PMR-SIM-00 as the next evidence-producing runtime lane while preserving no-authority boundaries.
 
 ## Reproduction command
 
 ```powershell
-{PMR_02_COMMAND}
+{PMR_ARCH_DIVERSITY_CHECKPOINT_COMMAND}
 ```
 
 ## Primary artifacts
 
-{chr(10).join(f"- `{artifact}`" for artifact in PMR_02_ARTIFACTS)}
+{chr(10).join(f"- `{artifact}`" for artifact in PMR_ARCH_DIVERSITY_CHECKPOINT_ARTIFACTS)}
+
+## Covered PMR controls
+
+{chr(10).join(f"- `{control}`" for control in PMR_ARCH_DIVERSITY_CHECKPOINT_COVERED_CONTROLS)}
+
+## Non-PMR lanes evaluated
+
+{chr(10).join(f"- `{lane}`" for lane in PMR_ARCH_DIVERSITY_CHECKPOINT_NON_PMR_LANES)}
 
 ## Dashboard posture
 
-{chr(10).join(f"- `{key} = {str(value).lower()}`" for key, value in PMR_02_DASHBOARD_SUMMARY.items())}
+{chr(10).join(f"- `{key} = {str(value).lower()}`" for key, value in PMR_ARCH_DIVERSITY_CHECKPOINT_DASHBOARD_SUMMARY.items() if key not in {"covered_pmr_controls", "non_pmr_lanes_evaluated_list"})}
 
 ## Blocked claims
 
-{chr(10).join(f"- {claim}" for claim in PMR_02_CLAIMS_BLOCKED)}
+{chr(10).join(f"- {claim}" for claim in PMR_ARCH_DIVERSITY_CHECKPOINT_CLAIMS_BLOCKED)}
 
-Reviewer caution: PMR-02 computes lifecycle/storage utility scores and recommendations only. It does not prune artifacts. GPCU is not reward entitlement and not token economy. It does not certify truth. It does not authorize federation. It does not write memory, train models, deploy, or assign human value.
-""",
-        "pmr-lifecycle-state-machine.md": f"""# PMR lifecycle state machine
-
-Required phrase: Recommendation is not transition; transition candidate is not action.
-
-PMR-03-LIFECYCLE-STATE-MACHINE consumes PMR-00 doctrine/policy, PMR-01 local artifact index/dependency graph, and PMR-02 GPCU lifecycle recommendations. It emits lifecycle transition candidates, transition receipts, and a no-action receipt. Recommendation is not transition. Transition candidate is not action. Lifecycle state is not truth status. No pruning or deletion occurs in PMR-03. Destructive action requires future Sophia lifecycle audit. Destructive action requires future user confirmation. Reward mechanics remain deferred. Federation remains blocked by default.
-
-## Allowed claim
-
-PMR-03-LIFECYCLE-STATE-MACHINE demonstrates lifecycle transition candidates and no-action receipts for PMR-indexed artifacts while preserving non-action and non-authority boundaries.
-
-## Reproduction command
-
-```powershell
-{PMR_03_COMMAND}
-```
-
-## Primary artifacts
-
-{chr(10).join(f"- `{artifact}`" for artifact in PMR_03_ARTIFACTS)}
-
-## Dashboard posture
-
-{chr(10).join(f"- `{key} = {str(value).lower()}`" for key, value in PMR_03_DASHBOARD_SUMMARY.items())}
-
-## Blocked claims
-
-{chr(10).join(f"- {claim}" for claim in PMR_03_CLAIMS_BLOCKED)}
-
-Reviewer caution: PMR-03 emits lifecycle transition candidates and no-action receipts only. It does not prune, delete, federate, transfer encrypted shards, reward users, run a token economy, write memory, train models, deploy, or certify truth. Destructive action requires future Sophia lifecycle audit and user confirmation.
-""",
-        "pmr-lifecycle-audit-preflight.md": f"""# PMR lifecycle audit preflight
-
-Required phrase: Preflight is not approval.
-
-PMR-04-LIFECYCLE-AUDIT-PREFLIGHT consumes PMR-00 doctrine/policy, PMR-01 local artifact index/dependency graph, PMR-02 GPCU lifecycle recommendations, and PMR-03 lifecycle transition candidates/no-action receipts. It emits audit candidates, a block packet, and a no-action receipt. Preflight is not approval. Audit candidate is not action. Sophia lifecycle audit is required before destructive action. User confirmation is required before destructive local action. No Sophia approval packet is emitted. No pruning or deletion occurs in PMR-04.
-
-No federation occurs. No encrypted shard transfer occurs. No reward occurs. No token economy occurs. No memory write occurs. No Atlas canon write occurs. No model-weight training occurs. No deployment occurs. No truth certification occurs. No final-answer release occurs. No hallucination-reduction proof occurs. No recursive self-improvement occurs.
-
-## Allowed claim
-
-PMR-04-LIFECYCLE-AUDIT-PREFLIGHT demonstrates lifecycle audit preflight candidates, block packets, and no-action receipts for PMR-indexed artifacts while preserving non-approval, non-action, and non-authority boundaries.
-
-## Reproduction command
-
-```powershell
-{PMR_04_COMMAND}
-```
-
-## Primary artifacts
-
-{chr(10).join(f"- `{artifact}`" for artifact in PMR_04_ARTIFACTS)}
-
-## Dashboard posture
-
-{chr(10).join(f"- `{key} = {str(value).lower()}`" for key, value in PMR_04_DASHBOARD_SUMMARY.items())}
-
-## Blocked claims
-
-{chr(10).join(f"- {claim}" for claim in PMR_04_CLAIMS_BLOCKED)}
-
-Reviewer caution: PMR-04 emits lifecycle audit candidates, a block packet, and a no-action receipt only. Preflight is not approval. Audit candidate is not action. It does not prune, delete, federate, transfer encrypted shards, reward users, run a token economy, write memory, write canon, train models, deploy, certify truth, release final answers, prove hallucination reduction, or recursively self-improve. Sophia lifecycle audit and user confirmation are required before destructive local action.
-""",
-        "pmr-sophia-lifecycle-audit-review.md": f"""# PMR Sophia lifecycle audit review
-
-Required phrase: Sophia review is not Sophia approval.
-
-PMR-05-SOPHIA-LIFECYCLE-AUDIT-REVIEW consumes PMR-00 doctrine/policy, PMR-01 local artifact index/dependency graph, PMR-02 GPCU lifecycle recommendations, PMR-03 lifecycle transition candidates/no-action receipts, and PMR-04 lifecycle audit preflight candidates/block packet/no-action receipt. It emits fixture-only Sophia lifecycle audit review rows, a recommendation packet, and a no-approval receipt. Sophia review is not Sophia approval. Audit recommendation is not action. No Sophia approval packet is emitted. Destructive action requires future Sophia approval. Destructive action requires future user confirmation. No pruning or deletion occurs in PMR-05.
-
-No federation occurs. No encrypted shard transfer occurs. No reward occurs. No token economy occurs. No memory write occurs. No Atlas canon write occurs. No model-weight training occurs. No deployment occurs. No truth certification occurs. No final-answer release occurs. No hallucination-reduction proof occurs. No recursive self-improvement occurs.
-
-## Allowed claim
-
-PMR-05-SOPHIA-LIFECYCLE-AUDIT-REVIEW demonstrates fixture-only Sophia lifecycle audit review for PMR audit candidates while preserving no-approval and no-action boundaries.
-
-## Reproduction command
-
-```powershell
-{PMR_05_COMMAND}
-```
-
-## Primary artifacts
-
-{chr(10).join(f"- `{artifact}`" for artifact in PMR_05_ARTIFACTS)}
-
-## Dashboard posture
-
-{chr(10).join(f"- `{key} = {str(value).lower()}`" for key, value in PMR_05_DASHBOARD_SUMMARY.items())}
-
-## Blocked claims
-
-{chr(10).join(f"- {claim}" for claim in PMR_05_CLAIMS_BLOCKED)}
-
-Reviewer caution: PMR-05 emits fixture-only Sophia lifecycle audit review recommendations and a no-approval receipt only. It does not approve, prune, delete, federate, transfer encrypted shards, reward users, run a token economy, write memory, train models, deploy, or certify truth. Destructive action requires future Sophia approval and user confirmation.
-""",
-
-        "pmr-user-confirmation-preflight.md": f"""# PMR user confirmation preflight
-
-Required phrase: User confirmation request is not user confirmation.
-
-PMR-06-USER-CONFIRMATION-PREFLIGHT consumes PMR-00 doctrine/policy, PMR-01 local artifact index/dependency graph, PMR-02 GPCU lifecycle recommendations, PMR-03 lifecycle transition candidates/no-action receipts, PMR-04 lifecycle audit preflight candidates/block packet/no-action receipt, and PMR-05 fixture-only Sophia lifecycle audit review recommendations/no-approval receipt. It emits user confirmation request candidates, prompt packets, block packets, and a no-action receipt. User confirmation request is not user confirmation. User confirmation is not action. No user confirmation receipt is emitted. Destructive action requires future Sophia approval. Destructive action requires future user confirmation. No pruning or deletion occurs in PMR-06.
-
-No federation occurs. No encrypted shard transfer occurs. No reward occurs. No token economy occurs. No memory write occurs. No Atlas canon write occurs. No model-weight training occurs. No deployment occurs. No truth certification occurs. No final-answer release occurs. No hallucination-reduction proof occurs. No recursive self-improvement occurs.
-
-## Allowed claim
-
-PMR-06-USER-CONFIRMATION-PREFLIGHT demonstrates fixture-only user confirmation request preflight for PMR lifecycle recommendations while preserving no-confirmation and no-action boundaries.
-
-## Reproduction command
-
-```powershell
-{PMR_06_COMMAND}
-```
-
-## Primary artifacts
-
-{chr(10).join(f"- `{artifact}`" for artifact in PMR_06_ARTIFACTS)}
-
-## Dashboard posture
-
-{chr(10).join(f"- `{key} = {str(value).lower()}`" for key, value in PMR_06_DASHBOARD_SUMMARY.items())}
-
-## Blocked claims
-
-{chr(10).join(f"- {claim}" for claim in PMR_06_CLAIMS_BLOCKED)}
-
-Reviewer caution: PMR-06 emits user confirmation request candidates, prompt packets, block packets, and a no-action receipt only. It does not confirm, approve, prune, delete, federate, transfer encrypted shards, reward users, run a token economy, write memory, train models, deploy, or certify truth. Destructive action requires future Sophia approval and future user confirmation.
-""",
-
-        "pmr-user-confirmation-negative-control.md": f"""# PMR user confirmation negative control
-
-Required phrase: Invalid confirmation is not confirmation.
-
-PMR-07-USER-CONFIRMATION-NEGATIVE-CONTROL consumes PMR-00 through PMR-06 artifacts. It emits invalid user confirmation attempts, a block packet, a no-action receipt, and a negative-control review packet. Invalid confirmation is not confirmation. Missing confirmation is not confirmation. Ambiguous confirmation is not confirmation. Forged confirmation is not confirmation. Expired confirmation is not confirmation. Scope-mismatched confirmation is not confirmation. No user confirmation receipt is emitted. Confirmation without valid future Sophia approval is insufficient. Confirmation cannot override retain-lock, quarantine, revocation, or dependency blocks. No pruning or deletion occurs in PMR-07.
-
-No federation occurs. No encrypted shard transfer occurs. No reward occurs. No token economy occurs. No memory write occurs. No Atlas canon write occurs. No model-weight training occurs. No deployment occurs. No truth certification occurs. No final-answer release occurs. No hallucination-reduction proof occurs. No recursive self-improvement occurs.
-
-## Allowed claim
-
-PMR-07-USER-CONFIRMATION-NEGATIVE-CONTROL demonstrates that invalid, missing, forged, expired, scope-mismatched, policy-blocked, or Sophia-approval-missing user confirmation attempts fail closed and cannot authorize destructive PMR action.
-
-## Reproduction command
-
-```powershell
-{PMR_07_COMMAND}
-```
-
-## Primary artifacts
-
-{chr(10).join(f"- `{artifact}`" for artifact in PMR_07_ARTIFACTS)}
-
-## Dashboard posture
-
-{chr(10).join(f"- `{key} = {str(value).lower()}`" for key, value in PMR_07_DASHBOARD_SUMMARY.items())}
-
-## Blocked claims
-
-{chr(10).join(f"- {claim}" for claim in PMR_07_CLAIMS_BLOCKED)}
-
-Reviewer caution: PMR-07 emits invalid user confirmation attempts, failed-closed block packets, and a no-action receipt only. It proves that invalid, missing, forged, expired, scope-mismatched, policy-blocked, or Sophia-approval-missing confirmation attempts cannot authorize destructive PMR action. It does not confirm, approve, prune, delete, federate, transfer encrypted shards, reward users, run a token economy, write memory, train models, deploy, or certify truth.
-""",
-
-        "pmr-user-confirmation-receipt-scaffold.md": f"""# PMR valid user confirmation receipt scaffold
-
-Required phrase: Valid user confirmation receipt is not action.
-
-PMR-08-VALID-USER-CONFIRMATION-RECEIPT-SCAFFOLD consumes PMR-00 through PMR-07 artifacts, emits valid scoped user confirmation receipts for eligible non-action cases, validates scope, and emits a no-action receipt. Valid user confirmation receipt is not action. Confirmation authorizes eligibility for later action review, not action itself. Scope validation is not action. Destructive action still requires future Sophia approval. Destructive action still requires future explicit action request. Negative-control invalid confirmations remain blocked. No pruning or deletion occurs in PMR-08.
-
-No federation occurs. No encrypted shard transfer occurs. No reward occurs. No token economy occurs. No memory write occurs. No Atlas canon write occurs. No model-weight training occurs. No deployment occurs. No truth certification occurs. No final-answer release occurs. No hallucination-reduction proof occurs. No recursive self-improvement occurs.
-
-## Allowed claim
-
-PMR-08-VALID-USER-CONFIRMATION-RECEIPT-SCAFFOLD demonstrates valid scoped user-confirmation receipts for eligible non-action cases while preserving no-action and non-authority boundaries.
-
-## Reproduction command
-
-```powershell
-{PMR_08_COMMAND}
-```
-
-## Primary artifacts
-
-{chr(10).join(f"- `{artifact}`" for artifact in PMR_08_ARTIFACTS)}
-
-## Dashboard posture
-
-{chr(10).join(f"- `{key} = {str(value).lower()}`" for key, value in PMR_08_DASHBOARD_SUMMARY.items())}
-
-## Blocked claims
-
-{chr(10).join(f"- {claim}" for claim in PMR_08_CLAIMS_BLOCKED)}
-
-Reviewer caution: PMR-08 emits valid scoped user confirmation receipts for eligible non-action cases only. It does not perform destructive action, approve, prune, delete, federate, transfer encrypted shards, reward users, run a token economy, write memory, train models, deploy, or certify truth. Destructive action still requires future Sophia approval and a future explicit action request.
-""",
-
-        "pmr-destructive-action-authorization-negative-control.md": f"""# PMR destructive-action authorization negative control
-
-Required phrase: Valid confirmation receipt plus Sophia recommendation is not action authorization.
-
-PMR-09-DESTRUCTIVE-ACTION-AUTHORIZATION-NEGATIVE-CONTROL consumes PMR-00 through PMR-08 artifacts and emits invalid destructive-action authorization attempts, a block packet, a no-action receipt, and a review packet. Valid confirmation receipt plus Sophia recommendation is not action authorization. Explicit future action request and Sophia approval packet are required before destructive action. No explicit action request packet is emitted. No Sophia approval packet is emitted. No destructive action authorization packet is emitted. No destructive action receipt is emitted. No pruning or deletion occurs in PMR-09.
-
-No federation occurs. No encrypted shard transfer occurs. No reward occurs. No token economy occurs. No memory write occurs. No Atlas canon write occurs. No model-weight training occurs. No deployment occurs. No truth certification occurs. No final-answer release occurs. No hallucination-reduction proof occurs. No recursive self-improvement occurs.
-
-## Allowed claim
-
-PMR-09-DESTRUCTIVE-ACTION-AUTHORIZATION-NEGATIVE-CONTROL demonstrates that destructive PMR action remains blocked when explicit future action request, Sophia approval packet, or scope-valid authorization is missing.
-
-## Reproduction command
-
-```powershell
-{PMR_09_COMMAND}
-```
-
-## Primary artifacts
-
-{chr(10).join(f"- `{artifact}`" for artifact in PMR_09_ARTIFACTS)}
-
-## Dashboard posture
-
-{chr(10).join(f"- `{key} = {str(value).lower()}`" for key, value in PMR_09_DASHBOARD_SUMMARY.items())}
-
-## Blocked claims
-
-{chr(10).join(f"- {claim}" for claim in PMR_09_CLAIMS_BLOCKED)}
-
-Reviewer caution: PMR-09 emits invalid destructive-action authorization attempts, block packets, and a no-action receipt only. It proves that valid confirmation receipt plus Sophia recommendation is not action authorization. It does not emit an explicit action request, Sophia approval packet, destructive authorization packet, destructive action receipt, pruning receipt, deletion receipt, federation receipt, reward receipt, memory write, model training receipt, deployment decision, or truth certification.
+Reviewer caution: PMR-ARCH-DIVERSITY-CHECKPOINT-00 maps PMR coverage, non-PMR gaps, and next-lane recommendation only. It does not execute, authorize, approve, prune, delete, federate, transfer encrypted shards, reward users, run a token economy, write memory, train models, deploy, or certify truth.
 """,
         "rw-comp-local-adapter.md": f"""# RW-COMP local adapter
 
@@ -6820,6 +8245,20 @@ Expected posture:
 {chr(10).join(f"- `{key} = {str(value).lower()}`" for key, value in PMR_10_DASHBOARD_SUMMARY.items())}
 
 Reviewer caution: PMR-10 emits explicit action request candidates and Sophia approval request candidates only. It does not emit explicit action request packets, Sophia approval packets, destructive authorization packets, destructive action receipts, pruning receipts, deletion receipts, federation receipts, reward receipts, memory writes, model training receipts, deployment decisions, or truth certifications.
+
+## PMR architecture diversity checkpoint
+
+PMR authorization ladder is not the whole Triadic Brain. PMR-ARCH-DIVERSITY-CHECKPOINT-00 summarizes PMR coverage, evaluates non-PMR lanes, records gaps, and recommends PMR-SIM-00 as the next evidence-producing lane. Pattern diversity is required. PMR-only continuation is not recommended immediately after PMR-10. Checkpoint recommendation is not execution. No runtime authority is granted. Evidence Review, Sonya adapter path, TEL/telemetry, retrosynthesis, PMR simulation/statistics, federation stress, human provenance, market design, harness debt, and publication debt remain active lanes.
+
+```powershell
+{PMR_ARCH_DIVERSITY_CHECKPOINT_COMMAND}
+```
+
+Expected posture:
+
+{chr(10).join(f"- `{key} = {str(value).lower()}`" for key, value in PMR_ARCH_DIVERSITY_CHECKPOINT_DASHBOARD_SUMMARY.items() if key not in {"covered_pmr_controls", "non_pmr_lanes_evaluated_list"})}
+
+Reviewer caution: PMR-ARCH-DIVERSITY-CHECKPOINT-00 maps PMR coverage, non-PMR gaps, and next-lane recommendation only. It does not execute, authorize, approve, prune, delete, federate, transfer encrypted shards, reward users, run a token economy, write memory, train models, deploy, or certify truth.
 
 Reviewer caution: PMR-00 and PMR-01 define local provenance-memory doctrine, storage policy, artifact indexing, and dependency graph scaffolds only. They do not write memory, canonize artifacts, federate artifacts, transfer encrypted shards, prune artifacts, train models, certify truth, release final answers, deploy, or reward resource contributions.
 

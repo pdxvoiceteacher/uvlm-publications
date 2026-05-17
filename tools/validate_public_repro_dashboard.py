@@ -47,6 +47,7 @@ REQUIRED_PHASES = {
     "PMR-08-VALID-USER-CONFIRMATION-RECEIPT-SCAFFOLD",
     "PMR-09-DESTRUCTIVE-ACTION-AUTHORIZATION-NEGATIVE-CONTROL",
     "PMR-10-DESTRUCTIVE-ACTION-AUTHORIZATION-PREFLIGHT",
+    "PMR-ARCH-DIVERSITY-CHECKPOINT-00",
 }
 REQUIRED_BOUNDARY_PHRASES = (
     "not truth certification",
@@ -349,6 +350,23 @@ REQUIRED_BOUNDARY_PHRASES = (
     "PMR-10 is not model-weight training.",
     "PMR-10 is not deployment authority.",
     "PMR-10 is not truth certification.",
+    "PMR authorization ladder is not the whole Triadic Brain.",
+    "Pattern diversity is required.",
+    "PMR-only continuation is not recommended immediately after PMR-10.",
+    "Checkpoint recommendation is not execution.",
+    "Checkpoint is not product completion.",
+    "No runtime authority is granted.",
+    "PMR-SIM-00 is recommended as the next evidence-producing lane.",
+    "Evidence Review, Sonya adapter path, TEL/telemetry, retrosynthesis, PMR simulation/statistics, federation stress, human provenance, market design, harness debt, and publication debt remain active lanes.",
+    "No pruning or deletion occurs in PMR-ARCH-DIVERSITY-CHECKPOINT-00.",
+    "PMR-ARCH-DIVERSITY-CHECKPOINT-00 is not federation authorization.",
+    "PMR-ARCH-DIVERSITY-CHECKPOINT-00 is not reward entitlement.",
+    "PMR-ARCH-DIVERSITY-CHECKPOINT-00 is not token economy.",
+    "PMR-ARCH-DIVERSITY-CHECKPOINT-00 is not Atlas canon.",
+    "PMR-ARCH-DIVERSITY-CHECKPOINT-00 is not memory write authorization.",
+    "PMR-ARCH-DIVERSITY-CHECKPOINT-00 is not model-weight training.",
+    "PMR-ARCH-DIVERSITY-CHECKPOINT-00 is not deployment authority.",
+    "PMR-ARCH-DIVERSITY-CHECKPOINT-00 is not truth certification.",
     "Governed provenance resources may be future infrastructure rewards, but truth is not for sale.",
 )
 FORBIDDEN_PHRASES = (
@@ -412,6 +430,10 @@ FORBIDDEN_PHRASES = (
     "canon adoption",
     "memory write",
     "production evaluation",
+    "product completion",
+    "claims product completion",
+    "runtime authority",
+    "claims runtime authority",
     "product release",
     "product released",
     "benchmark result",
@@ -574,13 +596,15 @@ def _forbidden_hits(text: str) -> list[str]:
                 phrase == "token economy"
                 and (
                     "does not prune, delete, federate, transfer encrypted shards, reward users, run a"
-                    in text[max(0, index - 104) : index]
+                    in text[max(0, index - 180) : index]
                     or "does not approve, prune, delete, federate, transfer encrypted shards, reward users, run a"
-                    in text[max(0, index - 112) : index]
+                    in text[max(0, index - 180) : index]
                     or "does not confirm, approve, prune, delete, federate, transfer encrypted shards, reward users, run a"
-                    in text[max(0, index - 122) : index]
+                    in text[max(0, index - 180) : index]
                     or "does not perform destructive action, approve, prune, delete, federate, transfer encrypted shards, reward users, run a"
-                    in text[max(0, index - 142) : index]
+                    in text[max(0, index - 180) : index]
+                    or "does not execute, authorize, approve, prune, delete, federate, transfer encrypted shards, reward users, run a"
+                    in text[max(0, index - 200) : index]
                 )
             ):
                 start = index + len(normalized_phrase)
@@ -598,6 +622,8 @@ def _forbidden_hits(text: str) -> list[str]:
                 or text[index : index + 40].startswith("federation blocked")
                 or text[index : index + 40].startswith("federation_authorization")
                 or text[index : index + 40].startswith("federation authorization")
+                or text[index : index + 40].startswith("federation stress")
+                or text[index : index + 40].startswith("federation_stress")
                 or text[index : index + 40].startswith("federation = true")
                 or text[index : index + 40].startswith('federation": true')
             ):

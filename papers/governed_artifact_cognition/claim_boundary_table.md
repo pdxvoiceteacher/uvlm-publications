@@ -328,3 +328,20 @@
 | PMR-10 is not model-weight training. | Authorization preflight does not train model weights. |
 | PMR-10 is not deployment authority. | Authorization preflight does not deploy systems. |
 | PMR-10 is not truth certification. | Authorization preflight does not certify truth. |
+| PMR authorization ladder is not the whole Triadic Brain. | PMR-ARCH-DIVERSITY-CHECKPOINT-00 keeps PMR scoped to a ladder inside the broader architecture. |
+| Pattern diversity is required. | The checkpoint records that multiple non-PMR lanes remain active. |
+| PMR-only continuation is not recommended immediately after PMR-10. | The next recommended lane is PMR-SIM-00. |
+| Checkpoint recommendation is not execution. | A recommendation does not run the next lane. |
+| Checkpoint is not product completion. | The checkpoint records gaps rather than completing a product. |
+| No runtime authority is granted. | Architecture checkpoints do not authorize runtime action. |
+| PMR-SIM-00 is recommended as the next evidence-producing lane. | PMR simulation/statistics is the recommended next lane. |
+| Evidence Review, Sonya adapter path, TEL/telemetry, retrosynthesis, PMR simulation/statistics, federation stress, human provenance, market design, harness debt, and publication debt remain active lanes. | The checkpoint preserves architecture diversity. |
+| No pruning or deletion occurs in PMR-ARCH-DIVERSITY-CHECKPOINT-00. | The checkpoint is no-action. |
+| PMR-ARCH-DIVERSITY-CHECKPOINT-00 is not federation authorization. | The checkpoint does not authorize federation. |
+| PMR-ARCH-DIVERSITY-CHECKPOINT-00 is not reward entitlement. | The checkpoint does not allocate rewards. |
+| PMR-ARCH-DIVERSITY-CHECKPOINT-00 is not token economy. | The checkpoint does not run token mechanics. |
+| PMR-ARCH-DIVERSITY-CHECKPOINT-00 is not Atlas canon. | The checkpoint does not canonize artifacts. |
+| PMR-ARCH-DIVERSITY-CHECKPOINT-00 is not memory write authorization. | The checkpoint does not authorize memory writes. |
+| PMR-ARCH-DIVERSITY-CHECKPOINT-00 is not model-weight training. | The checkpoint does not train model weights. |
+| PMR-ARCH-DIVERSITY-CHECKPOINT-00 is not deployment authority. | The checkpoint does not deploy systems. |
+| PMR-ARCH-DIVERSITY-CHECKPOINT-00 is not truth certification. | The checkpoint does not certify truth. |
