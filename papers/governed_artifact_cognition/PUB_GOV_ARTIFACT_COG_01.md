@@ -750,3 +750,8 @@ Human participant packet is not metaphysical personhood claim. Consent can const
   -LogDir C:\UVLM\run_artifacts\pmr_human_provenance_00_logs `
   -CiMode
 ```
+
+
+## PMR-HUMAN-CONSENT-NEGATIVE-CONTROL-00
+
+Invalid consent is not consent. Coerced consent fixture is not valid consent. Scope-mismatched consent is not consent. Consent attempt is not model training.

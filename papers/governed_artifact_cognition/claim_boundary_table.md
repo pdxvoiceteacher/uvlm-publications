@@ -434,3 +434,17 @@
 | PMR-HUMAN-PROVENANCE-00 is not model-weight training. | PMR-HUMAN-PROVENANCE-00 models synthetic human provenance context only and preserves non-authority boundaries. |
 | PMR-HUMAN-PROVENANCE-00 is not deployment authority. | PMR-HUMAN-PROVENANCE-00 models synthetic human provenance context only and preserves non-authority boundaries. |
 | PMR-HUMAN-PROVENANCE-00 is not truth certification. | PMR-HUMAN-PROVENANCE-00 models synthetic human provenance context only and preserves non-authority boundaries. |
+
+
+## PMR-HUMAN-CONSENT-NEGATIVE-CONTROL-00 claim boundaries
+
+| Boundary | Why it matters |
+|---|---|
+| Invalid consent is not consent. | Negative-control scaffold only; no runtime authority. |
+| Missing consent is not consent. | Negative-control scaffold only; no runtime authority. |
+| Expired consent is not consent. | Negative-control scaffold only; no runtime authority. |
+| Revoked consent is not consent. | Negative-control scaffold only; no runtime authority. |
+| Ambiguous consent is not consent. | Negative-control scaffold only; no runtime authority. |
+| Coerced consent fixture is not valid consent. | Negative-control scaffold only; no runtime authority. |
+| Scope-mismatched consent is not consent. | Negative-control scaffold only; no runtime authority. |
+| Consent attempt is not model training. | Negative-control scaffold only; no runtime authority. |

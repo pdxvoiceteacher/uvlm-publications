@@ -116,5 +116,9 @@
   "pmr_human_provenance_00_indexed": true,
   "not_identity_certification": true,
   "not_consent_execution": true,
-  "not_human_consciousness_claim": true
+  "not_human_consciousness_claim": true,
+  "pmr_human_consent_negative_control_00_indexed": true,
+  "not_invalid_consent_authority": true,
+  "not_scope_mismatch_authority": true,
+  "not_consent_action_authorization": true
 }

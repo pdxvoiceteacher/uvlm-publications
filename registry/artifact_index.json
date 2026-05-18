@@ -506,6 +506,21 @@
       "reviewer quickstarts",
       "status.json files"
     ],
+    "PMR-HUMAN-CONSENT-NEGATIVE-CONTROL-00": [
+      "pmr_human_consent_negative_control_manifest.json",
+      "pmr_invalid_human_consent_attempts.jsonl",
+      "pmr_human_consent_scope_mismatch_rows.jsonl",
+      "pmr_human_consent_block_packet.json",
+      "pmr_human_consent_no_action_receipt.json",
+      "pmr_human_consent_negative_control_review_packet.json",
+      "pmr_human_consent_negative_control_summary.md",
+      "artifact_inventory.json",
+      "run_artifact_manifest.json",
+      "triadic_run_manifest.json",
+      "export_bundle_manifest.json",
+      "export_bundle_parity_report.json",
+      "pmr_human_consent_negative_control_00_acceptance_receipt.json"
+    ],
     "EXP-SUITE-REGISTRY-01": [
       "experiments/experiment_suite_registry.json"
     ],

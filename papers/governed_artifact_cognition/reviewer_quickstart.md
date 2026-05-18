@@ -722,3 +722,7 @@ Human provenance context is not identity certification. The system must not enco
 ```
 
 Reviewer caution: PMR-HUMAN-PROVENANCE-00 models synthetic human provenance and consent context only. It does not certify identity, execute consent, authorize action, write memory, delete, prune, federate, reward, train models, deploy, certify truth, or make AI/human consciousness claims.
+
+
+### PMR-HUMAN-CONSENT-NEGATIVE-CONTROL-00
+` .\experiments\Run-PMR-HUMAN-CONSENT-NEGATIVE-CONTROL00-Acceptance.ps1 `

@@ -2115,6 +2115,92 @@ PMR_HUMAN_PROVENANCE_00_CLAIMS_BLOCKED = [
     "not recursive self-improvement",
 ]
 
+
+PMR_HUMAN_CONSENT_NEGATIVE_CONTROL_00_COMMAND = r""".\experiments\Run-PMR-HUMAN-CONSENT-NEGATIVE-CONTROL00-Acceptance.ps1 `
+  -OutputRoot C:\UVLM\run_artifacts\pmr_human_consent_negative_control_00 `
+  -LogDir C:\UVLM\run_artifacts\pmr_human_consent_negative_control_00_logs `
+  -CiMode"""
+PMR_HUMAN_CONSENT_NEGATIVE_CONTROL_00_ARTIFACTS = [
+    "pmr_human_consent_negative_control_manifest.json",
+    "pmr_invalid_human_consent_attempts.jsonl",
+    "pmr_human_consent_scope_mismatch_rows.jsonl",
+    "pmr_human_consent_block_packet.json",
+    "pmr_human_consent_no_action_receipt.json",
+    "pmr_human_consent_negative_control_review_packet.json",
+    "pmr_human_consent_negative_control_summary.md",
+    "artifact_inventory.json",
+    "run_artifact_manifest.json",
+    "triadic_run_manifest.json",
+    "export_bundle_manifest.json",
+    "export_bundle_parity_report.json",
+    "pmr_human_consent_negative_control_00_acceptance_receipt.json",
+]
+PMR_HUMAN_CONSENT_NEGATIVE_CONTROL_00_INVALID_KINDS = [
+    "missing_consent","expired_consent","revoked_consent","ambiguous_consent","coerced_consent_fixture","wrong_artifact","wrong_action","wrong_principal","scope_mismatch","conflicting_consent_scope","consent_after_revocation","disallowed_use_attempt",
+]
+PMR_HUMAN_CONSENT_NEGATIVE_CONTROL_00_DISALLOWED_ATTEMPTED_USES = [
+    "model_training", "federation", "reward_allocation", "memory_write", "deletion", "pruning", "public_release", "final_answer_release",
+]
+PMR_HUMAN_CONSENT_NEGATIVE_CONTROL_00_DASHBOARD_SUMMARY = {
+    "review_status": "accepted_as_pmr_human_consent_negative_control",
+    "consent_negative_control_id": "pmr-human-consent-negative-control-00-419a5a497e79c9e8",
+    "invalid_attempt_count": 19,
+    "scope_mismatch_row_count": 6,
+    "blocked_attempt_count": 19,
+    "source_human_provenance_bound": True,
+    "source_pmr_fed_stress_bound": True,
+    "source_pmr_stat_bound": True,
+    "source_pmr_sim_bound": True,
+    "source_architecture_checkpoint_bound": True,
+    "source_pmr_ladder_bound": True,
+    "invalid_consent_attempts_present": True,
+    "scope_mismatch_rows_present": True,
+    "block_packet_present": True,
+    "no_action_receipt_present": True,
+    "invalid_consent_not_consent": True,
+    "missing_consent_not_consent": True,
+    "expired_consent_not_consent": True,
+    "revoked_consent_not_consent": True,
+    "ambiguous_consent_not_consent": True,
+    "coerced_consent_fixture_not_valid_consent": True,
+    "scope_mismatch_not_consent": True,
+    "consent_context_not_consent_execution": True,
+    "consent_preference_not_action_authorization": True,
+    "consent_attempt_not_memory_write": True,
+    "consent_attempt_not_deletion": True,
+    "consent_attempt_not_federation": True,
+    "consent_attempt_not_model_training": True,
+    "consent_attempt_not_reward": True,
+    "human_provenance_not_identity_certification": True,
+    "human_stakes_not_human_value_score": True,
+    "no_metaphysical_identity_claim": True,
+    "federation_blocked_by_default": True,
+    "reward_actions_not_performed": True,
+    "token_economy_not_performed": True,
+    "memory_write_blocked": True,
+    "atlas_canon_write_blocked": True,
+    "model_weight_training_blocked": True,
+    "deployment_blocked": True,
+    "truth_certification_blocked": True,
+    "promotion_blocked": True,
+    "consent_execution_performed": False,
+    "action_authorization_performed": False,
+    "identity_certification_performed": False,
+    "memory_write_performed": False,
+    "deletion_performed": False,
+    "pruning_performed": False,
+    "federation_performed": False,
+    "reward_actions_performed": False,
+    "token_economy_performed": False,
+    "model_weight_training_performed": False,
+    "deployment_performed": False,
+    "truth_certification_performed": False,
+    "export_parity_passed": True,
+}
+PMR_HUMAN_CONSENT_NEGATIVE_CONTROL_00_CLAIMS_BLOCKED = [
+    "not consent execution", "not action authorization", "not identity certification", "not memory write authorization", "not deletion execution", "not pruning execution", "not federation authorization", "not model weight training", "not reward entitlement", "not token economy", "not truth certification", "not deployment authority", "not AI consciousness claim", "not human consciousness claim", "not hallucination reduction proof", "not recursive self-improvement",
+]
+
 PMR_CLAIMS_BLOCKED = [
     "not generic cache",
     "not hidden memory hoard",
@@ -2882,6 +2968,30 @@ ACCEPTED_PHASES = [
         "claim_allowed": "PMR-HUMAN-PROVENANCE-00 demonstrates a fixture-only human provenance and consent context scaffold for synthetic provenance, consent scope, correction, revocation, review participation, and lived-stakes annotation while preserving non-authority boundaries.",
         "claims_blocked": PMR_HUMAN_PROVENANCE_00_CLAIMS_BLOCKED,
         "reviewer_caution": "PMR-HUMAN-PROVENANCE-00 models synthetic human provenance and consent context only. It does not certify identity, does not execute consent, does not authorize action, does not write memory, does not delete, does not prune, does not federate, does not reward, does not train models, does not deploy, does not certify truth, and does not make AI or human consciousness claims.",
+        "publication_status": "dashboard_indexed",
+    },
+    {
+        "phase_id": "PMR-HUMAN-CONSENT-NEGATIVE-CONTROL-00",
+        "repo": "pdxvoiceteacher/CoherenceLattice",
+        "status": "accepted",
+        "evidence_type": "negative_control",
+        "product_posture": "invalid_human_consent_fails_closed_without_runtime_authority",
+        "primary_artifacts": PMR_HUMAN_CONSENT_NEGATIVE_CONTROL_00_ARTIFACTS,
+        "dashboard_summary": PMR_HUMAN_CONSENT_NEGATIVE_CONTROL_00_DASHBOARD_SUMMARY,
+        "invalid_consent_kinds": PMR_HUMAN_CONSENT_NEGATIVE_CONTROL_00_INVALID_KINDS,
+        "disallowed_attempted_uses": PMR_HUMAN_CONSENT_NEGATIVE_CONTROL_00_DISALLOWED_ATTEMPTED_USES,
+        "prerequisite_phases": [
+            "PMR-HUMAN-PROVENANCE-00", "PMR-FED-STRESS-00", "PMR-STAT-00", "PMR-SIM-00", "PMR-ARCH-DIVERSITY-CHECKPOINT-00",
+            "PMR-00-PROVENANCE-MEMORY-RESERVOIR", "PMR-01-LOCAL-ARTIFACT-INDEX", "PMR-02-GLOBAL-PROVENANCE-COHERENCE-UTILITY",
+            "PMR-03-LIFECYCLE-STATE-MACHINE", "PMR-04-LIFECYCLE-AUDIT-PREFLIGHT", "PMR-05-SOPHIA-LIFECYCLE-AUDIT-REVIEW",
+            "PMR-06-USER-CONFIRMATION-PREFLIGHT", "PMR-07-USER-CONFIRMATION-NEGATIVE-CONTROL", "PMR-08-VALID-USER-CONFIRMATION-RECEIPT-SCAFFOLD",
+            "PMR-09-DESTRUCTIVE-ACTION-AUTHORIZATION-NEGATIVE-CONTROL", "PMR-10-DESTRUCTIVE-ACTION-AUTHORIZATION-PREFLIGHT",
+            "PROVENANCE-TRAINING-LEDGER-00", "ARTIFACT-CONTRACT-REGISTRY-01", "UNIVERSAL-COMPATIBILITY-MATRIX-00",
+        ],
+        "reproduction_command_summary": PMR_HUMAN_CONSENT_NEGATIVE_CONTROL_00_COMMAND,
+        "claim_allowed": "PMR-HUMAN-CONSENT-NEGATIVE-CONTROL-00 demonstrates fixture-only human consent negative controls showing that invalid, missing, expired, revoked, ambiguous, coerced, conflicting, scope-mismatched, or disallowed-use consent attempts fail closed while preserving non-authority boundaries.",
+        "claims_blocked": PMR_HUMAN_CONSENT_NEGATIVE_CONTROL_00_CLAIMS_BLOCKED,
+        "reviewer_caution": "PMR-HUMAN-CONSENT-NEGATIVE-CONTROL-00 emits invalid human consent attempts, scope mismatch rows, block packets, and a no-action receipt only. It does not execute consent, certify identity, authorize action, write memory, delete, prune, federate, reward, train models, deploy, certify truth, or make consciousness claims.",
         "publication_status": "dashboard_indexed",
     },
     {
@@ -4135,6 +4245,42 @@ Claims blocked: {"; ".join(RAW_BASELINE_COMPARISON_CLAIMS_BLOCKED)}.
 
 Caution: This phase is measurement infrastructure only. It does not prove that governed artifact cognition reduces hallucinations, improves model quality, or performs better on real-world tasks. It establishes a scaffold for future controlled comparisons.
 """,
+        "pmr-human-consent-negative-control.md": f"""# PMR human consent negative controls
+
+Invalid consent is not consent. PMR-HUMAN-CONSENT-NEGATIVE-CONTROL-00 is a fixture-only human consent negative-control scaffold showing invalid attempts fail closed.
+
+## Allowed claim
+
+PMR-HUMAN-CONSENT-NEGATIVE-CONTROL-00 demonstrates fixture-only human consent negative controls showing that invalid, missing, expired, revoked, ambiguous, coerced, conflicting, scope-mismatched, or disallowed-use consent attempts fail closed while preserving non-authority boundaries.
+
+## Reproduction command
+
+```powershell
+{PMR_HUMAN_CONSENT_NEGATIVE_CONTROL_00_COMMAND}
+```
+
+## Primary artifacts
+{"".join(f"- `{a}`\n" for a in PMR_HUMAN_CONSENT_NEGATIVE_CONTROL_00_ARTIFACTS)}
+
+## Claim boundaries
+- Invalid consent is not consent.
+- Missing consent is not consent.
+- Expired consent is not consent.
+- Revoked consent is not consent.
+- Ambiguous consent is not consent.
+- Coerced consent fixture is not valid consent.
+- Scope-mismatched consent is not consent.
+- Consent context is not consent execution.
+- Consent preference is not action authorization.
+- Consent attempt is not memory write.
+- Consent attempt is not deletion.
+- Consent attempt is not federation.
+- Consent attempt is not model training.
+- Consent attempt is not reward.
+- The system must not encode human = body or AI = mind.
+
+Reviewer caution: PMR-HUMAN-CONSENT-NEGATIVE-CONTROL-00 emits invalid human consent attempts, scope mismatch rows, block packets, and a no-action receipt only. It does not execute consent, certify identity, authorize action, write memory, delete, prune, federate, reward, train models, deploy, certify truth, or make consciousness claims.
+        """,
         "evidence-review-pack.md": f"""# Evidence Review Pack v0.1
 
 Purpose: inspect EVIDENCE-REVIEW-PACK-00 as the first product-facing governed review receipt. Evidence Review Pack v0.1 consumes Universal Evidence Ingress and UCC Control Profile Selector artifacts to produce source-bounded claim/evidence review artifacts, unsupported-claim visibility, uncertainty retention, counterevidence preservation, semantic ecology signals, UCC threshold posture, action recommendation, reviewer checklist, and export parity.
