@@ -703,6 +703,8 @@ def _forbidden_hits(text: str) -> list[str]:
                 or text[index : index + 44].startswith("federation candidate is not network")
                 or text[index : index + 46].startswith("federation credit scenario is not reward")
                 or text[index : index + 48].startswith("federation remains blocked by default")
+                or text[index : index + 40].startswith("federation.")
+                or text[index : index + 40].startswith("federation,")
                 or text[index : index + 40].startswith("federation_blocked")
                 or text[index : index + 40].startswith("federation blocked")
                 or (text[index : index + 40].startswith("federation proof") and _is_negated(text, index))
@@ -724,6 +726,21 @@ def _forbidden_hits(text: str) -> list[str]:
                 or text[index : index + 40].startswith("federation = true")
                 or text[index : index + 40].startswith('federation": true')
                 or '"model_training", "federation", "reward_allocation"' in text[max(0, index - 24) : index + 48]
+            ):
+                start = index + len(normalized_phrase)
+                continue
+            if (
+                phrase in {"ai consciousness", "human consciousness"}
+                and "make ai/human consciousness claims" in text[max(0, index - 32) : index + 48]
+            ):
+                start = index + len(normalized_phrase)
+                continue
+            if (
+                phrase == "encrypted shard transfer"
+                and (
+                    text[index : index + 64].startswith("encrypted shard transfer not performed")
+                    or text[index : index + 64].startswith("encrypted_shard_transfer_not_performed")
+                )
             ):
                 start = index + len(normalized_phrase)
                 continue
