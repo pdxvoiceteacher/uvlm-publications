@@ -113,3 +113,25 @@ The comparison summary records that retain_all wins at least replay_success_rate
   -DeterministicSeed 1729 `
   -CiMode
 ```
+
+
+## PMR-STAT-00 Statistical Analysis Scaffold
+
+PMR-STAT-00 adds a publication-indexed descriptive fixture-bound statistical analysis scaffold over PMR-SIM-00 outputs. Descriptive fixture statistics are not real-world inference. Rank table is not production policy selection. PMR policy remains allowed to lose. The scaffold emits policy metric summaries, policy pair deltas, a rank table, a sensitivity packet, a failure mode packet, a review packet, and a summary.
+
+Statistical summary is not PMR superiority proof. Statistical summary is not hallucination reduction proof. Simulation statistics are not federation proof. Simulation statistics are not reward economy proof. Retained does not mean true. Replay-ready does not mean canon. Stored does not mean trained.
+
+The rank table records pmr_gpcu_heuristic mean_rank = 1.882353, recency_only mean_rank = 2.176471, cost_minimizing mean_rank = 2.529412, random_retention mean_rank = 2.764706, and retain_all mean_rank = 2.823529. PMR-GPCU has best mean fixture rank but this is not PMR superiority proof. retain_all still wins replay_success_rate, audit_availability_rate, and dependency_integrity_rate. cost_minimizing still wins multiple cost, violation, and review-burden metrics. Simpler baselines are allowed to win metrics or scenarios.
+
+PMR-STAT-00 is not real-world inference. It is not production memory policy. It is not production policy selection. It is not PMR superiority proof. It is not hallucination reduction proof. It is not federation proof. It is not reward economy proof. It is not reward entitlement. It is not token economy. It is not Atlas canon. It is not memory write authorization. It is not model-weight training. It is not deployment authority. It is not truth certification. It is not final-answer release. It is not recursive self-improvement. It is not production readiness.
+
+### PMR-STAT-00 acceptance command
+
+```powershell
+.\experiments\Run-PMR-STAT00-Acceptance.ps1 `
+  -OutputRoot C:\UVLM\run_artifacts\pmr_stat_00 `
+  -LogDir C:\UVLM\run_artifacts\pmr_stat_00_logs `
+  -Repetitions 3 `
+  -DeterministicSeed 1729 `
+  -CiMode
+```

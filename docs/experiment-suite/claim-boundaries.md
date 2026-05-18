@@ -332,6 +332,18 @@
 - PMR-SIM-00 is not model-weight training.
 - PMR-SIM-00 is not deployment authority.
 - PMR-SIM-00 is not truth certification.
+- Descriptive fixture statistics are not real-world inference.
+- PMR policy remains allowed to lose.
+- Rank table is not production policy selection.
+- Statistical summary is not PMR superiority proof.
+- Statistical summary is not hallucination reduction proof.
+- Simulation statistics are not federation proof.
+- Simulation statistics are not reward economy proof.
+- PMR-STAT-00 is not Atlas canon.
+- PMR-STAT-00 is not memory write authorization.
+- PMR-STAT-00 is not model-weight training.
+- PMR-STAT-00 is not deployment authority.
+- PMR-STAT-00 is not truth certification.
 - Governed provenance resources may be future infrastructure rewards, but truth is not for sale.
 
 No oracle posture. No deployment posture. No final-answer posture. No AI consciousness claim. No universal ontology claim.

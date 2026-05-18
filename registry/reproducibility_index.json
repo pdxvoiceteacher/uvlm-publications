@@ -103,6 +103,10 @@
         "command": ".\\experiments\\Run-PMR-SIM00-Acceptance.ps1 `\n  -OutputRoot C:\\UVLM\\run_artifacts\\pmr_sim_00 `\n  -LogDir C:\\UVLM\\run_artifacts\\pmr_sim_00_logs `\n  -Repetitions 3 `\n  -DeterministicSeed 1729 `\n  -CiMode"
       },
       {
+        "name": "PMR statistical analysis acceptance",
+        "command": ".\\experiments\\Run-PMR-STAT00-Acceptance.ps1 `\n  -OutputRoot C:\\UVLM\\run_artifacts\\pmr_stat_00 `\n  -LogDir C:\\UVLM\\run_artifacts\\pmr_stat_00_logs `\n  -Repetitions 3 `\n  -DeterministicSeed 1729 `\n  -CiMode"
+      },
+      {
         "name": "Universal Stage Pipeline acceptance",
         "command": "python -m pytest -q python/tests/pipeline/test_universal_stage_pipeline.py"
       },

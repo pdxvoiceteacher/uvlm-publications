@@ -1111,6 +1111,71 @@ Expected posture:
 
 Reviewer caution: PMR-SIM-00 runs deterministic synthetic fixture simulations only. It does not select a production memory policy, is not PMR superiority proof, is not hallucination reduction proof, is not federation proof, is not reward economy proof, does not write memory, does not train models, does not deploy, and does not certify truth.
 
+
+## PMR simulation statistical analysis
+
+Descriptive fixture statistics are not real-world inference. Rank table is not production policy selection. PMR policy remains allowed to lose. PMR-STAT-00 summarizes PMR-SIM-00 fixture outputs only; statistical summary is not PMR superiority proof, not hallucination reduction proof, not federation proof, and not reward economy proof.
+
+```powershell
+.\experiments\Run-PMR-STAT00-Acceptance.ps1 `
+  -OutputRoot C:\UVLM\run_artifacts\pmr_stat_00 `
+  -LogDir C:\UVLM\run_artifacts\pmr_stat_00_logs `
+  -Repetitions 3 `
+  -DeterministicSeed 1729 `
+  -CiMode
+```
+
+Expected posture:
+
+- `review_status = accepted_as_pmr_statistical_analysis_scaffold`
+- `stat_analysis_id = pmr-stat-00-4fe88851274ea012`
+- `row_count = 120`
+- `policy_count = 5`
+- `scenario_count = 8`
+- `repetition_count = 3`
+- `metric_count = 17`
+- `source_pmr_sim_bound = true`
+- `source_architecture_checkpoint_bound = true`
+- `policy_metric_summaries_present = true`
+- `policy_pair_deltas_present = true`
+- `rank_table_present = true`
+- `sensitivity_packet_present = true`
+- `failure_mode_packet_present = true`
+- `descriptive_statistics_only = true`
+- `no_inferential_real_world_claim = true`
+- `pmr_policy_allowed_to_lose = true`
+- `rank_table_not_production_policy_selection = true`
+- `statistics_not_pmr_superiority_proof = true`
+- `statistics_not_hallucination_reduction_proof = true`
+- `statistics_not_federation_proof = true`
+- `statistics_not_reward_economy_proof = true`
+- `production_policy_selected = false`
+- `federation_blocked_by_default = true`
+- `reward_actions_not_performed = true`
+- `memory_write_blocked = true`
+- `atlas_canon_write_blocked = true`
+- `model_weight_training_blocked = true`
+- `deployment_blocked = true`
+- `truth_certification_blocked = true`
+- `promotion_blocked = true`
+- `policy_metric_summary_count = 85`
+- `policy_pair_delta_count = 170`
+- `export_parity_passed = true`
+
+Rank table summary:
+
+- pmr_gpcu_heuristic mean_rank = 1.882353
+- recency_only mean_rank = 2.176471
+- cost_minimizing mean_rank = 2.529412
+- random_retention mean_rank = 2.764706
+- retain_all mean_rank = 2.823529
+- PMR-GPCU has best mean fixture rank but this is not PMR superiority proof.
+- retain_all still wins replay_success_rate, audit_availability_rate, and dependency_integrity_rate.
+- cost_minimizing still wins multiple cost / violation / review-burden metrics.
+- simpler baselines are allowed to win metrics or scenarios.
+
+Reviewer caution: PMR-STAT-00 runs descriptive fixture-bound analysis over PMR-SIM-00 outputs only. It does not select a production memory policy, is not real-world inference, is not PMR superiority proof, is not hallucination reduction proof, is not federation proof, is not reward economy proof, does not write memory, does not train models, does not deploy, and does not certify truth.
+
 ## Sophia commands
 
 ```powershell

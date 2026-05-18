@@ -53,6 +53,7 @@ REQUIRED_DOCS = {
     "pmr-destructive-action-authorization-preflight.md",
     "pmr-architecture-diversity-checkpoint.md",
     "pmr-simulation-baseline-comparison.md",
+    "pmr-simulation-statistical-analysis.md",
     "sonya-local-fixture-adapter-multi-route.md",
     "sonya-local-fixture-adapter-lineage.md",
 }
@@ -96,6 +97,7 @@ REQUIRED_PHASES = {
     "PMR-10-DESTRUCTIVE-ACTION-AUTHORIZATION-PREFLIGHT",
     "PMR-ARCH-DIVERSITY-CHECKPOINT-00",
     "PMR-SIM-00",
+    "PMR-STAT-00",
     "SONYA-LOCAL-FIXTURE-ADAPTER-02",
     "SONYA-LOCAL-FIXTURE-ADAPTER-03",
 }
@@ -136,6 +138,7 @@ REQUIRED_COMMAND_FRAGMENTS = (
     "Run-PMR10-Acceptance.ps1",
     "Run-PMR-ARCH-DIVERSITY-CHECKPOINT00-Acceptance.ps1",
     "Run-PMR-SIM00-Acceptance.ps1",
+    "Run-PMR-STAT00-Acceptance.ps1",
     "Run-SONYA-LOCAL-FIXTURE-ADAPTER02-Acceptance.ps1",
     "Run-SONYA-LOCAL-FIXTURE-ADAPTER03-Acceptance.ps1",
 )
@@ -2005,6 +2008,56 @@ def test_dashboard_validator_rejects_pmr_sim_00_overclaims(tmp_path):
         out_dir, docs_dir = run_builder(tmp_path / claim.replace(" ", "_"))
         page = docs_dir / "pmr-simulation-baseline-comparison.md"
         page.write_text(page.read_text() + f"\nPMR-SIM-00 claims {claim}.\n")
+        result = validate_dashboard(out_dir / "experiment_suite_dashboard.json", docs_dir)
+        assert result["passed"] is False
+        found = [hit.lower() for hit in result["forbidden_claims_found"]]
+        assert claim.lower() in found or f"claims {claim.lower()}" in found, result
+
+
+
+def test_pmr_stat_00_indexes_docs_and_boundaries_are_generated(tmp_path):
+    out_dir, docs_dir = run_builder(tmp_path)
+    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text())
+    reproducibility = json.loads((out_dir / "reproducibility_index.json").read_text())
+    artifact_index = json.loads((out_dir / "artifact_index.json").read_text())
+    claim_boundaries = json.loads((out_dir / "claim_boundary_index.json").read_text())
+
+    accepted_phases = dashboard["accepted_phases"]
+    phase_ids = [entry["phase_id"] for entry in accepted_phases]
+    assert len(phase_ids) == len(set(phase_ids))
+    assert "PMR-STAT-00" in phase_ids
+    phase = next(entry for entry in accepted_phases if entry["phase_id"] == "PMR-STAT-00")
+    assert phase["evidence_type"] == "analysis_scaffold"
+    assert phase["dashboard_summary"]["descriptive_statistics_only"] is True
+    assert phase["dashboard_summary"]["rank_table_not_production_policy_selection"] is True
+    assert phase["dashboard_summary"]["production_policy_selected"] is False
+    assert phase["claim_allowed"] == "PMR-STAT-00 demonstrates descriptive fixture-bound statistical analysis over PMR-SIM-00 outputs, including policy metric summaries, pair deltas, rank tables, sensitivity summaries, and failure-mode summaries, while preserving non-production and non-authority boundaries."
+
+    commands = json.dumps(reproducibility)
+    assert "Run-PMR-STAT00-Acceptance.ps1" in commands
+    artifacts = artifact_index["phases"]["PMR-STAT-00"]
+    assert "pmr_stat_analysis_manifest.json" in artifacts
+    assert "pmr_stat_policy_metric_summaries.jsonl" in artifacts
+    assert "pmr_stat_policy_pair_deltas.jsonl" in artifacts
+    assert "pmr_stat_rank_table.json" in artifacts
+    assert "pmr_stat_sensitivity_packet.json" in artifacts
+    assert "pmr_stat_failure_mode_packet.json" in artifacts
+    assert (docs_dir / "pmr-simulation-statistical-analysis.md").exists()
+    boundary_text = "\n".join(claim_boundaries["boundaries"])
+    assert "Descriptive fixture statistics are not real-world inference." in boundary_text
+    assert "Rank table is not production policy selection." in boundary_text
+
+
+def test_dashboard_validator_rejects_pmr_stat_00_overclaims(tmp_path):
+    for claim in (
+        "real-world inference",
+        "production policy selection",
+        "PMR superiority proof",
+        "hallucination reduction proof",
+    ):
+        out_dir, docs_dir = run_builder(tmp_path / claim.replace(" ", "_").replace("-", "_"))
+        page = docs_dir / "pmr-simulation-statistical-analysis.md"
+        page.write_text(page.read_text() + f"\nPMR-STAT-00 claims {claim}.\n")
         result = validate_dashboard(out_dir / "experiment_suite_dashboard.json", docs_dir)
         assert result["passed"] is False
         found = [hit.lower() for hit in result["forbidden_claims_found"]]

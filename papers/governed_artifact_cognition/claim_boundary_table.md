@@ -368,3 +368,24 @@
 | PMR-SIM-00 is not model-weight training. | PMR-SIM-00 remains a deterministic synthetic fixture simulation scaffold, not production authority. |
 | PMR-SIM-00 is not deployment authority. | PMR-SIM-00 remains a deterministic synthetic fixture simulation scaffold, not production authority. |
 | PMR-SIM-00 is not truth certification. | PMR-SIM-00 remains a deterministic synthetic fixture simulation scaffold, not production authority. |
+
+
+## PMR-STAT-00 claim boundaries
+
+| Boundary | Rationale |
+| --- | --- |
+| Descriptive fixture statistics are not real-world inference. | PMR-STAT-00 remains descriptive fixture-bound analysis only, not production or real-world authority. |
+| PMR policy remains allowed to lose. | PMR-STAT-00 remains descriptive fixture-bound analysis only, not production or real-world authority. |
+| Rank table is not production policy selection. | PMR-STAT-00 remains descriptive fixture-bound analysis only, not production or real-world authority. |
+| Statistical summary is not PMR superiority proof. | PMR-STAT-00 remains descriptive fixture-bound analysis only, not production or real-world authority. |
+| Statistical summary is not hallucination reduction proof. | PMR-STAT-00 remains descriptive fixture-bound analysis only, not production or real-world authority. |
+| Simulation statistics are not federation proof. | PMR-STAT-00 remains descriptive fixture-bound analysis only, not production or real-world authority. |
+| Simulation statistics are not reward economy proof. | PMR-STAT-00 remains descriptive fixture-bound analysis only, not production or real-world authority. |
+| Retained does not mean true. | PMR-STAT-00 remains descriptive fixture-bound analysis only, not production or real-world authority. |
+| Replay-ready does not mean canon. | PMR-STAT-00 remains descriptive fixture-bound analysis only, not production or real-world authority. |
+| Stored does not mean trained. | PMR-STAT-00 remains descriptive fixture-bound analysis only, not production or real-world authority. |
+| PMR-STAT-00 is not Atlas canon. | PMR-STAT-00 remains descriptive fixture-bound analysis only, not production or real-world authority. |
+| PMR-STAT-00 is not memory write authorization. | PMR-STAT-00 remains descriptive fixture-bound analysis only, not production or real-world authority. |
+| PMR-STAT-00 is not model-weight training. | PMR-STAT-00 remains descriptive fixture-bound analysis only, not production or real-world authority. |
+| PMR-STAT-00 is not deployment authority. | PMR-STAT-00 remains descriptive fixture-bound analysis only, not production or real-world authority. |
+| PMR-STAT-00 is not truth certification. | PMR-STAT-00 remains descriptive fixture-bound analysis only, not production or real-world authority. |
