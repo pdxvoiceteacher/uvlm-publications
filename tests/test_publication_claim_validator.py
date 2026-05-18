@@ -2114,3 +2114,58 @@ def test_governed_validator_rejects_pmr_human_provenance_00_overclaims(tmp_path)
         assert result["passed"] is False
         found = [hit.lower() for hit in result["forbidden_overclaims_found"]]
         assert claim.lower() in found or f"claims {claim.lower()}" in found, result
+
+
+def test_governed_validator_indexes_sonya_required_membrane_checkpoint():
+    paper = (ROOT / "PUB_GOV_ARTIFACT_COG_01.md").read_text(encoding="utf-8")
+    appendix = (ROOT / "reproducibility_appendix.md").read_text(encoding="utf-8")
+    quickstart = (ROOT / "reviewer_quickstart.md").read_text(encoding="utf-8")
+    status = json.loads((ROOT / "status.json").read_text(encoding="utf-8"))
+    assert "SONYA-REQUIRED-MEMBRANE-CHECKPOINT-00" in paper
+    assert "Sonya is the required execution membrane for model/tool/provider-facing paths." in paper
+    assert "Missing Sonya posture must fail closed." in paper
+    assert "Run-SONYA-REQUIRED-MEMBRANE-CHECKPOINT00-Acceptance.ps1" in appendix
+    assert "Run-SONYA-REQUIRED-MEMBRANE-CHECKPOINT00-Acceptance.ps1" in quickstart
+    assert status["sonya_required_membrane_checkpoint_indexed"] is True
+    assert status["not_provider_call"] is True
+    assert status["not_raw_output_admission"] is True
+    assert status["not_sonya_bypass_authority"] is True
+
+
+def test_governed_validator_rejects_sonya_required_membrane_overclaims(tmp_path):
+    forbidden_claims = (
+        "SONYA membrane checkpoint claims provider call.",
+        "SONYA membrane checkpoint claims raw output admission.",
+        "SONYA membrane checkpoint claims live model execution.",
+        "SONYA membrane checkpoint claims network authorization.",
+        "SONYA membrane checkpoint claims adapter authorization.",
+    )
+    for claim in forbidden_claims:
+        paper_root = _copy_governed_paper(tmp_path / claim.replace(" ", "_").replace(".", ""))
+        paper = paper_root / "PUB_GOV_ARTIFACT_COG_01.md"
+        paper.write_text(paper.read_text(encoding="utf-8") + f"\n{claim}\n", encoding="utf-8")
+        result = validate_publication_claims(
+            paper,
+            appendix=paper_root / "reproducibility_appendix.md",
+            quickstart=paper_root / "reviewer_quickstart.md",
+            status=paper_root / "status.json",
+        )
+        assert result["passed"] is False, claim
+        assert result["forbidden_overclaims_found"], result
+
+
+def test_governed_validator_allows_sonya_required_membrane_negative_contexts(tmp_path):
+    paper_root = _copy_governed_paper(tmp_path)
+    paper = paper_root / "PUB_GOV_ARTIFACT_COG_01.md"
+    paper.write_text(
+        paper.read_text(encoding="utf-8")
+        + "\nno remote provider call\nprovider calls not performed\nraw output is forbidden\nraw output is not cognition\nraw_output_admitted = false\nraw_output_forbidden = true\n",
+        encoding="utf-8",
+    )
+    result = validate_publication_claims(
+        paper,
+        appendix=paper_root / "reproducibility_appendix.md",
+        quickstart=paper_root / "reviewer_quickstart.md",
+        status=paper_root / "status.json",
+    )
+    assert result["passed"] is True
