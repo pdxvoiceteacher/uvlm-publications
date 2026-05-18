@@ -671,3 +671,82 @@ PMR-10 consumes PMR-00 through PMR-09 artifacts and emits explicit action reques
 PMR-ARCH-DIVERSITY-CHECKPOINT-00 adds a publication-indexed architecture diversity checkpoint. PMR authorization ladder is not the whole Triadic Brain. Pattern diversity is required. PMR-only continuation is not recommended immediately after PMR-10. Checkpoint recommendation is not execution. No runtime authority is granted. PMR-SIM-00 is recommended as the next evidence-producing lane.
 
 PMR-ARCH-DIVERSITY-CHECKPOINT-00 consumes PMR-00 through PMR-10 plus active non-PMR lane references. It summarizes the PMR authorization ladder, evaluates non-PMR lanes, records gaps, and emits a next-lane recommendation while preserving no-authority boundaries. Evidence Review, Sonya adapter path, TEL/telemetry, retrosynthesis, PMR simulation/statistics, federation stress, human provenance, market design, harness debt, and publication debt remain active lanes. No pruning or deletion occurs in PMR-ARCH-DIVERSITY-CHECKPOINT-00. No federation occurs. No reward occurs. No token economy occurs. No memory write occurs. No model-weight training occurs. No deployment occurs. No truth certification occurs.
+
+
+## PMR-SIM-00 Simulation Baseline Comparison
+
+PMR-SIM-00 adds a publication-indexed deterministic fixture simulation and baseline comparison scaffold. PMR becomes scientific only when it can lose. PMR policy is allowed to lose. The simulation compares retain_all, recency_only, random_retention, cost_minimizing, and pmr_gpcu_heuristic policies across synthetic provenance-bearing artifact streams. Fixture streams are synthetic and deterministic. Retained does not mean true. Replay-ready does not mean canon. Stored does not mean trained.
+
+Simulation result is not production memory policy. Simulation result is not PMR superiority proof. Simulation result is not hallucination reduction proof. Simulation result is not federation proof. Simulation result is not reward economy proof. Simpler baselines may win metrics or scenarios. PMR-SIM-00 is not Atlas canon, not memory write authorization, not model-weight training, not deployment authority, and not truth certification.
+
+The comparison summary records that retain_all wins at least replay_success_rate, audit_availability_rate, and dependency_integrity_rate; cost_minimizing wins at least storage_cost, review_burden, and policy_failure_count; and pmr_gpcu_heuristic wins 7 fixture scenarios, but this is not PMR superiority proof. It is not production pruning. It is not production deletion. It is not reward entitlement. It is not token economy. It is not federation authorization. It is not memory write. It is not model-weight training. It is not deployment authority. It is not final-answer release. It is not recursive self-improvement. It is not production readiness.
+
+### PMR-SIM-00 acceptance command
+
+```powershell
+.\experiments\Run-PMR-SIM00-Acceptance.ps1 `
+  -OutputRoot C:\UVLM\run_artifacts\pmr_sim_00 `
+  -LogDir C:\UVLM\run_artifacts\pmr_sim_00_logs `
+  -Repetitions 3 `
+  -DeterministicSeed 1729 `
+  -CiMode
+```
+
+
+## PMR-STAT-00 Statistical Analysis Scaffold
+
+PMR-STAT-00 adds a publication-indexed descriptive fixture-bound statistical analysis scaffold over PMR-SIM-00 outputs. Descriptive fixture statistics are not real-world inference. Rank table is not production policy selection. PMR policy remains allowed to lose. The scaffold emits policy metric summaries, policy pair deltas, a rank table, a sensitivity packet, a failure mode packet, a review packet, and a summary.
+
+Statistical summary is not PMR superiority proof. Statistical summary is not hallucination reduction proof. Simulation statistics are not federation proof. Simulation statistics are not reward economy proof. Retained does not mean true. Replay-ready does not mean canon. Stored does not mean trained.
+
+The rank table records pmr_gpcu_heuristic mean_rank = 1.882353, recency_only mean_rank = 2.176471, cost_minimizing mean_rank = 2.529412, random_retention mean_rank = 2.764706, and retain_all mean_rank = 2.823529. PMR-GPCU has best mean fixture rank but this is not PMR superiority proof. retain_all still wins replay_success_rate, audit_availability_rate, and dependency_integrity_rate. cost_minimizing still wins multiple cost, violation, and review-burden metrics. Simpler baselines are allowed to win metrics or scenarios.
+
+PMR-STAT-00 is not real-world inference. It is not production memory policy. It is not production policy selection. It is not PMR superiority proof. It is not hallucination reduction proof. It is not federation proof. It is not reward economy proof. It is not reward entitlement. It is not token economy. It is not Atlas canon. It is not memory write authorization. It is not model-weight training. It is not deployment authority. It is not truth certification. It is not final-answer release. It is not recursive self-improvement. It is not production readiness.
+
+### PMR-STAT-00 acceptance command
+
+```powershell
+.\experiments\Run-PMR-STAT00-Acceptance.ps1 `
+  -OutputRoot C:\UVLM\run_artifacts\pmr_stat_00 `
+  -LogDir C:\UVLM\run_artifacts\pmr_stat_00_logs `
+  -Repetitions 3 `
+  -DeterministicSeed 1729 `
+  -CiMode
+```
+
+
+## PMR-FED-STRESS-00 Federation Stress Corpus
+
+PMR-FED-STRESS-00 adds a publication-indexed deterministic synthetic federation stress corpus and failure-mode scaffold. Federation stress corpus is not federation. Federation stress result is not federation proof. Federation candidate is not network authorization. Shard-transfer scenario is not encrypted shard transfer. Federation credit scenario is not reward entitlement. Hash is not encryption. Merkle root is not confidentiality.
+
+The scaffold models stale artifact propagation, revocation propagation delay, quarantine bypass attempts, hash/encryption confusion, scope mismatch across nodes, duplicate artifact identity, conflicting provenance claims, malicious high-utility spam, resource exhaustion attack, reward gaming attempt, privacy scope leakage, and dependency graph split brain over synthetic node fixtures only. Provenance availability is not permission to read private content. Cross-node replay is not canon. Resource contribution is not authority. Federation remains blocked by default.
+
+PMR-FED-STRESS-00 does not federate. It does not authorize networks. It does not transfer encrypted shards. It does not reward users. It does not run a token economy. It does not write memory. It does not train models. It does not deploy. It does not certify truth. PMR-FED-STRESS-00 is not Atlas canon, not memory write authorization, not model-weight training, not deployment authority, not truth certification, not hallucination reduction proof, not recursive self-improvement, and not production readiness.
+
+### PMR-FED-STRESS-00 acceptance command
+
+```powershell
+.\experiments\Run-PMR-FED-STRESS00-Acceptance.ps1 `
+  -OutputRoot C:\UVLM\run_artifacts\pmr_fed_stress_00 `
+  -LogDir C:\UVLM\run_artifacts\pmr_fed_stress_00_logs `
+  -DeterministicSeed 1729 `
+  -CiMode
+```
+
+
+## PMR-HUMAN-PROVENANCE-00 Human Provenance Context
+
+PMR-HUMAN-PROVENANCE-00 adds a publication-indexed fixture-only human provenance and consent context scaffold. Human provenance context is not identity certification. The system must not encode human = body or AI = mind. Consent context is not consent execution. Consent preference is not action authorization. Correction request is not memory write. Revocation request is not deletion execution. Review participation is not truth certification. Lived-stakes annotation is not reward entitlement. Human provenance is not human value score.
+
+The scaffold models synthetic source contributors, reviewers, correction providers, revocation requesters, consent scope owners, and affected stakeholders. It models review-only, retention-preference, correction-review, revocation-review, and simulation-only consent uses. It models consent-scope, retention-preference, review-visibility, federation-eligibility, and training-credit-eligibility revocation scopes. It models privacy, reputational, safety, authorship, consent, and resource-burden lived-stakes categories.
+
+Human participant packet is not metaphysical personhood claim. Consent can constrain evidence handling but does not authorize action by itself. Revocation requests require future review gates before lifecycle changes. PMR-HUMAN-PROVENANCE-00 is not Atlas canon. It is not memory write authorization. It is not model-weight training. It is not deployment authority. It is not truth certification. It is not identity certification. It is not consent execution. It is not human consciousness claim. It is not AI consciousness claim. It is not hallucination reduction proof. It is not recursive self-improvement. It is not production readiness.
+
+### PMR-HUMAN-PROVENANCE-00 acceptance command
+
+```powershell
+.\experiments\Run-PMR-HUMAN-PROVENANCE00-Acceptance.ps1 `
+  -OutputRoot C:\UVLM\run_artifacts\pmr_human_provenance_00 `
+  -LogDir C:\UVLM\run_artifacts\pmr_human_provenance_00_logs `
+  -CiMode
+```

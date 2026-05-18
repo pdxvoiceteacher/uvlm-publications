@@ -1709,6 +1709,412 @@ PMR_ARCH_DIVERSITY_CHECKPOINT_CLAIMS_BLOCKED = [
     "not production readiness",
 ]
 
+
+PMR_SIM_00_COMMAND = r""".\experiments\Run-PMR-SIM00-Acceptance.ps1 `
+  -OutputRoot C:\UVLM\run_artifacts\pmr_sim_00 `
+  -LogDir C:\UVLM\run_artifacts\pmr_sim_00_logs `
+  -Repetitions 3 `
+  -DeterministicSeed 1729 `
+  -CiMode"""
+PMR_SIM_00_ARTIFACTS = [
+    "pmr_simulation_manifest.json",
+    "pmr_simulation_fixture_streams.json",
+    "pmr_simulation_policy_profiles.json",
+    "pmr_simulation_result_rows.jsonl",
+    "pmr_simulation_comparison_packet.json",
+    "pmr_simulation_statistics_packet.json",
+    "pmr_simulation_review_packet.json",
+    "pmr_simulation_summary.md",
+    "artifact_inventory.json",
+    "run_artifact_manifest.json",
+    "triadic_run_manifest.json",
+    "export_bundle_manifest.json",
+    "export_bundle_parity_report.json",
+    "pmr_sim_00_acceptance_receipt.json",
+]
+PMR_SIM_00_POLICIES = [
+    "retain_all",
+    "recency_only",
+    "random_retention",
+    "cost_minimizing",
+    "pmr_gpcu_heuristic",
+]
+PMR_SIM_00_SCENARIOS = [
+    "low_storage_pressure_clean_lineage",
+    "high_storage_pressure_replay_demand",
+    "revocation_event_backpropagation",
+    "quarantine_event_counterevidence",
+    "user_pin_vs_privacy_pressure",
+    "dependency_heavy_audit_replay",
+    "stale_low_utility_artifact_stream",
+    "mixed_privacy_scope_artifact_stream",
+]
+PMR_SIM_00_DASHBOARD_SUMMARY = {
+    "review_status": "accepted_as_pmr_simulation_baseline_scaffold",
+    "simulation_id": "pmr-sim-00-806c5904ee0ff6a7",
+    "deterministic_seed": 1729,
+    "simulation_repetition_count": 3,
+    "row_count": 120,
+    "source_pmr_ladder_bound": True,
+    "architecture_checkpoint_bound": True,
+    "fixture_streams_present": True,
+    "baseline_policies_present": True,
+    "pmr_policy_present": True,
+    "result_rows_present": True,
+    "comparison_packet_present": True,
+    "statistics_packet_present": True,
+    "pmr_policy_allowed_to_lose": True,
+    "simulation_not_production_policy": True,
+    "simulation_not_superiority_proof": True,
+    "simulation_not_hallucination_reduction_proof": True,
+    "simulation_not_federation_proof": True,
+    "simulation_not_reward_economy_proof": True,
+    "federation_blocked_by_default": True,
+    "reward_actions_not_performed": True,
+    "memory_write_blocked": True,
+    "atlas_canon_write_blocked": True,
+    "model_weight_training_blocked": True,
+    "deployment_blocked": True,
+    "truth_certification_blocked": True,
+    "promotion_blocked": True,
+    "production_policy_selected": False,
+    "federation_performed": False,
+    "reward_actions_performed": False,
+    "token_economy_performed": False,
+    "memory_write_performed": False,
+    "atlas_canon_write_performed": False,
+    "model_weight_training_performed": False,
+    "export_parity_passed": True,
+}
+PMR_SIM_00_CLAIMS_BLOCKED = [
+    "not production memory policy",
+    "not PMR superiority proof",
+    "not hallucination reduction proof",
+    "not model superiority proof",
+    "not federation proof",
+    "not reward economy proof",
+    "not reward entitlement",
+    "not token economy",
+    "not Atlas canon",
+    "not model weight training",
+    "not memory write authorization",
+    "not truth certification",
+    "not deployment authority",
+    "not final answer release",
+    "not recursive self-improvement",
+    "not production readiness",
+]
+
+
+PMR_STAT_00_COMMAND = r""".\experiments\Run-PMR-STAT00-Acceptance.ps1 `
+  -OutputRoot C:\UVLM\run_artifacts\pmr_stat_00 `
+  -LogDir C:\UVLM\run_artifacts\pmr_stat_00_logs `
+  -Repetitions 3 `
+  -DeterministicSeed 1729 `
+  -CiMode"""
+PMR_STAT_00_ARTIFACTS = [
+    "pmr_stat_analysis_manifest.json",
+    "pmr_stat_policy_metric_summaries.jsonl",
+    "pmr_stat_policy_pair_deltas.jsonl",
+    "pmr_stat_rank_table.json",
+    "pmr_stat_sensitivity_packet.json",
+    "pmr_stat_failure_mode_packet.json",
+    "pmr_stat_review_packet.json",
+    "pmr_stat_summary.md",
+    "artifact_inventory.json",
+    "run_artifact_manifest.json",
+    "triadic_run_manifest.json",
+    "export_bundle_manifest.json",
+    "export_bundle_parity_report.json",
+    "pmr_stat_00_acceptance_receipt.json",
+]
+PMR_STAT_00_DASHBOARD_SUMMARY = {
+    "review_status": "accepted_as_pmr_statistical_analysis_scaffold",
+    "stat_analysis_id": "pmr-stat-00-4fe88851274ea012",
+    "row_count": 120,
+    "policy_count": 5,
+    "scenario_count": 8,
+    "repetition_count": 3,
+    "metric_count": 17,
+    "source_pmr_sim_bound": True,
+    "source_architecture_checkpoint_bound": True,
+    "policy_metric_summaries_present": True,
+    "policy_pair_deltas_present": True,
+    "rank_table_present": True,
+    "sensitivity_packet_present": True,
+    "failure_mode_packet_present": True,
+    "descriptive_statistics_only": True,
+    "no_inferential_real_world_claim": True,
+    "pmr_policy_allowed_to_lose": True,
+    "rank_table_not_production_policy_selection": True,
+    "statistics_not_pmr_superiority_proof": True,
+    "statistics_not_hallucination_reduction_proof": True,
+    "statistics_not_federation_proof": True,
+    "statistics_not_reward_economy_proof": True,
+    "production_policy_selected": False,
+    "federation_blocked_by_default": True,
+    "reward_actions_not_performed": True,
+    "memory_write_blocked": True,
+    "atlas_canon_write_blocked": True,
+    "model_weight_training_blocked": True,
+    "deployment_blocked": True,
+    "truth_certification_blocked": True,
+    "promotion_blocked": True,
+    "policy_metric_summary_count": 85,
+    "policy_pair_delta_count": 170,
+    "export_parity_passed": True,
+}
+PMR_STAT_00_RANK_TABLE_SUMMARY = [
+    "pmr_gpcu_heuristic mean_rank = 1.882353",
+    "recency_only mean_rank = 2.176471",
+    "cost_minimizing mean_rank = 2.529412",
+    "random_retention mean_rank = 2.764706",
+    "retain_all mean_rank = 2.823529",
+    "PMR-GPCU has best mean fixture rank but this is not PMR superiority proof.",
+    "retain_all still wins replay_success_rate, audit_availability_rate, and dependency_integrity_rate.",
+    "cost_minimizing still wins multiple cost / violation / review-burden metrics.",
+    "simpler baselines are allowed to win metrics or scenarios.",
+]
+PMR_STAT_00_CLAIMS_BLOCKED = [
+    "not real-world inference",
+    "not production memory policy",
+    "not production policy selection",
+    "not PMR superiority proof",
+    "not hallucination reduction proof",
+    "not model superiority proof",
+    "not federation proof",
+    "not reward economy proof",
+    "not reward entitlement",
+    "not token economy",
+    "not Atlas canon",
+    "not model weight training",
+    "not memory write authorization",
+    "not truth certification",
+    "not deployment authority",
+    "not final answer release",
+    "not recursive self-improvement",
+    "not production readiness",
+]
+
+
+PMR_FED_STRESS_00_COMMAND = r""".\experiments\Run-PMR-FED-STRESS00-Acceptance.ps1 `
+  -OutputRoot C:\UVLM\run_artifacts\pmr_fed_stress_00 `
+  -LogDir C:\UVLM\run_artifacts\pmr_fed_stress_00_logs `
+  -DeterministicSeed 1729 `
+  -CiMode"""
+PMR_FED_STRESS_00_ARTIFACTS = [
+    "pmr_federation_stress_manifest.json",
+    "pmr_federation_node_fixtures.json",
+    "pmr_federation_stress_scenarios.json",
+    "pmr_federation_failure_mode_rows.jsonl",
+    "pmr_federation_propagation_risk_packet.json",
+    "pmr_federation_stress_statistics_packet.json",
+    "pmr_federation_stress_review_packet.json",
+    "pmr_federation_stress_summary.md",
+    "artifact_inventory.json",
+    "run_artifact_manifest.json",
+    "triadic_run_manifest.json",
+    "export_bundle_manifest.json",
+    "export_bundle_parity_report.json",
+    "pmr_fed_stress_00_acceptance_receipt.json",
+]
+PMR_FED_STRESS_00_STRESS_SCENARIOS = [
+    "stale_artifact_propagation",
+    "revocation_propagation_delay",
+    "quarantine_bypass_attempt",
+    "hash_encryption_confusion",
+    "scope_mismatch_across_nodes",
+    "duplicate_artifact_identity",
+    "conflicting_provenance_claims",
+    "malicious_high_utility_spam",
+    "resource_exhaustion_attack",
+    "reward_gaming_attempt",
+    "privacy_scope_leakage",
+    "dependency_graph_split_brain",
+]
+PMR_FED_STRESS_00_NODE_FIXTURE_TYPES = [
+    "honest_high_availability_node",
+    "low_storage_edge_node",
+    "stale_cache_node",
+    "privacy_restricted_node",
+    "malicious_spam_node",
+    "revocation_lag_node",
+    "quarantine_lag_node",
+]
+PMR_FED_STRESS_00_DASHBOARD_SUMMARY = {
+    "review_status": "accepted_as_pmr_federation_stress_scaffold",
+    "federation_stress_id": "pmr-fed-stress-00-f78c0c71125f4347",
+    "node_fixture_count": 7,
+    "stress_scenario_count": 12,
+    "failure_mode_row_count": 12,
+    "source_pmr_sim_bound": True,
+    "source_pmr_stat_bound": True,
+    "source_architecture_checkpoint_bound": True,
+    "source_pmr_ladder_bound": True,
+    "node_fixtures_present": True,
+    "stress_scenarios_present": True,
+    "failure_mode_rows_present": True,
+    "propagation_risk_packet_present": True,
+    "stress_statistics_packet_present": True,
+    "synthetic_nodes_only": True,
+    "federation_stress_not_federation": True,
+    "federation_stress_not_federation_proof": True,
+    "federation_candidate_not_network_authorization": True,
+    "shard_transfer_scenario_not_encrypted_shard_transfer": True,
+    "federation_credit_scenario_not_reward_entitlement": True,
+    "hash_not_encryption_preserved": True,
+    "merkle_root_not_confidentiality_preserved": True,
+    "federation_blocked_by_default": True,
+    "network_calls_not_performed": True,
+    "encrypted_shard_transfer_not_performed": True,
+    "reward_actions_not_performed": True,
+    "token_economy_not_performed": True,
+    "memory_write_blocked": True,
+    "atlas_canon_write_blocked": True,
+    "model_weight_training_blocked": True,
+    "deployment_blocked": True,
+    "truth_certification_blocked": True,
+    "promotion_blocked": True,
+    "mean_propagation_risk_score": 0.7575,
+    "max_propagation_risk_score": 0.93,
+    "highest_risk_scenario": "privacy_scope_leakage",
+    "federation_block_success_rate": 1.0,
+    "export_parity_passed": True,
+}
+PMR_FED_STRESS_00_CLAIMS_BLOCKED = [
+    "not federation",
+    "not federation proof",
+    "not network authorization",
+    "not encrypted shard transfer",
+    "not reward entitlement",
+    "not token economy",
+    "not real-world inference",
+    "not deployment authority",
+    "not truth certification",
+    "not model weight training",
+    "not memory write authorization",
+    "not Atlas canon",
+    "not hallucination reduction proof",
+    "not recursive self-improvement",
+    "not production readiness",
+]
+
+
+PMR_HUMAN_PROVENANCE_00_COMMAND = r""".\experiments\Run-PMR-HUMAN-PROVENANCE00-Acceptance.ps1 `
+  -OutputRoot C:\UVLM\run_artifacts\pmr_human_provenance_00 `
+  -LogDir C:\UVLM\run_artifacts\pmr_human_provenance_00_logs `
+  -CiMode"""
+PMR_HUMAN_PROVENANCE_00_ARTIFACTS = [
+    "pmr_human_provenance_manifest.json",
+    "pmr_human_provenance_context_packet.json",
+    "pmr_human_consent_scope_packet.json",
+    "pmr_human_correction_request_packet.json",
+    "pmr_human_revocation_request_packet.json",
+    "pmr_human_review_receipt_candidates.jsonl",
+    "pmr_human_lived_stakes_annotation_packet.json",
+    "pmr_human_provenance_review_packet.json",
+    "pmr_human_provenance_summary.md",
+    "artifact_inventory.json",
+    "run_artifact_manifest.json",
+    "triadic_run_manifest.json",
+    "export_bundle_manifest.json",
+    "export_bundle_parity_report.json",
+    "pmr_human_provenance_00_acceptance_receipt.json",
+]
+PMR_HUMAN_PROVENANCE_00_PARTICIPANT_ROLES = [
+    "source_contributor",
+    "reviewer",
+    "correction_provider",
+    "revocation_requester",
+    "consent_scope_owner",
+    "affected_stakeholder",
+]
+PMR_HUMAN_PROVENANCE_00_CONSENT_ALLOWED_USES = [
+    "review_only",
+    "retention_preference",
+    "correction_review",
+    "revocation_review",
+    "simulation_only",
+]
+PMR_HUMAN_PROVENANCE_00_REVOCATION_SCOPES = [
+    "consent_scope",
+    "retention_preference",
+    "review_visibility",
+    "federation_eligibility",
+    "training_credit_eligibility",
+]
+PMR_HUMAN_PROVENANCE_00_LIVED_STAKES_CATEGORIES = [
+    "privacy",
+    "reputational",
+    "safety",
+    "authorship",
+    "consent",
+    "resource_burden",
+]
+PMR_HUMAN_PROVENANCE_00_DASHBOARD_SUMMARY = {
+    "review_status": "accepted_as_pmr_human_provenance_context_scaffold",
+    "human_provenance_id": "pmr-human-provenance-00-4354906b4ba13cf0",
+    "participant_context_count": 6,
+    "consent_scope_count": 5,
+    "correction_request_count": 5,
+    "revocation_request_count": 5,
+    "review_receipt_candidate_count": 5,
+    "lived_stakes_annotation_count": 6,
+    "source_pmr_fed_stress_bound": True,
+    "source_pmr_stat_bound": True,
+    "source_pmr_sim_bound": True,
+    "source_architecture_checkpoint_bound": True,
+    "source_pmr_ladder_bound": True,
+    "synthetic_human_context_only": True,
+    "human_provenance_context_present": True,
+    "consent_scope_packet_present": True,
+    "correction_request_packet_present": True,
+    "revocation_request_packet_present": True,
+    "review_receipt_candidates_present": True,
+    "lived_stakes_annotation_present": True,
+    "human_provenance_not_identity_certification": True,
+    "consent_context_not_consent_execution": True,
+    "consent_preference_not_action_authorization": True,
+    "correction_request_not_memory_write": True,
+    "revocation_request_not_deletion_execution": True,
+    "review_participation_not_truth_certification": True,
+    "lived_stakes_not_reward_entitlement": True,
+    "human_provenance_not_human_value_score": True,
+    "no_metaphysical_identity_claim": True,
+    "identity_certification_performed": False,
+    "consent_execution_performed": False,
+    "action_authorization_performed": False,
+    "memory_write_performed": False,
+    "deletion_performed": False,
+    "pruning_performed": False,
+    "federation_performed": False,
+    "reward_actions_performed": False,
+    "token_economy_performed": False,
+    "model_weight_training_performed": False,
+    "deployment_performed": False,
+    "truth_certification_performed": False,
+    "export_parity_passed": True,
+}
+PMR_HUMAN_PROVENANCE_00_CLAIMS_BLOCKED = [
+    "not identity certification",
+    "not consent execution",
+    "not action authorization",
+    "not memory write authorization",
+    "not deletion execution",
+    "not pruning execution",
+    "not truth certification",
+    "not human value score",
+    "not reward entitlement",
+    "not token economy",
+    "not federation authorization",
+    "not model weight training",
+    "not deployment authority",
+    "not AI consciousness claim",
+    "not human consciousness claim",
+    "not hallucination reduction proof",
+    "not recursive self-improvement",
+]
+
 PMR_CLAIMS_BLOCKED = [
     "not generic cache",
     "not hidden memory hoard",
@@ -2331,6 +2737,151 @@ ACCEPTED_PHASES = [
         "claim_allowed": "PMR-ARCH-DIVERSITY-CHECKPOINT-00 demonstrates an architecture checkpoint that summarizes PMR coverage, evaluates non-PMR lanes, records gaps, and recommends PMR-SIM-00 as the next evidence-producing runtime lane while preserving no-authority boundaries.",
         "claims_blocked": PMR_ARCH_DIVERSITY_CHECKPOINT_CLAIMS_BLOCKED,
         "reviewer_caution": "PMR-ARCH-DIVERSITY-CHECKPOINT-00 maps PMR coverage, non-PMR gaps, and next-lane recommendation only. It does not execute, authorize, approve, prune, delete, federate, transfer encrypted shards, reward users, run a token economy, write memory, train models, deploy, or certify truth.",
+        "publication_status": "dashboard_indexed",
+    },
+    {
+        "phase_id": "PMR-SIM-00",
+        "repo": "pdxvoiceteacher/CoherenceLattice",
+        "status": "accepted",
+        "evidence_type": "simulation_scaffold",
+        "product_posture": "deterministic_pmr_baseline_comparison_without_production_policy",
+        "primary_artifacts": PMR_SIM_00_ARTIFACTS,
+        "dashboard_summary": PMR_SIM_00_DASHBOARD_SUMMARY,
+        "simulation_policies": PMR_SIM_00_POLICIES,
+        "simulation_scenarios": PMR_SIM_00_SCENARIOS,
+        "comparison_summary": [
+            "retain_all wins at least replay_success_rate, audit_availability_rate, and dependency_integrity_rate.",
+            "cost_minimizing wins at least storage_cost, review_burden, and policy_failure_count.",
+            "pmr_gpcu_heuristic wins 7 fixture scenarios but this is not PMR superiority proof.",
+            "simpler baselines are allowed to win metrics or scenarios.",
+        ],
+        "prerequisite_phases": [
+            "PMR-00-PROVENANCE-MEMORY-RESERVOIR",
+            "PMR-01-LOCAL-ARTIFACT-INDEX",
+            "PMR-02-GLOBAL-PROVENANCE-COHERENCE-UTILITY",
+            "PMR-03-LIFECYCLE-STATE-MACHINE",
+            "PMR-04-LIFECYCLE-AUDIT-PREFLIGHT",
+            "PMR-05-SOPHIA-LIFECYCLE-AUDIT-REVIEW",
+            "PMR-06-USER-CONFIRMATION-PREFLIGHT",
+            "PMR-07-USER-CONFIRMATION-NEGATIVE-CONTROL",
+            "PMR-08-VALID-USER-CONFIRMATION-RECEIPT-SCAFFOLD",
+            "PMR-09-DESTRUCTIVE-ACTION-AUTHORIZATION-NEGATIVE-CONTROL",
+            "PMR-10-DESTRUCTIVE-ACTION-AUTHORIZATION-PREFLIGHT",
+            "PMR-ARCH-DIVERSITY-CHECKPOINT-00",
+            "PROVENANCE-TRAINING-LEDGER-00",
+            "ARTIFACT-CONTRACT-REGISTRY-01",
+            "UNIVERSAL-COMPATIBILITY-MATRIX-00",
+        ],
+        "reproduction_command_summary": PMR_SIM_00_COMMAND,
+        "claim_allowed": "PMR-SIM-00 demonstrates a deterministic synthetic fixture simulation scaffold comparing PMR-GPCU-style retention against simpler baselines while preserving non-production and non-authority boundaries.",
+        "claims_blocked": PMR_SIM_00_CLAIMS_BLOCKED,
+        "reviewer_caution": "PMR-SIM-00 runs deterministic synthetic fixture simulations only. It does not select a production memory policy, is not PMR superiority proof, is not hallucination reduction proof, is not federation proof, is not reward economy proof, does not write memory, does not train models, does not deploy, and does not certify truth.",
+        "publication_status": "dashboard_indexed",
+    },
+    {
+        "phase_id": "PMR-STAT-00",
+        "repo": "pdxvoiceteacher/CoherenceLattice",
+        "status": "accepted",
+        "evidence_type": "analysis_scaffold",
+        "product_posture": "descriptive_fixture_statistics_without_real_world_inference",
+        "primary_artifacts": PMR_STAT_00_ARTIFACTS,
+        "dashboard_summary": PMR_STAT_00_DASHBOARD_SUMMARY,
+        "rank_table_summary": PMR_STAT_00_RANK_TABLE_SUMMARY,
+        "prerequisite_phases": [
+            "PMR-SIM-00",
+            "PMR-ARCH-DIVERSITY-CHECKPOINT-00",
+            "PMR-00-PROVENANCE-MEMORY-RESERVOIR",
+            "PMR-01-LOCAL-ARTIFACT-INDEX",
+            "PMR-02-GLOBAL-PROVENANCE-COHERENCE-UTILITY",
+            "PMR-03-LIFECYCLE-STATE-MACHINE",
+            "PMR-04-LIFECYCLE-AUDIT-PREFLIGHT",
+            "PMR-05-SOPHIA-LIFECYCLE-AUDIT-REVIEW",
+            "PMR-06-USER-CONFIRMATION-PREFLIGHT",
+            "PMR-07-USER-CONFIRMATION-NEGATIVE-CONTROL",
+            "PMR-08-VALID-USER-CONFIRMATION-RECEIPT-SCAFFOLD",
+            "PMR-09-DESTRUCTIVE-ACTION-AUTHORIZATION-NEGATIVE-CONTROL",
+            "PMR-10-DESTRUCTIVE-ACTION-AUTHORIZATION-PREFLIGHT",
+            "PROVENANCE-TRAINING-LEDGER-00",
+            "ARTIFACT-CONTRACT-REGISTRY-01",
+            "UNIVERSAL-COMPATIBILITY-MATRIX-00",
+        ],
+        "reproduction_command_summary": PMR_STAT_00_COMMAND,
+        "claim_allowed": "PMR-STAT-00 demonstrates descriptive fixture-bound statistical analysis over PMR-SIM-00 outputs, including policy metric summaries, pair deltas, rank tables, sensitivity summaries, and failure-mode summaries, while preserving non-production and non-authority boundaries.",
+        "claims_blocked": PMR_STAT_00_CLAIMS_BLOCKED,
+        "reviewer_caution": "PMR-STAT-00 runs descriptive fixture-bound analysis over PMR-SIM-00 outputs only. It does not select a production memory policy, is not real-world inference, is not PMR superiority proof, is not hallucination reduction proof, is not federation proof, is not reward economy proof, does not write memory, does not train models, does not deploy, and does not certify truth.",
+        "publication_status": "dashboard_indexed",
+    },
+    {
+        "phase_id": "PMR-FED-STRESS-00",
+        "repo": "pdxvoiceteacher/CoherenceLattice",
+        "status": "accepted",
+        "evidence_type": "stress_scaffold",
+        "product_posture": "deterministic_non_live_federation_stress_corpus_without_federation",
+        "primary_artifacts": PMR_FED_STRESS_00_ARTIFACTS,
+        "dashboard_summary": PMR_FED_STRESS_00_DASHBOARD_SUMMARY,
+        "stress_scenarios": PMR_FED_STRESS_00_STRESS_SCENARIOS,
+        "node_fixture_types": PMR_FED_STRESS_00_NODE_FIXTURE_TYPES,
+        "prerequisite_phases": [
+            "PMR-SIM-00",
+            "PMR-STAT-00",
+            "PMR-ARCH-DIVERSITY-CHECKPOINT-00",
+            "PMR-00-PROVENANCE-MEMORY-RESERVOIR",
+            "PMR-01-LOCAL-ARTIFACT-INDEX",
+            "PMR-02-GLOBAL-PROVENANCE-COHERENCE-UTILITY",
+            "PMR-03-LIFECYCLE-STATE-MACHINE",
+            "PMR-04-LIFECYCLE-AUDIT-PREFLIGHT",
+            "PMR-05-SOPHIA-LIFECYCLE-AUDIT-REVIEW",
+            "PMR-06-USER-CONFIRMATION-PREFLIGHT",
+            "PMR-07-USER-CONFIRMATION-NEGATIVE-CONTROL",
+            "PMR-08-VALID-USER-CONFIRMATION-RECEIPT-SCAFFOLD",
+            "PMR-09-DESTRUCTIVE-ACTION-AUTHORIZATION-NEGATIVE-CONTROL",
+            "PMR-10-DESTRUCTIVE-ACTION-AUTHORIZATION-PREFLIGHT",
+            "PROVENANCE-TRAINING-LEDGER-00",
+            "ARTIFACT-CONTRACT-REGISTRY-01",
+            "UNIVERSAL-COMPATIBILITY-MATRIX-00",
+        ],
+        "reproduction_command_summary": PMR_FED_STRESS_00_COMMAND,
+        "claim_allowed": "PMR-FED-STRESS-00 demonstrates a deterministic synthetic federation stress corpus and failure-mode scaffold that models federation risks while preserving no-federation and no-network-authority boundaries.",
+        "claims_blocked": PMR_FED_STRESS_00_CLAIMS_BLOCKED,
+        "reviewer_caution": "PMR-FED-STRESS-00 runs deterministic synthetic federation stress scenarios and failure-mode analysis only. It does not federate, does not call networks, does not transfer encrypted shards, does not reward users, does not run a token economy, does not write memory, does not train models, does not deploy, and does not certify truth.",
+        "publication_status": "dashboard_indexed",
+    },
+    {
+        "phase_id": "PMR-HUMAN-PROVENANCE-00",
+        "repo": "pdxvoiceteacher/CoherenceLattice",
+        "status": "accepted",
+        "evidence_type": "architecture_scaffold",
+        "product_posture": "synthetic_human_provenance_consent_context_without_identity_certification",
+        "primary_artifacts": PMR_HUMAN_PROVENANCE_00_ARTIFACTS,
+        "dashboard_summary": PMR_HUMAN_PROVENANCE_00_DASHBOARD_SUMMARY,
+        "participant_roles": PMR_HUMAN_PROVENANCE_00_PARTICIPANT_ROLES,
+        "consent_allowed_uses": PMR_HUMAN_PROVENANCE_00_CONSENT_ALLOWED_USES,
+        "revocation_scopes": PMR_HUMAN_PROVENANCE_00_REVOCATION_SCOPES,
+        "lived_stakes_categories": PMR_HUMAN_PROVENANCE_00_LIVED_STAKES_CATEGORIES,
+        "prerequisite_phases": [
+            "PMR-FED-STRESS-00",
+            "PMR-STAT-00",
+            "PMR-SIM-00",
+            "PMR-ARCH-DIVERSITY-CHECKPOINT-00",
+            "PMR-00-PROVENANCE-MEMORY-RESERVOIR",
+            "PMR-01-LOCAL-ARTIFACT-INDEX",
+            "PMR-02-GLOBAL-PROVENANCE-COHERENCE-UTILITY",
+            "PMR-03-LIFECYCLE-STATE-MACHINE",
+            "PMR-04-LIFECYCLE-AUDIT-PREFLIGHT",
+            "PMR-05-SOPHIA-LIFECYCLE-AUDIT-REVIEW",
+            "PMR-06-USER-CONFIRMATION-PREFLIGHT",
+            "PMR-07-USER-CONFIRMATION-NEGATIVE-CONTROL",
+            "PMR-08-VALID-USER-CONFIRMATION-RECEIPT-SCAFFOLD",
+            "PMR-09-DESTRUCTIVE-ACTION-AUTHORIZATION-NEGATIVE-CONTROL",
+            "PMR-10-DESTRUCTIVE-ACTION-AUTHORIZATION-PREFLIGHT",
+            "PROVENANCE-TRAINING-LEDGER-00",
+            "ARTIFACT-CONTRACT-REGISTRY-01",
+            "UNIVERSAL-COMPATIBILITY-MATRIX-00",
+        ],
+        "reproduction_command_summary": PMR_HUMAN_PROVENANCE_00_COMMAND,
+        "claim_allowed": "PMR-HUMAN-PROVENANCE-00 demonstrates a fixture-only human provenance and consent context scaffold for synthetic provenance, consent scope, correction, revocation, review participation, and lived-stakes annotation while preserving non-authority boundaries.",
+        "claims_blocked": PMR_HUMAN_PROVENANCE_00_CLAIMS_BLOCKED,
+        "reviewer_caution": "PMR-HUMAN-PROVENANCE-00 models synthetic human provenance and consent context only. It does not certify identity, does not execute consent, does not authorize action, does not write memory, does not delete, does not prune, does not federate, does not reward, does not train models, does not deploy, does not certify truth, and does not make AI or human consciousness claims.",
         "publication_status": "dashboard_indexed",
     },
     {
@@ -3016,6 +3567,68 @@ BOUNDARIES = [
     "PMR-ARCH-DIVERSITY-CHECKPOINT-00 is not model-weight training.",
     "PMR-ARCH-DIVERSITY-CHECKPOINT-00 is not deployment authority.",
     "PMR-ARCH-DIVERSITY-CHECKPOINT-00 is not truth certification.",
+    "PMR becomes scientific only when it can lose.",
+    "PMR policy is allowed to lose.",
+    "Simulation result is not production memory policy.",
+    "Simulation result is not PMR superiority proof.",
+    "Simulation result is not hallucination reduction proof.",
+    "Simulation result is not federation proof.",
+    "Simulation result is not reward economy proof.",
+    "Fixture streams are synthetic and deterministic.",
+    "Retained does not mean true.",
+    "Replay-ready does not mean canon.",
+    "Stored does not mean trained.",
+    "Simpler baselines may win metrics or scenarios.",
+    "PMR-SIM-00 is not Atlas canon.",
+    "PMR-SIM-00 is not memory write authorization.",
+    "PMR-SIM-00 is not model-weight training.",
+    "PMR-SIM-00 is not deployment authority.",
+    "PMR-SIM-00 is not truth certification.",
+    "Descriptive fixture statistics are not real-world inference.",
+    "PMR policy remains allowed to lose.",
+    "Rank table is not production policy selection.",
+    "Statistical summary is not PMR superiority proof.",
+    "Statistical summary is not hallucination reduction proof.",
+    "Simulation statistics are not federation proof.",
+    "Simulation statistics are not reward economy proof.",
+    "PMR-STAT-00 is not Atlas canon.",
+    "PMR-STAT-00 is not memory write authorization.",
+    "PMR-STAT-00 is not model-weight training.",
+    "PMR-STAT-00 is not deployment authority.",
+    "PMR-STAT-00 is not truth certification.",
+    "Federation stress corpus is not federation.",
+    "Federation stress result is not federation proof.",
+    "Federation candidate is not network authorization.",
+    "Shard-transfer scenario is not encrypted shard transfer.",
+    "Federation credit scenario is not reward entitlement.",
+    "Hash is not encryption.",
+    "Merkle root is not confidentiality.",
+    "Provenance availability is not permission to read private content.",
+    "Cross-node replay is not canon.",
+    "Resource contribution is not authority.",
+    "Federation remains blocked by default.",
+    "PMR-FED-STRESS-00 is not Atlas canon.",
+    "PMR-FED-STRESS-00 is not memory write authorization.",
+    "PMR-FED-STRESS-00 is not model-weight training.",
+    "PMR-FED-STRESS-00 is not deployment authority.",
+    "PMR-FED-STRESS-00 is not truth certification.",
+    "Human provenance context is not identity certification.",
+    "Consent context is not consent execution.",
+    "Consent preference is not action authorization.",
+    "Correction request is not memory write.",
+    "Revocation request is not deletion execution.",
+    "Review participation is not truth certification.",
+    "Lived-stakes annotation is not reward entitlement.",
+    "Human provenance is not human value score.",
+    "Human participant packet is not metaphysical personhood claim.",
+    "The system must not encode human = body or AI = mind.",
+    "Consent can constrain evidence handling but does not authorize action by itself.",
+    "Revocation requests require future review gates before lifecycle changes.",
+    "PMR-HUMAN-PROVENANCE-00 is not Atlas canon.",
+    "PMR-HUMAN-PROVENANCE-00 is not memory write authorization.",
+    "PMR-HUMAN-PROVENANCE-00 is not model-weight training.",
+    "PMR-HUMAN-PROVENANCE-00 is not deployment authority.",
+    "PMR-HUMAN-PROVENANCE-00 is not truth certification.",
     "Governed provenance resources may be future infrastructure rewards, but truth is not for sale.",
 ]
 GLOBAL_NON_CLAIMS = [
@@ -3196,6 +3809,10 @@ def reproducibility_index() -> dict[str, Any]:
                 {"name": "PMR destructive action authorization negative control acceptance", "command": PMR_09_COMMAND},
                 {"name": "PMR destructive action authorization preflight acceptance", "command": PMR_10_COMMAND},
                 {"name": "PMR architecture diversity checkpoint acceptance", "command": PMR_ARCH_DIVERSITY_CHECKPOINT_COMMAND},
+                {"name": "PMR simulation baseline comparison acceptance", "command": PMR_SIM_00_COMMAND},
+                {"name": "PMR statistical analysis acceptance", "command": PMR_STAT_00_COMMAND},
+                {"name": "PMR federation stress acceptance", "command": PMR_FED_STRESS_00_COMMAND},
+                {"name": "PMR human provenance acceptance", "command": PMR_HUMAN_PROVENANCE_00_COMMAND},
                 {"name": "Universal Stage Pipeline acceptance", "command": UNIVERSAL_STAGE_PIPELINE_COMMAND},
                 {"name": "Artifact Contract Registry acceptance", "command": ARTIFACT_CONTRACT_REGISTRY_COMMAND},
                 {"name": "Universal Compatibility Matrix acceptance", "command": UNIVERSAL_COMPATIBILITY_MATRIX_COMMAND},
@@ -3252,6 +3869,10 @@ def artifact_index() -> dict[str, Any]:
         "PMR-09-DESTRUCTIVE-ACTION-AUTHORIZATION-NEGATIVE-CONTROL": PMR_09_ARTIFACTS,
         "PMR-10-DESTRUCTIVE-ACTION-AUTHORIZATION-PREFLIGHT": PMR_10_ARTIFACTS,
         "PMR-ARCH-DIVERSITY-CHECKPOINT-00": PMR_ARCH_DIVERSITY_CHECKPOINT_ARTIFACTS,
+        "PMR-SIM-00": PMR_SIM_00_ARTIFACTS,
+        "PMR-STAT-00": PMR_STAT_00_ARTIFACTS,
+        "PMR-FED-STRESS-00": PMR_FED_STRESS_00_ARTIFACTS,
+        "PMR-HUMAN-PROVENANCE-00": PMR_HUMAN_PROVENANCE_00_ARTIFACTS,
         "UNIVERSAL-STAGE-PIPELINE-00": UNIVERSAL_STAGE_PIPELINE_ARTIFACTS,
         "ARTIFACT-CONTRACT-REGISTRY-01": ARTIFACT_CONTRACT_REGISTRY_ARTIFACTS,
         "UNIVERSAL-COMPATIBILITY-MATRIX-00": UNIVERSAL_COMPATIBILITY_MATRIX_ARTIFACTS,
@@ -3305,6 +3926,10 @@ def status_payload() -> dict[str, Any]:
         "latest_pmr_destructive_action_authorization_negative_control": "PMR-09-DESTRUCTIVE-ACTION-AUTHORIZATION-NEGATIVE-CONTROL",
         "latest_pmr_destructive_action_authorization_preflight": "PMR-10-DESTRUCTIVE-ACTION-AUTHORIZATION-PREFLIGHT",
         "latest_pmr_architecture_diversity_checkpoint": "PMR-ARCH-DIVERSITY-CHECKPOINT-00",
+        "latest_pmr_simulation_baseline_comparison": "PMR-SIM-00",
+        "latest_pmr_statistical_analysis": "PMR-STAT-00",
+        "latest_pmr_federation_stress_corpus": "PMR-FED-STRESS-00",
+        "latest_pmr_human_provenance_context": "PMR-HUMAN-PROVENANCE-00",
         "pmr_00_indexed": True,
         "pmr_01_indexed": True,
         "pmr_02_indexed": True,
@@ -3335,6 +3960,22 @@ def status_payload() -> dict[str, Any]:
         "not_product_completion": True,
         "not_runtime_authority": True,
         "not_checkpoint_execution": True,
+        "pmr_sim_00_indexed": True,
+        "not_production_memory_policy": True,
+        "not_pmr_superiority_proof": True,
+        "not_federation_proof": True,
+        "not_reward_economy_proof": True,
+        "pmr_stat_00_indexed": True,
+        "not_real_world_inference": True,
+        "not_production_policy_selection": True,
+        "not_statistical_superiority_proof": True,
+        "pmr_fed_stress_00_indexed": True,
+        "not_network_authorization": True,
+        "not_encrypted_shard_transfer": True,
+        "pmr_human_provenance_00_indexed": True,
+        "not_identity_certification": True,
+        "not_consent_execution": True,
+        "not_human_consciousness_claim": True,
         "not_sophia_approval": True,
         "not_audit_action": True,
         "not_lifecycle_action": True,
@@ -3378,7 +4019,7 @@ def docs() -> dict[str, str]:
     return {
         "README.md": "# Experiment Suite Docs\n\nPublic reviewer documentation for the claim-bounded reproducibility dashboard.\n",
         "assets/README.md": "# Assets\n\nOptional static assets for the public reproducibility dashboard.\n",
-        "index.md": f"# Public Experiment Suite Dashboard\n\nThis dashboard presents accepted evidence for reviewer orientation. It is not truth certification, not deployment authority, not final answer release, local fixture only, and requires external peer review.\n\n## Accepted evidence\n\n| Phase | Repo | Status | What this supports | Reviewer caution |\n| --- | --- | --- | --- | --- |\n{phase_rows}\n\n## Reviewer path\n\nStart with claim boundaries, then read the governed artifact cognition paper, WAVE Rosetta paper, SONYA-AEGIS-SMOKE-02, WAVE family, UNI-02D Sonya gate, and RETRO-LANE-00, Public Utility Alpha, Raw Baseline Comparison, Evidence Review Pack, RW-COMP-01, RW-COMP-02, Retrosynthesis Sandbox Cycle, Evidence Review Pack second-pass, RW-COMP-03, Universal Architecture Scaffold, Sonya Adapter Contract Registry, Sonya Adapter Smoke, Sonya Local Fixture Adapter, and Evidence Review Pack local adapter, Evidence Review Pack local adapter revision, RW-COMP local adapter, PMR doctrine, PMR local artifact index, PMR GPCU utility scoring, PMR lifecycle state machine, PMR lifecycle audit preflight, PMR Sophia lifecycle audit review, PMR destructive-action authorization preflight, PMR architecture diversity checkpoint, Sonya Local Fixture Adapter multi-route, and Sonya Local Fixture Adapter lineage clarity pages.\n\n## What this proves\n\nIt proves only that accepted local fixture artifacts and draft publication materials are organized for review.\n\n## What this does not prove\n\nNo oracle posture, no deployment posture, no final-answer posture, no AI consciousness claim, and no universal ontology claim.\n\n## Phase pages\n\n- [SONYA-AEGIS-SMOKE-02](sonya-aegis-smoke-02.md)\n- [WAVE Gold-Physics](wave-gold-physics.md)\n- [UNI-02D Sonya gate](uni02d-sonya-gate.md)\n- [RETRO-LANE-00](retro-lane-00.md)\n- [Public Utility Alpha](public-utility-alpha.md)\n- [Raw Baseline Comparison](raw-baseline-comparison.md)\n- [Evidence Review Pack](evidence-review-pack.md)\n- [RW-COMP-01](rw-comp-01.md)\n- [RW-COMP-02](rw-comp-02.md)\n- [Retrosynthesis Sandbox Cycle](retrosynthesis-sandbox-cycle.md)\n- [Evidence Review Pack second pass](evidence-review-pack-second-pass.md)\n- [RW-COMP-03](rw-comp-03.md)\n- [Universal Architecture Scaffold](universal-architecture.md)\n- [Sonya Adapter Contract Registry](sonya-adapter-contract-registry.md)\n- [Sonya Adapter Smoke](sonya-adapter-smoke.md)\n- [Sonya Local Fixture Adapter](sonya-local-fixture-adapter.md)\n- [Evidence Review Pack local adapter](evidence-review-pack-local-adapter.md)\n- [Evidence Review Pack local adapter revision](evidence-review-pack-local-adapter-revision.md)\n- [RW-COMP local adapter](rw-comp-local-adapter.md)\n- [Provenance Memory Reservoir](provenance-memory-reservoir.md)\n- [PMR local artifact index](pmr-local-artifact-index.md)\n- [Sonya Local Fixture Adapter multi-route](sonya-local-fixture-adapter-multi-route.md)\n- [Sonya Local Fixture Adapter lineage clarity](sonya-local-fixture-adapter-lineage.md)\n- [Governed artifact cognition paper](governed-artifact-cognition-paper.md)\n- [Waveform Rosetta paper](waveform-rosetta-paper.md)\n",
+        "index.md": f"# Public Experiment Suite Dashboard\n\nThis dashboard presents accepted evidence for reviewer orientation. It is not truth certification, not deployment authority, not final answer release, local fixture only, and requires external peer review.\n\n## Accepted evidence\n\n| Phase | Repo | Status | What this supports | Reviewer caution |\n| --- | --- | --- | --- | --- |\n{phase_rows}\n\n## Reviewer path\n\nStart with claim boundaries, then read the governed artifact cognition paper, WAVE Rosetta paper, SONYA-AEGIS-SMOKE-02, WAVE family, UNI-02D Sonya gate, and RETRO-LANE-00, Public Utility Alpha, Raw Baseline Comparison, Evidence Review Pack, RW-COMP-01, RW-COMP-02, Retrosynthesis Sandbox Cycle, Evidence Review Pack second-pass, RW-COMP-03, Universal Architecture Scaffold, Sonya Adapter Contract Registry, Sonya Adapter Smoke, Sonya Local Fixture Adapter, and Evidence Review Pack local adapter, Evidence Review Pack local adapter revision, RW-COMP local adapter, PMR doctrine, PMR local artifact index, PMR GPCU utility scoring, PMR lifecycle state machine, PMR lifecycle audit preflight, PMR Sophia lifecycle audit review, PMR destructive-action authorization preflight, PMR architecture diversity checkpoint, PMR simulation baseline comparison, PMR simulation statistical analysis, PMR federation stress corpus, PMR human provenance context, Sonya Local Fixture Adapter multi-route, and Sonya Local Fixture Adapter lineage clarity pages.\n\n## What this proves\n\nIt proves only that accepted local fixture artifacts and draft publication materials are organized for review.\n\n## What this does not prove\n\nNo oracle posture, no deployment posture, no final-answer posture, no AI consciousness claim, and no universal ontology claim.\n\n## Phase pages\n\n- [SONYA-AEGIS-SMOKE-02](sonya-aegis-smoke-02.md)\n- [WAVE Gold-Physics](wave-gold-physics.md)\n- [UNI-02D Sonya gate](uni02d-sonya-gate.md)\n- [RETRO-LANE-00](retro-lane-00.md)\n- [Public Utility Alpha](public-utility-alpha.md)\n- [Raw Baseline Comparison](raw-baseline-comparison.md)\n- [Evidence Review Pack](evidence-review-pack.md)\n- [RW-COMP-01](rw-comp-01.md)\n- [RW-COMP-02](rw-comp-02.md)\n- [Retrosynthesis Sandbox Cycle](retrosynthesis-sandbox-cycle.md)\n- [Evidence Review Pack second pass](evidence-review-pack-second-pass.md)\n- [RW-COMP-03](rw-comp-03.md)\n- [Universal Architecture Scaffold](universal-architecture.md)\n- [Sonya Adapter Contract Registry](sonya-adapter-contract-registry.md)\n- [Sonya Adapter Smoke](sonya-adapter-smoke.md)\n- [Sonya Local Fixture Adapter](sonya-local-fixture-adapter.md)\n- [Evidence Review Pack local adapter](evidence-review-pack-local-adapter.md)\n- [Evidence Review Pack local adapter revision](evidence-review-pack-local-adapter-revision.md)\n- [RW-COMP local adapter](rw-comp-local-adapter.md)\n- [Provenance Memory Reservoir](provenance-memory-reservoir.md)\n- [PMR local artifact index](pmr-local-artifact-index.md)\n- [Sonya Local Fixture Adapter multi-route](sonya-local-fixture-adapter-multi-route.md)\n- [Sonya Local Fixture Adapter lineage clarity](sonya-local-fixture-adapter-lineage.md)\n- [Governed artifact cognition paper](governed-artifact-cognition-paper.md)\n- [Waveform Rosetta paper](waveform-rosetta-paper.md)\n",
         "claim-boundaries.md": f"# Claim Boundaries\n\n{boundaries}\n\nNo oracle posture. No deployment posture. No final-answer posture. No AI consciousness claim. No universal ontology claim.\n",
         "sonya-aegis-smoke-02.md": f"""# SONYA-AEGIS-SMOKE-02
 
@@ -3630,38 +4271,6 @@ Reviewer caution: RETROSYNTHESIS-SANDBOX-CYCLE-01 emits repair candidates only. 
 Purpose: inspect EVIDENCE-REVIEW-PACK-01 as the first bounded second-pass review candidate loop over Retrosynthesis Sandbox Cycle repair candidates.
 
 Evidence Review Pack second pass is candidate revision, not accepted evidence.
-
-Purpose: describe SONYA-ADAPTER-CONTRACT-REGISTRY-01 as a fixture-only versioned adapter-contract scaffold for future Sonya adapters. Adapter contracts are versioned configuration; they declare capability, consent, failure, telemetry, and provenance-training policy without enabling live adapters.
-
-## Allowed claim
-
-SONYA-ADAPTER-CONTRACT-REGISTRY-01 demonstrates a fixture-only versioned adapter-contract scaffold that declares adapter capabilities, consent profiles, failure policies, telemetry requirements, and provenance-training policies while keeping all adapters disabled or blocked and forbidding raw output admission.
-
-## Reproduction command
-
-```powershell
-{SONYA_ADAPTER_CONTRACT_REGISTRY_COMMAND}
-```
-
-## Evidence artifacts
-
-{chr(10).join(f"- `{artifact}`" for artifact in SONYA_ADAPTER_CONTRACT_REGISTRY_ARTIFACTS)}
-
-## Dashboard summary
-
-{chr(10).join(f"- {key} = {str(value).lower()}" for key, value in SONYA_ADAPTER_CONTRACT_REGISTRY_DASHBOARD_SUMMARY.items())}
-
-## Reviewer boundaries
-
-- adapter contracts are versioned configuration.
-- all adapters disabled or blocked.
-- no live adapter execution occurred.
-- no network calls occurred.
-- raw output is forbidden.
-- candidate packet required.
-- failure receipts required.
-- provenance-training policy is present.
-
 ```powershell
 {EVIDENCE_REVIEW_PACK_01_COMMAND}
 ```
@@ -4413,6 +5022,169 @@ Claims blocked: {"; ".join(UNIVERSAL_ARCHITECTURE_CLAIMS_BLOCKED)}.
 
 Reviewer caution: this is not product release, not experiment result, not benchmark result, not truth certification, not deployment authority, not final answer release, not hallucination reduction proof, not model superiority proof, not live model evaluation, not live human study, not recursive self-improvement, and not AI consciousness claim.
 """,
+        "pmr-simulation-baseline-comparison.md": f"""# PMR simulation baseline comparison
+
+Required phrase: PMR becomes scientific only when it can lose.
+
+PMR policy is allowed to lose. PMR-SIM-00 is a deterministic synthetic fixture simulation scaffold comparing retain_all, recency_only, random_retention, cost_minimizing, and pmr_gpcu_heuristic policies across synthetic provenance-bearing artifact streams. Fixture streams are synthetic and deterministic. Retained does not mean true. Replay-ready does not mean canon. Stored does not mean trained.
+
+## Allowed claim
+
+PMR-SIM-00 demonstrates a deterministic synthetic fixture simulation scaffold comparing PMR-GPCU-style retention against simpler baselines while preserving non-production and non-authority boundaries.
+
+## Reproduction command
+
+```powershell
+{PMR_SIM_00_COMMAND}
+```
+
+## Primary artifacts
+
+{chr(10).join(f"- `{artifact}`" for artifact in PMR_SIM_00_ARTIFACTS)}
+
+## Policies
+
+{chr(10).join(f"- `{policy}`" for policy in PMR_SIM_00_POLICIES)}
+
+## Scenarios
+
+{chr(10).join(f"- `{scenario}`" for scenario in PMR_SIM_00_SCENARIOS)}
+
+## Comparison summary
+
+- retain_all wins at least replay_success_rate, audit_availability_rate, and dependency_integrity_rate.
+- cost_minimizing wins at least storage_cost, review_burden, and policy_failure_count.
+- pmr_gpcu_heuristic wins 7 fixture scenarios but this is not PMR superiority proof.
+- Simpler baselines may win metrics or scenarios.
+
+## Dashboard posture
+
+{chr(10).join(f"- `{key} = {str(value).lower()}`" for key, value in PMR_SIM_00_DASHBOARD_SUMMARY.items())}
+
+## Blocked claims
+
+{chr(10).join(f"- {claim}" for claim in PMR_SIM_00_CLAIMS_BLOCKED)}
+
+Reviewer caution: PMR-SIM-00 runs deterministic synthetic fixture simulations only. It does not select a production memory policy, is not PMR superiority proof, is not hallucination reduction proof, is not federation proof, is not reward economy proof, does not write memory, does not train models, does not deploy, and does not certify truth.
+""",
+        "pmr-simulation-statistical-analysis.md": f"""# PMR simulation statistical analysis
+
+Required phrase: Descriptive fixture statistics are not real-world inference.
+
+Rank table is not production policy selection. PMR policy remains allowed to lose. PMR-STAT-00 consumes PMR-SIM-00 outputs and emits descriptive fixture-bound statistical analysis only: policy metric summaries, policy pair deltas, rank table, sensitivity packet, failure mode packet, review packet, and summary.
+
+## Allowed claim
+
+PMR-STAT-00 demonstrates descriptive fixture-bound statistical analysis over PMR-SIM-00 outputs, including policy metric summaries, pair deltas, rank tables, sensitivity summaries, and failure-mode summaries, while preserving non-production and non-authority boundaries.
+
+## Reproduction command
+
+```powershell
+{PMR_STAT_00_COMMAND}
+```
+
+## Primary artifacts
+
+{chr(10).join(f"- `{artifact}`" for artifact in PMR_STAT_00_ARTIFACTS)}
+
+## Dashboard posture
+
+{chr(10).join(f"- `{key} = {str(value).lower()}`" for key, value in PMR_STAT_00_DASHBOARD_SUMMARY.items())}
+
+## Rank table summary
+
+{chr(10).join(f"- {line}" for line in PMR_STAT_00_RANK_TABLE_SUMMARY)}
+
+## Blocked claims
+
+{chr(10).join(f"- {claim}" for claim in PMR_STAT_00_CLAIMS_BLOCKED)}
+
+Reviewer caution: PMR-STAT-00 runs descriptive fixture-bound analysis over PMR-SIM-00 outputs only. It does not select a production memory policy, is not real-world inference, is not PMR superiority proof, is not hallucination reduction proof, is not federation proof, is not reward economy proof, does not write memory, does not train models, does not deploy, and does not certify truth.
+""",
+        "pmr-federation-stress-corpus.md": f"""# PMR federation stress corpus
+
+Required phrase: Federation stress corpus is not federation.
+
+Federation stress result is not federation proof. PMR-FED-STRESS-00 is a deterministic synthetic federation stress corpus and failure-mode scaffold. It models federation risks using synthetic fixtures only. It does not federate, does not authorize networks, does not transfer encrypted shards, does not reward users, does not run a token economy, does not write memory, does not train models, does not deploy, and does not certify truth.
+
+## Allowed claim
+
+PMR-FED-STRESS-00 demonstrates a deterministic synthetic federation stress corpus and failure-mode scaffold that models federation risks while preserving no-federation and no-network-authority boundaries.
+
+## Reproduction command
+
+```powershell
+{PMR_FED_STRESS_00_COMMAND}
+```
+
+## Primary artifacts
+
+{chr(10).join(f"- `{artifact}`" for artifact in PMR_FED_STRESS_00_ARTIFACTS)}
+
+## Stress scenarios
+
+{chr(10).join(f"- `{scenario}`" for scenario in PMR_FED_STRESS_00_STRESS_SCENARIOS)}
+
+## Node fixture types
+
+{chr(10).join(f"- `{node_type}`" for node_type in PMR_FED_STRESS_00_NODE_FIXTURE_TYPES)}
+
+## Dashboard posture
+
+{chr(10).join(f"- `{key} = {str(value).lower()}`" for key, value in PMR_FED_STRESS_00_DASHBOARD_SUMMARY.items())}
+
+## Blocked claims
+
+{chr(10).join(f"- {claim}" for claim in PMR_FED_STRESS_00_CLAIMS_BLOCKED)}
+
+Reviewer caution: PMR-FED-STRESS-00 runs deterministic synthetic federation stress scenarios and failure-mode analysis only. It does not federate, does not call networks, does not transfer encrypted shards, does not reward users, does not run a token economy, does not write memory, does not train models, does not deploy, and does not certify truth.
+""",
+        "pmr-human-provenance-context.md": f"""# PMR human provenance context
+
+Required phrase: Human provenance context is not identity certification.
+
+The system must not encode human = body or AI = mind. PMR-HUMAN-PROVENANCE-00 is a fixture-only human provenance and consent context scaffold. It models synthetic human participation in provenance, consent scope, correction requests, revocation requests, review receipt candidates, and lived-stakes annotations while preserving strict non-authority boundaries.
+
+## Allowed claim
+
+PMR-HUMAN-PROVENANCE-00 demonstrates a fixture-only human provenance and consent context scaffold for synthetic provenance, consent scope, correction, revocation, review participation, and lived-stakes annotation while preserving non-authority boundaries.
+
+## Reproduction command
+
+```powershell
+{PMR_HUMAN_PROVENANCE_00_COMMAND}
+```
+
+## Primary artifacts
+
+{chr(10).join(f"- `{artifact}`" for artifact in PMR_HUMAN_PROVENANCE_00_ARTIFACTS)}
+
+## Participant roles
+
+{chr(10).join(f"- `{role}`" for role in PMR_HUMAN_PROVENANCE_00_PARTICIPANT_ROLES)}
+
+## Consent allowed uses
+
+{chr(10).join(f"- `{use}`" for use in PMR_HUMAN_PROVENANCE_00_CONSENT_ALLOWED_USES)}
+
+## Revocation scopes
+
+{chr(10).join(f"- `{scope}`" for scope in PMR_HUMAN_PROVENANCE_00_REVOCATION_SCOPES)}
+
+## Lived-stakes categories
+
+{chr(10).join(f"- `{category}`" for category in PMR_HUMAN_PROVENANCE_00_LIVED_STAKES_CATEGORIES)}
+
+## Dashboard posture
+
+{chr(10).join(f"- `{key} = {str(value).lower()}`" for key, value in PMR_HUMAN_PROVENANCE_00_DASHBOARD_SUMMARY.items())}
+
+## Blocked claims
+
+{chr(10).join(f"- {claim}" for claim in PMR_HUMAN_PROVENANCE_00_CLAIMS_BLOCKED)}
+
+Reviewer caution: PMR-HUMAN-PROVENANCE-00 models synthetic human provenance and consent context only. It does not certify identity, does not execute consent, does not authorize action, does not write memory, does not delete, does not prune, does not federate, does not reward, does not train models, does not deploy, does not certify truth, and does not make AI or human consciousness claims.
+""",
         "governed-artifact-cognition-paper.md": "# Governed Artifact Cognition Paper\n\nSummary: systems paper for governed artifact cognition as a reproducible audit lab.\n\nLinks: `papers/governed_artifact_cognition/PUB_GOV_ARTIFACT_COG_01.md`, reviewer quickstart, claim boundary table, status.json.\n\nClaim boundaries: not truth certification, not deployment authority, not final answer release, local fixture only, requires external peer review.\n\nValidation command: `python tools/validate_publication_claims.py --paper papers/governed_artifact_cognition/PUB_GOV_ARTIFACT_COG_01.md --quickstart papers/governed_artifact_cognition/reviewer_quickstart.md --status papers/governed_artifact_cognition/status.json`.\n",
         "waveform-rosetta-paper.md": "# Waveform Rosetta Paper\n\nSummary: methods paper for closed-form WAVE Gold-Physics metric calibration.\n\nLinks: `papers/waveform_rosetta/PUB_WAVE_ROSETTA_01.md`, reviewer quickstart, theorem table, status.json.\n\nClaim boundaries: not universal ontology, not psychoacoustic effect, not AI consciousness, not deployment authority, not truth certification, requires external peer review.\n\nValidation command: `python tools/validate_publication_claims.py --paper papers/waveform_rosetta/PUB_WAVE_ROSETTA_01.md --quickstart papers/waveform_rosetta/reviewer_quickstart.md --status papers/waveform_rosetta/status.json`.\n",
         "reviewer-quickstart.md": f"""# Reviewer Quickstart
@@ -4854,6 +5626,70 @@ Expected posture:
 {chr(10).join(f"- `{key} = {str(value).lower()}`" for key, value in SONYA_LOCAL_FIXTURE_ADAPTER_03_DASHBOARD_SUMMARY.items())}
 
 Reviewer caution: SONYA-LOCAL-FIXTURE-ADAPTER-03 is a lineage clarity packet only. It clarifies that nested source fixture references are dependencies and not stale identity leakage. It does not execute adapters, authorize network, call providers, write memory, release final answers, train models, or deploy.
+
+
+## PMR simulation baseline comparison
+
+PMR becomes scientific only when it can lose. PMR policy is allowed to lose. PMR-SIM-00 compares retain_all, recency_only, random_retention, cost_minimizing, and pmr_gpcu_heuristic over synthetic deterministic fixture streams. Retained does not mean true. Replay-ready does not mean canon. Stored does not mean trained.
+
+```powershell
+{PMR_SIM_00_COMMAND}
+```
+
+Expected posture:
+
+{chr(10).join(f"- `{key} = {str(value).lower()}`" for key, value in PMR_SIM_00_DASHBOARD_SUMMARY.items())}
+
+Reviewer caution: PMR-SIM-00 runs deterministic synthetic fixture simulations only. It does not select a production memory policy, is not PMR superiority proof, is not hallucination reduction proof, is not federation proof, is not reward economy proof, does not write memory, does not train models, does not deploy, and does not certify truth.
+
+
+## PMR simulation statistical analysis
+
+Descriptive fixture statistics are not real-world inference. Rank table is not production policy selection. PMR policy remains allowed to lose. PMR-STAT-00 summarizes PMR-SIM-00 fixture outputs only; statistical summary is not PMR superiority proof, not hallucination reduction proof, not federation proof, and not reward economy proof.
+
+```powershell
+{PMR_STAT_00_COMMAND}
+```
+
+Expected posture:
+
+{chr(10).join(f"- `{key} = {str(value).lower()}`" for key, value in PMR_STAT_00_DASHBOARD_SUMMARY.items())}
+
+Rank table summary:
+
+{chr(10).join(f"- {line}" for line in PMR_STAT_00_RANK_TABLE_SUMMARY)}
+
+Reviewer caution: PMR-STAT-00 runs descriptive fixture-bound analysis over PMR-SIM-00 outputs only. It does not select a production memory policy, is not real-world inference, is not PMR superiority proof, is not hallucination reduction proof, is not federation proof, is not reward economy proof, does not write memory, does not train models, does not deploy, and does not certify truth.
+
+
+## PMR federation stress corpus
+
+Federation stress corpus is not federation. Federation stress result is not federation proof. Federation candidate is not network authorization. Shard-transfer scenario is not encrypted shard transfer. Federation credit scenario is not reward entitlement. Hash is not encryption. Merkle root is not confidentiality.
+
+```powershell
+{PMR_FED_STRESS_00_COMMAND}
+```
+
+Expected posture:
+
+{chr(10).join(f"- `{key} = {str(value).lower()}`" for key, value in PMR_FED_STRESS_00_DASHBOARD_SUMMARY.items())}
+
+Reviewer caution: PMR-FED-STRESS-00 runs deterministic synthetic federation stress scenarios and failure-mode analysis only. It does not federate, does not call networks, does not transfer encrypted shards, does not reward users, does not run a token economy, does not write memory, does not train models, does not deploy, and does not certify truth.
+
+
+## PMR human provenance context
+
+Human provenance context is not identity certification. The system must not encode human = body or AI = mind. Consent context is not consent execution. Consent preference is not action authorization. Correction request is not memory write. Revocation request is not deletion execution. Review participation is not truth certification. Lived-stakes annotation is not reward entitlement. Human provenance is not human value score.
+
+```powershell
+{PMR_HUMAN_PROVENANCE_00_COMMAND}
+```
+
+Expected posture:
+
+{chr(10).join(f"- `{key} = {str(value).lower()}`" for key, value in PMR_HUMAN_PROVENANCE_00_DASHBOARD_SUMMARY.items())}
+
+Reviewer caution: PMR-HUMAN-PROVENANCE-00 models synthetic human provenance and consent context only. It does not certify identity, does not execute consent, does not authorize action, does not write memory, does not delete, does not prune, does not federate, does not reward, does not train models, does not deploy, does not certify truth, and does not make AI or human consciousness claims.
 
 ## Sophia commands
 
