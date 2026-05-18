@@ -703,6 +703,8 @@ def _forbidden_hits(text: str) -> list[str]:
                 or text[index : index + 44].startswith("federation candidate is not network")
                 or text[index : index + 46].startswith("federation credit scenario is not reward")
                 or text[index : index + 48].startswith("federation remains blocked by default")
+                or text[index : index + 40].startswith("federation.")
+                or text[index : index + 40].startswith("federation,")
                 or text[index : index + 40].startswith("federation_blocked")
                 or text[index : index + 40].startswith("federation blocked")
                 or (text[index : index + 40].startswith("federation proof") and _is_negated(text, index))
