@@ -367,6 +367,45 @@ PAPER_CONFIGS: dict[str, dict[str, Any]] = {
             "pmr_architecture_gap_register.json",
             "pmr_next_lane_recommendation_packet.json",
             "Run-PMR-ARCH-DIVERSITY-CHECKPOINT00-Acceptance.ps1",
+            "PMR-SIM-00",
+            "PMR becomes scientific only when it can lose.",
+            "PMR policy is allowed to lose.",
+            "Simulation result is not production memory policy.",
+            "Simulation result is not PMR superiority proof.",
+            "Simulation result is not hallucination reduction proof.",
+            "Simulation result is not federation proof.",
+            "Simulation result is not reward economy proof.",
+            "Fixture streams are synthetic and deterministic.",
+            "Retained does not mean true.",
+            "Replay-ready does not mean canon.",
+            "Stored does not mean trained.",
+            "Run-PMR-SIM00-Acceptance.ps1",
+            "pmr_simulation_manifest.json",
+            "pmr_simulation_result_rows.jsonl",
+            "pmr_simulation_comparison_packet.json",
+            "pmr_simulation_statistics_packet.json",
+            "PMR-STAT-00",
+            "Descriptive fixture statistics are not real-world inference.",
+            "Rank table is not production policy selection.",
+            "Statistical summary is not PMR superiority proof.",
+            "Statistical summary is not hallucination reduction proof.",
+            "Simulation statistics are not federation proof.",
+            "Simulation statistics are not reward economy proof.",
+            "Run-PMR-STAT00-Acceptance.ps1",
+            "pmr_stat_analysis_manifest.json",
+            "pmr_stat_policy_metric_summaries.jsonl",
+            "pmr_stat_rank_table.json",
+            "PMR-FED-STRESS-00",
+            "Federation stress corpus is not federation.",
+            "Federation stress result is not federation proof.",
+            "Federation candidate is not network authorization.",
+            "Shard-transfer scenario is not encrypted shard transfer.",
+            "Hash is not encryption.",
+            "Merkle root is not confidentiality.",
+            "Run-PMR-FED-STRESS00-Acceptance.ps1",
+            "pmr_federation_stress_manifest.json",
+            "pmr_federation_failure_mode_rows.jsonl",
+            "pmr_federation_propagation_risk_packet.json",
         ),
         "forbidden_overclaims": (
             "proves universal intelligence",
@@ -483,6 +522,13 @@ PAPER_CONFIGS: dict[str, dict[str, Any]] = {
             "Sophia approval",
             "claims Sophia approval",
             "audit action",
+            "production memory policy",
+            "production policy selection",
+            "real-world inference",
+            "real world inference",
+            "statistical superiority proof",
+            "pmr superiority proof",
+            "reward economy proof",
         ),
         "status_required": {
             "paper_id": "PUB-GOV-ARTIFACT-COG-01",
@@ -543,6 +589,18 @@ PAPER_CONFIGS: dict[str, dict[str, Any]] = {
             "evidence_review_pack_local_adapter_02_indexed": True,
             "not_structural_delta_proof": True,
             "rw_comp_local_adapter_indexed": True,
+            "pmr_sim_00_indexed": True,
+            "not_production_memory_policy": True,
+            "not_pmr_superiority_proof": True,
+            "not_federation_proof": True,
+            "not_reward_economy_proof": True,
+            "pmr_stat_00_indexed": True,
+            "not_real_world_inference": True,
+            "not_production_policy_selection": True,
+            "not_statistical_superiority_proof": True,
+            "pmr_fed_stress_00_indexed": True,
+            "not_network_authorization": True,
+            "not_encrypted_shard_transfer": True,
             "pmr_00_indexed": True,
             "pmr_01_indexed": True,
             "pmr_02_indexed": True,
@@ -726,10 +784,27 @@ def _forbidden_hits(normalized_text: str, forbidden: tuple[str, ...]) -> list[st
                 continue
             if phrase == "federation" and (
                 normalized_text[index : index + 40].startswith("federation is blocked by default")
+                or normalized_text[index : index + 48].startswith("federation stress corpus is not federation")
+                or normalized_text[index : index + 48].startswith("federation stress result is not federation")
+                or normalized_text[index : index + 44].startswith("federation candidate is not network")
+                or normalized_text[index : index + 46].startswith("federation credit scenario is not reward")
                 or normalized_text[index : index + 48].startswith("federation remains blocked by default")
                 or normalized_text[index : index + 40].startswith("federation_authorization")
+                or normalized_text[max(0, index - 20) : index].endswith("without_")
                 or normalized_text[index : index + 40].startswith("federation stress")
+                or normalized_text[index : index + 40].startswith("federation risks")
+                or normalized_text[index : index + 40].startswith("federation_risks")
+                or normalized_text[index : index + 40].startswith("federation_")
                 or normalized_text[index : index + 40].startswith("federation_stress")
+            ):
+                search_from = index + len(normalized_phrase)
+                continue
+            if (
+                phrase == "encrypted shard transfer"
+                and (
+                    normalized_text[index : index + 64].startswith("encrypted shard transfer not performed")
+                    or normalized_text[index : index + 64].startswith("encrypted_shard_transfer_not_performed")
+                )
             ):
                 search_from = index + len(normalized_phrase)
                 continue

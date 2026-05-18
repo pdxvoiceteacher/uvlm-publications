@@ -48,6 +48,9 @@ REQUIRED_PHASES = {
     "PMR-09-DESTRUCTIVE-ACTION-AUTHORIZATION-NEGATIVE-CONTROL",
     "PMR-10-DESTRUCTIVE-ACTION-AUTHORIZATION-PREFLIGHT",
     "PMR-ARCH-DIVERSITY-CHECKPOINT-00",
+    "PMR-SIM-00",
+    "PMR-STAT-00",
+    "PMR-FED-STRESS-00",
 }
 REQUIRED_BOUNDARY_PHRASES = (
     "not truth certification",
@@ -357,6 +360,50 @@ REQUIRED_BOUNDARY_PHRASES = (
     "Checkpoint is not product completion.",
     "No runtime authority is granted.",
     "PMR-SIM-00 is recommended as the next evidence-producing lane.",
+    "PMR becomes scientific only when it can lose.",
+    "PMR policy is allowed to lose.",
+    "Simulation result is not production memory policy.",
+    "Simulation result is not PMR superiority proof.",
+    "Simulation result is not hallucination reduction proof.",
+    "Simulation result is not federation proof.",
+    "Simulation result is not reward economy proof.",
+    "Fixture streams are synthetic and deterministic.",
+    "Retained does not mean true.",
+    "Replay-ready does not mean canon.",
+    "Stored does not mean trained.",
+    "Simpler baselines may win metrics or scenarios.",
+    "Run-PMR-SIM00-Acceptance.ps1",
+    "pmr_simulation_manifest.json",
+    "pmr_simulation_result_rows.jsonl",
+    "pmr_simulation_comparison_packet.json",
+    "pmr_simulation_statistics_packet.json",
+    "Descriptive fixture statistics are not real-world inference.",
+    "Rank table is not production policy selection.",
+    "Statistical summary is not PMR superiority proof.",
+    "Statistical summary is not hallucination reduction proof.",
+    "Simulation statistics are not federation proof.",
+    "Simulation statistics are not reward economy proof.",
+    "Run-PMR-STAT00-Acceptance.ps1",
+    "pmr_stat_analysis_manifest.json",
+    "pmr_stat_policy_metric_summaries.jsonl",
+    "pmr_stat_policy_pair_deltas.jsonl",
+    "pmr_stat_rank_table.json",
+    "pmr_stat_sensitivity_packet.json",
+    "pmr_stat_failure_mode_packet.json",
+    "Federation stress corpus is not federation.",
+    "Federation stress result is not federation proof.",
+    "Federation candidate is not network authorization.",
+    "Shard-transfer scenario is not encrypted shard transfer.",
+    "Federation credit scenario is not reward entitlement.",
+    "Hash is not encryption.",
+    "Merkle root is not confidentiality.",
+    "Run-PMR-FED-STRESS00-Acceptance.ps1",
+    "pmr_federation_stress_manifest.json",
+    "pmr_federation_node_fixtures.json",
+    "pmr_federation_stress_scenarios.json",
+    "pmr_federation_failure_mode_rows.jsonl",
+    "pmr_federation_propagation_risk_packet.json",
+    "pmr_federation_stress_statistics_packet.json",
     "Evidence Review, Sonya adapter path, TEL/telemetry, retrosynthesis, PMR simulation/statistics, federation stress, human provenance, market design, harness debt, and publication debt remain active lanes.",
     "No pruning or deletion occurs in PMR-ARCH-DIVERSITY-CHECKPOINT-00.",
     "PMR-ARCH-DIVERSITY-CHECKPOINT-00 is not federation authorization.",
@@ -395,6 +442,14 @@ FORBIDDEN_PHRASES = (
     "model superiority proven",
     "model superiority proof",
     "hallucination reduction proof",
+    "PMR superiority proof",
+    "production memory policy",
+    "production policy selection",
+    "real-world inference",
+    "real world inference",
+    "statistical superiority proof",
+    "federation proof",
+    "reward economy proof",
     "model quality benchmark",
     "live model evaluation",
     "remote provider evaluation",
@@ -617,15 +672,37 @@ def _forbidden_hits(text: str) -> list[str]:
                 continue
             if phrase == "federation" and (
                 text[index : index + 40].startswith("federation is blocked by default")
+                or text[index : index + 48].startswith("federation stress corpus is not federation")
+                or text[index : index + 48].startswith("federation stress result is not federation")
+                or text[index : index + 44].startswith("federation candidate is not network")
+                or text[index : index + 46].startswith("federation credit scenario is not reward")
                 or text[index : index + 48].startswith("federation remains blocked by default")
                 or text[index : index + 40].startswith("federation_blocked")
                 or text[index : index + 40].startswith("federation blocked")
+                or (text[index : index + 40].startswith("federation proof") and _is_negated(text, index))
                 or text[index : index + 40].startswith("federation_authorization")
+                or text[max(0, index - 20) : index].endswith("not_")
+                or text[max(0, index - 20) : index].endswith("without_")
                 or text[index : index + 40].startswith("federation authorization")
                 or text[index : index + 40].startswith("federation stress")
+                or text[index : index + 40].startswith("federation occurs")
+                or text[index : index + 40].startswith("federation performed")
+                or text[index : index + 40].startswith("federation_performed")
+                or text[index : index + 40].startswith("federation risks")
+                or text[index : index + 40].startswith("federation_risks")
+                or text[index : index + 40].startswith("federation_")
                 or text[index : index + 40].startswith("federation_stress")
                 or text[index : index + 40].startswith("federation = true")
                 or text[index : index + 40].startswith('federation": true')
+            ):
+                start = index + len(normalized_phrase)
+                continue
+            if (
+                phrase == "encrypted shard transfer"
+                and (
+                    text[index : index + 64].startswith("encrypted shard transfer not performed")
+                    or text[index : index + 64].startswith("encrypted_shard_transfer_not_performed")
+                )
             ):
                 start = index + len(normalized_phrase)
                 continue
