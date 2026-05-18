@@ -1101,6 +1101,17 @@ def test_validator_fails_if_public_utility_alpha_makes_forbidden_claims(tmp_path
         assert claim.lower() in result["forbidden_claims_found"], result
 
 
+def test_validator_rejects_explicit_federation_punctuation_overclaims(tmp_path):
+    for claim in ("Public Utility Alpha claims federation.", "Public Utility Alpha claims federation,"):
+        out_dir, docs_dir = run_builder(tmp_path / claim.replace(" ", "_").replace(",", "comma").replace(".", "period"))
+        alpha = docs_dir / "public-utility-alpha.md"
+        alpha.write_text(alpha.read_text() + f"\n{claim}\n")
+        result = validate_dashboard(out_dir / "experiment_suite_dashboard.json", docs_dir)
+        assert result["passed"] is False
+        assert "federation" in result["forbidden_claims_found"]
+
+
+
 def test_validator_fails_if_raw_baseline_makes_forbidden_claims(tmp_path):
     forbidden_claims = (
         "hallucination reduction proven",
