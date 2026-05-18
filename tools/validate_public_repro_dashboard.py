@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import re
 from pathlib import Path
 from typing import Any
 
@@ -53,6 +54,7 @@ REQUIRED_PHASES = {
     "PMR-FED-STRESS-00",
     "PMR-HUMAN-PROVENANCE-00",
     "PMR-HUMAN-CONSENT-NEGATIVE-CONTROL-00",
+    "SONYA-REQUIRED-MEMBRANE-CHECKPOINT-00",
 }
 REQUIRED_BOUNDARY_PHRASES = (
     "not truth certification",
@@ -433,6 +435,10 @@ REQUIRED_BOUNDARY_PHRASES = (
     "PMR-ARCH-DIVERSITY-CHECKPOINT-00 is not deployment authority.",
     "PMR-ARCH-DIVERSITY-CHECKPOINT-00 is not truth certification.",
     "Governed provenance resources may be future infrastructure rewards, but truth is not for sale.",
+    "Sonya is the required execution membrane for model/tool/provider-facing paths.",
+    "Missing Sonya posture must fail closed.",
+    "Raw output is not cognition.",
+    "SONYA-REQUIRED-MEMBRANE-CHECKPOINT-00",
 )
 FORBIDDEN_PHRASES = (
     "deployment readiness",
@@ -450,6 +456,9 @@ FORBIDDEN_PHRASES = (
     "live model execution",
     "live adapter execution",
     "remote provider call",
+    "provider call",
+    "claims provider call",
+    "claims remote provider call",
     "federation",
     "recursive braid",
     "recursive federation",
@@ -524,6 +533,13 @@ FORBIDDEN_PHRASES = (
     "network authorization",
     "remote provider called",
     "remote provider calls",
+    "provider call performed",
+    "provider call authorized",
+    "raw output admission",
+    "claims raw output admission",
+    "raw output admitted",
+    "raw output accepted as cognition",
+    "raw_output_admitted",
     "live model executed",
     "model weights trained",
     "model weight training",
@@ -589,6 +605,68 @@ def _read_docs(docs_dir: Path) -> str:
 def _is_negated(text: str, index: int) -> bool:
     window = text[max(0, index - 24) : index]
     return any(marker in window for marker in ALLOWED_NEGATED)
+
+
+def _context_words(text: str, index: int, *, before: int = 96, after: int = 96) -> str:
+    window = text[max(0, index - before) : index + after]
+    cleaned = re.sub(r"[^a-z0-9]+", " ", window.replace("_", " "))
+    return " ".join(cleaned.split())
+
+
+def _is_allowed_provider_call_context(text: str, index: int) -> bool:
+    window = _context_words(text, index, before=128, after=128)
+    allowed_fragments = (
+        "no remote provider call",
+        "no provider call",
+        "not provider call",
+        "not a provider call",
+        "not a remote provider call",
+        "not remote provider call",
+        "provider calls not performed",
+        "provider calls not made",
+        "provider call not performed",
+        "provider call not made",
+        "provider calls performed false",
+        "direct model provider call is not allowed",
+        "does not call providers",
+        "does not call remote providers",
+        "does not call provider",
+        "network provider calls",
+        "without live model execution or remote provider calls",
+        "no live model provider call",
+        "network provider memory",
+        "provider call blocked",
+        "provider call forbidden",
+        "not provider call status flags",
+        "not provider call",
+        "no provider call is made",
+    )
+    return any(fragment in window for fragment in allowed_fragments)
+
+
+def _is_allowed_raw_output_context(text: str, index: int) -> bool:
+    window = _context_words(text, index, before=128, after=128)
+    allowed_fragments = (
+        "raw output is forbidden",
+        "raw output forbidden",
+        "raw output rejected",
+        "raw output is not cognition",
+        "not raw output admission",
+        "raw output admission blocked",
+        "raw output admission posture",
+        "forbidden artifact leakage and raw output admission",
+        "forbidding raw output admission",
+        "avoids raw output admission",
+        "raw output admitted false",
+        "raw output forbidden true",
+        "raw output not admitted",
+        "not raw output admission status flags",
+        "not raw output admission",
+        "forbidding raw output admission",
+        "rejects or avoids raw output admission",
+        "does not admit raw output",
+    )
+    return any(fragment in window for fragment in allowed_fragments)
 
 
 def _is_allowed_no_emit_receipt_context(text: str, index: int) -> bool:
@@ -703,8 +781,6 @@ def _forbidden_hits(text: str) -> list[str]:
                 or text[index : index + 44].startswith("federation candidate is not network")
                 or text[index : index + 46].startswith("federation credit scenario is not reward")
                 or text[index : index + 48].startswith("federation remains blocked by default")
-                or text[index : index + 40].startswith("federation.")
-                or text[index : index + 40].startswith("federation,")
                 or text[index : index + 40].startswith("federation_blocked")
                 or text[index : index + 40].startswith("federation blocked")
                 or (text[index : index + 40].startswith("federation proof") and _is_negated(text, index))
@@ -732,6 +808,18 @@ def _forbidden_hits(text: str) -> list[str]:
             if (
                 phrase in {"ai consciousness", "human consciousness"}
                 and "make ai/human consciousness claims" in text[max(0, index - 32) : index + 48]
+            ):
+                start = index + len(normalized_phrase)
+                continue
+            if (
+                phrase in {"remote provider call", "remote provider calls", "provider call", "claims provider call", "claims remote provider call", "provider call performed", "provider call authorized"}
+                and _is_allowed_provider_call_context(text, index)
+            ):
+                start = index + len(normalized_phrase)
+                continue
+            if (
+                phrase in {"raw output admission", "claims raw output admission", "raw output admitted", "raw output accepted as cognition", "raw_output_admitted"}
+                and _is_allowed_raw_output_context(text, index)
             ):
                 start = index + len(normalized_phrase)
                 continue

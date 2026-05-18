@@ -448,3 +448,5 @@
 | Coerced consent fixture is not valid consent. | Negative-control scaffold only; no runtime authority. |
 | Scope-mismatched consent is not consent. | Negative-control scaffold only; no runtime authority. |
 | Consent attempt is not model training. | Negative-control scaffold only; no runtime authority. |
+| SONYA-REQUIRED-MEMBRANE-CHECKPOINT-00 | Sonya is the required execution membrane for model/tool/provider-facing paths. | Missing Sonya posture must fail closed; not live model execution; not provider call; not network authorization; not adapter authorization; not raw output admission. |
+| SONYA-REQUIRED-MEMBRANE-CHECKPOINT-00 | Direct model/provider call is not allowed when SONYA_REQUIRED=1. Candidate packet is not final answer. Adapter capability is not adapter authorization. Fixture-only builder is not live execution. Raw output is not cognition. Telemetry event is not authority. Failure receipt is not permission to proceed. | Not final answer release; not memory write; not model-weight training; not deployment authority; not truth certification. |

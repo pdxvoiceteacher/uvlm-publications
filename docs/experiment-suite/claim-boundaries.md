@@ -4,6 +4,24 @@
 - Sonya Adapter Contract Registry keeps all adapters disabled or blocked; all adapters disabled or blocked means not adapter execution and not network authorization.
 - Sonya Adapter Contract Registry boundaries: not adapter execution, not network authorization, not remote provider call, not model weight training.
 - Sonya Adapter Contract Registry requires that raw output is forbidden, candidate packet required, and failure receipts required.
+- Sonya is the required execution membrane for model/tool/provider-facing paths.
+- Direct model/provider call is not allowed when SONYA_REQUIRED=1.
+- Candidate packet is not final answer.
+- Adapter capability is not adapter authorization.
+- Fixture-only builder is not live execution.
+- Sonya non-applicability must be explicit for pure fixture/scaffold paths.
+- Missing Sonya posture must fail closed.
+- Raw output is not cognition.
+- Telemetry event is not authority.
+- Failure receipt is not permission to proceed.
+- SONYA-REQUIRED-MEMBRANE-CHECKPOINT-00 is not live model execution.
+- SONYA-REQUIRED-MEMBRANE-CHECKPOINT-00 is not provider call.
+- SONYA-REQUIRED-MEMBRANE-CHECKPOINT-00 is not network authorization.
+- SONYA-REQUIRED-MEMBRANE-CHECKPOINT-00 is not adapter authorization.
+- SONYA-REQUIRED-MEMBRANE-CHECKPOINT-00 is not memory write.
+- SONYA-REQUIRED-MEMBRANE-CHECKPOINT-00 is not model-weight training.
+- SONYA-REQUIRED-MEMBRANE-CHECKPOINT-00 is not deployment authority.
+- SONYA-REQUIRED-MEMBRANE-CHECKPOINT-00 is not truth certification.
 - Universal Architecture Scaffold: The brain runs cognition stages; experiments configure those stages.
 - Universal architecture scaffold: profiles are configuration; experiments are configurations over reusable stages and versioned artifact contracts.
 - Universal compatibility inputs use fail-closed receipts or hash-only receipts when unsupported inputs cannot be semantically interpreted.

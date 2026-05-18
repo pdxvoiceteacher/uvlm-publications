@@ -755,3 +755,9 @@ Human participant packet is not metaphysical personhood claim. Consent can const
 ## PMR-HUMAN-CONSENT-NEGATIVE-CONTROL-00
 
 Invalid consent is not consent. Coerced consent fixture is not valid consent. Scope-mismatched consent is not consent. Consent attempt is not model training.
+
+## SONYA-REQUIRED-MEMBRANE-CHECKPOINT-00
+
+SONYA-REQUIRED-MEMBRANE-CHECKPOINT-00 is a fixture-only Sonya-required execution membrane checkpoint. Sonya is the required execution membrane for model/tool/provider-facing paths. Direct model/provider call is not allowed when SONYA_REQUIRED=1. Candidate packet is not final answer. Adapter capability is not adapter authorization. Fixture-only builder is not live execution. Sonya non-applicability must be explicit for pure fixture/scaffold paths. Missing Sonya posture must fail closed. Raw output is forbidden. Raw output is not cognition. Telemetry event is not authority. Failure receipt is not permission to proceed.
+
+The checkpoint maps runtime paths to Sonya-required, fixture-non-applicable, publication-non-applicable, or fail-closed posture. It records runtime path coverage, bypass surfaces, candidate-packet requirements, fixture non-applicability, and review posture. It is not live model execution, not provider call, not network authorization, not adapter authorization, not raw output admission, not memory write, not model-weight training, not deployment authority, not truth certification, not final answer release, not hallucination reduction proof, not recursive self-improvement, and not production readiness.

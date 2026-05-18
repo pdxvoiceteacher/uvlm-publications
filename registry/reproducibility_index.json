@@ -131,6 +131,10 @@
         "command": ".\\experiments\\Run-SONYA-ADAPTER-CONTRACT-REGISTRY01-Acceptance.ps1 `\n  -OutputRoot C:\\UVLM\\run_artifacts\\sonya_adapter_contract_registry_01 `\n  -LogDir C:\\UVLM\\run_artifacts\\sonya_adapter_contract_registry_01_logs `\n  -CiMode"
       },
       {
+        "name": "Sonya required membrane checkpoint acceptance",
+        "command": ".\\experiments\\Run-SONYA-REQUIRED-MEMBRANE-CHECKPOINT00-Acceptance.ps1 `\n  -OutputRoot C:\\UVLM\\run_artifacts\\sonya_required_membrane_checkpoint_00 `\n  -LogDir C:\\UVLM\\run_artifacts\\sonya_required_membrane_checkpoint_00_logs `\n  -CiMode"
+      },
+      {
         "name": "Sonya Adapter Smoke acceptance",
         "command": ".\\experiments\\Run-SONYA-ADAPTER-SMOKE00-Acceptance.ps1 `\n  -OutputRoot C:\\UVLM\\run_artifacts\\sonya_adapter_smoke_00 `\n  -LogDir C:\\UVLM\\run_artifacts\\sonya_adapter_smoke_00_logs `\n  -CiMode"
       },
