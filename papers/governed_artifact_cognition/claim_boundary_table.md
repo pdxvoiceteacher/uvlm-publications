@@ -411,3 +411,26 @@
 | PMR-FED-STRESS-00 is not model-weight training. | PMR-FED-STRESS-00 models synthetic stress risks only and preserves no-federation/no-network authority. |
 | PMR-FED-STRESS-00 is not deployment authority. | PMR-FED-STRESS-00 models synthetic stress risks only and preserves no-federation/no-network authority. |
 | PMR-FED-STRESS-00 is not truth certification. | PMR-FED-STRESS-00 models synthetic stress risks only and preserves no-federation/no-network authority. |
+
+
+## PMR-HUMAN-PROVENANCE-00 claim boundaries
+
+| Boundary | Rationale |
+| --- | --- |
+| Human provenance context is not identity certification. | PMR-HUMAN-PROVENANCE-00 models synthetic human provenance context only and preserves non-authority boundaries. |
+| Consent context is not consent execution. | PMR-HUMAN-PROVENANCE-00 models synthetic human provenance context only and preserves non-authority boundaries. |
+| Consent preference is not action authorization. | PMR-HUMAN-PROVENANCE-00 models synthetic human provenance context only and preserves non-authority boundaries. |
+| Correction request is not memory write. | PMR-HUMAN-PROVENANCE-00 models synthetic human provenance context only and preserves non-authority boundaries. |
+| Revocation request is not deletion execution. | PMR-HUMAN-PROVENANCE-00 models synthetic human provenance context only and preserves non-authority boundaries. |
+| Review participation is not truth certification. | PMR-HUMAN-PROVENANCE-00 models synthetic human provenance context only and preserves non-authority boundaries. |
+| Lived-stakes annotation is not reward entitlement. | PMR-HUMAN-PROVENANCE-00 models synthetic human provenance context only and preserves non-authority boundaries. |
+| Human provenance is not human value score. | PMR-HUMAN-PROVENANCE-00 models synthetic human provenance context only and preserves non-authority boundaries. |
+| Human participant packet is not metaphysical personhood claim. | PMR-HUMAN-PROVENANCE-00 models synthetic human provenance context only and preserves non-authority boundaries. |
+| The system must not encode human = body or AI = mind. | PMR-HUMAN-PROVENANCE-00 models synthetic human provenance context only and preserves non-authority boundaries. |
+| Consent can constrain evidence handling but does not authorize action by itself. | PMR-HUMAN-PROVENANCE-00 models synthetic human provenance context only and preserves non-authority boundaries. |
+| Revocation requests require future review gates before lifecycle changes. | PMR-HUMAN-PROVENANCE-00 models synthetic human provenance context only and preserves non-authority boundaries. |
+| PMR-HUMAN-PROVENANCE-00 is not Atlas canon. | PMR-HUMAN-PROVENANCE-00 models synthetic human provenance context only and preserves non-authority boundaries. |
+| PMR-HUMAN-PROVENANCE-00 is not memory write authorization. | PMR-HUMAN-PROVENANCE-00 models synthetic human provenance context only and preserves non-authority boundaries. |
+| PMR-HUMAN-PROVENANCE-00 is not model-weight training. | PMR-HUMAN-PROVENANCE-00 models synthetic human provenance context only and preserves non-authority boundaries. |
+| PMR-HUMAN-PROVENANCE-00 is not deployment authority. | PMR-HUMAN-PROVENANCE-00 models synthetic human provenance context only and preserves non-authority boundaries. |
+| PMR-HUMAN-PROVENANCE-00 is not truth certification. | PMR-HUMAN-PROVENANCE-00 models synthetic human provenance context only and preserves non-authority boundaries. |

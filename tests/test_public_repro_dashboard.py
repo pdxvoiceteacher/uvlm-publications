@@ -55,6 +55,7 @@ REQUIRED_DOCS = {
     "pmr-simulation-baseline-comparison.md",
     "pmr-simulation-statistical-analysis.md",
     "pmr-federation-stress-corpus.md",
+    "pmr-human-provenance-context.md",
     "sonya-local-fixture-adapter-multi-route.md",
     "sonya-local-fixture-adapter-lineage.md",
 }
@@ -100,6 +101,7 @@ REQUIRED_PHASES = {
     "PMR-SIM-00",
     "PMR-STAT-00",
     "PMR-FED-STRESS-00",
+    "PMR-HUMAN-PROVENANCE-00",
     "SONYA-LOCAL-FIXTURE-ADAPTER-02",
     "SONYA-LOCAL-FIXTURE-ADAPTER-03",
 }
@@ -142,6 +144,7 @@ REQUIRED_COMMAND_FRAGMENTS = (
     "Run-PMR-SIM00-Acceptance.ps1",
     "Run-PMR-STAT00-Acceptance.ps1",
     "Run-PMR-FED-STRESS00-Acceptance.ps1",
+    "Run-PMR-HUMAN-PROVENANCE00-Acceptance.ps1",
     "Run-SONYA-LOCAL-FIXTURE-ADAPTER02-Acceptance.ps1",
     "Run-SONYA-LOCAL-FIXTURE-ADAPTER03-Acceptance.ps1",
 )
@@ -2115,3 +2118,53 @@ def test_dashboard_validator_rejects_pmr_fed_stress_00_overclaims(tmp_path):
         assert result["passed"] is False
         found = [hit.lower() for hit in result["forbidden_claims_found"]]
         assert claim.lower() in found or f"claims {claim.lower()}" in found or (claim.lower() == "federation proof" and "federation" in found), result
+
+
+
+def test_pmr_human_provenance_00_indexes_docs_and_boundaries_are_generated(tmp_path):
+    out_dir, docs_dir = run_builder(tmp_path)
+    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text())
+    reproducibility = json.loads((out_dir / "reproducibility_index.json").read_text())
+    artifact_index = json.loads((out_dir / "artifact_index.json").read_text())
+    claim_boundaries = json.loads((out_dir / "claim_boundary_index.json").read_text())
+
+    accepted_phases = dashboard["accepted_phases"]
+    phase_ids = [entry["phase_id"] for entry in accepted_phases]
+    assert len(phase_ids) == len(set(phase_ids))
+    assert "PMR-HUMAN-PROVENANCE-00" in phase_ids
+    phase = next(entry for entry in accepted_phases if entry["phase_id"] == "PMR-HUMAN-PROVENANCE-00")
+    assert phase["evidence_type"] == "architecture_scaffold"
+    assert phase["dashboard_summary"]["human_provenance_not_identity_certification"] is True
+    assert phase["dashboard_summary"]["consent_execution_performed"] is False
+    assert phase["claim_allowed"] == "PMR-HUMAN-PROVENANCE-00 demonstrates a fixture-only human provenance and consent context scaffold for synthetic provenance, consent scope, correction, revocation, review participation, and lived-stakes annotation while preserving non-authority boundaries."
+
+    commands = json.dumps(reproducibility)
+    assert "Run-PMR-HUMAN-PROVENANCE00-Acceptance.ps1" in commands
+    artifacts = artifact_index["phases"]["PMR-HUMAN-PROVENANCE-00"]
+    assert "pmr_human_provenance_manifest.json" in artifacts
+    assert "pmr_human_provenance_context_packet.json" in artifacts
+    assert "pmr_human_consent_scope_packet.json" in artifacts
+    assert "pmr_human_correction_request_packet.json" in artifacts
+    assert "pmr_human_revocation_request_packet.json" in artifacts
+    assert "pmr_human_lived_stakes_annotation_packet.json" in artifacts
+    assert (docs_dir / "pmr-human-provenance-context.md").exists()
+    boundary_text = "\n".join(claim_boundaries["boundaries"])
+    assert "Human provenance context is not identity certification." in boundary_text
+    assert "The system must not encode human = body or AI = mind." in boundary_text
+
+
+def test_dashboard_validator_rejects_pmr_human_provenance_00_overclaims(tmp_path):
+    for claim in (
+        "identity certification",
+        "consent execution",
+        "human value score",
+        "AI consciousness",
+        "human consciousness",
+    ):
+        out_dir, docs_dir = run_builder(tmp_path / claim.replace(" ", "_").replace("-", "_"))
+        page = docs_dir / "pmr-human-provenance-context.md"
+        page.write_text(page.read_text() + f"\nPMR-HUMAN-PROVENANCE-00 claims {claim}.\n")
+        result = validate_dashboard(out_dir / "experiment_suite_dashboard.json", docs_dir)
+        assert result["passed"] is False
+        found = [hit.lower() for hit in result["forbidden_claims_found"]]
+        assert claim.lower() in found or f"claims {claim.lower()}" in found, result

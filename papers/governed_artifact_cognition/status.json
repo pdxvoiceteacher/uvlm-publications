@@ -112,5 +112,9 @@
   "not_production_policy_selection": true,
   "not_statistical_superiority_proof": true,
   "pmr_fed_stress_00_indexed": true,
-  "not_encrypted_shard_transfer": true
+  "not_encrypted_shard_transfer": true,
+  "pmr_human_provenance_00_indexed": true,
+  "not_identity_certification": true,
+  "not_consent_execution": true,
+  "not_human_consciousness_claim": true
 }

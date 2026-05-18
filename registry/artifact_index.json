@@ -345,6 +345,23 @@
       "export_bundle_parity_report.json",
       "pmr_fed_stress_00_acceptance_receipt.json"
     ],
+    "PMR-HUMAN-PROVENANCE-00": [
+      "pmr_human_provenance_manifest.json",
+      "pmr_human_provenance_context_packet.json",
+      "pmr_human_consent_scope_packet.json",
+      "pmr_human_correction_request_packet.json",
+      "pmr_human_revocation_request_packet.json",
+      "pmr_human_review_receipt_candidates.jsonl",
+      "pmr_human_lived_stakes_annotation_packet.json",
+      "pmr_human_provenance_review_packet.json",
+      "pmr_human_provenance_summary.md",
+      "artifact_inventory.json",
+      "run_artifact_manifest.json",
+      "triadic_run_manifest.json",
+      "export_bundle_manifest.json",
+      "export_bundle_parity_report.json",
+      "pmr_human_provenance_00_acceptance_receipt.json"
+    ],
     "UNIVERSAL-STAGE-PIPELINE-00": [
       "universal_pipeline_manifest.json",
       "universal_pipeline_review_packet.json",

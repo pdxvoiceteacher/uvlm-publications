@@ -732,3 +732,21 @@ PMR-FED-STRESS-00 does not federate. It does not authorize networks. It does not
   -DeterministicSeed 1729 `
   -CiMode
 ```
+
+
+## PMR-HUMAN-PROVENANCE-00 Human Provenance Context
+
+PMR-HUMAN-PROVENANCE-00 adds a publication-indexed fixture-only human provenance and consent context scaffold. Human provenance context is not identity certification. The system must not encode human = body or AI = mind. Consent context is not consent execution. Consent preference is not action authorization. Correction request is not memory write. Revocation request is not deletion execution. Review participation is not truth certification. Lived-stakes annotation is not reward entitlement. Human provenance is not human value score.
+
+The scaffold models synthetic source contributors, reviewers, correction providers, revocation requesters, consent scope owners, and affected stakeholders. It models review-only, retention-preference, correction-review, revocation-review, and simulation-only consent uses. It models consent-scope, retention-preference, review-visibility, federation-eligibility, and training-credit-eligibility revocation scopes. It models privacy, reputational, safety, authorship, consent, and resource-burden lived-stakes categories.
+
+Human participant packet is not metaphysical personhood claim. Consent can constrain evidence handling but does not authorize action by itself. Revocation requests require future review gates before lifecycle changes. PMR-HUMAN-PROVENANCE-00 is not Atlas canon. It is not memory write authorization. It is not model-weight training. It is not deployment authority. It is not truth certification. It is not identity certification. It is not consent execution. It is not human consciousness claim. It is not AI consciousness claim. It is not hallucination reduction proof. It is not recursive self-improvement. It is not production readiness.
+
+### PMR-HUMAN-PROVENANCE-00 acceptance command
+
+```powershell
+.\experiments\Run-PMR-HUMAN-PROVENANCE00-Acceptance.ps1 `
+  -OutputRoot C:\UVLM\run_artifacts\pmr_human_provenance_00 `
+  -LogDir C:\UVLM\run_artifacts\pmr_human_provenance_00_logs `
+  -CiMode
+```

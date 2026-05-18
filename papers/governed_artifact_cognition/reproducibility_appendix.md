@@ -659,3 +659,17 @@ Federation stress corpus is not federation. Federation stress result is not fede
 ```
 
 Reviewer caution: PMR-FED-STRESS-00 runs deterministic synthetic federation stress scenarios and failure-mode analysis only. It does not federate. It does not call networks. It does not transfer encrypted shards. It does not reward users. It does not run a token economy. It does not write memory. It does not train models. It does not deploy. It does not certify truth.
+
+
+## PMR-HUMAN-PROVENANCE-00 Human Provenance Context
+
+Human provenance context is not identity certification. The system must not encode human = body or AI = mind. Consent context is not consent execution. Consent preference is not action authorization. Correction request is not memory write. Revocation request is not deletion execution. Review participation is not truth certification. Lived-stakes annotation is not reward entitlement. Human provenance is not human value score.
+
+```powershell
+.\experiments\Run-PMR-HUMAN-PROVENANCE00-Acceptance.ps1 `
+  -OutputRoot C:\UVLM\run_artifacts\pmr_human_provenance_00 `
+  -LogDir C:\UVLM\run_artifacts\pmr_human_provenance_00_logs `
+  -CiMode
+```
+
+Reviewer caution: PMR-HUMAN-PROVENANCE-00 models synthetic human provenance and consent context only. It does not certify identity, execute consent, authorize action, write memory, delete, prune, federate, reward, train models, deploy, certify truth, or make AI/human consciousness claims.

@@ -361,6 +361,23 @@
     "PMR-FED-STRESS-00 is not model-weight training.",
     "PMR-FED-STRESS-00 is not deployment authority.",
     "PMR-FED-STRESS-00 is not truth certification.",
+    "Human provenance context is not identity certification.",
+    "Consent context is not consent execution.",
+    "Consent preference is not action authorization.",
+    "Correction request is not memory write.",
+    "Revocation request is not deletion execution.",
+    "Review participation is not truth certification.",
+    "Lived-stakes annotation is not reward entitlement.",
+    "Human provenance is not human value score.",
+    "Human participant packet is not metaphysical personhood claim.",
+    "The system must not encode human = body or AI = mind.",
+    "Consent can constrain evidence handling but does not authorize action by itself.",
+    "Revocation requests require future review gates before lifecycle changes.",
+    "PMR-HUMAN-PROVENANCE-00 is not Atlas canon.",
+    "PMR-HUMAN-PROVENANCE-00 is not memory write authorization.",
+    "PMR-HUMAN-PROVENANCE-00 is not model-weight training.",
+    "PMR-HUMAN-PROVENANCE-00 is not deployment authority.",
+    "PMR-HUMAN-PROVENANCE-00 is not truth certification.",
     "Governed provenance resources may be future infrastructure rewards, but truth is not for sale."
   ]
 }

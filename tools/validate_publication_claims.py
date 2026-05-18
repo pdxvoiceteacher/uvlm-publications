@@ -406,6 +406,20 @@ PAPER_CONFIGS: dict[str, dict[str, Any]] = {
             "pmr_federation_stress_manifest.json",
             "pmr_federation_failure_mode_rows.jsonl",
             "pmr_federation_propagation_risk_packet.json",
+            "PMR-HUMAN-PROVENANCE-00",
+            "Human provenance context is not identity certification.",
+            "The system must not encode human = body or AI = mind.",
+            "Consent context is not consent execution.",
+            "Consent preference is not action authorization.",
+            "Correction request is not memory write.",
+            "Revocation request is not deletion execution.",
+            "Review participation is not truth certification.",
+            "Lived-stakes annotation is not reward entitlement.",
+            "Human provenance is not human value score.",
+            "Run-PMR-HUMAN-PROVENANCE00-Acceptance.ps1",
+            "pmr_human_provenance_manifest.json",
+            "pmr_human_consent_scope_packet.json",
+            "pmr_human_lived_stakes_annotation_packet.json",
         ),
         "forbidden_overclaims": (
             "proves universal intelligence",
@@ -414,6 +428,8 @@ PAPER_CONFIGS: dict[str, dict[str, Any]] = {
             "deployment readiness",
             "production readiness",
             "ai consciousness proven",
+            "ai consciousness",
+            "human consciousness",
             "final answer authority",
             "final answer selection",
             "final answer release",
@@ -529,6 +545,10 @@ PAPER_CONFIGS: dict[str, dict[str, Any]] = {
             "statistical superiority proof",
             "pmr superiority proof",
             "reward economy proof",
+            "identity certification",
+            "consent execution",
+            "claims action authorization",
+            "biometric inference",
         ),
         "status_required": {
             "paper_id": "PUB-GOV-ARTIFACT-COG-01",
@@ -601,6 +621,10 @@ PAPER_CONFIGS: dict[str, dict[str, Any]] = {
             "pmr_fed_stress_00_indexed": True,
             "not_network_authorization": True,
             "not_encrypted_shard_transfer": True,
+            "pmr_human_provenance_00_indexed": True,
+            "not_identity_certification": True,
+            "not_consent_execution": True,
+            "not_human_consciousness_claim": True,
             "pmr_00_indexed": True,
             "pmr_01_indexed": True,
             "pmr_02_indexed": True,
@@ -794,8 +818,15 @@ def _forbidden_hits(normalized_text: str, forbidden: tuple[str, ...]) -> list[st
                 or normalized_text[index : index + 40].startswith("federation stress")
                 or normalized_text[index : index + 40].startswith("federation risks")
                 or normalized_text[index : index + 40].startswith("federation_risks")
+                or normalized_text[index : index + 40].startswith("federation eligibility")
                 or normalized_text[index : index + 40].startswith("federation_")
                 or normalized_text[index : index + 40].startswith("federation_stress")
+            ):
+                search_from = index + len(normalized_phrase)
+                continue
+            if (
+                phrase in {"ai consciousness", "human consciousness"}
+                and "make ai/human consciousness claims" in normalized_text[max(0, index - 32) : index + 48]
             ):
                 search_from = index + len(normalized_phrase)
                 continue

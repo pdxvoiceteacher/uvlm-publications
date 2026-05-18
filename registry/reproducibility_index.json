@@ -111,6 +111,10 @@
         "command": ".\\experiments\\Run-PMR-FED-STRESS00-Acceptance.ps1 `\n  -OutputRoot C:\\UVLM\\run_artifacts\\pmr_fed_stress_00 `\n  -LogDir C:\\UVLM\\run_artifacts\\pmr_fed_stress_00_logs `\n  -DeterministicSeed 1729 `\n  -CiMode"
       },
       {
+        "name": "PMR human provenance acceptance",
+        "command": ".\\experiments\\Run-PMR-HUMAN-PROVENANCE00-Acceptance.ps1 `\n  -OutputRoot C:\\UVLM\\run_artifacts\\pmr_human_provenance_00 `\n  -LogDir C:\\UVLM\\run_artifacts\\pmr_human_provenance_00_logs `\n  -CiMode"
+      },
+      {
         "name": "Universal Stage Pipeline acceptance",
         "command": "python -m pytest -q python/tests/pipeline/test_universal_stage_pipeline.py"
       },

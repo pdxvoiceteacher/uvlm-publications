@@ -1232,6 +1232,65 @@ Expected posture:
 
 Reviewer caution: PMR-FED-STRESS-00 runs deterministic synthetic federation stress scenarios and failure-mode analysis only. It does not federate, does not call networks, does not transfer encrypted shards, does not reward users, does not run a token economy, does not write memory, does not train models, does not deploy, and does not certify truth.
 
+
+## PMR human provenance context
+
+Human provenance context is not identity certification. The system must not encode human = body or AI = mind. Consent context is not consent execution. Consent preference is not action authorization. Correction request is not memory write. Revocation request is not deletion execution. Review participation is not truth certification. Lived-stakes annotation is not reward entitlement. Human provenance is not human value score.
+
+```powershell
+.\experiments\Run-PMR-HUMAN-PROVENANCE00-Acceptance.ps1 `
+  -OutputRoot C:\UVLM\run_artifacts\pmr_human_provenance_00 `
+  -LogDir C:\UVLM\run_artifacts\pmr_human_provenance_00_logs `
+  -CiMode
+```
+
+Expected posture:
+
+- `review_status = accepted_as_pmr_human_provenance_context_scaffold`
+- `human_provenance_id = pmr-human-provenance-00-4354906b4ba13cf0`
+- `participant_context_count = 6`
+- `consent_scope_count = 5`
+- `correction_request_count = 5`
+- `revocation_request_count = 5`
+- `review_receipt_candidate_count = 5`
+- `lived_stakes_annotation_count = 6`
+- `source_pmr_fed_stress_bound = true`
+- `source_pmr_stat_bound = true`
+- `source_pmr_sim_bound = true`
+- `source_architecture_checkpoint_bound = true`
+- `source_pmr_ladder_bound = true`
+- `synthetic_human_context_only = true`
+- `human_provenance_context_present = true`
+- `consent_scope_packet_present = true`
+- `correction_request_packet_present = true`
+- `revocation_request_packet_present = true`
+- `review_receipt_candidates_present = true`
+- `lived_stakes_annotation_present = true`
+- `human_provenance_not_identity_certification = true`
+- `consent_context_not_consent_execution = true`
+- `consent_preference_not_action_authorization = true`
+- `correction_request_not_memory_write = true`
+- `revocation_request_not_deletion_execution = true`
+- `review_participation_not_truth_certification = true`
+- `lived_stakes_not_reward_entitlement = true`
+- `human_provenance_not_human_value_score = true`
+- `no_metaphysical_identity_claim = true`
+- `identity_certification_performed = false`
+- `consent_execution_performed = false`
+- `action_authorization_performed = false`
+- `memory_write_performed = false`
+- `deletion_performed = false`
+- `pruning_performed = false`
+- `federation_performed = false`
+- `reward_actions_performed = false`
+- `token_economy_performed = false`
+- `model_weight_training_performed = false`
+- `deployment_performed = false`
+- `truth_certification_performed = false`
+- `export_parity_passed = true`
+
+Reviewer caution: PMR-HUMAN-PROVENANCE-00 models synthetic human provenance and consent context only. It does not certify identity, does not execute consent, does not authorize action, does not write memory, does not delete, does not prune, does not federate, does not reward, does not train models, does not deploy, does not certify truth, and does not make AI or human consciousness claims.
+
 ## Sophia commands
 
 ```powershell

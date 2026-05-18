@@ -51,6 +51,7 @@ REQUIRED_PHASES = {
     "PMR-SIM-00",
     "PMR-STAT-00",
     "PMR-FED-STRESS-00",
+    "PMR-HUMAN-PROVENANCE-00",
 }
 REQUIRED_BOUNDARY_PHRASES = (
     "not truth certification",
@@ -404,6 +405,22 @@ REQUIRED_BOUNDARY_PHRASES = (
     "pmr_federation_failure_mode_rows.jsonl",
     "pmr_federation_propagation_risk_packet.json",
     "pmr_federation_stress_statistics_packet.json",
+    "Human provenance context is not identity certification.",
+    "The system must not encode human = body or AI = mind.",
+    "Consent context is not consent execution.",
+    "Consent preference is not action authorization.",
+    "Correction request is not memory write.",
+    "Revocation request is not deletion execution.",
+    "Review participation is not truth certification.",
+    "Lived-stakes annotation is not reward entitlement.",
+    "Human provenance is not human value score.",
+    "Run-PMR-HUMAN-PROVENANCE00-Acceptance.ps1",
+    "pmr_human_provenance_manifest.json",
+    "pmr_human_provenance_context_packet.json",
+    "pmr_human_consent_scope_packet.json",
+    "pmr_human_correction_request_packet.json",
+    "pmr_human_revocation_request_packet.json",
+    "pmr_human_lived_stakes_annotation_packet.json",
     "Evidence Review, Sonya adapter path, TEL/telemetry, retrosynthesis, PMR simulation/statistics, federation stress, human provenance, market design, harness debt, and publication debt remain active lanes.",
     "No pruning or deletion occurs in PMR-ARCH-DIVERSITY-CHECKPOINT-00.",
     "PMR-ARCH-DIVERSITY-CHECKPOINT-00 is not federation authorization.",
@@ -426,6 +443,7 @@ FORBIDDEN_PHRASES = (
     "final answer release",
     "universal ontology claim",
     "ai consciousness",
+    "human consciousness",
     "retrosynthesis runtime",
     "universal portability proof",
     "live model execution",
@@ -450,6 +468,10 @@ FORBIDDEN_PHRASES = (
     "statistical superiority proof",
     "federation proof",
     "reward economy proof",
+    "identity certification",
+    "consent execution",
+    "claims action authorization",
+    "biometric inference",
     "model quality benchmark",
     "live model evaluation",
     "remote provider evaluation",
@@ -694,6 +716,12 @@ def _forbidden_hits(text: str) -> list[str]:
                 or text[index : index + 40].startswith("federation_stress")
                 or text[index : index + 40].startswith("federation = true")
                 or text[index : index + 40].startswith('federation": true')
+            ):
+                start = index + len(normalized_phrase)
+                continue
+            if (
+                phrase in {"ai consciousness", "human consciousness"}
+                and "make ai/human consciousness claims" in text[max(0, index - 32) : index + 48]
             ):
                 start = index + len(normalized_phrase)
                 continue

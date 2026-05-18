@@ -2048,3 +2048,69 @@ def test_governed_validator_rejects_pmr_fed_stress_00_overclaims(tmp_path):
         assert result["passed"] is False
         found = [hit.lower() for hit in result["forbidden_overclaims_found"]]
         assert claim.lower() in found or f"claims {claim.lower()}" in found or (claim.lower() == "federation proof" and "federation" in found), result
+
+
+
+def test_governed_paper_includes_pmr_human_provenance_00_boundaries():
+    root = Path("papers/governed_artifact_cognition")
+    paper = (root / "PUB_GOV_ARTIFACT_COG_01.md").read_text()
+    artifact_table = (root / "artifact_table.md").read_text()
+    boundary_table = (root / "claim_boundary_table.md").read_text()
+    quickstart = (root / "reviewer_quickstart.md").read_text()
+    status = json.loads((root / "status.json").read_text())
+
+    for phrase in (
+        "PMR-HUMAN-PROVENANCE-00",
+        "Human provenance context is not identity certification.",
+        "Consent context is not consent execution.",
+        "Consent preference is not action authorization.",
+        "Correction request is not memory write.",
+        "Revocation request is not deletion execution.",
+        "Review participation is not truth certification.",
+        "Lived-stakes annotation is not reward entitlement.",
+        "Human provenance is not human value score.",
+        "The system must not encode human = body or AI = mind.",
+    ):
+        assert phrase in paper
+        assert phrase in boundary_table or phrase == "PMR-HUMAN-PROVENANCE-00"
+
+    for artifact in (
+        "pmr_human_provenance_manifest.json",
+        "pmr_human_consent_scope_packet.json",
+        "pmr_human_lived_stakes_annotation_packet.json",
+    ):
+        assert artifact in artifact_table
+    assert "Run-PMR-HUMAN-PROVENANCE00-Acceptance.ps1" in quickstart
+    assert status["pmr_human_provenance_00_indexed"] is True
+    assert status["not_identity_certification"] is True
+    assert status["not_consent_execution"] is True
+    assert status["not_human_value_score"] is True
+    assert status["not_ai_consciousness_claim"] is True
+    assert status["not_human_consciousness_claim"] is True
+
+
+def test_governed_validator_rejects_pmr_human_provenance_00_overclaims(tmp_path):
+    root = Path("papers/governed_artifact_cognition")
+    for claim in (
+        "identity certification",
+        "consent execution",
+        "human value score",
+        "AI consciousness",
+        "human consciousness",
+    ):
+        case = tmp_path / claim.replace(" ", "_").replace("-", "_")
+        case.mkdir()
+        for source in root.iterdir():
+            if source.is_file():
+                (case / source.name).write_text(source.read_text())
+        paper = case / "PUB_GOV_ARTIFACT_COG_01.md"
+        paper.write_text(paper.read_text() + f"\nPMR-HUMAN-PROVENANCE-00 claims {claim}.\n")
+        result = validate_publication_claims(
+            paper,
+            case / "reproducibility_appendix.md",
+            case / "reviewer_quickstart.md",
+            case / "status.json",
+        )
+        assert result["passed"] is False
+        found = [hit.lower() for hit in result["forbidden_overclaims_found"]]
+        assert claim.lower() in found or f"claims {claim.lower()}" in found, result
