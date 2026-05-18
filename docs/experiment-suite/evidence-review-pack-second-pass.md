@@ -3,9 +3,6 @@
 Purpose: inspect EVIDENCE-REVIEW-PACK-01 as the first bounded second-pass review candidate loop over Retrosynthesis Sandbox Cycle repair candidates.
 
 Evidence Review Pack second pass is candidate revision, not accepted evidence.
-
-Run command:
-
 ```powershell
 .\experiments\Run-EVIDENCE-REVIEW-PACK01-Acceptance.ps1 `
   -OutputRoot C:\UVLM\run_artifacts\evidence_review_pack_01 `

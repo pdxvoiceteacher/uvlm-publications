@@ -612,3 +612,67 @@ PMR-ARCH-DIVERSITY-CHECKPOINT-00 consumes PMR-00 through PMR-10 plus active non-
   -LogDir C:\UVLM\run_artifacts\pmr_arch_diversity_checkpoint_00_logs `
   -CiMode
 ```
+
+
+## PMR-SIM-00 Simulation Baseline Comparison
+
+PMR becomes scientific only when it can lose. PMR policy is allowed to lose. Fixture streams are synthetic and deterministic. Retained does not mean true. Replay-ready does not mean canon. Stored does not mean trained.
+
+```powershell
+.\experiments\Run-PMR-SIM00-Acceptance.ps1 `
+  -OutputRoot C:\UVLM\run_artifacts\pmr_sim_00 `
+  -LogDir C:\UVLM\run_artifacts\pmr_sim_00_logs `
+  -Repetitions 3 `
+  -DeterministicSeed 1729 `
+  -CiMode
+```
+
+Reviewer caution: PMR-SIM-00 runs deterministic synthetic fixture simulations only. It does not select a production memory policy, is not PMR superiority proof, is not hallucination reduction proof, is not federation proof, is not reward economy proof, does not write memory, does not train models, does not deploy, and does not certify truth. Simulation result is not production memory policy. Simulation result is not PMR superiority proof. Simulation result is not hallucination reduction proof. Simulation result is not federation proof. Simulation result is not reward economy proof.
+
+
+## PMR-STAT-00 Statistical Analysis Scaffold
+
+Descriptive fixture statistics are not real-world inference. Rank table is not production policy selection. PMR policy remains allowed to lose. Statistical summary is not PMR superiority proof. Statistical summary is not hallucination reduction proof. Simulation statistics are not federation proof. Simulation statistics are not reward economy proof.
+
+```powershell
+.\experiments\Run-PMR-STAT00-Acceptance.ps1 `
+  -OutputRoot C:\UVLM\run_artifacts\pmr_stat_00 `
+  -LogDir C:\UVLM\run_artifacts\pmr_stat_00_logs `
+  -Repetitions 3 `
+  -DeterministicSeed 1729 `
+  -CiMode
+```
+
+Reviewer caution: PMR-STAT-00 runs descriptive fixture-bound analysis over PMR-SIM-00 outputs only. It does not select a production memory policy, is not real-world inference, is not PMR superiority proof, is not hallucination reduction proof, is not federation proof, is not reward economy proof, does not write memory, does not train models, does not deploy, and does not certify truth.
+
+
+## PMR-FED-STRESS-00 Federation Stress Corpus
+
+Federation stress corpus is not federation. Federation stress result is not federation proof. Federation candidate is not network authorization. Shard-transfer scenario is not encrypted shard transfer. Federation credit scenario is not reward entitlement. Hash is not encryption. Merkle root is not confidentiality.
+
+```powershell
+.\experiments\Run-PMR-FED-STRESS00-Acceptance.ps1 `
+  -OutputRoot C:\UVLM\run_artifacts\pmr_fed_stress_00 `
+  -LogDir C:\UVLM\run_artifacts\pmr_fed_stress_00_logs `
+  -DeterministicSeed 1729 `
+  -CiMode
+```
+
+Reviewer caution: PMR-FED-STRESS-00 runs deterministic synthetic federation stress scenarios and failure-mode analysis only. It does not federate. It does not call networks. It does not transfer encrypted shards. It does not reward users. It does not run a token economy. It does not write memory. It does not train models. It does not deploy. It does not certify truth.
+
+
+## PMR-HUMAN-PROVENANCE-00 Human Provenance Context
+
+Human provenance context is not identity certification. The system must not encode human = body or AI = mind. Consent context is not consent execution. Consent preference is not action authorization. Correction request is not memory write. Revocation request is not deletion execution. Review participation is not truth certification. Lived-stakes annotation is not reward entitlement. Human provenance is not human value score.
+
+```powershell
+.\experiments\Run-PMR-HUMAN-PROVENANCE00-Acceptance.ps1 `
+  -OutputRoot C:\UVLM\run_artifacts\pmr_human_provenance_00 `
+  -LogDir C:\UVLM\run_artifacts\pmr_human_provenance_00_logs `
+  -CiMode
+```
+
+Reviewer caution: PMR-HUMAN-PROVENANCE-00 models synthetic human provenance and consent context only. It does not certify identity, execute consent, authorize action, write memory, delete, prune, federate, reward, train models, deploy, certify truth, or make AI/human consciousness claims.
+
+
+- PMR-HUMAN-CONSENT-NEGATIVE-CONTROL-00: `.\experiments\Run-PMR-HUMAN-CONSENT-NEGATIVE-CONTROL00-Acceptance.ps1`
