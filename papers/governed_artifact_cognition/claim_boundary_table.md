@@ -389,3 +389,25 @@
 | PMR-STAT-00 is not model-weight training. | PMR-STAT-00 remains descriptive fixture-bound analysis only, not production or real-world authority. |
 | PMR-STAT-00 is not deployment authority. | PMR-STAT-00 remains descriptive fixture-bound analysis only, not production or real-world authority. |
 | PMR-STAT-00 is not truth certification. | PMR-STAT-00 remains descriptive fixture-bound analysis only, not production or real-world authority. |
+
+
+## PMR-FED-STRESS-00 claim boundaries
+
+| Boundary | Rationale |
+| --- | --- |
+| Federation stress corpus is not federation. | PMR-FED-STRESS-00 models synthetic stress risks only and preserves no-federation/no-network authority. |
+| Federation stress result is not federation proof. | PMR-FED-STRESS-00 models synthetic stress risks only and preserves no-federation/no-network authority. |
+| Federation candidate is not network authorization. | PMR-FED-STRESS-00 models synthetic stress risks only and preserves no-federation/no-network authority. |
+| Shard-transfer scenario is not encrypted shard transfer. | PMR-FED-STRESS-00 models synthetic stress risks only and preserves no-federation/no-network authority. |
+| Federation credit scenario is not reward entitlement. | PMR-FED-STRESS-00 models synthetic stress risks only and preserves no-federation/no-network authority. |
+| Hash is not encryption. | PMR-FED-STRESS-00 models synthetic stress risks only and preserves no-federation/no-network authority. |
+| Merkle root is not confidentiality. | PMR-FED-STRESS-00 models synthetic stress risks only and preserves no-federation/no-network authority. |
+| Provenance availability is not permission to read private content. | PMR-FED-STRESS-00 models synthetic stress risks only and preserves no-federation/no-network authority. |
+| Cross-node replay is not canon. | PMR-FED-STRESS-00 models synthetic stress risks only and preserves no-federation/no-network authority. |
+| Resource contribution is not authority. | PMR-FED-STRESS-00 models synthetic stress risks only and preserves no-federation/no-network authority. |
+| Federation remains blocked by default. | PMR-FED-STRESS-00 models synthetic stress risks only and preserves no-federation/no-network authority. |
+| PMR-FED-STRESS-00 is not Atlas canon. | PMR-FED-STRESS-00 models synthetic stress risks only and preserves no-federation/no-network authority. |
+| PMR-FED-STRESS-00 is not memory write authorization. | PMR-FED-STRESS-00 models synthetic stress risks only and preserves no-federation/no-network authority. |
+| PMR-FED-STRESS-00 is not model-weight training. | PMR-FED-STRESS-00 models synthetic stress risks only and preserves no-federation/no-network authority. |
+| PMR-FED-STRESS-00 is not deployment authority. | PMR-FED-STRESS-00 models synthetic stress risks only and preserves no-federation/no-network authority. |
+| PMR-FED-STRESS-00 is not truth certification. | PMR-FED-STRESS-00 models synthetic stress risks only and preserves no-federation/no-network authority. |

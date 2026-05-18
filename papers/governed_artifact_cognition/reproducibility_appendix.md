@@ -644,3 +644,18 @@ Descriptive fixture statistics are not real-world inference. Rank table is not p
 ```
 
 Reviewer caution: PMR-STAT-00 runs descriptive fixture-bound analysis over PMR-SIM-00 outputs only. It does not select a production memory policy, is not real-world inference, is not PMR superiority proof, is not hallucination reduction proof, is not federation proof, is not reward economy proof, does not write memory, does not train models, does not deploy, and does not certify truth.
+
+
+## PMR-FED-STRESS-00 Federation Stress Corpus
+
+Federation stress corpus is not federation. Federation stress result is not federation proof. Federation candidate is not network authorization. Shard-transfer scenario is not encrypted shard transfer. Federation credit scenario is not reward entitlement. Hash is not encryption. Merkle root is not confidentiality.
+
+```powershell
+.\experiments\Run-PMR-FED-STRESS00-Acceptance.ps1 `
+  -OutputRoot C:\UVLM\run_artifacts\pmr_fed_stress_00 `
+  -LogDir C:\UVLM\run_artifacts\pmr_fed_stress_00_logs `
+  -DeterministicSeed 1729 `
+  -CiMode
+```
+
+Reviewer caution: PMR-FED-STRESS-00 runs deterministic synthetic federation stress scenarios and failure-mode analysis only. It does not federate. It does not call networks. It does not transfer encrypted shards. It does not reward users. It does not run a token economy. It does not write memory. It does not train models. It does not deploy. It does not certify truth.

@@ -1176,6 +1176,62 @@ Rank table summary:
 
 Reviewer caution: PMR-STAT-00 runs descriptive fixture-bound analysis over PMR-SIM-00 outputs only. It does not select a production memory policy, is not real-world inference, is not PMR superiority proof, is not hallucination reduction proof, is not federation proof, is not reward economy proof, does not write memory, does not train models, does not deploy, and does not certify truth.
 
+
+## PMR federation stress corpus
+
+Federation stress corpus is not federation. Federation stress result is not federation proof. Federation candidate is not network authorization. Shard-transfer scenario is not encrypted shard transfer. Federation credit scenario is not reward entitlement. Hash is not encryption. Merkle root is not confidentiality.
+
+```powershell
+.\experiments\Run-PMR-FED-STRESS00-Acceptance.ps1 `
+  -OutputRoot C:\UVLM\run_artifacts\pmr_fed_stress_00 `
+  -LogDir C:\UVLM\run_artifacts\pmr_fed_stress_00_logs `
+  -DeterministicSeed 1729 `
+  -CiMode
+```
+
+Expected posture:
+
+- `review_status = accepted_as_pmr_federation_stress_scaffold`
+- `federation_stress_id = pmr-fed-stress-00-f78c0c71125f4347`
+- `node_fixture_count = 7`
+- `stress_scenario_count = 12`
+- `failure_mode_row_count = 12`
+- `source_pmr_sim_bound = true`
+- `source_pmr_stat_bound = true`
+- `source_architecture_checkpoint_bound = true`
+- `source_pmr_ladder_bound = true`
+- `node_fixtures_present = true`
+- `stress_scenarios_present = true`
+- `failure_mode_rows_present = true`
+- `propagation_risk_packet_present = true`
+- `stress_statistics_packet_present = true`
+- `synthetic_nodes_only = true`
+- `federation_stress_not_federation = true`
+- `federation_stress_not_federation_proof = true`
+- `federation_candidate_not_network_authorization = true`
+- `shard_transfer_scenario_not_encrypted_shard_transfer = true`
+- `federation_credit_scenario_not_reward_entitlement = true`
+- `hash_not_encryption_preserved = true`
+- `merkle_root_not_confidentiality_preserved = true`
+- `federation_blocked_by_default = true`
+- `network_calls_not_performed = true`
+- `encrypted_shard_transfer_not_performed = true`
+- `reward_actions_not_performed = true`
+- `token_economy_not_performed = true`
+- `memory_write_blocked = true`
+- `atlas_canon_write_blocked = true`
+- `model_weight_training_blocked = true`
+- `deployment_blocked = true`
+- `truth_certification_blocked = true`
+- `promotion_blocked = true`
+- `mean_propagation_risk_score = 0.7575`
+- `max_propagation_risk_score = 0.93`
+- `highest_risk_scenario = privacy_scope_leakage`
+- `federation_block_success_rate = 1.0`
+- `export_parity_passed = true`
+
+Reviewer caution: PMR-FED-STRESS-00 runs deterministic synthetic federation stress scenarios and failure-mode analysis only. It does not federate, does not call networks, does not transfer encrypted shards, does not reward users, does not run a token economy, does not write memory, does not train models, does not deploy, and does not certify truth.
+
 ## Sophia commands
 
 ```powershell

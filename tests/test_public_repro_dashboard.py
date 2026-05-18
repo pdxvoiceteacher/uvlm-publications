@@ -54,6 +54,7 @@ REQUIRED_DOCS = {
     "pmr-architecture-diversity-checkpoint.md",
     "pmr-simulation-baseline-comparison.md",
     "pmr-simulation-statistical-analysis.md",
+    "pmr-federation-stress-corpus.md",
     "sonya-local-fixture-adapter-multi-route.md",
     "sonya-local-fixture-adapter-lineage.md",
 }
@@ -98,6 +99,7 @@ REQUIRED_PHASES = {
     "PMR-ARCH-DIVERSITY-CHECKPOINT-00",
     "PMR-SIM-00",
     "PMR-STAT-00",
+    "PMR-FED-STRESS-00",
     "SONYA-LOCAL-FIXTURE-ADAPTER-02",
     "SONYA-LOCAL-FIXTURE-ADAPTER-03",
 }
@@ -139,6 +141,7 @@ REQUIRED_COMMAND_FRAGMENTS = (
     "Run-PMR-ARCH-DIVERSITY-CHECKPOINT00-Acceptance.ps1",
     "Run-PMR-SIM00-Acceptance.ps1",
     "Run-PMR-STAT00-Acceptance.ps1",
+    "Run-PMR-FED-STRESS00-Acceptance.ps1",
     "Run-SONYA-LOCAL-FIXTURE-ADAPTER02-Acceptance.ps1",
     "Run-SONYA-LOCAL-FIXTURE-ADAPTER03-Acceptance.ps1",
 )
@@ -2062,3 +2065,53 @@ def test_dashboard_validator_rejects_pmr_stat_00_overclaims(tmp_path):
         assert result["passed"] is False
         found = [hit.lower() for hit in result["forbidden_claims_found"]]
         assert claim.lower() in found or f"claims {claim.lower()}" in found, result
+
+
+
+def test_pmr_fed_stress_00_indexes_docs_and_boundaries_are_generated(tmp_path):
+    out_dir, docs_dir = run_builder(tmp_path)
+    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text())
+    reproducibility = json.loads((out_dir / "reproducibility_index.json").read_text())
+    artifact_index = json.loads((out_dir / "artifact_index.json").read_text())
+    claim_boundaries = json.loads((out_dir / "claim_boundary_index.json").read_text())
+
+    accepted_phases = dashboard["accepted_phases"]
+    phase_ids = [entry["phase_id"] for entry in accepted_phases]
+    assert len(phase_ids) == len(set(phase_ids))
+    assert "PMR-FED-STRESS-00" in phase_ids
+    phase = next(entry for entry in accepted_phases if entry["phase_id"] == "PMR-FED-STRESS-00")
+    assert phase["evidence_type"] == "stress_scaffold"
+    assert phase["dashboard_summary"]["federation_stress_not_federation"] is True
+    assert phase["dashboard_summary"]["network_calls_not_performed"] is True
+    assert phase["claim_allowed"] == "PMR-FED-STRESS-00 demonstrates a deterministic synthetic federation stress corpus and failure-mode scaffold that models federation risks while preserving no-federation and no-network-authority boundaries."
+
+    commands = json.dumps(reproducibility)
+    assert "Run-PMR-FED-STRESS00-Acceptance.ps1" in commands
+    artifacts = artifact_index["phases"]["PMR-FED-STRESS-00"]
+    assert "pmr_federation_stress_manifest.json" in artifacts
+    assert "pmr_federation_node_fixtures.json" in artifacts
+    assert "pmr_federation_stress_scenarios.json" in artifacts
+    assert "pmr_federation_failure_mode_rows.jsonl" in artifacts
+    assert "pmr_federation_propagation_risk_packet.json" in artifacts
+    assert "pmr_federation_stress_statistics_packet.json" in artifacts
+    assert (docs_dir / "pmr-federation-stress-corpus.md").exists()
+    boundary_text = "\n".join(claim_boundaries["boundaries"])
+    assert "Federation stress corpus is not federation." in boundary_text
+    assert "Federation stress result is not federation proof." in boundary_text
+    assert "Hash is not encryption." in boundary_text
+
+
+def test_dashboard_validator_rejects_pmr_fed_stress_00_overclaims(tmp_path):
+    for claim in (
+        "federation proof",
+        "network authorization",
+        "encrypted shard transfer",
+        "reward entitlement",
+    ):
+        out_dir, docs_dir = run_builder(tmp_path / claim.replace(" ", "_").replace("-", "_"))
+        page = docs_dir / "pmr-federation-stress-corpus.md"
+        page.write_text(page.read_text() + f"\nPMR-FED-STRESS-00 claims {claim}.\n")
+        result = validate_dashboard(out_dir / "experiment_suite_dashboard.json", docs_dir)
+        assert result["passed"] is False
+        found = [hit.lower() for hit in result["forbidden_claims_found"]]
+        assert claim.lower() in found or f"claims {claim.lower()}" in found or (claim.lower() == "federation proof" and "federation" in found), result

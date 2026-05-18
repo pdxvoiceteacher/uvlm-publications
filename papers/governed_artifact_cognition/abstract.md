@@ -135,3 +135,22 @@ PMR-STAT-00 is not real-world inference. It is not production memory policy. It 
   -DeterministicSeed 1729 `
   -CiMode
 ```
+
+
+## PMR-FED-STRESS-00 Federation Stress Corpus
+
+PMR-FED-STRESS-00 adds a publication-indexed deterministic synthetic federation stress corpus and failure-mode scaffold. Federation stress corpus is not federation. Federation stress result is not federation proof. Federation candidate is not network authorization. Shard-transfer scenario is not encrypted shard transfer. Federation credit scenario is not reward entitlement. Hash is not encryption. Merkle root is not confidentiality.
+
+The scaffold models stale artifact propagation, revocation propagation delay, quarantine bypass attempts, hash/encryption confusion, scope mismatch across nodes, duplicate artifact identity, conflicting provenance claims, malicious high-utility spam, resource exhaustion attack, reward gaming attempt, privacy scope leakage, and dependency graph split brain over synthetic node fixtures only. Provenance availability is not permission to read private content. Cross-node replay is not canon. Resource contribution is not authority. Federation remains blocked by default.
+
+PMR-FED-STRESS-00 does not federate. It does not authorize networks. It does not transfer encrypted shards. It does not reward users. It does not run a token economy. It does not write memory. It does not train models. It does not deploy. It does not certify truth. PMR-FED-STRESS-00 is not Atlas canon, not memory write authorization, not model-weight training, not deployment authority, not truth certification, not hallucination reduction proof, not recursive self-improvement, and not production readiness.
+
+### PMR-FED-STRESS-00 acceptance command
+
+```powershell
+.\experiments\Run-PMR-FED-STRESS00-Acceptance.ps1 `
+  -OutputRoot C:\UVLM\run_artifacts\pmr_fed_stress_00 `
+  -LogDir C:\UVLM\run_artifacts\pmr_fed_stress_00_logs `
+  -DeterministicSeed 1729 `
+  -CiMode
+```

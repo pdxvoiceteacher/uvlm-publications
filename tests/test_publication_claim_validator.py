@@ -1988,3 +1988,63 @@ def test_governed_validator_rejects_pmr_stat_00_overclaims(tmp_path):
         assert result["passed"] is False
         found = [hit.lower() for hit in result["forbidden_overclaims_found"]]
         assert claim.lower() in found or f"claims {claim.lower()}" in found, result
+
+
+
+def test_governed_paper_includes_pmr_fed_stress_00_boundaries():
+    root = Path("papers/governed_artifact_cognition")
+    paper = (root / "PUB_GOV_ARTIFACT_COG_01.md").read_text()
+    artifact_table = (root / "artifact_table.md").read_text()
+    boundary_table = (root / "claim_boundary_table.md").read_text()
+    quickstart = (root / "reviewer_quickstart.md").read_text()
+    status = json.loads((root / "status.json").read_text())
+
+    for phrase in (
+        "PMR-FED-STRESS-00",
+        "Federation stress corpus is not federation.",
+        "Federation stress result is not federation proof.",
+        "Federation candidate is not network authorization.",
+        "Shard-transfer scenario is not encrypted shard transfer.",
+        "Hash is not encryption.",
+        "Merkle root is not confidentiality.",
+    ):
+        assert phrase in paper
+        assert phrase in boundary_table or phrase == "PMR-FED-STRESS-00"
+
+    for artifact in (
+        "pmr_federation_stress_manifest.json",
+        "pmr_federation_failure_mode_rows.jsonl",
+        "pmr_federation_propagation_risk_packet.json",
+    ):
+        assert artifact in artifact_table
+    assert "Run-PMR-FED-STRESS00-Acceptance.ps1" in quickstart
+    assert status["pmr_fed_stress_00_indexed"] is True
+    assert status["not_federation_proof"] is True
+    assert status["not_network_authorization"] is True
+    assert status["not_encrypted_shard_transfer"] is True
+
+
+def test_governed_validator_rejects_pmr_fed_stress_00_overclaims(tmp_path):
+    root = Path("papers/governed_artifact_cognition")
+    for claim in (
+        "federation proof",
+        "network authorization",
+        "encrypted shard transfer",
+        "reward entitlement",
+    ):
+        case = tmp_path / claim.replace(" ", "_").replace("-", "_")
+        case.mkdir()
+        for source in root.iterdir():
+            if source.is_file():
+                (case / source.name).write_text(source.read_text())
+        paper = case / "PUB_GOV_ARTIFACT_COG_01.md"
+        paper.write_text(paper.read_text() + f"\nPMR-FED-STRESS-00 claims {claim}.\n")
+        result = validate_publication_claims(
+            paper,
+            case / "reproducibility_appendix.md",
+            case / "reviewer_quickstart.md",
+            case / "status.json",
+        )
+        assert result["passed"] is False
+        found = [hit.lower() for hit in result["forbidden_overclaims_found"]]
+        assert claim.lower() in found or f"claims {claim.lower()}" in found or (claim.lower() == "federation proof" and "federation" in found), result

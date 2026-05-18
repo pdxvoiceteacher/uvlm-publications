@@ -344,6 +344,22 @@
 - PMR-STAT-00 is not model-weight training.
 - PMR-STAT-00 is not deployment authority.
 - PMR-STAT-00 is not truth certification.
+- Federation stress corpus is not federation.
+- Federation stress result is not federation proof.
+- Federation candidate is not network authorization.
+- Shard-transfer scenario is not encrypted shard transfer.
+- Federation credit scenario is not reward entitlement.
+- Hash is not encryption.
+- Merkle root is not confidentiality.
+- Provenance availability is not permission to read private content.
+- Cross-node replay is not canon.
+- Resource contribution is not authority.
+- Federation remains blocked by default.
+- PMR-FED-STRESS-00 is not Atlas canon.
+- PMR-FED-STRESS-00 is not memory write authorization.
+- PMR-FED-STRESS-00 is not model-weight training.
+- PMR-FED-STRESS-00 is not deployment authority.
+- PMR-FED-STRESS-00 is not truth certification.
 - Governed provenance resources may be future infrastructure rewards, but truth is not for sale.
 
 No oracle posture. No deployment posture. No final-answer posture. No AI consciousness claim. No universal ontology claim.

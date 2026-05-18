@@ -329,6 +329,22 @@
       "export_bundle_parity_report.json",
       "pmr_stat_00_acceptance_receipt.json"
     ],
+    "PMR-FED-STRESS-00": [
+      "pmr_federation_stress_manifest.json",
+      "pmr_federation_node_fixtures.json",
+      "pmr_federation_stress_scenarios.json",
+      "pmr_federation_failure_mode_rows.jsonl",
+      "pmr_federation_propagation_risk_packet.json",
+      "pmr_federation_stress_statistics_packet.json",
+      "pmr_federation_stress_review_packet.json",
+      "pmr_federation_stress_summary.md",
+      "artifact_inventory.json",
+      "run_artifact_manifest.json",
+      "triadic_run_manifest.json",
+      "export_bundle_manifest.json",
+      "export_bundle_parity_report.json",
+      "pmr_fed_stress_00_acceptance_receipt.json"
+    ],
     "UNIVERSAL-STAGE-PIPELINE-00": [
       "universal_pipeline_manifest.json",
       "universal_pipeline_review_packet.json",
