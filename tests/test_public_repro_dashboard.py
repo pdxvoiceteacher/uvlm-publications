@@ -52,6 +52,10 @@ REQUIRED_DOCS = {
     "pmr-sophia-lifecycle-audit-review.md",
     "pmr-destructive-action-authorization-preflight.md",
     "pmr-architecture-diversity-checkpoint.md",
+    "pmr-simulation-baseline-comparison.md",
+    "pmr-simulation-statistical-analysis.md",
+    "pmr-federation-stress-corpus.md",
+    "pmr-human-provenance-context.md",
     "sonya-local-fixture-adapter-multi-route.md",
     "sonya-local-fixture-adapter-lineage.md",
 }
@@ -94,6 +98,11 @@ REQUIRED_PHASES = {
     "PMR-09-DESTRUCTIVE-ACTION-AUTHORIZATION-NEGATIVE-CONTROL",
     "PMR-10-DESTRUCTIVE-ACTION-AUTHORIZATION-PREFLIGHT",
     "PMR-ARCH-DIVERSITY-CHECKPOINT-00",
+    "PMR-SIM-00",
+    "PMR-STAT-00",
+    "PMR-FED-STRESS-00",
+    "PMR-HUMAN-PROVENANCE-00",
+    "PMR-HUMAN-CONSENT-NEGATIVE-CONTROL-00",
     "SONYA-LOCAL-FIXTURE-ADAPTER-02",
     "SONYA-LOCAL-FIXTURE-ADAPTER-03",
 }
@@ -133,6 +142,10 @@ REQUIRED_COMMAND_FRAGMENTS = (
     "Run-PMR09-Acceptance.ps1",
     "Run-PMR10-Acceptance.ps1",
     "Run-PMR-ARCH-DIVERSITY-CHECKPOINT00-Acceptance.ps1",
+    "Run-PMR-SIM00-Acceptance.ps1",
+    "Run-PMR-STAT00-Acceptance.ps1",
+    "Run-PMR-FED-STRESS00-Acceptance.ps1",
+    "Run-PMR-HUMAN-PROVENANCE00-Acceptance.ps1",
     "Run-SONYA-LOCAL-FIXTURE-ADAPTER02-Acceptance.ps1",
     "Run-SONYA-LOCAL-FIXTURE-ADAPTER03-Acceptance.ps1",
 )
@@ -1088,6 +1101,17 @@ def test_validator_fails_if_public_utility_alpha_makes_forbidden_claims(tmp_path
         assert claim.lower() in result["forbidden_claims_found"], result
 
 
+def test_validator_rejects_explicit_federation_punctuation_overclaims(tmp_path):
+    for claim in ("Public Utility Alpha claims federation.", "Public Utility Alpha claims federation,"):
+        out_dir, docs_dir = run_builder(tmp_path / claim.replace(" ", "_").replace(",", "comma").replace(".", "period"))
+        alpha = docs_dir / "public-utility-alpha.md"
+        alpha.write_text(alpha.read_text() + f"\n{claim}\n")
+        result = validate_dashboard(out_dir / "experiment_suite_dashboard.json", docs_dir)
+        assert result["passed"] is False
+        assert "federation" in result["forbidden_claims_found"]
+
+
+
 def test_validator_fails_if_raw_baseline_makes_forbidden_claims(tmp_path):
     forbidden_claims = (
         "hallucination reduction proven",
@@ -1958,3 +1982,201 @@ def test_validator_fails_if_pmr_08_makes_forbidden_claims(tmp_path):
         assert result["passed"] is False
         forbidden_found = [found.lower() for found in result["forbidden_claims_found"]]
         assert claim.lower() in forbidden_found or f"claims {claim.lower()}" in forbidden_found, result
+
+
+def test_pmr_sim_00_indexes_docs_and_boundaries_are_generated(tmp_path):
+    out_dir, docs_dir = run_builder(tmp_path)
+    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text())
+    reproducibility = json.loads((out_dir / "reproducibility_index.json").read_text())
+    artifact_index = json.loads((out_dir / "artifact_index.json").read_text())
+    claim_boundaries = json.loads((out_dir / "claim_boundary_index.json").read_text())
+
+    accepted_phases = dashboard["accepted_phases"]
+    phase_ids = [entry["phase_id"] for entry in accepted_phases]
+    assert len(phase_ids) == len(set(phase_ids))
+    assert "PMR-SIM-00" in phase_ids
+    phase = next(entry for entry in accepted_phases if entry["phase_id"] == "PMR-SIM-00")
+    assert phase["evidence_type"] == "simulation_scaffold"
+    assert phase["dashboard_summary"]["pmr_policy_allowed_to_lose"] is True
+    assert phase["dashboard_summary"]["production_policy_selected"] is False
+    assert phase["claim_allowed"] == "PMR-SIM-00 demonstrates a deterministic synthetic fixture simulation scaffold comparing PMR-GPCU-style retention against simpler baselines while preserving non-production and non-authority boundaries."
+
+    commands = json.dumps(reproducibility)
+    assert "Run-PMR-SIM00-Acceptance.ps1" in commands
+    artifacts = artifact_index["phases"]["PMR-SIM-00"]
+    assert "pmr_simulation_manifest.json" in artifacts
+    assert "pmr_simulation_result_rows.jsonl" in artifacts
+    assert "pmr_simulation_comparison_packet.json" in artifacts
+    assert "pmr_simulation_statistics_packet.json" in artifacts
+    assert (docs_dir / "pmr-simulation-baseline-comparison.md").exists()
+    boundary_text = "\n".join(claim_boundaries["boundaries"])
+    assert "PMR becomes scientific only when it can lose." in boundary_text
+    assert "PMR policy is allowed to lose." in boundary_text
+    assert "Simulation result is not production memory policy." in boundary_text
+
+
+def test_dashboard_validator_rejects_pmr_sim_00_overclaims(tmp_path):
+    for claim in (
+        "PMR superiority proof",
+        "production memory policy",
+        "hallucination reduction proof",
+        "federation proof",
+        "reward economy proof",
+    ):
+        out_dir, docs_dir = run_builder(tmp_path / claim.replace(" ", "_"))
+        page = docs_dir / "pmr-simulation-baseline-comparison.md"
+        page.write_text(page.read_text() + f"\nPMR-SIM-00 claims {claim}.\n")
+        result = validate_dashboard(out_dir / "experiment_suite_dashboard.json", docs_dir)
+        assert result["passed"] is False
+        found = [hit.lower() for hit in result["forbidden_claims_found"]]
+        assert claim.lower() in found or f"claims {claim.lower()}" in found, result
+
+
+
+def test_pmr_stat_00_indexes_docs_and_boundaries_are_generated(tmp_path):
+    out_dir, docs_dir = run_builder(tmp_path)
+    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text())
+    reproducibility = json.loads((out_dir / "reproducibility_index.json").read_text())
+    artifact_index = json.loads((out_dir / "artifact_index.json").read_text())
+    claim_boundaries = json.loads((out_dir / "claim_boundary_index.json").read_text())
+
+    accepted_phases = dashboard["accepted_phases"]
+    phase_ids = [entry["phase_id"] for entry in accepted_phases]
+    assert len(phase_ids) == len(set(phase_ids))
+    assert "PMR-STAT-00" in phase_ids
+    phase = next(entry for entry in accepted_phases if entry["phase_id"] == "PMR-STAT-00")
+    assert phase["evidence_type"] == "analysis_scaffold"
+    assert phase["dashboard_summary"]["descriptive_statistics_only"] is True
+    assert phase["dashboard_summary"]["rank_table_not_production_policy_selection"] is True
+    assert phase["dashboard_summary"]["production_policy_selected"] is False
+    assert phase["claim_allowed"] == "PMR-STAT-00 demonstrates descriptive fixture-bound statistical analysis over PMR-SIM-00 outputs, including policy metric summaries, pair deltas, rank tables, sensitivity summaries, and failure-mode summaries, while preserving non-production and non-authority boundaries."
+
+    commands = json.dumps(reproducibility)
+    assert "Run-PMR-STAT00-Acceptance.ps1" in commands
+    artifacts = artifact_index["phases"]["PMR-STAT-00"]
+    assert "pmr_stat_analysis_manifest.json" in artifacts
+    assert "pmr_stat_policy_metric_summaries.jsonl" in artifacts
+    assert "pmr_stat_policy_pair_deltas.jsonl" in artifacts
+    assert "pmr_stat_rank_table.json" in artifacts
+    assert "pmr_stat_sensitivity_packet.json" in artifacts
+    assert "pmr_stat_failure_mode_packet.json" in artifacts
+    assert (docs_dir / "pmr-simulation-statistical-analysis.md").exists()
+    boundary_text = "\n".join(claim_boundaries["boundaries"])
+    assert "Descriptive fixture statistics are not real-world inference." in boundary_text
+    assert "Rank table is not production policy selection." in boundary_text
+
+
+def test_dashboard_validator_rejects_pmr_stat_00_overclaims(tmp_path):
+    for claim in (
+        "real-world inference",
+        "production policy selection",
+        "PMR superiority proof",
+        "hallucination reduction proof",
+    ):
+        out_dir, docs_dir = run_builder(tmp_path / claim.replace(" ", "_").replace("-", "_"))
+        page = docs_dir / "pmr-simulation-statistical-analysis.md"
+        page.write_text(page.read_text() + f"\nPMR-STAT-00 claims {claim}.\n")
+        result = validate_dashboard(out_dir / "experiment_suite_dashboard.json", docs_dir)
+        assert result["passed"] is False
+        found = [hit.lower() for hit in result["forbidden_claims_found"]]
+        assert claim.lower() in found or f"claims {claim.lower()}" in found, result
+
+
+
+def test_pmr_fed_stress_00_indexes_docs_and_boundaries_are_generated(tmp_path):
+    out_dir, docs_dir = run_builder(tmp_path)
+    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text())
+    reproducibility = json.loads((out_dir / "reproducibility_index.json").read_text())
+    artifact_index = json.loads((out_dir / "artifact_index.json").read_text())
+    claim_boundaries = json.loads((out_dir / "claim_boundary_index.json").read_text())
+
+    accepted_phases = dashboard["accepted_phases"]
+    phase_ids = [entry["phase_id"] for entry in accepted_phases]
+    assert len(phase_ids) == len(set(phase_ids))
+    assert "PMR-FED-STRESS-00" in phase_ids
+    phase = next(entry for entry in accepted_phases if entry["phase_id"] == "PMR-FED-STRESS-00")
+    assert phase["evidence_type"] == "stress_scaffold"
+    assert phase["dashboard_summary"]["federation_stress_not_federation"] is True
+    assert phase["dashboard_summary"]["network_calls_not_performed"] is True
+    assert phase["claim_allowed"] == "PMR-FED-STRESS-00 demonstrates a deterministic synthetic federation stress corpus and failure-mode scaffold that models federation risks while preserving no-federation and no-network-authority boundaries."
+
+    commands = json.dumps(reproducibility)
+    assert "Run-PMR-FED-STRESS00-Acceptance.ps1" in commands
+    artifacts = artifact_index["phases"]["PMR-FED-STRESS-00"]
+    assert "pmr_federation_stress_manifest.json" in artifacts
+    assert "pmr_federation_node_fixtures.json" in artifacts
+    assert "pmr_federation_stress_scenarios.json" in artifacts
+    assert "pmr_federation_failure_mode_rows.jsonl" in artifacts
+    assert "pmr_federation_propagation_risk_packet.json" in artifacts
+    assert "pmr_federation_stress_statistics_packet.json" in artifacts
+    assert (docs_dir / "pmr-federation-stress-corpus.md").exists()
+    boundary_text = "\n".join(claim_boundaries["boundaries"])
+    assert "Federation stress corpus is not federation." in boundary_text
+    assert "Federation stress result is not federation proof." in boundary_text
+    assert "Hash is not encryption." in boundary_text
+
+
+def test_dashboard_validator_rejects_pmr_fed_stress_00_overclaims(tmp_path):
+    for claim in (
+        "federation proof",
+        "network authorization",
+        "encrypted shard transfer",
+        "reward entitlement",
+    ):
+        out_dir, docs_dir = run_builder(tmp_path / claim.replace(" ", "_").replace("-", "_"))
+        page = docs_dir / "pmr-federation-stress-corpus.md"
+        page.write_text(page.read_text() + f"\nPMR-FED-STRESS-00 claims {claim}.\n")
+        result = validate_dashboard(out_dir / "experiment_suite_dashboard.json", docs_dir)
+        assert result["passed"] is False
+        found = [hit.lower() for hit in result["forbidden_claims_found"]]
+        assert claim.lower() in found or f"claims {claim.lower()}" in found or (claim.lower() == "federation proof" and "federation" in found), result
+
+
+
+def test_pmr_human_provenance_00_indexes_docs_and_boundaries_are_generated(tmp_path):
+    out_dir, docs_dir = run_builder(tmp_path)
+    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text())
+    reproducibility = json.loads((out_dir / "reproducibility_index.json").read_text())
+    artifact_index = json.loads((out_dir / "artifact_index.json").read_text())
+    claim_boundaries = json.loads((out_dir / "claim_boundary_index.json").read_text())
+
+    accepted_phases = dashboard["accepted_phases"]
+    phase_ids = [entry["phase_id"] for entry in accepted_phases]
+    assert len(phase_ids) == len(set(phase_ids))
+    assert "PMR-HUMAN-PROVENANCE-00" in phase_ids
+    phase = next(entry for entry in accepted_phases if entry["phase_id"] == "PMR-HUMAN-PROVENANCE-00")
+    assert phase["evidence_type"] == "architecture_scaffold"
+    assert phase["dashboard_summary"]["human_provenance_not_identity_certification"] is True
+    assert phase["dashboard_summary"]["consent_execution_performed"] is False
+    assert phase["claim_allowed"] == "PMR-HUMAN-PROVENANCE-00 demonstrates a fixture-only human provenance and consent context scaffold for synthetic provenance, consent scope, correction, revocation, review participation, and lived-stakes annotation while preserving non-authority boundaries."
+
+    commands = json.dumps(reproducibility)
+    assert "Run-PMR-HUMAN-PROVENANCE00-Acceptance.ps1" in commands
+    artifacts = artifact_index["phases"]["PMR-HUMAN-PROVENANCE-00"]
+    assert "pmr_human_provenance_manifest.json" in artifacts
+    assert "pmr_human_provenance_context_packet.json" in artifacts
+    assert "pmr_human_consent_scope_packet.json" in artifacts
+    assert "pmr_human_correction_request_packet.json" in artifacts
+    assert "pmr_human_revocation_request_packet.json" in artifacts
+    assert "pmr_human_lived_stakes_annotation_packet.json" in artifacts
+    assert (docs_dir / "pmr-human-provenance-context.md").exists()
+    boundary_text = "\n".join(claim_boundaries["boundaries"])
+    assert "Human provenance context is not identity certification." in boundary_text
+    assert "The system must not encode human = body or AI = mind." in boundary_text
+
+
+def test_dashboard_validator_rejects_pmr_human_provenance_00_overclaims(tmp_path):
+    for claim in (
+        "identity certification",
+        "consent execution",
+        "human value score",
+        "AI consciousness",
+        "human consciousness",
+    ):
+        out_dir, docs_dir = run_builder(tmp_path / claim.replace(" ", "_").replace("-", "_"))
+        page = docs_dir / "pmr-human-provenance-context.md"
+        page.write_text(page.read_text() + f"\nPMR-HUMAN-PROVENANCE-00 claims {claim}.\n")
+        result = validate_dashboard(out_dir / "experiment_suite_dashboard.json", docs_dir)
+        assert result["passed"] is False
+        found = [hit.lower() for hit in result["forbidden_claims_found"]]
+        assert claim.lower() in found or f"claims {claim.lower()}" in found, result

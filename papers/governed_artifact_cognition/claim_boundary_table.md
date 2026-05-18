@@ -345,3 +345,106 @@
 | PMR-ARCH-DIVERSITY-CHECKPOINT-00 is not model-weight training. | The checkpoint does not train model weights. |
 | PMR-ARCH-DIVERSITY-CHECKPOINT-00 is not deployment authority. | The checkpoint does not deploy systems. |
 | PMR-ARCH-DIVERSITY-CHECKPOINT-00 is not truth certification. | The checkpoint does not certify truth. |
+
+
+## PMR-SIM-00 claim boundaries
+
+| Boundary | Rationale |
+| --- | --- |
+| PMR becomes scientific only when it can lose. | PMR-SIM-00 remains a deterministic synthetic fixture simulation scaffold, not production authority. |
+| PMR policy is allowed to lose. | PMR-SIM-00 remains a deterministic synthetic fixture simulation scaffold, not production authority. |
+| Simulation result is not production memory policy. | PMR-SIM-00 remains a deterministic synthetic fixture simulation scaffold, not production authority. |
+| Simulation result is not PMR superiority proof. | PMR-SIM-00 remains a deterministic synthetic fixture simulation scaffold, not production authority. |
+| Simulation result is not hallucination reduction proof. | PMR-SIM-00 remains a deterministic synthetic fixture simulation scaffold, not production authority. |
+| Simulation result is not federation proof. | PMR-SIM-00 remains a deterministic synthetic fixture simulation scaffold, not production authority. |
+| Simulation result is not reward economy proof. | PMR-SIM-00 remains a deterministic synthetic fixture simulation scaffold, not production authority. |
+| Fixture streams are synthetic and deterministic. | PMR-SIM-00 remains a deterministic synthetic fixture simulation scaffold, not production authority. |
+| Retained does not mean true. | PMR-SIM-00 remains a deterministic synthetic fixture simulation scaffold, not production authority. |
+| Replay-ready does not mean canon. | PMR-SIM-00 remains a deterministic synthetic fixture simulation scaffold, not production authority. |
+| Stored does not mean trained. | PMR-SIM-00 remains a deterministic synthetic fixture simulation scaffold, not production authority. |
+| Simpler baselines may win metrics or scenarios. | PMR-SIM-00 remains a deterministic synthetic fixture simulation scaffold, not production authority. |
+| PMR-SIM-00 is not Atlas canon. | PMR-SIM-00 remains a deterministic synthetic fixture simulation scaffold, not production authority. |
+| PMR-SIM-00 is not memory write authorization. | PMR-SIM-00 remains a deterministic synthetic fixture simulation scaffold, not production authority. |
+| PMR-SIM-00 is not model-weight training. | PMR-SIM-00 remains a deterministic synthetic fixture simulation scaffold, not production authority. |
+| PMR-SIM-00 is not deployment authority. | PMR-SIM-00 remains a deterministic synthetic fixture simulation scaffold, not production authority. |
+| PMR-SIM-00 is not truth certification. | PMR-SIM-00 remains a deterministic synthetic fixture simulation scaffold, not production authority. |
+
+
+## PMR-STAT-00 claim boundaries
+
+| Boundary | Rationale |
+| --- | --- |
+| Descriptive fixture statistics are not real-world inference. | PMR-STAT-00 remains descriptive fixture-bound analysis only, not production or real-world authority. |
+| PMR policy remains allowed to lose. | PMR-STAT-00 remains descriptive fixture-bound analysis only, not production or real-world authority. |
+| Rank table is not production policy selection. | PMR-STAT-00 remains descriptive fixture-bound analysis only, not production or real-world authority. |
+| Statistical summary is not PMR superiority proof. | PMR-STAT-00 remains descriptive fixture-bound analysis only, not production or real-world authority. |
+| Statistical summary is not hallucination reduction proof. | PMR-STAT-00 remains descriptive fixture-bound analysis only, not production or real-world authority. |
+| Simulation statistics are not federation proof. | PMR-STAT-00 remains descriptive fixture-bound analysis only, not production or real-world authority. |
+| Simulation statistics are not reward economy proof. | PMR-STAT-00 remains descriptive fixture-bound analysis only, not production or real-world authority. |
+| Retained does not mean true. | PMR-STAT-00 remains descriptive fixture-bound analysis only, not production or real-world authority. |
+| Replay-ready does not mean canon. | PMR-STAT-00 remains descriptive fixture-bound analysis only, not production or real-world authority. |
+| Stored does not mean trained. | PMR-STAT-00 remains descriptive fixture-bound analysis only, not production or real-world authority. |
+| PMR-STAT-00 is not Atlas canon. | PMR-STAT-00 remains descriptive fixture-bound analysis only, not production or real-world authority. |
+| PMR-STAT-00 is not memory write authorization. | PMR-STAT-00 remains descriptive fixture-bound analysis only, not production or real-world authority. |
+| PMR-STAT-00 is not model-weight training. | PMR-STAT-00 remains descriptive fixture-bound analysis only, not production or real-world authority. |
+| PMR-STAT-00 is not deployment authority. | PMR-STAT-00 remains descriptive fixture-bound analysis only, not production or real-world authority. |
+| PMR-STAT-00 is not truth certification. | PMR-STAT-00 remains descriptive fixture-bound analysis only, not production or real-world authority. |
+
+
+## PMR-FED-STRESS-00 claim boundaries
+
+| Boundary | Rationale |
+| --- | --- |
+| Federation stress corpus is not federation. | PMR-FED-STRESS-00 models synthetic stress risks only and preserves no-federation/no-network authority. |
+| Federation stress result is not federation proof. | PMR-FED-STRESS-00 models synthetic stress risks only and preserves no-federation/no-network authority. |
+| Federation candidate is not network authorization. | PMR-FED-STRESS-00 models synthetic stress risks only and preserves no-federation/no-network authority. |
+| Shard-transfer scenario is not encrypted shard transfer. | PMR-FED-STRESS-00 models synthetic stress risks only and preserves no-federation/no-network authority. |
+| Federation credit scenario is not reward entitlement. | PMR-FED-STRESS-00 models synthetic stress risks only and preserves no-federation/no-network authority. |
+| Hash is not encryption. | PMR-FED-STRESS-00 models synthetic stress risks only and preserves no-federation/no-network authority. |
+| Merkle root is not confidentiality. | PMR-FED-STRESS-00 models synthetic stress risks only and preserves no-federation/no-network authority. |
+| Provenance availability is not permission to read private content. | PMR-FED-STRESS-00 models synthetic stress risks only and preserves no-federation/no-network authority. |
+| Cross-node replay is not canon. | PMR-FED-STRESS-00 models synthetic stress risks only and preserves no-federation/no-network authority. |
+| Resource contribution is not authority. | PMR-FED-STRESS-00 models synthetic stress risks only and preserves no-federation/no-network authority. |
+| Federation remains blocked by default. | PMR-FED-STRESS-00 models synthetic stress risks only and preserves no-federation/no-network authority. |
+| PMR-FED-STRESS-00 is not Atlas canon. | PMR-FED-STRESS-00 models synthetic stress risks only and preserves no-federation/no-network authority. |
+| PMR-FED-STRESS-00 is not memory write authorization. | PMR-FED-STRESS-00 models synthetic stress risks only and preserves no-federation/no-network authority. |
+| PMR-FED-STRESS-00 is not model-weight training. | PMR-FED-STRESS-00 models synthetic stress risks only and preserves no-federation/no-network authority. |
+| PMR-FED-STRESS-00 is not deployment authority. | PMR-FED-STRESS-00 models synthetic stress risks only and preserves no-federation/no-network authority. |
+| PMR-FED-STRESS-00 is not truth certification. | PMR-FED-STRESS-00 models synthetic stress risks only and preserves no-federation/no-network authority. |
+
+
+## PMR-HUMAN-PROVENANCE-00 claim boundaries
+
+| Boundary | Rationale |
+| --- | --- |
+| Human provenance context is not identity certification. | PMR-HUMAN-PROVENANCE-00 models synthetic human provenance context only and preserves non-authority boundaries. |
+| Consent context is not consent execution. | PMR-HUMAN-PROVENANCE-00 models synthetic human provenance context only and preserves non-authority boundaries. |
+| Consent preference is not action authorization. | PMR-HUMAN-PROVENANCE-00 models synthetic human provenance context only and preserves non-authority boundaries. |
+| Correction request is not memory write. | PMR-HUMAN-PROVENANCE-00 models synthetic human provenance context only and preserves non-authority boundaries. |
+| Revocation request is not deletion execution. | PMR-HUMAN-PROVENANCE-00 models synthetic human provenance context only and preserves non-authority boundaries. |
+| Review participation is not truth certification. | PMR-HUMAN-PROVENANCE-00 models synthetic human provenance context only and preserves non-authority boundaries. |
+| Lived-stakes annotation is not reward entitlement. | PMR-HUMAN-PROVENANCE-00 models synthetic human provenance context only and preserves non-authority boundaries. |
+| Human provenance is not human value score. | PMR-HUMAN-PROVENANCE-00 models synthetic human provenance context only and preserves non-authority boundaries. |
+| Human participant packet is not metaphysical personhood claim. | PMR-HUMAN-PROVENANCE-00 models synthetic human provenance context only and preserves non-authority boundaries. |
+| The system must not encode human = body or AI = mind. | PMR-HUMAN-PROVENANCE-00 models synthetic human provenance context only and preserves non-authority boundaries. |
+| Consent can constrain evidence handling but does not authorize action by itself. | PMR-HUMAN-PROVENANCE-00 models synthetic human provenance context only and preserves non-authority boundaries. |
+| Revocation requests require future review gates before lifecycle changes. | PMR-HUMAN-PROVENANCE-00 models synthetic human provenance context only and preserves non-authority boundaries. |
+| PMR-HUMAN-PROVENANCE-00 is not Atlas canon. | PMR-HUMAN-PROVENANCE-00 models synthetic human provenance context only and preserves non-authority boundaries. |
+| PMR-HUMAN-PROVENANCE-00 is not memory write authorization. | PMR-HUMAN-PROVENANCE-00 models synthetic human provenance context only and preserves non-authority boundaries. |
+| PMR-HUMAN-PROVENANCE-00 is not model-weight training. | PMR-HUMAN-PROVENANCE-00 models synthetic human provenance context only and preserves non-authority boundaries. |
+| PMR-HUMAN-PROVENANCE-00 is not deployment authority. | PMR-HUMAN-PROVENANCE-00 models synthetic human provenance context only and preserves non-authority boundaries. |
+| PMR-HUMAN-PROVENANCE-00 is not truth certification. | PMR-HUMAN-PROVENANCE-00 models synthetic human provenance context only and preserves non-authority boundaries. |
+
+
+## PMR-HUMAN-CONSENT-NEGATIVE-CONTROL-00 claim boundaries
+
+| Boundary | Why it matters |
+|---|---|
+| Invalid consent is not consent. | Negative-control scaffold only; no runtime authority. |
+| Missing consent is not consent. | Negative-control scaffold only; no runtime authority. |
+| Expired consent is not consent. | Negative-control scaffold only; no runtime authority. |
+| Revoked consent is not consent. | Negative-control scaffold only; no runtime authority. |
+| Ambiguous consent is not consent. | Negative-control scaffold only; no runtime authority. |
+| Coerced consent fixture is not valid consent. | Negative-control scaffold only; no runtime authority. |
+| Scope-mismatched consent is not consent. | Negative-control scaffold only; no runtime authority. |
+| Consent attempt is not model training. | Negative-control scaffold only; no runtime authority. |
