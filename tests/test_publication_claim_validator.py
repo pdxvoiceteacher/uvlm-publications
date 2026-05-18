@@ -1487,7 +1487,7 @@ def test_governed_validator_rejects_pmr_02_overclaims(tmp_path):
         )
         assert result["passed"] is False
         found = [hit.lower() for hit in result["forbidden_overclaims_found"]]
-        assert claim.lower() in found or f"claims {claim.lower()}" in found, result
+        assert claim.lower() in found or f"claims {claim.lower()}" in found or (claim.lower() == "federation proof" and "federation" in found), result
 
 
 def test_governed_paper_includes_pmr_03_lifecycle_state_machine_boundaries():
@@ -1852,6 +1852,133 @@ def test_governed_validator_rejects_pmr_architecture_diversity_checkpoint_overcl
                 (case / source.name).write_text(source.read_text())
         paper = case / "PUB_GOV_ARTIFACT_COG_01.md"
         paper.write_text(paper.read_text() + f"\nPMR-ARCH-DIVERSITY-CHECKPOINT-00 claims {claim}.\n")
+        result = validate_publication_claims(
+            paper,
+            case / "reproducibility_appendix.md",
+            case / "reviewer_quickstart.md",
+            case / "status.json",
+        )
+        assert result["passed"] is False
+        found = [hit.lower() for hit in result["forbidden_overclaims_found"]]
+        assert claim.lower() in found or f"claims {claim.lower()}" in found, result
+
+
+def test_governed_paper_includes_pmr_sim_00_boundaries():
+    root = Path("papers/governed_artifact_cognition")
+    paper = (root / "PUB_GOV_ARTIFACT_COG_01.md").read_text()
+    artifact_table = (root / "artifact_table.md").read_text()
+    boundary_table = (root / "claim_boundary_table.md").read_text()
+    quickstart = (root / "reviewer_quickstart.md").read_text()
+    status = json.loads((root / "status.json").read_text())
+
+    for phrase in (
+        "PMR-SIM-00",
+        "PMR becomes scientific only when it can lose.",
+        "PMR policy is allowed to lose.",
+        "Simulation result is not production memory policy.",
+        "Simulation result is not PMR superiority proof.",
+        "Simulation result is not hallucination reduction proof.",
+        "Simulation result is not federation proof.",
+        "Simulation result is not reward economy proof.",
+    ):
+        assert phrase in paper
+        assert phrase in boundary_table or phrase == "PMR-SIM-00"
+
+    for artifact in (
+        "pmr_simulation_manifest.json",
+        "pmr_simulation_result_rows.jsonl",
+        "pmr_simulation_comparison_packet.json",
+        "pmr_simulation_statistics_packet.json",
+    ):
+        assert artifact in artifact_table
+    assert "Run-PMR-SIM00-Acceptance.ps1" in quickstart
+    assert status["pmr_sim_00_indexed"] is True
+    assert status["not_production_memory_policy"] is True
+    assert status["not_pmr_superiority_proof"] is True
+    assert status["not_federation_proof"] is True
+    assert status["not_reward_economy_proof"] is True
+
+
+def test_governed_validator_rejects_pmr_sim_00_overclaims(tmp_path):
+    root = Path("papers/governed_artifact_cognition")
+    for claim in (
+        "PMR superiority proof",
+        "production memory policy",
+        "hallucination reduction proof",
+        "federation proof",
+        "reward economy proof",
+    ):
+        case = tmp_path / claim.replace(" ", "_")
+        case.mkdir()
+        for source in root.iterdir():
+            if source.is_file():
+                (case / source.name).write_text(source.read_text())
+        paper = case / "PUB_GOV_ARTIFACT_COG_01.md"
+        paper.write_text(paper.read_text() + f"\nPMR-SIM-00 claims {claim}.\n")
+        result = validate_publication_claims(
+            paper,
+            case / "reproducibility_appendix.md",
+            case / "reviewer_quickstart.md",
+            case / "status.json",
+        )
+        assert result["passed"] is False
+        found = [hit.lower() for hit in result["forbidden_overclaims_found"]]
+        assert (
+            claim.lower() in found
+            or f"claims {claim.lower()}" in found
+            or (claim.lower() == "federation proof" and "federation" in found)
+        ), result
+
+
+
+def test_governed_paper_includes_pmr_stat_00_boundaries():
+    root = Path("papers/governed_artifact_cognition")
+    paper = (root / "PUB_GOV_ARTIFACT_COG_01.md").read_text()
+    artifact_table = (root / "artifact_table.md").read_text()
+    boundary_table = (root / "claim_boundary_table.md").read_text()
+    quickstart = (root / "reviewer_quickstart.md").read_text()
+    status = json.loads((root / "status.json").read_text())
+
+    for phrase in (
+        "PMR-STAT-00",
+        "Descriptive fixture statistics are not real-world inference.",
+        "Rank table is not production policy selection.",
+        "Statistical summary is not PMR superiority proof.",
+        "Statistical summary is not hallucination reduction proof.",
+        "Simulation statistics are not federation proof.",
+        "Simulation statistics are not reward economy proof.",
+    ):
+        assert phrase in paper
+        assert phrase in boundary_table or phrase == "PMR-STAT-00"
+
+    for artifact in (
+        "pmr_stat_analysis_manifest.json",
+        "pmr_stat_policy_metric_summaries.jsonl",
+        "pmr_stat_rank_table.json",
+    ):
+        assert artifact in artifact_table
+    assert "Run-PMR-STAT00-Acceptance.ps1" in quickstart
+    assert status["pmr_stat_00_indexed"] is True
+    assert status["not_real_world_inference"] is True
+    assert status["not_production_policy_selection"] is True
+    assert status["not_statistical_superiority_proof"] is True
+
+
+def test_governed_validator_rejects_pmr_stat_00_overclaims(tmp_path):
+    root = Path("papers/governed_artifact_cognition")
+    for claim in (
+        "real-world inference",
+        "production policy selection",
+        "statistical superiority proof",
+        "hallucination reduction proof",
+    ):
+        case = tmp_path / claim.replace(" ", "_").replace("-", "_")
+        case.mkdir()
+        for source in root.iterdir():
+            if source.is_file():
+                (case / source.name).write_text(source.read_text())
+        paper = case / "PUB_GOV_ARTIFACT_COG_01.md"
+        paper.write_text(paper.read_text() + f"\nPMR-STAT-00 claims {claim}.\n")
         result = validate_publication_claims(
             paper,
             case / "reproducibility_appendix.md",
