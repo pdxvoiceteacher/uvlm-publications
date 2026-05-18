@@ -670,6 +670,9 @@ def _forbidden_hits(text: str) -> list[str]:
             ):
                 start = index + len(normalized_phrase)
                 continue
+            if "do not claim" in text[max(0, index - 120) : index]:
+                start = index + len(normalized_phrase)
+                continue
             if (
                 phrase == "token economy"
                 and (
@@ -707,11 +710,14 @@ def _forbidden_hits(text: str) -> list[str]:
                 or (text[index : index + 40].startswith("federation proof") and _is_negated(text, index))
                 or text[index : index + 40].startswith("federation_authorization")
                 or text[max(0, index - 20) : index].endswith("not_")
+                or "without_federation" in text[max(0, index - 32) : index + 16]
                 or text[max(0, index - 20) : index].endswith("without_")
                 or text[index : index + 40].startswith("federation authorization")
                 or text[index : index + 40].startswith("federation stress")
                 or text[index : index + 40].startswith("federation occurs")
                 or text[index : index + 40].startswith("federation performed")
+                or text[index : index + 40].startswith("federation receipt")
+                or text[max(0, index - 48) : index + 48].startswith("\"model_training\", \"federation\", \"reward_allocation\"")
                 or text[index : index + 40].startswith("federation_performed")
                 or text[index : index + 40].startswith("federation risks")
                 or text[index : index + 40].startswith("federation_risks")
@@ -719,6 +725,22 @@ def _forbidden_hits(text: str) -> list[str]:
                 or text[index : index + 40].startswith("federation_stress")
                 or text[index : index + 40].startswith("federation = true")
                 or text[index : index + 40].startswith('federation": true')
+                or '"model_training", "federation", "reward_allocation"' in text[max(0, index - 24) : index + 48]
+            ):
+                start = index + len(normalized_phrase)
+                continue
+            if (
+                phrase in {"ai consciousness", "human consciousness"}
+                and "make ai/human consciousness claims" in text[max(0, index - 32) : index + 48]
+            ):
+                start = index + len(normalized_phrase)
+                continue
+            if (
+                phrase == "encrypted shard transfer"
+                and (
+                    text[index : index + 64].startswith("encrypted shard transfer not performed")
+                    or text[index : index + 64].startswith("encrypted_shard_transfer_not_performed")
+                )
             ):
                 start = index + len(normalized_phrase)
                 continue

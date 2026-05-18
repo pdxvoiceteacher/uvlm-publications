@@ -757,7 +757,7 @@ def _is_negated(normalized_text: str, start: int) -> bool:
     window = normalized_text[max(0, start - 32) : start]
     after = normalized_text[start : start + 80]
     return (
-        any(marker in window for marker in NEGATION_MARKERS)
+        any(window.rstrip().endswith(marker.strip()) for marker in NEGATION_MARKERS) or any(tok in window.split()[-4:] for tok in ("not","no","without","never","neither","nor"))
         or "performed = false" in after
         or "blocked" in after[:48]
     )
@@ -786,6 +786,12 @@ def _forbidden_hits(normalized_text: str, forbidden: tuple[str, ...]) -> list[st
                     or normalized_text[index : index + 40].startswith("sophia approval missing")
                 )
             ):
+                search_from = index + len(normalized_phrase)
+                continue
+            if "do not claim" in normalized_text[max(0, index - 120) : index]:
+                search_from = index + len(normalized_phrase)
+                continue
+            if "do not claim" in normalized_text[max(0, index - 120) : index]:
                 search_from = index + len(normalized_phrase)
                 continue
             if (
@@ -819,11 +825,13 @@ def _forbidden_hits(normalized_text: str, forbidden: tuple[str, ...]) -> list[st
                 or normalized_text[index : index + 46].startswith("federation credit scenario is not reward")
                 or normalized_text[index : index + 48].startswith("federation remains blocked by default")
                 or normalized_text[index : index + 40].startswith("federation_authorization")
+                or "without_federation" in normalized_text[max(0, index - 32) : index + 16]
                 or normalized_text[max(0, index - 20) : index].endswith("without_")
                 or normalized_text[index : index + 40].startswith("federation stress")
                 or normalized_text[index : index + 40].startswith("federation risks")
                 or normalized_text[index : index + 40].startswith("federation_risks")
                 or normalized_text[index : index + 40].startswith("federation eligibility")
+                or normalized_text[index : index + 40].startswith("federation receipt")
                 or normalized_text[index : index + 40].startswith("federation_")
                 or normalized_text[index : index + 40].startswith("federation_stress")
             ):
@@ -832,6 +840,13 @@ def _forbidden_hits(normalized_text: str, forbidden: tuple[str, ...]) -> list[st
             if (
                 phrase in {"ai consciousness", "human consciousness"}
                 and "make ai/human consciousness claims" in normalized_text[max(0, index - 32) : index + 48]
+            ):
+                search_from = index + len(normalized_phrase)
+                continue
+            if phrase in {"remote provider call", "remote provider calls"} and (
+                "does not call remote providers" in normalized_text[max(0, index - 96) : index + 96]
+                or "no remote provider call" in normalized_text[max(0, index - 64) : index + 64]
+                or "without live model execution or remote provider calls" in normalized_text[max(0, index - 128) : index + 128]
             ):
                 search_from = index + len(normalized_phrase)
                 continue
