@@ -450,6 +450,145 @@ SONYA_ADAPTER_CONTRACT_REGISTRY_CLAIMS_BLOCKED = [
     "not production readiness",
 ]
 
+TEL_EVENT_STACK_COMMAND = r""".\experiments\Run-TEL-EVENT-STACK00-Acceptance.ps1 `
+  -OutputRoot C:\UVLM\run_artifacts\tel_event_stack_00 `
+  -LogDir C:\UVLM\run_artifacts\tel_event_stack_00_logs `
+  -CiMode"""
+TEL_EVENT_STACK_ARTIFACTS = [
+    "tel_event_stack_manifest.json",
+    "tel_event_schema_registry.json",
+    "tel_governance_events.jsonl",
+    "tel_event_replay_trace_packet.json",
+    "tel_event_coverage_map.json",
+    "tel_event_failure_summary_packet.json",
+    "tel_event_stack_review_packet.json",
+    "tel_event_stack_summary.md",
+    "artifact_inventory.json",
+    "run_artifact_manifest.json",
+    "export_bundle_manifest.json",
+    "export_bundle_parity_report.json",
+    "tel_event_stack_00_acceptance_receipt.json",
+]
+TEL_EVENT_STACK_DASHBOARD_SUMMARY = {
+    "review_status": "accepted_as_tel_event_stack_scaffold",
+    "tel_event_stack_id": "tel-event-stack-00",
+    "event_count": 17,
+    "event_family_count": 17,
+    "source_sonya_membrane_bound": True,
+    "source_pmr_bound": True,
+    "source_evidence_review_bound": True,
+    "source_retrosynthesis_bound": True,
+    "source_publication_validator_bound": True,
+    "event_schema_registry_present": True,
+    "governance_events_present": True,
+    "replay_trace_present": True,
+    "event_coverage_map_present": True,
+    "failure_summary_present": True,
+    "telemetry_event_not_authority": True,
+    "event_receipt_not_truth_certification": True,
+    "replay_trace_not_canon": True,
+    "failure_receipt_not_permission_to_proceed": True,
+    "event_ledger_not_memory_write": True,
+    "telemetry_not_surveillance": True,
+    "telemetry_not_model_training": True,
+    "metric_event_not_performance_proof": True,
+    "publication_validation_event_not_peer_review": True,
+    "missing_required_event_fails_closed": True,
+    "raw_output_not_cognition": True,
+    "sonya_candidate_packet_not_final_answer": True,
+    "pmr_retention_not_truth": True,
+    "evidence_review_claim_map_not_truth_certification": True,
+    "retrosynthesis_candidate_not_canon_adoption": True,
+    "memory_write_blocked": True,
+    "model_weight_training_blocked": True,
+    "network_calls_not_performed": True,
+    "provider_calls_not_performed": True,
+    "federation_blocked_by_default": True,
+    "reward_actions_not_performed": True,
+    "token_economy_not_performed": True,
+    "deployment_blocked": True,
+    "truth_certification_blocked": True,
+    "export_parity_passed": True,
+}
+TEL_EVENT_STACK_CLAIMS_BLOCKED = [
+    "not runtime authority","not truth certification","not memory write","not surveillance","not model weight training","not network authorization","not provider call","not federation authorization","not reward entitlement","not token economy","not deployment authority","not final answer release","not hallucination reduction proof","not peer review certification","not recursive self-improvement",
+]
+
+SONYA_REQUIRED_MEMBRANE_COMMAND = r""".\experiments\Run-SONYA-REQUIRED-MEMBRANE-CHECKPOINT00-Acceptance.ps1 `
+  -OutputRoot C:\UVLM\run_artifacts\sonya_required_membrane_checkpoint_00 `
+  -LogDir C:\UVLM\run_artifacts\sonya_required_membrane_checkpoint_00_logs `
+  -CiMode"""
+SONYA_REQUIRED_MEMBRANE_ARTIFACTS = [
+    "sonya_required_membrane_checkpoint_packet.json",
+            "tel_event_stack_manifest.json",
+    "sonya_runtime_path_coverage_rows.jsonl",
+    "sonya_bypass_surface_register.json",
+    "sonya_candidate_packet_requirement_map.json",
+    "sonya_fixture_non_applicability_map.json",
+    "sonya_required_membrane_review_packet.json",
+    "sonya_required_membrane_summary.md",
+    "artifact_inventory.json",
+    "run_artifact_manifest.json",
+    "triadic_run_manifest.json",
+    "export_bundle_manifest.json",
+    "export_bundle_parity_report.json",
+    "sonya_required_membrane_checkpoint_00_acceptance_receipt.json",
+]
+SONYA_REQUIRED_MEMBRANE_DASHBOARD_SUMMARY = {
+    "review_status": "accepted_as_sonya_required_membrane_checkpoint",
+    "checkpoint_id": "sonya-required-membrane-checkpoint-00-2e8f6c52e1f54b43",
+    "runtime_path_row_count": 10,
+    "model_facing_path_count": 1,
+    "provider_facing_path_count": 1,
+    "adapter_facing_path_count": 2,
+    "fixture_only_path_count": 3,
+    "publication_only_path_count": 1,
+    "validator_only_path_count": 1,
+    "telemetry_only_path_count": 1,
+    "sonya_required_path_count": 4,
+    "fixture_non_applicable_path_count": 3,
+    "publication_non_applicable_path_count": 1,
+    "fail_closed_required_path_count": 2,
+    "bypass_surface_count": 7,
+    "candidate_packet_requirement_count": 10,
+    "fixture_non_applicability_count": 7,
+    "sonya_required_policy_evaluated": True,
+    "runtime_paths_scanned": True,
+    "bypass_surfaces_registered": True,
+    "candidate_packet_requirements_mapped": True,
+    "fixture_non_applicability_mapped": True,
+    "direct_model_call_blocked_when_required": True,
+    "raw_output_forbidden": True,
+    "candidate_packet_not_final_answer": True,
+    "adapter_capability_not_authorization": True,
+    "fixture_only_builder_not_live_execution": True,
+    "missing_sonya_posture_fails_closed": True,
+    "live_model_execution_not_performed": True,
+    "provider_calls_not_performed": True,
+    "network_calls_not_performed": True,
+    "adapter_authorization_not_performed": True,
+    "memory_write_blocked": True,
+    "model_weight_training_blocked": True,
+    "deployment_blocked": True,
+    "truth_certification_blocked": True,
+    "export_parity_passed": True,
+}
+SONYA_REQUIRED_MEMBRANE_CLAIMS_BLOCKED = [
+    "not live model execution",
+    "not provider call",
+    "not network authorization",
+    "not adapter authorization",
+    "not raw output admission",
+    "not final answer release",
+    "not memory write",
+    "not model weight training",
+    "not deployment authority",
+    "not truth certification",
+    "not hallucination reduction proof",
+    "not recursive self-improvement",
+    "not production readiness",
+]
+
 SONYA_ADAPTER_SMOKE_COMMAND = r""".\experiments\Run-SONYA-ADAPTER-SMOKE00-Acceptance.ps1 `
   -OutputRoot C:\UVLM\run_artifacts\sonya_adapter_smoke_00 `
   -LogDir C:\UVLM\run_artifacts\sonya_adapter_smoke_00_logs `
@@ -2368,6 +2507,55 @@ ACCEPTED_PHASES = [
         "publication_status": "dashboard_indexed",
     },
     {
+        "phase_id": "TEL-EVENT-STACK-00",
+        "repo": "pdxvoiceteacher/CoherenceLattice",
+        "status": "accepted",
+        "evidence_type": "architecture_scaffold",
+        "product_posture": "fixture_only_governance_event_stack_without_runtime_authority",
+        "primary_artifacts": TEL_EVENT_STACK_ARTIFACTS,
+        "dashboard_summary": TEL_EVENT_STACK_DASHBOARD_SUMMARY,
+        "prerequisite_phases": ["SONYA-REQUIRED-MEMBRANE-CHECKPOINT-00","SONYA-ADAPTER-CONTRACT-REGISTRY-01","SONYA-ADAPTER-SMOKE-00","SONYA-LOCAL-FIXTURE-ADAPTER-02","SONYA-LOCAL-FIXTURE-ADAPTER-03","EVIDENCE-REVIEW-PACK-00","EVIDENCE-REVIEW-PACK-01","EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER-02","RW-COMP-LOCAL-ADAPTER-01","RETROSYNTHESIS-SANDBOX-CYCLE-01","PMR-HUMAN-CONSENT-NEGATIVE-CONTROL-00","PMR-HUMAN-PROVENANCE-00","PMR-FED-STRESS-00","PMR-STAT-00","PMR-SIM-00","PMR-ARCH-DIVERSITY-CHECKPOINT-00","PMR-00-PROVENANCE-MEMORY-RESERVOIR","PMR-01-LOCAL-ARTIFACT-INDEX","PMR-02-GLOBAL-PROVENANCE-COHERENCE-UTILITY","PMR-03-LIFECYCLE-STATE-MACHINE","PMR-04-LIFECYCLE-AUDIT-PREFLIGHT","PMR-05-SOPHIA-LIFECYCLE-AUDIT-REVIEW","PMR-06-USER-CONFIRMATION-PREFLIGHT","PMR-07-USER-CONFIRMATION-NEGATIVE-CONTROL","PMR-08-VALID-USER-CONFIRMATION-RECEIPT-SCAFFOLD","PMR-09-DESTRUCTIVE-ACTION-AUTHORIZATION-NEGATIVE-CONTROL","PMR-10-DESTRUCTIVE-ACTION-AUTHORIZATION-PREFLIGHT","ARTIFACT-CONTRACT-REGISTRY-01","UNIVERSAL-COMPATIBILITY-MATRIX-00","UNIVERSAL-STAGE-PIPELINE-00","PROVENANCE-TRAINING-LEDGER-00"],
+        "reproduction_command_summary": TEL_EVENT_STACK_COMMAND,
+        "claim_allowed": "TEL-EVENT-STACK-00 demonstrates a fixture-only governance telemetry/event scaffold with deterministic event rows, replay traces, coverage maps, and failure summaries across Sonya, PMR, Evidence Review, Retrosynthesis, artifact contracts, registry, and publication validation surfaces while preserving non-authority boundaries.",
+        "claims_blocked": TEL_EVENT_STACK_CLAIMS_BLOCKED,
+        "reviewer_caution": "TEL-EVENT-STACK-00 emits fixture-only governance telemetry events and replay traces only. It does not grant authority, write memory, surveil users, train models, call networks or providers, federate, reward, deploy, certify truth, certify peer review, release final answers, or prove hallucination reduction.",
+        "publication_status": "dashboard_indexed",
+    },
+    {
+        "phase_id": "SONYA-REQUIRED-MEMBRANE-CHECKPOINT-00",
+        "repo": "pdxvoiceteacher/CoherenceLattice",
+        "status": "accepted",
+        "evidence_type": "architecture_checkpoint",
+        "product_posture": "sonya_required_execution_membrane_checkpoint_without_live_execution",
+        "primary_artifacts": SONYA_REQUIRED_MEMBRANE_ARTIFACTS,
+        "dashboard_summary": SONYA_REQUIRED_MEMBRANE_DASHBOARD_SUMMARY,
+        "prerequisite_phases": [
+            "SONYA-ADAPTER-CONTRACT-REGISTRY-01",
+            "SONYA-ADAPTER-SMOKE-00",
+            "SONYA-LOCAL-FIXTURE-ADAPTER-01",
+            "SONYA-LOCAL-FIXTURE-ADAPTER-02",
+            "SONYA-LOCAL-FIXTURE-ADAPTER-03",
+            "EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER-01",
+            "EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER-02",
+            "RW-COMP-LOCAL-ADAPTER-01",
+            "PMR-HUMAN-CONSENT-NEGATIVE-CONTROL-00",
+            "PMR-HUMAN-PROVENANCE-00",
+            "PMR-FED-STRESS-00",
+            "PMR-STAT-00",
+            "PMR-SIM-00",
+            "PMR-ARCH-DIVERSITY-CHECKPOINT-00",
+            "UNIVERSAL-STAGE-PIPELINE-00",
+            "ARTIFACT-CONTRACT-REGISTRY-01",
+            "UNIVERSAL-COMPATIBILITY-MATRIX-00",
+            "PROVENANCE-TRAINING-LEDGER-00",
+        ],
+        "reproduction_command_summary": SONYA_REQUIRED_MEMBRANE_COMMAND,
+        "claim_allowed": "SONYA-REQUIRED-MEMBRANE-CHECKPOINT-00 demonstrates a fixture-only Sonya-required execution membrane checkpoint that maps runtime paths to Sonya-required, fixture-non-applicable, publication-non-applicable, or fail-closed posture while preserving non-authority boundaries.",
+        "claims_blocked": SONYA_REQUIRED_MEMBRANE_CLAIMS_BLOCKED,
+        "reviewer_caution": "SONYA-REQUIRED-MEMBRANE-CHECKPOINT-00 maps Sonya membrane posture only. It does not execute live models, call providers, authorize networks, authorize adapters, admit raw output, release final answers, write memory, train models, deploy, certify truth, prove hallucination reduction, or recursively self-improve.",
+        "publication_status": "dashboard_indexed",
+    },
+    {
         "phase_id": "SONYA-ADAPTER-SMOKE-00",
         "repo": "pdxvoiceteacher/CoherenceLattice",
         "status": "accepted",
@@ -3366,6 +3554,47 @@ BOUNDARIES = [
     "Sonya Adapter Contract Registry keeps all adapters disabled or blocked; all adapters disabled or blocked means not adapter execution and not network authorization.",
     "Sonya Adapter Contract Registry boundaries: not adapter execution, not network authorization, not remote provider call, not model weight training.",
     "Sonya Adapter Contract Registry requires that raw output is forbidden, candidate packet required, and failure receipts required.",
+    "Sonya is the required execution membrane for model/tool/provider-facing paths.",
+    "Direct model/provider call is not allowed when SONYA_REQUIRED=1.",
+    "Candidate packet is not final answer.",
+    "Adapter capability is not adapter authorization.",
+    "Fixture-only builder is not live execution.",
+    "Sonya non-applicability must be explicit for pure fixture/scaffold paths.",
+    "Missing Sonya posture must fail closed.",
+    "Raw output is not cognition.",
+    "Telemetry event is not authority.",
+    "Event receipt is not truth certification.",
+    "Replay trace is not canon.",
+    "Failure receipt is not permission to proceed.",
+    "Event ledger is not memory write.",
+    "Telemetry is not surveillance.",
+    "Telemetry is not model training.",
+    "Metric event is not performance proof.",
+    "Publication validation event is not peer review.",
+    "Missing required event must fail closed.",
+    "Raw output is not cognition.",
+    "Sonya candidate packet is not final answer.",
+    "PMR retention is not truth.",
+    "Evidence Review claim map is not truth certification.",
+    "Retrosynthesis repair candidate is not canon adoption.",
+    "TEL-EVENT-STACK-00 is not memory write.",
+    "TEL-EVENT-STACK-00 is not surveillance.",
+    "TEL-EVENT-STACK-00 is not model-weight training.",
+    "TEL-EVENT-STACK-00 is not network authorization.",
+    "TEL-EVENT-STACK-00 is not provider call.",
+    "TEL-EVENT-STACK-00 is not federation authorization.",
+    "TEL-EVENT-STACK-00 is not deployment authority.",
+    "TEL-EVENT-STACK-00 is not truth certification.",
+    "TEL-EVENT-STACK-00 is not peer review certification.",
+    "Failure receipt is not permission to proceed.",
+    "SONYA-REQUIRED-MEMBRANE-CHECKPOINT-00 is not live model execution.",
+    "SONYA-REQUIRED-MEMBRANE-CHECKPOINT-00 is not provider call.",
+    "SONYA-REQUIRED-MEMBRANE-CHECKPOINT-00 is not network authorization.",
+    "SONYA-REQUIRED-MEMBRANE-CHECKPOINT-00 is not adapter authorization.",
+    "SONYA-REQUIRED-MEMBRANE-CHECKPOINT-00 is not memory write.",
+    "SONYA-REQUIRED-MEMBRANE-CHECKPOINT-00 is not model-weight training.",
+    "SONYA-REQUIRED-MEMBRANE-CHECKPOINT-00 is not deployment authority.",
+    "SONYA-REQUIRED-MEMBRANE-CHECKPOINT-00 is not truth certification.",
     "Universal Architecture Scaffold: The brain runs cognition stages; experiments configure those stages.",
     "Universal architecture scaffold: profiles are configuration; experiments are configurations over reusable stages and versioned artifact contracts.",
     "Universal compatibility inputs use fail-closed receipts or hash-only receipts when unsupported inputs cannot be semantically interpreted.",
@@ -3850,6 +4079,7 @@ def dashboard_payload() -> dict[str, Any]:
             "artifact_contract_registry_review.json",
             "universal_compatibility_matrix_packet.json",
             "sonya_adapter_contract_registry_packet.json",
+            "sonya_required_membrane_checkpoint_packet.json",
             "sonya_local_fixture_adapter_packet.json",
             "evidence_review_local_adapter_route_packet.json",
             "sonya_local_adapter_multi_route_packet.json",
@@ -3927,6 +4157,8 @@ def reproducibility_index() -> dict[str, Any]:
                 {"name": "Artifact Contract Registry acceptance", "command": ARTIFACT_CONTRACT_REGISTRY_COMMAND},
                 {"name": "Universal Compatibility Matrix acceptance", "command": UNIVERSAL_COMPATIBILITY_MATRIX_COMMAND},
                 {"name": "Sonya Adapter Contract Registry acceptance", "command": SONYA_ADAPTER_CONTRACT_REGISTRY_COMMAND},
+                {"name": "Sonya required membrane checkpoint acceptance", "command": SONYA_REQUIRED_MEMBRANE_COMMAND},
+                {"name": "TEL event stack acceptance", "command": TEL_EVENT_STACK_COMMAND},
                 {"name": "Sonya Adapter Smoke acceptance", "command": SONYA_ADAPTER_SMOKE_COMMAND},
                 {"name": "Sonya Local Fixture Adapter acceptance", "command": SONYA_LOCAL_FIXTURE_ADAPTER_COMMAND},
                 {"name": "Evidence Review Pack local adapter acceptance", "command": EVIDENCE_REVIEW_PACK_LOCAL_ADAPTER_COMMAND},
@@ -3987,6 +4219,8 @@ def artifact_index() -> dict[str, Any]:
         "ARTIFACT-CONTRACT-REGISTRY-01": ARTIFACT_CONTRACT_REGISTRY_ARTIFACTS,
         "UNIVERSAL-COMPATIBILITY-MATRIX-00": UNIVERSAL_COMPATIBILITY_MATRIX_ARTIFACTS,
         "SONYA-ADAPTER-CONTRACT-REGISTRY-01": SONYA_ADAPTER_CONTRACT_REGISTRY_ARTIFACTS,
+        "SONYA-REQUIRED-MEMBRANE-CHECKPOINT-00": SONYA_REQUIRED_MEMBRANE_ARTIFACTS,
+        "TEL-EVENT-STACK-00": TEL_EVENT_STACK_ARTIFACTS,
         "SONYA-ADAPTER-SMOKE-00": SONYA_ADAPTER_SMOKE_ARTIFACTS,
         "SONYA-LOCAL-FIXTURE-ADAPTER-01": SONYA_LOCAL_FIXTURE_ADAPTER_ARTIFACTS,
         "EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER-01": EVIDENCE_REVIEW_PACK_LOCAL_ADAPTER_ARTIFACTS,
@@ -4017,6 +4251,15 @@ def status_payload() -> dict[str, Any]:
         "latest_heldout_blinded_fixture_scaffold": "RW-COMP-03",
         "latest_universal_architecture_scaffold": "UNIVERSAL-COMPATIBILITY-MATRIX-00",
         "latest_sonya_adapter_contract_registry": "SONYA-ADAPTER-CONTRACT-REGISTRY-01",
+        "latest_sonya_required_membrane_checkpoint": "SONYA-REQUIRED-MEMBRANE-CHECKPOINT-00",
+        "sonya_required_membrane_checkpoint_indexed": True,
+        "tel_event_stack_00_indexed": True,
+        "not_surveillance": True,
+        "not_peer_review_certification": True,
+        "not_event_authority": True,
+        "not_provider_call": True,
+        "not_raw_output_admission": True,
+        "not_sonya_bypass_authority": True,
         "latest_sonya_local_fixture_adapter": "SONYA-LOCAL-FIXTURE-ADAPTER-01",
         "latest_evidence_review_pack_local_adapter": "EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER-01",
         "latest_evidence_review_pack_local_adapter_revision": "EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER-02",
@@ -4129,7 +4372,7 @@ def docs() -> dict[str, str]:
     return {
         "README.md": "# Experiment Suite Docs\n\nPublic reviewer documentation for the claim-bounded reproducibility dashboard.\n",
         "assets/README.md": "# Assets\n\nOptional static assets for the public reproducibility dashboard.\n",
-        "index.md": f"# Public Experiment Suite Dashboard\n\nThis dashboard presents accepted evidence for reviewer orientation. It is not truth certification, not deployment authority, not final answer release, local fixture only, and requires external peer review.\n\n## Accepted evidence\n\n| Phase | Repo | Status | What this supports | Reviewer caution |\n| --- | --- | --- | --- | --- |\n{phase_rows}\n\n## Reviewer path\n\nStart with claim boundaries, then read the governed artifact cognition paper, WAVE Rosetta paper, SONYA-AEGIS-SMOKE-02, WAVE family, UNI-02D Sonya gate, and RETRO-LANE-00, Public Utility Alpha, Raw Baseline Comparison, Evidence Review Pack, RW-COMP-01, RW-COMP-02, Retrosynthesis Sandbox Cycle, Evidence Review Pack second-pass, RW-COMP-03, Universal Architecture Scaffold, Sonya Adapter Contract Registry, Sonya Adapter Smoke, Sonya Local Fixture Adapter, and Evidence Review Pack local adapter, Evidence Review Pack local adapter revision, RW-COMP local adapter, PMR doctrine, PMR local artifact index, PMR GPCU utility scoring, PMR lifecycle state machine, PMR lifecycle audit preflight, PMR Sophia lifecycle audit review, PMR destructive-action authorization preflight, PMR architecture diversity checkpoint, PMR simulation baseline comparison, PMR simulation statistical analysis, PMR federation stress corpus, PMR human provenance context, Sonya Local Fixture Adapter multi-route, and Sonya Local Fixture Adapter lineage clarity pages.\n\n## What this proves\n\nIt proves only that accepted local fixture artifacts and draft publication materials are organized for review.\n\n## What this does not prove\n\nNo oracle posture, no deployment posture, no final-answer posture, no AI consciousness claim, and no universal ontology claim.\n\n## Phase pages\n\n- [SONYA-AEGIS-SMOKE-02](sonya-aegis-smoke-02.md)\n- [WAVE Gold-Physics](wave-gold-physics.md)\n- [UNI-02D Sonya gate](uni02d-sonya-gate.md)\n- [RETRO-LANE-00](retro-lane-00.md)\n- [Public Utility Alpha](public-utility-alpha.md)\n- [Raw Baseline Comparison](raw-baseline-comparison.md)\n- [Evidence Review Pack](evidence-review-pack.md)\n- [RW-COMP-01](rw-comp-01.md)\n- [RW-COMP-02](rw-comp-02.md)\n- [Retrosynthesis Sandbox Cycle](retrosynthesis-sandbox-cycle.md)\n- [Evidence Review Pack second pass](evidence-review-pack-second-pass.md)\n- [RW-COMP-03](rw-comp-03.md)\n- [Universal Architecture Scaffold](universal-architecture.md)\n- [Sonya Adapter Contract Registry](sonya-adapter-contract-registry.md)\n- [Sonya Adapter Smoke](sonya-adapter-smoke.md)\n- [Sonya Local Fixture Adapter](sonya-local-fixture-adapter.md)\n- [Evidence Review Pack local adapter](evidence-review-pack-local-adapter.md)\n- [Evidence Review Pack local adapter revision](evidence-review-pack-local-adapter-revision.md)\n- [RW-COMP local adapter](rw-comp-local-adapter.md)\n- [Provenance Memory Reservoir](provenance-memory-reservoir.md)\n- [PMR local artifact index](pmr-local-artifact-index.md)\n- [Sonya Local Fixture Adapter multi-route](sonya-local-fixture-adapter-multi-route.md)\n- [Sonya Local Fixture Adapter lineage clarity](sonya-local-fixture-adapter-lineage.md)\n- [Governed artifact cognition paper](governed-artifact-cognition-paper.md)\n- [Waveform Rosetta paper](waveform-rosetta-paper.md)\n",
+        "index.md": f"# Public Experiment Suite Dashboard\n\nThis dashboard presents accepted evidence for reviewer orientation. It is not truth certification, not deployment authority, not final answer release, local fixture only, and requires external peer review.\n\n## Accepted evidence\n\n| Phase | Repo | Status | What this supports | Reviewer caution |\n| --- | --- | --- | --- | --- |\n{phase_rows}\n\n## Reviewer path\n\nStart with claim boundaries, then read the governed artifact cognition paper, WAVE Rosetta paper, SONYA-AEGIS-SMOKE-02, WAVE family, UNI-02D Sonya gate, and RETRO-LANE-00, Public Utility Alpha, Raw Baseline Comparison, Evidence Review Pack, RW-COMP-01, RW-COMP-02, Retrosynthesis Sandbox Cycle, Evidence Review Pack second-pass, RW-COMP-03, Universal Architecture Scaffold, Sonya Adapter Contract Registry, Sonya Adapter Smoke, Sonya Local Fixture Adapter, and Evidence Review Pack local adapter, Evidence Review Pack local adapter revision, RW-COMP local adapter, PMR doctrine, PMR local artifact index, PMR GPCU utility scoring, PMR lifecycle state machine, PMR lifecycle audit preflight, PMR Sophia lifecycle audit review, PMR destructive-action authorization preflight, PMR architecture diversity checkpoint, PMR simulation baseline comparison, PMR simulation statistical analysis, PMR federation stress corpus, PMR human provenance context, Sonya Local Fixture Adapter multi-route, and Sonya Local Fixture Adapter lineage clarity pages.\n\n## What this proves\n\nIt proves only that accepted local fixture artifacts and draft publication materials are organized for review.\n\n## What this does not prove\n\nNo oracle posture, no deployment posture, no final-answer posture, no AI consciousness claim, and no universal ontology claim.\n\n## Phase pages\n\n- [SONYA-AEGIS-SMOKE-02](sonya-aegis-smoke-02.md)\n- [WAVE Gold-Physics](wave-gold-physics.md)\n- [UNI-02D Sonya gate](uni02d-sonya-gate.md)\n- [RETRO-LANE-00](retro-lane-00.md)\n- [Public Utility Alpha](public-utility-alpha.md)\n- [Raw Baseline Comparison](raw-baseline-comparison.md)\n- [Evidence Review Pack](evidence-review-pack.md)\n- [RW-COMP-01](rw-comp-01.md)\n- [RW-COMP-02](rw-comp-02.md)\n- [Retrosynthesis Sandbox Cycle](retrosynthesis-sandbox-cycle.md)\n- [Evidence Review Pack second pass](evidence-review-pack-second-pass.md)\n- [RW-COMP-03](rw-comp-03.md)\n- [Universal Architecture Scaffold](universal-architecture.md)\n- [Sonya Adapter Contract Registry](sonya-adapter-contract-registry.md)\n- [Sonya required membrane checkpoint](sonya-required-membrane-checkpoint.md)\n- [TEL event stack](tel-event-stack.md)\n- [Sonya Adapter Smoke](sonya-adapter-smoke.md)\n- [Sonya Local Fixture Adapter](sonya-local-fixture-adapter.md)\n- [Evidence Review Pack local adapter](evidence-review-pack-local-adapter.md)\n- [Evidence Review Pack local adapter revision](evidence-review-pack-local-adapter-revision.md)\n- [RW-COMP local adapter](rw-comp-local-adapter.md)\n- [Provenance Memory Reservoir](provenance-memory-reservoir.md)\n- [PMR local artifact index](pmr-local-artifact-index.md)\n- [Sonya Local Fixture Adapter multi-route](sonya-local-fixture-adapter-multi-route.md)\n- [Sonya Local Fixture Adapter lineage clarity](sonya-local-fixture-adapter-lineage.md)\n- [Governed artifact cognition paper](governed-artifact-cognition-paper.md)\n- [Waveform Rosetta paper](waveform-rosetta-paper.md)\n",
         "claim-boundaries.md": f"# Claim Boundaries\n\n{boundaries}\n\nNo oracle posture. No deployment posture. No final-answer posture. No AI consciousness claim. No universal ontology claim.\n",
         "sonya-aegis-smoke-02.md": f"""# SONYA-AEGIS-SMOKE-02
 
@@ -4473,6 +4716,58 @@ SONYA-ADAPTER-CONTRACT-REGISTRY-01 demonstrates a fixture-only versioned adapter
 Claims blocked: {"; ".join(SONYA_ADAPTER_CONTRACT_REGISTRY_CLAIMS_BLOCKED)}.
 
 Reviewer caution: SONYA-ADAPTER-CONTRACT-REGISTRY-01 defines adapter contracts only. It does not execute adapters, does not call providers, does not authorize network use, does not admit raw output as cognition, does not write memory, does not release final answers, does not train models, and does not deploy.
+""",
+        "tel-event-stack.md": f"""# TEL event stack
+
+Required phrase: Telemetry event is not authority.
+
+TEL-EVENT-STACK-00 demonstrates a fixture-only governance telemetry/event scaffold with deterministic event rows, replay traces, coverage maps, and failure summaries across Sonya, PMR, Evidence Review, Retrosynthesis, artifact contracts, registry, and publication validation surfaces while preserving non-authority boundaries.
+
+Replay trace is not canon.
+
+```powershell
+{TEL_EVENT_STACK_COMMAND}
+```
+
+## Primary artifacts
+
+{chr(10).join(f"- `{artifact}`" for artifact in TEL_EVENT_STACK_ARTIFACTS)}
+
+## Dashboard posture
+
+{chr(10).join(f"- `{key} = {str(value).lower()}`" for key, value in TEL_EVENT_STACK_DASHBOARD_SUMMARY.items())}
+
+## Blocked claims
+
+{chr(10).join(f"- {claim}" for claim in TEL_EVENT_STACK_CLAIMS_BLOCKED)}
+
+Reviewer caution: TEL-EVENT-STACK-00 emits fixture-only governance telemetry events and replay traces only. It does not grant authority, write memory, surveil users, train models, call networks or providers, federate, reward, deploy, certify truth, certify peer review, release final answers, or prove hallucination reduction.
+""",
+        "sonya-required-membrane-checkpoint.md": f"""# Sonya required membrane checkpoint
+
+Required phrase: Sonya is the required execution membrane for model/tool/provider-facing paths.
+
+SONYA-REQUIRED-MEMBRANE-CHECKPOINT-00 audits model/tool/provider-facing paths and maps each path to Sonya-required, fixture-non-applicable, publication-non-applicable, or fail-closed posture. Missing Sonya posture must fail closed. Direct model/provider call is not allowed when SONYA_REQUIRED=1. Candidate packet is not final answer. Adapter capability is not adapter authorization. Fixture-only builder is not live execution. Raw output is forbidden. Raw output is not cognition. Telemetry event is not authority. Failure receipt is not permission to proceed.
+
+## Reproduction command
+
+```powershell
+{SONYA_REQUIRED_MEMBRANE_COMMAND}
+```
+
+## Primary artifacts
+
+{chr(10).join(f"- `{artifact}`" for artifact in SONYA_REQUIRED_MEMBRANE_ARTIFACTS)}
+
+## Dashboard posture
+
+{chr(10).join(f"- `{key} = {str(value).lower()}`" for key, value in SONYA_REQUIRED_MEMBRANE_DASHBOARD_SUMMARY.items())}
+
+## Blocked claims
+
+{chr(10).join(f"- {claim}" for claim in SONYA_REQUIRED_MEMBRANE_CLAIMS_BLOCKED)}
+
+Reviewer caution: SONYA-REQUIRED-MEMBRANE-CHECKPOINT-00 maps Sonya membrane posture only. It does not execute live models, call providers, authorize networks, authorize adapters, admit raw output, release final answers, write memory, train models, deploy, certify truth, prove hallucination reduction, or recursively self-improve.
 """,
         "sonya-adapter-smoke.md": f"""# Sonya Adapter Smoke
 
