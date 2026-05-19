@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import re
 from pathlib import Path
 from typing import Any
 
@@ -228,6 +229,31 @@ PAPER_CONFIGS: dict[str, dict[str, Any]] = {
             "sonya_local_adapter_lineage_review_packet.json",
             "sonya_local_fixture_adapter_03_acceptance_receipt.json",
             "Run-SONYA-LOCAL-FIXTURE-ADAPTER03-Acceptance.ps1",
+            "SONYA-REQUIRED-MEMBRANE-CHECKPOINT-00",
+            "Sonya is the required execution membrane for model/tool/provider-facing paths.",
+            "Direct model/provider call is not allowed when SONYA_REQUIRED=1.",
+            "Candidate packet is not final answer.",
+            "Adapter capability is not adapter authorization.",
+            "Fixture-only builder is not live execution.",
+            "Missing Sonya posture must fail closed.",
+            "Raw output is not cognition.",
+            "Telemetry event is not authority.",
+            "Failure receipt is not permission to proceed.",
+            "Run-SONYA-REQUIRED-MEMBRANE-CHECKPOINT00-Acceptance.ps1",
+            "TEL-EVENT-STACK-00",
+            "EVIDENCE-REVIEW-PRODUCT-LOOP-02",
+            "Telemetry event is not authority.",
+            "Event receipt is not truth certification.",
+            "Replay trace is not canon.",
+            "Failure receipt is not permission to proceed.",
+            "Event ledger is not memory write.",
+            "Telemetry is not surveillance.",
+            "Telemetry is not model training.",
+            "Publication validation event is not peer review.",
+            "Run-TEL-EVENT-STACK00-Acceptance.ps1",
+            "Evidence Review product loop is not final answer selection.",
+            "Unsupported-claim action queue is not evidence acceptance.",
+            "Run-EVIDENCE-REVIEW-PRODUCT-LOOP02-Acceptance.ps1",
             "EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER-02",
             "The revised local adapter candidate remains candidate-only, not accepted evidence.",
             "deltas are structural review descriptors",
@@ -457,6 +483,16 @@ PAPER_CONFIGS: dict[str, dict[str, Any]] = {
             "compliance certification",
             "remote provider call",
             "remote provider calls",
+            "provider call",
+            "claims provider call",
+            "claims remote provider call",
+            "provider call performed",
+            "provider call authorized",
+            "raw output admission",
+            "claims raw output admission",
+            "raw output admitted",
+            "raw output accepted as cognition",
+            "raw_output_admitted",
             "universal wisdom machine",
             "recursive sonya federation demonstrated",
             "retrosynthesis runtime demonstrated",
@@ -478,6 +514,8 @@ PAPER_CONFIGS: dict[str, dict[str, Any]] = {
             "product completion",
             "claims product completion",
             "runtime authority",
+            "surveillance",
+            "peer review certification",
             "claims runtime authority",
             "product release",
             "benchmark result",
@@ -605,6 +643,18 @@ PAPER_CONFIGS: dict[str, dict[str, Any]] = {
             "not_final_answer_selection": True,
             "not_live_adapter_execution": True,
             "sonya_local_fixture_adapter_03_indexed": True,
+            "sonya_required_membrane_checkpoint_indexed": True,
+            "not_provider_call": True,
+            "not_raw_output_admission": True,
+            "not_sonya_bypass_authority": True,
+            "tel_event_stack_00_indexed": True,
+            "not_surveillance": True,
+            "not_peer_review_certification": True,
+            "not_event_authority": True,
+            "evidence_review_product_loop_02_indexed": True,
+            "not_product_loop_final_answer": True,
+            "not_product_loop_evidence_acceptance": True,
+            "not_product_loop_release": True,
             "not_stale_identity_leakage": True,
             "not_lineage_authority": True,
             "evidence_review_pack_local_adapter_02_indexed": True,
@@ -763,6 +813,67 @@ def _is_negated(normalized_text: str, start: int) -> bool:
     )
 
 
+def _context_words(text: str, index: int, *, before: int = 96, after: int = 96) -> str:
+    window = text[max(0, index - before) : index + after]
+    cleaned = re.sub(r"[^a-z0-9]+", " ", window.replace("_", " "))
+    return " ".join(cleaned.split())
+
+
+def _is_allowed_provider_call_context(text: str, index: int) -> bool:
+    window = text[max(0, index - 48) : index + 72]
+    normalized = " ".join(re.sub(r"[^a-z0-9]+", " ", window.replace("_", " ")).split())
+    allowed_patterns = (
+        "no remote provider call",
+        "no remote provider calls",
+        "not provider call",
+        "not remote provider call",
+        "provider calls not performed",
+        "provider calls not made",
+        "is not provider call",
+        "is not a provider call",
+        "provider call not performed",
+        "provider call not made",
+        "provider calls performed false",
+        "provider calls performed false",
+        "provider_calls_not_performed",
+        "provider_calls_performed false",
+        "direct model provider call is not allowed",
+        "provider call is not allowed",
+        "does not call providers",
+        "network provider calls",
+        "without live adapter execution or network provider calls",
+        "without live model execution or remote provider calls",
+        "provider call blocked",
+        "provider call forbidden",
+        "not provider call status flags",
+    )
+    return any(pat in normalized for pat in allowed_patterns)
+
+
+def _is_allowed_raw_output_context(text: str, index: int) -> bool:
+    window = _context_words(text, index, before=128, after=128)
+    allowed_fragments = (
+        "raw output is forbidden",
+        "raw output forbidden",
+        "raw output rejected",
+        "raw output is not cognition",
+        "not raw output admission",
+        "raw output admission blocked",
+        "raw output admission posture",
+        "forbidding raw output admission",
+        "avoids raw output admission",
+        "raw output admitted false",
+        "raw output forbidden true",
+        "raw output not admitted",
+        "not raw output admission status flags",
+        "not raw output admission",
+        "forbidding raw output admission",
+        "rejects or avoids raw output admission",
+        "does not admit raw output",
+    )
+    return any(fragment in window for fragment in allowed_fragments)
+
+
 def _forbidden_hits(normalized_text: str, forbidden: tuple[str, ...]) -> list[str]:
     hits: list[str] = []
     for phrase in forbidden:
@@ -843,10 +954,15 @@ def _forbidden_hits(normalized_text: str, forbidden: tuple[str, ...]) -> list[st
             ):
                 search_from = index + len(normalized_phrase)
                 continue
-            if phrase in {"remote provider call", "remote provider calls"} and (
-                "does not call remote providers" in normalized_text[max(0, index - 96) : index + 96]
-                or "no remote provider call" in normalized_text[max(0, index - 64) : index + 64]
-                or "without live model execution or remote provider calls" in normalized_text[max(0, index - 128) : index + 128]
+            if (
+                phrase in {"remote provider call", "remote provider calls", "provider call", "provider call performed", "provider call authorized"}
+                and _is_allowed_provider_call_context(normalized_text, index)
+            ):
+                search_from = index + len(normalized_phrase)
+                continue
+            if (
+                phrase in {"raw output admission", "claims raw output admission", "raw output admitted", "raw output accepted as cognition", "raw_output_admitted"}
+                and _is_allowed_raw_output_context(normalized_text, index)
             ):
                 search_from = index + len(normalized_phrase)
                 continue

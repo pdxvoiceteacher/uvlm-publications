@@ -4,6 +4,66 @@
 - Sonya Adapter Contract Registry keeps all adapters disabled or blocked; all adapters disabled or blocked means not adapter execution and not network authorization.
 - Sonya Adapter Contract Registry boundaries: not adapter execution, not network authorization, not remote provider call, not model weight training.
 - Sonya Adapter Contract Registry requires that raw output is forbidden, candidate packet required, and failure receipts required.
+- Sonya is the required execution membrane for model/tool/provider-facing paths.
+- Direct model/provider call is not allowed when SONYA_REQUIRED=1.
+- Candidate packet is not final answer.
+- Adapter capability is not adapter authorization.
+- Fixture-only builder is not live execution.
+- Sonya non-applicability must be explicit for pure fixture/scaffold paths.
+- Missing Sonya posture must fail closed.
+- Raw output is not cognition.
+- Telemetry event is not authority.
+- Event receipt is not truth certification.
+- Replay trace is not canon.
+- Failure receipt is not permission to proceed.
+- Event ledger is not memory write.
+- Telemetry is not surveillance.
+- Telemetry is not model training.
+- Metric event is not performance proof.
+- Publication validation event is not peer review.
+- Missing required event must fail closed.
+- Raw output is not cognition.
+- Sonya candidate packet is not final answer.
+- PMR retention is not truth.
+- Evidence Review claim map is not truth certification.
+- Retrosynthesis repair candidate is not canon adoption.
+- TEL-EVENT-STACK-00 is not memory write.
+- TEL-EVENT-STACK-00 is not surveillance.
+- TEL-EVENT-STACK-00 is not model-weight training.
+- TEL-EVENT-STACK-00 is not network authorization.
+- TEL-EVENT-STACK-00 is not provider call.
+- TEL-EVENT-STACK-00 is not federation authorization.
+- TEL-EVENT-STACK-00 is not deployment authority.
+- TEL-EVENT-STACK-00 is not truth certification.
+- TEL-EVENT-STACK-00 is not peer review certification.
+- Evidence Review product loop is not final answer selection.
+- Reviewer task is not truth certification.
+- Unsupported-claim action queue is not evidence acceptance.
+- Uncertainty task is not uncertainty resolution.
+- Counterevidence task is not contradiction resolution.
+- TEL event linkage is not authority.
+- PMR provenance binding is not memory write.
+- Human consent context is not consent execution.
+- Sonya membrane binding is not provider authorization.
+- Candidate packet is not final answer.
+- Product-loop summary is not deployment authority.
+- Product-loop scaffold is not hallucination reduction proof.
+- Product-loop scaffold is not model quality benchmark.
+- Product-loop scaffold is not product release.
+- EVIDENCE-REVIEW-PRODUCT-LOOP-02 is not accepted evidence.
+- EVIDENCE-REVIEW-PRODUCT-LOOP-02 is not truth certification.
+- EVIDENCE-REVIEW-PRODUCT-LOOP-02 is not memory write.
+- EVIDENCE-REVIEW-PRODUCT-LOOP-02 is not provider call.
+- EVIDENCE-REVIEW-PRODUCT-LOOP-02 is not peer review certification.
+- Failure receipt is not permission to proceed.
+- SONYA-REQUIRED-MEMBRANE-CHECKPOINT-00 is not live model execution.
+- SONYA-REQUIRED-MEMBRANE-CHECKPOINT-00 is not provider call.
+- SONYA-REQUIRED-MEMBRANE-CHECKPOINT-00 is not network authorization.
+- SONYA-REQUIRED-MEMBRANE-CHECKPOINT-00 is not adapter authorization.
+- SONYA-REQUIRED-MEMBRANE-CHECKPOINT-00 is not memory write.
+- SONYA-REQUIRED-MEMBRANE-CHECKPOINT-00 is not model-weight training.
+- SONYA-REQUIRED-MEMBRANE-CHECKPOINT-00 is not deployment authority.
+- SONYA-REQUIRED-MEMBRANE-CHECKPOINT-00 is not truth certification.
 - Universal Architecture Scaffold: The brain runs cognition stages; experiments configure those stages.
 - Universal architecture scaffold: profiles are configuration; experiments are configurations over reusable stages and versioned artifact contracts.
 - Universal compatibility inputs use fail-closed receipts or hash-only receipts when unsupported inputs cannot be semantically interpreted.
