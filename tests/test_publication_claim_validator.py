@@ -2169,3 +2169,24 @@ def test_governed_validator_allows_sonya_required_membrane_negative_contexts(tmp
         status=paper_root / "status.json",
     )
     assert result["passed"] is True
+
+
+def test_governed_validator_indexes_tel_event_stack():
+    paper = (ROOT / "PUB_GOV_ARTIFACT_COG_01.md").read_text(encoding="utf-8")
+    appendix = (ROOT / "reproducibility_appendix.md").read_text(encoding="utf-8")
+    quickstart = (ROOT / "reviewer_quickstart.md").read_text(encoding="utf-8")
+    status = json.loads((ROOT / "status.json").read_text(encoding="utf-8"))
+    assert "TEL-EVENT-STACK-00" in paper
+    assert "Telemetry event is not authority." in paper
+    assert "Replay trace is not canon." in paper
+    assert "Run-TEL-EVENT-STACK00-Acceptance.ps1" in appendix
+    assert "Run-TEL-EVENT-STACK00-Acceptance.ps1" in quickstart
+    assert status["tel_event_stack_00_indexed"] is True
+
+def test_governed_validator_rejects_tel_event_stack_overclaims(tmp_path):
+    for claim in ("claims surveillance", "claims runtime authority", "claims provider call", "claims peer review certification"):
+        paper_root = _copy_governed_paper(tmp_path / claim.replace(" ", "_"))
+        paper = paper_root / "PUB_GOV_ARTIFACT_COG_01.md"
+        paper.write_text(paper.read_text(encoding="utf-8") + f"\nTEL event stack {claim}.\n", encoding="utf-8")
+        result = validate_publication_claims(paper, appendix=paper_root / "reproducibility_appendix.md", quickstart=paper_root / "reviewer_quickstart.md", status=paper_root / "status.json")
+        assert result["passed"] is False

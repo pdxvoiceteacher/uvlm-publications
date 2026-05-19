@@ -135,6 +135,10 @@
         "command": ".\\experiments\\Run-SONYA-REQUIRED-MEMBRANE-CHECKPOINT00-Acceptance.ps1 `\n  -OutputRoot C:\\UVLM\\run_artifacts\\sonya_required_membrane_checkpoint_00 `\n  -LogDir C:\\UVLM\\run_artifacts\\sonya_required_membrane_checkpoint_00_logs `\n  -CiMode"
       },
       {
+        "name": "TEL event stack acceptance",
+        "command": ".\\experiments\\Run-TEL-EVENT-STACK00-Acceptance.ps1 `\n  -OutputRoot C:\\UVLM\\run_artifacts\\tel_event_stack_00 `\n  -LogDir C:\\UVLM\\run_artifacts\\tel_event_stack_00_logs `\n  -CiMode"
+      },
+      {
         "name": "Sonya Adapter Smoke acceptance",
         "command": ".\\experiments\\Run-SONYA-ADAPTER-SMOKE00-Acceptance.ps1 `\n  -OutputRoot C:\\UVLM\\run_artifacts\\sonya_adapter_smoke_00 `\n  -LogDir C:\\UVLM\\run_artifacts\\sonya_adapter_smoke_00_logs `\n  -CiMode"
       },

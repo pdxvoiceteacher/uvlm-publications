@@ -107,6 +107,7 @@ REQUIRED_PHASES = {
     "SONYA-LOCAL-FIXTURE-ADAPTER-02",
     "SONYA-LOCAL-FIXTURE-ADAPTER-03",
     "SONYA-REQUIRED-MEMBRANE-CHECKPOINT-00",
+    "TEL-EVENT-STACK-00",
 }
 
 REQUIRED_COMMAND_FRAGMENTS = (
@@ -128,6 +129,7 @@ REQUIRED_COMMAND_FRAGMENTS = (
     "Run-UNIVERSAL-COMPATIBILITY-MATRIX00-Acceptance.ps1",
     "Run-SONYA-ADAPTER-CONTRACT-REGISTRY01-Acceptance.ps1",
     "Run-SONYA-REQUIRED-MEMBRANE-CHECKPOINT00-Acceptance.ps1",
+    "Run-TEL-EVENT-STACK00-Acceptance.ps1",
     "Run-SONYA-ADAPTER-SMOKE00-Acceptance.ps1",
     "Run-SONYA-LOCAL-FIXTURE-ADAPTER01-Acceptance.ps1",
     "Run-EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER01-Acceptance.ps1",
@@ -2222,3 +2224,19 @@ def test_sonya_required_membrane_validator_allows_bounded_negative_contexts(tmp_
     )
     result = validate_dashboard(out_dir / "experiment_suite_dashboard.json", docs_dir)
     assert result["passed"] is True
+
+
+def test_tel_event_stack_dashboard_entries(tmp_path):
+    out_dir, docs_dir = run_builder(tmp_path)
+    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text())
+    phase = next(entry for entry in dashboard["accepted_phases"] if entry["phase_id"] == "TEL-EVENT-STACK-00")
+    assert "tel_event_stack_manifest.json" in phase["primary_artifacts"]
+    assert phase["dashboard_summary"]["review_status"] == "accepted_as_tel_event_stack_scaffold"
+
+def test_tel_event_stack_validator_rejects_overclaims(tmp_path):
+    for claim in ("claims runtime authority", "claims surveillance", "claims memory write", "claims provider call", "claims network authorization", "claims peer review certification"):
+        out_dir, docs_dir = run_builder(tmp_path / claim.replace(" ", "_"))
+        page = docs_dir / "tel-event-stack.md"
+        page.write_text(page.read_text(encoding="utf-8") + f"\nTEL event stack {claim}.\n", encoding="utf-8")
+        result = validate_dashboard(out_dir / "experiment_suite_dashboard.json", docs_dir)
+        assert result["passed"] is False

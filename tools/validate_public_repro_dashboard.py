@@ -55,6 +55,7 @@ REQUIRED_PHASES = {
     "PMR-HUMAN-PROVENANCE-00",
     "PMR-HUMAN-CONSENT-NEGATIVE-CONTROL-00",
     "SONYA-REQUIRED-MEMBRANE-CHECKPOINT-00",
+    "TEL-EVENT-STACK-00",
 }
 REQUIRED_BOUNDARY_PHRASES = (
     "not truth certification",
@@ -439,6 +440,10 @@ REQUIRED_BOUNDARY_PHRASES = (
     "Missing Sonya posture must fail closed.",
     "Raw output is not cognition.",
     "SONYA-REQUIRED-MEMBRANE-CHECKPOINT-00",
+    "TEL-EVENT-STACK-00",
+    "Telemetry event is not authority.",
+    "Replay trace is not canon.",
+    "Publication validation event is not peer review.",
 )
 FORBIDDEN_PHRASES = (
     "deployment readiness",
@@ -520,6 +525,8 @@ FORBIDDEN_PHRASES = (
     "product completion",
     "claims product completion",
     "runtime authority",
+    "surveillance",
+    "peer review certification",
     "claims runtime authority",
     "product release",
     "product released",
@@ -820,6 +827,15 @@ def _forbidden_hits(text: str) -> list[str]:
             if (
                 phrase in {"raw output admission", "claims raw output admission", "raw output admitted", "raw output accepted as cognition", "raw_output_admitted"}
                 and _is_allowed_raw_output_context(text, index)
+            ):
+                start = index + len(normalized_phrase)
+                continue
+            if (
+                phrase == "surveillance"
+                and (
+                    "not surveillance" in text[max(0, index - 48) : index + 24]
+                    or "telemetry_not_surveillance" in text[max(0, index - 64) : index + 32]
+                )
             ):
                 start = index + len(normalized_phrase)
                 continue

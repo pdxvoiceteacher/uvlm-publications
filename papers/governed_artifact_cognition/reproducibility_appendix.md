@@ -689,3 +689,15 @@ Sonya is the required execution membrane for model/tool/provider-facing paths. M
 ```
 
 Expected artifacts: sonya_required_membrane_checkpoint_packet.json, sonya_runtime_path_coverage_rows.jsonl, sonya_bypass_surface_register.json, sonya_candidate_packet_requirement_map.json, sonya_fixture_non_applicability_map.json, sonya_required_membrane_review_packet.json, sonya_required_membrane_summary.md, and sonya_required_membrane_checkpoint_00_acceptance_receipt.json. Direct model/provider call is not allowed when SONYA_REQUIRED=1. Candidate packet is not final answer. Adapter capability is not adapter authorization. Fixture-only builder is not live execution. Raw output is not cognition. Telemetry event is not authority. Failure receipt is not permission to proceed. The checkpoint is not live model execution, not provider call, not network authorization, not adapter authorization, not raw output admission, not memory write, not model-weight training, not deployment authority, and not truth certification.
+
+
+## TEL-EVENT-STACK-00
+
+Replay trace is not canon.
+
+```powershell
+.\experiments\Run-TEL-EVENT-STACK00-Acceptance.ps1 `
+  -OutputRoot C:\UVLM\run_artifacts\tel_event_stack_00 `
+  -LogDir C:\UVLM\run_artifacts\tel_event_stack_00_logs `
+  -CiMode
+```

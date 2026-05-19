@@ -27,6 +27,7 @@
   "not_deployment_authority": true,
   "not_destructive_action_receipt": true,
   "not_encrypted_shard_transfer": true,
+  "not_event_authority": true,
   "not_experiment_result": true,
   "not_explicit_action_request": true,
   "not_federation": true,
@@ -53,6 +54,7 @@
   "not_model_weight_training": true,
   "not_network_authorization": true,
   "not_omega_detection": true,
+  "not_peer_review_certification": true,
   "not_pmr_superiority_proof": true,
   "not_product_completion": true,
   "not_product_release": true,
@@ -82,6 +84,7 @@
   "not_stale_identity_leakage": true,
   "not_statistical_superiority_proof": true,
   "not_structural_delta_proof": true,
+  "not_surveillance": true,
   "not_token_economy": true,
   "not_truth_certification": true,
   "not_truth_score": true,
@@ -123,6 +126,7 @@
   "sonya_local_fixture_adapter_indexed": true,
   "sonya_required_membrane_checkpoint_indexed": true,
   "status": "drafted",
+  "tel_event_stack_00_indexed": true,
   "universal_compatibility_matrix_indexed": true,
   "universal_stage_pipeline_indexed": true
 }

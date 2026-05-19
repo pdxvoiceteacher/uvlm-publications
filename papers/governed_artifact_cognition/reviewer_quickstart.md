@@ -739,3 +739,13 @@ Run the Sonya required membrane checkpoint fixture acceptance:
 ```
 
 Sonya is the required execution membrane for model/tool/provider-facing paths. Missing Sonya posture must fail closed. Raw output is not cognition. This is not live model execution, not provider call, not network authorization, not adapter authorization, not raw output admission, not memory write, not model-weight training, not deployment authority, and not truth certification.
+
+
+## TEL-EVENT-STACK-00
+
+```powershell
+.\experiments\Run-TEL-EVENT-STACK00-Acceptance.ps1 `
+  -OutputRoot C:\UVLM\run_artifacts\tel_event_stack_00 `
+  -LogDir C:\UVLM\run_artifacts\tel_event_stack_00_logs `
+  -CiMode
+```

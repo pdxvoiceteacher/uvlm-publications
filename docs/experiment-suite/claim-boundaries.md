@@ -13,6 +13,29 @@
 - Missing Sonya posture must fail closed.
 - Raw output is not cognition.
 - Telemetry event is not authority.
+- Event receipt is not truth certification.
+- Replay trace is not canon.
+- Failure receipt is not permission to proceed.
+- Event ledger is not memory write.
+- Telemetry is not surveillance.
+- Telemetry is not model training.
+- Metric event is not performance proof.
+- Publication validation event is not peer review.
+- Missing required event must fail closed.
+- Raw output is not cognition.
+- Sonya candidate packet is not final answer.
+- PMR retention is not truth.
+- Evidence Review claim map is not truth certification.
+- Retrosynthesis repair candidate is not canon adoption.
+- TEL-EVENT-STACK-00 is not memory write.
+- TEL-EVENT-STACK-00 is not surveillance.
+- TEL-EVENT-STACK-00 is not model-weight training.
+- TEL-EVENT-STACK-00 is not network authorization.
+- TEL-EVENT-STACK-00 is not provider call.
+- TEL-EVENT-STACK-00 is not federation authorization.
+- TEL-EVENT-STACK-00 is not deployment authority.
+- TEL-EVENT-STACK-00 is not truth certification.
+- TEL-EVENT-STACK-00 is not peer review certification.
 - Failure receipt is not permission to proceed.
 - SONYA-REQUIRED-MEMBRANE-CHECKPOINT-00 is not live model execution.
 - SONYA-REQUIRED-MEMBRANE-CHECKPOINT-00 is not provider call.
