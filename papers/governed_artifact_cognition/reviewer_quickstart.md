@@ -749,3 +749,6 @@ Sonya is the required execution membrane for model/tool/provider-facing paths. M
   -LogDir C:\UVLM\run_artifacts\tel_event_stack_00_logs `
   -CiMode
 ```
+
+
+Run-EVIDENCE-REVIEW-PRODUCT-LOOP02-Acceptance.ps1

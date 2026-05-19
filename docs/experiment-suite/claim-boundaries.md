@@ -36,6 +36,25 @@
 - TEL-EVENT-STACK-00 is not deployment authority.
 - TEL-EVENT-STACK-00 is not truth certification.
 - TEL-EVENT-STACK-00 is not peer review certification.
+- Evidence Review product loop is not final answer selection.
+- Reviewer task is not truth certification.
+- Unsupported-claim action queue is not evidence acceptance.
+- Uncertainty task is not uncertainty resolution.
+- Counterevidence task is not contradiction resolution.
+- TEL event linkage is not authority.
+- PMR provenance binding is not memory write.
+- Human consent context is not consent execution.
+- Sonya membrane binding is not provider authorization.
+- Candidate packet is not final answer.
+- Product-loop summary is not deployment authority.
+- Product-loop scaffold is not hallucination reduction proof.
+- Product-loop scaffold is not model quality benchmark.
+- Product-loop scaffold is not product release.
+- EVIDENCE-REVIEW-PRODUCT-LOOP-02 is not accepted evidence.
+- EVIDENCE-REVIEW-PRODUCT-LOOP-02 is not truth certification.
+- EVIDENCE-REVIEW-PRODUCT-LOOP-02 is not memory write.
+- EVIDENCE-REVIEW-PRODUCT-LOOP-02 is not provider call.
+- EVIDENCE-REVIEW-PRODUCT-LOOP-02 is not peer review certification.
 - Failure receipt is not permission to proceed.
 - SONYA-REQUIRED-MEMBRANE-CHECKPOINT-00 is not live model execution.
 - SONYA-REQUIRED-MEMBRANE-CHECKPOINT-00 is not provider call.

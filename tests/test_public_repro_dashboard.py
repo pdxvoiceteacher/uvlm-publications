@@ -108,6 +108,7 @@ REQUIRED_PHASES = {
     "SONYA-LOCAL-FIXTURE-ADAPTER-03",
     "SONYA-REQUIRED-MEMBRANE-CHECKPOINT-00",
     "TEL-EVENT-STACK-00",
+    "EVIDENCE-REVIEW-PRODUCT-LOOP-02",
 }
 
 REQUIRED_COMMAND_FRAGMENTS = (
@@ -2238,5 +2239,29 @@ def test_tel_event_stack_validator_rejects_overclaims(tmp_path):
         out_dir, docs_dir = run_builder(tmp_path / claim.replace(" ", "_"))
         page = docs_dir / "tel-event-stack.md"
         page.write_text(page.read_text(encoding="utf-8") + f"\nTEL event stack {claim}.\n", encoding="utf-8")
+        result = validate_dashboard(out_dir / "experiment_suite_dashboard.json", docs_dir)
+        assert result["passed"] is False
+
+def test_evidence_review_product_loop_dashboard_entries(tmp_path):
+    out_dir, docs_dir = run_builder(tmp_path)
+    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text())
+    phase = next(entry for entry in dashboard["accepted_phases"] if entry["phase_id"] == "EVIDENCE-REVIEW-PRODUCT-LOOP-02")
+    assert "evidence_review_product_loop_manifest.json" in phase["primary_artifacts"]
+    assert "evidence_review_claim_triage_rows.jsonl" in phase["primary_artifacts"]
+    assert "Evidence Review product loop is not final answer selection." in (docs_dir / "claim-boundaries.md").read_text()
+
+
+def test_evidence_review_product_loop_validator_rejects_overclaims(tmp_path):
+    for claim in (
+        "claims final answer selection",
+        "claims accepted evidence",
+        "claims truth certification",
+        "claims hallucination reduction proof",
+        "claims product release",
+        "claims peer review certification",
+    ):
+        out_dir, docs_dir = run_builder(tmp_path / claim.replace(" ", "_"))
+        page = docs_dir / "evidence-review-product-loop.md"
+        page.write_text(page.read_text(encoding="utf-8") + f"\nEVIDENCE-REVIEW-PRODUCT-LOOP-02 {claim}.\n", encoding="utf-8")
         result = validate_dashboard(out_dir / "experiment_suite_dashboard.json", docs_dir)
         assert result["passed"] is False

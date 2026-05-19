@@ -514,13 +514,79 @@ TEL_EVENT_STACK_CLAIMS_BLOCKED = [
     "not runtime authority","not truth certification","not memory write","not surveillance","not model weight training","not network authorization","not provider call","not federation authorization","not reward entitlement","not token economy","not deployment authority","not final answer release","not hallucination reduction proof","not peer review certification","not recursive self-improvement",
 ]
 
+EVIDENCE_REVIEW_PRODUCT_LOOP_COMMAND = r""".\experiments\Run-EVIDENCE-REVIEW-PRODUCT-LOOP02-Acceptance.ps1 `
+  -OutputRoot C:\UVLM\run_artifacts\evidence_review_product_loop_02 `
+  -LogDir C:\UVLM\run_artifacts\evidence_review_product_loop_02_logs `
+  -CiMode"""
+EVIDENCE_REVIEW_PRODUCT_LOOP_ARTIFACTS = [
+    "evidence_review_product_loop_manifest.json",
+    "evidence_review_claim_triage_rows.jsonl",
+    "evidence_review_action_queue_packet.json",
+    "evidence_review_tel_linkage_packet.json",
+    "evidence_review_pmr_provenance_binding_packet.json",
+    "evidence_review_sonya_membrane_binding_packet.json",
+    "evidence_review_reviewer_task_board_packet.json",
+    "evidence_review_product_loop_review_packet.json",
+    "evidence_review_product_loop_summary.md",
+    "artifact_inventory.json",
+    "run_artifact_manifest.json",
+    "export_bundle_manifest.json",
+    "export_bundle_parity_report.json",
+    "evidence_review_product_loop_02_acceptance_receipt.json",
+]
+EVIDENCE_REVIEW_PRODUCT_LOOP_DASHBOARD_SUMMARY = {
+    "review_status": "accepted_as_evidence_review_product_loop_scaffold",
+    "product_loop_id": "evidence-review-product-loop-02",
+    "source_evidence_review_bound": True,
+    "source_sonya_membrane_bound": True,
+    "source_tel_event_stack_bound": True,
+    "source_pmr_provenance_bound": True,
+    "source_human_consent_negative_control_bound": True,
+    "source_retrosynthesis_bound": True,
+    "claim_triage_rows_present": True,
+    "action_queue_present": True,
+    "tel_linkage_present": True,
+    "pmr_provenance_binding_present": True,
+    "sonya_membrane_binding_present": True,
+    "reviewer_task_board_present": True,
+    "product_loop_not_final_answer": True,
+    "reviewer_task_not_truth_certification": True,
+    "unsupported_claim_queue_not_evidence_acceptance": True,
+    "uncertainty_task_not_uncertainty_resolution": True,
+    "counterevidence_task_not_contradiction_resolution": True,
+    "tel_event_linkage_not_authority": True,
+    "pmr_provenance_binding_not_memory_write": True,
+    "sonya_membrane_binding_not_provider_authorization": True,
+    "candidate_packet_not_final_answer": True,
+    "product_loop_summary_not_deployment_authority": True,
+    "product_loop_not_hallucination_reduction_proof": True,
+    "product_loop_not_model_quality_benchmark": True,
+    "product_loop_not_product_release": True,
+    "final_answer_not_released": True,
+    "accepted_evidence_not_admitted": True,
+    "truth_certification_blocked": True,
+    "memory_write_blocked": True,
+    "provider_calls_not_performed": True,
+    "network_calls_not_performed": True,
+    "model_weight_training_blocked": True,
+    "deployment_blocked": True,
+    "export_parity_passed": True,
+    "artifact_inventory_profile": "evidence_review_product_loop",
+    "run_artifact_manifest_status": "verified",
+}
+EVIDENCE_REVIEW_PRODUCT_LOOP_CLAIMS_BLOCKED = [
+    "not final answer selection", "not accepted evidence", "not truth certification", "not hallucination reduction proof",
+    "not model quality benchmark", "not model superiority proof", "not deployment authority", "not product release",
+    "not memory write", "not provider call", "not network authorization", "not model weight training",
+    "not peer review certification", "not recursive self-improvement",
+]
+
 SONYA_REQUIRED_MEMBRANE_COMMAND = r""".\experiments\Run-SONYA-REQUIRED-MEMBRANE-CHECKPOINT00-Acceptance.ps1 `
   -OutputRoot C:\UVLM\run_artifacts\sonya_required_membrane_checkpoint_00 `
   -LogDir C:\UVLM\run_artifacts\sonya_required_membrane_checkpoint_00_logs `
   -CiMode"""
 SONYA_REQUIRED_MEMBRANE_ARTIFACTS = [
     "sonya_required_membrane_checkpoint_packet.json",
-            "tel_event_stack_manifest.json",
     "sonya_runtime_path_coverage_rows.jsonl",
     "sonya_bypass_surface_register.json",
     "sonya_candidate_packet_requirement_map.json",
@@ -2522,6 +2588,21 @@ ACCEPTED_PHASES = [
         "publication_status": "dashboard_indexed",
     },
     {
+        "phase_id": "EVIDENCE-REVIEW-PRODUCT-LOOP-02",
+        "repo": "pdxvoiceteacher/CoherenceLattice",
+        "status": "accepted",
+        "evidence_type": "product_loop_scaffold",
+        "product_posture": "evidence_review_product_loop_without_final_answer_or_evidence_admission",
+        "primary_artifacts": EVIDENCE_REVIEW_PRODUCT_LOOP_ARTIFACTS,
+        "dashboard_summary": EVIDENCE_REVIEW_PRODUCT_LOOP_DASHBOARD_SUMMARY,
+        "prerequisite_phases": ["SONYA-REQUIRED-MEMBRANE-CHECKPOINT-00","TEL-EVENT-STACK-00","PMR-HUMAN-CONSENT-NEGATIVE-CONTROL-00","PMR-HUMAN-PROVENANCE-00","PMR-FED-STRESS-00","PMR-STAT-00","PMR-SIM-00","EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER-02","EVIDENCE-REVIEW-PACK-01","EVIDENCE-REVIEW-PACK-00","RW-COMP-LOCAL-ADAPTER-01","RW-COMP-03","RETROSYNTHESIS-SANDBOX-CYCLE-01","ARTIFACT-CONTRACT-REGISTRY-01","UNIVERSAL-COMPATIBILITY-MATRIX-00","UNIVERSAL-STAGE-PIPELINE-00","PROVENANCE-TRAINING-LEDGER-00"],
+        "reproduction_command_summary": EVIDENCE_REVIEW_PRODUCT_LOOP_COMMAND,
+        "claim_allowed": "EVIDENCE-REVIEW-PRODUCT-LOOP-02 demonstrates a fixture-only Evidence Review product-loop scaffold that binds claim triage, reviewer task queues, TEL event linkage, PMR provenance/consent context, Sonya membrane posture, and Retrosynthesis candidates while preserving non-authority boundaries.",
+        "claims_blocked": EVIDENCE_REVIEW_PRODUCT_LOOP_CLAIMS_BLOCKED,
+        "reviewer_caution": "EVIDENCE-REVIEW-PRODUCT-LOOP-02 emits fixture-only claim triage rows, reviewer task queues, TEL linkage, PMR provenance/consent binding, Sonya membrane binding, and a review packet only. It does not select final answers, accept evidence, certify truth, write memory, call providers, deploy, release a product, certify peer review, or prove hallucination reduction.",
+        "publication_status": "dashboard_indexed",
+    },
+    {
         "phase_id": "SONYA-REQUIRED-MEMBRANE-CHECKPOINT-00",
         "repo": "pdxvoiceteacher/CoherenceLattice",
         "status": "accepted",
@@ -3586,6 +3667,25 @@ BOUNDARIES = [
     "TEL-EVENT-STACK-00 is not deployment authority.",
     "TEL-EVENT-STACK-00 is not truth certification.",
     "TEL-EVENT-STACK-00 is not peer review certification.",
+    "Evidence Review product loop is not final answer selection.",
+    "Reviewer task is not truth certification.",
+    "Unsupported-claim action queue is not evidence acceptance.",
+    "Uncertainty task is not uncertainty resolution.",
+    "Counterevidence task is not contradiction resolution.",
+    "TEL event linkage is not authority.",
+    "PMR provenance binding is not memory write.",
+    "Human consent context is not consent execution.",
+    "Sonya membrane binding is not provider authorization.",
+    "Candidate packet is not final answer.",
+    "Product-loop summary is not deployment authority.",
+    "Product-loop scaffold is not hallucination reduction proof.",
+    "Product-loop scaffold is not model quality benchmark.",
+    "Product-loop scaffold is not product release.",
+    "EVIDENCE-REVIEW-PRODUCT-LOOP-02 is not accepted evidence.",
+    "EVIDENCE-REVIEW-PRODUCT-LOOP-02 is not truth certification.",
+    "EVIDENCE-REVIEW-PRODUCT-LOOP-02 is not memory write.",
+    "EVIDENCE-REVIEW-PRODUCT-LOOP-02 is not provider call.",
+    "EVIDENCE-REVIEW-PRODUCT-LOOP-02 is not peer review certification.",
     "Failure receipt is not permission to proceed.",
     "SONYA-REQUIRED-MEMBRANE-CHECKPOINT-00 is not live model execution.",
     "SONYA-REQUIRED-MEMBRANE-CHECKPOINT-00 is not provider call.",
@@ -4159,6 +4259,7 @@ def reproducibility_index() -> dict[str, Any]:
                 {"name": "Sonya Adapter Contract Registry acceptance", "command": SONYA_ADAPTER_CONTRACT_REGISTRY_COMMAND},
                 {"name": "Sonya required membrane checkpoint acceptance", "command": SONYA_REQUIRED_MEMBRANE_COMMAND},
                 {"name": "TEL event stack acceptance", "command": TEL_EVENT_STACK_COMMAND},
+                {"name": "Evidence Review product loop acceptance", "command": EVIDENCE_REVIEW_PRODUCT_LOOP_COMMAND},
                 {"name": "Sonya Adapter Smoke acceptance", "command": SONYA_ADAPTER_SMOKE_COMMAND},
                 {"name": "Sonya Local Fixture Adapter acceptance", "command": SONYA_LOCAL_FIXTURE_ADAPTER_COMMAND},
                 {"name": "Evidence Review Pack local adapter acceptance", "command": EVIDENCE_REVIEW_PACK_LOCAL_ADAPTER_COMMAND},
@@ -4221,6 +4322,7 @@ def artifact_index() -> dict[str, Any]:
         "SONYA-ADAPTER-CONTRACT-REGISTRY-01": SONYA_ADAPTER_CONTRACT_REGISTRY_ARTIFACTS,
         "SONYA-REQUIRED-MEMBRANE-CHECKPOINT-00": SONYA_REQUIRED_MEMBRANE_ARTIFACTS,
         "TEL-EVENT-STACK-00": TEL_EVENT_STACK_ARTIFACTS,
+        "EVIDENCE-REVIEW-PRODUCT-LOOP-02": EVIDENCE_REVIEW_PRODUCT_LOOP_ARTIFACTS,
         "SONYA-ADAPTER-SMOKE-00": SONYA_ADAPTER_SMOKE_ARTIFACTS,
         "SONYA-LOCAL-FIXTURE-ADAPTER-01": SONYA_LOCAL_FIXTURE_ADAPTER_ARTIFACTS,
         "EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER-01": EVIDENCE_REVIEW_PACK_LOCAL_ADAPTER_ARTIFACTS,
@@ -4257,6 +4359,10 @@ def status_payload() -> dict[str, Any]:
         "not_surveillance": True,
         "not_peer_review_certification": True,
         "not_event_authority": True,
+        "evidence_review_product_loop_02_indexed": True,
+        "not_product_loop_final_answer": True,
+        "not_product_loop_evidence_acceptance": True,
+        "not_product_loop_release": True,
         "not_provider_call": True,
         "not_raw_output_admission": True,
         "not_sonya_bypass_authority": True,
@@ -4716,6 +4822,32 @@ SONYA-ADAPTER-CONTRACT-REGISTRY-01 demonstrates a fixture-only versioned adapter
 Claims blocked: {"; ".join(SONYA_ADAPTER_CONTRACT_REGISTRY_CLAIMS_BLOCKED)}.
 
 Reviewer caution: SONYA-ADAPTER-CONTRACT-REGISTRY-01 defines adapter contracts only. It does not execute adapters, does not call providers, does not authorize network use, does not admit raw output as cognition, does not write memory, does not release final answers, does not train models, and does not deploy.
+""",
+        "evidence-review-product-loop.md": f"""# Evidence Review product loop
+
+Required phrase: Evidence Review product loop is not final answer selection.
+
+EVIDENCE-REVIEW-PRODUCT-LOOP-02 demonstrates a fixture-only Evidence Review product-loop scaffold that binds claim triage, reviewer task queues, TEL event linkage, PMR provenance/consent context, Sonya membrane posture, and Retrosynthesis candidates while preserving non-authority boundaries.
+
+Unsupported-claim action queue is not evidence acceptance.
+
+```powershell
+{EVIDENCE_REVIEW_PRODUCT_LOOP_COMMAND}
+```
+
+## Primary artifacts
+
+{chr(10).join(f"- `{artifact}`" for artifact in EVIDENCE_REVIEW_PRODUCT_LOOP_ARTIFACTS)}
+
+## Dashboard posture
+
+{chr(10).join(f"- `{key} = {str(value).lower()}`" for key, value in EVIDENCE_REVIEW_PRODUCT_LOOP_DASHBOARD_SUMMARY.items())}
+
+## Blocked claims
+
+{chr(10).join(f"- {claim}" for claim in EVIDENCE_REVIEW_PRODUCT_LOOP_CLAIMS_BLOCKED)}
+
+Reviewer caution: EVIDENCE-REVIEW-PRODUCT-LOOP-02 emits fixture-only claim triage rows, reviewer task queues, TEL linkage, PMR provenance/consent binding, Sonya membrane binding, and a review packet only. It does not select final answers, accept evidence, certify truth, write memory, call providers, deploy, release a product, certify peer review, or prove hallucination reduction.
 """,
         "tel-event-stack.md": f"""# TEL event stack
 

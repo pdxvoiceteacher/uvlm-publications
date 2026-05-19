@@ -241,6 +241,7 @@ PAPER_CONFIGS: dict[str, dict[str, Any]] = {
             "Failure receipt is not permission to proceed.",
             "Run-SONYA-REQUIRED-MEMBRANE-CHECKPOINT00-Acceptance.ps1",
             "TEL-EVENT-STACK-00",
+            "EVIDENCE-REVIEW-PRODUCT-LOOP-02",
             "Telemetry event is not authority.",
             "Event receipt is not truth certification.",
             "Replay trace is not canon.",
@@ -250,6 +251,9 @@ PAPER_CONFIGS: dict[str, dict[str, Any]] = {
             "Telemetry is not model training.",
             "Publication validation event is not peer review.",
             "Run-TEL-EVENT-STACK00-Acceptance.ps1",
+            "Evidence Review product loop is not final answer selection.",
+            "Unsupported-claim action queue is not evidence acceptance.",
+            "Run-EVIDENCE-REVIEW-PRODUCT-LOOP02-Acceptance.ps1",
             "EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER-02",
             "The revised local adapter candidate remains candidate-only, not accepted evidence.",
             "deltas are structural review descriptors",
@@ -647,6 +651,10 @@ PAPER_CONFIGS: dict[str, dict[str, Any]] = {
             "not_surveillance": True,
             "not_peer_review_certification": True,
             "not_event_authority": True,
+            "evidence_review_product_loop_02_indexed": True,
+            "not_product_loop_final_answer": True,
+            "not_product_loop_evidence_acceptance": True,
+            "not_product_loop_release": True,
             "not_stale_identity_leakage": True,
             "not_lineage_authority": True,
             "evidence_review_pack_local_adapter_02_indexed": True,
@@ -812,34 +820,34 @@ def _context_words(text: str, index: int, *, before: int = 96, after: int = 96) 
 
 
 def _is_allowed_provider_call_context(text: str, index: int) -> bool:
-    window = _context_words(text, index, before=128, after=128)
-    allowed_fragments = (
+    window = text[max(0, index - 48) : index + 72]
+    normalized = " ".join(re.sub(r"[^a-z0-9]+", " ", window.replace("_", " ")).split())
+    allowed_patterns = (
         "no remote provider call",
-        "no provider call",
+        "no remote provider calls",
         "not provider call",
-        "not a provider call",
-        "not a remote provider call",
         "not remote provider call",
         "provider calls not performed",
         "provider calls not made",
+        "is not provider call",
+        "is not a provider call",
         "provider call not performed",
         "provider call not made",
         "provider calls performed false",
+        "provider calls performed false",
+        "provider_calls_not_performed",
+        "provider_calls_performed false",
         "direct model provider call is not allowed",
+        "provider call is not allowed",
         "does not call providers",
-        "does not call remote providers",
-        "does not call provider",
         "network provider calls",
+        "without live adapter execution or network provider calls",
         "without live model execution or remote provider calls",
-        "no live model provider call",
-        "network provider memory",
         "provider call blocked",
         "provider call forbidden",
         "not provider call status flags",
-        "not provider call",
-        "no provider call is made",
     )
-    return any(fragment in window for fragment in allowed_fragments)
+    return any(pat in normalized for pat in allowed_patterns)
 
 
 def _is_allowed_raw_output_context(text: str, index: int) -> bool:
@@ -947,7 +955,7 @@ def _forbidden_hits(normalized_text: str, forbidden: tuple[str, ...]) -> list[st
                 search_from = index + len(normalized_phrase)
                 continue
             if (
-                phrase in {"remote provider call", "remote provider calls", "provider call", "claims provider call", "claims remote provider call", "provider call performed", "provider call authorized"}
+                phrase in {"remote provider call", "remote provider calls", "provider call", "provider call performed", "provider call authorized"}
                 and _is_allowed_provider_call_context(normalized_text, index)
             ):
                 search_from = index + len(normalized_phrase)

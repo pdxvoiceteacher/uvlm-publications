@@ -766,3 +766,8 @@ The checkpoint maps runtime paths to Sonya-required, fixture-non-applicable, pub
 ## TEL-EVENT-STACK-00
 
 Telemetry event is not authority. Event receipt is not truth certification. Replay trace is not canon. Failure receipt is not permission to proceed. Event ledger is not memory write. Telemetry is not surveillance. Telemetry is not model training. Metric event is not performance proof. Publication validation event is not peer review. Missing required event must fail closed. Raw output is not cognition. Sonya candidate packet is not final answer. PMR retention is not truth. Evidence Review claim map is not truth certification. Retrosynthesis repair candidate is not canon adoption.
+
+
+## EVIDENCE-REVIEW-PRODUCT-LOOP-02
+
+Evidence Review product loop is not final answer selection. Reviewer task is not truth certification. Unsupported-claim action queue is not evidence acceptance. Uncertainty task is not uncertainty resolution. Counterevidence task is not contradiction resolution. TEL event linkage is not authority. PMR provenance binding is not memory write. Sonya membrane binding is not provider authorization. Candidate packet is not final answer. Product-loop summary is not deployment authority. Product-loop scaffold is not hallucination reduction proof. Product-loop scaffold is not model quality benchmark. Product-loop scaffold is not product release. EVIDENCE-REVIEW-PRODUCT-LOOP-02 is not accepted evidence. EVIDENCE-REVIEW-PRODUCT-LOOP-02 is not truth certification. EVIDENCE-REVIEW-PRODUCT-LOOP-02 is not memory write. EVIDENCE-REVIEW-PRODUCT-LOOP-02 is not provider call. EVIDENCE-REVIEW-PRODUCT-LOOP-02 is not peer review certification.

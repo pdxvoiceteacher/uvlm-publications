@@ -2190,3 +2190,37 @@ def test_governed_validator_rejects_tel_event_stack_overclaims(tmp_path):
         paper.write_text(paper.read_text(encoding="utf-8") + f"\nTEL event stack {claim}.\n", encoding="utf-8")
         result = validate_publication_claims(paper, appendix=paper_root / "reproducibility_appendix.md", quickstart=paper_root / "reviewer_quickstart.md", status=paper_root / "status.json")
         assert result["passed"] is False
+
+def test_governed_validator_indexes_evidence_review_product_loop():
+    paper = (ROOT / "PUB_GOV_ARTIFACT_COG_01.md").read_text(encoding="utf-8")
+    appendix = (ROOT / "reproducibility_appendix.md").read_text(encoding="utf-8")
+    quickstart = (ROOT / "reviewer_quickstart.md").read_text(encoding="utf-8")
+    status = json.loads((ROOT / "status.json").read_text(encoding="utf-8"))
+    assert "EVIDENCE-REVIEW-PRODUCT-LOOP-02" in paper
+    assert "Evidence Review product loop is not final answer selection." in paper
+    assert "Unsupported-claim action queue is not evidence acceptance." in paper
+    assert "Run-EVIDENCE-REVIEW-PRODUCT-LOOP02-Acceptance.ps1" in appendix
+    assert "Run-EVIDENCE-REVIEW-PRODUCT-LOOP02-Acceptance.ps1" in quickstart
+    assert status["evidence_review_product_loop_02_indexed"] is True
+    assert status["not_product_loop_final_answer"] is True
+    assert status["not_product_loop_evidence_acceptance"] is True
+    assert status["not_product_loop_release"] is True
+
+
+def test_governed_validator_rejects_evidence_review_product_loop_overclaims(tmp_path):
+    for claim in (
+        "claims final answer selection",
+        "claims accepted evidence",
+        "claims product release",
+        "claims peer review certification",
+    ):
+        paper_root = _copy_governed_paper(tmp_path / claim.replace(" ", "_"))
+        paper = paper_root / "PUB_GOV_ARTIFACT_COG_01.md"
+        paper.write_text(paper.read_text(encoding="utf-8") + f"\nEVIDENCE-REVIEW-PRODUCT-LOOP-02 {claim}.\n", encoding="utf-8")
+        result = validate_publication_claims(
+            paper,
+            appendix=paper_root / "reproducibility_appendix.md",
+            quickstart=paper_root / "reviewer_quickstart.md",
+            status=paper_root / "status.json",
+        )
+        assert result["passed"] is False

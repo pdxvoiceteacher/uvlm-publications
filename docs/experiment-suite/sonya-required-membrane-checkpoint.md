@@ -16,7 +16,6 @@ SONYA-REQUIRED-MEMBRANE-CHECKPOINT-00 audits model/tool/provider-facing paths an
 ## Primary artifacts
 
 - `sonya_required_membrane_checkpoint_packet.json`
-- `tel_event_stack_manifest.json`
 - `sonya_runtime_path_coverage_rows.jsonl`
 - `sonya_bypass_surface_register.json`
 - `sonya_candidate_packet_requirement_map.json`

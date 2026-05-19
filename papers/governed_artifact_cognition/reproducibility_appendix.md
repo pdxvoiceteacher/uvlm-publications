@@ -701,3 +701,6 @@ Replay trace is not canon.
   -LogDir C:\UVLM\run_artifacts\tel_event_stack_00_logs `
   -CiMode
 ```
+
+
+Run-EVIDENCE-REVIEW-PRODUCT-LOOP02-Acceptance.ps1
