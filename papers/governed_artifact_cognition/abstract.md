@@ -172,3 +172,5 @@ Human participant packet is not metaphysical personhood claim. Consent can const
   -LogDir C:\UVLM\run_artifacts\pmr_human_provenance_00_logs `
   -CiMode
 ```
+
+SPEC-FRESHNESS-REGISTRY-00 and FUNDAMENTAL-COHERENCE-METRICS-00 extend governance and metric-science layers; coherence metric is not truth score.
