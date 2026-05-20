@@ -464,3 +464,6 @@
 - Context refresh requires audit.
 - Supersession requires lineage.
 - EVIDENCE-REVIEW-METRICS-00 is not truth certification.
+
+- Conceptual source is not implementation authority.
+- Probabilistic confidence is not truth certification.

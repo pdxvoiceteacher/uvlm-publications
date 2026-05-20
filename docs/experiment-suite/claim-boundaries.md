@@ -49,6 +49,8 @@
 - TEL trace preservation is required.
 - PMR provenance preservation is required.
 - Freshness is not authority.
+- Probabilistic confidence is not truth certification.
+- Conceptual source is not implementation authority.
 - Recency is not correctness.
 - Context refresh requires audit.
 - Supersession requires lineage.
