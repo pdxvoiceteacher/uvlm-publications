@@ -93,6 +93,8 @@ REQUIRED_PHASES = {
     "PMR-03-LIFECYCLE-STATE-MACHINE",
     "PMR-04-LIFECYCLE-AUDIT-PREFLIGHT",
     "PMR-05-SOPHIA-LIFECYCLE-AUDIT-REVIEW",
+    "SPEC-FRESHNESS-REGISTRY-00",
+    "FUNDAMENTAL-COHERENCE-METRICS-00",
     "PMR-06-USER-CONFIRMATION-PREFLIGHT",
     "PMR-07-USER-CONFIRMATION-NEGATIVE-CONTROL",
     "PMR-08-VALID-USER-CONFIRMATION-RECEIPT-SCAFFOLD",
@@ -2265,3 +2267,22 @@ def test_evidence_review_product_loop_validator_rejects_overclaims(tmp_path):
         page.write_text(page.read_text(encoding="utf-8") + f"\nEVIDENCE-REVIEW-PRODUCT-LOOP-02 {claim}.\n", encoding="utf-8")
         result = validate_dashboard(out_dir / "experiment_suite_dashboard.json", docs_dir)
         assert result["passed"] is False
+
+
+def test_publication_sync_spec_freshness_and_fundamental_coherence(tmp_path):
+    out_dir, _ = run_builder(tmp_path)
+    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text())
+    repro = json.loads((out_dir / "reproducibility_index.json").read_text())
+    artifacts = json.loads((out_dir / "artifact_index.json").read_text())
+    boundaries = json.loads((out_dir / "claim_boundary_index.json").read_text())
+    phases = {e["phase_id"] for e in dashboard["accepted_phases"]}
+    assert "SPEC-FRESHNESS-REGISTRY-00" in phases
+    assert "FUNDAMENTAL-COHERENCE-METRICS-00" in phases
+    blob = json.dumps(repro)
+    assert "Run-SPEC-FRESHNESS-REGISTRY00-Acceptance.ps1" in blob
+    assert "Run-FUNDAMENTAL-COHERENCE-METRICS00-Acceptance.ps1" in blob
+    assert "spec_freshness_registry_packet.json" in artifacts["phases"]["SPEC-FRESHNESS-REGISTRY-00"]
+    assert "fundamental_coherence_metrics_manifest.json" in artifacts["phases"]["FUNDAMENTAL-COHERENCE-METRICS-00"]
+    text = "\n".join(boundaries["boundaries"])
+    assert "Design document is not active spec unless registry-scoped." in text
+    assert "Coherence metric is not truth score." in text

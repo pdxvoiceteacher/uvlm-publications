@@ -328,3 +328,8 @@
 - `evidence_review_claim_triage_rows.jsonl` — Evidence Review product loop scaffold; product loop is not final answer selection; unsupported-claim action queue is not evidence acceptance; not accepted evidence; not deployment authority; not product release.
 - `evidence_review_action_queue_packet.json` — Evidence Review product loop scaffold; product loop is not final answer selection; unsupported-claim action queue is not evidence acceptance; not accepted evidence; not deployment authority; not product release.
 - `evidence_review_product_loop_review_packet.json` — Evidence Review product loop scaffold; product loop is not final answer selection; unsupported-claim action queue is not evidence acceptance; not accepted evidence; not deployment authority; not product release.
+
+| spec_freshness_registry_packet.json | Spec freshness governance scaffold artifact. |
+| fundamental_coherence_metrics_manifest.json | Fundamental coherence metrics scaffold manifest. |
+| fundamental_coherence_metric_rows.jsonl | Fundamental coherence metric rows on deterministic controls. |
+| fundamental_coherence_review_packet.json | Fundamental coherence review packet. |
