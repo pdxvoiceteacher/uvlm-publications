@@ -2114,3 +2114,131 @@ def test_governed_validator_rejects_pmr_human_provenance_00_overclaims(tmp_path)
         assert result["passed"] is False
         found = [hit.lower() for hit in result["forbidden_overclaims_found"]]
         assert claim.lower() in found or f"claims {claim.lower()}" in found, result
+
+
+def test_governed_validator_indexes_sonya_required_membrane_checkpoint():
+    paper = (ROOT / "PUB_GOV_ARTIFACT_COG_01.md").read_text(encoding="utf-8")
+    appendix = (ROOT / "reproducibility_appendix.md").read_text(encoding="utf-8")
+    quickstart = (ROOT / "reviewer_quickstart.md").read_text(encoding="utf-8")
+    status = json.loads((ROOT / "status.json").read_text(encoding="utf-8"))
+    assert "SONYA-REQUIRED-MEMBRANE-CHECKPOINT-00" in paper
+    assert "Sonya is the required execution membrane for model/tool/provider-facing paths." in paper
+    assert "Missing Sonya posture must fail closed." in paper
+    assert "Run-SONYA-REQUIRED-MEMBRANE-CHECKPOINT00-Acceptance.ps1" in appendix
+    assert "Run-SONYA-REQUIRED-MEMBRANE-CHECKPOINT00-Acceptance.ps1" in quickstart
+    assert status["sonya_required_membrane_checkpoint_indexed"] is True
+    assert status["not_provider_call"] is True
+    assert status["not_raw_output_admission"] is True
+    assert status["not_sonya_bypass_authority"] is True
+
+
+def test_governed_validator_rejects_sonya_required_membrane_overclaims(tmp_path):
+    forbidden_claims = (
+        "SONYA membrane checkpoint claims provider call.",
+        "SONYA membrane checkpoint claims raw output admission.",
+        "SONYA membrane checkpoint claims live model execution.",
+        "SONYA membrane checkpoint claims network authorization.",
+        "SONYA membrane checkpoint claims adapter authorization.",
+    )
+    for claim in forbidden_claims:
+        paper_root = _copy_governed_paper(tmp_path / claim.replace(" ", "_").replace(".", ""))
+        paper = paper_root / "PUB_GOV_ARTIFACT_COG_01.md"
+        paper.write_text(paper.read_text(encoding="utf-8") + f"\n{claim}\n", encoding="utf-8")
+        result = validate_publication_claims(
+            paper,
+            appendix=paper_root / "reproducibility_appendix.md",
+            quickstart=paper_root / "reviewer_quickstart.md",
+            status=paper_root / "status.json",
+        )
+        assert result["passed"] is False, claim
+        assert result["forbidden_overclaims_found"], result
+
+
+def test_governed_validator_allows_sonya_required_membrane_negative_contexts(tmp_path):
+    paper_root = _copy_governed_paper(tmp_path)
+    paper = paper_root / "PUB_GOV_ARTIFACT_COG_01.md"
+    paper.write_text(
+        paper.read_text(encoding="utf-8")
+        + "\nno remote provider call\nprovider calls not performed\nraw output is forbidden\nraw output is not cognition\nraw_output_admitted = false\nraw_output_forbidden = true\n",
+        encoding="utf-8",
+    )
+    result = validate_publication_claims(
+        paper,
+        appendix=paper_root / "reproducibility_appendix.md",
+        quickstart=paper_root / "reviewer_quickstart.md",
+        status=paper_root / "status.json",
+    )
+    assert result["passed"] is True
+
+
+def test_governed_validator_indexes_tel_event_stack():
+    paper = (ROOT / "PUB_GOV_ARTIFACT_COG_01.md").read_text(encoding="utf-8")
+    appendix = (ROOT / "reproducibility_appendix.md").read_text(encoding="utf-8")
+    quickstart = (ROOT / "reviewer_quickstart.md").read_text(encoding="utf-8")
+    status = json.loads((ROOT / "status.json").read_text(encoding="utf-8"))
+    assert "TEL-EVENT-STACK-00" in paper
+    assert "Telemetry event is not authority." in paper
+    assert "Replay trace is not canon." in paper
+    assert "Run-TEL-EVENT-STACK00-Acceptance.ps1" in appendix
+    assert "Run-TEL-EVENT-STACK00-Acceptance.ps1" in quickstart
+    assert status["tel_event_stack_00_indexed"] is True
+
+def test_governed_validator_rejects_tel_event_stack_overclaims(tmp_path):
+    for claim in ("claims surveillance", "claims runtime authority", "claims provider call", "claims peer review certification"):
+        paper_root = _copy_governed_paper(tmp_path / claim.replace(" ", "_"))
+        paper = paper_root / "PUB_GOV_ARTIFACT_COG_01.md"
+        paper.write_text(paper.read_text(encoding="utf-8") + f"\nTEL event stack {claim}.\n", encoding="utf-8")
+        result = validate_publication_claims(paper, appendix=paper_root / "reproducibility_appendix.md", quickstart=paper_root / "reviewer_quickstart.md", status=paper_root / "status.json")
+        assert result["passed"] is False
+
+def test_governed_validator_indexes_evidence_review_product_loop():
+    paper = (ROOT / "PUB_GOV_ARTIFACT_COG_01.md").read_text(encoding="utf-8")
+    appendix = (ROOT / "reproducibility_appendix.md").read_text(encoding="utf-8")
+    quickstart = (ROOT / "reviewer_quickstart.md").read_text(encoding="utf-8")
+    status = json.loads((ROOT / "status.json").read_text(encoding="utf-8"))
+    assert "EVIDENCE-REVIEW-PRODUCT-LOOP-02" in paper
+    assert "Evidence Review product loop is not final answer selection." in paper
+    assert "Unsupported-claim action queue is not evidence acceptance." in paper
+    assert "Run-EVIDENCE-REVIEW-PRODUCT-LOOP02-Acceptance.ps1" in appendix
+    assert "Run-EVIDENCE-REVIEW-PRODUCT-LOOP02-Acceptance.ps1" in quickstart
+    assert status["evidence_review_product_loop_02_indexed"] is True
+    assert status["not_product_loop_final_answer"] is True
+    assert status["not_product_loop_evidence_acceptance"] is True
+    assert status["not_product_loop_release"] is True
+
+
+def test_governed_validator_rejects_evidence_review_product_loop_overclaims(tmp_path):
+    for claim in (
+        "claims final answer selection",
+        "claims accepted evidence",
+        "claims product release",
+        "claims peer review certification",
+    ):
+        paper_root = _copy_governed_paper(tmp_path / claim.replace(" ", "_"))
+        paper = paper_root / "PUB_GOV_ARTIFACT_COG_01.md"
+        paper.write_text(paper.read_text(encoding="utf-8") + f"\nEVIDENCE-REVIEW-PRODUCT-LOOP-02 {claim}.\n", encoding="utf-8")
+        result = validate_publication_claims(
+            paper,
+            appendix=paper_root / "reproducibility_appendix.md",
+            quickstart=paper_root / "reviewer_quickstart.md",
+            status=paper_root / "status.json",
+        )
+        assert result["passed"] is False
+
+
+def test_governed_validator_indexes_evidence_review_metrics():
+    paper = (ROOT / "PUB_GOV_ARTIFACT_COG_01.md").read_text(encoding="utf-8")
+    appendix = (ROOT / "reproducibility_appendix.md").read_text(encoding="utf-8")
+    status = json.loads((ROOT / "status.json").read_text(encoding="utf-8"))
+    assert "EVIDENCE-REVIEW-METRICS-00" in paper
+    assert "Hypercompression reduces explanatory distance, not review obligation." in paper
+    assert "Freshness is not authority." in paper
+    assert "Run-EVIDENCE-REVIEW-METRICS00-Acceptance.ps1" in appendix
+    assert status["evidence_review_metrics_00_indexed"] is True
+    assert status["spec_freshness_registry_00_indexed"] is True
+    assert status["fundamental_coherence_metrics_00_indexed"] is True
+    assert status["not_universal_ontology_proof"] is True
+    assert status["not_metric_truth_score"] is True
+    assert status["not_probabilistic_certitude"] is True
+    assert status["not_hypercompression_truth_certification"] is True
+    assert status["not_context_refresh_authority"] is True
