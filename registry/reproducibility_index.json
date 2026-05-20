@@ -187,6 +187,14 @@
     ],
     "uvlm-publications": [
       {
+        "name": "Spec freshness registry acceptance",
+        "command": ".\\experiments\\Run-SPEC-FRESHNESS-REGISTRY00-Acceptance.ps1 `\n  -OutputRoot C:\\UVLM\\run_artifacts\\spec_freshness_registry_00 `\n  -LogDir C:\\UVLM\\run_artifacts\\spec_freshness_registry_00_logs `\n  -CiMode"
+      },
+      {
+        "name": "Fundamental coherence metrics acceptance",
+        "command": ".\\experiments\\Run-FUNDAMENTAL-COHERENCE-METRICS00-Acceptance.ps1 `\n  -OutputRoot C:\\UVLM\\run_artifacts\\fundamental_coherence_metrics_00 `\n  -LogDir C:\\UVLM\\run_artifacts\\fundamental_coherence_metrics_00_logs `\n  -CiMode"
+      },
+      {
         "name": "governed artifact cognition validator",
         "command": "python tools/validate_publication_claims.py --paper papers/governed_artifact_cognition/PUB_GOV_ARTIFACT_COG_01.md --quickstart papers/governed_artifact_cognition/reviewer_quickstart.md --status papers/governed_artifact_cognition/status.json"
       },
