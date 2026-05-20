@@ -39,6 +39,7 @@ REQUIRED_DOCS = {
     "rw-comp-03.md",
     "universal-architecture.md",
     "sonya-adapter-contract-registry.md",
+    "sonya-required-membrane-checkpoint.md",
     "sonya-adapter-smoke.md",
     "sonya-local-fixture-adapter.md",
     "evidence-review-pack-local-adapter.md",
@@ -105,6 +106,11 @@ REQUIRED_PHASES = {
     "PMR-HUMAN-CONSENT-NEGATIVE-CONTROL-00",
     "SONYA-LOCAL-FIXTURE-ADAPTER-02",
     "SONYA-LOCAL-FIXTURE-ADAPTER-03",
+    "SONYA-REQUIRED-MEMBRANE-CHECKPOINT-00",
+    "TEL-EVENT-STACK-00",
+    "EVIDENCE-REVIEW-PRODUCT-LOOP-02",
+    "EVIDENCE-REVIEW-METRICS-00",
+    "COGNITIVE-WATERS-PATTERN-METRICS-00",
 }
 
 REQUIRED_COMMAND_FRAGMENTS = (
@@ -125,6 +131,8 @@ REQUIRED_COMMAND_FRAGMENTS = (
     "test_artifact_contract_registry.py",
     "Run-UNIVERSAL-COMPATIBILITY-MATRIX00-Acceptance.ps1",
     "Run-SONYA-ADAPTER-CONTRACT-REGISTRY01-Acceptance.ps1",
+    "Run-SONYA-REQUIRED-MEMBRANE-CHECKPOINT00-Acceptance.ps1",
+    "Run-TEL-EVENT-STACK00-Acceptance.ps1",
     "Run-SONYA-ADAPTER-SMOKE00-Acceptance.ps1",
     "Run-SONYA-LOCAL-FIXTURE-ADAPTER01-Acceptance.ps1",
     "Run-EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER01-Acceptance.ps1",
@@ -2180,3 +2188,98 @@ def test_dashboard_validator_rejects_pmr_human_provenance_00_overclaims(tmp_path
         assert result["passed"] is False
         found = [hit.lower() for hit in result["forbidden_claims_found"]]
         assert claim.lower() in found or f"claims {claim.lower()}" in found, result
+
+
+def test_sonya_required_membrane_checkpoint_dashboard_entries(tmp_path):
+    out_dir, docs_dir = run_builder(tmp_path)
+    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text())
+    phase = next(entry for entry in dashboard["accepted_phases"] if entry["phase_id"] == "SONYA-REQUIRED-MEMBRANE-CHECKPOINT-00")
+    assert phase["dashboard_summary"]["review_status"] == "accepted_as_sonya_required_membrane_checkpoint"
+    assert "sonya_required_membrane_checkpoint_packet.json" in phase["primary_artifacts"]
+    assert "Sonya is the required execution membrane for model/tool/provider-facing paths." in (docs_dir / "claim-boundaries.md").read_text()
+    assert "Missing Sonya posture must fail closed." in (docs_dir / "sonya-required-membrane-checkpoint.md").read_text()
+
+
+def test_sonya_required_membrane_validator_rejects_positive_overclaims(tmp_path):
+    forbidden_claims = (
+        "SONYA membrane checkpoint claims provider call.",
+        "SONYA membrane checkpoint claims raw output admission.",
+        "SONYA membrane checkpoint claims live model execution.",
+        "SONYA membrane checkpoint claims network authorization.",
+        "SONYA membrane checkpoint claims adapter authorization.",
+    )
+    for claim in forbidden_claims:
+        out_dir, docs_dir = run_builder(tmp_path / claim.replace(" ", "_").replace(".", ""))
+        page = docs_dir / "sonya-required-membrane-checkpoint.md"
+        page.write_text(page.read_text(encoding="utf-8") + f"\n{claim}\n", encoding="utf-8")
+        result = validate_dashboard(out_dir / "experiment_suite_dashboard.json", docs_dir)
+        assert result["passed"] is False, claim
+        assert result["forbidden_claims_found"], result
+
+
+def test_sonya_required_membrane_validator_allows_bounded_negative_contexts(tmp_path):
+    out_dir, docs_dir = run_builder(tmp_path)
+    page = docs_dir / "sonya-required-membrane-checkpoint.md"
+    page.write_text(
+        page.read_text(encoding="utf-8")
+        + "\nno remote provider call\nprovider calls not performed\nraw output is forbidden\nraw output is not cognition\nraw_output_admitted = false\nraw_output_forbidden = true\n",
+        encoding="utf-8",
+    )
+    result = validate_dashboard(out_dir / "experiment_suite_dashboard.json", docs_dir)
+    assert result["passed"] is True
+
+
+def test_tel_event_stack_dashboard_entries(tmp_path):
+    out_dir, docs_dir = run_builder(tmp_path)
+    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text())
+    phase = next(entry for entry in dashboard["accepted_phases"] if entry["phase_id"] == "TEL-EVENT-STACK-00")
+    assert "tel_event_stack_manifest.json" in phase["primary_artifacts"]
+    assert phase["dashboard_summary"]["review_status"] == "accepted_as_tel_event_stack_scaffold"
+
+def test_tel_event_stack_validator_rejects_overclaims(tmp_path):
+    for claim in ("claims runtime authority", "claims surveillance", "claims memory write", "claims provider call", "claims network authorization", "claims peer review certification"):
+        out_dir, docs_dir = run_builder(tmp_path / claim.replace(" ", "_"))
+        page = docs_dir / "tel-event-stack.md"
+        page.write_text(page.read_text(encoding="utf-8") + f"\nTEL event stack {claim}.\n", encoding="utf-8")
+        result = validate_dashboard(out_dir / "experiment_suite_dashboard.json", docs_dir)
+        assert result["passed"] is False
+
+def test_evidence_review_product_loop_dashboard_entries(tmp_path):
+    out_dir, docs_dir = run_builder(tmp_path)
+    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text())
+    phase = next(entry for entry in dashboard["accepted_phases"] if entry["phase_id"] == "EVIDENCE-REVIEW-PRODUCT-LOOP-02")
+    assert "evidence_review_product_loop_manifest.json" in phase["primary_artifacts"]
+    assert "evidence_review_claim_triage_rows.jsonl" in phase["primary_artifacts"]
+    assert "Evidence Review product loop is not final answer selection." in (docs_dir / "claim-boundaries.md").read_text()
+
+
+def test_evidence_review_product_loop_validator_rejects_overclaims(tmp_path):
+    for claim in (
+        "claims final answer selection",
+        "claims accepted evidence",
+        "claims truth certification",
+        "claims hallucination reduction proof",
+        "claims product release",
+        "claims peer review certification",
+    ):
+        out_dir, docs_dir = run_builder(tmp_path / claim.replace(" ", "_"))
+        page = docs_dir / "evidence-review-product-loop.md"
+        page.write_text(page.read_text(encoding="utf-8") + f"\nEVIDENCE-REVIEW-PRODUCT-LOOP-02 {claim}.\n", encoding="utf-8")
+        result = validate_dashboard(out_dir / "experiment_suite_dashboard.json", docs_dir)
+        assert result["passed"] is False
+
+
+def test_evidence_review_metrics_dashboard_entries(tmp_path):
+    out_dir, docs_dir = run_builder(tmp_path)
+    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text())
+    phase = next(entry for entry in dashboard["accepted_phases"] if entry["phase_id"] == "EVIDENCE-REVIEW-METRICS-00")
+    assert "evidence_review_metrics_manifest.json" in phase["primary_artifacts"]
+    assert "Hypercompression reduces explanatory distance, not review obligation." in (docs_dir / "claim-boundaries.md").read_text()
+
+
+def test_cognitive_waters_pattern_metrics_dashboard_entries(tmp_path):
+    out_dir, docs_dir = run_builder(tmp_path)
+    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text())
+    phase = next(entry for entry in dashboard["accepted_phases"] if entry["phase_id"] == "COGNITIVE-WATERS-PATTERN-METRICS-00")
+    assert "cognitive_waters_metrics_manifest.json" in phase["primary_artifacts"]
+    assert "Pattern morphology is not consciousness proof." in (docs_dir / "claim-boundaries.md").read_text()

@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import re
 from pathlib import Path
 from typing import Any
 
@@ -53,6 +54,11 @@ REQUIRED_PHASES = {
     "PMR-FED-STRESS-00",
     "PMR-HUMAN-PROVENANCE-00",
     "PMR-HUMAN-CONSENT-NEGATIVE-CONTROL-00",
+    "SONYA-REQUIRED-MEMBRANE-CHECKPOINT-00",
+    "TEL-EVENT-STACK-00",
+    "EVIDENCE-REVIEW-PRODUCT-LOOP-02",
+    "EVIDENCE-REVIEW-METRICS-00",
+    "COGNITIVE-WATERS-PATTERN-METRICS-00",
 }
 REQUIRED_BOUNDARY_PHRASES = (
     "not truth certification",
@@ -433,6 +439,20 @@ REQUIRED_BOUNDARY_PHRASES = (
     "PMR-ARCH-DIVERSITY-CHECKPOINT-00 is not deployment authority.",
     "PMR-ARCH-DIVERSITY-CHECKPOINT-00 is not truth certification.",
     "Governed provenance resources may be future infrastructure rewards, but truth is not for sale.",
+    "Sonya is the required execution membrane for model/tool/provider-facing paths.",
+    "Missing Sonya posture must fail closed.",
+    "Raw output is not cognition.",
+    "SONYA-REQUIRED-MEMBRANE-CHECKPOINT-00",
+    "TEL-EVENT-STACK-00",
+    "Telemetry event is not authority.",
+    "Replay trace is not canon.",
+    "Evidence Review product loop is not final answer selection.",
+    "Unsupported-claim action queue is not evidence acceptance.",
+    "Hypercompression reduces explanatory distance, not review obligation.",
+    "Freshness is not authority.",
+    "Pattern morphology is not consciousness proof.",
+    "Cognitive-water metaphor is not metaphysical claim.",
+    "Publication validation event is not peer review.",
 )
 FORBIDDEN_PHRASES = (
     "deployment readiness",
@@ -450,6 +470,9 @@ FORBIDDEN_PHRASES = (
     "live model execution",
     "live adapter execution",
     "remote provider call",
+    "provider call",
+    "claims provider call",
+    "claims remote provider call",
     "federation",
     "recursive braid",
     "recursive federation",
@@ -511,6 +534,8 @@ FORBIDDEN_PHRASES = (
     "product completion",
     "claims product completion",
     "runtime authority",
+    "surveillance",
+    "peer review certification",
     "claims runtime authority",
     "product release",
     "product released",
@@ -524,6 +549,13 @@ FORBIDDEN_PHRASES = (
     "network authorization",
     "remote provider called",
     "remote provider calls",
+    "provider call performed",
+    "provider call authorized",
+    "raw output admission",
+    "claims raw output admission",
+    "raw output admitted",
+    "raw output accepted as cognition",
+    "raw_output_admitted",
     "live model executed",
     "model weights trained",
     "model weight training",
@@ -589,6 +621,68 @@ def _read_docs(docs_dir: Path) -> str:
 def _is_negated(text: str, index: int) -> bool:
     window = text[max(0, index - 24) : index]
     return any(marker in window for marker in ALLOWED_NEGATED)
+
+
+def _context_words(text: str, index: int, *, before: int = 96, after: int = 96) -> str:
+    window = text[max(0, index - before) : index + after]
+    cleaned = re.sub(r"[^a-z0-9]+", " ", window.replace("_", " "))
+    return " ".join(cleaned.split())
+
+
+def _is_allowed_provider_call_context(text: str, index: int) -> bool:
+    window = text[max(0, index - 48) : index + 72]
+    normalized = " ".join(re.sub(r"[^a-z0-9]+", " ", window.replace("_", " ")).split())
+    allowed_patterns = (
+        "no remote provider call",
+        "no remote provider calls",
+        "not provider call",
+        "not remote provider call",
+        "provider calls not performed",
+        "provider calls not made",
+        "is not provider call",
+        "is not a provider call",
+        "provider call not performed",
+        "provider call not made",
+        "provider calls performed false",
+        "provider calls performed false",
+        "provider_calls_not_performed",
+        "provider_calls_performed false",
+        "direct model provider call is not allowed",
+        "provider call is not allowed",
+        "does not call providers",
+        "network provider calls",
+        "without live adapter execution or network provider calls",
+        "without live model execution or remote provider calls",
+        "provider call blocked",
+        "provider call forbidden",
+        "not provider call status flags",
+    )
+    return any(pat in normalized for pat in allowed_patterns)
+
+
+def _is_allowed_raw_output_context(text: str, index: int) -> bool:
+    window = _context_words(text, index, before=128, after=128)
+    allowed_fragments = (
+        "raw output is forbidden",
+        "raw output forbidden",
+        "raw output rejected",
+        "raw output is not cognition",
+        "not raw output admission",
+        "raw output admission blocked",
+        "raw output admission posture",
+        "forbidden artifact leakage and raw output admission",
+        "forbidding raw output admission",
+        "avoids raw output admission",
+        "raw output admitted false",
+        "raw output forbidden true",
+        "raw output not admitted",
+        "not raw output admission status flags",
+        "not raw output admission",
+        "forbidding raw output admission",
+        "rejects or avoids raw output admission",
+        "does not admit raw output",
+    )
+    return any(fragment in window for fragment in allowed_fragments)
 
 
 def _is_allowed_no_emit_receipt_context(text: str, index: int) -> bool:
@@ -703,8 +797,6 @@ def _forbidden_hits(text: str) -> list[str]:
                 or text[index : index + 44].startswith("federation candidate is not network")
                 or text[index : index + 46].startswith("federation credit scenario is not reward")
                 or text[index : index + 48].startswith("federation remains blocked by default")
-                or text[index : index + 40].startswith("federation.")
-                or text[index : index + 40].startswith("federation,")
                 or text[index : index + 40].startswith("federation_blocked")
                 or text[index : index + 40].startswith("federation blocked")
                 or (text[index : index + 40].startswith("federation proof") and _is_negated(text, index))
@@ -736,6 +828,27 @@ def _forbidden_hits(text: str) -> list[str]:
                 start = index + len(normalized_phrase)
                 continue
             if (
+                phrase in {"remote provider call", "remote provider calls", "provider call", "provider call performed", "provider call authorized"}
+                and _is_allowed_provider_call_context(text, index)
+            ):
+                start = index + len(normalized_phrase)
+                continue
+            if (
+                phrase in {"raw output admission", "claims raw output admission", "raw output admitted", "raw output accepted as cognition", "raw_output_admitted"}
+                and _is_allowed_raw_output_context(text, index)
+            ):
+                start = index + len(normalized_phrase)
+                continue
+            if (
+                phrase == "surveillance"
+                and (
+                    "not surveillance" in text[max(0, index - 48) : index + 24]
+                    or "telemetry_not_surveillance" in text[max(0, index - 64) : index + 32]
+                )
+            ):
+                start = index + len(normalized_phrase)
+                continue
+            if (
                 phrase == "encrypted shard transfer"
                 and (
                     text[index : index + 64].startswith("encrypted shard transfer not performed")
@@ -747,6 +860,11 @@ def _forbidden_hits(text: str) -> list[str]:
             if _is_allowed_no_emit_receipt_context(text, index):
                 start = index + len(normalized_phrase)
                 continue
+            if phrase in {"truth certification", "final answer release", "product release"}:
+                left = text[max(0, index - 24):index]
+                if left.rstrip().endswith("not") or " is not " in text[max(0, index-12):index+4]:
+                    search_from = index + len(normalized_phrase)
+                    continue
             if not _is_negated(text, index):
                 hits.append(phrase)
                 break
