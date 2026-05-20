@@ -2235,3 +2235,10 @@ def test_governed_validator_indexes_evidence_review_metrics():
     assert "Freshness is not authority." in paper
     assert "Run-EVIDENCE-REVIEW-METRICS00-Acceptance.ps1" in appendix
     assert status["evidence_review_metrics_00_indexed"] is True
+    assert status["spec_freshness_registry_00_indexed"] is True
+    assert status["fundamental_coherence_metrics_00_indexed"] is True
+    assert status["not_universal_ontology_proof"] is True
+    assert status["not_metric_truth_score"] is True
+    assert status["not_probabilistic_certitude"] is True
+    assert status["not_hypercompression_truth_certification"] is True
+    assert status["not_context_refresh_authority"] is True
