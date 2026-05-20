@@ -245,6 +245,27 @@
 - Federation is blocked by default.
 - PMR is not resource economy or token economy.
 - GPCU is lifecycle/storage utility, not truth score.
+- Design document is not active spec unless registry-scoped.
+- Conceptual source is not implementation authority.
+- Candidate doctrine is not runtime authority.
+- Superseded spec must not govern new patches.
+- Active spec requires code/schema/registry/harness/validator linkage.
+- Spec freshness registry is not truth certification.
+- Spec freshness registry is not deployment authority.
+- Coherence metric is not truth score.
+- High coherence is not correctness.
+- Low entropy is not safety.
+- Resonance is not validation.
+- Cancellation can be coherent but destructive.
+- Pattern recurrence is not proof.
+- Spiral/fractal fit is not consciousness.
+- Metric stability is not deployment authority.
+- Probabilistic confidence is not truth certification.
+- Ontology evidence is fixture-bounded unless externally validated.
+- FUNDAMENTAL-COHERENCE-METRICS-00 is not universal ontology proof.
+- FUNDAMENTAL-COHERENCE-METRICS-00 is not consciousness proof.
+- FUNDAMENTAL-COHERENCE-METRICS-00 is not hallucination reduction proof.
+- FUNDAMENTAL-COHERENCE-METRICS-00 is not deployment authority.
 - GPCU is not reward entitlement.
 - GPCU is not token economy.
 - GPCU is not human value score.
