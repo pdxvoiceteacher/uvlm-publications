@@ -726,3 +726,43 @@ Reviewer caution: PMR-HUMAN-PROVENANCE-00 models synthetic human provenance and 
 
 ### PMR-HUMAN-CONSENT-NEGATIVE-CONTROL-00
 ` .\experiments\Run-PMR-HUMAN-CONSENT-NEGATIVE-CONTROL00-Acceptance.ps1 `
+
+## SONYA-REQUIRED-MEMBRANE-CHECKPOINT-00
+
+Run the Sonya required membrane checkpoint fixture acceptance:
+
+```powershell
+.\experiments\Run-SONYA-REQUIRED-MEMBRANE-CHECKPOINT00-Acceptance.ps1 `
+  -OutputRoot C:\UVLM\run_artifacts\sonya_required_membrane_checkpoint_00 `
+  -LogDir C:\UVLM\run_artifacts\sonya_required_membrane_checkpoint_00_logs `
+  -CiMode
+```
+
+Sonya is the required execution membrane for model/tool/provider-facing paths. Missing Sonya posture must fail closed. Raw output is not cognition. This is not live model execution, not provider call, not network authorization, not adapter authorization, not raw output admission, not memory write, not model-weight training, not deployment authority, and not truth certification.
+
+
+## TEL-EVENT-STACK-00
+
+```powershell
+.\experiments\Run-TEL-EVENT-STACK00-Acceptance.ps1 `
+  -OutputRoot C:\UVLM\run_artifacts\tel_event_stack_00 `
+  -LogDir C:\UVLM\run_artifacts\tel_event_stack_00_logs `
+  -CiMode
+```
+
+
+Run-EVIDENCE-REVIEW-PRODUCT-LOOP02-Acceptance.ps1
+
+
+## EVIDENCE-REVIEW-METRICS-00
+
+Hypercompression reduces explanatory distance, not review obligation. Compression ratio is not truth score. High coherence is not correctness. Compressed review state is not accepted evidence. Compressed task board is not final answer. Freshness is not authority. Recency is not correctness. Context refresh requires audit. Supersession requires lineage. Metrics are not hallucination reduction proof. Metrics are not model superiority proof. Metrics are not peer review certification.
+
+Run-EVIDENCE-REVIEW-METRICS00-Acceptance.ps1
+
+
+## COGNITIVE-WATERS-PATTERN-METRICS-00
+
+Pattern morphology is not consciousness proof. Spiral/fractal fit is not universal ontology proof. Cognitive-water metaphor is not metaphysical claim. Flow convergence is not correctness. Pattern recurrence is not proof. High coherence is not truth. Rupture/rebraid detection is not repair authority.
+
+Run-COGNITIVE-WATERS-PATTERN-METRICS00-Acceptance.ps1
