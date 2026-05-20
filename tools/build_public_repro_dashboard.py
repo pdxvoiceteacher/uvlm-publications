@@ -1137,6 +1137,50 @@ SONYA_LOCAL_FIXTURE_ADAPTER_03_CLAIMS_BLOCKED = [
     "not production readiness",
 ]
 
+
+SPEC_FRESHNESS_REGISTRY_00_COMMAND = r""".\experiments\Run-SPEC-FRESHNESS-REGISTRY00-Acceptance.ps1 `
+  -OutputRoot C:\UVLM\run_artifacts\spec_freshness_registry_00 `
+  -LogDir C:\UVLM\run_artifacts\spec_freshness_registry_00_logs `
+  -CiMode"""
+SPEC_FRESHNESS_REGISTRY_00_ARTIFACTS = [
+    "spec_freshness_registry_packet.json",
+    "spec_freshness_registry_review_packet.json",
+    "spec_freshness_registry_summary.md",
+    "artifact_inventory.json",
+    "run_artifact_manifest.json",
+    "export_bundle_manifest.json",
+    "export_bundle_parity_report.json",
+    "spec_freshness_registry_00_acceptance_receipt.json",
+]
+SPEC_FRESHNESS_REGISTRY_00_DASHBOARD_SUMMARY = {
+    "review_status": "accepted_as_spec_freshness_registry_scaffold",
+    "active_spec_count": 1,
+    "candidate_doctrine_count": 1,
+    "conceptual_sources_not_runtime_authority": True,
+    "candidate_doctrine_not_runtime_authority": True,
+    "superseded_specs_not_active": True,
+    "publication_claims_require_validator_linkage": True,
+    "runtime_authority_requires_repo_artifact_linkage": True,
+    "spec_registry_not_truth_certification": True,
+    "spec_registry_not_deployment_authority": True,
+    "run_artifact_manifest_status": "verified",
+    "export_parity_passed": True,
+}
+SPEC_FRESHNESS_REGISTRY_00_CLAIMS_BLOCKED = [
+    "not runtime authority","not truth certification","not deployment authority","not final answer release","not publication acceptance","not peer review certification",
+]
+FUNDAMENTAL_COHERENCE_METRICS_00_COMMAND = r""".\experiments\Run-FUNDAMENTAL-COHERENCE-METRICS00-Acceptance.ps1 `
+  -OutputRoot C:\UVLM\run_artifacts\fundamental_coherence_metrics_00 `
+  -LogDir C:\UVLM\run_artifacts\fundamental_coherence_metrics_00_logs `
+  -CiMode"""
+FUNDAMENTAL_COHERENCE_METRICS_00_ARTIFACTS = [
+    "fundamental_coherence_metrics_manifest.json","fundamental_coherence_fixture_suite.json","fundamental_coherence_metric_rows.jsonl","fundamental_coherence_control_packet.json","fundamental_coherence_ontology_evidence_packet.json","fundamental_coherence_review_packet.json","fundamental_coherence_metrics_summary.md","artifact_inventory.json","run_artifact_manifest.json","export_bundle_manifest.json","export_bundle_parity_report.json","fundamental_coherence_metrics_00_acceptance_receipt.json",
+]
+FUNDAMENTAL_COHERENCE_METRICS_00_DASHBOARD_SUMMARY = {
+    "review_status": "accepted_as_fundamental_coherence_metrics_scaffold","metrics_id": "fundamental-coherence-metrics-00-fixture","deterministic_controls_only": True,"metric_stability_evaluated": True,"coherence_metric_not_truth_score": True,"high_coherence_not_correctness": True,"low_entropy_not_safety": True,"resonance_not_validation": True,"cancellation_can_be_coherent_but_destructive": True,"pattern_recurrence_not_proof": True,"spiral_fractal_fit_not_consciousness": True,"metric_stability_not_deployment_authority": True,"probabilistic_confidence_not_truth_certification": True,"universal_ontology_proof_not_claimed": True,"hallucination_reduction_proof_not_claimed": True,"model_superiority_proof_not_claimed": True,"run_artifact_manifest_status": "verified","export_parity_passed": True,
+}
+FUNDAMENTAL_COHERENCE_METRICS_00_CLAIMS_BLOCKED=["not truth score","not universal ontology proof","not truth certification","not consciousness proof","not hallucination reduction proof","not model superiority proof","not deployment authority","not product release","not final answer release","not memory write","not provider call","not network authorization","not model weight training","not peer review certification"]
+
 PMR_00_COMMAND = r""".\experiments\Run-PMR00-Acceptance.ps1 `
   -OutputRoot C:\UVLM\run_artifacts\pmr_00 `
   -LogDir C:\UVLM\run_artifacts\pmr_00_logs `
@@ -2948,6 +2992,32 @@ ACCEPTED_PHASES = [
     },
 
     {
+        "phase_id": "SPEC-FRESHNESS-REGISTRY-00",
+        "repo": "pdxvoiceteacher/CoherenceLattice",
+        "status": "accepted",
+        "evidence_type": "governance_scaffold",
+        "product_posture": "fixture_only_spec_freshness_registry_without_runtime_authority",
+        "primary_artifacts": SPEC_FRESHNESS_REGISTRY_00_ARTIFACTS,
+        "dashboard_summary": SPEC_FRESHNESS_REGISTRY_00_DASHBOARD_SUMMARY,
+        "reproduction_command_summary": SPEC_FRESHNESS_REGISTRY_00_COMMAND,
+        "claims_blocked": SPEC_FRESHNESS_REGISTRY_00_CLAIMS_BLOCKED,
+        "claim_allowed": "governance scaffold only",
+        "reviewer_caution": "not runtime authority",
+    },
+    {
+        "phase_id": "FUNDAMENTAL-COHERENCE-METRICS-00",
+        "repo": "pdxvoiceteacher/CoherenceLattice",
+        "status": "accepted",
+        "evidence_type": "metrics_scaffold",
+        "product_posture": "fixture_bounded_fundamental_coherence_metrics_without_ontology_proof",
+        "primary_artifacts": FUNDAMENTAL_COHERENCE_METRICS_00_ARTIFACTS,
+        "dashboard_summary": FUNDAMENTAL_COHERENCE_METRICS_00_DASHBOARD_SUMMARY,
+        "reproduction_command_summary": FUNDAMENTAL_COHERENCE_METRICS_00_COMMAND,
+        "claims_blocked": FUNDAMENTAL_COHERENCE_METRICS_00_CLAIMS_BLOCKED,
+        "claim_allowed": "fixture bounded metrics scaffold",
+        "reviewer_caution": "coherence metric is not truth score",
+    },
+    {
         "phase_id": "PMR-00-PROVENANCE-MEMORY-RESERVOIR",
         "repo": "pdxvoiceteacher/CoherenceLattice",
         "status": "accepted",
@@ -4061,6 +4131,27 @@ BOUNDARIES = [
     "Federation is blocked by default.",
     "PMR is not resource economy or token economy.",
     "GPCU is lifecycle/storage utility, not truth score.",
+    "Design document is not active spec unless registry-scoped.",
+    "Conceptual source is not implementation authority.",
+    "Candidate doctrine is not runtime authority.",
+    "Superseded spec must not govern new patches.",
+    "Active spec requires code/schema/registry/harness/validator linkage.",
+    "Spec freshness registry is not truth certification.",
+    "Spec freshness registry is not deployment authority.",
+    "Coherence metric is not truth score.",
+    "High coherence is not correctness.",
+    "Low entropy is not safety.",
+    "Resonance is not validation.",
+    "Cancellation can be coherent but destructive.",
+    "Pattern recurrence is not proof.",
+    "Spiral/fractal fit is not consciousness.",
+    "Metric stability is not deployment authority.",
+    "Probabilistic confidence is not truth certification.",
+    "Ontology evidence is fixture-bounded unless externally validated.",
+    "FUNDAMENTAL-COHERENCE-METRICS-00 is not universal ontology proof.",
+    "FUNDAMENTAL-COHERENCE-METRICS-00 is not consciousness proof.",
+    "FUNDAMENTAL-COHERENCE-METRICS-00 is not hallucination reduction proof.",
+    "FUNDAMENTAL-COHERENCE-METRICS-00 is not deployment authority.",
     "GPCU is not reward entitlement.",
     "GPCU is not token economy.",
     "GPCU is not human value score.",
@@ -4485,6 +4576,8 @@ def reproducibility_index() -> dict[str, Any]:
                 {"name": "UCC route test command", "command": SOPHIA_UCC_COMMAND},
             ],
             "uvlm-publications": [
+                {"name": "Spec freshness registry acceptance", "command": SPEC_FRESHNESS_REGISTRY_00_COMMAND},
+                {"name": "Fundamental coherence metrics acceptance", "command": FUNDAMENTAL_COHERENCE_METRICS_00_COMMAND},
                 {"name": "governed artifact cognition validator", "command": "python tools/validate_publication_claims.py --paper papers/governed_artifact_cognition/PUB_GOV_ARTIFACT_COG_01.md --quickstart papers/governed_artifact_cognition/reviewer_quickstart.md --status papers/governed_artifact_cognition/status.json"},
                 {"name": "waveform Rosetta validator", "command": "python tools/validate_publication_claims.py --paper papers/waveform_rosetta/PUB_WAVE_ROSETTA_01.md --quickstart papers/waveform_rosetta/reviewer_quickstart.md --status papers/waveform_rosetta/status.json"},
                 {"name": "dashboard validator", "command": "python tools/validate_public_repro_dashboard.py --dashboard registry/experiment_suite_dashboard.json --docs-dir docs/experiment-suite"},
@@ -4515,6 +4608,8 @@ def artifact_index() -> dict[str, Any]:
         "PMR-00-PROVENANCE-MEMORY-RESERVOIR": PMR_00_ARTIFACTS,
         "PMR-01-LOCAL-ARTIFACT-INDEX": PMR_01_ARTIFACTS,
         "PMR-02-GLOBAL-PROVENANCE-COHERENCE-UTILITY": PMR_02_ARTIFACTS,
+        "SPEC-FRESHNESS-REGISTRY-00": SPEC_FRESHNESS_REGISTRY_00_ARTIFACTS,
+        "FUNDAMENTAL-COHERENCE-METRICS-00": FUNDAMENTAL_COHERENCE_METRICS_00_ARTIFACTS,
         "PMR-03-LIFECYCLE-STATE-MACHINE": PMR_03_ARTIFACTS,
         "PMR-04-LIFECYCLE-AUDIT-PREFLIGHT": PMR_04_ARTIFACTS,
         "PMR-05-SOPHIA-LIFECYCLE-AUDIT-REVIEW": PMR_05_ARTIFACTS,
