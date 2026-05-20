@@ -111,6 +111,7 @@ REQUIRED_PHASES = {
     "SONYA-REQUIRED-MEMBRANE-CHECKPOINT-00",
     "TEL-EVENT-STACK-00",
     "EVIDENCE-REVIEW-PRODUCT-LOOP-02",
+    "EVIDENCE-REVIEW-METRICS-00",
 }
 
 REQUIRED_COMMAND_FRAGMENTS = (
@@ -2269,20 +2270,9 @@ def test_evidence_review_product_loop_validator_rejects_overclaims(tmp_path):
         assert result["passed"] is False
 
 
-def test_publication_sync_spec_freshness_and_fundamental_coherence(tmp_path):
-    out_dir, _ = run_builder(tmp_path)
+def test_evidence_review_metrics_dashboard_entries(tmp_path):
+    out_dir, docs_dir = run_builder(tmp_path)
     dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text())
-    repro = json.loads((out_dir / "reproducibility_index.json").read_text())
-    artifacts = json.loads((out_dir / "artifact_index.json").read_text())
-    boundaries = json.loads((out_dir / "claim_boundary_index.json").read_text())
-    phases = {e["phase_id"] for e in dashboard["accepted_phases"]}
-    assert "SPEC-FRESHNESS-REGISTRY-00" in phases
-    assert "FUNDAMENTAL-COHERENCE-METRICS-00" in phases
-    blob = json.dumps(repro)
-    assert "Run-SPEC-FRESHNESS-REGISTRY00-Acceptance.ps1" in blob
-    assert "Run-FUNDAMENTAL-COHERENCE-METRICS00-Acceptance.ps1" in blob
-    assert "spec_freshness_registry_packet.json" in artifacts["phases"]["SPEC-FRESHNESS-REGISTRY-00"]
-    assert "fundamental_coherence_metrics_manifest.json" in artifacts["phases"]["FUNDAMENTAL-COHERENCE-METRICS-00"]
-    text = "\n".join(boundaries["boundaries"])
-    assert "Design document is not active spec unless registry-scoped." in text
-    assert "Coherence metric is not truth score." in text
+    phase = next(entry for entry in dashboard["accepted_phases"] if entry["phase_id"] == "EVIDENCE-REVIEW-METRICS-00")
+    assert "evidence_review_metrics_manifest.json" in phase["primary_artifacts"]
+    assert "Hypercompression reduces explanatory distance, not review obligation." in (docs_dir / "claim-boundaries.md").read_text()

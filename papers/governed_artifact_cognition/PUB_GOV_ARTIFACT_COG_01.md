@@ -772,4 +772,9 @@ Telemetry event is not authority. Event receipt is not truth certification. Repl
 
 Evidence Review product loop is not final answer selection. Reviewer task is not truth certification. Unsupported-claim action queue is not evidence acceptance. Uncertainty task is not uncertainty resolution. Counterevidence task is not contradiction resolution. TEL event linkage is not authority. PMR provenance binding is not memory write. Sonya membrane binding is not provider authorization. Candidate packet is not final answer. Product-loop summary is not deployment authority. Product-loop scaffold is not hallucination reduction proof. Product-loop scaffold is not model quality benchmark. Product-loop scaffold is not product release. EVIDENCE-REVIEW-PRODUCT-LOOP-02 is not accepted evidence. EVIDENCE-REVIEW-PRODUCT-LOOP-02 is not truth certification. EVIDENCE-REVIEW-PRODUCT-LOOP-02 is not memory write. EVIDENCE-REVIEW-PRODUCT-LOOP-02 is not provider call. EVIDENCE-REVIEW-PRODUCT-LOOP-02 is not peer review certification.
 
-SPEC-FRESHNESS-REGISTRY-00 and FUNDAMENTAL-COHERENCE-METRICS-00 are accepted as publication-sync scaffolds. Conceptual source is not implementation authority. Coherence metric is not truth score. High coherence is not correctness. Probabilistic confidence is not truth certification.
+
+## EVIDENCE-REVIEW-METRICS-00
+
+Hypercompression reduces explanatory distance, not review obligation. Compression ratio is not truth score. High coherence is not correctness. Compressed review state is not accepted evidence. Compressed task board is not final answer. Freshness is not authority. Recency is not correctness. Context refresh requires audit. Supersession requires lineage. Metrics are not hallucination reduction proof. Metrics are not model superiority proof. Metrics are not peer review certification.
+
+Run-EVIDENCE-REVIEW-METRICS00-Acceptance.ps1

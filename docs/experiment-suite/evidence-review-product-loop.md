@@ -4,8 +4,6 @@ Required phrase: Evidence Review product loop is not final answer selection.
 
 EVIDENCE-REVIEW-PRODUCT-LOOP-02 demonstrates a fixture-only Evidence Review product-loop scaffold that binds claim triage, reviewer task queues, TEL event linkage, PMR provenance/consent context, Sonya membrane posture, and Retrosynthesis candidates while preserving non-authority boundaries.
 
-Publication-sync note: this phase is indexed as a fixture-only scaffold artifact set and does not introduce runtime authority.
-
 Unsupported-claim action queue is not evidence acceptance.
 
 ```powershell

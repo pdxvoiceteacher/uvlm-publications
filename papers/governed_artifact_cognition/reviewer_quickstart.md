@@ -753,5 +753,9 @@ Sonya is the required execution membrane for model/tool/provider-facing paths. M
 
 Run-EVIDENCE-REVIEW-PRODUCT-LOOP02-Acceptance.ps1
 
-Run-SPEC-FRESHNESS-REGISTRY00-Acceptance.ps1
-Run-FUNDAMENTAL-COHERENCE-METRICS00-Acceptance.ps1
+
+## EVIDENCE-REVIEW-METRICS-00
+
+Hypercompression reduces explanatory distance, not review obligation. Compression ratio is not truth score. High coherence is not correctness. Compressed review state is not accepted evidence. Compressed task board is not final answer. Freshness is not authority. Recency is not correctness. Context refresh requires audit. Supersession requires lineage. Metrics are not hallucination reduction proof. Metrics are not model superiority proof. Metrics are not peer review certification.
+
+Run-EVIDENCE-REVIEW-METRICS00-Acceptance.ps1

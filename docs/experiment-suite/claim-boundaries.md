@@ -37,6 +37,29 @@
 - TEL-EVENT-STACK-00 is not truth certification.
 - TEL-EVENT-STACK-00 is not peer review certification.
 - Evidence Review product loop is not final answer selection.
+- Hypercompression reduces explanatory distance, not review obligation.
+- Compression ratio is not truth score.
+- High coherence is not correctness.
+- Compressed review state is not accepted evidence.
+- Compressed task board is not final answer.
+- Unsupported claim preservation is required.
+- Uncertainty preservation is required.
+- Counterevidence preservation is required.
+- Consent boundary preservation is required.
+- TEL trace preservation is required.
+- PMR provenance preservation is required.
+- Freshness is not authority.
+- Recency is not correctness.
+- Context refresh requires audit.
+- Supersession requires lineage.
+- Reviewer utility metric is not product release.
+- Metrics are not hallucination reduction proof.
+- Metrics are not model superiority proof.
+- Metrics are not peer review certification.
+- EVIDENCE-REVIEW-METRICS-00 is not truth certification.
+- EVIDENCE-REVIEW-METRICS-00 is not deployment authority.
+- EVIDENCE-REVIEW-METRICS-00 is not memory write.
+- EVIDENCE-REVIEW-METRICS-00 is not provider call.
 - Reviewer task is not truth certification.
 - Unsupported-claim action queue is not evidence acceptance.
 - Uncertainty task is not uncertainty resolution.

@@ -59,6 +59,7 @@ REQUIRED_PHASES = {
     "SONYA-REQUIRED-MEMBRANE-CHECKPOINT-00",
     "TEL-EVENT-STACK-00",
     "EVIDENCE-REVIEW-PRODUCT-LOOP-02",
+    "EVIDENCE-REVIEW-METRICS-00",
 }
 REQUIRED_BOUNDARY_PHRASES = (
     "not truth certification",
@@ -448,6 +449,8 @@ REQUIRED_BOUNDARY_PHRASES = (
     "Replay trace is not canon.",
     "Evidence Review product loop is not final answer selection.",
     "Unsupported-claim action queue is not evidence acceptance.",
+    "Hypercompression reduces explanatory distance, not review obligation.",
+    "Freshness is not authority.",
     "Publication validation event is not peer review.",
 )
 FORBIDDEN_PHRASES = (

@@ -2226,27 +2226,12 @@ def test_governed_validator_rejects_evidence_review_product_loop_overclaims(tmp_
         assert result["passed"] is False
 
 
-def test_governed_paper_includes_spec_freshness_and_fundamental_coherence():
-    root = Path("papers/governed_artifact_cognition")
-    paper = (root / "PUB_GOV_ARTIFACT_COG_01.md").read_text()
-    artifact_table = (root / "artifact_table.md").read_text()
-    quickstart = (root / "reviewer_quickstart.md").read_text()
-    status = json.loads((root / "status.json").read_text())
-    assert "SPEC-FRESHNESS-REGISTRY-00" in paper
-    assert "FUNDAMENTAL-COHERENCE-METRICS-00" in paper
-    assert "Conceptual source is not implementation authority." in paper
-    assert "Coherence metric is not truth score." in paper
-    assert "High coherence is not correctness." in paper
-    assert "Probabilistic confidence is not truth certification." in paper
-    assert "spec_freshness_registry_packet.json" in artifact_table
-    assert "fundamental_coherence_metrics_manifest.json" in artifact_table
-    assert "fundamental_coherence_metric_rows.jsonl" in artifact_table
-    assert "fundamental_coherence_review_packet.json" in artifact_table
-    assert "Run-SPEC-FRESHNESS-REGISTRY00-Acceptance.ps1" in quickstart
-    assert "Run-FUNDAMENTAL-COHERENCE-METRICS00-Acceptance.ps1" in quickstart
-    assert status["spec_freshness_registry_00_indexed"] is True
-    assert status["fundamental_coherence_metrics_00_indexed"] is True
-    assert status["not_universal_ontology_proof"] is True
-    assert status["not_consciousness_proof"] is True
-    assert status["not_metric_truth_score"] is True
-    assert status["not_probabilistic_certitude"] is True
+def test_governed_validator_indexes_evidence_review_metrics():
+    paper = (ROOT / "PUB_GOV_ARTIFACT_COG_01.md").read_text(encoding="utf-8")
+    appendix = (ROOT / "reproducibility_appendix.md").read_text(encoding="utf-8")
+    status = json.loads((ROOT / "status.json").read_text(encoding="utf-8"))
+    assert "EVIDENCE-REVIEW-METRICS-00" in paper
+    assert "Hypercompression reduces explanatory distance, not review obligation." in paper
+    assert "Freshness is not authority." in paper
+    assert "Run-EVIDENCE-REVIEW-METRICS00-Acceptance.ps1" in appendix
+    assert status["evidence_review_metrics_00_indexed"] is True

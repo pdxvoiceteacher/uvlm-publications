@@ -457,8 +457,10 @@
 - Evidence Review product loop is not final answer selection.
 - Unsupported-claim action queue is not evidence acceptance.
 
-| Design document is not active spec unless registry-scoped. | Registry scope required for active spec authority. |
-| Conceptual source is not implementation authority. | Conceptual sources cannot govern runtime implementation. |
-| Coherence metric is not truth score. | Coherence output is probabilistic scaffold evidence. |
-| High coherence is not correctness. | High coherence does not certify correctness. |
-| Probabilistic confidence is not truth certification. | Confidence bands are not truth certification. |
+- Hypercompression reduces explanatory distance, not review obligation.
+- Compression ratio is not truth score.
+- Freshness is not authority.
+- Recency is not correctness.
+- Context refresh requires audit.
+- Supersession requires lineage.
+- EVIDENCE-REVIEW-METRICS-00 is not truth certification.

@@ -473,6 +473,20 @@
       "export_bundle_parity_report.json",
       "evidence_review_product_loop_02_acceptance_receipt.json"
     ],
+    "EVIDENCE-REVIEW-METRICS-00": [
+      "evidence_review_metrics_manifest.json",
+      "evidence_review_metric_rows.jsonl",
+      "evidence_review_hypercompression_packet.json",
+      "evidence_review_preservation_packet.json",
+      "evidence_review_reviewer_utility_packet.json",
+      "evidence_review_metrics_review_packet.json",
+      "evidence_review_metrics_summary.md",
+      "artifact_inventory.json",
+      "run_artifact_manifest.json",
+      "export_bundle_manifest.json",
+      "export_bundle_parity_report.json",
+      "evidence_review_metrics_00_acceptance_receipt.json"
+    ],
     "SONYA-ADAPTER-SMOKE-00": [
       "sonya_adapter_smoke_packet.json",
       "sonya_adapter_smoke_review_packet.json",

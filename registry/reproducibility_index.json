@@ -143,6 +143,10 @@
         "command": ".\\experiments\\Run-EVIDENCE-REVIEW-PRODUCT-LOOP02-Acceptance.ps1 `\n  -OutputRoot C:\\UVLM\\run_artifacts\\evidence_review_product_loop_02 `\n  -LogDir C:\\UVLM\\run_artifacts\\evidence_review_product_loop_02_logs `\n  -CiMode"
       },
       {
+        "name": "Evidence Review metrics acceptance",
+        "command": ".\\experiments\\Run-EVIDENCE-REVIEW-METRICS00-Acceptance.ps1 `\n  -OutputRoot C:\\UVLM\\run_artifacts\\evidence_review_metrics_00 `\n  -LogDir C:\\UVLM\\run_artifacts\\evidence_review_metrics_00_logs `\n  -CiMode"
+      },
+      {
         "name": "Sonya Adapter Smoke acceptance",
         "command": ".\\experiments\\Run-SONYA-ADAPTER-SMOKE00-Acceptance.ps1 `\n  -OutputRoot C:\\UVLM\\run_artifacts\\sonya_adapter_smoke_00 `\n  -LogDir C:\\UVLM\\run_artifacts\\sonya_adapter_smoke_00_logs `\n  -CiMode"
       },

@@ -581,6 +581,73 @@ EVIDENCE_REVIEW_PRODUCT_LOOP_CLAIMS_BLOCKED = [
     "not peer review certification", "not recursive self-improvement",
 ]
 
+
+EVIDENCE_REVIEW_METRICS_COMMAND = r""".\experiments\Run-EVIDENCE-REVIEW-METRICS00-Acceptance.ps1 `
+  -OutputRoot C:\UVLM\run_artifacts\evidence_review_metrics_00 `
+  -LogDir C:\UVLM\run_artifacts\evidence_review_metrics_00_logs `
+  -CiMode"""
+EVIDENCE_REVIEW_METRICS_ARTIFACTS = [
+    "evidence_review_metrics_manifest.json",
+    "evidence_review_metric_rows.jsonl",
+    "evidence_review_hypercompression_packet.json",
+    "evidence_review_preservation_packet.json",
+    "evidence_review_reviewer_utility_packet.json",
+    "evidence_review_metrics_review_packet.json",
+    "evidence_review_metrics_summary.md",
+    "artifact_inventory.json",
+    "run_artifact_manifest.json",
+    "export_bundle_manifest.json",
+    "export_bundle_parity_report.json",
+    "evidence_review_metrics_00_acceptance_receipt.json",
+]
+EVIDENCE_REVIEW_METRICS_DASHBOARD_SUMMARY = {
+    "review_status": "accepted_as_evidence_review_metrics_scaffold",
+    "metrics_id": "evidence-review-metrics-00-fixture",
+    "metric_rows_present": True,
+    "hypercompression_packet_present": True,
+    "preservation_packet_present": True,
+    "reviewer_utility_packet_present": True,
+    "descriptive_fixture_metrics_only": True,
+    "audited_context_refresh_measured": True,
+    "freshness_not_authority": True,
+    "recency_not_correctness": True,
+    "context_refresh_requires_audit": True,
+    "supersession_requires_lineage": True,
+    "context_refresh_not_memory_write": True,
+    "context_refresh_not_truth_certification": True,
+    "hypercompression_not_truth_certification": True,
+    "compression_ratio_not_truth_score": True,
+    "high_coherence_not_correctness": True,
+    "compressed_review_state_not_accepted_evidence": True,
+    "compressed_task_board_not_final_answer": True,
+    "preservation_metrics_not_hallucination_reduction_proof": True,
+    "reviewer_utility_not_product_release": True,
+    "metrics_not_model_superiority_proof": True,
+    "metrics_not_peer_review_certification": True,
+    "final_answer_not_released": True,
+    "accepted_evidence_not_admitted": True,
+    "truth_certification_blocked": True,
+    "memory_write_blocked": True,
+    "provider_calls_not_performed": True,
+    "network_calls_not_performed": True,
+    "deployment_blocked": True,
+    "blocked_claims_verified": True,
+    "run_artifact_manifest_status": "verified",
+    "export_parity_passed": True,
+}
+EVIDENCE_REVIEW_METRICS_CLAIMS_BLOCKED = [
+    "not truth certification",
+    "not hallucination reduction proof",
+    "not model superiority proof",
+    "not peer review certification",
+    "not product release",
+    "not deployment authority",
+    "not final answer selection",
+    "not accepted evidence",
+    "not memory write",
+    "not provider call",
+]
+
 SONYA_REQUIRED_MEMBRANE_COMMAND = r""".\experiments\Run-SONYA-REQUIRED-MEMBRANE-CHECKPOINT00-Acceptance.ps1 `
   -OutputRoot C:\UVLM\run_artifacts\sonya_required_membrane_checkpoint_00 `
   -LogDir C:\UVLM\run_artifacts\sonya_required_membrane_checkpoint_00_logs `
@@ -2632,6 +2699,20 @@ ACCEPTED_PHASES = [
         "publication_status": "dashboard_indexed",
     },
     {
+        "phase_id": "EVIDENCE-REVIEW-METRICS-00",
+        "repo": "pdxvoiceteacher/CoherenceLattice",
+        "status": "accepted",
+        "evidence_type": "metrics_scaffold",
+        "product_posture": "fixture_only_evidence_review_metrics_without_truth_or_product_claims",
+        "primary_artifacts": EVIDENCE_REVIEW_METRICS_ARTIFACTS,
+        "dashboard_summary": EVIDENCE_REVIEW_METRICS_DASHBOARD_SUMMARY,
+        "reproduction_command_summary": EVIDENCE_REVIEW_METRICS_COMMAND,
+        "claim_allowed": "EVIDENCE-REVIEW-METRICS-00 demonstrates a fixture-only metrics scaffold for reviewer utility, hypercompression, preservation, recoverability, and audited context refresh over Evidence Review product-loop artifacts while preserving non-authority boundaries.",
+        "claims_blocked": EVIDENCE_REVIEW_METRICS_CLAIMS_BLOCKED,
+        "reviewer_caution": "EVIDENCE-REVIEW-METRICS-00 is fixture-only metrics scaffolding. It does not certify truth, reduce hallucinations as proof, establish model superiority, certify peer review, release products, deploy, select final answers, accept evidence, write memory, or call providers.",
+        "publication_status": "dashboard_indexed",
+    },
+    {
         "phase_id": "EVIDENCE-REVIEW-PRODUCT-LOOP-02",
         "repo": "pdxvoiceteacher/CoherenceLattice",
         "status": "accepted",
@@ -3738,6 +3819,29 @@ BOUNDARIES = [
     "TEL-EVENT-STACK-00 is not truth certification.",
     "TEL-EVENT-STACK-00 is not peer review certification.",
     "Evidence Review product loop is not final answer selection.",
+    "Hypercompression reduces explanatory distance, not review obligation.",
+    "Compression ratio is not truth score.",
+    "High coherence is not correctness.",
+    "Compressed review state is not accepted evidence.",
+    "Compressed task board is not final answer.",
+    "Unsupported claim preservation is required.",
+    "Uncertainty preservation is required.",
+    "Counterevidence preservation is required.",
+    "Consent boundary preservation is required.",
+    "TEL trace preservation is required.",
+    "PMR provenance preservation is required.",
+    "Freshness is not authority.",
+    "Recency is not correctness.",
+    "Context refresh requires audit.",
+    "Supersession requires lineage.",
+    "Reviewer utility metric is not product release.",
+    "Metrics are not hallucination reduction proof.",
+    "Metrics are not model superiority proof.",
+    "Metrics are not peer review certification.",
+    "EVIDENCE-REVIEW-METRICS-00 is not truth certification.",
+    "EVIDENCE-REVIEW-METRICS-00 is not deployment authority.",
+    "EVIDENCE-REVIEW-METRICS-00 is not memory write.",
+    "EVIDENCE-REVIEW-METRICS-00 is not provider call.",
     "Reviewer task is not truth certification.",
     "Unsupported-claim action queue is not evidence acceptance.",
     "Uncertainty task is not uncertainty resolution.",
@@ -4351,6 +4455,7 @@ def reproducibility_index() -> dict[str, Any]:
                 {"name": "Sonya required membrane checkpoint acceptance", "command": SONYA_REQUIRED_MEMBRANE_COMMAND},
                 {"name": "TEL event stack acceptance", "command": TEL_EVENT_STACK_COMMAND},
                 {"name": "Evidence Review product loop acceptance", "command": EVIDENCE_REVIEW_PRODUCT_LOOP_COMMAND},
+                {"name": "Evidence Review metrics acceptance", "command": EVIDENCE_REVIEW_METRICS_COMMAND},
                 {"name": "Sonya Adapter Smoke acceptance", "command": SONYA_ADAPTER_SMOKE_COMMAND},
                 {"name": "Sonya Local Fixture Adapter acceptance", "command": SONYA_LOCAL_FIXTURE_ADAPTER_COMMAND},
                 {"name": "Evidence Review Pack local adapter acceptance", "command": EVIDENCE_REVIEW_PACK_LOCAL_ADAPTER_COMMAND},
@@ -4418,6 +4523,7 @@ def artifact_index() -> dict[str, Any]:
         "SONYA-REQUIRED-MEMBRANE-CHECKPOINT-00": SONYA_REQUIRED_MEMBRANE_ARTIFACTS,
         "TEL-EVENT-STACK-00": TEL_EVENT_STACK_ARTIFACTS,
         "EVIDENCE-REVIEW-PRODUCT-LOOP-02": EVIDENCE_REVIEW_PRODUCT_LOOP_ARTIFACTS,
+        "EVIDENCE-REVIEW-METRICS-00": EVIDENCE_REVIEW_METRICS_ARTIFACTS,
         "SONYA-ADAPTER-SMOKE-00": SONYA_ADAPTER_SMOKE_ARTIFACTS,
         "SONYA-LOCAL-FIXTURE-ADAPTER-01": SONYA_LOCAL_FIXTURE_ADAPTER_ARTIFACTS,
         "EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER-01": EVIDENCE_REVIEW_PACK_LOCAL_ADAPTER_ARTIFACTS,
@@ -4458,6 +4564,11 @@ def status_payload() -> dict[str, Any]:
         "not_product_loop_final_answer": True,
         "not_product_loop_evidence_acceptance": True,
         "not_product_loop_release": True,
+        "evidence_review_metrics_00_indexed": True,
+        "not_hypercompression_truth_certification": True,
+        "not_compression_truth_score": True,
+        "not_context_refresh_authority": True,
+        "not_metrics_product_release": True,
         "not_provider_call": True,
         "not_raw_output_admission": True,
         "not_sonya_bypass_authority": True,
@@ -4917,6 +5028,30 @@ SONYA-ADAPTER-CONTRACT-REGISTRY-01 demonstrates a fixture-only versioned adapter
 Claims blocked: {"; ".join(SONYA_ADAPTER_CONTRACT_REGISTRY_CLAIMS_BLOCKED)}.
 
 Reviewer caution: SONYA-ADAPTER-CONTRACT-REGISTRY-01 defines adapter contracts only. It does not execute adapters, does not call providers, does not authorize network use, does not admit raw output as cognition, does not write memory, does not release final answers, does not train models, and does not deploy.
+""",
+        "evidence-review-metrics.md": f"""# Evidence Review metrics
+
+Required phrase: Hypercompression reduces explanatory distance, not review obligation.
+
+EVIDENCE-REVIEW-METRICS-00 is a fixture-only metrics scaffold over Evidence Review product-loop artifacts.
+
+Freshness is not authority.
+
+```powershell
+{EVIDENCE_REVIEW_METRICS_COMMAND}
+```
+
+## Primary artifacts
+
+{chr(10).join(f"- `{artifact}`" for artifact in EVIDENCE_REVIEW_METRICS_ARTIFACTS)}
+
+## Dashboard posture
+
+{chr(10).join(f"- `{key} = {str(value).lower()}`" for key, value in EVIDENCE_REVIEW_METRICS_DASHBOARD_SUMMARY.items())}
+
+## Blocked claims
+
+{chr(10).join(f"- {claim}" for claim in EVIDENCE_REVIEW_METRICS_CLAIMS_BLOCKED)}
 """,
         "evidence-review-product-loop.md": f"""# Evidence Review product loop
 
