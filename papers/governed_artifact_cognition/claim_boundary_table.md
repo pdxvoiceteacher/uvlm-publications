@@ -448,3 +448,19 @@
 | Coerced consent fixture is not valid consent. | Negative-control scaffold only; no runtime authority. |
 | Scope-mismatched consent is not consent. | Negative-control scaffold only; no runtime authority. |
 | Consent attempt is not model training. | Negative-control scaffold only; no runtime authority. |
+| SONYA-REQUIRED-MEMBRANE-CHECKPOINT-00 | Sonya is the required execution membrane for model/tool/provider-facing paths. | Missing Sonya posture must fail closed; not live model execution; not provider call; not network authorization; not adapter authorization; not raw output admission. |
+| SONYA-REQUIRED-MEMBRANE-CHECKPOINT-00 | Direct model/provider call is not allowed when SONYA_REQUIRED=1. Candidate packet is not final answer. Adapter capability is not adapter authorization. Fixture-only builder is not live execution. Raw output is not cognition. Telemetry event is not authority. Failure receipt is not permission to proceed. | Not final answer release; not memory write; not model-weight training; not deployment authority; not truth certification. |
+
+| TEL-EVENT-STACK-00 | Telemetry event is not authority. Event receipt is not truth certification. Replay trace is not canon. Failure receipt is not permission to proceed. Event ledger is not memory write. | Telemetry is not surveillance. Telemetry is not model training. Metric event is not performance proof. Publication validation event is not peer review. |
+| TEL-EVENT-STACK-00 | Missing required event must fail closed. Raw output is not cognition. Sonya candidate packet is not final answer. PMR retention is not truth. Evidence Review claim map is not truth certification. Retrosynthesis repair candidate is not canon adoption. | TEL-EVENT-STACK-00 is not memory write, not surveillance, not model-weight training, not network authorization, not provider call, not federation authorization, not deployment authority, not truth certification, or not peer review certification. |
+
+- Evidence Review product loop is not final answer selection.
+- Unsupported-claim action queue is not evidence acceptance.
+
+- Hypercompression reduces explanatory distance, not review obligation.
+- Compression ratio is not truth score.
+- Freshness is not authority.
+- Recency is not correctness.
+- Context refresh requires audit.
+- Supersession requires lineage.
+- EVIDENCE-REVIEW-METRICS-00 is not truth certification.
