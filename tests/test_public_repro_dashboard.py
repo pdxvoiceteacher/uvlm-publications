@@ -2285,3 +2285,41 @@ def test_cognitive_waters_pattern_metrics_dashboard_entries(tmp_path):
     phase = next(entry for entry in dashboard["accepted_phases"] if entry["phase_id"] == "COGNITIVE-WATERS-PATTERN-METRICS-00")
     assert "cognitive_waters_metrics_manifest.json" in phase["primary_artifacts"]
     assert "Pattern morphology is not consciousness proof." in (docs_dir / "claim-boundaries.md").read_text()
+
+
+def test_validator_allows_bounded_truth_final_product_release_contexts(tmp_path):
+    out_dir, docs_dir = run_builder(tmp_path)
+    page = docs_dir / "claim-boundaries.md"
+    page.write_text(
+        page.read_text(encoding="utf-8")
+        + "\nnot truth certification\n"
+        + "truth certification blocked\n"
+        + "truth certification not performed\n"
+        + "truth certification packet\n"
+        + "not final answer release\n"
+        + "final answer not released\n"
+        + "final_answer_released = false\n"
+        + "not product release\n"
+        + "product release not performed\n"
+        + "product_release_performed = false\n"
+        + "product release packet\n"
+        + "reviewer utility metric is not product release\n",
+        encoding="utf-8",
+    )
+    result = validate_dashboard(out_dir / "experiment_suite_dashboard.json", docs_dir)
+    assert result["passed"] is True, result
+
+
+def test_validator_rejects_claims_truth_final_answer_product_release(tmp_path):
+    for claim in (
+        "claims truth certification",
+        "claims final answer release",
+        "claims product release",
+    ):
+        out_dir, docs_dir = run_builder(tmp_path / claim.replace(" ", "_"))
+        page = docs_dir / "claim-boundaries.md"
+        page.write_text(page.read_text(encoding="utf-8") + f"\n{claim}\n", encoding="utf-8")
+        result = validate_dashboard(out_dir / "experiment_suite_dashboard.json", docs_dir)
+        assert result["passed"] is False, claim
+        found = [hit.lower() for hit in result["forbidden_claims_found"]]
+        assert claim in found or claim.removeprefix("claims ") in found, result

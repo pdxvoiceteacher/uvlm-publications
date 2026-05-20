@@ -729,6 +729,42 @@ def _is_allowed_local_adapter_context(text: str, index: int) -> bool:
     )
 
 
+
+def _is_allowed_bounded_release_context(text: str, index: int, phrase: str) -> bool:
+    window = _context_words(text, index, before=120, after=120)
+
+    left_clause = text[max(0, index - 160):index]
+    clause_start = max(left_clause.rfind("."), left_clause.rfind("\n"), left_clause.rfind(";"))
+    clause = left_clause[clause_start + 1 :]
+    list_negated = " not " in clause and "," in clause
+
+    if phrase == "truth certification":
+        allowed = (
+            "not truth certification",
+            "truth certification blocked",
+            "truth certification not performed",
+            "truth certification packet",
+        )
+        return list_negated or any(item in window for item in allowed)
+    if phrase == "final answer release":
+        allowed = (
+            "not final answer release",
+            "final answer not released",
+            "final answer released false",
+            "final answer release not performed",
+        )
+        return list_negated or any(item in window for item in allowed)
+    if phrase == "product release":
+        allowed = (
+            "not product release",
+            "product release not performed",
+            "product release performed false",
+            "product release packet",
+            "reviewer utility metric is not product release",
+        )
+        return list_negated or any(item in window for item in allowed)
+    return False
+
 def _forbidden_hits(text: str) -> list[str]:
     hits: list[str] = []
     for phrase in FORBIDDEN_PHRASES:
@@ -863,11 +899,9 @@ def _forbidden_hits(text: str) -> list[str]:
             if _is_allowed_no_emit_receipt_context(text, index):
                 start = index + len(normalized_phrase)
                 continue
-            if phrase in {"truth certification", "final answer release", "product release"}:
-                left = text[max(0, index - 24):index]
-                if left.rstrip().endswith("not") or " is not " in text[max(0, index-12):index+4]:
-                    search_from = index + len(normalized_phrase)
-                    continue
+            if phrase in {"truth certification", "final answer release", "product release"} and _is_allowed_bounded_release_context(text, index, phrase):
+                start = index + len(normalized_phrase)
+                continue
             if not _is_negated(text, index):
                 hits.append(phrase)
                 break
