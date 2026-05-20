@@ -704,3 +704,6 @@ Replay trace is not canon.
 
 
 Run-EVIDENCE-REVIEW-PRODUCT-LOOP02-Acceptance.ps1
+
+Run-SPEC-FRESHNESS-REGISTRY00-Acceptance.ps1
+Run-FUNDAMENTAL-COHERENCE-METRICS00-Acceptance.ps1

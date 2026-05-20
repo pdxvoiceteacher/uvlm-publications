@@ -752,3 +752,6 @@ Sonya is the required execution membrane for model/tool/provider-facing paths. M
 
 
 Run-EVIDENCE-REVIEW-PRODUCT-LOOP02-Acceptance.ps1
+
+Run-SPEC-FRESHNESS-REGISTRY00-Acceptance.ps1
+Run-FUNDAMENTAL-COHERENCE-METRICS00-Acceptance.ps1
