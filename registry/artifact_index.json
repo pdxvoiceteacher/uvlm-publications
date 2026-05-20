@@ -176,6 +176,30 @@
       "export_bundle_parity_report.json",
       "pmr_02_acceptance_receipt.json"
     ],
+    "SPEC-FRESHNESS-REGISTRY-00": [
+      "spec_freshness_registry_packet.json",
+      "spec_freshness_registry_review_packet.json",
+      "spec_freshness_registry_summary.md",
+      "artifact_inventory.json",
+      "run_artifact_manifest.json",
+      "export_bundle_manifest.json",
+      "export_bundle_parity_report.json",
+      "spec_freshness_registry_00_acceptance_receipt.json"
+    ],
+    "FUNDAMENTAL-COHERENCE-METRICS-00": [
+      "fundamental_coherence_metrics_manifest.json",
+      "fundamental_coherence_fixture_suite.json",
+      "fundamental_coherence_metric_rows.jsonl",
+      "fundamental_coherence_control_packet.json",
+      "fundamental_coherence_ontology_evidence_packet.json",
+      "fundamental_coherence_review_packet.json",
+      "fundamental_coherence_metrics_summary.md",
+      "artifact_inventory.json",
+      "run_artifact_manifest.json",
+      "export_bundle_manifest.json",
+      "export_bundle_parity_report.json",
+      "fundamental_coherence_metrics_00_acceptance_receipt.json"
+    ],
     "PMR-03-LIFECYCLE-STATE-MACHINE": [
       "pmr_lifecycle_state_machine_packet.json",
       "pmr_lifecycle_transition_candidates.jsonl",

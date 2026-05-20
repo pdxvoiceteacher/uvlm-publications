@@ -132,5 +132,14 @@
   "status": "drafted",
   "tel_event_stack_00_indexed": true,
   "universal_compatibility_matrix_indexed": true,
-  "universal_stage_pipeline_indexed": true
+  "universal_stage_pipeline_indexed": true,
+  "spec_freshness_registry_00_indexed": true,
+  "not_spec_runtime_authority": true,
+  "not_conceptual_source_authority": true,
+  "not_spec_truth_certification": true,
+  "fundamental_coherence_metrics_00_indexed": true,
+  "not_universal_ontology_proof": true,
+  "not_consciousness_proof": true,
+  "not_metric_truth_score": true,
+  "not_probabilistic_certitude": true
 }
