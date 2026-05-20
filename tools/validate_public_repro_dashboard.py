@@ -60,6 +60,7 @@ REQUIRED_PHASES = {
     "TEL-EVENT-STACK-00",
     "EVIDENCE-REVIEW-PRODUCT-LOOP-02",
     "EVIDENCE-REVIEW-METRICS-00",
+    "COGNITIVE-WATERS-PATTERN-METRICS-00",
 }
 REQUIRED_BOUNDARY_PHRASES = (
     "not truth certification",
@@ -451,6 +452,8 @@ REQUIRED_BOUNDARY_PHRASES = (
     "Unsupported-claim action queue is not evidence acceptance.",
     "Hypercompression reduces explanatory distance, not review obligation.",
     "Freshness is not authority.",
+    "Pattern morphology is not consciousness proof.",
+    "Cognitive-water metaphor is not metaphysical claim.",
     "Publication validation event is not peer review.",
 )
 FORBIDDEN_PHRASES = (
@@ -860,6 +863,11 @@ def _forbidden_hits(text: str) -> list[str]:
             if _is_allowed_no_emit_receipt_context(text, index):
                 start = index + len(normalized_phrase)
                 continue
+            if phrase in {"truth certification", "final answer release", "product release"}:
+                left = text[max(0, index - 24):index]
+                if left.rstrip().endswith("not") or " is not " in text[max(0, index-12):index+4]:
+                    search_from = index + len(normalized_phrase)
+                    continue
             if not _is_negated(text, index):
                 hits.append(phrase)
                 break

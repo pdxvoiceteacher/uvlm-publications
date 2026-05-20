@@ -112,6 +112,7 @@ REQUIRED_PHASES = {
     "TEL-EVENT-STACK-00",
     "EVIDENCE-REVIEW-PRODUCT-LOOP-02",
     "EVIDENCE-REVIEW-METRICS-00",
+    "COGNITIVE-WATERS-PATTERN-METRICS-00",
 }
 
 REQUIRED_COMMAND_FRAGMENTS = (
@@ -2276,3 +2277,11 @@ def test_evidence_review_metrics_dashboard_entries(tmp_path):
     phase = next(entry for entry in dashboard["accepted_phases"] if entry["phase_id"] == "EVIDENCE-REVIEW-METRICS-00")
     assert "evidence_review_metrics_manifest.json" in phase["primary_artifacts"]
     assert "Hypercompression reduces explanatory distance, not review obligation." in (docs_dir / "claim-boundaries.md").read_text()
+
+
+def test_cognitive_waters_pattern_metrics_dashboard_entries(tmp_path):
+    out_dir, docs_dir = run_builder(tmp_path)
+    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text())
+    phase = next(entry for entry in dashboard["accepted_phases"] if entry["phase_id"] == "COGNITIVE-WATERS-PATTERN-METRICS-00")
+    assert "cognitive_waters_metrics_manifest.json" in phase["primary_artifacts"]
+    assert "Pattern morphology is not consciousness proof." in (docs_dir / "claim-boundaries.md").read_text()

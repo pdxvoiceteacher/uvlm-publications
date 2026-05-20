@@ -648,6 +648,75 @@ EVIDENCE_REVIEW_METRICS_CLAIMS_BLOCKED = [
     "not provider call",
 ]
 
+
+COGNITIVE_WATERS_PATTERN_METRICS_COMMAND = r""".\experiments\Run-COGNITIVE-WATERS-PATTERN-METRICS00-Acceptance.ps1 `
+  -OutputRoot C:\UVLM\run_artifacts\cognitive_waters_pattern_metrics_00 `
+  -LogDir C:\UVLM\run_artifacts\cognitive_waters_pattern_metrics_00_logs `
+  -CiMode"""
+COGNITIVE_WATERS_PATTERN_METRICS_ARTIFACTS = [
+    "cognitive_waters_metrics_manifest.json",
+    "cognitive_waters_fixture_suite.json",
+    "cognitive_waters_metric_rows.jsonl",
+    "cognitive_waters_flow_packet.json",
+    "cognitive_waters_spiral_fractal_packet.json",
+    "cognitive_waters_rupture_rebraid_packet.json",
+    "cognitive_waters_review_packet.json",
+    "cognitive_waters_metrics_summary.md",
+    "artifact_inventory.json",
+    "run_artifact_manifest.json",
+    "export_bundle_manifest.json",
+    "export_bundle_parity_report.json",
+    "cognitive_waters_pattern_metrics_00_acceptance_receipt.json",
+]
+COGNITIVE_WATERS_PATTERN_METRICS_DASHBOARD_SUMMARY = {
+    "review_status": "accepted_as_cognitive_waters_pattern_metrics_scaffold",
+    "pattern_metrics_id": "cognitive-waters-pattern-metrics-00-fixture",
+    "source_fundamental_coherence_bound": True,
+    "source_evidence_review_metrics_bound": True,
+    "source_spec_freshness_bound": True,
+    "metric_rows_present": True,
+    "flow_packet_present": True,
+    "spiral_fractal_packet_present": True,
+    "rupture_rebraid_packet_present": True,
+    "deterministic_controls_only": True,
+    "descriptive_morphology_metrics_only": True,
+    "pattern_morphology_not_consciousness_proof": True,
+    "spiral_fractal_fit_not_universal_ontology_proof": True,
+    "cognitive_water_metaphor_not_metaphysical_claim": True,
+    "flow_convergence_not_correctness": True,
+    "pattern_recurrence_not_proof": True,
+    "high_coherence_not_truth": True,
+    "low_entropy_not_safety": True,
+    "rupture_rebraid_not_repair_authority": True,
+    "morphology_metric_not_deployment_authority": True,
+    "overfit_pattern_decoy_bounded": True,
+    "consciousness_proof_not_claimed": True,
+    "universal_ontology_proof_not_claimed": True,
+    "truth_certification_blocked": True,
+    "hallucination_reduction_proof_not_claimed": True,
+    "model_superiority_proof_not_claimed": True,
+    "final_answer_not_released": True,
+    "accepted_evidence_not_admitted": True,
+    "memory_write_blocked": True,
+    "provider_calls_not_performed": True,
+    "network_calls_not_performed": True,
+    "model_weight_training_blocked": True,
+    "deployment_blocked": True,
+    "run_artifact_manifest_status": "verified",
+    "export_parity_passed": True,
+}
+COGNITIVE_WATERS_PATTERN_METRICS_CLAIMS_BLOCKED = [
+    "not consciousness proof",
+    "not universal ontology proof",
+    "not truth certification",
+    "not hallucination reduction proof",
+    "not deployment authority",
+    "not product release",
+    "not final answer release",
+    "not accepted evidence",
+    "not memory write",
+    "not provider call",
+]
 SONYA_REQUIRED_MEMBRANE_COMMAND = r""".\experiments\Run-SONYA-REQUIRED-MEMBRANE-CHECKPOINT00-Acceptance.ps1 `
   -OutputRoot C:\UVLM\run_artifacts\sonya_required_membrane_checkpoint_00 `
   -LogDir C:\UVLM\run_artifacts\sonya_required_membrane_checkpoint_00_logs `
@@ -2699,6 +2768,20 @@ ACCEPTED_PHASES = [
         "publication_status": "dashboard_indexed",
     },
     {
+        "phase_id": "COGNITIVE-WATERS-PATTERN-METRICS-00",
+        "repo": "pdxvoiceteacher/CoherenceLattice",
+        "status": "accepted",
+        "evidence_type": "metrics_scaffold",
+        "product_posture": "fixture_only_pattern_morphology_metrics_without_consciousness_or_ontology_proof",
+        "primary_artifacts": COGNITIVE_WATERS_PATTERN_METRICS_ARTIFACTS,
+        "dashboard_summary": COGNITIVE_WATERS_PATTERN_METRICS_DASHBOARD_SUMMARY,
+        "reproduction_command_summary": COGNITIVE_WATERS_PATTERN_METRICS_COMMAND,
+        "claim_allowed": "COGNITIVE-WATERS-PATTERN-METRICS-00 demonstrates fixture-only pattern morphology metrics with deterministic controls and non-authority boundaries.",
+        "claims_blocked": COGNITIVE_WATERS_PATTERN_METRICS_CLAIMS_BLOCKED,
+        "reviewer_caution": "COGNITIVE-WATERS-PATTERN-METRICS-00 is pattern-morphology evidence only and not consciousness proof, ontology proof, truth certification, product release, deployment authority, final answer release, or accepted evidence.",
+        "publication_status": "dashboard_indexed",
+    },
+    {
         "phase_id": "EVIDENCE-REVIEW-METRICS-00",
         "repo": "pdxvoiceteacher/CoherenceLattice",
         "status": "accepted",
@@ -3832,6 +3915,27 @@ BOUNDARIES = [
     "PMR provenance preservation is required.",
     "Freshness is not authority.",
     "Probabilistic confidence is not truth certification.",
+    "COGNITIVE-WATERS-PATTERN-METRICS-00 is not deployment authority.",
+    "COGNITIVE-WATERS-PATTERN-METRICS-00 is not provider call.",
+    "COGNITIVE-WATERS-PATTERN-METRICS-00 is not memory write.",
+    "COGNITIVE-WATERS-PATTERN-METRICS-00 is not accepted evidence.",
+    "COGNITIVE-WATERS-PATTERN-METRICS-00 is not final answer release.",
+    "COGNITIVE-WATERS-PATTERN-METRICS-00 is not product release.",
+    "COGNITIVE-WATERS-PATTERN-METRICS-00 is not model superiority proof.",
+    "COGNITIVE-WATERS-PATTERN-METRICS-00 is not hallucination reduction proof.",
+    "COGNITIVE-WATERS-PATTERN-METRICS-00 is not truth certification.",
+    "Cognitive-water metrics are descriptive morphology metrics only.",
+    "Pattern confidence is fixture-bounded unless externally validated.",
+    "Overfit pattern resemblance must be detected and bounded.",
+    "Morphology metric is not deployment authority.",
+    "Rupture/rebraid detection is not repair authority.",
+    "Low entropy is not safety.",
+    "High coherence is not truth.",
+    "Pattern recurrence is not proof.",
+    "Flow convergence is not correctness.",
+    "Cognitive-water metaphor is not metaphysical claim.",
+    "Spiral/fractal fit is not universal ontology proof.",
+    "Pattern morphology is not consciousness proof.",
     "Conceptual source is not implementation authority.",
     "Recency is not correctness.",
     "Context refresh requires audit.",
@@ -4458,6 +4562,7 @@ def reproducibility_index() -> dict[str, Any]:
                 {"name": "TEL event stack acceptance", "command": TEL_EVENT_STACK_COMMAND},
                 {"name": "Evidence Review product loop acceptance", "command": EVIDENCE_REVIEW_PRODUCT_LOOP_COMMAND},
                 {"name": "Evidence Review metrics acceptance", "command": EVIDENCE_REVIEW_METRICS_COMMAND},
+                {"name": "Cognitive waters pattern metrics acceptance", "command": COGNITIVE_WATERS_PATTERN_METRICS_COMMAND},
                 {"name": "Sonya Adapter Smoke acceptance", "command": SONYA_ADAPTER_SMOKE_COMMAND},
                 {"name": "Sonya Local Fixture Adapter acceptance", "command": SONYA_LOCAL_FIXTURE_ADAPTER_COMMAND},
                 {"name": "Evidence Review Pack local adapter acceptance", "command": EVIDENCE_REVIEW_PACK_LOCAL_ADAPTER_COMMAND},
@@ -4526,6 +4631,7 @@ def artifact_index() -> dict[str, Any]:
         "TEL-EVENT-STACK-00": TEL_EVENT_STACK_ARTIFACTS,
         "EVIDENCE-REVIEW-PRODUCT-LOOP-02": EVIDENCE_REVIEW_PRODUCT_LOOP_ARTIFACTS,
         "EVIDENCE-REVIEW-METRICS-00": EVIDENCE_REVIEW_METRICS_ARTIFACTS,
+        "COGNITIVE-WATERS-PATTERN-METRICS-00": COGNITIVE_WATERS_PATTERN_METRICS_ARTIFACTS,
         "SONYA-ADAPTER-SMOKE-00": SONYA_ADAPTER_SMOKE_ARTIFACTS,
         "SONYA-LOCAL-FIXTURE-ADAPTER-01": SONYA_LOCAL_FIXTURE_ADAPTER_ARTIFACTS,
         "EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER-01": EVIDENCE_REVIEW_PACK_LOCAL_ADAPTER_ARTIFACTS,
@@ -4580,6 +4686,12 @@ def status_payload() -> dict[str, Any]:
         "not_compression_truth_score": True,
         "not_context_refresh_authority": True,
         "not_metrics_product_release": True,
+        "cognitive_waters_pattern_metrics_00_indexed": True,
+        "not_pattern_morphology_consciousness_proof": True,
+        "not_spiral_fractal_universal_ontology_proof": True,
+        "not_cognitive_water_metaphysical_claim": True,
+        "not_pattern_recurrence_proof": True,
+        "not_morphology_deployment_authority": True,
         "not_provider_call": True,
         "not_raw_output_admission": True,
         "not_sonya_bypass_authority": True,
@@ -5039,6 +5151,28 @@ SONYA-ADAPTER-CONTRACT-REGISTRY-01 demonstrates a fixture-only versioned adapter
 Claims blocked: {"; ".join(SONYA_ADAPTER_CONTRACT_REGISTRY_CLAIMS_BLOCKED)}.
 
 Reviewer caution: SONYA-ADAPTER-CONTRACT-REGISTRY-01 defines adapter contracts only. It does not execute adapters, does not call providers, does not authorize network use, does not admit raw output as cognition, does not write memory, does not release final answers, does not train models, and does not deploy.
+""",
+        "cognitive-waters-pattern-metrics.md": f"""# Cognitive waters pattern metrics
+
+Required phrase: Pattern morphology is not consciousness proof.
+
+Cognitive-water metaphor is not metaphysical claim.
+
+```powershell
+{COGNITIVE_WATERS_PATTERN_METRICS_COMMAND}
+```
+
+## Primary artifacts
+
+{chr(10).join(f"- `{artifact}`" for artifact in COGNITIVE_WATERS_PATTERN_METRICS_ARTIFACTS)}
+
+## Dashboard posture
+
+{chr(10).join(f"- `{key} = {str(value).lower()}`" for key, value in COGNITIVE_WATERS_PATTERN_METRICS_DASHBOARD_SUMMARY.items())}
+
+## Blocked claims
+
+{chr(10).join(f"- {claim}" for claim in COGNITIVE_WATERS_PATTERN_METRICS_CLAIMS_BLOCKED)}
 """,
         "evidence-review-metrics.md": f"""# Evidence Review metrics
 

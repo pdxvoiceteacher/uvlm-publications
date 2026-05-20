@@ -334,3 +334,9 @@
 - `evidence_review_hypercompression_packet.json` — Evidence Review metrics scaffold; Hypercompression reduces explanatory distance, not review obligation; Freshness is not authority; not truth certification; not product release.
 - `evidence_review_preservation_packet.json` — Evidence Review metrics scaffold; Hypercompression reduces explanatory distance, not review obligation; Freshness is not authority; not truth certification; not product release.
 - `evidence_review_reviewer_utility_packet.json` — Evidence Review metrics scaffold; Hypercompression reduces explanatory distance, not review obligation; Freshness is not authority; not truth certification; not product release.
+
+- `cognitive_waters_metrics_manifest.json` — Cognitive waters pattern metrics scaffold; pattern morphology is not consciousness proof; cognitive-water metaphor is not metaphysical claim.
+- `cognitive_waters_metric_rows.jsonl` — Cognitive waters pattern metrics scaffold; pattern morphology is not consciousness proof; cognitive-water metaphor is not metaphysical claim.
+- `cognitive_waters_flow_packet.json` — Cognitive waters pattern metrics scaffold; pattern morphology is not consciousness proof; cognitive-water metaphor is not metaphysical claim.
+- `cognitive_waters_spiral_fractal_packet.json` — Cognitive waters pattern metrics scaffold; pattern morphology is not consciousness proof; cognitive-water metaphor is not metaphysical claim.
+- `cognitive_waters_review_packet.json` — Cognitive waters pattern metrics scaffold; pattern morphology is not consciousness proof; cognitive-water metaphor is not metaphysical claim.

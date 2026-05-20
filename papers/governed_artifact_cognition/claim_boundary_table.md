@@ -467,3 +467,12 @@
 
 - Conceptual source is not implementation authority.
 - Probabilistic confidence is not truth certification.
+
+- Pattern morphology is not consciousness proof.
+- Spiral/fractal fit is not universal ontology proof.
+- Cognitive-water metaphor is not metaphysical claim.
+- Flow convergence is not correctness.
+- Pattern recurrence is not proof.
+- High coherence is not truth.
+- Rupture/rebraid detection is not repair authority.
+- COGNITIVE-WATERS-PATTERN-METRICS-00 is not truth certification.

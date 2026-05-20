@@ -2244,3 +2244,15 @@ def test_governed_validator_indexes_evidence_review_metrics():
     assert status["not_probabilistic_certitude"] is True
     assert status["not_hypercompression_truth_certification"] is True
     assert status["not_context_refresh_authority"] is True
+
+
+def test_governed_validator_indexes_cognitive_waters_pattern_metrics():
+    paper = (ROOT / "PUB_GOV_ARTIFACT_COG_01.md").read_text(encoding="utf-8")
+    appendix = (ROOT / "reproducibility_appendix.md").read_text(encoding="utf-8")
+    status = json.loads((ROOT / "status.json").read_text(encoding="utf-8"))
+    assert "COGNITIVE-WATERS-PATTERN-METRICS-00" in paper
+    assert "Pattern morphology is not consciousness proof." in paper
+    assert "Cognitive-water metaphor is not metaphysical claim." in paper
+    assert "Run-COGNITIVE-WATERS-PATTERN-METRICS00-Acceptance.ps1" in appendix
+    assert status["cognitive_waters_pattern_metrics_00_indexed"] is True
+    assert status["not_pattern_morphology_consciousness_proof"] is True
