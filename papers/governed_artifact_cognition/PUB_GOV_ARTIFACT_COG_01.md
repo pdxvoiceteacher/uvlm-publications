@@ -755,3 +755,30 @@ Human participant packet is not metaphysical personhood claim. Consent can const
 ## PMR-HUMAN-CONSENT-NEGATIVE-CONTROL-00
 
 Invalid consent is not consent. Coerced consent fixture is not valid consent. Scope-mismatched consent is not consent. Consent attempt is not model training.
+
+## SONYA-REQUIRED-MEMBRANE-CHECKPOINT-00
+
+SONYA-REQUIRED-MEMBRANE-CHECKPOINT-00 is a fixture-only Sonya-required execution membrane checkpoint. Sonya is the required execution membrane for model/tool/provider-facing paths. Direct model/provider call is not allowed when SONYA_REQUIRED=1. Candidate packet is not final answer. Adapter capability is not adapter authorization. Fixture-only builder is not live execution. Sonya non-applicability must be explicit for pure fixture/scaffold paths. Missing Sonya posture must fail closed. Raw output is forbidden. Raw output is not cognition. Telemetry event is not authority. Failure receipt is not permission to proceed.
+
+The checkpoint maps runtime paths to Sonya-required, fixture-non-applicable, publication-non-applicable, or fail-closed posture. It records runtime path coverage, bypass surfaces, candidate-packet requirements, fixture non-applicability, and review posture. It is not live model execution, not provider call, not network authorization, not adapter authorization, not raw output admission, not memory write, not model-weight training, not deployment authority, not truth certification, not final answer release, not hallucination reduction proof, not recursive self-improvement, and not production readiness.
+
+
+## TEL-EVENT-STACK-00
+
+Telemetry event is not authority. Event receipt is not truth certification. Replay trace is not canon. Failure receipt is not permission to proceed. Event ledger is not memory write. Telemetry is not surveillance. Telemetry is not model training. Metric event is not performance proof. Publication validation event is not peer review. Missing required event must fail closed. Raw output is not cognition. Sonya candidate packet is not final answer. PMR retention is not truth. Evidence Review claim map is not truth certification. Retrosynthesis repair candidate is not canon adoption.
+
+
+## EVIDENCE-REVIEW-PRODUCT-LOOP-02
+
+Evidence Review product loop is not final answer selection. Reviewer task is not truth certification. Unsupported-claim action queue is not evidence acceptance. Uncertainty task is not uncertainty resolution. Counterevidence task is not contradiction resolution. TEL event linkage is not authority. PMR provenance binding is not memory write. Sonya membrane binding is not provider authorization. Candidate packet is not final answer. Product-loop summary is not deployment authority. Product-loop scaffold is not hallucination reduction proof. Product-loop scaffold is not model quality benchmark. Product-loop scaffold is not product release. EVIDENCE-REVIEW-PRODUCT-LOOP-02 is not accepted evidence. EVIDENCE-REVIEW-PRODUCT-LOOP-02 is not truth certification. EVIDENCE-REVIEW-PRODUCT-LOOP-02 is not memory write. EVIDENCE-REVIEW-PRODUCT-LOOP-02 is not provider call. EVIDENCE-REVIEW-PRODUCT-LOOP-02 is not peer review certification.
+
+
+## EVIDENCE-REVIEW-METRICS-00
+
+Hypercompression reduces explanatory distance, not review obligation. Compression ratio is not truth score. High coherence is not correctness. Compressed review state is not accepted evidence. Compressed task board is not final answer. Freshness is not authority. Recency is not correctness. Context refresh requires audit. Supersession requires lineage. Metrics are not hallucination reduction proof. Metrics are not model superiority proof. Metrics are not peer review certification.
+
+Run-EVIDENCE-REVIEW-METRICS00-Acceptance.ps1
+
+Conceptual source is not implementation authority.
+
+Probabilistic confidence is not truth certification.
