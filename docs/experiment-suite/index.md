@@ -23,6 +23,7 @@ This dashboard presents accepted evidence for reviewer orientation. It is not tr
 | ONTOLOGY-CLAIM-REGISTRY-00 | pdxvoiceteacher/CoherenceLattice | accepted | fixture-bounded ontology claim registry scaffold | Ontology claim is not ontology proof. |
 | LOCAL-SONYA-PATH-PORTABILITY-00 | pdxvoiceteacher/CoherenceLattice | accepted | fixture-only local Sonya path portability scaffold | User path is not system path. |
 | TB-PRODUCT-SLICE-00 | pdxvoiceteacher/CoherenceLattice | accepted | fixture-only local product-like runtime smoke | User-visible review receipt is required. |
+| TB-PRODUCT-SLICE-01 | pdxvoiceteacher/CoherenceLattice | accepted | fixture-only multi-source local product runtime smoke | Cross-source conflict is not contradiction resolution. |
 | PMR-00-PROVENANCE-MEMORY-RESERVOIR | pdxvoiceteacher/CoherenceLattice | accepted | PMR-00-PROVENANCE-MEMORY-RESERVOIR establishes Provenance Memory Reservoir doctrine and local storage policy: Memory is governed provenance under resource constraints. | PMR-00 and PMR-01 define local provenance-memory doctrine, storage policy, artifact indexing, and dependency graph scaffolds only. They do not write memory, canonize artifacts, federate artifacts, transfer encrypted shards, prune artifacts, train models, certify truth, release final answers, deploy, or reward resource contributions. |
 | PMR-01-LOCAL-ARTIFACT-INDEX | pdxvoiceteacher/CoherenceLattice | accepted | PMR-01-LOCAL-ARTIFACT-INDEX demonstrates a local artifact index and dependency graph scaffold while preserving that PMR artifact lifecycle state is not truth status. | PMR-00 and PMR-01 define local provenance-memory doctrine, storage policy, artifact indexing, and dependency graph scaffolds only. They do not write memory, canonize artifacts, federate artifacts, transfer encrypted shards, prune artifacts, train models, certify truth, release final answers, deploy, or reward resource contributions. |
 | PMR-02-GLOBAL-PROVENANCE-COHERENCE-UTILITY | pdxvoiceteacher/CoherenceLattice | accepted | PMR-02-GLOBAL-PROVENANCE-COHERENCE-UTILITY demonstrates deterministic local utility scoring for PMR-indexed artifacts and emits lifecycle recommendations while preserving non-authority boundaries. | PMR-02 computes lifecycle/storage utility scores and recommendations only. It does not prune artifacts. GPCU is not reward entitlement and not token economy. It does not certify truth. It does not authorize federation. It does not write memory, train models, deploy, or assign human value. |
@@ -102,6 +103,7 @@ No oracle posture, no deployment posture, no final-answer posture, no AI conscio
 - [Ontology Claim Registry](ontology-claim-registry.md)
 - [Local Sonya path portability](local-sonya-path-portability.md)
 - [TB Product Slice](tb-product-slice.md)
+- [TB Product Slice 01](tb-product-slice-01.md)
 - [Sonya Local Fixture Adapter multi-route](sonya-local-fixture-adapter-multi-route.md)
 - [Sonya Local Fixture Adapter lineage clarity](sonya-local-fixture-adapter-lineage.md)
 - [Governed artifact cognition paper](governed-artifact-cognition-paper.md)

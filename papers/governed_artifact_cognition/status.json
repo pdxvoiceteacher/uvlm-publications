@@ -170,5 +170,12 @@
   "not_product_slice_accepted_evidence": true,
   "not_product_slice_truth_certification": true,
   "not_product_slice_product_release": true,
-  "not_product_slice_provider_call": true
+  "not_product_slice_provider_call": true,
+  "tb_product_slice_01_indexed": true,
+  "not_product_slice_01_final_answer": true,
+  "not_product_slice_01_accepted_evidence": true,
+  "not_product_slice_01_truth_certification": true,
+  "not_product_slice_01_product_release": true,
+  "not_product_slice_01_provider_call": true,
+  "not_cross_source_conflict_resolution": true
 }

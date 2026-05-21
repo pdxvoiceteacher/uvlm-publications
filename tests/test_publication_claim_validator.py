@@ -2285,3 +2285,17 @@ def test_governed_validator_indexes_tb_product_slice():
     assert status["not_product_slice_accepted_evidence"] is True
     assert status["not_product_slice_truth_certification"] is True
     assert status["not_product_slice_product_release"] is True
+
+
+def test_governed_validator_indexes_tb_product_slice_01():
+    paper=(ROOT/"PUB_GOV_ARTIFACT_COG_01.md").read_text(encoding="utf-8")
+    quickstart=(ROOT/"reviewer_quickstart.md").read_text(encoding="utf-8")
+    status=json.loads((ROOT/"status.json").read_text(encoding="utf-8"))
+    assert "TB-PRODUCT-SLICE-01" in paper
+    assert "Cross-source conflict is not contradiction resolution." in paper
+    assert "Conflict must remain visible." in paper
+    assert "Run-TB-PRODUCT-SLICE01-Acceptance.ps1" in quickstart
+    assert status["tb_product_slice_01_indexed"] is True
+    assert status["not_product_slice_01_final_answer"] is True
+    assert status["not_product_slice_01_accepted_evidence"] is True
+    assert status["not_cross_source_conflict_resolution"] is True

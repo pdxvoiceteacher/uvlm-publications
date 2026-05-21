@@ -830,3 +830,14 @@ Model output is not authority.
 Source match is not truth certification.
 Supported claim is not accepted evidence.
 PMR provenance stub is not memory write.
+
+
+TB-PRODUCT-SLICE-01
+
+Cross-source conflict is not contradiction resolution.
+Conflict must remain visible.
+Multi-source review is not truth certification.
+Cross-source agreement is not accepted evidence.
+Candidate packet is not final answer.
+Supported claim is not accepted evidence.
+PMR provenance stub is not memory write.

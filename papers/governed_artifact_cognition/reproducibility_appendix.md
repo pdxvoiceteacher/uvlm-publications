@@ -757,3 +757,17 @@ User-visible review receipt is required.
 Unsupported claim must remain visible.
 
 Run-TB-PRODUCT-SLICE00-Acceptance.ps1
+
+tb_product_slice_01_manifest.json
+
+multi_source_bundle_manifest.json
+
+source_link_map.json
+
+cross_source_conflict_report.json
+
+Run-TB-PRODUCT-SLICE01-Acceptance.ps1
+
+Cross-source conflict is not contradiction resolution.
+
+Conflict must remain visible.
