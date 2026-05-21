@@ -147,6 +147,10 @@
         "command": ".\\experiments\\Run-EVIDENCE-REVIEW-METRICS00-Acceptance.ps1 `\n  -OutputRoot C:\\UVLM\\run_artifacts\\evidence_review_metrics_00 `\n  -LogDir C:\\UVLM\\run_artifacts\\evidence_review_metrics_00_logs `\n  -CiMode"
       },
       {
+        "name": "Cognitive waters pattern metrics acceptance",
+        "command": ".\\experiments\\Run-COGNITIVE-WATERS-PATTERN-METRICS00-Acceptance.ps1 `\n  -OutputRoot C:\\UVLM\\run_artifacts\\cognitive_waters_pattern_metrics_00 `\n  -LogDir C:\\UVLM\\run_artifacts\\cognitive_waters_pattern_metrics_00_logs `\n  -CiMode"
+      },
+      {
         "name": "Sonya Adapter Smoke acceptance",
         "command": ".\\experiments\\Run-SONYA-ADAPTER-SMOKE00-Acceptance.ps1 `\n  -OutputRoot C:\\UVLM\\run_artifacts\\sonya_adapter_smoke_00 `\n  -LogDir C:\\UVLM\\run_artifacts\\sonya_adapter_smoke_00_logs `\n  -CiMode"
       },

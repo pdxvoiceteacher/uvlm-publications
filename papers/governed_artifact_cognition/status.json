@@ -152,5 +152,11 @@
   "status": "drafted",
   "tel_event_stack_00_indexed": true,
   "universal_compatibility_matrix_indexed": true,
-  "universal_stage_pipeline_indexed": true
+  "universal_stage_pipeline_indexed": true,
+  "ontology_claim_registry_00_indexed": true,
+  "not_ontology_proof": true,
+  "not_ontology_truth_certification": true,
+  "not_publisher_output_proof": true,
+  "not_elegance_as_evidence": true,
+  "not_claim_registry_authority": true
 }

@@ -2234,7 +2234,7 @@ def test_governed_validator_indexes_evidence_review_metrics():
     assert "Hypercompression reduces explanatory distance, not review obligation." in paper
     assert "Freshness is not authority." in paper
     assert "Conceptual source is not implementation authority." in paper
-    assert "Probabilistic confidence is not truth certification." in paper
+    assert "Probabilistic confidence is not probabilistic certitude." in paper
     assert "Run-EVIDENCE-REVIEW-METRICS00-Acceptance.ps1" in appendix
     assert status["evidence_review_metrics_00_indexed"] is True
     assert status["spec_freshness_registry_00_indexed"] is True
