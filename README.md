@@ -1,7 +1,5 @@
 # Ultra Verba Lux Mentis Publication Registry
 
-![Mint DOI](https://github.com/ultra-verba-lux-mentis/uvlm-publications/actions/workflows/mint_doi.yml/badge.svg)
-
 Canonical source for UVLM scholarly publications and DOI minting.
 
 ## Repository Structure
