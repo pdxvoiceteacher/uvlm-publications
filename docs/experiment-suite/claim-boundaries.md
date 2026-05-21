@@ -49,7 +49,28 @@
 - TEL trace preservation is required.
 - PMR provenance preservation is required.
 - Freshness is not authority.
-- Probabilistic confidence is not truth certification.
+- Probabilistic confidence is not probabilistic certitude.
+- COGNITIVE-WATERS-PATTERN-METRICS-00 is not deployment authority.
+- COGNITIVE-WATERS-PATTERN-METRICS-00 is not provider call.
+- COGNITIVE-WATERS-PATTERN-METRICS-00 is not memory write.
+- COGNITIVE-WATERS-PATTERN-METRICS-00 is not accepted evidence.
+- COGNITIVE-WATERS-PATTERN-METRICS-00 is not final answer release.
+- COGNITIVE-WATERS-PATTERN-METRICS-00 is not product release.
+- COGNITIVE-WATERS-PATTERN-METRICS-00 is not model superiority proof.
+- COGNITIVE-WATERS-PATTERN-METRICS-00 is not hallucination reduction proof.
+- COGNITIVE-WATERS-PATTERN-METRICS-00 is not truth certification.
+- Cognitive-water metrics are descriptive morphology metrics only.
+- Pattern confidence is fixture-bounded unless externally validated.
+- Overfit pattern resemblance must be detected and bounded.
+- Morphology metric is not deployment authority.
+- Rupture/rebraid detection is not repair authority.
+- Low entropy is not safety.
+- High coherence is not truth.
+- Pattern recurrence is not proof.
+- Flow convergence is not correctness.
+- Cognitive-water metaphor is not metaphysical claim.
+- Spiral/fractal fit is not universal ontology proof.
+- Pattern morphology is not consciousness proof.
 - Conceptual source is not implementation authority.
 - Recency is not correctness.
 - Context refresh requires audit.
@@ -260,7 +281,7 @@
 - Pattern recurrence is not proof.
 - Spiral/fractal fit is not consciousness.
 - Metric stability is not deployment authority.
-- Probabilistic confidence is not truth certification.
+- Probabilistic confidence is not probabilistic certitude.
 - Ontology evidence is fixture-bounded unless externally validated.
 - FUNDAMENTAL-COHERENCE-METRICS-00 is not universal ontology proof.
 - FUNDAMENTAL-COHERENCE-METRICS-00 is not consciousness proof.

@@ -1181,6 +1181,37 @@ FUNDAMENTAL_COHERENCE_METRICS_00_DASHBOARD_SUMMARY = {
 }
 FUNDAMENTAL_COHERENCE_METRICS_00_CLAIMS_BLOCKED=["not truth score","not universal ontology proof","not truth certification","not consciousness proof","not hallucination reduction proof","not model superiority proof","not deployment authority","not product release","not final answer release","not memory write","not provider call","not network authorization","not model weight training","not peer review certification"]
 
+
+ONTOLOGY_CLAIM_REGISTRY_00_COMMAND = r""".\experiments\Run-ONTOLOGY-CLAIM-REGISTRY00-Acceptance.ps1 `
+  -OutputRoot C:\UVLM\run_artifacts\ontology_claim_registry_00 `
+  -LogDir C:\UVLM\run_artifacts\ontology_claim_registry_00_logs `
+  -CiMode"""
+ONTOLOGY_CLAIM_REGISTRY_00_ARTIFACTS = [
+    "ontology_claim_registry_packet.json",
+    "ontology_evidence_level_packet.json",
+    "ontology_claim_registry_review_packet.json",
+    "ontology_claim_registry_summary.md",
+    "artifact_inventory.json",
+    "run_artifact_manifest.json",
+    "export_bundle_manifest.json",
+    "export_bundle_parity_report.json",
+    "ontology_claim_registry_00_acceptance_receipt.json",
+]
+ONTOLOGY_CLAIM_REGISTRY_00_DASHBOARD_SUMMARY = {
+    "review_status": "accepted_as_ontology_claim_registry_scaffold",
+    "ontology_claim_registry_indexed": True,
+    "not_ontology_proof": True,
+    "not_ontology_truth_certification": True,
+    "not_publisher_output_proof": True,
+    "not_elegance_as_evidence": True,
+    "not_claim_registry_authority": True,
+    "run_artifact_manifest_status": "verified",
+    "export_parity_passed": True,
+}
+ONTOLOGY_CLAIM_REGISTRY_00_CLAIMS_BLOCKED = [
+    "not ontology proof","not truth certification","not universal ontology proof","not consciousness proof","not product release","not deployment authority","not final answer release","not accepted evidence","not memory write","not provider call","not network authorization","not model weight training","not peer review certification",
+]
+
 PMR_00_COMMAND = r""".\experiments\Run-PMR00-Acceptance.ps1 `
   -OutputRoot C:\UVLM\run_artifacts\pmr_00 `
   -LogDir C:\UVLM\run_artifacts\pmr_00_logs `
@@ -3017,6 +3048,20 @@ ACCEPTED_PHASES = [
         "claim_allowed": "fixture bounded metrics scaffold",
         "reviewer_caution": "coherence metric is not truth score",
     },
+
+    {
+        "phase_id": "ONTOLOGY-CLAIM-REGISTRY-00",
+        "repo": "pdxvoiceteacher/CoherenceLattice",
+        "status": "accepted",
+        "evidence_type": "governance_scaffold",
+        "product_posture": "fixture_only_ontology_claim_registry_without_ontology_proof",
+        "primary_artifacts": ONTOLOGY_CLAIM_REGISTRY_00_ARTIFACTS,
+        "dashboard_summary": ONTOLOGY_CLAIM_REGISTRY_00_DASHBOARD_SUMMARY,
+        "reproduction_command_summary": ONTOLOGY_CLAIM_REGISTRY_00_COMMAND,
+        "claims_blocked": ONTOLOGY_CLAIM_REGISTRY_00_CLAIMS_BLOCKED,
+        "claim_allowed": "fixture-bounded ontology claim registry scaffold",
+        "reviewer_caution": "Ontology claim is not ontology proof.",
+    },
     {
         "phase_id": "PMR-00-PROVENANCE-MEMORY-RESERVOIR",
         "repo": "pdxvoiceteacher/CoherenceLattice",
@@ -3914,7 +3959,7 @@ BOUNDARIES = [
     "TEL trace preservation is required.",
     "PMR provenance preservation is required.",
     "Freshness is not authority.",
-    "Probabilistic confidence is not truth certification.",
+    "Probabilistic confidence is not probabilistic certitude.",
     "COGNITIVE-WATERS-PATTERN-METRICS-00 is not deployment authority.",
     "COGNITIVE-WATERS-PATTERN-METRICS-00 is not provider call.",
     "COGNITIVE-WATERS-PATTERN-METRICS-00 is not memory write.",
@@ -4146,7 +4191,7 @@ BOUNDARIES = [
     "Pattern recurrence is not proof.",
     "Spiral/fractal fit is not consciousness.",
     "Metric stability is not deployment authority.",
-    "Probabilistic confidence is not truth certification.",
+    "Probabilistic confidence is not probabilistic certitude.",
     "Ontology evidence is fixture-bounded unless externally validated.",
     "FUNDAMENTAL-COHERENCE-METRICS-00 is not universal ontology proof.",
     "FUNDAMENTAL-COHERENCE-METRICS-00 is not consciousness proof.",

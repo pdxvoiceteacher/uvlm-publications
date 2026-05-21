@@ -304,7 +304,7 @@ PAPER_CONFIGS: dict[str, dict[str, Any]] = {
             "Conceptual source is not implementation authority.",
             "Coherence metric is not truth score.",
             "High coherence is not correctness.",
-            "Probabilistic confidence is not truth certification.",
+            "Probabilistic confidence is not probabilistic certitude.",
             "SPEC-FRESHNESS-REGISTRY-00",
             "FUNDAMENTAL-COHERENCE-METRICS-00",
             "Lifecycle recommendation is not pruning.",
