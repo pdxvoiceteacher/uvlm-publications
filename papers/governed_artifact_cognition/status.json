@@ -158,5 +158,11 @@
   "not_ontology_truth_certification": true,
   "not_publisher_output_proof": true,
   "not_elegance_as_evidence": true,
-  "not_claim_registry_authority": true
+  "not_claim_registry_authority": true,
+  "local_sonya_path_portability_00_indexed": true,
+  "not_live_sonya_node_execution": true,
+  "not_path_runtime_requirement": true,
+  "not_localhost_lan_readiness": true,
+  "not_lan_federation_authority": true,
+  "not_personal_path_requirement": true
 }

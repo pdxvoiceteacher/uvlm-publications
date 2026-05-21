@@ -476,3 +476,24 @@
 - High coherence is not truth.
 - Rupture/rebraid detection is not repair authority.
 - COGNITIVE-WATERS-PATTERN-METRICS-00 is not truth certification.
+
+
+Run-LOCAL-SONYA-PATH-PORTABILITY00-Acceptance.ps1
+
+local_sonya_path_portability_manifest.json
+
+local_sonya_node_environment_packet.json
+
+local_sonya_path_audit_rows.jsonl
+
+local_sonya_path_policy_packet.json
+
+local_sonya_path_portability_review_packet.json
+
+User path is not system path.
+
+Example path is not runtime requirement.
+
+Localhost readiness is not LAN readiness.
+
+LAN readiness is not federation authority.

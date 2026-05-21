@@ -1212,6 +1212,29 @@ ONTOLOGY_CLAIM_REGISTRY_00_CLAIMS_BLOCKED = [
     "not ontology proof","not truth certification","not universal ontology proof","not consciousness proof","not product release","not deployment authority","not final answer release","not accepted evidence","not memory write","not provider call","not network authorization","not model weight training","not peer review certification",
 ]
 
+
+LOCAL_SONYA_PATH_PORTABILITY_00_COMMAND = r""".\experiments\Run-LOCAL-SONYA-PATH-PORTABILITY00-Acceptance.ps1 `
+  -OutputRoot C:\UVLM\run_artifacts\local_sonya_path_portability_00 `
+  -LogDir C:\UVLM\run_artifacts\local_sonya_path_portability_00_logs `
+  -CiMode"""
+LOCAL_SONYA_PATH_PORTABILITY_00_ARTIFACTS = [
+    "local_sonya_path_portability_manifest.json",
+    "local_sonya_node_environment_packet.json",
+    "local_sonya_path_audit_rows.jsonl",
+    "local_sonya_path_policy_packet.json",
+    "local_sonya_path_portability_review_packet.json",
+    "local_sonya_path_portability_summary.md",
+    "artifact_inventory.json",
+    "run_artifact_manifest.json",
+    "export_bundle_manifest.json",
+    "export_bundle_parity_report.json",
+    "local_sonya_path_portability_00_acceptance_receipt.json",
+]
+LOCAL_SONYA_PATH_PORTABILITY_00_DASHBOARD_SUMMARY = {
+"review_status":"accepted_as_local_sonya_path_portability_scaffold","path_audit_performed":True,"node_environment_packet_present":True,"path_policy_packet_present":True,"configurable_roots_declared":True,"all_required_fixture_roots_valid":True,"all_runtime_roots_user_defined_or_unresolved":True,"personal_path_not_runtime_requirement":True,"user_path_not_system_path":True,"example_path_not_runtime_requirement":True,"local_sonya_node_root_user_defined":True,"run_artifact_root_configurable":True,"shared_source_root_configurable":True,"local_model_root_configurable":True,"pmr_store_root_configurable":True,"tel_event_root_configurable":True,"relative_configured_paths_fail_closed":True,"no_unoverrideable_personal_path_requirements":True,"legacy_path_migration_candidates_registered":True,"path_portability_not_live_node_execution":True,"path_portability_not_network_authorization":True,"path_portability_not_federation":True,"path_portability_not_deployment_authority":True,"path_portability_not_product_release":True,"live_sonya_node_not_executed":True,"provider_calls_not_performed":True,"network_calls_not_performed":True,"memory_write_blocked":True,"model_weight_training_blocked":True,"run_artifact_manifest_status":"verified","export_parity_passed":True
+}
+LOCAL_SONYA_PATH_PORTABILITY_00_CLAIMS_BLOCKED=["not live node execution","not network authorization","not provider call","not federation authorization","not deployment authority","not product release","not truth certification","not memory write","not model weight training","not final answer release","not accepted evidence","not peer review certification"]
+
 PMR_00_COMMAND = r""".\experiments\Run-PMR00-Acceptance.ps1 `
   -OutputRoot C:\UVLM\run_artifacts\pmr_00 `
   -LogDir C:\UVLM\run_artifacts\pmr_00_logs `
@@ -3062,6 +3085,20 @@ ACCEPTED_PHASES = [
         "claim_allowed": "fixture-bounded ontology claim registry scaffold",
         "reviewer_caution": "Ontology claim is not ontology proof.",
     },
+
+    {
+        "phase_id": "LOCAL-SONYA-PATH-PORTABILITY-00",
+        "repo": "pdxvoiceteacher/CoherenceLattice",
+        "status": "accepted",
+        "evidence_type": "governance_scaffold",
+        "product_posture": "fixture_only_path_portability_without_live_node_execution",
+        "primary_artifacts": LOCAL_SONYA_PATH_PORTABILITY_00_ARTIFACTS,
+        "dashboard_summary": LOCAL_SONYA_PATH_PORTABILITY_00_DASHBOARD_SUMMARY,
+        "reproduction_command_summary": LOCAL_SONYA_PATH_PORTABILITY_00_COMMAND,
+        "claims_blocked": LOCAL_SONYA_PATH_PORTABILITY_00_CLAIMS_BLOCKED,
+        "claim_allowed": "fixture-only local Sonya path portability scaffold",
+        "reviewer_caution": "User path is not system path.",
+    },
     {
         "phase_id": "PMR-00-PROVENANCE-MEMORY-RESERVOIR",
         "repo": "pdxvoiceteacher/CoherenceLattice",
@@ -3979,6 +4016,28 @@ BOUNDARIES = [
     "Pattern recurrence is not proof.",
     "Flow convergence is not correctness.",
     "Cognitive-water metaphor is not metaphysical claim.",
+    "User path is not system path.",
+    "Example path is not runtime requirement.",
+    "Personal operator path is not package default.",
+    "Local Sonya node root must be user-defined.",
+    "Run artifact root must be configurable.",
+    "Shared source root must be configurable.",
+    "Local model root must be configurable.",
+    "PMR store root must be configurable.",
+    "TEL event sink root must be configurable.",
+    "Relative configured paths must fail closed.",
+    "Missing required root must fail closed.",
+    "Path portability audit is not deployment authority.",
+    "Path portability audit is not live node execution.",
+    "Localhost readiness is not LAN readiness.",
+    "LAN readiness is not federation authority.",
+    "LOCAL-SONYA-PATH-PORTABILITY-00 is not network authorization.",
+    "LOCAL-SONYA-PATH-PORTABILITY-00 is not provider call.",
+    "LOCAL-SONYA-PATH-PORTABILITY-00 is not federation authorization.",
+    "LOCAL-SONYA-PATH-PORTABILITY-00 is not memory write.",
+    "LOCAL-SONYA-PATH-PORTABILITY-00 is not model weight training.",
+    "LOCAL-SONYA-PATH-PORTABILITY-00 is not product release.",
+    "LOCAL-SONYA-PATH-PORTABILITY-00 is not truth certification.",
     "Spiral/fractal fit is not universal ontology proof.",
     "Pattern morphology is not consciousness proof.",
     "Conceptual source is not implementation authority.",
@@ -4583,6 +4642,7 @@ def reproducibility_index() -> dict[str, Any]:
                 {"name": "Retrosynthesis Sandbox Cycle acceptance", "command": RETRO_SANDBOX_CYCLE_COMMAND},
                 {"name": "Evidence Review Pack second pass acceptance", "command": EVIDENCE_REVIEW_PACK_01_COMMAND},
                 {"name": "RW-COMP-03 acceptance", "command": RW_COMP_03_COMMAND},
+                {"name": "Local Sonya path portability acceptance", "command": LOCAL_SONYA_PATH_PORTABILITY_00_COMMAND},
                 {"name": "PMR doctrine acceptance", "command": PMR_00_COMMAND},
                 {"name": "PMR local artifact index acceptance", "command": PMR_01_COMMAND},
                 {"name": "PMR GPCU utility scoring acceptance", "command": PMR_02_COMMAND},
@@ -4677,6 +4737,7 @@ def artifact_index() -> dict[str, Any]:
         "EVIDENCE-REVIEW-PRODUCT-LOOP-02": EVIDENCE_REVIEW_PRODUCT_LOOP_ARTIFACTS,
         "EVIDENCE-REVIEW-METRICS-00": EVIDENCE_REVIEW_METRICS_ARTIFACTS,
         "COGNITIVE-WATERS-PATTERN-METRICS-00": COGNITIVE_WATERS_PATTERN_METRICS_ARTIFACTS,
+        "LOCAL-SONYA-PATH-PORTABILITY-00": LOCAL_SONYA_PATH_PORTABILITY_00_ARTIFACTS,
         "SONYA-ADAPTER-SMOKE-00": SONYA_ADAPTER_SMOKE_ARTIFACTS,
         "SONYA-LOCAL-FIXTURE-ADAPTER-01": SONYA_LOCAL_FIXTURE_ADAPTER_ARTIFACTS,
         "EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER-01": EVIDENCE_REVIEW_PACK_LOCAL_ADAPTER_ARTIFACTS,
@@ -4735,6 +4796,12 @@ def status_payload() -> dict[str, Any]:
         "not_pattern_morphology_consciousness_proof": True,
         "not_spiral_fractal_universal_ontology_proof": True,
         "not_cognitive_water_metaphysical_claim": True,
+        "local_sonya_path_portability_00_indexed": True,
+        "not_live_sonya_node_execution": True,
+        "not_path_runtime_requirement": True,
+        "not_localhost_lan_readiness": True,
+        "not_lan_federation_authority": True,
+        "not_personal_path_requirement": True,
         "not_pattern_recurrence_proof": True,
         "not_morphology_deployment_authority": True,
         "not_provider_call": True,
@@ -4852,7 +4919,7 @@ def docs() -> dict[str, str]:
     return {
         "README.md": "# Experiment Suite Docs\n\nPublic reviewer documentation for the claim-bounded reproducibility dashboard.\n",
         "assets/README.md": "# Assets\n\nOptional static assets for the public reproducibility dashboard.\n",
-        "index.md": f"# Public Experiment Suite Dashboard\n\nThis dashboard presents accepted evidence for reviewer orientation. It is not truth certification, not deployment authority, not final answer release, local fixture only, and requires external peer review.\n\n## Accepted evidence\n\n| Phase | Repo | Status | What this supports | Reviewer caution |\n| --- | --- | --- | --- | --- |\n{phase_rows}\n\n## Reviewer path\n\nStart with claim boundaries, then read the governed artifact cognition paper, WAVE Rosetta paper, SONYA-AEGIS-SMOKE-02, WAVE family, UNI-02D Sonya gate, and RETRO-LANE-00, Public Utility Alpha, Raw Baseline Comparison, Evidence Review Pack, RW-COMP-01, RW-COMP-02, Retrosynthesis Sandbox Cycle, Evidence Review Pack second-pass, RW-COMP-03, Universal Architecture Scaffold, Sonya Adapter Contract Registry, Sonya Adapter Smoke, Sonya Local Fixture Adapter, and Evidence Review Pack local adapter, Evidence Review Pack local adapter revision, RW-COMP local adapter, PMR doctrine, PMR local artifact index, PMR GPCU utility scoring, PMR lifecycle state machine, PMR lifecycle audit preflight, PMR Sophia lifecycle audit review, PMR destructive-action authorization preflight, PMR architecture diversity checkpoint, PMR simulation baseline comparison, PMR simulation statistical analysis, PMR federation stress corpus, PMR human provenance context, Sonya Local Fixture Adapter multi-route, and Sonya Local Fixture Adapter lineage clarity pages.\n\n## What this proves\n\nIt proves only that accepted local fixture artifacts and draft publication materials are organized for review.\n\n## What this does not prove\n\nNo oracle posture, no deployment posture, no final-answer posture, no AI consciousness claim, and no universal ontology claim.\n\n## Phase pages\n\n- [SONYA-AEGIS-SMOKE-02](sonya-aegis-smoke-02.md)\n- [WAVE Gold-Physics](wave-gold-physics.md)\n- [UNI-02D Sonya gate](uni02d-sonya-gate.md)\n- [RETRO-LANE-00](retro-lane-00.md)\n- [Public Utility Alpha](public-utility-alpha.md)\n- [Raw Baseline Comparison](raw-baseline-comparison.md)\n- [Evidence Review Pack](evidence-review-pack.md)\n- [RW-COMP-01](rw-comp-01.md)\n- [RW-COMP-02](rw-comp-02.md)\n- [Retrosynthesis Sandbox Cycle](retrosynthesis-sandbox-cycle.md)\n- [Evidence Review Pack second pass](evidence-review-pack-second-pass.md)\n- [RW-COMP-03](rw-comp-03.md)\n- [Universal Architecture Scaffold](universal-architecture.md)\n- [Sonya Adapter Contract Registry](sonya-adapter-contract-registry.md)\n- [Sonya required membrane checkpoint](sonya-required-membrane-checkpoint.md)\n- [TEL event stack](tel-event-stack.md)\n- [Sonya Adapter Smoke](sonya-adapter-smoke.md)\n- [Sonya Local Fixture Adapter](sonya-local-fixture-adapter.md)\n- [Evidence Review Pack local adapter](evidence-review-pack-local-adapter.md)\n- [Evidence Review Pack local adapter revision](evidence-review-pack-local-adapter-revision.md)\n- [RW-COMP local adapter](rw-comp-local-adapter.md)\n- [Provenance Memory Reservoir](provenance-memory-reservoir.md)\n- [PMR local artifact index](pmr-local-artifact-index.md)\n- [Ontology Claim Registry](ontology-claim-registry.md)\n- [Sonya Local Fixture Adapter multi-route](sonya-local-fixture-adapter-multi-route.md)\n- [Sonya Local Fixture Adapter lineage clarity](sonya-local-fixture-adapter-lineage.md)\n- [Governed artifact cognition paper](governed-artifact-cognition-paper.md)\n- [Waveform Rosetta paper](waveform-rosetta-paper.md)\n",
+        "index.md": f"# Public Experiment Suite Dashboard\n\nThis dashboard presents accepted evidence for reviewer orientation. It is not truth certification, not deployment authority, not final answer release, local fixture only, and requires external peer review.\n\n## Accepted evidence\n\n| Phase | Repo | Status | What this supports | Reviewer caution |\n| --- | --- | --- | --- | --- |\n{phase_rows}\n\n## Reviewer path\n\nStart with claim boundaries, then read the governed artifact cognition paper, WAVE Rosetta paper, SONYA-AEGIS-SMOKE-02, WAVE family, UNI-02D Sonya gate, and RETRO-LANE-00, Public Utility Alpha, Raw Baseline Comparison, Evidence Review Pack, RW-COMP-01, RW-COMP-02, Retrosynthesis Sandbox Cycle, Evidence Review Pack second-pass, RW-COMP-03, Universal Architecture Scaffold, Sonya Adapter Contract Registry, Sonya Adapter Smoke, Sonya Local Fixture Adapter, and Evidence Review Pack local adapter, Evidence Review Pack local adapter revision, RW-COMP local adapter, PMR doctrine, PMR local artifact index, PMR GPCU utility scoring, PMR lifecycle state machine, PMR lifecycle audit preflight, PMR Sophia lifecycle audit review, PMR destructive-action authorization preflight, PMR architecture diversity checkpoint, PMR simulation baseline comparison, PMR simulation statistical analysis, PMR federation stress corpus, PMR human provenance context, Sonya Local Fixture Adapter multi-route, and Sonya Local Fixture Adapter lineage clarity pages.\n\n## What this proves\n\nIt proves only that accepted local fixture artifacts and draft publication materials are organized for review.\n\n## What this does not prove\n\nNo oracle posture, no deployment posture, no final-answer posture, no AI consciousness claim, and no universal ontology claim.\n\n## Phase pages\n\n- [SONYA-AEGIS-SMOKE-02](sonya-aegis-smoke-02.md)\n- [WAVE Gold-Physics](wave-gold-physics.md)\n- [UNI-02D Sonya gate](uni02d-sonya-gate.md)\n- [RETRO-LANE-00](retro-lane-00.md)\n- [Public Utility Alpha](public-utility-alpha.md)\n- [Raw Baseline Comparison](raw-baseline-comparison.md)\n- [Evidence Review Pack](evidence-review-pack.md)\n- [RW-COMP-01](rw-comp-01.md)\n- [RW-COMP-02](rw-comp-02.md)\n- [Retrosynthesis Sandbox Cycle](retrosynthesis-sandbox-cycle.md)\n- [Evidence Review Pack second pass](evidence-review-pack-second-pass.md)\n- [RW-COMP-03](rw-comp-03.md)\n- [Universal Architecture Scaffold](universal-architecture.md)\n- [Sonya Adapter Contract Registry](sonya-adapter-contract-registry.md)\n- [Sonya required membrane checkpoint](sonya-required-membrane-checkpoint.md)\n- [TEL event stack](tel-event-stack.md)\n- [Sonya Adapter Smoke](sonya-adapter-smoke.md)\n- [Sonya Local Fixture Adapter](sonya-local-fixture-adapter.md)\n- [Evidence Review Pack local adapter](evidence-review-pack-local-adapter.md)\n- [Evidence Review Pack local adapter revision](evidence-review-pack-local-adapter-revision.md)\n- [RW-COMP local adapter](rw-comp-local-adapter.md)\n- [Provenance Memory Reservoir](provenance-memory-reservoir.md)\n- [PMR local artifact index](pmr-local-artifact-index.md)\n- [Ontology Claim Registry](ontology-claim-registry.md)\n- [Local Sonya path portability](local-sonya-path-portability.md)\n- [Sonya Local Fixture Adapter multi-route](sonya-local-fixture-adapter-multi-route.md)\n- [Sonya Local Fixture Adapter lineage clarity](sonya-local-fixture-adapter-lineage.md)\n- [Governed artifact cognition paper](governed-artifact-cognition-paper.md)\n- [Waveform Rosetta paper](waveform-rosetta-paper.md)\n",
         "claim-boundaries.md": f"# Claim Boundaries\n\n{boundaries}\n\nNo oracle posture. No deployment posture. No final-answer posture. No AI consciousness claim. No universal ontology claim.\n",
         "sonya-aegis-smoke-02.md": f"""# SONYA-AEGIS-SMOKE-02
 
@@ -5197,6 +5264,33 @@ Claims blocked: {"; ".join(SONYA_ADAPTER_CONTRACT_REGISTRY_CLAIMS_BLOCKED)}.
 
 Reviewer caution: SONYA-ADAPTER-CONTRACT-REGISTRY-01 defines adapter contracts only. It does not execute adapters, does not call providers, does not authorize network use, does not admit raw output as cognition, does not write memory, does not release final answers, does not train models, and does not deploy.
 """,
+        "local-sonya-path-portability.md": f"""# Local Sonya path portability
+
+Phase: `LOCAL-SONYA-PATH-PORTABILITY-00`
+
+User path is not system path.
+Example path is not runtime requirement.
+Personal operator path is not package default.
+Local Sonya node root must be user-defined.
+Run artifact root must be configurable.
+Shared source root must be configurable.
+Local model root must be configurable.
+PMR store root must be configurable.
+TEL event sink root must be configurable.
+Relative configured paths must fail closed.
+Missing required root must fail closed.
+Path portability audit is not deployment authority.
+Path portability audit is not live node execution.
+Localhost readiness is not LAN readiness.
+LAN readiness is not federation authority.
+
+```powershell
+{LOCAL_SONYA_PATH_PORTABILITY_00_COMMAND}
+```
+
+{chr(10).join(f"- `{a}`" for a in LOCAL_SONYA_PATH_PORTABILITY_00_ARTIFACTS)}
+""",
+
         "ontology-claim-registry.md": f"""# Ontology Claim Registry
 
 Phase: `ONTOLOGY-CLAIM-REGISTRY-00`

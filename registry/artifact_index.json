@@ -502,6 +502,19 @@
       "export_bundle_parity_report.json",
       "cognitive_waters_pattern_metrics_00_acceptance_receipt.json"
     ],
+    "LOCAL-SONYA-PATH-PORTABILITY-00": [
+      "local_sonya_path_portability_manifest.json",
+      "local_sonya_node_environment_packet.json",
+      "local_sonya_path_audit_rows.jsonl",
+      "local_sonya_path_policy_packet.json",
+      "local_sonya_path_portability_review_packet.json",
+      "local_sonya_path_portability_summary.md",
+      "artifact_inventory.json",
+      "run_artifact_manifest.json",
+      "export_bundle_manifest.json",
+      "export_bundle_parity_report.json",
+      "local_sonya_path_portability_00_acceptance_receipt.json"
+    ],
     "SONYA-ADAPTER-SMOKE-00": [
       "sonya_adapter_smoke_packet.json",
       "sonya_adapter_smoke_review_packet.json",

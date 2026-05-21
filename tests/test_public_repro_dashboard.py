@@ -115,6 +115,7 @@ REQUIRED_PHASES = {
     "EVIDENCE-REVIEW-METRICS-00",
     "COGNITIVE-WATERS-PATTERN-METRICS-00",
     "ONTOLOGY-CLAIM-REGISTRY-00",
+    "LOCAL-SONYA-PATH-PORTABILITY-00",
 }
 
 REQUIRED_COMMAND_FRAGMENTS = (
@@ -2336,3 +2337,20 @@ def test_ontology_claim_registry_page_contains_required_boundaries(tmp_path):
     assert "Ontology claim is not ontology proof." in text
     assert "Probabilistic confidence is not probabilistic certitude." in text
     assert "Run-ONTOLOGY-CLAIM-REGISTRY00-Acceptance.ps1" in text
+
+
+def test_local_sonya_path_portability_dashboard_entries(tmp_path):
+    out_dir, docs_dir = run_builder(tmp_path)
+    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text())
+    assert any(p["phase_id"] == "LOCAL-SONYA-PATH-PORTABILITY-00" for p in dashboard["accepted_phases"])
+    repro = json.loads((out_dir / "reproducibility_index.json").read_text())
+    command_blob = json.dumps(repro["commands"])
+    assert "Run-LOCAL-SONYA-PATH-PORTABILITY00-Acceptance.ps1" in command_blob
+    artifacts = json.loads((out_dir / "artifact_index.json").read_text())
+    phase_artifacts = artifacts["phases"]["LOCAL-SONYA-PATH-PORTABILITY-00"]
+    for a in ["local_sonya_path_portability_manifest.json","local_sonya_node_environment_packet.json","local_sonya_path_audit_rows.jsonl","local_sonya_path_policy_packet.json","local_sonya_path_portability_review_packet.json"]:
+        assert a in phase_artifacts
+    boundaries = (docs_dir / "claim-boundaries.md").read_text(encoding="utf-8")
+    assert "User path is not system path." in boundaries
+    assert "Example path is not runtime requirement." in boundaries
+    assert "Localhost readiness is not LAN readiness." in boundaries

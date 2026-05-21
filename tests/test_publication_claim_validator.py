@@ -2256,3 +2256,17 @@ def test_governed_validator_indexes_cognitive_waters_pattern_metrics():
     assert "Run-COGNITIVE-WATERS-PATTERN-METRICS00-Acceptance.ps1" in appendix
     assert status["cognitive_waters_pattern_metrics_00_indexed"] is True
     assert status["not_pattern_morphology_consciousness_proof"] is True
+
+
+def test_governed_validator_indexes_local_sonya_path_portability():
+    paper = (ROOT / "PUB_GOV_ARTIFACT_COG_01.md").read_text(encoding="utf-8")
+    quickstart = (ROOT / "reviewer_quickstart.md").read_text(encoding="utf-8")
+    status = json.loads((ROOT / "status.json").read_text(encoding="utf-8"))
+    assert "LOCAL-SONYA-PATH-PORTABILITY-00" in paper
+    assert "User path is not system path." in paper
+    assert "Example path is not runtime requirement." in paper
+    assert "Run-LOCAL-SONYA-PATH-PORTABILITY00-Acceptance.ps1" in quickstart
+    assert status["local_sonya_path_portability_00_indexed"] is True
+    assert status["not_live_sonya_node_execution"] is True
+    assert status["not_path_runtime_requirement"] is True
+    assert status["not_personal_path_requirement"] is True

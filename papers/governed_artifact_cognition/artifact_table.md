@@ -340,3 +340,24 @@
 - `cognitive_waters_flow_packet.json` — Cognitive waters pattern metrics scaffold; pattern morphology is not consciousness proof; cognitive-water metaphor is not metaphysical claim.
 - `cognitive_waters_spiral_fractal_packet.json` — Cognitive waters pattern metrics scaffold; pattern morphology is not consciousness proof; cognitive-water metaphor is not metaphysical claim.
 - `cognitive_waters_review_packet.json` — Cognitive waters pattern metrics scaffold; pattern morphology is not consciousness proof; cognitive-water metaphor is not metaphysical claim.
+
+
+Run-LOCAL-SONYA-PATH-PORTABILITY00-Acceptance.ps1
+
+local_sonya_path_portability_manifest.json
+
+local_sonya_node_environment_packet.json
+
+local_sonya_path_audit_rows.jsonl
+
+local_sonya_path_policy_packet.json
+
+local_sonya_path_portability_review_packet.json
+
+User path is not system path.
+
+Example path is not runtime requirement.
+
+Localhost readiness is not LAN readiness.
+
+LAN readiness is not federation authority.

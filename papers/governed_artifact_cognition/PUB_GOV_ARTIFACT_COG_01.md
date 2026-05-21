@@ -808,3 +808,14 @@ Active doctrine requires artifact-backed acceptance.
 Publisher output is candidate report, not proof.
 
 Document end marker: governed artifact cognition draft.
+
+
+LOCAL-SONYA-PATH-PORTABILITY-00
+
+User path is not system path.
+Example path is not runtime requirement.
+Personal operator path is not package default.
+Local Sonya node root must be user-defined.
+Path portability audit is not live node execution.
+Localhost readiness is not LAN readiness.
+LAN readiness is not federation authority.
