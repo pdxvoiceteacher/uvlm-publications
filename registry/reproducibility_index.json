@@ -51,6 +51,10 @@
         "command": ".\\experiments\\Run-RW-COMP03-Acceptance.ps1 `\n  -OutputRoot C:\\UVLM\\run_artifacts\\rw_comp_03 `\n  -LogDir C:\\UVLM\\run_artifacts\\rw_comp_03_logs `\n  -CiMode"
       },
       {
+        "name": "Local Sonya path portability acceptance",
+        "command": ".\\experiments\\Run-LOCAL-SONYA-PATH-PORTABILITY00-Acceptance.ps1 `\n  -OutputRoot C:\\UVLM\\run_artifacts\\local_sonya_path_portability_00 `\n  -LogDir C:\\UVLM\\run_artifacts\\local_sonya_path_portability_00_logs `\n  -CiMode"
+      },
+      {
         "name": "PMR doctrine acceptance",
         "command": ".\\experiments\\Run-PMR00-Acceptance.ps1 `\n  -OutputRoot C:\\UVLM\\run_artifacts\\pmr_00 `\n  -LogDir C:\\UVLM\\run_artifacts\\pmr_00_logs `\n  -Mode balanced `\n  -LocalStorageBudgetBytes 5368709120 `\n  -CiMode"
       },
@@ -145,6 +149,10 @@
       {
         "name": "Evidence Review metrics acceptance",
         "command": ".\\experiments\\Run-EVIDENCE-REVIEW-METRICS00-Acceptance.ps1 `\n  -OutputRoot C:\\UVLM\\run_artifacts\\evidence_review_metrics_00 `\n  -LogDir C:\\UVLM\\run_artifacts\\evidence_review_metrics_00_logs `\n  -CiMode"
+      },
+      {
+        "name": "Cognitive waters pattern metrics acceptance",
+        "command": ".\\experiments\\Run-COGNITIVE-WATERS-PATTERN-METRICS00-Acceptance.ps1 `\n  -OutputRoot C:\\UVLM\\run_artifacts\\cognitive_waters_pattern_metrics_00 `\n  -LogDir C:\\UVLM\\run_artifacts\\cognitive_waters_pattern_metrics_00_logs `\n  -CiMode"
       },
       {
         "name": "Sonya Adapter Smoke acceptance",
