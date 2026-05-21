@@ -781,7 +781,7 @@ Run-EVIDENCE-REVIEW-METRICS00-Acceptance.ps1
 
 Conceptual source is not implementation authority.
 
-Probabilistic confidence is not truth certification.
+Probabilistic confidence is not probabilistic certitude.
 
 
 ## COGNITIVE-WATERS-PATTERN-METRICS-00
@@ -789,3 +789,44 @@ Probabilistic confidence is not truth certification.
 Pattern morphology is not consciousness proof. Spiral/fractal fit is not universal ontology proof. Cognitive-water metaphor is not metaphysical claim. Flow convergence is not correctness. Pattern recurrence is not proof. High coherence is not truth. Rupture/rebraid detection is not repair authority.
 
 Run-COGNITIVE-WATERS-PATTERN-METRICS00-Acceptance.ps1
+
+
+ONTOLOGY-CLAIM-REGISTRY-00
+
+Ontology claim is not ontology proof.
+Probabilistic confidence is not probabilistic certitude.
+Fixture-bounded evidence is not universal ontology proof.
+Metric stability is not truth certification.
+Pattern morphology is not consciousness proof.
+Hypercompression is not hallucination reduction proof.
+Context refresh is not recency authority.
+Elegance is not evidence.
+No ontology earns authority merely by sounding coherent.
+Ontology confidence requires fixtures, null models, negative controls, counterevidence, replay, and lineage-preserving context refresh.
+Candidate doctrine is not active spec.
+Active doctrine requires artifact-backed acceptance.
+Publisher output is candidate report, not proof.
+
+Document end marker: governed artifact cognition draft.
+
+
+LOCAL-SONYA-PATH-PORTABILITY-00
+
+User path is not system path.
+Example path is not runtime requirement.
+Personal operator path is not package default.
+Local Sonya node root must be user-defined.
+Path portability audit is not live node execution.
+Localhost readiness is not LAN readiness.
+LAN readiness is not federation authority.
+
+
+TB-PRODUCT-SLICE-00
+
+User-visible review receipt is required.
+Unsupported claim must remain visible.
+Candidate packet is not final answer.
+Model output is not authority.
+Source match is not truth certification.
+Supported claim is not accepted evidence.
+PMR provenance stub is not memory write.

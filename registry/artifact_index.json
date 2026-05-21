@@ -487,6 +487,54 @@
       "export_bundle_parity_report.json",
       "evidence_review_metrics_00_acceptance_receipt.json"
     ],
+    "COGNITIVE-WATERS-PATTERN-METRICS-00": [
+      "cognitive_waters_metrics_manifest.json",
+      "cognitive_waters_fixture_suite.json",
+      "cognitive_waters_metric_rows.jsonl",
+      "cognitive_waters_flow_packet.json",
+      "cognitive_waters_spiral_fractal_packet.json",
+      "cognitive_waters_rupture_rebraid_packet.json",
+      "cognitive_waters_review_packet.json",
+      "cognitive_waters_metrics_summary.md",
+      "artifact_inventory.json",
+      "run_artifact_manifest.json",
+      "export_bundle_manifest.json",
+      "export_bundle_parity_report.json",
+      "cognitive_waters_pattern_metrics_00_acceptance_receipt.json"
+    ],
+    "LOCAL-SONYA-PATH-PORTABILITY-00": [
+      "local_sonya_path_portability_manifest.json",
+      "local_sonya_node_environment_packet.json",
+      "local_sonya_path_audit_rows.jsonl",
+      "local_sonya_path_policy_packet.json",
+      "local_sonya_path_portability_review_packet.json",
+      "local_sonya_path_portability_summary.md",
+      "artifact_inventory.json",
+      "run_artifact_manifest.json",
+      "export_bundle_manifest.json",
+      "export_bundle_parity_report.json",
+      "local_sonya_path_portability_00_acceptance_receipt.json"
+    ],
+    "TB-PRODUCT-SLICE-00": [
+      "tb_product_slice_manifest.json",
+      "source_bundle_manifest.json",
+      "sonya_candidate_packet.json",
+      "claim_evidence_map.json",
+      "unsupported_claim_report.json",
+      "uncertainty_report.json",
+      "tel_events.jsonl",
+      "prior_origin_use_packet.json",
+      "pmr_provenance_stub.json",
+      "review_receipt.json",
+      "review_receipt.md",
+      "tb_product_slice_review_packet.json",
+      "run_summary.md",
+      "artifact_inventory.json",
+      "run_artifact_manifest.json",
+      "export_bundle_manifest.json",
+      "export_bundle_parity_report.json",
+      "tb_product_slice_00_acceptance_receipt.json"
+    ],
     "SONYA-ADAPTER-SMOKE-00": [
       "sonya_adapter_smoke_packet.json",
       "sonya_adapter_smoke_review_packet.json",
@@ -589,6 +637,17 @@
       "PUB_WAVE_ROSETTA_01.md",
       "reviewer quickstarts",
       "status.json files"
+    ],
+    "ONTOLOGY-CLAIM-REGISTRY-00": [
+      "ontology_claim_registry_packet.json",
+      "ontology_evidence_level_packet.json",
+      "ontology_claim_registry_review_packet.json",
+      "ontology_claim_registry_summary.md",
+      "artifact_inventory.json",
+      "run_artifact_manifest.json",
+      "export_bundle_manifest.json",
+      "export_bundle_parity_report.json",
+      "ontology_claim_registry_00_acceptance_receipt.json"
     ],
     "PMR-HUMAN-CONSENT-NEGATIVE-CONTROL-00": [
       "pmr_human_consent_negative_control_manifest.json",
