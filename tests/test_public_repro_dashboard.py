@@ -116,6 +116,7 @@ REQUIRED_PHASES = {
     "COGNITIVE-WATERS-PATTERN-METRICS-00",
     "ONTOLOGY-CLAIM-REGISTRY-00",
     "LOCAL-SONYA-PATH-PORTABILITY-00",
+    "TB-PRODUCT-SLICE-00",
 }
 
 REQUIRED_COMMAND_FRAGMENTS = (
@@ -2354,3 +2355,18 @@ def test_local_sonya_path_portability_dashboard_entries(tmp_path):
     assert "User path is not system path." in boundaries
     assert "Example path is not runtime requirement." in boundaries
     assert "Localhost readiness is not LAN readiness." in boundaries
+
+
+def test_tb_product_slice_dashboard_entries(tmp_path):
+    out_dir, docs_dir = run_builder(tmp_path)
+    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text())
+    assert any(p["phase_id"] == "TB-PRODUCT-SLICE-00" for p in dashboard["accepted_phases"])
+    repro = json.loads((out_dir / "reproducibility_index.json").read_text())
+    assert "Run-TB-PRODUCT-SLICE00-Acceptance.ps1" in json.dumps(repro["commands"])
+    artifacts = json.loads((out_dir / "artifact_index.json").read_text())
+    phase_artifacts = artifacts["phases"]["TB-PRODUCT-SLICE-00"]
+    for a in ["tb_product_slice_manifest.json","source_bundle_manifest.json","sonya_candidate_packet.json","claim_evidence_map.json","unsupported_claim_report.json","uncertainty_report.json","tel_events.jsonl","review_receipt.md"]:
+        assert a in phase_artifacts
+    boundaries = (docs_dir / "claim-boundaries.md").read_text(encoding="utf-8")
+    assert "User-visible review receipt is required." in boundaries
+    assert "Unsupported claim must remain visible." in boundaries

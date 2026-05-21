@@ -819,3 +819,14 @@ Local Sonya node root must be user-defined.
 Path portability audit is not live node execution.
 Localhost readiness is not LAN readiness.
 LAN readiness is not federation authority.
+
+
+TB-PRODUCT-SLICE-00
+
+User-visible review receipt is required.
+Unsupported claim must remain visible.
+Candidate packet is not final answer.
+Model output is not authority.
+Source match is not truth certification.
+Supported claim is not accepted evidence.
+PMR provenance stub is not memory write.

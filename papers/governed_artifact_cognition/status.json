@@ -164,5 +164,11 @@
   "not_path_runtime_requirement": true,
   "not_localhost_lan_readiness": true,
   "not_lan_federation_authority": true,
-  "not_personal_path_requirement": true
+  "not_personal_path_requirement": true,
+  "tb_product_slice_00_indexed": true,
+  "not_product_slice_final_answer": true,
+  "not_product_slice_accepted_evidence": true,
+  "not_product_slice_truth_certification": true,
+  "not_product_slice_product_release": true,
+  "not_product_slice_provider_call": true
 }

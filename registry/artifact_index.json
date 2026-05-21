@@ -515,6 +515,26 @@
       "export_bundle_parity_report.json",
       "local_sonya_path_portability_00_acceptance_receipt.json"
     ],
+    "TB-PRODUCT-SLICE-00": [
+      "tb_product_slice_manifest.json",
+      "source_bundle_manifest.json",
+      "sonya_candidate_packet.json",
+      "claim_evidence_map.json",
+      "unsupported_claim_report.json",
+      "uncertainty_report.json",
+      "tel_events.jsonl",
+      "prior_origin_use_packet.json",
+      "pmr_provenance_stub.json",
+      "review_receipt.json",
+      "review_receipt.md",
+      "tb_product_slice_review_packet.json",
+      "run_summary.md",
+      "artifact_inventory.json",
+      "run_artifact_manifest.json",
+      "export_bundle_manifest.json",
+      "export_bundle_parity_report.json",
+      "tb_product_slice_00_acceptance_receipt.json"
+    ],
     "SONYA-ADAPTER-SMOKE-00": [
       "sonya_adapter_smoke_packet.json",
       "sonya_adapter_smoke_review_packet.json",

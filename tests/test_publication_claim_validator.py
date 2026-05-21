@@ -2270,3 +2270,18 @@ def test_governed_validator_indexes_local_sonya_path_portability():
     assert status["not_live_sonya_node_execution"] is True
     assert status["not_path_runtime_requirement"] is True
     assert status["not_personal_path_requirement"] is True
+
+
+def test_governed_validator_indexes_tb_product_slice():
+    paper = (ROOT / "PUB_GOV_ARTIFACT_COG_01.md").read_text(encoding="utf-8")
+    quickstart = (ROOT / "reviewer_quickstart.md").read_text(encoding="utf-8")
+    status = json.loads((ROOT / "status.json").read_text(encoding="utf-8"))
+    assert "TB-PRODUCT-SLICE-00" in paper
+    assert "User-visible review receipt is required." in paper
+    assert "Unsupported claim must remain visible." in paper
+    assert "Run-TB-PRODUCT-SLICE00-Acceptance.ps1" in quickstart
+    assert status["tb_product_slice_00_indexed"] is True
+    assert status["not_product_slice_final_answer"] is True
+    assert status["not_product_slice_accepted_evidence"] is True
+    assert status["not_product_slice_truth_certification"] is True
+    assert status["not_product_slice_product_release"] is True

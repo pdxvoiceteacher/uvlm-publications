@@ -51,6 +51,10 @@
         "command": ".\\experiments\\Run-RW-COMP03-Acceptance.ps1 `\n  -OutputRoot C:\\UVLM\\run_artifacts\\rw_comp_03 `\n  -LogDir C:\\UVLM\\run_artifacts\\rw_comp_03_logs `\n  -CiMode"
       },
       {
+        "name": "TB Product Slice acceptance",
+        "command": ".\\experiments\\Run-TB-PRODUCT-SLICE00-Acceptance.ps1 `\n  -OutputRoot C:\\UVLM\\run_artifacts\\tb_product_slice_00 `\n  -LogDir C:\\UVLM\\run_artifacts\\tb_product_slice_00_logs `\n  -CiMode"
+      },
+      {
         "name": "Local Sonya path portability acceptance",
         "command": ".\\experiments\\Run-LOCAL-SONYA-PATH-PORTABILITY00-Acceptance.ps1 `\n  -OutputRoot C:\\UVLM\\run_artifacts\\local_sonya_path_portability_00 `\n  -LogDir C:\\UVLM\\run_artifacts\\local_sonya_path_portability_00_logs `\n  -CiMode"
       },

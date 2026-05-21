@@ -1235,6 +1235,19 @@ LOCAL_SONYA_PATH_PORTABILITY_00_DASHBOARD_SUMMARY = {
 }
 LOCAL_SONYA_PATH_PORTABILITY_00_CLAIMS_BLOCKED=["not live node execution","not network authorization","not provider call","not federation authorization","not deployment authority","not product release","not truth certification","not memory write","not model weight training","not final answer release","not accepted evidence","not peer review certification"]
 
+
+TB_PRODUCT_SLICE_00_COMMAND = r""".\experiments\Run-TB-PRODUCT-SLICE00-Acceptance.ps1 `
+  -OutputRoot C:\UVLM\run_artifacts\tb_product_slice_00 `
+  -LogDir C:\UVLM\run_artifacts\tb_product_slice_00_logs `
+  -CiMode"""
+TB_PRODUCT_SLICE_00_ARTIFACTS = [
+    "tb_product_slice_manifest.json","source_bundle_manifest.json","sonya_candidate_packet.json","claim_evidence_map.json","unsupported_claim_report.json","uncertainty_report.json","tel_events.jsonl","prior_origin_use_packet.json","pmr_provenance_stub.json","review_receipt.json","review_receipt.md","tb_product_slice_review_packet.json","run_summary.md","artifact_inventory.json","run_artifact_manifest.json","export_bundle_manifest.json","export_bundle_parity_report.json","tb_product_slice_00_acceptance_receipt.json",
+]
+TB_PRODUCT_SLICE_00_DASHBOARD_SUMMARY = {
+"review_status":"accepted_as_tb_product_slice_runtime_smoke","product_slice_id":"tb-product-slice-00-fixture","user_visible_review_receipt_present":True,"source_ingested":True,"sonya_candidate_packet_present":True,"claim_evidence_map_present":True,"unsupported_claim_report_present":True,"unsupported_claim_visible":True,"uncertainty_report_present":True,"tel_events_present":True,"prior_origin_use_packet_present":True,"pmr_provenance_stub_present":True,"supported_claims_detected":True,"unsupported_claims_detected":True,"source_references_visible":True,"candidate_packet_not_final_answer":True,"model_output_not_authority":True,"source_match_not_truth_certification":True,"supported_claim_not_accepted_evidence":True,"prior_context_not_evidence":True,"tel_event_not_authority":True,"pmr_stub_not_memory_write":True,"receipt_not_deployment_authority":True,"local_runtime_smoke_not_product_release":True,"final_answer_not_released":True,"accepted_evidence_not_admitted":True,"provider_calls_not_performed":True,"network_calls_not_performed":True,"memory_write_blocked":True,"model_weight_training_blocked":True,"deployment_blocked":True,"supported_claim_count":2,"unsupported_claim_count":1,"source_segment_count":4,"tel_event_count":6,"unsupported_overclaim":"The study proved long-term effectiveness.","unsupported_reason":"No supporting source segment for claim.","uncertainty":"No long-term effectiveness evidence in source.","run_artifact_manifest_status":"verified","export_parity_passed":True
+}
+TB_PRODUCT_SLICE_00_CLAIMS_BLOCKED = ["not final answer release","not accepted evidence","not truth certification","not provider call","not network authorization","not memory write","not model weight training","not deployment authority","not product release","not hallucination reduction proof","not model superiority proof"]
+
 PMR_00_COMMAND = r""".\experiments\Run-PMR00-Acceptance.ps1 `
   -OutputRoot C:\UVLM\run_artifacts\pmr_00 `
   -LogDir C:\UVLM\run_artifacts\pmr_00_logs `
@@ -3099,6 +3112,20 @@ ACCEPTED_PHASES = [
         "claim_allowed": "fixture-only local Sonya path portability scaffold",
         "reviewer_caution": "User path is not system path.",
     },
+
+    {
+        "phase_id": "TB-PRODUCT-SLICE-00",
+        "repo": "pdxvoiceteacher/CoherenceLattice",
+        "status": "accepted",
+        "evidence_type": "runtime_smoke",
+        "product_posture": "fixture_only_local_product_slice_without_final_answer_or_product_release",
+        "primary_artifacts": TB_PRODUCT_SLICE_00_ARTIFACTS,
+        "dashboard_summary": TB_PRODUCT_SLICE_00_DASHBOARD_SUMMARY,
+        "reproduction_command_summary": TB_PRODUCT_SLICE_00_COMMAND,
+        "claims_blocked": TB_PRODUCT_SLICE_00_CLAIMS_BLOCKED,
+        "claim_allowed": "fixture-only local product-like runtime smoke",
+        "reviewer_caution": "User-visible review receipt is required.",
+    },
     {
         "phase_id": "PMR-00-PROVENANCE-MEMORY-RESERVOIR",
         "repo": "pdxvoiceteacher/CoherenceLattice",
@@ -4038,6 +4065,19 @@ BOUNDARIES = [
     "LOCAL-SONYA-PATH-PORTABILITY-00 is not model weight training.",
     "LOCAL-SONYA-PATH-PORTABILITY-00 is not product release.",
     "LOCAL-SONYA-PATH-PORTABILITY-00 is not truth certification.",
+    "User-visible review receipt is required.",
+    "Unsupported claim must remain visible.",
+    "TB-PRODUCT-SLICE-00 is not final answer release.",
+    "TB-PRODUCT-SLICE-00 is not accepted evidence.",
+    "TB-PRODUCT-SLICE-00 is not truth certification.",
+    "TB-PRODUCT-SLICE-00 is not provider call.",
+    "TB-PRODUCT-SLICE-00 is not network authorization.",
+    "TB-PRODUCT-SLICE-00 is not memory write.",
+    "TB-PRODUCT-SLICE-00 is not model weight training.",
+    "TB-PRODUCT-SLICE-00 is not deployment authority.",
+    "TB-PRODUCT-SLICE-00 is not product release.",
+    "TB-PRODUCT-SLICE-00 is not hallucination reduction proof.",
+    "TB-PRODUCT-SLICE-00 is not model superiority proof.",
     "Spiral/fractal fit is not universal ontology proof.",
     "Pattern morphology is not consciousness proof.",
     "Conceptual source is not implementation authority.",
@@ -4642,6 +4682,7 @@ def reproducibility_index() -> dict[str, Any]:
                 {"name": "Retrosynthesis Sandbox Cycle acceptance", "command": RETRO_SANDBOX_CYCLE_COMMAND},
                 {"name": "Evidence Review Pack second pass acceptance", "command": EVIDENCE_REVIEW_PACK_01_COMMAND},
                 {"name": "RW-COMP-03 acceptance", "command": RW_COMP_03_COMMAND},
+                {"name": "TB Product Slice acceptance", "command": TB_PRODUCT_SLICE_00_COMMAND},
                 {"name": "Local Sonya path portability acceptance", "command": LOCAL_SONYA_PATH_PORTABILITY_00_COMMAND},
                 {"name": "PMR doctrine acceptance", "command": PMR_00_COMMAND},
                 {"name": "PMR local artifact index acceptance", "command": PMR_01_COMMAND},
@@ -4738,6 +4779,7 @@ def artifact_index() -> dict[str, Any]:
         "EVIDENCE-REVIEW-METRICS-00": EVIDENCE_REVIEW_METRICS_ARTIFACTS,
         "COGNITIVE-WATERS-PATTERN-METRICS-00": COGNITIVE_WATERS_PATTERN_METRICS_ARTIFACTS,
         "LOCAL-SONYA-PATH-PORTABILITY-00": LOCAL_SONYA_PATH_PORTABILITY_00_ARTIFACTS,
+        "TB-PRODUCT-SLICE-00": TB_PRODUCT_SLICE_00_ARTIFACTS,
         "SONYA-ADAPTER-SMOKE-00": SONYA_ADAPTER_SMOKE_ARTIFACTS,
         "SONYA-LOCAL-FIXTURE-ADAPTER-01": SONYA_LOCAL_FIXTURE_ADAPTER_ARTIFACTS,
         "EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER-01": EVIDENCE_REVIEW_PACK_LOCAL_ADAPTER_ARTIFACTS,
@@ -4802,6 +4844,12 @@ def status_payload() -> dict[str, Any]:
         "not_localhost_lan_readiness": True,
         "not_lan_federation_authority": True,
         "not_personal_path_requirement": True,
+        "tb_product_slice_00_indexed": True,
+        "not_product_slice_final_answer": True,
+        "not_product_slice_accepted_evidence": True,
+        "not_product_slice_truth_certification": True,
+        "not_product_slice_product_release": True,
+        "not_product_slice_provider_call": True,
         "not_pattern_recurrence_proof": True,
         "not_morphology_deployment_authority": True,
         "not_provider_call": True,
@@ -4919,7 +4967,7 @@ def docs() -> dict[str, str]:
     return {
         "README.md": "# Experiment Suite Docs\n\nPublic reviewer documentation for the claim-bounded reproducibility dashboard.\n",
         "assets/README.md": "# Assets\n\nOptional static assets for the public reproducibility dashboard.\n",
-        "index.md": f"# Public Experiment Suite Dashboard\n\nThis dashboard presents accepted evidence for reviewer orientation. It is not truth certification, not deployment authority, not final answer release, local fixture only, and requires external peer review.\n\n## Accepted evidence\n\n| Phase | Repo | Status | What this supports | Reviewer caution |\n| --- | --- | --- | --- | --- |\n{phase_rows}\n\n## Reviewer path\n\nStart with claim boundaries, then read the governed artifact cognition paper, WAVE Rosetta paper, SONYA-AEGIS-SMOKE-02, WAVE family, UNI-02D Sonya gate, and RETRO-LANE-00, Public Utility Alpha, Raw Baseline Comparison, Evidence Review Pack, RW-COMP-01, RW-COMP-02, Retrosynthesis Sandbox Cycle, Evidence Review Pack second-pass, RW-COMP-03, Universal Architecture Scaffold, Sonya Adapter Contract Registry, Sonya Adapter Smoke, Sonya Local Fixture Adapter, and Evidence Review Pack local adapter, Evidence Review Pack local adapter revision, RW-COMP local adapter, PMR doctrine, PMR local artifact index, PMR GPCU utility scoring, PMR lifecycle state machine, PMR lifecycle audit preflight, PMR Sophia lifecycle audit review, PMR destructive-action authorization preflight, PMR architecture diversity checkpoint, PMR simulation baseline comparison, PMR simulation statistical analysis, PMR federation stress corpus, PMR human provenance context, Sonya Local Fixture Adapter multi-route, and Sonya Local Fixture Adapter lineage clarity pages.\n\n## What this proves\n\nIt proves only that accepted local fixture artifacts and draft publication materials are organized for review.\n\n## What this does not prove\n\nNo oracle posture, no deployment posture, no final-answer posture, no AI consciousness claim, and no universal ontology claim.\n\n## Phase pages\n\n- [SONYA-AEGIS-SMOKE-02](sonya-aegis-smoke-02.md)\n- [WAVE Gold-Physics](wave-gold-physics.md)\n- [UNI-02D Sonya gate](uni02d-sonya-gate.md)\n- [RETRO-LANE-00](retro-lane-00.md)\n- [Public Utility Alpha](public-utility-alpha.md)\n- [Raw Baseline Comparison](raw-baseline-comparison.md)\n- [Evidence Review Pack](evidence-review-pack.md)\n- [RW-COMP-01](rw-comp-01.md)\n- [RW-COMP-02](rw-comp-02.md)\n- [Retrosynthesis Sandbox Cycle](retrosynthesis-sandbox-cycle.md)\n- [Evidence Review Pack second pass](evidence-review-pack-second-pass.md)\n- [RW-COMP-03](rw-comp-03.md)\n- [Universal Architecture Scaffold](universal-architecture.md)\n- [Sonya Adapter Contract Registry](sonya-adapter-contract-registry.md)\n- [Sonya required membrane checkpoint](sonya-required-membrane-checkpoint.md)\n- [TEL event stack](tel-event-stack.md)\n- [Sonya Adapter Smoke](sonya-adapter-smoke.md)\n- [Sonya Local Fixture Adapter](sonya-local-fixture-adapter.md)\n- [Evidence Review Pack local adapter](evidence-review-pack-local-adapter.md)\n- [Evidence Review Pack local adapter revision](evidence-review-pack-local-adapter-revision.md)\n- [RW-COMP local adapter](rw-comp-local-adapter.md)\n- [Provenance Memory Reservoir](provenance-memory-reservoir.md)\n- [PMR local artifact index](pmr-local-artifact-index.md)\n- [Ontology Claim Registry](ontology-claim-registry.md)\n- [Local Sonya path portability](local-sonya-path-portability.md)\n- [Sonya Local Fixture Adapter multi-route](sonya-local-fixture-adapter-multi-route.md)\n- [Sonya Local Fixture Adapter lineage clarity](sonya-local-fixture-adapter-lineage.md)\n- [Governed artifact cognition paper](governed-artifact-cognition-paper.md)\n- [Waveform Rosetta paper](waveform-rosetta-paper.md)\n",
+        "index.md": f"# Public Experiment Suite Dashboard\n\nThis dashboard presents accepted evidence for reviewer orientation. It is not truth certification, not deployment authority, not final answer release, local fixture only, and requires external peer review.\n\n## Accepted evidence\n\n| Phase | Repo | Status | What this supports | Reviewer caution |\n| --- | --- | --- | --- | --- |\n{phase_rows}\n\n## Reviewer path\n\nStart with claim boundaries, then read the governed artifact cognition paper, WAVE Rosetta paper, SONYA-AEGIS-SMOKE-02, WAVE family, UNI-02D Sonya gate, and RETRO-LANE-00, Public Utility Alpha, Raw Baseline Comparison, Evidence Review Pack, RW-COMP-01, RW-COMP-02, Retrosynthesis Sandbox Cycle, Evidence Review Pack second-pass, RW-COMP-03, Universal Architecture Scaffold, Sonya Adapter Contract Registry, Sonya Adapter Smoke, Sonya Local Fixture Adapter, and Evidence Review Pack local adapter, Evidence Review Pack local adapter revision, RW-COMP local adapter, PMR doctrine, PMR local artifact index, PMR GPCU utility scoring, PMR lifecycle state machine, PMR lifecycle audit preflight, PMR Sophia lifecycle audit review, PMR destructive-action authorization preflight, PMR architecture diversity checkpoint, PMR simulation baseline comparison, PMR simulation statistical analysis, PMR federation stress corpus, PMR human provenance context, Sonya Local Fixture Adapter multi-route, and Sonya Local Fixture Adapter lineage clarity pages.\n\n## What this proves\n\nIt proves only that accepted local fixture artifacts and draft publication materials are organized for review.\n\n## What this does not prove\n\nNo oracle posture, no deployment posture, no final-answer posture, no AI consciousness claim, and no universal ontology claim.\n\n## Phase pages\n\n- [SONYA-AEGIS-SMOKE-02](sonya-aegis-smoke-02.md)\n- [WAVE Gold-Physics](wave-gold-physics.md)\n- [UNI-02D Sonya gate](uni02d-sonya-gate.md)\n- [RETRO-LANE-00](retro-lane-00.md)\n- [Public Utility Alpha](public-utility-alpha.md)\n- [Raw Baseline Comparison](raw-baseline-comparison.md)\n- [Evidence Review Pack](evidence-review-pack.md)\n- [RW-COMP-01](rw-comp-01.md)\n- [RW-COMP-02](rw-comp-02.md)\n- [Retrosynthesis Sandbox Cycle](retrosynthesis-sandbox-cycle.md)\n- [Evidence Review Pack second pass](evidence-review-pack-second-pass.md)\n- [RW-COMP-03](rw-comp-03.md)\n- [Universal Architecture Scaffold](universal-architecture.md)\n- [Sonya Adapter Contract Registry](sonya-adapter-contract-registry.md)\n- [Sonya required membrane checkpoint](sonya-required-membrane-checkpoint.md)\n- [TEL event stack](tel-event-stack.md)\n- [Sonya Adapter Smoke](sonya-adapter-smoke.md)\n- [Sonya Local Fixture Adapter](sonya-local-fixture-adapter.md)\n- [Evidence Review Pack local adapter](evidence-review-pack-local-adapter.md)\n- [Evidence Review Pack local adapter revision](evidence-review-pack-local-adapter-revision.md)\n- [RW-COMP local adapter](rw-comp-local-adapter.md)\n- [Provenance Memory Reservoir](provenance-memory-reservoir.md)\n- [PMR local artifact index](pmr-local-artifact-index.md)\n- [Ontology Claim Registry](ontology-claim-registry.md)\n- [Local Sonya path portability](local-sonya-path-portability.md)\n- [TB Product Slice](tb-product-slice.md)\n- [Sonya Local Fixture Adapter multi-route](sonya-local-fixture-adapter-multi-route.md)\n- [Sonya Local Fixture Adapter lineage clarity](sonya-local-fixture-adapter-lineage.md)\n- [Governed artifact cognition paper](governed-artifact-cognition-paper.md)\n- [Waveform Rosetta paper](waveform-rosetta-paper.md)\n",
         "claim-boundaries.md": f"# Claim Boundaries\n\n{boundaries}\n\nNo oracle posture. No deployment posture. No final-answer posture. No AI consciousness claim. No universal ontology claim.\n",
         "sonya-aegis-smoke-02.md": f"""# SONYA-AEGIS-SMOKE-02
 
@@ -5264,6 +5312,20 @@ Claims blocked: {"; ".join(SONYA_ADAPTER_CONTRACT_REGISTRY_CLAIMS_BLOCKED)}.
 
 Reviewer caution: SONYA-ADAPTER-CONTRACT-REGISTRY-01 defines adapter contracts only. It does not execute adapters, does not call providers, does not authorize network use, does not admit raw output as cognition, does not write memory, does not release final answers, does not train models, and does not deploy.
 """,
+        "tb-product-slice.md": f"""# TB Product Slice
+
+Phase: `TB-PRODUCT-SLICE-00`
+
+User-visible review receipt is required.
+Unsupported claim must remain visible.
+
+```powershell
+{TB_PRODUCT_SLICE_00_COMMAND}
+```
+
+{chr(10).join(f"- `{a}`" for a in TB_PRODUCT_SLICE_00_ARTIFACTS)}
+""",
+
         "local-sonya-path-portability.md": f"""# Local Sonya path portability
 
 Phase: `LOCAL-SONYA-PATH-PORTABILITY-00`

@@ -361,3 +361,17 @@ Example path is not runtime requirement.
 Localhost readiness is not LAN readiness.
 
 LAN readiness is not federation authority.
+
+tb_product_slice_manifest.json
+
+source_bundle_manifest.json
+
+sonya_candidate_packet.json
+
+review_receipt.md
+
+User-visible review receipt is required.
+
+Unsupported claim must remain visible.
+
+Run-TB-PRODUCT-SLICE00-Acceptance.ps1
