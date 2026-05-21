@@ -718,3 +718,56 @@ Run-EVIDENCE-REVIEW-METRICS00-Acceptance.ps1
 Pattern morphology is not consciousness proof. Spiral/fractal fit is not universal ontology proof. Cognitive-water metaphor is not metaphysical claim. Flow convergence is not correctness. Pattern recurrence is not proof. High coherence is not truth. Rupture/rebraid detection is not repair authority.
 
 Run-COGNITIVE-WATERS-PATTERN-METRICS00-Acceptance.ps1
+
+
+Run-LOCAL-SONYA-PATH-PORTABILITY00-Acceptance.ps1
+
+local_sonya_path_portability_manifest.json
+
+local_sonya_node_environment_packet.json
+
+local_sonya_path_audit_rows.jsonl
+
+local_sonya_path_policy_packet.json
+
+local_sonya_path_portability_review_packet.json
+
+User path is not system path.
+
+Example path is not runtime requirement.
+
+Localhost readiness is not LAN readiness.
+
+LAN readiness is not federation authority.
+
+tb_product_slice_manifest.json
+
+source_bundle_manifest.json
+
+sonya_candidate_packet.json
+
+claim_evidence_map.json
+
+unsupported_claim_report.json
+
+review_receipt.md
+
+User-visible review receipt is required.
+
+Unsupported claim must remain visible.
+
+Run-TB-PRODUCT-SLICE00-Acceptance.ps1
+
+tb_product_slice_01_manifest.json
+
+multi_source_bundle_manifest.json
+
+source_link_map.json
+
+cross_source_conflict_report.json
+
+Run-TB-PRODUCT-SLICE01-Acceptance.ps1
+
+Cross-source conflict is not contradiction resolution.
+
+Conflict must remain visible.

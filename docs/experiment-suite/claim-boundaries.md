@@ -49,7 +49,78 @@
 - TEL trace preservation is required.
 - PMR provenance preservation is required.
 - Freshness is not authority.
-- Probabilistic confidence is not truth certification.
+- Probabilistic confidence is not probabilistic certitude.
+- COGNITIVE-WATERS-PATTERN-METRICS-00 is not deployment authority.
+- COGNITIVE-WATERS-PATTERN-METRICS-00 is not provider call.
+- COGNITIVE-WATERS-PATTERN-METRICS-00 is not memory write.
+- COGNITIVE-WATERS-PATTERN-METRICS-00 is not accepted evidence.
+- COGNITIVE-WATERS-PATTERN-METRICS-00 is not final answer release.
+- COGNITIVE-WATERS-PATTERN-METRICS-00 is not product release.
+- COGNITIVE-WATERS-PATTERN-METRICS-00 is not model superiority proof.
+- COGNITIVE-WATERS-PATTERN-METRICS-00 is not hallucination reduction proof.
+- COGNITIVE-WATERS-PATTERN-METRICS-00 is not truth certification.
+- Cognitive-water metrics are descriptive morphology metrics only.
+- Pattern confidence is fixture-bounded unless externally validated.
+- Overfit pattern resemblance must be detected and bounded.
+- Morphology metric is not deployment authority.
+- Rupture/rebraid detection is not repair authority.
+- Low entropy is not safety.
+- High coherence is not truth.
+- Pattern recurrence is not proof.
+- Flow convergence is not correctness.
+- Cognitive-water metaphor is not metaphysical claim.
+- User path is not system path.
+- Example path is not runtime requirement.
+- Personal operator path is not package default.
+- Local Sonya node root must be user-defined.
+- Run artifact root must be configurable.
+- Shared source root must be configurable.
+- Local model root must be configurable.
+- PMR store root must be configurable.
+- TEL event sink root must be configurable.
+- Relative configured paths must fail closed.
+- Missing required root must fail closed.
+- Path portability audit is not deployment authority.
+- Path portability audit is not live node execution.
+- Localhost readiness is not LAN readiness.
+- LAN readiness is not federation authority.
+- LOCAL-SONYA-PATH-PORTABILITY-00 is not network authorization.
+- LOCAL-SONYA-PATH-PORTABILITY-00 is not provider call.
+- LOCAL-SONYA-PATH-PORTABILITY-00 is not federation authorization.
+- LOCAL-SONYA-PATH-PORTABILITY-00 is not memory write.
+- LOCAL-SONYA-PATH-PORTABILITY-00 is not model weight training.
+- LOCAL-SONYA-PATH-PORTABILITY-00 is not product release.
+- LOCAL-SONYA-PATH-PORTABILITY-00 is not truth certification.
+- User-visible review receipt is required.
+- Unsupported claim must remain visible.
+- TB-PRODUCT-SLICE-00 is not final answer release.
+- TB-PRODUCT-SLICE-00 is not accepted evidence.
+- TB-PRODUCT-SLICE-00 is not truth certification.
+- TB-PRODUCT-SLICE-00 is not provider call.
+- TB-PRODUCT-SLICE-00 is not network authorization.
+- TB-PRODUCT-SLICE-00 is not memory write.
+- TB-PRODUCT-SLICE-00 is not model weight training.
+- TB-PRODUCT-SLICE-00 is not deployment authority.
+- TB-PRODUCT-SLICE-00 is not product release.
+- TB-PRODUCT-SLICE-00 is not hallucination reduction proof.
+- TB-PRODUCT-SLICE-00 is not model superiority proof.
+- TB-PRODUCT-SLICE-01 is not model superiority proof.
+- TB-PRODUCT-SLICE-01 is not hallucination reduction proof.
+- TB-PRODUCT-SLICE-01 is not product release.
+- TB-PRODUCT-SLICE-01 is not deployment authority.
+- TB-PRODUCT-SLICE-01 is not model weight training.
+- TB-PRODUCT-SLICE-01 is not memory write.
+- TB-PRODUCT-SLICE-01 is not network authorization.
+- TB-PRODUCT-SLICE-01 is not provider call.
+- TB-PRODUCT-SLICE-01 is not truth certification.
+- TB-PRODUCT-SLICE-01 is not accepted evidence.
+- TB-PRODUCT-SLICE-01 is not final answer release.
+- Conflict must remain visible.
+- Cross-source agreement is not accepted evidence.
+- Cross-source conflict is not contradiction resolution.
+- Multi-source review is not truth certification.
+- Spiral/fractal fit is not universal ontology proof.
+- Pattern morphology is not consciousness proof.
 - Conceptual source is not implementation authority.
 - Recency is not correctness.
 - Context refresh requires audit.
@@ -260,7 +331,7 @@
 - Pattern recurrence is not proof.
 - Spiral/fractal fit is not consciousness.
 - Metric stability is not deployment authority.
-- Probabilistic confidence is not truth certification.
+- Probabilistic confidence is not probabilistic certitude.
 - Ontology evidence is fixture-bounded unless externally validated.
 - FUNDAMENTAL-COHERENCE-METRICS-00 is not universal ontology proof.
 - FUNDAMENTAL-COHERENCE-METRICS-00 is not consciousness proof.
