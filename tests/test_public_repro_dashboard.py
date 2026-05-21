@@ -47,6 +47,7 @@ REQUIRED_DOCS = {
     "rw-comp-local-adapter.md",
     "provenance-memory-reservoir.md",
     "pmr-local-artifact-index.md",
+    "ontology-claim-registry.md",
     "pmr-provenance-coherence-utility.md",
     "pmr-lifecycle-state-machine.md",
     "pmr-lifecycle-audit-preflight.md",
@@ -2324,3 +2325,14 @@ def test_validator_rejects_claims_truth_final_answer_product_release(tmp_path):
         assert result["passed"] is False, claim
         found = [hit.lower() for hit in result["forbidden_claims_found"]]
         assert claim in found or claim.removeprefix("claims ") in found, result
+
+
+def test_ontology_claim_registry_page_contains_required_boundaries(tmp_path):
+    out_dir, docs_dir = run_builder(tmp_path)
+    _ = out_dir
+    page = (docs_dir / "ontology-claim-registry.md")
+    assert page.exists()
+    text = page.read_text(encoding="utf-8")
+    assert "Ontology claim is not ontology proof." in text
+    assert "Probabilistic confidence is not probabilistic certitude." in text
+    assert "Run-ONTOLOGY-CLAIM-REGISTRY00-Acceptance.ps1" in text

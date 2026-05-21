@@ -97,6 +97,7 @@ No oracle posture, no deployment posture, no final-answer posture, no AI conscio
 - [RW-COMP local adapter](rw-comp-local-adapter.md)
 - [Provenance Memory Reservoir](provenance-memory-reservoir.md)
 - [PMR local artifact index](pmr-local-artifact-index.md)
+- [Ontology Claim Registry](ontology-claim-registry.md)
 - [Sonya Local Fixture Adapter multi-route](sonya-local-fixture-adapter-multi-route.md)
 - [Sonya Local Fixture Adapter lineage clarity](sonya-local-fixture-adapter-lineage.md)
 - [Governed artifact cognition paper](governed-artifact-cognition-paper.md)
