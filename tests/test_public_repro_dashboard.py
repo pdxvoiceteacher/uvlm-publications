@@ -2386,3 +2386,15 @@ def test_tb_product_slice_01_dashboard_entries(tmp_path):
     boundaries=(docs_dir/"claim-boundaries.md").read_text(encoding="utf-8")
     assert "Cross-source conflict is not contradiction resolution." in boundaries
     assert "Conflict must remain visible." in boundaries
+
+
+def test_tb_product_slice_01_page_contains_required_content(tmp_path):
+    out_dir, docs_dir = run_builder(tmp_path)
+    _ = out_dir
+    page = docs_dir / "tb-product-slice-01.md"
+    assert page.exists()
+    text = page.read_text(encoding="utf-8")
+    assert "Cross-source conflict is not contradiction resolution." in text
+    assert "Conflict must remain visible." in text
+    assert "Run-TB-PRODUCT-SLICE01-Acceptance.ps1" in text
+    assert "review_receipt.md" in text

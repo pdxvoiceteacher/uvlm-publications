@@ -5347,6 +5347,43 @@ Claims blocked: {"; ".join(SONYA_ADAPTER_CONTRACT_REGISTRY_CLAIMS_BLOCKED)}.
 
 Reviewer caution: SONYA-ADAPTER-CONTRACT-REGISTRY-01 defines adapter contracts only. It does not execute adapters, does not call providers, does not authorize network use, does not admit raw output as cognition, does not write memory, does not release final answers, does not train models, and does not deploy.
 """,
+        "tb-product-slice-01.md": f"""# TB Product Slice 01
+
+Phase: `TB-PRODUCT-SLICE-01`
+
+Cross-source conflict is not contradiction resolution.
+Conflict must remain visible.
+Multi-source review is not truth certification.
+Cross-source agreement is not accepted evidence.
+Candidate packet is not final answer.
+Model output is not authority.
+Source match is not truth certification.
+Supported claim is not accepted evidence.
+Unsupported claim must remain visible.
+Prior context is not evidence.
+TEL event is not authority.
+PMR provenance stub is not memory write.
+Review receipt is not deployment authority.
+Local product slice is not product release.
+
+```powershell
+{TB_PRODUCT_SLICE_01_COMMAND}
+```
+
+## Primary artifacts
+
+{chr(10).join(f"- `{a}`" for a in TB_PRODUCT_SLICE_01_ARTIFACTS)}
+
+## Observed review behavior
+
+- `supported_claim_count = 2`
+- `unsupported_claim_count = 2`
+- `conflict_count = 2`
+- `source_file_count = 3`
+- `unsupported overclaim = The study proved long-term effectiveness.`
+- `conflict = enrollment vs completion ambiguity.`
+""",
+
         "tb-product-slice.md": f"""# TB Product Slice
 
 Phase: `TB-PRODUCT-SLICE-00`
