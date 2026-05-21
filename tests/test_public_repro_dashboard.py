@@ -47,6 +47,7 @@ REQUIRED_DOCS = {
     "rw-comp-local-adapter.md",
     "provenance-memory-reservoir.md",
     "pmr-local-artifact-index.md",
+    "ontology-claim-registry.md",
     "pmr-provenance-coherence-utility.md",
     "pmr-lifecycle-state-machine.md",
     "pmr-lifecycle-audit-preflight.md",
@@ -113,6 +114,10 @@ REQUIRED_PHASES = {
     "EVIDENCE-REVIEW-PRODUCT-LOOP-02",
     "EVIDENCE-REVIEW-METRICS-00",
     "COGNITIVE-WATERS-PATTERN-METRICS-00",
+    "ONTOLOGY-CLAIM-REGISTRY-00",
+    "LOCAL-SONYA-PATH-PORTABILITY-00",
+    "TB-PRODUCT-SLICE-00",
+    "TB-PRODUCT-SLICE-01",
 }
 
 REQUIRED_COMMAND_FRAGMENTS = (
@@ -2323,3 +2328,73 @@ def test_validator_rejects_claims_truth_final_answer_product_release(tmp_path):
         assert result["passed"] is False, claim
         found = [hit.lower() for hit in result["forbidden_claims_found"]]
         assert claim in found or claim.removeprefix("claims ") in found, result
+
+
+def test_ontology_claim_registry_page_contains_required_boundaries(tmp_path):
+    out_dir, docs_dir = run_builder(tmp_path)
+    _ = out_dir
+    page = (docs_dir / "ontology-claim-registry.md")
+    assert page.exists()
+    text = page.read_text(encoding="utf-8")
+    assert "Ontology claim is not ontology proof." in text
+    assert "Probabilistic confidence is not probabilistic certitude." in text
+    assert "Run-ONTOLOGY-CLAIM-REGISTRY00-Acceptance.ps1" in text
+
+
+def test_local_sonya_path_portability_dashboard_entries(tmp_path):
+    out_dir, docs_dir = run_builder(tmp_path)
+    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text())
+    assert any(p["phase_id"] == "LOCAL-SONYA-PATH-PORTABILITY-00" for p in dashboard["accepted_phases"])
+    repro = json.loads((out_dir / "reproducibility_index.json").read_text())
+    command_blob = json.dumps(repro["commands"])
+    assert "Run-LOCAL-SONYA-PATH-PORTABILITY00-Acceptance.ps1" in command_blob
+    artifacts = json.loads((out_dir / "artifact_index.json").read_text())
+    phase_artifacts = artifacts["phases"]["LOCAL-SONYA-PATH-PORTABILITY-00"]
+    for a in ["local_sonya_path_portability_manifest.json","local_sonya_node_environment_packet.json","local_sonya_path_audit_rows.jsonl","local_sonya_path_policy_packet.json","local_sonya_path_portability_review_packet.json"]:
+        assert a in phase_artifacts
+    boundaries = (docs_dir / "claim-boundaries.md").read_text(encoding="utf-8")
+    assert "User path is not system path." in boundaries
+    assert "Example path is not runtime requirement." in boundaries
+    assert "Localhost readiness is not LAN readiness." in boundaries
+
+
+def test_tb_product_slice_dashboard_entries(tmp_path):
+    out_dir, docs_dir = run_builder(tmp_path)
+    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text())
+    assert any(p["phase_id"] == "TB-PRODUCT-SLICE-00" for p in dashboard["accepted_phases"])
+    repro = json.loads((out_dir / "reproducibility_index.json").read_text())
+    assert "Run-TB-PRODUCT-SLICE00-Acceptance.ps1" in json.dumps(repro["commands"])
+    artifacts = json.loads((out_dir / "artifact_index.json").read_text())
+    phase_artifacts = artifacts["phases"]["TB-PRODUCT-SLICE-00"]
+    for a in ["tb_product_slice_manifest.json","source_bundle_manifest.json","sonya_candidate_packet.json","claim_evidence_map.json","unsupported_claim_report.json","uncertainty_report.json","tel_events.jsonl","review_receipt.md"]:
+        assert a in phase_artifacts
+    boundaries = (docs_dir / "claim-boundaries.md").read_text(encoding="utf-8")
+    assert "User-visible review receipt is required." in boundaries
+    assert "Unsupported claim must remain visible." in boundaries
+
+
+def test_tb_product_slice_01_dashboard_entries(tmp_path):
+    out_dir, docs_dir = run_builder(tmp_path)
+    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text())
+    assert any(p["phase_id"] == "TB-PRODUCT-SLICE-01" for p in dashboard["accepted_phases"])
+    repro = json.loads((out_dir / "reproducibility_index.json").read_text())
+    assert "Run-TB-PRODUCT-SLICE01-Acceptance.ps1" in json.dumps(repro["commands"])
+    artifacts = json.loads((out_dir / "artifact_index.json").read_text())
+    phase_artifacts = artifacts["phases"]["TB-PRODUCT-SLICE-01"]
+    for a in ["tb_product_slice_01_manifest.json","multi_source_bundle_manifest.json","source_link_map.json","cross_source_conflict_report.json","review_receipt.md"]:
+        assert a in phase_artifacts
+    boundaries=(docs_dir/"claim-boundaries.md").read_text(encoding="utf-8")
+    assert "Cross-source conflict is not contradiction resolution." in boundaries
+    assert "Conflict must remain visible." in boundaries
+
+
+def test_tb_product_slice_01_page_contains_required_content(tmp_path):
+    out_dir, docs_dir = run_builder(tmp_path)
+    _ = out_dir
+    page = docs_dir / "tb-product-slice-01.md"
+    assert page.exists()
+    text = page.read_text(encoding="utf-8")
+    assert "Cross-source conflict is not contradiction resolution." in text
+    assert "Conflict must remain visible." in text
+    assert "Run-TB-PRODUCT-SLICE01-Acceptance.ps1" in text
+    assert "review_receipt.md" in text

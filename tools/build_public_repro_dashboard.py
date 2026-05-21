@@ -1181,6 +1181,82 @@ FUNDAMENTAL_COHERENCE_METRICS_00_DASHBOARD_SUMMARY = {
 }
 FUNDAMENTAL_COHERENCE_METRICS_00_CLAIMS_BLOCKED=["not truth score","not universal ontology proof","not truth certification","not consciousness proof","not hallucination reduction proof","not model superiority proof","not deployment authority","not product release","not final answer release","not memory write","not provider call","not network authorization","not model weight training","not peer review certification"]
 
+
+ONTOLOGY_CLAIM_REGISTRY_00_COMMAND = r""".\experiments\Run-ONTOLOGY-CLAIM-REGISTRY00-Acceptance.ps1 `
+  -OutputRoot C:\UVLM\run_artifacts\ontology_claim_registry_00 `
+  -LogDir C:\UVLM\run_artifacts\ontology_claim_registry_00_logs `
+  -CiMode"""
+ONTOLOGY_CLAIM_REGISTRY_00_ARTIFACTS = [
+    "ontology_claim_registry_packet.json",
+    "ontology_evidence_level_packet.json",
+    "ontology_claim_registry_review_packet.json",
+    "ontology_claim_registry_summary.md",
+    "artifact_inventory.json",
+    "run_artifact_manifest.json",
+    "export_bundle_manifest.json",
+    "export_bundle_parity_report.json",
+    "ontology_claim_registry_00_acceptance_receipt.json",
+]
+ONTOLOGY_CLAIM_REGISTRY_00_DASHBOARD_SUMMARY = {
+    "review_status": "accepted_as_ontology_claim_registry_scaffold",
+    "ontology_claim_registry_indexed": True,
+    "not_ontology_proof": True,
+    "not_ontology_truth_certification": True,
+    "not_publisher_output_proof": True,
+    "not_elegance_as_evidence": True,
+    "not_claim_registry_authority": True,
+    "run_artifact_manifest_status": "verified",
+    "export_parity_passed": True,
+}
+ONTOLOGY_CLAIM_REGISTRY_00_CLAIMS_BLOCKED = [
+    "not ontology proof","not truth certification","not universal ontology proof","not consciousness proof","not product release","not deployment authority","not final answer release","not accepted evidence","not memory write","not provider call","not network authorization","not model weight training","not peer review certification",
+]
+
+
+LOCAL_SONYA_PATH_PORTABILITY_00_COMMAND = r""".\experiments\Run-LOCAL-SONYA-PATH-PORTABILITY00-Acceptance.ps1 `
+  -OutputRoot C:\UVLM\run_artifacts\local_sonya_path_portability_00 `
+  -LogDir C:\UVLM\run_artifacts\local_sonya_path_portability_00_logs `
+  -CiMode"""
+LOCAL_SONYA_PATH_PORTABILITY_00_ARTIFACTS = [
+    "local_sonya_path_portability_manifest.json",
+    "local_sonya_node_environment_packet.json",
+    "local_sonya_path_audit_rows.jsonl",
+    "local_sonya_path_policy_packet.json",
+    "local_sonya_path_portability_review_packet.json",
+    "local_sonya_path_portability_summary.md",
+    "artifact_inventory.json",
+    "run_artifact_manifest.json",
+    "export_bundle_manifest.json",
+    "export_bundle_parity_report.json",
+    "local_sonya_path_portability_00_acceptance_receipt.json",
+]
+LOCAL_SONYA_PATH_PORTABILITY_00_DASHBOARD_SUMMARY = {
+"review_status":"accepted_as_local_sonya_path_portability_scaffold","path_audit_performed":True,"node_environment_packet_present":True,"path_policy_packet_present":True,"configurable_roots_declared":True,"all_required_fixture_roots_valid":True,"all_runtime_roots_user_defined_or_unresolved":True,"personal_path_not_runtime_requirement":True,"user_path_not_system_path":True,"example_path_not_runtime_requirement":True,"local_sonya_node_root_user_defined":True,"run_artifact_root_configurable":True,"shared_source_root_configurable":True,"local_model_root_configurable":True,"pmr_store_root_configurable":True,"tel_event_root_configurable":True,"relative_configured_paths_fail_closed":True,"no_unoverrideable_personal_path_requirements":True,"legacy_path_migration_candidates_registered":True,"path_portability_not_live_node_execution":True,"path_portability_not_network_authorization":True,"path_portability_not_federation":True,"path_portability_not_deployment_authority":True,"path_portability_not_product_release":True,"live_sonya_node_not_executed":True,"provider_calls_not_performed":True,"network_calls_not_performed":True,"memory_write_blocked":True,"model_weight_training_blocked":True,"run_artifact_manifest_status":"verified","export_parity_passed":True
+}
+LOCAL_SONYA_PATH_PORTABILITY_00_CLAIMS_BLOCKED=["not live node execution","not network authorization","not provider call","not federation authorization","not deployment authority","not product release","not truth certification","not memory write","not model weight training","not final answer release","not accepted evidence","not peer review certification"]
+
+
+TB_PRODUCT_SLICE_00_COMMAND = r""".\experiments\Run-TB-PRODUCT-SLICE00-Acceptance.ps1 `
+  -OutputRoot C:\UVLM\run_artifacts\tb_product_slice_00 `
+  -LogDir C:\UVLM\run_artifacts\tb_product_slice_00_logs `
+  -CiMode"""
+TB_PRODUCT_SLICE_00_ARTIFACTS = [
+    "tb_product_slice_manifest.json","source_bundle_manifest.json","sonya_candidate_packet.json","claim_evidence_map.json","unsupported_claim_report.json","uncertainty_report.json","tel_events.jsonl","prior_origin_use_packet.json","pmr_provenance_stub.json","review_receipt.json","review_receipt.md","tb_product_slice_review_packet.json","run_summary.md","artifact_inventory.json","run_artifact_manifest.json","export_bundle_manifest.json","export_bundle_parity_report.json","tb_product_slice_00_acceptance_receipt.json",
+]
+TB_PRODUCT_SLICE_00_DASHBOARD_SUMMARY = {
+"review_status":"accepted_as_tb_product_slice_runtime_smoke","product_slice_id":"tb-product-slice-00-fixture","user_visible_review_receipt_present":True,"source_ingested":True,"sonya_candidate_packet_present":True,"claim_evidence_map_present":True,"unsupported_claim_report_present":True,"unsupported_claim_visible":True,"uncertainty_report_present":True,"tel_events_present":True,"prior_origin_use_packet_present":True,"pmr_provenance_stub_present":True,"supported_claims_detected":True,"unsupported_claims_detected":True,"source_references_visible":True,"candidate_packet_not_final_answer":True,"model_output_not_authority":True,"source_match_not_truth_certification":True,"supported_claim_not_accepted_evidence":True,"prior_context_not_evidence":True,"tel_event_not_authority":True,"pmr_stub_not_memory_write":True,"receipt_not_deployment_authority":True,"local_runtime_smoke_not_product_release":True,"final_answer_not_released":True,"accepted_evidence_not_admitted":True,"provider_calls_not_performed":True,"network_calls_not_performed":True,"memory_write_blocked":True,"model_weight_training_blocked":True,"deployment_blocked":True,"supported_claim_count":2,"unsupported_claim_count":1,"source_segment_count":4,"tel_event_count":6,"unsupported_overclaim":"The study proved long-term effectiveness.","unsupported_reason":"No supporting source segment for claim.","uncertainty":"No long-term effectiveness evidence in source.","run_artifact_manifest_status":"verified","export_parity_passed":True
+}
+TB_PRODUCT_SLICE_00_CLAIMS_BLOCKED = ["not final answer release","not accepted evidence","not truth certification","not provider call","not network authorization","not memory write","not model weight training","not deployment authority","not product release","not hallucination reduction proof","not model superiority proof"]
+
+
+TB_PRODUCT_SLICE_01_COMMAND = r""".\experiments\Run-TB-PRODUCT-SLICE01-Acceptance.ps1 `
+  -OutputRoot C:\UVLM\run_artifacts\tb_product_slice_01 `
+  -LogDir C:\UVLM\run_artifacts\tb_product_slice_01_logs `
+  -CiMode"""
+TB_PRODUCT_SLICE_01_ARTIFACTS=["tb_product_slice_01_manifest.json","multi_source_bundle_manifest.json","sonya_candidate_packet.json","claim_evidence_map.json","source_link_map.json","unsupported_claim_report.json","uncertainty_report.json","cross_source_conflict_report.json","tel_events.jsonl","prior_origin_use_packet.json","pmr_provenance_stub.json","review_receipt.json","review_receipt.md","tb_product_slice_01_review_packet.json","run_summary.md","artifact_inventory.json","run_artifact_manifest.json","export_bundle_manifest.json","export_bundle_parity_report.json","tb_product_slice_01_acceptance_receipt.json"]
+TB_PRODUCT_SLICE_01_DASHBOARD_SUMMARY={"review_status":"accepted_as_tb_product_slice_01_runtime_smoke","product_slice_id":"tb-product-slice-01-fixture","multi_source_review_enabled":True,"user_visible_review_receipt_present":True,"source_ingested":True,"sonya_candidate_packet_present":True,"claim_evidence_map_present":True,"source_link_map_present":True,"unsupported_claim_report_present":True,"unsupported_claim_visible":True,"uncertainty_report_present":True,"cross_source_conflict_report_present":True,"conflicts_visible":True,"tel_events_present":True,"prior_origin_use_packet_present":True,"pmr_provenance_stub_present":True,"supported_claims_detected":True,"unsupported_claims_detected":True,"source_references_visible":True,"candidate_packet_not_final_answer":True,"model_output_not_authority":True,"source_match_not_truth_certification":True,"supported_claim_not_accepted_evidence":True,"cross_source_agreement_not_accepted_evidence":True,"cross_source_conflict_not_contradiction_resolution":True,"prior_context_not_evidence":True,"tel_event_not_authority":True,"pmr_stub_not_memory_write":True,"receipt_not_deployment_authority":True,"local_product_slice_not_product_release":True,"final_answer_not_released":True,"accepted_evidence_not_admitted":True,"provider_calls_not_performed":True,"network_calls_not_performed":True,"memory_write_blocked":True,"model_weight_training_blocked":True,"deployment_blocked":True,"supported_claim_count":2,"unsupported_claim_count":2,"conflict_count":2,"source_file_count":3,"source_segment_count":8,"tel_event_count":8,"unsupported_overclaim":"The study proved long-term effectiveness.","conflict":"enrollment vs completion ambiguity.","conflict_prone_claim":"42 participants completed the intervention.","run_artifact_manifest_status":"verified","export_parity_passed":True}
+TB_PRODUCT_SLICE_01_CLAIMS_BLOCKED=["not final answer release","not accepted evidence","not truth certification","not provider call","not network authorization","not memory write","not model weight training","not deployment authority","not product release","not hallucination reduction proof","not model superiority proof"]
+
 PMR_00_COMMAND = r""".\experiments\Run-PMR00-Acceptance.ps1 `
   -OutputRoot C:\UVLM\run_artifacts\pmr_00 `
   -LogDir C:\UVLM\run_artifacts\pmr_00_logs `
@@ -3017,6 +3093,50 @@ ACCEPTED_PHASES = [
         "claim_allowed": "fixture bounded metrics scaffold",
         "reviewer_caution": "coherence metric is not truth score",
     },
+
+    {
+        "phase_id": "ONTOLOGY-CLAIM-REGISTRY-00",
+        "repo": "pdxvoiceteacher/CoherenceLattice",
+        "status": "accepted",
+        "evidence_type": "governance_scaffold",
+        "product_posture": "fixture_only_ontology_claim_registry_without_ontology_proof",
+        "primary_artifacts": ONTOLOGY_CLAIM_REGISTRY_00_ARTIFACTS,
+        "dashboard_summary": ONTOLOGY_CLAIM_REGISTRY_00_DASHBOARD_SUMMARY,
+        "reproduction_command_summary": ONTOLOGY_CLAIM_REGISTRY_00_COMMAND,
+        "claims_blocked": ONTOLOGY_CLAIM_REGISTRY_00_CLAIMS_BLOCKED,
+        "claim_allowed": "fixture-bounded ontology claim registry scaffold",
+        "reviewer_caution": "Ontology claim is not ontology proof.",
+    },
+
+    {
+        "phase_id": "LOCAL-SONYA-PATH-PORTABILITY-00",
+        "repo": "pdxvoiceteacher/CoherenceLattice",
+        "status": "accepted",
+        "evidence_type": "governance_scaffold",
+        "product_posture": "fixture_only_path_portability_without_live_node_execution",
+        "primary_artifacts": LOCAL_SONYA_PATH_PORTABILITY_00_ARTIFACTS,
+        "dashboard_summary": LOCAL_SONYA_PATH_PORTABILITY_00_DASHBOARD_SUMMARY,
+        "reproduction_command_summary": LOCAL_SONYA_PATH_PORTABILITY_00_COMMAND,
+        "claims_blocked": LOCAL_SONYA_PATH_PORTABILITY_00_CLAIMS_BLOCKED,
+        "claim_allowed": "fixture-only local Sonya path portability scaffold",
+        "reviewer_caution": "User path is not system path.",
+    },
+
+    {
+        "phase_id": "TB-PRODUCT-SLICE-00",
+        "repo": "pdxvoiceteacher/CoherenceLattice",
+        "status": "accepted",
+        "evidence_type": "runtime_smoke",
+        "product_posture": "fixture_only_local_product_slice_without_final_answer_or_product_release",
+        "primary_artifacts": TB_PRODUCT_SLICE_00_ARTIFACTS,
+        "dashboard_summary": TB_PRODUCT_SLICE_00_DASHBOARD_SUMMARY,
+        "reproduction_command_summary": TB_PRODUCT_SLICE_00_COMMAND,
+        "claims_blocked": TB_PRODUCT_SLICE_00_CLAIMS_BLOCKED,
+        "claim_allowed": "fixture-only local product-like runtime smoke",
+        "reviewer_caution": "User-visible review receipt is required.",
+    },
+
+    {"phase_id":"TB-PRODUCT-SLICE-01","repo":"pdxvoiceteacher/CoherenceLattice","status":"accepted","evidence_type":"runtime_smoke","product_posture":"fixture_only_multi_source_product_slice_without_final_answer_or_product_release","primary_artifacts":TB_PRODUCT_SLICE_01_ARTIFACTS,"dashboard_summary":TB_PRODUCT_SLICE_01_DASHBOARD_SUMMARY,"reproduction_command_summary":TB_PRODUCT_SLICE_01_COMMAND,"claims_blocked":TB_PRODUCT_SLICE_01_CLAIMS_BLOCKED,"claim_allowed":"fixture-only multi-source local product runtime smoke","reviewer_caution":"Cross-source conflict is not contradiction resolution."},
     {
         "phase_id": "PMR-00-PROVENANCE-MEMORY-RESERVOIR",
         "repo": "pdxvoiceteacher/CoherenceLattice",
@@ -3914,7 +4034,7 @@ BOUNDARIES = [
     "TEL trace preservation is required.",
     "PMR provenance preservation is required.",
     "Freshness is not authority.",
-    "Probabilistic confidence is not truth certification.",
+    "Probabilistic confidence is not probabilistic certitude.",
     "COGNITIVE-WATERS-PATTERN-METRICS-00 is not deployment authority.",
     "COGNITIVE-WATERS-PATTERN-METRICS-00 is not provider call.",
     "COGNITIVE-WATERS-PATTERN-METRICS-00 is not memory write.",
@@ -3934,6 +4054,56 @@ BOUNDARIES = [
     "Pattern recurrence is not proof.",
     "Flow convergence is not correctness.",
     "Cognitive-water metaphor is not metaphysical claim.",
+    "User path is not system path.",
+    "Example path is not runtime requirement.",
+    "Personal operator path is not package default.",
+    "Local Sonya node root must be user-defined.",
+    "Run artifact root must be configurable.",
+    "Shared source root must be configurable.",
+    "Local model root must be configurable.",
+    "PMR store root must be configurable.",
+    "TEL event sink root must be configurable.",
+    "Relative configured paths must fail closed.",
+    "Missing required root must fail closed.",
+    "Path portability audit is not deployment authority.",
+    "Path portability audit is not live node execution.",
+    "Localhost readiness is not LAN readiness.",
+    "LAN readiness is not federation authority.",
+    "LOCAL-SONYA-PATH-PORTABILITY-00 is not network authorization.",
+    "LOCAL-SONYA-PATH-PORTABILITY-00 is not provider call.",
+    "LOCAL-SONYA-PATH-PORTABILITY-00 is not federation authorization.",
+    "LOCAL-SONYA-PATH-PORTABILITY-00 is not memory write.",
+    "LOCAL-SONYA-PATH-PORTABILITY-00 is not model weight training.",
+    "LOCAL-SONYA-PATH-PORTABILITY-00 is not product release.",
+    "LOCAL-SONYA-PATH-PORTABILITY-00 is not truth certification.",
+    "User-visible review receipt is required.",
+    "Unsupported claim must remain visible.",
+    "TB-PRODUCT-SLICE-00 is not final answer release.",
+    "TB-PRODUCT-SLICE-00 is not accepted evidence.",
+    "TB-PRODUCT-SLICE-00 is not truth certification.",
+    "TB-PRODUCT-SLICE-00 is not provider call.",
+    "TB-PRODUCT-SLICE-00 is not network authorization.",
+    "TB-PRODUCT-SLICE-00 is not memory write.",
+    "TB-PRODUCT-SLICE-00 is not model weight training.",
+    "TB-PRODUCT-SLICE-00 is not deployment authority.",
+    "TB-PRODUCT-SLICE-00 is not product release.",
+    "TB-PRODUCT-SLICE-00 is not hallucination reduction proof.",
+    "TB-PRODUCT-SLICE-00 is not model superiority proof.",
+    "TB-PRODUCT-SLICE-01 is not model superiority proof.",
+    "TB-PRODUCT-SLICE-01 is not hallucination reduction proof.",
+    "TB-PRODUCT-SLICE-01 is not product release.",
+    "TB-PRODUCT-SLICE-01 is not deployment authority.",
+    "TB-PRODUCT-SLICE-01 is not model weight training.",
+    "TB-PRODUCT-SLICE-01 is not memory write.",
+    "TB-PRODUCT-SLICE-01 is not network authorization.",
+    "TB-PRODUCT-SLICE-01 is not provider call.",
+    "TB-PRODUCT-SLICE-01 is not truth certification.",
+    "TB-PRODUCT-SLICE-01 is not accepted evidence.",
+    "TB-PRODUCT-SLICE-01 is not final answer release.",
+    "Conflict must remain visible.",
+    "Cross-source agreement is not accepted evidence.",
+    "Cross-source conflict is not contradiction resolution.",
+    "Multi-source review is not truth certification.",
     "Spiral/fractal fit is not universal ontology proof.",
     "Pattern morphology is not consciousness proof.",
     "Conceptual source is not implementation authority.",
@@ -4146,7 +4316,7 @@ BOUNDARIES = [
     "Pattern recurrence is not proof.",
     "Spiral/fractal fit is not consciousness.",
     "Metric stability is not deployment authority.",
-    "Probabilistic confidence is not truth certification.",
+    "Probabilistic confidence is not probabilistic certitude.",
     "Ontology evidence is fixture-bounded unless externally validated.",
     "FUNDAMENTAL-COHERENCE-METRICS-00 is not universal ontology proof.",
     "FUNDAMENTAL-COHERENCE-METRICS-00 is not consciousness proof.",
@@ -4538,6 +4708,9 @@ def reproducibility_index() -> dict[str, Any]:
                 {"name": "Retrosynthesis Sandbox Cycle acceptance", "command": RETRO_SANDBOX_CYCLE_COMMAND},
                 {"name": "Evidence Review Pack second pass acceptance", "command": EVIDENCE_REVIEW_PACK_01_COMMAND},
                 {"name": "RW-COMP-03 acceptance", "command": RW_COMP_03_COMMAND},
+                {"name": "TB Product Slice acceptance", "command": TB_PRODUCT_SLICE_00_COMMAND},
+                {"name": "TB Product Slice 01 acceptance", "command": TB_PRODUCT_SLICE_01_COMMAND},
+                {"name": "Local Sonya path portability acceptance", "command": LOCAL_SONYA_PATH_PORTABILITY_00_COMMAND},
                 {"name": "PMR doctrine acceptance", "command": PMR_00_COMMAND},
                 {"name": "PMR local artifact index acceptance", "command": PMR_01_COMMAND},
                 {"name": "PMR GPCU utility scoring acceptance", "command": PMR_02_COMMAND},
@@ -4632,6 +4805,9 @@ def artifact_index() -> dict[str, Any]:
         "EVIDENCE-REVIEW-PRODUCT-LOOP-02": EVIDENCE_REVIEW_PRODUCT_LOOP_ARTIFACTS,
         "EVIDENCE-REVIEW-METRICS-00": EVIDENCE_REVIEW_METRICS_ARTIFACTS,
         "COGNITIVE-WATERS-PATTERN-METRICS-00": COGNITIVE_WATERS_PATTERN_METRICS_ARTIFACTS,
+        "LOCAL-SONYA-PATH-PORTABILITY-00": LOCAL_SONYA_PATH_PORTABILITY_00_ARTIFACTS,
+        "TB-PRODUCT-SLICE-00": TB_PRODUCT_SLICE_00_ARTIFACTS,
+        "TB-PRODUCT-SLICE-01": TB_PRODUCT_SLICE_01_ARTIFACTS,
         "SONYA-ADAPTER-SMOKE-00": SONYA_ADAPTER_SMOKE_ARTIFACTS,
         "SONYA-LOCAL-FIXTURE-ADAPTER-01": SONYA_LOCAL_FIXTURE_ADAPTER_ARTIFACTS,
         "EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER-01": EVIDENCE_REVIEW_PACK_LOCAL_ADAPTER_ARTIFACTS,
@@ -4690,6 +4866,25 @@ def status_payload() -> dict[str, Any]:
         "not_pattern_morphology_consciousness_proof": True,
         "not_spiral_fractal_universal_ontology_proof": True,
         "not_cognitive_water_metaphysical_claim": True,
+        "local_sonya_path_portability_00_indexed": True,
+        "not_live_sonya_node_execution": True,
+        "not_path_runtime_requirement": True,
+        "not_localhost_lan_readiness": True,
+        "not_lan_federation_authority": True,
+        "not_personal_path_requirement": True,
+        "tb_product_slice_00_indexed": True,
+        "not_product_slice_final_answer": True,
+        "not_product_slice_accepted_evidence": True,
+        "not_product_slice_truth_certification": True,
+        "not_product_slice_product_release": True,
+        "not_product_slice_provider_call": True,
+        "tb_product_slice_01_indexed": True,
+        "not_product_slice_01_final_answer": True,
+        "not_product_slice_01_accepted_evidence": True,
+        "not_product_slice_01_truth_certification": True,
+        "not_product_slice_01_product_release": True,
+        "not_product_slice_01_provider_call": True,
+        "not_cross_source_conflict_resolution": True,
         "not_pattern_recurrence_proof": True,
         "not_morphology_deployment_authority": True,
         "not_provider_call": True,
@@ -4807,7 +5002,7 @@ def docs() -> dict[str, str]:
     return {
         "README.md": "# Experiment Suite Docs\n\nPublic reviewer documentation for the claim-bounded reproducibility dashboard.\n",
         "assets/README.md": "# Assets\n\nOptional static assets for the public reproducibility dashboard.\n",
-        "index.md": f"# Public Experiment Suite Dashboard\n\nThis dashboard presents accepted evidence for reviewer orientation. It is not truth certification, not deployment authority, not final answer release, local fixture only, and requires external peer review.\n\n## Accepted evidence\n\n| Phase | Repo | Status | What this supports | Reviewer caution |\n| --- | --- | --- | --- | --- |\n{phase_rows}\n\n## Reviewer path\n\nStart with claim boundaries, then read the governed artifact cognition paper, WAVE Rosetta paper, SONYA-AEGIS-SMOKE-02, WAVE family, UNI-02D Sonya gate, and RETRO-LANE-00, Public Utility Alpha, Raw Baseline Comparison, Evidence Review Pack, RW-COMP-01, RW-COMP-02, Retrosynthesis Sandbox Cycle, Evidence Review Pack second-pass, RW-COMP-03, Universal Architecture Scaffold, Sonya Adapter Contract Registry, Sonya Adapter Smoke, Sonya Local Fixture Adapter, and Evidence Review Pack local adapter, Evidence Review Pack local adapter revision, RW-COMP local adapter, PMR doctrine, PMR local artifact index, PMR GPCU utility scoring, PMR lifecycle state machine, PMR lifecycle audit preflight, PMR Sophia lifecycle audit review, PMR destructive-action authorization preflight, PMR architecture diversity checkpoint, PMR simulation baseline comparison, PMR simulation statistical analysis, PMR federation stress corpus, PMR human provenance context, Sonya Local Fixture Adapter multi-route, and Sonya Local Fixture Adapter lineage clarity pages.\n\n## What this proves\n\nIt proves only that accepted local fixture artifacts and draft publication materials are organized for review.\n\n## What this does not prove\n\nNo oracle posture, no deployment posture, no final-answer posture, no AI consciousness claim, and no universal ontology claim.\n\n## Phase pages\n\n- [SONYA-AEGIS-SMOKE-02](sonya-aegis-smoke-02.md)\n- [WAVE Gold-Physics](wave-gold-physics.md)\n- [UNI-02D Sonya gate](uni02d-sonya-gate.md)\n- [RETRO-LANE-00](retro-lane-00.md)\n- [Public Utility Alpha](public-utility-alpha.md)\n- [Raw Baseline Comparison](raw-baseline-comparison.md)\n- [Evidence Review Pack](evidence-review-pack.md)\n- [RW-COMP-01](rw-comp-01.md)\n- [RW-COMP-02](rw-comp-02.md)\n- [Retrosynthesis Sandbox Cycle](retrosynthesis-sandbox-cycle.md)\n- [Evidence Review Pack second pass](evidence-review-pack-second-pass.md)\n- [RW-COMP-03](rw-comp-03.md)\n- [Universal Architecture Scaffold](universal-architecture.md)\n- [Sonya Adapter Contract Registry](sonya-adapter-contract-registry.md)\n- [Sonya required membrane checkpoint](sonya-required-membrane-checkpoint.md)\n- [TEL event stack](tel-event-stack.md)\n- [Sonya Adapter Smoke](sonya-adapter-smoke.md)\n- [Sonya Local Fixture Adapter](sonya-local-fixture-adapter.md)\n- [Evidence Review Pack local adapter](evidence-review-pack-local-adapter.md)\n- [Evidence Review Pack local adapter revision](evidence-review-pack-local-adapter-revision.md)\n- [RW-COMP local adapter](rw-comp-local-adapter.md)\n- [Provenance Memory Reservoir](provenance-memory-reservoir.md)\n- [PMR local artifact index](pmr-local-artifact-index.md)\n- [Sonya Local Fixture Adapter multi-route](sonya-local-fixture-adapter-multi-route.md)\n- [Sonya Local Fixture Adapter lineage clarity](sonya-local-fixture-adapter-lineage.md)\n- [Governed artifact cognition paper](governed-artifact-cognition-paper.md)\n- [Waveform Rosetta paper](waveform-rosetta-paper.md)\n",
+        "index.md": f"# Public Experiment Suite Dashboard\n\nThis dashboard presents accepted evidence for reviewer orientation. It is not truth certification, not deployment authority, not final answer release, local fixture only, and requires external peer review.\n\n## Accepted evidence\n\n| Phase | Repo | Status | What this supports | Reviewer caution |\n| --- | --- | --- | --- | --- |\n{phase_rows}\n\n## Reviewer path\n\nStart with claim boundaries, then read the governed artifact cognition paper, WAVE Rosetta paper, SONYA-AEGIS-SMOKE-02, WAVE family, UNI-02D Sonya gate, and RETRO-LANE-00, Public Utility Alpha, Raw Baseline Comparison, Evidence Review Pack, RW-COMP-01, RW-COMP-02, Retrosynthesis Sandbox Cycle, Evidence Review Pack second-pass, RW-COMP-03, Universal Architecture Scaffold, Sonya Adapter Contract Registry, Sonya Adapter Smoke, Sonya Local Fixture Adapter, and Evidence Review Pack local adapter, Evidence Review Pack local adapter revision, RW-COMP local adapter, PMR doctrine, PMR local artifact index, PMR GPCU utility scoring, PMR lifecycle state machine, PMR lifecycle audit preflight, PMR Sophia lifecycle audit review, PMR destructive-action authorization preflight, PMR architecture diversity checkpoint, PMR simulation baseline comparison, PMR simulation statistical analysis, PMR federation stress corpus, PMR human provenance context, Sonya Local Fixture Adapter multi-route, and Sonya Local Fixture Adapter lineage clarity pages.\n\n## What this proves\n\nIt proves only that accepted local fixture artifacts and draft publication materials are organized for review.\n\n## What this does not prove\n\nNo oracle posture, no deployment posture, no final-answer posture, no AI consciousness claim, and no universal ontology claim.\n\n## Phase pages\n\n- [SONYA-AEGIS-SMOKE-02](sonya-aegis-smoke-02.md)\n- [WAVE Gold-Physics](wave-gold-physics.md)\n- [UNI-02D Sonya gate](uni02d-sonya-gate.md)\n- [RETRO-LANE-00](retro-lane-00.md)\n- [Public Utility Alpha](public-utility-alpha.md)\n- [Raw Baseline Comparison](raw-baseline-comparison.md)\n- [Evidence Review Pack](evidence-review-pack.md)\n- [RW-COMP-01](rw-comp-01.md)\n- [RW-COMP-02](rw-comp-02.md)\n- [Retrosynthesis Sandbox Cycle](retrosynthesis-sandbox-cycle.md)\n- [Evidence Review Pack second pass](evidence-review-pack-second-pass.md)\n- [RW-COMP-03](rw-comp-03.md)\n- [Universal Architecture Scaffold](universal-architecture.md)\n- [Sonya Adapter Contract Registry](sonya-adapter-contract-registry.md)\n- [Sonya required membrane checkpoint](sonya-required-membrane-checkpoint.md)\n- [TEL event stack](tel-event-stack.md)\n- [Sonya Adapter Smoke](sonya-adapter-smoke.md)\n- [Sonya Local Fixture Adapter](sonya-local-fixture-adapter.md)\n- [Evidence Review Pack local adapter](evidence-review-pack-local-adapter.md)\n- [Evidence Review Pack local adapter revision](evidence-review-pack-local-adapter-revision.md)\n- [RW-COMP local adapter](rw-comp-local-adapter.md)\n- [Provenance Memory Reservoir](provenance-memory-reservoir.md)\n- [PMR local artifact index](pmr-local-artifact-index.md)\n- [Ontology Claim Registry](ontology-claim-registry.md)\n- [Local Sonya path portability](local-sonya-path-portability.md)\n- [TB Product Slice](tb-product-slice.md)\n- [TB Product Slice 01](tb-product-slice-01.md)\n- [Sonya Local Fixture Adapter multi-route](sonya-local-fixture-adapter-multi-route.md)\n- [Sonya Local Fixture Adapter lineage clarity](sonya-local-fixture-adapter-lineage.md)\n- [Governed artifact cognition paper](governed-artifact-cognition-paper.md)\n- [Waveform Rosetta paper](waveform-rosetta-paper.md)\n",
         "claim-boundaries.md": f"# Claim Boundaries\n\n{boundaries}\n\nNo oracle posture. No deployment posture. No final-answer posture. No AI consciousness claim. No universal ontology claim.\n",
         "sonya-aegis-smoke-02.md": f"""# SONYA-AEGIS-SMOKE-02
 
@@ -5152,6 +5347,140 @@ Claims blocked: {"; ".join(SONYA_ADAPTER_CONTRACT_REGISTRY_CLAIMS_BLOCKED)}.
 
 Reviewer caution: SONYA-ADAPTER-CONTRACT-REGISTRY-01 defines adapter contracts only. It does not execute adapters, does not call providers, does not authorize network use, does not admit raw output as cognition, does not write memory, does not release final answers, does not train models, and does not deploy.
 """,
+        "tb-product-slice-01.md": f"""# TB Product Slice 01
+
+Phase: `TB-PRODUCT-SLICE-01`
+
+Cross-source conflict is not contradiction resolution.
+Conflict must remain visible.
+Multi-source review is not truth certification.
+Cross-source agreement is not accepted evidence.
+Candidate packet is not final answer.
+Model output is not authority.
+Source match is not truth certification.
+Supported claim is not accepted evidence.
+Unsupported claim must remain visible.
+Prior context is not evidence.
+TEL event is not authority.
+PMR provenance stub is not memory write.
+Review receipt is not deployment authority.
+Local product slice is not product release.
+
+```powershell
+{TB_PRODUCT_SLICE_01_COMMAND}
+```
+
+## Primary artifacts
+
+{chr(10).join(f"- `{a}`" for a in TB_PRODUCT_SLICE_01_ARTIFACTS)}
+
+## Observed review behavior
+
+- `supported_claim_count = 2`
+- `unsupported_claim_count = 2`
+- `conflict_count = 2`
+- `source_file_count = 3`
+- `unsupported overclaim = The study proved long-term effectiveness.`
+- `conflict = enrollment vs completion ambiguity.`
+""",
+
+        "tb-product-slice.md": f"""# TB Product Slice
+
+Phase: `TB-PRODUCT-SLICE-00`
+
+User-visible review receipt is required.
+Unsupported claim must remain visible.
+
+```powershell
+{TB_PRODUCT_SLICE_00_COMMAND}
+```
+
+{chr(10).join(f"- `{a}`" for a in TB_PRODUCT_SLICE_00_ARTIFACTS)}
+""",
+
+        "local-sonya-path-portability.md": f"""# Local Sonya path portability
+
+Phase: `LOCAL-SONYA-PATH-PORTABILITY-00`
+
+User path is not system path.
+Example path is not runtime requirement.
+Personal operator path is not package default.
+Local Sonya node root must be user-defined.
+Run artifact root must be configurable.
+Shared source root must be configurable.
+Local model root must be configurable.
+PMR store root must be configurable.
+TEL event sink root must be configurable.
+Relative configured paths must fail closed.
+Missing required root must fail closed.
+Path portability audit is not deployment authority.
+Path portability audit is not live node execution.
+Localhost readiness is not LAN readiness.
+LAN readiness is not federation authority.
+
+```powershell
+{LOCAL_SONYA_PATH_PORTABILITY_00_COMMAND}
+```
+
+{chr(10).join(f"- `{a}`" for a in LOCAL_SONYA_PATH_PORTABILITY_00_ARTIFACTS)}
+""",
+
+        "ontology-claim-registry.md": f"""# Ontology Claim Registry
+
+Phase: `ONTOLOGY-CLAIM-REGISTRY-00`
+
+Purpose: fixture-bounded ontology claim registry scaffold with explicit non-proof and non-authority boundaries.
+
+Run command:
+
+```powershell
+{ONTOLOGY_CLAIM_REGISTRY_00_COMMAND}
+```
+
+Primary artifacts:
+
+- `ontology_claim_registry_packet.json`
+- `ontology_evidence_level_packet.json`
+- `ontology_claim_registry_review_packet.json`
+- `ontology_claim_registry_summary.md`
+- `artifact_inventory.json`
+- `run_artifact_manifest.json`
+- `export_bundle_manifest.json`
+- `export_bundle_parity_report.json`
+- `ontology_claim_registry_00_acceptance_receipt.json`
+
+Claim boundaries:
+
+- Ontology claim is not ontology proof.
+- Probabilistic confidence is not probabilistic certitude.
+- Fixture-bounded evidence is not universal ontology proof.
+- Metric stability is not truth certification.
+- Pattern morphology is not consciousness proof.
+- Hypercompression is not hallucination reduction proof.
+- Context refresh is not recency authority.
+- Elegance is not evidence.
+- No ontology earns authority merely by sounding coherent.
+- Publisher output is candidate report, not proof.
+
+Claims blocked:
+
+- not ontology proof
+- not universal ontology proof
+- not truth certification
+- not consciousness proof
+- not hallucination reduction proof
+- not model superiority proof
+- not deployment authority
+- not product release
+- not final answer release
+- not accepted evidence
+- not memory write
+- not model weight training
+- not provider call
+- not network authorization
+- not peer review certification
+""",
+
         "cognitive-waters-pattern-metrics.md": f"""# Cognitive waters pattern metrics
 
 Required phrase: Pattern morphology is not consciousness proof.
