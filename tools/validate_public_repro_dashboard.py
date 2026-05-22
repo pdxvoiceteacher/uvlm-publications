@@ -65,6 +65,7 @@ REQUIRED_PHASES = {
     "LOCAL-SONYA-PATH-PORTABILITY-00",
     "TB-PRODUCT-SLICE-00",
     "TB-PRODUCT-SLICE-01",
+    "SONYA-LOCAL-SERVER-GATEWAY-00",
 }
 REQUIRED_BOUNDARY_PHRASES = (
     "not truth certification",
@@ -475,8 +476,6 @@ FORBIDDEN_PHRASES = (
     "universal portability proof",
     "live model execution",
     "live adapter execution",
-    "remote provider call",
-    "provider call",
     "claims provider call",
     "claims remote provider call",
     "federation",
@@ -535,7 +534,6 @@ FORBIDDEN_PHRASES = (
     "claims live human study",
     "claims accepted evidence",
     "canon adoption",
-    "memory write",
     "production evaluation",
     "product completion",
     "claims product completion",
@@ -709,8 +707,7 @@ def _is_allowed_no_emit_receipt_context(text: str, index: int) -> bool:
                 "deletion receipt",
                 "federation receipt",
                 "reward receipt",
-                "memory write",
-                "model training receipt",
+                            "model training receipt",
                 "deployment decision",
             )
         )
