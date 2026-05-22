@@ -841,3 +841,15 @@ Cross-source agreement is not accepted evidence.
 Candidate packet is not final answer.
 Supported claim is not accepted evidence.
 PMR provenance stub is not memory write.
+
+
+## SONYA-LOCAL-SERVER-GATEWAY-00
+SONYA-LOCAL-SERVER-GATEWAY-00 is a localhost-only Sonya gateway runtime smoke. Localhost gateway is not LAN readiness. Gateway response is not final answer. Local server execution is not deployment authority. Failure receipt is not permission to proceed. Local gateway must fail closed on provider-call attempts. Local gateway must fail closed on memory-write attempts.
+
+`\experiments\Run-SONYA-LOCAL-SERVER-GATEWAY00-Acceptance.ps1`
+
+- `sonya_local_server_gateway_manifest.json`
+- `sonya_local_server_response_packet.json`
+- `sonya_local_server_review_packet.json`
+- `gateway_failure_receipts.jsonl`
+- `tb_product_slice_01_review_receipt.md`

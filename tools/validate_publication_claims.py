@@ -521,7 +521,6 @@ PAPER_CONFIGS: dict[str, dict[str, Any]] = {
             "compliance certification",
             "remote provider call",
             "remote provider calls",
-            "provider call",
             "claims provider call",
             "claims remote provider call",
             "provider call performed",
