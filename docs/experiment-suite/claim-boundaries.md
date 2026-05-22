@@ -1,5 +1,24 @@
 # Claim Boundaries
 
+- SONYA-LOCAL-SERVER-GATEWAY-01 is not truth certification.
+- SONYA-LOCAL-SERVER-GATEWAY-01 is not product release.
+- SONYA-LOCAL-SERVER-GATEWAY-01 is not deployment authority.
+- SONYA-LOCAL-SERVER-GATEWAY-01 is not accepted evidence.
+- SONYA-LOCAL-SERVER-GATEWAY-01 is not final answer release.
+- SONYA-LOCAL-SERVER-GATEWAY-01 is not federation authorization.
+- SONYA-LOCAL-SERVER-GATEWAY-01 is not LAN readiness.
+- SONYA-LOCAL-SERVER-GATEWAY-01 is not network authorization.
+- SONYA-LOCAL-SERVER-GATEWAY-01 is not provider call.
+- SONYA-LOCAL-SERVER-GATEWAY-01 is not PMR store.
+- SONYA-LOCAL-SERVER-GATEWAY-01 is not memory write.
+- Retrieval endpoints must remain loopback-only.
+- Retrieval failure receipt is not permission to proceed.
+- Unknown run IDs must fail closed.
+- Event retrieval is not authority.
+- Receipt retrieval is not final answer release.
+- Local run lookup is not federation.
+- Run retrieval is not memory write.
+- Run index is not PMR store.
 - Sonya Adapter Contract Registry: Adapter capability is not adapter authorization.
 - Sonya Adapter Contract Registry keeps all adapters disabled or blocked; all adapters disabled or blocked means not adapter execution and not network authorization.
 - Sonya Adapter Contract Registry boundaries: not adapter execution, not network authorization, not remote provider call, not model weight training.
@@ -105,6 +124,13 @@
 - TB-PRODUCT-SLICE-00 is not hallucination reduction proof.
 - TB-PRODUCT-SLICE-00 is not model superiority proof.
 - TB-PRODUCT-SLICE-01 is not model superiority proof.
+- Localhost gateway is not LAN readiness.
+- Localhost readiness is not federation authority.
+- Local server execution is not deployment authority.
+- Gateway response is not final answer.
+- Failure receipt is not permission to proceed.
+- Local gateway must fail closed on provider-call attempts.
+- Local gateway must fail closed on memory-write attempts.
 - TB-PRODUCT-SLICE-01 is not hallucination reduction proof.
 - TB-PRODUCT-SLICE-01 is not product release.
 - TB-PRODUCT-SLICE-01 is not deployment authority.

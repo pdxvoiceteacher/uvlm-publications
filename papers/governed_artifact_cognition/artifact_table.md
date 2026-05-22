@@ -389,3 +389,26 @@ Run-TB-PRODUCT-SLICE01-Acceptance.ps1
 Cross-source conflict is not contradiction resolution.
 
 Conflict must remain visible.
+
+
+## SONYA-LOCAL-SERVER-GATEWAY-00
+SONYA-LOCAL-SERVER-GATEWAY-00 is a localhost-only Sonya gateway runtime smoke. Localhost gateway is not LAN readiness. Gateway response is not final answer. Local server execution is not deployment authority. Failure receipt is not permission to proceed. Local gateway must fail closed on provider-call attempts. Local gateway must fail closed on memory-write attempts.
+
+`\experiments\Run-SONYA-LOCAL-SERVER-GATEWAY00-Acceptance.ps1`
+
+- `sonya_local_server_gateway_manifest.json`
+- `sonya_local_server_response_packet.json`
+- `sonya_local_server_review_packet.json`
+- `gateway_failure_receipts.jsonl`
+- `tb_product_slice_01_review_receipt.md`
+
+## SONYA-LOCAL-SERVER-GATEWAY-01
+Run retrieval is not memory write. Run index is not PMR store. Receipt retrieval is not final answer release. Event retrieval is not authority. Unknown run IDs must fail closed. Retrieval failure receipt is not permission to proceed. Localhost gateway is not LAN readiness. Localhost readiness is not federation authority.
+
+- `sonya_local_server_gateway_01_manifest.json`
+- `sonya_local_server_run_index_packet.json`
+- `sonya_local_server_retrieval_packet.json`
+- `sonya_local_server_gateway_01_review_packet.json`
+- `retrieval_failure_receipts.jsonl`
+
+Run-SONYA-LOCAL-SERVER-GATEWAY01-Acceptance.ps1
