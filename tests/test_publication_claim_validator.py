@@ -2299,3 +2299,21 @@ def test_governed_validator_indexes_tb_product_slice_01():
     assert status["not_product_slice_01_final_answer"] is True
     assert status["not_product_slice_01_accepted_evidence"] is True
     assert status["not_cross_source_conflict_resolution"] is True
+
+
+def test_governed_artifact_cognition_sonya_local_server_gateway_01_updates_are_present():
+    paper=(ROOT/"PUB_GOV_ARTIFACT_COG_01.md").read_text(encoding="utf-8")
+    artifact_table=(ROOT/"artifact_table.md").read_text(encoding="utf-8")
+    quickstart=(ROOT/"reviewer_quickstart.md").read_text(encoding="utf-8")
+    status=json.loads((ROOT/"status.json").read_text(encoding="utf-8"))
+    for phrase in ["SONYA-LOCAL-SERVER-GATEWAY-01","Run retrieval is not memory write.","Run index is not PMR store.","Receipt retrieval is not final answer release.","Event retrieval is not authority.","Unknown run IDs must fail closed."]:
+        assert phrase in paper
+    for artifact in ["sonya_local_server_gateway_01_manifest.json","sonya_local_server_run_index_packet.json","sonya_local_server_retrieval_packet.json","sonya_local_server_gateway_01_review_packet.json","retrieval_failure_receipts.jsonl"]:
+        assert artifact in artifact_table
+    assert "Run-SONYA-LOCAL-SERVER-GATEWAY01-Acceptance.ps1" in quickstart
+    assert status["sonya_local_server_gateway_01_indexed"] is True
+    assert status["not_run_retrieval_memory_write"] is True
+    assert status["not_run_index_pmr_store"] is True
+    assert status["not_receipt_retrieval_final_answer"] is True
+    assert status["not_event_retrieval_authority"] is True
+    assert status["not_unknown_run_permission"] is True
