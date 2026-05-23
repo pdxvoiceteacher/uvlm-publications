@@ -860,3 +860,7 @@ Run retrieval is not memory write. Run index is not PMR store. Receipt retrieval
 
 ## TB-PRODUCT-SLICE-02
 Source span is not truth certification. Quoted source text is not accepted evidence. Source agreement is not proof. Source conflict is not contradiction resolution. Claim segmentation is not semantic authority. Review receipt is not final answer. Unsupported claims must remain visible. Uncertainty must remain visible. Conflict must remain visible.
+
+
+## SONYA-LOCAL-SERVER-GATEWAY-02
+Source-span gateway review is not truth certification. Claim classification is not semantic authority. Claim classification retrieval is not final answer. Quoted source text is not accepted evidence. Unknown run IDs must fail closed. Failure receipt is not permission to proceed.

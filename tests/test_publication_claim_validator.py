@@ -2333,3 +2333,20 @@ def test_governed_artifact_cognition_tb_product_slice_02_updates_are_present():
     assert status["not_source_span_truth_certification"] is True
     assert status["not_quoted_source_text_accepted_evidence"] is True
     assert status["not_source_conflict_resolution"] is True
+
+
+def test_governed_artifact_cognition_sonya_local_server_gateway_02_updates_are_present():
+    paper=(ROOT/"PUB_GOV_ARTIFACT_COG_01.md").read_text(encoding="utf-8")
+    artifact_table=(ROOT/"artifact_table.md").read_text(encoding="utf-8")
+    quickstart=(ROOT/"reviewer_quickstart.md").read_text(encoding="utf-8")
+    status=json.loads((ROOT/"status.json").read_text(encoding="utf-8"))
+    for phrase in ["SONYA-LOCAL-SERVER-GATEWAY-02","Source-span gateway review is not truth certification.","Claim classification is not semantic authority.","Claim classification retrieval is not final answer.","Quoted source text is not accepted evidence.","Unknown run IDs must fail closed.","Failure receipt is not permission to proceed."]:
+        assert phrase in paper
+    for artifact in ["sonya_local_server_gateway_02_manifest.json","sonya_local_server_gateway_02_review_packet.json","sonya_local_server_source_span_retrieval_packet.json","sonya_local_server_claim_classification_retrieval_packet.json","gateway_failure_receipts.jsonl","retrieval_failure_receipts.jsonl"]:
+        assert artifact in artifact_table
+    assert "Run-SONYA-LOCAL-SERVER-GATEWAY02-Acceptance.ps1" in quickstart
+    assert status["sonya_local_server_gateway_02_indexed"] is True
+    assert status["not_source_span_gateway_truth_certification"] is True
+    assert status["not_claim_classification_semantic_authority"] is True
+    assert status["not_gateway02_memory_write"] is True
+    assert status["not_gateway02_product_release"] is True

@@ -423,3 +423,14 @@ Source span is not truth certification. Quoted source text is not accepted evide
 - `receipt_ux_packet.json`
 
 Run-TB-PRODUCT-SLICE02-Acceptance.ps1
+
+
+## SONYA-LOCAL-SERVER-GATEWAY-02
+Source-span gateway review is not truth certification. Claim classification is not semantic authority. Claim classification retrieval is not final answer. Quoted source text is not accepted evidence. Unknown run IDs must fail closed. Failure receipt is not permission to proceed.
+
+- `sonya_local_server_gateway_02_manifest.json`
+- `sonya_local_server_gateway_02_review_packet.json`
+- `sonya_local_server_source_span_retrieval_packet.json`
+- `sonya_local_server_claim_classification_retrieval_packet.json`
+
+Run-SONYA-LOCAL-SERVER-GATEWAY02-Acceptance.ps1
