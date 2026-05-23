@@ -186,3 +186,7 @@ Source span is not truth certification. Quoted source text is not accepted evide
 
 ## SONYA-LOCAL-SERVER-GATEWAY-02
 Source-span gateway review is not truth certification. Claim classification is not semantic authority. Claim classification retrieval is not final answer. Quoted source text is not accepted evidence. Unknown run IDs must fail closed. Failure receipt is not permission to proceed.
+
+
+## LOCAL-SERVER-USER-FILE-INGRESS-00
+User file ingress is not memory write. Local file path is not system path. File normalization is not evidence admission. Copied run-local source is not PMR storage. Missing consent must fail closed. Unsupported file types must fail closed. Explicit consent does not authorize memory write.

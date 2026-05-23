@@ -434,3 +434,17 @@ Source-span gateway review is not truth certification. Claim classification is n
 - `sonya_local_server_claim_classification_retrieval_packet.json`
 
 Run-SONYA-LOCAL-SERVER-GATEWAY02-Acceptance.ps1
+
+
+## LOCAL-SERVER-USER-FILE-INGRESS-00
+User file ingress is not memory write. Local file path is not system path. File normalization is not evidence admission. Copied run-local source is not PMR storage. Missing consent must fail closed. Unsupported file types must fail closed. Explicit consent does not authorize memory write.
+
+- `local_user_file_ingress_manifest.json`
+- `local_user_file_consent_packet.json`
+- `local_user_file_path_audit_rows.jsonl`
+- `local_user_file_normalization_map.json`
+- `local_user_file_ingress_review_packet.json`
+- `ingress_failure_receipts.jsonl`
+- `normalized_source_bundle_manifest.json`
+
+Run-LOCAL-SERVER-USER-FILE-INGRESS00-Acceptance.ps1

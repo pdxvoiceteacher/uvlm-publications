@@ -75,6 +75,10 @@
         "command": ".\\experiments\\Run-SONYA-LOCAL-SERVER-GATEWAY02-Acceptance.ps1 `\n  -BindHost 127.0.0.1 `\n  -OutputRoot C:\\UVLM\\run_artifacts\\sonya_local_server_gateway_02 `\n  -LogDir C:\\UVLM\\run_artifacts\\sonya_local_server_gateway_02_logs `\n  -CiMode"
       },
       {
+        "name": "Local Server User File Ingress acceptance",
+        "command": ".\\experiments\\Run-LOCAL-SERVER-USER-FILE-INGRESS00-Acceptance.ps1 `\n  -SourceRoot C:\\UVLM\\CoherenceLattice\\examples\\user_file_ingress_00 `\n  -OutputRoot C:\\UVLM\\run_artifacts\\local_server_user_file_ingress_00 `\n  -LogDir C:\\UVLM\\run_artifacts\\local_server_user_file_ingress_00_logs `\n  -CiMode"
+      },
+      {
         "name": "Local Sonya path portability acceptance",
         "command": ".\\experiments\\Run-LOCAL-SONYA-PATH-PORTABILITY00-Acceptance.ps1 `\n  -OutputRoot C:\\UVLM\\run_artifacts\\local_sonya_path_portability_00 `\n  -LogDir C:\\UVLM\\run_artifacts\\local_sonya_path_portability_00_logs `\n  -CiMode"
       },

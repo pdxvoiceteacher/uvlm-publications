@@ -122,6 +122,7 @@ REQUIRED_PHASES = {
     "SONYA-LOCAL-SERVER-GATEWAY-00",
     "SONYA-LOCAL-SERVER-GATEWAY-01",
     "SONYA-LOCAL-SERVER-GATEWAY-02",
+    "LOCAL-SERVER-USER-FILE-INGRESS-00",
 }
 
 REQUIRED_COMMAND_FRAGMENTS = (
@@ -170,6 +171,7 @@ REQUIRED_COMMAND_FRAGMENTS = (
     "Run-SONYA-LOCAL-SERVER-GATEWAY00-Acceptance.ps1",
     "Run-SONYA-LOCAL-SERVER-GATEWAY01-Acceptance.ps1",
     "Run-SONYA-LOCAL-SERVER-GATEWAY02-Acceptance.ps1",
+    "Run-LOCAL-SERVER-USER-FILE-INGRESS00-Acceptance.ps1",
 )
 STALE_COMMAND_FRAGMENTS = (
     "tests/test_sonya_aegis_smoke_02.py",
@@ -2467,4 +2469,19 @@ def test_sonya_local_server_gateway_02_updates_present(tmp_path):
     for a in ["sonya_local_server_gateway_02_manifest.json","sonya_local_server_gateway_02_review_packet.json","sonya_local_server_source_span_retrieval_packet.json","sonya_local_server_claim_classification_retrieval_packet.json","source_span_map.json","claim_classification_packet.json","gateway_failure_receipts.jsonl","retrieval_failure_receipts.jsonl"]:
         assert a in art
     for b in ["Source-span gateway review is not truth certification.","Claim classification is not semantic authority.","Claim classification retrieval is not final answer.","Unknown run IDs must fail closed."]:
+        assert b in bounds
+
+
+def test_local_server_user_file_ingress_00_updates_present(tmp_path):
+    out_dir,_=run_builder(tmp_path)
+    dashboard=json.loads((out_dir/"experiment_suite_dashboard.json").read_text())
+    idx=json.loads((out_dir/"artifact_index.json").read_text())
+    bounds=json.loads((out_dir/"claim_boundary_index.json").read_text())["boundaries"]
+    repro=json.loads((out_dir/"reproducibility_index.json").read_text())
+    assert "LOCAL-SERVER-USER-FILE-INGRESS-00" in {p["phase_id"] for p in dashboard["accepted_phases"]}
+    assert "Run-LOCAL-SERVER-USER-FILE-INGRESS00-Acceptance.ps1" in str(repro)
+    art=idx["phases"]["LOCAL-SERVER-USER-FILE-INGRESS-00"]
+    for a in ["local_user_file_ingress_manifest.json","local_user_file_consent_packet.json","local_user_file_path_audit_rows.jsonl","local_user_file_normalization_map.json","local_user_file_ingress_review_packet.json","ingress_failure_receipts.jsonl","normalized_source_bundle_manifest.json","source_span_map.json","gateway_failure_receipts.jsonl"]:
+        assert a in art
+    for b in ["User file ingress is not memory write.","Copied run-local source is not PMR storage.","Missing consent must fail closed.","Unsupported file types must fail closed."]:
         assert b in bounds

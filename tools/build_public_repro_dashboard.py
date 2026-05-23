@@ -1300,6 +1300,16 @@ SONYA_LOCAL_SERVER_GATEWAY_02_ARTIFACTS=["sonya_local_server_gateway_02_manifest
 SONYA_LOCAL_SERVER_GATEWAY_02_DASHBOARD_SUMMARY={"review_status":"accepted_as_sonya_local_server_gateway_02_scaffold","source_gateway_01_bound":True,"source_product_slice_02_bound":True,"localhost_gateway_smoke_only":True,"host_bound_to_loopback":True,"review_profile_tb_product_slice_02":True,"local_product_slice_02_invoked":True,"user_visible_review_receipt_present":True,"source_span_map_present":True,"claim_classification_packet_present":True,"receipt_ux_packet_present":True,"source_span_retrieval_present":True,"claim_classification_retrieval_present":True,"run_metadata_retrieved":True,"receipt_retrieved":True,"events_retrieved":True,"source_spans_retrieved":True,"claim_classifications_retrieved":True,"unknown_run_failed_closed":True,"retrieval_failure_receipt_present":True,"failure_receipts_present":True,"source_span_not_truth_certification":True,"quoted_source_text_not_accepted_evidence":True,"claim_classification_not_semantic_authority":True,"source_conflict_not_resolution":True,"review_receipt_not_final_answer":True,"gateway_response_not_final_answer":True,"run_retrieval_not_memory_write":True,"run_index_not_pmr_store":True,"tel_event_not_authority":True,"localhost_readiness_not_lan_readiness":True,"localhost_readiness_not_federation_authority":True,"provider_calls_not_performed":True,"network_calls_not_performed":True,"memory_write_blocked":True,"final_answer_not_released":True,"accepted_evidence_not_admitted":True,"deployment_blocked":True,"product_release_blocked":True,"blocked_claims_verified":True,"run_artifact_manifest_status":"verified","run_package_profile":"sonya_local_server_gateway_02","export_parity_passed":True}
 SONYA_LOCAL_SERVER_GATEWAY_02_CLAIMS_BLOCKED=["not final answer release","not accepted evidence","not truth certification","not provider call","not network authorization","not LAN readiness","not federation authorization","not memory write","not deployment authority","not product release"]
 
+
+LOCAL_SERVER_USER_FILE_INGRESS_00_COMMAND = r""".\experiments\Run-LOCAL-SERVER-USER-FILE-INGRESS00-Acceptance.ps1 `
+  -SourceRoot C:\UVLM\CoherenceLattice\examples\user_file_ingress_00 `
+  -OutputRoot C:\UVLM\run_artifacts\local_server_user_file_ingress_00 `
+  -LogDir C:\UVLM\run_artifacts\local_server_user_file_ingress_00_logs `
+  -CiMode"""
+LOCAL_SERVER_USER_FILE_INGRESS_00_ARTIFACTS=["local_user_file_ingress_manifest.json","local_user_file_consent_packet.json","local_user_file_path_audit_rows.jsonl","local_user_file_normalization_map.json","local_user_file_ingress_review_packet.json","ingress_failure_receipts.jsonl","normalized_user_sources/","normalized_source_bundle_manifest.json","sonya_local_server_gateway_02_manifest.json","sonya_local_server_gateway_02_review_packet.json","sonya_local_server_request_packet.json","sonya_local_server_response_packet.json","sonya_local_server_run_index_packet.json","sonya_local_server_retrieval_packet.json","sonya_local_server_source_span_retrieval_packet.json","sonya_local_server_claim_classification_retrieval_packet.json","source_span_map.json","claim_classification_packet.json","receipt_ux_packet.json","tb_product_slice_02_review_receipt.md","tb_product_slice_02_review_receipt.json","tel_events.jsonl","gateway_failure_receipts.jsonl","retrieval_failure_receipts.jsonl","artifact_inventory.json","run_artifact_manifest.json","export_bundle_manifest.json","export_bundle_parity_report.json","local_server_user_file_ingress_00_acceptance_receipt.json"]
+LOCAL_SERVER_USER_FILE_INGRESS_00_DASHBOARD_SUMMARY={"review_status":"accepted_as_local_server_user_file_ingress_scaffold","explicit_user_consent_observed":True,"path_audit_completed":True,"accepted_files_present":True,"rejected_files_visible":True,"normalized_sources_present":True,"source_span_review_invoked":True,"gateway_02_bound":True,"source_span_map_present":True,"claim_classification_packet_present":True,"ingress_failure_receipts_present":True,"authority_failure_receipts_present":True,"missing_consent_failed_closed":True,"unsupported_extension_failed_closed":True,"provider_call_failed_closed":True,"network_authorization_failed_closed":True,"memory_write_failed_closed":True,"final_answer_failed_closed":True,"product_release_failed_closed":True,"user_file_ingress_not_memory_write":True,"local_file_path_not_system_path":True,"normalized_copy_not_pmr_storage":True,"source_span_not_truth_certification":True,"quoted_source_text_not_accepted_evidence":True,"claim_classification_not_semantic_authority":True,"review_receipt_not_final_answer":True,"provider_calls_not_performed":True,"network_calls_not_performed":True,"memory_write_blocked":True,"final_answer_not_released":True,"accepted_evidence_not_admitted":True,"deployment_blocked":True,"product_release_blocked":True,"run_artifact_manifest_status":"verified","run_package_profile":"local_server_user_file_ingress_00","export_parity_passed":True}
+LOCAL_SERVER_USER_FILE_INGRESS_00_CLAIMS_BLOCKED=["not memory write","not PMR storage","not provider call","not network authorization","not final answer release","not accepted evidence","not truth certification","not deployment authority","not product release","not LAN readiness","not federation authorization"]
+
 PMR_00_COMMAND = r""".\experiments\Run-PMR00-Acceptance.ps1 `
   -OutputRoot C:\UVLM\run_artifacts\pmr_00 `
   -LogDir C:\UVLM\run_artifacts\pmr_00_logs `
@@ -3180,7 +3190,8 @@ ACCEPTED_PHASES = [
     },
 
     {"phase_id":"TB-PRODUCT-SLICE-01","repo":"pdxvoiceteacher/CoherenceLattice","status":"accepted","evidence_type":"runtime_smoke","product_posture":"fixture_only_multi_source_product_slice_without_final_answer_or_product_release","primary_artifacts":TB_PRODUCT_SLICE_01_ARTIFACTS,"dashboard_summary":TB_PRODUCT_SLICE_01_DASHBOARD_SUMMARY,"reproduction_command_summary":TB_PRODUCT_SLICE_01_COMMAND,"claims_blocked":TB_PRODUCT_SLICE_01_CLAIMS_BLOCKED,"claim_allowed":"fixture-only multi-source local product runtime smoke","reviewer_caution":"Cross-source conflict is not contradiction resolution."},
-            {"phase_id":"SONYA-LOCAL-SERVER-GATEWAY-02","repo":"pdxvoiceteacher/CoherenceLattice","status":"accepted","evidence_type":"runtime_smoke","product_posture":"localhost_only_source_span_gateway_without_truth_or_memory_authority","primary_artifacts":SONYA_LOCAL_SERVER_GATEWAY_02_ARTIFACTS,"dashboard_summary":SONYA_LOCAL_SERVER_GATEWAY_02_DASHBOARD_SUMMARY,"reproduction_command_summary":SONYA_LOCAL_SERVER_GATEWAY_02_COMMAND,"claims_blocked":SONYA_LOCAL_SERVER_GATEWAY_02_CLAIMS_BLOCKED,"claim_allowed":"localhost-only source-span gateway retrieval scaffold","reviewer_caution":"Source-span gateway review is not truth certification."},
+                {"phase_id":"LOCAL-SERVER-USER-FILE-INGRESS-00","repo":"pdxvoiceteacher/CoherenceLattice","status":"accepted","evidence_type":"runtime_smoke","product_posture":"explicit_local_user_file_ingress_without_memory_or_network_authority","primary_artifacts":LOCAL_SERVER_USER_FILE_INGRESS_00_ARTIFACTS,"dashboard_summary":LOCAL_SERVER_USER_FILE_INGRESS_00_DASHBOARD_SUMMARY,"reproduction_command_summary":LOCAL_SERVER_USER_FILE_INGRESS_00_COMMAND,"claims_blocked":LOCAL_SERVER_USER_FILE_INGRESS_00_CLAIMS_BLOCKED,"claim_allowed":"explicit local user file ingress runtime smoke","reviewer_caution":"User file ingress is not memory write."},
+{"phase_id":"SONYA-LOCAL-SERVER-GATEWAY-02","repo":"pdxvoiceteacher/CoherenceLattice","status":"accepted","evidence_type":"runtime_smoke","product_posture":"localhost_only_source_span_gateway_without_truth_or_memory_authority","primary_artifacts":SONYA_LOCAL_SERVER_GATEWAY_02_ARTIFACTS,"dashboard_summary":SONYA_LOCAL_SERVER_GATEWAY_02_DASHBOARD_SUMMARY,"reproduction_command_summary":SONYA_LOCAL_SERVER_GATEWAY_02_COMMAND,"claims_blocked":SONYA_LOCAL_SERVER_GATEWAY_02_CLAIMS_BLOCKED,"claim_allowed":"localhost-only source-span gateway retrieval scaffold","reviewer_caution":"Source-span gateway review is not truth certification."},
 {"phase_id":"TB-PRODUCT-SLICE-02","repo":"pdxvoiceteacher/CoherenceLattice","status":"accepted","evidence_type":"runtime_smoke","product_posture":"fixture_only_source_span_review_ux_without_final_answer_or_truth_certification","primary_artifacts":TB_PRODUCT_SLICE_02_ARTIFACTS,"dashboard_summary":TB_PRODUCT_SLICE_02_DASHBOARD_SUMMARY,"reproduction_command_summary":TB_PRODUCT_SLICE_02_COMMAND,"claims_blocked":TB_PRODUCT_SLICE_02_CLAIMS_BLOCKED,"claim_allowed":"fixture-only source-span review UX runtime smoke","reviewer_caution":"Source span is not truth certification."},
 {"phase_id":"SONYA-LOCAL-SERVER-GATEWAY-01","repo":"pdxvoiceteacher/CoherenceLattice","status":"accepted","evidence_type":"runtime_smoke","product_posture":"localhost_only_run_retrieval_without_memory_or_federation_authority","primary_artifacts":SONYA_LOCAL_SERVER_GATEWAY_01_ARTIFACTS,"dashboard_summary":SONYA_LOCAL_SERVER_GATEWAY_01_DASHBOARD_SUMMARY,"reproduction_command_summary":SONYA_LOCAL_SERVER_GATEWAY_01_COMMAND,"claims_blocked":SONYA_LOCAL_SERVER_GATEWAY_01_CLAIMS_BLOCKED,"claim_allowed":"localhost-only run retrieval smoke scaffold","reviewer_caution":"Run retrieval is not memory write."},
     {"phase_id":"SONYA-LOCAL-SERVER-GATEWAY-00","repo":"pdxvoiceteacher/CoherenceLattice","status":"accepted","evidence_type":"runtime_smoke","product_posture":"localhost_only_gateway_without_lan_or_federation_authority","primary_artifacts":SONYA_LOCAL_SERVER_GATEWAY_00_ARTIFACTS,"dashboard_summary":SONYA_LOCAL_SERVER_GATEWAY_00_DASHBOARD_SUMMARY,"reproduction_command_summary":SONYA_LOCAL_SERVER_GATEWAY_00_COMMAND,"claims_blocked":SONYA_LOCAL_SERVER_GATEWAY_00_CLAIMS_BLOCKED,"claim_allowed":"localhost-only Sonya gateway runtime smoke scaffold","reviewer_caution":"Localhost gateway is not LAN readiness."},
@@ -4033,6 +4044,31 @@ PLANNED_PHASES = [
     "Raw-model comparison baselines",
 ]
 BOUNDARIES = [
+    "LOCAL-SERVER-USER-FILE-INGRESS-00 is not federation authorization.",
+    "LOCAL-SERVER-USER-FILE-INGRESS-00 is not LAN readiness.",
+    "LOCAL-SERVER-USER-FILE-INGRESS-00 is not product release.",
+    "LOCAL-SERVER-USER-FILE-INGRESS-00 is not deployment authority.",
+    "LOCAL-SERVER-USER-FILE-INGRESS-00 is not truth certification.",
+    "LOCAL-SERVER-USER-FILE-INGRESS-00 is not accepted evidence.",
+    "LOCAL-SERVER-USER-FILE-INGRESS-00 is not final answer release.",
+    "LOCAL-SERVER-USER-FILE-INGRESS-00 is not network authorization.",
+    "LOCAL-SERVER-USER-FILE-INGRESS-00 is not provider call.",
+    "LOCAL-SERVER-USER-FILE-INGRESS-00 is not PMR storage.",
+    "LOCAL-SERVER-USER-FILE-INGRESS-00 is not memory write.",
+    "Recursive directory scan requires explicit opt-in.",
+    "Symlink traversal must fail closed.",
+    "Unsupported file types must fail closed.",
+    "Missing consent must fail closed.",
+    "Explicit consent does not authorize network access.",
+    "Explicit consent does not authorize provider calls.",
+    "Explicit consent does not authorize memory write.",
+    "Normalized source copy is not permanent storage.",
+    "Copied run-local source is not PMR storage.",
+    "File normalization is not evidence admission.",
+    "Path audit is required before review.",
+    "User-selected path is not global authority.",
+    "User file ingress is not memory write.",
+    "Local file path is not system path.",
     "SONYA-LOCAL-SERVER-GATEWAY-02 is not product release.",
     "SONYA-LOCAL-SERVER-GATEWAY-02 is not deployment authority.",
     "SONYA-LOCAL-SERVER-GATEWAY-02 is not memory write.",
@@ -4827,6 +4863,7 @@ def reproducibility_index() -> dict[str, Any]:
                 {"name": "Sonya Local Server Gateway acceptance", "command": SONYA_LOCAL_SERVER_GATEWAY_00_COMMAND},
                 {"name": "Sonya Local Server Gateway 01 acceptance", "command": SONYA_LOCAL_SERVER_GATEWAY_01_COMMAND},
                 {"name": "Sonya Local Server Gateway 02 acceptance", "command": SONYA_LOCAL_SERVER_GATEWAY_02_COMMAND},
+                {"name": "Local Server User File Ingress acceptance", "command": LOCAL_SERVER_USER_FILE_INGRESS_00_COMMAND},
                 {"name": "Local Sonya path portability acceptance", "command": LOCAL_SONYA_PATH_PORTABILITY_00_COMMAND},
                 {"name": "PMR doctrine acceptance", "command": PMR_00_COMMAND},
                 {"name": "PMR local artifact index acceptance", "command": PMR_01_COMMAND},
@@ -4929,6 +4966,7 @@ def artifact_index() -> dict[str, Any]:
         "SONYA-LOCAL-SERVER-GATEWAY-00": SONYA_LOCAL_SERVER_GATEWAY_00_ARTIFACTS,
         "SONYA-LOCAL-SERVER-GATEWAY-01": SONYA_LOCAL_SERVER_GATEWAY_01_ARTIFACTS,
         "SONYA-LOCAL-SERVER-GATEWAY-02": SONYA_LOCAL_SERVER_GATEWAY_02_ARTIFACTS,
+        "LOCAL-SERVER-USER-FILE-INGRESS-00": LOCAL_SERVER_USER_FILE_INGRESS_00_ARTIFACTS,
         "SONYA-ADAPTER-SMOKE-00": SONYA_ADAPTER_SMOKE_ARTIFACTS,
         "SONYA-LOCAL-FIXTURE-ADAPTER-01": SONYA_LOCAL_FIXTURE_ADAPTER_ARTIFACTS,
         "EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER-01": EVIDENCE_REVIEW_PACK_LOCAL_ADAPTER_ARTIFACTS,
@@ -5046,6 +5084,20 @@ def status_payload() -> dict[str, Any]:
         "not_claim_classification_retrieval_final_answer": True,
         "not_source_span_retrieval_truth_certification": True,
         "unknown_run_ids_fail_closed": True,
+        "local_server_user_file_ingress_00_indexed": True,
+        "not_user_file_ingress_memory_write": True,
+        "not_local_file_path_system_path": True,
+        "not_user_selected_path_global_authority": True,
+        "path_audit_required_before_review": True,
+        "not_file_normalization_evidence_admission": True,
+        "not_copied_run_local_source_pmr_storage": True,
+        "not_explicit_consent_memory_write_authorization": True,
+        "not_explicit_consent_provider_call_authorization": True,
+        "not_explicit_consent_network_authorization": True,
+        "missing_consent_fails_closed": True,
+        "unsupported_file_type_fails_closed": True,
+        "not_local_ingress_final_answer": True,
+        "not_local_ingress_product_release": True,
         "not_cross_source_conflict_resolution": True,
         "not_pattern_recurrence_proof": True,
         "not_morphology_deployment_authority": True,

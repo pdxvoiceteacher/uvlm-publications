@@ -2350,3 +2350,20 @@ def test_governed_artifact_cognition_sonya_local_server_gateway_02_updates_are_p
     assert status["not_claim_classification_semantic_authority"] is True
     assert status["not_gateway02_memory_write"] is True
     assert status["not_gateway02_product_release"] is True
+
+
+def test_governed_artifact_cognition_local_server_user_file_ingress_00_updates_are_present():
+    paper=(ROOT/"PUB_GOV_ARTIFACT_COG_01.md").read_text(encoding="utf-8")
+    artifact_table=(ROOT/"artifact_table.md").read_text(encoding="utf-8")
+    quickstart=(ROOT/"reviewer_quickstart.md").read_text(encoding="utf-8")
+    status=json.loads((ROOT/"status.json").read_text(encoding="utf-8"))
+    for phrase in ["LOCAL-SERVER-USER-FILE-INGRESS-00","User file ingress is not memory write.","Local file path is not system path.","Copied run-local source is not PMR storage.","File normalization is not evidence admission.","Missing consent must fail closed.","Unsupported file types must fail closed.","Explicit consent does not authorize memory write."]:
+        assert phrase in paper
+    for artifact in ["local_user_file_ingress_manifest.json","local_user_file_consent_packet.json","local_user_file_path_audit_rows.jsonl","local_user_file_normalization_map.json","local_user_file_ingress_review_packet.json","ingress_failure_receipts.jsonl","normalized_source_bundle_manifest.json"]:
+        assert artifact in artifact_table
+    assert "Run-LOCAL-SERVER-USER-FILE-INGRESS00-Acceptance.ps1" in quickstart
+    assert status["local_server_user_file_ingress_00_indexed"] is True
+    assert status["not_user_file_ingress_memory_write"] is True
+    assert status["not_copied_run_local_source_pmr_storage"] is True
+    assert status["missing_consent_fails_closed"] is True
+    assert status["unsupported_file_type_fails_closed"] is True

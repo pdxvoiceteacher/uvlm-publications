@@ -1,5 +1,30 @@
 # Claim Boundaries
 
+- LOCAL-SERVER-USER-FILE-INGRESS-00 is not federation authorization.
+- LOCAL-SERVER-USER-FILE-INGRESS-00 is not LAN readiness.
+- LOCAL-SERVER-USER-FILE-INGRESS-00 is not product release.
+- LOCAL-SERVER-USER-FILE-INGRESS-00 is not deployment authority.
+- LOCAL-SERVER-USER-FILE-INGRESS-00 is not truth certification.
+- LOCAL-SERVER-USER-FILE-INGRESS-00 is not accepted evidence.
+- LOCAL-SERVER-USER-FILE-INGRESS-00 is not final answer release.
+- LOCAL-SERVER-USER-FILE-INGRESS-00 is not network authorization.
+- LOCAL-SERVER-USER-FILE-INGRESS-00 is not provider call.
+- LOCAL-SERVER-USER-FILE-INGRESS-00 is not PMR storage.
+- LOCAL-SERVER-USER-FILE-INGRESS-00 is not memory write.
+- Recursive directory scan requires explicit opt-in.
+- Symlink traversal must fail closed.
+- Unsupported file types must fail closed.
+- Missing consent must fail closed.
+- Explicit consent does not authorize network access.
+- Explicit consent does not authorize provider calls.
+- Explicit consent does not authorize memory write.
+- Normalized source copy is not permanent storage.
+- Copied run-local source is not PMR storage.
+- File normalization is not evidence admission.
+- Path audit is required before review.
+- User-selected path is not global authority.
+- User file ingress is not memory write.
+- Local file path is not system path.
 - SONYA-LOCAL-SERVER-GATEWAY-02 is not product release.
 - SONYA-LOCAL-SERVER-GATEWAY-02 is not deployment authority.
 - SONYA-LOCAL-SERVER-GATEWAY-02 is not memory write.
