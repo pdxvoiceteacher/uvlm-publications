@@ -1,5 +1,25 @@
 # Claim Boundaries
 
+- TB-PRODUCT-SLICE-02 is not model superiority proof.
+- TB-PRODUCT-SLICE-02 is not hallucination reduction proof.
+- TB-PRODUCT-SLICE-02 is not product release.
+- TB-PRODUCT-SLICE-02 is not deployment authority.
+- TB-PRODUCT-SLICE-02 is not memory write.
+- TB-PRODUCT-SLICE-02 is not network authorization.
+- TB-PRODUCT-SLICE-02 is not provider call.
+- TB-PRODUCT-SLICE-02 is not truth certification.
+- TB-PRODUCT-SLICE-02 is not accepted evidence.
+- TB-PRODUCT-SLICE-02 is not final answer release.
+- Reviewer next actions are not deployment authority.
+- Uncertainty must remain visible.
+- Unsupported claims must remain visible.
+- Human-readable usefulness is required.
+- Review receipt is not final answer.
+- Claim segmentation is not semantic authority.
+- Source conflict is not contradiction resolution.
+- Source agreement is not proof.
+- Source span is not truth certification.
+- Quoted source text is not accepted evidence.
 - SONYA-LOCAL-SERVER-GATEWAY-01 is not truth certification.
 - SONYA-LOCAL-SERVER-GATEWAY-01 is not product release.
 - SONYA-LOCAL-SERVER-GATEWAY-01 is not deployment authority.

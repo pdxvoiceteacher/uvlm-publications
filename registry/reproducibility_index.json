@@ -59,6 +59,10 @@
         "command": ".\\experiments\\Run-TB-PRODUCT-SLICE01-Acceptance.ps1 `\n  -OutputRoot C:\\UVLM\\run_artifacts\\tb_product_slice_01 `\n  -LogDir C:\\UVLM\\run_artifacts\\tb_product_slice_01_logs `\n  -CiMode"
       },
       {
+        "name": "TB Product Slice 02 acceptance",
+        "command": ".\\experiments\\Run-TB-PRODUCT-SLICE02-Acceptance.ps1 `\n  -OutputRoot C:\\UVLM\\run_artifacts\\tb_product_slice_02 `\n  -LogDir C:\\UVLM\\run_artifacts\\tb_product_slice_02_logs `\n  -CiMode"
+      },
+      {
         "name": "Sonya Local Server Gateway acceptance",
         "command": ".\\experiments\\Run-SONYA-LOCAL-SERVER-GATEWAY00-Acceptance.ps1 `\n  -BindHost 127.0.0.1 `\n  -OutputRoot C:\\UVLM\\run_artifacts\\sonya_local_server_gateway_00 `\n  -LogDir C:\\UVLM\\run_artifacts\\sonya_local_server_gateway_00_logs `\n  -CiMode"
       },

@@ -1281,6 +1281,15 @@ SONYA_LOCAL_SERVER_GATEWAY_01_ARTIFACTS = [
 SONYA_LOCAL_SERVER_GATEWAY_01_DASHBOARD_SUMMARY = {"review_status":"accepted_as_sonya_local_server_gateway_01_scaffold","source_gateway_00_bound":True,"localhost_gateway_smoke_only":True,"host_bound_to_loopback":True,"retrieval_endpoints_present":True,"run_index_present":True,"run_metadata_retrieved":True,"receipt_retrieved":True,"events_retrieved":True,"unknown_run_failed_closed":True,"retrieval_failure_receipt_present":True,"run_retrieval_not_memory_write":True,"run_index_not_pmr_store":True,"receipt_retrieval_not_final_answer_release":True,"event_retrieval_not_authority":True,"gateway_response_not_final_answer":True,"localhost_readiness_not_lan_readiness":True,"localhost_readiness_not_federation_authority":True,"provider_calls_not_performed":True,"network_calls_not_performed":True,"memory_write_blocked":True,"final_answer_not_released":True,"accepted_evidence_not_admitted":True,"deployment_blocked":True,"product_release_blocked":True,"blocked_claims_verified":True,"run_artifact_manifest_status":"verified","export_parity_passed":True}
 SONYA_LOCAL_SERVER_GATEWAY_01_CLAIMS_BLOCKED=["not memory write","not PMR store","not provider call","not network authorization","not LAN readiness","not federation authorization","not final answer release","not accepted evidence","not deployment authority","not product release","not truth certification"]
 
+
+TB_PRODUCT_SLICE_02_COMMAND = r""".\experiments\Run-TB-PRODUCT-SLICE02-Acceptance.ps1 `
+  -OutputRoot C:\UVLM\run_artifacts\tb_product_slice_02 `
+  -LogDir C:\UVLM\run_artifacts\tb_product_slice_02_logs `
+  -CiMode"""
+TB_PRODUCT_SLICE_02_ARTIFACTS=["tb_product_slice_02_manifest.json","multi_source_bundle_manifest.json","sonya_candidate_packet.json","claim_evidence_map.json","source_link_map.json","source_span_map.json","claim_classification_packet.json","unsupported_claim_report.json","uncertainty_report.json","cross_source_conflict_report.json","receipt_ux_packet.json","tel_events.jsonl","prior_origin_use_packet.json","pmr_provenance_stub.json","review_receipt.json","review_receipt.md","tb_product_slice_02_review_packet.json","run_summary.md","artifact_inventory.json","run_artifact_manifest.json","export_bundle_manifest.json","export_bundle_parity_report.json","tb_product_slice_02_acceptance_receipt.json"]
+TB_PRODUCT_SLICE_02_DASHBOARD_SUMMARY={"review_status":"accepted_as_tb_product_slice_02_review_ux_runtime_smoke","source_span_map_present":True,"quoted_source_spans_visible":True,"claim_classification_present":True,"receipt_ux_packet_present":True,"human_readable_review_receipt_present":True,"supported_claims_detected":True,"unsupported_claims_detected":True,"conflicts_detected":True,"uncertainties_preserved":True,"reviewer_next_actions_visible":True,"source_span_not_truth_certification":True,"quoted_source_text_not_accepted_evidence":True,"claim_segmentation_not_semantic_authority":True,"source_agreement_not_proof":True,"source_conflict_not_resolution":True,"receipt_not_final_answer":True,"receipt_not_truth_certification":True,"tel_event_not_authority":True,"pmr_stub_not_memory_write":True,"gateway_retrieval_not_memory_write":True,"run_index_not_pmr_store":True,"final_answer_not_released":True,"accepted_evidence_not_admitted":True,"provider_calls_not_performed":True,"network_calls_not_performed":True,"memory_write_blocked":True,"deployment_blocked":True,"product_release_blocked":True,"run_artifact_manifest_status":"verified","run_package_profile":"tb_product_slice_02","export_parity_passed":True}
+TB_PRODUCT_SLICE_02_CLAIMS_BLOCKED=["not final answer release","not accepted evidence","not truth certification","not provider call","not network authorization","not memory write","not deployment authority","not product release","not hallucination reduction proof","not model superiority proof"]
+
 PMR_00_COMMAND = r""".\experiments\Run-PMR00-Acceptance.ps1 `
   -OutputRoot C:\UVLM\run_artifacts\pmr_00 `
   -LogDir C:\UVLM\run_artifacts\pmr_00_logs `
@@ -3161,7 +3170,8 @@ ACCEPTED_PHASES = [
     },
 
     {"phase_id":"TB-PRODUCT-SLICE-01","repo":"pdxvoiceteacher/CoherenceLattice","status":"accepted","evidence_type":"runtime_smoke","product_posture":"fixture_only_multi_source_product_slice_without_final_answer_or_product_release","primary_artifacts":TB_PRODUCT_SLICE_01_ARTIFACTS,"dashboard_summary":TB_PRODUCT_SLICE_01_DASHBOARD_SUMMARY,"reproduction_command_summary":TB_PRODUCT_SLICE_01_COMMAND,"claims_blocked":TB_PRODUCT_SLICE_01_CLAIMS_BLOCKED,"claim_allowed":"fixture-only multi-source local product runtime smoke","reviewer_caution":"Cross-source conflict is not contradiction resolution."},
-    {"phase_id":"SONYA-LOCAL-SERVER-GATEWAY-01","repo":"pdxvoiceteacher/CoherenceLattice","status":"accepted","evidence_type":"runtime_smoke","product_posture":"localhost_only_run_retrieval_without_memory_or_federation_authority","primary_artifacts":SONYA_LOCAL_SERVER_GATEWAY_01_ARTIFACTS,"dashboard_summary":SONYA_LOCAL_SERVER_GATEWAY_01_DASHBOARD_SUMMARY,"reproduction_command_summary":SONYA_LOCAL_SERVER_GATEWAY_01_COMMAND,"claims_blocked":SONYA_LOCAL_SERVER_GATEWAY_01_CLAIMS_BLOCKED,"claim_allowed":"localhost-only run retrieval smoke scaffold","reviewer_caution":"Run retrieval is not memory write."},
+        {"phase_id":"TB-PRODUCT-SLICE-02","repo":"pdxvoiceteacher/CoherenceLattice","status":"accepted","evidence_type":"runtime_smoke","product_posture":"fixture_only_source_span_review_ux_without_final_answer_or_truth_certification","primary_artifacts":TB_PRODUCT_SLICE_02_ARTIFACTS,"dashboard_summary":TB_PRODUCT_SLICE_02_DASHBOARD_SUMMARY,"reproduction_command_summary":TB_PRODUCT_SLICE_02_COMMAND,"claims_blocked":TB_PRODUCT_SLICE_02_CLAIMS_BLOCKED,"claim_allowed":"fixture-only source-span review UX runtime smoke","reviewer_caution":"Source span is not truth certification."},
+{"phase_id":"SONYA-LOCAL-SERVER-GATEWAY-01","repo":"pdxvoiceteacher/CoherenceLattice","status":"accepted","evidence_type":"runtime_smoke","product_posture":"localhost_only_run_retrieval_without_memory_or_federation_authority","primary_artifacts":SONYA_LOCAL_SERVER_GATEWAY_01_ARTIFACTS,"dashboard_summary":SONYA_LOCAL_SERVER_GATEWAY_01_DASHBOARD_SUMMARY,"reproduction_command_summary":SONYA_LOCAL_SERVER_GATEWAY_01_COMMAND,"claims_blocked":SONYA_LOCAL_SERVER_GATEWAY_01_CLAIMS_BLOCKED,"claim_allowed":"localhost-only run retrieval smoke scaffold","reviewer_caution":"Run retrieval is not memory write."},
     {"phase_id":"SONYA-LOCAL-SERVER-GATEWAY-00","repo":"pdxvoiceteacher/CoherenceLattice","status":"accepted","evidence_type":"runtime_smoke","product_posture":"localhost_only_gateway_without_lan_or_federation_authority","primary_artifacts":SONYA_LOCAL_SERVER_GATEWAY_00_ARTIFACTS,"dashboard_summary":SONYA_LOCAL_SERVER_GATEWAY_00_DASHBOARD_SUMMARY,"reproduction_command_summary":SONYA_LOCAL_SERVER_GATEWAY_00_COMMAND,"claims_blocked":SONYA_LOCAL_SERVER_GATEWAY_00_CLAIMS_BLOCKED,"claim_allowed":"localhost-only Sonya gateway runtime smoke scaffold","reviewer_caution":"Localhost gateway is not LAN readiness."},
 
     {
@@ -4012,6 +4022,26 @@ PLANNED_PHASES = [
     "Raw-model comparison baselines",
 ]
 BOUNDARIES = [
+    "TB-PRODUCT-SLICE-02 is not model superiority proof.",
+    "TB-PRODUCT-SLICE-02 is not hallucination reduction proof.",
+    "TB-PRODUCT-SLICE-02 is not product release.",
+    "TB-PRODUCT-SLICE-02 is not deployment authority.",
+    "TB-PRODUCT-SLICE-02 is not memory write.",
+    "TB-PRODUCT-SLICE-02 is not network authorization.",
+    "TB-PRODUCT-SLICE-02 is not provider call.",
+    "TB-PRODUCT-SLICE-02 is not truth certification.",
+    "TB-PRODUCT-SLICE-02 is not accepted evidence.",
+    "TB-PRODUCT-SLICE-02 is not final answer release.",
+    "Reviewer next actions are not deployment authority.",
+    "Uncertainty must remain visible.",
+    "Unsupported claims must remain visible.",
+    "Human-readable usefulness is required.",
+    "Review receipt is not final answer.",
+    "Claim segmentation is not semantic authority.",
+    "Source conflict is not contradiction resolution.",
+    "Source agreement is not proof.",
+    "Source span is not truth certification.",
+    "Quoted source text is not accepted evidence.",
     "SONYA-LOCAL-SERVER-GATEWAY-01 is not truth certification.",
     "SONYA-LOCAL-SERVER-GATEWAY-01 is not product release.",
     "SONYA-LOCAL-SERVER-GATEWAY-01 is not deployment authority.",
@@ -4763,6 +4793,7 @@ def reproducibility_index() -> dict[str, Any]:
                 {"name": "RW-COMP-03 acceptance", "command": RW_COMP_03_COMMAND},
                 {"name": "TB Product Slice acceptance", "command": TB_PRODUCT_SLICE_00_COMMAND},
                 {"name": "TB Product Slice 01 acceptance", "command": TB_PRODUCT_SLICE_01_COMMAND},
+                {"name": "TB Product Slice 02 acceptance", "command": TB_PRODUCT_SLICE_02_COMMAND},
                 {"name": "Sonya Local Server Gateway acceptance", "command": SONYA_LOCAL_SERVER_GATEWAY_00_COMMAND},
                 {"name": "Sonya Local Server Gateway 01 acceptance", "command": SONYA_LOCAL_SERVER_GATEWAY_01_COMMAND},
                 {"name": "Local Sonya path portability acceptance", "command": LOCAL_SONYA_PATH_PORTABILITY_00_COMMAND},
@@ -4863,6 +4894,7 @@ def artifact_index() -> dict[str, Any]:
         "LOCAL-SONYA-PATH-PORTABILITY-00": LOCAL_SONYA_PATH_PORTABILITY_00_ARTIFACTS,
         "TB-PRODUCT-SLICE-00": TB_PRODUCT_SLICE_00_ARTIFACTS,
         "TB-PRODUCT-SLICE-01": TB_PRODUCT_SLICE_01_ARTIFACTS,
+        "TB-PRODUCT-SLICE-02": TB_PRODUCT_SLICE_02_ARTIFACTS,
         "SONYA-LOCAL-SERVER-GATEWAY-00": SONYA_LOCAL_SERVER_GATEWAY_00_ARTIFACTS,
         "SONYA-LOCAL-SERVER-GATEWAY-01": SONYA_LOCAL_SERVER_GATEWAY_01_ARTIFACTS,
         "SONYA-ADAPTER-SMOKE-00": SONYA_ADAPTER_SMOKE_ARTIFACTS,
@@ -4941,6 +4973,15 @@ def status_payload() -> dict[str, Any]:
         "not_product_slice_01_truth_certification": True,
         "not_product_slice_01_product_release": True,
         "not_product_slice_01_provider_call": True,
+        "tb_product_slice_02_indexed": True,
+        "not_source_span_truth_certification": True,
+        "not_quoted_source_text_accepted_evidence": True,
+        "not_source_agreement_proof": True,
+        "not_source_conflict_resolution": True,
+        "not_claim_segmentation_semantic_authority": True,
+        "not_review_receipt_final_answer": True,
+        "not_reviewer_next_actions_deployment_authority": True,
+        "not_tb_product_slice_02_product_release": True,
         "sonya_local_server_gateway_00_indexed": True,
         "not_localhost_lan_readiness": True,
         "not_localhost_federation_authority": True,

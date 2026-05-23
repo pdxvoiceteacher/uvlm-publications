@@ -118,6 +118,7 @@ REQUIRED_PHASES = {
     "LOCAL-SONYA-PATH-PORTABILITY-00",
     "TB-PRODUCT-SLICE-00",
     "TB-PRODUCT-SLICE-01",
+    "TB-PRODUCT-SLICE-02",
     "SONYA-LOCAL-SERVER-GATEWAY-00",
     "SONYA-LOCAL-SERVER-GATEWAY-01",
 }
@@ -2434,4 +2435,19 @@ def test_sonya_local_server_gateway_01_updates_present(tmp_path):
     for a in ["sonya_local_server_gateway_01_manifest.json","sonya_local_server_run_index_packet.json","sonya_local_server_retrieval_packet.json","sonya_local_server_gateway_01_review_packet.json","retrieval_failure_receipts.jsonl","tb_product_slice_01_review_receipt.md"]:
         assert a in art
     for b in ["Run retrieval is not memory write.","Run index is not PMR store.","Receipt retrieval is not final answer release.","Event retrieval is not authority.","Unknown run IDs must fail closed."]:
+        assert b in bounds
+
+
+def test_tb_product_slice_02_updates_present(tmp_path):
+    out_dir,_=run_builder(tmp_path)
+    dashboard=json.loads((out_dir/"experiment_suite_dashboard.json").read_text())
+    idx=json.loads((out_dir/"artifact_index.json").read_text())
+    bounds=json.loads((out_dir/"claim_boundary_index.json").read_text())["boundaries"]
+    repro=json.loads((out_dir/"reproducibility_index.json").read_text())
+    assert "TB-PRODUCT-SLICE-02" in {p["phase_id"] for p in dashboard["accepted_phases"]}
+    assert "Run-TB-PRODUCT-SLICE02-Acceptance.ps1" in str(repro)
+    art=idx["phases"]["TB-PRODUCT-SLICE-02"]
+    for a in ["tb_product_slice_02_manifest.json","source_span_map.json","claim_classification_packet.json","receipt_ux_packet.json","review_receipt.md","tb_product_slice_02_review_packet.json"]:
+        assert a in art
+    for b in ["Source span is not truth certification.","Quoted source text is not accepted evidence.","Source conflict is not contradiction resolution.","Review receipt is not final answer.","Unsupported claims must remain visible."]:
         assert b in bounds

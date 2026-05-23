@@ -544,3 +544,7 @@ SONYA-LOCAL-SERVER-GATEWAY-00 is a localhost-only Sonya gateway runtime smoke. L
 
 ## SONYA-LOCAL-SERVER-GATEWAY-01
 Run retrieval is not memory write. Run index is not PMR store. Receipt retrieval is not final answer release. Event retrieval is not authority. Unknown run IDs must fail closed. Retrieval failure receipt is not permission to proceed. Localhost gateway is not LAN readiness. Localhost readiness is not federation authority.
+
+
+## TB-PRODUCT-SLICE-02
+Source span is not truth certification. Quoted source text is not accepted evidence. Source agreement is not proof. Source conflict is not contradiction resolution. Claim segmentation is not semantic authority. Review receipt is not final answer. Unsupported claims must remain visible. Uncertainty must remain visible. Conflict must remain visible.
