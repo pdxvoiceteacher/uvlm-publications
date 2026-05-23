@@ -2299,3 +2299,37 @@ def test_governed_validator_indexes_tb_product_slice_01():
     assert status["not_product_slice_01_final_answer"] is True
     assert status["not_product_slice_01_accepted_evidence"] is True
     assert status["not_cross_source_conflict_resolution"] is True
+
+
+def test_governed_artifact_cognition_sonya_local_server_gateway_01_updates_are_present():
+    paper=(ROOT/"PUB_GOV_ARTIFACT_COG_01.md").read_text(encoding="utf-8")
+    artifact_table=(ROOT/"artifact_table.md").read_text(encoding="utf-8")
+    quickstart=(ROOT/"reviewer_quickstart.md").read_text(encoding="utf-8")
+    status=json.loads((ROOT/"status.json").read_text(encoding="utf-8"))
+    for phrase in ["SONYA-LOCAL-SERVER-GATEWAY-01","Run retrieval is not memory write.","Run index is not PMR store.","Receipt retrieval is not final answer release.","Event retrieval is not authority.","Unknown run IDs must fail closed."]:
+        assert phrase in paper
+    for artifact in ["sonya_local_server_gateway_01_manifest.json","sonya_local_server_run_index_packet.json","sonya_local_server_retrieval_packet.json","sonya_local_server_gateway_01_review_packet.json","retrieval_failure_receipts.jsonl"]:
+        assert artifact in artifact_table
+    assert "Run-SONYA-LOCAL-SERVER-GATEWAY01-Acceptance.ps1" in quickstart
+    assert status["sonya_local_server_gateway_01_indexed"] is True
+    assert status["not_run_retrieval_memory_write"] is True
+    assert status["not_run_index_pmr_store"] is True
+    assert status["not_receipt_retrieval_final_answer"] is True
+    assert status["not_event_retrieval_authority"] is True
+    assert status["not_unknown_run_permission"] is True
+
+
+def test_governed_artifact_cognition_tb_product_slice_02_updates_are_present():
+    paper=(ROOT/"PUB_GOV_ARTIFACT_COG_01.md").read_text(encoding="utf-8")
+    artifact_table=(ROOT/"artifact_table.md").read_text(encoding="utf-8")
+    quickstart=(ROOT/"reviewer_quickstart.md").read_text(encoding="utf-8")
+    status=json.loads((ROOT/"status.json").read_text(encoding="utf-8"))
+    for phrase in ["TB-PRODUCT-SLICE-02","Source span is not truth certification.","Quoted source text is not accepted evidence.","Source agreement is not proof.","Source conflict is not contradiction resolution.","Claim segmentation is not semantic authority.","Review receipt is not final answer.","Unsupported claims must remain visible.","Uncertainty must remain visible.","Conflict must remain visible."]:
+        assert phrase in paper
+    for artifact in ["tb_product_slice_02_manifest.json","source_span_map.json","claim_classification_packet.json","receipt_ux_packet.json","review_receipt.md"]:
+        assert artifact in artifact_table
+    assert "Run-TB-PRODUCT-SLICE02-Acceptance.ps1" in quickstart
+    assert status["tb_product_slice_02_indexed"] is True
+    assert status["not_source_span_truth_certification"] is True
+    assert status["not_quoted_source_text_accepted_evidence"] is True
+    assert status["not_source_conflict_resolution"] is True
