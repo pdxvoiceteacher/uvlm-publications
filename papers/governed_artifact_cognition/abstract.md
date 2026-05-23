@@ -174,3 +174,23 @@ Human participant packet is not metaphysical personhood claim. Consent can const
 ```
 
 SPEC-FRESHNESS-REGISTRY-00 and FUNDAMENTAL-COHERENCE-METRICS-00 extend governance and metric-science layers; coherence metric is not truth score.
+
+
+## SONYA-LOCAL-SERVER-GATEWAY-01
+Run retrieval is not memory write. Run index is not PMR store. Receipt retrieval is not final answer release. Event retrieval is not authority. Unknown run IDs must fail closed. Retrieval failure receipt is not permission to proceed. Localhost gateway is not LAN readiness. Localhost readiness is not federation authority.
+
+
+## TB-PRODUCT-SLICE-02
+Source span is not truth certification. Quoted source text is not accepted evidence. Source agreement is not proof. Source conflict is not contradiction resolution. Claim segmentation is not semantic authority. Review receipt is not final answer. Unsupported claims must remain visible. Uncertainty must remain visible. Conflict must remain visible.
+
+
+## SONYA-LOCAL-SERVER-GATEWAY-02
+Source-span gateway review is not truth certification. Claim classification is not semantic authority. Claim classification retrieval is not final answer. Quoted source text is not accepted evidence. Unknown run IDs must fail closed. Failure receipt is not permission to proceed.
+
+
+## LOCAL-SERVER-USER-FILE-INGRESS-00
+User file ingress is not memory write. Local file path is not system path. File normalization is not evidence admission. Copied run-local source is not PMR storage. Missing consent must fail closed. Unsupported file types must fail closed. Explicit consent does not authorize memory write.
+
+
+## PMR-CONTEXT-AVAILABILITY-LEDGER-00
+Expiration is not nonexistence. Known inaccessible content is not unknown content. Summary is not source. Derived summary is not source evidence. Reupload request is not user obligation. File metadata may be sensitive. Hash is not content access. PMR ledger is not deletion authority. PMR ledger is not pruning authority.
