@@ -1,5 +1,63 @@
 # Claim Boundaries
 
+- SONYA-LOCAL-SERVER-GATEWAY-02 is not product release.
+- SONYA-LOCAL-SERVER-GATEWAY-02 is not deployment authority.
+- SONYA-LOCAL-SERVER-GATEWAY-02 is not memory write.
+- SONYA-LOCAL-SERVER-GATEWAY-02 is not federation authorization.
+- SONYA-LOCAL-SERVER-GATEWAY-02 is not LAN readiness.
+- SONYA-LOCAL-SERVER-GATEWAY-02 is not network authorization.
+- SONYA-LOCAL-SERVER-GATEWAY-02 is not provider call.
+- SONYA-LOCAL-SERVER-GATEWAY-02 is not truth certification.
+- SONYA-LOCAL-SERVER-GATEWAY-02 is not accepted evidence.
+- SONYA-LOCAL-SERVER-GATEWAY-02 is not final answer release.
+- Product-release requests must fail closed.
+- Final-answer requests must fail closed.
+- Memory-write requests must fail closed.
+- Network-authorization requests must fail closed.
+- Provider-call requests must fail closed.
+- Source-span retrieval is not truth certification.
+- Claim classification retrieval is not final answer.
+- Source-span gateway review is not truth certification.
+- Claim classification is not semantic authority.
+- TB-PRODUCT-SLICE-02 is not model superiority proof.
+- TB-PRODUCT-SLICE-02 is not hallucination reduction proof.
+- TB-PRODUCT-SLICE-02 is not product release.
+- TB-PRODUCT-SLICE-02 is not deployment authority.
+- TB-PRODUCT-SLICE-02 is not memory write.
+- TB-PRODUCT-SLICE-02 is not network authorization.
+- TB-PRODUCT-SLICE-02 is not provider call.
+- TB-PRODUCT-SLICE-02 is not truth certification.
+- TB-PRODUCT-SLICE-02 is not accepted evidence.
+- TB-PRODUCT-SLICE-02 is not final answer release.
+- Reviewer next actions are not deployment authority.
+- Uncertainty must remain visible.
+- Unsupported claims must remain visible.
+- Human-readable usefulness is required.
+- Review receipt is not final answer.
+- Claim segmentation is not semantic authority.
+- Source conflict is not contradiction resolution.
+- Source agreement is not proof.
+- Source span is not truth certification.
+- Quoted source text is not accepted evidence.
+- SONYA-LOCAL-SERVER-GATEWAY-01 is not truth certification.
+- SONYA-LOCAL-SERVER-GATEWAY-01 is not product release.
+- SONYA-LOCAL-SERVER-GATEWAY-01 is not deployment authority.
+- SONYA-LOCAL-SERVER-GATEWAY-01 is not accepted evidence.
+- SONYA-LOCAL-SERVER-GATEWAY-01 is not final answer release.
+- SONYA-LOCAL-SERVER-GATEWAY-01 is not federation authorization.
+- SONYA-LOCAL-SERVER-GATEWAY-01 is not LAN readiness.
+- SONYA-LOCAL-SERVER-GATEWAY-01 is not network authorization.
+- SONYA-LOCAL-SERVER-GATEWAY-01 is not provider call.
+- SONYA-LOCAL-SERVER-GATEWAY-01 is not PMR store.
+- SONYA-LOCAL-SERVER-GATEWAY-01 is not memory write.
+- Retrieval endpoints must remain loopback-only.
+- Retrieval failure receipt is not permission to proceed.
+- Unknown run IDs must fail closed.
+- Event retrieval is not authority.
+- Receipt retrieval is not final answer release.
+- Local run lookup is not federation.
+- Run retrieval is not memory write.
+- Run index is not PMR store.
 - Sonya Adapter Contract Registry: Adapter capability is not adapter authorization.
 - Sonya Adapter Contract Registry keeps all adapters disabled or blocked; all adapters disabled or blocked means not adapter execution and not network authorization.
 - Sonya Adapter Contract Registry boundaries: not adapter execution, not network authorization, not remote provider call, not model weight training.
@@ -105,6 +163,13 @@
 - TB-PRODUCT-SLICE-00 is not hallucination reduction proof.
 - TB-PRODUCT-SLICE-00 is not model superiority proof.
 - TB-PRODUCT-SLICE-01 is not model superiority proof.
+- Localhost gateway is not LAN readiness.
+- Localhost readiness is not federation authority.
+- Local server execution is not deployment authority.
+- Gateway response is not final answer.
+- Failure receipt is not permission to proceed.
+- Local gateway must fail closed on provider-call attempts.
+- Local gateway must fail closed on memory-write attempts.
 - TB-PRODUCT-SLICE-01 is not hallucination reduction proof.
 - TB-PRODUCT-SLICE-01 is not product release.
 - TB-PRODUCT-SLICE-01 is not deployment authority.
