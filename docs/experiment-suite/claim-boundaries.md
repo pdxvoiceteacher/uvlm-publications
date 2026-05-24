@@ -1,5 +1,37 @@
 # Claim Boundaries
 
+- PMR-CONTEXT-AVAILABILITY-LEDGER-00 is not product release.
+- PMR-CONTEXT-AVAILABILITY-LEDGER-00 is not accepted evidence.
+- PMR-CONTEXT-AVAILABILITY-LEDGER-00 is not final answer release.
+- PMR-CONTEXT-AVAILABILITY-LEDGER-00 is not federation authorization.
+- PMR-CONTEXT-AVAILABILITY-LEDGER-00 is not network authorization.
+- PMR-CONTEXT-AVAILABILITY-LEDGER-00 is not provider call.
+- PMR-CONTEXT-AVAILABILITY-LEDGER-00 is not pruning authority.
+- PMR-CONTEXT-AVAILABILITY-LEDGER-00 is not deletion authority.
+- PMR-CONTEXT-AVAILABILITY-LEDGER-00 is not truth certification.
+- PMR-CONTEXT-AVAILABILITY-LEDGER-00 is not memory write.
+- PMR-CONTEXT-AVAILABILITY-LEDGER-00 is not source content recovery.
+- PMR ledger is not product release.
+- PMR ledger is not federation authority.
+- PMR ledger is not pruning authority.
+- PMR ledger is not deletion authority.
+- Reuploaded content must preserve lineage without overwriting prior-source identity.
+- Expired content cannot be quoted as currently inspected.
+- Source availability is not truth status.
+- Dependency lineage is not canon lineage.
+- Ledger entry is not PMR storage authority.
+- Ledger entry is not memory write.
+- Hash is not content access.
+- Provenance is not disclosure.
+- Filename visibility requires scope.
+- File metadata may be sensitive.
+- Reupload priority is not runtime authority.
+- Reupload request is not user obligation.
+- Derived summary is not source evidence.
+- Summary is not source.
+- Context availability is not source content.
+- Expiration is not nonexistence.
+- Known inaccessible content is not unknown content.
 - LOCAL-SERVER-USER-FILE-INGRESS-00 is not federation authorization.
 - LOCAL-SERVER-USER-FILE-INGRESS-00 is not LAN readiness.
 - LOCAL-SERVER-USER-FILE-INGRESS-00 is not product release.

@@ -2367,3 +2367,19 @@ def test_governed_artifact_cognition_local_server_user_file_ingress_00_updates_a
     assert status["not_copied_run_local_source_pmr_storage"] is True
     assert status["missing_consent_fails_closed"] is True
     assert status["unsupported_file_type_fails_closed"] is True
+
+
+def test_governed_artifact_cognition_pmr_context_availability_ledger_00_updates_are_present():
+    paper=(ROOT/"PUB_GOV_ARTIFACT_COG_01.md").read_text(encoding="utf-8")
+    artifact_table=(ROOT/"artifact_table.md").read_text(encoding="utf-8")
+    quickstart=(ROOT/"reviewer_quickstart.md").read_text(encoding="utf-8")
+    status=json.loads((ROOT/"status.json").read_text(encoding="utf-8"))
+    for phrase in ["PMR-CONTEXT-AVAILABILITY-LEDGER-00","Expiration is not nonexistence.","Known inaccessible content is not unknown content.","Summary is not source.","Derived summary is not source evidence.","Reupload request is not user obligation.","File metadata may be sensitive.","Hash is not content access.","PMR ledger is not deletion authority.","PMR ledger is not pruning authority."]:
+        assert phrase in paper
+    for artifact in ["pmr_context_availability_ledger.json","pmr_context_dependency_map.json","pmr_context_reupload_queue.json","pmr_context_access_status_report.md","pmr_context_availability_review_packet.json"]:
+        assert artifact in artifact_table
+    assert "Run-PMR-CONTEXT-AVAILABILITY-LEDGER00-Acceptance.ps1" in quickstart
+    assert status["pmr_context_availability_ledger_00_indexed"] is True
+    assert status["not_expiration_nonexistence"] is True
+    assert status["not_summary_source"] is True
+    assert status["not_hash_content_access"] is True

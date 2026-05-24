@@ -878,3 +878,15 @@ User file ingress is not memory write. Local file path is not system path. File 
 - `normalized_source_bundle_manifest.json`
 
 Run-LOCAL-SERVER-USER-FILE-INGRESS00-Acceptance.ps1
+
+
+## PMR-CONTEXT-AVAILABILITY-LEDGER-00
+Expiration is not nonexistence. Known inaccessible content is not unknown content. Summary is not source. Derived summary is not source evidence. Reupload request is not user obligation. File metadata may be sensitive. Hash is not content access. PMR ledger is not deletion authority. PMR ledger is not pruning authority.
+
+- `pmr_context_availability_ledger.json`
+- `pmr_context_dependency_map.json`
+- `pmr_context_reupload_queue.json`
+- `pmr_context_access_status_report.md`
+- `pmr_context_availability_review_packet.json`
+
+Run-PMR-CONTEXT-AVAILABILITY-LEDGER00-Acceptance.ps1

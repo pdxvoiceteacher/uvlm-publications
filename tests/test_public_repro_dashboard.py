@@ -123,6 +123,7 @@ REQUIRED_PHASES = {
     "SONYA-LOCAL-SERVER-GATEWAY-01",
     "SONYA-LOCAL-SERVER-GATEWAY-02",
     "LOCAL-SERVER-USER-FILE-INGRESS-00",
+    "PMR-CONTEXT-AVAILABILITY-LEDGER-00",
 }
 
 REQUIRED_COMMAND_FRAGMENTS = (
@@ -172,6 +173,7 @@ REQUIRED_COMMAND_FRAGMENTS = (
     "Run-SONYA-LOCAL-SERVER-GATEWAY01-Acceptance.ps1",
     "Run-SONYA-LOCAL-SERVER-GATEWAY02-Acceptance.ps1",
     "Run-LOCAL-SERVER-USER-FILE-INGRESS00-Acceptance.ps1",
+    "Run-PMR-CONTEXT-AVAILABILITY-LEDGER00-Acceptance.ps1",
 )
 STALE_COMMAND_FRAGMENTS = (
     "tests/test_sonya_aegis_smoke_02.py",
@@ -2484,4 +2486,19 @@ def test_local_server_user_file_ingress_00_updates_present(tmp_path):
     for a in ["local_user_file_ingress_manifest.json","local_user_file_consent_packet.json","local_user_file_path_audit_rows.jsonl","local_user_file_normalization_map.json","local_user_file_ingress_review_packet.json","ingress_failure_receipts.jsonl","normalized_source_bundle_manifest.json","source_span_map.json","gateway_failure_receipts.jsonl"]:
         assert a in art
     for b in ["User file ingress is not memory write.","Copied run-local source is not PMR storage.","Missing consent must fail closed.","Unsupported file types must fail closed."]:
+        assert b in bounds
+
+
+def test_pmr_context_availability_ledger_00_updates_present(tmp_path):
+    out_dir,_=run_builder(tmp_path)
+    dashboard=json.loads((out_dir/"experiment_suite_dashboard.json").read_text())
+    idx=json.loads((out_dir/"artifact_index.json").read_text())
+    bounds=json.loads((out_dir/"claim_boundary_index.json").read_text())["boundaries"]
+    repro=json.loads((out_dir/"reproducibility_index.json").read_text())
+    assert "PMR-CONTEXT-AVAILABILITY-LEDGER-00" in {p["phase_id"] for p in dashboard["accepted_phases"]}
+    assert "Run-PMR-CONTEXT-AVAILABILITY-LEDGER00-Acceptance.ps1" in str(repro)
+    art=idx["phases"]["PMR-CONTEXT-AVAILABILITY-LEDGER-00"]
+    for a in ["pmr_context_availability_ledger.json","pmr_context_dependency_map.json","pmr_context_reupload_queue.json","pmr_context_access_status_report.md","pmr_context_availability_review_packet.json"]:
+        assert a in art
+    for b in ["Expiration is not nonexistence.","Known inaccessible content is not unknown content.","Summary is not source.","Hash is not content access.","PMR ledger is not deletion authority.","PMR ledger is not pruning authority."]:
         assert b in bounds

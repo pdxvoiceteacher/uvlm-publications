@@ -79,6 +79,10 @@
         "command": ".\\experiments\\Run-LOCAL-SERVER-USER-FILE-INGRESS00-Acceptance.ps1 `\n  -SourceRoot C:\\UVLM\\CoherenceLattice\\examples\\user_file_ingress_00 `\n  -OutputRoot C:\\UVLM\\run_artifacts\\local_server_user_file_ingress_00 `\n  -LogDir C:\\UVLM\\run_artifacts\\local_server_user_file_ingress_00_logs `\n  -CiMode"
       },
       {
+        "name": "PMR Context Availability Ledger acceptance",
+        "command": ".\\experiments\\Run-PMR-CONTEXT-AVAILABILITY-LEDGER00-Acceptance.ps1 `\n  -OutputRoot C:\\UVLM\\run_artifacts\\pmr_context_availability_ledger_00 `\n  -LogDir C:\\UVLM\\run_artifacts\\pmr_context_availability_ledger_00_logs `\n  -CiMode"
+      },
+      {
         "name": "Local Sonya path portability acceptance",
         "command": ".\\experiments\\Run-LOCAL-SONYA-PATH-PORTABILITY00-Acceptance.ps1 `\n  -OutputRoot C:\\UVLM\\run_artifacts\\local_sonya_path_portability_00 `\n  -LogDir C:\\UVLM\\run_artifacts\\local_sonya_path_portability_00_logs `\n  -CiMode"
       },

@@ -675,6 +675,19 @@
       "export_bundle_parity_report.json",
       "local_server_user_file_ingress_00_acceptance_receipt.json"
     ],
+    "PMR-CONTEXT-AVAILABILITY-LEDGER-00": [
+      "pmr_context_availability_ledger.json",
+      "pmr_context_dependency_map.json",
+      "pmr_context_reupload_queue.json",
+      "pmr_context_access_status_report.md",
+      "pmr_context_availability_review_packet.json",
+      "triadic_run_manifest.json",
+      "artifact_inventory.json",
+      "run_artifact_manifest.json",
+      "export_bundle_manifest.json",
+      "export_bundle_parity_report.json",
+      "pmr_context_availability_ledger_00_acceptance_receipt.json"
+    ],
     "SONYA-ADAPTER-SMOKE-00": [
       "sonya_adapter_smoke_packet.json",
       "sonya_adapter_smoke_review_packet.json",
