@@ -890,3 +890,15 @@ Expiration is not nonexistence. Known inaccessible content is not unknown conten
 - `pmr_context_availability_review_packet.json`
 
 Run-PMR-CONTEXT-AVAILABILITY-LEDGER00-Acceptance.ps1
+
+
+## LOCAL-SERVER-USER-FILE-INGRESS-01
+Explicit file-list ingress is not memory write. Duplicate input audit is not duplicate input normalization. A field claiming deduplication must be backed by normalized-output evidence. PMR context links must not multiply duplicate source paths when deduplicate_source_paths is true. Nonexistent paths must fail closed.
+
+- `local_user_file_ingress_01_manifest.json`
+- `local_user_file_ingress_request_packet.json`
+- `local_user_file_pmr_context_link_packet.json`
+- `local_user_file_ingress_receipt_ux_packet.json`
+- `local_user_file_ingress_01_review_packet.json`
+
+Run-LOCAL-SERVER-USER-FILE-INGRESS01-Acceptance.ps1

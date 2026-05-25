@@ -2383,3 +2383,19 @@ def test_governed_artifact_cognition_pmr_context_availability_ledger_00_updates_
     assert status["not_expiration_nonexistence"] is True
     assert status["not_summary_source"] is True
     assert status["not_hash_content_access"] is True
+
+
+def test_governed_artifact_cognition_local_server_user_file_ingress_01_updates_are_present():
+    paper=(ROOT/"PUB_GOV_ARTIFACT_COG_01.md").read_text(encoding="utf-8")
+    artifact_table=(ROOT/"artifact_table.md").read_text(encoding="utf-8")
+    quickstart=(ROOT/"reviewer_quickstart.md").read_text(encoding="utf-8")
+    status=json.loads((ROOT/"status.json").read_text(encoding="utf-8"))
+    for phrase in ["LOCAL-SERVER-USER-FILE-INGRESS-01","Explicit file-list ingress is not memory write.","Duplicate input audit is not duplicate input normalization.","A field claiming deduplication must be backed by normalized-output evidence.","PMR context links must not multiply duplicate source paths when deduplicate_source_paths is true.","Nonexistent paths must fail closed."]:
+        assert phrase in paper
+    for artifact in ["local_user_file_ingress_01_manifest.json","local_user_file_ingress_request_packet.json","local_user_file_pmr_context_link_packet.json","local_user_file_ingress_receipt_ux_packet.json","local_user_file_ingress_01_review_packet.json"]:
+        assert artifact in artifact_table
+    assert "Run-LOCAL-SERVER-USER-FILE-INGRESS01-Acceptance.ps1" in quickstart
+    assert status["local_server_user_file_ingress_01_indexed"] is True
+    assert status["not_explicit_file_list_ingress_memory_write"] is True
+    assert status["not_duplicate_input_audit_normalization"] is True
+    assert status["deduplication_requires_normalized_output_evidence"] is True

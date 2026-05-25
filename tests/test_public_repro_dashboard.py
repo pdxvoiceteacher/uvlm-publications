@@ -123,6 +123,7 @@ REQUIRED_PHASES = {
     "SONYA-LOCAL-SERVER-GATEWAY-01",
     "SONYA-LOCAL-SERVER-GATEWAY-02",
     "LOCAL-SERVER-USER-FILE-INGRESS-00",
+    "LOCAL-SERVER-USER-FILE-INGRESS-01",
     "PMR-CONTEXT-AVAILABILITY-LEDGER-00",
 }
 
@@ -173,6 +174,7 @@ REQUIRED_COMMAND_FRAGMENTS = (
     "Run-SONYA-LOCAL-SERVER-GATEWAY01-Acceptance.ps1",
     "Run-SONYA-LOCAL-SERVER-GATEWAY02-Acceptance.ps1",
     "Run-LOCAL-SERVER-USER-FILE-INGRESS00-Acceptance.ps1",
+    "Run-LOCAL-SERVER-USER-FILE-INGRESS01-Acceptance.ps1",
     "Run-PMR-CONTEXT-AVAILABILITY-LEDGER00-Acceptance.ps1",
 )
 STALE_COMMAND_FRAGMENTS = (
@@ -2501,4 +2503,19 @@ def test_pmr_context_availability_ledger_00_updates_present(tmp_path):
     for a in ["pmr_context_availability_ledger.json","pmr_context_dependency_map.json","pmr_context_reupload_queue.json","pmr_context_access_status_report.md","pmr_context_availability_review_packet.json"]:
         assert a in art
     for b in ["Expiration is not nonexistence.","Known inaccessible content is not unknown content.","Summary is not source.","Hash is not content access.","PMR ledger is not deletion authority.","PMR ledger is not pruning authority."]:
+        assert b in bounds
+
+
+def test_local_server_user_file_ingress_01_updates_present(tmp_path):
+    out_dir,_=run_builder(tmp_path)
+    dashboard=json.loads((out_dir/"experiment_suite_dashboard.json").read_text())
+    idx=json.loads((out_dir/"artifact_index.json").read_text())
+    bounds=json.loads((out_dir/"claim_boundary_index.json").read_text())["boundaries"]
+    repro=json.loads((out_dir/"reproducibility_index.json").read_text())
+    assert "LOCAL-SERVER-USER-FILE-INGRESS-01" in {p["phase_id"] for p in dashboard["accepted_phases"]}
+    assert "Run-LOCAL-SERVER-USER-FILE-INGRESS01-Acceptance.ps1" in str(repro)
+    art=idx["phases"]["LOCAL-SERVER-USER-FILE-INGRESS-01"]
+    for a in ["local_user_file_ingress_01_manifest.json","local_user_file_ingress_request_packet.json","local_user_file_pmr_context_link_packet.json","local_user_file_ingress_receipt_ux_packet.json","local_user_file_ingress_01_review_packet.json"]:
+        assert a in art
+    for b in ["Explicit file-list ingress is not memory write.","Duplicate input audit is not duplicate input normalization.","A field claiming deduplication must be backed by normalized-output evidence.","PMR context links must not multiply duplicate source paths when deduplicate_source_paths is true."]:
         assert b in bounds

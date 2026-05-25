@@ -252,5 +252,17 @@
   "not_pmr_ledger_deletion_authority": true,
   "not_pmr_ledger_pruning_authority": true,
   "not_pmr_ledger_federation_authority": true,
-  "not_pmr_ledger_product_release": true
+  "not_pmr_ledger_product_release": true,
+  "local_server_user_file_ingress_01_indexed": true,
+  "not_explicit_file_list_ingress_memory_write": true,
+  "not_file_list_global_authority": true,
+  "not_duplicate_input_audit_normalization": true,
+  "deduplication_requires_normalized_output_evidence": true,
+  "pmr_context_links_do_not_multiply_duplicate_paths": true,
+  "nonexistent_path_fails_closed": true,
+  "duplicate_file_paths_audited": true,
+  "not_pmr_context_entry_source_content": true,
+  "not_pmr_context_entry_memory_write": true,
+  "not_local_ingress_01_final_answer": true,
+  "not_local_ingress_01_product_release": true
 }

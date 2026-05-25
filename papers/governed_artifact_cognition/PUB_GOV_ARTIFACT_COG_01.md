@@ -872,3 +872,7 @@ User file ingress is not memory write. Local file path is not system path. File 
 
 ## PMR-CONTEXT-AVAILABILITY-LEDGER-00
 Expiration is not nonexistence. Known inaccessible content is not unknown content. Summary is not source. Derived summary is not source evidence. Reupload request is not user obligation. File metadata may be sensitive. Hash is not content access. PMR ledger is not deletion authority. PMR ledger is not pruning authority.
+
+
+## LOCAL-SERVER-USER-FILE-INGRESS-01
+Explicit file-list ingress is not memory write. Duplicate input audit is not duplicate input normalization. A field claiming deduplication must be backed by normalized-output evidence. PMR context links must not multiply duplicate source paths when deduplicate_source_paths is true. Nonexistent paths must fail closed.
