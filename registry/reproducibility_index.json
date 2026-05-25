@@ -59,6 +59,38 @@
         "command": ".\\experiments\\Run-TB-PRODUCT-SLICE01-Acceptance.ps1 `\n  -OutputRoot C:\\UVLM\\run_artifacts\\tb_product_slice_01 `\n  -LogDir C:\\UVLM\\run_artifacts\\tb_product_slice_01_logs `\n  -CiMode"
       },
       {
+        "name": "TB Product Slice 02 acceptance",
+        "command": ".\\experiments\\Run-TB-PRODUCT-SLICE02-Acceptance.ps1 `\n  -OutputRoot C:\\UVLM\\run_artifacts\\tb_product_slice_02 `\n  -LogDir C:\\UVLM\\run_artifacts\\tb_product_slice_02_logs `\n  -CiMode"
+      },
+      {
+        "name": "Sonya Local Server Gateway acceptance",
+        "command": ".\\experiments\\Run-SONYA-LOCAL-SERVER-GATEWAY00-Acceptance.ps1 `\n  -BindHost 127.0.0.1 `\n  -OutputRoot C:\\UVLM\\run_artifacts\\sonya_local_server_gateway_00 `\n  -LogDir C:\\UVLM\\run_artifacts\\sonya_local_server_gateway_00_logs `\n  -CiMode"
+      },
+      {
+        "name": "Sonya Local Server Gateway 01 acceptance",
+        "command": ".\\experiments\\Run-SONYA-LOCAL-SERVER-GATEWAY01-Acceptance.ps1 `\n  -BindHost 127.0.0.1 `\n  -OutputRoot C:\\UVLM\\run_artifacts\\sonya_local_server_gateway_01 `\n  -LogDir C:\\UVLM\\run_artifacts\\sonya_local_server_gateway_01_logs `\n  -CiMode"
+      },
+      {
+        "name": "Sonya Local Server Gateway 02 acceptance",
+        "command": ".\\experiments\\Run-SONYA-LOCAL-SERVER-GATEWAY02-Acceptance.ps1 `\n  -BindHost 127.0.0.1 `\n  -OutputRoot C:\\UVLM\\run_artifacts\\sonya_local_server_gateway_02 `\n  -LogDir C:\\UVLM\\run_artifacts\\sonya_local_server_gateway_02_logs `\n  -CiMode"
+      },
+      {
+        "name": "Local Server User File Ingress acceptance",
+        "command": ".\\experiments\\Run-LOCAL-SERVER-USER-FILE-INGRESS00-Acceptance.ps1 `\n  -SourceRoot C:\\UVLM\\CoherenceLattice\\examples\\user_file_ingress_00 `\n  -OutputRoot C:\\UVLM\\run_artifacts\\local_server_user_file_ingress_00 `\n  -LogDir C:\\UVLM\\run_artifacts\\local_server_user_file_ingress_00_logs `\n  -CiMode"
+      },
+      {
+        "name": "Local Server User File Ingress 01 acceptance",
+        "command": ".\\experiments\\Run-LOCAL-SERVER-USER-FILE-INGRESS01-Acceptance.ps1 `\n  -OutputRoot C:\\UVLM\\run_artifacts\\local_server_user_file_ingress_01 `\n  -LogDir C:\\UVLM\\run_artifacts\\local_server_user_file_ingress_01_logs `\n  -CiMode"
+      },
+      {
+        "name": "User-facing receipt UX acceptance",
+        "command": ".\\experiments\\Run-USER-FACING-RECEIPT-UX01-Acceptance.ps1 `\n  -OutputRoot C:\\UVLM\\run_artifacts\\user_facing_receipt_ux_01 `\n  -LogDir C:\\UVLM\\run_artifacts\\user_facing_receipt_ux_01_logs `\n  -CiMode"
+      },
+      {
+        "name": "PMR Context Availability Ledger acceptance",
+        "command": ".\\experiments\\Run-PMR-CONTEXT-AVAILABILITY-LEDGER00-Acceptance.ps1 `\n  -OutputRoot C:\\UVLM\\run_artifacts\\pmr_context_availability_ledger_00 `\n  -LogDir C:\\UVLM\\run_artifacts\\pmr_context_availability_ledger_00_logs `\n  -CiMode"
+      },
+      {
         "name": "Local Sonya path portability acceptance",
         "command": ".\\experiments\\Run-LOCAL-SONYA-PATH-PORTABILITY00-Acceptance.ps1 `\n  -OutputRoot C:\\UVLM\\run_artifacts\\local_sonya_path_portability_00 `\n  -LogDir C:\\UVLM\\run_artifacts\\local_sonya_path_portability_00_logs `\n  -CiMode"
       },
