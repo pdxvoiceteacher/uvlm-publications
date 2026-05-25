@@ -730,6 +730,21 @@
       "export_bundle_parity_report.json",
       "user_facing_receipt_ux_01_acceptance_receipt.json"
     ],
+    "LOCAL-SERVER-USER-FILE-INGRESS-02": [
+      "local_review_request_02_packet.json",
+      "local_review_source_set_packet.json",
+      "local_review_intent_packet.json",
+      "local_review_receipt_preferences_packet.json",
+      "local_server_user_file_ingress_02_review_packet.json",
+      "local_user_file_human_receipt.md",
+      "local_user_file_receipt_ux_01_packet.json",
+      "source_span_map.json",
+      "claim_classification_packet.json",
+      "pmr_context_availability_ledger.json",
+      "run_artifact_manifest.json",
+      "export_bundle_parity_report.json",
+      "local_server_user_file_ingress_02_acceptance_receipt.json"
+    ],
     "PMR-CONTEXT-AVAILABILITY-LEDGER-00": [
       "pmr_context_availability_ledger.json",
       "pmr_context_dependency_map.json",

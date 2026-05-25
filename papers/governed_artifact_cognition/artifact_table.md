@@ -478,3 +478,10 @@ Run-LOCAL-SERVER-USER-FILE-INGRESS01-Acceptance.ps1
 - local_user_file_receipt_next_actions.json
 - local_user_file_receipt_boundary_table.json
 - user_facing_receipt_ux_01_acceptance_receipt.json
+
+- local_review_request_02_packet.json
+- local_review_source_set_packet.json
+- local_review_intent_packet.json
+- local_review_receipt_preferences_packet.json
+- local_server_user_file_ingress_02_review_packet.json
+- local_server_user_file_ingress_02_acceptance_receipt.json

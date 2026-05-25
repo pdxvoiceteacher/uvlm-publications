@@ -2414,3 +2414,18 @@ def test_governed_artifact_cognition_user_facing_receipt_ux_01_updates_are_prese
     assert status["user_facing_receipt_ux_01_indexed"] is True
     assert status["not_receipt_ux_final_answer"] is True
     assert status["not_reviewer_next_action_authority"] is True
+
+
+def test_governed_artifact_cognition_local_server_user_file_ingress_02_updates_are_present():
+    paper=(ROOT/"PUB_GOV_ARTIFACT_COG_01.md").read_text(encoding="utf-8")
+    artifact_table=(ROOT/"artifact_table.md").read_text(encoding="utf-8")
+    quickstart=(ROOT/"reviewer_quickstart.md").read_text(encoding="utf-8")
+    status=json.loads((ROOT/"status.json").read_text(encoding="utf-8"))
+    for phrase in ["LOCAL-SERVER-USER-FILE-INGRESS-02","Local review request is not final answer request.","Reviewer intent is not authority."]:
+        assert phrase in paper
+    for artifact in ["local_review_request_02_packet.json","local_review_source_set_packet.json","local_review_intent_packet.json","local_review_receipt_preferences_packet.json","local_server_user_file_ingress_02_review_packet.json","local_server_user_file_ingress_02_acceptance_receipt.json"]:
+        assert artifact in artifact_table
+    assert "Run-LOCAL-SERVER-USER-FILE-INGRESS02-Acceptance.ps1" in quickstart
+    assert status["local_server_user_file_ingress_02_indexed"] is True
+    assert status["not_local_review_request_final_answer"] is True
+    assert status["not_reviewer_intent_authority"] is True

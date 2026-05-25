@@ -125,6 +125,7 @@ REQUIRED_PHASES = {
     "LOCAL-SERVER-USER-FILE-INGRESS-00",
     "LOCAL-SERVER-USER-FILE-INGRESS-01",
     "USER-FACING-RECEIPT-UX-01",
+    "LOCAL-SERVER-USER-FILE-INGRESS-02",
     "PMR-CONTEXT-AVAILABILITY-LEDGER-00",
 }
 
@@ -2534,4 +2535,19 @@ def test_user_facing_receipt_ux_01_updates_present(tmp_path):
     for a in ["local_user_file_human_receipt.md","local_user_file_receipt_ux_01_packet.json","local_user_file_receipt_next_actions.json","local_user_file_receipt_boundary_table.json"]:
         assert a in art
     for b in ["Receipt UX is not final answer.","Reviewer next action is not authority.","Failure receipt is not permission to proceed."]:
+        assert b in bounds
+
+
+def test_local_server_user_file_ingress_02_updates_present(tmp_path):
+    out_dir,_=run_builder(tmp_path)
+    dashboard=json.loads((out_dir/"experiment_suite_dashboard.json").read_text())
+    idx=json.loads((out_dir/"artifact_index.json").read_text())
+    bounds=json.loads((out_dir/"claim_boundary_index.json").read_text())["boundaries"]
+    repro=json.loads((out_dir/"reproducibility_index.json").read_text())
+    assert "LOCAL-SERVER-USER-FILE-INGRESS-02" in {p["phase_id"] for p in dashboard["accepted_phases"]}
+    assert "Run-LOCAL-SERVER-USER-FILE-INGRESS02-Acceptance.ps1" in str(repro)
+    art=idx["phases"]["LOCAL-SERVER-USER-FILE-INGRESS-02"]
+    for a in ["local_review_request_02_packet.json","local_review_source_set_packet.json","local_review_intent_packet.json","local_review_receipt_preferences_packet.json","local_server_user_file_ingress_02_review_packet.json"]:
+        assert a in art
+    for b in ["Local review request is not final answer request.","Reviewer intent is not authority."]:
         assert b in bounds

@@ -568,3 +568,6 @@ Explicit file-list ingress is not memory write. Duplicate input audit is not dup
 - Receipt UX is not final answer.
 - Reviewer next action is not authority.
 - Failure receipt is not permission to proceed.
+
+- Local review request is not final answer request.
+- Reviewer intent is not authority.

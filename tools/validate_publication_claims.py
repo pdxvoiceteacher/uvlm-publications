@@ -314,6 +314,8 @@ PAPER_CONFIGS: dict[str, dict[str, Any]] = {
             "Explicit file-list ingress is not memory write.",
             "Receipt UX is not final answer.",
             "Reviewer next action is not authority.",
+            "Local review request is not final answer request.",
+            "Reviewer intent is not authority.",
             "Conflict must remain visible.",
             "Multi-source review is not truth certification.",
             "Cross-source agreement is not accepted evidence.",

@@ -1,5 +1,18 @@
 # Claim Boundaries
 
+- LOCAL-SERVER-USER-FILE-INGRESS-02 is not federation authorization.
+- LOCAL-SERVER-USER-FILE-INGRESS-02 is not LAN readiness.
+- LOCAL-SERVER-USER-FILE-INGRESS-02 is not product release.
+- LOCAL-SERVER-USER-FILE-INGRESS-02 is not deployment authority.
+- LOCAL-SERVER-USER-FILE-INGRESS-02 is not network authorization.
+- LOCAL-SERVER-USER-FILE-INGRESS-02 is not provider call.
+- LOCAL-SERVER-USER-FILE-INGRESS-02 is not PMR storage authority.
+- LOCAL-SERVER-USER-FILE-INGRESS-02 is not memory write.
+- LOCAL-SERVER-USER-FILE-INGRESS-02 is not truth certification.
+- LOCAL-SERVER-USER-FILE-INGRESS-02 is not accepted evidence.
+- LOCAL-SERVER-USER-FILE-INGRESS-02 is not final answer release.
+- Local review request is not final answer request.
+- Reviewer intent is not authority.
 - USER-FACING-RECEIPT-UX-01 is not federation authorization.
 - USER-FACING-RECEIPT-UX-01 is not LAN readiness.
 - USER-FACING-RECEIPT-UX-01 is not product release.
