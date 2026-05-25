@@ -312,6 +312,8 @@ PAPER_CONFIGS: dict[str, dict[str, Any]] = {
             "A field claiming deduplication must be backed by normalized-output evidence.",
             "Duplicate input audit is not duplicate input normalization.",
             "Explicit file-list ingress is not memory write.",
+            "Receipt UX is not final answer.",
+            "Reviewer next action is not authority.",
             "Conflict must remain visible.",
             "Multi-source review is not truth certification.",
             "Cross-source agreement is not accepted evidence.",

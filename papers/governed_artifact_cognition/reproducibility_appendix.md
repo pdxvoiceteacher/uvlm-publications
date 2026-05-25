@@ -854,3 +854,5 @@ Explicit file-list ingress is not memory write. Duplicate input audit is not dup
 - `local_user_file_ingress_01_review_packet.json`
 
 Run-LOCAL-SERVER-USER-FILE-INGRESS01-Acceptance.ps1
+
+- Run-USER-FACING-RECEIPT-UX01-Acceptance.ps1

@@ -264,5 +264,15 @@
   "not_pmr_context_entry_source_content": true,
   "not_pmr_context_entry_memory_write": true,
   "not_local_ingress_01_final_answer": true,
-  "not_local_ingress_01_product_release": true
+  "not_local_ingress_01_product_release": true,
+  "user_facing_receipt_ux_01_indexed": true,
+  "not_receipt_ux_final_answer": true,
+  "not_receipt_ux_accepted_evidence": true,
+  "not_receipt_ux_truth_certification": true,
+  "not_receipt_ux_memory_write": true,
+  "not_reviewer_next_action_authority": true,
+  "not_accepted_file_accepted_evidence": true,
+  "not_rejected_file_erased_context": true,
+  "not_failure_receipt_permission_to_proceed": true,
+  "not_receipt_ux_product_release": true
 }

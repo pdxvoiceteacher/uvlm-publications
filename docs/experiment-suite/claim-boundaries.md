@@ -1,5 +1,30 @@
 # Claim Boundaries
 
+- USER-FACING-RECEIPT-UX-01 is not federation authorization.
+- USER-FACING-RECEIPT-UX-01 is not LAN readiness.
+- USER-FACING-RECEIPT-UX-01 is not product release.
+- USER-FACING-RECEIPT-UX-01 is not deployment authority.
+- USER-FACING-RECEIPT-UX-01 is not network authorization.
+- USER-FACING-RECEIPT-UX-01 is not provider call.
+- USER-FACING-RECEIPT-UX-01 is not PMR storage authority.
+- USER-FACING-RECEIPT-UX-01 is not memory write.
+- USER-FACING-RECEIPT-UX-01 is not truth certification.
+- USER-FACING-RECEIPT-UX-01 is not accepted evidence.
+- USER-FACING-RECEIPT-UX-01 is not final answer release.
+- Failure receipt is not permission to proceed.
+- Claim classification is not semantic authority.
+- Quoted source text is not accepted evidence.
+- Source span is not truth certification.
+- PMR context link is not memory write.
+- PMR context link is not source content.
+- Duplicate audit is not duplicate normalization.
+- Rejected file is not erased context.
+- Accepted file is not accepted evidence.
+- Reviewer next action is not authority.
+- Receipt UX is not memory write.
+- Receipt UX is not truth certification.
+- Receipt UX is not accepted evidence.
+- Receipt UX is not final answer.
 - LOCAL-SERVER-USER-FILE-INGRESS-01 is not federation authorization.
 - LOCAL-SERVER-USER-FILE-INGRESS-01 is not LAN readiness.
 - LOCAL-SERVER-USER-FILE-INGRESS-01 is not product release.

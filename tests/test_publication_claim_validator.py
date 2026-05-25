@@ -2399,3 +2399,18 @@ def test_governed_artifact_cognition_local_server_user_file_ingress_01_updates_a
     assert status["not_explicit_file_list_ingress_memory_write"] is True
     assert status["not_duplicate_input_audit_normalization"] is True
     assert status["deduplication_requires_normalized_output_evidence"] is True
+
+
+def test_governed_artifact_cognition_user_facing_receipt_ux_01_updates_are_present():
+    paper=(ROOT/"PUB_GOV_ARTIFACT_COG_01.md").read_text(encoding="utf-8")
+    artifact_table=(ROOT/"artifact_table.md").read_text(encoding="utf-8")
+    quickstart=(ROOT/"reviewer_quickstart.md").read_text(encoding="utf-8")
+    status=json.loads((ROOT/"status.json").read_text(encoding="utf-8"))
+    for phrase in ["USER-FACING-RECEIPT-UX-01","Receipt UX is not final answer.","Reviewer next action is not authority.","Failure receipt is not permission to proceed."]:
+        assert phrase in paper
+    for artifact in ["local_user_file_human_receipt.md","local_user_file_receipt_ux_01_packet.json","local_user_file_receipt_next_actions.json","local_user_file_receipt_boundary_table.json","user_facing_receipt_ux_01_acceptance_receipt.json"]:
+        assert artifact in artifact_table
+    assert "Run-USER-FACING-RECEIPT-UX01-Acceptance.ps1" in quickstart
+    assert status["user_facing_receipt_ux_01_indexed"] is True
+    assert status["not_receipt_ux_final_answer"] is True
+    assert status["not_reviewer_next_action_authority"] is True

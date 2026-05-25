@@ -876,3 +876,9 @@ Expiration is not nonexistence. Known inaccessible content is not unknown conten
 
 ## LOCAL-SERVER-USER-FILE-INGRESS-01
 Explicit file-list ingress is not memory write. Duplicate input audit is not duplicate input normalization. A field claiming deduplication must be backed by normalized-output evidence. PMR context links must not multiply duplicate source paths when deduplicate_source_paths is true. Nonexistent paths must fail closed.
+
+- USER-FACING-RECEIPT-UX-01 accepted runtime smoke.
+- Receipt UX is not final answer.
+- Reviewer next action is not authority.
+
+Reviewer orientation scaffold summary only.

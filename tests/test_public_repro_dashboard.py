@@ -124,6 +124,7 @@ REQUIRED_PHASES = {
     "SONYA-LOCAL-SERVER-GATEWAY-02",
     "LOCAL-SERVER-USER-FILE-INGRESS-00",
     "LOCAL-SERVER-USER-FILE-INGRESS-01",
+    "USER-FACING-RECEIPT-UX-01",
     "PMR-CONTEXT-AVAILABILITY-LEDGER-00",
 }
 
@@ -2518,4 +2519,19 @@ def test_local_server_user_file_ingress_01_updates_present(tmp_path):
     for a in ["local_user_file_ingress_01_manifest.json","local_user_file_ingress_request_packet.json","local_user_file_pmr_context_link_packet.json","local_user_file_ingress_receipt_ux_packet.json","local_user_file_ingress_01_review_packet.json"]:
         assert a in art
     for b in ["Explicit file-list ingress is not memory write.","Duplicate input audit is not duplicate input normalization.","A field claiming deduplication must be backed by normalized-output evidence.","PMR context links must not multiply duplicate source paths when deduplicate_source_paths is true."]:
+        assert b in bounds
+
+
+def test_user_facing_receipt_ux_01_updates_present(tmp_path):
+    out_dir,_=run_builder(tmp_path)
+    dashboard=json.loads((out_dir/"experiment_suite_dashboard.json").read_text())
+    idx=json.loads((out_dir/"artifact_index.json").read_text())
+    bounds=json.loads((out_dir/"claim_boundary_index.json").read_text())["boundaries"]
+    repro=json.loads((out_dir/"reproducibility_index.json").read_text())
+    assert "USER-FACING-RECEIPT-UX-01" in {p["phase_id"] for p in dashboard["accepted_phases"]}
+    assert "Run-USER-FACING-RECEIPT-UX01-Acceptance.ps1" in str(repro)
+    art=idx["phases"]["USER-FACING-RECEIPT-UX-01"]
+    for a in ["local_user_file_human_receipt.md","local_user_file_receipt_ux_01_packet.json","local_user_file_receipt_next_actions.json","local_user_file_receipt_boundary_table.json"]:
+        assert a in art
+    for b in ["Receipt UX is not final answer.","Reviewer next action is not authority.","Failure receipt is not permission to proceed."]:
         assert b in bounds

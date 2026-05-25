@@ -25,6 +25,7 @@ This dashboard presents accepted evidence for reviewer orientation. It is not tr
 | TB-PRODUCT-SLICE-00 | pdxvoiceteacher/CoherenceLattice | accepted | fixture-only local product-like runtime smoke | User-visible review receipt is required. |
 | TB-PRODUCT-SLICE-01 | pdxvoiceteacher/CoherenceLattice | accepted | fixture-only multi-source local product runtime smoke | Cross-source conflict is not contradiction resolution. |
 | LOCAL-SERVER-USER-FILE-INGRESS-01 | pdxvoiceteacher/CoherenceLattice | accepted | explicit file-list local ingress with PMR context linkage scaffold | Explicit file-list ingress is not memory write. |
+| USER-FACING-RECEIPT-UX-01 | pdxvoiceteacher/CoherenceLattice | accepted | human-readable local file receipt UX scaffold | Receipt UX is not final answer. |
 | PMR-CONTEXT-AVAILABILITY-LEDGER-00 | pdxvoiceteacher/CoherenceLattice | accepted | context availability ledger scaffold | Expiration is not nonexistence. |
 | LOCAL-SERVER-USER-FILE-INGRESS-00 | pdxvoiceteacher/CoherenceLattice | accepted | explicit local user file ingress runtime smoke | User file ingress is not memory write. |
 | SONYA-LOCAL-SERVER-GATEWAY-02 | pdxvoiceteacher/CoherenceLattice | accepted | localhost-only source-span gateway retrieval scaffold | Source-span gateway review is not truth certification. |

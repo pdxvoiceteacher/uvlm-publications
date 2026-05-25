@@ -83,6 +83,10 @@
         "command": ".\\experiments\\Run-LOCAL-SERVER-USER-FILE-INGRESS01-Acceptance.ps1 `\n  -OutputRoot C:\\UVLM\\run_artifacts\\local_server_user_file_ingress_01 `\n  -LogDir C:\\UVLM\\run_artifacts\\local_server_user_file_ingress_01_logs `\n  -CiMode"
       },
       {
+        "name": "User-facing receipt UX acceptance",
+        "command": ".\\experiments\\Run-USER-FACING-RECEIPT-UX01-Acceptance.ps1 `\n  -OutputRoot C:\\UVLM\\run_artifacts\\user_facing_receipt_ux_01 `\n  -LogDir C:\\UVLM\\run_artifacts\\user_facing_receipt_ux_01_logs `\n  -CiMode"
+      },
+      {
         "name": "PMR Context Availability Ledger acceptance",
         "command": ".\\experiments\\Run-PMR-CONTEXT-AVAILABILITY-LEDGER00-Acceptance.ps1 `\n  -OutputRoot C:\\UVLM\\run_artifacts\\pmr_context_availability_ledger_00 `\n  -LogDir C:\\UVLM\\run_artifacts\\pmr_context_availability_ledger_00_logs `\n  -CiMode"
       },
