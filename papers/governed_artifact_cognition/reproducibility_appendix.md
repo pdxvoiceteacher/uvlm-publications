@@ -860,3 +860,4 @@ Run-LOCAL-SERVER-USER-FILE-INGRESS01-Acceptance.ps1
 - Run-LOCAL-SERVER-USER-FILE-INGRESS02-Acceptance.ps1
 
 - Run-LAN-READINESS-PREFLIGHT00-Acceptance.ps1
+- Preflight report is not product release.

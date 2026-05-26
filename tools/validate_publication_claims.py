@@ -318,6 +318,7 @@ PAPER_CONFIGS: dict[str, dict[str, Any]] = {
             "Reviewer intent is not authority.",
             "LAN readiness preflight is not LAN enablement.",
             "Loopback success is not LAN readiness.",
+            "Preflight report is not product release.",
             "Conflict must remain visible.",
             "Multi-source review is not truth certification.",
             "Cross-source agreement is not accepted evidence.",

@@ -2565,5 +2565,5 @@ def test_lan_readiness_preflight_00_updates_present(tmp_path):
     art=idx["phases"]["LAN-READINESS-PREFLIGHT-00"]
     for a in ["lan_readiness_preflight_manifest.json","lan_readiness_preflight_request_packet.json","lan_readiness_preflight_report.md","lan_readiness_preflight_report.json","lan_readiness_preflight_review_packet.json"]:
         assert a in art
-    for b in ["LAN readiness preflight is not LAN enablement.","Loopback success is not LAN readiness.","Preflight report is not final answer."]:
+    for b in ["LAN readiness preflight is not LAN enablement.","Loopback success is not LAN readiness.","Preflight report is not final answer.","Preflight report is not product release."]:
         assert b in bounds

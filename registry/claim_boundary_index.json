@@ -16,6 +16,7 @@
     "Network policy observation is not network permission.",
     "Preflight report is not final answer.",
     "Preflight report is not accepted evidence.",
+    "Preflight report is not product release.",
     "LOCAL-SERVER-USER-FILE-INGRESS-02 is not federation authorization.",
     "LOCAL-SERVER-USER-FILE-INGRESS-02 is not LAN readiness.",
     "LOCAL-SERVER-USER-FILE-INGRESS-02 is not product release.",

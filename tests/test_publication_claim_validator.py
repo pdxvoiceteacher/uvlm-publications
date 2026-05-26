@@ -2436,7 +2436,7 @@ def test_governed_artifact_cognition_lan_readiness_preflight_00_updates_are_pres
     artifact_table=(ROOT/"artifact_table.md").read_text(encoding="utf-8")
     quickstart=(ROOT/"reviewer_quickstart.md").read_text(encoding="utf-8")
     status=json.loads((ROOT/"status.json").read_text(encoding="utf-8"))
-    for phrase in ["LAN-READINESS-PREFLIGHT-00","LAN readiness preflight is not LAN enablement.","Loopback success is not LAN readiness."]:
+    for phrase in ["LAN-READINESS-PREFLIGHT-00","LAN readiness preflight is not LAN enablement.","Loopback success is not LAN readiness.","Preflight report is not product release."]:
         assert phrase in paper
     for artifact in ["lan_readiness_preflight_manifest.json","lan_readiness_preflight_request_packet.json","lan_readiness_preflight_report.md","lan_readiness_preflight_report.json","lan_readiness_preflight_review_packet.json","lan_readiness_preflight_00_acceptance_receipt.json"]:
         assert artifact in artifact_table

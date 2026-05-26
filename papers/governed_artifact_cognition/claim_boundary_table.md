@@ -586,3 +586,4 @@ Explicit file-list ingress is not memory write. Duplicate input audit is not dup
 - Network policy observation is not network permission.
 - Preflight report is not final answer.
 - Preflight report is not accepted evidence.
+- Preflight report is not product release.
