@@ -1,5 +1,192 @@
 # Claim Boundaries
 
+- LAN readiness preflight is not LAN enablement.
+- LAN readiness preflight is not network authorization.
+- LAN readiness preflight is not remote access.
+- LAN readiness preflight is not firewall authorization.
+- LAN readiness preflight is not federation.
+- LAN readiness preflight is not deployment.
+- LAN readiness preflight is not product release.
+- Loopback success is not LAN readiness.
+- Localhost gateway is not LAN readiness.
+- Bind host review is not bind host authorization.
+- Port planning is not port opening.
+- Remote client model is not remote client authorization.
+- Network policy observation is not network permission.
+- Preflight report is not final answer.
+- Preflight report is not accepted evidence.
+- LOCAL-SERVER-USER-FILE-INGRESS-02 is not federation authorization.
+- LOCAL-SERVER-USER-FILE-INGRESS-02 is not LAN readiness.
+- LOCAL-SERVER-USER-FILE-INGRESS-02 is not product release.
+- LOCAL-SERVER-USER-FILE-INGRESS-02 is not deployment authority.
+- LOCAL-SERVER-USER-FILE-INGRESS-02 is not network authorization.
+- LOCAL-SERVER-USER-FILE-INGRESS-02 is not provider call.
+- LOCAL-SERVER-USER-FILE-INGRESS-02 is not PMR storage authority.
+- LOCAL-SERVER-USER-FILE-INGRESS-02 is not memory write.
+- LOCAL-SERVER-USER-FILE-INGRESS-02 is not truth certification.
+- LOCAL-SERVER-USER-FILE-INGRESS-02 is not accepted evidence.
+- LOCAL-SERVER-USER-FILE-INGRESS-02 is not final answer release.
+- Local review request is not final answer request.
+- Reviewer intent is not authority.
+- USER-FACING-RECEIPT-UX-01 is not federation authorization.
+- USER-FACING-RECEIPT-UX-01 is not LAN readiness.
+- USER-FACING-RECEIPT-UX-01 is not product release.
+- USER-FACING-RECEIPT-UX-01 is not deployment authority.
+- USER-FACING-RECEIPT-UX-01 is not network authorization.
+- USER-FACING-RECEIPT-UX-01 is not provider call.
+- USER-FACING-RECEIPT-UX-01 is not PMR storage authority.
+- USER-FACING-RECEIPT-UX-01 is not memory write.
+- USER-FACING-RECEIPT-UX-01 is not truth certification.
+- USER-FACING-RECEIPT-UX-01 is not accepted evidence.
+- USER-FACING-RECEIPT-UX-01 is not final answer release.
+- Failure receipt is not permission to proceed.
+- Claim classification is not semantic authority.
+- Quoted source text is not accepted evidence.
+- Source span is not truth certification.
+- PMR context link is not memory write.
+- PMR context link is not source content.
+- Duplicate audit is not duplicate normalization.
+- Rejected file is not erased context.
+- Accepted file is not accepted evidence.
+- Reviewer next action is not authority.
+- Receipt UX is not memory write.
+- Receipt UX is not truth certification.
+- Receipt UX is not accepted evidence.
+- Receipt UX is not final answer.
+- LOCAL-SERVER-USER-FILE-INGRESS-01 is not federation authorization.
+- LOCAL-SERVER-USER-FILE-INGRESS-01 is not LAN readiness.
+- LOCAL-SERVER-USER-FILE-INGRESS-01 is not product release.
+- LOCAL-SERVER-USER-FILE-INGRESS-01 is not deployment authority.
+- LOCAL-SERVER-USER-FILE-INGRESS-01 is not truth certification.
+- LOCAL-SERVER-USER-FILE-INGRESS-01 is not accepted evidence.
+- LOCAL-SERVER-USER-FILE-INGRESS-01 is not final answer release.
+- LOCAL-SERVER-USER-FILE-INGRESS-01 is not network authorization.
+- LOCAL-SERVER-USER-FILE-INGRESS-01 is not provider call.
+- LOCAL-SERVER-USER-FILE-INGRESS-01 is not PMR storage authority.
+- LOCAL-SERVER-USER-FILE-INGRESS-01 is not memory write.
+- Duplicate file paths must be audited.
+- Nonexistent paths must fail closed.
+- PMR context links must not multiply duplicate source paths when deduplicate_source_paths is true.
+- A field claiming deduplication must be backed by normalized-output evidence.
+- Duplicate input audit is not duplicate input normalization.
+- File-list declaration is not global authority.
+- Explicit file-list ingress is not memory write.
+- User-selected file path is not system path.
+- PMR-CONTEXT-AVAILABILITY-LEDGER-00 is not product release.
+- PMR-CONTEXT-AVAILABILITY-LEDGER-00 is not accepted evidence.
+- PMR-CONTEXT-AVAILABILITY-LEDGER-00 is not final answer release.
+- PMR-CONTEXT-AVAILABILITY-LEDGER-00 is not federation authorization.
+- PMR-CONTEXT-AVAILABILITY-LEDGER-00 is not network authorization.
+- PMR-CONTEXT-AVAILABILITY-LEDGER-00 is not provider call.
+- PMR-CONTEXT-AVAILABILITY-LEDGER-00 is not pruning authority.
+- PMR-CONTEXT-AVAILABILITY-LEDGER-00 is not deletion authority.
+- PMR-CONTEXT-AVAILABILITY-LEDGER-00 is not truth certification.
+- PMR-CONTEXT-AVAILABILITY-LEDGER-00 is not memory write.
+- PMR-CONTEXT-AVAILABILITY-LEDGER-00 is not source content recovery.
+- PMR ledger is not product release.
+- PMR ledger is not federation authority.
+- PMR ledger is not pruning authority.
+- PMR ledger is not deletion authority.
+- Reuploaded content must preserve lineage without overwriting prior-source identity.
+- Expired content cannot be quoted as currently inspected.
+- Source availability is not truth status.
+- Dependency lineage is not canon lineage.
+- Ledger entry is not PMR storage authority.
+- Ledger entry is not memory write.
+- Hash is not content access.
+- Provenance is not disclosure.
+- Filename visibility requires scope.
+- File metadata may be sensitive.
+- Reupload priority is not runtime authority.
+- Reupload request is not user obligation.
+- Derived summary is not source evidence.
+- Summary is not source.
+- Context availability is not source content.
+- Expiration is not nonexistence.
+- Known inaccessible content is not unknown content.
+- LOCAL-SERVER-USER-FILE-INGRESS-00 is not federation authorization.
+- LOCAL-SERVER-USER-FILE-INGRESS-00 is not LAN readiness.
+- LOCAL-SERVER-USER-FILE-INGRESS-00 is not product release.
+- LOCAL-SERVER-USER-FILE-INGRESS-00 is not deployment authority.
+- LOCAL-SERVER-USER-FILE-INGRESS-00 is not truth certification.
+- LOCAL-SERVER-USER-FILE-INGRESS-00 is not accepted evidence.
+- LOCAL-SERVER-USER-FILE-INGRESS-00 is not final answer release.
+- LOCAL-SERVER-USER-FILE-INGRESS-00 is not network authorization.
+- LOCAL-SERVER-USER-FILE-INGRESS-00 is not provider call.
+- LOCAL-SERVER-USER-FILE-INGRESS-00 is not PMR storage.
+- LOCAL-SERVER-USER-FILE-INGRESS-00 is not memory write.
+- Recursive directory scan requires explicit opt-in.
+- Symlink traversal must fail closed.
+- Unsupported file types must fail closed.
+- Missing consent must fail closed.
+- Explicit consent does not authorize network access.
+- Explicit consent does not authorize provider calls.
+- Explicit consent does not authorize memory write.
+- Normalized source copy is not permanent storage.
+- Copied run-local source is not PMR storage.
+- File normalization is not evidence admission.
+- Path audit is required before review.
+- User-selected path is not global authority.
+- User file ingress is not memory write.
+- Local file path is not system path.
+- SONYA-LOCAL-SERVER-GATEWAY-02 is not product release.
+- SONYA-LOCAL-SERVER-GATEWAY-02 is not deployment authority.
+- SONYA-LOCAL-SERVER-GATEWAY-02 is not memory write.
+- SONYA-LOCAL-SERVER-GATEWAY-02 is not federation authorization.
+- SONYA-LOCAL-SERVER-GATEWAY-02 is not LAN readiness.
+- SONYA-LOCAL-SERVER-GATEWAY-02 is not network authorization.
+- SONYA-LOCAL-SERVER-GATEWAY-02 is not provider call.
+- SONYA-LOCAL-SERVER-GATEWAY-02 is not truth certification.
+- SONYA-LOCAL-SERVER-GATEWAY-02 is not accepted evidence.
+- SONYA-LOCAL-SERVER-GATEWAY-02 is not final answer release.
+- Product-release requests must fail closed.
+- Final-answer requests must fail closed.
+- Memory-write requests must fail closed.
+- Network-authorization requests must fail closed.
+- Provider-call requests must fail closed.
+- Source-span retrieval is not truth certification.
+- Claim classification retrieval is not final answer.
+- Source-span gateway review is not truth certification.
+- Claim classification is not semantic authority.
+- TB-PRODUCT-SLICE-02 is not model superiority proof.
+- TB-PRODUCT-SLICE-02 is not hallucination reduction proof.
+- TB-PRODUCT-SLICE-02 is not product release.
+- TB-PRODUCT-SLICE-02 is not deployment authority.
+- TB-PRODUCT-SLICE-02 is not memory write.
+- TB-PRODUCT-SLICE-02 is not network authorization.
+- TB-PRODUCT-SLICE-02 is not provider call.
+- TB-PRODUCT-SLICE-02 is not truth certification.
+- TB-PRODUCT-SLICE-02 is not accepted evidence.
+- TB-PRODUCT-SLICE-02 is not final answer release.
+- Reviewer next actions are not deployment authority.
+- Uncertainty must remain visible.
+- Unsupported claims must remain visible.
+- Human-readable usefulness is required.
+- Review receipt is not final answer.
+- Claim segmentation is not semantic authority.
+- Source conflict is not contradiction resolution.
+- Source agreement is not proof.
+- Source span is not truth certification.
+- Quoted source text is not accepted evidence.
+- SONYA-LOCAL-SERVER-GATEWAY-01 is not truth certification.
+- SONYA-LOCAL-SERVER-GATEWAY-01 is not product release.
+- SONYA-LOCAL-SERVER-GATEWAY-01 is not deployment authority.
+- SONYA-LOCAL-SERVER-GATEWAY-01 is not accepted evidence.
+- SONYA-LOCAL-SERVER-GATEWAY-01 is not final answer release.
+- SONYA-LOCAL-SERVER-GATEWAY-01 is not federation authorization.
+- SONYA-LOCAL-SERVER-GATEWAY-01 is not LAN readiness.
+- SONYA-LOCAL-SERVER-GATEWAY-01 is not network authorization.
+- SONYA-LOCAL-SERVER-GATEWAY-01 is not provider call.
+- SONYA-LOCAL-SERVER-GATEWAY-01 is not PMR store.
+- SONYA-LOCAL-SERVER-GATEWAY-01 is not memory write.
+- Retrieval endpoints must remain loopback-only.
+- Retrieval failure receipt is not permission to proceed.
+- Unknown run IDs must fail closed.
+- Event retrieval is not authority.
+- Receipt retrieval is not final answer release.
+- Local run lookup is not federation.
+- Run retrieval is not memory write.
+- Run index is not PMR store.
 - Sonya Adapter Contract Registry: Adapter capability is not adapter authorization.
 - Sonya Adapter Contract Registry keeps all adapters disabled or blocked; all adapters disabled or blocked means not adapter execution and not network authorization.
 - Sonya Adapter Contract Registry boundaries: not adapter execution, not network authorization, not remote provider call, not model weight training.
@@ -105,6 +292,13 @@
 - TB-PRODUCT-SLICE-00 is not hallucination reduction proof.
 - TB-PRODUCT-SLICE-00 is not model superiority proof.
 - TB-PRODUCT-SLICE-01 is not model superiority proof.
+- Localhost gateway is not LAN readiness.
+- Localhost readiness is not federation authority.
+- Local server execution is not deployment authority.
+- Gateway response is not final answer.
+- Failure receipt is not permission to proceed.
+- Local gateway must fail closed on provider-call attempts.
+- Local gateway must fail closed on memory-write attempts.
 - TB-PRODUCT-SLICE-01 is not hallucination reduction proof.
 - TB-PRODUCT-SLICE-01 is not product release.
 - TB-PRODUCT-SLICE-01 is not deployment authority.

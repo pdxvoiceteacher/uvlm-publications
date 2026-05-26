@@ -118,6 +118,16 @@ REQUIRED_PHASES = {
     "LOCAL-SONYA-PATH-PORTABILITY-00",
     "TB-PRODUCT-SLICE-00",
     "TB-PRODUCT-SLICE-01",
+    "TB-PRODUCT-SLICE-02",
+    "SONYA-LOCAL-SERVER-GATEWAY-00",
+    "SONYA-LOCAL-SERVER-GATEWAY-01",
+    "SONYA-LOCAL-SERVER-GATEWAY-02",
+    "LOCAL-SERVER-USER-FILE-INGRESS-00",
+    "LOCAL-SERVER-USER-FILE-INGRESS-01",
+    "USER-FACING-RECEIPT-UX-01",
+    "LOCAL-SERVER-USER-FILE-INGRESS-02",
+    "LAN-READINESS-PREFLIGHT-00",
+    "PMR-CONTEXT-AVAILABILITY-LEDGER-00",
 }
 
 REQUIRED_COMMAND_FRAGMENTS = (
@@ -163,6 +173,12 @@ REQUIRED_COMMAND_FRAGMENTS = (
     "Run-PMR-HUMAN-PROVENANCE00-Acceptance.ps1",
     "Run-SONYA-LOCAL-FIXTURE-ADAPTER02-Acceptance.ps1",
     "Run-SONYA-LOCAL-FIXTURE-ADAPTER03-Acceptance.ps1",
+    "Run-SONYA-LOCAL-SERVER-GATEWAY00-Acceptance.ps1",
+    "Run-SONYA-LOCAL-SERVER-GATEWAY01-Acceptance.ps1",
+    "Run-SONYA-LOCAL-SERVER-GATEWAY02-Acceptance.ps1",
+    "Run-LOCAL-SERVER-USER-FILE-INGRESS00-Acceptance.ps1",
+    "Run-LOCAL-SERVER-USER-FILE-INGRESS01-Acceptance.ps1",
+    "Run-PMR-CONTEXT-AVAILABILITY-LEDGER00-Acceptance.ps1",
 )
 STALE_COMMAND_FRAGMENTS = (
     "tests/test_sonya_aegis_smoke_02.py",
@@ -2398,3 +2414,156 @@ def test_tb_product_slice_01_page_contains_required_content(tmp_path):
     assert "Conflict must remain visible." in text
     assert "Run-TB-PRODUCT-SLICE01-Acceptance.ps1" in text
     assert "review_receipt.md" in text
+
+
+def test_sonya_local_server_gateway_updates_present(tmp_path):
+    out_dir, _ = run_builder(tmp_path)
+    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text())
+    idx = json.loads((out_dir / "artifact_index.json").read_text())
+    bounds = json.loads((out_dir / "claim_boundary_index.json").read_text())["boundaries"]
+    repro = json.loads((out_dir / "reproducibility_index.json").read_text())
+    phase_ids = {p["phase_id"] for p in dashboard["accepted_phases"]}
+    assert "SONYA-LOCAL-SERVER-GATEWAY-00" in phase_ids
+    cmds = str(repro)
+    assert "Run-SONYA-LOCAL-SERVER-GATEWAY00-Acceptance.ps1" in cmds
+    art = idx["phases"]["SONYA-LOCAL-SERVER-GATEWAY-00"]
+    for a in ["sonya_local_server_gateway_manifest.json","sonya_local_server_response_packet.json","sonya_local_server_review_packet.json","gateway_failure_receipts.jsonl","tb_product_slice_01_review_receipt.md"]:
+        assert a in art
+    for b in ["Localhost gateway is not LAN readiness.","Gateway response is not final answer.","Failure receipt is not permission to proceed."]:
+        assert b in bounds
+
+
+def test_sonya_local_server_gateway_01_updates_present(tmp_path):
+    out_dir, _ = run_builder(tmp_path)
+    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text())
+    idx = json.loads((out_dir / "artifact_index.json").read_text())
+    bounds = json.loads((out_dir / "claim_boundary_index.json").read_text())["boundaries"]
+    repro = json.loads((out_dir / "reproducibility_index.json").read_text())
+    phase_ids = {p["phase_id"] for p in dashboard["accepted_phases"]}
+    assert "SONYA-LOCAL-SERVER-GATEWAY-01" in phase_ids
+    assert "Run-SONYA-LOCAL-SERVER-GATEWAY01-Acceptance.ps1" in str(repro)
+    art = idx["phases"]["SONYA-LOCAL-SERVER-GATEWAY-01"]
+    for a in ["sonya_local_server_gateway_01_manifest.json","sonya_local_server_run_index_packet.json","sonya_local_server_retrieval_packet.json","sonya_local_server_gateway_01_review_packet.json","retrieval_failure_receipts.jsonl","tb_product_slice_01_review_receipt.md"]:
+        assert a in art
+    for b in ["Run retrieval is not memory write.","Run index is not PMR store.","Receipt retrieval is not final answer release.","Event retrieval is not authority.","Unknown run IDs must fail closed."]:
+        assert b in bounds
+
+
+def test_tb_product_slice_02_updates_present(tmp_path):
+    out_dir,_=run_builder(tmp_path)
+    dashboard=json.loads((out_dir/"experiment_suite_dashboard.json").read_text())
+    idx=json.loads((out_dir/"artifact_index.json").read_text())
+    bounds=json.loads((out_dir/"claim_boundary_index.json").read_text())["boundaries"]
+    repro=json.loads((out_dir/"reproducibility_index.json").read_text())
+    assert "TB-PRODUCT-SLICE-02" in {p["phase_id"] for p in dashboard["accepted_phases"]}
+    assert "Run-TB-PRODUCT-SLICE02-Acceptance.ps1" in str(repro)
+    art=idx["phases"]["TB-PRODUCT-SLICE-02"]
+    for a in ["tb_product_slice_02_manifest.json","source_span_map.json","claim_classification_packet.json","receipt_ux_packet.json","review_receipt.md","tb_product_slice_02_review_packet.json"]:
+        assert a in art
+    for b in ["Source span is not truth certification.","Quoted source text is not accepted evidence.","Source conflict is not contradiction resolution.","Review receipt is not final answer.","Unsupported claims must remain visible."]:
+        assert b in bounds
+
+
+def test_sonya_local_server_gateway_02_updates_present(tmp_path):
+    out_dir,_=run_builder(tmp_path)
+    dashboard=json.loads((out_dir/"experiment_suite_dashboard.json").read_text())
+    idx=json.loads((out_dir/"artifact_index.json").read_text())
+    bounds=json.loads((out_dir/"claim_boundary_index.json").read_text())["boundaries"]
+    repro=json.loads((out_dir/"reproducibility_index.json").read_text())
+    assert "SONYA-LOCAL-SERVER-GATEWAY-02" in {p["phase_id"] for p in dashboard["accepted_phases"]}
+    assert "Run-SONYA-LOCAL-SERVER-GATEWAY02-Acceptance.ps1" in str(repro)
+    art=idx["phases"]["SONYA-LOCAL-SERVER-GATEWAY-02"]
+    for a in ["sonya_local_server_gateway_02_manifest.json","sonya_local_server_gateway_02_review_packet.json","sonya_local_server_source_span_retrieval_packet.json","sonya_local_server_claim_classification_retrieval_packet.json","source_span_map.json","claim_classification_packet.json","gateway_failure_receipts.jsonl","retrieval_failure_receipts.jsonl"]:
+        assert a in art
+    for b in ["Source-span gateway review is not truth certification.","Claim classification is not semantic authority.","Claim classification retrieval is not final answer.","Unknown run IDs must fail closed."]:
+        assert b in bounds
+
+
+def test_local_server_user_file_ingress_00_updates_present(tmp_path):
+    out_dir,_=run_builder(tmp_path)
+    dashboard=json.loads((out_dir/"experiment_suite_dashboard.json").read_text())
+    idx=json.loads((out_dir/"artifact_index.json").read_text())
+    bounds=json.loads((out_dir/"claim_boundary_index.json").read_text())["boundaries"]
+    repro=json.loads((out_dir/"reproducibility_index.json").read_text())
+    assert "LOCAL-SERVER-USER-FILE-INGRESS-00" in {p["phase_id"] for p in dashboard["accepted_phases"]}
+    assert "Run-LOCAL-SERVER-USER-FILE-INGRESS00-Acceptance.ps1" in str(repro)
+    art=idx["phases"]["LOCAL-SERVER-USER-FILE-INGRESS-00"]
+    for a in ["local_user_file_ingress_manifest.json","local_user_file_consent_packet.json","local_user_file_path_audit_rows.jsonl","local_user_file_normalization_map.json","local_user_file_ingress_review_packet.json","ingress_failure_receipts.jsonl","normalized_source_bundle_manifest.json","source_span_map.json","gateway_failure_receipts.jsonl"]:
+        assert a in art
+    for b in ["User file ingress is not memory write.","Copied run-local source is not PMR storage.","Missing consent must fail closed.","Unsupported file types must fail closed."]:
+        assert b in bounds
+
+
+def test_pmr_context_availability_ledger_00_updates_present(tmp_path):
+    out_dir,_=run_builder(tmp_path)
+    dashboard=json.loads((out_dir/"experiment_suite_dashboard.json").read_text())
+    idx=json.loads((out_dir/"artifact_index.json").read_text())
+    bounds=json.loads((out_dir/"claim_boundary_index.json").read_text())["boundaries"]
+    repro=json.loads((out_dir/"reproducibility_index.json").read_text())
+    assert "PMR-CONTEXT-AVAILABILITY-LEDGER-00" in {p["phase_id"] for p in dashboard["accepted_phases"]}
+    assert "Run-PMR-CONTEXT-AVAILABILITY-LEDGER00-Acceptance.ps1" in str(repro)
+    art=idx["phases"]["PMR-CONTEXT-AVAILABILITY-LEDGER-00"]
+    for a in ["pmr_context_availability_ledger.json","pmr_context_dependency_map.json","pmr_context_reupload_queue.json","pmr_context_access_status_report.md","pmr_context_availability_review_packet.json"]:
+        assert a in art
+    for b in ["Expiration is not nonexistence.","Known inaccessible content is not unknown content.","Summary is not source.","Hash is not content access.","PMR ledger is not deletion authority.","PMR ledger is not pruning authority."]:
+        assert b in bounds
+
+
+def test_local_server_user_file_ingress_01_updates_present(tmp_path):
+    out_dir,_=run_builder(tmp_path)
+    dashboard=json.loads((out_dir/"experiment_suite_dashboard.json").read_text())
+    idx=json.loads((out_dir/"artifact_index.json").read_text())
+    bounds=json.loads((out_dir/"claim_boundary_index.json").read_text())["boundaries"]
+    repro=json.loads((out_dir/"reproducibility_index.json").read_text())
+    assert "LOCAL-SERVER-USER-FILE-INGRESS-01" in {p["phase_id"] for p in dashboard["accepted_phases"]}
+    assert "Run-LOCAL-SERVER-USER-FILE-INGRESS01-Acceptance.ps1" in str(repro)
+    art=idx["phases"]["LOCAL-SERVER-USER-FILE-INGRESS-01"]
+    for a in ["local_user_file_ingress_01_manifest.json","local_user_file_ingress_request_packet.json","local_user_file_pmr_context_link_packet.json","local_user_file_ingress_receipt_ux_packet.json","local_user_file_ingress_01_review_packet.json"]:
+        assert a in art
+    for b in ["Explicit file-list ingress is not memory write.","Duplicate input audit is not duplicate input normalization.","A field claiming deduplication must be backed by normalized-output evidence.","PMR context links must not multiply duplicate source paths when deduplicate_source_paths is true."]:
+        assert b in bounds
+
+
+def test_user_facing_receipt_ux_01_updates_present(tmp_path):
+    out_dir,_=run_builder(tmp_path)
+    dashboard=json.loads((out_dir/"experiment_suite_dashboard.json").read_text())
+    idx=json.loads((out_dir/"artifact_index.json").read_text())
+    bounds=json.loads((out_dir/"claim_boundary_index.json").read_text())["boundaries"]
+    repro=json.loads((out_dir/"reproducibility_index.json").read_text())
+    assert "USER-FACING-RECEIPT-UX-01" in {p["phase_id"] for p in dashboard["accepted_phases"]}
+    assert "Run-USER-FACING-RECEIPT-UX01-Acceptance.ps1" in str(repro)
+    art=idx["phases"]["USER-FACING-RECEIPT-UX-01"]
+    for a in ["local_user_file_human_receipt.md","local_user_file_receipt_ux_01_packet.json","local_user_file_receipt_next_actions.json","local_user_file_receipt_boundary_table.json"]:
+        assert a in art
+    for b in ["Receipt UX is not final answer.","Reviewer next action is not authority.","Failure receipt is not permission to proceed."]:
+        assert b in bounds
+
+
+def test_local_server_user_file_ingress_02_updates_present(tmp_path):
+    out_dir,_=run_builder(tmp_path)
+    dashboard=json.loads((out_dir/"experiment_suite_dashboard.json").read_text())
+    idx=json.loads((out_dir/"artifact_index.json").read_text())
+    bounds=json.loads((out_dir/"claim_boundary_index.json").read_text())["boundaries"]
+    repro=json.loads((out_dir/"reproducibility_index.json").read_text())
+    assert "LOCAL-SERVER-USER-FILE-INGRESS-02" in {p["phase_id"] for p in dashboard["accepted_phases"]}
+    assert "Run-LOCAL-SERVER-USER-FILE-INGRESS02-Acceptance.ps1" in str(repro)
+    art=idx["phases"]["LOCAL-SERVER-USER-FILE-INGRESS-02"]
+    for a in ["local_review_request_02_packet.json","local_review_source_set_packet.json","local_review_intent_packet.json","local_review_receipt_preferences_packet.json","local_server_user_file_ingress_02_review_packet.json"]:
+        assert a in art
+    for b in ["Local review request is not final answer request.","Reviewer intent is not authority."]:
+        assert b in bounds
+
+
+def test_lan_readiness_preflight_00_updates_present(tmp_path):
+    out_dir,_=run_builder(tmp_path)
+    dashboard=json.loads((out_dir/"experiment_suite_dashboard.json").read_text())
+    idx=json.loads((out_dir/"artifact_index.json").read_text())
+    bounds=json.loads((out_dir/"claim_boundary_index.json").read_text())["boundaries"]
+    repro=json.loads((out_dir/"reproducibility_index.json").read_text())
+    assert "LAN-READINESS-PREFLIGHT-00" in {p["phase_id"] for p in dashboard["accepted_phases"]}
+    assert "Run-LAN-READINESS-PREFLIGHT00-Acceptance.ps1" in str(repro)
+    art=idx["phases"]["LAN-READINESS-PREFLIGHT-00"]
+    for a in ["lan_readiness_preflight_manifest.json","lan_readiness_preflight_request_packet.json","lan_readiness_preflight_report.md","lan_readiness_preflight_report.json","lan_readiness_preflight_review_packet.json"]:
+        assert a in art
+    for b in ["LAN readiness preflight is not LAN enablement.","Loopback success is not LAN readiness.","Preflight report is not final answer."]:
+        assert b in bounds
