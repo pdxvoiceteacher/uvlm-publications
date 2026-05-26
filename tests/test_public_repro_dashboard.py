@@ -127,6 +127,7 @@ REQUIRED_PHASES = {
     "USER-FACING-RECEIPT-UX-01",
     "LOCAL-SERVER-USER-FILE-INGRESS-02",
     "LAN-READINESS-PREFLIGHT-00",
+    "LAN-AUTHORITY-MODEL-00",
     "PMR-CONTEXT-AVAILABILITY-LEDGER-00",
 }
 
@@ -2566,4 +2567,18 @@ def test_lan_readiness_preflight_00_updates_present(tmp_path):
     for a in ["lan_readiness_preflight_manifest.json","lan_readiness_preflight_request_packet.json","lan_readiness_preflight_report.md","lan_readiness_preflight_report.json","lan_readiness_preflight_review_packet.json"]:
         assert a in art
     for b in ["LAN readiness preflight is not LAN enablement.","Loopback success is not LAN readiness.","Preflight report is not final answer.","Preflight report is not product release."]:
+        assert b in bounds
+
+def test_lan_authority_model_00_updates_present(tmp_path):
+    out_dir,_=run_builder(tmp_path)
+    dashboard=json.loads((out_dir/"experiment_suite_dashboard.json").read_text())
+    idx=json.loads((out_dir/"artifact_index.json").read_text())
+    bounds=json.loads((out_dir/"claim_boundary_index.json").read_text())["boundaries"]
+    repro=json.loads((out_dir/"reproducibility_index.json").read_text())
+    assert "LAN-AUTHORITY-MODEL-00" in {p["phase_id"] for p in dashboard["accepted_phases"]}
+    assert "Run-LAN-AUTHORITY-MODEL00-Acceptance.ps1" in str(repro)
+    art=idx["phases"]["LAN-AUTHORITY-MODEL-00"]
+    for a in ["lan_authority_model_manifest.json","lan_authority_model_request_packet.json","lan_bind_scope_model.json","lan_remote_client_model.json","lan_consent_model.json","lan_network_risk_register.json","lan_authority_boundary_table.json"]:
+        assert a in art
+    for b in ["LAN authority model is not LAN enablement.","Role model is not authorization.","Network risk register is not network permission."]:
         assert b in bounds

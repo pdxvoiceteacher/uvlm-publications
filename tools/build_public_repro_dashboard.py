@@ -1352,6 +1352,14 @@ LAN_READINESS_PREFLIGHT_00_ARTIFACTS=["lan_readiness_preflight_manifest.json","l
 LAN_READINESS_PREFLIGHT_00_DASHBOARD_SUMMARY={"review_status":"accepted_as_lan_readiness_preflight_00_scaffold","preflight_report_present":True,"boundary_table_present":True,"loopback_probe_present":True,"bind_host_plan_present":True,"port_plan_present":True,"remote_client_model_present":True,"network_policy_observation_present":True,"lan_preflight_not_lan_enablement":True,"lan_preflight_not_network_authorization":True,"loopback_success_not_lan_readiness":True,"localhost_gateway_not_lan_readiness":True,"bind_host_review_not_bind_authorization":True,"port_planning_not_port_opening":True,"remote_client_model_not_remote_client_authorization":True,"preflight_report_not_final_answer":True,"preflight_report_not_accepted_evidence":True,"run_artifact_manifest_status":"verified","run_package_profile":"lan_readiness_preflight_00","export_parity_passed":True}
 LAN_READINESS_PREFLIGHT_00_CLAIMS_BLOCKED=["not LAN enablement","not network authorization","not remote access","not firewall authorization","not federation","not deployment","not product release","not final answer release","not accepted evidence"]
 
+LAN_AUTHORITY_MODEL_00_COMMAND = r""".\experiments\Run-LAN-AUTHORITY-MODEL00-Acceptance.ps1 `
+  -OutputRoot C:\UVLM\run_artifacts\lan_authority_model_00 `
+  -LogDir C:\UVLM\run_artifacts\lan_authority_model_00_logs `
+  -CiMode"""
+LAN_AUTHORITY_MODEL_00_ARTIFACTS=["lan_authority_model_manifest.json","lan_authority_model_request_packet.json","lan_bind_scope_model.json","lan_remote_client_model.json","lan_consent_model.json","lan_network_risk_register.json","lan_authority_boundary_table.json","lan_authority_model_review_packet.json","phaselock_stack_snapshot.json","lan_preflight_dependency_snapshot.json","artifact_inventory.json","run_artifact_manifest.json","export_bundle_manifest.json","export_bundle_parity_report.json","lan_authority_model_00_acceptance_receipt.json"]
+LAN_AUTHORITY_MODEL_00_DASHBOARD_SUMMARY={"review_status":"accepted_as_lan_authority_model_scaffold","model_only":True,"lan_enabled":False,"lan_binding_performed":False,"firewall_change_performed":False,"network_discovery_performed":False,"remote_client_authorized":False,"federation_authorized":False,"deployment_performed":False,"product_release_performed":False,"allowed_bind_scopes":[],"currently_authorized_bind_scopes":[],"authorized_remote_clients":[],"no_bind_host_authorized":True,"no_port_opened":True,"no_remote_client_authorized":True,"no_remote_access_enabled":True,"no_lan_enablement_consent_executed":True,"no_remote_client_consent_executed":True,"risks_are_not_authorizations":True,"run_artifact_manifest_status":"verified","run_package_profile":"lan_authority_model_00","export_parity_passed":True}
+LAN_AUTHORITY_MODEL_00_CLAIMS_BLOCKED=["not LAN enablement","not network authorization","not remote client authorization","not bind authorization","not firewall authorization","not federation","not deployment","not product release"]
+
 PMR_00_COMMAND = r""".\experiments\Run-PMR00-Acceptance.ps1 `
   -OutputRoot C:\UVLM\run_artifacts\pmr_00 `
   -LogDir C:\UVLM\run_artifacts\pmr_00_logs `
@@ -3236,6 +3244,7 @@ ACCEPTED_PHASES = [
 {"phase_id":"USER-FACING-RECEIPT-UX-01","repo":"pdxvoiceteacher/CoherenceLattice","status":"accepted","evidence_type":"runtime_smoke","product_posture":"human_readable_local_file_review_receipt_without_final_answer_or_authority","primary_artifacts":USER_FACING_RECEIPT_UX_01_ARTIFACTS,"dashboard_summary":USER_FACING_RECEIPT_UX_01_DASHBOARD_SUMMARY,"reproduction_command_summary":USER_FACING_RECEIPT_UX_01_COMMAND,"claims_blocked":USER_FACING_RECEIPT_UX_01_CLAIMS_BLOCKED,"claim_allowed":"human-readable local file receipt UX scaffold","reviewer_caution":"Receipt UX is not final answer."},
 {"phase_id":"LOCAL-SERVER-USER-FILE-INGRESS-02","repo":"pdxvoiceteacher/CoherenceLattice","status":"accepted","evidence_type":"runtime_smoke","product_posture":"product_like_local_review_request_packet_without_final_answer_or_authority","primary_artifacts":LOCAL_SERVER_USER_FILE_INGRESS_02_ARTIFACTS,"dashboard_summary":LOCAL_SERVER_USER_FILE_INGRESS_02_DASHBOARD_SUMMARY,"reproduction_command_summary":LOCAL_SERVER_USER_FILE_INGRESS_02_COMMAND,"claims_blocked":LOCAL_SERVER_USER_FILE_INGRESS_02_CLAIMS_BLOCKED,"claim_allowed":"product-like local review request packet scaffold","reviewer_caution":"Local review request is not final answer request."},
 {"phase_id":"LAN-READINESS-PREFLIGHT-00","repo":"pdxvoiceteacher/CoherenceLattice","status":"accepted","evidence_type":"runtime_smoke","product_posture":"preflight_only_lan_readiness_without_enablement_or_authority","primary_artifacts":LAN_READINESS_PREFLIGHT_00_ARTIFACTS,"dashboard_summary":LAN_READINESS_PREFLIGHT_00_DASHBOARD_SUMMARY,"reproduction_command_summary":LAN_READINESS_PREFLIGHT_00_COMMAND,"claims_blocked":LAN_READINESS_PREFLIGHT_00_CLAIMS_BLOCKED,"claim_allowed":"LAN readiness preflight scaffold","reviewer_caution":"LAN readiness preflight is not LAN enablement."},
+{"phase_id":"LAN-AUTHORITY-MODEL-00","repo":"pdxvoiceteacher/CoherenceLattice","status":"accepted","evidence_type":"runtime_smoke","product_posture":"model_only_lan_authority_scaffold_without_enablement_or_release","primary_artifacts":LAN_AUTHORITY_MODEL_00_ARTIFACTS,"dashboard_summary":LAN_AUTHORITY_MODEL_00_DASHBOARD_SUMMARY,"reproduction_command_summary":LAN_AUTHORITY_MODEL_00_COMMAND,"claims_blocked":LAN_AUTHORITY_MODEL_00_CLAIMS_BLOCKED,"claim_allowed":"LAN authority model scaffold","reviewer_caution":"LAN authority model is not LAN enablement."},
 {"phase_id":"PMR-CONTEXT-AVAILABILITY-LEDGER-00","repo":"pdxvoiceteacher/CoherenceLattice","status":"accepted","evidence_type":"governance_scaffold","product_posture":"fixture_only_context_availability_without_source_content_or_memory_authority","primary_artifacts":PMR_CONTEXT_AVAILABILITY_LEDGER_00_ARTIFACTS,"dashboard_summary":PMR_CONTEXT_AVAILABILITY_LEDGER_00_DASHBOARD_SUMMARY,"reproduction_command_summary":PMR_CONTEXT_AVAILABILITY_LEDGER_00_COMMAND,"claims_blocked":PMR_CONTEXT_AVAILABILITY_LEDGER_00_CLAIMS_BLOCKED,"claim_allowed":"context availability ledger scaffold","reviewer_caution":"Expiration is not nonexistence."},
 {"phase_id":"LOCAL-SERVER-USER-FILE-INGRESS-00","repo":"pdxvoiceteacher/CoherenceLattice","status":"accepted","evidence_type":"runtime_smoke","product_posture":"explicit_local_user_file_ingress_without_memory_or_network_authority","primary_artifacts":LOCAL_SERVER_USER_FILE_INGRESS_00_ARTIFACTS,"dashboard_summary":LOCAL_SERVER_USER_FILE_INGRESS_00_DASHBOARD_SUMMARY,"reproduction_command_summary":LOCAL_SERVER_USER_FILE_INGRESS_00_COMMAND,"claims_blocked":LOCAL_SERVER_USER_FILE_INGRESS_00_CLAIMS_BLOCKED,"claim_allowed":"explicit local user file ingress runtime smoke","reviewer_caution":"User file ingress is not memory write."},
 {"phase_id":"SONYA-LOCAL-SERVER-GATEWAY-02","repo":"pdxvoiceteacher/CoherenceLattice","status":"accepted","evidence_type":"runtime_smoke","product_posture":"localhost_only_source_span_gateway_without_truth_or_memory_authority","primary_artifacts":SONYA_LOCAL_SERVER_GATEWAY_02_ARTIFACTS,"dashboard_summary":SONYA_LOCAL_SERVER_GATEWAY_02_DASHBOARD_SUMMARY,"reproduction_command_summary":SONYA_LOCAL_SERVER_GATEWAY_02_COMMAND,"claims_blocked":SONYA_LOCAL_SERVER_GATEWAY_02_CLAIMS_BLOCKED,"claim_allowed":"localhost-only source-span gateway retrieval scaffold","reviewer_caution":"Source-span gateway review is not truth certification."},
@@ -4091,6 +4100,27 @@ PLANNED_PHASES = [
     "Raw-model comparison baselines",
 ]
 BOUNDARIES = [
+    "LAN authority model is not LAN enablement.",
+    "LAN authority model is not network authorization.",
+    "LAN authority model is not remote client authorization.",
+    "LAN authority model is not bind authorization.",
+    "LAN authority model is not firewall authorization.",
+    "LAN authority model is not federation.",
+    "LAN authority model is not deployment.",
+    "LAN authority model is not product release.",
+    "Role model is not authorization.",
+    "Consent model is not consent execution.",
+    "Bind-scope model is not bind permission.",
+    "Remote-client model is not remote-client permission.",
+    "Network risk register is not network permission.",
+    "Preflight readiness is not enablement.",
+    "No bind host is authorized.",
+    "No port is opened.",
+    "No remote client is authorized.",
+    "No remote access is enabled.",
+    "No LAN enablement consent is executed.",
+    "No remote client consent is executed.",
+    "Risks are not authorizations.",
     "LAN readiness preflight is not LAN enablement.",
     "LAN readiness preflight is not network authorization.",
     "LAN readiness preflight is not remote access.",
@@ -5020,6 +5050,7 @@ def reproducibility_index() -> dict[str, Any]:
                 {"name": "User-facing receipt UX acceptance", "command": USER_FACING_RECEIPT_UX_01_COMMAND},
                 {"name": "Local Server User File Ingress 02 acceptance", "command": LOCAL_SERVER_USER_FILE_INGRESS_02_COMMAND},
                 {"name": "LAN readiness preflight acceptance", "command": LAN_READINESS_PREFLIGHT_00_COMMAND},
+                {"name": "LAN authority model acceptance", "command": LAN_AUTHORITY_MODEL_00_COMMAND},
                 {"name": "PMR Context Availability Ledger acceptance", "command": PMR_CONTEXT_AVAILABILITY_LEDGER_00_COMMAND},
                 {"name": "Local Sonya path portability acceptance", "command": LOCAL_SONYA_PATH_PORTABILITY_00_COMMAND},
                 {"name": "PMR doctrine acceptance", "command": PMR_00_COMMAND},
@@ -5128,6 +5159,7 @@ def artifact_index() -> dict[str, Any]:
         "USER-FACING-RECEIPT-UX-01": USER_FACING_RECEIPT_UX_01_ARTIFACTS,
         "LOCAL-SERVER-USER-FILE-INGRESS-02": LOCAL_SERVER_USER_FILE_INGRESS_02_ARTIFACTS,
         "LAN-READINESS-PREFLIGHT-00": LAN_READINESS_PREFLIGHT_00_ARTIFACTS,
+        "LAN-AUTHORITY-MODEL-00": LAN_AUTHORITY_MODEL_00_ARTIFACTS,
         "PMR-CONTEXT-AVAILABILITY-LEDGER-00": PMR_CONTEXT_AVAILABILITY_LEDGER_00_ARTIFACTS,
         "SONYA-ADAPTER-SMOKE-00": SONYA_ADAPTER_SMOKE_ARTIFACTS,
         "SONYA-LOCAL-FIXTURE-ADAPTER-01": SONYA_LOCAL_FIXTURE_ADAPTER_ARTIFACTS,
@@ -5301,6 +5333,28 @@ def status_payload() -> dict[str, Any]:
         "not_preflight_report_final_answer": True,
         "not_preflight_report_accepted_evidence": True,
         "not_preflight_report_product_release": True,
+        "lan_authority_model_00_indexed": True,
+        "not_lan_authority_model_lan_enablement": True,
+        "not_lan_authority_model_network_authorization": True,
+        "not_lan_authority_model_remote_client_authorization": True,
+        "not_lan_authority_model_bind_authorization": True,
+        "not_lan_authority_model_firewall_authorization": True,
+        "not_lan_authority_model_federation": True,
+        "not_lan_authority_model_deployment": True,
+        "not_lan_authority_model_product_release": True,
+        "not_role_model_authorization": True,
+        "not_consent_model_consent_execution": True,
+        "not_bind_scope_model_bind_permission": True,
+        "not_remote_client_model_remote_client_permission": True,
+        "not_network_risk_register_network_permission": True,
+        "not_preflight_readiness_enablement": True,
+        "no_bind_host_authorized": True,
+        "no_port_opened": True,
+        "no_remote_client_authorized": True,
+        "no_remote_access_enabled": True,
+        "no_lan_enablement_consent_executed": True,
+        "no_remote_client_consent_executed": True,
+        "risks_are_not_authorizations": True,
         "pmr_context_availability_ledger_00_indexed": True,
         "not_expiration_nonexistence": True,
         "not_inaccessible_unknown": True,

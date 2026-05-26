@@ -2444,3 +2444,17 @@ def test_governed_artifact_cognition_lan_readiness_preflight_00_updates_are_pres
     assert status["lan_readiness_preflight_00_indexed"] is True
     assert status["not_lan_preflight_lan_enablement"] is True
     assert status["not_loopback_success_lan_readiness"] is True
+
+def test_governed_artifact_cognition_lan_authority_model_00_updates_are_present():
+    paper=(ROOT/"PUB_GOV_ARTIFACT_COG_01.md").read_text(encoding="utf-8")
+    artifact_table=(ROOT/"artifact_table.md").read_text(encoding="utf-8")
+    quickstart=(ROOT/"reviewer_quickstart.md").read_text(encoding="utf-8")
+    status=json.loads((ROOT/"status.json").read_text(encoding="utf-8"))
+    for phrase in ["LAN-AUTHORITY-MODEL-00","LAN authority model is not LAN enablement.","Role model is not authorization."]:
+        assert phrase in paper
+    for artifact in ["lan_authority_model_manifest.json","lan_authority_model_request_packet.json","lan_bind_scope_model.json","lan_remote_client_model.json","lan_consent_model.json","lan_network_risk_register.json","lan_authority_boundary_table.json","lan_authority_model_00_acceptance_receipt.json"]:
+        assert artifact in artifact_table
+    assert "Run-LAN-AUTHORITY-MODEL00-Acceptance.ps1" in quickstart
+    assert status["lan_authority_model_00_indexed"] is True
+    assert status["not_lan_authority_model_product_release"] is True
+    assert status["no_remote_client_authorized"] is True

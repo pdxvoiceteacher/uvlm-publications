@@ -495,3 +495,13 @@ Run-LOCAL-SERVER-USER-FILE-INGRESS01-Acceptance.ps1
 - phaselock_stack_snapshot.json
 - local_stack_dependency_snapshot.json
 - lan_readiness_preflight_00_acceptance_receipt.json
+
+- lan_authority_model_manifest.json
+- lan_authority_model_request_packet.json
+- lan_bind_scope_model.json
+- lan_remote_client_model.json
+- lan_consent_model.json
+- lan_network_risk_register.json
+- lan_authority_boundary_table.json
+- lan_authority_model_review_packet.json
+- lan_authority_model_00_acceptance_receipt.json

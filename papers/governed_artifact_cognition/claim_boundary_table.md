@@ -587,3 +587,7 @@ Explicit file-list ingress is not memory write. Duplicate input audit is not dup
 - Preflight report is not final answer.
 - Preflight report is not accepted evidence.
 - Preflight report is not product release.
+
+- LAN authority model is not LAN enablement.
+- Role model is not authorization.
+- Network risk register is not network permission.

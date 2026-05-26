@@ -893,3 +893,8 @@ Reviewer orientation scaffold summary only.
 - LAN readiness preflight is not LAN enablement.
 - Loopback success is not LAN readiness.
 - Preflight report is not product release.
+
+- LAN authority model is not LAN enablement.
+- Role model is not authorization.
+- Network risk register is not network permission.
+- LAN-AUTHORITY-MODEL-00 accepted runtime smoke.
