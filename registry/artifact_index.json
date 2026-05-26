@@ -745,6 +745,21 @@
       "export_bundle_parity_report.json",
       "local_server_user_file_ingress_02_acceptance_receipt.json"
     ],
+    "LAN-READINESS-PREFLIGHT-00": [
+      "lan_readiness_preflight_manifest.json",
+      "lan_readiness_preflight_request_packet.json",
+      "lan_readiness_preflight_report.md",
+      "lan_readiness_preflight_report.json",
+      "lan_readiness_non_authority_boundary_table.json",
+      "lan_readiness_preflight_review_packet.json",
+      "phaselock_stack_snapshot.json",
+      "local_stack_dependency_snapshot.json",
+      "artifact_inventory.json",
+      "run_artifact_manifest.json",
+      "export_bundle_manifest.json",
+      "export_bundle_parity_report.json",
+      "lan_readiness_preflight_00_acceptance_receipt.json"
+    ],
     "PMR-CONTEXT-AVAILABILITY-LEDGER-00": [
       "pmr_context_availability_ledger.json",
       "pmr_context_dependency_map.json",

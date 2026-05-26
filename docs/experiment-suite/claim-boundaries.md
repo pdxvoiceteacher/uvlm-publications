@@ -1,5 +1,20 @@
 # Claim Boundaries
 
+- LAN readiness preflight is not LAN enablement.
+- LAN readiness preflight is not network authorization.
+- LAN readiness preflight is not remote access.
+- LAN readiness preflight is not firewall authorization.
+- LAN readiness preflight is not federation.
+- LAN readiness preflight is not deployment.
+- LAN readiness preflight is not product release.
+- Loopback success is not LAN readiness.
+- Localhost gateway is not LAN readiness.
+- Bind host review is not bind host authorization.
+- Port planning is not port opening.
+- Remote client model is not remote client authorization.
+- Network policy observation is not network permission.
+- Preflight report is not final answer.
+- Preflight report is not accepted evidence.
 - LOCAL-SERVER-USER-FILE-INGRESS-02 is not federation authorization.
 - LOCAL-SERVER-USER-FILE-INGRESS-02 is not LAN readiness.
 - LOCAL-SERVER-USER-FILE-INGRESS-02 is not product release.

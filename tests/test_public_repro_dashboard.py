@@ -126,6 +126,7 @@ REQUIRED_PHASES = {
     "LOCAL-SERVER-USER-FILE-INGRESS-01",
     "USER-FACING-RECEIPT-UX-01",
     "LOCAL-SERVER-USER-FILE-INGRESS-02",
+    "LAN-READINESS-PREFLIGHT-00",
     "PMR-CONTEXT-AVAILABILITY-LEDGER-00",
 }
 
@@ -2550,4 +2551,19 @@ def test_local_server_user_file_ingress_02_updates_present(tmp_path):
     for a in ["local_review_request_02_packet.json","local_review_source_set_packet.json","local_review_intent_packet.json","local_review_receipt_preferences_packet.json","local_server_user_file_ingress_02_review_packet.json"]:
         assert a in art
     for b in ["Local review request is not final answer request.","Reviewer intent is not authority."]:
+        assert b in bounds
+
+
+def test_lan_readiness_preflight_00_updates_present(tmp_path):
+    out_dir,_=run_builder(tmp_path)
+    dashboard=json.loads((out_dir/"experiment_suite_dashboard.json").read_text())
+    idx=json.loads((out_dir/"artifact_index.json").read_text())
+    bounds=json.loads((out_dir/"claim_boundary_index.json").read_text())["boundaries"]
+    repro=json.loads((out_dir/"reproducibility_index.json").read_text())
+    assert "LAN-READINESS-PREFLIGHT-00" in {p["phase_id"] for p in dashboard["accepted_phases"]}
+    assert "Run-LAN-READINESS-PREFLIGHT00-Acceptance.ps1" in str(repro)
+    art=idx["phases"]["LAN-READINESS-PREFLIGHT-00"]
+    for a in ["lan_readiness_preflight_manifest.json","lan_readiness_preflight_request_packet.json","lan_readiness_preflight_report.md","lan_readiness_preflight_report.json","lan_readiness_preflight_review_packet.json"]:
+        assert a in art
+    for b in ["LAN readiness preflight is not LAN enablement.","Loopback success is not LAN readiness.","Preflight report is not final answer."]:
         assert b in bounds

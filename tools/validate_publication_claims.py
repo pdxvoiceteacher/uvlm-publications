@@ -316,6 +316,8 @@ PAPER_CONFIGS: dict[str, dict[str, Any]] = {
             "Reviewer next action is not authority.",
             "Local review request is not final answer request.",
             "Reviewer intent is not authority.",
+            "LAN readiness preflight is not LAN enablement.",
+            "Loopback success is not LAN readiness.",
             "Conflict must remain visible.",
             "Multi-source review is not truth certification.",
             "Cross-source agreement is not accepted evidence.",

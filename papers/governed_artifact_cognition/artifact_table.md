@@ -485,3 +485,13 @@ Run-LOCAL-SERVER-USER-FILE-INGRESS01-Acceptance.ps1
 - local_review_receipt_preferences_packet.json
 - local_server_user_file_ingress_02_review_packet.json
 - local_server_user_file_ingress_02_acceptance_receipt.json
+
+- lan_readiness_preflight_manifest.json
+- lan_readiness_preflight_request_packet.json
+- lan_readiness_preflight_report.md
+- lan_readiness_preflight_report.json
+- lan_readiness_non_authority_boundary_table.json
+- lan_readiness_preflight_review_packet.json
+- phaselock_stack_snapshot.json
+- local_stack_dependency_snapshot.json
+- lan_readiness_preflight_00_acceptance_receipt.json

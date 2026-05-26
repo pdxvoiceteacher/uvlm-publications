@@ -1344,6 +1344,14 @@ LOCAL_SERVER_USER_FILE_INGRESS_02_ARTIFACTS=["local_review_request_02_packet.jso
 LOCAL_SERVER_USER_FILE_INGRESS_02_DASHBOARD_SUMMARY={"review_status":"accepted_as_local_server_user_file_ingress_02_scaffold","local_review_request_present":True,"local_review_intent_present":True,"local_review_receipt_preferences_present":True,"local_review_source_set_present":True,"human_receipt_present":True,"source_span_summary_visible":True,"claim_classification_summary_visible":True,"pmr_context_links_visible":True,"local_review_request_not_final_answer":True,"reviewer_intent_not_authority":True,"receipt_preference_not_product_release":True,"source_set_not_global_path_authority":True,"local_review_request_not_memory_write":True,"local_review_request_not_network_authorization":True,"run_artifact_manifest_status":"verified","run_package_profile":"local_server_user_file_ingress_02","export_parity_passed":True}
 LOCAL_SERVER_USER_FILE_INGRESS_02_CLAIMS_BLOCKED=["not final answer release","not accepted evidence","not truth certification","not memory write","not PMR storage authority","not provider call","not network authorization","not deployment authority","not product release","not LAN readiness","not federation authorization"]
 
+LAN_READINESS_PREFLIGHT_00_COMMAND = r""".\experiments\Run-LAN-READINESS-PREFLIGHT00-Acceptance.ps1 `
+  -OutputRoot C:\UVLM\run_artifacts\lan_readiness_preflight_00 `
+  -LogDir C:\UVLM\run_artifacts\lan_readiness_preflight_00_logs `
+  -CiMode"""
+LAN_READINESS_PREFLIGHT_00_ARTIFACTS=["lan_readiness_preflight_manifest.json","lan_readiness_preflight_request_packet.json","lan_readiness_preflight_report.md","lan_readiness_preflight_report.json","lan_readiness_non_authority_boundary_table.json","lan_readiness_preflight_review_packet.json","phaselock_stack_snapshot.json","local_stack_dependency_snapshot.json","artifact_inventory.json","run_artifact_manifest.json","export_bundle_manifest.json","export_bundle_parity_report.json","lan_readiness_preflight_00_acceptance_receipt.json"]
+LAN_READINESS_PREFLIGHT_00_DASHBOARD_SUMMARY={"review_status":"accepted_as_lan_readiness_preflight_00_scaffold","preflight_report_present":True,"boundary_table_present":True,"loopback_probe_present":True,"bind_host_plan_present":True,"port_plan_present":True,"remote_client_model_present":True,"network_policy_observation_present":True,"lan_preflight_not_lan_enablement":True,"lan_preflight_not_network_authorization":True,"loopback_success_not_lan_readiness":True,"localhost_gateway_not_lan_readiness":True,"bind_host_review_not_bind_authorization":True,"port_planning_not_port_opening":True,"remote_client_model_not_remote_client_authorization":True,"preflight_report_not_final_answer":True,"preflight_report_not_accepted_evidence":True,"run_artifact_manifest_status":"verified","run_package_profile":"lan_readiness_preflight_00","export_parity_passed":True}
+LAN_READINESS_PREFLIGHT_00_CLAIMS_BLOCKED=["not LAN enablement","not network authorization","not remote access","not firewall authorization","not federation","not deployment","not product release","not final answer release","not accepted evidence"]
+
 PMR_00_COMMAND = r""".\experiments\Run-PMR00-Acceptance.ps1 `
   -OutputRoot C:\UVLM\run_artifacts\pmr_00 `
   -LogDir C:\UVLM\run_artifacts\pmr_00_logs `
@@ -3227,6 +3235,7 @@ ACCEPTED_PHASES = [
                         {"phase_id":"LOCAL-SERVER-USER-FILE-INGRESS-01","repo":"pdxvoiceteacher/CoherenceLattice","status":"accepted","evidence_type":"runtime_smoke","product_posture":"explicit_file_list_local_ingress_with_pmr_context_linkage_without_memory_or_network_authority","primary_artifacts":LOCAL_SERVER_USER_FILE_INGRESS_01_ARTIFACTS,"dashboard_summary":LOCAL_SERVER_USER_FILE_INGRESS_01_DASHBOARD_SUMMARY,"reproduction_command_summary":LOCAL_SERVER_USER_FILE_INGRESS_01_COMMAND,"claims_blocked":LOCAL_SERVER_USER_FILE_INGRESS_01_CLAIMS_BLOCKED,"claim_allowed":"explicit file-list local ingress with PMR context linkage scaffold","reviewer_caution":"Explicit file-list ingress is not memory write."},
 {"phase_id":"USER-FACING-RECEIPT-UX-01","repo":"pdxvoiceteacher/CoherenceLattice","status":"accepted","evidence_type":"runtime_smoke","product_posture":"human_readable_local_file_review_receipt_without_final_answer_or_authority","primary_artifacts":USER_FACING_RECEIPT_UX_01_ARTIFACTS,"dashboard_summary":USER_FACING_RECEIPT_UX_01_DASHBOARD_SUMMARY,"reproduction_command_summary":USER_FACING_RECEIPT_UX_01_COMMAND,"claims_blocked":USER_FACING_RECEIPT_UX_01_CLAIMS_BLOCKED,"claim_allowed":"human-readable local file receipt UX scaffold","reviewer_caution":"Receipt UX is not final answer."},
 {"phase_id":"LOCAL-SERVER-USER-FILE-INGRESS-02","repo":"pdxvoiceteacher/CoherenceLattice","status":"accepted","evidence_type":"runtime_smoke","product_posture":"product_like_local_review_request_packet_without_final_answer_or_authority","primary_artifacts":LOCAL_SERVER_USER_FILE_INGRESS_02_ARTIFACTS,"dashboard_summary":LOCAL_SERVER_USER_FILE_INGRESS_02_DASHBOARD_SUMMARY,"reproduction_command_summary":LOCAL_SERVER_USER_FILE_INGRESS_02_COMMAND,"claims_blocked":LOCAL_SERVER_USER_FILE_INGRESS_02_CLAIMS_BLOCKED,"claim_allowed":"product-like local review request packet scaffold","reviewer_caution":"Local review request is not final answer request."},
+{"phase_id":"LAN-READINESS-PREFLIGHT-00","repo":"pdxvoiceteacher/CoherenceLattice","status":"accepted","evidence_type":"runtime_smoke","product_posture":"preflight_only_lan_readiness_without_enablement_or_authority","primary_artifacts":LAN_READINESS_PREFLIGHT_00_ARTIFACTS,"dashboard_summary":LAN_READINESS_PREFLIGHT_00_DASHBOARD_SUMMARY,"reproduction_command_summary":LAN_READINESS_PREFLIGHT_00_COMMAND,"claims_blocked":LAN_READINESS_PREFLIGHT_00_CLAIMS_BLOCKED,"claim_allowed":"LAN readiness preflight scaffold","reviewer_caution":"LAN readiness preflight is not LAN enablement."},
 {"phase_id":"PMR-CONTEXT-AVAILABILITY-LEDGER-00","repo":"pdxvoiceteacher/CoherenceLattice","status":"accepted","evidence_type":"governance_scaffold","product_posture":"fixture_only_context_availability_without_source_content_or_memory_authority","primary_artifacts":PMR_CONTEXT_AVAILABILITY_LEDGER_00_ARTIFACTS,"dashboard_summary":PMR_CONTEXT_AVAILABILITY_LEDGER_00_DASHBOARD_SUMMARY,"reproduction_command_summary":PMR_CONTEXT_AVAILABILITY_LEDGER_00_COMMAND,"claims_blocked":PMR_CONTEXT_AVAILABILITY_LEDGER_00_CLAIMS_BLOCKED,"claim_allowed":"context availability ledger scaffold","reviewer_caution":"Expiration is not nonexistence."},
 {"phase_id":"LOCAL-SERVER-USER-FILE-INGRESS-00","repo":"pdxvoiceteacher/CoherenceLattice","status":"accepted","evidence_type":"runtime_smoke","product_posture":"explicit_local_user_file_ingress_without_memory_or_network_authority","primary_artifacts":LOCAL_SERVER_USER_FILE_INGRESS_00_ARTIFACTS,"dashboard_summary":LOCAL_SERVER_USER_FILE_INGRESS_00_DASHBOARD_SUMMARY,"reproduction_command_summary":LOCAL_SERVER_USER_FILE_INGRESS_00_COMMAND,"claims_blocked":LOCAL_SERVER_USER_FILE_INGRESS_00_CLAIMS_BLOCKED,"claim_allowed":"explicit local user file ingress runtime smoke","reviewer_caution":"User file ingress is not memory write."},
 {"phase_id":"SONYA-LOCAL-SERVER-GATEWAY-02","repo":"pdxvoiceteacher/CoherenceLattice","status":"accepted","evidence_type":"runtime_smoke","product_posture":"localhost_only_source_span_gateway_without_truth_or_memory_authority","primary_artifacts":SONYA_LOCAL_SERVER_GATEWAY_02_ARTIFACTS,"dashboard_summary":SONYA_LOCAL_SERVER_GATEWAY_02_DASHBOARD_SUMMARY,"reproduction_command_summary":SONYA_LOCAL_SERVER_GATEWAY_02_COMMAND,"claims_blocked":SONYA_LOCAL_SERVER_GATEWAY_02_CLAIMS_BLOCKED,"claim_allowed":"localhost-only source-span gateway retrieval scaffold","reviewer_caution":"Source-span gateway review is not truth certification."},
@@ -4082,6 +4091,21 @@ PLANNED_PHASES = [
     "Raw-model comparison baselines",
 ]
 BOUNDARIES = [
+    "LAN readiness preflight is not LAN enablement.",
+    "LAN readiness preflight is not network authorization.",
+    "LAN readiness preflight is not remote access.",
+    "LAN readiness preflight is not firewall authorization.",
+    "LAN readiness preflight is not federation.",
+    "LAN readiness preflight is not deployment.",
+    "LAN readiness preflight is not product release.",
+    "Loopback success is not LAN readiness.",
+    "Localhost gateway is not LAN readiness.",
+    "Bind host review is not bind host authorization.",
+    "Port planning is not port opening.",
+    "Remote client model is not remote client authorization.",
+    "Network policy observation is not network permission.",
+    "Preflight report is not final answer.",
+    "Preflight report is not accepted evidence.",
     "LOCAL-SERVER-USER-FILE-INGRESS-02 is not federation authorization.",
     "LOCAL-SERVER-USER-FILE-INGRESS-02 is not LAN readiness.",
     "LOCAL-SERVER-USER-FILE-INGRESS-02 is not product release.",
@@ -4994,6 +5018,7 @@ def reproducibility_index() -> dict[str, Any]:
                 {"name": "Local Server User File Ingress 01 acceptance", "command": LOCAL_SERVER_USER_FILE_INGRESS_01_COMMAND},
                 {"name": "User-facing receipt UX acceptance", "command": USER_FACING_RECEIPT_UX_01_COMMAND},
                 {"name": "Local Server User File Ingress 02 acceptance", "command": LOCAL_SERVER_USER_FILE_INGRESS_02_COMMAND},
+                {"name": "LAN readiness preflight acceptance", "command": LAN_READINESS_PREFLIGHT_00_COMMAND},
                 {"name": "PMR Context Availability Ledger acceptance", "command": PMR_CONTEXT_AVAILABILITY_LEDGER_00_COMMAND},
                 {"name": "Local Sonya path portability acceptance", "command": LOCAL_SONYA_PATH_PORTABILITY_00_COMMAND},
                 {"name": "PMR doctrine acceptance", "command": PMR_00_COMMAND},
@@ -5101,6 +5126,7 @@ def artifact_index() -> dict[str, Any]:
         "LOCAL-SERVER-USER-FILE-INGRESS-01": LOCAL_SERVER_USER_FILE_INGRESS_01_ARTIFACTS,
         "USER-FACING-RECEIPT-UX-01": USER_FACING_RECEIPT_UX_01_ARTIFACTS,
         "LOCAL-SERVER-USER-FILE-INGRESS-02": LOCAL_SERVER_USER_FILE_INGRESS_02_ARTIFACTS,
+        "LAN-READINESS-PREFLIGHT-00": LAN_READINESS_PREFLIGHT_00_ARTIFACTS,
         "PMR-CONTEXT-AVAILABILITY-LEDGER-00": PMR_CONTEXT_AVAILABILITY_LEDGER_00_ARTIFACTS,
         "SONYA-ADAPTER-SMOKE-00": SONYA_ADAPTER_SMOKE_ARTIFACTS,
         "SONYA-LOCAL-FIXTURE-ADAPTER-01": SONYA_LOCAL_FIXTURE_ADAPTER_ARTIFACTS,
@@ -5263,6 +5289,17 @@ def status_payload() -> dict[str, Any]:
         "not_source_set_global_path_authority": True,
         "not_local_review_request_memory_write": True,
         "not_local_review_request_network_authorization": True,
+        "lan_readiness_preflight_00_indexed": True,
+        "not_lan_preflight_lan_enablement": True,
+        "not_lan_preflight_network_authorization": True,
+        "not_loopback_success_lan_readiness": True,
+        "not_localhost_gateway_lan_readiness": True,
+        "not_bind_host_review_bind_authorization": True,
+        "not_port_planning_port_opening": True,
+        "not_remote_client_model_remote_client_authorization": True,
+        "not_preflight_report_final_answer": True,
+        "not_preflight_report_accepted_evidence": True,
+        "not_preflight_report_product_release": True,
         "pmr_context_availability_ledger_00_indexed": True,
         "not_expiration_nonexistence": True,
         "not_inaccessible_unknown": True,

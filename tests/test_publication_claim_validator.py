@@ -2429,3 +2429,18 @@ def test_governed_artifact_cognition_local_server_user_file_ingress_02_updates_a
     assert status["local_server_user_file_ingress_02_indexed"] is True
     assert status["not_local_review_request_final_answer"] is True
     assert status["not_reviewer_intent_authority"] is True
+
+
+def test_governed_artifact_cognition_lan_readiness_preflight_00_updates_are_present():
+    paper=(ROOT/"PUB_GOV_ARTIFACT_COG_01.md").read_text(encoding="utf-8")
+    artifact_table=(ROOT/"artifact_table.md").read_text(encoding="utf-8")
+    quickstart=(ROOT/"reviewer_quickstart.md").read_text(encoding="utf-8")
+    status=json.loads((ROOT/"status.json").read_text(encoding="utf-8"))
+    for phrase in ["LAN-READINESS-PREFLIGHT-00","LAN readiness preflight is not LAN enablement.","Loopback success is not LAN readiness."]:
+        assert phrase in paper
+    for artifact in ["lan_readiness_preflight_manifest.json","lan_readiness_preflight_request_packet.json","lan_readiness_preflight_report.md","lan_readiness_preflight_report.json","lan_readiness_preflight_review_packet.json","lan_readiness_preflight_00_acceptance_receipt.json"]:
+        assert artifact in artifact_table
+    assert "Run-LAN-READINESS-PREFLIGHT00-Acceptance.ps1" in quickstart
+    assert status["lan_readiness_preflight_00_indexed"] is True
+    assert status["not_lan_preflight_lan_enablement"] is True
+    assert status["not_loopback_success_lan_readiness"] is True

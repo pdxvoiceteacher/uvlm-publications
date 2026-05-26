@@ -91,6 +91,10 @@
         "command": ".\\experiments\\Run-LOCAL-SERVER-USER-FILE-INGRESS02-Acceptance.ps1 `\n  -OutputRoot C:\\UVLM\\run_artifacts\\local_server_user_file_ingress_02 `\n  -LogDir C:\\UVLM\\run_artifacts\\local_server_user_file_ingress_02_logs `\n  -CiMode"
       },
       {
+        "name": "LAN readiness preflight acceptance",
+        "command": ".\\experiments\\Run-LAN-READINESS-PREFLIGHT00-Acceptance.ps1 `\n  -OutputRoot C:\\UVLM\\run_artifacts\\lan_readiness_preflight_00 `\n  -LogDir C:\\UVLM\\run_artifacts\\lan_readiness_preflight_00_logs `\n  -CiMode"
+      },
+      {
         "name": "PMR Context Availability Ledger acceptance",
         "command": ".\\experiments\\Run-PMR-CONTEXT-AVAILABILITY-LEDGER00-Acceptance.ps1 `\n  -OutputRoot C:\\UVLM\\run_artifacts\\pmr_context_availability_ledger_00 `\n  -LogDir C:\\UVLM\\run_artifacts\\pmr_context_availability_ledger_00_logs `\n  -CiMode"
       },

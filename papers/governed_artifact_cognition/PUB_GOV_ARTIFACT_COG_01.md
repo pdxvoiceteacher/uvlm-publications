@@ -888,3 +888,7 @@ Reviewer orientation scaffold summary only.
 - Reviewer intent is not authority.
 
 Reviewer orientation scaffold summary only.
+
+- LAN-READINESS-PREFLIGHT-00 accepted runtime smoke.
+- LAN readiness preflight is not LAN enablement.
+- Loopback success is not LAN readiness.
