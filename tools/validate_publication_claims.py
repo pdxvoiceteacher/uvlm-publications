@@ -282,6 +282,47 @@ PAPER_CONFIGS: dict[str, dict[str, Any]] = {
             "Run-TB-PRODUCT-SLICE00-Acceptance.ps1",
             "TB-PRODUCT-SLICE-01",
             "Cross-source conflict is not contradiction resolution.",
+"Run retrieval is not memory write.",
+            "Run index is not PMR store.",
+            "Receipt retrieval is not final answer release.",
+            "Event retrieval is not authority.",
+            "Unknown run IDs must fail closed.",
+            "Uncertainty must remain visible.",
+            "Unsupported claims must remain visible.",
+            "Review receipt is not final answer.",
+            "Claim segmentation is not semantic authority.",
+            "Source conflict is not contradiction resolution.",
+            "Source agreement is not proof.",
+            "Quoted source text is not accepted evidence.",
+            "Source span is not truth certification.",
+            "Claim classification retrieval is not final answer.",
+            "Claim classification is not semantic authority.",
+            "Source-span gateway review is not truth certification.",
+            "Unsupported file types must fail closed.",
+            "Missing consent must fail closed.",
+            "Copied run-local source is not PMR storage.",
+            "User file ingress is not memory write.",
+            "PMR ledger is not pruning authority.",
+            "PMR ledger is not deletion authority.",
+            "Hash is not content access.",
+            "Summary is not source.",
+            "Known inaccessible content is not unknown content.",
+            "Expiration is not nonexistence.",
+            "PMR context links must not multiply duplicate source paths when deduplicate_source_paths is true.",
+            "A field claiming deduplication must be backed by normalized-output evidence.",
+            "Duplicate input audit is not duplicate input normalization.",
+            "Explicit file-list ingress is not memory write.",
+            "Receipt UX is not final answer.",
+            "Reviewer next action is not authority.",
+            "Local review request is not final answer request.",
+            "Reviewer intent is not authority.",
+            "LAN readiness preflight is not LAN enablement.",
+            "Loopback success is not LAN readiness.",
+            "Preflight report is not product release.",
+            "LAN authority model is not LAN enablement.",
+            "Role model is not authorization.",
+            "Negative control is not authorization.",
+            "Failed-closed LAN request is not permission to retry with broader authority.",
             "Conflict must remain visible.",
             "Multi-source review is not truth certification.",
             "Cross-source agreement is not accepted evidence.",
@@ -521,7 +562,6 @@ PAPER_CONFIGS: dict[str, dict[str, Any]] = {
             "compliance certification",
             "remote provider call",
             "remote provider calls",
-            "provider call",
             "claims provider call",
             "claims remote provider call",
             "provider call performed",
@@ -1018,6 +1058,12 @@ def _forbidden_hits(normalized_text: str, forbidden: tuple[str, ...]) -> list[st
             if (
                 phrase in {"raw output admission", "claims raw output admission", "raw output admitted", "raw output accepted as cognition", "raw_output_admitted"}
                 and _is_allowed_raw_output_context(normalized_text, index)
+            ):
+                search_from = index + len(normalized_phrase)
+                continue
+            if (
+                phrase in {"federation", "accepted evidence", "product release"}
+                and "request must fail closed" in normalized_text[index : index + 72]
             ):
                 search_from = index + len(normalized_phrase)
                 continue

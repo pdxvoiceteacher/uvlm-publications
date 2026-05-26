@@ -529,3 +529,83 @@ Run-TB-PRODUCT-SLICE01-Acceptance.ps1
 Cross-source conflict is not contradiction resolution.
 
 Conflict must remain visible.
+
+
+## SONYA-LOCAL-SERVER-GATEWAY-00
+SONYA-LOCAL-SERVER-GATEWAY-00 is a localhost-only Sonya gateway runtime smoke. Localhost gateway is not LAN readiness. Gateway response is not final answer. Local server execution is not deployment authority. Failure receipt is not permission to proceed. Local gateway must fail closed on provider-call attempts. Local gateway must fail closed on memory-write attempts.
+
+`\experiments\Run-SONYA-LOCAL-SERVER-GATEWAY00-Acceptance.ps1`
+
+- `sonya_local_server_gateway_manifest.json`
+- `sonya_local_server_response_packet.json`
+- `sonya_local_server_review_packet.json`
+- `gateway_failure_receipts.jsonl`
+- `tb_product_slice_01_review_receipt.md`
+
+## SONYA-LOCAL-SERVER-GATEWAY-01
+Run retrieval is not memory write. Run index is not PMR store. Receipt retrieval is not final answer release. Event retrieval is not authority. Unknown run IDs must fail closed. Retrieval failure receipt is not permission to proceed. Localhost gateway is not LAN readiness. Localhost readiness is not federation authority.
+
+
+## TB-PRODUCT-SLICE-02
+Source span is not truth certification. Quoted source text is not accepted evidence. Source agreement is not proof. Source conflict is not contradiction resolution. Claim segmentation is not semantic authority. Review receipt is not final answer. Unsupported claims must remain visible. Uncertainty must remain visible. Conflict must remain visible.
+
+
+## SONYA-LOCAL-SERVER-GATEWAY-02
+Source-span gateway review is not truth certification. Claim classification is not semantic authority. Claim classification retrieval is not final answer. Quoted source text is not accepted evidence. Unknown run IDs must fail closed. Failure receipt is not permission to proceed.
+
+
+## LOCAL-SERVER-USER-FILE-INGRESS-00
+User file ingress is not memory write. Local file path is not system path. File normalization is not evidence admission. Copied run-local source is not PMR storage. Missing consent must fail closed. Unsupported file types must fail closed. Explicit consent does not authorize memory write.
+
+
+## PMR-CONTEXT-AVAILABILITY-LEDGER-00
+Expiration is not nonexistence. Known inaccessible content is not unknown content. Summary is not source. Derived summary is not source evidence. Reupload request is not user obligation. File metadata may be sensitive. Hash is not content access. PMR ledger is not deletion authority. PMR ledger is not pruning authority.
+
+
+## LOCAL-SERVER-USER-FILE-INGRESS-01
+Explicit file-list ingress is not memory write. Duplicate input audit is not duplicate input normalization. A field claiming deduplication must be backed by normalized-output evidence. PMR context links must not multiply duplicate source paths when deduplicate_source_paths is true. Nonexistent paths must fail closed.
+
+- Receipt UX is not final answer.
+- Reviewer next action is not authority.
+- Failure receipt is not permission to proceed.
+
+- Local review request is not final answer request.
+- Reviewer intent is not authority.
+
+- LAN readiness preflight is not LAN enablement.
+- LAN readiness preflight is not network authorization.
+- LAN readiness preflight is not remote access.
+- LAN readiness preflight is not firewall authorization.
+- LAN readiness preflight is not federation.
+- LAN readiness preflight is not deployment.
+- LAN readiness preflight is not product release.
+- Loopback success is not LAN readiness.
+- Bind host review is not bind host authorization.
+- Port planning is not port opening.
+- Remote client model is not remote client authorization.
+- Network policy observation is not network permission.
+- Preflight report is not final answer.
+- Preflight report is not accepted evidence.
+- Preflight report is not product release.
+
+- LAN authority model is not LAN enablement.
+- Role model is not authorization.
+- Network risk register is not network permission.
+
+- Negative control is not authorization.
+- Failed-closed LAN request is not permission to retry with broader authority.
+- LAN enablement request must fail closed.
+- LAN binding request must fail closed.
+- Firewall change request must fail closed.
+- Remote-client authorization request must fail closed.
+- Network discovery request must fail closed.
+- Federation request must fail closed.
+- Deployment request must fail closed.
+- Product release request must fail closed.
+- Provider call request must fail closed.
+- Network call request must fail closed.
+- Memory write request must fail closed.
+- Final answer request must fail closed.
+- Accepted evidence request must fail closed.
+- Truth certification request must fail closed.
+- Failure receipt is not permission to proceed.
