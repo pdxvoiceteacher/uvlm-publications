@@ -505,3 +505,10 @@ Run-LOCAL-SERVER-USER-FILE-INGRESS01-Acceptance.ps1
 - lan_authority_boundary_table.json
 - lan_authority_model_review_packet.json
 - lan_authority_model_00_acceptance_receipt.json
+
+- lan_authority_negative_control_manifest.json
+- lan_authority_negative_control_request_packet.json
+- lan_authority_negative_control_failure_receipts.jsonl
+- lan_authority_negative_control_review_packet.json
+- lan_authority_model_reference_packet.json
+- lan_authority_negative_control_00_acceptance_receipt.json

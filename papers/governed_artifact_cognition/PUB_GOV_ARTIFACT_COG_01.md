@@ -898,3 +898,7 @@ Reviewer orientation scaffold summary only.
 - Role model is not authorization.
 - Network risk register is not network permission.
 - LAN-AUTHORITY-MODEL-00 accepted runtime smoke.
+
+- LAN-AUTHORITY-NEGATIVE-CONTROL-00 accepted runtime smoke.
+- Negative control is not authorization.
+- Failed-closed LAN request is not permission to retry with broader authority.

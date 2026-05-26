@@ -314,5 +314,22 @@
   "no_remote_access_enabled": true,
   "no_lan_enablement_consent_executed": true,
   "no_remote_client_consent_executed": true,
-  "risks_are_not_authorizations": true
+  "risks_are_not_authorizations": true,
+  "lan_authority_negative_control_00_indexed": true,
+  "not_negative_control_authorization": true,
+  "not_failed_closed_lan_request_retry_permission": true,
+  "lan_enablement_request_fails_closed": true,
+  "lan_binding_request_fails_closed": true,
+  "firewall_change_request_fails_closed": true,
+  "remote_client_authorization_request_fails_closed": true,
+  "network_discovery_request_fails_closed": true,
+  "federation_request_fails_closed": true,
+  "deployment_request_fails_closed": true,
+  "product_release_request_fails_closed": true,
+  "provider_call_request_fails_closed": true,
+  "network_call_request_fails_closed": true,
+  "memory_write_request_fails_closed": true,
+  "final_answer_request_fails_closed": true,
+  "accepted_evidence_request_fails_closed": true,
+  "truth_certification_request_fails_closed": true
 }

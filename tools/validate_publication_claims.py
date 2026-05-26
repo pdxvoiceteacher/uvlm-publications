@@ -321,6 +321,8 @@ PAPER_CONFIGS: dict[str, dict[str, Any]] = {
             "Preflight report is not product release.",
             "LAN authority model is not LAN enablement.",
             "Role model is not authorization.",
+            "Negative control is not authorization.",
+            "Failed-closed LAN request is not permission to retry with broader authority.",
             "Conflict must remain visible.",
             "Multi-source review is not truth certification.",
             "Cross-source agreement is not accepted evidence.",
@@ -1056,6 +1058,12 @@ def _forbidden_hits(normalized_text: str, forbidden: tuple[str, ...]) -> list[st
             if (
                 phrase in {"raw output admission", "claims raw output admission", "raw output admitted", "raw output accepted as cognition", "raw_output_admitted"}
                 and _is_allowed_raw_output_context(normalized_text, index)
+            ):
+                search_from = index + len(normalized_phrase)
+                continue
+            if (
+                phrase in {"federation", "accepted evidence", "product release"}
+                and "request must fail closed" in normalized_text[index : index + 72]
             ):
                 search_from = index + len(normalized_phrase)
                 continue

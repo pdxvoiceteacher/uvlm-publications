@@ -777,6 +777,19 @@
       "export_bundle_parity_report.json",
       "lan_authority_model_00_acceptance_receipt.json"
     ],
+    "LAN-AUTHORITY-NEGATIVE-CONTROL-00": [
+      "lan_authority_negative_control_manifest.json",
+      "lan_authority_negative_control_request_packet.json",
+      "lan_authority_negative_control_failure_receipts.jsonl",
+      "lan_authority_negative_control_review_packet.json",
+      "lan_authority_model_reference_packet.json",
+      "phaselock_stack_snapshot.json",
+      "artifact_inventory.json",
+      "run_artifact_manifest.json",
+      "export_bundle_manifest.json",
+      "export_bundle_parity_report.json",
+      "lan_authority_negative_control_00_acceptance_receipt.json"
+    ],
     "PMR-CONTEXT-AVAILABILITY-LEDGER-00": [
       "pmr_context_availability_ledger.json",
       "pmr_context_dependency_map.json",

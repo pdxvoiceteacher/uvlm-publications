@@ -29,6 +29,7 @@ This dashboard presents accepted evidence for reviewer orientation. It is not tr
 | LOCAL-SERVER-USER-FILE-INGRESS-02 | pdxvoiceteacher/CoherenceLattice | accepted | product-like local review request packet scaffold | Local review request is not final answer request. |
 | LAN-READINESS-PREFLIGHT-00 | pdxvoiceteacher/CoherenceLattice | accepted | LAN readiness preflight scaffold | LAN readiness preflight is not LAN enablement. |
 | LAN-AUTHORITY-MODEL-00 | pdxvoiceteacher/CoherenceLattice | accepted | LAN authority model scaffold | LAN authority model is not LAN enablement. |
+| LAN-AUTHORITY-NEGATIVE-CONTROL-00 | pdxvoiceteacher/CoherenceLattice | accepted | LAN authority negative-control scaffold | Negative control is not authorization. |
 | PMR-CONTEXT-AVAILABILITY-LEDGER-00 | pdxvoiceteacher/CoherenceLattice | accepted | context availability ledger scaffold | Expiration is not nonexistence. |
 | LOCAL-SERVER-USER-FILE-INGRESS-00 | pdxvoiceteacher/CoherenceLattice | accepted | explicit local user file ingress runtime smoke | User file ingress is not memory write. |
 | SONYA-LOCAL-SERVER-GATEWAY-02 | pdxvoiceteacher/CoherenceLattice | accepted | localhost-only source-span gateway retrieval scaffold | Source-span gateway review is not truth certification. |

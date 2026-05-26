@@ -2458,3 +2458,17 @@ def test_governed_artifact_cognition_lan_authority_model_00_updates_are_present(
     assert status["lan_authority_model_00_indexed"] is True
     assert status["not_lan_authority_model_product_release"] is True
     assert status["no_remote_client_authorized"] is True
+
+def test_governed_artifact_cognition_lan_authority_negative_control_00_updates_are_present():
+    paper=(ROOT/"PUB_GOV_ARTIFACT_COG_01.md").read_text(encoding="utf-8")
+    artifact_table=(ROOT/"artifact_table.md").read_text(encoding="utf-8")
+    quickstart=(ROOT/"reviewer_quickstart.md").read_text(encoding="utf-8")
+    status=json.loads((ROOT/"status.json").read_text(encoding="utf-8"))
+    for phrase in ["LAN-AUTHORITY-NEGATIVE-CONTROL-00","Negative control is not authorization.","Failed-closed LAN request is not permission to retry with broader authority."]:
+        assert phrase in paper
+    for artifact in ["lan_authority_negative_control_manifest.json","lan_authority_negative_control_request_packet.json","lan_authority_negative_control_failure_receipts.jsonl","lan_authority_negative_control_review_packet.json","lan_authority_model_reference_packet.json","lan_authority_negative_control_00_acceptance_receipt.json"]:
+        assert artifact in artifact_table
+    assert "Run-LAN-AUTHORITY-NEGATIVE-CONTROL00-Acceptance.ps1" in quickstart
+    assert status["lan_authority_negative_control_00_indexed"] is True
+    assert status["not_negative_control_authorization"] is True
+    assert status["not_failed_closed_lan_request_retry_permission"] is True

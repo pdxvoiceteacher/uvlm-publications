@@ -74,6 +74,7 @@ REQUIRED_PHASES = {
     "LOCAL-SERVER-USER-FILE-INGRESS-02",
     "LAN-READINESS-PREFLIGHT-00",
     "LAN-AUTHORITY-MODEL-00",
+    "LAN-AUTHORITY-NEGATIVE-CONTROL-00",
     "USER-FACING-RECEIPT-UX-01",
     "PMR-CONTEXT-AVAILABILITY-LEDGER-00",
 }
@@ -932,6 +933,12 @@ def _forbidden_hits(text: str) -> list[str]:
                     text[index : index + 64].startswith("encrypted shard transfer not performed")
                     or text[index : index + 64].startswith("encrypted_shard_transfer_not_performed")
                 )
+            ):
+                start = index + len(normalized_phrase)
+                continue
+            if (
+                phrase in {"federation", "truth certification", "product release"}
+                and "request must fail closed" in text[index : index + 72]
             ):
                 start = index + len(normalized_phrase)
                 continue

@@ -591,3 +591,21 @@ Explicit file-list ingress is not memory write. Duplicate input audit is not dup
 - LAN authority model is not LAN enablement.
 - Role model is not authorization.
 - Network risk register is not network permission.
+
+- Negative control is not authorization.
+- Failed-closed LAN request is not permission to retry with broader authority.
+- LAN enablement request must fail closed.
+- LAN binding request must fail closed.
+- Firewall change request must fail closed.
+- Remote-client authorization request must fail closed.
+- Network discovery request must fail closed.
+- Federation request must fail closed.
+- Deployment request must fail closed.
+- Product release request must fail closed.
+- Provider call request must fail closed.
+- Network call request must fail closed.
+- Memory write request must fail closed.
+- Final answer request must fail closed.
+- Accepted evidence request must fail closed.
+- Truth certification request must fail closed.
+- Failure receipt is not permission to proceed.

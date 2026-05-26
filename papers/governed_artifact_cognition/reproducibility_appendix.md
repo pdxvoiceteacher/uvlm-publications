@@ -863,3 +863,5 @@ Run-LOCAL-SERVER-USER-FILE-INGRESS01-Acceptance.ps1
 - Preflight report is not product release.
 
 - Run-LAN-AUTHORITY-MODEL00-Acceptance.ps1
+
+- Run-LAN-AUTHORITY-NEGATIVE-CONTROL00-Acceptance.ps1

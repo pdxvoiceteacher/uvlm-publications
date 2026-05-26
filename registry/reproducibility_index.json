@@ -99,6 +99,10 @@
         "command": ".\\experiments\\Run-LAN-AUTHORITY-MODEL00-Acceptance.ps1 `\n  -OutputRoot C:\\UVLM\\run_artifacts\\lan_authority_model_00 `\n  -LogDir C:\\UVLM\\run_artifacts\\lan_authority_model_00_logs `\n  -CiMode"
       },
       {
+        "name": "LAN authority negative-control acceptance",
+        "command": ".\\experiments\\Run-LAN-AUTHORITY-NEGATIVE-CONTROL00-Acceptance.ps1 `\n  -OutputRoot C:\\UVLM\\run_artifacts\\lan_authority_negative_control_00 `\n  -LogDir C:\\UVLM\\run_artifacts\\lan_authority_negative_control_00_logs `\n  -CiMode"
+      },
+      {
         "name": "PMR Context Availability Ledger acceptance",
         "command": ".\\experiments\\Run-PMR-CONTEXT-AVAILABILITY-LEDGER00-Acceptance.ps1 `\n  -OutputRoot C:\\UVLM\\run_artifacts\\pmr_context_availability_ledger_00 `\n  -LogDir C:\\UVLM\\run_artifacts\\pmr_context_availability_ledger_00_logs `\n  -CiMode"
       },
