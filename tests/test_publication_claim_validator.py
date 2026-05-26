@@ -2299,3 +2299,148 @@ def test_governed_validator_indexes_tb_product_slice_01():
     assert status["not_product_slice_01_final_answer"] is True
     assert status["not_product_slice_01_accepted_evidence"] is True
     assert status["not_cross_source_conflict_resolution"] is True
+
+
+def test_governed_artifact_cognition_sonya_local_server_gateway_01_updates_are_present():
+    paper=(ROOT/"PUB_GOV_ARTIFACT_COG_01.md").read_text(encoding="utf-8")
+    artifact_table=(ROOT/"artifact_table.md").read_text(encoding="utf-8")
+    quickstart=(ROOT/"reviewer_quickstart.md").read_text(encoding="utf-8")
+    status=json.loads((ROOT/"status.json").read_text(encoding="utf-8"))
+    for phrase in ["SONYA-LOCAL-SERVER-GATEWAY-01","Run retrieval is not memory write.","Run index is not PMR store.","Receipt retrieval is not final answer release.","Event retrieval is not authority.","Unknown run IDs must fail closed."]:
+        assert phrase in paper
+    for artifact in ["sonya_local_server_gateway_01_manifest.json","sonya_local_server_run_index_packet.json","sonya_local_server_retrieval_packet.json","sonya_local_server_gateway_01_review_packet.json","retrieval_failure_receipts.jsonl"]:
+        assert artifact in artifact_table
+    assert "Run-SONYA-LOCAL-SERVER-GATEWAY01-Acceptance.ps1" in quickstart
+    assert status["sonya_local_server_gateway_01_indexed"] is True
+    assert status["not_run_retrieval_memory_write"] is True
+    assert status["not_run_index_pmr_store"] is True
+    assert status["not_receipt_retrieval_final_answer"] is True
+    assert status["not_event_retrieval_authority"] is True
+    assert status["not_unknown_run_permission"] is True
+
+
+def test_governed_artifact_cognition_tb_product_slice_02_updates_are_present():
+    paper=(ROOT/"PUB_GOV_ARTIFACT_COG_01.md").read_text(encoding="utf-8")
+    artifact_table=(ROOT/"artifact_table.md").read_text(encoding="utf-8")
+    quickstart=(ROOT/"reviewer_quickstart.md").read_text(encoding="utf-8")
+    status=json.loads((ROOT/"status.json").read_text(encoding="utf-8"))
+    for phrase in ["TB-PRODUCT-SLICE-02","Source span is not truth certification.","Quoted source text is not accepted evidence.","Source agreement is not proof.","Source conflict is not contradiction resolution.","Claim segmentation is not semantic authority.","Review receipt is not final answer.","Unsupported claims must remain visible.","Uncertainty must remain visible.","Conflict must remain visible."]:
+        assert phrase in paper
+    for artifact in ["tb_product_slice_02_manifest.json","source_span_map.json","claim_classification_packet.json","receipt_ux_packet.json","review_receipt.md"]:
+        assert artifact in artifact_table
+    assert "Run-TB-PRODUCT-SLICE02-Acceptance.ps1" in quickstart
+    assert status["tb_product_slice_02_indexed"] is True
+    assert status["not_source_span_truth_certification"] is True
+    assert status["not_quoted_source_text_accepted_evidence"] is True
+    assert status["not_source_conflict_resolution"] is True
+
+
+def test_governed_artifact_cognition_sonya_local_server_gateway_02_updates_are_present():
+    paper=(ROOT/"PUB_GOV_ARTIFACT_COG_01.md").read_text(encoding="utf-8")
+    artifact_table=(ROOT/"artifact_table.md").read_text(encoding="utf-8")
+    quickstart=(ROOT/"reviewer_quickstart.md").read_text(encoding="utf-8")
+    status=json.loads((ROOT/"status.json").read_text(encoding="utf-8"))
+    for phrase in ["SONYA-LOCAL-SERVER-GATEWAY-02","Source-span gateway review is not truth certification.","Claim classification is not semantic authority.","Claim classification retrieval is not final answer.","Quoted source text is not accepted evidence.","Unknown run IDs must fail closed.","Failure receipt is not permission to proceed."]:
+        assert phrase in paper
+    for artifact in ["sonya_local_server_gateway_02_manifest.json","sonya_local_server_gateway_02_review_packet.json","sonya_local_server_source_span_retrieval_packet.json","sonya_local_server_claim_classification_retrieval_packet.json","gateway_failure_receipts.jsonl","retrieval_failure_receipts.jsonl"]:
+        assert artifact in artifact_table
+    assert "Run-SONYA-LOCAL-SERVER-GATEWAY02-Acceptance.ps1" in quickstart
+    assert status["sonya_local_server_gateway_02_indexed"] is True
+    assert status["not_source_span_gateway_truth_certification"] is True
+    assert status["not_claim_classification_semantic_authority"] is True
+    assert status["not_gateway02_memory_write"] is True
+    assert status["not_gateway02_product_release"] is True
+
+
+def test_governed_artifact_cognition_local_server_user_file_ingress_00_updates_are_present():
+    paper=(ROOT/"PUB_GOV_ARTIFACT_COG_01.md").read_text(encoding="utf-8")
+    artifact_table=(ROOT/"artifact_table.md").read_text(encoding="utf-8")
+    quickstart=(ROOT/"reviewer_quickstart.md").read_text(encoding="utf-8")
+    status=json.loads((ROOT/"status.json").read_text(encoding="utf-8"))
+    for phrase in ["LOCAL-SERVER-USER-FILE-INGRESS-00","User file ingress is not memory write.","Local file path is not system path.","Copied run-local source is not PMR storage.","File normalization is not evidence admission.","Missing consent must fail closed.","Unsupported file types must fail closed.","Explicit consent does not authorize memory write."]:
+        assert phrase in paper
+    for artifact in ["local_user_file_ingress_manifest.json","local_user_file_consent_packet.json","local_user_file_path_audit_rows.jsonl","local_user_file_normalization_map.json","local_user_file_ingress_review_packet.json","ingress_failure_receipts.jsonl","normalized_source_bundle_manifest.json"]:
+        assert artifact in artifact_table
+    assert "Run-LOCAL-SERVER-USER-FILE-INGRESS00-Acceptance.ps1" in quickstart
+    assert status["local_server_user_file_ingress_00_indexed"] is True
+    assert status["not_user_file_ingress_memory_write"] is True
+    assert status["not_copied_run_local_source_pmr_storage"] is True
+    assert status["missing_consent_fails_closed"] is True
+    assert status["unsupported_file_type_fails_closed"] is True
+
+
+def test_governed_artifact_cognition_pmr_context_availability_ledger_00_updates_are_present():
+    paper=(ROOT/"PUB_GOV_ARTIFACT_COG_01.md").read_text(encoding="utf-8")
+    artifact_table=(ROOT/"artifact_table.md").read_text(encoding="utf-8")
+    quickstart=(ROOT/"reviewer_quickstart.md").read_text(encoding="utf-8")
+    status=json.loads((ROOT/"status.json").read_text(encoding="utf-8"))
+    for phrase in ["PMR-CONTEXT-AVAILABILITY-LEDGER-00","Expiration is not nonexistence.","Known inaccessible content is not unknown content.","Summary is not source.","Derived summary is not source evidence.","Reupload request is not user obligation.","File metadata may be sensitive.","Hash is not content access.","PMR ledger is not deletion authority.","PMR ledger is not pruning authority."]:
+        assert phrase in paper
+    for artifact in ["pmr_context_availability_ledger.json","pmr_context_dependency_map.json","pmr_context_reupload_queue.json","pmr_context_access_status_report.md","pmr_context_availability_review_packet.json"]:
+        assert artifact in artifact_table
+    assert "Run-PMR-CONTEXT-AVAILABILITY-LEDGER00-Acceptance.ps1" in quickstart
+    assert status["pmr_context_availability_ledger_00_indexed"] is True
+    assert status["not_expiration_nonexistence"] is True
+    assert status["not_summary_source"] is True
+    assert status["not_hash_content_access"] is True
+
+
+def test_governed_artifact_cognition_local_server_user_file_ingress_01_updates_are_present():
+    paper=(ROOT/"PUB_GOV_ARTIFACT_COG_01.md").read_text(encoding="utf-8")
+    artifact_table=(ROOT/"artifact_table.md").read_text(encoding="utf-8")
+    quickstart=(ROOT/"reviewer_quickstart.md").read_text(encoding="utf-8")
+    status=json.loads((ROOT/"status.json").read_text(encoding="utf-8"))
+    for phrase in ["LOCAL-SERVER-USER-FILE-INGRESS-01","Explicit file-list ingress is not memory write.","Duplicate input audit is not duplicate input normalization.","A field claiming deduplication must be backed by normalized-output evidence.","PMR context links must not multiply duplicate source paths when deduplicate_source_paths is true.","Nonexistent paths must fail closed."]:
+        assert phrase in paper
+    for artifact in ["local_user_file_ingress_01_manifest.json","local_user_file_ingress_request_packet.json","local_user_file_pmr_context_link_packet.json","local_user_file_ingress_receipt_ux_packet.json","local_user_file_ingress_01_review_packet.json"]:
+        assert artifact in artifact_table
+    assert "Run-LOCAL-SERVER-USER-FILE-INGRESS01-Acceptance.ps1" in quickstart
+    assert status["local_server_user_file_ingress_01_indexed"] is True
+    assert status["not_explicit_file_list_ingress_memory_write"] is True
+    assert status["not_duplicate_input_audit_normalization"] is True
+    assert status["deduplication_requires_normalized_output_evidence"] is True
+
+
+def test_governed_artifact_cognition_user_facing_receipt_ux_01_updates_are_present():
+    paper=(ROOT/"PUB_GOV_ARTIFACT_COG_01.md").read_text(encoding="utf-8")
+    artifact_table=(ROOT/"artifact_table.md").read_text(encoding="utf-8")
+    quickstart=(ROOT/"reviewer_quickstart.md").read_text(encoding="utf-8")
+    status=json.loads((ROOT/"status.json").read_text(encoding="utf-8"))
+    for phrase in ["USER-FACING-RECEIPT-UX-01","Receipt UX is not final answer.","Reviewer next action is not authority.","Failure receipt is not permission to proceed."]:
+        assert phrase in paper
+    for artifact in ["local_user_file_human_receipt.md","local_user_file_receipt_ux_01_packet.json","local_user_file_receipt_next_actions.json","local_user_file_receipt_boundary_table.json","user_facing_receipt_ux_01_acceptance_receipt.json"]:
+        assert artifact in artifact_table
+    assert "Run-USER-FACING-RECEIPT-UX01-Acceptance.ps1" in quickstart
+    assert status["user_facing_receipt_ux_01_indexed"] is True
+    assert status["not_receipt_ux_final_answer"] is True
+    assert status["not_reviewer_next_action_authority"] is True
+
+
+def test_governed_artifact_cognition_local_server_user_file_ingress_02_updates_are_present():
+    paper=(ROOT/"PUB_GOV_ARTIFACT_COG_01.md").read_text(encoding="utf-8")
+    artifact_table=(ROOT/"artifact_table.md").read_text(encoding="utf-8")
+    quickstart=(ROOT/"reviewer_quickstart.md").read_text(encoding="utf-8")
+    status=json.loads((ROOT/"status.json").read_text(encoding="utf-8"))
+    for phrase in ["LOCAL-SERVER-USER-FILE-INGRESS-02","Local review request is not final answer request.","Reviewer intent is not authority."]:
+        assert phrase in paper
+    for artifact in ["local_review_request_02_packet.json","local_review_source_set_packet.json","local_review_intent_packet.json","local_review_receipt_preferences_packet.json","local_server_user_file_ingress_02_review_packet.json","local_server_user_file_ingress_02_acceptance_receipt.json"]:
+        assert artifact in artifact_table
+    assert "Run-LOCAL-SERVER-USER-FILE-INGRESS02-Acceptance.ps1" in quickstart
+    assert status["local_server_user_file_ingress_02_indexed"] is True
+    assert status["not_local_review_request_final_answer"] is True
+    assert status["not_reviewer_intent_authority"] is True
+
+
+def test_governed_artifact_cognition_lan_readiness_preflight_00_updates_are_present():
+    paper=(ROOT/"PUB_GOV_ARTIFACT_COG_01.md").read_text(encoding="utf-8")
+    artifact_table=(ROOT/"artifact_table.md").read_text(encoding="utf-8")
+    quickstart=(ROOT/"reviewer_quickstart.md").read_text(encoding="utf-8")
+    status=json.loads((ROOT/"status.json").read_text(encoding="utf-8"))
+    for phrase in ["LAN-READINESS-PREFLIGHT-00","LAN readiness preflight is not LAN enablement.","Loopback success is not LAN readiness.","Preflight report is not product release."]:
+        assert phrase in paper
+    for artifact in ["lan_readiness_preflight_manifest.json","lan_readiness_preflight_request_packet.json","lan_readiness_preflight_report.md","lan_readiness_preflight_report.json","lan_readiness_preflight_review_packet.json","lan_readiness_preflight_00_acceptance_receipt.json"]:
+        assert artifact in artifact_table
+    assert "Run-LAN-READINESS-PREFLIGHT00-Acceptance.ps1" in quickstart
+    assert status["lan_readiness_preflight_00_indexed"] is True
+    assert status["not_lan_preflight_lan_enablement"] is True
+    assert status["not_loopback_success_lan_readiness"] is True
