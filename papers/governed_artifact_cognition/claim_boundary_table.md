@@ -609,3 +609,23 @@ Explicit file-list ingress is not memory write. Duplicate input audit is not dup
 - Accepted evidence request must fail closed.
 - Truth certification request must fail closed.
 - Failure receipt is not permission to proceed.
+
+- Consent preflight is not consent execution.
+- Consent candidate is not consent.
+- Operator consent model is not operator authorization.
+- Consent display is not consent acceptance.
+- Consent receipt candidate is not consent receipt.
+- LAN operator consent preflight is not LAN enablement.
+- LAN operator consent preflight is not network authorization.
+- LAN operator consent preflight is not bind authorization.
+- LAN operator consent preflight is not firewall authorization.
+- LAN operator consent preflight is not remote client authorization.
+- LAN operator consent preflight is not federation.
+- LAN operator consent preflight is not deployment.
+- LAN operator consent preflight is not product release.
+- Failed consent request is not permission to retry.
+- Ambiguous consent must fail closed.
+- Stale consent must fail closed.
+- Non-operator consent must fail closed.
+
+- LAN-OPERATOR-CONSENT-PREFLIGHT-00 is not consent execution.

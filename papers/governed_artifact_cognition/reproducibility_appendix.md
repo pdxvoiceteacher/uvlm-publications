@@ -865,3 +865,21 @@ Run-LOCAL-SERVER-USER-FILE-INGRESS01-Acceptance.ps1
 - Run-LAN-AUTHORITY-MODEL00-Acceptance.ps1
 
 - Run-LAN-AUTHORITY-NEGATIVE-CONTROL00-Acceptance.ps1
+
+- Consent preflight is not consent execution.
+- Consent candidate is not consent.
+- Operator consent model is not operator authorization.
+- Consent display is not consent acceptance.
+- Consent receipt candidate is not consent receipt.
+- LAN operator consent preflight is not LAN enablement.
+- LAN operator consent preflight is not network authorization.
+- LAN operator consent preflight is not bind authorization.
+- LAN operator consent preflight is not firewall authorization.
+- LAN operator consent preflight is not remote client authorization.
+- LAN operator consent preflight is not federation.
+- LAN operator consent preflight is not deployment.
+- LAN operator consent preflight is not product release.
+- Failed consent request is not permission to retry.
+- Ambiguous consent must fail closed.
+- Stale consent must fail closed.
+- Non-operator consent must fail closed.

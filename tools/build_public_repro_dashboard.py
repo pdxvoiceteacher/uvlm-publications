@@ -1368,6 +1368,14 @@ LAN_AUTHORITY_NEGATIVE_CONTROL_00_ARTIFACTS=["lan_authority_negative_control_man
 LAN_AUTHORITY_NEGATIVE_CONTROL_00_DASHBOARD_SUMMARY={"review_status":"accepted_as_lan_authority_negative_control_scaffold","failure_receipt_count":14,"lan_enablement_blocked":True,"lan_binding_blocked":True,"firewall_change_blocked":True,"remote_client_authorization_blocked":True,"network_discovery_blocked":True,"federation_blocked":True,"deployment_blocked":True,"product_release_blocked":True,"provider_call_blocked":True,"network_call_blocked":True,"memory_write_blocked":True,"final_answer_blocked":True,"accepted_evidence_blocked":True,"truth_certification_blocked":True,"negative_control_not_authorization":True,"failed_closed_request_not_permission_to_retry":True,"no_lan_enabled":True,"no_lan_binding_performed":True,"no_firewall_change_performed":True,"no_network_discovery_performed":True,"no_remote_client_authorized":True,"no_federation_authorized":True,"no_deployment_performed":True,"no_product_release_performed":True,"run_artifact_manifest_status":"verified","run_package_profile":"lan_authority_negative_control_00","export_parity_passed":True}
 LAN_AUTHORITY_NEGATIVE_CONTROL_00_CLAIMS_BLOCKED=["not LAN enablement","not network authorization","not remote client authorization","not bind authorization","not firewall authorization","not federation","not deployment","not product release","not provider call","not network call","not memory write","not final answer release","not accepted evidence","not truth certification"]
 
+LAN_OPERATOR_CONSENT_PREFLIGHT_00_COMMAND = r""".\experiments\Run-LAN-OPERATOR-CONSENT-PREFLIGHT00-Acceptance.ps1 `
+  -OutputRoot C:\UVLM\run_artifacts\lan_operator_consent_preflight_00 `
+  -LogDir C:\UVLM\run_artifacts\lan_operator_consent_preflight_00_logs `
+  -CiMode"""
+LAN_OPERATOR_CONSENT_PREFLIGHT_00_ARTIFACTS=["lan_operator_consent_preflight_manifest.json","lan_operator_consent_request_packet.json","lan_operator_consent_display_packet.json","lan_operator_consent_negative_control_receipts.jsonl","lan_operator_consent_boundary_table.json","lan_operator_consent_preflight_review_packet.json","lan_authority_negative_control_reference_packet.json","phaselock_stack_snapshot.json","artifact_inventory.json","run_artifact_manifest.json","export_bundle_manifest.json","export_bundle_parity_report.json","lan_operator_consent_preflight_00_acceptance_receipt.json"]
+LAN_OPERATOR_CONSENT_PREFLIGHT_00_DASHBOARD_SUMMARY={"review_status":"accepted_as_lan_operator_consent_preflight_scaffold","preflight_only":True,"consent_executed":False,"lan_enabled":False,"lan_binding_performed":False,"firewall_change_performed":False,"remote_client_authorized":False,"network_discovery_performed":False,"federation_authorized":False,"deployment_performed":False,"product_release_performed":False,"negative_control_receipt_count":8,"run_artifact_manifest_status":"verified","run_package_profile":"lan_operator_consent_preflight_00","export_parity_passed":True}
+LAN_OPERATOR_CONSENT_PREFLIGHT_00_CLAIMS_BLOCKED=["not consent execution","not LAN enablement","not network authorization","not bind authorization","not firewall authorization","not remote client authorization","not federation","not deployment","not product release"]
+
 PMR_00_COMMAND = r""".\experiments\Run-PMR00-Acceptance.ps1 `
   -OutputRoot C:\UVLM\run_artifacts\pmr_00 `
   -LogDir C:\UVLM\run_artifacts\pmr_00_logs `
@@ -3254,6 +3262,7 @@ ACCEPTED_PHASES = [
 {"phase_id":"LAN-READINESS-PREFLIGHT-00","repo":"pdxvoiceteacher/CoherenceLattice","status":"accepted","evidence_type":"runtime_smoke","product_posture":"preflight_only_lan_readiness_without_enablement_or_authority","primary_artifacts":LAN_READINESS_PREFLIGHT_00_ARTIFACTS,"dashboard_summary":LAN_READINESS_PREFLIGHT_00_DASHBOARD_SUMMARY,"reproduction_command_summary":LAN_READINESS_PREFLIGHT_00_COMMAND,"claims_blocked":LAN_READINESS_PREFLIGHT_00_CLAIMS_BLOCKED,"claim_allowed":"LAN readiness preflight scaffold","reviewer_caution":"LAN readiness preflight is not LAN enablement."},
 {"phase_id":"LAN-AUTHORITY-MODEL-00","repo":"pdxvoiceteacher/CoherenceLattice","status":"accepted","evidence_type":"runtime_smoke","product_posture":"model_only_lan_authority_scaffold_without_enablement_or_release","primary_artifacts":LAN_AUTHORITY_MODEL_00_ARTIFACTS,"dashboard_summary":LAN_AUTHORITY_MODEL_00_DASHBOARD_SUMMARY,"reproduction_command_summary":LAN_AUTHORITY_MODEL_00_COMMAND,"claims_blocked":LAN_AUTHORITY_MODEL_00_CLAIMS_BLOCKED,"claim_allowed":"LAN authority model scaffold","reviewer_caution":"LAN authority model is not LAN enablement."},
 {"phase_id":"LAN-AUTHORITY-NEGATIVE-CONTROL-00","repo":"pdxvoiceteacher/CoherenceLattice","status":"accepted","evidence_type":"runtime_smoke","product_posture":"lan_authority_negative_control_fail_closed_scaffold","primary_artifacts":LAN_AUTHORITY_NEGATIVE_CONTROL_00_ARTIFACTS,"dashboard_summary":LAN_AUTHORITY_NEGATIVE_CONTROL_00_DASHBOARD_SUMMARY,"reproduction_command_summary":LAN_AUTHORITY_NEGATIVE_CONTROL_00_COMMAND,"claims_blocked":LAN_AUTHORITY_NEGATIVE_CONTROL_00_CLAIMS_BLOCKED,"claim_allowed":"LAN authority negative-control scaffold","reviewer_caution":"Negative control is not authorization."},
+{"phase_id":"LAN-OPERATOR-CONSENT-PREFLIGHT-00","repo":"pdxvoiceteacher/CoherenceLattice","status":"accepted","evidence_type":"runtime_smoke","product_posture":"preflight_only_operator_consent_scaffold_without_lan_or_authority_enablement","primary_artifacts":LAN_OPERATOR_CONSENT_PREFLIGHT_00_ARTIFACTS,"dashboard_summary":LAN_OPERATOR_CONSENT_PREFLIGHT_00_DASHBOARD_SUMMARY,"reproduction_command_summary":LAN_OPERATOR_CONSENT_PREFLIGHT_00_COMMAND,"claims_blocked":LAN_OPERATOR_CONSENT_PREFLIGHT_00_CLAIMS_BLOCKED,"claim_allowed":"LAN operator consent preflight scaffold","reviewer_caution":"Consent preflight is not consent execution."},
 {"phase_id":"PMR-CONTEXT-AVAILABILITY-LEDGER-00","repo":"pdxvoiceteacher/CoherenceLattice","status":"accepted","evidence_type":"governance_scaffold","product_posture":"fixture_only_context_availability_without_source_content_or_memory_authority","primary_artifacts":PMR_CONTEXT_AVAILABILITY_LEDGER_00_ARTIFACTS,"dashboard_summary":PMR_CONTEXT_AVAILABILITY_LEDGER_00_DASHBOARD_SUMMARY,"reproduction_command_summary":PMR_CONTEXT_AVAILABILITY_LEDGER_00_COMMAND,"claims_blocked":PMR_CONTEXT_AVAILABILITY_LEDGER_00_CLAIMS_BLOCKED,"claim_allowed":"context availability ledger scaffold","reviewer_caution":"Expiration is not nonexistence."},
 {"phase_id":"LOCAL-SERVER-USER-FILE-INGRESS-00","repo":"pdxvoiceteacher/CoherenceLattice","status":"accepted","evidence_type":"runtime_smoke","product_posture":"explicit_local_user_file_ingress_without_memory_or_network_authority","primary_artifacts":LOCAL_SERVER_USER_FILE_INGRESS_00_ARTIFACTS,"dashboard_summary":LOCAL_SERVER_USER_FILE_INGRESS_00_DASHBOARD_SUMMARY,"reproduction_command_summary":LOCAL_SERVER_USER_FILE_INGRESS_00_COMMAND,"claims_blocked":LOCAL_SERVER_USER_FILE_INGRESS_00_CLAIMS_BLOCKED,"claim_allowed":"explicit local user file ingress runtime smoke","reviewer_caution":"User file ingress is not memory write."},
 {"phase_id":"SONYA-LOCAL-SERVER-GATEWAY-02","repo":"pdxvoiceteacher/CoherenceLattice","status":"accepted","evidence_type":"runtime_smoke","product_posture":"localhost_only_source_span_gateway_without_truth_or_memory_authority","primary_artifacts":SONYA_LOCAL_SERVER_GATEWAY_02_ARTIFACTS,"dashboard_summary":SONYA_LOCAL_SERVER_GATEWAY_02_DASHBOARD_SUMMARY,"reproduction_command_summary":SONYA_LOCAL_SERVER_GATEWAY_02_COMMAND,"claims_blocked":SONYA_LOCAL_SERVER_GATEWAY_02_CLAIMS_BLOCKED,"claim_allowed":"localhost-only source-span gateway retrieval scaffold","reviewer_caution":"Source-span gateway review is not truth certification."},
@@ -4110,6 +4119,24 @@ PLANNED_PHASES = [
 ]
 BOUNDARIES = [
     "Negative control is not authorization.",
+    "Consent preflight is not consent execution.",
+    "Consent candidate is not consent.",
+    "Operator consent model is not operator authorization.",
+    "Consent display is not consent acceptance.",
+    "Consent receipt candidate is not consent receipt.",
+    "LAN operator consent preflight is not LAN enablement.",
+    "LAN operator consent preflight is not network authorization.",
+    "LAN operator consent preflight is not bind authorization.",
+    "LAN operator consent preflight is not firewall authorization.",
+    "LAN operator consent preflight is not remote client authorization.",
+    "LAN operator consent preflight is not federation.",
+    "LAN operator consent preflight is not deployment.",
+    "LAN operator consent preflight is not product release.",
+    "Failed consent request is not permission to retry.",
+    "Missing consent must fail closed.",
+    "Ambiguous consent must fail closed.",
+    "Stale consent must fail closed.",
+    "Non-operator consent must fail closed.",
     "Failed-closed LAN request is not permission to retry with broader authority.",
     "LAN enablement request must fail closed.",
     "LAN binding request must fail closed.",
@@ -5078,6 +5105,7 @@ def reproducibility_index() -> dict[str, Any]:
                 {"name": "LAN readiness preflight acceptance", "command": LAN_READINESS_PREFLIGHT_00_COMMAND},
                 {"name": "LAN authority model acceptance", "command": LAN_AUTHORITY_MODEL_00_COMMAND},
                 {"name": "LAN authority negative-control acceptance", "command": LAN_AUTHORITY_NEGATIVE_CONTROL_00_COMMAND},
+                {"name": "LAN operator consent preflight acceptance", "command": LAN_OPERATOR_CONSENT_PREFLIGHT_00_COMMAND},
                 {"name": "PMR Context Availability Ledger acceptance", "command": PMR_CONTEXT_AVAILABILITY_LEDGER_00_COMMAND},
                 {"name": "Local Sonya path portability acceptance", "command": LOCAL_SONYA_PATH_PORTABILITY_00_COMMAND},
                 {"name": "PMR doctrine acceptance", "command": PMR_00_COMMAND},
@@ -5188,6 +5216,7 @@ def artifact_index() -> dict[str, Any]:
         "LAN-READINESS-PREFLIGHT-00": LAN_READINESS_PREFLIGHT_00_ARTIFACTS,
         "LAN-AUTHORITY-MODEL-00": LAN_AUTHORITY_MODEL_00_ARTIFACTS,
         "LAN-AUTHORITY-NEGATIVE-CONTROL-00": LAN_AUTHORITY_NEGATIVE_CONTROL_00_ARTIFACTS,
+        "LAN-OPERATOR-CONSENT-PREFLIGHT-00": LAN_OPERATOR_CONSENT_PREFLIGHT_00_ARTIFACTS,
         "PMR-CONTEXT-AVAILABILITY-LEDGER-00": PMR_CONTEXT_AVAILABILITY_LEDGER_00_ARTIFACTS,
         "SONYA-ADAPTER-SMOKE-00": SONYA_ADAPTER_SMOKE_ARTIFACTS,
         "SONYA-LOCAL-FIXTURE-ADAPTER-01": SONYA_LOCAL_FIXTURE_ADAPTER_ARTIFACTS,
@@ -5400,6 +5429,26 @@ def status_payload() -> dict[str, Any]:
         "final_answer_request_fails_closed": True,
         "accepted_evidence_request_fails_closed": True,
         "truth_certification_request_fails_closed": True,
+        "not_failure_receipt_permission_to_proceed": True,
+        "lan_operator_consent_preflight_00_indexed": True,
+        "not_consent_preflight_consent_execution": True,
+        "not_consent_candidate_consent": True,
+        "not_operator_consent_model_operator_authorization": True,
+        "not_consent_display_consent_acceptance": True,
+        "not_consent_receipt_candidate_consent_receipt": True,
+        "not_lan_operator_consent_preflight_lan_enablement": True,
+        "not_lan_operator_consent_preflight_network_authorization": True,
+        "not_lan_operator_consent_preflight_bind_authorization": True,
+        "not_lan_operator_consent_preflight_firewall_authorization": True,
+        "not_lan_operator_consent_preflight_remote_client_authorization": True,
+        "not_lan_operator_consent_preflight_federation": True,
+        "not_lan_operator_consent_preflight_deployment": True,
+        "not_lan_operator_consent_preflight_product_release": True,
+        "not_failed_consent_request_retry_permission": True,
+        "missing_consent_must_fail_closed": True,
+        "ambiguous_consent_must_fail_closed": True,
+        "stale_consent_must_fail_closed": True,
+        "non_operator_consent_must_fail_closed": True,
         "not_failure_receipt_permission_to_proceed": True,
         "pmr_context_availability_ledger_00_indexed": True,
         "not_expiration_nonexistence": True,

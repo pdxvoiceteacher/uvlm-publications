@@ -512,3 +512,19 @@ Run-LOCAL-SERVER-USER-FILE-INGRESS01-Acceptance.ps1
 - lan_authority_negative_control_review_packet.json
 - lan_authority_model_reference_packet.json
 - lan_authority_negative_control_00_acceptance_receipt.json
+
+- `lan_operator_consent_preflight_manifest.json`
+
+- `lan_operator_consent_request_packet.json`
+
+- `lan_operator_consent_display_packet.json`
+
+- `lan_operator_consent_negative_control_receipts.jsonl`
+
+- `lan_operator_consent_boundary_table.json`
+
+- `lan_operator_consent_preflight_review_packet.json`
+
+- `lan_authority_negative_control_reference_packet.json`
+
+- `lan_operator_consent_preflight_00_acceptance_receipt.json`

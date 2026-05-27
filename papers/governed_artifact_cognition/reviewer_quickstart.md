@@ -912,3 +912,13 @@ Run-LOCAL-SERVER-USER-FILE-INGRESS01-Acceptance.ps1
 - Run-LAN-AUTHORITY-MODEL00-Acceptance.ps1
 
 - Run-LAN-AUTHORITY-NEGATIVE-CONTROL00-Acceptance.ps1
+
+
+PowerShell LAN operator consent preflight:
+
+```powershell
+.\experiments\Run-LAN-OPERATOR-CONSENT-PREFLIGHT00-Acceptance.ps1 `
+  -OutputRoot C:\UVLM\run_artifacts\lan_operator_consent_preflight_00 `
+  -LogDir C:\UVLM\run_artifacts\lan_operator_consent_preflight_00_logs `
+  -CiMode
+```

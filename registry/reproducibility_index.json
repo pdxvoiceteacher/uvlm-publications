@@ -103,6 +103,10 @@
         "command": ".\\experiments\\Run-LAN-AUTHORITY-NEGATIVE-CONTROL00-Acceptance.ps1 `\n  -OutputRoot C:\\UVLM\\run_artifacts\\lan_authority_negative_control_00 `\n  -LogDir C:\\UVLM\\run_artifacts\\lan_authority_negative_control_00_logs `\n  -CiMode"
       },
       {
+        "name": "LAN operator consent preflight acceptance",
+        "command": ".\\experiments\\Run-LAN-OPERATOR-CONSENT-PREFLIGHT00-Acceptance.ps1 `\n  -OutputRoot C:\\UVLM\\run_artifacts\\lan_operator_consent_preflight_00 `\n  -LogDir C:\\UVLM\\run_artifacts\\lan_operator_consent_preflight_00_logs `\n  -CiMode"
+      },
+      {
         "name": "PMR Context Availability Ledger acceptance",
         "command": ".\\experiments\\Run-PMR-CONTEXT-AVAILABILITY-LEDGER00-Acceptance.ps1 `\n  -OutputRoot C:\\UVLM\\run_artifacts\\pmr_context_availability_ledger_00 `\n  -LogDir C:\\UVLM\\run_artifacts\\pmr_context_availability_ledger_00_logs `\n  -CiMode"
       },

@@ -129,6 +129,7 @@ REQUIRED_PHASES = {
     "LAN-READINESS-PREFLIGHT-00",
     "LAN-AUTHORITY-MODEL-00",
     "LAN-AUTHORITY-NEGATIVE-CONTROL-00",
+    "LAN-OPERATOR-CONSENT-PREFLIGHT-00",
     "PMR-CONTEXT-AVAILABILITY-LEDGER-00",
 }
 
@@ -2597,3 +2598,22 @@ def test_lan_authority_negative_control_00_updates_present(tmp_path):
         assert a in art
     for b in ["Negative control is not authorization.","Failed-closed LAN request is not permission to retry with broader authority.","Provider call request must fail closed."]:
         assert b in bounds
+
+
+def test_lan_operator_consent_preflight_00_updates_present(tmp_path):
+    out_dir,_=run_builder(tmp_path)
+    dashboard=json.loads((out_dir/"experiment_suite_dashboard.json").read_text())
+    idx=json.loads((out_dir/"artifact_index.json").read_text())
+    bounds=json.loads((out_dir/"claim_boundary_index.json").read_text())["boundaries"]
+    repro=json.loads((out_dir/"reproducibility_index.json").read_text())
+    status=json.loads((out_dir/"status.json").read_text())
+    phases = {p["phase_id"] for p in dashboard["accepted_phases"]}
+    assert "LAN-OPERATOR-CONSENT-PREFLIGHT-00" in phases
+    assert "Run-LAN-OPERATOR-CONSENT-PREFLIGHT00-Acceptance.ps1" in str(repro)
+    artifacts = idx["phases"]["LAN-OPERATOR-CONSENT-PREFLIGHT-00"]
+    for a in ["lan_operator_consent_preflight_manifest.json","lan_operator_consent_request_packet.json","lan_operator_consent_display_packet.json","lan_operator_consent_negative_control_receipts.jsonl"]:
+        assert a in artifacts
+    for b in ["Consent preflight is not consent execution.","Consent candidate is not consent.","Missing consent must fail closed."]:
+        assert b in bounds
+    assert status["lan_operator_consent_preflight_00_indexed"] is True
+    assert status["not_consent_preflight_consent_execution"] is True

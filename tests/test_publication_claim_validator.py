@@ -2472,3 +2472,18 @@ def test_governed_artifact_cognition_lan_authority_negative_control_00_updates_a
     assert status["lan_authority_negative_control_00_indexed"] is True
     assert status["not_negative_control_authorization"] is True
     assert status["not_failed_closed_lan_request_retry_permission"] is True
+
+
+def test_governed_artifact_cognition_lan_operator_consent_preflight_00_updates_are_present():
+    paper = (ROOT / "PUB_GOV_ARTIFACT_COG_01.md").read_text(encoding="utf-8")
+    boundaries = (ROOT / "claim_boundary_table.md").read_text(encoding="utf-8")
+    artifacts = (ROOT / "artifact_table.md").read_text(encoding="utf-8")
+    quickstart = (ROOT / "reviewer_quickstart.md").read_text(encoding="utf-8")
+    status = json.loads((ROOT / "status.json").read_text(encoding="utf-8"))
+    for phrase in ["LAN-OPERATOR-CONSENT-PREFLIGHT-00","Consent preflight is not consent execution.","Consent candidate is not consent."]:
+        assert phrase in paper or phrase in boundaries
+    for artifact in ["lan_operator_consent_preflight_manifest.json","lan_operator_consent_request_packet.json","lan_operator_consent_display_packet.json","lan_operator_consent_negative_control_receipts.jsonl"]:
+        assert artifact in artifacts
+    assert "Run-LAN-OPERATOR-CONSENT-PREFLIGHT00-Acceptance.ps1" in quickstart
+    assert status["lan_operator_consent_preflight_00_indexed"] is True
+    assert status["not_consent_preflight_consent_execution"] is True
