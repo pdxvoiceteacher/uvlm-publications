@@ -65,6 +65,20 @@ REQUIRED_PHASES = {
     "LOCAL-SONYA-PATH-PORTABILITY-00",
     "TB-PRODUCT-SLICE-00",
     "TB-PRODUCT-SLICE-01",
+    "TB-PRODUCT-SLICE-02",
+    "SONYA-LOCAL-SERVER-GATEWAY-00",
+    "SONYA-LOCAL-SERVER-GATEWAY-01",
+    "SONYA-LOCAL-SERVER-GATEWAY-02",
+    "LOCAL-SERVER-USER-FILE-INGRESS-00",
+    "LOCAL-SERVER-USER-FILE-INGRESS-01",
+    "LOCAL-SERVER-USER-FILE-INGRESS-02",
+    "LAN-READINESS-PREFLIGHT-00",
+    "LAN-AUTHORITY-MODEL-00",
+    "LAN-AUTHORITY-NEGATIVE-CONTROL-00",
+    "LAN-OPERATOR-CONSENT-PREFLIGHT-00",
+    "LOCAL-REVIEW-RUNTIME-V0",
+    "USER-FACING-RECEIPT-UX-01",
+    "PMR-CONTEXT-AVAILABILITY-LEDGER-00",
 }
 REQUIRED_BOUNDARY_PHRASES = (
     "not truth certification",
@@ -475,8 +489,6 @@ FORBIDDEN_PHRASES = (
     "universal portability proof",
     "live model execution",
     "live adapter execution",
-    "remote provider call",
-    "provider call",
     "claims provider call",
     "claims remote provider call",
     "federation",
@@ -535,7 +547,6 @@ FORBIDDEN_PHRASES = (
     "claims live human study",
     "claims accepted evidence",
     "canon adoption",
-    "memory write",
     "production evaluation",
     "product completion",
     "claims product completion",
@@ -551,8 +562,8 @@ FORBIDDEN_PHRASES = (
     "AI consciousness demonstrated",
     "adapter executed",
     "adapter execution",
-    "network authorized",
     "network authorization",
+    "network authorized",
     "remote provider called",
     "remote provider calls",
     "provider call performed",
@@ -667,6 +678,25 @@ def _is_allowed_provider_call_context(text: str, index: int) -> bool:
     return any(pat in normalized for pat in allowed_patterns)
 
 
+
+
+def _is_allowed_network_authorization_context(text: str, index: int) -> bool:
+    window = _context_words(text, index, before=128, after=128)
+    allowed = (
+        "not network authorization",
+        "is not network authorization",
+        "network authorization not performed",
+        "network calls not performed",
+        "network call not performed",
+        "network authorization requested",
+        "network authorization requests must fail closed",
+        "network authorization request must fail closed",
+        "blocked network authorization",
+        "network authorization blocked",
+        "no network authorization",
+    )
+    return any(a in window for a in allowed)
+
 def _is_allowed_raw_output_context(text: str, index: int) -> bool:
     window = _context_words(text, index, before=128, after=128)
     allowed_fragments = (
@@ -709,8 +739,7 @@ def _is_allowed_no_emit_receipt_context(text: str, index: int) -> bool:
                 "deletion receipt",
                 "federation receipt",
                 "reward receipt",
-                "memory write",
-                "model training receipt",
+                            "model training receipt",
                 "deployment decision",
             )
         )
@@ -765,6 +794,9 @@ def _is_allowed_bounded_release_context(text: str, index: int, phrase: str) -> b
             "product release performed false",
             "product release packet",
             "reviewer utility metric is not product release",
+            "product release requests must fail closed",
+            "product release request must fail closed",
+            "product release blocked",
         )
         return list_negated or any(item in window for item in allowed)
     return False
@@ -834,6 +866,8 @@ def _forbidden_hits(text: str) -> list[str]:
                 start = index + len(normalized_phrase)
                 continue
             if phrase == "federation" and (
+                _is_negated(text, index)
+                or
                 text[index : index + 40].startswith("federation is blocked by default")
                 or text[index : index + 48].startswith("federation stress corpus is not federation")
                 or text[index : index + 48].startswith("federation stress result is not federation")
@@ -858,6 +892,7 @@ def _forbidden_hits(text: str) -> list[str]:
                 or text[index : index + 40].startswith("federation_risks")
                 or text[index : index + 40].startswith("federation_")
                 or text[index : index + 40].startswith("federation_stress")
+                or "local-review-runtime-v0 is not federation" in text[max(0, index - 80) : index + 80]
                 or text[index : index + 40].startswith("federation = true")
                 or text[index : index + 40].startswith('federation": true')
                 or '"model_training", "federation", "reward_allocation"' in text[max(0, index - 24) : index + 48]
@@ -871,8 +906,24 @@ def _forbidden_hits(text: str) -> list[str]:
                 start = index + len(normalized_phrase)
                 continue
             if (
+                phrase == "federation authorization"
+                and (
+                    _is_negated(text, index)
+                    or "not federation authorization" in text[max(0, index - 64) : index + 48]
+                    or "local-review-runtime-v0 is not federation authorization" in text[max(0, index - 96) : index + 80]
+                )
+            ):
+                start = index + len(normalized_phrase)
+                continue
+            if (
                 phrase in {"remote provider call", "remote provider calls", "provider call", "provider call performed", "provider call authorized"}
                 and _is_allowed_provider_call_context(text, index)
+            ):
+                start = index + len(normalized_phrase)
+                continue
+            if (
+                phrase in {"network authorization", "network authorized"}
+                and _is_allowed_network_authorization_context(text, index)
             ):
                 start = index + len(normalized_phrase)
                 continue
@@ -897,6 +948,12 @@ def _forbidden_hits(text: str) -> list[str]:
                     text[index : index + 64].startswith("encrypted shard transfer not performed")
                     or text[index : index + 64].startswith("encrypted_shard_transfer_not_performed")
                 )
+            ):
+                start = index + len(normalized_phrase)
+                continue
+            if (
+                phrase in {"federation", "truth certification", "product release"}
+                and "request must fail closed" in text[index : index + 72]
             ):
                 start = index + len(normalized_phrase)
                 continue

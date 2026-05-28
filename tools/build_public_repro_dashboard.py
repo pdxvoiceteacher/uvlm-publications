@@ -1257,6 +1257,135 @@ TB_PRODUCT_SLICE_01_ARTIFACTS=["tb_product_slice_01_manifest.json","multi_source
 TB_PRODUCT_SLICE_01_DASHBOARD_SUMMARY={"review_status":"accepted_as_tb_product_slice_01_runtime_smoke","product_slice_id":"tb-product-slice-01-fixture","multi_source_review_enabled":True,"user_visible_review_receipt_present":True,"source_ingested":True,"sonya_candidate_packet_present":True,"claim_evidence_map_present":True,"source_link_map_present":True,"unsupported_claim_report_present":True,"unsupported_claim_visible":True,"uncertainty_report_present":True,"cross_source_conflict_report_present":True,"conflicts_visible":True,"tel_events_present":True,"prior_origin_use_packet_present":True,"pmr_provenance_stub_present":True,"supported_claims_detected":True,"unsupported_claims_detected":True,"source_references_visible":True,"candidate_packet_not_final_answer":True,"model_output_not_authority":True,"source_match_not_truth_certification":True,"supported_claim_not_accepted_evidence":True,"cross_source_agreement_not_accepted_evidence":True,"cross_source_conflict_not_contradiction_resolution":True,"prior_context_not_evidence":True,"tel_event_not_authority":True,"pmr_stub_not_memory_write":True,"receipt_not_deployment_authority":True,"local_product_slice_not_product_release":True,"final_answer_not_released":True,"accepted_evidence_not_admitted":True,"provider_calls_not_performed":True,"network_calls_not_performed":True,"memory_write_blocked":True,"model_weight_training_blocked":True,"deployment_blocked":True,"supported_claim_count":2,"unsupported_claim_count":2,"conflict_count":2,"source_file_count":3,"source_segment_count":8,"tel_event_count":8,"unsupported_overclaim":"The study proved long-term effectiveness.","conflict":"enrollment vs completion ambiguity.","conflict_prone_claim":"42 participants completed the intervention.","run_artifact_manifest_status":"verified","export_parity_passed":True}
 TB_PRODUCT_SLICE_01_CLAIMS_BLOCKED=["not final answer release","not accepted evidence","not truth certification","not provider call","not network authorization","not memory write","not model weight training","not deployment authority","not product release","not hallucination reduction proof","not model superiority proof"]
 
+
+SONYA_LOCAL_SERVER_GATEWAY_00_COMMAND = r""".\experiments\Run-SONYA-LOCAL-SERVER-GATEWAY00-Acceptance.ps1 `
+  -BindHost 127.0.0.1 `
+  -OutputRoot C:\UVLM\run_artifacts\sonya_local_server_gateway_00 `
+  -LogDir C:\UVLM\run_artifacts\sonya_local_server_gateway_00_logs `
+  -CiMode"""
+SONYA_LOCAL_SERVER_GATEWAY_00_ARTIFACTS = [
+    "sonya_local_server_gateway_manifest.json","sonya_local_server_request_packet.json","sonya_local_server_response_packet.json","sonya_local_server_route_packet.json","sonya_local_server_safety_packet.json","sonya_local_server_review_packet.json","sonya_local_server_summary.md","tb_product_slice_01_review_receipt.md","tb_product_slice_01_review_receipt.json","tel_events.jsonl","gateway_failure_receipts.jsonl","artifact_inventory.json","run_artifact_manifest.json","export_bundle_manifest.json","export_bundle_parity_report.json","sonya_local_server_gateway_00_acceptance_receipt.json",
+]
+SONYA_LOCAL_SERVER_GATEWAY_00_DASHBOARD_SUMMARY = {"review_status":"accepted_as_sonya_local_server_gateway_scaffold","localhost_gateway_smoke_only":True,"host_bound_to_loopback":True,"external_bind_blocked":True,"local_product_slice_invoked":True,"user_visible_review_receipt_present":True,"failure_receipts_present":True,"blocked_provider_call_receipt_present":True,"blocked_network_authorization_receipt_present":True,"blocked_memory_write_receipt_present":True,"blocked_final_answer_receipt_present":True,"blocked_product_release_receipt_present":True,"candidate_packet_not_final_answer":True,"review_receipt_not_truth_certification":True,"supported_claim_not_accepted_evidence":True,"cross_source_conflict_not_resolution":True,"gateway_response_not_final_answer":True,"gateway_response_not_deployment_authority":True,"localhost_readiness_not_lan_readiness":True,"localhost_readiness_not_federation_authority":True,"local_server_execution_not_product_release":True,"provider_calls_not_performed":True,"network_calls_not_performed":True,"memory_write_blocked":True,"model_weight_training_blocked":True,"final_answer_not_released":True,"accepted_evidence_not_admitted":True,"deployment_blocked":True,"run_artifact_manifest_status":"verified","export_parity_passed":True}
+SONYA_LOCAL_SERVER_GATEWAY_00_CLAIMS_BLOCKED=["not provider call","not network authorization","not LAN readiness","not federation authorization","not memory write","not final answer release","not deployment authority","not product release","not truth certification"]
+
+
+SONYA_LOCAL_SERVER_GATEWAY_01_COMMAND = r""".\experiments\Run-SONYA-LOCAL-SERVER-GATEWAY01-Acceptance.ps1 `
+  -BindHost 127.0.0.1 `
+  -OutputRoot C:\UVLM\run_artifacts\sonya_local_server_gateway_01 `
+  -LogDir C:\UVLM\run_artifacts\sonya_local_server_gateway_01_logs `
+  -CiMode"""
+SONYA_LOCAL_SERVER_GATEWAY_01_ARTIFACTS = [
+    "sonya_local_server_gateway_01_manifest.json","sonya_local_server_run_index_packet.json","sonya_local_server_retrieval_packet.json","sonya_local_server_route_packet.json","sonya_local_server_safety_packet.json","sonya_local_server_gateway_01_review_packet.json","sonya_local_server_gateway_01_summary.md","tb_product_slice_01_review_receipt.md","tel_events.jsonl","gateway_failure_receipts.jsonl","retrieval_failure_receipts.jsonl","artifact_inventory.json","run_artifact_manifest.json","export_bundle_manifest.json","export_bundle_parity_report.json","sonya_local_server_gateway_01_acceptance_receipt.json",
+]
+SONYA_LOCAL_SERVER_GATEWAY_01_DASHBOARD_SUMMARY = {"review_status":"accepted_as_sonya_local_server_gateway_01_scaffold","source_gateway_00_bound":True,"localhost_gateway_smoke_only":True,"host_bound_to_loopback":True,"retrieval_endpoints_present":True,"run_index_present":True,"run_metadata_retrieved":True,"receipt_retrieved":True,"events_retrieved":True,"unknown_run_failed_closed":True,"retrieval_failure_receipt_present":True,"run_retrieval_not_memory_write":True,"run_index_not_pmr_store":True,"receipt_retrieval_not_final_answer_release":True,"event_retrieval_not_authority":True,"gateway_response_not_final_answer":True,"localhost_readiness_not_lan_readiness":True,"localhost_readiness_not_federation_authority":True,"provider_calls_not_performed":True,"network_calls_not_performed":True,"memory_write_blocked":True,"final_answer_not_released":True,"accepted_evidence_not_admitted":True,"deployment_blocked":True,"product_release_blocked":True,"blocked_claims_verified":True,"run_artifact_manifest_status":"verified","export_parity_passed":True}
+SONYA_LOCAL_SERVER_GATEWAY_01_CLAIMS_BLOCKED=["not memory write","not PMR store","not provider call","not network authorization","not LAN readiness","not federation authorization","not final answer release","not accepted evidence","not deployment authority","not product release","not truth certification"]
+
+
+TB_PRODUCT_SLICE_02_COMMAND = r""".\experiments\Run-TB-PRODUCT-SLICE02-Acceptance.ps1 `
+  -OutputRoot C:\UVLM\run_artifacts\tb_product_slice_02 `
+  -LogDir C:\UVLM\run_artifacts\tb_product_slice_02_logs `
+  -CiMode"""
+TB_PRODUCT_SLICE_02_ARTIFACTS=["tb_product_slice_02_manifest.json","multi_source_bundle_manifest.json","sonya_candidate_packet.json","claim_evidence_map.json","source_link_map.json","source_span_map.json","claim_classification_packet.json","unsupported_claim_report.json","uncertainty_report.json","cross_source_conflict_report.json","receipt_ux_packet.json","tel_events.jsonl","prior_origin_use_packet.json","pmr_provenance_stub.json","review_receipt.json","review_receipt.md","tb_product_slice_02_review_packet.json","run_summary.md","artifact_inventory.json","run_artifact_manifest.json","export_bundle_manifest.json","export_bundle_parity_report.json","tb_product_slice_02_acceptance_receipt.json"]
+TB_PRODUCT_SLICE_02_DASHBOARD_SUMMARY={"review_status":"accepted_as_tb_product_slice_02_review_ux_runtime_smoke","source_span_map_present":True,"quoted_source_spans_visible":True,"claim_classification_present":True,"receipt_ux_packet_present":True,"human_readable_review_receipt_present":True,"supported_claims_detected":True,"unsupported_claims_detected":True,"conflicts_detected":True,"uncertainties_preserved":True,"reviewer_next_actions_visible":True,"source_span_not_truth_certification":True,"quoted_source_text_not_accepted_evidence":True,"claim_segmentation_not_semantic_authority":True,"source_agreement_not_proof":True,"source_conflict_not_resolution":True,"receipt_not_final_answer":True,"receipt_not_truth_certification":True,"tel_event_not_authority":True,"pmr_stub_not_memory_write":True,"gateway_retrieval_not_memory_write":True,"run_index_not_pmr_store":True,"final_answer_not_released":True,"accepted_evidence_not_admitted":True,"provider_calls_not_performed":True,"network_calls_not_performed":True,"memory_write_blocked":True,"deployment_blocked":True,"product_release_blocked":True,"run_artifact_manifest_status":"verified","run_package_profile":"tb_product_slice_02","export_parity_passed":True}
+TB_PRODUCT_SLICE_02_CLAIMS_BLOCKED=["not final answer release","not accepted evidence","not truth certification","not provider call","not network authorization","not memory write","not deployment authority","not product release","not hallucination reduction proof","not model superiority proof"]
+
+
+SONYA_LOCAL_SERVER_GATEWAY_02_COMMAND = r""".\experiments\Run-SONYA-LOCAL-SERVER-GATEWAY02-Acceptance.ps1 `
+  -BindHost 127.0.0.1 `
+  -OutputRoot C:\UVLM\run_artifacts\sonya_local_server_gateway_02 `
+  -LogDir C:\UVLM\run_artifacts\sonya_local_server_gateway_02_logs `
+  -CiMode"""
+SONYA_LOCAL_SERVER_GATEWAY_02_ARTIFACTS=["sonya_local_server_gateway_02_manifest.json","sonya_local_server_request_packet.json","sonya_local_server_response_packet.json","sonya_local_server_run_index_packet.json","sonya_local_server_retrieval_packet.json","sonya_local_server_source_span_retrieval_packet.json","sonya_local_server_claim_classification_retrieval_packet.json","sonya_local_server_route_packet.json","sonya_local_server_safety_packet.json","sonya_local_server_gateway_02_review_packet.json","sonya_local_server_gateway_02_summary.md","tb_product_slice_02_review_receipt.md","tb_product_slice_02_review_receipt.json","source_span_map.json","claim_classification_packet.json","receipt_ux_packet.json","tel_events.jsonl","gateway_failure_receipts.jsonl","retrieval_failure_receipts.jsonl","artifact_inventory.json","run_artifact_manifest.json","export_bundle_manifest.json","export_bundle_parity_report.json","sonya_local_server_gateway_02_acceptance_receipt.json"]
+SONYA_LOCAL_SERVER_GATEWAY_02_DASHBOARD_SUMMARY={"review_status":"accepted_as_sonya_local_server_gateway_02_scaffold","source_gateway_01_bound":True,"source_product_slice_02_bound":True,"localhost_gateway_smoke_only":True,"host_bound_to_loopback":True,"review_profile_tb_product_slice_02":True,"local_product_slice_02_invoked":True,"user_visible_review_receipt_present":True,"source_span_map_present":True,"claim_classification_packet_present":True,"receipt_ux_packet_present":True,"source_span_retrieval_present":True,"claim_classification_retrieval_present":True,"run_metadata_retrieved":True,"receipt_retrieved":True,"events_retrieved":True,"source_spans_retrieved":True,"claim_classifications_retrieved":True,"unknown_run_failed_closed":True,"retrieval_failure_receipt_present":True,"failure_receipts_present":True,"source_span_not_truth_certification":True,"quoted_source_text_not_accepted_evidence":True,"claim_classification_not_semantic_authority":True,"source_conflict_not_resolution":True,"review_receipt_not_final_answer":True,"gateway_response_not_final_answer":True,"run_retrieval_not_memory_write":True,"run_index_not_pmr_store":True,"tel_event_not_authority":True,"localhost_readiness_not_lan_readiness":True,"localhost_readiness_not_federation_authority":True,"provider_calls_not_performed":True,"network_calls_not_performed":True,"memory_write_blocked":True,"final_answer_not_released":True,"accepted_evidence_not_admitted":True,"deployment_blocked":True,"product_release_blocked":True,"blocked_claims_verified":True,"run_artifact_manifest_status":"verified","run_package_profile":"sonya_local_server_gateway_02","export_parity_passed":True}
+SONYA_LOCAL_SERVER_GATEWAY_02_CLAIMS_BLOCKED=["not final answer release","not accepted evidence","not truth certification","not provider call","not network authorization","not LAN readiness","not federation authorization","not memory write","not deployment authority","not product release"]
+
+
+LOCAL_SERVER_USER_FILE_INGRESS_00_COMMAND = r""".\experiments\Run-LOCAL-SERVER-USER-FILE-INGRESS00-Acceptance.ps1 `
+  -SourceRoot C:\UVLM\CoherenceLattice\examples\user_file_ingress_00 `
+  -OutputRoot C:\UVLM\run_artifacts\local_server_user_file_ingress_00 `
+  -LogDir C:\UVLM\run_artifacts\local_server_user_file_ingress_00_logs `
+  -CiMode"""
+LOCAL_SERVER_USER_FILE_INGRESS_00_ARTIFACTS=["local_user_file_ingress_manifest.json","local_user_file_consent_packet.json","local_user_file_path_audit_rows.jsonl","local_user_file_normalization_map.json","local_user_file_ingress_review_packet.json","ingress_failure_receipts.jsonl","normalized_user_sources/","normalized_source_bundle_manifest.json","sonya_local_server_gateway_02_manifest.json","sonya_local_server_gateway_02_review_packet.json","sonya_local_server_request_packet.json","sonya_local_server_response_packet.json","sonya_local_server_run_index_packet.json","sonya_local_server_retrieval_packet.json","sonya_local_server_source_span_retrieval_packet.json","sonya_local_server_claim_classification_retrieval_packet.json","source_span_map.json","claim_classification_packet.json","receipt_ux_packet.json","tb_product_slice_02_review_receipt.md","tb_product_slice_02_review_receipt.json","tel_events.jsonl","gateway_failure_receipts.jsonl","retrieval_failure_receipts.jsonl","artifact_inventory.json","run_artifact_manifest.json","export_bundle_manifest.json","export_bundle_parity_report.json","local_server_user_file_ingress_00_acceptance_receipt.json"]
+LOCAL_SERVER_USER_FILE_INGRESS_00_DASHBOARD_SUMMARY={"review_status":"accepted_as_local_server_user_file_ingress_scaffold","explicit_user_consent_observed":True,"path_audit_completed":True,"accepted_files_present":True,"rejected_files_visible":True,"normalized_sources_present":True,"source_span_review_invoked":True,"gateway_02_bound":True,"source_span_map_present":True,"claim_classification_packet_present":True,"ingress_failure_receipts_present":True,"authority_failure_receipts_present":True,"missing_consent_failed_closed":True,"unsupported_extension_failed_closed":True,"provider_call_failed_closed":True,"network_authorization_failed_closed":True,"memory_write_failed_closed":True,"final_answer_failed_closed":True,"product_release_failed_closed":True,"user_file_ingress_not_memory_write":True,"local_file_path_not_system_path":True,"normalized_copy_not_pmr_storage":True,"source_span_not_truth_certification":True,"quoted_source_text_not_accepted_evidence":True,"claim_classification_not_semantic_authority":True,"review_receipt_not_final_answer":True,"provider_calls_not_performed":True,"network_calls_not_performed":True,"memory_write_blocked":True,"final_answer_not_released":True,"accepted_evidence_not_admitted":True,"deployment_blocked":True,"product_release_blocked":True,"run_artifact_manifest_status":"verified","run_package_profile":"local_server_user_file_ingress_00","export_parity_passed":True}
+LOCAL_SERVER_USER_FILE_INGRESS_00_CLAIMS_BLOCKED=["not memory write","not PMR storage","not provider call","not network authorization","not final answer release","not accepted evidence","not truth certification","not deployment authority","not product release","not LAN readiness","not federation authorization"]
+
+
+PMR_CONTEXT_AVAILABILITY_LEDGER_00_COMMAND = r""".\experiments\Run-PMR-CONTEXT-AVAILABILITY-LEDGER00-Acceptance.ps1 `
+  -OutputRoot C:\UVLM\run_artifacts\pmr_context_availability_ledger_00 `
+  -LogDir C:\UVLM\run_artifacts\pmr_context_availability_ledger_00_logs `
+  -CiMode"""
+PMR_CONTEXT_AVAILABILITY_LEDGER_00_ARTIFACTS=["pmr_context_availability_ledger.json","pmr_context_dependency_map.json","pmr_context_reupload_queue.json","pmr_context_access_status_report.md","pmr_context_availability_review_packet.json","triadic_run_manifest.json","artifact_inventory.json","run_artifact_manifest.json","export_bundle_manifest.json","export_bundle_parity_report.json","pmr_context_availability_ledger_00_acceptance_receipt.json"]
+PMR_CONTEXT_AVAILABILITY_LEDGER_00_DASHBOARD_SUMMARY={"review_status":"accepted_as_pmr_context_availability_ledger_scaffold","context_artifacts_registered":True,"epistemic_states_assigned":True,"expired_content_visible_as_expired":True,"inaccessible_content_not_unknown":True,"derived_summary_not_source":True,"reupload_queue_present":True,"sensitivity_scope_present":True,"dependency_map_present":True,"exact_content_not_retained":True,"expired_content_not_quoted":True,"ledger_entry_not_source_content":True,"ledger_entry_not_memory_write":True,"hash_not_content_access":True,"dependency_map_not_canon":True,"reupload_request_not_user_obligation":True,"reupload_priority_not_runtime_authority":True,"file_metadata_may_be_sensitive":True,"pmr_ledger_not_deletion_authority":True,"pmr_ledger_not_pruning_authority":True,"pmr_ledger_not_truth_certification":True,"pmr_ledger_not_federation_authority":True,"pmr_ledger_not_product_release":True,"memory_write_blocked":True,"provider_calls_not_performed":True,"network_calls_not_performed":True,"final_answer_not_released":True,"accepted_evidence_not_admitted":True,"deployment_blocked":True,"product_release_blocked":True,"run_artifact_manifest_status":"verified","run_package_profile":"pmr_context_availability_ledger_00","export_parity_passed":True}
+PMR_CONTEXT_AVAILABILITY_LEDGER_00_CLAIMS_BLOCKED=["not source content recovery","not memory write","not truth certification","not deletion authority","not pruning authority","not provider call","not network authorization","not federation authorization","not final answer release","not accepted evidence","not product release"]
+
+
+LOCAL_SERVER_USER_FILE_INGRESS_01_COMMAND = r""".\experiments\Run-LOCAL-SERVER-USER-FILE-INGRESS01-Acceptance.ps1 `
+  -OutputRoot C:\UVLM\run_artifacts\local_server_user_file_ingress_01 `
+  -LogDir C:\UVLM\run_artifacts\local_server_user_file_ingress_01_logs `
+  -CiMode"""
+LOCAL_SERVER_USER_FILE_INGRESS_01_ARTIFACTS=["local_user_file_ingress_01_manifest.json","local_user_file_ingress_request_packet.json","local_user_file_consent_packet.json","local_user_file_path_audit_rows.jsonl","local_user_file_normalization_map.json","local_user_file_pmr_context_link_packet.json","local_user_file_ingress_receipt_ux_packet.json","local_user_file_ingress_01_review_packet.json","ingress_failure_receipts.jsonl","normalized_user_sources/","normalized_source_bundle_manifest.json","pmr_context_availability_ledger.json","pmr_context_dependency_map.json","pmr_context_reupload_queue.json","pmr_context_access_status_report.md","sonya_local_server_gateway_02_manifest.json","sonya_local_server_gateway_02_review_packet.json","source_span_map.json","claim_classification_packet.json","receipt_ux_packet.json","tb_product_slice_02_review_receipt.md","tb_product_slice_02_review_receipt.json","gateway_failure_receipts.jsonl","retrieval_failure_receipts.jsonl","tel_events.jsonl","artifact_inventory.json","run_artifact_manifest.json","export_bundle_manifest.json","export_bundle_parity_report.json","local_server_user_file_ingress_01_acceptance_receipt.json"]
+LOCAL_SERVER_USER_FILE_INGRESS_01_DASHBOARD_SUMMARY={"review_status":"accepted_as_local_server_user_file_ingress_01_scaffold","explicit_file_list_ingress_enabled":True,"explicit_user_consent_observed":True,"source_order_preserved":True,"duplicate_paths_audited":True,"duplicate_source_path_count":1,"duplicate_source_path_deduplicated":True,"path_audit_completed":True,"accepted_files_present":True,"rejected_files_visible":True,"normalized_sources_present":True,"pmr_context_links_present":True,"pmr_context_ledger_bound":True,"source_span_review_invoked":True,"gateway_02_bound":True,"source_span_map_present":True,"claim_classification_packet_present":True,"ingress_failure_receipts_present":True,"authority_failure_receipts_present":True,"missing_consent_failed_closed":True,"unsupported_extension_failed_closed":True,"nonexistent_path_failed_closed":True,"provider_call_failed_closed":True,"network_authorization_failed_closed":True,"memory_write_failed_closed":True,"final_answer_failed_closed":True,"product_release_failed_closed":True,"explicit_file_list_ingress_not_memory_write":True,"local_file_path_not_system_path":True,"file_list_not_global_authority":True,"file_normalization_not_evidence_admission":True,"normalized_copy_not_pmr_storage":True,"pmr_context_entry_not_source_content":True,"pmr_context_entry_not_memory_write":True,"hash_not_content_access":True,"source_span_not_truth_certification":True,"quoted_source_text_not_accepted_evidence":True,"claim_classification_not_semantic_authority":True,"review_receipt_not_final_answer":True,"provider_calls_not_performed":True,"network_calls_not_performed":True,"memory_write_blocked":True,"final_answer_not_released":True,"accepted_evidence_not_admitted":True,"deployment_blocked":True,"product_release_blocked":True,"run_artifact_manifest_status":"verified","run_package_profile":"local_server_user_file_ingress_01","export_parity_passed":True}
+LOCAL_SERVER_USER_FILE_INGRESS_01_CLAIMS_BLOCKED=["not memory write","not PMR storage authority","not provider call","not network authorization","not final answer release","not accepted evidence","not truth certification","not deployment authority","not product release","not LAN readiness","not federation authorization"]
+
+USER_FACING_RECEIPT_UX_01_COMMAND = r""".\experiments\Run-USER-FACING-RECEIPT-UX01-Acceptance.ps1 `
+  -OutputRoot C:\UVLM\run_artifacts\user_facing_receipt_ux_01 `
+  -LogDir C:\UVLM\run_artifacts\user_facing_receipt_ux_01_logs `
+  -CiMode"""
+USER_FACING_RECEIPT_UX_01_ARTIFACTS=["local_user_file_human_receipt.md","local_user_file_receipt_ux_01_packet.json","local_user_file_receipt_next_actions.json","local_user_file_receipt_boundary_table.json","local_user_file_ingress_01_manifest.json","local_user_file_ingress_request_packet.json","local_user_file_path_audit_rows.jsonl","local_user_file_normalization_map.json","local_user_file_pmr_context_link_packet.json","local_user_file_ingress_01_review_packet.json","pmr_context_availability_ledger.json","source_span_map.json","claim_classification_packet.json","tb_product_slice_02_review_receipt.md","gateway_failure_receipts.jsonl","ingress_failure_receipts.jsonl","artifact_inventory.json","run_artifact_manifest.json","export_bundle_manifest.json","export_bundle_parity_report.json","user_facing_receipt_ux_01_acceptance_receipt.json"]
+USER_FACING_RECEIPT_UX_01_DASHBOARD_SUMMARY={"review_status":"accepted_as_user_facing_receipt_ux_01_scaffold","human_receipt_present":True,"receipt_ux_packet_present":True,"next_actions_present":True,"boundary_table_present":True,"accepted_files_visible":True,"rejected_files_visible":True,"duplicate_handling_visible":True,"pmr_context_links_visible":True,"source_span_summary_visible":True,"claim_classification_summary_visible":True,"failure_receipts_visible":True,"receipt_ux_not_final_answer":True,"receipt_ux_not_accepted_evidence":True,"receipt_ux_not_truth_certification":True,"receipt_ux_not_memory_write":True,"reviewer_next_action_not_authority":True,"pmr_context_link_not_source_content":True,"source_span_not_truth_certification":True,"claim_classification_not_semantic_authority":True,"run_artifact_manifest_status":"verified","run_package_profile":"user_facing_receipt_ux_01","export_parity_passed":True}
+USER_FACING_RECEIPT_UX_01_CLAIMS_BLOCKED=["not final answer release","not accepted evidence","not truth certification","not memory write","not PMR storage authority","not provider call","not network authorization","not deployment authority","not product release","not LAN readiness","not federation authorization"]
+
+LOCAL_SERVER_USER_FILE_INGRESS_02_COMMAND = r""".\experiments\Run-LOCAL-SERVER-USER-FILE-INGRESS02-Acceptance.ps1 `
+  -OutputRoot C:\UVLM\run_artifacts\local_server_user_file_ingress_02 `
+  -LogDir C:\UVLM\run_artifacts\local_server_user_file_ingress_02_logs `
+  -CiMode"""
+LOCAL_SERVER_USER_FILE_INGRESS_02_ARTIFACTS=["local_review_request_02_packet.json","local_review_source_set_packet.json","local_review_intent_packet.json","local_review_receipt_preferences_packet.json","local_server_user_file_ingress_02_review_packet.json","local_user_file_human_receipt.md","local_user_file_receipt_ux_01_packet.json","source_span_map.json","claim_classification_packet.json","pmr_context_availability_ledger.json","run_artifact_manifest.json","export_bundle_parity_report.json","local_server_user_file_ingress_02_acceptance_receipt.json"]
+LOCAL_SERVER_USER_FILE_INGRESS_02_DASHBOARD_SUMMARY={"review_status":"accepted_as_local_server_user_file_ingress_02_scaffold","local_review_request_present":True,"local_review_intent_present":True,"local_review_receipt_preferences_present":True,"local_review_source_set_present":True,"human_receipt_present":True,"source_span_summary_visible":True,"claim_classification_summary_visible":True,"pmr_context_links_visible":True,"local_review_request_not_final_answer":True,"reviewer_intent_not_authority":True,"receipt_preference_not_product_release":True,"source_set_not_global_path_authority":True,"local_review_request_not_memory_write":True,"local_review_request_not_network_authorization":True,"run_artifact_manifest_status":"verified","run_package_profile":"local_server_user_file_ingress_02","export_parity_passed":True}
+LOCAL_SERVER_USER_FILE_INGRESS_02_CLAIMS_BLOCKED=["not final answer release","not accepted evidence","not truth certification","not memory write","not PMR storage authority","not provider call","not network authorization","not deployment authority","not product release","not LAN readiness","not federation authorization"]
+
+LAN_READINESS_PREFLIGHT_00_COMMAND = r""".\experiments\Run-LAN-READINESS-PREFLIGHT00-Acceptance.ps1 `
+  -OutputRoot C:\UVLM\run_artifacts\lan_readiness_preflight_00 `
+  -LogDir C:\UVLM\run_artifacts\lan_readiness_preflight_00_logs `
+  -CiMode"""
+LAN_READINESS_PREFLIGHT_00_ARTIFACTS=["lan_readiness_preflight_manifest.json","lan_readiness_preflight_request_packet.json","lan_readiness_preflight_report.md","lan_readiness_preflight_report.json","lan_readiness_non_authority_boundary_table.json","lan_readiness_preflight_review_packet.json","phaselock_stack_snapshot.json","local_stack_dependency_snapshot.json","artifact_inventory.json","run_artifact_manifest.json","export_bundle_manifest.json","export_bundle_parity_report.json","lan_readiness_preflight_00_acceptance_receipt.json"]
+LAN_READINESS_PREFLIGHT_00_DASHBOARD_SUMMARY={"review_status":"accepted_as_lan_readiness_preflight_00_scaffold","preflight_report_present":True,"boundary_table_present":True,"loopback_probe_present":True,"bind_host_plan_present":True,"port_plan_present":True,"remote_client_model_present":True,"network_policy_observation_present":True,"lan_preflight_not_lan_enablement":True,"lan_preflight_not_network_authorization":True,"loopback_success_not_lan_readiness":True,"localhost_gateway_not_lan_readiness":True,"bind_host_review_not_bind_authorization":True,"port_planning_not_port_opening":True,"remote_client_model_not_remote_client_authorization":True,"preflight_report_not_final_answer":True,"preflight_report_not_accepted_evidence":True,"run_artifact_manifest_status":"verified","run_package_profile":"lan_readiness_preflight_00","export_parity_passed":True}
+LAN_READINESS_PREFLIGHT_00_CLAIMS_BLOCKED=["not LAN enablement","not network authorization","not remote access","not firewall authorization","not federation","not deployment","not product release","not final answer release","not accepted evidence"]
+
+LAN_AUTHORITY_MODEL_00_COMMAND = r""".\experiments\Run-LAN-AUTHORITY-MODEL00-Acceptance.ps1 `
+  -OutputRoot C:\UVLM\run_artifacts\lan_authority_model_00 `
+  -LogDir C:\UVLM\run_artifacts\lan_authority_model_00_logs `
+  -CiMode"""
+LAN_AUTHORITY_MODEL_00_ARTIFACTS=["lan_authority_model_manifest.json","lan_authority_model_request_packet.json","lan_bind_scope_model.json","lan_remote_client_model.json","lan_consent_model.json","lan_network_risk_register.json","lan_authority_boundary_table.json","lan_authority_model_review_packet.json","phaselock_stack_snapshot.json","lan_preflight_dependency_snapshot.json","artifact_inventory.json","run_artifact_manifest.json","export_bundle_manifest.json","export_bundle_parity_report.json","lan_authority_model_00_acceptance_receipt.json"]
+LAN_AUTHORITY_MODEL_00_DASHBOARD_SUMMARY={"review_status":"accepted_as_lan_authority_model_scaffold","model_only":True,"lan_enabled":False,"lan_binding_performed":False,"firewall_change_performed":False,"network_discovery_performed":False,"remote_client_authorized":False,"federation_authorized":False,"deployment_performed":False,"product_release_performed":False,"allowed_bind_scopes":[],"currently_authorized_bind_scopes":[],"authorized_remote_clients":[],"no_bind_host_authorized":True,"no_port_opened":True,"no_remote_client_authorized":True,"no_remote_access_enabled":True,"no_lan_enablement_consent_executed":True,"no_remote_client_consent_executed":True,"risks_are_not_authorizations":True,"run_artifact_manifest_status":"verified","run_package_profile":"lan_authority_model_00","export_parity_passed":True}
+LAN_AUTHORITY_MODEL_00_CLAIMS_BLOCKED=["not LAN enablement","not network authorization","not remote client authorization","not bind authorization","not firewall authorization","not federation","not deployment","not product release"]
+
+LAN_AUTHORITY_NEGATIVE_CONTROL_00_COMMAND = r""".\experiments\Run-LAN-AUTHORITY-NEGATIVE-CONTROL00-Acceptance.ps1 `
+  -OutputRoot C:\UVLM\run_artifacts\lan_authority_negative_control_00 `
+  -LogDir C:\UVLM\run_artifacts\lan_authority_negative_control_00_logs `
+  -CiMode"""
+LAN_AUTHORITY_NEGATIVE_CONTROL_00_ARTIFACTS=["lan_authority_negative_control_manifest.json","lan_authority_negative_control_request_packet.json","lan_authority_negative_control_failure_receipts.jsonl","lan_authority_negative_control_review_packet.json","lan_authority_model_reference_packet.json","phaselock_stack_snapshot.json","artifact_inventory.json","run_artifact_manifest.json","export_bundle_manifest.json","export_bundle_parity_report.json","lan_authority_negative_control_00_acceptance_receipt.json"]
+LAN_AUTHORITY_NEGATIVE_CONTROL_00_DASHBOARD_SUMMARY={"review_status":"accepted_as_lan_authority_negative_control_scaffold","failure_receipt_count":14,"lan_enablement_blocked":True,"lan_binding_blocked":True,"firewall_change_blocked":True,"remote_client_authorization_blocked":True,"network_discovery_blocked":True,"federation_blocked":True,"deployment_blocked":True,"product_release_blocked":True,"provider_call_blocked":True,"network_call_blocked":True,"memory_write_blocked":True,"final_answer_blocked":True,"accepted_evidence_blocked":True,"truth_certification_blocked":True,"negative_control_not_authorization":True,"failed_closed_request_not_permission_to_retry":True,"no_lan_enabled":True,"no_lan_binding_performed":True,"no_firewall_change_performed":True,"no_network_discovery_performed":True,"no_remote_client_authorized":True,"no_federation_authorized":True,"no_deployment_performed":True,"no_product_release_performed":True,"run_artifact_manifest_status":"verified","run_package_profile":"lan_authority_negative_control_00","export_parity_passed":True}
+LAN_AUTHORITY_NEGATIVE_CONTROL_00_CLAIMS_BLOCKED=["not LAN enablement","not network authorization","not remote client authorization","not bind authorization","not firewall authorization","not federation","not deployment","not product release","not provider call","not network call","not memory write","not final answer release","not accepted evidence","not truth certification"]
+
+LAN_OPERATOR_CONSENT_PREFLIGHT_00_COMMAND = r""".\experiments\Run-LAN-OPERATOR-CONSENT-PREFLIGHT00-Acceptance.ps1 `
+  -OutputRoot C:\UVLM\run_artifacts\lan_operator_consent_preflight_00 `
+  -LogDir C:\UVLM\run_artifacts\lan_operator_consent_preflight_00_logs `
+  -CiMode"""
+LAN_OPERATOR_CONSENT_PREFLIGHT_00_ARTIFACTS=["lan_operator_consent_preflight_manifest.json","lan_operator_consent_request_packet.json","lan_operator_consent_display_packet.json","lan_operator_consent_negative_control_receipts.jsonl","lan_operator_consent_boundary_table.json","lan_operator_consent_preflight_review_packet.json","lan_authority_negative_control_reference_packet.json","phaselock_stack_snapshot.json","artifact_inventory.json","run_artifact_manifest.json","export_bundle_manifest.json","export_bundle_parity_report.json","lan_operator_consent_preflight_00_acceptance_receipt.json"]
+LAN_OPERATOR_CONSENT_PREFLIGHT_00_DASHBOARD_SUMMARY={"review_status":"accepted_as_lan_operator_consent_preflight_scaffold","preflight_only":True,"consent_executed":False,"lan_enabled":False,"lan_binding_performed":False,"firewall_change_performed":False,"remote_client_authorized":False,"network_discovery_performed":False,"federation_authorized":False,"deployment_performed":False,"product_release_performed":False,"negative_control_receipt_count":8,"run_artifact_manifest_status":"verified","run_package_profile":"lan_operator_consent_preflight_00","export_parity_passed":True}
+LAN_OPERATOR_CONSENT_PREFLIGHT_00_CLAIMS_BLOCKED=["not consent execution","not LAN enablement","not network authorization","not bind authorization","not firewall authorization","not remote client authorization","not federation","not deployment","not product release"]
+
+LOCAL_REVIEW_RUNTIME_V0_COMMAND = r""".\experiments\Run-LOCAL-REVIEW-RUNTIME-V0-Acceptance.ps1 `
+  -PythonPath .\.venv\Scripts\python.exe `
+  -OutputRoot C:\UVLM\run_artifacts\local_review_runtime_v0 `
+  -LogDir C:\UVLM\run_artifacts\local_review_runtime_v0_logs `
+  -ReviewerObjective "Review these local files for claim support, rejected inputs, duplicate handling, and non-authority boundaries." `
+  -CiMode"""
+LOCAL_REVIEW_RUNTIME_V0_ARTIFACTS=["local_review_runtime_v0_manifest.json","local_review_request_02_packet.json","local_review_source_set_packet.json","local_user_file_ingress_01_manifest.json","local_user_file_path_audit_rows.jsonl","local_user_file_normalization_map.json","local_user_file_pmr_context_link_packet.json","source_span_map.json","claim_classification_packet.json","pmr_context_availability_ledger.json","local_review_runtime_v0_human_summary.md","local_review_runtime_v0_next_actions.json","local_review_runtime_v0_boundary_table.json","local_review_runtime_v0_review_packet.json","artifact_inventory.json","run_artifact_manifest.json","export_bundle_manifest.json","export_bundle_parity_report.json","local_review_runtime_v0_acceptance_receipt.json"]
+LOCAL_REVIEW_RUNTIME_V0_DASHBOARD_SUMMARY={"review_status":"accepted_as_local_review_runtime_v0_scaffold","accepted_file_count":3,"rejected_file_count":2,"duplicate_source_path_count":1,"normalized_source_count":3,"pmr_context_link_count":3,"evidence_bound_wrapper":True,"ingress_bound":True,"receipt_ux_bound":True,"pmr_context_bound":True,"source_span_review_bound":True,"human_summary_present":True,"reviewer_next_actions_present":True,"boundary_table_present":True,"run_artifact_manifest_status":"verified","export_parity_passed":True}
+LOCAL_REVIEW_RUNTIME_V0_CLAIMS_BLOCKED=["not product release","not final answer authority","not accepted evidence authority","not truth certification","not memory write","not provider runtime","not provider call","not network authorization","not LAN enablement","not LAN binding","not remote client authorization","not deployment","not federation","not model weight training","not hallucination reduction proof","not peer review certification"]
+
 PMR_00_COMMAND = r""".\experiments\Run-PMR00-Acceptance.ps1 `
   -OutputRoot C:\UVLM\run_artifacts\pmr_00 `
   -LogDir C:\UVLM\run_artifacts\pmr_00_logs `
@@ -3137,6 +3266,21 @@ ACCEPTED_PHASES = [
     },
 
     {"phase_id":"TB-PRODUCT-SLICE-01","repo":"pdxvoiceteacher/CoherenceLattice","status":"accepted","evidence_type":"runtime_smoke","product_posture":"fixture_only_multi_source_product_slice_without_final_answer_or_product_release","primary_artifacts":TB_PRODUCT_SLICE_01_ARTIFACTS,"dashboard_summary":TB_PRODUCT_SLICE_01_DASHBOARD_SUMMARY,"reproduction_command_summary":TB_PRODUCT_SLICE_01_COMMAND,"claims_blocked":TB_PRODUCT_SLICE_01_CLAIMS_BLOCKED,"claim_allowed":"fixture-only multi-source local product runtime smoke","reviewer_caution":"Cross-source conflict is not contradiction resolution."},
+                        {"phase_id":"LOCAL-SERVER-USER-FILE-INGRESS-01","repo":"pdxvoiceteacher/CoherenceLattice","status":"accepted","evidence_type":"runtime_smoke","product_posture":"explicit_file_list_local_ingress_with_pmr_context_linkage_without_memory_or_network_authority","primary_artifacts":LOCAL_SERVER_USER_FILE_INGRESS_01_ARTIFACTS,"dashboard_summary":LOCAL_SERVER_USER_FILE_INGRESS_01_DASHBOARD_SUMMARY,"reproduction_command_summary":LOCAL_SERVER_USER_FILE_INGRESS_01_COMMAND,"claims_blocked":LOCAL_SERVER_USER_FILE_INGRESS_01_CLAIMS_BLOCKED,"claim_allowed":"explicit file-list local ingress with PMR context linkage scaffold","reviewer_caution":"Explicit file-list ingress is not memory write."},
+{"phase_id":"USER-FACING-RECEIPT-UX-01","repo":"pdxvoiceteacher/CoherenceLattice","status":"accepted","evidence_type":"runtime_smoke","product_posture":"human_readable_local_file_review_receipt_without_final_answer_or_authority","primary_artifacts":USER_FACING_RECEIPT_UX_01_ARTIFACTS,"dashboard_summary":USER_FACING_RECEIPT_UX_01_DASHBOARD_SUMMARY,"reproduction_command_summary":USER_FACING_RECEIPT_UX_01_COMMAND,"claims_blocked":USER_FACING_RECEIPT_UX_01_CLAIMS_BLOCKED,"claim_allowed":"human-readable local file receipt UX scaffold","reviewer_caution":"Receipt UX is not final answer."},
+{"phase_id":"LOCAL-SERVER-USER-FILE-INGRESS-02","repo":"pdxvoiceteacher/CoherenceLattice","status":"accepted","evidence_type":"runtime_smoke","product_posture":"product_like_local_review_request_packet_without_final_answer_or_authority","primary_artifacts":LOCAL_SERVER_USER_FILE_INGRESS_02_ARTIFACTS,"dashboard_summary":LOCAL_SERVER_USER_FILE_INGRESS_02_DASHBOARD_SUMMARY,"reproduction_command_summary":LOCAL_SERVER_USER_FILE_INGRESS_02_COMMAND,"claims_blocked":LOCAL_SERVER_USER_FILE_INGRESS_02_CLAIMS_BLOCKED,"claim_allowed":"product-like local review request packet scaffold","reviewer_caution":"Local review request is not final answer request."},
+{"phase_id":"LAN-READINESS-PREFLIGHT-00","repo":"pdxvoiceteacher/CoherenceLattice","status":"accepted","evidence_type":"runtime_smoke","product_posture":"preflight_only_lan_readiness_without_enablement_or_authority","primary_artifacts":LAN_READINESS_PREFLIGHT_00_ARTIFACTS,"dashboard_summary":LAN_READINESS_PREFLIGHT_00_DASHBOARD_SUMMARY,"reproduction_command_summary":LAN_READINESS_PREFLIGHT_00_COMMAND,"claims_blocked":LAN_READINESS_PREFLIGHT_00_CLAIMS_BLOCKED,"claim_allowed":"LAN readiness preflight scaffold","reviewer_caution":"LAN readiness preflight is not LAN enablement."},
+{"phase_id":"LAN-AUTHORITY-MODEL-00","repo":"pdxvoiceteacher/CoherenceLattice","status":"accepted","evidence_type":"runtime_smoke","product_posture":"model_only_lan_authority_scaffold_without_enablement_or_release","primary_artifacts":LAN_AUTHORITY_MODEL_00_ARTIFACTS,"dashboard_summary":LAN_AUTHORITY_MODEL_00_DASHBOARD_SUMMARY,"reproduction_command_summary":LAN_AUTHORITY_MODEL_00_COMMAND,"claims_blocked":LAN_AUTHORITY_MODEL_00_CLAIMS_BLOCKED,"claim_allowed":"LAN authority model scaffold","reviewer_caution":"LAN authority model is not LAN enablement."},
+{"phase_id":"LAN-AUTHORITY-NEGATIVE-CONTROL-00","repo":"pdxvoiceteacher/CoherenceLattice","status":"accepted","evidence_type":"runtime_smoke","product_posture":"lan_authority_negative_control_fail_closed_scaffold","primary_artifacts":LAN_AUTHORITY_NEGATIVE_CONTROL_00_ARTIFACTS,"dashboard_summary":LAN_AUTHORITY_NEGATIVE_CONTROL_00_DASHBOARD_SUMMARY,"reproduction_command_summary":LAN_AUTHORITY_NEGATIVE_CONTROL_00_COMMAND,"claims_blocked":LAN_AUTHORITY_NEGATIVE_CONTROL_00_CLAIMS_BLOCKED,"claim_allowed":"LAN authority negative-control scaffold","reviewer_caution":"Negative control is not authorization."},
+{"phase_id":"LAN-OPERATOR-CONSENT-PREFLIGHT-00","repo":"pdxvoiceteacher/CoherenceLattice","status":"accepted","evidence_type":"runtime_smoke","product_posture":"preflight_only_operator_consent_scaffold_without_lan_or_authority_enablement","primary_artifacts":LAN_OPERATOR_CONSENT_PREFLIGHT_00_ARTIFACTS,"dashboard_summary":LAN_OPERATOR_CONSENT_PREFLIGHT_00_DASHBOARD_SUMMARY,"reproduction_command_summary":LAN_OPERATOR_CONSENT_PREFLIGHT_00_COMMAND,"claims_blocked":LAN_OPERATOR_CONSENT_PREFLIGHT_00_CLAIMS_BLOCKED,"claim_allowed":"LAN operator consent preflight scaffold","reviewer_caution":"Consent preflight is not consent execution."},
+{"phase_id":"LOCAL-REVIEW-RUNTIME-V0","repo":"pdxvoiceteacher/CoherenceLattice","status":"accepted","evidence_type":"local_runtime_scaffold","product_posture":"evidence_bound_local_review_scaffold_without_product_release","primary_artifacts":LOCAL_REVIEW_RUNTIME_V0_ARTIFACTS,"dashboard_summary":LOCAL_REVIEW_RUNTIME_V0_DASHBOARD_SUMMARY,"reproduction_command_summary":LOCAL_REVIEW_RUNTIME_V0_COMMAND,"claims_blocked":LOCAL_REVIEW_RUNTIME_V0_CLAIMS_BLOCKED,"claim_allowed":"LOCAL-REVIEW-RUNTIME-V0 demonstrates an evidence-bound local review scaffold that wraps accepted local ingress, PMR context, source-span, claim-classification, and receipt UX artifacts into a human-readable non-authority local review receipt.","reviewer_caution":"LOCAL-REVIEW-RUNTIME-V0 is an evidence-bound local scaffold, not a released product. It demonstrates that a local wrapper can prove its lower-level ingress, PMR, source-span, claim-classification, and receipt UX path. It does not authorize final answers, accepted evidence, product release, provider runtime, memory writes, LAN enablement, federate operations, deployment, or truth certification."},
+{"phase_id":"PMR-CONTEXT-AVAILABILITY-LEDGER-00","repo":"pdxvoiceteacher/CoherenceLattice","status":"accepted","evidence_type":"governance_scaffold","product_posture":"fixture_only_context_availability_without_source_content_or_memory_authority","primary_artifacts":PMR_CONTEXT_AVAILABILITY_LEDGER_00_ARTIFACTS,"dashboard_summary":PMR_CONTEXT_AVAILABILITY_LEDGER_00_DASHBOARD_SUMMARY,"reproduction_command_summary":PMR_CONTEXT_AVAILABILITY_LEDGER_00_COMMAND,"claims_blocked":PMR_CONTEXT_AVAILABILITY_LEDGER_00_CLAIMS_BLOCKED,"claim_allowed":"context availability ledger scaffold","reviewer_caution":"Expiration is not nonexistence."},
+{"phase_id":"LOCAL-SERVER-USER-FILE-INGRESS-00","repo":"pdxvoiceteacher/CoherenceLattice","status":"accepted","evidence_type":"runtime_smoke","product_posture":"explicit_local_user_file_ingress_without_memory_or_network_authority","primary_artifacts":LOCAL_SERVER_USER_FILE_INGRESS_00_ARTIFACTS,"dashboard_summary":LOCAL_SERVER_USER_FILE_INGRESS_00_DASHBOARD_SUMMARY,"reproduction_command_summary":LOCAL_SERVER_USER_FILE_INGRESS_00_COMMAND,"claims_blocked":LOCAL_SERVER_USER_FILE_INGRESS_00_CLAIMS_BLOCKED,"claim_allowed":"explicit local user file ingress runtime smoke","reviewer_caution":"User file ingress is not memory write."},
+{"phase_id":"SONYA-LOCAL-SERVER-GATEWAY-02","repo":"pdxvoiceteacher/CoherenceLattice","status":"accepted","evidence_type":"runtime_smoke","product_posture":"localhost_only_source_span_gateway_without_truth_or_memory_authority","primary_artifacts":SONYA_LOCAL_SERVER_GATEWAY_02_ARTIFACTS,"dashboard_summary":SONYA_LOCAL_SERVER_GATEWAY_02_DASHBOARD_SUMMARY,"reproduction_command_summary":SONYA_LOCAL_SERVER_GATEWAY_02_COMMAND,"claims_blocked":SONYA_LOCAL_SERVER_GATEWAY_02_CLAIMS_BLOCKED,"claim_allowed":"localhost-only source-span gateway retrieval scaffold","reviewer_caution":"Source-span gateway review is not truth certification."},
+{"phase_id":"TB-PRODUCT-SLICE-02","repo":"pdxvoiceteacher/CoherenceLattice","status":"accepted","evidence_type":"runtime_smoke","product_posture":"fixture_only_source_span_review_ux_without_final_answer_or_truth_certification","primary_artifacts":TB_PRODUCT_SLICE_02_ARTIFACTS,"dashboard_summary":TB_PRODUCT_SLICE_02_DASHBOARD_SUMMARY,"reproduction_command_summary":TB_PRODUCT_SLICE_02_COMMAND,"claims_blocked":TB_PRODUCT_SLICE_02_CLAIMS_BLOCKED,"claim_allowed":"fixture-only source-span review UX runtime smoke","reviewer_caution":"Source span is not truth certification."},
+{"phase_id":"SONYA-LOCAL-SERVER-GATEWAY-01","repo":"pdxvoiceteacher/CoherenceLattice","status":"accepted","evidence_type":"runtime_smoke","product_posture":"localhost_only_run_retrieval_without_memory_or_federation_authority","primary_artifacts":SONYA_LOCAL_SERVER_GATEWAY_01_ARTIFACTS,"dashboard_summary":SONYA_LOCAL_SERVER_GATEWAY_01_DASHBOARD_SUMMARY,"reproduction_command_summary":SONYA_LOCAL_SERVER_GATEWAY_01_COMMAND,"claims_blocked":SONYA_LOCAL_SERVER_GATEWAY_01_CLAIMS_BLOCKED,"claim_allowed":"localhost-only run retrieval smoke scaffold","reviewer_caution":"Run retrieval is not memory write."},
+    {"phase_id":"SONYA-LOCAL-SERVER-GATEWAY-00","repo":"pdxvoiceteacher/CoherenceLattice","status":"accepted","evidence_type":"runtime_smoke","product_posture":"localhost_only_gateway_without_lan_or_federation_authority","primary_artifacts":SONYA_LOCAL_SERVER_GATEWAY_00_ARTIFACTS,"dashboard_summary":SONYA_LOCAL_SERVER_GATEWAY_00_DASHBOARD_SUMMARY,"reproduction_command_summary":SONYA_LOCAL_SERVER_GATEWAY_00_COMMAND,"claims_blocked":SONYA_LOCAL_SERVER_GATEWAY_00_CLAIMS_BLOCKED,"claim_allowed":"localhost-only Sonya gateway runtime smoke scaffold","reviewer_caution":"Localhost gateway is not LAN readiness."},
+
     {
         "phase_id": "PMR-00-PROVENANCE-MEMORY-RESERVOIR",
         "repo": "pdxvoiceteacher/CoherenceLattice",
@@ -3985,6 +4129,266 @@ PLANNED_PHASES = [
     "Raw-model comparison baselines",
 ]
 BOUNDARIES = [
+    "Negative control is not authorization.",
+    "LOCAL-REVIEW-RUNTIME-V0 is not product release.",
+    "LOCAL-REVIEW-RUNTIME-V0 is not final answer authority.",
+    "LOCAL-REVIEW-RUNTIME-V0 is not accepted evidence authority.",
+    "LOCAL-REVIEW-RUNTIME-V0 is not truth certification.",
+    "LOCAL-REVIEW-RUNTIME-V0 is not memory write.",
+    "LOCAL-REVIEW-RUNTIME-V0 is not provider runtime.",
+    "LOCAL-REVIEW-RUNTIME-V0 is not provider call.",
+    "LOCAL-REVIEW-RUNTIME-V0 is not network authorization.",
+    "LOCAL-REVIEW-RUNTIME-V0 is not LAN enablement.",
+    "LOCAL-REVIEW-RUNTIME-V0 is not LAN binding.",
+    "LOCAL-REVIEW-RUNTIME-V0 is not remote client authorization.",
+    "LOCAL-REVIEW-RUNTIME-V0 is not deployment.",
+    "LOCAL-REVIEW-RUNTIME-V0 is not federation.",
+    "LOCAL-REVIEW-RUNTIME-V0 is not model weight training.",
+    "LOCAL-REVIEW-RUNTIME-V0 is not hallucination reduction proof.",
+    "LOCAL-REVIEW-RUNTIME-V0 is not peer review certification.",
+    "Consent preflight is not consent execution.",
+    "Consent candidate is not consent.",
+    "Operator consent model is not operator authorization.",
+    "Consent display is not consent acceptance.",
+    "Consent receipt candidate is not consent receipt.",
+    "LAN operator consent preflight is not LAN enablement.",
+    "LAN operator consent preflight is not network authorization.",
+    "LAN operator consent preflight is not bind authorization.",
+    "LAN operator consent preflight is not firewall authorization.",
+    "LAN operator consent preflight is not remote client authorization.",
+    "LAN operator consent preflight is not federation.",
+    "LAN operator consent preflight is not deployment.",
+    "LAN operator consent preflight is not product release.",
+    "Failed consent request is not permission to retry.",
+    "Missing consent must fail closed.",
+    "Ambiguous consent must fail closed.",
+    "Stale consent must fail closed.",
+    "Non-operator consent must fail closed.",
+    "Failed-closed LAN request is not permission to retry with broader authority.",
+    "LAN enablement request must fail closed.",
+    "LAN binding request must fail closed.",
+    "Firewall change request must fail closed.",
+    "Remote-client authorization request must fail closed.",
+    "Network discovery request must fail closed.",
+    "Federation request must fail closed.",
+    "Deployment request must fail closed.",
+    "Product release request must fail closed.",
+    "Provider call request must fail closed.",
+    "Network call request must fail closed.",
+    "Memory write request must fail closed.",
+    "Final answer request must fail closed.",
+    "Accepted evidence request must fail closed.",
+    "Truth certification request must fail closed.",
+    "Failure receipt is not permission to proceed.",
+    "LAN authority model is not LAN enablement.",
+    "LAN authority model is not network authorization.",
+    "LAN authority model is not remote client authorization.",
+    "LAN authority model is not bind authorization.",
+    "LAN authority model is not firewall authorization.",
+    "LAN authority model is not federation.",
+    "LAN authority model is not deployment.",
+    "LAN authority model is not product release.",
+    "Role model is not authorization.",
+    "Consent model is not consent execution.",
+    "Bind-scope model is not bind permission.",
+    "Remote-client model is not remote-client permission.",
+    "Network risk register is not network permission.",
+    "Preflight readiness is not enablement.",
+    "No bind host is authorized.",
+    "No port is opened.",
+    "No remote client is authorized.",
+    "No remote access is enabled.",
+    "No LAN enablement consent is executed.",
+    "No remote client consent is executed.",
+    "Risks are not authorizations.",
+    "LAN readiness preflight is not LAN enablement.",
+    "LAN readiness preflight is not network authorization.",
+    "LAN readiness preflight is not remote access.",
+    "LAN readiness preflight is not firewall authorization.",
+    "LAN readiness preflight is not federation.",
+    "LAN readiness preflight is not deployment.",
+    "LAN readiness preflight is not product release.",
+    "Loopback success is not LAN readiness.",
+    "Localhost gateway is not LAN readiness.",
+    "Bind host review is not bind host authorization.",
+    "Port planning is not port opening.",
+    "Remote client model is not remote client authorization.",
+    "Network policy observation is not network permission.",
+    "Preflight report is not final answer.",
+    "Preflight report is not accepted evidence.",
+    "Preflight report is not product release.",
+    "LOCAL-SERVER-USER-FILE-INGRESS-02 is not federation authorization.",
+    "LOCAL-SERVER-USER-FILE-INGRESS-02 is not LAN readiness.",
+    "LOCAL-SERVER-USER-FILE-INGRESS-02 is not product release.",
+    "LOCAL-SERVER-USER-FILE-INGRESS-02 is not deployment authority.",
+    "LOCAL-SERVER-USER-FILE-INGRESS-02 is not network authorization.",
+    "LOCAL-SERVER-USER-FILE-INGRESS-02 is not provider call.",
+    "LOCAL-SERVER-USER-FILE-INGRESS-02 is not PMR storage authority.",
+    "LOCAL-SERVER-USER-FILE-INGRESS-02 is not memory write.",
+    "LOCAL-SERVER-USER-FILE-INGRESS-02 is not truth certification.",
+    "LOCAL-SERVER-USER-FILE-INGRESS-02 is not accepted evidence.",
+    "LOCAL-SERVER-USER-FILE-INGRESS-02 is not final answer release.",
+    "Local review request is not final answer request.",
+    "Reviewer intent is not authority.",
+    "USER-FACING-RECEIPT-UX-01 is not federation authorization.",
+    "USER-FACING-RECEIPT-UX-01 is not LAN readiness.",
+    "USER-FACING-RECEIPT-UX-01 is not product release.",
+    "USER-FACING-RECEIPT-UX-01 is not deployment authority.",
+    "USER-FACING-RECEIPT-UX-01 is not network authorization.",
+    "USER-FACING-RECEIPT-UX-01 is not provider call.",
+    "USER-FACING-RECEIPT-UX-01 is not PMR storage authority.",
+    "USER-FACING-RECEIPT-UX-01 is not memory write.",
+    "USER-FACING-RECEIPT-UX-01 is not truth certification.",
+    "USER-FACING-RECEIPT-UX-01 is not accepted evidence.",
+    "USER-FACING-RECEIPT-UX-01 is not final answer release.",
+    "Failure receipt is not permission to proceed.",
+    "Claim classification is not semantic authority.",
+    "Quoted source text is not accepted evidence.",
+    "Source span is not truth certification.",
+    "PMR context link is not memory write.",
+    "PMR context link is not source content.",
+    "Duplicate audit is not duplicate normalization.",
+    "Rejected file is not erased context.",
+    "Accepted file is not accepted evidence.",
+    "Reviewer next action is not authority.",
+    "Receipt UX is not memory write.",
+    "Receipt UX is not truth certification.",
+    "Receipt UX is not accepted evidence.",
+    "Receipt UX is not final answer.",
+    "LOCAL-SERVER-USER-FILE-INGRESS-01 is not federation authorization.",
+    "LOCAL-SERVER-USER-FILE-INGRESS-01 is not LAN readiness.",
+    "LOCAL-SERVER-USER-FILE-INGRESS-01 is not product release.",
+    "LOCAL-SERVER-USER-FILE-INGRESS-01 is not deployment authority.",
+    "LOCAL-SERVER-USER-FILE-INGRESS-01 is not truth certification.",
+    "LOCAL-SERVER-USER-FILE-INGRESS-01 is not accepted evidence.",
+    "LOCAL-SERVER-USER-FILE-INGRESS-01 is not final answer release.",
+    "LOCAL-SERVER-USER-FILE-INGRESS-01 is not network authorization.",
+    "LOCAL-SERVER-USER-FILE-INGRESS-01 is not provider call.",
+    "LOCAL-SERVER-USER-FILE-INGRESS-01 is not PMR storage authority.",
+    "LOCAL-SERVER-USER-FILE-INGRESS-01 is not memory write.",
+    "Duplicate file paths must be audited.",
+    "Nonexistent paths must fail closed.",
+    "PMR context links must not multiply duplicate source paths when deduplicate_source_paths is true.",
+    "A field claiming deduplication must be backed by normalized-output evidence.",
+    "Duplicate input audit is not duplicate input normalization.",
+    "File-list declaration is not global authority.",
+    "Explicit file-list ingress is not memory write.",
+    "User-selected file path is not system path.",
+    "PMR-CONTEXT-AVAILABILITY-LEDGER-00 is not product release.",
+    "PMR-CONTEXT-AVAILABILITY-LEDGER-00 is not accepted evidence.",
+    "PMR-CONTEXT-AVAILABILITY-LEDGER-00 is not final answer release.",
+    "PMR-CONTEXT-AVAILABILITY-LEDGER-00 is not federation authorization.",
+    "PMR-CONTEXT-AVAILABILITY-LEDGER-00 is not network authorization.",
+    "PMR-CONTEXT-AVAILABILITY-LEDGER-00 is not provider call.",
+    "PMR-CONTEXT-AVAILABILITY-LEDGER-00 is not pruning authority.",
+    "PMR-CONTEXT-AVAILABILITY-LEDGER-00 is not deletion authority.",
+    "PMR-CONTEXT-AVAILABILITY-LEDGER-00 is not truth certification.",
+    "PMR-CONTEXT-AVAILABILITY-LEDGER-00 is not memory write.",
+    "PMR-CONTEXT-AVAILABILITY-LEDGER-00 is not source content recovery.",
+    "PMR ledger is not product release.",
+    "PMR ledger is not federation authority.",
+    "PMR ledger is not pruning authority.",
+    "PMR ledger is not deletion authority.",
+    "Reuploaded content must preserve lineage without overwriting prior-source identity.",
+    "Expired content cannot be quoted as currently inspected.",
+    "Source availability is not truth status.",
+    "Dependency lineage is not canon lineage.",
+    "Ledger entry is not PMR storage authority.",
+    "Ledger entry is not memory write.",
+    "Hash is not content access.",
+    "Provenance is not disclosure.",
+    "Filename visibility requires scope.",
+    "File metadata may be sensitive.",
+    "Reupload priority is not runtime authority.",
+    "Reupload request is not user obligation.",
+    "Derived summary is not source evidence.",
+    "Summary is not source.",
+    "Context availability is not source content.",
+    "Expiration is not nonexistence.",
+    "Known inaccessible content is not unknown content.",
+    "LOCAL-SERVER-USER-FILE-INGRESS-00 is not federation authorization.",
+    "LOCAL-SERVER-USER-FILE-INGRESS-00 is not LAN readiness.",
+    "LOCAL-SERVER-USER-FILE-INGRESS-00 is not product release.",
+    "LOCAL-SERVER-USER-FILE-INGRESS-00 is not deployment authority.",
+    "LOCAL-SERVER-USER-FILE-INGRESS-00 is not truth certification.",
+    "LOCAL-SERVER-USER-FILE-INGRESS-00 is not accepted evidence.",
+    "LOCAL-SERVER-USER-FILE-INGRESS-00 is not final answer release.",
+    "LOCAL-SERVER-USER-FILE-INGRESS-00 is not network authorization.",
+    "LOCAL-SERVER-USER-FILE-INGRESS-00 is not provider call.",
+    "LOCAL-SERVER-USER-FILE-INGRESS-00 is not PMR storage.",
+    "LOCAL-SERVER-USER-FILE-INGRESS-00 is not memory write.",
+    "Recursive directory scan requires explicit opt-in.",
+    "Symlink traversal must fail closed.",
+    "Unsupported file types must fail closed.",
+    "Missing consent must fail closed.",
+    "Explicit consent does not authorize network access.",
+    "Explicit consent does not authorize provider calls.",
+    "Explicit consent does not authorize memory write.",
+    "Normalized source copy is not permanent storage.",
+    "Copied run-local source is not PMR storage.",
+    "File normalization is not evidence admission.",
+    "Path audit is required before review.",
+    "User-selected path is not global authority.",
+    "User file ingress is not memory write.",
+    "Local file path is not system path.",
+    "SONYA-LOCAL-SERVER-GATEWAY-02 is not product release.",
+    "SONYA-LOCAL-SERVER-GATEWAY-02 is not deployment authority.",
+    "SONYA-LOCAL-SERVER-GATEWAY-02 is not memory write.",
+    "SONYA-LOCAL-SERVER-GATEWAY-02 is not federation authorization.",
+    "SONYA-LOCAL-SERVER-GATEWAY-02 is not LAN readiness.",
+    "SONYA-LOCAL-SERVER-GATEWAY-02 is not network authorization.",
+    "SONYA-LOCAL-SERVER-GATEWAY-02 is not provider call.",
+    "SONYA-LOCAL-SERVER-GATEWAY-02 is not truth certification.",
+    "SONYA-LOCAL-SERVER-GATEWAY-02 is not accepted evidence.",
+    "SONYA-LOCAL-SERVER-GATEWAY-02 is not final answer release.",
+    "Product-release requests must fail closed.",
+    "Final-answer requests must fail closed.",
+    "Memory-write requests must fail closed.",
+    "Network-authorization requests must fail closed.",
+    "Provider-call requests must fail closed.",
+    "Source-span retrieval is not truth certification.",
+    "Claim classification retrieval is not final answer.",
+    "Source-span gateway review is not truth certification.",
+    "Claim classification is not semantic authority.",
+    "TB-PRODUCT-SLICE-02 is not model superiority proof.",
+    "TB-PRODUCT-SLICE-02 is not hallucination reduction proof.",
+    "TB-PRODUCT-SLICE-02 is not product release.",
+    "TB-PRODUCT-SLICE-02 is not deployment authority.",
+    "TB-PRODUCT-SLICE-02 is not memory write.",
+    "TB-PRODUCT-SLICE-02 is not network authorization.",
+    "TB-PRODUCT-SLICE-02 is not provider call.",
+    "TB-PRODUCT-SLICE-02 is not truth certification.",
+    "TB-PRODUCT-SLICE-02 is not accepted evidence.",
+    "TB-PRODUCT-SLICE-02 is not final answer release.",
+    "Reviewer next actions are not deployment authority.",
+    "Uncertainty must remain visible.",
+    "Unsupported claims must remain visible.",
+    "Human-readable usefulness is required.",
+    "Review receipt is not final answer.",
+    "Claim segmentation is not semantic authority.",
+    "Source conflict is not contradiction resolution.",
+    "Source agreement is not proof.",
+    "Source span is not truth certification.",
+    "Quoted source text is not accepted evidence.",
+    "SONYA-LOCAL-SERVER-GATEWAY-01 is not truth certification.",
+    "SONYA-LOCAL-SERVER-GATEWAY-01 is not product release.",
+    "SONYA-LOCAL-SERVER-GATEWAY-01 is not deployment authority.",
+    "SONYA-LOCAL-SERVER-GATEWAY-01 is not accepted evidence.",
+    "SONYA-LOCAL-SERVER-GATEWAY-01 is not final answer release.",
+    "SONYA-LOCAL-SERVER-GATEWAY-01 is not federation authorization.",
+    "SONYA-LOCAL-SERVER-GATEWAY-01 is not LAN readiness.",
+    "SONYA-LOCAL-SERVER-GATEWAY-01 is not network authorization.",
+    "SONYA-LOCAL-SERVER-GATEWAY-01 is not provider call.",
+    "SONYA-LOCAL-SERVER-GATEWAY-01 is not PMR store.",
+    "SONYA-LOCAL-SERVER-GATEWAY-01 is not memory write.",
+    "Retrieval endpoints must remain loopback-only.",
+    "Retrieval failure receipt is not permission to proceed.",
+    "Unknown run IDs must fail closed.",
+    "Event retrieval is not authority.",
+    "Receipt retrieval is not final answer release.",
+    "Local run lookup is not federation.",
+    "Run retrieval is not memory write.",
+    "Run index is not PMR store.",
     "Sonya Adapter Contract Registry: Adapter capability is not adapter authorization.",
     "Sonya Adapter Contract Registry keeps all adapters disabled or blocked; all adapters disabled or blocked means not adapter execution and not network authorization.",
     "Sonya Adapter Contract Registry boundaries: not adapter execution, not network authorization, not remote provider call, not model weight training.",
@@ -4090,6 +4494,13 @@ BOUNDARIES = [
     "TB-PRODUCT-SLICE-00 is not hallucination reduction proof.",
     "TB-PRODUCT-SLICE-00 is not model superiority proof.",
     "TB-PRODUCT-SLICE-01 is not model superiority proof.",
+    "Localhost gateway is not LAN readiness.",
+    "Localhost readiness is not federation authority.",
+    "Local server execution is not deployment authority.",
+    "Gateway response is not final answer.",
+    "Failure receipt is not permission to proceed.",
+    "Local gateway must fail closed on provider-call attempts.",
+    "Local gateway must fail closed on memory-write attempts.",
     "TB-PRODUCT-SLICE-01 is not hallucination reduction proof.",
     "TB-PRODUCT-SLICE-01 is not product release.",
     "TB-PRODUCT-SLICE-01 is not deployment authority.",
@@ -4710,6 +5121,20 @@ def reproducibility_index() -> dict[str, Any]:
                 {"name": "RW-COMP-03 acceptance", "command": RW_COMP_03_COMMAND},
                 {"name": "TB Product Slice acceptance", "command": TB_PRODUCT_SLICE_00_COMMAND},
                 {"name": "TB Product Slice 01 acceptance", "command": TB_PRODUCT_SLICE_01_COMMAND},
+                {"name": "TB Product Slice 02 acceptance", "command": TB_PRODUCT_SLICE_02_COMMAND},
+                {"name": "Sonya Local Server Gateway acceptance", "command": SONYA_LOCAL_SERVER_GATEWAY_00_COMMAND},
+                {"name": "Sonya Local Server Gateway 01 acceptance", "command": SONYA_LOCAL_SERVER_GATEWAY_01_COMMAND},
+                {"name": "Sonya Local Server Gateway 02 acceptance", "command": SONYA_LOCAL_SERVER_GATEWAY_02_COMMAND},
+                {"name": "Local Server User File Ingress acceptance", "command": LOCAL_SERVER_USER_FILE_INGRESS_00_COMMAND},
+                {"name": "Local Server User File Ingress 01 acceptance", "command": LOCAL_SERVER_USER_FILE_INGRESS_01_COMMAND},
+                {"name": "User-facing receipt UX acceptance", "command": USER_FACING_RECEIPT_UX_01_COMMAND},
+                {"name": "Local Server User File Ingress 02 acceptance", "command": LOCAL_SERVER_USER_FILE_INGRESS_02_COMMAND},
+                {"name": "LAN readiness preflight acceptance", "command": LAN_READINESS_PREFLIGHT_00_COMMAND},
+                {"name": "LAN authority model acceptance", "command": LAN_AUTHORITY_MODEL_00_COMMAND},
+                {"name": "LAN authority negative-control acceptance", "command": LAN_AUTHORITY_NEGATIVE_CONTROL_00_COMMAND},
+                {"name": "LAN operator consent preflight acceptance", "command": LAN_OPERATOR_CONSENT_PREFLIGHT_00_COMMAND},
+                {"name": "Local Review Runtime V0 acceptance", "command": LOCAL_REVIEW_RUNTIME_V0_COMMAND},
+                {"name": "PMR Context Availability Ledger acceptance", "command": PMR_CONTEXT_AVAILABILITY_LEDGER_00_COMMAND},
                 {"name": "Local Sonya path portability acceptance", "command": LOCAL_SONYA_PATH_PORTABILITY_00_COMMAND},
                 {"name": "PMR doctrine acceptance", "command": PMR_00_COMMAND},
                 {"name": "PMR local artifact index acceptance", "command": PMR_01_COMMAND},
@@ -4808,6 +5233,20 @@ def artifact_index() -> dict[str, Any]:
         "LOCAL-SONYA-PATH-PORTABILITY-00": LOCAL_SONYA_PATH_PORTABILITY_00_ARTIFACTS,
         "TB-PRODUCT-SLICE-00": TB_PRODUCT_SLICE_00_ARTIFACTS,
         "TB-PRODUCT-SLICE-01": TB_PRODUCT_SLICE_01_ARTIFACTS,
+        "TB-PRODUCT-SLICE-02": TB_PRODUCT_SLICE_02_ARTIFACTS,
+        "SONYA-LOCAL-SERVER-GATEWAY-00": SONYA_LOCAL_SERVER_GATEWAY_00_ARTIFACTS,
+        "SONYA-LOCAL-SERVER-GATEWAY-01": SONYA_LOCAL_SERVER_GATEWAY_01_ARTIFACTS,
+        "SONYA-LOCAL-SERVER-GATEWAY-02": SONYA_LOCAL_SERVER_GATEWAY_02_ARTIFACTS,
+        "LOCAL-SERVER-USER-FILE-INGRESS-00": LOCAL_SERVER_USER_FILE_INGRESS_00_ARTIFACTS,
+        "LOCAL-SERVER-USER-FILE-INGRESS-01": LOCAL_SERVER_USER_FILE_INGRESS_01_ARTIFACTS,
+        "USER-FACING-RECEIPT-UX-01": USER_FACING_RECEIPT_UX_01_ARTIFACTS,
+        "LOCAL-SERVER-USER-FILE-INGRESS-02": LOCAL_SERVER_USER_FILE_INGRESS_02_ARTIFACTS,
+        "LAN-READINESS-PREFLIGHT-00": LAN_READINESS_PREFLIGHT_00_ARTIFACTS,
+        "LAN-AUTHORITY-MODEL-00": LAN_AUTHORITY_MODEL_00_ARTIFACTS,
+        "LAN-AUTHORITY-NEGATIVE-CONTROL-00": LAN_AUTHORITY_NEGATIVE_CONTROL_00_ARTIFACTS,
+        "LAN-OPERATOR-CONSENT-PREFLIGHT-00": LAN_OPERATOR_CONSENT_PREFLIGHT_00_ARTIFACTS,
+        "LOCAL-REVIEW-RUNTIME-V0": LOCAL_REVIEW_RUNTIME_V0_ARTIFACTS,
+        "PMR-CONTEXT-AVAILABILITY-LEDGER-00": PMR_CONTEXT_AVAILABILITY_LEDGER_00_ARTIFACTS,
         "SONYA-ADAPTER-SMOKE-00": SONYA_ADAPTER_SMOKE_ARTIFACTS,
         "SONYA-LOCAL-FIXTURE-ADAPTER-01": SONYA_LOCAL_FIXTURE_ADAPTER_ARTIFACTS,
         "EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER-01": EVIDENCE_REVIEW_PACK_LOCAL_ADAPTER_ARTIFACTS,
@@ -4884,6 +5323,183 @@ def status_payload() -> dict[str, Any]:
         "not_product_slice_01_truth_certification": True,
         "not_product_slice_01_product_release": True,
         "not_product_slice_01_provider_call": True,
+        "tb_product_slice_02_indexed": True,
+        "not_source_span_truth_certification": True,
+        "not_quoted_source_text_accepted_evidence": True,
+        "not_source_agreement_proof": True,
+        "not_source_conflict_resolution": True,
+        "not_claim_segmentation_semantic_authority": True,
+        "not_review_receipt_final_answer": True,
+        "not_reviewer_next_actions_deployment_authority": True,
+        "not_tb_product_slice_02_product_release": True,
+        "sonya_local_server_gateway_00_indexed": True,
+        "not_localhost_lan_readiness": True,
+        "not_localhost_federation_authority": True,
+        "not_local_server_deployment_authority": True,
+        "not_gateway_final_answer": True,
+        "not_gateway_provider_call": True,
+        "not_gateway_network_authorization": True,
+        "not_gateway_memory_write": True,
+        "not_gateway_product_release": True,
+        "sonya_local_server_gateway_01_indexed": True,
+        "not_run_retrieval_memory_write": True,
+        "not_run_index_pmr_store": True,
+        "not_receipt_retrieval_final_answer": True,
+        "not_event_retrieval_authority": True,
+        "not_unknown_run_permission": True,
+        "not_retrieval_federation": True,
+        "not_gateway01_lan_readiness": True,
+        "not_gateway01_product_release": True,
+        "sonya_local_server_gateway_02_indexed": True,
+        "not_source_span_gateway_truth_certification": True,
+        "not_gateway02_final_answer": True,
+        "not_gateway02_accepted_evidence": True,
+        "not_gateway02_provider_call": True,
+        "not_gateway02_network_authorization": True,
+        "not_gateway02_memory_write": True,
+        "not_gateway02_lan_readiness": True,
+        "not_gateway02_federation_authorization": True,
+        "not_gateway02_product_release": True,
+        "not_claim_classification_semantic_authority": True,
+        "not_claim_classification_retrieval_final_answer": True,
+        "not_source_span_retrieval_truth_certification": True,
+        "unknown_run_ids_fail_closed": True,
+        "local_server_user_file_ingress_00_indexed": True,
+        "not_user_file_ingress_memory_write": True,
+        "not_local_file_path_system_path": True,
+        "not_user_selected_path_global_authority": True,
+        "path_audit_required_before_review": True,
+        "not_file_normalization_evidence_admission": True,
+        "not_copied_run_local_source_pmr_storage": True,
+        "not_explicit_consent_memory_write_authorization": True,
+        "not_explicit_consent_provider_call_authorization": True,
+        "not_explicit_consent_network_authorization": True,
+        "missing_consent_fails_closed": True,
+        "unsupported_file_type_fails_closed": True,
+        "not_local_ingress_final_answer": True,
+        "not_local_ingress_product_release": True,
+        "local_server_user_file_ingress_01_indexed": True,
+        "not_explicit_file_list_ingress_memory_write": True,
+        "not_file_list_global_authority": True,
+        "not_duplicate_input_audit_normalization": True,
+        "deduplication_requires_normalized_output_evidence": True,
+        "pmr_context_links_do_not_multiply_duplicate_paths": True,
+        "nonexistent_path_fails_closed": True,
+        "duplicate_file_paths_audited": True,
+        "not_pmr_context_entry_source_content": True,
+        "not_pmr_context_entry_memory_write": True,
+        "not_hash_content_access": True,
+        "not_local_ingress_01_final_answer": True,
+        "not_local_ingress_01_product_release": True,
+        "user_facing_receipt_ux_01_indexed": True,
+        "not_receipt_ux_final_answer": True,
+        "not_receipt_ux_accepted_evidence": True,
+        "not_receipt_ux_truth_certification": True,
+        "not_receipt_ux_memory_write": True,
+        "not_reviewer_next_action_authority": True,
+        "not_accepted_file_accepted_evidence": True,
+        "not_rejected_file_erased_context": True,
+        "not_failure_receipt_permission_to_proceed": True,
+        "not_receipt_ux_product_release": True,
+        "local_server_user_file_ingress_02_indexed": True,
+        "not_local_review_request_final_answer": True,
+        "not_reviewer_intent_authority": True,
+        "not_receipt_preference_product_release": True,
+        "not_source_set_global_path_authority": True,
+        "not_local_review_request_memory_write": True,
+        "not_local_review_request_network_authorization": True,
+        "lan_readiness_preflight_00_indexed": True,
+        "not_lan_preflight_lan_enablement": True,
+        "not_lan_preflight_network_authorization": True,
+        "not_loopback_success_lan_readiness": True,
+        "not_localhost_gateway_lan_readiness": True,
+        "not_bind_host_review_bind_authorization": True,
+        "not_port_planning_port_opening": True,
+        "not_remote_client_model_remote_client_authorization": True,
+        "not_preflight_report_final_answer": True,
+        "not_preflight_report_accepted_evidence": True,
+        "not_preflight_report_product_release": True,
+        "lan_authority_model_00_indexed": True,
+        "not_lan_authority_model_lan_enablement": True,
+        "not_lan_authority_model_network_authorization": True,
+        "not_lan_authority_model_remote_client_authorization": True,
+        "not_lan_authority_model_bind_authorization": True,
+        "not_lan_authority_model_firewall_authorization": True,
+        "not_lan_authority_model_federation": True,
+        "not_lan_authority_model_deployment": True,
+        "not_lan_authority_model_product_release": True,
+        "not_role_model_authorization": True,
+        "not_consent_model_consent_execution": True,
+        "not_bind_scope_model_bind_permission": True,
+        "not_remote_client_model_remote_client_permission": True,
+        "not_network_risk_register_network_permission": True,
+        "not_preflight_readiness_enablement": True,
+        "no_bind_host_authorized": True,
+        "no_port_opened": True,
+        "no_remote_client_authorized": True,
+        "no_remote_access_enabled": True,
+        "no_lan_enablement_consent_executed": True,
+        "no_remote_client_consent_executed": True,
+        "risks_are_not_authorizations": True,
+        "lan_authority_negative_control_00_indexed": True,
+        "not_negative_control_authorization": True,
+        "not_failed_closed_lan_request_retry_permission": True,
+        "lan_enablement_request_fails_closed": True,
+        "lan_binding_request_fails_closed": True,
+        "firewall_change_request_fails_closed": True,
+        "remote_client_authorization_request_fails_closed": True,
+        "network_discovery_request_fails_closed": True,
+        "federation_request_fails_closed": True,
+        "deployment_request_fails_closed": True,
+        "product_release_request_fails_closed": True,
+        "provider_call_request_fails_closed": True,
+        "network_call_request_fails_closed": True,
+        "memory_write_request_fails_closed": True,
+        "final_answer_request_fails_closed": True,
+        "accepted_evidence_request_fails_closed": True,
+        "truth_certification_request_fails_closed": True,
+        "not_failure_receipt_permission_to_proceed": True,
+        "lan_operator_consent_preflight_00_indexed": True,
+        "not_consent_preflight_consent_execution": True,
+        "not_consent_candidate_consent": True,
+        "not_operator_consent_model_operator_authorization": True,
+        "not_consent_display_consent_acceptance": True,
+        "not_consent_receipt_candidate_consent_receipt": True,
+        "not_lan_operator_consent_preflight_lan_enablement": True,
+        "not_lan_operator_consent_preflight_network_authorization": True,
+        "not_lan_operator_consent_preflight_bind_authorization": True,
+        "not_lan_operator_consent_preflight_firewall_authorization": True,
+        "not_lan_operator_consent_preflight_remote_client_authorization": True,
+        "not_lan_operator_consent_preflight_federation": True,
+        "not_lan_operator_consent_preflight_deployment": True,
+        "not_lan_operator_consent_preflight_product_release": True,
+        "not_failed_consent_request_retry_permission": True,
+        "missing_consent_must_fail_closed": True,
+        "ambiguous_consent_must_fail_closed": True,
+        "stale_consent_must_fail_closed": True,
+        "non_operator_consent_must_fail_closed": True,
+        "not_failure_receipt_permission_to_proceed": True,
+        "pmr_context_availability_ledger_00_indexed": True,
+        "not_expiration_nonexistence": True,
+        "not_inaccessible_unknown": True,
+        "not_context_availability_source_content": True,
+        "not_summary_source": True,
+        "not_derived_summary_source_evidence": True,
+        "not_reupload_request_user_obligation": True,
+        "not_reupload_priority_runtime_authority": True,
+        "file_metadata_may_be_sensitive": True,
+        "filename_visibility_requires_scope": True,
+        "not_provenance_disclosure": True,
+        "not_hash_content_access": True,
+        "not_ledger_entry_memory_write": True,
+        "not_ledger_entry_pmr_storage_authority": True,
+        "not_dependency_lineage_canon_lineage": True,
+        "not_source_availability_truth_status": True,
+        "expired_content_not_quoted_currently": True,
+        "not_pmr_ledger_deletion_authority": True,
+        "not_pmr_ledger_pruning_authority": True,
+        "not_pmr_ledger_federation_authority": True,
+        "not_pmr_ledger_product_release": True,
         "not_cross_source_conflict_resolution": True,
         "not_pattern_recurrence_proof": True,
         "not_morphology_deployment_authority": True,
@@ -5002,8 +5618,29 @@ def docs() -> dict[str, str]:
     return {
         "README.md": "# Experiment Suite Docs\n\nPublic reviewer documentation for the claim-bounded reproducibility dashboard.\n",
         "assets/README.md": "# Assets\n\nOptional static assets for the public reproducibility dashboard.\n",
-        "index.md": f"# Public Experiment Suite Dashboard\n\nThis dashboard presents accepted evidence for reviewer orientation. It is not truth certification, not deployment authority, not final answer release, local fixture only, and requires external peer review.\n\n## Accepted evidence\n\n| Phase | Repo | Status | What this supports | Reviewer caution |\n| --- | --- | --- | --- | --- |\n{phase_rows}\n\n## Reviewer path\n\nStart with claim boundaries, then read the governed artifact cognition paper, WAVE Rosetta paper, SONYA-AEGIS-SMOKE-02, WAVE family, UNI-02D Sonya gate, and RETRO-LANE-00, Public Utility Alpha, Raw Baseline Comparison, Evidence Review Pack, RW-COMP-01, RW-COMP-02, Retrosynthesis Sandbox Cycle, Evidence Review Pack second-pass, RW-COMP-03, Universal Architecture Scaffold, Sonya Adapter Contract Registry, Sonya Adapter Smoke, Sonya Local Fixture Adapter, and Evidence Review Pack local adapter, Evidence Review Pack local adapter revision, RW-COMP local adapter, PMR doctrine, PMR local artifact index, PMR GPCU utility scoring, PMR lifecycle state machine, PMR lifecycle audit preflight, PMR Sophia lifecycle audit review, PMR destructive-action authorization preflight, PMR architecture diversity checkpoint, PMR simulation baseline comparison, PMR simulation statistical analysis, PMR federation stress corpus, PMR human provenance context, Sonya Local Fixture Adapter multi-route, and Sonya Local Fixture Adapter lineage clarity pages.\n\n## What this proves\n\nIt proves only that accepted local fixture artifacts and draft publication materials are organized for review.\n\n## What this does not prove\n\nNo oracle posture, no deployment posture, no final-answer posture, no AI consciousness claim, and no universal ontology claim.\n\n## Phase pages\n\n- [SONYA-AEGIS-SMOKE-02](sonya-aegis-smoke-02.md)\n- [WAVE Gold-Physics](wave-gold-physics.md)\n- [UNI-02D Sonya gate](uni02d-sonya-gate.md)\n- [RETRO-LANE-00](retro-lane-00.md)\n- [Public Utility Alpha](public-utility-alpha.md)\n- [Raw Baseline Comparison](raw-baseline-comparison.md)\n- [Evidence Review Pack](evidence-review-pack.md)\n- [RW-COMP-01](rw-comp-01.md)\n- [RW-COMP-02](rw-comp-02.md)\n- [Retrosynthesis Sandbox Cycle](retrosynthesis-sandbox-cycle.md)\n- [Evidence Review Pack second pass](evidence-review-pack-second-pass.md)\n- [RW-COMP-03](rw-comp-03.md)\n- [Universal Architecture Scaffold](universal-architecture.md)\n- [Sonya Adapter Contract Registry](sonya-adapter-contract-registry.md)\n- [Sonya required membrane checkpoint](sonya-required-membrane-checkpoint.md)\n- [TEL event stack](tel-event-stack.md)\n- [Sonya Adapter Smoke](sonya-adapter-smoke.md)\n- [Sonya Local Fixture Adapter](sonya-local-fixture-adapter.md)\n- [Evidence Review Pack local adapter](evidence-review-pack-local-adapter.md)\n- [Evidence Review Pack local adapter revision](evidence-review-pack-local-adapter-revision.md)\n- [RW-COMP local adapter](rw-comp-local-adapter.md)\n- [Provenance Memory Reservoir](provenance-memory-reservoir.md)\n- [PMR local artifact index](pmr-local-artifact-index.md)\n- [Ontology Claim Registry](ontology-claim-registry.md)\n- [Local Sonya path portability](local-sonya-path-portability.md)\n- [TB Product Slice](tb-product-slice.md)\n- [TB Product Slice 01](tb-product-slice-01.md)\n- [Sonya Local Fixture Adapter multi-route](sonya-local-fixture-adapter-multi-route.md)\n- [Sonya Local Fixture Adapter lineage clarity](sonya-local-fixture-adapter-lineage.md)\n- [Governed artifact cognition paper](governed-artifact-cognition-paper.md)\n- [Waveform Rosetta paper](waveform-rosetta-paper.md)\n",
+        "index.md": f"# Public Experiment Suite Dashboard\n\nThis dashboard presents accepted evidence for reviewer orientation. It is not truth certification, not deployment authority, not final answer release, local fixture only, and requires external peer review.\n\n## Accepted evidence\n\n| Phase | Repo | Status | What this supports | Reviewer caution |\n| --- | --- | --- | --- | --- |\n{phase_rows}\n\n## Reviewer path\n\nStart with claim boundaries, then read the governed artifact cognition paper, WAVE Rosetta paper, SONYA-AEGIS-SMOKE-02, WAVE family, UNI-02D Sonya gate, and RETRO-LANE-00, Public Utility Alpha, Raw Baseline Comparison, Evidence Review Pack, RW-COMP-01, RW-COMP-02, Retrosynthesis Sandbox Cycle, Evidence Review Pack second-pass, RW-COMP-03, Universal Architecture Scaffold, Sonya Adapter Contract Registry, Sonya Adapter Smoke, Sonya Local Fixture Adapter, and Evidence Review Pack local adapter, Evidence Review Pack local adapter revision, RW-COMP local adapter, PMR doctrine, PMR local artifact index, PMR GPCU utility scoring, PMR lifecycle state machine, PMR lifecycle audit preflight, PMR Sophia lifecycle audit review, PMR destructive-action authorization preflight, PMR architecture diversity checkpoint, PMR simulation baseline comparison, PMR simulation statistical analysis, PMR federation stress corpus, PMR human provenance context, Sonya Local Fixture Adapter multi-route, and Sonya Local Fixture Adapter lineage clarity pages.\n\n## What this proves\n\nIt proves only that accepted local fixture artifacts and draft publication materials are organized for review.\n\n## What this does not prove\n\nNo oracle posture, no deployment posture, no final-answer posture, no AI consciousness claim, and no universal ontology claim.\n\n## Phase pages\n\n- [SONYA-AEGIS-SMOKE-02](sonya-aegis-smoke-02.md)\n- [WAVE Gold-Physics](wave-gold-physics.md)\n- [UNI-02D Sonya gate](uni02d-sonya-gate.md)\n- [RETRO-LANE-00](retro-lane-00.md)\n- [Public Utility Alpha](public-utility-alpha.md)\n- [Raw Baseline Comparison](raw-baseline-comparison.md)\n- [Evidence Review Pack](evidence-review-pack.md)\n- [RW-COMP-01](rw-comp-01.md)\n- [RW-COMP-02](rw-comp-02.md)\n- [Retrosynthesis Sandbox Cycle](retrosynthesis-sandbox-cycle.md)\n- [Evidence Review Pack second pass](evidence-review-pack-second-pass.md)\n- [RW-COMP-03](rw-comp-03.md)\n- [Universal Architecture Scaffold](universal-architecture.md)\n- [Sonya Adapter Contract Registry](sonya-adapter-contract-registry.md)\n- [Sonya required membrane checkpoint](sonya-required-membrane-checkpoint.md)\n- [TEL event stack](tel-event-stack.md)\n- [Sonya Adapter Smoke](sonya-adapter-smoke.md)\n- [Sonya Local Fixture Adapter](sonya-local-fixture-adapter.md)\n- [Evidence Review Pack local adapter](evidence-review-pack-local-adapter.md)\n- [Evidence Review Pack local adapter revision](evidence-review-pack-local-adapter-revision.md)\n- [RW-COMP local adapter](rw-comp-local-adapter.md)\n- [Provenance Memory Reservoir](provenance-memory-reservoir.md)\n- [PMR local artifact index](pmr-local-artifact-index.md)\n- [Ontology Claim Registry](ontology-claim-registry.md)\n- [Local Sonya path portability](local-sonya-path-portability.md)\n- [TB Product Slice](tb-product-slice.md)\n- [TB Product Slice 01](tb-product-slice-01.md)\n- [Sonya Local Fixture Adapter multi-route](sonya-local-fixture-adapter-multi-route.md)\n- [Sonya Local Fixture Adapter lineage clarity](sonya-local-fixture-adapter-lineage.md)\n- [Local Review Runtime V0](local-review-runtime-v0.md)\n- [Governed artifact cognition paper](governed-artifact-cognition-paper.md)\n- [Waveform Rosetta paper](waveform-rosetta-paper.md)\n",
         "claim-boundaries.md": f"# Claim Boundaries\n\n{boundaries}\n\nNo oracle posture. No deployment posture. No final-answer posture. No AI consciousness claim. No universal ontology claim.\n",
+
+        "local-review-runtime-v0.md": """# LOCAL-REVIEW-RUNTIME-V0
+
+This phase demonstrates an evidence-bound local review wrapper over previously accepted ingress/PMR/source-span/claim-classification/receipt artifacts.
+
+It proves wrapper observability and bounded local-review packaging with counts:
+- accepted_file_count = 3
+- rejected_file_count = 2
+- duplicate_source_path_count = 1
+- normalized_source_count = 3
+- pmr_context_link_count = 3
+
+It does not prove product utility or authority.
+- schema-only artifacts are not runtime evidence by themselves.
+- parity green is not product utility by itself.
+- human receipt is not truth.
+
+Blocked authorities: no product release, no final-answer authority, no accepted-evidence authority, no truth certification, no LAN enablement, no provider runtime/call authority, no memory write, no deployment, no federation.
+
+Next active lane: LOCAL-REVIEW-USABILITY-00.
+""",
         "sonya-aegis-smoke-02.md": f"""# SONYA-AEGIS-SMOKE-02
 
 Purpose: inspect a local Sonya membrane and direct-call blocking fixture.
