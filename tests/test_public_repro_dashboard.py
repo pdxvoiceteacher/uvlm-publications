@@ -60,6 +60,7 @@ REQUIRED_DOCS = {
     "pmr-human-provenance-context.md",
     "sonya-local-fixture-adapter-multi-route.md",
     "sonya-local-fixture-adapter-lineage.md",
+    "local-review-runtime-v0.md",
 }
 REQUIRED_PHASES = {
     "EXP-SUITE-REGISTRY-01",
@@ -130,6 +131,7 @@ REQUIRED_PHASES = {
     "LAN-AUTHORITY-MODEL-00",
     "LAN-AUTHORITY-NEGATIVE-CONTROL-00",
     "LAN-OPERATOR-CONSENT-PREFLIGHT-00",
+    "LOCAL-REVIEW-RUNTIME-V0",
     "PMR-CONTEXT-AVAILABILITY-LEDGER-00",
 }
 
@@ -2617,3 +2619,18 @@ def test_lan_operator_consent_preflight_00_updates_present(tmp_path):
         assert b in bounds
     assert status["lan_operator_consent_preflight_00_indexed"] is True
     assert status["not_consent_preflight_consent_execution"] is True
+
+
+def test_local_review_runtime_v0_updates_present(tmp_path):
+    out_dir,_=run_builder(tmp_path)
+    dashboard=json.loads((out_dir/"experiment_suite_dashboard.json").read_text())
+    idx=json.loads((out_dir/"artifact_index.json").read_text())
+    bounds=json.loads((out_dir/"claim_boundary_index.json").read_text())["boundaries"]
+    repro=json.loads((out_dir/"reproducibility_index.json").read_text())
+    assert "LOCAL-REVIEW-RUNTIME-V0" in {p["phase_id"] for p in dashboard["accepted_phases"]}
+    assert "Run-LOCAL-REVIEW-RUNTIME-V0-Acceptance.ps1" in str(repro)
+    art=idx["phases"]["LOCAL-REVIEW-RUNTIME-V0"]
+    for a in ["local_review_runtime_v0_manifest.json","local_review_runtime_v0_human_summary.md","local_review_runtime_v0_next_actions.json","local_review_runtime_v0_boundary_table.json","local_review_runtime_v0_review_packet.json"]:
+        assert a in art
+    for b in ["LOCAL-REVIEW-RUNTIME-V0 is not product release.","LOCAL-REVIEW-RUNTIME-V0 is not final answer authority.","LOCAL-REVIEW-RUNTIME-V0 is not truth certification."]:
+        assert b in bounds

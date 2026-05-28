@@ -805,6 +805,27 @@
       "export_bundle_parity_report.json",
       "lan_operator_consent_preflight_00_acceptance_receipt.json"
     ],
+    "LOCAL-REVIEW-RUNTIME-V0": [
+      "local_review_runtime_v0_manifest.json",
+      "local_review_request_02_packet.json",
+      "local_review_source_set_packet.json",
+      "local_user_file_ingress_01_manifest.json",
+      "local_user_file_path_audit_rows.jsonl",
+      "local_user_file_normalization_map.json",
+      "local_user_file_pmr_context_link_packet.json",
+      "source_span_map.json",
+      "claim_classification_packet.json",
+      "pmr_context_availability_ledger.json",
+      "local_review_runtime_v0_human_summary.md",
+      "local_review_runtime_v0_next_actions.json",
+      "local_review_runtime_v0_boundary_table.json",
+      "local_review_runtime_v0_review_packet.json",
+      "artifact_inventory.json",
+      "run_artifact_manifest.json",
+      "export_bundle_manifest.json",
+      "export_bundle_parity_report.json",
+      "local_review_runtime_v0_acceptance_receipt.json"
+    ],
     "PMR-CONTEXT-AVAILABILITY-LEDGER-00": [
       "pmr_context_availability_ledger.json",
       "pmr_context_dependency_map.json",

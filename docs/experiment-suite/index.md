@@ -31,6 +31,7 @@ This dashboard presents accepted evidence for reviewer orientation. It is not tr
 | LAN-AUTHORITY-MODEL-00 | pdxvoiceteacher/CoherenceLattice | accepted | LAN authority model scaffold | LAN authority model is not LAN enablement. |
 | LAN-AUTHORITY-NEGATIVE-CONTROL-00 | pdxvoiceteacher/CoherenceLattice | accepted | LAN authority negative-control scaffold | Negative control is not authorization. |
 | LAN-OPERATOR-CONSENT-PREFLIGHT-00 | pdxvoiceteacher/CoherenceLattice | accepted | LAN operator consent preflight scaffold | Consent preflight is not consent execution. |
+| LOCAL-REVIEW-RUNTIME-V0 | pdxvoiceteacher/CoherenceLattice | accepted | LOCAL-REVIEW-RUNTIME-V0 demonstrates an evidence-bound local review scaffold that wraps accepted local ingress, PMR context, source-span, claim-classification, and receipt UX artifacts into a human-readable non-authority local review receipt. | LOCAL-REVIEW-RUNTIME-V0 is an evidence-bound local scaffold, not a released product. It demonstrates that a local wrapper can prove its lower-level ingress, PMR, source-span, claim-classification, and receipt UX path. It does not authorize final answers, accepted evidence, product release, provider runtime, memory writes, LAN enablement, federate operations, deployment, or truth certification. |
 | PMR-CONTEXT-AVAILABILITY-LEDGER-00 | pdxvoiceteacher/CoherenceLattice | accepted | context availability ledger scaffold | Expiration is not nonexistence. |
 | LOCAL-SERVER-USER-FILE-INGRESS-00 | pdxvoiceteacher/CoherenceLattice | accepted | explicit local user file ingress runtime smoke | User file ingress is not memory write. |
 | SONYA-LOCAL-SERVER-GATEWAY-02 | pdxvoiceteacher/CoherenceLattice | accepted | localhost-only source-span gateway retrieval scaffold | Source-span gateway review is not truth certification. |
@@ -119,5 +120,6 @@ No oracle posture, no deployment posture, no final-answer posture, no AI conscio
 - [TB Product Slice 01](tb-product-slice-01.md)
 - [Sonya Local Fixture Adapter multi-route](sonya-local-fixture-adapter-multi-route.md)
 - [Sonya Local Fixture Adapter lineage clarity](sonya-local-fixture-adapter-lineage.md)
+- [Local Review Runtime V0](local-review-runtime-v0.md)
 - [Governed artifact cognition paper](governed-artifact-cognition-paper.md)
 - [Waveform Rosetta paper](waveform-rosetta-paper.md)

@@ -76,6 +76,7 @@ REQUIRED_PHASES = {
     "LAN-AUTHORITY-MODEL-00",
     "LAN-AUTHORITY-NEGATIVE-CONTROL-00",
     "LAN-OPERATOR-CONSENT-PREFLIGHT-00",
+    "LOCAL-REVIEW-RUNTIME-V0",
     "USER-FACING-RECEIPT-UX-01",
     "PMR-CONTEXT-AVAILABILITY-LEDGER-00",
 }
@@ -865,6 +866,8 @@ def _forbidden_hits(text: str) -> list[str]:
                 start = index + len(normalized_phrase)
                 continue
             if phrase == "federation" and (
+                _is_negated(text, index)
+                or
                 text[index : index + 40].startswith("federation is blocked by default")
                 or text[index : index + 48].startswith("federation stress corpus is not federation")
                 or text[index : index + 48].startswith("federation stress result is not federation")
@@ -889,6 +892,7 @@ def _forbidden_hits(text: str) -> list[str]:
                 or text[index : index + 40].startswith("federation_risks")
                 or text[index : index + 40].startswith("federation_")
                 or text[index : index + 40].startswith("federation_stress")
+                or "local-review-runtime-v0 is not federation" in text[max(0, index - 80) : index + 80]
                 or text[index : index + 40].startswith("federation = true")
                 or text[index : index + 40].startswith('federation": true')
                 or '"model_training", "federation", "reward_allocation"' in text[max(0, index - 24) : index + 48]
@@ -898,6 +902,16 @@ def _forbidden_hits(text: str) -> list[str]:
             if (
                 phrase in {"ai consciousness", "human consciousness"}
                 and "make ai/human consciousness claims" in text[max(0, index - 32) : index + 48]
+            ):
+                start = index + len(normalized_phrase)
+                continue
+            if (
+                phrase == "federation authorization"
+                and (
+                    _is_negated(text, index)
+                    or "not federation authorization" in text[max(0, index - 64) : index + 48]
+                    or "local-review-runtime-v0 is not federation authorization" in text[max(0, index - 96) : index + 80]
+                )
             ):
                 start = index + len(normalized_phrase)
                 continue

@@ -2487,3 +2487,17 @@ def test_governed_artifact_cognition_lan_operator_consent_preflight_00_updates_a
     assert "Run-LAN-OPERATOR-CONSENT-PREFLIGHT00-Acceptance.ps1" in quickstart
     assert status["lan_operator_consent_preflight_00_indexed"] is True
     assert status["not_consent_preflight_consent_execution"] is True
+
+
+def test_local_review_runtime_v0_rejects_authority_overclaim(tmp_path):
+    paper_root = _copy_governed_paper(tmp_path)
+    paper = paper_root / "PUB_GOV_ARTIFACT_COG_01.md"
+    paper.write_text(paper.read_text(encoding="utf-8") + "\nLOCAL-REVIEW-RUNTIME-V0 grants product release authority.\n", encoding="utf-8")
+    result = validate_publication_claims(
+        paper,
+        appendix=paper_root / "reproducibility_appendix.md",
+        quickstart=paper_root / "reviewer_quickstart.md",
+        status=paper_root / "status.json",
+    )
+    assert result["passed"] is False
+    assert any("product release" in hit for hit in result["forbidden_overclaims_found"])

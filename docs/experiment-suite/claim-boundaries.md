@@ -1,6 +1,22 @@
 # Claim Boundaries
 
 - Negative control is not authorization.
+- LOCAL-REVIEW-RUNTIME-V0 is not product release.
+- LOCAL-REVIEW-RUNTIME-V0 is not final answer authority.
+- LOCAL-REVIEW-RUNTIME-V0 is not accepted evidence authority.
+- LOCAL-REVIEW-RUNTIME-V0 is not truth certification.
+- LOCAL-REVIEW-RUNTIME-V0 is not memory write.
+- LOCAL-REVIEW-RUNTIME-V0 is not provider runtime.
+- LOCAL-REVIEW-RUNTIME-V0 is not provider call.
+- LOCAL-REVIEW-RUNTIME-V0 is not network authorization.
+- LOCAL-REVIEW-RUNTIME-V0 is not LAN enablement.
+- LOCAL-REVIEW-RUNTIME-V0 is not LAN binding.
+- LOCAL-REVIEW-RUNTIME-V0 is not remote client authorization.
+- LOCAL-REVIEW-RUNTIME-V0 is not deployment.
+- LOCAL-REVIEW-RUNTIME-V0 is not federation.
+- LOCAL-REVIEW-RUNTIME-V0 is not model weight training.
+- LOCAL-REVIEW-RUNTIME-V0 is not hallucination reduction proof.
+- LOCAL-REVIEW-RUNTIME-V0 is not peer review certification.
 - Consent preflight is not consent execution.
 - Consent candidate is not consent.
 - Operator consent model is not operator authorization.
