@@ -61,6 +61,7 @@ REQUIRED_DOCS = {
     "sonya-local-fixture-adapter-multi-route.md",
     "sonya-local-fixture-adapter-lineage.md",
     "local-review-runtime-v0.md",
+    "local-review-metrics-flow.md",
 }
 REQUIRED_PHASES = {
     "EXP-SUITE-REGISTRY-01",
@@ -133,6 +134,13 @@ REQUIRED_PHASES = {
     "LAN-OPERATOR-CONSENT-PREFLIGHT-00",
     "LOCAL-REVIEW-RUNTIME-V0",
     "PMR-CONTEXT-AVAILABILITY-LEDGER-00",
+    "MET-LOCAL-00",
+    "WAVE-ROSETTA-METRIC-CALIBRATION-00",
+    "TAF-RUNTIME-00",
+    "SONYA-METRIC-MEMBRANE-COVERAGE-00",
+    "COHERENCE-METRIC-FORMULA-REGISTRY-00",
+    "METRIC-BOUND-SOURCE-TAXONOMY-00",
+    "FLOW-RUNTIME-00",
 }
 
 REQUIRED_COMMAND_FRAGMENTS = (
@@ -2634,3 +2642,113 @@ def test_local_review_runtime_v0_updates_present(tmp_path):
         assert a in art
     for b in ["LOCAL-REVIEW-RUNTIME-V0 is not product release.","LOCAL-REVIEW-RUNTIME-V0 is not final answer authority.","LOCAL-REVIEW-RUNTIME-V0 is not truth certification."]:
         assert b in bounds
+
+
+def test_local_review_metrics_flow_dashboard_entries_and_artifacts(tmp_path):
+    out_dir, docs_dir = run_builder(tmp_path)
+    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text())
+    accepted = {phase["phase_id"]: phase for phase in dashboard["accepted_phases"]}
+    required_phases = {
+        "MET-LOCAL-00": [
+            "evidence_review_runtime_metrics_packet.json",
+            "coherence_runtime_metrics_packet.json",
+            "coherence_metric_input_ledger.json",
+            "evidence_review_runtime_metrics_summary.md",
+        ],
+        "WAVE-ROSETTA-METRIC-CALIBRATION-00": ["wave_rosetta_metric_calibration_context.json"],
+        "TAF-RUNTIME-00": ["coherence_action_functional_packet.json"],
+        "SONYA-METRIC-MEMBRANE-COVERAGE-00": ["sonya_metric_membrane_coverage_packet.json"],
+        "COHERENCE-METRIC-FORMULA-REGISTRY-00": [
+            "coherence_metric_formula_registry.json",
+            "coherence_metric_formula_registry_binding.json",
+        ],
+        "METRIC-BOUND-SOURCE-TAXONOMY-00": [
+            "metric_bound_source_taxonomy.json",
+            "metric_bound_profile_registry.json",
+            "metric_bound_formula_binding.json",
+        ],
+        "FLOW-RUNTIME-00": [
+            "cognitive_flow_morphology_packet.json",
+            "cognitive_flow_topology_packet.json",
+            "cognitive_flow_morphology_summary.md",
+        ],
+    }
+
+    for phase_id, artifacts in required_phases.items():
+        phase = accepted[phase_id]
+        assert phase["repo"] == "pdxvoiceteacher/CoherenceLattice"
+        assert phase["source_phase"] == "LOCAL-REVIEW-RUNTIME-V0"
+        assert phase["status"] == "accepted_local_validation"
+        assert phase["product_posture"] == "local_diagnostic_scaffold_not_product_release"
+        assert phase["authority_posture"] == "non_authoritative"
+        assert phase["public_claim_boundary"] == "bounded_diagnostic_only"
+        assert phase["primary_artifacts"] == artifacts
+
+    summary = accepted["FLOW-RUNTIME-00"]["dashboard_summary"]
+    assert summary["evidence_metrics_status"] == "verified_diagnostic"
+    assert summary["coherence_metrics_status"] == "verified_diagnostic"
+    assert summary["taf_metric_status"] == "verified_diagnostic"
+    assert summary["formula_binding_status"] == "bound"
+    assert summary["metric_bound_binding_status"] == "bound"
+    assert summary["wave_rosetta_baseline"] is True
+    assert summary["wave_rosetta_is_baseline_not_universal_identity"] is True
+    assert summary["sonya_metric_membrane_coverage_status"] == "covered"
+    assert summary["sophia_decision"] == "pass"
+    assert summary["tel_replay_status"] == "replayable"
+    assert summary["flow_morphology_status"] == "observed_runtime_morphology"
+    assert summary["flow_topology_status"] == "verified_diagnostic"
+    assert summary["flow_node_count"] == 20
+    assert summary["flow_edge_count"] == 14
+    assert summary["spiral_turn_count"] == 9
+    assert summary["repair_loop_count"] == 2
+    assert summary["bottleneck_count"] == 0
+    assert summary["upward_integration_score"] == 1
+    assert summary["flow_continuity_score"] == 0.714286
+    assert summary["repair_capacity_score"] == 1
+    assert summary["poetic_alias"] == "waters_spiral_runtime_v0"
+
+    artifact_index = json.loads((out_dir / "artifact_index.json").read_text())["phases"]
+    for phase_id, artifacts in required_phases.items():
+        assert artifact_index[phase_id] == artifacts
+
+    doc = (docs_dir / "local-review-metrics-flow.md").read_text(encoding="utf-8")
+    assert "WAVE Rosetta is used as a calibration baseline, not universal identity" in doc
+    assert "`waters_spiral_runtime_v0` as poetic alias only" in doc
+    assert "No Omega artifact was emitted" in doc
+    assert "Repeated runs are required for scientific claims" in doc
+
+
+def test_local_review_metrics_flow_repro_command_and_boundaries(tmp_path):
+    out_dir, _ = run_builder(tmp_path)
+    repro = json.loads((out_dir / "reproducibility_index.json").read_text())
+    repro_text = json.dumps(repro)
+    assert "Run-LOCAL-REVIEW-RUNTIME-V0-Acceptance.ps1" in repro_text
+    assert "total action functional, formula registry, metric bound taxonomy, cognitive flow morphology" in repro_text
+    assert "-SophiaRoot C:\\\\UVLM\\\\Sophia" in repro_text
+    assert "-EnableSophiaAudit" in repro_text
+
+    boundaries = json.loads((out_dir / "claim_boundary_index.json").read_text())["boundaries"]
+    for phase_id in (
+        "MET-LOCAL-00",
+        "WAVE-ROSETTA-METRIC-CALIBRATION-00",
+        "TAF-RUNTIME-00",
+        "SONYA-METRIC-MEMBRANE-COVERAGE-00",
+        "COHERENCE-METRIC-FORMULA-REGISTRY-00",
+        "METRIC-BOUND-SOURCE-TAXONOMY-00",
+        "FLOW-RUNTIME-00",
+    ):
+        for boundary in (
+            "product release",
+            "final answer authority",
+            "truth certification",
+            "accepted evidence authority",
+            "consciousness proof",
+            "Omega detection",
+            "universal ontology proof",
+            "deployment authority",
+            "provider runtime",
+            "LAN enablement",
+            "memory write",
+            "federation",
+        ):
+            assert f"{phase_id} is not {boundary}." in boundaries
