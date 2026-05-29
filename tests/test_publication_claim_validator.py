@@ -2501,3 +2501,119 @@ def test_local_review_runtime_v0_rejects_authority_overclaim(tmp_path):
     )
     assert result["passed"] is False
     assert any("product release" in hit for hit in result["forbidden_overclaims_found"])
+
+
+def test_claim_validator_allows_bounded_local_cognition_loop_claim(tmp_path):
+    paper_root = tmp_path / "paper"
+    paper_root.mkdir(parents=True)
+    valid_text = (
+        "The local review runtime now demonstrates a bounded, non-authoritative diagnostic cognition loop: "
+        "source-span-backed claim classification, Sophia governance pass, TEL replay, PMR lifecycle indexing, "
+        "runtime metrics, WAVE Rosetta calibration context, TAF runtime proxy, formula registry, "
+        "metric-bound taxonomy, Sonya metric membrane coverage, and cognitive flow morphology derived from runtime artifacts.\n"
+        "not truth certification\nnot deployment authority\nnot final answer release\nlocal fixture only\n"
+        "requires external peer review\nnot AI consciousness\nnot recursive Sonya federation\n"
+        "not retrosynthesis runtime\nnot Omega detection\nnot live Atlas memory writes\nnot live Sophia calls\n"
+    )
+    for name in (
+        "PUB_GOV_ARTIFACT_COG_01.md",
+        "reproducibility_appendix.md",
+        "claim_boundary_table.md",
+        "artifact_table.md",
+        "reviewer_quickstart.md",
+    ):
+        (paper_root / name).write_text(valid_text, encoding="utf-8")
+    (paper_root / "status.json").write_text(
+        json.dumps(
+            {
+                "paper_id": "PUB-GOV-ARTIFACT-COG-01",
+                "repo": "pdxvoiceteacher/uvlm-publications",
+                "status": "drafted",
+                "claim_level": "internal_preprint_draft",
+                "requires_external_peer_review": True,
+                "not_truth_certification": True,
+                "not_deployment_authority": True,
+                "not_final_answer_release": True,
+                "not_live_model_execution": True,
+                "not_live_model_evaluation": True,
+                "not_production_evaluation": True,
+                "not_ai_consciousness_claim": True,
+            }
+        ),
+        encoding="utf-8",
+    )
+
+    result = validate_publication_claims(paper_root / "PUB_GOV_ARTIFACT_COG_01.md")
+
+    assert result["forbidden_overclaims_found"] == []
+
+
+def test_claim_validator_rejects_local_review_metrics_flow_overclaims(tmp_path):
+    paper_root = tmp_path / "paper"
+    paper_root.mkdir(parents=True)
+    base = (
+        "not truth certification\nnot deployment authority\nnot final answer release\nlocal fixture only\n"
+        "requires external peer review\nnot AI consciousness\nnot recursive Sonya federation\n"
+        "not retrosynthesis runtime\nnot Omega detection\nnot live Atlas memory writes\nnot live Sophia calls\n"
+    )
+    forbidden_claims = (
+        "claims product release",
+        "claims final answer authority",
+        "claims truth certification",
+        "claims accepted evidence authority",
+        "claims consciousness proof",
+        "claims Omega detection",
+        "claims universal ontology proof",
+        "claims deployment authority",
+        "claims provider runtime",
+        "claims LAN enablement",
+        "claims memory write",
+        "claims federation",
+        "claims Atlas memory admission",
+        "claims general AI safety certification",
+    )
+    for name in (
+        "reproducibility_appendix.md",
+        "claim_boundary_table.md",
+        "artifact_table.md",
+        "reviewer_quickstart.md",
+    ):
+        (paper_root / name).write_text(base, encoding="utf-8")
+    (paper_root / "PUB_GOV_ARTIFACT_COG_01.md").write_text(
+        base + "\n" + "\n".join(f"This local flow {claim}." for claim in forbidden_claims),
+        encoding="utf-8",
+    )
+    (paper_root / "status.json").write_text(
+        json.dumps(
+            {
+                "paper_id": "PUB-GOV-ARTIFACT-COG-01",
+                "repo": "pdxvoiceteacher/uvlm-publications",
+                "status": "drafted",
+                "claim_level": "internal_preprint_draft",
+                "requires_external_peer_review": True,
+                "not_truth_certification": True,
+                "not_deployment_authority": True,
+                "not_final_answer_release": True,
+                "not_live_model_execution": True,
+                "not_live_model_evaluation": True,
+                "not_production_evaluation": True,
+                "not_ai_consciousness_claim": True,
+            }
+        ),
+        encoding="utf-8",
+    )
+
+    result = validate_publication_claims(paper_root / "PUB_GOV_ARTIFACT_COG_01.md")
+
+    assert result["passed"] is False
+    found = set(result["forbidden_overclaims_found"])
+    for claim in (
+        "final answer authority",
+        "claims Omega detection",
+        "claims memory write",
+        "claims provider runtime",
+        "claims LAN enablement",
+        "claims Atlas memory admission",
+        "claims general AI safety certification",
+    ):
+        assert claim in found

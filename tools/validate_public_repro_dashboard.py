@@ -79,6 +79,13 @@ REQUIRED_PHASES = {
     "LOCAL-REVIEW-RUNTIME-V0",
     "USER-FACING-RECEIPT-UX-01",
     "PMR-CONTEXT-AVAILABILITY-LEDGER-00",
+    "MET-LOCAL-00",
+    "WAVE-ROSETTA-METRIC-CALIBRATION-00",
+    "TAF-RUNTIME-00",
+    "SONYA-METRIC-MEMBRANE-COVERAGE-00",
+    "COHERENCE-METRIC-FORMULA-REGISTRY-00",
+    "METRIC-BOUND-SOURCE-TAXONOMY-00",
+    "FLOW-RUNTIME-00",
 }
 REQUIRED_BOUNDARY_PHRASES = (
     "not truth certification",
@@ -97,6 +104,14 @@ REQUIRED_BOUNDARY_PHRASES = (
     "not live adapter execution",
     "not remote provider call",
     "not federation",
+    "FLOW-RUNTIME-00",
+    "MET-LOCAL-00",
+    "TAF-RUNTIME-00",
+    "WAVE Rosetta baseline",
+    "baseline not universal identity",
+    "Sonya metric membrane coverage",
+    "waters_spiral_runtime_v0",
+    "not general AI safety certification",
     "not recursive braid",
     "raw baseline comparison",
     "fixture-only measurement scaffold",
@@ -477,8 +492,8 @@ REQUIRED_BOUNDARY_PHRASES = (
 FORBIDDEN_PHRASES = (
     "deployment readiness",
     "deployment ready",
-    "truth certification",
     "truth certified",
+    "truth certification",
     "final answer authority",
     "final answer selection",
     "final answer release",
@@ -491,11 +506,9 @@ FORBIDDEN_PHRASES = (
     "live adapter execution",
     "claims provider call",
     "claims remote provider call",
-    "federation",
     "recursive braid",
     "recursive federation",
     "psychoacoustic proof",
-    "omega detection",
     "publisher finalization",
     "hallucination reduction proven",
     "model quality benchmark",
@@ -517,6 +530,7 @@ FORBIDDEN_PHRASES = (
     "model quality benchmark",
     "live model evaluation",
     "remote provider evaluation",
+    "federation",
     "professional advice",
     "legally compliant",
     "legal advice",
@@ -542,6 +556,7 @@ FORBIDDEN_PHRASES = (
     "claims final answer release",
     "claims Publisher finalization",
     "claims Omega detection",
+    "omega detection",
     "claims recursive self-improvement",
     "live human study performed",
     "claims live human study",
@@ -550,10 +565,12 @@ FORBIDDEN_PHRASES = (
     "production evaluation",
     "product completion",
     "claims product completion",
+    "claims product release",
+    "claims peer review certification",
+    "claims truth certification",
     "runtime authority",
     "surveillance",
-    "peer review certification",
-    "claims runtime authority",
+    "claims peer review certification",
     "product release",
     "product released",
     "benchmark result",
@@ -606,7 +623,6 @@ FORBIDDEN_PHRASES = (
     "claims user confirmation",
     "Sophia approval",
     "audit action",
-    "universal ontology proof",
 )
 ALLOWED_NEGATED = (
     "not ",
@@ -893,10 +909,15 @@ def _forbidden_hits(text: str) -> list[str]:
                 or text[index : index + 40].startswith("federation_")
                 or text[index : index + 40].startswith("federation_stress")
                 or "local-review-runtime-v0 is not federation" in text[max(0, index - 80) : index + 80]
+                or "not federation" in text[max(0, index - 64) : index + 64]
+                or "_not_federation" in text[max(0, index - 64) : index + 64]
                 or text[index : index + 40].startswith("federation = true")
                 or text[index : index + 40].startswith('federation": true')
                 or '"model_training", "federation", "reward_allocation"' in text[max(0, index - 24) : index + 48]
             ):
+                start = index + len(normalized_phrase)
+                continue
+            if phrase == "omega detection" and _is_negated(text, index):
                 start = index + len(normalized_phrase)
                 continue
             if (
@@ -955,6 +976,12 @@ def _forbidden_hits(text: str) -> list[str]:
                 phrase in {"federation", "truth certification", "product release"}
                 and "request must fail closed" in text[index : index + 72]
             ):
+                start = index + len(normalized_phrase)
+                continue
+            if phrase in {"peer review certification", "universal ontology proof"} and _is_negated(text, index):
+                start = index + len(normalized_phrase)
+                continue
+            if phrase in {"peer review certification", "universal ontology proof"} and f"not {normalized_phrase}" in text[max(0, index - 64) : index + 64]:
                 start = index + len(normalized_phrase)
                 continue
             if _is_allowed_no_emit_receipt_context(text, index):

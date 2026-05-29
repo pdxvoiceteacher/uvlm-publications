@@ -1380,11 +1380,138 @@ LOCAL_REVIEW_RUNTIME_V0_COMMAND = r""".\experiments\Run-LOCAL-REVIEW-RUNTIME-V0-
   -PythonPath .\.venv\Scripts\python.exe `
   -OutputRoot C:\UVLM\run_artifacts\local_review_runtime_v0 `
   -LogDir C:\UVLM\run_artifacts\local_review_runtime_v0_logs `
-  -ReviewerObjective "Review these local files for claim support, rejected inputs, duplicate handling, and non-authority boundaries." `
+  -ReviewerObjective "Review these local files for claim support, rejected inputs, duplicate handling, usability, Sophia audit posture, source-span support, TEL replay, PMR local runtime store, runtime metrics, total action functional, formula registry, metric bound taxonomy, cognitive flow morphology, Sonya metric membrane coverage, and non-authority boundaries." `
+  -SophiaRoot C:\UVLM\Sophia `
+  -EnableSophiaAudit `
   -CiMode"""
 LOCAL_REVIEW_RUNTIME_V0_ARTIFACTS=["local_review_runtime_v0_manifest.json","local_review_request_02_packet.json","local_review_source_set_packet.json","local_user_file_ingress_01_manifest.json","local_user_file_path_audit_rows.jsonl","local_user_file_normalization_map.json","local_user_file_pmr_context_link_packet.json","source_span_map.json","claim_classification_packet.json","pmr_context_availability_ledger.json","local_review_runtime_v0_human_summary.md","local_review_runtime_v0_next_actions.json","local_review_runtime_v0_boundary_table.json","local_review_runtime_v0_review_packet.json","artifact_inventory.json","run_artifact_manifest.json","export_bundle_manifest.json","export_bundle_parity_report.json","local_review_runtime_v0_acceptance_receipt.json"]
 LOCAL_REVIEW_RUNTIME_V0_DASHBOARD_SUMMARY={"review_status":"accepted_as_local_review_runtime_v0_scaffold","accepted_file_count":3,"rejected_file_count":2,"duplicate_source_path_count":1,"normalized_source_count":3,"pmr_context_link_count":3,"evidence_bound_wrapper":True,"ingress_bound":True,"receipt_ux_bound":True,"pmr_context_bound":True,"source_span_review_bound":True,"human_summary_present":True,"reviewer_next_actions_present":True,"boundary_table_present":True,"run_artifact_manifest_status":"verified","export_parity_passed":True}
 LOCAL_REVIEW_RUNTIME_V0_CLAIMS_BLOCKED=["not product release","not final answer authority","not accepted evidence authority","not truth certification","not memory write","not provider runtime","not provider call","not network authorization","not LAN enablement","not LAN binding","not remote client authorization","not deployment","not federation","not model weight training","not hallucination reduction proof","not peer review certification"]
+
+LOCAL_REVIEW_METRICS_FLOW_PHASE_IDS = [
+    "MET-LOCAL-00",
+    "WAVE-ROSETTA-METRIC-CALIBRATION-00",
+    "TAF-RUNTIME-00",
+    "SONYA-METRIC-MEMBRANE-COVERAGE-00",
+    "COHERENCE-METRIC-FORMULA-REGISTRY-00",
+    "METRIC-BOUND-SOURCE-TAXONOMY-00",
+    "FLOW-RUNTIME-00",
+]
+LOCAL_REVIEW_METRICS_FLOW_CLAIM_ALLOWED = (
+    "The local review runtime now demonstrates a bounded, non-authoritative diagnostic cognition loop: "
+    "source-span-backed claim classification, Sophia governance pass, TEL replay, PMR lifecycle indexing, "
+    "runtime metrics, WAVE Rosetta calibration context, TAF runtime proxy, formula registry, "
+    "metric-bound taxonomy, Sonya metric membrane coverage, and cognitive flow morphology derived from runtime artifacts."
+)
+LOCAL_REVIEW_METRICS_FLOW_CLAIMS_BLOCKED = [
+    "not product release",
+    "not final answer authority",
+    "not accepted evidence authority",
+    "not truth certification",
+    "not consciousness proof",
+    "not Omega detection",
+    "not universal ontology proof",
+    "not human benefit proof",
+    "not deployment authority",
+    "not LAN enablement",
+    "not provider runtime",
+    "not network authorization",
+    "not memory write",
+    "not Atlas memory admission",
+    "not federation",
+    "not clinical/scientific proof beyond bounded local fixture",
+    "not peer review certification",
+    "not general AI safety certification",
+]
+LOCAL_REVIEW_METRICS_FLOW_DASHBOARD_SUMMARY = {
+    "evidence_metrics_status": "verified_diagnostic",
+    "coherence_metrics_status": "verified_diagnostic",
+    "taf_metric_status": "verified_diagnostic",
+    "formula_binding_status": "bound",
+    "metric_bound_binding_status": "bound",
+    "wave_rosetta_baseline": True,
+    "wave_rosetta_is_baseline_not_universal_identity": True,
+    "sonya_metric_membrane_coverage_status": "covered",
+    "sophia_decision": "pass",
+    "tel_replay_status": "replayable",
+    "flow_morphology_status": "observed_runtime_morphology",
+    "flow_topology_status": "verified_diagnostic",
+    "flow_node_count": 20,
+    "flow_edge_count": 14,
+    "spiral_turn_count": 9,
+    "repair_loop_count": 2,
+    "bottleneck_count": 0,
+    "upward_integration_score": 1,
+    "flow_continuity_score": 0.714286,
+    "repair_capacity_score": 1,
+    "spiral_delta": -0.069622,
+    "poetic_alias": "waters_spiral_runtime_v0",
+}
+LOCAL_REVIEW_METRICS_FLOW_ARTIFACTS_BY_PHASE = {
+    "MET-LOCAL-00": [
+        "evidence_review_runtime_metrics_packet.json",
+        "coherence_runtime_metrics_packet.json",
+        "coherence_metric_input_ledger.json",
+        "evidence_review_runtime_metrics_summary.md",
+    ],
+    "WAVE-ROSETTA-METRIC-CALIBRATION-00": [
+        "wave_rosetta_metric_calibration_context.json",
+    ],
+    "TAF-RUNTIME-00": [
+        "coherence_action_functional_packet.json",
+    ],
+    "SONYA-METRIC-MEMBRANE-COVERAGE-00": [
+        "sonya_metric_membrane_coverage_packet.json",
+    ],
+    "COHERENCE-METRIC-FORMULA-REGISTRY-00": [
+        "coherence_metric_formula_registry.json",
+        "coherence_metric_formula_registry_binding.json",
+    ],
+    "METRIC-BOUND-SOURCE-TAXONOMY-00": [
+        "metric_bound_source_taxonomy.json",
+        "metric_bound_profile_registry.json",
+        "metric_bound_formula_binding.json",
+    ],
+    "FLOW-RUNTIME-00": [
+        "cognitive_flow_morphology_packet.json",
+        "cognitive_flow_topology_packet.json",
+        "cognitive_flow_morphology_summary.md",
+    ],
+}
+LOCAL_REVIEW_METRICS_FLOW_PHASE_LABELS = {
+    "MET-LOCAL-00": "runtime evidence and coherence metrics",
+    "WAVE-ROSETTA-METRIC-CALIBRATION-00": "WAVE Rosetta metric calibration baseline",
+    "TAF-RUNTIME-00": "total action functional runtime proxy",
+    "SONYA-METRIC-MEMBRANE-COVERAGE-00": "Sonya metric membrane coverage",
+    "COHERENCE-METRIC-FORMULA-REGISTRY-00": "coherence metric formula registry binding",
+    "METRIC-BOUND-SOURCE-TAXONOMY-00": "metric-bound source taxonomy binding",
+    "FLOW-RUNTIME-00": "cognitive flow morphology and topology",
+}
+LOCAL_REVIEW_METRICS_FLOW_PHASES = [
+    {
+        "phase_id": phase_id,
+        "repo": "pdxvoiceteacher/CoherenceLattice",
+        "source_phase": "LOCAL-REVIEW-RUNTIME-V0",
+        "status": "accepted_local_validation",
+        "evidence_type": "local_diagnostic_runtime_artifact",
+        "product_posture": "local_diagnostic_scaffold_not_product_release",
+        "authority_posture": "non_authoritative",
+        "public_claim_boundary": "bounded_diagnostic_only",
+        "primary_artifacts": LOCAL_REVIEW_METRICS_FLOW_ARTIFACTS_BY_PHASE[phase_id],
+        "dashboard_summary": LOCAL_REVIEW_METRICS_FLOW_DASHBOARD_SUMMARY,
+        "reproduction_command_summary": LOCAL_REVIEW_RUNTIME_V0_COMMAND,
+        "claims_blocked": LOCAL_REVIEW_METRICS_FLOW_CLAIMS_BLOCKED,
+        "claim_allowed": LOCAL_REVIEW_METRICS_FLOW_CLAIM_ALLOWED,
+        "reviewer_caution": (
+            f"{phase_id} records {LOCAL_REVIEW_METRICS_FLOW_PHASE_LABELS[phase_id]} as bounded local diagnostic evidence only; "
+            "it is not product release, not final-answer authority, not accepted-evidence authority, not truth certification, "
+            "not consciousness proof, not Omega detection, not universal ontology proof, not deployment authority, not LAN enablement, "
+            "not provider runtime, not memory write, not Atlas memory admission, not federation, not clinical/scientific proof beyond the local fixture, "
+            "not peer review certification, and not general AI safety certification."
+        ),
+    }
+    for phase_id in LOCAL_REVIEW_METRICS_FLOW_PHASE_IDS
+]
 
 PMR_00_COMMAND = r""".\experiments\Run-PMR00-Acceptance.ps1 `
   -OutputRoot C:\UVLM\run_artifacts\pmr_00 `
@@ -3274,6 +3401,7 @@ ACCEPTED_PHASES = [
 {"phase_id":"LAN-AUTHORITY-NEGATIVE-CONTROL-00","repo":"pdxvoiceteacher/CoherenceLattice","status":"accepted","evidence_type":"runtime_smoke","product_posture":"lan_authority_negative_control_fail_closed_scaffold","primary_artifacts":LAN_AUTHORITY_NEGATIVE_CONTROL_00_ARTIFACTS,"dashboard_summary":LAN_AUTHORITY_NEGATIVE_CONTROL_00_DASHBOARD_SUMMARY,"reproduction_command_summary":LAN_AUTHORITY_NEGATIVE_CONTROL_00_COMMAND,"claims_blocked":LAN_AUTHORITY_NEGATIVE_CONTROL_00_CLAIMS_BLOCKED,"claim_allowed":"LAN authority negative-control scaffold","reviewer_caution":"Negative control is not authorization."},
 {"phase_id":"LAN-OPERATOR-CONSENT-PREFLIGHT-00","repo":"pdxvoiceteacher/CoherenceLattice","status":"accepted","evidence_type":"runtime_smoke","product_posture":"preflight_only_operator_consent_scaffold_without_lan_or_authority_enablement","primary_artifacts":LAN_OPERATOR_CONSENT_PREFLIGHT_00_ARTIFACTS,"dashboard_summary":LAN_OPERATOR_CONSENT_PREFLIGHT_00_DASHBOARD_SUMMARY,"reproduction_command_summary":LAN_OPERATOR_CONSENT_PREFLIGHT_00_COMMAND,"claims_blocked":LAN_OPERATOR_CONSENT_PREFLIGHT_00_CLAIMS_BLOCKED,"claim_allowed":"LAN operator consent preflight scaffold","reviewer_caution":"Consent preflight is not consent execution."},
 {"phase_id":"LOCAL-REVIEW-RUNTIME-V0","repo":"pdxvoiceteacher/CoherenceLattice","status":"accepted","evidence_type":"local_runtime_scaffold","product_posture":"evidence_bound_local_review_scaffold_without_product_release","primary_artifacts":LOCAL_REVIEW_RUNTIME_V0_ARTIFACTS,"dashboard_summary":LOCAL_REVIEW_RUNTIME_V0_DASHBOARD_SUMMARY,"reproduction_command_summary":LOCAL_REVIEW_RUNTIME_V0_COMMAND,"claims_blocked":LOCAL_REVIEW_RUNTIME_V0_CLAIMS_BLOCKED,"claim_allowed":"LOCAL-REVIEW-RUNTIME-V0 demonstrates an evidence-bound local review scaffold that wraps accepted local ingress, PMR context, source-span, claim-classification, and receipt UX artifacts into a human-readable non-authority local review receipt.","reviewer_caution":"LOCAL-REVIEW-RUNTIME-V0 is an evidence-bound local scaffold, not a released product. It demonstrates that a local wrapper can prove its lower-level ingress, PMR, source-span, claim-classification, and receipt UX path. It does not authorize final answers, accepted evidence, product release, provider runtime, memory writes, LAN enablement, federate operations, deployment, or truth certification."},
+*LOCAL_REVIEW_METRICS_FLOW_PHASES,
 {"phase_id":"PMR-CONTEXT-AVAILABILITY-LEDGER-00","repo":"pdxvoiceteacher/CoherenceLattice","status":"accepted","evidence_type":"governance_scaffold","product_posture":"fixture_only_context_availability_without_source_content_or_memory_authority","primary_artifacts":PMR_CONTEXT_AVAILABILITY_LEDGER_00_ARTIFACTS,"dashboard_summary":PMR_CONTEXT_AVAILABILITY_LEDGER_00_DASHBOARD_SUMMARY,"reproduction_command_summary":PMR_CONTEXT_AVAILABILITY_LEDGER_00_COMMAND,"claims_blocked":PMR_CONTEXT_AVAILABILITY_LEDGER_00_CLAIMS_BLOCKED,"claim_allowed":"context availability ledger scaffold","reviewer_caution":"Expiration is not nonexistence."},
 {"phase_id":"LOCAL-SERVER-USER-FILE-INGRESS-00","repo":"pdxvoiceteacher/CoherenceLattice","status":"accepted","evidence_type":"runtime_smoke","product_posture":"explicit_local_user_file_ingress_without_memory_or_network_authority","primary_artifacts":LOCAL_SERVER_USER_FILE_INGRESS_00_ARTIFACTS,"dashboard_summary":LOCAL_SERVER_USER_FILE_INGRESS_00_DASHBOARD_SUMMARY,"reproduction_command_summary":LOCAL_SERVER_USER_FILE_INGRESS_00_COMMAND,"claims_blocked":LOCAL_SERVER_USER_FILE_INGRESS_00_CLAIMS_BLOCKED,"claim_allowed":"explicit local user file ingress runtime smoke","reviewer_caution":"User file ingress is not memory write."},
 {"phase_id":"SONYA-LOCAL-SERVER-GATEWAY-02","repo":"pdxvoiceteacher/CoherenceLattice","status":"accepted","evidence_type":"runtime_smoke","product_posture":"localhost_only_source_span_gateway_without_truth_or_memory_authority","primary_artifacts":SONYA_LOCAL_SERVER_GATEWAY_02_ARTIFACTS,"dashboard_summary":SONYA_LOCAL_SERVER_GATEWAY_02_DASHBOARD_SUMMARY,"reproduction_command_summary":SONYA_LOCAL_SERVER_GATEWAY_02_COMMAND,"claims_blocked":SONYA_LOCAL_SERVER_GATEWAY_02_CLAIMS_BLOCKED,"claim_allowed":"localhost-only source-span gateway retrieval scaffold","reviewer_caution":"Source-span gateway review is not truth certification."},
@@ -4146,6 +4274,132 @@ BOUNDARIES = [
     "LOCAL-REVIEW-RUNTIME-V0 is not model weight training.",
     "LOCAL-REVIEW-RUNTIME-V0 is not hallucination reduction proof.",
     "LOCAL-REVIEW-RUNTIME-V0 is not peer review certification.",
+    "MET-LOCAL-00 is not product release.",
+    "MET-LOCAL-00 is not final answer authority.",
+    "MET-LOCAL-00 is not accepted evidence authority.",
+    "MET-LOCAL-00 is not truth certification.",
+    "MET-LOCAL-00 is not consciousness proof.",
+    "MET-LOCAL-00 is not Omega detection.",
+    "MET-LOCAL-00 is not universal ontology proof.",
+    "MET-LOCAL-00 is not human benefit proof.",
+    "MET-LOCAL-00 is not deployment authority.",
+    "MET-LOCAL-00 is not LAN enablement.",
+    "MET-LOCAL-00 is not provider runtime.",
+    "MET-LOCAL-00 is not network authorization.",
+    "MET-LOCAL-00 is not memory write.",
+    "MET-LOCAL-00 is not Atlas memory admission.",
+    "MET-LOCAL-00 is not federation.",
+    "MET-LOCAL-00 is not clinical/scientific proof beyond bounded local fixture.",
+    "MET-LOCAL-00 is not peer review certification.",
+    "MET-LOCAL-00 is not general AI safety certification.",
+    "WAVE-ROSETTA-METRIC-CALIBRATION-00 is not product release.",
+    "WAVE-ROSETTA-METRIC-CALIBRATION-00 is not final answer authority.",
+    "WAVE-ROSETTA-METRIC-CALIBRATION-00 is not accepted evidence authority.",
+    "WAVE-ROSETTA-METRIC-CALIBRATION-00 is not truth certification.",
+    "WAVE-ROSETTA-METRIC-CALIBRATION-00 is not consciousness proof.",
+    "WAVE-ROSETTA-METRIC-CALIBRATION-00 is not Omega detection.",
+    "WAVE-ROSETTA-METRIC-CALIBRATION-00 is not universal ontology proof.",
+    "WAVE-ROSETTA-METRIC-CALIBRATION-00 is not human benefit proof.",
+    "WAVE-ROSETTA-METRIC-CALIBRATION-00 is not deployment authority.",
+    "WAVE-ROSETTA-METRIC-CALIBRATION-00 is not LAN enablement.",
+    "WAVE-ROSETTA-METRIC-CALIBRATION-00 is not provider runtime.",
+    "WAVE-ROSETTA-METRIC-CALIBRATION-00 is not network authorization.",
+    "WAVE-ROSETTA-METRIC-CALIBRATION-00 is not memory write.",
+    "WAVE-ROSETTA-METRIC-CALIBRATION-00 is not Atlas memory admission.",
+    "WAVE-ROSETTA-METRIC-CALIBRATION-00 is not federation.",
+    "WAVE-ROSETTA-METRIC-CALIBRATION-00 is not clinical/scientific proof beyond bounded local fixture.",
+    "WAVE-ROSETTA-METRIC-CALIBRATION-00 is not peer review certification.",
+    "WAVE-ROSETTA-METRIC-CALIBRATION-00 is not general AI safety certification.",
+    "TAF-RUNTIME-00 is not product release.",
+    "TAF-RUNTIME-00 is not final answer authority.",
+    "TAF-RUNTIME-00 is not accepted evidence authority.",
+    "TAF-RUNTIME-00 is not truth certification.",
+    "TAF-RUNTIME-00 is not consciousness proof.",
+    "TAF-RUNTIME-00 is not Omega detection.",
+    "TAF-RUNTIME-00 is not universal ontology proof.",
+    "TAF-RUNTIME-00 is not human benefit proof.",
+    "TAF-RUNTIME-00 is not deployment authority.",
+    "TAF-RUNTIME-00 is not LAN enablement.",
+    "TAF-RUNTIME-00 is not provider runtime.",
+    "TAF-RUNTIME-00 is not network authorization.",
+    "TAF-RUNTIME-00 is not memory write.",
+    "TAF-RUNTIME-00 is not Atlas memory admission.",
+    "TAF-RUNTIME-00 is not federation.",
+    "TAF-RUNTIME-00 is not clinical/scientific proof beyond bounded local fixture.",
+    "TAF-RUNTIME-00 is not peer review certification.",
+    "TAF-RUNTIME-00 is not general AI safety certification.",
+    "SONYA-METRIC-MEMBRANE-COVERAGE-00 is not product release.",
+    "SONYA-METRIC-MEMBRANE-COVERAGE-00 is not final answer authority.",
+    "SONYA-METRIC-MEMBRANE-COVERAGE-00 is not accepted evidence authority.",
+    "SONYA-METRIC-MEMBRANE-COVERAGE-00 is not truth certification.",
+    "SONYA-METRIC-MEMBRANE-COVERAGE-00 is not consciousness proof.",
+    "SONYA-METRIC-MEMBRANE-COVERAGE-00 is not Omega detection.",
+    "SONYA-METRIC-MEMBRANE-COVERAGE-00 is not universal ontology proof.",
+    "SONYA-METRIC-MEMBRANE-COVERAGE-00 is not human benefit proof.",
+    "SONYA-METRIC-MEMBRANE-COVERAGE-00 is not deployment authority.",
+    "SONYA-METRIC-MEMBRANE-COVERAGE-00 is not LAN enablement.",
+    "SONYA-METRIC-MEMBRANE-COVERAGE-00 is not provider runtime.",
+    "SONYA-METRIC-MEMBRANE-COVERAGE-00 is not network authorization.",
+    "SONYA-METRIC-MEMBRANE-COVERAGE-00 is not memory write.",
+    "SONYA-METRIC-MEMBRANE-COVERAGE-00 is not Atlas memory admission.",
+    "SONYA-METRIC-MEMBRANE-COVERAGE-00 is not federation.",
+    "SONYA-METRIC-MEMBRANE-COVERAGE-00 is not clinical/scientific proof beyond bounded local fixture.",
+    "SONYA-METRIC-MEMBRANE-COVERAGE-00 is not peer review certification.",
+    "SONYA-METRIC-MEMBRANE-COVERAGE-00 is not general AI safety certification.",
+    "COHERENCE-METRIC-FORMULA-REGISTRY-00 is not product release.",
+    "COHERENCE-METRIC-FORMULA-REGISTRY-00 is not final answer authority.",
+    "COHERENCE-METRIC-FORMULA-REGISTRY-00 is not accepted evidence authority.",
+    "COHERENCE-METRIC-FORMULA-REGISTRY-00 is not truth certification.",
+    "COHERENCE-METRIC-FORMULA-REGISTRY-00 is not consciousness proof.",
+    "COHERENCE-METRIC-FORMULA-REGISTRY-00 is not Omega detection.",
+    "COHERENCE-METRIC-FORMULA-REGISTRY-00 is not universal ontology proof.",
+    "COHERENCE-METRIC-FORMULA-REGISTRY-00 is not human benefit proof.",
+    "COHERENCE-METRIC-FORMULA-REGISTRY-00 is not deployment authority.",
+    "COHERENCE-METRIC-FORMULA-REGISTRY-00 is not LAN enablement.",
+    "COHERENCE-METRIC-FORMULA-REGISTRY-00 is not provider runtime.",
+    "COHERENCE-METRIC-FORMULA-REGISTRY-00 is not network authorization.",
+    "COHERENCE-METRIC-FORMULA-REGISTRY-00 is not memory write.",
+    "COHERENCE-METRIC-FORMULA-REGISTRY-00 is not Atlas memory admission.",
+    "COHERENCE-METRIC-FORMULA-REGISTRY-00 is not federation.",
+    "COHERENCE-METRIC-FORMULA-REGISTRY-00 is not clinical/scientific proof beyond bounded local fixture.",
+    "COHERENCE-METRIC-FORMULA-REGISTRY-00 is not peer review certification.",
+    "COHERENCE-METRIC-FORMULA-REGISTRY-00 is not general AI safety certification.",
+    "METRIC-BOUND-SOURCE-TAXONOMY-00 is not product release.",
+    "METRIC-BOUND-SOURCE-TAXONOMY-00 is not final answer authority.",
+    "METRIC-BOUND-SOURCE-TAXONOMY-00 is not accepted evidence authority.",
+    "METRIC-BOUND-SOURCE-TAXONOMY-00 is not truth certification.",
+    "METRIC-BOUND-SOURCE-TAXONOMY-00 is not consciousness proof.",
+    "METRIC-BOUND-SOURCE-TAXONOMY-00 is not Omega detection.",
+    "METRIC-BOUND-SOURCE-TAXONOMY-00 is not universal ontology proof.",
+    "METRIC-BOUND-SOURCE-TAXONOMY-00 is not human benefit proof.",
+    "METRIC-BOUND-SOURCE-TAXONOMY-00 is not deployment authority.",
+    "METRIC-BOUND-SOURCE-TAXONOMY-00 is not LAN enablement.",
+    "METRIC-BOUND-SOURCE-TAXONOMY-00 is not provider runtime.",
+    "METRIC-BOUND-SOURCE-TAXONOMY-00 is not network authorization.",
+    "METRIC-BOUND-SOURCE-TAXONOMY-00 is not memory write.",
+    "METRIC-BOUND-SOURCE-TAXONOMY-00 is not Atlas memory admission.",
+    "METRIC-BOUND-SOURCE-TAXONOMY-00 is not federation.",
+    "METRIC-BOUND-SOURCE-TAXONOMY-00 is not clinical/scientific proof beyond bounded local fixture.",
+    "METRIC-BOUND-SOURCE-TAXONOMY-00 is not peer review certification.",
+    "METRIC-BOUND-SOURCE-TAXONOMY-00 is not general AI safety certification.",
+    "FLOW-RUNTIME-00 is not product release.",
+    "FLOW-RUNTIME-00 is not final answer authority.",
+    "FLOW-RUNTIME-00 is not accepted evidence authority.",
+    "FLOW-RUNTIME-00 is not truth certification.",
+    "FLOW-RUNTIME-00 is not consciousness proof.",
+    "FLOW-RUNTIME-00 is not Omega detection.",
+    "FLOW-RUNTIME-00 is not universal ontology proof.",
+    "FLOW-RUNTIME-00 is not human benefit proof.",
+    "FLOW-RUNTIME-00 is not deployment authority.",
+    "FLOW-RUNTIME-00 is not LAN enablement.",
+    "FLOW-RUNTIME-00 is not provider runtime.",
+    "FLOW-RUNTIME-00 is not network authorization.",
+    "FLOW-RUNTIME-00 is not memory write.",
+    "FLOW-RUNTIME-00 is not Atlas memory admission.",
+    "FLOW-RUNTIME-00 is not federation.",
+    "FLOW-RUNTIME-00 is not clinical/scientific proof beyond bounded local fixture.",
+    "FLOW-RUNTIME-00 is not peer review certification.",
+    "FLOW-RUNTIME-00 is not general AI safety certification.",
     "Consent preflight is not consent execution.",
     "Consent candidate is not consent.",
     "Operator consent model is not operator authorization.",
@@ -5076,7 +5330,21 @@ def dashboard_payload() -> dict[str, Any]:
             "pmr_sophia_lifecycle_audit_packet.json",
             "pmr_destructive_action_authorization_preflight_packet.json",
             "pmr_architecture_diversity_checkpoint_packet.json",
+            "evidence_review_runtime_metrics_packet.json",
+            "coherence_runtime_metrics_packet.json",
+            "coherence_metric_input_ledger.json",
+            "wave_rosetta_metric_calibration_context.json",
+            "coherence_action_functional_packet.json",
+            "sonya_metric_membrane_coverage_packet.json",
+            "coherence_metric_formula_registry.json",
+            "coherence_metric_formula_registry_binding.json",
+            "metric_bound_source_taxonomy.json",
+            "metric_bound_profile_registry.json",
+            "metric_bound_formula_binding.json",
+            "cognitive_flow_morphology_packet.json",
+            "cognitive_flow_topology_packet.json",
         ],
+
         "publication_drafts": [
             "papers/governed_artifact_cognition/PUB_GOV_ARTIFACT_COG_01.md",
             "papers/waveform_rosetta/PUB_WAVE_ROSETTA_01.md",
@@ -5093,6 +5361,15 @@ def dashboard_payload() -> dict[str, Any]:
         "not_final_answer_release": True,
         "not_ai_consciousness_claim": True,
         "not_universal_ontology_claim": True,
+        "local_review_metrics_flow_indexed": True,
+        "flow_runtime_00_indexed": True,
+        "not_metrics_flow_product_release": True,
+        "not_metrics_flow_truth_certification": True,
+        "not_metrics_flow_consciousness_proof": True,
+        "not_metrics_flow_omega_detection": True,
+        "not_metrics_flow_provider_runtime": True,
+        "not_metrics_flow_memory_write": True,
+        "not_metrics_flow_federation": True,
     }
     _assert_safe_dashboard(dashboard)
     return dashboard
@@ -5618,7 +5895,7 @@ def docs() -> dict[str, str]:
     return {
         "README.md": "# Experiment Suite Docs\n\nPublic reviewer documentation for the claim-bounded reproducibility dashboard.\n",
         "assets/README.md": "# Assets\n\nOptional static assets for the public reproducibility dashboard.\n",
-        "index.md": f"# Public Experiment Suite Dashboard\n\nThis dashboard presents accepted evidence for reviewer orientation. It is not truth certification, not deployment authority, not final answer release, local fixture only, and requires external peer review.\n\n## Accepted evidence\n\n| Phase | Repo | Status | What this supports | Reviewer caution |\n| --- | --- | --- | --- | --- |\n{phase_rows}\n\n## Reviewer path\n\nStart with claim boundaries, then read the governed artifact cognition paper, WAVE Rosetta paper, SONYA-AEGIS-SMOKE-02, WAVE family, UNI-02D Sonya gate, and RETRO-LANE-00, Public Utility Alpha, Raw Baseline Comparison, Evidence Review Pack, RW-COMP-01, RW-COMP-02, Retrosynthesis Sandbox Cycle, Evidence Review Pack second-pass, RW-COMP-03, Universal Architecture Scaffold, Sonya Adapter Contract Registry, Sonya Adapter Smoke, Sonya Local Fixture Adapter, and Evidence Review Pack local adapter, Evidence Review Pack local adapter revision, RW-COMP local adapter, PMR doctrine, PMR local artifact index, PMR GPCU utility scoring, PMR lifecycle state machine, PMR lifecycle audit preflight, PMR Sophia lifecycle audit review, PMR destructive-action authorization preflight, PMR architecture diversity checkpoint, PMR simulation baseline comparison, PMR simulation statistical analysis, PMR federation stress corpus, PMR human provenance context, Sonya Local Fixture Adapter multi-route, and Sonya Local Fixture Adapter lineage clarity pages.\n\n## What this proves\n\nIt proves only that accepted local fixture artifacts and draft publication materials are organized for review.\n\n## What this does not prove\n\nNo oracle posture, no deployment posture, no final-answer posture, no AI consciousness claim, and no universal ontology claim.\n\n## Phase pages\n\n- [SONYA-AEGIS-SMOKE-02](sonya-aegis-smoke-02.md)\n- [WAVE Gold-Physics](wave-gold-physics.md)\n- [UNI-02D Sonya gate](uni02d-sonya-gate.md)\n- [RETRO-LANE-00](retro-lane-00.md)\n- [Public Utility Alpha](public-utility-alpha.md)\n- [Raw Baseline Comparison](raw-baseline-comparison.md)\n- [Evidence Review Pack](evidence-review-pack.md)\n- [RW-COMP-01](rw-comp-01.md)\n- [RW-COMP-02](rw-comp-02.md)\n- [Retrosynthesis Sandbox Cycle](retrosynthesis-sandbox-cycle.md)\n- [Evidence Review Pack second pass](evidence-review-pack-second-pass.md)\n- [RW-COMP-03](rw-comp-03.md)\n- [Universal Architecture Scaffold](universal-architecture.md)\n- [Sonya Adapter Contract Registry](sonya-adapter-contract-registry.md)\n- [Sonya required membrane checkpoint](sonya-required-membrane-checkpoint.md)\n- [TEL event stack](tel-event-stack.md)\n- [Sonya Adapter Smoke](sonya-adapter-smoke.md)\n- [Sonya Local Fixture Adapter](sonya-local-fixture-adapter.md)\n- [Evidence Review Pack local adapter](evidence-review-pack-local-adapter.md)\n- [Evidence Review Pack local adapter revision](evidence-review-pack-local-adapter-revision.md)\n- [RW-COMP local adapter](rw-comp-local-adapter.md)\n- [Provenance Memory Reservoir](provenance-memory-reservoir.md)\n- [PMR local artifact index](pmr-local-artifact-index.md)\n- [Ontology Claim Registry](ontology-claim-registry.md)\n- [Local Sonya path portability](local-sonya-path-portability.md)\n- [TB Product Slice](tb-product-slice.md)\n- [TB Product Slice 01](tb-product-slice-01.md)\n- [Sonya Local Fixture Adapter multi-route](sonya-local-fixture-adapter-multi-route.md)\n- [Sonya Local Fixture Adapter lineage clarity](sonya-local-fixture-adapter-lineage.md)\n- [Local Review Runtime V0](local-review-runtime-v0.md)\n- [Governed artifact cognition paper](governed-artifact-cognition-paper.md)\n- [Waveform Rosetta paper](waveform-rosetta-paper.md)\n",
+        "index.md": f"# Public Experiment Suite Dashboard\n\nThis dashboard presents accepted evidence for reviewer orientation. It is not truth certification, not deployment authority, not final answer release, local fixture only, and requires external peer review.\n\n## Accepted evidence\n\n| Phase | Repo | Status | What this supports | Reviewer caution |\n| --- | --- | --- | --- | --- |\n{phase_rows}\n\n## Reviewer path\n\nStart with claim boundaries, then read the governed artifact cognition paper, WAVE Rosetta paper, SONYA-AEGIS-SMOKE-02, WAVE family, UNI-02D Sonya gate, and RETRO-LANE-00, Public Utility Alpha, Raw Baseline Comparison, Evidence Review Pack, RW-COMP-01, RW-COMP-02, Retrosynthesis Sandbox Cycle, Evidence Review Pack second-pass, RW-COMP-03, Universal Architecture Scaffold, Sonya Adapter Contract Registry, Sonya Adapter Smoke, Sonya Local Fixture Adapter, and Evidence Review Pack local adapter, Evidence Review Pack local adapter revision, RW-COMP local adapter, PMR doctrine, PMR local artifact index, PMR GPCU utility scoring, PMR lifecycle state machine, PMR lifecycle audit preflight, PMR Sophia lifecycle audit review, PMR destructive-action authorization preflight, PMR architecture diversity checkpoint, PMR simulation baseline comparison, PMR simulation statistical analysis, PMR federation stress corpus, PMR human provenance context, Sonya Local Fixture Adapter multi-route, and Sonya Local Fixture Adapter lineage clarity pages.\n\n## What this proves\n\nIt proves only that accepted local fixture artifacts and draft publication materials are organized for review.\n\n## What this does not prove\n\nNo oracle posture, no deployment posture, no final-answer posture, no AI consciousness claim, and no universal ontology claim.\n\n## Phase pages\n\n- [SONYA-AEGIS-SMOKE-02](sonya-aegis-smoke-02.md)\n- [WAVE Gold-Physics](wave-gold-physics.md)\n- [UNI-02D Sonya gate](uni02d-sonya-gate.md)\n- [RETRO-LANE-00](retro-lane-00.md)\n- [Public Utility Alpha](public-utility-alpha.md)\n- [Raw Baseline Comparison](raw-baseline-comparison.md)\n- [Evidence Review Pack](evidence-review-pack.md)\n- [RW-COMP-01](rw-comp-01.md)\n- [RW-COMP-02](rw-comp-02.md)\n- [Retrosynthesis Sandbox Cycle](retrosynthesis-sandbox-cycle.md)\n- [Evidence Review Pack second pass](evidence-review-pack-second-pass.md)\n- [RW-COMP-03](rw-comp-03.md)\n- [Universal Architecture Scaffold](universal-architecture.md)\n- [Sonya Adapter Contract Registry](sonya-adapter-contract-registry.md)\n- [Sonya required membrane checkpoint](sonya-required-membrane-checkpoint.md)\n- [TEL event stack](tel-event-stack.md)\n- [Sonya Adapter Smoke](sonya-adapter-smoke.md)\n- [Sonya Local Fixture Adapter](sonya-local-fixture-adapter.md)\n- [Evidence Review Pack local adapter](evidence-review-pack-local-adapter.md)\n- [Evidence Review Pack local adapter revision](evidence-review-pack-local-adapter-revision.md)\n- [RW-COMP local adapter](rw-comp-local-adapter.md)\n- [Provenance Memory Reservoir](provenance-memory-reservoir.md)\n- [PMR local artifact index](pmr-local-artifact-index.md)\n- [Ontology Claim Registry](ontology-claim-registry.md)\n- [Local Sonya path portability](local-sonya-path-portability.md)\n- [TB Product Slice](tb-product-slice.md)\n- [TB Product Slice 01](tb-product-slice-01.md)\n- [Sonya Local Fixture Adapter multi-route](sonya-local-fixture-adapter-multi-route.md)\n- [Sonya Local Fixture Adapter lineage clarity](sonya-local-fixture-adapter-lineage.md)\n- [Local Review Runtime V0](local-review-runtime-v0.md)\n- [Local Review metrics and flow](local-review-metrics-flow.md)\n- [Governed artifact cognition paper](governed-artifact-cognition-paper.md)\n- [Waveform Rosetta paper](waveform-rosetta-paper.md)\n",
         "claim-boundaries.md": f"# Claim Boundaries\n\n{boundaries}\n\nNo oracle posture. No deployment posture. No final-answer posture. No AI consciousness claim. No universal ontology claim.\n",
 
         "local-review-runtime-v0.md": """# LOCAL-REVIEW-RUNTIME-V0
@@ -5640,6 +5917,78 @@ It does not prove product utility or authority.
 Blocked authorities: no product release, no final-answer authority, no accepted-evidence authority, no truth certification, no LAN enablement, no provider runtime/call authority, no memory write, no deployment, no federation.
 
 Next active lane: LOCAL-REVIEW-USABILITY-00.
+""",
+        "local-review-metrics-flow.md": f"""# Local Review metrics, TAF, bounds, Sonya coverage, and cognitive flow morphology
+
+This publication page synchronizes the locally validated CoherenceLattice `LOCAL-REVIEW-RUNTIME-V0` chain through `FLOW-RUNTIME-00`. It is a bounded diagnostic publication dashboard update only: it is not product release, not final-answer authority, not accepted-evidence authority, not truth certification, not consciousness proof, not Omega detection, not LAN enablement, not provider runtime, not memory write, not deployment, and not federation.
+
+## What was validated locally
+
+The local run reports `run_artifact_manifest.status = verified`, `export_bundle_parity_report.passed = true`, Sophia decision `pass`, and TEL replay status `replayable`. The accepted local-validation phases are `MET-LOCAL-00`, `WAVE-ROSETTA-METRIC-CALIBRATION-00`, `TAF-RUNTIME-00`, `SONYA-METRIC-MEMBRANE-COVERAGE-00`, `COHERENCE-METRIC-FORMULA-REGISTRY-00`, `METRIC-BOUND-SOURCE-TAXONOMY-00`, and `FLOW-RUNTIME-00`. Each phase is bounded to `pdxvoiceteacher/CoherenceLattice`, source phase `LOCAL-REVIEW-RUNTIME-V0`, status `accepted_local_validation`, product posture `local_diagnostic_scaffold_not_product_release`, authority posture `non_authoritative`, and public claim boundary `bounded_diagnostic_only`.
+
+## What artifacts were produced
+
+Primary artifacts indexed for this local diagnostic lane are:
+
+- `MET-LOCAL-00`: `evidence_review_runtime_metrics_packet.json`, `coherence_runtime_metrics_packet.json`, `coherence_metric_input_ledger.json`, and `evidence_review_runtime_metrics_summary.md`.
+- `WAVE-ROSETTA-METRIC-CALIBRATION-00`: `wave_rosetta_metric_calibration_context.json`.
+- `TAF-RUNTIME-00`: `coherence_action_functional_packet.json`.
+- `SONYA-METRIC-MEMBRANE-COVERAGE-00`: `sonya_metric_membrane_coverage_packet.json`.
+- `COHERENCE-METRIC-FORMULA-REGISTRY-00`: `coherence_metric_formula_registry.json` and `coherence_metric_formula_registry_binding.json`.
+- `METRIC-BOUND-SOURCE-TAXONOMY-00`: `metric_bound_source_taxonomy.json`, `metric_bound_profile_registry.json`, and `metric_bound_formula_binding.json`.
+- `FLOW-RUNTIME-00`: `cognitive_flow_morphology_packet.json`, `cognitive_flow_topology_packet.json`, and `cognitive_flow_morphology_summary.md`.
+
+## What metrics were computed
+
+The dashboard records evidence metrics status `verified_diagnostic`, coherence metrics status `verified_diagnostic`, TAF metric status `verified_diagnostic`, formula binding status `bound`, metric bound binding status `bound`, WAVE Rosetta baseline `true`, WAVE Rosetta is baseline not universal identity `true`, Sonya metric membrane coverage status `covered`, flow morphology status `observed_runtime_morphology`, and flow topology status `verified_diagnostic`.
+
+Flow values are: flow node count `20`, flow edge count `14`, spiral turn count `9`, repair loop count `2`, bottleneck count `0`, upward integration score `1`, flow continuity score `0.714286`, repair capacity score `1`, and spiral delta `-0.069622`.
+
+## WAVE Rosetta baseline, not universal identity
+
+WAVE Rosetta is used as a calibration baseline, not universal identity. The calibration context lets reviewers inspect how runtime proxy metrics relate to a known local baseline, but it does not assert universal ontology proof, truth certification, consciousness proof, or final physics.
+
+## TAF as diagnostic proxy
+
+TAF is represented here as a runtime diagnostic proxy, not the full theory. The local packet can expose a bounded action-functional-like signal for the fixture, but it does not certify Thomas/GUFT completeness or replace canonical theory review.
+
+## Formula registry separation
+
+The formula registry separates runtime proxy formulas from canonical theory formulas. Runtime proxy formulas are local diagnostic computations bound to emitted artifacts; canonical theory formulas require separate source binding and scientific review before any broader claim.
+
+## Metric-bound taxonomy
+
+The metric-bound taxonomy separates empirical WAVE bounds, runtime proxy bounds, governance-declared bounds, and future population-calibrated bounds. This prevents a local fixture metric from silently becoming a population claim, a universal bound, or a product-quality threshold.
+
+## Sonya metric membrane coverage
+
+Sonya metric membrane coverage prevents silent untracked ingress by requiring metric-facing paths to remain visible as governed local artifacts. Coverage status `covered` means the local diagnostic stack tracked the expected metric membrane path; it is not provider runtime, network authorization, LAN enablement, or memory write authority.
+
+## Cognitive flow morphology
+
+Cognitive flow morphology represents runtime topology derived from emitted artifacts. The poetic alias is `waters_spiral_runtime_v0` as poetic alias only. It labels an observed local morphology; it is not a scientific species, ontology, identity, or authority. No Omega artifact was emitted.
+
+Cognitive flow morphology is not consciousness proof, not Omega detection, not universal ontology proof, not truth certification, and not product release. Repeated runs are required for scientific claims, and this single local fixture remains bounded diagnostic evidence only.
+
+## Reproducibility command
+
+The following CoherenceLattice command is local validation, not product release. `C:\\UVLM` is a local validation example, not product default.
+
+```powershell
+{LOCAL_REVIEW_RUNTIME_V0_COMMAND}
+```
+
+## Allowed local diagnostic claim
+
+{LOCAL_REVIEW_METRICS_FLOW_CLAIM_ALLOWED}
+
+## Next likely scientific/product lanes
+
+- repeated-run metrics corpus
+- formula source binding to Thomas/GUFT corpus
+- Atlas population calibration
+- controlled fixture variation
+- negative controls
 """,
         "sonya-aegis-smoke-02.md": f"""# SONYA-AEGIS-SMOKE-02
 

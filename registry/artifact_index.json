@@ -953,6 +953,35 @@
       "export_bundle_parity_report.json",
       "ontology_claim_registry_00_acceptance_receipt.json"
     ],
+    "MET-LOCAL-00": [
+      "evidence_review_runtime_metrics_packet.json",
+      "coherence_runtime_metrics_packet.json",
+      "coherence_metric_input_ledger.json",
+      "evidence_review_runtime_metrics_summary.md"
+    ],
+    "WAVE-ROSETTA-METRIC-CALIBRATION-00": [
+      "wave_rosetta_metric_calibration_context.json"
+    ],
+    "TAF-RUNTIME-00": [
+      "coherence_action_functional_packet.json"
+    ],
+    "SONYA-METRIC-MEMBRANE-COVERAGE-00": [
+      "sonya_metric_membrane_coverage_packet.json"
+    ],
+    "COHERENCE-METRIC-FORMULA-REGISTRY-00": [
+      "coherence_metric_formula_registry.json",
+      "coherence_metric_formula_registry_binding.json"
+    ],
+    "METRIC-BOUND-SOURCE-TAXONOMY-00": [
+      "metric_bound_source_taxonomy.json",
+      "metric_bound_profile_registry.json",
+      "metric_bound_formula_binding.json"
+    ],
+    "FLOW-RUNTIME-00": [
+      "cognitive_flow_morphology_packet.json",
+      "cognitive_flow_topology_packet.json",
+      "cognitive_flow_morphology_summary.md"
+    ],
     "PMR-HUMAN-CONSENT-NEGATIVE-CONTROL-00": [
       "pmr_human_consent_negative_control_manifest.json",
       "pmr_invalid_human_consent_attempts.jsonl",
