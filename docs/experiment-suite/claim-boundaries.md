@@ -948,5 +948,28 @@
 - PMR-HUMAN-PROVENANCE-00 is not deployment authority.
 - PMR-HUMAN-PROVENANCE-00 is not truth certification.
 - Governed provenance resources may be future infrastructure rewards, but truth is not for sale.
+- RUNTIME-METRICS-CORPUS-SEED-00 is bounded seed corpus instrumentation only.
+- The runtime metrics seed corpus demonstrates local instrumentation and sensitivity groundwork across controlled local fixtures. It shows that the local review metric stack can record pass/watch/revise/incomplete/invalid-boundary outcomes, metric variation under perturbation, performance/artifact bloat signals, and observable user-value proxies while preserving non-authority boundaries.
+- RUNTIME-METRICS-CORPUS-SEED-00 is not population calibration.
+- RUNTIME-METRICS-CORPUS-SEED-00 is not federated.
+- RUNTIME-METRICS-CORPUS-SEED-00 is not product release.
+- RUNTIME-METRICS-CORPUS-SEED-00 is not final answer authority.
+- RUNTIME-METRICS-CORPUS-SEED-00 is not accepted evidence authority.
+- RUNTIME-METRICS-CORPUS-SEED-00 is not truth certification.
+- RUNTIME-METRICS-CORPUS-SEED-00 is not consciousness proof.
+- RUNTIME-METRICS-CORPUS-SEED-00 is not Omega detection.
+- RUNTIME-METRICS-CORPUS-SEED-00 is not universal ontology proof.
+- RUNTIME-METRICS-CORPUS-SEED-00 is not human benefit proof.
+- RUNTIME-METRICS-CORPUS-SEED-00 is not market validation.
+- RUNTIME-METRICS-CORPUS-SEED-00 is not deployment authority.
+- RUNTIME-METRICS-CORPUS-SEED-00 is not LAN enablement.
+- RUNTIME-METRICS-CORPUS-SEED-00 is not provider runtime.
+- RUNTIME-METRICS-CORPUS-SEED-00 is not network authorization.
+- RUNTIME-METRICS-CORPUS-SEED-00 is not memory write.
+- RUNTIME-METRICS-CORPUS-SEED-00 is not Atlas memory admission.
+- RUNTIME-METRICS-CORPUS-SEED-00 is not autonomous self-improvement.
+- RUNTIME-METRICS-CORPUS-SEED-00 is not peer review certification.
+- RUNTIME-METRICS-CORPUS-SEED-00 is not general AI safety certification.
+- RUNTIME-METRICS-CORPUS-SEED-00 is not clinical/scientific proof beyond bounded local seed fixtures.
 
 No oracle posture. No deployment posture. No final-answer posture. No AI consciousness claim. No universal ontology claim.
