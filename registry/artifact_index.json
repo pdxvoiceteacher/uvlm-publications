@@ -989,6 +989,12 @@
       "user_value_observable_packet.json",
       "runtime_metrics_seed_corpus_summary.md"
     ],
+    "PMR-LOCAL-RUNTIME-QUERYABLE-STORE-00": [
+      "pmr_local_query_index.json",
+      "pmr_local_query_smoke_results.jsonl",
+      "pmr_local_query_receipt.json",
+      "pmr_local_query_summary.md"
+    ],
     "PMR-HUMAN-CONSENT-NEGATIVE-CONTROL-00": [
       "pmr_human_consent_negative_control_manifest.json",
       "pmr_invalid_human_consent_attempts.jsonl",

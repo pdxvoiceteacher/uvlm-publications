@@ -971,5 +971,25 @@
 - RUNTIME-METRICS-CORPUS-SEED-00 is not peer review certification.
 - RUNTIME-METRICS-CORPUS-SEED-00 is not general AI safety certification.
 - RUNTIME-METRICS-CORPUS-SEED-00 is not clinical/scientific proof beyond bounded local seed fixtures.
+- PMR-LOCAL-RUNTIME-QUERYABLE-STORE-00 is bounded local provenance retrieval only.
+- PMR-LOCAL-RUNTIME-QUERYABLE-STORE-00 provides bounded local provenance query over the local review artifact ecology, including artifacts, dependency edges, runtime metrics, formula registry entries, metric bounds, TEL events, Sophia posture, Sonya coverage, flow nodes, and seed corpus observations.
+- PMR query is local provenance retrieval only.
+- PMR query is not memory write.
+- PMR query is not retrosynthesis.
+- PMR query is not Atlas memory admission.
+- PMR query is not truth certification.
+- PMR query is not product release.
+- PMR query is not final answer authority.
+- PMR query is not accepted evidence authority.
+- PMR query is not deployment.
+- PMR query is not federation.
+- PMR query is not provider runtime.
+- PMR query is not LAN enablement.
+- PMR query is not consciousness proof.
+- PMR query is not Omega detection.
+- PMR query is not universal ontology proof.
+- PMR query is not population calibration.
+- PMR query is not user benefit proof.
+- PMR query is not market validation.
 
 No oracle posture. No deployment posture. No final-answer posture. No AI consciousness claim. No universal ontology claim.

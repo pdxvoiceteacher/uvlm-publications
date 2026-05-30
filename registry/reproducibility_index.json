@@ -115,6 +115,10 @@
         "command": "python -c \"from pathlib import Path; from coherence.local_review.seed_corpus import build_runtime_metrics_seed_corpus; build_runtime_metrics_seed_corpus(output_root=Path(r'C:\\UVLM\\run_artifacts\\runtime_metrics_seed_corpus'))\""
       },
       {
+        "name": "PMR local queryable store acceptance",
+        "command": ".\\experiments\\Run-PMR-LOCAL-RUNTIME-QUERYABLE-STORE00-Acceptance.ps1 `\n  -OutputRoot C:\\UVLM\\run_artifacts\\pmr_local_runtime_queryable_store_00 `\n  -LogDir C:\\UVLM\\run_artifacts\\pmr_local_runtime_queryable_store_00_logs `\n  -CiMode"
+      },
+      {
         "name": "PMR Context Availability Ledger acceptance",
         "command": ".\\experiments\\Run-PMR-CONTEXT-AVAILABILITY-LEDGER00-Acceptance.ps1 `\n  -OutputRoot C:\\UVLM\\run_artifacts\\pmr_context_availability_ledger_00 `\n  -LogDir C:\\UVLM\\run_artifacts\\pmr_context_availability_ledger_00_logs `\n  -CiMode"
       },

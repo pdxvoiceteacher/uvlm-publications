@@ -87,6 +87,7 @@ REQUIRED_PHASES = {
     "METRIC-BOUND-SOURCE-TAXONOMY-00",
     "FLOW-RUNTIME-00",
     "RUNTIME-METRICS-CORPUS-SEED-00",
+    "PMR-LOCAL-RUNTIME-QUERYABLE-STORE-00",
 }
 REQUIRED_BOUNDARY_PHRASES = (
     "not truth certification",
@@ -119,6 +120,14 @@ REQUIRED_BOUNDARY_PHRASES = (
     "not population calibration",
     "not human benefit proof",
     "not market validation",
+    "PMR-LOCAL-RUNTIME-QUERYABLE-STORE-00",
+    "bounded local provenance retrieval only",
+    "PMR query is local provenance retrieval only",
+    "PMR query is not memory write",
+    "PMR query is not retrosynthesis",
+    "PMR query is not Atlas memory admission",
+    "PMR query is not truth certification",
+    "PMR query is not product release",
     "raw baseline comparison",
     "fixture-only measurement scaffold",
     "not hallucination reduction proof",
@@ -496,6 +505,11 @@ REQUIRED_BOUNDARY_PHRASES = (
     "Publication validation event is not peer review.",
 )
 FORBIDDEN_PHRASES = (
+    "claims retrosynthesis",
+    "performs retrosynthesis",
+    "retrosynthesis performed",
+    "Atlas memory admitted",
+    "claims Atlas memory admission",
     "population calibration",
     "population-calibrated",
     "market validation",
@@ -552,6 +566,7 @@ FORBIDDEN_PHRASES = (
     "claims deployment authority",
     "claims population calibration",
     "claims market validation",
+    "claims user benefit proof",
     "claims human benefit proof",
     "final answer released",
     "publisher finalized",
