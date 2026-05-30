@@ -52,6 +52,8 @@ The system is ready only for a bounded local retrosynthesis prototype. RETROSYNT
 
 ## Reproducibility
 
+Acceptance harness:
+
 ```powershell
 .\experiments\Run-RETROSYNTHESIS-READINESS00-Acceptance.ps1 `
   -OutputRoot C:\UVLM\run_artifacts\retrosynthesis_readiness_00 `
@@ -59,4 +61,14 @@ The system is ready only for a bounded local retrosynthesis prototype. RETROSYNT
   -CiMode
 ```
 
-The command records local readiness artifacts only. It does not perform retrosynthesis, write memory, admit Atlas memory, federate, release a product, deploy, enable provider runtime, enable LAN behavior, calibrate a population, certify truth, or prove consciousness. It does not perform Omega detection or prove universal ontology.
+Python readiness builder entrypoint:
+
+```powershell
+python -c "from pathlib import Path; from coherence.local_review.seed_corpus import build_runtime_metrics_seed_corpus; from coherence.pmr.local_query_store import build_pmr_local_query_store; from coherence.retrosynthesis.readiness import build_retrosynthesis_readiness_assessment; root=Path(r'C:\UVLM\run_artifacts\runtime_metrics_seed_corpus'); build_runtime_metrics_seed_corpus(output_root=root); build_pmr_local_query_store(root / 'bridge'); build_retrosynthesis_readiness_assessment(root / 'bridge')"
+```
+
+The Python entrypoint includes `build_runtime_metrics_seed_corpus`, `build_pmr_local_query_store`, `build_retrosynthesis_readiness_assessment`, `runtime_metrics_seed_corpus`, `pmr_local_query`, and `retrosynthesis_readiness` local artifacts. C:\UVLM is a local validation example, not product default.
+
+This command builds readiness artifacts only. This is readiness, not retrosynthesis. No improvement hypotheses are generated. No Atlas memory write occurs. No Atlas memory admission occurs. No federation occurs. No product release occurs. No final-answer authority is granted. No accepted-evidence authority is granted. No truth certification occurs. No Omega detection occurs. No consciousness proof or universal ontology proof is emitted.
+
+The commands record local readiness artifacts only. They do not perform retrosynthesis, write memory, admit Atlas memory, federate, release a product, deploy, enable provider runtime, enable LAN behavior, calibrate a population, certify truth, or prove consciousness. No Omega detection occurs, and no universal ontology proof is emitted.

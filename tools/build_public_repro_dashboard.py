@@ -1707,6 +1707,7 @@ RETROSYNTHESIS_READINESS_COMMAND = r""".\experiments\Run-RETROSYNTHESIS-READINES
   -OutputRoot C:\UVLM\run_artifacts\retrosynthesis_readiness_00 `
   -LogDir C:\UVLM\run_artifacts\retrosynthesis_readiness_00_logs `
   -CiMode"""
+RETROSYNTHESIS_READINESS_PYTHON_ENTRYPOINT = "python -c \"from pathlib import Path; from coherence.local_review.seed_corpus import build_runtime_metrics_seed_corpus; from coherence.pmr.local_query_store import build_pmr_local_query_store; from coherence.retrosynthesis.readiness import build_retrosynthesis_readiness_assessment; root=Path(r'C:\\UVLM\\run_artifacts\\runtime_metrics_seed_corpus'); build_runtime_metrics_seed_corpus(output_root=root); build_pmr_local_query_store(root / 'bridge'); build_retrosynthesis_readiness_assessment(root / 'bridge')\""
 RETROSYNTHESIS_READINESS_ARTIFACTS = [
     "retrosynthesis_readiness_packet.json",
     "retrosynthesis_readiness_checklist.json",
@@ -1774,7 +1775,7 @@ RETROSYNTHESIS_READINESS_PHASE = {
     "public_claim_boundary": "readiness_only_bounded_local_prototype_precondition",
     "primary_artifacts": RETROSYNTHESIS_READINESS_ARTIFACTS,
     "dashboard_summary": RETROSYNTHESIS_READINESS_DASHBOARD_SUMMARY,
-    "reproduction_command_summary": RETROSYNTHESIS_READINESS_COMMAND,
+    "reproduction_command_summary": RETROSYNTHESIS_READINESS_COMMAND + "\n\n" + RETROSYNTHESIS_READINESS_PYTHON_ENTRYPOINT,
     "claims_blocked": RETROSYNTHESIS_READINESS_CLAIMS_BLOCKED,
     "claim_allowed": RETROSYNTHESIS_READINESS_CLAIM_ALLOWED,
     "reviewer_caution": (
@@ -5802,6 +5803,7 @@ def reproducibility_index() -> dict[str, Any]:
                 {"name": "PMR local queryable store acceptance", "command": PMR_LOCAL_QUERYABLE_STORE_COMMAND},
                 {"name": "PMR local queryable store Python entrypoint", "command": PMR_LOCAL_QUERYABLE_STORE_PYTHON_ENTRYPOINT},
                 {"name": "Retrosynthesis readiness acceptance", "command": RETROSYNTHESIS_READINESS_COMMAND},
+                {"name": "Retrosynthesis readiness Python entrypoint", "command": RETROSYNTHESIS_READINESS_PYTHON_ENTRYPOINT},
                 {"name": "PMR Context Availability Ledger acceptance", "command": PMR_CONTEXT_AVAILABILITY_LEDGER_00_COMMAND},
                 {"name": "Local Sonya path portability acceptance", "command": LOCAL_SONYA_PATH_PORTABILITY_00_COMMAND},
                 {"name": "PMR doctrine acceptance", "command": PMR_00_COMMAND},
@@ -6508,11 +6510,23 @@ The system is ready only for a bounded local retrosynthesis prototype. RETROSYNT
 
 ## Reproducibility
 
+Acceptance harness:
+
 ```powershell
 {RETROSYNTHESIS_READINESS_COMMAND}
 ```
 
-The command records local readiness artifacts only. It does not perform retrosynthesis, write memory, admit Atlas memory, federate, release a product, deploy, enable provider runtime, enable LAN behavior, calibrate a population, certify truth, or prove consciousness. It does not perform Omega detection or prove universal ontology.
+Python readiness builder entrypoint:
+
+```powershell
+{RETROSYNTHESIS_READINESS_PYTHON_ENTRYPOINT}
+```
+
+The Python entrypoint includes `build_runtime_metrics_seed_corpus`, `build_pmr_local_query_store`, `build_retrosynthesis_readiness_assessment`, `runtime_metrics_seed_corpus`, `pmr_local_query`, and `retrosynthesis_readiness` local artifacts. C:\\UVLM is a local validation example, not product default.
+
+This command builds readiness artifacts only. This is readiness, not retrosynthesis. No improvement hypotheses are generated. No Atlas memory write occurs. No Atlas memory admission occurs. No federation occurs. No product release occurs. No final-answer authority is granted. No accepted-evidence authority is granted. No truth certification occurs. No Omega detection occurs. No consciousness proof or universal ontology proof is emitted.
+
+The commands record local readiness artifacts only. They do not perform retrosynthesis, write memory, admit Atlas memory, federate, release a product, deploy, enable provider runtime, enable LAN behavior, calibrate a population, certify truth, or prove consciousness. No Omega detection occurs, and no universal ontology proof is emitted.
 """,
         "claim-boundaries.md": f"# Claim Boundaries\n\n{boundaries}\n\nNo oracle posture. No deployment posture. No final-answer posture. No AI consciousness claim. No universal ontology claim.\n",
 

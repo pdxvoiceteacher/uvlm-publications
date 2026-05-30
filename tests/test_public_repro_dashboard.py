@@ -202,6 +202,7 @@ REQUIRED_COMMAND_FRAGMENTS = (
     "Run-PMR-LOCAL-RUNTIME-QUERYABLE-STORE00-Acceptance.ps1",
     "build_pmr_local_query_store",
     "Run-RETROSYNTHESIS-READINESS00-Acceptance.ps1",
+    "build_retrosynthesis_readiness_assessment",
 )
 STALE_COMMAND_FRAGMENTS = (
     "tests/test_sonya_aegis_smoke_02.py",
@@ -3017,7 +3018,12 @@ def test_retrosynthesis_readiness_indexes_and_docs_are_generated(tmp_path):
         "retrosynthesis_readiness_summary.md",
     ):
         assert artifact in artifact_index["phases"]["RETROSYNTHESIS-READINESS-00"]
-    assert "Run-RETROSYNTHESIS-READINESS00-Acceptance.ps1" in json.dumps(reproducibility)
+    reproducibility_text = json.dumps(reproducibility)
+    assert "Run-RETROSYNTHESIS-READINESS00-Acceptance.ps1" in reproducibility_text
+    assert "build_retrosynthesis_readiness_assessment" in reproducibility_text
+    assert "build_pmr_local_query_store" in reproducibility_text
+    assert "build_runtime_metrics_seed_corpus" in reproducibility_text
+    assert "retrosynthesis_readiness" in reproducibility_text
     assert "retrosynthesis-readiness.md" in index
     for phrase in (
         "This is readiness, not retrosynthesis.",
@@ -3029,6 +3035,19 @@ def test_retrosynthesis_readiness_indexes_and_docs_are_generated(tmp_path):
         "No Omega detection occurred.",
         "Population calibration is not claimed.",
         "The system is ready only for a bounded local retrosynthesis prototype.",
+        "build_retrosynthesis_readiness_assessment",
+        "build_pmr_local_query_store",
+        "build_runtime_metrics_seed_corpus",
+        "retrosynthesis_readiness",
+        "runtime_metrics_seed_corpus",
+        "pmr_local_query",
+        "C:\\UVLM is a local validation example, not product default",
+        "This command builds readiness artifacts only.",
+        "No improvement hypotheses are generated.",
+        "No Atlas memory write occurs.",
+        "No Atlas memory admission occurs.",
+        "No truth certification occurs.",
+        "No consciousness proof or universal ontology proof is emitted.",
     ):
         assert phrase in page
     boundary_text = "\n".join(claim_boundaries["boundaries"])
