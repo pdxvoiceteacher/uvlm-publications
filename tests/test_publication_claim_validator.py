@@ -2617,3 +2617,204 @@ def test_claim_validator_rejects_local_review_metrics_flow_overclaims(tmp_path):
         "claims general AI safety certification",
     ):
         assert claim in found
+
+
+
+def test_claim_validator_allows_bounded_runtime_metrics_seed_corpus_claim(tmp_path):
+    paper_root = tmp_path / "paper"
+    paper_root.mkdir(parents=True)
+    allowed = (
+        "RUNTIME-METRICS-CORPUS-SEED-00 is a bounded local seed corpus that records "
+        "diagnostic metric variation across controlled local fixtures.\n"
+        "not truth certification\nnot deployment authority\nnot final answer release\nlocal fixture only\n"
+        "requires external peer review\nnot AI consciousness\nnot recursive Sonya federation\n"
+        "not retrosynthesis runtime\nnot Omega detection\nnot live Atlas memory writes\nnot live Sophia calls\n"
+    )
+    for name in (
+        "PUB_GOV_ARTIFACT_COG_01.md",
+        "reproducibility_appendix.md",
+        "claim_boundary_table.md",
+        "artifact_table.md",
+        "reviewer_quickstart.md",
+    ):
+        (paper_root / name).write_text(allowed, encoding="utf-8")
+    (paper_root / "status.json").write_text(
+        json.dumps(
+            {
+                "paper_id": "PUB-GOV-ARTIFACT-COG-01",
+                "repo": "pdxvoiceteacher/uvlm-publications",
+                "status": "drafted",
+                "claim_level": "internal_preprint_draft",
+                "requires_external_peer_review": True,
+                "not_truth_certification": True,
+                "not_deployment_authority": True,
+                "not_final_answer_release": True,
+                "not_live_model_execution": True,
+                "not_live_model_evaluation": True,
+                "not_production_evaluation": True,
+                "not_ai_consciousness_claim": True,
+            }
+        ),
+        encoding="utf-8",
+    )
+
+    result = validate_publication_claims(paper_root / "PUB_GOV_ARTIFACT_COG_01.md")
+
+    assert result["forbidden_overclaims_found"] == []
+
+
+def test_claim_validator_rejects_runtime_metrics_seed_corpus_overclaims(tmp_path):
+    paper_root = tmp_path / "paper"
+    paper_root.mkdir(parents=True)
+    base = (
+        "not truth certification\nnot deployment authority\nnot final answer release\nlocal fixture only\n"
+        "requires external peer review\nnot AI consciousness\nnot recursive Sonya federation\n"
+        "not retrosynthesis runtime\nnot Omega detection\nnot live Atlas memory writes\nnot live Sophia calls\n"
+    )
+    blocked = (
+        "RUNTIME-METRICS-CORPUS-SEED-00 proves population-calibrated coherence metrics.",
+        "RUNTIME-METRICS-CORPUS-SEED-00 demonstrates product readiness.",
+        "RUNTIME-METRICS-CORPUS-SEED-00 proves human benefit.",
+        "RUNTIME-METRICS-CORPUS-SEED-00 enables federation.",
+        "RUNTIME-METRICS-CORPUS-SEED-00 is Omega detection.",
+        "RUNTIME-METRICS-CORPUS-SEED-00 proves consciousness.",
+        "RUNTIME-METRICS-CORPUS-SEED-00 certifies truth.",
+        "RUNTIME-METRICS-CORPUS-SEED-00 admits Atlas memory.",
+    )
+    for name in (
+        "reproducibility_appendix.md",
+        "claim_boundary_table.md",
+        "artifact_table.md",
+        "reviewer_quickstart.md",
+    ):
+        (paper_root / name).write_text(base, encoding="utf-8")
+    (paper_root / "status.json").write_text(
+        json.dumps(
+            {
+                "paper_id": "PUB-GOV-ARTIFACT-COG-01",
+                "repo": "pdxvoiceteacher/uvlm-publications",
+                "status": "drafted",
+                "claim_level": "internal_preprint_draft",
+                "requires_external_peer_review": True,
+                "not_truth_certification": True,
+                "not_deployment_authority": True,
+                "not_final_answer_release": True,
+                "not_live_model_execution": True,
+                "not_live_model_evaluation": True,
+                "not_production_evaluation": True,
+                "not_ai_consciousness_claim": True,
+            }
+        ),
+        encoding="utf-8",
+    )
+    for claim in blocked:
+        (paper_root / "PUB_GOV_ARTIFACT_COG_01.md").write_text(base + "\n" + claim, encoding="utf-8")
+        result = validate_publication_claims(paper_root / "PUB_GOV_ARTIFACT_COG_01.md")
+        assert result["passed"] is False, claim
+        assert result["forbidden_overclaims_found"], claim
+
+
+
+def test_claim_validator_allows_bounded_pmr_local_queryable_store_claim(tmp_path):
+    paper_root = tmp_path / "paper"
+    paper_root.mkdir(parents=True)
+    allowed = (
+        "PMR-LOCAL-RUNTIME-QUERYABLE-STORE-00 provides bounded local provenance query over "
+        "the local review artifact ecology, including artifacts, dependency edges, runtime metrics, "
+        "formula registry entries, metric bounds, TEL events, Sophia posture, Sonya coverage, flow nodes, "
+        "and seed corpus observations.\n"
+        "not truth certification\nnot deployment authority\nnot final answer release\nlocal fixture only\n"
+        "requires external peer review\nnot AI consciousness\nnot recursive Sonya federation\n"
+        "not retrosynthesis runtime\nnot Omega detection\nnot live Atlas memory writes\nnot live Sophia calls\n"
+    )
+    for name in (
+        "PUB_GOV_ARTIFACT_COG_01.md",
+        "reproducibility_appendix.md",
+        "claim_boundary_table.md",
+        "artifact_table.md",
+        "reviewer_quickstart.md",
+    ):
+        (paper_root / name).write_text(allowed, encoding="utf-8")
+    (paper_root / "status.json").write_text(
+        json.dumps(
+            {
+                "paper_id": "PUB-GOV-ARTIFACT-COG-01",
+                "repo": "pdxvoiceteacher/uvlm-publications",
+                "status": "drafted",
+                "claim_level": "internal_preprint_draft",
+                "requires_external_peer_review": True,
+                "not_truth_certification": True,
+                "not_deployment_authority": True,
+                "not_final_answer_release": True,
+                "not_live_model_execution": True,
+                "not_live_model_evaluation": True,
+                "not_production_evaluation": True,
+                "not_ai_consciousness_claim": True,
+            }
+        ),
+        encoding="utf-8",
+    )
+
+    result = validate_publication_claims(paper_root / "PUB_GOV_ARTIFACT_COG_01.md")
+
+    assert result["forbidden_overclaims_found"] == []
+
+
+def test_claim_validator_rejects_pmr_local_queryable_store_overclaims(tmp_path):
+    paper_root = tmp_path / "paper"
+    paper_root.mkdir(parents=True)
+    base = (
+        "not truth certification\nnot deployment authority\nnot final answer release\nlocal fixture only\n"
+        "requires external peer review\nnot AI consciousness\nnot recursive Sonya federation\n"
+        "not retrosynthesis runtime\nnot Omega detection\nnot live Atlas memory writes\nnot live Sophia calls\n"
+    )
+    blocked = (
+        "PMR-LOCAL-RUNTIME-QUERYABLE-STORE-00 performs retrosynthesis.",
+        "PMR-LOCAL-RUNTIME-QUERYABLE-STORE-00 admits Atlas memory.",
+        "PMR-LOCAL-RUNTIME-QUERYABLE-STORE-00 claims memory write.",
+        "PMR-LOCAL-RUNTIME-QUERYABLE-STORE-00 claims product release.",
+        "PMR-LOCAL-RUNTIME-QUERYABLE-STORE-00 claims final answer authority.",
+        "PMR-LOCAL-RUNTIME-QUERYABLE-STORE-00 claims accepted evidence authority.",
+        "PMR-LOCAL-RUNTIME-QUERYABLE-STORE-00 claims truth certification.",
+        "PMR-LOCAL-RUNTIME-QUERYABLE-STORE-00 claims deployment authority.",
+        "PMR-LOCAL-RUNTIME-QUERYABLE-STORE-00 enables federation.",
+        "PMR-LOCAL-RUNTIME-QUERYABLE-STORE-00 claims provider runtime.",
+        "PMR-LOCAL-RUNTIME-QUERYABLE-STORE-00 claims LAN enablement.",
+        "PMR-LOCAL-RUNTIME-QUERYABLE-STORE-00 proves consciousness.",
+        "PMR-LOCAL-RUNTIME-QUERYABLE-STORE-00 is Omega detection.",
+        "PMR-LOCAL-RUNTIME-QUERYABLE-STORE-00 claims universal ontology proof.",
+        "PMR-LOCAL-RUNTIME-QUERYABLE-STORE-00 proves population-calibrated retrieval.",
+        "PMR-LOCAL-RUNTIME-QUERYABLE-STORE-00 claims user benefit proof.",
+        "PMR-LOCAL-RUNTIME-QUERYABLE-STORE-00 claims market validation.",
+    )
+    for name in (
+        "reproducibility_appendix.md",
+        "claim_boundary_table.md",
+        "artifact_table.md",
+        "reviewer_quickstart.md",
+    ):
+        (paper_root / name).write_text(base, encoding="utf-8")
+    (paper_root / "status.json").write_text(
+        json.dumps(
+            {
+                "paper_id": "PUB-GOV-ARTIFACT-COG-01",
+                "repo": "pdxvoiceteacher/uvlm-publications",
+                "status": "drafted",
+                "claim_level": "internal_preprint_draft",
+                "requires_external_peer_review": True,
+                "not_truth_certification": True,
+                "not_deployment_authority": True,
+                "not_final_answer_release": True,
+                "not_live_model_execution": True,
+                "not_live_model_evaluation": True,
+                "not_production_evaluation": True,
+                "not_ai_consciousness_claim": True,
+            }
+        ),
+        encoding="utf-8",
+    )
+    for claim in blocked:
+        (paper_root / "PUB_GOV_ARTIFACT_COG_01.md").write_text(base + "\n" + claim, encoding="utf-8")
+        result = validate_publication_claims(paper_root / "PUB_GOV_ARTIFACT_COG_01.md")
+        assert result["passed"] is False, claim
+        assert result["forbidden_overclaims_found"], claim

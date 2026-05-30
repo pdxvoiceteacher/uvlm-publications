@@ -86,6 +86,8 @@ REQUIRED_PHASES = {
     "COHERENCE-METRIC-FORMULA-REGISTRY-00",
     "METRIC-BOUND-SOURCE-TAXONOMY-00",
     "FLOW-RUNTIME-00",
+    "RUNTIME-METRICS-CORPUS-SEED-00",
+    "PMR-LOCAL-RUNTIME-QUERYABLE-STORE-00",
 }
 REQUIRED_BOUNDARY_PHRASES = (
     "not truth certification",
@@ -113,6 +115,24 @@ REQUIRED_BOUNDARY_PHRASES = (
     "waters_spiral_runtime_v0",
     "not general AI safety certification",
     "not recursive braid",
+    "RUNTIME-METRICS-CORPUS-SEED-00",
+    "bounded seed corpus instrumentation only",
+    "not population calibration",
+    "not human benefit proof",
+    "not market validation",
+    "PMR-LOCAL-RUNTIME-QUERYABLE-STORE-00",
+    "bounded local provenance retrieval only",
+    "PMR query is local provenance retrieval only",
+    "PMR query is not memory write",
+    "PMR query is not retrosynthesis",
+    "PMR query is not Atlas memory admission",
+    "PMR query is not truth certification",
+    "PMR query is not product release",
+    "PMR query is not final answer",
+    "build_pmr_local_query_store",
+    "build_runtime_metrics_seed_corpus",
+    "runtime_metrics_seed_corpus",
+    "pmr_local_query",
     "raw baseline comparison",
     "fixture-only measurement scaffold",
     "not hallucination reduction proof",
@@ -490,6 +510,15 @@ REQUIRED_BOUNDARY_PHRASES = (
     "Publication validation event is not peer review.",
 )
 FORBIDDEN_PHRASES = (
+    "claims retrosynthesis",
+    "performs retrosynthesis",
+    "retrosynthesis performed",
+    "Atlas memory admitted",
+    "claims Atlas memory admission",
+    "population calibration",
+    "population-calibrated",
+    "market validation",
+    "human benefit proof",
     "deployment readiness",
     "deployment ready",
     "truth certified",
@@ -540,6 +569,10 @@ FORBIDDEN_PHRASES = (
     "production ready",
     "deployment authorized",
     "claims deployment authority",
+    "claims population calibration",
+    "claims market validation",
+    "claims user benefit proof",
+    "claims human benefit proof",
     "final answer released",
     "publisher finalized",
     "omega detected",
@@ -883,6 +916,9 @@ def _forbidden_hits(text: str) -> list[str]:
                 continue
             if phrase == "federation" and (
                 _is_negated(text, index)
+                or "future federation requires" in text[max(0, index - 24) : index + 64]
+                or "does not authorize" in text[max(0, index - 96) : index]
+                or "not_federation" in text[max(0, index - 64) : index + 64]
                 or
                 text[index : index + 40].startswith("federation is blocked by default")
                 or text[index : index + 48].startswith("federation stress corpus is not federation")
@@ -978,13 +1014,23 @@ def _forbidden_hits(text: str) -> list[str]:
             ):
                 start = index + len(normalized_phrase)
                 continue
-            if phrase in {"peer review certification", "universal ontology proof"} and _is_negated(text, index):
+            if phrase in {"population calibration", "population-calibrated", "peer review certification", "universal ontology proof"} and _is_negated(text, index):
                 start = index + len(normalized_phrase)
                 continue
-            if phrase in {"peer review certification", "universal ontology proof"} and f"not {normalized_phrase}" in text[max(0, index - 64) : index + 64]:
+            if phrase in {"population calibration", "population-calibrated", "peer review certification", "universal ontology proof"} and f"not {normalized_phrase}" in text[max(0, index - 64) : index + 64]:
                 start = index + len(normalized_phrase)
                 continue
             if _is_allowed_no_emit_receipt_context(text, index):
+                start = index + len(normalized_phrase)
+                continue
+            if phrase == "population calibration" and (
+                "future population calibration requires" in text[max(0, index - 24) : index + 72]
+                or "population calibration status" in text[max(0, index - 24) : index + 48]
+                or "does not authorize" in text[max(0, index - 96) : index]
+            ):
+                start = index + len(normalized_phrase)
+                continue
+            if phrase == "population-calibrated" and "future population calibrated bounds" in text[max(0, index - 24) : index + 72]:
                 start = index + len(normalized_phrase)
                 continue
             if phrase in {"truth certification", "final answer release", "product release"} and _is_allowed_bounded_release_context(text, index, phrase):
