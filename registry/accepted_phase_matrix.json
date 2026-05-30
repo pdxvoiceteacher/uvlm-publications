@@ -2464,7 +2464,7 @@
         "pmr_query_is_not_federation": true,
         "pmr_query_is_not_population_calibration": true
       },
-      "reproduction_command_summary": ".\\experiments\\Run-PMR-LOCAL-RUNTIME-QUERYABLE-STORE00-Acceptance.ps1 `\n  -OutputRoot C:\\UVLM\\run_artifacts\\pmr_local_runtime_queryable_store_00 `\n  -LogDir C:\\UVLM\\run_artifacts\\pmr_local_runtime_queryable_store_00_logs `\n  -CiMode",
+      "reproduction_command_summary": ".\\experiments\\Run-PMR-LOCAL-RUNTIME-QUERYABLE-STORE00-Acceptance.ps1 `\n  -OutputRoot C:\\UVLM\\run_artifacts\\pmr_local_runtime_queryable_store_00 `\n  -LogDir C:\\UVLM\\run_artifacts\\pmr_local_runtime_queryable_store_00_logs `\n  -CiMode\n\npython -c \"from pathlib import Path; from coherence.local_review.seed_corpus import build_runtime_metrics_seed_corpus; from coherence.pmr.local_query_store import build_pmr_local_query_store; root=Path(r'C:\\UVLM\\run_artifacts\\runtime_metrics_seed_corpus'); build_runtime_metrics_seed_corpus(output_root=root); build_pmr_local_query_store(root / 'bridge')\"",
       "claims_blocked": [
         "not retrosynthesis",
         "not Atlas memory admission",

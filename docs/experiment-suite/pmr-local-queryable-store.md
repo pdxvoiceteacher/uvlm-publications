@@ -69,6 +69,8 @@ PMR query prepares the substrate for future retrosynthesis-readiness analysis, b
 
 ## Reproducibility
 
+Acceptance harness:
+
 ```powershell
 .\experiments\Run-PMR-LOCAL-RUNTIME-QUERYABLE-STORE00-Acceptance.ps1 `
   -OutputRoot C:\UVLM\run_artifacts\pmr_local_runtime_queryable_store_00 `
@@ -76,4 +78,14 @@ PMR query prepares the substrate for future retrosynthesis-readiness analysis, b
   -CiMode
 ```
 
-The command records local query-index artifacts and smoke-query receipts only. It does not authorize provider runtime, LAN/network access, federation, memory write, Atlas memory admission, product release, deployment, or retrosynthesis.
+Python entrypoint repair fragment:
+
+```powershell
+python -c "from pathlib import Path; from coherence.local_review.seed_corpus import build_runtime_metrics_seed_corpus; from coherence.pmr.local_query_store import build_pmr_local_query_store; root=Path(r'C:\UVLM\run_artifacts\runtime_metrics_seed_corpus'); build_runtime_metrics_seed_corpus(output_root=root); build_pmr_local_query_store(root / 'bridge')"
+```
+
+The Python entrypoint includes `build_runtime_metrics_seed_corpus`, `build_pmr_local_query_store`, `runtime_metrics_seed_corpus`, and `pmr_local_query` provenance outputs. C:\UVLM is a local validation example, not product default.
+
+PMR query is local provenance retrieval only. PMR query is not memory write. PMR query is not retrosynthesis. PMR query is not Atlas memory admission. PMR query is not product release. PMR query is not truth certification. PMR query is not final answer.
+
+The commands record local query-index artifacts and smoke-query receipts only. PMR query is not federation. They do not authorize provider runtime, LAN/network access, memory write, Atlas memory admission, product release, deployment, truth certification, final answers, or retrosynthesis.

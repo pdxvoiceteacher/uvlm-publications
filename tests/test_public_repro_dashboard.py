@@ -198,6 +198,7 @@ REQUIRED_COMMAND_FRAGMENTS = (
     "Run-PMR-CONTEXT-AVAILABILITY-LEDGER00-Acceptance.ps1",
     "build_runtime_metrics_seed_corpus",
     "Run-PMR-LOCAL-RUNTIME-QUERYABLE-STORE00-Acceptance.ps1",
+    "build_pmr_local_query_store",
 )
 STALE_COMMAND_FRAGMENTS = (
     "tests/test_sonya_aegis_smoke_02.py",
@@ -2925,7 +2926,12 @@ def test_pmr_local_queryable_store_indexes_and_docs_are_generated(tmp_path):
         "pmr_local_query_summary.md",
     ):
         assert artifact in artifact_index["phases"]["PMR-LOCAL-RUNTIME-QUERYABLE-STORE-00"]
-    assert "Run-PMR-LOCAL-RUNTIME-QUERYABLE-STORE00-Acceptance.ps1" in json.dumps(reproducibility)
+    reproducibility_text = json.dumps(reproducibility)
+    assert "Run-PMR-LOCAL-RUNTIME-QUERYABLE-STORE00-Acceptance.ps1" in reproducibility_text
+    assert "build_pmr_local_query_store" in reproducibility_text
+    assert "build_runtime_metrics_seed_corpus" in reproducibility_text
+    assert "runtime_metrics_seed_corpus" in reproducibility_text
+    assert "pmr_local_query" in reproducibility_text
     assert "pmr-local-queryable-store.md" in index
     for phrase in (
         "PMR query is local provenance retrieval only.",
@@ -2934,6 +2940,12 @@ def test_pmr_local_queryable_store_indexes_and_docs_are_generated(tmp_path):
         "PMR query is not Atlas memory admission.",
         "PMR query is not truth certification.",
         "PMR query is not product release.",
+        "PMR query is not final answer.",
+        "build_pmr_local_query_store",
+        "build_runtime_metrics_seed_corpus",
+        "runtime_metrics_seed_corpus",
+        "pmr_local_query",
+        "C:\\UVLM is a local validation example, not product default",
         "PMR query prepares the substrate for future retrosynthesis-readiness analysis, but does not perform retrosynthesis.",
     ):
         assert phrase in page

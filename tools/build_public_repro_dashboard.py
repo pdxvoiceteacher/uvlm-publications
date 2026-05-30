@@ -1604,6 +1604,7 @@ PMR_LOCAL_QUERYABLE_STORE_COMMAND = r""".\experiments\Run-PMR-LOCAL-RUNTIME-QUER
   -OutputRoot C:\UVLM\run_artifacts\pmr_local_runtime_queryable_store_00 `
   -LogDir C:\UVLM\run_artifacts\pmr_local_runtime_queryable_store_00_logs `
   -CiMode"""
+PMR_LOCAL_QUERYABLE_STORE_PYTHON_ENTRYPOINT = "python -c \"from pathlib import Path; from coherence.local_review.seed_corpus import build_runtime_metrics_seed_corpus; from coherence.pmr.local_query_store import build_pmr_local_query_store; root=Path(r'C:\\UVLM\\run_artifacts\\runtime_metrics_seed_corpus'); build_runtime_metrics_seed_corpus(output_root=root); build_pmr_local_query_store(root / 'bridge')\""
 PMR_LOCAL_QUERYABLE_STORE_SUPPORTED_QUERY_TYPES = [
     "artifact_by_name",
     "artifact_by_role",
@@ -1689,7 +1690,7 @@ PMR_LOCAL_QUERYABLE_STORE_PHASE = {
     "public_claim_boundary": "bounded_local_provenance_retrieval_only",
     "primary_artifacts": PMR_LOCAL_QUERYABLE_STORE_ARTIFACTS,
     "dashboard_summary": PMR_LOCAL_QUERYABLE_STORE_DASHBOARD_SUMMARY,
-    "reproduction_command_summary": PMR_LOCAL_QUERYABLE_STORE_COMMAND,
+    "reproduction_command_summary": PMR_LOCAL_QUERYABLE_STORE_COMMAND + "\n\n" + PMR_LOCAL_QUERYABLE_STORE_PYTHON_ENTRYPOINT,
     "claims_blocked": PMR_LOCAL_QUERYABLE_STORE_CLAIMS_BLOCKED,
     "claim_allowed": PMR_LOCAL_QUERYABLE_STORE_CLAIM_ALLOWED,
     "reviewer_caution": (
@@ -5679,6 +5680,7 @@ def reproducibility_index() -> dict[str, Any]:
                 {"name": "Local Review Runtime V0 acceptance", "command": LOCAL_REVIEW_RUNTIME_V0_COMMAND},
                 {"name": "Runtime metrics seed corpus Python entrypoint", "command": RUNTIME_METRICS_SEED_CORPUS_COMMAND},
                 {"name": "PMR local queryable store acceptance", "command": PMR_LOCAL_QUERYABLE_STORE_COMMAND},
+                {"name": "PMR local queryable store Python entrypoint", "command": PMR_LOCAL_QUERYABLE_STORE_PYTHON_ENTRYPOINT},
                 {"name": "PMR Context Availability Ledger acceptance", "command": PMR_CONTEXT_AVAILABILITY_LEDGER_00_COMMAND},
                 {"name": "Local Sonya path portability acceptance", "command": LOCAL_SONYA_PATH_PORTABILITY_00_COMMAND},
                 {"name": "PMR doctrine acceptance", "command": PMR_00_COMMAND},
@@ -6304,11 +6306,23 @@ PMR query prepares the substrate for future retrosynthesis-readiness analysis, b
 
 ## Reproducibility
 
+Acceptance harness:
+
 ```powershell
 {PMR_LOCAL_QUERYABLE_STORE_COMMAND}
 ```
 
-The command records local query-index artifacts and smoke-query receipts only. It does not authorize provider runtime, LAN/network access, federation, memory write, Atlas memory admission, product release, deployment, or retrosynthesis.
+Python entrypoint repair fragment:
+
+```powershell
+{PMR_LOCAL_QUERYABLE_STORE_PYTHON_ENTRYPOINT}
+```
+
+The Python entrypoint includes `build_runtime_metrics_seed_corpus`, `build_pmr_local_query_store`, `runtime_metrics_seed_corpus`, and `pmr_local_query` provenance outputs. C:\\UVLM is a local validation example, not product default.
+
+PMR query is local provenance retrieval only. PMR query is not memory write. PMR query is not retrosynthesis. PMR query is not Atlas memory admission. PMR query is not product release. PMR query is not truth certification. PMR query is not final answer.
+
+The commands record local query-index artifacts and smoke-query receipts only. PMR query is not federation. They do not authorize provider runtime, LAN/network access, memory write, Atlas memory admission, product release, deployment, truth certification, final answers, or retrosynthesis.
 """,
         "claim-boundaries.md": f"# Claim Boundaries\n\n{boundaries}\n\nNo oracle posture. No deployment posture. No final-answer posture. No AI consciousness claim. No universal ontology claim.\n",
 
