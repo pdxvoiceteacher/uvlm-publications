@@ -73,6 +73,6 @@ The local review runtime now demonstrates a bounded, non-authoritative diagnosti
 
 - repeated-run metrics corpus
 - formula source binding to Thomas/GUFT corpus
-- Atlas population calibration
+- Future Atlas/Sophia population-pattern analysis
 - controlled fixture variation
 - negative controls

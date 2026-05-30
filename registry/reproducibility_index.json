@@ -111,6 +111,26 @@
         "command": ".\\experiments\\Run-LOCAL-REVIEW-RUNTIME-V0-Acceptance.ps1 `\n  -PythonPath .\\.venv\\Scripts\\python.exe `\n  -OutputRoot C:\\UVLM\\run_artifacts\\local_review_runtime_v0 `\n  -LogDir C:\\UVLM\\run_artifacts\\local_review_runtime_v0_logs `\n  -ReviewerObjective \"Review these local files for claim support, rejected inputs, duplicate handling, usability, Sophia audit posture, source-span support, TEL replay, PMR local runtime store, runtime metrics, total action functional, formula registry, metric bound taxonomy, cognitive flow morphology, Sonya metric membrane coverage, and non-authority boundaries.\" `\n  -SophiaRoot C:\\UVLM\\Sophia `\n  -EnableSophiaAudit `\n  -CiMode"
       },
       {
+        "name": "Runtime metrics seed corpus Python entrypoint",
+        "command": "python -c \"from pathlib import Path; from coherence.local_review.seed_corpus import build_runtime_metrics_seed_corpus; build_runtime_metrics_seed_corpus(output_root=Path(r'C:\\UVLM\\run_artifacts\\runtime_metrics_seed_corpus'))\""
+      },
+      {
+        "name": "PMR local queryable store acceptance",
+        "command": ".\\experiments\\Run-PMR-LOCAL-RUNTIME-QUERYABLE-STORE00-Acceptance.ps1 `\n  -OutputRoot C:\\UVLM\\run_artifacts\\pmr_local_runtime_queryable_store_00 `\n  -LogDir C:\\UVLM\\run_artifacts\\pmr_local_runtime_queryable_store_00_logs `\n  -CiMode"
+      },
+      {
+        "name": "PMR local queryable store Python entrypoint",
+        "command": "python -c \"from pathlib import Path; from coherence.local_review.seed_corpus import build_runtime_metrics_seed_corpus; from coherence.pmr.local_query_store import build_pmr_local_query_store; root=Path(r'C:\\UVLM\\run_artifacts\\runtime_metrics_seed_corpus'); build_runtime_metrics_seed_corpus(output_root=root); build_pmr_local_query_store(root / 'bridge')\""
+      },
+      {
+        "name": "Retrosynthesis readiness acceptance",
+        "command": ".\\experiments\\Run-RETROSYNTHESIS-READINESS00-Acceptance.ps1 `\n  -OutputRoot C:\\UVLM\\run_artifacts\\retrosynthesis_readiness_00 `\n  -LogDir C:\\UVLM\\run_artifacts\\retrosynthesis_readiness_00_logs `\n  -CiMode"
+      },
+      {
+        "name": "Retrosynthesis readiness Python entrypoint",
+        "command": "python -c \"from pathlib import Path; from coherence.local_review.seed_corpus import build_runtime_metrics_seed_corpus; from coherence.pmr.local_query_store import build_pmr_local_query_store; from coherence.retrosynthesis.readiness import build_retrosynthesis_readiness_assessment; root=Path(r'C:\\UVLM\\run_artifacts\\runtime_metrics_seed_corpus'); build_runtime_metrics_seed_corpus(output_root=root); build_pmr_local_query_store(root / 'bridge'); build_retrosynthesis_readiness_assessment(root / 'bridge')\""
+      },
+      {
         "name": "PMR Context Availability Ledger acceptance",
         "command": ".\\experiments\\Run-PMR-CONTEXT-AVAILABILITY-LEDGER00-Acceptance.ps1 `\n  -OutputRoot C:\\UVLM\\run_artifacts\\pmr_context_availability_ledger_00 `\n  -LogDir C:\\UVLM\\run_artifacts\\pmr_context_availability_ledger_00_logs `\n  -CiMode"
       },

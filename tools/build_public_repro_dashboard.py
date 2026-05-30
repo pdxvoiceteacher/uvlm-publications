@@ -1513,6 +1513,279 @@ LOCAL_REVIEW_METRICS_FLOW_PHASES = [
     for phase_id in LOCAL_REVIEW_METRICS_FLOW_PHASE_IDS
 ]
 
+
+RUNTIME_METRICS_SEED_CORPUS_COMMAND = "python -c \"from pathlib import Path; from coherence.local_review.seed_corpus import build_runtime_metrics_seed_corpus; build_runtime_metrics_seed_corpus(output_root=Path(r'C:\\UVLM\\run_artifacts\\runtime_metrics_seed_corpus'))\""
+RUNTIME_METRICS_SEED_CORPUS_ARTIFACTS = [
+    "runtime_metrics_seed_corpus.json",
+    "runtime_metrics_seed_observations.jsonl",
+    "runtime_performance_profile.json",
+    "user_value_observable_packet.json",
+    "runtime_metrics_seed_corpus_summary.md",
+]
+RUNTIME_METRICS_SEED_CORPUS_DASHBOARD_SUMMARY = {
+    "observation_count": 6,
+    "fixture_count": 6,
+    "pass_count": 2,
+    "watch_count": 1,
+    "revise_count": 1,
+    "incomplete_count": 1,
+    "invalid_boundary_violation_count": 1,
+    "population_calibration_status": "not_population_calibrated",
+    "federation_status": "not_federated",
+    "user_population_sample_count": 0,
+    "future_population_calibration_requires_federation_or_pilot_population": True,
+    "repeated_runs_required_for_scientific_claims": True,
+    "user_value_status": "observable_proxy_only",
+    "artifact_count": 635,
+    "total_artifact_bytes": 3520816,
+    "bloat_warning_count": 1,
+    "seed_corpus_is_not_product_release": True,
+    "seed_corpus_is_not_truth_certification": True,
+    "seed_corpus_is_not_consciousness_proof": True,
+    "seed_corpus_is_not_omega_detection": True,
+    "seed_corpus_is_not_universal_ontology_proof": True,
+    "seed_corpus_is_not_population_calibration": True,
+    "seed_corpus_is_not_federation": True,
+}
+RUNTIME_METRICS_SEED_CORPUS_CLAIM_ALLOWED = (
+    "The runtime metrics seed corpus demonstrates local instrumentation and sensitivity groundwork across controlled local fixtures. "
+    "It shows that the local review metric stack can record pass/watch/revise/incomplete/invalid-boundary outcomes, "
+    "metric variation under perturbation, performance/artifact bloat signals, and observable user-value proxies while preserving non-authority boundaries."
+)
+RUNTIME_METRICS_SEED_CORPUS_CLAIMS_BLOCKED = [
+    "not population calibration",
+    "not federation",
+    "not product release",
+    "not final answer authority",
+    "not accepted evidence authority",
+    "not truth certification",
+    "not consciousness proof",
+    "not Omega detection",
+    "not universal ontology proof",
+    "not human benefit proof",
+    "not market validation",
+    "not deployment authority",
+    "not LAN enablement",
+    "not provider runtime",
+    "not network authorization",
+    "not memory write",
+    "not Atlas memory admission",
+    "not autonomous self-improvement",
+    "not peer review certification",
+    "not general AI safety certification",
+    "not clinical/scientific proof beyond bounded local seed fixtures",
+]
+RUNTIME_METRICS_SEED_CORPUS_PHASE = {
+    "phase_id": "RUNTIME-METRICS-CORPUS-SEED-00",
+    "repo": "pdxvoiceteacher/CoherenceLattice",
+    "source_phase": "LOCAL-REVIEW-RUNTIME-V0",
+    "status": "accepted_local_validation",
+    "publication_status": "dashboard_synced",
+    "evidence_type": "bounded_local_seed_corpus_instrumentation",
+    "product_posture": "local_seed_corpus_not_population_calibration_not_product_release",
+    "authority_posture": "non_authoritative",
+    "public_claim_boundary": "bounded_seed_corpus_instrumentation_only",
+    "primary_artifacts": RUNTIME_METRICS_SEED_CORPUS_ARTIFACTS,
+    "dashboard_summary": RUNTIME_METRICS_SEED_CORPUS_DASHBOARD_SUMMARY,
+    "reproduction_command_summary": RUNTIME_METRICS_SEED_CORPUS_COMMAND,
+    "claims_blocked": RUNTIME_METRICS_SEED_CORPUS_CLAIMS_BLOCKED,
+    "claim_allowed": RUNTIME_METRICS_SEED_CORPUS_CLAIM_ALLOWED,
+    "reviewer_caution": (
+        "RUNTIME-METRICS-CORPUS-SEED-00 is bounded local instrumentation and sensitivity groundwork only; "
+        "it is not population calibration, not federated, not product release, not truth certification, not consciousness proof, "
+        "not Omega detection, not universal ontology proof, not human benefit proof, not market validation, not deployment readiness, "
+        "not final answer authority, not accepted evidence authority, not provider runtime, not network authorization, not memory write, "
+        "and not Atlas memory admission."
+    ),
+}
+
+
+PMR_LOCAL_QUERYABLE_STORE_COMMAND = r""".\experiments\Run-PMR-LOCAL-RUNTIME-QUERYABLE-STORE00-Acceptance.ps1 `
+  -OutputRoot C:\UVLM\run_artifacts\pmr_local_runtime_queryable_store_00 `
+  -LogDir C:\UVLM\run_artifacts\pmr_local_runtime_queryable_store_00_logs `
+  -CiMode"""
+PMR_LOCAL_QUERYABLE_STORE_PYTHON_ENTRYPOINT = "python -c \"from pathlib import Path; from coherence.local_review.seed_corpus import build_runtime_metrics_seed_corpus; from coherence.pmr.local_query_store import build_pmr_local_query_store; root=Path(r'C:\\UVLM\\run_artifacts\\runtime_metrics_seed_corpus'); build_runtime_metrics_seed_corpus(output_root=root); build_pmr_local_query_store(root / 'bridge')\""
+PMR_LOCAL_QUERYABLE_STORE_SUPPORTED_QUERY_TYPES = [
+    "artifact_by_name",
+    "artifact_by_role",
+    "artifact_by_retention_class",
+    "dependency_upstream",
+    "dependency_downstream",
+    "metric_by_id",
+    "formula_by_id",
+    "bound_profile_by_metric",
+    "tel_event_by_type",
+    "sophia_decision_by_run",
+    "seed_observation_by_fixture",
+    "seed_observation_by_posture",
+    "flow_node_by_stage",
+    "sonya_coverage_by_artifact",
+    "forbidden_authority_scan",
+]
+PMR_LOCAL_QUERYABLE_STORE_ARTIFACTS = [
+    "pmr_local_query_index.json",
+    "pmr_local_query_smoke_results.jsonl",
+    "pmr_local_query_receipt.json",
+    "pmr_local_query_summary.md",
+]
+PMR_LOCAL_QUERYABLE_STORE_DASHBOARD_SUMMARY = {
+    "query_index_status": "indexed",
+    "supported_query_types": PMR_LOCAL_QUERYABLE_STORE_SUPPORTED_QUERY_TYPES,
+    "supported_query_type_count": 15,
+    "indexed_artifact_count": 44,
+    "indexed_dependency_edge_count": 34,
+    "indexed_metric_count": 37,
+    "indexed_formula_count": 19,
+    "indexed_bound_profile_count": 19,
+    "indexed_tel_event_count": 19,
+    "indexed_seed_observation_count": 6,
+    "indexed_flow_node_count": 20,
+    "indexed_sonya_coverage_row_count": 10,
+    "query_count": 15,
+    "completed_query_count": 14,
+    "no_match_query_count": 1,
+    "forbidden_authority_artifact_count": 0,
+    "pmr_query_posture": "local_provenance_retrieval_only",
+    "pmr_query_is_not_memory_write": True,
+    "pmr_query_is_not_retrosynthesis": True,
+    "pmr_query_is_not_atlas_memory_admission": True,
+    "pmr_query_is_not_truth_certification": True,
+    "pmr_query_is_not_product_release": True,
+    "pmr_query_is_not_federation": True,
+    "pmr_query_is_not_population_calibration": True,
+}
+PMR_LOCAL_QUERYABLE_STORE_CLAIM_ALLOWED = (
+    "PMR-LOCAL-RUNTIME-QUERYABLE-STORE-00 provides bounded local provenance query over the local review artifact ecology, "
+    "including artifacts, dependency edges, runtime metrics, formula registry entries, metric bounds, TEL events, Sophia posture, "
+    "Sonya coverage, flow nodes, and seed corpus observations."
+)
+PMR_LOCAL_QUERYABLE_STORE_CLAIMS_BLOCKED = [
+    "not retrosynthesis",
+    "not Atlas memory admission",
+    "not memory write",
+    "not product release",
+    "not final answer authority",
+    "not accepted evidence authority",
+    "not truth certification",
+    "not deployment",
+    "not federation",
+    "not provider runtime",
+    "not LAN enablement",
+    "not consciousness proof",
+    "not Omega detection",
+    "not universal ontology proof",
+    "not population calibration",
+    "not user benefit proof",
+    "not market validation",
+]
+PMR_LOCAL_QUERYABLE_STORE_PHASE = {
+    "phase_id": "PMR-LOCAL-RUNTIME-QUERYABLE-STORE-00",
+    "repo": "pdxvoiceteacher/CoherenceLattice",
+    "source_phase": "LOCAL-REVIEW-RUNTIME-V0",
+    "status": "accepted_local_validation",
+    "publication_status": "dashboard_synced",
+    "evidence_type": "bounded_local_provenance_query_index",
+    "product_posture": "local_queryable_provenance_store_not_memory_write_not_product_release",
+    "authority_posture": "non_authoritative",
+    "public_claim_boundary": "bounded_local_provenance_retrieval_only",
+    "primary_artifacts": PMR_LOCAL_QUERYABLE_STORE_ARTIFACTS,
+    "dashboard_summary": PMR_LOCAL_QUERYABLE_STORE_DASHBOARD_SUMMARY,
+    "reproduction_command_summary": PMR_LOCAL_QUERYABLE_STORE_COMMAND + "\n\n" + PMR_LOCAL_QUERYABLE_STORE_PYTHON_ENTRYPOINT,
+    "claims_blocked": PMR_LOCAL_QUERYABLE_STORE_CLAIMS_BLOCKED,
+    "claim_allowed": PMR_LOCAL_QUERYABLE_STORE_CLAIM_ALLOWED,
+    "reviewer_caution": (
+        "PMR-LOCAL-RUNTIME-QUERYABLE-STORE-00 is local provenance retrieval only. It is not retrosynthesis, "
+        "not Atlas memory admission, not memory write, not product release, not final-answer authority, "
+        "not accepted-evidence authority, not truth certification, not deployment, not federation, not provider runtime, "
+        "not LAN enablement, not consciousness proof, not Omega detection, not universal ontology proof, "
+        "not population calibration, not user benefit proof, and not market validation."
+    ),
+}
+
+
+RETROSYNTHESIS_READINESS_COMMAND = r""".\experiments\Run-RETROSYNTHESIS-READINESS00-Acceptance.ps1 `
+  -OutputRoot C:\UVLM\run_artifacts\retrosynthesis_readiness_00 `
+  -LogDir C:\UVLM\run_artifacts\retrosynthesis_readiness_00_logs `
+  -CiMode"""
+RETROSYNTHESIS_READINESS_PYTHON_ENTRYPOINT = "python -c \"from pathlib import Path; from coherence.local_review.seed_corpus import build_runtime_metrics_seed_corpus; from coherence.pmr.local_query_store import build_pmr_local_query_store; from coherence.retrosynthesis.readiness import build_retrosynthesis_readiness_assessment; root=Path(r'C:\\UVLM\\run_artifacts\\runtime_metrics_seed_corpus'); build_runtime_metrics_seed_corpus(output_root=root); build_pmr_local_query_store(root / 'bridge'); build_retrosynthesis_readiness_assessment(root / 'bridge')\""
+RETROSYNTHESIS_READINESS_ARTIFACTS = [
+    "retrosynthesis_readiness_packet.json",
+    "retrosynthesis_readiness_checklist.json",
+    "retrosynthesis_readiness_receipt.json",
+    "retrosynthesis_readiness_summary.md",
+]
+RETROSYNTHESIS_READINESS_DASHBOARD_SUMMARY = {
+    "readiness_status": "ready_for_bounded_retrosynthesis_prototype",
+    "readiness_score": 1.0,
+    "recommended_next_phase": "RETROSYNTHESIS-LOCAL-PROTOTYPE-00",
+    "readiness_dimension_count": 16,
+    "failed_checks": 0,
+    "blocking_reasons": 0,
+    "memory_write_not_performed_evidence_refs": 5,
+    "atlas_admission_not_performed_evidence_refs": 5,
+    "pmr_query_receipt_status": "completed",
+    "seed_corpus_observation_count": 6,
+    "population_calibration_status": "not_population_calibrated",
+    "federation_status": "not_federated",
+    "tel_replay_status": "replayable",
+    "retrosynthesis_performed": False,
+    "improvement_hypotheses_generated": False,
+    "atlas_memory_write_performed": False,
+    "memory_admission_performed": False,
+    "federation_performed": False,
+    "product_release_performed": False,
+    "final_answer_emitted": False,
+    "truth_certification_emitted": False,
+    "consciousness_proof_emitted": False,
+    "omega_detection_performed": False,
+}
+RETROSYNTHESIS_READINESS_CLAIM_ALLOWED = (
+    "RETROSYNTHESIS-READINESS-00 verifies that the local artifact ecology is ready for a bounded local retrosynthesis prototype, "
+    "based on PMR queryability, TEL replay, runtime metrics, formula registry, metric-bound taxonomy, seed corpus variation, "
+    "cognitive flow morphology, Sonya coverage, and Sophia posture."
+)
+RETROSYNTHESIS_READINESS_CLAIMS_BLOCKED = [
+    "not retrosynthesis performed",
+    "not improvement hypotheses generated",
+    "not Atlas memory write",
+    "not Atlas memory admission",
+    "not memory write",
+    "not federation",
+    "not product release",
+    "not final answer authority",
+    "not accepted evidence authority",
+    "not truth certification",
+    "not consciousness proof",
+    "not Omega detection",
+    "not universal ontology proof",
+    "not provider runtime",
+    "not LAN enablement",
+    "not deployment readiness",
+    "not population calibration",
+]
+RETROSYNTHESIS_READINESS_PHASE = {
+    "phase_id": "RETROSYNTHESIS-READINESS-00",
+    "repo": "pdxvoiceteacher/CoherenceLattice",
+    "source_phase": "PMR-LOCAL-RUNTIME-QUERYABLE-STORE-00",
+    "status": "accepted_local_validation",
+    "publication_status": "dashboard_synced",
+    "evidence_type": "bounded_local_retrosynthesis_readiness_check",
+    "product_posture": "readiness_only_not_retrosynthesis_not_product_release",
+    "authority_posture": "non_authoritative",
+    "public_claim_boundary": "readiness_only_bounded_local_prototype_precondition",
+    "primary_artifacts": RETROSYNTHESIS_READINESS_ARTIFACTS,
+    "dashboard_summary": RETROSYNTHESIS_READINESS_DASHBOARD_SUMMARY,
+    "reproduction_command_summary": RETROSYNTHESIS_READINESS_COMMAND + "\n\n" + RETROSYNTHESIS_READINESS_PYTHON_ENTRYPOINT,
+    "claims_blocked": RETROSYNTHESIS_READINESS_CLAIMS_BLOCKED,
+    "claim_allowed": RETROSYNTHESIS_READINESS_CLAIM_ALLOWED,
+    "reviewer_caution": (
+        "RETROSYNTHESIS-READINESS-00 is readiness, not retrosynthesis. It generated no improvement hypotheses, "
+        "performed no Atlas memory write, admitted no memory, performed no federation, released no product, emitted no final answer, "
+        "certified no truth, proved no consciousness, performed no Omega detection, proved no universal ontology, enabled no provider runtime or LAN, "
+        "and claims no population calibration."
+    ),
+}
+
 PMR_00_COMMAND = r""".\experiments\Run-PMR00-Acceptance.ps1 `
   -OutputRoot C:\UVLM\run_artifacts\pmr_00 `
   -LogDir C:\UVLM\run_artifacts\pmr_00_logs `
@@ -3402,6 +3675,9 @@ ACCEPTED_PHASES = [
 {"phase_id":"LAN-OPERATOR-CONSENT-PREFLIGHT-00","repo":"pdxvoiceteacher/CoherenceLattice","status":"accepted","evidence_type":"runtime_smoke","product_posture":"preflight_only_operator_consent_scaffold_without_lan_or_authority_enablement","primary_artifacts":LAN_OPERATOR_CONSENT_PREFLIGHT_00_ARTIFACTS,"dashboard_summary":LAN_OPERATOR_CONSENT_PREFLIGHT_00_DASHBOARD_SUMMARY,"reproduction_command_summary":LAN_OPERATOR_CONSENT_PREFLIGHT_00_COMMAND,"claims_blocked":LAN_OPERATOR_CONSENT_PREFLIGHT_00_CLAIMS_BLOCKED,"claim_allowed":"LAN operator consent preflight scaffold","reviewer_caution":"Consent preflight is not consent execution."},
 {"phase_id":"LOCAL-REVIEW-RUNTIME-V0","repo":"pdxvoiceteacher/CoherenceLattice","status":"accepted","evidence_type":"local_runtime_scaffold","product_posture":"evidence_bound_local_review_scaffold_without_product_release","primary_artifacts":LOCAL_REVIEW_RUNTIME_V0_ARTIFACTS,"dashboard_summary":LOCAL_REVIEW_RUNTIME_V0_DASHBOARD_SUMMARY,"reproduction_command_summary":LOCAL_REVIEW_RUNTIME_V0_COMMAND,"claims_blocked":LOCAL_REVIEW_RUNTIME_V0_CLAIMS_BLOCKED,"claim_allowed":"LOCAL-REVIEW-RUNTIME-V0 demonstrates an evidence-bound local review scaffold that wraps accepted local ingress, PMR context, source-span, claim-classification, and receipt UX artifacts into a human-readable non-authority local review receipt.","reviewer_caution":"LOCAL-REVIEW-RUNTIME-V0 is an evidence-bound local scaffold, not a released product. It demonstrates that a local wrapper can prove its lower-level ingress, PMR, source-span, claim-classification, and receipt UX path. It does not authorize final answers, accepted evidence, product release, provider runtime, memory writes, LAN enablement, federate operations, deployment, or truth certification."},
 *LOCAL_REVIEW_METRICS_FLOW_PHASES,
+RUNTIME_METRICS_SEED_CORPUS_PHASE,
+PMR_LOCAL_QUERYABLE_STORE_PHASE,
+RETROSYNTHESIS_READINESS_PHASE,
 {"phase_id":"PMR-CONTEXT-AVAILABILITY-LEDGER-00","repo":"pdxvoiceteacher/CoherenceLattice","status":"accepted","evidence_type":"governance_scaffold","product_posture":"fixture_only_context_availability_without_source_content_or_memory_authority","primary_artifacts":PMR_CONTEXT_AVAILABILITY_LEDGER_00_ARTIFACTS,"dashboard_summary":PMR_CONTEXT_AVAILABILITY_LEDGER_00_DASHBOARD_SUMMARY,"reproduction_command_summary":PMR_CONTEXT_AVAILABILITY_LEDGER_00_COMMAND,"claims_blocked":PMR_CONTEXT_AVAILABILITY_LEDGER_00_CLAIMS_BLOCKED,"claim_allowed":"context availability ledger scaffold","reviewer_caution":"Expiration is not nonexistence."},
 {"phase_id":"LOCAL-SERVER-USER-FILE-INGRESS-00","repo":"pdxvoiceteacher/CoherenceLattice","status":"accepted","evidence_type":"runtime_smoke","product_posture":"explicit_local_user_file_ingress_without_memory_or_network_authority","primary_artifacts":LOCAL_SERVER_USER_FILE_INGRESS_00_ARTIFACTS,"dashboard_summary":LOCAL_SERVER_USER_FILE_INGRESS_00_DASHBOARD_SUMMARY,"reproduction_command_summary":LOCAL_SERVER_USER_FILE_INGRESS_00_COMMAND,"claims_blocked":LOCAL_SERVER_USER_FILE_INGRESS_00_CLAIMS_BLOCKED,"claim_allowed":"explicit local user file ingress runtime smoke","reviewer_caution":"User file ingress is not memory write."},
 {"phase_id":"SONYA-LOCAL-SERVER-GATEWAY-02","repo":"pdxvoiceteacher/CoherenceLattice","status":"accepted","evidence_type":"runtime_smoke","product_posture":"localhost_only_source_span_gateway_without_truth_or_memory_authority","primary_artifacts":SONYA_LOCAL_SERVER_GATEWAY_02_ARTIFACTS,"dashboard_summary":SONYA_LOCAL_SERVER_GATEWAY_02_DASHBOARD_SUMMARY,"reproduction_command_summary":SONYA_LOCAL_SERVER_GATEWAY_02_COMMAND,"claims_blocked":SONYA_LOCAL_SERVER_GATEWAY_02_CLAIMS_BLOCKED,"claim_allowed":"localhost-only source-span gateway retrieval scaffold","reviewer_caution":"Source-span gateway review is not truth certification."},
@@ -5206,6 +5482,80 @@ BOUNDARIES = [
     "PMR-HUMAN-PROVENANCE-00 is not truth certification.",
     "Governed provenance resources may be future infrastructure rewards, but truth is not for sale.",
 ]
+BOUNDARIES.extend(
+    [
+        "RUNTIME-METRICS-CORPUS-SEED-00 is bounded seed corpus instrumentation only.",
+        RUNTIME_METRICS_SEED_CORPUS_CLAIM_ALLOWED,
+        "RUNTIME-METRICS-CORPUS-SEED-00 is not population calibration.",
+        "RUNTIME-METRICS-CORPUS-SEED-00 is not federated.",
+        "RUNTIME-METRICS-CORPUS-SEED-00 is not product release.",
+        "RUNTIME-METRICS-CORPUS-SEED-00 is not final answer authority.",
+        "RUNTIME-METRICS-CORPUS-SEED-00 is not accepted evidence authority.",
+        "RUNTIME-METRICS-CORPUS-SEED-00 is not truth certification.",
+        "RUNTIME-METRICS-CORPUS-SEED-00 is not consciousness proof.",
+        "RUNTIME-METRICS-CORPUS-SEED-00 is not Omega detection.",
+        "RUNTIME-METRICS-CORPUS-SEED-00 is not universal ontology proof.",
+        "RUNTIME-METRICS-CORPUS-SEED-00 is not human benefit proof.",
+        "RUNTIME-METRICS-CORPUS-SEED-00 is not market validation.",
+        "RUNTIME-METRICS-CORPUS-SEED-00 is not deployment authority.",
+        "RUNTIME-METRICS-CORPUS-SEED-00 is not LAN enablement.",
+        "RUNTIME-METRICS-CORPUS-SEED-00 is not provider runtime.",
+        "RUNTIME-METRICS-CORPUS-SEED-00 is not network authorization.",
+        "RUNTIME-METRICS-CORPUS-SEED-00 is not memory write.",
+        "RUNTIME-METRICS-CORPUS-SEED-00 is not Atlas memory admission.",
+        "RUNTIME-METRICS-CORPUS-SEED-00 is not autonomous self-improvement.",
+        "RUNTIME-METRICS-CORPUS-SEED-00 is not peer review certification.",
+        "RUNTIME-METRICS-CORPUS-SEED-00 is not general AI safety certification.",
+        "RUNTIME-METRICS-CORPUS-SEED-00 is not clinical/scientific proof beyond bounded local seed fixtures.",
+    ]
+)
+BOUNDARIES.extend(
+    [
+        "PMR-LOCAL-RUNTIME-QUERYABLE-STORE-00 is bounded local provenance retrieval only.",
+        PMR_LOCAL_QUERYABLE_STORE_CLAIM_ALLOWED,
+        "PMR query is local provenance retrieval only.",
+        "PMR query is not memory write.",
+        "PMR query is not retrosynthesis.",
+        "PMR query is not Atlas memory admission.",
+        "PMR query is not truth certification.",
+        "PMR query is not product release.",
+        "PMR query is not final answer authority.",
+        "PMR query is not accepted evidence authority.",
+        "PMR query is not deployment.",
+        "PMR query is not federation.",
+        "PMR query is not provider runtime.",
+        "PMR query is not LAN enablement.",
+        "PMR query is not consciousness proof.",
+        "PMR query is not Omega detection.",
+        "PMR query is not universal ontology proof.",
+        "PMR query is not population calibration.",
+        "PMR query is not user benefit proof.",
+        "PMR query is not market validation.",
+    ]
+)
+BOUNDARIES.extend(
+    [
+        "RETROSYNTHESIS-READINESS-00 is readiness, not retrosynthesis.",
+        RETROSYNTHESIS_READINESS_CLAIM_ALLOWED,
+        "RETROSYNTHESIS-READINESS-00 generated no improvement hypotheses.",
+        "RETROSYNTHESIS-READINESS-00 performed no Atlas memory write.",
+        "RETROSYNTHESIS-READINESS-00 performed no Atlas memory admission.",
+        "RETROSYNTHESIS-READINESS-00 performed no memory write.",
+        "RETROSYNTHESIS-READINESS-00 performed no federation.",
+        "RETROSYNTHESIS-READINESS-00 performed no product release.",
+        "RETROSYNTHESIS-READINESS-00 has no final-answer authority.",
+        "RETROSYNTHESIS-READINESS-00 has no accepted-evidence authority.",
+        "RETROSYNTHESIS-READINESS-00 is not truth certification.",
+        "RETROSYNTHESIS-READINESS-00 is not consciousness proof.",
+        "RETROSYNTHESIS-READINESS-00 performed no Omega detection.",
+        "RETROSYNTHESIS-READINESS-00 is not universal ontology proof.",
+        "RETROSYNTHESIS-READINESS-00 is not provider runtime.",
+        "RETROSYNTHESIS-READINESS-00 is not LAN enablement.",
+        "RETROSYNTHESIS-READINESS-00 is not deployment readiness.",
+        "RETROSYNTHESIS-READINESS-00 is not population calibration.",
+        "RETROSYNTHESIS-READINESS-00 is ready only for a bounded local retrosynthesis prototype.",
+    ]
+)
 GLOBAL_NON_CLAIMS = [
     "not truth certification",
     "not deployment authority",
@@ -5343,6 +5693,20 @@ def dashboard_payload() -> dict[str, Any]:
             "metric_bound_formula_binding.json",
             "cognitive_flow_morphology_packet.json",
             "cognitive_flow_topology_packet.json",
+            "cognitive_flow_morphology_summary.md",
+            "runtime_metrics_seed_corpus.json",
+            "runtime_metrics_seed_observations.jsonl",
+            "runtime_performance_profile.json",
+            "user_value_observable_packet.json",
+            "runtime_metrics_seed_corpus_summary.md",
+            "pmr_local_query_index.json",
+            "pmr_local_query_smoke_results.jsonl",
+            "pmr_local_query_receipt.json",
+            "pmr_local_query_summary.md",
+            "retrosynthesis_readiness_packet.json",
+            "retrosynthesis_readiness_checklist.json",
+            "retrosynthesis_readiness_receipt.json",
+            "retrosynthesis_readiness_summary.md",
         ],
 
         "publication_drafts": [
@@ -5370,6 +5734,30 @@ def dashboard_payload() -> dict[str, Any]:
         "not_metrics_flow_provider_runtime": True,
         "not_metrics_flow_memory_write": True,
         "not_metrics_flow_federation": True,
+        "runtime_metrics_seed_corpus_00_indexed": True,
+        "not_seed_corpus_product_release": True,
+        "not_seed_corpus_truth_certification": True,
+        "not_seed_corpus_consciousness_proof": True,
+        "not_seed_corpus_omega_detection": True,
+        "not_seed_corpus_universal_ontology_proof": True,
+        "not_seed_corpus_population_calibration": True,
+        "not_seed_corpus_federation": True,
+        "pmr_local_runtime_queryable_store_00_indexed": True,
+        "not_pmr_query_retrosynthesis": True,
+        "not_pmr_query_atlas_memory_admission": True,
+        "not_pmr_query_memory_write": True,
+        "not_pmr_query_product_release": True,
+        "not_pmr_query_truth_certification": True,
+        "not_pmr_query_federation": True,
+        "retrosynthesis_readiness_00_indexed": True,
+        "not_retrosynthesis_performed": True,
+        "not_improvement_hypotheses_generated": True,
+        "not_retrosynthesis_readiness_memory_write": True,
+        "not_retrosynthesis_readiness_atlas_memory_admission": True,
+        "not_retrosynthesis_readiness_federation": True,
+        "not_retrosynthesis_readiness_product_release": True,
+        "not_retrosynthesis_readiness_truth_certification": True,
+        "not_retrosynthesis_readiness_population_calibration": True,
     }
     _assert_safe_dashboard(dashboard)
     return dashboard
@@ -5411,6 +5799,11 @@ def reproducibility_index() -> dict[str, Any]:
                 {"name": "LAN authority negative-control acceptance", "command": LAN_AUTHORITY_NEGATIVE_CONTROL_00_COMMAND},
                 {"name": "LAN operator consent preflight acceptance", "command": LAN_OPERATOR_CONSENT_PREFLIGHT_00_COMMAND},
                 {"name": "Local Review Runtime V0 acceptance", "command": LOCAL_REVIEW_RUNTIME_V0_COMMAND},
+                {"name": "Runtime metrics seed corpus Python entrypoint", "command": RUNTIME_METRICS_SEED_CORPUS_COMMAND},
+                {"name": "PMR local queryable store acceptance", "command": PMR_LOCAL_QUERYABLE_STORE_COMMAND},
+                {"name": "PMR local queryable store Python entrypoint", "command": PMR_LOCAL_QUERYABLE_STORE_PYTHON_ENTRYPOINT},
+                {"name": "Retrosynthesis readiness acceptance", "command": RETROSYNTHESIS_READINESS_COMMAND},
+                {"name": "Retrosynthesis readiness Python entrypoint", "command": RETROSYNTHESIS_READINESS_PYTHON_ENTRYPOINT},
                 {"name": "PMR Context Availability Ledger acceptance", "command": PMR_CONTEXT_AVAILABILITY_LEDGER_00_COMMAND},
                 {"name": "Local Sonya path portability acceptance", "command": LOCAL_SONYA_PATH_PORTABILITY_00_COMMAND},
                 {"name": "PMR doctrine acceptance", "command": PMR_00_COMMAND},
@@ -5877,6 +6270,30 @@ def status_payload() -> dict[str, Any]:
         "sonya_local_fixture_adapter_03_indexed": True,
         "not_stale_identity_leakage": True,
         "not_lineage_authority": True,
+        "runtime_metrics_seed_corpus_00_indexed": True,
+        "not_seed_corpus_product_release": True,
+        "not_seed_corpus_truth_certification": True,
+        "not_seed_corpus_consciousness_proof": True,
+        "not_seed_corpus_omega_detection": True,
+        "not_seed_corpus_universal_ontology_proof": True,
+        "not_seed_corpus_population_calibration": True,
+        "not_seed_corpus_federation": True,
+        "pmr_local_runtime_queryable_store_00_indexed": True,
+        "not_pmr_query_retrosynthesis": True,
+        "not_pmr_query_atlas_memory_admission": True,
+        "not_pmr_query_memory_write": True,
+        "not_pmr_query_product_release": True,
+        "not_pmr_query_truth_certification": True,
+        "not_pmr_query_federation": True,
+        "retrosynthesis_readiness_00_indexed": True,
+        "not_retrosynthesis_performed": True,
+        "not_improvement_hypotheses_generated": True,
+        "not_retrosynthesis_readiness_memory_write": True,
+        "not_retrosynthesis_readiness_atlas_memory_admission": True,
+        "not_retrosynthesis_readiness_federation": True,
+        "not_retrosynthesis_readiness_product_release": True,
+        "not_retrosynthesis_readiness_truth_certification": True,
+        "not_retrosynthesis_readiness_population_calibration": True,
         "requires_external_peer_review": True,
         "not_truth_certification": True,
         "not_deployment_authority": True,
@@ -5895,7 +6312,222 @@ def docs() -> dict[str, str]:
     return {
         "README.md": "# Experiment Suite Docs\n\nPublic reviewer documentation for the claim-bounded reproducibility dashboard.\n",
         "assets/README.md": "# Assets\n\nOptional static assets for the public reproducibility dashboard.\n",
-        "index.md": f"# Public Experiment Suite Dashboard\n\nThis dashboard presents accepted evidence for reviewer orientation. It is not truth certification, not deployment authority, not final answer release, local fixture only, and requires external peer review.\n\n## Accepted evidence\n\n| Phase | Repo | Status | What this supports | Reviewer caution |\n| --- | --- | --- | --- | --- |\n{phase_rows}\n\n## Reviewer path\n\nStart with claim boundaries, then read the governed artifact cognition paper, WAVE Rosetta paper, SONYA-AEGIS-SMOKE-02, WAVE family, UNI-02D Sonya gate, and RETRO-LANE-00, Public Utility Alpha, Raw Baseline Comparison, Evidence Review Pack, RW-COMP-01, RW-COMP-02, Retrosynthesis Sandbox Cycle, Evidence Review Pack second-pass, RW-COMP-03, Universal Architecture Scaffold, Sonya Adapter Contract Registry, Sonya Adapter Smoke, Sonya Local Fixture Adapter, and Evidence Review Pack local adapter, Evidence Review Pack local adapter revision, RW-COMP local adapter, PMR doctrine, PMR local artifact index, PMR GPCU utility scoring, PMR lifecycle state machine, PMR lifecycle audit preflight, PMR Sophia lifecycle audit review, PMR destructive-action authorization preflight, PMR architecture diversity checkpoint, PMR simulation baseline comparison, PMR simulation statistical analysis, PMR federation stress corpus, PMR human provenance context, Sonya Local Fixture Adapter multi-route, and Sonya Local Fixture Adapter lineage clarity pages.\n\n## What this proves\n\nIt proves only that accepted local fixture artifacts and draft publication materials are organized for review.\n\n## What this does not prove\n\nNo oracle posture, no deployment posture, no final-answer posture, no AI consciousness claim, and no universal ontology claim.\n\n## Phase pages\n\n- [SONYA-AEGIS-SMOKE-02](sonya-aegis-smoke-02.md)\n- [WAVE Gold-Physics](wave-gold-physics.md)\n- [UNI-02D Sonya gate](uni02d-sonya-gate.md)\n- [RETRO-LANE-00](retro-lane-00.md)\n- [Public Utility Alpha](public-utility-alpha.md)\n- [Raw Baseline Comparison](raw-baseline-comparison.md)\n- [Evidence Review Pack](evidence-review-pack.md)\n- [RW-COMP-01](rw-comp-01.md)\n- [RW-COMP-02](rw-comp-02.md)\n- [Retrosynthesis Sandbox Cycle](retrosynthesis-sandbox-cycle.md)\n- [Evidence Review Pack second pass](evidence-review-pack-second-pass.md)\n- [RW-COMP-03](rw-comp-03.md)\n- [Universal Architecture Scaffold](universal-architecture.md)\n- [Sonya Adapter Contract Registry](sonya-adapter-contract-registry.md)\n- [Sonya required membrane checkpoint](sonya-required-membrane-checkpoint.md)\n- [TEL event stack](tel-event-stack.md)\n- [Sonya Adapter Smoke](sonya-adapter-smoke.md)\n- [Sonya Local Fixture Adapter](sonya-local-fixture-adapter.md)\n- [Evidence Review Pack local adapter](evidence-review-pack-local-adapter.md)\n- [Evidence Review Pack local adapter revision](evidence-review-pack-local-adapter-revision.md)\n- [RW-COMP local adapter](rw-comp-local-adapter.md)\n- [Provenance Memory Reservoir](provenance-memory-reservoir.md)\n- [PMR local artifact index](pmr-local-artifact-index.md)\n- [Ontology Claim Registry](ontology-claim-registry.md)\n- [Local Sonya path portability](local-sonya-path-portability.md)\n- [TB Product Slice](tb-product-slice.md)\n- [TB Product Slice 01](tb-product-slice-01.md)\n- [Sonya Local Fixture Adapter multi-route](sonya-local-fixture-adapter-multi-route.md)\n- [Sonya Local Fixture Adapter lineage clarity](sonya-local-fixture-adapter-lineage.md)\n- [Local Review Runtime V0](local-review-runtime-v0.md)\n- [Local Review metrics and flow](local-review-metrics-flow.md)\n- [Governed artifact cognition paper](governed-artifact-cognition-paper.md)\n- [Waveform Rosetta paper](waveform-rosetta-paper.md)\n",
+        "index.md": f"# Public Experiment Suite Dashboard\n\nThis dashboard presents accepted evidence for reviewer orientation. It is not truth certification, not deployment authority, not final answer release, local fixture only, and requires external peer review.\n\n## Accepted evidence\n\n| Phase | Repo | Status | What this supports | Reviewer caution |\n| --- | --- | --- | --- | --- |\n{phase_rows}\n\n## Reviewer path\n\nStart with claim boundaries, then read the governed artifact cognition paper, WAVE Rosetta paper, SONYA-AEGIS-SMOKE-02, WAVE family, UNI-02D Sonya gate, and RETRO-LANE-00, Public Utility Alpha, Raw Baseline Comparison, Evidence Review Pack, RW-COMP-01, RW-COMP-02, Retrosynthesis Sandbox Cycle, Evidence Review Pack second-pass, RW-COMP-03, Universal Architecture Scaffold, Sonya Adapter Contract Registry, Sonya Adapter Smoke, Sonya Local Fixture Adapter, and Evidence Review Pack local adapter, Evidence Review Pack local adapter revision, RW-COMP local adapter, PMR doctrine, PMR local artifact index, PMR GPCU utility scoring, PMR lifecycle state machine, PMR lifecycle audit preflight, PMR Sophia lifecycle audit review, PMR destructive-action authorization preflight, PMR architecture diversity checkpoint, PMR simulation baseline comparison, PMR simulation statistical analysis, PMR federation stress corpus, PMR human provenance context, Sonya Local Fixture Adapter multi-route, and Sonya Local Fixture Adapter lineage clarity, Local Review metrics and flow, and Runtime Metrics Seed Corpus, PMR local queryable store, and Retrosynthesis Readiness pages.\n\n## What this proves\n\nIt proves only that accepted local fixture artifacts and draft publication materials are organized for review.\n\n## What this does not prove\n\nNo oracle posture, no deployment posture, no final-answer posture, no AI consciousness claim, and no universal ontology claim.\n\n## Phase pages\n\n- [SONYA-AEGIS-SMOKE-02](sonya-aegis-smoke-02.md)\n- [WAVE Gold-Physics](wave-gold-physics.md)\n- [UNI-02D Sonya gate](uni02d-sonya-gate.md)\n- [RETRO-LANE-00](retro-lane-00.md)\n- [Public Utility Alpha](public-utility-alpha.md)\n- [Raw Baseline Comparison](raw-baseline-comparison.md)\n- [Evidence Review Pack](evidence-review-pack.md)\n- [RW-COMP-01](rw-comp-01.md)\n- [RW-COMP-02](rw-comp-02.md)\n- [Retrosynthesis Sandbox Cycle](retrosynthesis-sandbox-cycle.md)\n- [Evidence Review Pack second pass](evidence-review-pack-second-pass.md)\n- [RW-COMP-03](rw-comp-03.md)\n- [Universal Architecture Scaffold](universal-architecture.md)\n- [Sonya Adapter Contract Registry](sonya-adapter-contract-registry.md)\n- [Sonya required membrane checkpoint](sonya-required-membrane-checkpoint.md)\n- [TEL event stack](tel-event-stack.md)\n- [Sonya Adapter Smoke](sonya-adapter-smoke.md)\n- [Sonya Local Fixture Adapter](sonya-local-fixture-adapter.md)\n- [Evidence Review Pack local adapter](evidence-review-pack-local-adapter.md)\n- [Evidence Review Pack local adapter revision](evidence-review-pack-local-adapter-revision.md)\n- [RW-COMP local adapter](rw-comp-local-adapter.md)\n- [Provenance Memory Reservoir](provenance-memory-reservoir.md)\n- [PMR local artifact index](pmr-local-artifact-index.md)\n- [Ontology Claim Registry](ontology-claim-registry.md)\n- [Local Sonya path portability](local-sonya-path-portability.md)\n- [TB Product Slice](tb-product-slice.md)\n- [TB Product Slice 01](tb-product-slice-01.md)\n- [Sonya Local Fixture Adapter multi-route](sonya-local-fixture-adapter-multi-route.md)\n- [Sonya Local Fixture Adapter lineage clarity](sonya-local-fixture-adapter-lineage.md)\n- [Local Review Runtime V0](local-review-runtime-v0.md)\n- [Local Review metrics and flow](local-review-metrics-flow.md)\n- [Runtime metrics seed corpus](runtime-metrics-seed-corpus.md)\n- [PMR local queryable store](pmr-local-queryable-store.md)\n- [Retrosynthesis readiness](retrosynthesis-readiness.md)\n- [Governed artifact cognition paper](governed-artifact-cognition-paper.md)\n- [Waveform Rosetta paper](waveform-rosetta-paper.md)\n",
+        "runtime-metrics-seed-corpus.md": f"""# Runtime metrics seed corpus
+
+## What was validated
+
+RUNTIME-METRICS-CORPUS-SEED-00 is a bounded local seed corpus over LOCAL-REVIEW-RUNTIME-V0 artifacts. It is publication/dashboard synchronization for locally validated runtime metrics seed corpus artifacts from CoherenceLattice, not a product release or authority grant.
+
+## Fixture set
+
+- clean_supported_fixture
+- unsupported_claim_fixture
+- contradiction_fixture
+- duplicate_and_rejection_fixture
+- missing_span_negative_control
+- boundary_pressure_negative_control
+
+## Observed statuses
+
+- pass_count = 2
+- watch_count = 1
+- revise_count = 1
+- incomplete_count = 1
+- invalid_boundary_violation_count = 1
+
+## What this proves
+
+Carefully bounded local observations support only that instrumentation works across controlled perturbations, metrics vary across fixture conditions, negative controls can trigger incomplete/invalid states, performance and bloat observables are collected, and user-value observables are captured as proxies only.
+
+## What this does not prove
+
+- not population calibration
+- not federated
+- not product release
+- not truth certification
+- not consciousness proof
+- not Omega detection
+- not universal ontology proof
+- not human benefit proof
+- not market validation
+- not deployment readiness
+- not final answer authority
+- not accepted evidence authority
+- not memory write
+
+## Population-scale doctrine
+
+- user_population_sample_count = 0
+- population_calibration_status = not_population_calibrated
+- federation_status = not_federated
+- future population calibration requires pilot or federated population data
+- future federation requires privacy, consent, data minimization, provenance, policy, and governance controls
+- Atlas/Sophia population-pattern analysis is future work
+- Omega field state analysis is not implemented
+
+## Bloat/drift warning
+
+- artifact_count = 635
+- total_artifact_bytes = 3,520,816
+- bloat_warning_count = 1
+- future development must monitor artifact growth, role duplication, validator weakening, and fixture overfitting
+
+## Reproducibility
+
+```powershell
+{RUNTIME_METRICS_SEED_CORPUS_COMMAND}
+```
+
+`C:\\UVLM` is a local validation example, not product default. The command rebuilds local seed corpus artifacts only and does not authorize provider runtime, LAN/network access, memory write, federation, population calibration, product release, or deployment.
+""",
+        "pmr-local-queryable-store.md": f"""# PMR local queryable store
+
+## What was validated
+
+PMR-LOCAL-RUNTIME-QUERYABLE-STORE-00 is a bounded local provenance query phase over the local review artifact ecology. PMR query is local provenance retrieval only. The publication dashboard records the locally validated query index and smoke-query receipt without changing CoherenceLattice runtime behavior.
+
+## Query index summary
+
+- query_index_status = indexed
+- indexed artifacts = 44
+- indexed dependency edges = 34
+- indexed metric count = 37
+- indexed formula count = 19
+- indexed bound profile count = 19
+- indexed TEL event count = 19
+- indexed seed observation count = 6
+- indexed flow node count = 20
+- indexed Sonya coverage row count = 10
+- query_count = 15
+- completed_query_count = 14
+- no_match_query_count = 1
+- forbidden_authority_artifact_count = 0
+
+## Supported query types
+
+{chr(10).join(f"- {query_type}" for query_type in PMR_LOCAL_QUERYABLE_STORE_SUPPORTED_QUERY_TYPES)}
+
+## Allowed claim
+
+{PMR_LOCAL_QUERYABLE_STORE_CLAIM_ALLOWED}
+
+## What this does not prove or authorize
+
+- PMR query is not memory write.
+- PMR query is not retrosynthesis.
+- PMR query is not Atlas memory admission.
+- PMR query is not truth certification.
+- PMR query is not product release.
+- PMR query is not final answer authority.
+- PMR query is not accepted evidence authority.
+- PMR query is not deployment.
+- PMR query is not federation.
+- PMR query is not provider runtime.
+- PMR query is not LAN enablement.
+- PMR query is not consciousness proof.
+- PMR query is not Omega detection.
+- PMR query is not universal ontology proof.
+- PMR query is not population calibration.
+- PMR query is not user benefit proof.
+- PMR query is not market validation.
+
+## Retrosynthesis-readiness boundary
+
+PMR query prepares the substrate for future retrosynthesis-readiness analysis, but does not perform retrosynthesis. Query results remain local provenance retrieval outputs only and do not admit Atlas memory, write memory, certify truth, release product behavior, federate, deploy, or select final answers.
+
+## Reproducibility
+
+Acceptance harness:
+
+```powershell
+{PMR_LOCAL_QUERYABLE_STORE_COMMAND}
+```
+
+Python entrypoint repair fragment:
+
+```powershell
+{PMR_LOCAL_QUERYABLE_STORE_PYTHON_ENTRYPOINT}
+```
+
+The Python entrypoint includes `build_runtime_metrics_seed_corpus`, `build_pmr_local_query_store`, `runtime_metrics_seed_corpus`, and `pmr_local_query` provenance outputs. C:\\UVLM is a local validation example, not product default.
+
+PMR query is local provenance retrieval only. PMR query is not memory write. PMR query is not retrosynthesis. PMR query is not Atlas memory admission. PMR query is not product release. PMR query is not truth certification. PMR query is not final answer.
+
+The commands record local query-index artifacts and smoke-query receipts only. PMR query is not federation. They do not authorize provider runtime, LAN/network access, memory write, Atlas memory admission, product release, deployment, truth certification, final answers, or retrosynthesis.
+""",
+        "retrosynthesis-readiness.md": f"""# Retrosynthesis readiness
+
+## What was validated
+
+RETROSYNTHESIS-READINESS-00 is a local readiness check for a future bounded local retrosynthesis prototype. This is readiness, not retrosynthesis. It records that the local artifact ecology has PMR queryability, TEL replay, runtime metrics, formula registry entries, metric-bound taxonomy, seed corpus variation, cognitive flow morphology, Sonya coverage, and Sophia posture available for a next prototype phase.
+
+## Readiness summary
+
+- readiness_status = ready_for_bounded_retrosynthesis_prototype
+- readiness_score = 1.0
+- recommended_next_phase = RETROSYNTHESIS-LOCAL-PROTOTYPE-00
+- readiness dimensions = 16
+- failed checks = 0
+- blocking reasons = 0
+- memory_write_not_performed evidence refs = 5
+- atlas_admission_not_performed evidence refs = 5
+- PMR query receipt status = completed
+- seed corpus observations = 6
+- population_calibration_status = not_population_calibrated
+- federation_status = not_federated
+- TEL replay_status = replayable
+- retrosynthesis_performed = false
+- improvement_hypotheses_generated = false
+- atlas_memory_write_performed = false
+
+## Allowed claim
+
+{RETROSYNTHESIS_READINESS_CLAIM_ALLOWED}
+
+## What this does not prove or authorize
+
+- This is readiness, not retrosynthesis.
+- No improvement hypotheses were generated.
+- No Atlas memory write occurred.
+- No memory admission occurred.
+- No federation occurred.
+- No product release occurred.
+- No Omega detection occurred.
+- Population calibration is not claimed.
+- No final-answer authority is granted.
+- No accepted-evidence authority is granted.
+- No truth certification is emitted.
+- No consciousness proof is emitted.
+- No universal ontology proof is emitted.
+- No provider runtime is enabled.
+- No LAN enablement is granted.
+- No deployment readiness is claimed.
+
+## Prototype boundary
+
+The system is ready only for a bounded local retrosynthesis prototype. RETROSYNTHESIS-READINESS-00 does not perform retrosynthesis, does not generate improvement hypotheses, does not write memory, does not admit Atlas memory, does not federate, does not release product behavior, does not deploy, does not certify truth, and does not emit final answers.
+
+## Reproducibility
+
+Acceptance harness:
+
+```powershell
+{RETROSYNTHESIS_READINESS_COMMAND}
+```
+
+Python readiness builder entrypoint:
+
+```powershell
+{RETROSYNTHESIS_READINESS_PYTHON_ENTRYPOINT}
+```
+
+The Python entrypoint includes `build_runtime_metrics_seed_corpus`, `build_pmr_local_query_store`, `build_retrosynthesis_readiness_assessment`, `runtime_metrics_seed_corpus`, `pmr_local_query`, and `retrosynthesis_readiness` local artifacts. C:\\UVLM is a local validation example, not product default.
+
+This command builds readiness artifacts only. This is readiness, not retrosynthesis. No improvement hypotheses are generated. No Atlas memory write occurs. No Atlas memory admission occurs. No federation occurs. No product release occurs. No final-answer authority is granted. No accepted-evidence authority is granted. No truth certification occurs. No Omega detection occurs. No consciousness proof or universal ontology proof is emitted.
+
+The commands record local readiness artifacts only. They do not perform retrosynthesis, write memory, admit Atlas memory, federate, release a product, deploy, enable provider runtime, enable LAN behavior, calibrate a population, certify truth, or prove consciousness. No Omega detection occurs, and no universal ontology proof is emitted.
+""",
         "claim-boundaries.md": f"# Claim Boundaries\n\n{boundaries}\n\nNo oracle posture. No deployment posture. No final-answer posture. No AI consciousness claim. No universal ontology claim.\n",
 
         "local-review-runtime-v0.md": """# LOCAL-REVIEW-RUNTIME-V0
@@ -5986,7 +6618,7 @@ The following CoherenceLattice command is local validation, not product release.
 
 - repeated-run metrics corpus
 - formula source binding to Thomas/GUFT corpus
-- Atlas population calibration
+- Future Atlas/Sophia population-pattern analysis
 - controlled fixture variation
 - negative controls
 """,
