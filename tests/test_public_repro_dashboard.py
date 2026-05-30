@@ -62,6 +62,7 @@ REQUIRED_DOCS = {
     "sonya-local-fixture-adapter-lineage.md",
     "local-review-runtime-v0.md",
     "local-review-metrics-flow.md",
+    "runtime-metrics-seed-corpus.md",
 }
 REQUIRED_PHASES = {
     "EXP-SUITE-REGISTRY-01",
@@ -141,6 +142,7 @@ REQUIRED_PHASES = {
     "COHERENCE-METRIC-FORMULA-REGISTRY-00",
     "METRIC-BOUND-SOURCE-TAXONOMY-00",
     "FLOW-RUNTIME-00",
+    "RUNTIME-METRICS-CORPUS-SEED-00",
 }
 
 REQUIRED_COMMAND_FRAGMENTS = (
@@ -192,6 +194,7 @@ REQUIRED_COMMAND_FRAGMENTS = (
     "Run-LOCAL-SERVER-USER-FILE-INGRESS00-Acceptance.ps1",
     "Run-LOCAL-SERVER-USER-FILE-INGRESS01-Acceptance.ps1",
     "Run-PMR-CONTEXT-AVAILABILITY-LEDGER00-Acceptance.ps1",
+    "build_runtime_metrics_seed_corpus",
 )
 STALE_COMMAND_FRAGMENTS = (
     "tests/test_sonya_aegis_smoke_02.py",
@@ -2752,3 +2755,103 @@ def test_local_review_metrics_flow_repro_command_and_boundaries(tmp_path):
             "federation",
         ):
             assert f"{phase_id} is not {boundary}." in boundaries
+
+
+
+def test_runtime_metrics_seed_corpus_indexes_and_docs_are_generated(tmp_path):
+    out_dir, docs_dir = run_builder(tmp_path)
+    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text())
+    reproducibility = json.loads((out_dir / "reproducibility_index.json").read_text())
+    artifact_index = json.loads((out_dir / "artifact_index.json").read_text())
+    claim_boundaries = json.loads((out_dir / "claim_boundary_index.json").read_text())
+    page = (docs_dir / "runtime-metrics-seed-corpus.md").read_text()
+    index = (docs_dir / "index.md").read_text()
+
+    phase = next(
+        entry
+        for entry in dashboard["accepted_phases"]
+        if entry["phase_id"] == "RUNTIME-METRICS-CORPUS-SEED-00"
+    )
+    assert phase["repo"] == "pdxvoiceteacher/CoherenceLattice"
+    assert phase["source_phase"] == "LOCAL-REVIEW-RUNTIME-V0"
+    assert phase["status"] == "accepted_local_validation"
+    assert phase["publication_status"] == "dashboard_synced"
+    assert phase["product_posture"] == "local_seed_corpus_not_population_calibration_not_product_release"
+    assert phase["authority_posture"] == "non_authoritative"
+    assert phase["public_claim_boundary"] == "bounded_seed_corpus_instrumentation_only"
+    summary = phase["dashboard_summary"]
+    assert summary["observation_count"] == 6
+    assert summary["fixture_count"] == 6
+    assert summary["pass_count"] == 2
+    assert summary["watch_count"] == 1
+    assert summary["revise_count"] == 1
+    assert summary["incomplete_count"] == 1
+    assert summary["invalid_boundary_violation_count"] == 1
+    assert summary["population_calibration_status"] == "not_population_calibrated"
+    assert summary["federation_status"] == "not_federated"
+    assert summary["user_population_sample_count"] == 0
+    assert summary["future_population_calibration_requires_federation_or_pilot_population"] is True
+    assert summary["repeated_runs_required_for_scientific_claims"] is True
+    assert summary["user_value_status"] == "observable_proxy_only"
+    assert summary["artifact_count"] == 635
+    assert summary["total_artifact_bytes"] == 3520816
+    assert summary["bloat_warning_count"] == 1
+    for key in (
+        "seed_corpus_is_not_product_release",
+        "seed_corpus_is_not_truth_certification",
+        "seed_corpus_is_not_consciousness_proof",
+        "seed_corpus_is_not_omega_detection",
+        "seed_corpus_is_not_universal_ontology_proof",
+        "seed_corpus_is_not_population_calibration",
+        "seed_corpus_is_not_federation",
+    ):
+        assert summary[key] is True
+    for artifact in (
+        "runtime_metrics_seed_corpus.json",
+        "runtime_metrics_seed_observations.jsonl",
+        "runtime_performance_profile.json",
+        "user_value_observable_packet.json",
+        "runtime_metrics_seed_corpus_summary.md",
+    ):
+        assert artifact in artifact_index["phases"]["RUNTIME-METRICS-CORPUS-SEED-00"]
+    for artifact in (
+        "evidence_review_runtime_metrics_packet.json",
+        "coherence_runtime_metrics_packet.json",
+        "coherence_metric_input_ledger.json",
+        "wave_rosetta_metric_calibration_context.json",
+        "coherence_action_functional_packet.json",
+        "sonya_metric_membrane_coverage_packet.json",
+        "coherence_metric_formula_registry.json",
+        "coherence_metric_formula_registry_binding.json",
+        "metric_bound_source_taxonomy.json",
+        "metric_bound_profile_registry.json",
+        "metric_bound_formula_binding.json",
+        "cognitive_flow_morphology_packet.json",
+        "cognitive_flow_topology_packet.json",
+        "cognitive_flow_morphology_summary.md",
+    ):
+        assert artifact in json.dumps(artifact_index)
+    assert "build_runtime_metrics_seed_corpus" in json.dumps(reproducibility)
+    assert "runtime-metrics-seed-corpus.md" in index
+    assert "not population calibration" in page
+    assert "not federated" in page
+    assert "not product release" in page
+    assert "not truth certification" in page
+    assert "not consciousness proof" in page
+    assert "not Omega detection" in page
+    assert "not universal ontology proof" in page
+    assert "not human benefit proof" in page
+    assert "not market validation" in page
+    assert "not deployment readiness" in page
+    assert "not final answer authority" in page
+    assert "not accepted evidence authority" in page
+    assert "not memory write" in page
+    assert "future population calibration requires pilot or federated population data" in page
+    assert "Omega field state analysis is not implemented" in page
+    assert "artifact_count = 635" in page
+    assert "total_artifact_bytes = 3,520,816" in page
+    assert "C:\\UVLM" in page
+    boundary_text = "\n".join(claim_boundaries["boundaries"])
+    assert "bounded seed corpus instrumentation only" in boundary_text
+    assert "not population calibration" in boundary_text
+    assert "not human benefit proof" in boundary_text
