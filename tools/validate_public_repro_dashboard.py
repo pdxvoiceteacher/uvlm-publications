@@ -88,6 +88,7 @@ REQUIRED_PHASES = {
     "FLOW-RUNTIME-00",
     "RUNTIME-METRICS-CORPUS-SEED-00",
     "PMR-LOCAL-RUNTIME-QUERYABLE-STORE-00",
+    "RETROSYNTHESIS-READINESS-00",
 }
 REQUIRED_BOUNDARY_PHRASES = (
     "not truth certification",
@@ -133,6 +134,16 @@ REQUIRED_BOUNDARY_PHRASES = (
     "build_runtime_metrics_seed_corpus",
     "runtime_metrics_seed_corpus",
     "pmr_local_query",
+    "RETROSYNTHESIS-READINESS-00",
+    "readiness, not retrosynthesis",
+    "ready only for a bounded local retrosynthesis prototype",
+    "No improvement hypotheses were generated",
+    "No Atlas memory write occurred",
+    "No memory admission occurred",
+    "No federation occurred",
+    "No product release occurred",
+    "No Omega detection occurred",
+    "Population calibration is not claimed",
     "raw baseline comparison",
     "fixture-only measurement scaffold",
     "not hallucination reduction proof",
@@ -512,7 +523,13 @@ REQUIRED_BOUNDARY_PHRASES = (
 FORBIDDEN_PHRASES = (
     "claims retrosynthesis",
     "performs retrosynthesis",
+    "retrosynthesis was performed",
     "retrosynthesis performed",
+    "improvement hypotheses were generated",
+    "Atlas memory write occurred",
+    "memory admission occurred",
+    "federation occurred",
+    "product release occurred",
     "Atlas memory admitted",
     "claims Atlas memory admission",
     "population calibration",
@@ -953,7 +970,11 @@ def _forbidden_hits(text: str) -> list[str]:
             ):
                 start = index + len(normalized_phrase)
                 continue
-            if phrase == "omega detection" and _is_negated(text, index):
+            if phrase == "omega detection" and (
+                _is_negated(text, index)
+                or "no omega detection" in text[max(0, index - 32) : index + 48]
+                or "does not" in text[max(0, index - 160) : index]
+            ):
                 start = index + len(normalized_phrase)
                 continue
             if (
@@ -1027,6 +1048,7 @@ def _forbidden_hits(text: str) -> list[str]:
                 "future population calibration requires" in text[max(0, index - 24) : index + 72]
                 or "population calibration status" in text[max(0, index - 24) : index + 48]
                 or "does not authorize" in text[max(0, index - 96) : index]
+                or "population calibration is not claimed" in text[max(0, index - 24) : index + 64]
             ):
                 start = index + len(normalized_phrase)
                 continue

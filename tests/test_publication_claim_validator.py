@@ -2818,3 +2818,110 @@ def test_claim_validator_rejects_pmr_local_queryable_store_overclaims(tmp_path):
         result = validate_publication_claims(paper_root / "PUB_GOV_ARTIFACT_COG_01.md")
         assert result["passed"] is False, claim
         assert result["forbidden_overclaims_found"], claim
+
+
+
+def test_claim_validator_allows_bounded_retrosynthesis_readiness_claim(tmp_path):
+    paper_root = tmp_path / "paper"
+    paper_root.mkdir(parents=True)
+    allowed = (
+        "RETROSYNTHESIS-READINESS-00 verifies that the local artifact ecology is ready for a "
+        "bounded local retrosynthesis prototype, based on PMR queryability, TEL replay, runtime metrics, "
+        "formula registry, metric-bound taxonomy, seed corpus variation, cognitive flow morphology, "
+        "Sonya coverage, and Sophia posture.\n"
+        "This is readiness, not retrosynthesis. No improvement hypotheses were generated.\n"
+        "not truth certification\nnot deployment authority\nnot final answer release\nlocal fixture only\n"
+        "requires external peer review\nnot AI consciousness\nnot recursive Sonya federation\n"
+        "not retrosynthesis runtime\nnot Omega detection\nnot live Atlas memory writes\nnot live Sophia calls\n"
+    )
+    for name in (
+        "PUB_GOV_ARTIFACT_COG_01.md",
+        "reproducibility_appendix.md",
+        "claim_boundary_table.md",
+        "artifact_table.md",
+        "reviewer_quickstart.md",
+    ):
+        (paper_root / name).write_text(allowed, encoding="utf-8")
+    (paper_root / "status.json").write_text(
+        json.dumps(
+            {
+                "paper_id": "PUB-GOV-ARTIFACT-COG-01",
+                "repo": "pdxvoiceteacher/uvlm-publications",
+                "status": "drafted",
+                "claim_level": "internal_preprint_draft",
+                "requires_external_peer_review": True,
+                "not_truth_certification": True,
+                "not_deployment_authority": True,
+                "not_final_answer_release": True,
+                "not_live_model_execution": True,
+                "not_live_model_evaluation": True,
+                "not_production_evaluation": True,
+                "not_ai_consciousness_claim": True,
+            }
+        ),
+        encoding="utf-8",
+    )
+
+    result = validate_publication_claims(paper_root / "PUB_GOV_ARTIFACT_COG_01.md")
+
+    assert result["forbidden_overclaims_found"] == []
+
+
+def test_claim_validator_rejects_retrosynthesis_readiness_overclaims(tmp_path):
+    paper_root = tmp_path / "paper"
+    paper_root.mkdir(parents=True)
+    base = (
+        "not truth certification\nnot deployment authority\nnot final answer release\nlocal fixture only\n"
+        "requires external peer review\nnot AI consciousness\nnot recursive Sonya federation\n"
+        "not retrosynthesis runtime\nnot Omega detection\nnot live Atlas memory writes\nnot live Sophia calls\n"
+    )
+    blocked = (
+        "RETROSYNTHESIS-READINESS-00 says retrosynthesis was performed.",
+        "RETROSYNTHESIS-READINESS-00 says improvement hypotheses were generated.",
+        "RETROSYNTHESIS-READINESS-00 says Atlas memory write occurred.",
+        "RETROSYNTHESIS-READINESS-00 admits Atlas memory.",
+        "RETROSYNTHESIS-READINESS-00 claims memory write.",
+        "RETROSYNTHESIS-READINESS-00 says federation occurred.",
+        "RETROSYNTHESIS-READINESS-00 says product release occurred.",
+        "RETROSYNTHESIS-READINESS-00 claims final answer authority.",
+        "RETROSYNTHESIS-READINESS-00 claims accepted evidence authority.",
+        "RETROSYNTHESIS-READINESS-00 claims truth certification.",
+        "RETROSYNTHESIS-READINESS-00 proves consciousness.",
+        "RETROSYNTHESIS-READINESS-00 is Omega detection.",
+        "RETROSYNTHESIS-READINESS-00 claims universal ontology proof.",
+        "RETROSYNTHESIS-READINESS-00 claims provider runtime.",
+        "RETROSYNTHESIS-READINESS-00 claims LAN enablement.",
+        "RETROSYNTHESIS-READINESS-00 claims deployment readiness.",
+        "RETROSYNTHESIS-READINESS-00 proves population-calibrated readiness.",
+    )
+    for name in (
+        "reproducibility_appendix.md",
+        "claim_boundary_table.md",
+        "artifact_table.md",
+        "reviewer_quickstart.md",
+    ):
+        (paper_root / name).write_text(base, encoding="utf-8")
+    (paper_root / "status.json").write_text(
+        json.dumps(
+            {
+                "paper_id": "PUB-GOV-ARTIFACT-COG-01",
+                "repo": "pdxvoiceteacher/uvlm-publications",
+                "status": "drafted",
+                "claim_level": "internal_preprint_draft",
+                "requires_external_peer_review": True,
+                "not_truth_certification": True,
+                "not_deployment_authority": True,
+                "not_final_answer_release": True,
+                "not_live_model_execution": True,
+                "not_live_model_evaluation": True,
+                "not_production_evaluation": True,
+                "not_ai_consciousness_claim": True,
+            }
+        ),
+        encoding="utf-8",
+    )
+    for claim in blocked:
+        (paper_root / "PUB_GOV_ARTIFACT_COG_01.md").write_text(base + "\n" + claim, encoding="utf-8")
+        result = validate_publication_claims(paper_root / "PUB_GOV_ARTIFACT_COG_01.md")
+        assert result["passed"] is False, claim
+        assert result["forbidden_overclaims_found"], claim

@@ -995,6 +995,12 @@
       "pmr_local_query_receipt.json",
       "pmr_local_query_summary.md"
     ],
+    "RETROSYNTHESIS-READINESS-00": [
+      "retrosynthesis_readiness_packet.json",
+      "retrosynthesis_readiness_checklist.json",
+      "retrosynthesis_readiness_receipt.json",
+      "retrosynthesis_readiness_summary.md"
+    ],
     "PMR-HUMAN-CONSENT-NEGATIVE-CONTROL-00": [
       "pmr_human_consent_negative_control_manifest.json",
       "pmr_invalid_human_consent_attempts.jsonl",

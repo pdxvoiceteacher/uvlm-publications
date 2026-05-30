@@ -64,6 +64,7 @@ REQUIRED_DOCS = {
     "local-review-metrics-flow.md",
     "runtime-metrics-seed-corpus.md",
     "pmr-local-queryable-store.md",
+    "retrosynthesis-readiness.md",
 }
 REQUIRED_PHASES = {
     "EXP-SUITE-REGISTRY-01",
@@ -145,6 +146,7 @@ REQUIRED_PHASES = {
     "FLOW-RUNTIME-00",
     "RUNTIME-METRICS-CORPUS-SEED-00",
     "PMR-LOCAL-RUNTIME-QUERYABLE-STORE-00",
+    "RETROSYNTHESIS-READINESS-00",
 }
 
 REQUIRED_COMMAND_FRAGMENTS = (
@@ -199,6 +201,7 @@ REQUIRED_COMMAND_FRAGMENTS = (
     "build_runtime_metrics_seed_corpus",
     "Run-PMR-LOCAL-RUNTIME-QUERYABLE-STORE00-Acceptance.ps1",
     "build_pmr_local_query_store",
+    "Run-RETROSYNTHESIS-READINESS00-Acceptance.ps1",
 )
 STALE_COMMAND_FRAGMENTS = (
     "tests/test_sonya_aegis_smoke_02.py",
@@ -2956,3 +2959,83 @@ def test_pmr_local_queryable_store_indexes_and_docs_are_generated(tmp_path):
     assert status["not_pmr_query_memory_write"] is True
     assert status["not_pmr_query_retrosynthesis"] is True
     assert status["not_pmr_query_atlas_memory_admission"] is True
+
+
+
+def test_retrosynthesis_readiness_indexes_and_docs_are_generated(tmp_path):
+    out_dir, docs_dir = run_builder(tmp_path)
+    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text())
+    reproducibility = json.loads((out_dir / "reproducibility_index.json").read_text())
+    artifact_index = json.loads((out_dir / "artifact_index.json").read_text())
+    claim_boundaries = json.loads((out_dir / "claim_boundary_index.json").read_text())
+    status = json.loads((out_dir / "status.json").read_text())
+    page = (docs_dir / "retrosynthesis-readiness.md").read_text()
+    index = (docs_dir / "index.md").read_text()
+
+    phase = next(
+        entry
+        for entry in dashboard["accepted_phases"]
+        if entry["phase_id"] == "RETROSYNTHESIS-READINESS-00"
+    )
+    assert phase["repo"] == "pdxvoiceteacher/CoherenceLattice"
+    assert phase["source_phase"] == "PMR-LOCAL-RUNTIME-QUERYABLE-STORE-00"
+    assert phase["status"] == "accepted_local_validation"
+    assert phase["publication_status"] == "dashboard_synced"
+    assert phase["authority_posture"] == "non_authoritative"
+    assert phase["public_claim_boundary"] == "readiness_only_bounded_local_prototype_precondition"
+    summary = phase["dashboard_summary"]
+    assert summary["readiness_status"] == "ready_for_bounded_retrosynthesis_prototype"
+    assert summary["readiness_score"] == 1.0
+    assert summary["recommended_next_phase"] == "RETROSYNTHESIS-LOCAL-PROTOTYPE-00"
+    assert summary["readiness_dimension_count"] == 16
+    assert summary["failed_checks"] == 0
+    assert summary["blocking_reasons"] == 0
+    assert summary["memory_write_not_performed_evidence_refs"] == 5
+    assert summary["atlas_admission_not_performed_evidence_refs"] == 5
+    assert summary["pmr_query_receipt_status"] == "completed"
+    assert summary["seed_corpus_observation_count"] == 6
+    assert summary["population_calibration_status"] == "not_population_calibrated"
+    assert summary["federation_status"] == "not_federated"
+    assert summary["tel_replay_status"] == "replayable"
+    for key in (
+        "retrosynthesis_performed",
+        "improvement_hypotheses_generated",
+        "atlas_memory_write_performed",
+        "memory_admission_performed",
+        "federation_performed",
+        "product_release_performed",
+        "final_answer_emitted",
+        "truth_certification_emitted",
+        "consciousness_proof_emitted",
+        "omega_detection_performed",
+    ):
+        assert summary[key] is False
+    for artifact in (
+        "retrosynthesis_readiness_packet.json",
+        "retrosynthesis_readiness_checklist.json",
+        "retrosynthesis_readiness_receipt.json",
+        "retrosynthesis_readiness_summary.md",
+    ):
+        assert artifact in artifact_index["phases"]["RETROSYNTHESIS-READINESS-00"]
+    assert "Run-RETROSYNTHESIS-READINESS00-Acceptance.ps1" in json.dumps(reproducibility)
+    assert "retrosynthesis-readiness.md" in index
+    for phrase in (
+        "This is readiness, not retrosynthesis.",
+        "No improvement hypotheses were generated.",
+        "No Atlas memory write occurred.",
+        "No memory admission occurred.",
+        "No federation occurred.",
+        "No product release occurred.",
+        "No Omega detection occurred.",
+        "Population calibration is not claimed.",
+        "The system is ready only for a bounded local retrosynthesis prototype.",
+    ):
+        assert phrase in page
+    boundary_text = "\n".join(claim_boundaries["boundaries"])
+    assert "RETROSYNTHESIS-READINESS-00 is readiness, not retrosynthesis." in boundary_text
+    assert "RETROSYNTHESIS-READINESS-00 is ready only for a bounded local retrosynthesis prototype." in boundary_text
+    assert status["retrosynthesis_readiness_00_indexed"] is True
+    assert status["not_retrosynthesis_performed"] is True
+    assert status["not_improvement_hypotheses_generated"] is True
+    assert status["not_retrosynthesis_readiness_memory_write"] is True
+    assert status["not_retrosynthesis_readiness_atlas_memory_admission"] is True
