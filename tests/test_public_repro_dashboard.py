@@ -149,6 +149,7 @@ REQUIRED_PHASES = {
     "PMR-LOCAL-RUNTIME-QUERYABLE-STORE-00",
     "RETROSYNTHESIS-READINESS-00",
     "RETROSYNTHESIS-LOCAL-PROTOTYPE-00",
+    "ATLAS-LOCAL-MEMORY-ADMISSION-READINESS-00",
 }
 
 REQUIRED_COMMAND_FRAGMENTS = (
@@ -206,6 +207,8 @@ REQUIRED_COMMAND_FRAGMENTS = (
     "Run-RETROSYNTHESIS-READINESS00-Acceptance.ps1",
     "build_retrosynthesis_readiness_assessment",
     "build_retrosynthesis_local_prototype",
+    "Run-ATLAS-LOCAL-MEMORY-ADMISSION-READINESS00-Acceptance.ps1",
+    "build_atlas_memory_admission_readiness",
 )
 STALE_COMMAND_FRAGMENTS = (
     "tests/test_sonya_aegis_smoke_02.py",
@@ -3156,3 +3159,85 @@ def test_retrosynthesis_local_prototype_indexes_and_docs_are_generated(tmp_path)
     assert status["not_local_prototype_federation"] is True
     assert status["not_local_prototype_product_release"] is True
     assert status["not_local_prototype_truth_certification"] is True
+
+
+
+def test_atlas_local_memory_admission_readiness_indexes_and_docs_are_generated(tmp_path):
+    out_dir, docs_dir = run_builder(tmp_path)
+    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text())
+    reproducibility = json.loads((out_dir / "reproducibility_index.json").read_text())
+    artifact_index = json.loads((out_dir / "artifact_index.json").read_text())
+    claim_boundaries = json.loads((out_dir / "claim_boundary_index.json").read_text())
+    status = json.loads((out_dir / "status.json").read_text())
+    page = (docs_dir / "atlas-local-memory-admission-readiness.md").read_text()
+    index = (docs_dir / "index.md").read_text()
+
+    phase = next(
+        entry
+        for entry in dashboard["accepted_phases"]
+        if entry["phase_id"] == "ATLAS-LOCAL-MEMORY-ADMISSION-READINESS-00"
+    )
+    assert phase["repo"] == "pdxvoiceteacher/CoherenceLattice"
+    assert phase["source_phase"] == "RETROSYNTHESIS-LOCAL-PROTOTYPE-00"
+    assert phase["status"] == "accepted_local_validation"
+    assert phase["publication_status"] == "dashboard_synced"
+    assert phase["authority_posture"] == "non_authoritative"
+    assert phase["public_claim_boundary"] == "readiness_only_local_review_gate_no_memory_write"
+    summary = phase["dashboard_summary"]
+    assert summary["readiness_status"] == "ready_for_local_review_only_admission_gate"
+    assert summary["source_prototype_status"] == "completed_candidate_generation"
+    assert summary["readiness_score"] == 1.0
+    assert summary["readiness_dimension_count"] == 12
+    assert summary["local_review_only"] is True
+    assert summary["atlas_memory_admission_performed"] is False
+    assert summary["atlas_memory_write_performed"] is False
+    assert summary["memory_candidate_write_performed"] is False
+    assert summary["federation_performed"] is False
+    assert summary["product_release_performed"] is False
+    assert summary["final_answer_emitted"] is False
+    assert summary["truth_certification_emitted"] is False
+    for artifact in (
+        "atlas_local_memory_admission_readiness_packet.json",
+        "atlas_local_memory_admission_readiness_checklist.json",
+        "atlas_local_memory_admission_readiness_receipt.json",
+        "atlas_local_memory_admission_readiness_summary.md",
+    ):
+        assert artifact in artifact_index["phases"]["ATLAS-LOCAL-MEMORY-ADMISSION-READINESS-00"]
+    reproducibility_text = json.dumps(reproducibility)
+    for fragment in (
+        "Run-ATLAS-LOCAL-MEMORY-ADMISSION-READINESS00-Acceptance.ps1",
+        "build_runtime_metrics_seed_corpus",
+        "build_pmr_local_query_store",
+        "build_retrosynthesis_readiness_assessment",
+        "build_retrosynthesis_local_prototype",
+        "build_atlas_memory_admission_readiness",
+        "atlas_local_memory_admission_readiness_00",
+        r"C:\\UVLM",
+    ):
+        assert fragment in reproducibility_text
+    assert "atlas-local-memory-admission-readiness.md" in index
+    for phrase in (
+        "ATLAS-LOCAL-MEMORY-ADMISSION-READINESS-00 records a local review-only readiness gate",
+        "It is readiness only and does not perform Atlas memory admission or any memory write.",
+        "atlas_memory_admission_performed = false",
+        "atlas_memory_write_performed = false",
+        "memory_candidate_write_performed = false",
+        "not Atlas memory admission",
+        "not Atlas memory write",
+        "not memory candidate write",
+        "Run-ATLAS-LOCAL-MEMORY-ADMISSION-READINESS00-Acceptance.ps1",
+        "build_atlas_memory_admission_readiness",
+        "C:\\UVLM is a local validation example, not product default",
+    ):
+        assert phrase in page
+    boundary_text = "\n".join(claim_boundaries["boundaries"])
+    assert "ATLAS-LOCAL-MEMORY-ADMISSION-READINESS-00 is local review-only readiness, not Atlas memory admission." in boundary_text
+    assert "ATLAS-LOCAL-MEMORY-ADMISSION-READINESS-00 is not Atlas memory write." in boundary_text
+    assert "ATLAS-LOCAL-MEMORY-ADMISSION-READINESS-00 is not memory candidate write." in boundary_text
+    assert status["atlas_local_memory_admission_readiness_00_indexed"] is True
+    assert status["not_atlas_memory_admission_readiness_memory_write"] is True
+    assert status["not_atlas_memory_admission_readiness_atlas_memory_admission"] is True
+    assert status["not_atlas_memory_admission_readiness_memory_candidate_write"] is True
+    assert status["not_atlas_memory_admission_readiness_product_release"] is True
+    assert status["not_atlas_memory_admission_readiness_federation"] is True
+    assert status["not_atlas_memory_admission_readiness_truth_certification"] is True
