@@ -1866,6 +1866,83 @@ RETROSYNTHESIS_LOCAL_PROTOTYPE_PHASE = {
     ),
 }
 
+
+ATLAS_MEMORY_ADMISSION_READINESS_COMMAND = r""".\experiments\Run-ATLAS-LOCAL-MEMORY-ADMISSION-READINESS00-Acceptance.ps1 `
+  -OutputRoot C:\UVLM\run_artifacts\atlas_local_memory_admission_readiness_00 `
+  -LogDir C:\UVLM\run_artifacts\atlas_local_memory_admission_readiness_00_logs `
+  -CiMode"""
+ATLAS_MEMORY_ADMISSION_READINESS_PYTHON_ENTRYPOINT = "python -c \"from pathlib import Path; from coherence.local_review.seed_corpus import build_runtime_metrics_seed_corpus; from coherence.pmr.local_query_store import build_pmr_local_query_store; from coherence.retrosynthesis.readiness import build_retrosynthesis_readiness_assessment; from coherence.retrosynthesis.local_prototype import build_retrosynthesis_local_prototype; from coherence.atlas.memory_admission_readiness import build_atlas_memory_admission_readiness; root=Path(r'C:\\UVLM\\run_artifacts\\runtime_metrics_seed_corpus'); build_runtime_metrics_seed_corpus(output_root=root); build_pmr_local_query_store(root / 'bridge'); build_retrosynthesis_readiness_assessment(root / 'bridge'); build_retrosynthesis_local_prototype(root / 'bridge'); build_atlas_memory_admission_readiness(root / 'bridge')\""
+ATLAS_MEMORY_ADMISSION_READINESS_ARTIFACTS = [
+    "atlas_local_memory_admission_readiness_packet.json",
+    "atlas_local_memory_admission_readiness_checklist.json",
+    "atlas_local_memory_admission_readiness_receipt.json",
+    "atlas_local_memory_admission_readiness_summary.md",
+]
+ATLAS_MEMORY_ADMISSION_READINESS_DASHBOARD_SUMMARY = {
+    "readiness_status": "ready_for_local_review_only_admission_gate",
+    "source_prototype_status": "completed_candidate_generation",
+    "readiness_score": 1.0,
+    "recommended_next_phase": "human_reviewed_atlas_admission_policy_design",
+    "readiness_dimension_count": 12,
+    "failed_checks": 0,
+    "blocking_reasons": 0,
+    "local_review_only": True,
+    "atlas_memory_admission_performed": False,
+    "atlas_memory_write_performed": False,
+    "memory_candidate_write_performed": False,
+    "federation_performed": False,
+    "product_release_performed": False,
+    "final_answer_emitted": False,
+    "truth_certification_emitted": False,
+    "consciousness_proof_emitted": False,
+    "omega_detection_performed": False,
+    "universal_ontology_proof_emitted": False,
+}
+ATLAS_MEMORY_ADMISSION_READINESS_CLAIM_ALLOWED = (
+    "ATLAS-LOCAL-MEMORY-ADMISSION-READINESS-00 records a local review-only readiness gate for future Atlas memory admission policy design, "
+    "based on PMR queryability, retrosynthesis readiness, bounded local prototype receipts, TEL replay, runtime metrics, "
+    "formula registry coverage, metric-bound taxonomy, seed corpus variation, cognitive flow morphology, Sonya coverage, and Sophia posture."
+)
+ATLAS_MEMORY_ADMISSION_READINESS_CLAIMS_BLOCKED = [
+    "not Atlas memory admission",
+    "not Atlas memory write",
+    "not memory candidate write",
+    "not memory write",
+    "not product release",
+    "not federation",
+    "not final answer authority",
+    "not accepted evidence authority",
+    "not truth certification",
+    "not consciousness proof",
+    "not Omega detection",
+    "not universal ontology proof",
+    "not provider runtime",
+    "not LAN enablement",
+    "not deployment readiness",
+    "not population calibration",
+]
+ATLAS_MEMORY_ADMISSION_READINESS_PHASE = {
+    "phase_id": "ATLAS-LOCAL-MEMORY-ADMISSION-READINESS-00",
+    "repo": "pdxvoiceteacher/CoherenceLattice",
+    "source_phase": "RETROSYNTHESIS-LOCAL-PROTOTYPE-00",
+    "status": "accepted_local_validation",
+    "publication_status": "dashboard_synced",
+    "evidence_type": "bounded_local_atlas_local_memory_admission_readiness_gate",
+    "product_posture": "readiness_only_not_memory_admission_not_product_release",
+    "authority_posture": "non_authoritative",
+    "public_claim_boundary": "readiness_only_local_review_gate_no_memory_write",
+    "primary_artifacts": ATLAS_MEMORY_ADMISSION_READINESS_ARTIFACTS,
+    "dashboard_summary": ATLAS_MEMORY_ADMISSION_READINESS_DASHBOARD_SUMMARY,
+    "reproduction_command_summary": ATLAS_MEMORY_ADMISSION_READINESS_COMMAND + "\n\n" + ATLAS_MEMORY_ADMISSION_READINESS_PYTHON_ENTRYPOINT,
+    "claims_blocked": ATLAS_MEMORY_ADMISSION_READINESS_CLAIMS_BLOCKED,
+    "claim_allowed": ATLAS_MEMORY_ADMISSION_READINESS_CLAIM_ALLOWED,
+    "reviewer_caution": (
+        "ATLAS-LOCAL-MEMORY-ADMISSION-READINESS-00 is local review-only readiness. It does not admit Atlas memory, "
+        "write Atlas memory, write memory candidates, federate, release product behavior, emit final answers, certify truth, "
+        "prove consciousness, not Omega detection, not universal ontology proof, enable no provider runtime or LAN, and not population calibration."
+    ),
+}
+
 PMR_00_COMMAND = r""".\experiments\Run-PMR00-Acceptance.ps1 `
   -OutputRoot C:\UVLM\run_artifacts\pmr_00 `
   -LogDir C:\UVLM\run_artifacts\pmr_00_logs `
@@ -3759,6 +3836,7 @@ RUNTIME_METRICS_SEED_CORPUS_PHASE,
 PMR_LOCAL_QUERYABLE_STORE_PHASE,
 RETROSYNTHESIS_READINESS_PHASE,
 RETROSYNTHESIS_LOCAL_PROTOTYPE_PHASE,
+ATLAS_MEMORY_ADMISSION_READINESS_PHASE,
 {"phase_id":"PMR-CONTEXT-AVAILABILITY-LEDGER-00","repo":"pdxvoiceteacher/CoherenceLattice","status":"accepted","evidence_type":"governance_scaffold","product_posture":"fixture_only_context_availability_without_source_content_or_memory_authority","primary_artifacts":PMR_CONTEXT_AVAILABILITY_LEDGER_00_ARTIFACTS,"dashboard_summary":PMR_CONTEXT_AVAILABILITY_LEDGER_00_DASHBOARD_SUMMARY,"reproduction_command_summary":PMR_CONTEXT_AVAILABILITY_LEDGER_00_COMMAND,"claims_blocked":PMR_CONTEXT_AVAILABILITY_LEDGER_00_CLAIMS_BLOCKED,"claim_allowed":"context availability ledger scaffold","reviewer_caution":"Expiration is not nonexistence."},
 {"phase_id":"LOCAL-SERVER-USER-FILE-INGRESS-00","repo":"pdxvoiceteacher/CoherenceLattice","status":"accepted","evidence_type":"runtime_smoke","product_posture":"explicit_local_user_file_ingress_without_memory_or_network_authority","primary_artifacts":LOCAL_SERVER_USER_FILE_INGRESS_00_ARTIFACTS,"dashboard_summary":LOCAL_SERVER_USER_FILE_INGRESS_00_DASHBOARD_SUMMARY,"reproduction_command_summary":LOCAL_SERVER_USER_FILE_INGRESS_00_COMMAND,"claims_blocked":LOCAL_SERVER_USER_FILE_INGRESS_00_CLAIMS_BLOCKED,"claim_allowed":"explicit local user file ingress runtime smoke","reviewer_caution":"User file ingress is not memory write."},
 {"phase_id":"SONYA-LOCAL-SERVER-GATEWAY-02","repo":"pdxvoiceteacher/CoherenceLattice","status":"accepted","evidence_type":"runtime_smoke","product_posture":"localhost_only_source_span_gateway_without_truth_or_memory_authority","primary_artifacts":SONYA_LOCAL_SERVER_GATEWAY_02_ARTIFACTS,"dashboard_summary":SONYA_LOCAL_SERVER_GATEWAY_02_DASHBOARD_SUMMARY,"reproduction_command_summary":SONYA_LOCAL_SERVER_GATEWAY_02_COMMAND,"claims_blocked":SONYA_LOCAL_SERVER_GATEWAY_02_CLAIMS_BLOCKED,"claim_allowed":"localhost-only source-span gateway retrieval scaffold","reviewer_caution":"Source-span gateway review is not truth certification."},
@@ -5635,6 +5713,17 @@ BOUNDARIES.extend(
         "RETROSYNTHESIS-READINESS-00 is not deployment readiness.",
         "RETROSYNTHESIS-READINESS-00 is not population calibration.",
         "RETROSYNTHESIS-READINESS-00 is ready only for a bounded local retrosynthesis prototype.",
+        "ATLAS-LOCAL-MEMORY-ADMISSION-READINESS-00 is local review-only readiness, not Atlas memory admission.",
+        ATLAS_MEMORY_ADMISSION_READINESS_CLAIM_ALLOWED,
+        "ATLAS-LOCAL-MEMORY-ADMISSION-READINESS-00 is not Atlas memory write.",
+        "ATLAS-LOCAL-MEMORY-ADMISSION-READINESS-00 is not memory candidate write.",
+        "ATLAS-LOCAL-MEMORY-ADMISSION-READINESS-00 is not product release.",
+        "ATLAS-LOCAL-MEMORY-ADMISSION-READINESS-00 is not federation.",
+        "ATLAS-LOCAL-MEMORY-ADMISSION-READINESS-00 is not final answer authority.",
+        "ATLAS-LOCAL-MEMORY-ADMISSION-READINESS-00 is not truth certification.",
+        "ATLAS-LOCAL-MEMORY-ADMISSION-READINESS-00 is not consciousness proof.",
+        "ATLAS-LOCAL-MEMORY-ADMISSION-READINESS-00 is not Omega detection.",
+        "ATLAS-LOCAL-MEMORY-ADMISSION-READINESS-00 is not universal ontology proof.",
     ]
 )
 BOUNDARIES.extend(
@@ -5823,6 +5912,10 @@ def dashboard_payload() -> dict[str, Any]:
             "retrosynthesis_pattern_observations.jsonl",
             "retrosynthesis_local_prototype_receipt.json",
             "retrosynthesis_local_prototype_summary.md",
+            "atlas_local_memory_admission_readiness_packet.json",
+            "atlas_local_memory_admission_readiness_checklist.json",
+            "atlas_local_memory_admission_readiness_receipt.json",
+            "atlas_local_memory_admission_readiness_summary.md",
         ],
 
         "publication_drafts": [
@@ -5881,6 +5974,13 @@ def dashboard_payload() -> dict[str, Any]:
         "not_local_prototype_federation": True,
         "not_local_prototype_product_release": True,
         "not_local_prototype_truth_certification": True,
+        "atlas_local_memory_admission_readiness_00_indexed": True,
+        "not_atlas_memory_admission_readiness_memory_write": True,
+        "not_atlas_memory_admission_readiness_atlas_memory_admission": True,
+        "not_atlas_memory_admission_readiness_memory_candidate_write": True,
+        "not_atlas_memory_admission_readiness_product_release": True,
+        "not_atlas_memory_admission_readiness_federation": True,
+        "not_atlas_memory_admission_readiness_truth_certification": True,
     }
     _assert_safe_dashboard(dashboard)
     return dashboard
@@ -5928,6 +6028,8 @@ def reproducibility_index() -> dict[str, Any]:
                 {"name": "Retrosynthesis readiness acceptance", "command": RETROSYNTHESIS_READINESS_COMMAND},
                 {"name": "Retrosynthesis readiness Python entrypoint", "command": RETROSYNTHESIS_READINESS_PYTHON_ENTRYPOINT},
                 {"name": "Retrosynthesis local prototype Python entrypoint", "command": RETROSYNTHESIS_LOCAL_PROTOTYPE_COMMAND},
+                {"name": "Atlas memory admission readiness acceptance", "command": ATLAS_MEMORY_ADMISSION_READINESS_COMMAND},
+                {"name": "Atlas memory admission readiness Python entrypoint", "command": ATLAS_MEMORY_ADMISSION_READINESS_PYTHON_ENTRYPOINT},
                 {"name": "PMR Context Availability Ledger acceptance", "command": PMR_CONTEXT_AVAILABILITY_LEDGER_00_COMMAND},
                 {"name": "Local Sonya path portability acceptance", "command": LOCAL_SONYA_PATH_PORTABILITY_00_COMMAND},
                 {"name": "PMR doctrine acceptance", "command": PMR_00_COMMAND},
@@ -6425,6 +6527,13 @@ def status_payload() -> dict[str, Any]:
         "not_local_prototype_federation": True,
         "not_local_prototype_product_release": True,
         "not_local_prototype_truth_certification": True,
+        "atlas_local_memory_admission_readiness_00_indexed": True,
+        "not_atlas_memory_admission_readiness_memory_write": True,
+        "not_atlas_memory_admission_readiness_atlas_memory_admission": True,
+        "not_atlas_memory_admission_readiness_memory_candidate_write": True,
+        "not_atlas_memory_admission_readiness_product_release": True,
+        "not_atlas_memory_admission_readiness_federation": True,
+        "not_atlas_memory_admission_readiness_truth_certification": True,
         "requires_external_peer_review": True,
         "not_truth_certification": True,
         "not_deployment_authority": True,
@@ -6443,7 +6552,7 @@ def docs() -> dict[str, str]:
     return {
         "README.md": "# Experiment Suite Docs\n\nPublic reviewer documentation for the claim-bounded reproducibility dashboard.\n",
         "assets/README.md": "# Assets\n\nOptional static assets for the public reproducibility dashboard.\n",
-        "index.md": f"# Public Experiment Suite Dashboard\n\nThis dashboard presents accepted evidence for reviewer orientation. It is not truth certification, not deployment authority, not final answer release, local fixture only, and requires external peer review.\n\n## Accepted evidence\n\n| Phase | Repo | Status | What this supports | Reviewer caution |\n| --- | --- | --- | --- | --- |\n{phase_rows}\n\n## Reviewer path\n\nStart with claim boundaries, then read the governed artifact cognition paper, WAVE Rosetta paper, SONYA-AEGIS-SMOKE-02, WAVE family, UNI-02D Sonya gate, and RETRO-LANE-00, Public Utility Alpha, Raw Baseline Comparison, Evidence Review Pack, RW-COMP-01, RW-COMP-02, Retrosynthesis Sandbox Cycle, Evidence Review Pack second-pass, RW-COMP-03, Universal Architecture Scaffold, Sonya Adapter Contract Registry, Sonya Adapter Smoke, Sonya Local Fixture Adapter, and Evidence Review Pack local adapter, Evidence Review Pack local adapter revision, RW-COMP local adapter, PMR doctrine, PMR local artifact index, PMR GPCU utility scoring, PMR lifecycle state machine, PMR lifecycle audit preflight, PMR Sophia lifecycle audit review, PMR destructive-action authorization preflight, PMR architecture diversity checkpoint, PMR simulation baseline comparison, PMR simulation statistical analysis, PMR federation stress corpus, PMR human provenance context, Sonya Local Fixture Adapter multi-route, and Sonya Local Fixture Adapter lineage clarity, Local Review metrics and flow, and Runtime Metrics Seed Corpus, PMR local queryable store, and Retrosynthesis Readiness, and Retrosynthesis Local Prototype pages.\n\n## What this proves\n\nIt proves only that accepted local fixture artifacts and draft publication materials are organized for review.\n\n## What this does not prove\n\nNo oracle posture, no deployment posture, no final-answer posture, no AI consciousness claim, and no universal ontology claim.\n\n## Phase pages\n\n- [SONYA-AEGIS-SMOKE-02](sonya-aegis-smoke-02.md)\n- [WAVE Gold-Physics](wave-gold-physics.md)\n- [UNI-02D Sonya gate](uni02d-sonya-gate.md)\n- [RETRO-LANE-00](retro-lane-00.md)\n- [Public Utility Alpha](public-utility-alpha.md)\n- [Raw Baseline Comparison](raw-baseline-comparison.md)\n- [Evidence Review Pack](evidence-review-pack.md)\n- [RW-COMP-01](rw-comp-01.md)\n- [RW-COMP-02](rw-comp-02.md)\n- [Retrosynthesis Sandbox Cycle](retrosynthesis-sandbox-cycle.md)\n- [Evidence Review Pack second pass](evidence-review-pack-second-pass.md)\n- [RW-COMP-03](rw-comp-03.md)\n- [Universal Architecture Scaffold](universal-architecture.md)\n- [Sonya Adapter Contract Registry](sonya-adapter-contract-registry.md)\n- [Sonya required membrane checkpoint](sonya-required-membrane-checkpoint.md)\n- [TEL event stack](tel-event-stack.md)\n- [Sonya Adapter Smoke](sonya-adapter-smoke.md)\n- [Sonya Local Fixture Adapter](sonya-local-fixture-adapter.md)\n- [Evidence Review Pack local adapter](evidence-review-pack-local-adapter.md)\n- [Evidence Review Pack local adapter revision](evidence-review-pack-local-adapter-revision.md)\n- [RW-COMP local adapter](rw-comp-local-adapter.md)\n- [Provenance Memory Reservoir](provenance-memory-reservoir.md)\n- [PMR local artifact index](pmr-local-artifact-index.md)\n- [Ontology Claim Registry](ontology-claim-registry.md)\n- [Local Sonya path portability](local-sonya-path-portability.md)\n- [TB Product Slice](tb-product-slice.md)\n- [TB Product Slice 01](tb-product-slice-01.md)\n- [Sonya Local Fixture Adapter multi-route](sonya-local-fixture-adapter-multi-route.md)\n- [Sonya Local Fixture Adapter lineage clarity](sonya-local-fixture-adapter-lineage.md)\n- [Local Review Runtime V0](local-review-runtime-v0.md)\n- [Local Review metrics and flow](local-review-metrics-flow.md)\n- [Runtime metrics seed corpus](runtime-metrics-seed-corpus.md)\n- [PMR local queryable store](pmr-local-queryable-store.md)\n- [Retrosynthesis readiness](retrosynthesis-readiness.md)\n- [Retrosynthesis local prototype](retrosynthesis-local-prototype.md)\n- [Governed artifact cognition paper](governed-artifact-cognition-paper.md)\n- [Waveform Rosetta paper](waveform-rosetta-paper.md)\n",
+        "index.md": f"# Public Experiment Suite Dashboard\n\nThis dashboard presents accepted evidence for reviewer orientation. It is not truth certification, not deployment authority, not final answer release, local fixture only, and requires external peer review.\n\n## Accepted evidence\n\n| Phase | Repo | Status | What this supports | Reviewer caution |\n| --- | --- | --- | --- | --- |\n{phase_rows}\n\n## Reviewer path\n\nStart with claim boundaries, then read the governed artifact cognition paper, WAVE Rosetta paper, SONYA-AEGIS-SMOKE-02, WAVE family, UNI-02D Sonya gate, and RETRO-LANE-00, Public Utility Alpha, Raw Baseline Comparison, Evidence Review Pack, RW-COMP-01, RW-COMP-02, Retrosynthesis Sandbox Cycle, Evidence Review Pack second-pass, RW-COMP-03, Universal Architecture Scaffold, Sonya Adapter Contract Registry, Sonya Adapter Smoke, Sonya Local Fixture Adapter, and Evidence Review Pack local adapter, Evidence Review Pack local adapter revision, RW-COMP local adapter, PMR doctrine, PMR local artifact index, PMR GPCU utility scoring, PMR lifecycle state machine, PMR lifecycle audit preflight, PMR Sophia lifecycle audit review, PMR destructive-action authorization preflight, PMR architecture diversity checkpoint, PMR simulation baseline comparison, PMR simulation statistical analysis, PMR federation stress corpus, PMR human provenance context, Sonya Local Fixture Adapter multi-route, and Sonya Local Fixture Adapter lineage clarity, Local Review metrics and flow, and Runtime Metrics Seed Corpus, PMR local queryable store, Retrosynthesis Readiness, Retrosynthesis Local Prototype, and Atlas Local Memory Admission Readiness pages.\n\n## What this proves\n\nIt proves only that accepted local fixture artifacts and draft publication materials are organized for review.\n\n## What this does not prove\n\nNo oracle posture, no deployment posture, no final-answer posture, no AI consciousness claim, and no universal ontology claim.\n\n## Phase pages\n\n- [SONYA-AEGIS-SMOKE-02](sonya-aegis-smoke-02.md)\n- [WAVE Gold-Physics](wave-gold-physics.md)\n- [UNI-02D Sonya gate](uni02d-sonya-gate.md)\n- [RETRO-LANE-00](retro-lane-00.md)\n- [Public Utility Alpha](public-utility-alpha.md)\n- [Raw Baseline Comparison](raw-baseline-comparison.md)\n- [Evidence Review Pack](evidence-review-pack.md)\n- [RW-COMP-01](rw-comp-01.md)\n- [RW-COMP-02](rw-comp-02.md)\n- [Retrosynthesis Sandbox Cycle](retrosynthesis-sandbox-cycle.md)\n- [Evidence Review Pack second pass](evidence-review-pack-second-pass.md)\n- [RW-COMP-03](rw-comp-03.md)\n- [Universal Architecture Scaffold](universal-architecture.md)\n- [Sonya Adapter Contract Registry](sonya-adapter-contract-registry.md)\n- [Sonya required membrane checkpoint](sonya-required-membrane-checkpoint.md)\n- [TEL event stack](tel-event-stack.md)\n- [Sonya Adapter Smoke](sonya-adapter-smoke.md)\n- [Sonya Local Fixture Adapter](sonya-local-fixture-adapter.md)\n- [Evidence Review Pack local adapter](evidence-review-pack-local-adapter.md)\n- [Evidence Review Pack local adapter revision](evidence-review-pack-local-adapter-revision.md)\n- [RW-COMP local adapter](rw-comp-local-adapter.md)\n- [Provenance Memory Reservoir](provenance-memory-reservoir.md)\n- [PMR local artifact index](pmr-local-artifact-index.md)\n- [Ontology Claim Registry](ontology-claim-registry.md)\n- [Local Sonya path portability](local-sonya-path-portability.md)\n- [TB Product Slice](tb-product-slice.md)\n- [TB Product Slice 01](tb-product-slice-01.md)\n- [Sonya Local Fixture Adapter multi-route](sonya-local-fixture-adapter-multi-route.md)\n- [Sonya Local Fixture Adapter lineage clarity](sonya-local-fixture-adapter-lineage.md)\n- [Local Review Runtime V0](local-review-runtime-v0.md)\n- [Local Review metrics and flow](local-review-metrics-flow.md)\n- [Runtime metrics seed corpus](runtime-metrics-seed-corpus.md)\n- [PMR local queryable store](pmr-local-queryable-store.md)\n- [Retrosynthesis readiness](retrosynthesis-readiness.md)\n- [Retrosynthesis local prototype](retrosynthesis-local-prototype.md)\n- [Atlas local memory admission readiness](atlas-local-memory-admission-readiness.md)\n- [Governed artifact cognition paper](governed-artifact-cognition-paper.md)\n- [Waveform Rosetta paper](waveform-rosetta-paper.md)\n",
         "runtime-metrics-seed-corpus.md": f"""# Runtime metrics seed corpus
 
 ## What was validated
@@ -8284,6 +8393,58 @@ PMR-HUMAN-PROVENANCE-00 demonstrates a fixture-only human provenance and consent
 {chr(10).join(f"- {claim}" for claim in PMR_HUMAN_PROVENANCE_00_CLAIMS_BLOCKED)}
 
 Reviewer caution: PMR-HUMAN-PROVENANCE-00 models synthetic human provenance and consent context only. It does not certify identity, does not execute consent, does not authorize action, does not write memory, does not delete, does not prune, does not federate, does not reward, does not train models, does not deploy, does not certify truth, and does not make AI or human consciousness claims.
+""",
+
+        "atlas-local-memory-admission-readiness.md": f"""# Atlas local memory admission readiness
+
+## What was validated locally
+
+ATLAS-LOCAL-MEMORY-ADMISSION-READINESS-00 records a local review-only readiness gate for future Atlas memory admission policy design. It is readiness only and does not perform Atlas memory admission or any memory write.
+
+## Dashboard summary
+
+- readiness_status = {ATLAS_MEMORY_ADMISSION_READINESS_DASHBOARD_SUMMARY["readiness_status"]}
+- source_prototype_status = {ATLAS_MEMORY_ADMISSION_READINESS_DASHBOARD_SUMMARY["source_prototype_status"]}
+- readiness_score = {ATLAS_MEMORY_ADMISSION_READINESS_DASHBOARD_SUMMARY["readiness_score"]}
+- readiness_dimension_count = {ATLAS_MEMORY_ADMISSION_READINESS_DASHBOARD_SUMMARY["readiness_dimension_count"]}
+- local_review_only = true
+- atlas_memory_admission_performed = false
+- atlas_memory_write_performed = false
+- memory_candidate_write_performed = false
+- federation_performed = false
+- product_release_performed = false
+- final_answer_emitted = false
+- truth_certification_emitted = false
+
+## Artifacts
+
+{chr(10).join(f"- `{artifact}`" for artifact in ATLAS_MEMORY_ADMISSION_READINESS_ARTIFACTS)}
+
+## Claim allowed
+
+{ATLAS_MEMORY_ADMISSION_READINESS_CLAIM_ALLOWED}
+
+## Claims blocked
+
+{chr(10).join(f"- {claim}" for claim in ATLAS_MEMORY_ADMISSION_READINESS_CLAIMS_BLOCKED)}
+
+## Reproducibility
+
+Acceptance harness:
+
+```powershell
+{ATLAS_MEMORY_ADMISSION_READINESS_COMMAND}
+```
+
+Python readiness builder entrypoint:
+
+```powershell
+{ATLAS_MEMORY_ADMISSION_READINESS_PYTHON_ENTRYPOINT}
+```
+
+The Python entrypoint includes `build_runtime_metrics_seed_corpus`, `build_pmr_local_query_store`, `build_retrosynthesis_readiness_assessment`, `build_retrosynthesis_local_prototype`, `build_atlas_memory_admission_readiness`, and local readiness artifacts. C:\\UVLM is a local validation example, not product default.
+
+This command builds readiness artifacts only. It does not admit Atlas memory, write Atlas memory, write memory candidates, federate, release product behavior, emit final answers, certify truth, not Omega detection, not consciousness proof, and not universal ontology proof.
 """,
         "governed-artifact-cognition-paper.md": "# Governed Artifact Cognition Paper\n\nSummary: systems paper for governed artifact cognition as a reproducible audit lab.\n\nLinks: `papers/governed_artifact_cognition/PUB_GOV_ARTIFACT_COG_01.md`, reviewer quickstart, claim boundary table, status.json.\n\nClaim boundaries: not truth certification, not deployment authority, not final answer release, local fixture only, requires external peer review.\n\nValidation command: `python tools/validate_publication_claims.py --paper papers/governed_artifact_cognition/PUB_GOV_ARTIFACT_COG_01.md --quickstart papers/governed_artifact_cognition/reviewer_quickstart.md --status papers/governed_artifact_cognition/status.json`.\n",
         "waveform-rosetta-paper.md": "# Waveform Rosetta Paper\n\nSummary: methods paper for closed-form WAVE Gold-Physics metric calibration.\n\nLinks: `papers/waveform_rosetta/PUB_WAVE_ROSETTA_01.md`, reviewer quickstart, theorem table, status.json.\n\nClaim boundaries: not universal ontology, not psychoacoustic effect, not AI consciousness, not deployment authority, not truth certification, requires external peer review.\n\nValidation command: `python tools/validate_publication_claims.py --paper papers/waveform_rosetta/PUB_WAVE_ROSETTA_01.md --quickstart papers/waveform_rosetta/reviewer_quickstart.md --status papers/waveform_rosetta/status.json`.\n",
