@@ -1009,6 +1009,12 @@
       "retrosynthesis_local_prototype_receipt.json",
       "retrosynthesis_local_prototype_summary.md"
     ],
+    "ATLAS-LOCAL-MEMORY-ADMISSION-READINESS-00": [
+      "atlas_local_memory_admission_readiness_packet.json",
+      "atlas_local_memory_admission_readiness_checklist.json",
+      "atlas_local_memory_admission_readiness_receipt.json",
+      "atlas_local_memory_admission_readiness_summary.md"
+    ],
     "PMR-HUMAN-CONSENT-NEGATIVE-CONTROL-00": [
       "pmr_human_consent_negative_control_manifest.json",
       "pmr_invalid_human_consent_attempts.jsonl",
