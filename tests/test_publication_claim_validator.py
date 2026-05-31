@@ -2925,3 +2925,113 @@ def test_claim_validator_rejects_retrosynthesis_readiness_overclaims(tmp_path):
         result = validate_publication_claims(paper_root / "PUB_GOV_ARTIFACT_COG_01.md")
         assert result["passed"] is False, claim
         assert result["forbidden_overclaims_found"], claim
+
+
+def test_claim_validator_allows_bounded_retrosynthesis_local_prototype_claim(tmp_path):
+    paper_root = tmp_path / "paper"
+    paper_root.mkdir(parents=True)
+    allowed = (
+        "RETROSYNTHESIS-LOCAL-PROTOTYPE-00 generates bounded local candidate hypotheses, "
+        "candidate repair plans, and pattern observations from PMR query results, TEL replay, "
+        "runtime metrics, formula registry, metric bounds, seed corpus observations, cognitive flow "
+        "morphology, Sonya coverage, and Sophia posture.\n"
+        "Candidate hypotheses are not truth. Repair plans are not authority. Human review is required.\n"
+        "not truth certification\nnot deployment authority\nnot final answer release\nlocal fixture only\n"
+        "requires external peer review\nnot AI consciousness\nnot recursive Sonya federation\n"
+        "not retrosynthesis runtime\nnot Omega detection\nnot live Atlas memory writes\nnot live Sophia calls\n"
+    )
+    for name in (
+        "PUB_GOV_ARTIFACT_COG_01.md",
+        "reproducibility_appendix.md",
+        "claim_boundary_table.md",
+        "artifact_table.md",
+        "reviewer_quickstart.md",
+    ):
+        (paper_root / name).write_text(allowed, encoding="utf-8")
+    (paper_root / "status.json").write_text(
+        json.dumps(
+            {
+                "paper_id": "PUB-GOV-ARTIFACT-COG-01",
+                "repo": "pdxvoiceteacher/uvlm-publications",
+                "status": "drafted",
+                "claim_level": "internal_preprint_draft",
+                "requires_external_peer_review": True,
+                "not_truth_certification": True,
+                "not_deployment_authority": True,
+                "not_final_answer_release": True,
+                "not_live_model_execution": True,
+                "not_live_model_evaluation": True,
+                "not_production_evaluation": True,
+                "not_ai_consciousness_claim": True,
+            }
+        ),
+        encoding="utf-8",
+    )
+
+    result = validate_publication_claims(paper_root / "PUB_GOV_ARTIFACT_COG_01.md")
+
+    assert result["forbidden_overclaims_found"] == []
+
+
+def test_claim_validator_rejects_retrosynthesis_local_prototype_overclaims(tmp_path):
+    paper_root = tmp_path / "paper"
+    paper_root.mkdir(parents=True)
+    base = (
+        "not truth certification\nnot deployment authority\nnot final answer release\nlocal fixture only\n"
+        "requires external peer review\nnot AI consciousness\nnot recursive Sonya federation\n"
+        "not retrosynthesis runtime\nnot Omega detection\nnot live Atlas memory writes\nnot live Sophia calls\n"
+    )
+    blocked = (
+        "RETROSYNTHESIS-LOCAL-PROTOTYPE-00 says candidate hypotheses are truth.",
+        "RETROSYNTHESIS-LOCAL-PROTOTYPE-00 says candidate hypotheses are final answers.",
+        "RETROSYNTHESIS-LOCAL-PROTOTYPE-00 says candidate hypotheses are accepted evidence.",
+        "RETROSYNTHESIS-LOCAL-PROTOTYPE-00 says repair plans are authority.",
+        "RETROSYNTHESIS-LOCAL-PROTOTYPE-00 says memory write occurred.",
+        "RETROSYNTHESIS-LOCAL-PROTOTYPE-00 says Atlas memory admission occurred.",
+        "RETROSYNTHESIS-LOCAL-PROTOTYPE-00 says federation occurred.",
+        "RETROSYNTHESIS-LOCAL-PROTOTYPE-00 says product release occurred.",
+        "RETROSYNTHESIS-LOCAL-PROTOTYPE-00 claims final answer authority.",
+        "RETROSYNTHESIS-LOCAL-PROTOTYPE-00 claims accepted evidence authority.",
+        "RETROSYNTHESIS-LOCAL-PROTOTYPE-00 claims truth certification.",
+        "RETROSYNTHESIS-LOCAL-PROTOTYPE-00 claims provider runtime.",
+        "RETROSYNTHESIS-LOCAL-PROTOTYPE-00 claims LAN enablement.",
+        "RETROSYNTHESIS-LOCAL-PROTOTYPE-00 claims deployment readiness.",
+        "RETROSYNTHESIS-LOCAL-PROTOTYPE-00 claims autonomous self-improvement.",
+        "RETROSYNTHESIS-LOCAL-PROTOTYPE-00 proves consciousness.",
+        "RETROSYNTHESIS-LOCAL-PROTOTYPE-00 is Omega detection.",
+        "RETROSYNTHESIS-LOCAL-PROTOTYPE-00 claims universal ontology proof.",
+        "RETROSYNTHESIS-LOCAL-PROTOTYPE-00 proves population-calibrated outputs.",
+        "RETROSYNTHESIS-LOCAL-PROTOTYPE-00 proves human benefit.",
+        "RETROSYNTHESIS-LOCAL-PROTOTYPE-00 claims market validation.",
+    )
+    for name in (
+        "reproducibility_appendix.md",
+        "claim_boundary_table.md",
+        "artifact_table.md",
+        "reviewer_quickstart.md",
+    ):
+        (paper_root / name).write_text(base, encoding="utf-8")
+    (paper_root / "status.json").write_text(
+        json.dumps(
+            {
+                "paper_id": "PUB-GOV-ARTIFACT-COG-01",
+                "repo": "pdxvoiceteacher/uvlm-publications",
+                "status": "drafted",
+                "claim_level": "internal_preprint_draft",
+                "requires_external_peer_review": True,
+                "not_truth_certification": True,
+                "not_deployment_authority": True,
+                "not_final_answer_release": True,
+                "not_live_model_execution": True,
+                "not_live_model_evaluation": True,
+                "not_production_evaluation": True,
+                "not_ai_consciousness_claim": True,
+            }
+        ),
+        encoding="utf-8",
+    )
+    for claim in blocked:
+        (paper_root / "PUB_GOV_ARTIFACT_COG_01.md").write_text(base + "\n" + claim, encoding="utf-8")
+        result = validate_publication_claims(paper_root / "PUB_GOV_ARTIFACT_COG_01.md")
+        assert result["passed"] is False, claim
+        assert result["forbidden_overclaims_found"], claim
