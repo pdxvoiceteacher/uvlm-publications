@@ -1010,8 +1010,8 @@
 - RETROSYNTHESIS-READINESS-00 is not deployment readiness.
 - RETROSYNTHESIS-READINESS-00 is not population calibration.
 - RETROSYNTHESIS-READINESS-00 is ready only for a bounded local retrosynthesis prototype.
-- ATLAS-LOCAL-MEMORY-ADMISSION-READINESS-00 is local review-only readiness, not Atlas memory admission.
-- ATLAS-LOCAL-MEMORY-ADMISSION-READINESS-00 records a local review-only readiness gate for future Atlas memory admission policy design, based on PMR queryability, retrosynthesis readiness, bounded local prototype receipts, TEL replay, runtime metrics, formula registry coverage, metric-bound taxonomy, seed corpus variation, cognitive flow morphology, Sonya coverage, and Sophia posture.
+- ATLAS-LOCAL-MEMORY-ADMISSION-READINESS-00 is Atlas memory admission readiness, not Atlas memory admission.
+- ATLAS-LOCAL-MEMORY-ADMISSION-READINESS-00 records Atlas memory admission readiness for a bounded future prototype, based on PMR queryability, retrosynthesis readiness, bounded local prototype receipts, TEL replay, runtime metrics, formula registry coverage, metric-bound taxonomy, seed corpus variation, cognitive flow morphology, Sonya coverage, and Sophia posture.
 - ATLAS-LOCAL-MEMORY-ADMISSION-READINESS-00 is not Atlas memory write.
 - ATLAS-LOCAL-MEMORY-ADMISSION-READINESS-00 is not memory candidate write.
 - ATLAS-LOCAL-MEMORY-ADMISSION-READINESS-00 is not product release.

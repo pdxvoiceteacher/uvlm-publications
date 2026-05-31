@@ -208,7 +208,8 @@ REQUIRED_COMMAND_FRAGMENTS = (
     "build_retrosynthesis_readiness_assessment",
     "build_retrosynthesis_local_prototype",
     "Run-ATLAS-LOCAL-MEMORY-ADMISSION-READINESS00-Acceptance.ps1",
-    "build_atlas_memory_admission_readiness",
+    "build_atlas_local_memory_admission_readiness",
+    "atlas_local_memory_admission_readiness",
 )
 STALE_COMMAND_FRAGMENTS = (
     "tests/test_sonya_aegis_smoke_02.py",
@@ -3184,14 +3185,25 @@ def test_atlas_local_memory_admission_readiness_indexes_and_docs_are_generated(t
     assert phase["authority_posture"] == "non_authoritative"
     assert phase["public_claim_boundary"] == "readiness_only_local_review_gate_no_memory_write"
     summary = phase["dashboard_summary"]
-    assert summary["readiness_status"] == "ready_for_local_review_only_admission_gate"
+    assert summary["readiness_status"] == "ready_for_bounded_atlas_memory_admission_prototype"
+    assert summary["readiness_status"] != "ready_for_local_review_only_admission_gate"
     assert summary["source_prototype_status"] == "completed_candidate_generation"
-    assert summary["readiness_score"] == 1.0
-    assert summary["readiness_dimension_count"] == 12
+    assert summary["readiness_score"] == 1
+    assert summary["recommended_next_phase"] == "ATLAS-LOCAL-MEMORY-ADMISSION-PROTOTYPE-00"
+    assert summary["readiness_dimensions"] == 21
+    assert summary["readiness_dimension_count"] == 21
+    assert summary["readiness_dimension_count"] != 12
+    assert summary["failed_checks"] == 0
+    assert summary["blocking_reasons"] == 0
+    assert summary["candidate_hypotheses"] == 7
+    assert summary["candidate_repair_plans"] == 3
+    assert summary["pattern_observations"] == 5
     assert summary["local_review_only"] is True
     assert summary["atlas_memory_admission_performed"] is False
     assert summary["atlas_memory_write_performed"] is False
+    assert summary["atlas_memory_candidate_written"] is False
     assert summary["memory_candidate_write_performed"] is False
+    assert summary["memory_admission_performed"] is False
     assert summary["federation_performed"] is False
     assert summary["product_release_performed"] is False
     assert summary["final_answer_emitted"] is False
@@ -3210,28 +3222,52 @@ def test_atlas_local_memory_admission_readiness_indexes_and_docs_are_generated(t
         "build_pmr_local_query_store",
         "build_retrosynthesis_readiness_assessment",
         "build_retrosynthesis_local_prototype",
-        "build_atlas_memory_admission_readiness",
+        "build_atlas_local_memory_admission_readiness",
+        "atlas_local_memory_admission_readiness",
         "atlas_local_memory_admission_readiness_00",
         r"C:\\UVLM",
     ):
         assert fragment in reproducibility_text
     assert "atlas-local-memory-admission-readiness.md" in index
+    stale_builder = "build_atlas_memory_admission_readiness"
+    assert stale_builder not in page
+    assert stale_builder not in reproducibility_text
+    assert stale_builder not in json.dumps(dashboard)
     for phrase in (
-        "ATLAS-LOCAL-MEMORY-ADMISSION-READINESS-00 records a local review-only readiness gate",
-        "It is readiness only and does not perform Atlas memory admission or any memory write.",
+        "ATLAS-LOCAL-MEMORY-ADMISSION-READINESS-00 records Atlas memory admission readiness",
+        "This is Atlas memory admission readiness, not Atlas memory admission.",
+        "readiness_status = ready_for_bounded_atlas_memory_admission_prototype",
+        "readiness_score = 1",
+        "recommended_next_phase = ATLAS-LOCAL-MEMORY-ADMISSION-PROTOTYPE-00",
+        "readiness_dimensions = 21",
+        "readiness_dimension_count = 21",
+        "candidate_hypotheses = 7",
+        "candidate_repair_plans = 3",
+        "pattern_observations = 5",
         "atlas_memory_admission_performed = false",
         "atlas_memory_write_performed = false",
-        "memory_candidate_write_performed = false",
-        "not Atlas memory admission",
-        "not Atlas memory write",
-        "not memory candidate write",
+        "atlas_memory_candidate_written = false",
+        "memory_admission_performed = false",
+        "No Atlas memory write occurred.",
+        "No Atlas memory admission occurred.",
+        "No memory candidate was written.",
+        "No federation occurred.",
+        "No product release occurred.",
+        "No final answer was emitted.",
+        "No truth certification occurred.",
+        "No accepted evidence was emitted.",
+        "No Omega detection occurred.",
+        "No consciousness proof occurred.",
+        "Human review is required before any future Atlas memory admission prototype.",
         "Run-ATLAS-LOCAL-MEMORY-ADMISSION-READINESS00-Acceptance.ps1",
-        "build_atlas_memory_admission_readiness",
+        "from coherence.atlas.local_memory_admission_readiness import build_atlas_local_memory_admission_readiness",
+        "build_atlas_local_memory_admission_readiness",
+        "atlas_local_memory_admission_readiness",
         "C:\\UVLM is a local validation example, not product default",
     ):
         assert phrase in page
     boundary_text = "\n".join(claim_boundaries["boundaries"])
-    assert "ATLAS-LOCAL-MEMORY-ADMISSION-READINESS-00 is local review-only readiness, not Atlas memory admission." in boundary_text
+    assert "ATLAS-LOCAL-MEMORY-ADMISSION-READINESS-00 is Atlas memory admission readiness, not Atlas memory admission." in boundary_text
     assert "ATLAS-LOCAL-MEMORY-ADMISSION-READINESS-00 is not Atlas memory write." in boundary_text
     assert "ATLAS-LOCAL-MEMORY-ADMISSION-READINESS-00 is not memory candidate write." in boundary_text
     assert status["atlas_local_memory_admission_readiness_00_indexed"] is True
