@@ -1050,6 +1050,40 @@
       "theorem_non_claim_boundary_table.json",
       "theorem_validation_receipt.md"
     ],
+    "TRIADIC-LLM-METRICS-SMOKE-00": [
+      "llm_metrics_smoke_request.json",
+      "sonya_model_candidate_packet.json",
+      "source_integrity_packet.json",
+      "source_span_map.json",
+      "claim_classification_packet.json",
+      "claim_evidence_map.json",
+      "unsupported_claim_report.json",
+      "coherence_runtime_metrics_packet.json",
+      "coherence_action_functional_packet.json",
+      "ai_decision_trace_packet.json",
+      "review_receipt.md",
+      "llm_metrics_smoke_receipt.json"
+    ],
+    "UCC-SOPHIA-CONTROL-FORENSICS-00": [
+      "ucc_control_profile_packet.json",
+      "ucc_control_selection_receipt.json",
+      "sophia_ucc_control_review_packet.json",
+      "ucc_control_evidence_map.json",
+      "ucc_control_gap_report.json",
+      "ucc_control_non_certification_boundary_table.json",
+      "ucc_control_review_summary.md"
+    ],
+    "UCC-STANDARDS-SOURCE-REGISTRY-AND-MATERIALITY-00": [
+      "ucc_standards_source_registry.json",
+      "ucc_materiality_profile.json",
+      "ucc_materiality_override_receipt.json",
+      "ucc_standards_source_registry_summary.md"
+    ],
+    "TRIADIC-LLM-SMOKE-PMR-INVENTORY-CONTRACT-REPAIR-REVISION": [
+      "sonya_model_candidate_packet.json",
+      "llm_metrics_smoke_receipt.json",
+      "review_receipt.md"
+    ],
     "PMR-HUMAN-CONSENT-NEGATIVE-CONTROL-00": [
       "pmr_human_consent_negative_control_manifest.json",
       "pmr_invalid_human_consent_attempts.jsonl",

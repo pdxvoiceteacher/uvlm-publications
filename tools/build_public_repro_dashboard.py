@@ -2183,6 +2183,207 @@ COOP_ENTROPY_DIVIDEND_PHASE = {
     "reviewer_caution": "COOP-ENTROPY-DIVIDEND-00 is not proven; repeated runs and external replication are required for stronger claims.",
 }
 
+
+TRIADIC_LLM_UCC_SOURCE_MATERIALITY_COMMAND = "python -c \"from pathlib import Path; from coherence.triadic.llm_metrics_smoke import build_triadic_llm_metrics_smoke; from coherence.ucc.sophia_control_review import build_sophia_ucc_control_review; from coherence.ucc.standards_source_registry import build_ucc_standards_source_registry; from coherence.ucc.materiality_profile import build_ucc_materiality_profile; from coherence.ucc.materiality_override import build_ucc_materiality_override_receipt; root=Path(r'C:\\UVLM\\run_artifacts\\triadic_llm_ucc_source_materiality'); build_triadic_llm_metrics_smoke(output_root=root); build_sophia_ucc_control_review(root / 'bridge'); build_ucc_standards_source_registry(root / 'bridge'); build_ucc_materiality_profile(root / 'bridge'); build_ucc_materiality_override_receipt(root / 'bridge')\""
+
+TRIADIC_LLM_METRICS_SMOKE_ARTIFACTS = [
+    "llm_metrics_smoke_request.json",
+    "sonya_model_candidate_packet.json",
+    "source_integrity_packet.json",
+    "source_span_map.json",
+    "claim_classification_packet.json",
+    "claim_evidence_map.json",
+    "unsupported_claim_report.json",
+    "coherence_runtime_metrics_packet.json",
+    "coherence_action_functional_packet.json",
+    "ai_decision_trace_packet.json",
+    "review_receipt.md",
+    "llm_metrics_smoke_receipt.json",
+]
+TRIADIC_LLM_METRICS_SMOKE_DASHBOARD_SUMMARY = {
+    "smoke_status": "completed",
+    "span_linked_claim_count": 1,
+    "unsupported_claim_count": 1,
+    "raw_model_output_final_answer": False,
+    "provider_runtime_performed": False,
+    "product_release_performed": False,
+    "final_answer_emitted": False,
+    "truth_certification_emitted": False,
+    "memory_write_performed": False,
+    "atlas_memory_admission_performed": False,
+}
+TRIADIC_LLM_METRICS_SMOKE_CLAIM_ALLOWED = "TRIADIC-LLM-METRICS-SMOKE-00 demonstrates a local candidate-to-forensic-review smoke with source-linked and unsupported claims visible."
+TRIADIC_LLM_METRICS_SMOKE_CLAIMS_BLOCKED = [
+    "raw model output is not final answer",
+    "Sonya candidate is not final answer",
+    "not provider runtime",
+    "not product release",
+    "not memory write",
+    "not truth certification",
+    "not final answer authority",
+    "not accepted evidence authority",
+]
+TRIADIC_LLM_METRICS_SMOKE_PHASE = {
+    "phase_id": "TRIADIC-LLM-METRICS-SMOKE-00",
+    "repo": "pdxvoiceteacher/CoherenceLattice",
+    "source_phase": "COOP-ENTROPY-DIVIDEND-00",
+    "status": "accepted_local_validation",
+    "publication_status": "dashboard_synced",
+    "evidence_type": "local_candidate_to_forensic_review_smoke",
+    "product_posture": "diagnostic_candidate_only_not_final_answer_not_product_release",
+    "authority_posture": "non_authoritative",
+    "public_claim_boundary": "diagnostic_smoke_only_no_final_answer_authority",
+    "primary_artifacts": TRIADIC_LLM_METRICS_SMOKE_ARTIFACTS,
+    "dashboard_summary": TRIADIC_LLM_METRICS_SMOKE_DASHBOARD_SUMMARY,
+    "reproduction_command_summary": TRIADIC_LLM_UCC_SOURCE_MATERIALITY_COMMAND,
+    "claims_blocked": TRIADIC_LLM_METRICS_SMOKE_CLAIMS_BLOCKED,
+    "claim_allowed": TRIADIC_LLM_METRICS_SMOKE_CLAIM_ALLOWED,
+    "reviewer_caution": "Raw model output is not final answer; Sonya model candidate packets are candidate-only and metrics are diagnostic/non-authoritative.",
+}
+
+UCC_SOPHIA_CONTROL_FORENSICS_ARTIFACTS = [
+    "ucc_control_profile_packet.json",
+    "ucc_control_selection_receipt.json",
+    "sophia_ucc_control_review_packet.json",
+    "ucc_control_evidence_map.json",
+    "ucc_control_gap_report.json",
+    "ucc_control_non_certification_boundary_table.json",
+    "ucc_control_review_summary.md",
+]
+UCC_SOPHIA_CONTROL_FORENSICS_DASHBOARD_SUMMARY = {
+    "ucc_profile_id": "local_forensic_controls_fixture_v0",
+    "control_source_type": "synthetic_fixture",
+    "control_review_status": "completed_diagnostic_review",
+    "satisfied_control_count": 5,
+    "failed_control_count": 0,
+    "partial_control_count": 0,
+    "uncertain_control_count": 1,
+    "control_review_is_not_compliance_certification": True,
+    "control_review_is_not_professional_attestation": True,
+    "control_review_is_not_truth_certification": True,
+    "control_review_requires_human_review": True,
+}
+UCC_SOPHIA_CONTROL_FORENSICS_CLAIM_ALLOWED = "UCC-SOPHIA-CONTROL-FORENSICS-00 applies a synthetic UCC fixture as diagnostic control review, not certification."
+UCC_SOPHIA_CONTROL_FORENSICS_CLAIMS_BLOCKED = [
+    "not compliance certification",
+    "not audit opinion",
+    "not professional attestation",
+    "not legal advice",
+    "not clinical certification",
+    "not academic endorsement",
+    "not truth certification",
+    "not final answer authority",
+    "not product release",
+]
+UCC_SOPHIA_CONTROL_FORENSICS_PHASE = {
+    "phase_id": "UCC-SOPHIA-CONTROL-FORENSICS-00",
+    "repo": "pdxvoiceteacher/CoherenceLattice",
+    "source_phase": "TRIADIC-LLM-METRICS-SMOKE-00",
+    "status": "accepted_local_validation",
+    "publication_status": "dashboard_synced",
+    "evidence_type": "synthetic_fixture_diagnostic_control_review",
+    "product_posture": "diagnostic_control_review_not_certification",
+    "authority_posture": "non_authoritative",
+    "public_claim_boundary": "diagnostic_controls_only_no_certification_or_attestation",
+    "primary_artifacts": UCC_SOPHIA_CONTROL_FORENSICS_ARTIFACTS,
+    "dashboard_summary": UCC_SOPHIA_CONTROL_FORENSICS_DASHBOARD_SUMMARY,
+    "reproduction_command_summary": TRIADIC_LLM_UCC_SOURCE_MATERIALITY_COMMAND,
+    "claims_blocked": UCC_SOPHIA_CONTROL_FORENSICS_CLAIMS_BLOCKED,
+    "claim_allowed": UCC_SOPHIA_CONTROL_FORENSICS_CLAIM_ALLOWED,
+    "reviewer_caution": "UCC/Sophia control review is diagnostic and is not legal compliance certification, audit opinion, professional attestation, clinical certification, academic endorsement, or truth certification.",
+}
+
+UCC_STANDARDS_SOURCE_REGISTRY_ARTIFACTS = [
+    "ucc_standards_source_registry.json",
+    "ucc_materiality_profile.json",
+    "ucc_materiality_override_receipt.json",
+    "ucc_standards_source_registry_summary.md",
+]
+UCC_STANDARDS_SOURCE_REGISTRY_DASHBOARD_SUMMARY = {
+    "source_profile_count": 2,
+    "active_design_fixture_ref": "local_forensic_controls_fixture_v0",
+    "real_world_reference_example_ref": "nist_csf_2_0_reference",
+    "nist_reference_is_marketing_example_only": True,
+    "nist_source_text_stored": False,
+    "nist_materiality_profile_applied": False,
+    "active_source_rows_are_synthetic_fixture_and_nist_reference_only": True,
+    "materiality_override_control": "uncertainty_visible",
+    "prior_materiality": "medium",
+    "override_materiality": "high",
+    "override_is_ad_hoc": True,
+    "override_is_not_certification": True,
+    "override_does_not_modify_source_standard": True,
+}
+UCC_STANDARDS_SOURCE_REGISTRY_CLAIM_ALLOWED = "UCC-STANDARDS-SOURCE-REGISTRY-AND-MATERIALITY-00 provides universal source-profile and materiality-profile scaffolding using a synthetic fixture and NIST reference-only example. NIST CSF 2.0 is present as a reference-only example; NIST source text is not ingested and no NIST compliance is certified."
+UCC_STANDARDS_SOURCE_REGISTRY_CLAIMS_BLOCKED = [
+    "not NIST compliance certification",
+    "not NIST controls ingestion",
+    "not AICPA ingestion",
+    "not COSO ingestion",
+    "not PRISMA ingestion",
+    "not ISO ingestion",
+    "not SOC ingestion",
+    "not professional judgment",
+    "not source standard modification",
+    "not certification",
+]
+UCC_STANDARDS_SOURCE_REGISTRY_PHASE = {
+    "phase_id": "UCC-STANDARDS-SOURCE-REGISTRY-AND-MATERIALITY-00",
+    "repo": "pdxvoiceteacher/CoherenceLattice",
+    "source_phase": "UCC-SOPHIA-CONTROL-FORENSICS-00",
+    "status": "accepted_local_validation",
+    "publication_status": "dashboard_synced",
+    "evidence_type": "source_profile_materiality_profile_scaffold",
+    "product_posture": "reference_only_not_certification_not_standard_ingestion",
+    "authority_posture": "non_authoritative",
+    "public_claim_boundary": "source_materiality_scaffold_only_no_certification",
+    "primary_artifacts": UCC_STANDARDS_SOURCE_REGISTRY_ARTIFACTS,
+    "dashboard_summary": UCC_STANDARDS_SOURCE_REGISTRY_DASHBOARD_SUMMARY,
+    "reproduction_command_summary": TRIADIC_LLM_UCC_SOURCE_MATERIALITY_COMMAND,
+    "claims_blocked": UCC_STANDARDS_SOURCE_REGISTRY_CLAIMS_BLOCKED,
+    "claim_allowed": UCC_STANDARDS_SOURCE_REGISTRY_CLAIM_ALLOWED,
+    "reviewer_caution": "NIST CSF 2.0 is a reference-only example; source text is not ingested, no NIST compliance is certified, and materiality overrides are not professional judgment.",
+}
+
+TRIADIC_LLM_INVENTORY_REPAIR_ARTIFACTS = [
+    "sonya_model_candidate_packet.json",
+    "llm_metrics_smoke_receipt.json",
+    "review_receipt.md",
+]
+TRIADIC_LLM_INVENTORY_REPAIR_DASHBOARD_SUMMARY = {
+    "sonya_model_candidate_packet_pmr_visible": True,
+    "triadic_llm_smoke_artifacts_inventory_visible": True,
+    "triadic_llm_smoke_artifacts_parity_visible": True,
+    "visibility_repair_creates_final_answer_authority": False,
+    "visibility_repair_creates_provider_runtime": False,
+    "visibility_repair_creates_product_release": False,
+}
+TRIADIC_LLM_INVENTORY_REPAIR_CLAIM_ALLOWED = "TRIADIC-LLM-SMOKE-PMR-INVENTORY-CONTRACT-REPAIR-REVISION records that Triadic LLM smoke artifacts are PMR-visible, inventory-visible, and parity-visible without granting authority."
+TRIADIC_LLM_INVENTORY_REPAIR_CLAIMS_BLOCKED = [
+    "not final answer authority",
+    "not provider runtime",
+    "not product release",
+    "not accepted evidence authority",
+    "not truth certification",
+]
+TRIADIC_LLM_INVENTORY_REPAIR_PHASE = {
+    "phase_id": "TRIADIC-LLM-SMOKE-PMR-INVENTORY-CONTRACT-REPAIR-REVISION",
+    "repo": "pdxvoiceteacher/CoherenceLattice",
+    "source_phase": "TRIADIC-LLM-METRICS-SMOKE-00",
+    "status": "accepted_local_validation",
+    "publication_status": "dashboard_synced",
+    "evidence_type": "pmr_inventory_parity_visibility_repair",
+    "product_posture": "visibility_repair_only_no_runtime_or_authority",
+    "authority_posture": "non_authoritative",
+    "public_claim_boundary": "inventory_visibility_only_no_final_answer_authority",
+    "primary_artifacts": TRIADIC_LLM_INVENTORY_REPAIR_ARTIFACTS,
+    "dashboard_summary": TRIADIC_LLM_INVENTORY_REPAIR_DASHBOARD_SUMMARY,
+    "reproduction_command_summary": TRIADIC_LLM_UCC_SOURCE_MATERIALITY_COMMAND,
+    "claims_blocked": TRIADIC_LLM_INVENTORY_REPAIR_CLAIMS_BLOCKED,
+    "claim_allowed": TRIADIC_LLM_INVENTORY_REPAIR_CLAIM_ALLOWED,
+    "reviewer_caution": "Visibility repair does not create final-answer authority, provider runtime, or product release.",
+}
+
 PMR_00_COMMAND = r""".\experiments\Run-PMR00-Acceptance.ps1 `
   -OutputRoot C:\UVLM\run_artifacts\pmr_00 `
   -LogDir C:\UVLM\run_artifacts\pmr_00_logs `
@@ -4082,6 +4283,10 @@ LOCAL_TEST_PROXY_REVIEW_PHASE,
 AI_CONTEXT_PERFORMANCE_CONTINUITY_PHASE,
 THEOREM_VALIDATION_PATHWAY_PHASE,
 COOP_ENTROPY_DIVIDEND_PHASE,
+TRIADIC_LLM_METRICS_SMOKE_PHASE,
+UCC_SOPHIA_CONTROL_FORENSICS_PHASE,
+UCC_STANDARDS_SOURCE_REGISTRY_PHASE,
+TRIADIC_LLM_INVENTORY_REPAIR_PHASE,
 {"phase_id":"PMR-CONTEXT-AVAILABILITY-LEDGER-00","repo":"pdxvoiceteacher/CoherenceLattice","status":"accepted","evidence_type":"governance_scaffold","product_posture":"fixture_only_context_availability_without_source_content_or_memory_authority","primary_artifacts":PMR_CONTEXT_AVAILABILITY_LEDGER_00_ARTIFACTS,"dashboard_summary":PMR_CONTEXT_AVAILABILITY_LEDGER_00_DASHBOARD_SUMMARY,"reproduction_command_summary":PMR_CONTEXT_AVAILABILITY_LEDGER_00_COMMAND,"claims_blocked":PMR_CONTEXT_AVAILABILITY_LEDGER_00_CLAIMS_BLOCKED,"claim_allowed":"context availability ledger scaffold","reviewer_caution":"Expiration is not nonexistence."},
 {"phase_id":"LOCAL-SERVER-USER-FILE-INGRESS-00","repo":"pdxvoiceteacher/CoherenceLattice","status":"accepted","evidence_type":"runtime_smoke","product_posture":"explicit_local_user_file_ingress_without_memory_or_network_authority","primary_artifacts":LOCAL_SERVER_USER_FILE_INGRESS_00_ARTIFACTS,"dashboard_summary":LOCAL_SERVER_USER_FILE_INGRESS_00_DASHBOARD_SUMMARY,"reproduction_command_summary":LOCAL_SERVER_USER_FILE_INGRESS_00_COMMAND,"claims_blocked":LOCAL_SERVER_USER_FILE_INGRESS_00_CLAIMS_BLOCKED,"claim_allowed":"explicit local user file ingress runtime smoke","reviewer_caution":"User file ingress is not memory write."},
 {"phase_id":"SONYA-LOCAL-SERVER-GATEWAY-02","repo":"pdxvoiceteacher/CoherenceLattice","status":"accepted","evidence_type":"runtime_smoke","product_posture":"localhost_only_source_span_gateway_without_truth_or_memory_authority","primary_artifacts":SONYA_LOCAL_SERVER_GATEWAY_02_ARTIFACTS,"dashboard_summary":SONYA_LOCAL_SERVER_GATEWAY_02_DASHBOARD_SUMMARY,"reproduction_command_summary":SONYA_LOCAL_SERVER_GATEWAY_02_COMMAND,"claims_blocked":SONYA_LOCAL_SERVER_GATEWAY_02_CLAIMS_BLOCKED,"claim_allowed":"localhost-only source-span gateway retrieval scaffold","reviewer_caution":"Source-span gateway review is not truth certification."},
@@ -5987,6 +6192,24 @@ BOUNDARIES.extend(
         "Evidence ledger entries are evidence inputs, not proof.",
         COOP_ENTROPY_DIVIDEND_CLAIM_ALLOWED,
         "COOP-ENTROPY-DIVIDEND-00 is not proven.",
+        TRIADIC_LLM_METRICS_SMOKE_CLAIM_ALLOWED,
+        "Raw model output is not final answer.",
+        "Sonya model candidate packet is candidate-only.",
+        "TRIADIC-LLM-METRICS-SMOKE-00 is not provider runtime.",
+        "TRIADIC-LLM-METRICS-SMOKE-00 is not product release.",
+        UCC_SOPHIA_CONTROL_FORENSICS_CLAIM_ALLOWED,
+        "UCC control review is not legal compliance certification.",
+        "UCC control review is not audit opinion.",
+        "UCC control review is not professional attestation.",
+        "UCC control review is not truth certification.",
+        UCC_STANDARDS_SOURCE_REGISTRY_CLAIM_ALLOWED,
+        "NIST source text is not ingested.",
+        "NIST reference is not compliance certification.",
+        "User overrides are not professional judgment.",
+        "User overrides do not modify the source standard.",
+        TRIADIC_LLM_INVENTORY_REPAIR_CLAIM_ALLOWED,
+        "Visibility repair does not create final-answer authority.",
+        "Visibility repair does not create provider runtime or product release.",
     ]
 )
 BOUNDARIES.extend(
@@ -6198,6 +6421,27 @@ def dashboard_payload() -> dict[str, Any]:
             "theorem_counterexample_registry.json",
             "theorem_non_claim_boundary_table.json",
             "theorem_validation_receipt.md",
+            "llm_metrics_smoke_request.json",
+            "sonya_model_candidate_packet.json",
+            "source_integrity_packet.json",
+            "source_span_map.json",
+            "claim_classification_packet.json",
+            "claim_evidence_map.json",
+            "unsupported_claim_report.json",
+            "ai_decision_trace_packet.json",
+            "review_receipt.md",
+            "llm_metrics_smoke_receipt.json",
+            "ucc_control_profile_packet.json",
+            "ucc_control_selection_receipt.json",
+            "sophia_ucc_control_review_packet.json",
+            "ucc_control_evidence_map.json",
+            "ucc_control_gap_report.json",
+            "ucc_control_non_certification_boundary_table.json",
+            "ucc_control_review_summary.md",
+            "ucc_standards_source_registry.json",
+            "ucc_materiality_profile.json",
+            "ucc_materiality_override_receipt.json",
+            "ucc_standards_source_registry_summary.md",
         ],
 
         "publication_drafts": [
@@ -6282,6 +6526,23 @@ def dashboard_payload() -> dict[str, Any]:
         "not_theorem_validation_theorem_proof": True,
         "coop_entropy_dividend_00_indexed": True,
         "not_coop_entropy_dividend_proven": True,
+        "triadic_llm_metrics_smoke_00_indexed": True,
+        "not_llm_smoke_final_answer": True,
+        "not_llm_smoke_provider_runtime": True,
+        "not_llm_smoke_product_release": True,
+        "not_llm_smoke_memory_write": True,
+        "ucc_sophia_control_forensics_00_indexed": True,
+        "not_ucc_control_compliance_certification": True,
+        "not_ucc_control_professional_attestation": True,
+        "not_ucc_control_truth_certification": True,
+        "ucc_standards_source_registry_and_materiality_00_indexed": True,
+        "not_nist_compliance_certification": True,
+        "not_nist_source_text_ingested": True,
+        "not_materiality_override_professional_judgment": True,
+        "triadic_llm_smoke_pmr_inventory_contract_repair_revision_indexed": True,
+        "not_inventory_repair_final_answer_authority": True,
+        "not_inventory_repair_provider_runtime": True,
+        "not_inventory_repair_product_release": True,
     }
     _assert_safe_dashboard(dashboard)
     return dashboard
@@ -6332,6 +6593,7 @@ def reproducibility_index() -> dict[str, Any]:
                 {"name": "Atlas memory admission readiness acceptance", "command": ATLAS_MEMORY_ADMISSION_READINESS_COMMAND},
                 {"name": "Atlas memory admission readiness Python entrypoint", "command": ATLAS_MEMORY_ADMISSION_READINESS_PYTHON_ENTRYPOINT},
                 {"name": "Atlas prototype/proxy/continuity/theorem pathway Python entrypoint", "command": ATLAS_LOCAL_MEMORY_ADMISSION_STACK_COMMAND},
+                {"name": "Triadic LLM UCC source materiality Python entrypoint", "command": TRIADIC_LLM_UCC_SOURCE_MATERIALITY_COMMAND},
                 {"name": "PMR Context Availability Ledger acceptance", "command": PMR_CONTEXT_AVAILABILITY_LEDGER_00_COMMAND},
                 {"name": "Local Sonya path portability acceptance", "command": LOCAL_SONYA_PATH_PORTABILITY_00_COMMAND},
                 {"name": "PMR doctrine acceptance", "command": PMR_00_COMMAND},
@@ -6855,6 +7117,23 @@ def status_payload() -> dict[str, Any]:
         "not_theorem_validation_theorem_proof": True,
         "coop_entropy_dividend_00_indexed": True,
         "not_coop_entropy_dividend_proven": True,
+        "triadic_llm_metrics_smoke_00_indexed": True,
+        "not_llm_smoke_final_answer": True,
+        "not_llm_smoke_provider_runtime": True,
+        "not_llm_smoke_product_release": True,
+        "not_llm_smoke_memory_write": True,
+        "ucc_sophia_control_forensics_00_indexed": True,
+        "not_ucc_control_compliance_certification": True,
+        "not_ucc_control_professional_attestation": True,
+        "not_ucc_control_truth_certification": True,
+        "ucc_standards_source_registry_and_materiality_00_indexed": True,
+        "not_nist_compliance_certification": True,
+        "not_nist_source_text_ingested": True,
+        "not_materiality_override_professional_judgment": True,
+        "triadic_llm_smoke_pmr_inventory_contract_repair_revision_indexed": True,
+        "not_inventory_repair_final_answer_authority": True,
+        "not_inventory_repair_provider_runtime": True,
+        "not_inventory_repair_product_release": True,
         "requires_external_peer_review": True,
         "not_truth_certification": True,
         "not_deployment_authority": True,
@@ -6873,7 +7152,7 @@ def docs() -> dict[str, str]:
     return {
         "README.md": "# Experiment Suite Docs\n\nPublic reviewer documentation for the claim-bounded reproducibility dashboard.\n",
         "assets/README.md": "# Assets\n\nOptional static assets for the public reproducibility dashboard.\n",
-        "index.md": f"# Public Experiment Suite Dashboard\n\nThis dashboard presents accepted evidence for reviewer orientation. It is not truth certification, not deployment authority, not final answer release, local fixture only, and requires external peer review.\n\n## Accepted evidence\n\n| Phase | Repo | Status | What this supports | Reviewer caution |\n| --- | --- | --- | --- | --- |\n{phase_rows}\n\n## Reviewer path\n\nStart with claim boundaries, then read the governed artifact cognition paper, WAVE Rosetta paper, SONYA-AEGIS-SMOKE-02, WAVE family, UNI-02D Sonya gate, and RETRO-LANE-00, Public Utility Alpha, Raw Baseline Comparison, Evidence Review Pack, RW-COMP-01, RW-COMP-02, Retrosynthesis Sandbox Cycle, Evidence Review Pack second-pass, RW-COMP-03, Universal Architecture Scaffold, Sonya Adapter Contract Registry, Sonya Adapter Smoke, Sonya Local Fixture Adapter, and Evidence Review Pack local adapter, Evidence Review Pack local adapter revision, RW-COMP local adapter, PMR doctrine, PMR local artifact index, PMR GPCU utility scoring, PMR lifecycle state machine, PMR lifecycle audit preflight, PMR Sophia lifecycle audit review, PMR destructive-action authorization preflight, PMR architecture diversity checkpoint, PMR simulation baseline comparison, PMR simulation statistical analysis, PMR federation stress corpus, PMR human provenance context, Sonya Local Fixture Adapter multi-route, and Sonya Local Fixture Adapter lineage clarity, Local Review metrics and flow, and Runtime Metrics Seed Corpus, PMR local queryable store, Retrosynthesis Readiness, Retrosynthesis Local Prototype, and Atlas Local Memory Admission Readiness, Atlas Local Memory Admission Prototype, Local-test Proxy Review, AI Context Performance Continuity, Theorem Validation Pathway, and COOP Entropy Dividend pages.\n\n## What this proves\n\nIt proves only that accepted local fixture artifacts and draft publication materials are organized for review.\n\n## What this does not prove\n\nNo oracle posture, no deployment posture, no final-answer posture, no AI consciousness claim, and no universal ontology claim.\n\n## Phase pages\n\n- [SONYA-AEGIS-SMOKE-02](sonya-aegis-smoke-02.md)\n- [WAVE Gold-Physics](wave-gold-physics.md)\n- [UNI-02D Sonya gate](uni02d-sonya-gate.md)\n- [RETRO-LANE-00](retro-lane-00.md)\n- [Public Utility Alpha](public-utility-alpha.md)\n- [Raw Baseline Comparison](raw-baseline-comparison.md)\n- [Evidence Review Pack](evidence-review-pack.md)\n- [RW-COMP-01](rw-comp-01.md)\n- [RW-COMP-02](rw-comp-02.md)\n- [Retrosynthesis Sandbox Cycle](retrosynthesis-sandbox-cycle.md)\n- [Evidence Review Pack second pass](evidence-review-pack-second-pass.md)\n- [RW-COMP-03](rw-comp-03.md)\n- [Universal Architecture Scaffold](universal-architecture.md)\n- [Sonya Adapter Contract Registry](sonya-adapter-contract-registry.md)\n- [Sonya required membrane checkpoint](sonya-required-membrane-checkpoint.md)\n- [TEL event stack](tel-event-stack.md)\n- [Sonya Adapter Smoke](sonya-adapter-smoke.md)\n- [Sonya Local Fixture Adapter](sonya-local-fixture-adapter.md)\n- [Evidence Review Pack local adapter](evidence-review-pack-local-adapter.md)\n- [Evidence Review Pack local adapter revision](evidence-review-pack-local-adapter-revision.md)\n- [RW-COMP local adapter](rw-comp-local-adapter.md)\n- [Provenance Memory Reservoir](provenance-memory-reservoir.md)\n- [PMR local artifact index](pmr-local-artifact-index.md)\n- [Ontology Claim Registry](ontology-claim-registry.md)\n- [Local Sonya path portability](local-sonya-path-portability.md)\n- [TB Product Slice](tb-product-slice.md)\n- [TB Product Slice 01](tb-product-slice-01.md)\n- [Sonya Local Fixture Adapter multi-route](sonya-local-fixture-adapter-multi-route.md)\n- [Sonya Local Fixture Adapter lineage clarity](sonya-local-fixture-adapter-lineage.md)\n- [Local Review Runtime V0](local-review-runtime-v0.md)\n- [Local Review metrics and flow](local-review-metrics-flow.md)\n- [Runtime metrics seed corpus](runtime-metrics-seed-corpus.md)\n- [PMR local queryable store](pmr-local-queryable-store.md)\n- [Retrosynthesis readiness](retrosynthesis-readiness.md)\n- [Retrosynthesis local prototype](retrosynthesis-local-prototype.md)\n- [Atlas local memory admission readiness](atlas-local-memory-admission-readiness.md)\n- [Governed artifact cognition paper](governed-artifact-cognition-paper.md)\n- [Waveform Rosetta paper](waveform-rosetta-paper.md)\n",
+        "index.md": f"# Public Experiment Suite Dashboard\n\nThis dashboard presents accepted evidence for reviewer orientation. It is not truth certification, not deployment authority, not final answer release, local fixture only, and requires external peer review.\n\n## Accepted evidence\n\n| Phase | Repo | Status | What this supports | Reviewer caution |\n| --- | --- | --- | --- | --- |\n{phase_rows}\n\n## Reviewer path\n\nStart with claim boundaries, then read the governed artifact cognition paper, WAVE Rosetta paper, SONYA-AEGIS-SMOKE-02, WAVE family, UNI-02D Sonya gate, and RETRO-LANE-00, Public Utility Alpha, Raw Baseline Comparison, Evidence Review Pack, RW-COMP-01, RW-COMP-02, Retrosynthesis Sandbox Cycle, Evidence Review Pack second-pass, RW-COMP-03, Universal Architecture Scaffold, Sonya Adapter Contract Registry, Sonya Adapter Smoke, Sonya Local Fixture Adapter, and Evidence Review Pack local adapter, Evidence Review Pack local adapter revision, RW-COMP local adapter, PMR doctrine, PMR local artifact index, PMR GPCU utility scoring, PMR lifecycle state machine, PMR lifecycle audit preflight, PMR Sophia lifecycle audit review, PMR destructive-action authorization preflight, PMR architecture diversity checkpoint, PMR simulation baseline comparison, PMR simulation statistical analysis, PMR federation stress corpus, PMR human provenance context, Sonya Local Fixture Adapter multi-route, and Sonya Local Fixture Adapter lineage clarity, Local Review metrics and flow, and Runtime Metrics Seed Corpus, PMR local queryable store, Retrosynthesis Readiness, Retrosynthesis Local Prototype, and Atlas Local Memory Admission Readiness, Atlas Local Memory Admission Prototype, Local-test Proxy Review, AI Context Performance Continuity, Theorem Validation Pathway, and COOP Entropy Dividend, Triadic LLM Metrics Smoke, UCC Sophia Control Forensics, UCC Standards Source Registry and Materiality, and Triadic LLM Smoke PMR Inventory Contract Repair pages.\n\n## What this proves\n\nIt proves only that accepted local fixture artifacts and draft publication materials are organized for review.\n\n## What this does not prove\n\nNo oracle posture, no deployment posture, no final-answer posture, no AI consciousness claim, and no universal ontology claim.\n\n## Phase pages\n\n- [SONYA-AEGIS-SMOKE-02](sonya-aegis-smoke-02.md)\n- [WAVE Gold-Physics](wave-gold-physics.md)\n- [UNI-02D Sonya gate](uni02d-sonya-gate.md)\n- [RETRO-LANE-00](retro-lane-00.md)\n- [Public Utility Alpha](public-utility-alpha.md)\n- [Raw Baseline Comparison](raw-baseline-comparison.md)\n- [Evidence Review Pack](evidence-review-pack.md)\n- [RW-COMP-01](rw-comp-01.md)\n- [RW-COMP-02](rw-comp-02.md)\n- [Retrosynthesis Sandbox Cycle](retrosynthesis-sandbox-cycle.md)\n- [Evidence Review Pack second pass](evidence-review-pack-second-pass.md)\n- [RW-COMP-03](rw-comp-03.md)\n- [Universal Architecture Scaffold](universal-architecture.md)\n- [Sonya Adapter Contract Registry](sonya-adapter-contract-registry.md)\n- [Sonya required membrane checkpoint](sonya-required-membrane-checkpoint.md)\n- [TEL event stack](tel-event-stack.md)\n- [Sonya Adapter Smoke](sonya-adapter-smoke.md)\n- [Sonya Local Fixture Adapter](sonya-local-fixture-adapter.md)\n- [Evidence Review Pack local adapter](evidence-review-pack-local-adapter.md)\n- [Evidence Review Pack local adapter revision](evidence-review-pack-local-adapter-revision.md)\n- [RW-COMP local adapter](rw-comp-local-adapter.md)\n- [Provenance Memory Reservoir](provenance-memory-reservoir.md)\n- [PMR local artifact index](pmr-local-artifact-index.md)\n- [Ontology Claim Registry](ontology-claim-registry.md)\n- [Local Sonya path portability](local-sonya-path-portability.md)\n- [TB Product Slice](tb-product-slice.md)\n- [TB Product Slice 01](tb-product-slice-01.md)\n- [Sonya Local Fixture Adapter multi-route](sonya-local-fixture-adapter-multi-route.md)\n- [Sonya Local Fixture Adapter lineage clarity](sonya-local-fixture-adapter-lineage.md)\n- [Local Review Runtime V0](local-review-runtime-v0.md)\n- [Local Review metrics and flow](local-review-metrics-flow.md)\n- [Runtime metrics seed corpus](runtime-metrics-seed-corpus.md)\n- [PMR local queryable store](pmr-local-queryable-store.md)\n- [Retrosynthesis readiness](retrosynthesis-readiness.md)\n- [Retrosynthesis local prototype](retrosynthesis-local-prototype.md)\n- [Atlas local memory admission readiness](atlas-local-memory-admission-readiness.md)\n- [Governed artifact cognition paper](governed-artifact-cognition-paper.md)\n- [Waveform Rosetta paper](waveform-rosetta-paper.md)\n",
         "runtime-metrics-seed-corpus.md": f"""# Runtime metrics seed corpus
 
 ## What was validated
@@ -8983,6 +9262,156 @@ COOP-ENTROPY-DIVIDEND-00 is not proven.
 
 ```powershell
 {ATLAS_LOCAL_MEMORY_ADMISSION_STACK_COMMAND}
+```
+""",
+
+        "triadic-llm-metrics-smoke.md": f"""# Triadic LLM metrics smoke
+
+TRIADIC-LLM-METRICS-SMOKE-00 demonstrates a local candidate-to-forensic-review smoke with source-linked and unsupported claims visible.
+
+## Dashboard summary
+
+- smoke_status = {TRIADIC_LLM_METRICS_SMOKE_DASHBOARD_SUMMARY["smoke_status"]}
+- span_linked_claim_count = {TRIADIC_LLM_METRICS_SMOKE_DASHBOARD_SUMMARY["span_linked_claim_count"]}
+- unsupported_claim_count = {TRIADIC_LLM_METRICS_SMOKE_DASHBOARD_SUMMARY["unsupported_claim_count"]}
+- raw_model_output_final_answer = false
+- provider_runtime_performed = false
+- product_release_performed = false
+- final_answer_emitted = false
+- truth_certification_emitted = false
+- memory_write_performed = false
+- atlas_memory_admission_performed = false
+
+## Artifacts
+
+{chr(10).join(f"- `{artifact}`" for artifact in TRIADIC_LLM_METRICS_SMOKE_ARTIFACTS)}
+
+## Required boundaries
+
+- Raw model output is not final answer.
+- Sonya model candidate packet is candidate-only.
+- At least one claim is source-span linked.
+- At least one unsupported claim is visible.
+- Metrics are diagnostic and non-authoritative.
+- No provider runtime occurred.
+- No product release occurred.
+- No memory write occurred.
+- No truth certification occurred.
+
+## Reproducibility
+
+```powershell
+{TRIADIC_LLM_UCC_SOURCE_MATERIALITY_COMMAND}
+```
+""",
+        "ucc-sophia-control-forensics.md": f"""# UCC Sophia control forensics
+
+UCC/Sophia control review is diagnostic, not certification.
+
+## Dashboard summary
+
+- ucc_profile_id = {UCC_SOPHIA_CONTROL_FORENSICS_DASHBOARD_SUMMARY["ucc_profile_id"]}
+- control_source_type = {UCC_SOPHIA_CONTROL_FORENSICS_DASHBOARD_SUMMARY["control_source_type"]}
+- control_review_status = {UCC_SOPHIA_CONTROL_FORENSICS_DASHBOARD_SUMMARY["control_review_status"]}
+- satisfied_control_count = {UCC_SOPHIA_CONTROL_FORENSICS_DASHBOARD_SUMMARY["satisfied_control_count"]}
+- failed_control_count = {UCC_SOPHIA_CONTROL_FORENSICS_DASHBOARD_SUMMARY["failed_control_count"]}
+- partial_control_count = {UCC_SOPHIA_CONTROL_FORENSICS_DASHBOARD_SUMMARY["partial_control_count"]}
+- uncertain_control_count = {UCC_SOPHIA_CONTROL_FORENSICS_DASHBOARD_SUMMARY["uncertain_control_count"]}
+- control_review_is_not_compliance_certification = true
+- control_review_is_not_professional_attestation = true
+- control_review_is_not_truth_certification = true
+- control_review_requires_human_review = true
+
+## Artifacts
+
+{chr(10).join(f"- `{artifact}`" for artifact in UCC_SOPHIA_CONTROL_FORENSICS_ARTIFACTS)}
+
+## Required boundaries
+
+- UCC control review is not legal compliance certification.
+- UCC control review is not audit opinion.
+- UCC control review is not professional attestation.
+- UCC control review is not clinical certification.
+- UCC control review is not academic endorsement.
+- UCC control review is not truth certification.
+- UCC control review is not final answer authority.
+- UCC control review is not product release.
+- UCC control review requires human review.
+
+## Reproducibility
+
+```powershell
+{TRIADIC_LLM_UCC_SOURCE_MATERIALITY_COMMAND}
+```
+""",
+        "ucc-standards-source-registry-and-materiality.md": f"""# UCC standards source registry and materiality
+
+UCC-STANDARDS-SOURCE-REGISTRY-AND-MATERIALITY-00 provides universal source-profile and materiality-profile scaffolding using a synthetic fixture and NIST reference-only example.
+
+## Dashboard summary
+
+- source_profile_count = {UCC_STANDARDS_SOURCE_REGISTRY_DASHBOARD_SUMMARY["source_profile_count"]}
+- active_design_fixture_ref = {UCC_STANDARDS_SOURCE_REGISTRY_DASHBOARD_SUMMARY["active_design_fixture_ref"]}
+- real_world_reference_example_ref = {UCC_STANDARDS_SOURCE_REGISTRY_DASHBOARD_SUMMARY["real_world_reference_example_ref"]}
+- nist_reference_is_marketing_example_only = true
+- nist_source_text_stored = false
+- nist_materiality_profile_applied = false
+- only active source rows are synthetic fixture and NIST reference
+- materiality override control = uncertainty_visible
+- prior_materiality = medium
+- override_materiality = high
+- override_is_ad_hoc = true
+- override_is_not_certification = true
+- override_does_not_modify_source_standard = true
+
+## Artifacts
+
+{chr(10).join(f"- `{artifact}`" for artifact in UCC_STANDARDS_SOURCE_REGISTRY_ARTIFACTS)}
+
+## Required boundaries
+
+- Synthetic fixture proves universal internal-control design.
+- NIST CSF 2.0 is included as a reference-only real-world applicability example.
+- NIST control text is not ingested.
+- NIST reference is not compliance certification.
+- No AICPA, COSO, PRISMA, ISO, SOC, PCAOB, clinical, legal, or academic standards are ingested in this patch.
+- Future source profiles may support open-license, licensed, customer-supplied, connector-monitored, and professional-attestation external sources.
+- Materiality defaults may be defined by the control/profile/system.
+- Users may refine materiality ad hoc with rationale.
+- User overrides do not modify the source standard.
+- User overrides are not professional judgment.
+- User overrides are not certification.
+- Human review remains required.
+
+## Reproducibility
+
+```powershell
+{TRIADIC_LLM_UCC_SOURCE_MATERIALITY_COMMAND}
+```
+""",
+        "triadic-llm-smoke-pmr-inventory-contract-repair.md": f"""# Triadic LLM smoke PMR inventory contract repair
+
+TRIADIC-LLM-SMOKE-PMR-INVENTORY-CONTRACT-REPAIR-REVISION records PMR, inventory, and parity visibility only.
+
+## Dashboard summary
+
+- sonya_model_candidate_packet.json is PMR-visible.
+- Triadic LLM smoke artifacts are inventory-visible and parity-visible.
+- visibility_repair_creates_final_answer_authority = false
+- visibility_repair_creates_provider_runtime = false
+- visibility_repair_creates_product_release = false
+
+## Required boundaries
+
+- sonya_model_candidate_packet.json is PMR-visible.
+- Triadic LLM smoke artifacts are inventory-visible and parity-visible.
+- Visibility repair does not create final-answer authority.
+- Visibility repair does not create provider runtime or product release.
+
+## Reproducibility
+
+```powershell
+{TRIADIC_LLM_UCC_SOURCE_MATERIALITY_COMMAND}
 ```
 """,
         "governed-artifact-cognition-paper.md": "# Governed Artifact Cognition Paper\n\nSummary: systems paper for governed artifact cognition as a reproducible audit lab.\n\nLinks: `papers/governed_artifact_cognition/PUB_GOV_ARTIFACT_COG_01.md`, reviewer quickstart, claim boundary table, status.json.\n\nClaim boundaries: not truth certification, not deployment authority, not final answer release, local fixture only, requires external peer review.\n\nValidation command: `python tools/validate_publication_claims.py --paper papers/governed_artifact_cognition/PUB_GOV_ARTIFACT_COG_01.md --quickstart papers/governed_artifact_cognition/reviewer_quickstart.md --status papers/governed_artifact_cognition/status.json`.\n",

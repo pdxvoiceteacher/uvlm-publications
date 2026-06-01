@@ -96,6 +96,10 @@ REQUIRED_PHASES = {
     "AI-CONTEXT-PERFORMANCE-CONTINUITY-00",
     "THEOREM-VALIDATION-PATHWAY-00",
     "COOP-ENTROPY-DIVIDEND-00",
+    "TRIADIC-LLM-METRICS-SMOKE-00",
+    "UCC-SOPHIA-CONTROL-FORENSICS-00",
+    "UCC-STANDARDS-SOURCE-REGISTRY-AND-MATERIALITY-00",
+    "TRIADIC-LLM-SMOKE-PMR-INVENTORY-CONTRACT-REPAIR-REVISION",
 }
 REQUIRED_BOUNDARY_PHRASES = (
     "not truth certification",
@@ -204,6 +208,19 @@ REQUIRED_BOUNDARY_PHRASES = (
     "build_local_test_proxy_review_receipt",
     "build_ai_context_performance_continuity",
     "build_theorem_validation_pathway",
+    "TRIADIC-LLM-METRICS-SMOKE-00",
+    "Raw model output is not final answer",
+    "build_triadic_llm_metrics_smoke",
+    "UCC-SOPHIA-CONTROL-FORENSICS-00",
+    "UCC control review is not legal compliance certification",
+    "build_sophia_ucc_control_review",
+    "UCC-STANDARDS-SOURCE-REGISTRY-AND-MATERIALITY-00",
+    "NIST control text is not ingested",
+    "build_ucc_standards_source_registry",
+    "build_ucc_materiality_profile",
+    "build_ucc_materiality_override_receipt",
+    "TRIADIC-LLM-SMOKE-PMR-INVENTORY-CONTRACT-REPAIR-REVISION",
+    "Visibility repair does not create final-answer authority",
     "not Atlas memory admission yet",
     "raw baseline comparison",
     "fixture-only measurement scaffold",
@@ -930,6 +947,8 @@ def _is_allowed_bounded_release_context(text: str, index: int, phrase: str) -> b
             "product release requests must fail closed",
             "product release request must fail closed",
             "product release blocked",
+            "does not create provider runtime or product release",
+            "does not create product release",
         )
         return list_negated or any(item in window for item in allowed)
     return False
