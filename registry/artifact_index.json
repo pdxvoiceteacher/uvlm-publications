@@ -1009,6 +1009,47 @@
       "retrosynthesis_local_prototype_receipt.json",
       "retrosynthesis_local_prototype_summary.md"
     ],
+    "ATLAS-LOCAL-MEMORY-ADMISSION-READINESS-00": [
+      "atlas_local_memory_admission_readiness_packet.json",
+      "atlas_local_memory_admission_readiness_checklist.json",
+      "atlas_local_memory_admission_readiness_receipt.json",
+      "atlas_local_memory_admission_readiness_summary.md"
+    ],
+    "ATLAS-LOCAL-MEMORY-ADMISSION-PROTOTYPE-00": [
+      "atlas_local_memory_admission_prototype_packet.json",
+      "atlas_candidate_admission_reviews.jsonl",
+      "atlas_admission_eligibility_assessments.jsonl",
+      "atlas_local_memory_admission_prototype_receipt.json",
+      "atlas_local_memory_admission_prototype_summary.md"
+    ],
+    "HUMAN-REVIEW-PROXY-LOCAL-TESTING-00": [
+      "local_test_proxy_review_receipt.json"
+    ],
+    "AI-CONTEXT-PERFORMANCE-CONTINUITY-00": [
+      "ai_context_continuity_packet.json",
+      "active_phase_focus_packet.json",
+      "validation_status_snapshot.json",
+      "assistant_handoff_summary.md",
+      "expired_or_external_file_manifest.json",
+      "open_patch_queue.json",
+      "context_budget_recommendation.md"
+    ],
+    "THEOREM-VALIDATION-PATHWAY-00": [
+      "theorem_claim_registry.json",
+      "theorem_card_registry.json",
+      "theorem_evidence_ledger.json",
+      "theorem_counterexample_registry.json",
+      "theorem_non_claim_boundary_table.json",
+      "theorem_validation_receipt.md"
+    ],
+    "COOP-ENTROPY-DIVIDEND-00": [
+      "theorem_claim_registry.json",
+      "theorem_card_registry.json",
+      "theorem_evidence_ledger.json",
+      "theorem_counterexample_registry.json",
+      "theorem_non_claim_boundary_table.json",
+      "theorem_validation_receipt.md"
+    ],
     "PMR-HUMAN-CONSENT-NEGATIVE-CONTROL-00": [
       "pmr_human_consent_negative_control_manifest.json",
       "pmr_invalid_human_consent_attempts.jsonl",
