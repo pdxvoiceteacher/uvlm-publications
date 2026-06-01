@@ -1021,6 +1021,24 @@
 - ATLAS-LOCAL-MEMORY-ADMISSION-READINESS-00 is not consciousness proof.
 - ATLAS-LOCAL-MEMORY-ADMISSION-READINESS-00 is not Omega detection.
 - ATLAS-LOCAL-MEMORY-ADMISSION-READINESS-00 is not universal ontology proof.
+- ATLAS-LOCAL-MEMORY-ADMISSION-PROTOTYPE-00 generates candidate admission reviews and eligibility assessments without performing Atlas memory admission or memory write.
+- ATLAS-LOCAL-MEMORY-ADMISSION-PROTOTYPE-00 candidate admission reviews are not Atlas memory admission.
+- ATLAS-LOCAL-MEMORY-ADMISSION-PROTOTYPE-00 candidate admission reviews are not memory write.
+- ATLAS-LOCAL-MEMORY-ADMISSION-PROTOTYPE-00 candidate admission reviews are not memory candidates.
+- ATLAS-LOCAL-MEMORY-ADMISSION-PROTOTYPE-00 is not product release.
+- HUMAN-REVIEW-PROXY-LOCAL-TESTING-00 provides local deterministic development proxy review only and does not replace product human review.
+- HUMAN-REVIEW-PROXY-LOCAL-TESTING-00 is not product human review.
+- HUMAN-REVIEW-PROXY-LOCAL-TESTING-00 is not Atlas admission approval.
+- HUMAN-REVIEW-PROXY-LOCAL-TESTING-00 is not memory write approval.
+- AI-CONTEXT-PERFORMANCE-CONTINUITY-00 records repo-persisted continuity and context pressure metadata without writing memory.
+- Live chat is not the primary memory substrate.
+- Repo-persisted continuity is the durable handoff substrate.
+- THEOREM-VALIDATION-PATHWAY-00 creates theorem cards, evidence ledgers, counterexamples, and non-claim boundaries without proving theorems.
+- THEOREM-VALIDATION-PATHWAY-00 is not theorem proof.
+- Theorem cards are validation artifacts, not proof.
+- Evidence ledger entries are evidence inputs, not proof.
+- COOP-ENTROPY-DIVIDEND-00 is scaffolded as an operational metric hypothesis, not a proven theorem.
+- COOP-ENTROPY-DIVIDEND-00 is not proven.
 - RETROSYNTHESIS-LOCAL-PROTOTYPE-00 is bounded local candidate generation only.
 - RETROSYNTHESIS-LOCAL-PROTOTYPE-00 generates bounded local candidate hypotheses, candidate repair plans, and pattern observations from PMR query results, TEL replay, runtime metrics, formula registry, metric bounds, seed corpus observations, cognitive flow morphology, Sonya coverage, and Sophia posture.
 - Candidate hypotheses are not truth.
