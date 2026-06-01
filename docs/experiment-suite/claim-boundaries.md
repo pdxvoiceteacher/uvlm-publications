@@ -1040,6 +1040,9 @@
 - COOP-ENTROPY-DIVIDEND-00 is scaffolded as an operational metric hypothesis, not a proven theorem.
 - COOP-ENTROPY-DIVIDEND-00 is not proven.
 - TRIADIC-LLM-METRICS-SMOKE-00 demonstrates a local candidate-to-forensic-review smoke with source-linked and unsupported claims visible.
+- raw model output is not final answer
+- Sonya model candidate is not final answer
+- raw model output is final answer
 - Raw model output is not final answer.
 - Sonya model candidate packet is candidate-only.
 - TRIADIC-LLM-METRICS-SMOKE-00 is not provider runtime.

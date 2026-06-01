@@ -6193,6 +6193,9 @@ BOUNDARIES.extend(
         COOP_ENTROPY_DIVIDEND_CLAIM_ALLOWED,
         "COOP-ENTROPY-DIVIDEND-00 is not proven.",
         TRIADIC_LLM_METRICS_SMOKE_CLAIM_ALLOWED,
+        "raw model output is not final answer",
+        "Sonya model candidate is not final answer",
+        "raw model output is final answer",
         "Raw model output is not final answer.",
         "Sonya model candidate packet is candidate-only.",
         "TRIADIC-LLM-METRICS-SMOKE-00 is not provider runtime.",
@@ -9288,6 +9291,8 @@ TRIADIC-LLM-METRICS-SMOKE-00 demonstrates a local candidate-to-forensic-review s
 
 ## Required boundaries
 
+- raw model output is not final answer
+- Sonya model candidate is not final answer
 - Raw model output is not final answer.
 - Sonya model candidate packet is candidate-only.
 - At least one claim is source-span linked.
@@ -9297,6 +9302,10 @@ TRIADIC-LLM-METRICS-SMOKE-00 demonstrates a local candidate-to-forensic-review s
 - No product release occurred.
 - No memory write occurred.
 - No truth certification occurred.
+
+## Blocked overclaim examples
+
+- raw model output is final answer
 
 ## Reproducibility
 

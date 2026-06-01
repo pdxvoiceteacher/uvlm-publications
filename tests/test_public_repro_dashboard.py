@@ -3586,6 +3586,9 @@ def test_triadic_llm_ucc_source_materiality_pages_are_generated(tmp_path):
 
     page_expectations = {
         "triadic-llm-metrics-smoke.md": (
+            "raw model output is not final answer",
+            "Sonya model candidate is not final answer",
+            "raw model output is final answer",
             "Raw model output is not final answer.",
             "Sonya model candidate packet is candidate-only.",
             "At least one claim is source-span linked.",
@@ -3633,6 +3636,9 @@ def test_triadic_llm_ucc_source_materiality_pages_are_generated(tmp_path):
 
     for phrase in (
         "TRIADIC-LLM-METRICS-SMOKE-00 demonstrates a local candidate-to-forensic-review smoke",
+        "raw model output is final answer",
+        "raw model output is not final answer",
+        "Sonya model candidate is not final answer",
         "UCC-SOPHIA-CONTROL-FORENSICS-00 applies a synthetic UCC fixture as diagnostic control review",
         "UCC-STANDARDS-SOURCE-REGISTRY-AND-MATERIALITY-00 provides universal source-profile",
         "NIST source text is not ingested.",
