@@ -90,6 +90,16 @@ REQUIRED_PHASES = {
     "PMR-LOCAL-RUNTIME-QUERYABLE-STORE-00",
     "RETROSYNTHESIS-READINESS-00",
     "RETROSYNTHESIS-LOCAL-PROTOTYPE-00",
+    "ATLAS-LOCAL-MEMORY-ADMISSION-READINESS-00",
+    "ATLAS-LOCAL-MEMORY-ADMISSION-PROTOTYPE-00",
+    "HUMAN-REVIEW-PROXY-LOCAL-TESTING-00",
+    "AI-CONTEXT-PERFORMANCE-CONTINUITY-00",
+    "THEOREM-VALIDATION-PATHWAY-00",
+    "COOP-ENTROPY-DIVIDEND-00",
+    "TRIADIC-LLM-METRICS-SMOKE-00",
+    "UCC-SOPHIA-CONTROL-FORENSICS-00",
+    "UCC-STANDARDS-SOURCE-REGISTRY-AND-MATERIALITY-00",
+    "TRIADIC-LLM-SMOKE-PMR-INVENTORY-CONTRACT-REPAIR-REVISION",
 }
 REQUIRED_BOUNDARY_PHRASES = (
     "not truth certification",
@@ -165,6 +175,80 @@ REQUIRED_BOUNDARY_PHRASES = (
     "build_retrosynthesis_local_prototype",
     "retrosynthesis_local_prototype",
     "ATLAS-LOCAL-MEMORY-ADMISSION-READINESS-00",
+    "This is Atlas memory admission readiness, not Atlas memory admission",
+    "ready_for_bounded_atlas_memory_admission_prototype",
+    "ATLAS-LOCAL-MEMORY-ADMISSION-PROTOTYPE-00",
+    "readiness_dimensions = 21",
+    "readiness_dimension_count = 21",
+    "candidate_hypotheses = 7",
+    "candidate_repair_plans = 3",
+    "pattern_observations = 5",
+    "No memory candidate was written",
+    "No accepted evidence was emitted",
+    "Human review is required before any future Atlas memory admission prototype",
+    "build_atlas_local_memory_admission_readiness",
+    "atlas_local_memory_admission_readiness",
+    "ATLAS-LOCAL-MEMORY-ADMISSION-PROTOTYPE-00",
+    "completed_candidate_admission_review",
+    "Candidate admission reviews are not Atlas memory admission",
+    "No Atlas memory entry was written",
+    "HUMAN-REVIEW-PROXY-LOCAL-TESTING-00",
+    "emitted_local_test_proxy_only",
+    "Proxy review is not product human review",
+    "AI-CONTEXT-PERFORMANCE-CONTINUITY-00",
+    "WAITING_FOR_LOCAL_VALIDATION",
+    "Live chat is not the primary memory substrate",
+    "THEOREM-VALIDATION-PATHWAY-00",
+    "theorem_validation_pathway_status = locally_validated",
+    "Theorem cards are not proof",
+    "COOP-ENTROPY-DIVIDEND-00",
+    "proof_grade_current = operational_metric_hypothesis",
+    "COOP-ENTROPY-DIVIDEND-00 is not proven",
+    "build_atlas_local_memory_admission_prototype",
+    "build_local_test_proxy_review_receipt",
+    "build_ai_context_performance_continuity",
+    "build_theorem_validation_pathway",
+    "TRIADIC-LLM-METRICS-SMOKE-00",
+    "raw model output is not final answer",
+    "Sonya model candidate is not final answer",
+    "raw model output is final answer",
+    "UCC review certifies compliance",
+    "NIST compliance is certified",
+    "NIST controls were ingested",
+    "theorem validation proves theorem",
+    "COOP-ENTROPY-DIVIDEND-00 is proven",
+    "evidence ledger certifies truth",
+    "provider runtime",
+    "Raw model output is not final answer",
+    "build_triadic_llm_metrics_smoke",
+    "UCC-SOPHIA-CONTROL-FORENSICS-00",
+    "UCC control review is not legal compliance certification",
+    "build_sophia_ucc_control_review",
+    "UCC-STANDARDS-SOURCE-REGISTRY-AND-MATERIALITY-00",
+    "NIST control text is not ingested",
+    "build_ucc_standards_source_registry",
+    "build_ucc_materiality_profile",
+    "build_ucc_materiality_override_receipt",
+    "TRIADIC-LLM-SMOKE-PMR-INVENTORY-CONTRACT-REPAIR-REVISION",
+    "Visibility repair does not create final-answer authority",
+    "AI-FORENSICS-DOSSIER-00",
+    "Triadic Brain turns AI outputs into auditable, source-linked, control-aware forensic dossiers",
+    "The dossier is AI process forensics",
+    "The dossier is not model mind-reading",
+    "The dossier is not hidden chain-of-thought disclosure",
+    "This dossier is not a final answer",
+    "This dossier is not truth certification",
+    "This dossier is not compliance certification",
+    "This dossier is not audit opinion",
+    "This dossier is not professional attestation",
+    "AI Forensics Dossier is final answer",
+    "AI Forensics Dossier certifies truth",
+    "AI Forensics Dossier certifies compliance",
+    "AI Forensics Dossier is audit opinion",
+    "AI Forensics Dossier is professional attestation",
+    "AI Forensics Dossier reveals hidden chain of thought",
+    "AI Forensics Dossier performs model mind-reading",
+    "build_ai_forensics_dossier",
     "not Atlas memory admission yet",
     "raw baseline comparison",
     "fixture-only measurement scaffold",
@@ -663,6 +747,13 @@ FORBIDDEN_PHRASES = (
     "remote provider calls",
     "provider call performed",
     "provider call authorized",
+    "AI Forensics Dossier is final answer",
+    "AI Forensics Dossier certifies truth",
+    "AI Forensics Dossier certifies compliance",
+    "AI Forensics Dossier is audit opinion",
+    "AI Forensics Dossier is professional attestation",
+    "AI Forensics Dossier reveals hidden chain of thought",
+    "AI Forensics Dossier performs model mind-reading",
     "raw output admission",
     "claims raw output admission",
     "raw output admitted",
@@ -891,9 +982,16 @@ def _is_allowed_bounded_release_context(text: str, index: int, phrase: str) -> b
             "product release requests must fail closed",
             "product release request must fail closed",
             "product release blocked",
+            "does not create provider runtime or product release",
+            "does not create product release",
         )
         return list_negated or any(item in window for item in allowed)
     return False
+
+def _is_blocked_overclaim_example_context(text: str, index: int) -> bool:
+    window = text[max(0, index - 1000) : index]
+    return "blocked overclaim examples" in window or "claims_blocked" in window
+
 
 def _forbidden_hits(text: str) -> list[str]:
     hits: list[str] = []
@@ -1084,6 +1182,15 @@ def _forbidden_hits(text: str) -> list[str]:
                 start = index + len(normalized_phrase)
                 continue
             if phrase in {"truth certification", "final answer release", "product release"} and _is_allowed_bounded_release_context(text, index, phrase):
+                start = index + len(normalized_phrase)
+                continue
+            if phrase == "product release" and "does not authorize" in text[max(0, index - 180) : index]:
+                start = index + len(normalized_phrase)
+                continue
+            if phrase == "compliance certification" and "it is not final answer" in text[max(0, index - 140) : index]:
+                start = index + len(normalized_phrase)
+                continue
+            if _is_blocked_overclaim_example_context(text, index):
                 start = index + len(normalized_phrase)
                 continue
             if not _is_negated(text, index):
