@@ -2207,6 +2207,8 @@ TRIADIC_UCC_BLOCKED_OVERCLAIM_SECTION = "\n".join(
 
 TRIADIC_LLM_UCC_SOURCE_MATERIALITY_COMMAND = "python -c \"from pathlib import Path; from coherence.triadic.llm_metrics_smoke import build_triadic_llm_metrics_smoke; from coherence.ucc.sophia_control_review import build_sophia_ucc_control_review; from coherence.ucc.standards_source_registry import build_ucc_standards_source_registry; from coherence.ucc.materiality_profile import build_ucc_materiality_profile; from coherence.ucc.materiality_override import build_ucc_materiality_override_receipt; root=Path(r'C:\\UVLM\\run_artifacts\\triadic_llm_ucc_source_materiality'); build_triadic_llm_metrics_smoke(output_root=root); build_sophia_ucc_control_review(root / 'bridge'); build_ucc_standards_source_registry(root / 'bridge'); build_ucc_materiality_profile(root / 'bridge'); build_ucc_materiality_override_receipt(root / 'bridge')\""
 
+AI_FORENSICS_DOSSIER_COMMAND = "python -c \"from pathlib import Path; from coherence.product.triadic_llm_metrics_smoke import build_triadic_llm_metrics_smoke; from coherence.ucc.sophia_control_review import build_sophia_ucc_control_review; from coherence.product.ai_forensics_dossier import build_ai_forensics_dossier; root=Path(r'C:\\UVLM\\run_artifacts\\triadic_llm_metrics_smoke'); bridge=root / 'bridge'; build_triadic_llm_metrics_smoke(root); build_sophia_ucc_control_review(bridge); build_ai_forensics_dossier(bridge)\""
+
 TRIADIC_LLM_METRICS_SMOKE_ARTIFACTS = [
     "llm_metrics_smoke_request.json",
     "sonya_model_candidate_packet.json",
@@ -2405,6 +2407,84 @@ TRIADIC_LLM_INVENTORY_REPAIR_PHASE = {
     "reviewer_caution": "Visibility repair does not create final-answer authority, provider runtime, or product release.",
 }
 
+
+AI_FORENSICS_DOSSIER_ARTIFACTS = [
+    "ai_forensics_dossier_packet.json",
+    "ai_forensics_dossier_section_index.json",
+    "ai_forensics_dossier.md",
+    "ai_forensics_dossier_receipt.json",
+]
+AI_FORENSICS_DOSSIER_DASHBOARD_SUMMARY = {
+    "dossier_status": "completed",
+    "dossier_mode": "user_facing_forensic_summary",
+    "dossier_sections": 16,
+    "span_linked_claim_count": 1,
+    "unsupported_claim_count": 1,
+    "satisfied_control_count": 5,
+    "uncertain_control_count": 1,
+    "source_profile_count": 2,
+    "nist_reference_only": True,
+    "nist_source_text_stored": False,
+    "human_review_required": True,
+    "raw_model_output_final_answer": False,
+    "final_answer_emitted": False,
+    "accepted_evidence_emitted": False,
+    "truth_certification_emitted": False,
+    "compliance_certification_emitted": False,
+    "audit_opinion_emitted": False,
+    "professional_attestation_emitted": False,
+    "product_release_performed": False,
+    "provider_runtime_performed": False,
+    "memory_write_performed": False,
+    "atlas_memory_admission_performed": False,
+}
+AI_FORENSICS_DOSSIER_CLAIM_ALLOWED = "AI-FORENSICS-DOSSIER-00 packages a local AI candidate, source evidence, unsupported claims, diagnostic metrics, UCC/Sophia control review, source registry, materiality profile, PMR provenance, and export parity into a human-reviewable forensic dossier without issuing final-answer, certification, product, provider, memory, or Atlas authority."
+AI_FORENSICS_DOSSIER_CLAIMS_BLOCKED = [
+    "AI Forensics Dossier is final answer",
+    "AI Forensics Dossier certifies truth",
+    "AI Forensics Dossier certifies compliance",
+    "AI Forensics Dossier is audit opinion",
+    "AI Forensics Dossier is professional attestation",
+    "AI Forensics Dossier reveals hidden chain of thought",
+    "AI Forensics Dossier performs model mind-reading",
+    "raw model output is final answer",
+    "UCC review certifies compliance",
+    "NIST compliance is certified",
+    "NIST controls were ingested",
+    "not final-answer authority",
+    "not accepted-evidence authority",
+    "not truth certification",
+    "not product release",
+    "not provider runtime",
+    "not LAN enablement",
+    "not deployment",
+    "not federation",
+    "not Atlas memory admission",
+    "not memory write",
+    "not consciousness proof",
+    "not Omega detection",
+    "not universal ontology proof",
+    "not population calibration",
+    "not human benefit proof",
+    "not market validation",
+]
+AI_FORENSICS_DOSSIER_PHASE = {
+    "phase_id": "AI-FORENSICS-DOSSIER-00",
+    "repo": "pdxvoiceteacher/CoherenceLattice",
+    "source_phase": "UCC-STANDARDS-SOURCE-REGISTRY-AND-MATERIALITY-00",
+    "status": "accepted_local_validation",
+    "publication_status": "dashboard_synced",
+    "evidence_type": "user_facing_ai_process_forensics_dossier",
+    "product_posture": "forensic_summary_only_not_final_answer_not_certification_not_release",
+    "authority_posture": "non_authoritative",
+    "public_claim_boundary": "ai_process_forensics_only_no_final_answer_certification_or_runtime_authority",
+    "primary_artifacts": AI_FORENSICS_DOSSIER_ARTIFACTS,
+    "dashboard_summary": AI_FORENSICS_DOSSIER_DASHBOARD_SUMMARY,
+    "reproduction_command_summary": AI_FORENSICS_DOSSIER_COMMAND,
+    "claims_blocked": AI_FORENSICS_DOSSIER_CLAIMS_BLOCKED,
+    "claim_allowed": AI_FORENSICS_DOSSIER_CLAIM_ALLOWED,
+    "reviewer_caution": "AI-FORENSICS-DOSSIER-00 is AI process forensics only; it is not final answer, truth certification, compliance certification, audit opinion, professional attestation, provider runtime, product release, memory write, or Atlas memory admission.",
+}
 PMR_00_COMMAND = r""".\experiments\Run-PMR00-Acceptance.ps1 `
   -OutputRoot C:\UVLM\run_artifacts\pmr_00 `
   -LogDir C:\UVLM\run_artifacts\pmr_00_logs `
@@ -4308,6 +4388,7 @@ TRIADIC_LLM_METRICS_SMOKE_PHASE,
 UCC_SOPHIA_CONTROL_FORENSICS_PHASE,
 UCC_STANDARDS_SOURCE_REGISTRY_PHASE,
 TRIADIC_LLM_INVENTORY_REPAIR_PHASE,
+AI_FORENSICS_DOSSIER_PHASE,
 {"phase_id":"PMR-CONTEXT-AVAILABILITY-LEDGER-00","repo":"pdxvoiceteacher/CoherenceLattice","status":"accepted","evidence_type":"governance_scaffold","product_posture":"fixture_only_context_availability_without_source_content_or_memory_authority","primary_artifacts":PMR_CONTEXT_AVAILABILITY_LEDGER_00_ARTIFACTS,"dashboard_summary":PMR_CONTEXT_AVAILABILITY_LEDGER_00_DASHBOARD_SUMMARY,"reproduction_command_summary":PMR_CONTEXT_AVAILABILITY_LEDGER_00_COMMAND,"claims_blocked":PMR_CONTEXT_AVAILABILITY_LEDGER_00_CLAIMS_BLOCKED,"claim_allowed":"context availability ledger scaffold","reviewer_caution":"Expiration is not nonexistence."},
 {"phase_id":"LOCAL-SERVER-USER-FILE-INGRESS-00","repo":"pdxvoiceteacher/CoherenceLattice","status":"accepted","evidence_type":"runtime_smoke","product_posture":"explicit_local_user_file_ingress_without_memory_or_network_authority","primary_artifacts":LOCAL_SERVER_USER_FILE_INGRESS_00_ARTIFACTS,"dashboard_summary":LOCAL_SERVER_USER_FILE_INGRESS_00_DASHBOARD_SUMMARY,"reproduction_command_summary":LOCAL_SERVER_USER_FILE_INGRESS_00_COMMAND,"claims_blocked":LOCAL_SERVER_USER_FILE_INGRESS_00_CLAIMS_BLOCKED,"claim_allowed":"explicit local user file ingress runtime smoke","reviewer_caution":"User file ingress is not memory write."},
 {"phase_id":"SONYA-LOCAL-SERVER-GATEWAY-02","repo":"pdxvoiceteacher/CoherenceLattice","status":"accepted","evidence_type":"runtime_smoke","product_posture":"localhost_only_source_span_gateway_without_truth_or_memory_authority","primary_artifacts":SONYA_LOCAL_SERVER_GATEWAY_02_ARTIFACTS,"dashboard_summary":SONYA_LOCAL_SERVER_GATEWAY_02_DASHBOARD_SUMMARY,"reproduction_command_summary":SONYA_LOCAL_SERVER_GATEWAY_02_COMMAND,"claims_blocked":SONYA_LOCAL_SERVER_GATEWAY_02_CLAIMS_BLOCKED,"claim_allowed":"localhost-only source-span gateway retrieval scaffold","reviewer_caution":"Source-span gateway review is not truth certification."},
@@ -6243,6 +6324,24 @@ BOUNDARIES.extend(
         TRIADIC_LLM_INVENTORY_REPAIR_CLAIM_ALLOWED,
         "Visibility repair does not create final-answer authority.",
         "Visibility repair does not create provider runtime or product release.",
+        AI_FORENSICS_DOSSIER_CLAIM_ALLOWED,
+        "Triadic Brain turns AI outputs into auditable, source-linked, control-aware forensic dossiers.",
+        "The dossier is AI process forensics.",
+        "The dossier is not model mind-reading.",
+        "The dossier is not hidden chain-of-thought disclosure.",
+        "This dossier is not a final answer.",
+        "This dossier is not truth certification.",
+        "This dossier is not compliance certification.",
+        "This dossier is not audit opinion.",
+        "This dossier is not professional attestation.",
+        "Blocked overclaim examples for AI Forensics Dossier publication boundaries.",
+        "AI Forensics Dossier is final answer",
+        "AI Forensics Dossier certifies truth",
+        "AI Forensics Dossier certifies compliance",
+        "AI Forensics Dossier is audit opinion",
+        "AI Forensics Dossier is professional attestation",
+        "AI Forensics Dossier reveals hidden chain of thought",
+        "AI Forensics Dossier performs model mind-reading",
     ]
 )
 BOUNDARIES.extend(
@@ -6475,6 +6574,10 @@ def dashboard_payload() -> dict[str, Any]:
             "ucc_materiality_profile.json",
             "ucc_materiality_override_receipt.json",
             "ucc_standards_source_registry_summary.md",
+            "ai_forensics_dossier_packet.json",
+            "ai_forensics_dossier_section_index.json",
+            "ai_forensics_dossier.md",
+            "ai_forensics_dossier_receipt.json",
         ],
 
         "publication_drafts": [
@@ -6576,6 +6679,16 @@ def dashboard_payload() -> dict[str, Any]:
         "not_inventory_repair_final_answer_authority": True,
         "not_inventory_repair_provider_runtime": True,
         "not_inventory_repair_product_release": True,
+        "ai_forensics_dossier_00_indexed": True,
+        "not_ai_forensics_dossier_final_answer": True,
+        "not_ai_forensics_dossier_truth_certification": True,
+        "not_ai_forensics_dossier_compliance_certification": True,
+        "not_ai_forensics_dossier_audit_opinion": True,
+        "not_ai_forensics_dossier_professional_attestation": True,
+        "not_ai_forensics_dossier_provider_runtime": True,
+        "not_ai_forensics_dossier_product_release": True,
+        "not_ai_forensics_dossier_memory_write": True,
+        "not_ai_forensics_dossier_atlas_memory_admission": True,
     }
     _assert_safe_dashboard(dashboard)
     return dashboard
@@ -6627,6 +6740,7 @@ def reproducibility_index() -> dict[str, Any]:
                 {"name": "Atlas memory admission readiness Python entrypoint", "command": ATLAS_MEMORY_ADMISSION_READINESS_PYTHON_ENTRYPOINT},
                 {"name": "Atlas prototype/proxy/continuity/theorem pathway Python entrypoint", "command": ATLAS_LOCAL_MEMORY_ADMISSION_STACK_COMMAND},
                 {"name": "Triadic LLM UCC source materiality Python entrypoint", "command": TRIADIC_LLM_UCC_SOURCE_MATERIALITY_COMMAND},
+                {"name": "AI Forensics Dossier Python entrypoint", "command": AI_FORENSICS_DOSSIER_COMMAND},
                 {"name": "PMR Context Availability Ledger acceptance", "command": PMR_CONTEXT_AVAILABILITY_LEDGER_00_COMMAND},
                 {"name": "Local Sonya path portability acceptance", "command": LOCAL_SONYA_PATH_PORTABILITY_00_COMMAND},
                 {"name": "PMR doctrine acceptance", "command": PMR_00_COMMAND},
@@ -7167,6 +7281,16 @@ def status_payload() -> dict[str, Any]:
         "not_inventory_repair_final_answer_authority": True,
         "not_inventory_repair_provider_runtime": True,
         "not_inventory_repair_product_release": True,
+        "ai_forensics_dossier_00_indexed": True,
+        "not_ai_forensics_dossier_final_answer": True,
+        "not_ai_forensics_dossier_truth_certification": True,
+        "not_ai_forensics_dossier_compliance_certification": True,
+        "not_ai_forensics_dossier_audit_opinion": True,
+        "not_ai_forensics_dossier_professional_attestation": True,
+        "not_ai_forensics_dossier_provider_runtime": True,
+        "not_ai_forensics_dossier_product_release": True,
+        "not_ai_forensics_dossier_memory_write": True,
+        "not_ai_forensics_dossier_atlas_memory_admission": True,
         "requires_external_peer_review": True,
         "not_truth_certification": True,
         "not_deployment_authority": True,
@@ -7185,7 +7309,7 @@ def docs() -> dict[str, str]:
     return {
         "README.md": "# Experiment Suite Docs\n\nPublic reviewer documentation for the claim-bounded reproducibility dashboard.\n",
         "assets/README.md": "# Assets\n\nOptional static assets for the public reproducibility dashboard.\n",
-        "index.md": f"# Public Experiment Suite Dashboard\n\nThis dashboard presents accepted evidence for reviewer orientation. It is not truth certification, not deployment authority, not final answer release, local fixture only, and requires external peer review.\n\n## Accepted evidence\n\n| Phase | Repo | Status | What this supports | Reviewer caution |\n| --- | --- | --- | --- | --- |\n{phase_rows}\n\n## Reviewer path\n\nStart with claim boundaries, then read the governed artifact cognition paper, WAVE Rosetta paper, SONYA-AEGIS-SMOKE-02, WAVE family, UNI-02D Sonya gate, and RETRO-LANE-00, Public Utility Alpha, Raw Baseline Comparison, Evidence Review Pack, RW-COMP-01, RW-COMP-02, Retrosynthesis Sandbox Cycle, Evidence Review Pack second-pass, RW-COMP-03, Universal Architecture Scaffold, Sonya Adapter Contract Registry, Sonya Adapter Smoke, Sonya Local Fixture Adapter, and Evidence Review Pack local adapter, Evidence Review Pack local adapter revision, RW-COMP local adapter, PMR doctrine, PMR local artifact index, PMR GPCU utility scoring, PMR lifecycle state machine, PMR lifecycle audit preflight, PMR Sophia lifecycle audit review, PMR destructive-action authorization preflight, PMR architecture diversity checkpoint, PMR simulation baseline comparison, PMR simulation statistical analysis, PMR federation stress corpus, PMR human provenance context, Sonya Local Fixture Adapter multi-route, and Sonya Local Fixture Adapter lineage clarity, Local Review metrics and flow, and Runtime Metrics Seed Corpus, PMR local queryable store, Retrosynthesis Readiness, Retrosynthesis Local Prototype, and Atlas Local Memory Admission Readiness, Atlas Local Memory Admission Prototype, Local-test Proxy Review, AI Context Performance Continuity, Theorem Validation Pathway, and COOP Entropy Dividend, Triadic LLM Metrics Smoke, UCC Sophia Control Forensics, UCC Standards Source Registry and Materiality, and Triadic LLM Smoke PMR Inventory Contract Repair pages.\n\n## What this proves\n\nIt proves only that accepted local fixture artifacts and draft publication materials are organized for review.\n\n## What this does not prove\n\nNo oracle posture, no deployment posture, no final-answer posture, no AI consciousness claim, and no universal ontology claim.\n\n## Phase pages\n\n- [SONYA-AEGIS-SMOKE-02](sonya-aegis-smoke-02.md)\n- [WAVE Gold-Physics](wave-gold-physics.md)\n- [UNI-02D Sonya gate](uni02d-sonya-gate.md)\n- [RETRO-LANE-00](retro-lane-00.md)\n- [Public Utility Alpha](public-utility-alpha.md)\n- [Raw Baseline Comparison](raw-baseline-comparison.md)\n- [Evidence Review Pack](evidence-review-pack.md)\n- [RW-COMP-01](rw-comp-01.md)\n- [RW-COMP-02](rw-comp-02.md)\n- [Retrosynthesis Sandbox Cycle](retrosynthesis-sandbox-cycle.md)\n- [Evidence Review Pack second pass](evidence-review-pack-second-pass.md)\n- [RW-COMP-03](rw-comp-03.md)\n- [Universal Architecture Scaffold](universal-architecture.md)\n- [Sonya Adapter Contract Registry](sonya-adapter-contract-registry.md)\n- [Sonya required membrane checkpoint](sonya-required-membrane-checkpoint.md)\n- [TEL event stack](tel-event-stack.md)\n- [Sonya Adapter Smoke](sonya-adapter-smoke.md)\n- [Sonya Local Fixture Adapter](sonya-local-fixture-adapter.md)\n- [Evidence Review Pack local adapter](evidence-review-pack-local-adapter.md)\n- [Evidence Review Pack local adapter revision](evidence-review-pack-local-adapter-revision.md)\n- [RW-COMP local adapter](rw-comp-local-adapter.md)\n- [Provenance Memory Reservoir](provenance-memory-reservoir.md)\n- [PMR local artifact index](pmr-local-artifact-index.md)\n- [Ontology Claim Registry](ontology-claim-registry.md)\n- [Local Sonya path portability](local-sonya-path-portability.md)\n- [TB Product Slice](tb-product-slice.md)\n- [TB Product Slice 01](tb-product-slice-01.md)\n- [Sonya Local Fixture Adapter multi-route](sonya-local-fixture-adapter-multi-route.md)\n- [Sonya Local Fixture Adapter lineage clarity](sonya-local-fixture-adapter-lineage.md)\n- [Local Review Runtime V0](local-review-runtime-v0.md)\n- [Local Review metrics and flow](local-review-metrics-flow.md)\n- [Runtime metrics seed corpus](runtime-metrics-seed-corpus.md)\n- [PMR local queryable store](pmr-local-queryable-store.md)\n- [Retrosynthesis readiness](retrosynthesis-readiness.md)\n- [Retrosynthesis local prototype](retrosynthesis-local-prototype.md)\n- [Atlas local memory admission readiness](atlas-local-memory-admission-readiness.md)\n- [Governed artifact cognition paper](governed-artifact-cognition-paper.md)\n- [Waveform Rosetta paper](waveform-rosetta-paper.md)\n",
+        "index.md": f"# Public Experiment Suite Dashboard\n\nThis dashboard presents accepted evidence for reviewer orientation. It is not truth certification, not deployment authority, not final answer release, local fixture only, and requires external peer review.\n\n## Accepted evidence\n\n| Phase | Repo | Status | What this supports | Reviewer caution |\n| --- | --- | --- | --- | --- |\n{phase_rows}\n\n## Reviewer path\n\nStart with claim boundaries, then read the governed artifact cognition paper, WAVE Rosetta paper, SONYA-AEGIS-SMOKE-02, WAVE family, UNI-02D Sonya gate, and RETRO-LANE-00, Public Utility Alpha, Raw Baseline Comparison, Evidence Review Pack, RW-COMP-01, RW-COMP-02, Retrosynthesis Sandbox Cycle, Evidence Review Pack second-pass, RW-COMP-03, Universal Architecture Scaffold, Sonya Adapter Contract Registry, Sonya Adapter Smoke, Sonya Local Fixture Adapter, and Evidence Review Pack local adapter, Evidence Review Pack local adapter revision, RW-COMP local adapter, PMR doctrine, PMR local artifact index, PMR GPCU utility scoring, PMR lifecycle state machine, PMR lifecycle audit preflight, PMR Sophia lifecycle audit review, PMR destructive-action authorization preflight, PMR architecture diversity checkpoint, PMR simulation baseline comparison, PMR simulation statistical analysis, PMR federation stress corpus, PMR human provenance context, Sonya Local Fixture Adapter multi-route, and Sonya Local Fixture Adapter lineage clarity, Local Review metrics and flow, and Runtime Metrics Seed Corpus, PMR local queryable store, Retrosynthesis Readiness, Retrosynthesis Local Prototype, and Atlas Local Memory Admission Readiness, Atlas Local Memory Admission Prototype, Local-test Proxy Review, AI Context Performance Continuity, Theorem Validation Pathway, and COOP Entropy Dividend, Triadic LLM Metrics Smoke, UCC Sophia Control Forensics, UCC Standards Source Registry and Materiality, Triadic LLM Smoke PMR Inventory Contract Repair, and AI Forensics Dossier pages.\n\n## What this proves\n\nIt proves only that accepted local fixture artifacts and draft publication materials are organized for review.\n\n## What this does not prove\n\nNo oracle posture, no deployment posture, no final-answer posture, no AI consciousness claim, and no universal ontology claim.\n\n## Phase pages\n\n- [SONYA-AEGIS-SMOKE-02](sonya-aegis-smoke-02.md)\n- [WAVE Gold-Physics](wave-gold-physics.md)\n- [UNI-02D Sonya gate](uni02d-sonya-gate.md)\n- [RETRO-LANE-00](retro-lane-00.md)\n- [Public Utility Alpha](public-utility-alpha.md)\n- [Raw Baseline Comparison](raw-baseline-comparison.md)\n- [Evidence Review Pack](evidence-review-pack.md)\n- [RW-COMP-01](rw-comp-01.md)\n- [RW-COMP-02](rw-comp-02.md)\n- [Retrosynthesis Sandbox Cycle](retrosynthesis-sandbox-cycle.md)\n- [Evidence Review Pack second pass](evidence-review-pack-second-pass.md)\n- [RW-COMP-03](rw-comp-03.md)\n- [Universal Architecture Scaffold](universal-architecture.md)\n- [Sonya Adapter Contract Registry](sonya-adapter-contract-registry.md)\n- [Sonya required membrane checkpoint](sonya-required-membrane-checkpoint.md)\n- [TEL event stack](tel-event-stack.md)\n- [Sonya Adapter Smoke](sonya-adapter-smoke.md)\n- [Sonya Local Fixture Adapter](sonya-local-fixture-adapter.md)\n- [Evidence Review Pack local adapter](evidence-review-pack-local-adapter.md)\n- [Evidence Review Pack local adapter revision](evidence-review-pack-local-adapter-revision.md)\n- [RW-COMP local adapter](rw-comp-local-adapter.md)\n- [Provenance Memory Reservoir](provenance-memory-reservoir.md)\n- [PMR local artifact index](pmr-local-artifact-index.md)\n- [Ontology Claim Registry](ontology-claim-registry.md)\n- [Local Sonya path portability](local-sonya-path-portability.md)\n- [TB Product Slice](tb-product-slice.md)\n- [TB Product Slice 01](tb-product-slice-01.md)\n- [Sonya Local Fixture Adapter multi-route](sonya-local-fixture-adapter-multi-route.md)\n- [Sonya Local Fixture Adapter lineage clarity](sonya-local-fixture-adapter-lineage.md)\n- [Local Review Runtime V0](local-review-runtime-v0.md)\n- [Local Review metrics and flow](local-review-metrics-flow.md)\n- [Runtime metrics seed corpus](runtime-metrics-seed-corpus.md)\n- [PMR local queryable store](pmr-local-queryable-store.md)\n- [Retrosynthesis readiness](retrosynthesis-readiness.md)\n- [Retrosynthesis local prototype](retrosynthesis-local-prototype.md)\n- [Atlas local memory admission readiness](atlas-local-memory-admission-readiness.md)\n- [AI Forensics Dossier](ai-forensics-dossier.md)\n- [Governed artifact cognition paper](governed-artifact-cognition-paper.md)\n- [Waveform Rosetta paper](waveform-rosetta-paper.md)\n",
         "runtime-metrics-seed-corpus.md": f"""# Runtime metrics seed corpus
 
 ## What was validated
@@ -9448,6 +9572,81 @@ UCC-STANDARDS-SOURCE-REGISTRY-AND-MATERIALITY-00 provides universal source-profi
 
 ```powershell
 {TRIADIC_LLM_UCC_SOURCE_MATERIALITY_COMMAND}
+```
+""",
+        "ai-forensics-dossier.md": f"""# AI Forensics Dossier
+
+Triadic Brain turns AI outputs into auditable, source-linked, control-aware forensic dossiers.
+
+## Dashboard summary
+
+- dossier_status = {AI_FORENSICS_DOSSIER_DASHBOARD_SUMMARY["dossier_status"]}
+- dossier_mode = {AI_FORENSICS_DOSSIER_DASHBOARD_SUMMARY["dossier_mode"]}
+- dossier_sections = {AI_FORENSICS_DOSSIER_DASHBOARD_SUMMARY["dossier_sections"]}
+- span_linked_claim_count = {AI_FORENSICS_DOSSIER_DASHBOARD_SUMMARY["span_linked_claim_count"]}
+- unsupported_claim_count = {AI_FORENSICS_DOSSIER_DASHBOARD_SUMMARY["unsupported_claim_count"]}
+- satisfied_control_count = {AI_FORENSICS_DOSSIER_DASHBOARD_SUMMARY["satisfied_control_count"]}
+- uncertain_control_count = {AI_FORENSICS_DOSSIER_DASHBOARD_SUMMARY["uncertain_control_count"]}
+- source_profile_count = {AI_FORENSICS_DOSSIER_DASHBOARD_SUMMARY["source_profile_count"]}
+- nist_reference_only = true
+- nist_source_text_stored = false
+- human_review_required = true
+- raw_model_output_final_answer = false
+- final_answer_emitted = false
+- accepted_evidence_emitted = false
+- truth_certification_emitted = false
+- compliance_certification_emitted = false
+- audit_opinion_emitted = false
+- professional_attestation_emitted = false
+- product_release_performed = false
+- provider_runtime_performed = false
+- memory_write_performed = false
+- atlas_memory_admission_performed = false
+
+## Artifacts
+
+{chr(10).join(f"- `{artifact}`" for artifact in AI_FORENSICS_DOSSIER_ARTIFACTS)}
+
+## Claim allowed
+
+{AI_FORENSICS_DOSSIER_CLAIM_ALLOWED}
+
+## Required boundaries
+
+- The dossier is AI process forensics.
+- The dossier is not model mind-reading.
+- The dossier is not hidden chain-of-thought disclosure.
+- This dossier is not a final answer.
+- This dossier is not truth certification.
+- This dossier is not compliance certification.
+- This dossier is not audit opinion.
+- This dossier is not professional attestation.
+- Raw model output is not final answer.
+- UCC control review is diagnostic, not certification.
+- NIST CSF 2.0 is reference-only in this run.
+- NIST control text is not ingested.
+- Materiality override does not modify the source standard.
+- Human review remains required.
+- No provider runtime occurred.
+- No product release occurred.
+- No memory write occurred.
+- No Atlas memory admission occurred.
+
+## Blocked overclaim examples
+
+- AI Forensics Dossier is final answer
+- AI Forensics Dossier certifies truth
+- AI Forensics Dossier certifies compliance
+- AI Forensics Dossier is audit opinion
+- AI Forensics Dossier is professional attestation
+- AI Forensics Dossier reveals hidden chain of thought
+- AI Forensics Dossier performs model mind-reading
+{TRIADIC_UCC_BLOCKED_OVERCLAIM_SECTION}
+
+## Reproducibility
+
+```powershell
+{AI_FORENSICS_DOSSIER_COMMAND}
 ```
 """,
         "triadic-llm-smoke-pmr-inventory-contract-repair.md": f"""# Triadic LLM smoke PMR inventory contract repair

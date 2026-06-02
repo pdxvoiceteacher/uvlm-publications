@@ -1084,6 +1084,12 @@
       "llm_metrics_smoke_receipt.json",
       "review_receipt.md"
     ],
+    "AI-FORENSICS-DOSSIER-00": [
+      "ai_forensics_dossier_packet.json",
+      "ai_forensics_dossier_section_index.json",
+      "ai_forensics_dossier.md",
+      "ai_forensics_dossier_receipt.json"
+    ],
     "PMR-HUMAN-CONSENT-NEGATIVE-CONTROL-00": [
       "pmr_human_consent_negative_control_manifest.json",
       "pmr_invalid_human_consent_attempts.jsonl",

@@ -76,6 +76,7 @@ REQUIRED_DOCS = {
     "ucc-sophia-control-forensics.md",
     "ucc-standards-source-registry-and-materiality.md",
     "triadic-llm-smoke-pmr-inventory-contract-repair.md",
+    "ai-forensics-dossier.md",
 }
 REQUIRED_PHASES = {
     "EXP-SUITE-REGISTRY-01",
@@ -169,6 +170,7 @@ REQUIRED_PHASES = {
     "UCC-SOPHIA-CONTROL-FORENSICS-00",
     "UCC-STANDARDS-SOURCE-REGISTRY-AND-MATERIALITY-00",
     "TRIADIC-LLM-SMOKE-PMR-INVENTORY-CONTRACT-REPAIR-REVISION",
+    "AI-FORENSICS-DOSSIER-00",
 }
 
 REQUIRED_COMMAND_FRAGMENTS = (
@@ -3668,3 +3670,100 @@ def test_triadic_llm_ucc_source_materiality_pages_are_generated(tmp_path):
     assert status["ucc_sophia_control_forensics_00_indexed"] is True
     assert status["ucc_standards_source_registry_and_materiality_00_indexed"] is True
     assert status["triadic_llm_smoke_pmr_inventory_contract_repair_revision_indexed"] is True
+
+
+def test_ai_forensics_dossier_page_and_registry_are_generated(tmp_path):
+    out_dir, docs_dir = run_builder(tmp_path)
+    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text())
+    reproducibility = json.loads((out_dir / "reproducibility_index.json").read_text())
+    artifact_index = json.loads((out_dir / "artifact_index.json").read_text())
+    claim_boundaries = json.loads((out_dir / "claim_boundary_index.json").read_text())
+    status = json.loads((out_dir / "status.json").read_text())
+    phase_by_id = {entry["phase_id"]: entry for entry in dashboard["accepted_phases"]}
+    reproducibility_text = json.dumps(reproducibility)
+    boundary_text = "\n".join(claim_boundaries["boundaries"])
+
+    assert "AI-FORENSICS-DOSSIER-00" in phase_by_id
+    dossier = phase_by_id["AI-FORENSICS-DOSSIER-00"]["dashboard_summary"]
+    assert dossier["dossier_status"] == "completed"
+    assert dossier["dossier_mode"] == "user_facing_forensic_summary"
+    assert dossier["dossier_sections"] == 16
+    assert dossier["span_linked_claim_count"] == 1
+    assert dossier["unsupported_claim_count"] == 1
+    assert dossier["satisfied_control_count"] == 5
+    assert dossier["uncertain_control_count"] == 1
+    assert dossier["source_profile_count"] == 2
+    assert dossier["nist_reference_only"] is True
+    assert dossier["nist_source_text_stored"] is False
+    assert dossier["human_review_required"] is True
+    for flag in (
+        "raw_model_output_final_answer",
+        "final_answer_emitted",
+        "accepted_evidence_emitted",
+        "truth_certification_emitted",
+        "compliance_certification_emitted",
+        "audit_opinion_emitted",
+        "professional_attestation_emitted",
+        "product_release_performed",
+        "provider_runtime_performed",
+        "memory_write_performed",
+        "atlas_memory_admission_performed",
+    ):
+        assert dossier[flag] is False
+
+    for artifact in (
+        "ai_forensics_dossier_packet.json",
+        "ai_forensics_dossier_section_index.json",
+        "ai_forensics_dossier.md",
+        "ai_forensics_dossier_receipt.json",
+    ):
+        assert artifact in artifact_index["phases"]["AI-FORENSICS-DOSSIER-00"]
+
+    for builder in (
+        "build_triadic_llm_metrics_smoke",
+        "build_sophia_ucc_control_review",
+        "build_ai_forensics_dossier",
+    ):
+        assert builder in reproducibility_text
+
+    page = docs_dir / "ai-forensics-dossier.md"
+    assert page.exists()
+    page_text = page.read_text(encoding="utf-8")
+    required_page_phrases = (
+        "Triadic Brain turns AI outputs into auditable, source-linked, control-aware forensic dossiers.",
+        "The dossier is AI process forensics.",
+        "The dossier is not model mind-reading.",
+        "The dossier is not hidden chain-of-thought disclosure.",
+        "This dossier is not a final answer.",
+        "This dossier is not truth certification.",
+        "This dossier is not compliance certification.",
+        "This dossier is not audit opinion.",
+        "This dossier is not professional attestation.",
+        "Raw model output is not final answer.",
+        "UCC control review is diagnostic, not certification.",
+        "NIST CSF 2.0 is reference-only in this run.",
+        "NIST control text is not ingested.",
+        "Materiality override does not modify the source standard.",
+        "Human review remains required.",
+        "No provider runtime occurred.",
+        "No product release occurred.",
+        "No memory write occurred.",
+        "No Atlas memory admission occurred.",
+        "AI Forensics Dossier is final answer",
+        "AI Forensics Dossier certifies truth",
+        "AI Forensics Dossier certifies compliance",
+        "AI Forensics Dossier is audit opinion",
+        "AI Forensics Dossier is professional attestation",
+        "AI Forensics Dossier reveals hidden chain of thought",
+        "AI Forensics Dossier performs model mind-reading",
+    )
+    for phrase in required_page_phrases:
+        assert phrase in page_text
+        assert phrase in boundary_text or phrase in page_text
+
+    assert "AI-FORENSICS-DOSSIER-00 packages a local AI candidate" in boundary_text
+    assert status["ai_forensics_dossier_00_indexed"] is True
+    assert status["not_ai_forensics_dossier_final_answer"] is True
+    assert status["not_ai_forensics_dossier_truth_certification"] is True
+    assert status["not_ai_forensics_dossier_compliance_certification"] is True
+    assert status["not_ai_forensics_dossier_provider_runtime"] is True

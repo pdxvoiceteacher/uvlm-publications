@@ -735,6 +735,13 @@ PAPER_CONFIGS: dict[str, dict[str, Any]] = {
             "is proven",
             "evidence ledger certifies truth",
             "theorem card proves universal ontology",
+            "AI Forensics Dossier is final answer",
+            "AI Forensics Dossier certifies truth",
+            "AI Forensics Dossier certifies compliance",
+            "AI Forensics Dossier is audit opinion",
+            "AI Forensics Dossier is professional attestation",
+            "AI Forensics Dossier reveals hidden chain of thought",
+            "AI Forensics Dossier performs model mind-reading",
             "raw model output is final answer",
             "Omega detection",
             "provider runtime",
@@ -1190,6 +1197,13 @@ def _forbidden_hits(normalized_text: str, forbidden: tuple[str, ...]) -> list[st
                 "product release",
                 "provider runtime",
                 "population calibration",
+                "AI Forensics Dossier is final answer",
+                "AI Forensics Dossier certifies truth",
+                "AI Forensics Dossier certifies compliance",
+                "AI Forensics Dossier is audit opinion",
+                "AI Forensics Dossier is professional attestation",
+                "AI Forensics Dossier reveals hidden chain of thought",
+                "AI Forensics Dossier performs model mind-reading",
             }
             if phrase in manual_blocked_examples:
                 if "no artifact in this chain authorizes" in normalized_text[max(0, index - 120) : index]:

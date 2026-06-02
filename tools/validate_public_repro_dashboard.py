@@ -231,6 +231,24 @@ REQUIRED_BOUNDARY_PHRASES = (
     "build_ucc_materiality_override_receipt",
     "TRIADIC-LLM-SMOKE-PMR-INVENTORY-CONTRACT-REPAIR-REVISION",
     "Visibility repair does not create final-answer authority",
+    "AI-FORENSICS-DOSSIER-00",
+    "Triadic Brain turns AI outputs into auditable, source-linked, control-aware forensic dossiers",
+    "The dossier is AI process forensics",
+    "The dossier is not model mind-reading",
+    "The dossier is not hidden chain-of-thought disclosure",
+    "This dossier is not a final answer",
+    "This dossier is not truth certification",
+    "This dossier is not compliance certification",
+    "This dossier is not audit opinion",
+    "This dossier is not professional attestation",
+    "AI Forensics Dossier is final answer",
+    "AI Forensics Dossier certifies truth",
+    "AI Forensics Dossier certifies compliance",
+    "AI Forensics Dossier is audit opinion",
+    "AI Forensics Dossier is professional attestation",
+    "AI Forensics Dossier reveals hidden chain of thought",
+    "AI Forensics Dossier performs model mind-reading",
+    "build_ai_forensics_dossier",
     "not Atlas memory admission yet",
     "raw baseline comparison",
     "fixture-only measurement scaffold",
@@ -729,6 +747,13 @@ FORBIDDEN_PHRASES = (
     "remote provider calls",
     "provider call performed",
     "provider call authorized",
+    "AI Forensics Dossier is final answer",
+    "AI Forensics Dossier certifies truth",
+    "AI Forensics Dossier certifies compliance",
+    "AI Forensics Dossier is audit opinion",
+    "AI Forensics Dossier is professional attestation",
+    "AI Forensics Dossier reveals hidden chain of thought",
+    "AI Forensics Dossier performs model mind-reading",
     "raw output admission",
     "claims raw output admission",
     "raw output admitted",
@@ -964,7 +989,8 @@ def _is_allowed_bounded_release_context(text: str, index: int, phrase: str) -> b
     return False
 
 def _is_blocked_overclaim_example_context(text: str, index: int) -> bool:
-    return "blocked overclaim examples" in text[max(0, index - 480) : index]
+    window = text[max(0, index - 1000) : index]
+    return "blocked overclaim examples" in window or "claims_blocked" in window
 
 
 def _forbidden_hits(text: str) -> list[str]:
@@ -1156,6 +1182,12 @@ def _forbidden_hits(text: str) -> list[str]:
                 start = index + len(normalized_phrase)
                 continue
             if phrase in {"truth certification", "final answer release", "product release"} and _is_allowed_bounded_release_context(text, index, phrase):
+                start = index + len(normalized_phrase)
+                continue
+            if phrase == "product release" and "does not authorize" in text[max(0, index - 180) : index]:
+                start = index + len(normalized_phrase)
+                continue
+            if phrase == "compliance certification" and "it is not final answer" in text[max(0, index - 140) : index]:
                 start = index + len(normalized_phrase)
                 continue
             if _is_blocked_overclaim_example_context(text, index):
