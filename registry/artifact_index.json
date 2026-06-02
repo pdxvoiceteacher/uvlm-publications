@@ -1096,6 +1096,29 @@
       "human_review_decision_receipt.json",
       "human_review_summary.md"
     ],
+    "PERTURBATION-OBSERVATION-CAPTURE-00": [
+      "perturbation_observation_packet.json",
+      "perturbation_axis_packet.json",
+      "perturbation_boundary_report.json",
+      "perturbation_observation_summary.md"
+    ],
+    "PERTURBATION-TRUNK-MAPPING-00": [
+      "perturbation_known_trunk_registry.json",
+      "perturbation_trunk_mapping_packet.json",
+      "trunk_similarity_heatmap.json",
+      "mapped_trunk_residue_report.json",
+      "trunk_mapping_boundary_table.json",
+      "perturbation_trunk_mapping_summary.md"
+    ],
+    "PERTURBATION-RESIDUAL-NOVELTY-MAP-00": [
+      "residual_novelty_candidate_map.json",
+      "novel_branch_candidate_packet.json",
+      "reverse_trunk_candidate_report.json",
+      "abstraction_candidate_report.json",
+      "novelty_human_review_packet.json",
+      "residual_novelty_boundary_table.json",
+      "perturbation_residual_novelty_summary.md"
+    ],
     "PMR-HUMAN-CONSENT-NEGATIVE-CONTROL-00": [
       "pmr_human_consent_negative_control_manifest.json",
       "pmr_invalid_human_consent_attempts.jsonl",

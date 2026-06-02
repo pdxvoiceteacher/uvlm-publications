@@ -1129,6 +1129,45 @@
 - needs_more_evidence is approval
 - approve_for_local_next_step is final answer approval
 - escalate_to_professional_review is professional attestation
+- PERTURBATION-OBSERVATION-CAPTURE-00 captures a synthetic structured perturbation fixture and diagnostic axes without claiming novelty.
+- Perturbation is not mere degradation.
+- Perturbation observation is not novelty discovery.
+- Abstraction affordance is not truth.
+- Hyperreal resonance is not authority.
+- Causal candidate is not certified diagnosis.
+- Human review required.
+- PERTURBATION-TRUNK-MAPPING-00 maps known trunk families before novelty claims and does not claim identity or discovery.
+- Known trunks were mapped before novelty claims.
+- Trunk similarity is not identity.
+- Known-trunk mapping is not novelty discovery.
+- Residual structure is not novel trunk proof.
+- Heatmap values are diagnostic, not probability certification.
+- Reverse mapping is not performed in this phase.
+- Human review remains required.
+- PERTURBATION-RESIDUAL-NOVELTY-MAP-00 generates candidate residual novelty regions, branch candidates, reverse trunk hypotheses, and abstraction candidates for human review without claiming novelty discovery or proof.
+- Residual novelty mapping was performed only after known trunk mapping.
+- Candidate novelty regions were generated.
+- Candidate novelty is not novelty discovery.
+- Novel branch candidate is not novel trunk proof.
+- Reverse trunk candidates are hypotheses only.
+- Abstraction candidates are not truth.
+- Creative mapping is not causal diagnosis.
+- Single fixture is not theory.
+- More observations are required before stronger claims.
+- Blocked overclaim examples for perturbation novelty candidate publication boundaries.
+- perturbation observation proves novelty
+- perturbation observation certifies diagnosis
+- abstraction affordance is truth
+- hyperreal resonance is authority
+- trunk similarity is identity
+- trunk mapping is novelty discovery
+- heatmap values certify probability
+- residual structure proves a novel trunk
+- residual novelty map discovers novelty
+- novel branch candidate is novel trunk proof
+- reverse trunk mapping proves identity
+- creative mapping is causal diagnosis
+- single fixture proves theory
 - RETROSYNTHESIS-LOCAL-PROTOTYPE-00 is bounded local candidate generation only.
 - RETROSYNTHESIS-LOCAL-PROTOTYPE-00 generates bounded local candidate hypotheses, candidate repair plans, and pattern observations from PMR query results, TEL replay, runtime metrics, formula registry, metric bounds, seed corpus observations, cognitive flow morphology, Sonya coverage, and Sophia posture.
 - Candidate hypotheses are not truth.

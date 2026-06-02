@@ -78,6 +78,9 @@ REQUIRED_DOCS = {
     "triadic-llm-smoke-pmr-inventory-contract-repair.md",
     "ai-forensics-dossier.md",
     "human-review-ux.md",
+    "perturbation-observation-capture.md",
+    "perturbation-trunk-mapping.md",
+    "perturbation-residual-novelty-map.md",
 }
 REQUIRED_PHASES = {
     "EXP-SUITE-REGISTRY-01",
@@ -173,6 +176,9 @@ REQUIRED_PHASES = {
     "TRIADIC-LLM-SMOKE-PMR-INVENTORY-CONTRACT-REPAIR-REVISION",
     "AI-FORENSICS-DOSSIER-00",
     "HUMAN-REVIEW-UX-00",
+    "PERTURBATION-OBSERVATION-CAPTURE-00",
+    "PERTURBATION-TRUNK-MAPPING-00",
+    "PERTURBATION-RESIDUAL-NOVELTY-MAP-00",
 }
 
 REQUIRED_COMMAND_FRAGMENTS = (
@@ -3870,3 +3876,149 @@ def test_human_review_ux_page_and_registry_are_generated(tmp_path):
     assert status["not_human_review_ux_final_answer_authority"] is True
     assert status["not_human_review_ux_truth_certification"] is True
     assert status["not_human_review_ux_compliance_certification"] is True
+
+
+def test_perturbation_novelty_lane_pages_and_registry_are_generated(tmp_path):
+    out_dir, docs_dir = run_builder(tmp_path)
+    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text())
+    reproducibility = json.loads((out_dir / "reproducibility_index.json").read_text())
+    artifact_index = json.loads((out_dir / "artifact_index.json").read_text())
+    claim_boundaries = json.loads((out_dir / "claim_boundary_index.json").read_text())
+    status = json.loads((out_dir / "status.json").read_text())
+    phase_by_id = {entry["phase_id"]: entry for entry in dashboard["accepted_phases"]}
+    reproducibility_text = json.dumps(reproducibility)
+    boundary_text = "\n".join(claim_boundaries["boundaries"])
+
+    observation = phase_by_id["PERTURBATION-OBSERVATION-CAPTURE-00"]["dashboard_summary"]
+    assert observation["observation_status"] == "captured"
+    assert observation["perturbation_fixture_id"] == "car_alarm_battery_decay_fixture_v0"
+    assert observation["observed_signal_type"] == "acoustic_symbolic_fixture"
+    assert observation["source_cause_candidate"] == "battery_energy_decay"
+    assert observation["causal_diagnosis_candidate"] is True
+    assert observation["abstraction_affordance_candidate"] is True
+    assert observation["axis_count"] == 9
+    assert observation["novelty_detection_performed"] is False
+    assert observation["trunk_mapping_performed"] is False
+    assert observation["residual_novelty_claimed"] is False
+
+    trunk = phase_by_id["PERTURBATION-TRUNK-MAPPING-00"]["dashboard_summary"]
+    assert trunk["mapping_status"] == "completed"
+    assert trunk["mapping_mode"] == "known_trunk_mapping_only"
+    assert trunk["trunk_count"] == 7
+    assert trunk["mapped_trunk_count"] == 7
+    assert trunk["top_trunk_candidate"] == "electrical_decay_trunk"
+    assert trunk["top_trunk_similarity_score"] == 0.88
+    assert trunk["heatmap_rows"] == 63
+    assert trunk["residual_novelty_mapping_performed"] is False
+    assert trunk["novelty_detection_performed"] is False
+    assert trunk["residual_novelty_claimed"] is False
+    assert trunk["reverse_novel_trunk_claimed"] is False
+
+    residual = phase_by_id["PERTURBATION-RESIDUAL-NOVELTY-MAP-00"]["dashboard_summary"]
+    assert residual["mapping_status"] == "completed"
+    assert residual["mapping_mode"] == "residual_candidate_mapping_after_known_trunks"
+    assert residual["known_trunk_mapping_completed"] is True
+    assert residual["residual_candidate_count"] == 5
+    assert residual["top_residual_candidate_id"] == "cross_trunk_resonance_candidate_00"
+    assert residual["branch_candidate_count"] == 3
+    assert residual["reverse_candidate_count"] == 3
+    assert residual["abstraction_candidate_count"] == 3
+    assert residual["review_required"] is True
+    assert residual["default_recommendation"] == "request_more_observations"
+    assert residual["novelty_discovery_claimed"] is False
+    assert residual["novel_trunk_proof_claimed"] is False
+    assert residual["truth_certification_emitted"] is False
+    assert residual["product_release_performed"] is False
+
+    for artifact in (
+        "perturbation_observation_packet.json",
+        "perturbation_axis_packet.json",
+        "perturbation_boundary_report.json",
+        "perturbation_observation_summary.md",
+    ):
+        assert artifact in artifact_index["phases"]["PERTURBATION-OBSERVATION-CAPTURE-00"]
+    for artifact in (
+        "perturbation_known_trunk_registry.json",
+        "perturbation_trunk_mapping_packet.json",
+        "trunk_similarity_heatmap.json",
+        "mapped_trunk_residue_report.json",
+        "trunk_mapping_boundary_table.json",
+        "perturbation_trunk_mapping_summary.md",
+    ):
+        assert artifact in artifact_index["phases"]["PERTURBATION-TRUNK-MAPPING-00"]
+    for artifact in (
+        "residual_novelty_candidate_map.json",
+        "novel_branch_candidate_packet.json",
+        "reverse_trunk_candidate_report.json",
+        "abstraction_candidate_report.json",
+        "novelty_human_review_packet.json",
+        "residual_novelty_boundary_table.json",
+        "perturbation_residual_novelty_summary.md",
+    ):
+        assert artifact in artifact_index["phases"]["PERTURBATION-RESIDUAL-NOVELTY-MAP-00"]
+
+    for builder in (
+        "build_perturbation_observation_capture",
+        "build_perturbation_trunk_mapping",
+        "build_perturbation_residual_novelty_map",
+    ):
+        assert builder in reproducibility_text
+
+    page_expectations = {
+        "perturbation-observation-capture.md": (
+            "Perturbation is not mere degradation.",
+            "Perturbation observation is not novelty discovery.",
+            "Abstraction affordance is not truth.",
+            "Hyperreal resonance is not authority.",
+            "Causal candidate is not certified diagnosis.",
+            "Human review required.",
+        ),
+        "perturbation-trunk-mapping.md": (
+            "Known trunks were mapped before novelty claims.",
+            "Trunk similarity is not identity.",
+            "Known-trunk mapping is not novelty discovery.",
+            "Residual structure is not novel trunk proof.",
+            "Heatmap values are diagnostic, not probability certification.",
+            "Reverse mapping is not performed in this phase.",
+            "Human review remains required.",
+        ),
+        "perturbation-residual-novelty-map.md": (
+            "Residual novelty mapping was performed only after known trunk mapping.",
+            "Candidate novelty regions were generated.",
+            "Candidate novelty is not novelty discovery.",
+            "Novel branch candidate is not novel trunk proof.",
+            "Reverse trunk candidates are hypotheses only.",
+            "Abstraction candidates are not truth.",
+            "Hyperreal resonance is not authority.",
+            "Creative mapping is not causal diagnosis.",
+            "Single fixture is not theory.",
+            "More observations are required before stronger claims.",
+            "Human review remains required.",
+        ),
+    }
+    for page_name, phrases in page_expectations.items():
+        text = (docs_dir / page_name).read_text(encoding="utf-8")
+        for phrase in phrases:
+            assert phrase in text
+            assert phrase in boundary_text
+
+    for phrase in (
+        "perturbation observation proves novelty",
+        "perturbation observation certifies diagnosis",
+        "abstraction affordance is truth",
+        "hyperreal resonance is authority",
+        "trunk similarity is identity",
+        "trunk mapping is novelty discovery",
+        "heatmap values certify probability",
+        "residual structure proves a novel trunk",
+        "residual novelty map discovers novelty",
+        "novel branch candidate is novel trunk proof",
+        "reverse trunk mapping proves identity",
+        "creative mapping is causal diagnosis",
+        "single fixture proves theory",
+    ):
+        assert phrase in boundary_text
+
+    assert status["perturbation_observation_capture_00_indexed"] is True
+    assert status["perturbation_trunk_mapping_00_indexed"] is True
+    assert status["perturbation_residual_novelty_map_00_indexed"] is True
