@@ -2208,6 +2208,7 @@ TRIADIC_UCC_BLOCKED_OVERCLAIM_SECTION = "\n".join(
 TRIADIC_LLM_UCC_SOURCE_MATERIALITY_COMMAND = "python -c \"from pathlib import Path; from coherence.triadic.llm_metrics_smoke import build_triadic_llm_metrics_smoke; from coherence.ucc.sophia_control_review import build_sophia_ucc_control_review; from coherence.ucc.standards_source_registry import build_ucc_standards_source_registry; from coherence.ucc.materiality_profile import build_ucc_materiality_profile; from coherence.ucc.materiality_override import build_ucc_materiality_override_receipt; root=Path(r'C:\\UVLM\\run_artifacts\\triadic_llm_ucc_source_materiality'); build_triadic_llm_metrics_smoke(output_root=root); build_sophia_ucc_control_review(root / 'bridge'); build_ucc_standards_source_registry(root / 'bridge'); build_ucc_materiality_profile(root / 'bridge'); build_ucc_materiality_override_receipt(root / 'bridge')\""
 
 AI_FORENSICS_DOSSIER_COMMAND = "python -c \"from pathlib import Path; from coherence.product.triadic_llm_metrics_smoke import build_triadic_llm_metrics_smoke; from coherence.ucc.sophia_control_review import build_sophia_ucc_control_review; from coherence.product.ai_forensics_dossier import build_ai_forensics_dossier; root=Path(r'C:\\UVLM\\run_artifacts\\triadic_llm_metrics_smoke'); bridge=root / 'bridge'; build_triadic_llm_metrics_smoke(root); build_sophia_ucc_control_review(bridge); build_ai_forensics_dossier(bridge)\""
+HUMAN_REVIEW_UX_COMMAND = "python -c \"from pathlib import Path; from coherence.product.triadic_llm_metrics_smoke import build_triadic_llm_metrics_smoke; from coherence.ucc.sophia_control_review import build_sophia_ucc_control_review; from coherence.product.ai_forensics_dossier import build_ai_forensics_dossier; from coherence.review.human_review_ux import build_human_review_ux_packet; root=Path(r'C:\\UVLM\\run_artifacts\\triadic_llm_metrics_smoke'); bridge=root / 'bridge'; build_triadic_llm_metrics_smoke(root); build_sophia_ucc_control_review(bridge); build_ai_forensics_dossier(bridge); build_human_review_ux_packet(bridge)\""
 
 TRIADIC_LLM_METRICS_SMOKE_ARTIFACTS = [
     "llm_metrics_smoke_request.json",
@@ -2484,6 +2485,87 @@ AI_FORENSICS_DOSSIER_PHASE = {
     "claims_blocked": AI_FORENSICS_DOSSIER_CLAIMS_BLOCKED,
     "claim_allowed": AI_FORENSICS_DOSSIER_CLAIM_ALLOWED,
     "reviewer_caution": "AI-FORENSICS-DOSSIER-00 is AI process forensics only; it is not final answer, truth certification, compliance certification, audit opinion, professional attestation, provider runtime, product release, memory write, or Atlas memory admission.",
+}
+
+HUMAN_REVIEW_UX_ALLOWED_DECISIONS = [
+    "approve_for_local_next_step",
+    "request_revision",
+    "reject_candidate",
+    "defer_review",
+    "needs_more_evidence",
+    "escalate_to_professional_review",
+]
+HUMAN_REVIEW_UX_ARTIFACTS = [
+    "human_review_ux_packet.json",
+    "human_review_action_menu.json",
+    "human_review_decision_receipt.json",
+    "human_review_summary.md",
+]
+HUMAN_REVIEW_UX_DASHBOARD_SUMMARY = {
+    "review_status": "completed",
+    "review_mode": "human_review_dossier_ux",
+    "review_sections": 11,
+    "allowed_decisions": 6,
+    "default_decision": "needs_more_evidence",
+    "human_review_occurred": True,
+    "local_test_mode": True,
+    "product_human_review_completed": False,
+    "final_answer_approved": False,
+    "accepted_evidence_approved": False,
+    "truth_certification_approved": False,
+    "compliance_certification_approved": False,
+    "audit_opinion_approved": False,
+    "professional_attestation_approved": False,
+    "product_release_approved": False,
+    "provider_runtime_approved": False,
+    "memory_write_approved": False,
+    "atlas_memory_admission_approved": False,
+    "allowed_decision_values": HUMAN_REVIEW_UX_ALLOWED_DECISIONS,
+}
+HUMAN_REVIEW_UX_CLAIM_ALLOWED = "HUMAN-REVIEW-UX-00 presents an AI Forensics Dossier to a reviewer and emits a bounded review decision receipt without granting final-answer, certification, product, provider, memory, or Atlas authority."
+HUMAN_REVIEW_UX_CLAIMS_BLOCKED = [
+    "Human Review UX creates final answer authority",
+    "Human Review UX certifies truth",
+    "Human Review UX certifies compliance",
+    "Human Review UX is audit opinion",
+    "Human Review UX is professional attestation",
+    "Human Review UX approves product release",
+    "Human Review UX approves provider runtime",
+    "Human Review UX approves memory write",
+    "Human Review UX approves Atlas memory admission",
+    "local test review is product human review",
+    "needs_more_evidence is approval",
+    "approve_for_local_next_step is final answer approval",
+    "escalate_to_professional_review is professional attestation",
+    "AI Forensics Dossier is final answer",
+    "UCC review certifies compliance",
+    "NIST compliance is certified",
+    "hidden chain-of-thought disclosure",
+    "model mind-reading",
+    "not product release",
+    "not deployment",
+    "not federation",
+    "not consciousness proof",
+    "not Omega detection",
+    "not universal ontology proof",
+    "not market validation",
+]
+HUMAN_REVIEW_UX_PHASE = {
+    "phase_id": "HUMAN-REVIEW-UX-00",
+    "repo": "pdxvoiceteacher/CoherenceLattice",
+    "source_phase": "AI-FORENSICS-DOSSIER-00",
+    "status": "accepted_local_validation",
+    "publication_status": "dashboard_synced",
+    "evidence_type": "bounded_human_review_dossier_ux",
+    "product_posture": "local_test_review_decision_only_not_product_human_review",
+    "authority_posture": "non_authoritative",
+    "public_claim_boundary": "bounded_review_receipt_only_no_final_answer_certification_product_provider_memory_or_atlas_authority",
+    "primary_artifacts": HUMAN_REVIEW_UX_ARTIFACTS,
+    "dashboard_summary": HUMAN_REVIEW_UX_DASHBOARD_SUMMARY,
+    "reproduction_command_summary": HUMAN_REVIEW_UX_COMMAND,
+    "claims_blocked": HUMAN_REVIEW_UX_CLAIMS_BLOCKED,
+    "claim_allowed": HUMAN_REVIEW_UX_CLAIM_ALLOWED,
+    "reviewer_caution": "HUMAN-REVIEW-UX-00 records a local-test bounded review decision only; product human review is not completed and no final-answer, certification, product, provider, memory, or Atlas authority is granted.",
 }
 PMR_00_COMMAND = r""".\experiments\Run-PMR00-Acceptance.ps1 `
   -OutputRoot C:\UVLM\run_artifacts\pmr_00 `
@@ -4389,6 +4471,7 @@ UCC_SOPHIA_CONTROL_FORENSICS_PHASE,
 UCC_STANDARDS_SOURCE_REGISTRY_PHASE,
 TRIADIC_LLM_INVENTORY_REPAIR_PHASE,
 AI_FORENSICS_DOSSIER_PHASE,
+HUMAN_REVIEW_UX_PHASE,
 {"phase_id":"PMR-CONTEXT-AVAILABILITY-LEDGER-00","repo":"pdxvoiceteacher/CoherenceLattice","status":"accepted","evidence_type":"governance_scaffold","product_posture":"fixture_only_context_availability_without_source_content_or_memory_authority","primary_artifacts":PMR_CONTEXT_AVAILABILITY_LEDGER_00_ARTIFACTS,"dashboard_summary":PMR_CONTEXT_AVAILABILITY_LEDGER_00_DASHBOARD_SUMMARY,"reproduction_command_summary":PMR_CONTEXT_AVAILABILITY_LEDGER_00_COMMAND,"claims_blocked":PMR_CONTEXT_AVAILABILITY_LEDGER_00_CLAIMS_BLOCKED,"claim_allowed":"context availability ledger scaffold","reviewer_caution":"Expiration is not nonexistence."},
 {"phase_id":"LOCAL-SERVER-USER-FILE-INGRESS-00","repo":"pdxvoiceteacher/CoherenceLattice","status":"accepted","evidence_type":"runtime_smoke","product_posture":"explicit_local_user_file_ingress_without_memory_or_network_authority","primary_artifacts":LOCAL_SERVER_USER_FILE_INGRESS_00_ARTIFACTS,"dashboard_summary":LOCAL_SERVER_USER_FILE_INGRESS_00_DASHBOARD_SUMMARY,"reproduction_command_summary":LOCAL_SERVER_USER_FILE_INGRESS_00_COMMAND,"claims_blocked":LOCAL_SERVER_USER_FILE_INGRESS_00_CLAIMS_BLOCKED,"claim_allowed":"explicit local user file ingress runtime smoke","reviewer_caution":"User file ingress is not memory write."},
 {"phase_id":"SONYA-LOCAL-SERVER-GATEWAY-02","repo":"pdxvoiceteacher/CoherenceLattice","status":"accepted","evidence_type":"runtime_smoke","product_posture":"localhost_only_source_span_gateway_without_truth_or_memory_authority","primary_artifacts":SONYA_LOCAL_SERVER_GATEWAY_02_ARTIFACTS,"dashboard_summary":SONYA_LOCAL_SERVER_GATEWAY_02_DASHBOARD_SUMMARY,"reproduction_command_summary":SONYA_LOCAL_SERVER_GATEWAY_02_COMMAND,"claims_blocked":SONYA_LOCAL_SERVER_GATEWAY_02_CLAIMS_BLOCKED,"claim_allowed":"localhost-only source-span gateway retrieval scaffold","reviewer_caution":"Source-span gateway review is not truth certification."},
@@ -6342,6 +6425,35 @@ BOUNDARIES.extend(
         "AI Forensics Dossier is professional attestation",
         "AI Forensics Dossier reveals hidden chain of thought",
         "AI Forensics Dossier performs model mind-reading",
+        HUMAN_REVIEW_UX_CLAIM_ALLOWED,
+        "Human Review UX presents an AI Forensics Dossier for bounded review.",
+        "The reviewer inspected an AI Forensics Dossier.",
+        "The default local-test decision is needs_more_evidence.",
+        "Human review remains bounded by the selected action.",
+        "The review decision is not final-answer authority.",
+        "The review decision is not truth certification.",
+        "The review decision is not compliance certification.",
+        "The review decision is not audit opinion.",
+        "The review decision is not professional attestation.",
+        "The review decision is not product release.",
+        "The review decision is not memory write.",
+        "The review decision is not Atlas memory admission.",
+        "Professional or compliance use requires appropriate qualified review.",
+        "Product human review is not completed in local test mode.",
+        "Blocked overclaim examples for Human Review UX publication boundaries.",
+        "Human Review UX creates final answer authority",
+        "Human Review UX certifies truth",
+        "Human Review UX certifies compliance",
+        "Human Review UX is audit opinion",
+        "Human Review UX is professional attestation",
+        "Human Review UX approves product release",
+        "Human Review UX approves provider runtime",
+        "Human Review UX approves memory write",
+        "Human Review UX approves Atlas memory admission",
+        "local test review is product human review",
+        "needs_more_evidence is approval",
+        "approve_for_local_next_step is final answer approval",
+        "escalate_to_professional_review is professional attestation",
     ]
 )
 BOUNDARIES.extend(
@@ -6578,6 +6690,10 @@ def dashboard_payload() -> dict[str, Any]:
             "ai_forensics_dossier_section_index.json",
             "ai_forensics_dossier.md",
             "ai_forensics_dossier_receipt.json",
+            "human_review_ux_packet.json",
+            "human_review_action_menu.json",
+            "human_review_decision_receipt.json",
+            "human_review_summary.md",
         ],
 
         "publication_drafts": [
@@ -6689,6 +6805,16 @@ def dashboard_payload() -> dict[str, Any]:
         "not_ai_forensics_dossier_product_release": True,
         "not_ai_forensics_dossier_memory_write": True,
         "not_ai_forensics_dossier_atlas_memory_admission": True,
+        "human_review_ux_00_indexed": True,
+        "not_human_review_ux_final_answer_authority": True,
+        "not_human_review_ux_truth_certification": True,
+        "not_human_review_ux_compliance_certification": True,
+        "not_human_review_ux_audit_opinion": True,
+        "not_human_review_ux_professional_attestation": True,
+        "not_human_review_ux_product_release": True,
+        "not_human_review_ux_provider_runtime": True,
+        "not_human_review_ux_memory_write": True,
+        "not_human_review_ux_atlas_memory_admission": True,
     }
     _assert_safe_dashboard(dashboard)
     return dashboard
@@ -6741,6 +6867,7 @@ def reproducibility_index() -> dict[str, Any]:
                 {"name": "Atlas prototype/proxy/continuity/theorem pathway Python entrypoint", "command": ATLAS_LOCAL_MEMORY_ADMISSION_STACK_COMMAND},
                 {"name": "Triadic LLM UCC source materiality Python entrypoint", "command": TRIADIC_LLM_UCC_SOURCE_MATERIALITY_COMMAND},
                 {"name": "AI Forensics Dossier Python entrypoint", "command": AI_FORENSICS_DOSSIER_COMMAND},
+                {"name": "Human Review UX Python entrypoint", "command": HUMAN_REVIEW_UX_COMMAND},
                 {"name": "PMR Context Availability Ledger acceptance", "command": PMR_CONTEXT_AVAILABILITY_LEDGER_00_COMMAND},
                 {"name": "Local Sonya path portability acceptance", "command": LOCAL_SONYA_PATH_PORTABILITY_00_COMMAND},
                 {"name": "PMR doctrine acceptance", "command": PMR_00_COMMAND},
@@ -7291,6 +7418,16 @@ def status_payload() -> dict[str, Any]:
         "not_ai_forensics_dossier_product_release": True,
         "not_ai_forensics_dossier_memory_write": True,
         "not_ai_forensics_dossier_atlas_memory_admission": True,
+        "human_review_ux_00_indexed": True,
+        "not_human_review_ux_final_answer_authority": True,
+        "not_human_review_ux_truth_certification": True,
+        "not_human_review_ux_compliance_certification": True,
+        "not_human_review_ux_audit_opinion": True,
+        "not_human_review_ux_professional_attestation": True,
+        "not_human_review_ux_product_release": True,
+        "not_human_review_ux_provider_runtime": True,
+        "not_human_review_ux_memory_write": True,
+        "not_human_review_ux_atlas_memory_admission": True,
         "requires_external_peer_review": True,
         "not_truth_certification": True,
         "not_deployment_authority": True,
@@ -7309,7 +7446,7 @@ def docs() -> dict[str, str]:
     return {
         "README.md": "# Experiment Suite Docs\n\nPublic reviewer documentation for the claim-bounded reproducibility dashboard.\n",
         "assets/README.md": "# Assets\n\nOptional static assets for the public reproducibility dashboard.\n",
-        "index.md": f"# Public Experiment Suite Dashboard\n\nThis dashboard presents accepted evidence for reviewer orientation. It is not truth certification, not deployment authority, not final answer release, local fixture only, and requires external peer review.\n\n## Accepted evidence\n\n| Phase | Repo | Status | What this supports | Reviewer caution |\n| --- | --- | --- | --- | --- |\n{phase_rows}\n\n## Reviewer path\n\nStart with claim boundaries, then read the governed artifact cognition paper, WAVE Rosetta paper, SONYA-AEGIS-SMOKE-02, WAVE family, UNI-02D Sonya gate, and RETRO-LANE-00, Public Utility Alpha, Raw Baseline Comparison, Evidence Review Pack, RW-COMP-01, RW-COMP-02, Retrosynthesis Sandbox Cycle, Evidence Review Pack second-pass, RW-COMP-03, Universal Architecture Scaffold, Sonya Adapter Contract Registry, Sonya Adapter Smoke, Sonya Local Fixture Adapter, and Evidence Review Pack local adapter, Evidence Review Pack local adapter revision, RW-COMP local adapter, PMR doctrine, PMR local artifact index, PMR GPCU utility scoring, PMR lifecycle state machine, PMR lifecycle audit preflight, PMR Sophia lifecycle audit review, PMR destructive-action authorization preflight, PMR architecture diversity checkpoint, PMR simulation baseline comparison, PMR simulation statistical analysis, PMR federation stress corpus, PMR human provenance context, Sonya Local Fixture Adapter multi-route, and Sonya Local Fixture Adapter lineage clarity, Local Review metrics and flow, and Runtime Metrics Seed Corpus, PMR local queryable store, Retrosynthesis Readiness, Retrosynthesis Local Prototype, and Atlas Local Memory Admission Readiness, Atlas Local Memory Admission Prototype, Local-test Proxy Review, AI Context Performance Continuity, Theorem Validation Pathway, and COOP Entropy Dividend, Triadic LLM Metrics Smoke, UCC Sophia Control Forensics, UCC Standards Source Registry and Materiality, Triadic LLM Smoke PMR Inventory Contract Repair, and AI Forensics Dossier pages.\n\n## What this proves\n\nIt proves only that accepted local fixture artifacts and draft publication materials are organized for review.\n\n## What this does not prove\n\nNo oracle posture, no deployment posture, no final-answer posture, no AI consciousness claim, and no universal ontology claim.\n\n## Phase pages\n\n- [SONYA-AEGIS-SMOKE-02](sonya-aegis-smoke-02.md)\n- [WAVE Gold-Physics](wave-gold-physics.md)\n- [UNI-02D Sonya gate](uni02d-sonya-gate.md)\n- [RETRO-LANE-00](retro-lane-00.md)\n- [Public Utility Alpha](public-utility-alpha.md)\n- [Raw Baseline Comparison](raw-baseline-comparison.md)\n- [Evidence Review Pack](evidence-review-pack.md)\n- [RW-COMP-01](rw-comp-01.md)\n- [RW-COMP-02](rw-comp-02.md)\n- [Retrosynthesis Sandbox Cycle](retrosynthesis-sandbox-cycle.md)\n- [Evidence Review Pack second pass](evidence-review-pack-second-pass.md)\n- [RW-COMP-03](rw-comp-03.md)\n- [Universal Architecture Scaffold](universal-architecture.md)\n- [Sonya Adapter Contract Registry](sonya-adapter-contract-registry.md)\n- [Sonya required membrane checkpoint](sonya-required-membrane-checkpoint.md)\n- [TEL event stack](tel-event-stack.md)\n- [Sonya Adapter Smoke](sonya-adapter-smoke.md)\n- [Sonya Local Fixture Adapter](sonya-local-fixture-adapter.md)\n- [Evidence Review Pack local adapter](evidence-review-pack-local-adapter.md)\n- [Evidence Review Pack local adapter revision](evidence-review-pack-local-adapter-revision.md)\n- [RW-COMP local adapter](rw-comp-local-adapter.md)\n- [Provenance Memory Reservoir](provenance-memory-reservoir.md)\n- [PMR local artifact index](pmr-local-artifact-index.md)\n- [Ontology Claim Registry](ontology-claim-registry.md)\n- [Local Sonya path portability](local-sonya-path-portability.md)\n- [TB Product Slice](tb-product-slice.md)\n- [TB Product Slice 01](tb-product-slice-01.md)\n- [Sonya Local Fixture Adapter multi-route](sonya-local-fixture-adapter-multi-route.md)\n- [Sonya Local Fixture Adapter lineage clarity](sonya-local-fixture-adapter-lineage.md)\n- [Local Review Runtime V0](local-review-runtime-v0.md)\n- [Local Review metrics and flow](local-review-metrics-flow.md)\n- [Runtime metrics seed corpus](runtime-metrics-seed-corpus.md)\n- [PMR local queryable store](pmr-local-queryable-store.md)\n- [Retrosynthesis readiness](retrosynthesis-readiness.md)\n- [Retrosynthesis local prototype](retrosynthesis-local-prototype.md)\n- [Atlas local memory admission readiness](atlas-local-memory-admission-readiness.md)\n- [AI Forensics Dossier](ai-forensics-dossier.md)\n- [Governed artifact cognition paper](governed-artifact-cognition-paper.md)\n- [Waveform Rosetta paper](waveform-rosetta-paper.md)\n",
+        "index.md": f"# Public Experiment Suite Dashboard\n\nThis dashboard presents accepted evidence for reviewer orientation. It is not truth certification, not deployment authority, not final answer release, local fixture only, and requires external peer review.\n\n## Accepted evidence\n\n| Phase | Repo | Status | What this supports | Reviewer caution |\n| --- | --- | --- | --- | --- |\n{phase_rows}\n\n## Reviewer path\n\nStart with claim boundaries, then read the governed artifact cognition paper, WAVE Rosetta paper, SONYA-AEGIS-SMOKE-02, WAVE family, UNI-02D Sonya gate, and RETRO-LANE-00, Public Utility Alpha, Raw Baseline Comparison, Evidence Review Pack, RW-COMP-01, RW-COMP-02, Retrosynthesis Sandbox Cycle, Evidence Review Pack second-pass, RW-COMP-03, Universal Architecture Scaffold, Sonya Adapter Contract Registry, Sonya Adapter Smoke, Sonya Local Fixture Adapter, and Evidence Review Pack local adapter, Evidence Review Pack local adapter revision, RW-COMP local adapter, PMR doctrine, PMR local artifact index, PMR GPCU utility scoring, PMR lifecycle state machine, PMR lifecycle audit preflight, PMR Sophia lifecycle audit review, PMR destructive-action authorization preflight, PMR architecture diversity checkpoint, PMR simulation baseline comparison, PMR simulation statistical analysis, PMR federation stress corpus, PMR human provenance context, Sonya Local Fixture Adapter multi-route, and Sonya Local Fixture Adapter lineage clarity, Local Review metrics and flow, and Runtime Metrics Seed Corpus, PMR local queryable store, Retrosynthesis Readiness, Retrosynthesis Local Prototype, and Atlas Local Memory Admission Readiness, Atlas Local Memory Admission Prototype, Local-test Proxy Review, AI Context Performance Continuity, Theorem Validation Pathway, and COOP Entropy Dividend, Triadic LLM Metrics Smoke, UCC Sophia Control Forensics, UCC Standards Source Registry and Materiality, Triadic LLM Smoke PMR Inventory Contract Repair, AI Forensics Dossier, and Human Review UX pages.\n\n## What this proves\n\nIt proves only that accepted local fixture artifacts and draft publication materials are organized for review.\n\n## What this does not prove\n\nNo oracle posture, no deployment posture, no final-answer posture, no AI consciousness claim, and no universal ontology claim.\n\n## Phase pages\n\n- [SONYA-AEGIS-SMOKE-02](sonya-aegis-smoke-02.md)\n- [WAVE Gold-Physics](wave-gold-physics.md)\n- [UNI-02D Sonya gate](uni02d-sonya-gate.md)\n- [RETRO-LANE-00](retro-lane-00.md)\n- [Public Utility Alpha](public-utility-alpha.md)\n- [Raw Baseline Comparison](raw-baseline-comparison.md)\n- [Evidence Review Pack](evidence-review-pack.md)\n- [RW-COMP-01](rw-comp-01.md)\n- [RW-COMP-02](rw-comp-02.md)\n- [Retrosynthesis Sandbox Cycle](retrosynthesis-sandbox-cycle.md)\n- [Evidence Review Pack second pass](evidence-review-pack-second-pass.md)\n- [RW-COMP-03](rw-comp-03.md)\n- [Universal Architecture Scaffold](universal-architecture.md)\n- [Sonya Adapter Contract Registry](sonya-adapter-contract-registry.md)\n- [Sonya required membrane checkpoint](sonya-required-membrane-checkpoint.md)\n- [TEL event stack](tel-event-stack.md)\n- [Sonya Adapter Smoke](sonya-adapter-smoke.md)\n- [Sonya Local Fixture Adapter](sonya-local-fixture-adapter.md)\n- [Evidence Review Pack local adapter](evidence-review-pack-local-adapter.md)\n- [Evidence Review Pack local adapter revision](evidence-review-pack-local-adapter-revision.md)\n- [RW-COMP local adapter](rw-comp-local-adapter.md)\n- [Provenance Memory Reservoir](provenance-memory-reservoir.md)\n- [PMR local artifact index](pmr-local-artifact-index.md)\n- [Ontology Claim Registry](ontology-claim-registry.md)\n- [Local Sonya path portability](local-sonya-path-portability.md)\n- [TB Product Slice](tb-product-slice.md)\n- [TB Product Slice 01](tb-product-slice-01.md)\n- [Sonya Local Fixture Adapter multi-route](sonya-local-fixture-adapter-multi-route.md)\n- [Sonya Local Fixture Adapter lineage clarity](sonya-local-fixture-adapter-lineage.md)\n- [Local Review Runtime V0](local-review-runtime-v0.md)\n- [Local Review metrics and flow](local-review-metrics-flow.md)\n- [Runtime metrics seed corpus](runtime-metrics-seed-corpus.md)\n- [PMR local queryable store](pmr-local-queryable-store.md)\n- [Retrosynthesis readiness](retrosynthesis-readiness.md)\n- [Retrosynthesis local prototype](retrosynthesis-local-prototype.md)\n- [Atlas local memory admission readiness](atlas-local-memory-admission-readiness.md)\n- [AI Forensics Dossier](ai-forensics-dossier.md)\n- [Human Review UX](human-review-ux.md)\n- [Governed artifact cognition paper](governed-artifact-cognition-paper.md)\n- [Waveform Rosetta paper](waveform-rosetta-paper.md)\n",
         "runtime-metrics-seed-corpus.md": f"""# Runtime metrics seed corpus
 
 ## What was validated
@@ -9647,6 +9784,93 @@ Triadic Brain turns AI outputs into auditable, source-linked, control-aware fore
 
 ```powershell
 {AI_FORENSICS_DOSSIER_COMMAND}
+```
+""",
+        "human-review-ux.md": f"""# Human Review UX
+
+Human Review UX presents an AI Forensics Dossier for bounded review.
+
+## Dashboard summary
+
+- review_status = {HUMAN_REVIEW_UX_DASHBOARD_SUMMARY["review_status"]}
+- review_mode = {HUMAN_REVIEW_UX_DASHBOARD_SUMMARY["review_mode"]}
+- review_sections = {HUMAN_REVIEW_UX_DASHBOARD_SUMMARY["review_sections"]}
+- allowed_decisions = {HUMAN_REVIEW_UX_DASHBOARD_SUMMARY["allowed_decisions"]}
+- default_decision = {HUMAN_REVIEW_UX_DASHBOARD_SUMMARY["default_decision"]}
+- human_review_occurred = true
+- local_test_mode = true
+- product_human_review_completed = false
+- final_answer_approved = false
+- accepted_evidence_approved = false
+- truth_certification_approved = false
+- compliance_certification_approved = false
+- audit_opinion_approved = false
+- professional_attestation_approved = false
+- product_release_approved = false
+- provider_runtime_approved = false
+- memory_write_approved = false
+- atlas_memory_admission_approved = false
+
+## Allowed decisions
+
+{chr(10).join(f"- {decision}" for decision in HUMAN_REVIEW_UX_ALLOWED_DECISIONS)}
+
+## Artifacts
+
+{chr(10).join(f"- `{artifact}`" for artifact in HUMAN_REVIEW_UX_ARTIFACTS)}
+
+## Claim allowed
+
+{HUMAN_REVIEW_UX_CLAIM_ALLOWED}
+
+## Required boundaries
+
+- The reviewer inspected an AI Forensics Dossier.
+- The default local-test decision is needs_more_evidence.
+- Human review remains bounded by the selected action.
+- The review decision is not final-answer authority.
+- The review decision is not truth certification.
+- The review decision is not compliance certification.
+- The review decision is not audit opinion.
+- The review decision is not professional attestation.
+- The review decision is not product release.
+- The review decision is not memory write.
+- The review decision is not Atlas memory admission.
+- Professional or compliance use requires appropriate qualified review.
+- Product human review is not completed in local test mode.
+
+## Blocked overclaim examples
+
+- Human Review UX creates final answer authority
+- Human Review UX certifies truth
+- Human Review UX certifies compliance
+- Human Review UX is audit opinion
+- Human Review UX is professional attestation
+- Human Review UX approves product release
+- Human Review UX approves provider runtime
+- Human Review UX approves memory write
+- Human Review UX approves Atlas memory admission
+- local test review is product human review
+- needs_more_evidence is approval
+- approve_for_local_next_step is final answer approval
+- escalate_to_professional_review is professional attestation
+- AI Forensics Dossier is final answer
+- UCC review certifies compliance
+- NIST compliance is certified
+- hidden chain-of-thought disclosure
+- model mind-reading
+- product release
+- deployment
+- federation
+- consciousness proof
+- Omega detection
+- universal ontology proof
+- market validation
+
+## Reproducibility
+
+```powershell
+{HUMAN_REVIEW_UX_COMMAND}
 ```
 """,
         "triadic-llm-smoke-pmr-inventory-contract-repair.md": f"""# Triadic LLM smoke PMR inventory contract repair

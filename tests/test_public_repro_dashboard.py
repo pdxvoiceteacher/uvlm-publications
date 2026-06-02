@@ -77,6 +77,7 @@ REQUIRED_DOCS = {
     "ucc-standards-source-registry-and-materiality.md",
     "triadic-llm-smoke-pmr-inventory-contract-repair.md",
     "ai-forensics-dossier.md",
+    "human-review-ux.md",
 }
 REQUIRED_PHASES = {
     "EXP-SUITE-REGISTRY-01",
@@ -171,6 +172,7 @@ REQUIRED_PHASES = {
     "UCC-STANDARDS-SOURCE-REGISTRY-AND-MATERIALITY-00",
     "TRIADIC-LLM-SMOKE-PMR-INVENTORY-CONTRACT-REPAIR-REVISION",
     "AI-FORENSICS-DOSSIER-00",
+    "HUMAN-REVIEW-UX-00",
 }
 
 REQUIRED_COMMAND_FRAGMENTS = (
@@ -3767,3 +3769,104 @@ def test_ai_forensics_dossier_page_and_registry_are_generated(tmp_path):
     assert status["not_ai_forensics_dossier_truth_certification"] is True
     assert status["not_ai_forensics_dossier_compliance_certification"] is True
     assert status["not_ai_forensics_dossier_provider_runtime"] is True
+
+
+def test_human_review_ux_page_and_registry_are_generated(tmp_path):
+    out_dir, docs_dir = run_builder(tmp_path)
+    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text())
+    reproducibility = json.loads((out_dir / "reproducibility_index.json").read_text())
+    artifact_index = json.loads((out_dir / "artifact_index.json").read_text())
+    claim_boundaries = json.loads((out_dir / "claim_boundary_index.json").read_text())
+    status = json.loads((out_dir / "status.json").read_text())
+    phase_by_id = {entry["phase_id"]: entry for entry in dashboard["accepted_phases"]}
+    reproducibility_text = json.dumps(reproducibility)
+    boundary_text = "\n".join(claim_boundaries["boundaries"])
+
+    assert "HUMAN-REVIEW-UX-00" in phase_by_id
+    review = phase_by_id["HUMAN-REVIEW-UX-00"]["dashboard_summary"]
+    assert review["review_status"] == "completed"
+    assert review["review_mode"] == "human_review_dossier_ux"
+    assert review["review_sections"] == 11
+    assert review["allowed_decisions"] == 6
+    assert review["default_decision"] == "needs_more_evidence"
+    assert review["human_review_occurred"] is True
+    assert review["local_test_mode"] is True
+    for flag in (
+        "product_human_review_completed",
+        "final_answer_approved",
+        "accepted_evidence_approved",
+        "truth_certification_approved",
+        "compliance_certification_approved",
+        "audit_opinion_approved",
+        "professional_attestation_approved",
+        "product_release_approved",
+        "provider_runtime_approved",
+        "memory_write_approved",
+        "atlas_memory_admission_approved",
+    ):
+        assert review[flag] is False
+    for decision in (
+        "approve_for_local_next_step",
+        "request_revision",
+        "reject_candidate",
+        "defer_review",
+        "needs_more_evidence",
+        "escalate_to_professional_review",
+    ):
+        assert decision in review["allowed_decision_values"]
+
+    for artifact in (
+        "human_review_ux_packet.json",
+        "human_review_action_menu.json",
+        "human_review_decision_receipt.json",
+        "human_review_summary.md",
+    ):
+        assert artifact in artifact_index["phases"]["HUMAN-REVIEW-UX-00"]
+
+    for builder in (
+        "build_triadic_llm_metrics_smoke",
+        "build_sophia_ucc_control_review",
+        "build_ai_forensics_dossier",
+        "build_human_review_ux_packet",
+    ):
+        assert builder in reproducibility_text
+
+    page = docs_dir / "human-review-ux.md"
+    assert page.exists()
+    page_text = page.read_text(encoding="utf-8")
+    required_page_phrases = (
+        "Human Review UX presents an AI Forensics Dossier for bounded review.",
+        "The reviewer inspected an AI Forensics Dossier.",
+        "The default local-test decision is needs_more_evidence.",
+        "Human review remains bounded by the selected action.",
+        "The review decision is not final-answer authority.",
+        "The review decision is not truth certification.",
+        "The review decision is not compliance certification.",
+        "The review decision is not audit opinion.",
+        "The review decision is not professional attestation.",
+        "The review decision is not product release.",
+        "The review decision is not memory write.",
+        "The review decision is not Atlas memory admission.",
+        "Professional or compliance use requires appropriate qualified review.",
+        "Product human review is not completed in local test mode.",
+        "Human Review UX creates final answer authority",
+        "Human Review UX certifies truth",
+        "Human Review UX certifies compliance",
+        "Human Review UX is audit opinion",
+        "Human Review UX is professional attestation",
+        "Human Review UX approves product release",
+        "Human Review UX approves provider runtime",
+        "Human Review UX approves memory write",
+        "Human Review UX approves Atlas memory admission",
+        "local test review is product human review",
+        "needs_more_evidence is approval",
+        "approve_for_local_next_step is final answer approval",
+        "escalate_to_professional_review is professional attestation",
+    )
+    for phrase in required_page_phrases:
+        assert phrase in page_text
+    assert "HUMAN-REVIEW-UX-00 presents an AI Forensics Dossier" in boundary_text
+    assert status["human_review_ux_00_indexed"] is True
+    assert status["not_human_review_ux_final_answer_authority"] is True
+    assert status["not_human_review_ux_truth_certification"] is True
+    assert status["not_human_review_ux_compliance_certification"] is True
