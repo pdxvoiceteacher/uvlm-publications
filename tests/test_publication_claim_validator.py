@@ -3199,6 +3199,20 @@ def test_claim_validator_rejects_triadic_llm_ucc_source_materiality_overclaims(t
         "not retrosynthesis runtime\nnot Omega detection\nnot live Atlas memory writes\nnot live Sophia calls\n"
     )
     blocked = (
+        "Atlas memory admission occurred",
+        "Atlas memory write occurred",
+        "memory candidate was written",
+        "raw model output is final answer",
+        "UCC review certifies compliance",
+        "NIST compliance is certified",
+        "NIST controls were ingested",
+        "theorem validation proves theorem",
+        "COOP-ENTROPY-DIVIDEND-00 is proven",
+        "evidence ledger certifies truth",
+        "Omega detection",
+        "product release",
+        "provider runtime",
+        "population calibration",
         "TRIADIC-LLM-METRICS-SMOKE-00 says raw model output is final answer.",
         "TRIADIC-LLM-METRICS-SMOKE-00 says Sonya candidate is final answer.",
         "UCC-SOPHIA-CONTROL-FORENSICS-00 says UCC review certifies compliance.",

@@ -31,6 +31,8 @@ UCC-STANDARDS-SOURCE-REGISTRY-AND-MATERIALITY-00 provides universal source-profi
 - NIST CSF 2.0 is included as a reference-only real-world applicability example.
 - NIST control text is not ingested.
 - NIST reference is not compliance certification.
+- materiality override is not professional judgment
+- materiality override does not modify the source standard
 - No AICPA, COSO, PRISMA, ISO, SOC, PCAOB, clinical, legal, or academic standards are ingested in this patch.
 - Future source profiles may support open-license, licensed, customer-supplied, connector-monitored, and professional-attestation external sources.
 - Materiality defaults may be defined by the control/profile/system.
@@ -39,6 +41,23 @@ UCC-STANDARDS-SOURCE-REGISTRY-AND-MATERIALITY-00 provides universal source-profi
 - User overrides are not professional judgment.
 - User overrides are not certification.
 - Human review remains required.
+
+## Blocked overclaim examples
+
+- Atlas memory admission occurred
+- Atlas memory write occurred
+- memory candidate was written
+- raw model output is final answer
+- UCC review certifies compliance
+- NIST compliance is certified
+- NIST controls were ingested
+- theorem validation proves theorem
+- COOP-ENTROPY-DIVIDEND-00 is proven
+- evidence ledger certifies truth
+- Omega detection
+- product release
+- provider runtime
+- population calibration
 
 ## Reproducibility
 

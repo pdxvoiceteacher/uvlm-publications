@@ -28,6 +28,9 @@ UCC/Sophia control review is diagnostic, not certification.
 
 ## Required boundaries
 
+- UCC review is not compliance certification
+- UCC review is not audit opinion
+- UCC review is not professional attestation
 - UCC control review is not legal compliance certification.
 - UCC control review is not audit opinion.
 - UCC control review is not professional attestation.
@@ -37,6 +40,23 @@ UCC/Sophia control review is diagnostic, not certification.
 - UCC control review is not final answer authority.
 - UCC control review is not product release.
 - UCC control review requires human review.
+
+## Blocked overclaim examples
+
+- Atlas memory admission occurred
+- Atlas memory write occurred
+- memory candidate was written
+- raw model output is final answer
+- UCC review certifies compliance
+- NIST compliance is certified
+- NIST controls were ingested
+- theorem validation proves theorem
+- COOP-ENTROPY-DIVIDEND-00 is proven
+- evidence ledger certifies truth
+- Omega detection
+- product release
+- provider runtime
+- population calibration
 
 ## Reproducibility
 

@@ -46,7 +46,20 @@ TRIADIC-LLM-METRICS-SMOKE-00 demonstrates a local candidate-to-forensic-review s
 
 ## Blocked overclaim examples
 
+- Atlas memory admission occurred
+- Atlas memory write occurred
+- memory candidate was written
 - raw model output is final answer
+- UCC review certifies compliance
+- NIST compliance is certified
+- NIST controls were ingested
+- theorem validation proves theorem
+- COOP-ENTROPY-DIVIDEND-00 is proven
+- evidence ledger certifies truth
+- Omega detection
+- product release
+- provider runtime
+- population calibration
 
 ## Reproducibility
 

@@ -2184,6 +2184,27 @@ COOP_ENTROPY_DIVIDEND_PHASE = {
 }
 
 
+
+TRIADIC_UCC_BLOCKED_OVERCLAIM_EXAMPLES = [
+    "Atlas memory admission occurred",
+    "Atlas memory write occurred",
+    "memory candidate was written",
+    "raw model output is final answer",
+    "UCC review certifies compliance",
+    "NIST compliance is certified",
+    "NIST controls were ingested",
+    "theorem validation proves theorem",
+    "COOP-ENTROPY-DIVIDEND-00 is proven",
+    "evidence ledger certifies truth",
+    "Omega detection",
+    "product release",
+    "provider runtime",
+    "population calibration",
+]
+TRIADIC_UCC_BLOCKED_OVERCLAIM_SECTION = "\n".join(
+    f"- {phrase}" for phrase in TRIADIC_UCC_BLOCKED_OVERCLAIM_EXAMPLES
+)
+
 TRIADIC_LLM_UCC_SOURCE_MATERIALITY_COMMAND = "python -c \"from pathlib import Path; from coherence.triadic.llm_metrics_smoke import build_triadic_llm_metrics_smoke; from coherence.ucc.sophia_control_review import build_sophia_ucc_control_review; from coherence.ucc.standards_source_registry import build_ucc_standards_source_registry; from coherence.ucc.materiality_profile import build_ucc_materiality_profile; from coherence.ucc.materiality_override import build_ucc_materiality_override_receipt; root=Path(r'C:\\UVLM\\run_artifacts\\triadic_llm_ucc_source_materiality'); build_triadic_llm_metrics_smoke(output_root=root); build_sophia_ucc_control_review(root / 'bridge'); build_ucc_standards_source_registry(root / 'bridge'); build_ucc_materiality_profile(root / 'bridge'); build_ucc_materiality_override_receipt(root / 'bridge')\""
 
 TRIADIC_LLM_METRICS_SMOKE_ARTIFACTS = [
@@ -6187,6 +6208,7 @@ BOUNDARIES.extend(
         "Live chat is not the primary memory substrate.",
         "Repo-persisted continuity is the durable handoff substrate.",
         THEOREM_VALIDATION_PATHWAY_CLAIM_ALLOWED,
+        "theorem validation is not theorem proof",
         "THEOREM-VALIDATION-PATHWAY-00 is not theorem proof.",
         "Theorem cards are validation artifacts, not proof.",
         "Evidence ledger entries are evidence inputs, not proof.",
@@ -6195,19 +6217,27 @@ BOUNDARIES.extend(
         TRIADIC_LLM_METRICS_SMOKE_CLAIM_ALLOWED,
         "raw model output is not final answer",
         "Sonya model candidate is not final answer",
+        "Blocked overclaim examples for Triadic LLM and UCC publication boundaries.",
         "raw model output is final answer",
+        *TRIADIC_UCC_BLOCKED_OVERCLAIM_EXAMPLES,
         "Raw model output is not final answer.",
         "Sonya model candidate packet is candidate-only.",
         "TRIADIC-LLM-METRICS-SMOKE-00 is not provider runtime.",
         "TRIADIC-LLM-METRICS-SMOKE-00 is not product release.",
         UCC_SOPHIA_CONTROL_FORENSICS_CLAIM_ALLOWED,
+        "UCC review is not compliance certification",
+        "UCC review is not audit opinion",
+        "UCC review is not professional attestation",
         "UCC control review is not legal compliance certification.",
         "UCC control review is not audit opinion.",
         "UCC control review is not professional attestation.",
         "UCC control review is not truth certification.",
         UCC_STANDARDS_SOURCE_REGISTRY_CLAIM_ALLOWED,
+        "NIST control text is not ingested",
         "NIST source text is not ingested.",
         "NIST reference is not compliance certification.",
+        "materiality override is not professional judgment",
+        "materiality override does not modify the source standard",
         "User overrides are not professional judgment.",
         "User overrides do not modify the source standard.",
         TRIADIC_LLM_INVENTORY_REPAIR_CLAIM_ALLOWED,
@@ -9217,6 +9247,7 @@ This is a theorem validation pathway, not theorem proof.
 
 ## Required boundaries
 
+- theorem validation is not theorem proof
 - This is a theorem validation pathway, not theorem proof.
 - Theorem cards are not proof.
 - Evidence ledger entries are evidence inputs, not proof.
@@ -9226,6 +9257,10 @@ This is a theorem validation pathway, not theorem proof.
 - No product release occurred.
 - No universal ontology proof occurred.
 - No consciousness proof occurred.
+
+## Blocked overclaim examples
+
+{TRIADIC_UCC_BLOCKED_OVERCLAIM_SECTION}
 
 ## Reproducibility
 
@@ -9260,6 +9295,10 @@ COOP-ENTROPY-DIVIDEND-00 is not proven.
 - It is not market validation.
 - It is not deployment readiness.
 - It is not model superiority proof.
+
+## Blocked overclaim examples
+
+{TRIADIC_UCC_BLOCKED_OVERCLAIM_SECTION}
 
 ## Reproducibility
 
@@ -9305,7 +9344,7 @@ TRIADIC-LLM-METRICS-SMOKE-00 demonstrates a local candidate-to-forensic-review s
 
 ## Blocked overclaim examples
 
-- raw model output is final answer
+{TRIADIC_UCC_BLOCKED_OVERCLAIM_SECTION}
 
 ## Reproducibility
 
@@ -9337,6 +9376,9 @@ UCC/Sophia control review is diagnostic, not certification.
 
 ## Required boundaries
 
+- UCC review is not compliance certification
+- UCC review is not audit opinion
+- UCC review is not professional attestation
 - UCC control review is not legal compliance certification.
 - UCC control review is not audit opinion.
 - UCC control review is not professional attestation.
@@ -9346,6 +9388,10 @@ UCC/Sophia control review is diagnostic, not certification.
 - UCC control review is not final answer authority.
 - UCC control review is not product release.
 - UCC control review requires human review.
+
+## Blocked overclaim examples
+
+{TRIADIC_UCC_BLOCKED_OVERCLAIM_SECTION}
 
 ## Reproducibility
 
@@ -9383,6 +9429,8 @@ UCC-STANDARDS-SOURCE-REGISTRY-AND-MATERIALITY-00 provides universal source-profi
 - NIST CSF 2.0 is included as a reference-only real-world applicability example.
 - NIST control text is not ingested.
 - NIST reference is not compliance certification.
+- materiality override is not professional judgment
+- materiality override does not modify the source standard
 - No AICPA, COSO, PRISMA, ISO, SOC, PCAOB, clinical, legal, or academic standards are ingested in this patch.
 - Future source profiles may support open-license, licensed, customer-supplied, connector-monitored, and professional-attestation external sources.
 - Materiality defaults may be defined by the control/profile/system.
@@ -9391,6 +9439,10 @@ UCC-STANDARDS-SOURCE-REGISTRY-AND-MATERIALITY-00 provides universal source-profi
 - User overrides are not professional judgment.
 - User overrides are not certification.
 - Human review remains required.
+
+## Blocked overclaim examples
+
+{TRIADIC_UCC_BLOCKED_OVERCLAIM_SECTION}
 
 ## Reproducibility
 

@@ -212,6 +212,13 @@ REQUIRED_BOUNDARY_PHRASES = (
     "raw model output is not final answer",
     "Sonya model candidate is not final answer",
     "raw model output is final answer",
+    "UCC review certifies compliance",
+    "NIST compliance is certified",
+    "NIST controls were ingested",
+    "theorem validation proves theorem",
+    "COOP-ENTROPY-DIVIDEND-00 is proven",
+    "evidence ledger certifies truth",
+    "provider runtime",
     "Raw model output is not final answer",
     "build_triadic_llm_metrics_smoke",
     "UCC-SOPHIA-CONTROL-FORENSICS-00",
@@ -956,6 +963,10 @@ def _is_allowed_bounded_release_context(text: str, index: int, phrase: str) -> b
         return list_negated or any(item in window for item in allowed)
     return False
 
+def _is_blocked_overclaim_example_context(text: str, index: int) -> bool:
+    return "blocked overclaim examples" in text[max(0, index - 480) : index]
+
+
 def _forbidden_hits(text: str) -> list[str]:
     hits: list[str] = []
     for phrase in FORBIDDEN_PHRASES:
@@ -1145,6 +1156,9 @@ def _forbidden_hits(text: str) -> list[str]:
                 start = index + len(normalized_phrase)
                 continue
             if phrase in {"truth certification", "final answer release", "product release"} and _is_allowed_bounded_release_context(text, index, phrase):
+                start = index + len(normalized_phrase)
+                continue
+            if _is_blocked_overclaim_example_context(text, index):
                 start = index + len(normalized_phrase)
                 continue
             if not _is_negated(text, index):

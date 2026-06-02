@@ -736,6 +736,9 @@ PAPER_CONFIGS: dict[str, dict[str, Any]] = {
             "evidence ledger certifies truth",
             "theorem card proves universal ontology",
             "raw model output is final answer",
+            "Omega detection",
+            "provider runtime",
+            "population calibration",
             "Sonya candidate is final answer",
             "UCC review certifies compliance",
             "UCC review is audit opinion",
@@ -989,10 +992,19 @@ def _is_negated(normalized_text: str, start: int) -> bool:
     window = normalized_text[max(0, start - 32) : start]
     after = normalized_text[start : start + 80]
     return (
-        any(window.rstrip().endswith(marker.strip()) for marker in NEGATION_MARKERS) or any(tok in window.split()[-4:] for tok in ("not","no","without","never","neither","nor"))
+        any(window.rstrip().endswith(marker.strip()) for marker in NEGATION_MARKERS)
+        or any(tok in window.split()[-4:] for tok in ("not", "no", "without", "never", "neither", "nor"))
         or "performed = false" in after
         or "blocked" in after[:48]
     )
+
+
+def _is_directly_negated(normalized_text: str, start: int) -> bool:
+    window = normalized_text[max(0, start - 48) : start].rstrip()
+    return any(window.endswith(marker.strip()) for marker in NEGATION_MARKERS) or re.search(
+        r"(?:^| )(?:not|no|without|never|neither|nor)(?: [a-z0-9]+){0,2}$",
+        window,
+    ) is not None
 
 
 def _context_words(text: str, index: int, *, before: int = 96, after: int = 96) -> str:
@@ -1163,6 +1175,29 @@ def _forbidden_hits(normalized_text: str, forbidden: tuple[str, ...]) -> list[st
             ):
                 search_from = index + len(normalized_phrase)
                 continue
+            manual_blocked_examples = {
+                "Atlas memory admission occurred",
+                "Atlas memory write occurred",
+                "memory candidate was written",
+                "raw model output is final answer",
+                "UCC review certifies compliance",
+                "NIST compliance is certified",
+                "NIST controls were ingested",
+                "theorem validation proves theorem",
+                "COOP-ENTROPY-DIVIDEND-00 is proven",
+                "evidence ledger certifies truth",
+                "Omega detection",
+                "product release",
+                "provider runtime",
+                "population calibration",
+            }
+            if phrase in manual_blocked_examples:
+                if "no artifact in this chain authorizes" in normalized_text[max(0, index - 120) : index]:
+                    search_from = index + len(normalized_phrase)
+                    continue
+                if not _is_directly_negated(normalized_text, index):
+                    hits.append(phrase)
+                    break
             if not _is_negated(normalized_text, index):
                 hits.append(phrase)
                 break

@@ -22,6 +22,7 @@ This is a theorem validation pathway, not theorem proof.
 
 ## Required boundaries
 
+- theorem validation is not theorem proof
 - This is a theorem validation pathway, not theorem proof.
 - Theorem cards are not proof.
 - Evidence ledger entries are evidence inputs, not proof.
@@ -31,6 +32,23 @@ This is a theorem validation pathway, not theorem proof.
 - No product release occurred.
 - No universal ontology proof occurred.
 - No consciousness proof occurred.
+
+## Blocked overclaim examples
+
+- Atlas memory admission occurred
+- Atlas memory write occurred
+- memory candidate was written
+- raw model output is final answer
+- UCC review certifies compliance
+- NIST compliance is certified
+- NIST controls were ingested
+- theorem validation proves theorem
+- COOP-ENTROPY-DIVIDEND-00 is proven
+- evidence ledger certifies truth
+- Omega detection
+- product release
+- provider runtime
+- population calibration
 
 ## Reproducibility
 

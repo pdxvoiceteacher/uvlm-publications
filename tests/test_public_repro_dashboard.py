@@ -3634,9 +3634,27 @@ def test_triadic_llm_ucc_source_materiality_pages_are_generated(tmp_path):
         for phrase in phrases:
             assert phrase in text
 
+    required_blocked_overclaims = (
+        "Atlas memory admission occurred",
+        "Atlas memory write occurred",
+        "memory candidate was written",
+        "raw model output is final answer",
+        "UCC review certifies compliance",
+        "NIST compliance is certified",
+        "NIST controls were ingested",
+        "theorem validation proves theorem",
+        "COOP-ENTROPY-DIVIDEND-00 is proven",
+        "evidence ledger certifies truth",
+        "Omega detection",
+        "product release",
+        "provider runtime",
+        "population calibration",
+    )
+    for phrase in required_blocked_overclaims:
+        assert phrase in boundary_text
+
     for phrase in (
         "TRIADIC-LLM-METRICS-SMOKE-00 demonstrates a local candidate-to-forensic-review smoke",
-        "raw model output is final answer",
         "raw model output is not final answer",
         "Sonya model candidate is not final answer",
         "UCC-SOPHIA-CONTROL-FORENSICS-00 applies a synthetic UCC fixture as diagnostic control review",
