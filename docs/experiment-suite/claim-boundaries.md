@@ -1212,6 +1212,21 @@
 - perturbation evidence certifies novelty
 - residual novelty candidate is novelty discovery
 - reverse trunk hypothesis is proof
+- abstraction affordance is truth
+- hyperreal resonance is authority
+- trunk similarity is identity
+- creative mapping is causal diagnosis
+- truth certification
+- final-answer authority
+- accepted-evidence authority
+- product release
+- model superiority proof
+- human benefit proof
+- market validation
+- consciousness proof
+- Omega detection
+- universal ontology proof
+- certified diagnosis
 - RETROSYNTHESIS-LOCAL-PROTOTYPE-00 is bounded local candidate generation only.
 - RETROSYNTHESIS-LOCAL-PROTOTYPE-00 generates bounded local candidate hypotheses, candidate repair plans, and pattern observations from PMR query results, TEL replay, runtime metrics, formula registry, metric bounds, seed corpus observations, cognitive flow morphology, Sonya coverage, and Sophia posture.
 - Candidate hypotheses are not truth.

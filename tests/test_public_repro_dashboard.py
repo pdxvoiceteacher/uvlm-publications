@@ -4036,6 +4036,7 @@ def test_perturbation_structure_affordance_card_page_and_registry_are_generated(
     phase_by_id = {entry["phase_id"]: entry for entry in dashboard["accepted_phases"]}
     reproducibility_text = json.dumps(reproducibility)
     boundary_text = "\n".join(claim_boundaries["boundaries"])
+    boundary_entries = set(claim_boundaries["boundaries"])
 
     phase = phase_by_id["PERTURBATION-STRUCTURE-AFFORDANCE-CARD-00"]
     summary = phase["dashboard_summary"]
@@ -4122,6 +4123,7 @@ def test_perturbation_structure_affordance_card_page_and_registry_are_generated(
     for phrase in required_phrases:
         assert phrase in page_text
         assert phrase in boundary_text
+        assert phrase in boundary_entries
 
     for phrase in (
         "PERTURBATION-STRUCTURE-AFFORDANCE-00 is proven",
@@ -4152,6 +4154,7 @@ def test_perturbation_structure_affordance_card_page_and_registry_are_generated(
     ):
         assert phrase in page_text
         assert phrase in boundary_text
+        assert phrase in boundary_entries
 
     assert status["perturbation_structure_affordance_card_00_indexed"] is True
     assert status["not_perturbation_structure_affordance_proven"] is True

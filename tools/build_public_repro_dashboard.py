@@ -6767,6 +6767,21 @@ BOUNDARIES.extend(
         "perturbation evidence certifies novelty",
         "residual novelty candidate is novelty discovery",
         "reverse trunk hypothesis is proof",
+        "abstraction affordance is truth",
+        "hyperreal resonance is authority",
+        "trunk similarity is identity",
+        "creative mapping is causal diagnosis",
+        "truth certification",
+        "final-answer authority",
+        "accepted-evidence authority",
+        "product release",
+        "model superiority proof",
+        "human benefit proof",
+        "market validation",
+        "consciousness proof",
+        "Omega detection",
+        "universal ontology proof",
+        "certified diagnosis",
     ]
 )
 BOUNDARIES.extend(
