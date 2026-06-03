@@ -1514,6 +1514,169 @@ LOCAL_REVIEW_METRICS_FLOW_PHASES = [
 ]
 
 
+METRIC_SEMANTIC_CONTRACT_COMMAND = "python -c \"from pathlib import Path; from coherence.local_review.seed_corpus import build_runtime_metrics_seed_corpus; from coherence.local_review.metric_semantics import build_metric_semantic_reconciliation_packet; root=Path(r'C:\\UVLM\\run_artifacts\\runtime_metrics_seed_corpus'); bridge=root / 'bridge'; build_runtime_metrics_seed_corpus(output_root=root); build_metric_semantic_reconciliation_packet(bridge)\""
+METRIC_SEMANTIC_CONTRACT_ARTIFACTS = [
+    "config/metric_semantics/metric_semantic_contract.v1.json",
+    "metric_semantic_reconciliation_packet.json",
+    "docs/METRIC_SEMANTIC_RECONCILIATION.md",
+]
+METRIC_SEMANTIC_ALIASES = [
+    "E_review",
+    "T_review",
+    "Ψ_review",
+    "ΔS_review",
+    "Λ_boundary",
+    "Eₛ_review",
+    "TAF_review_runtime_v0",
+]
+METRIC_SEMANTIC_CANONICAL_SYMBOLS_NOT_FULLY_MEASURED = ["E", "Ψ", "ΔS", "Λ", "Eₛ", "TAF"]
+METRIC_SEMANTIC_ROWS = [
+    {
+        "symbol": "E",
+        "canonical_target": "coherent coupling / empathy / signal energy",
+        "runtime_alias": "E_review",
+        "safe_label": "Reviewer-care affordance proxy",
+        "unsafe_label": "Empathy score",
+        "semantic_coverage": "partial",
+        "requires_population_calibration": True,
+    },
+    {
+        "symbol": "T",
+        "runtime_alias": "T_review",
+        "safe_label": "Review inspectability proxy",
+        "unsafe_label": "Complete transparency score",
+    },
+    {
+        "symbol": "Ψ",
+        "runtime_alias": "Ψ_review",
+        "formula_proxy": "E_review × T_review",
+        "safe_label": "Local review coherence proxy",
+        "unsafe_label": "Universal coherence score",
+    },
+    {
+        "symbol": "ΔS",
+        "runtime_alias": "ΔS_review",
+        "safe_label": "Review instability proxy",
+        "unsafe_label": "Entropy score",
+    },
+    {
+        "symbol": "Λ",
+        "runtime_alias": "Λ_boundary",
+        "safe_label": "Governance boundary pressure proxy",
+        "unsafe_label": "Phase-lock score",
+        "split_terms": {
+            "Λ_phase": "not_applicable_for_local_review_v0",
+            "Λ_critical": "future_candidate",
+            "Λ_boundary": "implemented",
+        },
+    },
+    {
+        "symbol": "Eₛ",
+        "runtime_alias": "Eₛ_review",
+        "safe_label": "Non-authority and review-equity visibility proxy",
+        "unsafe_label": "Ethical symmetry score",
+    },
+    {
+        "symbol": "TAF",
+        "runtime_alias": "TAF_review_runtime_v0",
+        "safe_label": "Governed review action-burden proxy",
+        "unsafe_label": "Canonical total action",
+        "decomposition_terms": [
+            "physical_action_proxy",
+            "informational_action_proxy",
+            "coherence_agentic_action_proxy",
+        ],
+    },
+]
+METRIC_SEMANTIC_REQUIRED_BOUNDARY_PHRASES = [
+    "The original meanings remain canonical semantic targets.",
+    "Current code implements profile-specific operational proxies.",
+    "Current values are local-review operational proxies.",
+    "E_review is a reviewer-care affordance proxy, not full empathy.",
+    "T_review is a review inspectability proxy.",
+    "Ψ_review preserves Ψ = E × T only within local-review proxy scope.",
+    "ΔS_review is a review instability proxy, not full entropy.",
+    "Λ_boundary is governance boundary pressure, not full phase-lock.",
+    "Eₛ_review is a non-authority/review-equity visibility proxy, not full ethical symmetry.",
+    "TAF_review_runtime_v0 is a governed review action-burden proxy, not canonical TAF.",
+    "Population calibration is required before stronger claims.",
+    "Metrics are not truth certification.",
+    "Metrics are not theorem proof.",
+    "Metrics are not moral proof.",
+    "Metrics are not human benefit proof.",
+    "Metrics are not product release.",
+    "Metrics are not psychological measures.",
+    "Metrics are not moral worth scores.",
+]
+METRIC_SEMANTIC_BLOCKED_CLAIMS = [
+    "E_review measures full empathy",
+    "E_review is psychological empathy",
+    "Empathy score is measured without qualification",
+    "T_review is complete transparency",
+    "Ψ_review is universal coherence",
+    "ΔS_review is thermodynamic entropy",
+    "ΔS_review is canonical entropy",
+    "Λ_boundary is phase-lock",
+    "Λ_boundary is full Λ",
+    "Eₛ_review is full ethical symmetry",
+    "Eₛ_review proves fairness",
+    "TAF_review_runtime_v0 is canonical total action",
+    "current metrics are canonical cross-domain measurements",
+    "current metrics are truth certification",
+    "current metrics are theorem proof",
+    "current metrics are human benefit proof",
+    "current metrics are moral worth scores",
+    "current metrics are product release",
+    "current metrics prove consciousness",
+    "current metrics prove Omega detection",
+    "current metrics prove universal ontology",
+    "current metrics authorize final answers",
+    "current metrics authorize accepted evidence",
+    "current metrics authorize Atlas memory admission",
+    "current metrics authorize memory write",
+    "current metrics authorize deployment or provider runtime",
+    "population calibration has already been achieved",
+]
+METRIC_SEMANTIC_CONTRACT_ALIASES = METRIC_SEMANTIC_ALIASES
+METRIC_SEMANTIC_CONTRACT_CANONICAL_SYMBOLS_NOT_FULLY_MEASURED = METRIC_SEMANTIC_CANONICAL_SYMBOLS_NOT_FULLY_MEASURED
+METRIC_SEMANTIC_CONTRACT_METRIC_ROWS = METRIC_SEMANTIC_ROWS
+METRIC_SEMANTIC_CONTRACT_REQUIRED_BOUNDARY_PHRASES = METRIC_SEMANTIC_REQUIRED_BOUNDARY_PHRASES
+METRIC_SEMANTIC_CONTRACT_BLOCKED_CLAIM_PHRASES = METRIC_SEMANTIC_BLOCKED_CLAIMS
+METRIC_SEMANTIC_CLAIM_ALLOWED = "MET-SEM-00 publishes a metric semantic contract that preserves canonical coherence meanings as semantic targets while labeling current LOCAL-REVIEW-RUNTIME-V0 values as profile-specific operational proxies."
+METRIC_SEMANTIC_DASHBOARD_SUMMARY = {
+    "schema": "coherencelattice.metric_semantic_reconciliation_packet.v1",
+    "source_phase": "MET-SEM-00",
+    "runtime_profile": "LOCAL-REVIEW-RUNTIME-V0",
+    "reconciliation_status": "active_profile_proxy_reconciliation",
+    "canonical_meanings_preserved_as_targets": True,
+    "current_values_are_profile_specific_proxies": True,
+    "population_calibration_required_for_full_claims": True,
+    "user_facing_aliases": METRIC_SEMANTIC_ALIASES,
+    "canonical_symbols_not_fully_measured": METRIC_SEMANTIC_CANONICAL_SYMBOLS_NOT_FULLY_MEASURED,
+    "metric_rows": METRIC_SEMANTIC_ROWS,
+    "truth_certification_emitted": False,
+    "product_release_performed": False,
+    "runtime_authority_granted": False,
+}
+METRIC_SEMANTIC_CONTRACT_PHASE = {
+    "phase_id": "MET-SEM-00",
+    "repo": "pdxvoiceteacher/CoherenceLattice",
+    "source_phase": "LOCAL-REVIEW-RUNTIME-V0",
+    "status": "accepted_local_validation",
+    "publication_status": "dashboard_synced",
+    "evidence_type": "metric_semantic_contract",
+    "product_posture": "semantic_contract_only_not_canonical_measurement_or_product_release",
+    "authority_posture": "non_authoritative",
+    "public_claim_boundary": "local_review_profile_proxy_metrics_only",
+    "primary_artifacts": METRIC_SEMANTIC_CONTRACT_ARTIFACTS,
+    "dashboard_summary": METRIC_SEMANTIC_DASHBOARD_SUMMARY,
+    "reproduction_command_summary": METRIC_SEMANTIC_CONTRACT_COMMAND,
+    "claims_blocked": METRIC_SEMANTIC_BLOCKED_CLAIMS,
+    "claim_allowed": METRIC_SEMANTIC_CLAIM_ALLOWED,
+    "reviewer_caution": "MET-SEM-00 preserves canonical metric meanings as targets while labeling LOCAL-REVIEW-RUNTIME-V0 values as profile-specific operational proxies; it grants no truth, theorem, product, final-answer, accepted-evidence, memory, Atlas, deployment, provider, LAN, federation, consciousness, Omega, ontology, benefit, market, or compliance authority.",
+}
+
+
 RUNTIME_METRICS_SEED_CORPUS_COMMAND = "python -c \"from pathlib import Path; from coherence.local_review.seed_corpus import build_runtime_metrics_seed_corpus; build_runtime_metrics_seed_corpus(output_root=Path(r'C:\\UVLM\\run_artifacts\\runtime_metrics_seed_corpus'))\""
 RUNTIME_METRICS_SEED_CORPUS_ARTIFACTS = [
     "runtime_metrics_seed_corpus.json",
@@ -4734,6 +4897,7 @@ ACCEPTED_PHASES = [
 {"phase_id":"LAN-OPERATOR-CONSENT-PREFLIGHT-00","repo":"pdxvoiceteacher/CoherenceLattice","status":"accepted","evidence_type":"runtime_smoke","product_posture":"preflight_only_operator_consent_scaffold_without_lan_or_authority_enablement","primary_artifacts":LAN_OPERATOR_CONSENT_PREFLIGHT_00_ARTIFACTS,"dashboard_summary":LAN_OPERATOR_CONSENT_PREFLIGHT_00_DASHBOARD_SUMMARY,"reproduction_command_summary":LAN_OPERATOR_CONSENT_PREFLIGHT_00_COMMAND,"claims_blocked":LAN_OPERATOR_CONSENT_PREFLIGHT_00_CLAIMS_BLOCKED,"claim_allowed":"LAN operator consent preflight scaffold","reviewer_caution":"Consent preflight is not consent execution."},
 {"phase_id":"LOCAL-REVIEW-RUNTIME-V0","repo":"pdxvoiceteacher/CoherenceLattice","status":"accepted","evidence_type":"local_runtime_scaffold","product_posture":"evidence_bound_local_review_scaffold_without_product_release","primary_artifacts":LOCAL_REVIEW_RUNTIME_V0_ARTIFACTS,"dashboard_summary":LOCAL_REVIEW_RUNTIME_V0_DASHBOARD_SUMMARY,"reproduction_command_summary":LOCAL_REVIEW_RUNTIME_V0_COMMAND,"claims_blocked":LOCAL_REVIEW_RUNTIME_V0_CLAIMS_BLOCKED,"claim_allowed":"LOCAL-REVIEW-RUNTIME-V0 demonstrates an evidence-bound local review scaffold that wraps accepted local ingress, PMR context, source-span, claim-classification, and receipt UX artifacts into a human-readable non-authority local review receipt.","reviewer_caution":"LOCAL-REVIEW-RUNTIME-V0 is an evidence-bound local scaffold, not a released product. It demonstrates that a local wrapper can prove its lower-level ingress, PMR, source-span, claim-classification, and receipt UX path. It does not authorize final answers, accepted evidence, product release, provider runtime, memory writes, LAN enablement, federate operations, deployment, or truth certification."},
 *LOCAL_REVIEW_METRICS_FLOW_PHASES,
+METRIC_SEMANTIC_CONTRACT_PHASE,
 RUNTIME_METRICS_SEED_CORPUS_PHASE,
 PMR_LOCAL_QUERYABLE_STORE_PHASE,
 RETROSYNTHESIS_READINESS_PHASE,
@@ -6560,6 +6724,22 @@ BOUNDARIES = [
 ]
 BOUNDARIES.extend(
     [
+        "MET-SEM-00 is a metric semantic contract for LOCAL-REVIEW-RUNTIME-V0 profile-specific operational proxies only.",
+        METRIC_SEMANTIC_CLAIM_ALLOWED,
+        *METRIC_SEMANTIC_REQUIRED_BOUNDARY_PHRASES,
+        "coherencelattice.metric_semantic_reconciliation_packet.v1",
+        "build_runtime_metrics_seed_corpus",
+        "build_metric_semantic_reconciliation_packet",
+        *METRIC_SEMANTIC_ALIASES,
+        *[row["safe_label"] for row in METRIC_SEMANTIC_ROWS],
+        *[f"Unsafe label: {row['unsafe_label']}" for row in METRIC_SEMANTIC_ROWS],
+        *METRIC_SEMANTIC_BLOCKED_CLAIMS,
+        "current metrics are local-review operational proxies, not canonical cross-domain measurements.",
+        "current metrics do not authorize final answers, accepted evidence, Atlas memory admission, memory write, deployment, provider runtime, LAN enablement, federation, compliance certification, or product release.",
+    ]
+)
+BOUNDARIES.extend(
+    [
         "RUNTIME-METRICS-CORPUS-SEED-00 is bounded seed corpus instrumentation only.",
         RUNTIME_METRICS_SEED_CORPUS_CLAIM_ALLOWED,
         "RUNTIME-METRICS-CORPUS-SEED-00 is not population calibration.",
@@ -7063,6 +7243,25 @@ def dashboard_payload() -> dict[str, Any]:
         "not_metrics_flow_provider_runtime": True,
         "not_metrics_flow_memory_write": True,
         "not_metrics_flow_federation": True,
+        "metric_semantic_contract_00_indexed": True,
+        "not_metric_semantic_canonical_cross_domain_measurement": True,
+        "not_metric_semantic_psychological_measurement": True,
+        "not_metric_semantic_full_ethical_symmetry_measurement": True,
+        "not_metric_semantic_canonical_entropy_measurement": True,
+        "not_metric_semantic_canonical_phase_lock_measurement": True,
+        "not_metric_semantic_canonical_total_action_measurement": True,
+        "not_metric_semantic_truth_certification": True,
+        "not_metric_semantic_theorem_proof": True,
+        "not_metric_semantic_product_release": True,
+        "not_metric_semantic_final_answer_authority": True,
+        "not_metric_semantic_accepted_evidence_authority": True,
+        "not_metric_semantic_atlas_memory_admission": True,
+        "not_metric_semantic_memory_write": True,
+        "not_metric_semantic_provider_runtime": True,
+        "not_metric_semantic_deployment": True,
+        "not_metric_semantic_lan_enablement": True,
+        "not_metric_semantic_federation": True,
+        "not_metric_semantic_compliance_certification": True,
         "runtime_metrics_seed_corpus_00_indexed": True,
         "not_seed_corpus_product_release": True,
         "not_seed_corpus_truth_certification": True,
@@ -7214,6 +7413,7 @@ def reproducibility_index() -> dict[str, Any]:
                 {"name": "LAN operator consent preflight acceptance", "command": LAN_OPERATOR_CONSENT_PREFLIGHT_00_COMMAND},
                 {"name": "Local Review Runtime V0 acceptance", "command": LOCAL_REVIEW_RUNTIME_V0_COMMAND},
                 {"name": "Runtime metrics seed corpus Python entrypoint", "command": RUNTIME_METRICS_SEED_CORPUS_COMMAND},
+                {"name": "Metric semantic contract Python entrypoint", "command": METRIC_SEMANTIC_CONTRACT_COMMAND},
                 {"name": "PMR local queryable store acceptance", "command": PMR_LOCAL_QUERYABLE_STORE_COMMAND},
                 {"name": "PMR local queryable store Python entrypoint", "command": PMR_LOCAL_QUERYABLE_STORE_PYTHON_ENTRYPOINT},
                 {"name": "Retrosynthesis readiness acceptance", "command": RETROSYNTHESIS_READINESS_COMMAND},
@@ -7693,6 +7893,25 @@ def status_payload() -> dict[str, Any]:
         "sonya_local_fixture_adapter_03_indexed": True,
         "not_stale_identity_leakage": True,
         "not_lineage_authority": True,
+        "metric_semantic_contract_00_indexed": True,
+        "not_metric_semantic_canonical_cross_domain_measurement": True,
+        "not_metric_semantic_psychological_measurement": True,
+        "not_metric_semantic_full_ethical_symmetry_measurement": True,
+        "not_metric_semantic_canonical_entropy_measurement": True,
+        "not_metric_semantic_canonical_phase_lock_measurement": True,
+        "not_metric_semantic_canonical_total_action_measurement": True,
+        "not_metric_semantic_truth_certification": True,
+        "not_metric_semantic_theorem_proof": True,
+        "not_metric_semantic_product_release": True,
+        "not_metric_semantic_final_answer_authority": True,
+        "not_metric_semantic_accepted_evidence_authority": True,
+        "not_metric_semantic_atlas_memory_admission": True,
+        "not_metric_semantic_memory_write": True,
+        "not_metric_semantic_provider_runtime": True,
+        "not_metric_semantic_deployment": True,
+        "not_metric_semantic_lan_enablement": True,
+        "not_metric_semantic_federation": True,
+        "not_metric_semantic_compliance_certification": True,
         "runtime_metrics_seed_corpus_00_indexed": True,
         "not_seed_corpus_product_release": True,
         "not_seed_corpus_truth_certification": True,
@@ -7817,10 +8036,94 @@ def docs() -> dict[str, str]:
         for p in _accepted_phases()
     )
     boundaries = "\n".join(f"- {b}" for b in BOUNDARIES)
+    metric_semantic_rows = "\n".join(
+        f"| {row['symbol']} | {row.get('canonical_target', 'canonical target preserved')} | "
+        f"{row['runtime_alias']} | {row['safe_label']} | Unsafe label: {row['unsafe_label']} | "
+        f"{row.get('semantic_coverage', 'profile_proxy')} | {str(row.get('requires_population_calibration', True)).lower()} |"
+        for row in METRIC_SEMANTIC_ROWS
+    )
+    metric_semantic_aliases = "\n".join(f"- {alias}" for alias in METRIC_SEMANTIC_ALIASES)
+    metric_semantic_symbols = "\n".join(f"- {symbol}" for symbol in METRIC_SEMANTIC_CANONICAL_SYMBOLS_NOT_FULLY_MEASURED)
+    metric_semantic_boundaries = "\n".join(f"- {phrase}" for phrase in METRIC_SEMANTIC_REQUIRED_BOUNDARY_PHRASES)
+    metric_semantic_unsafe_labels = "\n".join(
+        f"- Unsafe label: {row['unsafe_label']}" for row in METRIC_SEMANTIC_ROWS
+    )
+    metric_semantic_blocked = "\n".join(f"- {claim}" for claim in METRIC_SEMANTIC_BLOCKED_CLAIMS)
+    metric_semantic_artifacts = "\n".join(f"- {artifact}" for artifact in METRIC_SEMANTIC_CONTRACT_ARTIFACTS)
     return {
         "README.md": "# Experiment Suite Docs\n\nPublic reviewer documentation for the claim-bounded reproducibility dashboard.\n",
         "assets/README.md": "# Assets\n\nOptional static assets for the public reproducibility dashboard.\n",
-        "index.md": f"# Public Experiment Suite Dashboard\n\nThis dashboard presents accepted evidence for reviewer orientation. It is not truth certification, not deployment authority, not final answer release, local fixture only, and requires external peer review.\n\n## Accepted evidence\n\n| Phase | Repo | Status | What this supports | Reviewer caution |\n| --- | --- | --- | --- | --- |\n{phase_rows}\n\n## Reviewer path\n\nStart with claim boundaries, then read the governed artifact cognition paper, WAVE Rosetta paper, SONYA-AEGIS-SMOKE-02, WAVE family, UNI-02D Sonya gate, and RETRO-LANE-00, Public Utility Alpha, Raw Baseline Comparison, Evidence Review Pack, RW-COMP-01, RW-COMP-02, Retrosynthesis Sandbox Cycle, Evidence Review Pack second-pass, RW-COMP-03, Universal Architecture Scaffold, Sonya Adapter Contract Registry, Sonya Adapter Smoke, Sonya Local Fixture Adapter, and Evidence Review Pack local adapter, Evidence Review Pack local adapter revision, RW-COMP local adapter, PMR doctrine, PMR local artifact index, PMR GPCU utility scoring, PMR lifecycle state machine, PMR lifecycle audit preflight, PMR Sophia lifecycle audit review, PMR destructive-action authorization preflight, PMR architecture diversity checkpoint, PMR simulation baseline comparison, PMR simulation statistical analysis, PMR federation stress corpus, PMR human provenance context, Sonya Local Fixture Adapter multi-route, and Sonya Local Fixture Adapter lineage clarity, Local Review metrics and flow, and Runtime Metrics Seed Corpus, PMR local queryable store, Retrosynthesis Readiness, Retrosynthesis Local Prototype, and Atlas Local Memory Admission Readiness, Atlas Local Memory Admission Prototype, Local-test Proxy Review, AI Context Performance Continuity, Theorem Validation Pathway, and COOP Entropy Dividend, Triadic LLM Metrics Smoke, UCC Sophia Control Forensics, UCC Standards Source Registry and Materiality, Triadic LLM Smoke PMR Inventory Contract Repair, AI Forensics Dossier, and Human Review UX, Perturbation Observation Capture, Perturbation Trunk Mapping, and Perturbation Residual Novelty Map, and Perturbation Structure-Affordance Card pages.\n\n## What this proves\n\nIt proves only that accepted local fixture artifacts and draft publication materials are organized for review.\n\n## What this does not prove\n\nNo oracle posture, no deployment posture, no final-answer posture, no AI consciousness claim, and no universal ontology claim.\n\n## Phase pages\n\n- [SONYA-AEGIS-SMOKE-02](sonya-aegis-smoke-02.md)\n- [WAVE Gold-Physics](wave-gold-physics.md)\n- [UNI-02D Sonya gate](uni02d-sonya-gate.md)\n- [RETRO-LANE-00](retro-lane-00.md)\n- [Public Utility Alpha](public-utility-alpha.md)\n- [Raw Baseline Comparison](raw-baseline-comparison.md)\n- [Evidence Review Pack](evidence-review-pack.md)\n- [RW-COMP-01](rw-comp-01.md)\n- [RW-COMP-02](rw-comp-02.md)\n- [Retrosynthesis Sandbox Cycle](retrosynthesis-sandbox-cycle.md)\n- [Evidence Review Pack second pass](evidence-review-pack-second-pass.md)\n- [RW-COMP-03](rw-comp-03.md)\n- [Universal Architecture Scaffold](universal-architecture.md)\n- [Sonya Adapter Contract Registry](sonya-adapter-contract-registry.md)\n- [Sonya required membrane checkpoint](sonya-required-membrane-checkpoint.md)\n- [TEL event stack](tel-event-stack.md)\n- [Sonya Adapter Smoke](sonya-adapter-smoke.md)\n- [Sonya Local Fixture Adapter](sonya-local-fixture-adapter.md)\n- [Evidence Review Pack local adapter](evidence-review-pack-local-adapter.md)\n- [Evidence Review Pack local adapter revision](evidence-review-pack-local-adapter-revision.md)\n- [RW-COMP local adapter](rw-comp-local-adapter.md)\n- [Provenance Memory Reservoir](provenance-memory-reservoir.md)\n- [PMR local artifact index](pmr-local-artifact-index.md)\n- [Ontology Claim Registry](ontology-claim-registry.md)\n- [Local Sonya path portability](local-sonya-path-portability.md)\n- [TB Product Slice](tb-product-slice.md)\n- [TB Product Slice 01](tb-product-slice-01.md)\n- [Sonya Local Fixture Adapter multi-route](sonya-local-fixture-adapter-multi-route.md)\n- [Sonya Local Fixture Adapter lineage clarity](sonya-local-fixture-adapter-lineage.md)\n- [Local Review Runtime V0](local-review-runtime-v0.md)\n- [Local Review metrics and flow](local-review-metrics-flow.md)\n- [Runtime metrics seed corpus](runtime-metrics-seed-corpus.md)\n- [PMR local queryable store](pmr-local-queryable-store.md)\n- [Retrosynthesis readiness](retrosynthesis-readiness.md)\n- [Retrosynthesis local prototype](retrosynthesis-local-prototype.md)\n- [Atlas local memory admission readiness](atlas-local-memory-admission-readiness.md)\n- [AI Forensics Dossier](ai-forensics-dossier.md)\n- [Human Review UX](human-review-ux.md)\n- [Perturbation Observation Capture](perturbation-observation-capture.md)\n- [Perturbation Trunk Mapping](perturbation-trunk-mapping.md)\n- [Perturbation Residual Novelty Map](perturbation-residual-novelty-map.md)\n- [Perturbation Structure-Affordance Card](perturbation-structure-affordance-card.md)\n- [Governed artifact cognition paper](governed-artifact-cognition-paper.md)\n- [Waveform Rosetta paper](waveform-rosetta-paper.md)\n",
+        "index.md": f"# Public Experiment Suite Dashboard\n\nThis dashboard presents accepted evidence for reviewer orientation. It is not truth certification, not deployment authority, not final answer release, local fixture only, and requires external peer review.\n\n## Accepted evidence\n\n| Phase | Repo | Status | What this supports | Reviewer caution |\n| --- | --- | --- | --- | --- |\n{phase_rows}\n\n## Reviewer path\n\nStart with claim boundaries, then read the governed artifact cognition paper, WAVE Rosetta paper, SONYA-AEGIS-SMOKE-02, WAVE family, UNI-02D Sonya gate, and RETRO-LANE-00, Public Utility Alpha, Raw Baseline Comparison, Evidence Review Pack, RW-COMP-01, RW-COMP-02, Retrosynthesis Sandbox Cycle, Evidence Review Pack second-pass, RW-COMP-03, Universal Architecture Scaffold, Sonya Adapter Contract Registry, Sonya Adapter Smoke, Sonya Local Fixture Adapter, and Evidence Review Pack local adapter, Evidence Review Pack local adapter revision, RW-COMP local adapter, PMR doctrine, PMR local artifact index, PMR GPCU utility scoring, PMR lifecycle state machine, PMR lifecycle audit preflight, PMR Sophia lifecycle audit review, PMR destructive-action authorization preflight, PMR architecture diversity checkpoint, PMR simulation baseline comparison, PMR simulation statistical analysis, PMR federation stress corpus, PMR human provenance context, Sonya Local Fixture Adapter multi-route, and Sonya Local Fixture Adapter lineage clarity, Local Review metrics and flow, Metric Semantic Contract, and Runtime Metrics Seed Corpus, PMR local queryable store, Retrosynthesis Readiness, Retrosynthesis Local Prototype, and Atlas Local Memory Admission Readiness, Atlas Local Memory Admission Prototype, Local-test Proxy Review, AI Context Performance Continuity, Theorem Validation Pathway, and COOP Entropy Dividend, Triadic LLM Metrics Smoke, UCC Sophia Control Forensics, UCC Standards Source Registry and Materiality, Triadic LLM Smoke PMR Inventory Contract Repair, AI Forensics Dossier, and Human Review UX, Perturbation Observation Capture, Perturbation Trunk Mapping, and Perturbation Residual Novelty Map, and Perturbation Structure-Affordance Card pages.\n\n## What this proves\n\nIt proves only that accepted local fixture artifacts and draft publication materials are organized for review.\n\n## What this does not prove\n\nNo oracle posture, no deployment posture, no final-answer posture, no AI consciousness claim, and no universal ontology claim.\n\n## Phase pages\n\n- [SONYA-AEGIS-SMOKE-02](sonya-aegis-smoke-02.md)\n- [WAVE Gold-Physics](wave-gold-physics.md)\n- [UNI-02D Sonya gate](uni02d-sonya-gate.md)\n- [RETRO-LANE-00](retro-lane-00.md)\n- [Public Utility Alpha](public-utility-alpha.md)\n- [Raw Baseline Comparison](raw-baseline-comparison.md)\n- [Evidence Review Pack](evidence-review-pack.md)\n- [RW-COMP-01](rw-comp-01.md)\n- [RW-COMP-02](rw-comp-02.md)\n- [Retrosynthesis Sandbox Cycle](retrosynthesis-sandbox-cycle.md)\n- [Evidence Review Pack second pass](evidence-review-pack-second-pass.md)\n- [RW-COMP-03](rw-comp-03.md)\n- [Universal Architecture Scaffold](universal-architecture.md)\n- [Sonya Adapter Contract Registry](sonya-adapter-contract-registry.md)\n- [Sonya required membrane checkpoint](sonya-required-membrane-checkpoint.md)\n- [TEL event stack](tel-event-stack.md)\n- [Sonya Adapter Smoke](sonya-adapter-smoke.md)\n- [Sonya Local Fixture Adapter](sonya-local-fixture-adapter.md)\n- [Evidence Review Pack local adapter](evidence-review-pack-local-adapter.md)\n- [Evidence Review Pack local adapter revision](evidence-review-pack-local-adapter-revision.md)\n- [RW-COMP local adapter](rw-comp-local-adapter.md)\n- [Provenance Memory Reservoir](provenance-memory-reservoir.md)\n- [PMR local artifact index](pmr-local-artifact-index.md)\n- [Ontology Claim Registry](ontology-claim-registry.md)\n- [Local Sonya path portability](local-sonya-path-portability.md)\n- [TB Product Slice](tb-product-slice.md)\n- [TB Product Slice 01](tb-product-slice-01.md)\n- [Sonya Local Fixture Adapter multi-route](sonya-local-fixture-adapter-multi-route.md)\n- [Sonya Local Fixture Adapter lineage clarity](sonya-local-fixture-adapter-lineage.md)\n- [Local Review Runtime V0](local-review-runtime-v0.md)\n- [Local Review metrics and flow](local-review-metrics-flow.md)\n- [Runtime metrics seed corpus](runtime-metrics-seed-corpus.md)\n- [PMR local queryable store](pmr-local-queryable-store.md)\n- [Retrosynthesis readiness](retrosynthesis-readiness.md)\n- [Retrosynthesis local prototype](retrosynthesis-local-prototype.md)\n- [Atlas local memory admission readiness](atlas-local-memory-admission-readiness.md)\n- [AI Forensics Dossier](ai-forensics-dossier.md)\n- [Human Review UX](human-review-ux.md)\n- [Perturbation Observation Capture](perturbation-observation-capture.md)\n- [Perturbation Trunk Mapping](perturbation-trunk-mapping.md)\n- [Perturbation Residual Novelty Map](perturbation-residual-novelty-map.md)\n- [Perturbation Structure-Affordance Card](perturbation-structure-affordance-card.md)\n- [Governed artifact cognition paper](governed-artifact-cognition-paper.md)\n- [Waveform Rosetta paper](waveform-rosetta-paper.md)\n",
+        "metric-semantic-contract.md": f"""# Metric Semantic Contract
+
+## What was validated
+
+MET-SEM-00 publishes a metric semantic contract for LOCAL-REVIEW-RUNTIME-V0. The schema is `coherencelattice.metric_semantic_reconciliation_packet.v1`, and the reconciliation status is `active_profile_proxy_reconciliation`.
+
+The original meanings remain canonical semantic targets. Current code implements profile-specific operational proxies. Current values are local-review operational proxies.
+
+## Dashboard summary
+
+- source_phase = MET-SEM-00
+- runtime_profile = LOCAL-REVIEW-RUNTIME-V0
+- reconciliation_status = active_profile_proxy_reconciliation
+- canonical_meanings_preserved_as_targets = true
+- current_values_are_profile_specific_proxies = true
+- population_calibration_required_for_full_claims = true
+- truth_certification_emitted = false
+- product_release_performed = false
+- runtime_authority_granted = false
+
+## User-facing aliases
+
+{metric_semantic_aliases}
+
+## Canonical symbols not fully measured
+
+{metric_semantic_symbols}
+
+## Metric semantic rows
+
+| Symbol | Canonical target | Runtime alias | Safe label | Unsafe label | Semantic coverage | Requires population calibration |
+| --- | --- | --- | --- | --- | --- | --- |
+{metric_semantic_rows}
+
+Formula and decomposition notes:
+
+- Ψ_review proxy formula: E_review × T_review.
+- Λ split terms: Λ_phase = not_applicable_for_local_review_v0; Λ_critical = future_candidate; Λ_boundary = implemented.
+- TAF_review_runtime_v0 decomposition terms: physical_action_proxy, informational_action_proxy, coherence_agentic_action_proxy.
+
+## Required boundary language
+
+{metric_semantic_boundaries}
+
+## Unsafe labels retained only as blocked language
+
+{metric_semantic_unsafe_labels}
+
+These unsafe labels are present for language-governance review only; they are not publication claims.
+
+## Blocked metric overclaim examples
+
+{metric_semantic_blocked}
+
+## Artifacts
+
+{metric_semantic_artifacts}
+
+## Reproducibility command
+
+Publication surfaces include `build_runtime_metrics_seed_corpus` and `build_metric_semantic_reconciliation_packet`.
+
+```powershell
+{METRIC_SEMANTIC_CONTRACT_COMMAND}
+```
+
+## Allowed bounded claim
+
+{METRIC_SEMANTIC_CLAIM_ALLOWED}
+""",
         "runtime-metrics-seed-corpus.md": f"""# Runtime metrics seed corpus
 
 ## What was validated

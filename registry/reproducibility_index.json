@@ -115,6 +115,10 @@
         "command": "python -c \"from pathlib import Path; from coherence.local_review.seed_corpus import build_runtime_metrics_seed_corpus; build_runtime_metrics_seed_corpus(output_root=Path(r'C:\\UVLM\\run_artifacts\\runtime_metrics_seed_corpus'))\""
       },
       {
+        "name": "Metric semantic contract Python entrypoint",
+        "command": "python -c \"from pathlib import Path; from coherence.local_review.seed_corpus import build_runtime_metrics_seed_corpus; from coherence.local_review.metric_semantics import build_metric_semantic_reconciliation_packet; root=Path(r'C:\\UVLM\\run_artifacts\\runtime_metrics_seed_corpus'); bridge=root / 'bridge'; build_runtime_metrics_seed_corpus(output_root=root); build_metric_semantic_reconciliation_packet(bridge)\""
+      },
+      {
         "name": "PMR local queryable store acceptance",
         "command": ".\\experiments\\Run-PMR-LOCAL-RUNTIME-QUERYABLE-STORE00-Acceptance.ps1 `\n  -OutputRoot C:\\UVLM\\run_artifacts\\pmr_local_runtime_queryable_store_00 `\n  -LogDir C:\\UVLM\\run_artifacts\\pmr_local_runtime_queryable_store_00_logs `\n  -CiMode"
       },

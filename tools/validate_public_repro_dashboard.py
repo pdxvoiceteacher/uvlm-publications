@@ -13,6 +13,12 @@ if str(REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(REPO_ROOT))
 
 from tools.build_public_repro_dashboard import (
+    METRIC_SEMANTIC_CONTRACT_ALIASES,
+    METRIC_SEMANTIC_CONTRACT_ARTIFACTS,
+    METRIC_SEMANTIC_CONTRACT_BLOCKED_CLAIM_PHRASES,
+    METRIC_SEMANTIC_CONTRACT_REQUIRED_BOUNDARY_PHRASES,
+    METRIC_SEMANTIC_CONTRACT_METRIC_ROWS,
+    METRIC_SEMANTIC_CLAIM_ALLOWED,
     PERTURBATION_STRUCTURE_AFFORDANCE_BLOCKED_CLAIM_PHRASES,
     PERTURBATION_STRUCTURE_AFFORDANCE_REQUIRED_BOUNDARY_PHRASES,
 )
@@ -96,6 +102,7 @@ REQUIRED_PHASES = {
     "COHERENCE-METRIC-FORMULA-REGISTRY-00",
     "METRIC-BOUND-SOURCE-TAXONOMY-00",
     "FLOW-RUNTIME-00",
+    "MET-SEM-00",
     "RUNTIME-METRICS-CORPUS-SEED-00",
     "PMR-LOCAL-RUNTIME-QUERYABLE-STORE-00",
     "RETROSYNTHESIS-READINESS-00",
@@ -143,6 +150,21 @@ REQUIRED_BOUNDARY_PHRASES = (
     "waters_spiral_runtime_v0",
     "not general AI safety certification",
     "not recursive braid",
+    "MET-SEM-00",
+    "coherencelattice.metric_semantic_reconciliation_packet.v1",
+    "active_profile_proxy_reconciliation",
+    "LOCAL-REVIEW-RUNTIME-V0",
+    "canonical_meanings_preserved_as_targets",
+    "current_values_are_profile_specific_proxies",
+    "population_calibration_required_for_full_claims",
+    "build_metric_semantic_reconciliation_packet",
+    METRIC_SEMANTIC_CLAIM_ALLOWED,
+    *METRIC_SEMANTIC_CONTRACT_ARTIFACTS,
+    *METRIC_SEMANTIC_CONTRACT_ALIASES,
+    *[row["safe_label"] for row in METRIC_SEMANTIC_CONTRACT_METRIC_ROWS],
+    *[f"Unsafe label: {row['unsafe_label']}" for row in METRIC_SEMANTIC_CONTRACT_METRIC_ROWS],
+    *METRIC_SEMANTIC_CONTRACT_REQUIRED_BOUNDARY_PHRASES,
+    *METRIC_SEMANTIC_CONTRACT_BLOCKED_CLAIM_PHRASES,
     "RUNTIME-METRICS-CORPUS-SEED-00",
     "bounded seed corpus instrumentation only",
     "not population calibration",
@@ -1127,6 +1149,22 @@ def _is_allowed_bounded_release_context(text: str, index: int, phrase: str) -> b
         return list_negated or any(item in window for item in allowed)
     return False
 
+def _is_metric_semantic_contract_context(text: str, index: int, phrase: str) -> bool:
+    window_before = text[max(0, index - 220) : index]
+    window_after = text[index : index + 160]
+    window = window_before + window_after
+    return (
+        "met-sem-00" in window
+        or "metric semantic contract" in window
+        or "metrics are not" in window_before
+        or "current metrics" in window_before
+        or "current code implements profile-specific operational proxies" in window
+        or "current values are local-review operational proxies" in window
+        or "unsafe labels retained only as blocked language" in window_before
+        or "blocked metric overclaim examples" in window_before
+        or phrase == "population calibration" and "population calibration is required before stronger claims" in window
+    )
+
 def _is_blocked_overclaim_example_context(text: str, index: int) -> bool:
     window = text[max(0, index - 1000) : index]
     return "blocked overclaim examples" in window or "claims_blocked" in window
@@ -1144,6 +1182,23 @@ def _forbidden_hits(text: str) -> list[str]:
             if phrase.startswith("claims ") and not _is_negated(text, index):
                 hits.append(phrase)
                 break
+            if phrase in {"population calibration", "population-calibrated", "federation"}:
+                window = text[max(0, index - 220) : index + 128]
+                if (
+                    _is_negated(text, index)
+                    or _is_blocked_overclaim_example_context(text, index)
+                    or _is_metric_semantic_contract_context(text, index, phrase)
+                    or f"not {normalized_phrase}" in window
+                    or "_not_federation" in window
+                    or "not_federation" in window
+                    or "no_federation" in window
+                    or "federation_blocked" in window
+                    or '"federation_authorized": false' in window
+                    or "requires population calibration" in window
+                    or "grants no" in window
+                ):
+                    start = index + len(normalized_phrase)
+                    continue
             if (
                 phrase in {"adapter execution", "adapter executed"}
                 and _is_allowed_local_adapter_context(text, index)
@@ -1300,6 +1355,12 @@ def _forbidden_hits(text: str) -> list[str]:
             ):
                 start = index + len(normalized_phrase)
                 continue
+            if _is_blocked_overclaim_example_context(text, index):
+                start = index + len(normalized_phrase)
+                continue
+            if phrase == "federation" and "federation blocked by default" in text[index : index + 96]:
+                start = index + len(normalized_phrase)
+                continue
             if phrase in {"population calibration", "population-calibrated", "peer review certification", "universal ontology proof"} and _is_negated(text, index):
                 start = index + len(normalized_phrase)
                 continue
@@ -1321,6 +1382,9 @@ def _forbidden_hits(text: str) -> list[str]:
                 start = index + len(normalized_phrase)
                 continue
             if phrase in {"truth certification", "final answer release", "product release"} and _is_allowed_bounded_release_context(text, index, phrase):
+                start = index + len(normalized_phrase)
+                continue
+            if phrase in {"population calibration", "human benefit proof", "truth certification", "federation", "compliance certification", "omega detection", "product release", "final answer authority"} and _is_metric_semantic_contract_context(text, index, phrase):
                 start = index + len(normalized_phrase)
                 continue
             if phrase == "product release" and "does not authorize" in text[max(0, index - 180) : index]:

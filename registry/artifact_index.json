@@ -982,6 +982,11 @@
       "cognitive_flow_topology_packet.json",
       "cognitive_flow_morphology_summary.md"
     ],
+    "MET-SEM-00": [
+      "config/metric_semantics/metric_semantic_contract.v1.json",
+      "metric_semantic_reconciliation_packet.json",
+      "docs/METRIC_SEMANTIC_RECONCILIATION.md"
+    ],
     "RUNTIME-METRICS-CORPUS-SEED-00": [
       "runtime_metrics_seed_corpus.json",
       "runtime_metrics_seed_observations.jsonl",

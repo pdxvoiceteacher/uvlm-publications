@@ -6,6 +6,12 @@ import sys
 from pathlib import Path
 
 from tools.build_public_repro_dashboard import (
+    METRIC_SEMANTIC_CONTRACT_ALIASES,
+    METRIC_SEMANTIC_CONTRACT_ARTIFACTS,
+    METRIC_SEMANTIC_CONTRACT_BLOCKED_CLAIM_PHRASES,
+    METRIC_SEMANTIC_CONTRACT_METRIC_ROWS,
+    METRIC_SEMANTIC_CONTRACT_REQUIRED_BOUNDARY_PHRASES,
+    METRIC_SEMANTIC_CLAIM_ALLOWED,
     PERTURBATION_STRUCTURE_AFFORDANCE_BLOCKED_CLAIM_PHRASES,
     PERTURBATION_STRUCTURE_AFFORDANCE_REQUIRED_BOUNDARY_PHRASES,
     _dedupe_accepted_phases,
@@ -66,6 +72,7 @@ REQUIRED_DOCS = {
     "sonya-local-fixture-adapter-lineage.md",
     "local-review-runtime-v0.md",
     "local-review-metrics-flow.md",
+    "metric-semantic-contract.md",
     "runtime-metrics-seed-corpus.md",
     "pmr-local-queryable-store.md",
     "retrosynthesis-readiness.md",
@@ -165,6 +172,7 @@ REQUIRED_PHASES = {
     "COHERENCE-METRIC-FORMULA-REGISTRY-00",
     "METRIC-BOUND-SOURCE-TAXONOMY-00",
     "FLOW-RUNTIME-00",
+    "MET-SEM-00",
     "RUNTIME-METRICS-CORPUS-SEED-00",
     "PMR-LOCAL-RUNTIME-QUERYABLE-STORE-00",
     "RETROSYNTHESIS-READINESS-00",
@@ -4100,6 +4108,66 @@ def test_perturbation_structure_affordance_card_page_and_registry_are_generated(
     assert status["not_perturbation_structure_affordance_proven"] is True
     assert status["not_perturbation_structure_affordance_novelty_discovery"] is True
     assert status["not_perturbation_structure_affordance_truth_certification"] is True
+
+
+def test_metric_semantic_contract_page_and_registry_are_generated(tmp_path):
+    out_dir, docs_dir = run_builder(tmp_path)
+    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text())
+    reproducibility = json.loads((out_dir / "reproducibility_index.json").read_text())
+    artifact_index = json.loads((out_dir / "artifact_index.json").read_text())
+    claim_boundaries = json.loads((out_dir / "claim_boundary_index.json").read_text())
+    status = json.loads((out_dir / "status.json").read_text())
+    phase_by_id = {entry["phase_id"]: entry for entry in dashboard["accepted_phases"]}
+    boundary_text = "\n".join(claim_boundaries["boundaries"])
+    reproducibility_text = json.dumps(reproducibility)
+
+    phase = phase_by_id["MET-SEM-00"]
+    summary = phase["dashboard_summary"]
+    assert summary["schema"] == "coherencelattice.metric_semantic_reconciliation_packet.v1"
+    assert summary["runtime_profile"] == "LOCAL-REVIEW-RUNTIME-V0"
+    assert summary["reconciliation_status"] == "active_profile_proxy_reconciliation"
+    assert summary["current_values_are_profile_specific_proxies"] is True
+    assert summary["canonical_meanings_preserved_as_targets"] is True
+    assert summary["population_calibration_required_for_full_claims"] is True
+    assert set(summary["user_facing_aliases"]) == set(METRIC_SEMANTIC_CONTRACT_ALIASES)
+    assert set(summary["canonical_symbols_not_fully_measured"]) == {"E", "Ψ", "ΔS", "Λ", "Eₛ", "TAF"}
+    assert summary["truth_certification_emitted"] is False
+    assert summary["product_release_performed"] is False
+    assert summary["runtime_authority_granted"] is False
+
+    for artifact in METRIC_SEMANTIC_CONTRACT_ARTIFACTS:
+        assert artifact in artifact_index["phases"]["MET-SEM-00"]
+    assert "metric_semantic_reconciliation_packet.json" in artifact_index["phases"]["MET-SEM-00"]
+    assert "build_runtime_metrics_seed_corpus" in reproducibility_text
+    assert "build_metric_semantic_reconciliation_packet" in reproducibility_text
+
+    page_text = (docs_dir / "metric-semantic-contract.md").read_text(encoding="utf-8")
+    assert "MET-SEM-00" in page_text
+    assert "coherencelattice.metric_semantic_reconciliation_packet.v1" in page_text
+    for artifact in METRIC_SEMANTIC_CONTRACT_ARTIFACTS:
+        assert artifact in page_text
+    for alias in METRIC_SEMANTIC_CONTRACT_ALIASES:
+        assert alias in page_text
+    for row in METRIC_SEMANTIC_CONTRACT_METRIC_ROWS:
+        assert row["runtime_alias"] in page_text
+        assert row["safe_label"] in page_text
+        assert f"Unsafe label: {row['unsafe_label']}" in page_text
+    for phrase in METRIC_SEMANTIC_CONTRACT_REQUIRED_BOUNDARY_PHRASES:
+        assert phrase in page_text
+        assert phrase in boundary_text
+    for claim in METRIC_SEMANTIC_CONTRACT_BLOCKED_CLAIM_PHRASES:
+        assert claim in page_text
+        assert claim in boundary_text
+    assert METRIC_SEMANTIC_CLAIM_ALLOWED in page_text
+    assert METRIC_SEMANTIC_CLAIM_ALLOWED in boundary_text
+
+    assert status["metric_semantic_contract_00_indexed"] is True
+    assert status["not_metric_semantic_truth_certification"] is True
+    assert status["not_metric_semantic_product_release"] is True
+    assert status["not_metric_semantic_final_answer_authority"] is True
+    assert status["not_metric_semantic_accepted_evidence_authority"] is True
+    assert status["not_metric_semantic_atlas_memory_admission"] is True
+    assert status["not_metric_semantic_memory_write"] is True
 
 
 def test_reviewer_facing_perturbation_language_is_generalized():

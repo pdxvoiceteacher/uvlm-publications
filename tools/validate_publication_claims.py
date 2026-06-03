@@ -13,6 +13,7 @@ if str(REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(REPO_ROOT))
 
 from tools.build_public_repro_dashboard import (
+    METRIC_SEMANTIC_CONTRACT_BLOCKED_CLAIM_PHRASES,
     PERTURBATION_STRUCTURE_AFFORDANCE_BLOCKED_CLAIM_PHRASES,
 )
 
@@ -782,6 +783,7 @@ PAPER_CONFIGS: dict[str, dict[str, Any]] = {
             "reverse trunk mapping proves identity",
             "creative mapping is causal diagnosis",
             *PERTURBATION_STRUCTURE_AFFORDANCE_BLOCKED_CLAIM_PHRASES,
+            *METRIC_SEMANTIC_CONTRACT_BLOCKED_CLAIM_PHRASES,
             "raw model output is final answer",
             "Omega detection",
             "provider runtime",
@@ -1208,7 +1210,7 @@ def _forbidden_hits(normalized_text: str, forbidden: tuple[str, ...]) -> list[st
                 search_from = index + len(normalized_phrase)
                 continue
             if (
-                phrase in {"federation", "accepted evidence", "product release", *PERTURBATION_STRUCTURE_AFFORDANCE_BLOCKED_CLAIM_PHRASES}
+                phrase in {"federation", "accepted evidence", "product release", *PERTURBATION_STRUCTURE_AFFORDANCE_BLOCKED_CLAIM_PHRASES, *METRIC_SEMANTIC_CONTRACT_BLOCKED_CLAIM_PHRASES}
                 and "request must fail closed" in normalized_text[index : index + 72]
             ):
                 search_from = index + len(normalized_phrase)
@@ -1272,6 +1274,7 @@ def _forbidden_hits(normalized_text: str, forbidden: tuple[str, ...]) -> list[st
                 "reverse trunk mapping proves identity",
                 "creative mapping is causal diagnosis",
                 *PERTURBATION_STRUCTURE_AFFORDANCE_BLOCKED_CLAIM_PHRASES,
+                *METRIC_SEMANTIC_CONTRACT_BLOCKED_CLAIM_PHRASES,
             }
             if phrase in manual_blocked_examples:
                 if "no artifact in this chain authorizes" in normalized_text[max(0, index - 120) : index]:

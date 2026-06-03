@@ -8,7 +8,7 @@
   ],
   "dashboard_status": "draft_public_review",
   "generated_at": null,
-  "accepted_phase_count": 97,
+  "accepted_phase_count": 98,
   "partial_phase_count": 1,
   "blocked_phase_count": 1,
   "planned_phase_count": 3,
@@ -2348,6 +2348,141 @@
       ],
       "claim_allowed": "The local review runtime now demonstrates a bounded, non-authoritative diagnostic cognition loop: source-span-backed claim classification, Sophia governance pass, TEL replay, PMR lifecycle indexing, runtime metrics, WAVE Rosetta calibration context, TAF runtime proxy, formula registry, metric-bound taxonomy, Sonya metric membrane coverage, and cognitive flow morphology derived from runtime artifacts.",
       "reviewer_caution": "FLOW-RUNTIME-00 records cognitive flow morphology and topology as bounded local diagnostic evidence only; it is not product release, not final-answer authority, not accepted-evidence authority, not truth certification, not consciousness proof, not Omega detection, not universal ontology proof, not deployment authority, not LAN enablement, not provider runtime, not memory write, not Atlas memory admission, not federation, not clinical/scientific proof beyond the local fixture, not peer review certification, and not general AI safety certification."
+    },
+    {
+      "phase_id": "MET-SEM-00",
+      "repo": "pdxvoiceteacher/CoherenceLattice",
+      "source_phase": "LOCAL-REVIEW-RUNTIME-V0",
+      "status": "accepted_local_validation",
+      "publication_status": "dashboard_synced",
+      "evidence_type": "metric_semantic_contract",
+      "product_posture": "semantic_contract_only_not_canonical_measurement_or_product_release",
+      "authority_posture": "non_authoritative",
+      "public_claim_boundary": "local_review_profile_proxy_metrics_only",
+      "primary_artifacts": [
+        "config/metric_semantics/metric_semantic_contract.v1.json",
+        "metric_semantic_reconciliation_packet.json",
+        "docs/METRIC_SEMANTIC_RECONCILIATION.md"
+      ],
+      "dashboard_summary": {
+        "schema": "coherencelattice.metric_semantic_reconciliation_packet.v1",
+        "source_phase": "MET-SEM-00",
+        "runtime_profile": "LOCAL-REVIEW-RUNTIME-V0",
+        "reconciliation_status": "active_profile_proxy_reconciliation",
+        "canonical_meanings_preserved_as_targets": true,
+        "current_values_are_profile_specific_proxies": true,
+        "population_calibration_required_for_full_claims": true,
+        "user_facing_aliases": [
+          "E_review",
+          "T_review",
+          "Ψ_review",
+          "ΔS_review",
+          "Λ_boundary",
+          "Eₛ_review",
+          "TAF_review_runtime_v0"
+        ],
+        "canonical_symbols_not_fully_measured": [
+          "E",
+          "Ψ",
+          "ΔS",
+          "Λ",
+          "Eₛ",
+          "TAF"
+        ],
+        "metric_rows": [
+          {
+            "symbol": "E",
+            "canonical_target": "coherent coupling / empathy / signal energy",
+            "runtime_alias": "E_review",
+            "safe_label": "Reviewer-care affordance proxy",
+            "unsafe_label": "Empathy score",
+            "semantic_coverage": "partial",
+            "requires_population_calibration": true
+          },
+          {
+            "symbol": "T",
+            "runtime_alias": "T_review",
+            "safe_label": "Review inspectability proxy",
+            "unsafe_label": "Complete transparency score"
+          },
+          {
+            "symbol": "Ψ",
+            "runtime_alias": "Ψ_review",
+            "formula_proxy": "E_review × T_review",
+            "safe_label": "Local review coherence proxy",
+            "unsafe_label": "Universal coherence score"
+          },
+          {
+            "symbol": "ΔS",
+            "runtime_alias": "ΔS_review",
+            "safe_label": "Review instability proxy",
+            "unsafe_label": "Entropy score"
+          },
+          {
+            "symbol": "Λ",
+            "runtime_alias": "Λ_boundary",
+            "safe_label": "Governance boundary pressure proxy",
+            "unsafe_label": "Phase-lock score",
+            "split_terms": {
+              "Λ_phase": "not_applicable_for_local_review_v0",
+              "Λ_critical": "future_candidate",
+              "Λ_boundary": "implemented"
+            }
+          },
+          {
+            "symbol": "Eₛ",
+            "runtime_alias": "Eₛ_review",
+            "safe_label": "Non-authority and review-equity visibility proxy",
+            "unsafe_label": "Ethical symmetry score"
+          },
+          {
+            "symbol": "TAF",
+            "runtime_alias": "TAF_review_runtime_v0",
+            "safe_label": "Governed review action-burden proxy",
+            "unsafe_label": "Canonical total action",
+            "decomposition_terms": [
+              "physical_action_proxy",
+              "informational_action_proxy",
+              "coherence_agentic_action_proxy"
+            ]
+          }
+        ],
+        "truth_certification_emitted": false,
+        "product_release_performed": false,
+        "runtime_authority_granted": false
+      },
+      "reproduction_command_summary": "python -c \"from pathlib import Path; from coherence.local_review.seed_corpus import build_runtime_metrics_seed_corpus; from coherence.local_review.metric_semantics import build_metric_semantic_reconciliation_packet; root=Path(r'C:\\UVLM\\run_artifacts\\runtime_metrics_seed_corpus'); bridge=root / 'bridge'; build_runtime_metrics_seed_corpus(output_root=root); build_metric_semantic_reconciliation_packet(bridge)\"",
+      "claims_blocked": [
+        "E_review measures full empathy",
+        "E_review is psychological empathy",
+        "Empathy score is measured without qualification",
+        "T_review is complete transparency",
+        "Ψ_review is universal coherence",
+        "ΔS_review is thermodynamic entropy",
+        "ΔS_review is canonical entropy",
+        "Λ_boundary is phase-lock",
+        "Λ_boundary is full Λ",
+        "Eₛ_review is full ethical symmetry",
+        "Eₛ_review proves fairness",
+        "TAF_review_runtime_v0 is canonical total action",
+        "current metrics are canonical cross-domain measurements",
+        "current metrics are truth certification",
+        "current metrics are theorem proof",
+        "current metrics are human benefit proof",
+        "current metrics are moral worth scores",
+        "current metrics are product release",
+        "current metrics prove consciousness",
+        "current metrics prove Omega detection",
+        "current metrics prove universal ontology",
+        "current metrics authorize final answers",
+        "current metrics authorize accepted evidence",
+        "current metrics authorize Atlas memory admission",
+        "current metrics authorize memory write",
+        "current metrics authorize deployment or provider runtime",
+        "population calibration has already been achieved"
+      ],
+      "claim_allowed": "MET-SEM-00 publishes a metric semantic contract that preserves canonical coherence meanings as semantic targets while labeling current LOCAL-REVIEW-RUNTIME-V0 values as profile-specific operational proxies.",
+      "reviewer_caution": "MET-SEM-00 preserves canonical metric meanings as targets while labeling LOCAL-REVIEW-RUNTIME-V0 values as profile-specific operational proxies; it grants no truth, theorem, product, final-answer, accepted-evidence, memory, Atlas, deployment, provider, LAN, federation, consciousness, Omega, ontology, benefit, market, or compliance authority."
     },
     {
       "phase_id": "RUNTIME-METRICS-CORPUS-SEED-00",
@@ -6728,6 +6863,25 @@
   "not_metrics_flow_provider_runtime": true,
   "not_metrics_flow_memory_write": true,
   "not_metrics_flow_federation": true,
+  "metric_semantic_contract_00_indexed": true,
+  "not_metric_semantic_canonical_cross_domain_measurement": true,
+  "not_metric_semantic_psychological_measurement": true,
+  "not_metric_semantic_full_ethical_symmetry_measurement": true,
+  "not_metric_semantic_canonical_entropy_measurement": true,
+  "not_metric_semantic_canonical_phase_lock_measurement": true,
+  "not_metric_semantic_canonical_total_action_measurement": true,
+  "not_metric_semantic_truth_certification": true,
+  "not_metric_semantic_theorem_proof": true,
+  "not_metric_semantic_product_release": true,
+  "not_metric_semantic_final_answer_authority": true,
+  "not_metric_semantic_accepted_evidence_authority": true,
+  "not_metric_semantic_atlas_memory_admission": true,
+  "not_metric_semantic_memory_write": true,
+  "not_metric_semantic_provider_runtime": true,
+  "not_metric_semantic_deployment": true,
+  "not_metric_semantic_lan_enablement": true,
+  "not_metric_semantic_federation": true,
+  "not_metric_semantic_compliance_certification": true,
   "runtime_metrics_seed_corpus_00_indexed": true,
   "not_seed_corpus_product_release": true,
   "not_seed_corpus_truth_certification": true,
