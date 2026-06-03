@@ -2754,6 +2754,7 @@ PERTURBATION_STRUCTURE_AFFORDANCE_COUNTEREXAMPLES = (
 )
 PERTURBATION_STRUCTURE_AFFORDANCE_REQUIRED_BOUNDARY_PHRASES = (
     "The card preserves a synthetic structured perturbation fixture as a speculative theorem-validation artifact, not as proof.",
+    "The perturbation lane models multi-axis perturbation drift through a synthetic structured perturbation fixture, known-trunk mapping, residual candidate novelty mapping, and a human-reviewable abstraction candidate.",
     "PERTURBATION-STRUCTURE-AFFORDANCE-00 is not proven.",
     "Current grade is speculative_pattern.",
     "Target grade is operational_metric_hypothesis.",

@@ -4103,6 +4103,15 @@ def test_perturbation_structure_affordance_card_page_and_registry_are_generated(
 
 
 def test_reviewer_facing_perturbation_language_is_generalized():
+    professional_language_fragments = (
+        "synthetic structured perturbation fixture",
+        "energy-constrained signal drift",
+        "multi-axis perturbation drift",
+        "known-trunk mapping",
+        "residual candidate novelty mapping",
+        "human-reviewable abstraction candidate",
+        "theorem-validation artifact, not proof",
+    )
     old_language_fragments = (
         "Thomas" + "’s " + "car" + "-" + "alarm",
         "Thomas" + "'s " + "car" + "-" + "alarm",
@@ -4122,6 +4131,15 @@ def test_reviewer_facing_perturbation_language_is_generalized():
         Path("tests"),
     )
     searchable_suffixes = {".json", ".md", ".py", ".txt"}
+    scoped_text = "\n".join(
+        path.read_text(encoding="utf-8")
+        for root in scoped_roots
+        for path in root.rglob("*")
+        if path.is_file() and path.suffix in searchable_suffixes and "__pycache__" not in path.parts
+    )
+    for fragment in professional_language_fragments:
+        assert fragment in scoped_text
+
     for root in scoped_roots:
         for path in root.rglob("*"):
             if path.is_file() and path.suffix in searchable_suffixes and "__pycache__" not in path.parts:
