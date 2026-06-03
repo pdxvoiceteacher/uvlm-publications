@@ -2475,6 +2475,56 @@
       "reviewer_caution": "MET-SEM-00 preserves canonical metric meanings as targets while labeling LOCAL-REVIEW-RUNTIME-V0 values as profile-specific operational proxies; it grants no truth, theorem, product, final-answer, accepted-evidence, memory, Atlas, deployment, provider, LAN, federation, consciousness, Omega, ontology, benefit, market, or compliance authority."
     },
     {
+      "phase_id": "PROJECT-LANGUAGE-GOVERNANCE-00",
+      "repo": "pdxvoiceteacher/CoherenceLattice",
+      "source_phase": "PROJECT-LANGUAGE-GOVERNANCE-00",
+      "status": "accepted_local_validation",
+      "publication_status": "dashboard_synced",
+      "evidence_type": "language_governance_policy",
+      "product_posture": "publication_language_governance_only_not_runtime_or_product_release",
+      "authority_posture": "non_authoritative",
+      "public_claim_boundary": "audience_aware_language_policy_only",
+      "primary_artifacts": [
+        "docs/PROJECT_LANGUAGE_GOVERNANCE.md",
+        "docs/PROJECT_ONTOLOGY_GLOSSARY.md",
+        "docs/LANGUAGE_MIGRATION_MAP.md",
+        "config/language_governance/reviewer_facing_language_policy.v1.json",
+        "config/language_governance/project_lexicon.v1.json",
+        "config/language_governance/identifier_aliases.v1.json",
+        "tools/check_reviewer_facing_language.py",
+        "reviewer_language_audit_report.json",
+        "reviewer_language_audit_summary.md"
+      ],
+      "dashboard_summary": {
+        "language_governance_status": "active",
+        "reviewer_facing_language_policy": "active",
+        "ontology_glossary_status": "active",
+        "identifier_alias_map_status": "active",
+        "scanner_status": "available",
+        "reviewer_facing_private_parable_language_allowed": false,
+        "provenance_preservation_required": true,
+        "runtime_authority_expanded": false
+      },
+      "reproduction_command_summary": "python tools/check_reviewer_facing_language.py --policy config/language_governance/reviewer_facing_language_policy.v1.json --lexicon config/language_governance/project_lexicon.v1.json --aliases config/language_governance/identifier_aliases.v1.json",
+      "claims_blocked": [
+        "language governance proves the theory",
+        "language governance certifies truth",
+        "language governance certifies product readiness",
+        "language governance authorizes final answers",
+        "language governance authorizes accepted evidence",
+        "language governance proves ontology",
+        "language governance proves consciousness",
+        "language governance detects Omega",
+        "reviewer-facing terminology is proof",
+        "metaphor is evidence",
+        "analogy is proof",
+        "provenance is authority",
+        "private design parable is reviewer-facing ontology"
+      ],
+      "claim_allowed": "PROJECT-LANGUAGE-GOVERNANCE-00 documents audience-aware language rules, positive ontology terms, identifier alias migration, and reviewer-facing language scanning without granting proof, truth, product, or runtime authority.",
+      "reviewer_caution": "PROJECT-LANGUAGE-GOVERNANCE-00 documents reviewer-facing language policy, lexicon, aliases, and scanning only; it grants no proof, truth, product, runtime, final-answer, accepted-evidence, Atlas, memory, deployment, provider, LAN, federation, consciousness, Omega, ontology, benefit, market, or compliance authority."
+    },
+    {
       "phase_id": "RUNTIME-METRICS-CORPUS-SEED-00",
       "repo": "pdxvoiceteacher/CoherenceLattice",
       "source_phase": "LOCAL-REVIEW-RUNTIME-V0",

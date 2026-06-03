@@ -119,6 +119,10 @@
         "command": "python -c \"from pathlib import Path; from coherence.local_review.seed_corpus import build_runtime_metrics_seed_corpus; from coherence.local_review.metric_semantics import build_metric_semantic_reconciliation_packet; root=Path(r'C:\\UVLM\\run_artifacts\\runtime_metrics_seed_corpus'); bridge=root / 'bridge'; build_runtime_metrics_seed_corpus(output_root=root); build_metric_semantic_reconciliation_packet(bridge)\""
       },
       {
+        "name": "Project language governance scanner",
+        "command": "python tools/check_reviewer_facing_language.py --policy config/language_governance/reviewer_facing_language_policy.v1.json --lexicon config/language_governance/project_lexicon.v1.json --aliases config/language_governance/identifier_aliases.v1.json"
+      },
+      {
         "name": "PMR local queryable store acceptance",
         "command": ".\\experiments\\Run-PMR-LOCAL-RUNTIME-QUERYABLE-STORE00-Acceptance.ps1 `\n  -OutputRoot C:\\UVLM\\run_artifacts\\pmr_local_runtime_queryable_store_00 `\n  -LogDir C:\\UVLM\\run_artifacts\\pmr_local_runtime_queryable_store_00_logs `\n  -CiMode"
       },

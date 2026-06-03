@@ -13,6 +13,12 @@ if str(REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(REPO_ROOT))
 
 from tools.build_public_repro_dashboard import (
+    LANGUAGE_GOVERNANCE_ARTIFACTS,
+    LANGUAGE_GOVERNANCE_BLOCKED_CLAIMS,
+    LANGUAGE_GOVERNANCE_BOUNDARY_TERMS,
+    LANGUAGE_GOVERNANCE_CLAIM_ALLOWED,
+    LANGUAGE_GOVERNANCE_DOCTRINE_PHRASES,
+    LANGUAGE_GOVERNANCE_POSITIVE_LEXICON_TERMS,
     METRIC_SEMANTIC_CONTRACT_ALIASES,
     METRIC_SEMANTIC_CONTRACT_ARTIFACTS,
     METRIC_SEMANTIC_CONTRACT_BLOCKED_CLAIM_PHRASES,
@@ -151,6 +157,7 @@ REQUIRED_BOUNDARY_PHRASES = (
     "not general AI safety certification",
     "not recursive braid",
     "MET-SEM-00",
+    "PROJECT-LANGUAGE-GOVERNANCE-00",
     "coherencelattice.metric_semantic_reconciliation_packet.v1",
     "active_profile_proxy_reconciliation",
     "LOCAL-REVIEW-RUNTIME-V0",
@@ -169,6 +176,19 @@ REQUIRED_BOUNDARY_PHRASES = (
     *[f"Unsafe label: {row['unsafe_label']}" for row in METRIC_SEMANTIC_CONTRACT_METRIC_ROWS],
     *METRIC_SEMANTIC_CONTRACT_REQUIRED_BOUNDARY_PHRASES,
     *METRIC_SEMANTIC_CONTRACT_BLOCKED_CLAIM_PHRASES,
+    "PROJECT-LANGUAGE-GOVERNANCE-00",
+    "language_governance_status",
+    "reviewer_facing_language_policy",
+    "ontology_glossary_status",
+    "identifier_alias_map_status",
+    "scanner_status",
+    "runtime_authority_expanded",
+    LANGUAGE_GOVERNANCE_CLAIM_ALLOWED,
+    *LANGUAGE_GOVERNANCE_ARTIFACTS,
+    *LANGUAGE_GOVERNANCE_DOCTRINE_PHRASES,
+    *LANGUAGE_GOVERNANCE_POSITIVE_LEXICON_TERMS,
+    *LANGUAGE_GOVERNANCE_BOUNDARY_TERMS,
+    *LANGUAGE_GOVERNANCE_BLOCKED_CLAIMS,
     "RUNTIME-METRICS-CORPUS-SEED-00",
     "bounded seed corpus instrumentation only",
     "not population calibration",
@@ -1404,6 +1424,14 @@ def _forbidden_hits(text: str) -> list[str]:
                 "without granting" in text[max(0, index - 120) : index]
                 or "it is not" in text[max(0, index - 360) : index]
                 or " is not" in text[max(0, index - 360) : index]
+            ):
+                start = index + len(normalized_phrase)
+                continue
+            if phrase == "runtime authority" and (
+                "without granting" in text[max(0, index - 160) : index]
+                or "grants no" in text[max(0, index - 240) : index]
+                or "no runtime authority" in text[max(0, index - 80) : index + 80]
+                or "not runtime authority" in text[max(0, index - 80) : index + 80]
             ):
                 start = index + len(normalized_phrase)
                 continue

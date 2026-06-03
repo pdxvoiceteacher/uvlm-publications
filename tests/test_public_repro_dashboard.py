@@ -6,6 +6,12 @@ import sys
 from pathlib import Path
 
 from tools.build_public_repro_dashboard import (
+    LANGUAGE_GOVERNANCE_ARTIFACTS,
+    LANGUAGE_GOVERNANCE_BLOCKED_CLAIMS,
+    LANGUAGE_GOVERNANCE_BOUNDARY_TERMS,
+    LANGUAGE_GOVERNANCE_CLAIM_ALLOWED,
+    LANGUAGE_GOVERNANCE_DOCTRINE_PHRASES,
+    LANGUAGE_GOVERNANCE_POSITIVE_LEXICON_TERMS,
     METRIC_SEMANTIC_CONTRACT_ALIASES,
     METRIC_SEMANTIC_CONTRACT_ARTIFACTS,
     METRIC_SEMANTIC_CONTRACT_BLOCKED_CLAIM_PHRASES,
@@ -73,6 +79,7 @@ REQUIRED_DOCS = {
     "local-review-runtime-v0.md",
     "local-review-metrics-flow.md",
     "metric-semantic-contract.md",
+    "language-governance.md",
     "runtime-metrics-seed-corpus.md",
     "pmr-local-queryable-store.md",
     "retrosynthesis-readiness.md",
@@ -173,6 +180,7 @@ REQUIRED_PHASES = {
     "METRIC-BOUND-SOURCE-TAXONOMY-00",
     "FLOW-RUNTIME-00",
     "MET-SEM-00",
+    "PROJECT-LANGUAGE-GOVERNANCE-00",
     "RUNTIME-METRICS-CORPUS-SEED-00",
     "PMR-LOCAL-RUNTIME-QUERYABLE-STORE-00",
     "RETROSYNTHESIS-READINESS-00",
@@ -4108,6 +4116,62 @@ def test_perturbation_structure_affordance_card_page_and_registry_are_generated(
     assert status["not_perturbation_structure_affordance_proven"] is True
     assert status["not_perturbation_structure_affordance_novelty_discovery"] is True
     assert status["not_perturbation_structure_affordance_truth_certification"] is True
+
+
+def test_language_governance_page_and_registry_are_generated(tmp_path):
+    out_dir, docs_dir = run_builder(tmp_path)
+    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text(encoding="utf-8"))
+    reproducibility = json.loads((out_dir / "reproducibility_index.json").read_text(encoding="utf-8"))
+    artifact_index = json.loads((out_dir / "artifact_index.json").read_text(encoding="utf-8"))
+    claim_boundaries = json.loads((out_dir / "claim_boundary_index.json").read_text(encoding="utf-8"))
+    status = json.loads((out_dir / "status.json").read_text(encoding="utf-8"))
+    phase_by_id = {entry["phase_id"]: entry for entry in dashboard["accepted_phases"]}
+    boundary_text = "\n".join(claim_boundaries["boundaries"])
+    reproducibility_text = json.dumps(reproducibility)
+
+    phase = phase_by_id["PROJECT-LANGUAGE-GOVERNANCE-00"]
+    summary = phase["dashboard_summary"]
+    assert summary["language_governance_status"] == "active"
+    assert summary["reviewer_facing_language_policy"] == "active"
+    assert summary["ontology_glossary_status"] == "active"
+    assert summary["identifier_alias_map_status"] == "active"
+    assert summary["scanner_status"] == "available"
+    assert summary["reviewer_facing_private_parable_language_allowed"] is False
+    assert summary["provenance_preservation_required"] is True
+    assert summary["runtime_authority_expanded"] is False
+
+    page_text = (docs_dir / "language-governance.md").read_text(encoding="utf-8")
+    assert "PROJECT-LANGUAGE-GOVERNANCE-00" in page_text
+    for artifact in LANGUAGE_GOVERNANCE_ARTIFACTS:
+        assert artifact in artifact_index["phases"]["PROJECT-LANGUAGE-GOVERNANCE-00"]
+        assert artifact in page_text
+    for fragment in (
+        "check_reviewer_facing_language.py",
+        "reviewer_facing_language_policy.v1.json",
+        "project_lexicon.v1.json",
+        "identifier_aliases.v1.json",
+    ):
+        assert fragment in reproducibility_text
+        assert fragment in page_text
+        assert fragment in boundary_text
+    for phrase in LANGUAGE_GOVERNANCE_DOCTRINE_PHRASES:
+        assert phrase in page_text
+        assert phrase in boundary_text
+    for term in LANGUAGE_GOVERNANCE_POSITIVE_LEXICON_TERMS:
+        assert term in page_text
+        assert term in boundary_text
+    for term in LANGUAGE_GOVERNANCE_BOUNDARY_TERMS:
+        assert term in page_text
+        assert term in boundary_text
+    for claim in LANGUAGE_GOVERNANCE_BLOCKED_CLAIMS:
+        assert claim in page_text
+        assert claim in boundary_text
+    assert LANGUAGE_GOVERNANCE_CLAIM_ALLOWED in page_text
+    assert LANGUAGE_GOVERNANCE_CLAIM_ALLOWED in boundary_text
+    assert status["project_language_governance_00_indexed"] is True
+    assert status["language_governance_runtime_authority_expanded"] is False
+    assert status["not_language_governance_truth_certification"] is True
+    assert status["not_language_governance_product_release"] is True
 
 
 def test_metric_semantic_contract_page_and_registry_are_generated(tmp_path):

@@ -987,6 +987,17 @@
       "metric_semantic_reconciliation_packet.json",
       "docs/METRIC_SEMANTIC_RECONCILIATION.md"
     ],
+    "PROJECT-LANGUAGE-GOVERNANCE-00": [
+      "docs/PROJECT_LANGUAGE_GOVERNANCE.md",
+      "docs/PROJECT_ONTOLOGY_GLOSSARY.md",
+      "docs/LANGUAGE_MIGRATION_MAP.md",
+      "config/language_governance/reviewer_facing_language_policy.v1.json",
+      "config/language_governance/project_lexicon.v1.json",
+      "config/language_governance/identifier_aliases.v1.json",
+      "tools/check_reviewer_facing_language.py",
+      "reviewer_language_audit_report.json",
+      "reviewer_language_audit_summary.md"
+    ],
     "RUNTIME-METRICS-CORPUS-SEED-00": [
       "runtime_metrics_seed_corpus.json",
       "runtime_metrics_seed_observations.jsonl",
