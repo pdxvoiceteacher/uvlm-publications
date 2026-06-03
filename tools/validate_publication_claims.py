@@ -4,8 +4,19 @@ from __future__ import annotations
 import argparse
 import json
 import re
+import sys
 from pathlib import Path
 from typing import Any
+
+REPO_ROOT = Path(__file__).resolve().parents[1]
+if str(REPO_ROOT) not in sys.path:
+    sys.path.insert(0, str(REPO_ROOT))
+
+from tools.build_public_repro_dashboard import (
+    LANGUAGE_GOVERNANCE_BLOCKED_CLAIMS,
+    METRIC_SEMANTIC_CONTRACT_BLOCKED_CLAIM_PHRASES,
+    PERTURBATION_STRUCTURE_AFFORDANCE_BLOCKED_CLAIM_PHRASES,
+)
 
 
 PAPER_CONFIGS: dict[str, dict[str, Any]] = {
@@ -567,6 +578,8 @@ PAPER_CONFIGS: dict[str, dict[str, Any]] = {
             "hallucination reduction proven",
             "model superiority proven",
             "model superiority proof",
+            "human benefit proof",
+            "consciousness proof",
             "hallucination reduction proof",
             "model quality benchmark",
             "production evaluation",
@@ -699,6 +712,7 @@ PAPER_CONFIGS: dict[str, dict[str, Any]] = {
             "is Omega detection",
             "proves consciousness",
             "certifies truth",
+            "certified diagnosis",
             "admits Atlas memory",
             "market validation",
             "deployment readiness",
@@ -725,6 +739,73 @@ PAPER_CONFIGS: dict[str, dict[str, Any]] = {
             "repair plans are authority",
             "memory write occurred",
             "Atlas memory admission occurred",
+            "Atlas memory entry was written",
+            "memory candidate was written",
+            "local-test proxy review is product human review",
+            "local-test proxy review approves memory write",
+            "local-test proxy review approves Atlas admission",
+            "theorem validation proves theorem",
+            "COOP-ENTROPY-DIVIDEND-00 is proven",
+            "is proven",
+            "evidence ledger certifies truth",
+            "theorem card proves universal ontology",
+            "AI Forensics Dossier is final answer",
+            "AI Forensics Dossier certifies truth",
+            "AI Forensics Dossier certifies compliance",
+            "AI Forensics Dossier is audit opinion",
+            "AI Forensics Dossier is professional attestation",
+            "AI Forensics Dossier reveals hidden chain of thought",
+            "AI Forensics Dossier performs model mind-reading",
+            "Human Review UX creates final answer authority",
+            "Human Review UX certifies truth",
+            "Human Review UX certifies compliance",
+            "Human Review UX is audit opinion",
+            "Human Review UX is professional attestation",
+            "Human Review UX approves product release",
+            "Human Review UX approves provider runtime",
+            "Human Review UX approves memory write",
+            "Human Review UX approves Atlas memory admission",
+            "local test review is product human review",
+            "needs_more_evidence is approval",
+            "approve_for_local_next_step is final answer approval",
+            "escalate_to_professional_review is professional attestation",
+            "hidden chain-of-thought disclosure",
+            "model mind-reading",
+            "perturbation observation proves novelty",
+            "perturbation observation certifies diagnosis",
+            "abstraction affordance is truth",
+            "hyperreal resonance is authority",
+            "trunk similarity is identity",
+            "trunk mapping is novelty discovery",
+            "heatmap values certify probability",
+            "residual structure proves a novel trunk",
+            "residual novelty map discovers novelty",
+            "novel branch candidate is novel trunk proof",
+            "reverse trunk mapping proves identity",
+            "creative mapping is causal diagnosis",
+            *PERTURBATION_STRUCTURE_AFFORDANCE_BLOCKED_CLAIM_PHRASES,
+            *METRIC_SEMANTIC_CONTRACT_BLOCKED_CLAIM_PHRASES,
+            *LANGUAGE_GOVERNANCE_BLOCKED_CLAIMS,
+            "raw model output is final answer",
+            "Omega detection",
+            "provider runtime",
+            "population calibration",
+            "Sonya candidate is final answer",
+            "UCC review certifies compliance",
+            "UCC review is audit opinion",
+            "UCC review is professional attestation",
+            "UCC review is legal advice",
+            "UCC review is clinical certification",
+            "UCC review is academic endorsement",
+            "NIST compliance is certified",
+            "NIST controls were ingested",
+            "AICPA controls were ingested",
+            "COSO controls were ingested",
+            "PRISMA controls were ingested",
+            "ISO controls were ingested",
+            "SOC controls were ingested",
+            "materiality override is professional judgment",
+            "materiality override modifies the source standard",
             "claims autonomous self-improvement",
             "autonomous self-improvement achieved",
             "claims clinical proof beyond bounded local fixture",
@@ -962,10 +1043,19 @@ def _is_negated(normalized_text: str, start: int) -> bool:
     window = normalized_text[max(0, start - 32) : start]
     after = normalized_text[start : start + 80]
     return (
-        any(window.rstrip().endswith(marker.strip()) for marker in NEGATION_MARKERS) or any(tok in window.split()[-4:] for tok in ("not","no","without","never","neither","nor"))
+        any(window.rstrip().endswith(marker.strip()) for marker in NEGATION_MARKERS)
+        or any(tok in window.split()[-4:] for tok in ("not", "no", "without", "never", "neither", "nor"))
         or "performed = false" in after
         or "blocked" in after[:48]
     )
+
+
+def _is_directly_negated(normalized_text: str, start: int) -> bool:
+    window = normalized_text[max(0, start - 48) : start].rstrip()
+    return any(window.endswith(marker.strip()) for marker in NEGATION_MARKERS) or re.search(
+        r"(?:^| )(?:not|no|without|never|neither|nor)(?: [a-z0-9]+){0,2}$",
+        window,
+    ) is not None
 
 
 def _context_words(text: str, index: int, *, before: int = 96, after: int = 96) -> str:
@@ -1122,8 +1212,16 @@ def _forbidden_hits(normalized_text: str, forbidden: tuple[str, ...]) -> list[st
                 search_from = index + len(normalized_phrase)
                 continue
             if (
-                phrase in {"federation", "accepted evidence", "product release"}
+                phrase in {"federation", "accepted evidence", "product release", *PERTURBATION_STRUCTURE_AFFORDANCE_BLOCKED_CLAIM_PHRASES, *METRIC_SEMANTIC_CONTRACT_BLOCKED_CLAIM_PHRASES, *LANGUAGE_GOVERNANCE_BLOCKED_CLAIMS}
                 and "request must fail closed" in normalized_text[index : index + 72]
+            ):
+                search_from = index + len(normalized_phrase)
+                continue
+            if phrase == "runtime authority" and (
+                "without granting" in normalized_text[max(0, index - 160) : index]
+                or "grants no" in normalized_text[max(0, index - 240) : index]
+                or "no runtime authority" in normalized_text[max(0, index - 80) : index + 80]
+                or "not runtime authority" in normalized_text[max(0, index - 80) : index + 80]
             ):
                 search_from = index + len(normalized_phrase)
                 continue
@@ -1136,6 +1234,69 @@ def _forbidden_hits(normalized_text: str, forbidden: tuple[str, ...]) -> list[st
             ):
                 search_from = index + len(normalized_phrase)
                 continue
+            manual_blocked_examples = {
+                "Atlas memory admission occurred",
+                "Atlas memory write occurred",
+                "memory candidate was written",
+                "raw model output is final answer",
+                "UCC review certifies compliance",
+                "NIST compliance is certified",
+                "NIST controls were ingested",
+                "theorem validation proves theorem",
+                "COOP-ENTROPY-DIVIDEND-00 is proven",
+                "evidence ledger certifies truth",
+                "Omega detection",
+                "product release",
+                "provider runtime",
+                "population calibration",
+                "AI Forensics Dossier is final answer",
+                "AI Forensics Dossier certifies truth",
+                "AI Forensics Dossier certifies compliance",
+                "AI Forensics Dossier is audit opinion",
+                "AI Forensics Dossier is professional attestation",
+                "AI Forensics Dossier reveals hidden chain of thought",
+                "AI Forensics Dossier performs model mind-reading",
+                "Human Review UX creates final answer authority",
+                "Human Review UX certifies truth",
+                "Human Review UX certifies compliance",
+                "Human Review UX is audit opinion",
+                "Human Review UX is professional attestation",
+                "Human Review UX approves product release",
+                "Human Review UX approves provider runtime",
+                "Human Review UX approves memory write",
+                "Human Review UX approves Atlas memory admission",
+                "local test review is product human review",
+                "needs_more_evidence is approval",
+                "approve_for_local_next_step is final answer approval",
+                "escalate_to_professional_review is professional attestation",
+                "hidden chain-of-thought disclosure",
+                "model mind-reading",
+                "perturbation observation proves novelty",
+                "perturbation observation certifies diagnosis",
+                "abstraction affordance is truth",
+                "hyperreal resonance is authority",
+                "trunk similarity is identity",
+                "trunk mapping is novelty discovery",
+                "heatmap values certify probability",
+                "residual structure proves a novel trunk",
+                "residual novelty map discovers novelty",
+                "novel branch candidate is novel trunk proof",
+                "reverse trunk mapping proves identity",
+                "creative mapping is causal diagnosis",
+                *PERTURBATION_STRUCTURE_AFFORDANCE_BLOCKED_CLAIM_PHRASES,
+                *METRIC_SEMANTIC_CONTRACT_BLOCKED_CLAIM_PHRASES,
+                *LANGUAGE_GOVERNANCE_BLOCKED_CLAIMS,
+            }
+            if phrase in manual_blocked_examples:
+                if "no artifact in this chain authorizes" in normalized_text[max(0, index - 120) : index]:
+                    search_from = index + len(normalized_phrase)
+                    continue
+                if phrase == "truth certification" and "boundary preventing" in normalized_text[max(0, index - 80) : index]:
+                    search_from = index + len(normalized_phrase)
+                    continue
+                if not _is_directly_negated(normalized_text, index):
+                    hits.append(phrase)
+                    break
             if not _is_negated(normalized_text, index):
                 hits.append(phrase)
                 break
