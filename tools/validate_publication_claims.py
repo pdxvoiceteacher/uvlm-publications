@@ -4,8 +4,17 @@ from __future__ import annotations
 import argparse
 import json
 import re
+import sys
 from pathlib import Path
 from typing import Any
+
+REPO_ROOT = Path(__file__).resolve().parents[1]
+if str(REPO_ROOT) not in sys.path:
+    sys.path.insert(0, str(REPO_ROOT))
+
+from tools.build_public_repro_dashboard import (
+    PERTURBATION_STRUCTURE_AFFORDANCE_BLOCKED_CLAIM_PHRASES,
+)
 
 
 PAPER_CONFIGS: dict[str, dict[str, Any]] = {
@@ -772,15 +781,7 @@ PAPER_CONFIGS: dict[str, dict[str, Any]] = {
             "novel branch candidate is novel trunk proof",
             "reverse trunk mapping proves identity",
             "creative mapping is causal diagnosis",
-            "single fixture proves theory",
-            "PERTURBATION-STRUCTURE-AFFORDANCE-00 is proven",
-            "perturbation structure-affordance is a proven theorem",
-            "speculative_pattern is proof",
-            "operational_metric_hypothesis target has already been achieved",
-            "perturbation evidence proves theorem",
-            "perturbation evidence certifies novelty",
-            "residual novelty candidate is novelty discovery",
-            "reverse trunk hypothesis is proof",
+            *PERTURBATION_STRUCTURE_AFFORDANCE_BLOCKED_CLAIM_PHRASES,
             "raw model output is final answer",
             "Omega detection",
             "provider runtime",
@@ -1207,7 +1208,7 @@ def _forbidden_hits(normalized_text: str, forbidden: tuple[str, ...]) -> list[st
                 search_from = index + len(normalized_phrase)
                 continue
             if (
-                phrase in {"federation", "accepted evidence", "product release"}
+                phrase in {"federation", "accepted evidence", "product release", *PERTURBATION_STRUCTURE_AFFORDANCE_BLOCKED_CLAIM_PHRASES}
                 and "request must fail closed" in normalized_text[index : index + 72]
             ):
                 search_from = index + len(normalized_phrase)
@@ -1270,18 +1271,13 @@ def _forbidden_hits(normalized_text: str, forbidden: tuple[str, ...]) -> list[st
                 "novel branch candidate is novel trunk proof",
                 "reverse trunk mapping proves identity",
                 "creative mapping is causal diagnosis",
-                "single fixture proves theory",
-                "PERTURBATION-STRUCTURE-AFFORDANCE-00 is proven",
-                "perturbation structure-affordance is a proven theorem",
-                "speculative_pattern is proof",
-                "operational_metric_hypothesis target has already been achieved",
-                "perturbation evidence proves theorem",
-                "perturbation evidence certifies novelty",
-                "residual novelty candidate is novelty discovery",
-                "reverse trunk hypothesis is proof",
+                *PERTURBATION_STRUCTURE_AFFORDANCE_BLOCKED_CLAIM_PHRASES,
             }
             if phrase in manual_blocked_examples:
                 if "no artifact in this chain authorizes" in normalized_text[max(0, index - 120) : index]:
+                    search_from = index + len(normalized_phrase)
+                    continue
+                if phrase == "truth certification" and "boundary preventing" in normalized_text[max(0, index - 80) : index]:
                     search_from = index + len(normalized_phrase)
                     continue
                 if not _is_directly_negated(normalized_text, index):

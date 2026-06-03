@@ -5,7 +5,11 @@ import subprocess
 import sys
 from pathlib import Path
 
-from tools.build_public_repro_dashboard import _dedupe_accepted_phases
+from tools.build_public_repro_dashboard import (
+    PERTURBATION_STRUCTURE_AFFORDANCE_BLOCKED_CLAIM_PHRASES,
+    PERTURBATION_STRUCTURE_AFFORDANCE_REQUIRED_BOUNDARY_PHRASES,
+    _dedupe_accepted_phases,
+)
 from tools.validate_public_repro_dashboard import REQUIRED_PHASES as VALIDATOR_REQUIRED_PHASES
 from tools.validate_public_repro_dashboard import validate_dashboard
 
@@ -4081,77 +4085,13 @@ def test_perturbation_structure_affordance_card_page_and_registry_are_generated(
         assert builder in reproducibility_text
 
     page_text = (docs_dir / "perturbation-structure-affordance-card.md").read_text(encoding="utf-8")
-    required_phrases = (
-        "The card preserves Thomas’s car-alarm perturbation insight as a speculative theorem-validation artifact, not as proof.",
-        "PERTURBATION-STRUCTURE-AFFORDANCE-00 is not proven.",
-        "Current grade is speculative_pattern.",
-        "Target grade is operational_metric_hypothesis.",
-        "Claimed grade is none_yet.",
-        "A structured perturbation may reveal abstraction affordances when multi-axis drift remains coherent after known causal and analogical trunk mapping.",
-        "Single fixture is not theory.",
-        "Perturbation evidence artifacts are evidence inputs, not proof.",
-        "Residual novelty candidate is not novelty discovery.",
-        "Novel branch candidate is not novel trunk proof.",
-        "Reverse trunk hypothesis is not proof.",
-        "Abstraction affordance is not truth.",
-        "Hyperreal resonance is not authority.",
-        "Repeated observations are required for stronger claims.",
-        "Human review remains required.",
-        "not novelty discovery",
-        "not novel trunk proof",
-        "not truth certification",
-        "not consciousness proof",
-        "not Omega detection",
-        "not universal ontology proof",
-        "not product release",
-        "not model superiority proof",
-        "not human benefit proof",
-        "not market validation",
-        "not certified diagnosis",
-        "not final answer",
-        "not accepted evidence",
-        "not proof from a single fixture",
-        "perturbation_mistaken_for_novelty",
-        "abstraction_affordance_mistaken_for_truth",
-        "hyperreal_resonance_mistaken_for_authority",
-        "residual_structure_mistaken_for_discovery",
-        "trunk_similarity_mistaken_for_identity",
-        "creative_mapping_mistaken_for_causal_diagnosis",
-        "novel_branch_candidate_mistaken_for_novel_trunk",
-        "single_fixture_mistaken_for_theory",
-    )
+    required_phrases = PERTURBATION_STRUCTURE_AFFORDANCE_REQUIRED_BOUNDARY_PHRASES
     for phrase in required_phrases:
         assert phrase in page_text
         assert phrase in boundary_text
         assert phrase in boundary_entries
 
-    for phrase in (
-        "PERTURBATION-STRUCTURE-AFFORDANCE-00 is proven",
-        "perturbation structure-affordance is a proven theorem",
-        "speculative_pattern is proof",
-        "operational_metric_hypothesis target has already been achieved",
-        "single fixture proves theory",
-        "perturbation evidence proves theorem",
-        "perturbation evidence certifies novelty",
-        "residual novelty candidate is novelty discovery",
-        "novel branch candidate is novel trunk proof",
-        "reverse trunk hypothesis is proof",
-        "abstraction affordance is truth",
-        "hyperreal resonance is authority",
-        "trunk similarity is identity",
-        "creative mapping is causal diagnosis",
-        "truth certification",
-        "final-answer authority",
-        "accepted-evidence authority",
-        "product release",
-        "model superiority proof",
-        "human benefit proof",
-        "market validation",
-        "consciousness proof",
-        "Omega detection",
-        "universal ontology proof",
-        "certified diagnosis",
-    ):
+    for phrase in PERTURBATION_STRUCTURE_AFFORDANCE_BLOCKED_CLAIM_PHRASES:
         assert phrase in page_text
         assert phrase in boundary_text
         assert phrase in boundary_entries

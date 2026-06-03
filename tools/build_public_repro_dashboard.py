@@ -2742,7 +2742,7 @@ PERTURBATION_STRUCTURE_AFFORDANCE_CARD_ARTIFACTS = [
     "novelty_human_review_packet.json",
     "residual_novelty_boundary_table.json",
 ]
-PERTURBATION_STRUCTURE_AFFORDANCE_COUNTEREXAMPLES = [
+PERTURBATION_STRUCTURE_AFFORDANCE_COUNTEREXAMPLES = (
     "perturbation_mistaken_for_novelty",
     "abstraction_affordance_mistaken_for_truth",
     "hyperreal_resonance_mistaken_for_authority",
@@ -2751,22 +2751,40 @@ PERTURBATION_STRUCTURE_AFFORDANCE_COUNTEREXAMPLES = [
     "creative_mapping_mistaken_for_causal_diagnosis",
     "novel_branch_candidate_mistaken_for_novel_trunk",
     "single_fixture_mistaken_for_theory",
-]
-PERTURBATION_STRUCTURE_AFFORDANCE_DASHBOARD_SUMMARY = {
-    "theorem_cards": 2,
-    "theorem_id": "PERTURBATION-STRUCTURE-AFFORDANCE-00",
-    "theorem_family": "perturbation_novelty_mapping",
-    "proof_grade_current": "speculative_pattern",
-    "proof_grade_target": "operational_metric_hypothesis",
-    "proof_grade_claimed": "none_yet",
-    "perturbation_evidence_rows": 9,
-    "single_fixture_is_not_theory": True,
-    "theorem_card_is_not_proof": True,
-    "theorem_card_requires_repeated_observation": True,
-    "theorem_card_requires_human_review": True,
-}
-PERTURBATION_STRUCTURE_AFFORDANCE_CLAIM_ALLOWED = "PERTURBATION-STRUCTURE-AFFORDANCE-CARD-00 preserves PERTURBATION-STRUCTURE-AFFORDANCE-00 as a speculative theorem-validation card over perturbation observation, trunk mapping, and residual novelty candidate artifacts, while claiming no proof, no novelty discovery, and no authority."
-PERTURBATION_STRUCTURE_AFFORDANCE_CLAIMS_BLOCKED = [
+)
+PERTURBATION_STRUCTURE_AFFORDANCE_REQUIRED_BOUNDARY_PHRASES = (
+    "The card preserves Thomas’s car-alarm perturbation insight as a speculative theorem-validation artifact, not as proof.",
+    "PERTURBATION-STRUCTURE-AFFORDANCE-00 is not proven.",
+    "Current grade is speculative_pattern.",
+    "Target grade is operational_metric_hypothesis.",
+    "Claimed grade is none_yet.",
+    "A structured perturbation may reveal abstraction affordances when multi-axis drift remains coherent after known causal and analogical trunk mapping.",
+    "Single fixture is not theory.",
+    "Perturbation evidence artifacts are evidence inputs, not proof.",
+    "Residual novelty candidate is not novelty discovery.",
+    "Novel branch candidate is not novel trunk proof.",
+    "Reverse trunk hypothesis is not proof.",
+    "Abstraction affordance is not truth.",
+    "Hyperreal resonance is not authority.",
+    "Repeated observations are required for stronger claims.",
+    "Human review remains required.",
+    "not novelty discovery",
+    "not novel trunk proof",
+    "not truth certification",
+    "not consciousness proof",
+    "not Omega detection",
+    "not universal ontology proof",
+    "not product release",
+    "not model superiority proof",
+    "not human benefit proof",
+    "not market validation",
+    "not certified diagnosis",
+    "not final answer",
+    "not accepted evidence",
+    "not proof from a single fixture",
+    *PERTURBATION_STRUCTURE_AFFORDANCE_COUNTEREXAMPLES,
+)
+PERTURBATION_STRUCTURE_AFFORDANCE_BLOCKED_CLAIM_PHRASES = (
     "PERTURBATION-STRUCTURE-AFFORDANCE-00 is proven",
     "perturbation structure-affordance is a proven theorem",
     "speculative_pattern is proof",
@@ -2781,7 +2799,33 @@ PERTURBATION_STRUCTURE_AFFORDANCE_CLAIMS_BLOCKED = [
     "hyperreal resonance is authority",
     "trunk similarity is identity",
     "creative mapping is causal diagnosis",
-]
+    "truth certification",
+    "final-answer authority",
+    "accepted-evidence authority",
+    "product release",
+    "model superiority proof",
+    "human benefit proof",
+    "market validation",
+    "consciousness proof",
+    "Omega detection",
+    "universal ontology proof",
+    "certified diagnosis",
+)
+PERTURBATION_STRUCTURE_AFFORDANCE_DASHBOARD_SUMMARY = {
+    "theorem_cards": 2,
+    "theorem_id": "PERTURBATION-STRUCTURE-AFFORDANCE-00",
+    "theorem_family": "perturbation_novelty_mapping",
+    "proof_grade_current": "speculative_pattern",
+    "proof_grade_target": "operational_metric_hypothesis",
+    "proof_grade_claimed": "none_yet",
+    "perturbation_evidence_rows": 9,
+    "single_fixture_is_not_theory": True,
+    "theorem_card_is_not_proof": True,
+    "theorem_card_requires_repeated_observation": True,
+    "theorem_card_requires_human_review": True,
+}
+PERTURBATION_STRUCTURE_AFFORDANCE_CLAIM_ALLOWED = "PERTURBATION-STRUCTURE-AFFORDANCE-CARD-00 preserves PERTURBATION-STRUCTURE-AFFORDANCE-00 as a speculative theorem-validation card over perturbation observation, trunk mapping, and residual novelty candidate artifacts, while claiming no proof, no novelty discovery, and no authority."
+PERTURBATION_STRUCTURE_AFFORDANCE_CLAIMS_BLOCKED = PERTURBATION_STRUCTURE_AFFORDANCE_BLOCKED_CLAIM_PHRASES
 PERTURBATION_STRUCTURE_AFFORDANCE_CARD_PHASE = {
     "phase_id": "PERTURBATION-STRUCTURE-AFFORDANCE-CARD-00",
     "repo": "pdxvoiceteacher/CoherenceLattice",
@@ -6731,57 +6775,9 @@ BOUNDARIES.extend(
         "creative mapping is causal diagnosis",
         "single fixture proves theory",
         PERTURBATION_STRUCTURE_AFFORDANCE_CLAIM_ALLOWED,
-        "The card preserves Thomas’s car-alarm perturbation insight as a speculative theorem-validation artifact, not as proof.",
-        "PERTURBATION-STRUCTURE-AFFORDANCE-00 is not proven.",
-        "Current grade is speculative_pattern.",
-        "Target grade is operational_metric_hypothesis.",
-        "Claimed grade is none_yet.",
-        "A structured perturbation may reveal abstraction affordances when multi-axis drift remains coherent after known causal and analogical trunk mapping.",
-        "Single fixture is not theory.",
-        "Perturbation evidence artifacts are evidence inputs, not proof.",
-        "Residual novelty candidate is not novelty discovery.",
-        "Novel branch candidate is not novel trunk proof.",
-        "Reverse trunk hypothesis is not proof.",
-        "Repeated observations are required for stronger claims.",
-        "not novelty discovery",
-        "not novel trunk proof",
-        "not truth certification",
-        "not consciousness proof",
-        "not Omega detection",
-        "not universal ontology proof",
-        "not product release",
-        "not model superiority proof",
-        "not human benefit proof",
-        "not market validation",
-        "not certified diagnosis",
-        "not final answer",
-        "not accepted evidence",
-        "not proof from a single fixture",
-        *PERTURBATION_STRUCTURE_AFFORDANCE_COUNTEREXAMPLES,
+        *PERTURBATION_STRUCTURE_AFFORDANCE_REQUIRED_BOUNDARY_PHRASES,
         "Blocked overclaim examples for perturbation structure-affordance theorem card publication boundaries.",
-        "PERTURBATION-STRUCTURE-AFFORDANCE-00 is proven",
-        "perturbation structure-affordance is a proven theorem",
-        "speculative_pattern is proof",
-        "operational_metric_hypothesis target has already been achieved",
-        "perturbation evidence proves theorem",
-        "perturbation evidence certifies novelty",
-        "residual novelty candidate is novelty discovery",
-        "reverse trunk hypothesis is proof",
-        "abstraction affordance is truth",
-        "hyperreal resonance is authority",
-        "trunk similarity is identity",
-        "creative mapping is causal diagnosis",
-        "truth certification",
-        "final-answer authority",
-        "accepted-evidence authority",
-        "product release",
-        "model superiority proof",
-        "human benefit proof",
-        "market validation",
-        "consciousness proof",
-        "Omega detection",
-        "universal ontology proof",
-        "certified diagnosis",
+        *PERTURBATION_STRUCTURE_AFFORDANCE_BLOCKED_CLAIM_PHRASES,
     ]
 )
 BOUNDARIES.extend(
@@ -10424,7 +10420,7 @@ PERTURBATION-RESIDUAL-NOVELTY-MAP-00 generates candidate residual novelty region
 """,
         "perturbation-structure-affordance-card.md": f"""# Perturbation structure-affordance theorem card
 
-The card preserves Thomas’s car-alarm perturbation insight as a speculative theorem-validation artifact, not as proof.
+{PERTURBATION_STRUCTURE_AFFORDANCE_REQUIRED_BOUNDARY_PHRASES[0]}
 
 ## Dashboard summary
 
@@ -10450,69 +10446,11 @@ The card preserves Thomas’s car-alarm perturbation insight as a speculative th
 
 ## Required boundaries
 
-- PERTURBATION-STRUCTURE-AFFORDANCE-00 is not proven.
-- Current grade is speculative_pattern.
-- Target grade is operational_metric_hypothesis.
-- Claimed grade is none_yet.
-- A structured perturbation may reveal abstraction affordances when multi-axis drift remains coherent after known causal and analogical trunk mapping.
-- Single fixture is not theory.
-- Perturbation evidence artifacts are evidence inputs, not proof.
-- Residual novelty candidate is not novelty discovery.
-- Novel branch candidate is not novel trunk proof.
-- Reverse trunk hypothesis is not proof.
-- Abstraction affordance is not truth.
-- Hyperreal resonance is not authority.
-- Repeated observations are required for stronger claims.
-- Human review remains required.
-
-## Theorem-card non-claims
-
-- not novelty discovery
-- not novel trunk proof
-- not truth certification
-- not consciousness proof
-- not Omega detection
-- not universal ontology proof
-- not product release
-- not model superiority proof
-- not human benefit proof
-- not market validation
-- not certified diagnosis
-- not final answer
-- not accepted evidence
-- not proof from a single fixture
-
-## Counterexamples and failure classes
-
-{chr(10).join(f"- {term}" for term in PERTURBATION_STRUCTURE_AFFORDANCE_COUNTEREXAMPLES)}
+{chr(10).join(f"- {phrase}" for phrase in PERTURBATION_STRUCTURE_AFFORDANCE_REQUIRED_BOUNDARY_PHRASES)}
 
 ## Blocked overclaim examples
 
-- PERTURBATION-STRUCTURE-AFFORDANCE-00 is proven
-- perturbation structure-affordance is a proven theorem
-- speculative_pattern is proof
-- operational_metric_hypothesis target has already been achieved
-- single fixture proves theory
-- perturbation evidence proves theorem
-- perturbation evidence certifies novelty
-- residual novelty candidate is novelty discovery
-- novel branch candidate is novel trunk proof
-- reverse trunk hypothesis is proof
-- abstraction affordance is truth
-- hyperreal resonance is authority
-- trunk similarity is identity
-- creative mapping is causal diagnosis
-- truth certification
-- final-answer authority
-- accepted-evidence authority
-- product release
-- model superiority proof
-- human benefit proof
-- market validation
-- consciousness proof
-- Omega detection
-- universal ontology proof
-- certified diagnosis
+{chr(10).join(f"- {phrase}" for phrase in PERTURBATION_STRUCTURE_AFFORDANCE_BLOCKED_CLAIM_PHRASES)}
 
 ## Reproducibility
 

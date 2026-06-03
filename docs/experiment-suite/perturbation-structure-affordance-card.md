@@ -41,6 +41,7 @@ PERTURBATION-STRUCTURE-AFFORDANCE-CARD-00 preserves PERTURBATION-STRUCTURE-AFFOR
 
 ## Required boundaries
 
+- The card preserves Thomas’s car-alarm perturbation insight as a speculative theorem-validation artifact, not as proof.
 - PERTURBATION-STRUCTURE-AFFORDANCE-00 is not proven.
 - Current grade is speculative_pattern.
 - Target grade is operational_metric_hypothesis.
@@ -55,9 +56,6 @@ PERTURBATION-STRUCTURE-AFFORDANCE-CARD-00 preserves PERTURBATION-STRUCTURE-AFFOR
 - Hyperreal resonance is not authority.
 - Repeated observations are required for stronger claims.
 - Human review remains required.
-
-## Theorem-card non-claims
-
 - not novelty discovery
 - not novel trunk proof
 - not truth certification
@@ -72,9 +70,6 @@ PERTURBATION-STRUCTURE-AFFORDANCE-CARD-00 preserves PERTURBATION-STRUCTURE-AFFOR
 - not final answer
 - not accepted evidence
 - not proof from a single fixture
-
-## Counterexamples and failure classes
-
 - perturbation_mistaken_for_novelty
 - abstraction_affordance_mistaken_for_truth
 - hyperreal_resonance_mistaken_for_authority

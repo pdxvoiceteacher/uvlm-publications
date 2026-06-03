@@ -4,8 +4,18 @@ from __future__ import annotations
 import argparse
 import json
 import re
+import sys
 from pathlib import Path
 from typing import Any
+
+REPO_ROOT = Path(__file__).resolve().parents[1]
+if str(REPO_ROOT) not in sys.path:
+    sys.path.insert(0, str(REPO_ROOT))
+
+from tools.build_public_repro_dashboard import (
+    PERTURBATION_STRUCTURE_AFFORDANCE_BLOCKED_CLAIM_PHRASES,
+    PERTURBATION_STRUCTURE_AFFORDANCE_REQUIRED_BOUNDARY_PHRASES,
+)
 
 
 REQUIRED_PHASES = {
@@ -352,33 +362,8 @@ REQUIRED_BOUNDARY_PHRASES = (
     "proof_grade_target = operational_metric_hypothesis",
     "proof_grade_claimed = none_yet",
     "perturbation_evidence_rows = 9",
-    "The card preserves Thomas’s car-alarm perturbation insight as a speculative theorem-validation artifact, not as proof",
-    "PERTURBATION-STRUCTURE-AFFORDANCE-00 is not proven",
-    "Current grade is speculative_pattern",
-    "Target grade is operational_metric_hypothesis",
-    "Claimed grade is none_yet",
-    "A structured perturbation may reveal abstraction affordances when multi-axis drift remains coherent after known causal and analogical trunk mapping",
-    "Perturbation evidence artifacts are evidence inputs, not proof",
-    "Residual novelty candidate is not novelty discovery",
-    "Reverse trunk hypothesis is not proof",
-    "Repeated observations are required for stronger claims",
-    "not proof from a single fixture",
-    "perturbation_mistaken_for_novelty",
-    "abstraction_affordance_mistaken_for_truth",
-    "hyperreal_resonance_mistaken_for_authority",
-    "residual_structure_mistaken_for_discovery",
-    "trunk_similarity_mistaken_for_identity",
-    "creative_mapping_mistaken_for_causal_diagnosis",
-    "novel_branch_candidate_mistaken_for_novel_trunk",
-    "single_fixture_mistaken_for_theory",
-    "PERTURBATION-STRUCTURE-AFFORDANCE-00 is proven",
-    "perturbation structure-affordance is a proven theorem",
-    "speculative_pattern is proof",
-    "operational_metric_hypothesis target has already been achieved",
-    "perturbation evidence proves theorem",
-    "perturbation evidence certifies novelty",
-    "residual novelty candidate is novelty discovery",
-    "reverse trunk hypothesis is proof",
+    *PERTURBATION_STRUCTURE_AFFORDANCE_REQUIRED_BOUNDARY_PHRASES,
+    *PERTURBATION_STRUCTURE_AFFORDANCE_BLOCKED_CLAIM_PHRASES,
     "build_theorem_validation_pathway",
     "not Atlas memory admission yet",
     "raw baseline comparison",

@@ -5,6 +5,9 @@ import subprocess
 import sys
 from pathlib import Path
 
+from tools.build_public_repro_dashboard import (
+    PERTURBATION_STRUCTURE_AFFORDANCE_BLOCKED_CLAIM_PHRASES,
+)
 from tools.validate_publication_claims import validate_publication_claims
 
 ROOT = Path("papers/governed_artifact_cognition")
@@ -3566,33 +3569,7 @@ def test_claim_validator_rejects_perturbation_structure_affordance_card_overclai
         "requires external peer review\nnot AI consciousness\nnot recursive Sonya federation\n"
         "not retrosynthesis runtime\nnot Omega detection\nnot live Atlas memory writes\nnot live Sophia calls\n"
     )
-    blocked = (
-        "PERTURBATION-STRUCTURE-AFFORDANCE-00 is proven",
-        "perturbation structure-affordance is a proven theorem",
-        "speculative_pattern is proof",
-        "operational_metric_hypothesis target has already been achieved",
-        "single fixture proves theory",
-        "perturbation evidence proves theorem",
-        "perturbation evidence certifies novelty",
-        "residual novelty candidate is novelty discovery",
-        "novel branch candidate is novel trunk proof",
-        "reverse trunk hypothesis is proof",
-        "abstraction affordance is truth",
-        "hyperreal resonance is authority",
-        "trunk similarity is identity",
-        "creative mapping is causal diagnosis",
-        "claims truth certification",
-        "final-answer authority",
-        "accepted-evidence authority",
-        "product release",
-        "model superiority proof",
-        "human benefit proof",
-        "market validation",
-        "consciousness proof",
-        "Omega detection",
-        "universal ontology proof",
-        "certified diagnosis",
-    )
+    blocked = PERTURBATION_STRUCTURE_AFFORDANCE_BLOCKED_CLAIM_PHRASES
     for name in (
         "reproducibility_appendix.md",
         "claim_boundary_table.md",
