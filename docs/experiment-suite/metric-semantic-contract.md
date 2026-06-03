@@ -4,13 +4,15 @@
 
 MET-SEM-00 publishes a metric semantic contract for LOCAL-REVIEW-RUNTIME-V0. The schema is `coherencelattice.metric_semantic_reconciliation_packet.v1`, and the reconciliation status is `active_profile_proxy_reconciliation`.
 
-The original meanings remain canonical semantic targets. Current code implements profile-specific operational proxies. Current values are local-review operational proxies.
+The original meanings remain canonical semantic targets. The canonical theory is not fully implemented by LOCAL-REVIEW-RUNTIME-V0. Current code implements profile-specific operational proxies. Current values are local-review operational proxies. Population calibration is required before stronger claims.
 
 ## Dashboard summary
 
 - source_phase = MET-SEM-00
 - runtime_profile = LOCAL-REVIEW-RUNTIME-V0
 - reconciliation_status = active_profile_proxy_reconciliation
+- canonical_theory_status = semantic_target_not_fully_implemented
+- runtime_profile_semantics = local_review_operational_proxies
 - canonical_meanings_preserved_as_targets = true
 - current_values_are_profile_specific_proxies = true
 - population_calibration_required_for_full_claims = true
@@ -60,6 +62,9 @@ Formula and decomposition notes:
 - The original meanings remain canonical semantic targets.
 - Current code implements profile-specific operational proxies.
 - Current values are local-review operational proxies.
+- canonical_theory_status = semantic_target_not_fully_implemented
+- runtime_profile_semantics = local_review_operational_proxies
+- The canonical theory is not fully implemented by LOCAL-REVIEW-RUNTIME-V0.
 - E_review is a reviewer-care affordance proxy, not full empathy.
 - T_review is a review inspectability proxy.
 - Ψ_review preserves Ψ = E × T only within local-review proxy scope.

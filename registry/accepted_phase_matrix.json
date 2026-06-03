@@ -2357,6 +2357,8 @@
         "source_phase": "MET-SEM-00",
         "runtime_profile": "LOCAL-REVIEW-RUNTIME-V0",
         "reconciliation_status": "active_profile_proxy_reconciliation",
+        "canonical_theory_status": "semantic_target_not_fully_implemented",
+        "runtime_profile_semantics": "local_review_operational_proxies",
         "canonical_meanings_preserved_as_targets": true,
         "current_values_are_profile_specific_proxies": true,
         "population_calibration_required_for_full_claims": true,

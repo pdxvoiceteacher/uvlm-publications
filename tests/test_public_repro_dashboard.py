@@ -4126,6 +4126,8 @@ def test_metric_semantic_contract_page_and_registry_are_generated(tmp_path):
     assert summary["schema"] == "coherencelattice.metric_semantic_reconciliation_packet.v1"
     assert summary["runtime_profile"] == "LOCAL-REVIEW-RUNTIME-V0"
     assert summary["reconciliation_status"] == "active_profile_proxy_reconciliation"
+    assert summary["canonical_theory_status"] == "semantic_target_not_fully_implemented"
+    assert summary["runtime_profile_semantics"] == "local_review_operational_proxies"
     assert summary["current_values_are_profile_specific_proxies"] is True
     assert summary["canonical_meanings_preserved_as_targets"] is True
     assert summary["population_calibration_required_for_full_claims"] is True
@@ -4147,6 +4149,8 @@ def test_metric_semantic_contract_page_and_registry_are_generated(tmp_path):
         for name in REQUIRED_JSON
     )
     generated_publication_text = page_text + "\n" + boundary_text + "\n" + registry_text
+    assert "semantic_target_not_fully_implemented" in generated_publication_text
+    assert "local_review_operational_proxies" in generated_publication_text
     for alias in ("Ψ_review", "ΔS_review", "Λ_boundary", "Eₛ_review"):
         assert alias in generated_publication_text
     for mojibake in ("Î¨_review", "Î”S_review", "Î›_boundary", "Eâ‚›_review"):

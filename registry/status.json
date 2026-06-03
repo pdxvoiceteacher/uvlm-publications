@@ -331,6 +331,8 @@
   "not_stale_identity_leakage": true,
   "not_lineage_authority": true,
   "metric_semantic_contract_00_indexed": true,
+  "metric_semantic_canonical_theory_status": "semantic_target_not_fully_implemented",
+  "metric_semantic_runtime_profile_semantics": "local_review_operational_proxies",
   "not_metric_semantic_canonical_cross_domain_measurement": true,
   "not_metric_semantic_psychological_measurement": true,
   "not_metric_semantic_full_ethical_symmetry_measurement": true,
