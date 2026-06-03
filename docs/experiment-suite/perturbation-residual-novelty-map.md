@@ -42,6 +42,8 @@ PERTURBATION-RESIDUAL-NOVELTY-MAP-00 generates candidate residual novelty region
 - Single fixture is not theory.
 - More observations are required before stronger claims.
 - Human review remains required.
+- PERTURBATION-STRUCTURE-AFFORDANCE-00 is not proven.
+- not proof from a single fixture
 
 ## Blocked overclaim examples
 

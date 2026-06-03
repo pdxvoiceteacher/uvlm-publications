@@ -5,7 +5,9 @@ This is a theorem validation pathway, not theorem proof.
 ## Dashboard summary
 
 - theorem_validation_pathway_status = locally_validated
-- theorem_card_count = 1
+- theorem_card_count = 2
+- theorem_card_registry.json includes COOP-ENTROPY-DIVIDEND-00
+- theorem_card_registry.json includes PERTURBATION-STRUCTURE-AFFORDANCE-00
 - theorem_evidence_rows = 9
 - theorem_counterexamples = 9
 - theorem cards are validation artifacts, not proof

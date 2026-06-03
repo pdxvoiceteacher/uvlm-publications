@@ -1119,6 +1119,24 @@
       "residual_novelty_boundary_table.json",
       "perturbation_residual_novelty_summary.md"
     ],
+    "PERTURBATION-STRUCTURE-AFFORDANCE-CARD-00": [
+      "theorem_claim_registry.json",
+      "theorem_card_registry.json",
+      "theorem_evidence_ledger.json",
+      "theorem_counterexample_registry.json",
+      "theorem_non_claim_boundary_table.json",
+      "theorem_validation_receipt.md",
+      "perturbation_observation_packet.json",
+      "perturbation_axis_packet.json",
+      "perturbation_trunk_mapping_packet.json",
+      "trunk_similarity_heatmap.json",
+      "residual_novelty_candidate_map.json",
+      "novel_branch_candidate_packet.json",
+      "reverse_trunk_candidate_report.json",
+      "abstraction_candidate_report.json",
+      "novelty_human_review_packet.json",
+      "residual_novelty_boundary_table.json"
+    ],
     "PMR-HUMAN-CONSENT-NEGATIVE-CONTROL-00": [
       "pmr_human_consent_negative_control_manifest.json",
       "pmr_invalid_human_consent_attempts.jsonl",

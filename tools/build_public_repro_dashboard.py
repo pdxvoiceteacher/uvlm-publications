@@ -2107,7 +2107,7 @@ THEOREM_VALIDATION_PATHWAY_ARTIFACTS = [
 ]
 THEOREM_VALIDATION_PATHWAY_DASHBOARD_SUMMARY = {
     "theorem_validation_pathway_status": "locally_validated",
-    "theorem_card_count": 1,
+    "theorem_card_count": 2,
     "theorem_evidence_rows": 9,
     "theorem_counterexamples": 9,
     "theorem_cards_are_validation_artifacts_not_proof": True,
@@ -2210,6 +2210,7 @@ TRIADIC_LLM_UCC_SOURCE_MATERIALITY_COMMAND = "python -c \"from pathlib import Pa
 AI_FORENSICS_DOSSIER_COMMAND = "python -c \"from pathlib import Path; from coherence.product.triadic_llm_metrics_smoke import build_triadic_llm_metrics_smoke; from coherence.ucc.sophia_control_review import build_sophia_ucc_control_review; from coherence.product.ai_forensics_dossier import build_ai_forensics_dossier; root=Path(r'C:\\UVLM\\run_artifacts\\triadic_llm_metrics_smoke'); bridge=root / 'bridge'; build_triadic_llm_metrics_smoke(root); build_sophia_ucc_control_review(bridge); build_ai_forensics_dossier(bridge)\""
 HUMAN_REVIEW_UX_COMMAND = "python -c \"from pathlib import Path; from coherence.product.triadic_llm_metrics_smoke import build_triadic_llm_metrics_smoke; from coherence.ucc.sophia_control_review import build_sophia_ucc_control_review; from coherence.product.ai_forensics_dossier import build_ai_forensics_dossier; from coherence.review.human_review_ux import build_human_review_ux_packet; root=Path(r'C:\\UVLM\\run_artifacts\\triadic_llm_metrics_smoke'); bridge=root / 'bridge'; build_triadic_llm_metrics_smoke(root); build_sophia_ucc_control_review(bridge); build_ai_forensics_dossier(bridge); build_human_review_ux_packet(bridge)\""
 PERTURBATION_NOVELTY_LANE_COMMAND = "python -c \"from pathlib import Path; from coherence.perturbation.observation_capture import build_perturbation_observation_capture; from coherence.perturbation.trunk_mapping import build_perturbation_trunk_mapping; from coherence.perturbation.residual_novelty_map import build_perturbation_residual_novelty_map; bridge=Path(r'C:\\UVLM\\run_artifacts\\perturbation_observation_capture\\bridge'); build_perturbation_observation_capture(bridge); build_perturbation_trunk_mapping(bridge); build_perturbation_residual_novelty_map(bridge)\""
+PERTURBATION_STRUCTURE_AFFORDANCE_CARD_COMMAND = "python -c \"from pathlib import Path; from coherence.perturbation.observation_capture import build_perturbation_observation_capture; from coherence.perturbation.trunk_mapping import build_perturbation_trunk_mapping; from coherence.perturbation.residual_novelty_map import build_perturbation_residual_novelty_map; from coherence.theorem import build_theorem_validation_pathway; bridge=Path(r'C:\\UVLM\\run_artifacts\\perturbation_observation_capture\\bridge'); build_perturbation_observation_capture(bridge); build_perturbation_trunk_mapping(bridge); build_perturbation_residual_novelty_map(bridge); build_theorem_validation_pathway(bridge)\""
 
 TRIADIC_LLM_METRICS_SMOKE_ARTIFACTS = [
     "llm_metrics_smoke_request.json",
@@ -2723,6 +2724,82 @@ PERTURBATION_RESIDUAL_NOVELTY_MAP_PHASE = {
     "claim_allowed": PERTURBATION_RESIDUAL_NOVELTY_CLAIM_ALLOWED,
     "reviewer_caution": "Residual novelty mapping produces candidates for human review only; candidate novelty is not novelty discovery, novel trunk proof, truth certification, scientific proof, product release, or final-answer authority.",
 }
+PERTURBATION_STRUCTURE_AFFORDANCE_CARD_ARTIFACTS = [
+    "theorem_claim_registry.json",
+    "theorem_card_registry.json",
+    "theorem_evidence_ledger.json",
+    "theorem_counterexample_registry.json",
+    "theorem_non_claim_boundary_table.json",
+    "theorem_validation_receipt.md",
+    "perturbation_observation_packet.json",
+    "perturbation_axis_packet.json",
+    "perturbation_trunk_mapping_packet.json",
+    "trunk_similarity_heatmap.json",
+    "residual_novelty_candidate_map.json",
+    "novel_branch_candidate_packet.json",
+    "reverse_trunk_candidate_report.json",
+    "abstraction_candidate_report.json",
+    "novelty_human_review_packet.json",
+    "residual_novelty_boundary_table.json",
+]
+PERTURBATION_STRUCTURE_AFFORDANCE_COUNTEREXAMPLES = [
+    "perturbation_mistaken_for_novelty",
+    "abstraction_affordance_mistaken_for_truth",
+    "hyperreal_resonance_mistaken_for_authority",
+    "residual_structure_mistaken_for_discovery",
+    "trunk_similarity_mistaken_for_identity",
+    "creative_mapping_mistaken_for_causal_diagnosis",
+    "novel_branch_candidate_mistaken_for_novel_trunk",
+    "single_fixture_mistaken_for_theory",
+]
+PERTURBATION_STRUCTURE_AFFORDANCE_DASHBOARD_SUMMARY = {
+    "theorem_cards": 2,
+    "theorem_id": "PERTURBATION-STRUCTURE-AFFORDANCE-00",
+    "theorem_family": "perturbation_novelty_mapping",
+    "proof_grade_current": "speculative_pattern",
+    "proof_grade_target": "operational_metric_hypothesis",
+    "proof_grade_claimed": "none_yet",
+    "perturbation_evidence_rows": 9,
+    "single_fixture_is_not_theory": True,
+    "theorem_card_is_not_proof": True,
+    "theorem_card_requires_repeated_observation": True,
+    "theorem_card_requires_human_review": True,
+}
+PERTURBATION_STRUCTURE_AFFORDANCE_CLAIM_ALLOWED = "PERTURBATION-STRUCTURE-AFFORDANCE-CARD-00 preserves PERTURBATION-STRUCTURE-AFFORDANCE-00 as a speculative theorem-validation card over perturbation observation, trunk mapping, and residual novelty candidate artifacts, while claiming no proof, no novelty discovery, and no authority."
+PERTURBATION_STRUCTURE_AFFORDANCE_CLAIMS_BLOCKED = [
+    "PERTURBATION-STRUCTURE-AFFORDANCE-00 is proven",
+    "perturbation structure-affordance is a proven theorem",
+    "speculative_pattern is proof",
+    "operational_metric_hypothesis target has already been achieved",
+    "single fixture proves theory",
+    "perturbation evidence proves theorem",
+    "perturbation evidence certifies novelty",
+    "residual novelty candidate is novelty discovery",
+    "novel branch candidate is novel trunk proof",
+    "reverse trunk hypothesis is proof",
+    "abstraction affordance is truth",
+    "hyperreal resonance is authority",
+    "trunk similarity is identity",
+    "creative mapping is causal diagnosis",
+]
+PERTURBATION_STRUCTURE_AFFORDANCE_CARD_PHASE = {
+    "phase_id": "PERTURBATION-STRUCTURE-AFFORDANCE-CARD-00",
+    "repo": "pdxvoiceteacher/CoherenceLattice",
+    "source_phase": "PERTURBATION-RESIDUAL-NOVELTY-MAP-00",
+    "status": "accepted_local_validation",
+    "publication_status": "dashboard_synced",
+    "evidence_type": "speculative_perturbation_structure_affordance_theorem_card",
+    "product_posture": "theorem_validation_card_only_not_proof_not_novelty_discovery",
+    "authority_posture": "non_authoritative",
+    "public_claim_boundary": "speculative_theorem_card_only_no_proof_novelty_or_authority",
+    "primary_artifacts": PERTURBATION_STRUCTURE_AFFORDANCE_CARD_ARTIFACTS,
+    "dashboard_summary": PERTURBATION_STRUCTURE_AFFORDANCE_DASHBOARD_SUMMARY,
+    "reproduction_command_summary": PERTURBATION_STRUCTURE_AFFORDANCE_CARD_COMMAND,
+    "claims_blocked": PERTURBATION_STRUCTURE_AFFORDANCE_CLAIMS_BLOCKED,
+    "claim_allowed": PERTURBATION_STRUCTURE_AFFORDANCE_CLAIM_ALLOWED,
+    "reviewer_caution": "PERTURBATION-STRUCTURE-AFFORDANCE-00 is a speculative theorem-validation card only; it is not proof, novelty discovery, truth certification, ontology proof, consciousness proof, product release, final answer, or accepted evidence.",
+}
+
 PMR_00_COMMAND = r""".\experiments\Run-PMR00-Acceptance.ps1 `
   -OutputRoot C:\UVLM\run_artifacts\pmr_00 `
   -LogDir C:\UVLM\run_artifacts\pmr_00_logs `
@@ -4631,6 +4708,7 @@ HUMAN_REVIEW_UX_PHASE,
 PERTURBATION_OBSERVATION_CAPTURE_PHASE,
 PERTURBATION_TRUNK_MAPPING_PHASE,
 PERTURBATION_RESIDUAL_NOVELTY_MAP_PHASE,
+PERTURBATION_STRUCTURE_AFFORDANCE_CARD_PHASE,
 {"phase_id":"PMR-CONTEXT-AVAILABILITY-LEDGER-00","repo":"pdxvoiceteacher/CoherenceLattice","status":"accepted","evidence_type":"governance_scaffold","product_posture":"fixture_only_context_availability_without_source_content_or_memory_authority","primary_artifacts":PMR_CONTEXT_AVAILABILITY_LEDGER_00_ARTIFACTS,"dashboard_summary":PMR_CONTEXT_AVAILABILITY_LEDGER_00_DASHBOARD_SUMMARY,"reproduction_command_summary":PMR_CONTEXT_AVAILABILITY_LEDGER_00_COMMAND,"claims_blocked":PMR_CONTEXT_AVAILABILITY_LEDGER_00_CLAIMS_BLOCKED,"claim_allowed":"context availability ledger scaffold","reviewer_caution":"Expiration is not nonexistence."},
 {"phase_id":"LOCAL-SERVER-USER-FILE-INGRESS-00","repo":"pdxvoiceteacher/CoherenceLattice","status":"accepted","evidence_type":"runtime_smoke","product_posture":"explicit_local_user_file_ingress_without_memory_or_network_authority","primary_artifacts":LOCAL_SERVER_USER_FILE_INGRESS_00_ARTIFACTS,"dashboard_summary":LOCAL_SERVER_USER_FILE_INGRESS_00_DASHBOARD_SUMMARY,"reproduction_command_summary":LOCAL_SERVER_USER_FILE_INGRESS_00_COMMAND,"claims_blocked":LOCAL_SERVER_USER_FILE_INGRESS_00_CLAIMS_BLOCKED,"claim_allowed":"explicit local user file ingress runtime smoke","reviewer_caution":"User file ingress is not memory write."},
 {"phase_id":"SONYA-LOCAL-SERVER-GATEWAY-02","repo":"pdxvoiceteacher/CoherenceLattice","status":"accepted","evidence_type":"runtime_smoke","product_posture":"localhost_only_source_span_gateway_without_truth_or_memory_authority","primary_artifacts":SONYA_LOCAL_SERVER_GATEWAY_02_ARTIFACTS,"dashboard_summary":SONYA_LOCAL_SERVER_GATEWAY_02_DASHBOARD_SUMMARY,"reproduction_command_summary":SONYA_LOCAL_SERVER_GATEWAY_02_COMMAND,"claims_blocked":SONYA_LOCAL_SERVER_GATEWAY_02_CLAIMS_BLOCKED,"claim_allowed":"localhost-only source-span gateway retrieval scaffold","reviewer_caution":"Source-span gateway review is not truth certification."},
@@ -6652,6 +6730,43 @@ BOUNDARIES.extend(
         "reverse trunk mapping proves identity",
         "creative mapping is causal diagnosis",
         "single fixture proves theory",
+        PERTURBATION_STRUCTURE_AFFORDANCE_CLAIM_ALLOWED,
+        "The card preserves Thomas’s car-alarm perturbation insight as a speculative theorem-validation artifact, not as proof.",
+        "PERTURBATION-STRUCTURE-AFFORDANCE-00 is not proven.",
+        "Current grade is speculative_pattern.",
+        "Target grade is operational_metric_hypothesis.",
+        "Claimed grade is none_yet.",
+        "A structured perturbation may reveal abstraction affordances when multi-axis drift remains coherent after known causal and analogical trunk mapping.",
+        "Single fixture is not theory.",
+        "Perturbation evidence artifacts are evidence inputs, not proof.",
+        "Residual novelty candidate is not novelty discovery.",
+        "Novel branch candidate is not novel trunk proof.",
+        "Reverse trunk hypothesis is not proof.",
+        "Repeated observations are required for stronger claims.",
+        "not novelty discovery",
+        "not novel trunk proof",
+        "not truth certification",
+        "not consciousness proof",
+        "not Omega detection",
+        "not universal ontology proof",
+        "not product release",
+        "not model superiority proof",
+        "not human benefit proof",
+        "not market validation",
+        "not certified diagnosis",
+        "not final answer",
+        "not accepted evidence",
+        "not proof from a single fixture",
+        *PERTURBATION_STRUCTURE_AFFORDANCE_COUNTEREXAMPLES,
+        "Blocked overclaim examples for perturbation structure-affordance theorem card publication boundaries.",
+        "PERTURBATION-STRUCTURE-AFFORDANCE-00 is proven",
+        "perturbation structure-affordance is a proven theorem",
+        "speculative_pattern is proof",
+        "operational_metric_hypothesis target has already been achieved",
+        "perturbation evidence proves theorem",
+        "perturbation evidence certifies novelty",
+        "residual novelty candidate is novelty discovery",
+        "reverse trunk hypothesis is proof",
     ]
 )
 BOUNDARIES.extend(
@@ -7039,6 +7154,12 @@ def dashboard_payload() -> dict[str, Any]:
         "perturbation_residual_novelty_map_00_indexed": True,
         "not_perturbation_residual_novelty_discovery": True,
         "not_perturbation_residual_novel_trunk_proof": True,
+        "perturbation_structure_affordance_card_00_indexed": True,
+        "not_perturbation_structure_affordance_proven": True,
+        "not_perturbation_structure_affordance_novelty_discovery": True,
+        "not_perturbation_structure_affordance_truth_certification": True,
+        "not_perturbation_structure_affordance_final_answer": True,
+        "not_perturbation_structure_affordance_accepted_evidence": True,
     }
     _assert_safe_dashboard(dashboard)
     return dashboard
@@ -7093,6 +7214,7 @@ def reproducibility_index() -> dict[str, Any]:
                 {"name": "AI Forensics Dossier Python entrypoint", "command": AI_FORENSICS_DOSSIER_COMMAND},
                 {"name": "Human Review UX Python entrypoint", "command": HUMAN_REVIEW_UX_COMMAND},
                 {"name": "Perturbation novelty lane Python entrypoint", "command": PERTURBATION_NOVELTY_LANE_COMMAND},
+                {"name": "Perturbation structure-affordance theorem card Python entrypoint", "command": PERTURBATION_STRUCTURE_AFFORDANCE_CARD_COMMAND},
                 {"name": "PMR Context Availability Ledger acceptance", "command": PMR_CONTEXT_AVAILABILITY_LEDGER_00_COMMAND},
                 {"name": "Local Sonya path portability acceptance", "command": LOCAL_SONYA_PATH_PORTABILITY_00_COMMAND},
                 {"name": "PMR doctrine acceptance", "command": PMR_00_COMMAND},
@@ -7662,6 +7784,12 @@ def status_payload() -> dict[str, Any]:
         "perturbation_residual_novelty_map_00_indexed": True,
         "not_perturbation_residual_novelty_discovery": True,
         "not_perturbation_residual_novel_trunk_proof": True,
+        "perturbation_structure_affordance_card_00_indexed": True,
+        "not_perturbation_structure_affordance_proven": True,
+        "not_perturbation_structure_affordance_novelty_discovery": True,
+        "not_perturbation_structure_affordance_truth_certification": True,
+        "not_perturbation_structure_affordance_final_answer": True,
+        "not_perturbation_structure_affordance_accepted_evidence": True,
         "requires_external_peer_review": True,
         "not_truth_certification": True,
         "not_deployment_authority": True,
@@ -7680,7 +7808,7 @@ def docs() -> dict[str, str]:
     return {
         "README.md": "# Experiment Suite Docs\n\nPublic reviewer documentation for the claim-bounded reproducibility dashboard.\n",
         "assets/README.md": "# Assets\n\nOptional static assets for the public reproducibility dashboard.\n",
-        "index.md": f"# Public Experiment Suite Dashboard\n\nThis dashboard presents accepted evidence for reviewer orientation. It is not truth certification, not deployment authority, not final answer release, local fixture only, and requires external peer review.\n\n## Accepted evidence\n\n| Phase | Repo | Status | What this supports | Reviewer caution |\n| --- | --- | --- | --- | --- |\n{phase_rows}\n\n## Reviewer path\n\nStart with claim boundaries, then read the governed artifact cognition paper, WAVE Rosetta paper, SONYA-AEGIS-SMOKE-02, WAVE family, UNI-02D Sonya gate, and RETRO-LANE-00, Public Utility Alpha, Raw Baseline Comparison, Evidence Review Pack, RW-COMP-01, RW-COMP-02, Retrosynthesis Sandbox Cycle, Evidence Review Pack second-pass, RW-COMP-03, Universal Architecture Scaffold, Sonya Adapter Contract Registry, Sonya Adapter Smoke, Sonya Local Fixture Adapter, and Evidence Review Pack local adapter, Evidence Review Pack local adapter revision, RW-COMP local adapter, PMR doctrine, PMR local artifact index, PMR GPCU utility scoring, PMR lifecycle state machine, PMR lifecycle audit preflight, PMR Sophia lifecycle audit review, PMR destructive-action authorization preflight, PMR architecture diversity checkpoint, PMR simulation baseline comparison, PMR simulation statistical analysis, PMR federation stress corpus, PMR human provenance context, Sonya Local Fixture Adapter multi-route, and Sonya Local Fixture Adapter lineage clarity, Local Review metrics and flow, and Runtime Metrics Seed Corpus, PMR local queryable store, Retrosynthesis Readiness, Retrosynthesis Local Prototype, and Atlas Local Memory Admission Readiness, Atlas Local Memory Admission Prototype, Local-test Proxy Review, AI Context Performance Continuity, Theorem Validation Pathway, and COOP Entropy Dividend, Triadic LLM Metrics Smoke, UCC Sophia Control Forensics, UCC Standards Source Registry and Materiality, Triadic LLM Smoke PMR Inventory Contract Repair, AI Forensics Dossier, and Human Review UX, Perturbation Observation Capture, Perturbation Trunk Mapping, and Perturbation Residual Novelty Map pages.\n\n## What this proves\n\nIt proves only that accepted local fixture artifacts and draft publication materials are organized for review.\n\n## What this does not prove\n\nNo oracle posture, no deployment posture, no final-answer posture, no AI consciousness claim, and no universal ontology claim.\n\n## Phase pages\n\n- [SONYA-AEGIS-SMOKE-02](sonya-aegis-smoke-02.md)\n- [WAVE Gold-Physics](wave-gold-physics.md)\n- [UNI-02D Sonya gate](uni02d-sonya-gate.md)\n- [RETRO-LANE-00](retro-lane-00.md)\n- [Public Utility Alpha](public-utility-alpha.md)\n- [Raw Baseline Comparison](raw-baseline-comparison.md)\n- [Evidence Review Pack](evidence-review-pack.md)\n- [RW-COMP-01](rw-comp-01.md)\n- [RW-COMP-02](rw-comp-02.md)\n- [Retrosynthesis Sandbox Cycle](retrosynthesis-sandbox-cycle.md)\n- [Evidence Review Pack second pass](evidence-review-pack-second-pass.md)\n- [RW-COMP-03](rw-comp-03.md)\n- [Universal Architecture Scaffold](universal-architecture.md)\n- [Sonya Adapter Contract Registry](sonya-adapter-contract-registry.md)\n- [Sonya required membrane checkpoint](sonya-required-membrane-checkpoint.md)\n- [TEL event stack](tel-event-stack.md)\n- [Sonya Adapter Smoke](sonya-adapter-smoke.md)\n- [Sonya Local Fixture Adapter](sonya-local-fixture-adapter.md)\n- [Evidence Review Pack local adapter](evidence-review-pack-local-adapter.md)\n- [Evidence Review Pack local adapter revision](evidence-review-pack-local-adapter-revision.md)\n- [RW-COMP local adapter](rw-comp-local-adapter.md)\n- [Provenance Memory Reservoir](provenance-memory-reservoir.md)\n- [PMR local artifact index](pmr-local-artifact-index.md)\n- [Ontology Claim Registry](ontology-claim-registry.md)\n- [Local Sonya path portability](local-sonya-path-portability.md)\n- [TB Product Slice](tb-product-slice.md)\n- [TB Product Slice 01](tb-product-slice-01.md)\n- [Sonya Local Fixture Adapter multi-route](sonya-local-fixture-adapter-multi-route.md)\n- [Sonya Local Fixture Adapter lineage clarity](sonya-local-fixture-adapter-lineage.md)\n- [Local Review Runtime V0](local-review-runtime-v0.md)\n- [Local Review metrics and flow](local-review-metrics-flow.md)\n- [Runtime metrics seed corpus](runtime-metrics-seed-corpus.md)\n- [PMR local queryable store](pmr-local-queryable-store.md)\n- [Retrosynthesis readiness](retrosynthesis-readiness.md)\n- [Retrosynthesis local prototype](retrosynthesis-local-prototype.md)\n- [Atlas local memory admission readiness](atlas-local-memory-admission-readiness.md)\n- [AI Forensics Dossier](ai-forensics-dossier.md)\n- [Human Review UX](human-review-ux.md)\n- [Perturbation Observation Capture](perturbation-observation-capture.md)\n- [Perturbation Trunk Mapping](perturbation-trunk-mapping.md)\n- [Perturbation Residual Novelty Map](perturbation-residual-novelty-map.md)\n- [Governed artifact cognition paper](governed-artifact-cognition-paper.md)\n- [Waveform Rosetta paper](waveform-rosetta-paper.md)\n",
+        "index.md": f"# Public Experiment Suite Dashboard\n\nThis dashboard presents accepted evidence for reviewer orientation. It is not truth certification, not deployment authority, not final answer release, local fixture only, and requires external peer review.\n\n## Accepted evidence\n\n| Phase | Repo | Status | What this supports | Reviewer caution |\n| --- | --- | --- | --- | --- |\n{phase_rows}\n\n## Reviewer path\n\nStart with claim boundaries, then read the governed artifact cognition paper, WAVE Rosetta paper, SONYA-AEGIS-SMOKE-02, WAVE family, UNI-02D Sonya gate, and RETRO-LANE-00, Public Utility Alpha, Raw Baseline Comparison, Evidence Review Pack, RW-COMP-01, RW-COMP-02, Retrosynthesis Sandbox Cycle, Evidence Review Pack second-pass, RW-COMP-03, Universal Architecture Scaffold, Sonya Adapter Contract Registry, Sonya Adapter Smoke, Sonya Local Fixture Adapter, and Evidence Review Pack local adapter, Evidence Review Pack local adapter revision, RW-COMP local adapter, PMR doctrine, PMR local artifact index, PMR GPCU utility scoring, PMR lifecycle state machine, PMR lifecycle audit preflight, PMR Sophia lifecycle audit review, PMR destructive-action authorization preflight, PMR architecture diversity checkpoint, PMR simulation baseline comparison, PMR simulation statistical analysis, PMR federation stress corpus, PMR human provenance context, Sonya Local Fixture Adapter multi-route, and Sonya Local Fixture Adapter lineage clarity, Local Review metrics and flow, and Runtime Metrics Seed Corpus, PMR local queryable store, Retrosynthesis Readiness, Retrosynthesis Local Prototype, and Atlas Local Memory Admission Readiness, Atlas Local Memory Admission Prototype, Local-test Proxy Review, AI Context Performance Continuity, Theorem Validation Pathway, and COOP Entropy Dividend, Triadic LLM Metrics Smoke, UCC Sophia Control Forensics, UCC Standards Source Registry and Materiality, Triadic LLM Smoke PMR Inventory Contract Repair, AI Forensics Dossier, and Human Review UX, Perturbation Observation Capture, Perturbation Trunk Mapping, and Perturbation Residual Novelty Map, and Perturbation Structure-Affordance Card pages.\n\n## What this proves\n\nIt proves only that accepted local fixture artifacts and draft publication materials are organized for review.\n\n## What this does not prove\n\nNo oracle posture, no deployment posture, no final-answer posture, no AI consciousness claim, and no universal ontology claim.\n\n## Phase pages\n\n- [SONYA-AEGIS-SMOKE-02](sonya-aegis-smoke-02.md)\n- [WAVE Gold-Physics](wave-gold-physics.md)\n- [UNI-02D Sonya gate](uni02d-sonya-gate.md)\n- [RETRO-LANE-00](retro-lane-00.md)\n- [Public Utility Alpha](public-utility-alpha.md)\n- [Raw Baseline Comparison](raw-baseline-comparison.md)\n- [Evidence Review Pack](evidence-review-pack.md)\n- [RW-COMP-01](rw-comp-01.md)\n- [RW-COMP-02](rw-comp-02.md)\n- [Retrosynthesis Sandbox Cycle](retrosynthesis-sandbox-cycle.md)\n- [Evidence Review Pack second pass](evidence-review-pack-second-pass.md)\n- [RW-COMP-03](rw-comp-03.md)\n- [Universal Architecture Scaffold](universal-architecture.md)\n- [Sonya Adapter Contract Registry](sonya-adapter-contract-registry.md)\n- [Sonya required membrane checkpoint](sonya-required-membrane-checkpoint.md)\n- [TEL event stack](tel-event-stack.md)\n- [Sonya Adapter Smoke](sonya-adapter-smoke.md)\n- [Sonya Local Fixture Adapter](sonya-local-fixture-adapter.md)\n- [Evidence Review Pack local adapter](evidence-review-pack-local-adapter.md)\n- [Evidence Review Pack local adapter revision](evidence-review-pack-local-adapter-revision.md)\n- [RW-COMP local adapter](rw-comp-local-adapter.md)\n- [Provenance Memory Reservoir](provenance-memory-reservoir.md)\n- [PMR local artifact index](pmr-local-artifact-index.md)\n- [Ontology Claim Registry](ontology-claim-registry.md)\n- [Local Sonya path portability](local-sonya-path-portability.md)\n- [TB Product Slice](tb-product-slice.md)\n- [TB Product Slice 01](tb-product-slice-01.md)\n- [Sonya Local Fixture Adapter multi-route](sonya-local-fixture-adapter-multi-route.md)\n- [Sonya Local Fixture Adapter lineage clarity](sonya-local-fixture-adapter-lineage.md)\n- [Local Review Runtime V0](local-review-runtime-v0.md)\n- [Local Review metrics and flow](local-review-metrics-flow.md)\n- [Runtime metrics seed corpus](runtime-metrics-seed-corpus.md)\n- [PMR local queryable store](pmr-local-queryable-store.md)\n- [Retrosynthesis readiness](retrosynthesis-readiness.md)\n- [Retrosynthesis local prototype](retrosynthesis-local-prototype.md)\n- [Atlas local memory admission readiness](atlas-local-memory-admission-readiness.md)\n- [AI Forensics Dossier](ai-forensics-dossier.md)\n- [Human Review UX](human-review-ux.md)\n- [Perturbation Observation Capture](perturbation-observation-capture.md)\n- [Perturbation Trunk Mapping](perturbation-trunk-mapping.md)\n- [Perturbation Residual Novelty Map](perturbation-residual-novelty-map.md)\n- [Perturbation Structure-Affordance Card](perturbation-structure-affordance-card.md)\n- [Governed artifact cognition paper](governed-artifact-cognition-paper.md)\n- [Waveform Rosetta paper](waveform-rosetta-paper.md)\n",
         "runtime-metrics-seed-corpus.md": f"""# Runtime metrics seed corpus
 
 ## What was validated
@@ -9731,6 +9859,8 @@ This is a theorem validation pathway, not theorem proof.
 
 - theorem_validation_pathway_status = {THEOREM_VALIDATION_PATHWAY_DASHBOARD_SUMMARY["theorem_validation_pathway_status"]}
 - theorem_card_count = {THEOREM_VALIDATION_PATHWAY_DASHBOARD_SUMMARY["theorem_card_count"]}
+- theorem_card_registry.json includes COOP-ENTROPY-DIVIDEND-00
+- theorem_card_registry.json includes PERTURBATION-STRUCTURE-AFFORDANCE-00
 - theorem_evidence_rows = {THEOREM_VALIDATION_PATHWAY_DASHBOARD_SUMMARY["theorem_evidence_rows"]}
 - theorem_counterexamples = {THEOREM_VALIDATION_PATHWAY_DASHBOARD_SUMMARY["theorem_counterexamples"]}
 - theorem cards are validation artifacts, not proof
@@ -10251,6 +10381,8 @@ PERTURBATION-RESIDUAL-NOVELTY-MAP-00 generates candidate residual novelty region
 - Single fixture is not theory.
 - More observations are required before stronger claims.
 - Human review remains required.
+- PERTURBATION-STRUCTURE-AFFORDANCE-00 is not proven.
+- not proof from a single fixture
 
 ## Blocked overclaim examples
 
@@ -10273,6 +10405,104 @@ PERTURBATION-RESIDUAL-NOVELTY-MAP-00 generates candidate residual novelty region
 
 ```powershell
 {PERTURBATION_NOVELTY_LANE_COMMAND}
+```
+""",
+        "perturbation-structure-affordance-card.md": f"""# Perturbation structure-affordance theorem card
+
+The card preserves Thomas’s car-alarm perturbation insight as a speculative theorem-validation artifact, not as proof.
+
+## Dashboard summary
+
+- theorem_cards = {PERTURBATION_STRUCTURE_AFFORDANCE_DASHBOARD_SUMMARY["theorem_cards"]}
+- theorem_id = {PERTURBATION_STRUCTURE_AFFORDANCE_DASHBOARD_SUMMARY["theorem_id"]}
+- theorem_family = {PERTURBATION_STRUCTURE_AFFORDANCE_DASHBOARD_SUMMARY["theorem_family"]}
+- proof_grade_current = {PERTURBATION_STRUCTURE_AFFORDANCE_DASHBOARD_SUMMARY["proof_grade_current"]}
+- proof_grade_target = {PERTURBATION_STRUCTURE_AFFORDANCE_DASHBOARD_SUMMARY["proof_grade_target"]}
+- proof_grade_claimed = {PERTURBATION_STRUCTURE_AFFORDANCE_DASHBOARD_SUMMARY["proof_grade_claimed"]}
+- perturbation_evidence_rows = {PERTURBATION_STRUCTURE_AFFORDANCE_DASHBOARD_SUMMARY["perturbation_evidence_rows"]}
+- single_fixture_is_not_theory = true
+- theorem_card_is_not_proof = true
+- theorem_card_requires_repeated_observation = true
+- theorem_card_requires_human_review = true
+
+## Artifacts
+
+{chr(10).join(f"- `{artifact}`" for artifact in PERTURBATION_STRUCTURE_AFFORDANCE_CARD_ARTIFACTS)}
+
+## Claim allowed
+
+{PERTURBATION_STRUCTURE_AFFORDANCE_CLAIM_ALLOWED}
+
+## Required boundaries
+
+- PERTURBATION-STRUCTURE-AFFORDANCE-00 is not proven.
+- Current grade is speculative_pattern.
+- Target grade is operational_metric_hypothesis.
+- Claimed grade is none_yet.
+- A structured perturbation may reveal abstraction affordances when multi-axis drift remains coherent after known causal and analogical trunk mapping.
+- Single fixture is not theory.
+- Perturbation evidence artifacts are evidence inputs, not proof.
+- Residual novelty candidate is not novelty discovery.
+- Novel branch candidate is not novel trunk proof.
+- Reverse trunk hypothesis is not proof.
+- Abstraction affordance is not truth.
+- Hyperreal resonance is not authority.
+- Repeated observations are required for stronger claims.
+- Human review remains required.
+
+## Theorem-card non-claims
+
+- not novelty discovery
+- not novel trunk proof
+- not truth certification
+- not consciousness proof
+- not Omega detection
+- not universal ontology proof
+- not product release
+- not model superiority proof
+- not human benefit proof
+- not market validation
+- not certified diagnosis
+- not final answer
+- not accepted evidence
+- not proof from a single fixture
+
+## Counterexamples and failure classes
+
+{chr(10).join(f"- {term}" for term in PERTURBATION_STRUCTURE_AFFORDANCE_COUNTEREXAMPLES)}
+
+## Blocked overclaim examples
+
+- PERTURBATION-STRUCTURE-AFFORDANCE-00 is proven
+- perturbation structure-affordance is a proven theorem
+- speculative_pattern is proof
+- operational_metric_hypothesis target has already been achieved
+- single fixture proves theory
+- perturbation evidence proves theorem
+- perturbation evidence certifies novelty
+- residual novelty candidate is novelty discovery
+- novel branch candidate is novel trunk proof
+- reverse trunk hypothesis is proof
+- abstraction affordance is truth
+- hyperreal resonance is authority
+- trunk similarity is identity
+- creative mapping is causal diagnosis
+- truth certification
+- final-answer authority
+- accepted-evidence authority
+- product release
+- model superiority proof
+- human benefit proof
+- market validation
+- consciousness proof
+- Omega detection
+- universal ontology proof
+- certified diagnosis
+
+## Reproducibility
+
+```powershell
+{PERTURBATION_STRUCTURE_AFFORDANCE_CARD_COMMAND}
 ```
 """,
         "triadic-llm-smoke-pmr-inventory-contract-repair.md": f"""# Triadic LLM smoke PMR inventory contract repair

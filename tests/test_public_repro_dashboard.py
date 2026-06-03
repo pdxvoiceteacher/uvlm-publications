@@ -81,6 +81,7 @@ REQUIRED_DOCS = {
     "perturbation-observation-capture.md",
     "perturbation-trunk-mapping.md",
     "perturbation-residual-novelty-map.md",
+    "perturbation-structure-affordance-card.md",
 }
 REQUIRED_PHASES = {
     "EXP-SUITE-REGISTRY-01",
@@ -179,6 +180,7 @@ REQUIRED_PHASES = {
     "PERTURBATION-OBSERVATION-CAPTURE-00",
     "PERTURBATION-TRUNK-MAPPING-00",
     "PERTURBATION-RESIDUAL-NOVELTY-MAP-00",
+    "PERTURBATION-STRUCTURE-AFFORDANCE-CARD-00",
 }
 
 REQUIRED_COMMAND_FRAGMENTS = (
@@ -3404,7 +3406,7 @@ def test_atlas_prototype_proxy_continuity_theorem_pages_are_generated(tmp_path):
 
     theorem = phase_by_id["THEOREM-VALIDATION-PATHWAY-00"]["dashboard_summary"]
     assert theorem["theorem_validation_pathway_status"] == "locally_validated"
-    assert theorem["theorem_card_count"] == 1
+    assert theorem["theorem_card_count"] == 2
     assert theorem["theorem_evidence_rows"] == 9
     assert theorem["theorem_counterexamples"] == 9
     assert theorem["theorem_cards_are_validation_artifacts_not_proof"] is True
@@ -4022,3 +4024,136 @@ def test_perturbation_novelty_lane_pages_and_registry_are_generated(tmp_path):
     assert status["perturbation_observation_capture_00_indexed"] is True
     assert status["perturbation_trunk_mapping_00_indexed"] is True
     assert status["perturbation_residual_novelty_map_00_indexed"] is True
+
+
+def test_perturbation_structure_affordance_card_page_and_registry_are_generated(tmp_path):
+    out_dir, docs_dir = run_builder(tmp_path)
+    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text())
+    reproducibility = json.loads((out_dir / "reproducibility_index.json").read_text())
+    artifact_index = json.loads((out_dir / "artifact_index.json").read_text())
+    claim_boundaries = json.loads((out_dir / "claim_boundary_index.json").read_text())
+    status = json.loads((out_dir / "status.json").read_text())
+    phase_by_id = {entry["phase_id"]: entry for entry in dashboard["accepted_phases"]}
+    reproducibility_text = json.dumps(reproducibility)
+    boundary_text = "\n".join(claim_boundaries["boundaries"])
+
+    phase = phase_by_id["PERTURBATION-STRUCTURE-AFFORDANCE-CARD-00"]
+    summary = phase["dashboard_summary"]
+    assert summary["theorem_cards"] == 2
+    assert summary["theorem_id"] == "PERTURBATION-STRUCTURE-AFFORDANCE-00"
+    assert summary["theorem_family"] == "perturbation_novelty_mapping"
+    assert summary["proof_grade_current"] == "speculative_pattern"
+    assert summary["proof_grade_target"] == "operational_metric_hypothesis"
+    assert summary["proof_grade_claimed"] == "none_yet"
+    assert summary["perturbation_evidence_rows"] == 9
+    assert summary["single_fixture_is_not_theory"] is True
+    assert summary["theorem_card_is_not_proof"] is True
+    assert summary["theorem_card_requires_repeated_observation"] is True
+    assert summary["theorem_card_requires_human_review"] is True
+
+    for artifact in (
+        "theorem_claim_registry.json",
+        "theorem_card_registry.json",
+        "theorem_evidence_ledger.json",
+        "theorem_counterexample_registry.json",
+        "theorem_non_claim_boundary_table.json",
+        "theorem_validation_receipt.md",
+        "perturbation_observation_packet.json",
+        "perturbation_axis_packet.json",
+        "perturbation_trunk_mapping_packet.json",
+        "trunk_similarity_heatmap.json",
+        "residual_novelty_candidate_map.json",
+        "novel_branch_candidate_packet.json",
+        "reverse_trunk_candidate_report.json",
+        "abstraction_candidate_report.json",
+        "novelty_human_review_packet.json",
+        "residual_novelty_boundary_table.json",
+    ):
+        assert artifact in artifact_index["phases"]["PERTURBATION-STRUCTURE-AFFORDANCE-CARD-00"]
+
+    for builder in (
+        "build_perturbation_observation_capture",
+        "build_perturbation_trunk_mapping",
+        "build_perturbation_residual_novelty_map",
+        "build_theorem_validation_pathway",
+    ):
+        assert builder in reproducibility_text
+
+    page_text = (docs_dir / "perturbation-structure-affordance-card.md").read_text(encoding="utf-8")
+    required_phrases = (
+        "The card preserves Thomas’s car-alarm perturbation insight as a speculative theorem-validation artifact, not as proof.",
+        "PERTURBATION-STRUCTURE-AFFORDANCE-00 is not proven.",
+        "Current grade is speculative_pattern.",
+        "Target grade is operational_metric_hypothesis.",
+        "Claimed grade is none_yet.",
+        "A structured perturbation may reveal abstraction affordances when multi-axis drift remains coherent after known causal and analogical trunk mapping.",
+        "Single fixture is not theory.",
+        "Perturbation evidence artifacts are evidence inputs, not proof.",
+        "Residual novelty candidate is not novelty discovery.",
+        "Novel branch candidate is not novel trunk proof.",
+        "Reverse trunk hypothesis is not proof.",
+        "Abstraction affordance is not truth.",
+        "Hyperreal resonance is not authority.",
+        "Repeated observations are required for stronger claims.",
+        "Human review remains required.",
+        "not novelty discovery",
+        "not novel trunk proof",
+        "not truth certification",
+        "not consciousness proof",
+        "not Omega detection",
+        "not universal ontology proof",
+        "not product release",
+        "not model superiority proof",
+        "not human benefit proof",
+        "not market validation",
+        "not certified diagnosis",
+        "not final answer",
+        "not accepted evidence",
+        "not proof from a single fixture",
+        "perturbation_mistaken_for_novelty",
+        "abstraction_affordance_mistaken_for_truth",
+        "hyperreal_resonance_mistaken_for_authority",
+        "residual_structure_mistaken_for_discovery",
+        "trunk_similarity_mistaken_for_identity",
+        "creative_mapping_mistaken_for_causal_diagnosis",
+        "novel_branch_candidate_mistaken_for_novel_trunk",
+        "single_fixture_mistaken_for_theory",
+    )
+    for phrase in required_phrases:
+        assert phrase in page_text
+        assert phrase in boundary_text
+
+    for phrase in (
+        "PERTURBATION-STRUCTURE-AFFORDANCE-00 is proven",
+        "perturbation structure-affordance is a proven theorem",
+        "speculative_pattern is proof",
+        "operational_metric_hypothesis target has already been achieved",
+        "single fixture proves theory",
+        "perturbation evidence proves theorem",
+        "perturbation evidence certifies novelty",
+        "residual novelty candidate is novelty discovery",
+        "novel branch candidate is novel trunk proof",
+        "reverse trunk hypothesis is proof",
+        "abstraction affordance is truth",
+        "hyperreal resonance is authority",
+        "trunk similarity is identity",
+        "creative mapping is causal diagnosis",
+        "truth certification",
+        "final-answer authority",
+        "accepted-evidence authority",
+        "product release",
+        "model superiority proof",
+        "human benefit proof",
+        "market validation",
+        "consciousness proof",
+        "Omega detection",
+        "universal ontology proof",
+        "certified diagnosis",
+    ):
+        assert phrase in page_text
+        assert phrase in boundary_text
+
+    assert status["perturbation_structure_affordance_card_00_indexed"] is True
+    assert status["not_perturbation_structure_affordance_proven"] is True
+    assert status["not_perturbation_structure_affordance_novelty_discovery"] is True
+    assert status["not_perturbation_structure_affordance_truth_certification"] is True
