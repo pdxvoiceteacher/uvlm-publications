@@ -5,7 +5,11 @@ import subprocess
 import sys
 from pathlib import Path
 
-from tools.build_public_repro_dashboard import _dedupe_accepted_phases
+from tools.build_public_repro_dashboard import (
+    PERTURBATION_STRUCTURE_AFFORDANCE_BLOCKED_CLAIM_PHRASES,
+    PERTURBATION_STRUCTURE_AFFORDANCE_REQUIRED_BOUNDARY_PHRASES,
+    _dedupe_accepted_phases,
+)
 from tools.validate_public_repro_dashboard import REQUIRED_PHASES as VALIDATOR_REQUIRED_PHASES
 from tools.validate_public_repro_dashboard import validate_dashboard
 
@@ -66,6 +70,22 @@ REQUIRED_DOCS = {
     "pmr-local-queryable-store.md",
     "retrosynthesis-readiness.md",
     "retrosynthesis-local-prototype.md",
+    "atlas-local-memory-admission-readiness.md",
+    "atlas-local-memory-admission-prototype.md",
+    "local-test-proxy-review.md",
+    "ai-context-performance-continuity.md",
+    "theorem-validation-pathway.md",
+    "coop-entropy-dividend.md",
+    "triadic-llm-metrics-smoke.md",
+    "ucc-sophia-control-forensics.md",
+    "ucc-standards-source-registry-and-materiality.md",
+    "triadic-llm-smoke-pmr-inventory-contract-repair.md",
+    "ai-forensics-dossier.md",
+    "human-review-ux.md",
+    "perturbation-observation-capture.md",
+    "perturbation-trunk-mapping.md",
+    "perturbation-residual-novelty-map.md",
+    "perturbation-structure-affordance-card.md",
 }
 REQUIRED_PHASES = {
     "EXP-SUITE-REGISTRY-01",
@@ -149,6 +169,22 @@ REQUIRED_PHASES = {
     "PMR-LOCAL-RUNTIME-QUERYABLE-STORE-00",
     "RETROSYNTHESIS-READINESS-00",
     "RETROSYNTHESIS-LOCAL-PROTOTYPE-00",
+    "ATLAS-LOCAL-MEMORY-ADMISSION-READINESS-00",
+    "ATLAS-LOCAL-MEMORY-ADMISSION-PROTOTYPE-00",
+    "HUMAN-REVIEW-PROXY-LOCAL-TESTING-00",
+    "AI-CONTEXT-PERFORMANCE-CONTINUITY-00",
+    "THEOREM-VALIDATION-PATHWAY-00",
+    "COOP-ENTROPY-DIVIDEND-00",
+    "TRIADIC-LLM-METRICS-SMOKE-00",
+    "UCC-SOPHIA-CONTROL-FORENSICS-00",
+    "UCC-STANDARDS-SOURCE-REGISTRY-AND-MATERIALITY-00",
+    "TRIADIC-LLM-SMOKE-PMR-INVENTORY-CONTRACT-REPAIR-REVISION",
+    "AI-FORENSICS-DOSSIER-00",
+    "HUMAN-REVIEW-UX-00",
+    "PERTURBATION-OBSERVATION-CAPTURE-00",
+    "PERTURBATION-TRUNK-MAPPING-00",
+    "PERTURBATION-RESIDUAL-NOVELTY-MAP-00",
+    "PERTURBATION-STRUCTURE-AFFORDANCE-CARD-00",
 }
 
 REQUIRED_COMMAND_FRAGMENTS = (
@@ -206,6 +242,18 @@ REQUIRED_COMMAND_FRAGMENTS = (
     "Run-RETROSYNTHESIS-READINESS00-Acceptance.ps1",
     "build_retrosynthesis_readiness_assessment",
     "build_retrosynthesis_local_prototype",
+    "Run-ATLAS-LOCAL-MEMORY-ADMISSION-READINESS00-Acceptance.ps1",
+    "build_atlas_local_memory_admission_readiness",
+    "build_atlas_local_memory_admission_prototype",
+    "build_local_test_proxy_review_receipt",
+    "build_ai_context_performance_continuity",
+    "build_theorem_validation_pathway",
+    "build_triadic_llm_metrics_smoke",
+    "build_sophia_ucc_control_review",
+    "build_ucc_standards_source_registry",
+    "build_ucc_materiality_profile",
+    "build_ucc_materiality_override_receipt",
+    "atlas_local_memory_admission_readiness",
 )
 STALE_COMMAND_FRAGMENTS = (
     "tests/test_sonya_aegis_smoke_02.py",
@@ -3156,3 +3204,945 @@ def test_retrosynthesis_local_prototype_indexes_and_docs_are_generated(tmp_path)
     assert status["not_local_prototype_federation"] is True
     assert status["not_local_prototype_product_release"] is True
     assert status["not_local_prototype_truth_certification"] is True
+
+
+
+def test_atlas_local_memory_admission_readiness_indexes_and_docs_are_generated(tmp_path):
+    out_dir, docs_dir = run_builder(tmp_path)
+    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text())
+    reproducibility = json.loads((out_dir / "reproducibility_index.json").read_text())
+    artifact_index = json.loads((out_dir / "artifact_index.json").read_text())
+    claim_boundaries = json.loads((out_dir / "claim_boundary_index.json").read_text())
+    status = json.loads((out_dir / "status.json").read_text())
+    page = (docs_dir / "atlas-local-memory-admission-readiness.md").read_text()
+    index = (docs_dir / "index.md").read_text()
+
+    phase = next(
+        entry
+        for entry in dashboard["accepted_phases"]
+        if entry["phase_id"] == "ATLAS-LOCAL-MEMORY-ADMISSION-READINESS-00"
+    )
+    assert phase["repo"] == "pdxvoiceteacher/CoherenceLattice"
+    assert phase["source_phase"] == "RETROSYNTHESIS-LOCAL-PROTOTYPE-00"
+    assert phase["status"] == "accepted_local_validation"
+    assert phase["publication_status"] == "dashboard_synced"
+    assert phase["authority_posture"] == "non_authoritative"
+    assert phase["public_claim_boundary"] == "readiness_only_local_review_gate_no_memory_write"
+    summary = phase["dashboard_summary"]
+    assert summary["readiness_status"] == "ready_for_bounded_atlas_memory_admission_prototype"
+    assert summary["readiness_status"] != "ready_for_local_review_only_admission_gate"
+    assert summary["source_prototype_status"] == "completed_candidate_generation"
+    assert summary["readiness_score"] == 1
+    assert summary["recommended_next_phase"] == "ATLAS-LOCAL-MEMORY-ADMISSION-PROTOTYPE-00"
+    assert summary["readiness_dimensions"] == 21
+    assert summary["readiness_dimension_count"] == 21
+    assert summary["readiness_dimension_count"] != 12
+    assert summary["failed_checks"] == 0
+    assert summary["blocking_reasons"] == 0
+    assert summary["candidate_hypotheses"] == 7
+    assert summary["candidate_repair_plans"] == 3
+    assert summary["pattern_observations"] == 5
+    assert summary["local_review_only"] is True
+    assert summary["atlas_memory_admission_performed"] is False
+    assert summary["atlas_memory_write_performed"] is False
+    assert summary["atlas_memory_candidate_written"] is False
+    assert summary["memory_candidate_write_performed"] is False
+    assert summary["memory_admission_performed"] is False
+    assert summary["federation_performed"] is False
+    assert summary["product_release_performed"] is False
+    assert summary["final_answer_emitted"] is False
+    assert summary["truth_certification_emitted"] is False
+    for artifact in (
+        "atlas_local_memory_admission_readiness_packet.json",
+        "atlas_local_memory_admission_readiness_checklist.json",
+        "atlas_local_memory_admission_readiness_receipt.json",
+        "atlas_local_memory_admission_readiness_summary.md",
+    ):
+        assert artifact in artifact_index["phases"]["ATLAS-LOCAL-MEMORY-ADMISSION-READINESS-00"]
+    reproducibility_text = json.dumps(reproducibility)
+    for fragment in (
+        "Run-ATLAS-LOCAL-MEMORY-ADMISSION-READINESS00-Acceptance.ps1",
+        "build_runtime_metrics_seed_corpus",
+        "build_pmr_local_query_store",
+        "build_retrosynthesis_readiness_assessment",
+        "build_retrosynthesis_local_prototype",
+        "build_atlas_local_memory_admission_readiness",
+        "atlas_local_memory_admission_readiness",
+        "atlas_local_memory_admission_readiness_00",
+        r"C:\\UVLM",
+    ):
+        assert fragment in reproducibility_text
+    assert "atlas-local-memory-admission-readiness.md" in index
+    stale_builder = "build_atlas_memory_admission_readiness"
+    assert stale_builder not in page
+    assert stale_builder not in reproducibility_text
+    assert stale_builder not in json.dumps(dashboard)
+    for phrase in (
+        "ATLAS-LOCAL-MEMORY-ADMISSION-READINESS-00 records Atlas memory admission readiness",
+        "This is Atlas memory admission readiness, not Atlas memory admission.",
+        "readiness_status = ready_for_bounded_atlas_memory_admission_prototype",
+        "readiness_score = 1",
+        "recommended_next_phase = ATLAS-LOCAL-MEMORY-ADMISSION-PROTOTYPE-00",
+        "readiness_dimensions = 21",
+        "readiness_dimension_count = 21",
+        "candidate_hypotheses = 7",
+        "candidate_repair_plans = 3",
+        "pattern_observations = 5",
+        "atlas_memory_admission_performed = false",
+        "atlas_memory_write_performed = false",
+        "atlas_memory_candidate_written = false",
+        "memory_admission_performed = false",
+        "No Atlas memory write occurred.",
+        "No Atlas memory admission occurred.",
+        "No memory candidate was written.",
+        "No federation occurred.",
+        "No product release occurred.",
+        "No final answer was emitted.",
+        "No truth certification occurred.",
+        "No accepted evidence was emitted.",
+        "No Omega detection occurred.",
+        "No consciousness proof occurred.",
+        "Human review is required before any future Atlas memory admission prototype.",
+        "Run-ATLAS-LOCAL-MEMORY-ADMISSION-READINESS00-Acceptance.ps1",
+        "from coherence.atlas.local_memory_admission_readiness import build_atlas_local_memory_admission_readiness",
+        "build_atlas_local_memory_admission_readiness",
+        "atlas_local_memory_admission_readiness",
+        "C:\\UVLM is a local validation example, not product default",
+    ):
+        assert phrase in page
+    boundary_text = "\n".join(claim_boundaries["boundaries"])
+    assert "ATLAS-LOCAL-MEMORY-ADMISSION-READINESS-00 is Atlas memory admission readiness, not Atlas memory admission." in boundary_text
+    assert "ATLAS-LOCAL-MEMORY-ADMISSION-READINESS-00 is not Atlas memory write." in boundary_text
+    assert "ATLAS-LOCAL-MEMORY-ADMISSION-READINESS-00 is not memory candidate write." in boundary_text
+    assert status["atlas_local_memory_admission_readiness_00_indexed"] is True
+    assert status["not_atlas_memory_admission_readiness_memory_write"] is True
+    assert status["not_atlas_memory_admission_readiness_atlas_memory_admission"] is True
+    assert status["not_atlas_memory_admission_readiness_memory_candidate_write"] is True
+    assert status["not_atlas_memory_admission_readiness_product_release"] is True
+    assert status["not_atlas_memory_admission_readiness_federation"] is True
+    assert status["not_atlas_memory_admission_readiness_truth_certification"] is True
+
+
+
+def test_atlas_prototype_proxy_continuity_theorem_pages_are_generated(tmp_path):
+    out_dir, docs_dir = run_builder(tmp_path)
+    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text())
+    reproducibility = json.loads((out_dir / "reproducibility_index.json").read_text())
+    artifact_index = json.loads((out_dir / "artifact_index.json").read_text())
+    claim_boundaries = json.loads((out_dir / "claim_boundary_index.json").read_text())
+    status = json.loads((out_dir / "status.json").read_text())
+    phase_by_id = {entry["phase_id"]: entry for entry in dashboard["accepted_phases"]}
+    reproducibility_text = json.dumps(reproducibility)
+    boundary_text = "\n".join(claim_boundaries["boundaries"])
+
+    required_builders = (
+        "build_runtime_metrics_seed_corpus",
+        "build_pmr_local_query_store",
+        "build_retrosynthesis_readiness_assessment",
+        "build_retrosynthesis_local_prototype",
+        "build_atlas_local_memory_admission_readiness",
+        "build_atlas_local_memory_admission_prototype",
+        "build_local_test_proxy_review_receipt",
+        "build_ai_context_performance_continuity",
+        "build_theorem_validation_pathway",
+    )
+    last = -1
+    for builder in required_builders:
+        position = reproducibility_text.find(builder)
+        assert position != -1, builder
+        assert position > last, builder
+        last = position
+
+    atlas = phase_by_id["ATLAS-LOCAL-MEMORY-ADMISSION-PROTOTYPE-00"]
+    atlas_summary = atlas["dashboard_summary"]
+    assert atlas_summary["prototype_status"] == "completed_candidate_admission_review"
+    assert atlas_summary["candidate_admission_reviews_not_atlas_memory_admission"] is True
+    assert atlas_summary["candidate_admission_reviews_not_memory_write"] is True
+    assert atlas_summary["candidate_admission_reviews_not_memory_candidates"] is True
+    assert atlas_summary["human_review_required"] is True
+    assert atlas_summary["atlas_memory_admission_performed"] is False
+    assert atlas_summary["atlas_memory_write_performed"] is False
+    assert atlas_summary["atlas_memory_candidate_written"] is False
+    assert atlas_summary["product_release_performed"] is False
+    for artifact in (
+        "atlas_local_memory_admission_prototype_packet.json",
+        "atlas_candidate_admission_reviews.jsonl",
+        "atlas_admission_eligibility_assessments.jsonl",
+        "atlas_local_memory_admission_prototype_receipt.json",
+        "atlas_local_memory_admission_prototype_summary.md",
+    ):
+        assert artifact in artifact_index["phases"]["ATLAS-LOCAL-MEMORY-ADMISSION-PROTOTYPE-00"]
+
+    proxy = phase_by_id["HUMAN-REVIEW-PROXY-LOCAL-TESTING-00"]["dashboard_summary"]
+    assert proxy["review_mode"] == "local_test_proxy_only"
+    assert proxy["receipt_status"] == "emitted_local_test_proxy_only"
+    assert proxy["human_review_required"] is True
+    assert proxy["human_review_satisfied_for_local_test"] is True
+    assert proxy["product_human_review_completed"] is False
+    assert proxy["atlas_memory_admission_approved"] is False
+    assert proxy["memory_write_approved"] is False
+    assert proxy["deployment_approved"] is False
+    assert proxy["federation_approved"] is False
+    assert proxy["final_answer_approved"] is False
+    assert proxy["accepted_evidence_approved"] is False
+    assert proxy["truth_certification_approved"] is False
+    assert "local_test_proxy_review_receipt.json" in artifact_index["phases"]["HUMAN-REVIEW-PROXY-LOCAL-TESTING-00"]
+
+    continuity = phase_by_id["AI-CONTEXT-PERFORMANCE-CONTINUITY-00"]["dashboard_summary"]
+    assert continuity["waiting_status"] == "WAITING_FOR_LOCAL_VALIDATION"
+    assert continuity["context_pressure_level"] == "high"
+    assert continuity["recommended_handoff_now"] is True
+    assert continuity["continuity_packet_is_not_memory_write"] is True
+    assert continuity["continuity_packet_is_not_truth_certification"] is True
+    assert continuity["continuity_packet_is_not_product_release"] is True
+    assert continuity["live_chat_is_not_primary_memory_substrate"] is True
+    assert continuity["repo_persisted_continuity_is_durable_handoff_substrate"] is True
+    for artifact in (
+        "ai_context_continuity_packet.json",
+        "active_phase_focus_packet.json",
+        "validation_status_snapshot.json",
+        "assistant_handoff_summary.md",
+        "expired_or_external_file_manifest.json",
+        "open_patch_queue.json",
+        "context_budget_recommendation.md",
+    ):
+        assert artifact in artifact_index["phases"]["AI-CONTEXT-PERFORMANCE-CONTINUITY-00"]
+
+    theorem = phase_by_id["THEOREM-VALIDATION-PATHWAY-00"]["dashboard_summary"]
+    assert theorem["theorem_validation_pathway_status"] == "locally_validated"
+    assert theorem["theorem_card_count"] == 2
+    assert theorem["theorem_evidence_rows"] == 9
+    assert theorem["theorem_counterexamples"] == 9
+    assert theorem["theorem_cards_are_validation_artifacts_not_proof"] is True
+    assert theorem["theorem_evidence_inputs_are_not_proof"] is True
+    assert theorem["truth_certification_occurred"] is False
+    assert theorem["product_release_occurred"] is False
+    assert theorem["universal_ontology_proof_occurred"] is False
+    assert theorem["consciousness_proof_occurred"] is False
+    for artifact in (
+        "theorem_claim_registry.json",
+        "theorem_card_registry.json",
+        "theorem_evidence_ledger.json",
+        "theorem_counterexample_registry.json",
+        "theorem_non_claim_boundary_table.json",
+        "theorem_validation_receipt.md",
+    ):
+        assert artifact in artifact_index["phases"]["THEOREM-VALIDATION-PATHWAY-00"]
+
+    coop = phase_by_id["COOP-ENTROPY-DIVIDEND-00"]["dashboard_summary"]
+    assert coop["theorem_id"] == "COOP-ENTROPY-DIVIDEND-00"
+    assert coop["proof_grade_current"] == "operational_metric_hypothesis"
+    assert coop["proof_grade_target"] == "repeated_empirical_evidence"
+    assert coop["proof_grade_claimed"] == "none_yet"
+    assert coop["current_status"] == "scaffolded theorem card, not proven theorem"
+
+    page_expectations = {
+        "atlas-local-memory-admission-prototype.md": (
+            "This is a bounded Atlas local memory admission prototype.",
+            "Candidate admission reviews were generated.",
+            "Candidate admission reviews are not Atlas memory admission.",
+            "Candidate admission reviews are not Atlas memory write.",
+            "Candidate admission reviews are not memory candidates.",
+            "No Atlas memory write occurred.",
+            "No Atlas memory admission occurred.",
+            "No memory candidate was written.",
+            "No Atlas memory entry was written.",
+            "Human review is required before any future Atlas memory admission.",
+        ),
+        "local-test-proxy-review.md": (
+            "Local-test proxy review is for deterministic local development validation only.",
+            "Proxy review is not product human review.",
+            "Proxy review is not Atlas admission approval.",
+            "Proxy review is not memory write approval.",
+            "Real human review is required before product use or actual memory admission.",
+        ),
+        "ai-context-performance-continuity.md": (
+            "Live chat is not the primary memory substrate.",
+            "Repo-persisted continuity artifacts preserve handoff state.",
+            "Known files may exist even when not currently accessible.",
+            "Context pressure can trigger recommended handoff.",
+            "Continuity packets are not memory write.",
+        ),
+        "theorem-validation-pathway.md": (
+            "This is a theorem validation pathway, not theorem proof.",
+            "Theorem cards are not proof.",
+            "Evidence ledger entries are evidence inputs, not proof.",
+            "semantic_promotion_without_evidence is a failure class.",
+        ),
+        "coop-entropy-dividend.md": (
+            "COOP-ENTROPY-DIVIDEND-00 is not proven.",
+            "Current grade is operational_metric_hypothesis.",
+            "Claimed grade is none_yet.",
+            "Target grade is repeated_empirical_evidence.",
+            "Repeated runs and external replication are required.",
+            "It is not universal ontology proof.",
+        ),
+    }
+    for page_name, phrases in page_expectations.items():
+        text = (docs_dir / page_name).read_text(encoding="utf-8")
+        for phrase in phrases:
+            assert phrase in text
+
+    for phrase in (
+        "ATLAS-LOCAL-MEMORY-ADMISSION-PROTOTYPE-00 generates candidate admission reviews",
+        "HUMAN-REVIEW-PROXY-LOCAL-TESTING-00 provides local deterministic development proxy review only",
+        "AI-CONTEXT-PERFORMANCE-CONTINUITY-00 records repo-persisted continuity",
+        "THEOREM-VALIDATION-PATHWAY-00 creates theorem cards",
+        "COOP-ENTROPY-DIVIDEND-00 is scaffolded as an operational metric hypothesis",
+    ):
+        assert phrase in boundary_text
+
+    assert status["atlas_local_memory_admission_prototype_00_indexed"] is True
+    assert status["human_review_proxy_local_testing_00_indexed"] is True
+    assert status["ai_context_performance_continuity_00_indexed"] is True
+    assert status["theorem_validation_pathway_00_indexed"] is True
+    assert status["coop_entropy_dividend_00_indexed"] is True
+
+
+
+def test_triadic_llm_ucc_source_materiality_pages_are_generated(tmp_path):
+    out_dir, docs_dir = run_builder(tmp_path)
+    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text())
+    reproducibility = json.loads((out_dir / "reproducibility_index.json").read_text())
+    artifact_index = json.loads((out_dir / "artifact_index.json").read_text())
+    claim_boundaries = json.loads((out_dir / "claim_boundary_index.json").read_text())
+    status = json.loads((out_dir / "status.json").read_text())
+    phase_by_id = {entry["phase_id"]: entry for entry in dashboard["accepted_phases"]}
+    reproducibility_text = json.dumps(reproducibility)
+    boundary_text = "\n".join(claim_boundaries["boundaries"])
+
+    for builder in (
+        "build_triadic_llm_metrics_smoke",
+        "build_sophia_ucc_control_review",
+        "build_ucc_standards_source_registry",
+        "build_ucc_materiality_profile",
+        "build_ucc_materiality_override_receipt",
+    ):
+        assert builder in reproducibility_text
+
+    smoke = phase_by_id["TRIADIC-LLM-METRICS-SMOKE-00"]["dashboard_summary"]
+    assert smoke["smoke_status"] == "completed"
+    assert smoke["span_linked_claim_count"] == 1
+    assert smoke["unsupported_claim_count"] == 1
+    assert smoke["raw_model_output_final_answer"] is False
+    assert smoke["provider_runtime_performed"] is False
+    assert smoke["product_release_performed"] is False
+    assert smoke["final_answer_emitted"] is False
+    assert smoke["truth_certification_emitted"] is False
+    assert smoke["memory_write_performed"] is False
+    assert smoke["atlas_memory_admission_performed"] is False
+    for artifact in (
+        "llm_metrics_smoke_request.json",
+        "sonya_model_candidate_packet.json",
+        "source_integrity_packet.json",
+        "source_span_map.json",
+        "claim_classification_packet.json",
+        "claim_evidence_map.json",
+        "unsupported_claim_report.json",
+        "coherence_runtime_metrics_packet.json",
+        "coherence_action_functional_packet.json",
+        "ai_decision_trace_packet.json",
+        "review_receipt.md",
+        "llm_metrics_smoke_receipt.json",
+    ):
+        assert artifact in artifact_index["phases"]["TRIADIC-LLM-METRICS-SMOKE-00"]
+
+    ucc = phase_by_id["UCC-SOPHIA-CONTROL-FORENSICS-00"]["dashboard_summary"]
+    assert ucc["ucc_profile_id"] == "local_forensic_controls_fixture_v0"
+    assert ucc["control_source_type"] == "synthetic_fixture"
+    assert ucc["control_review_status"] == "completed_diagnostic_review"
+    assert ucc["satisfied_control_count"] == 5
+    assert ucc["failed_control_count"] == 0
+    assert ucc["partial_control_count"] == 0
+    assert ucc["uncertain_control_count"] == 1
+    assert ucc["control_review_is_not_compliance_certification"] is True
+    assert ucc["control_review_is_not_professional_attestation"] is True
+    assert ucc["control_review_is_not_truth_certification"] is True
+    assert ucc["control_review_requires_human_review"] is True
+    for artifact in (
+        "ucc_control_profile_packet.json",
+        "ucc_control_selection_receipt.json",
+        "sophia_ucc_control_review_packet.json",
+        "ucc_control_evidence_map.json",
+        "ucc_control_gap_report.json",
+        "ucc_control_non_certification_boundary_table.json",
+        "ucc_control_review_summary.md",
+    ):
+        assert artifact in artifact_index["phases"]["UCC-SOPHIA-CONTROL-FORENSICS-00"]
+
+    source = phase_by_id["UCC-STANDARDS-SOURCE-REGISTRY-AND-MATERIALITY-00"]["dashboard_summary"]
+    assert source["source_profile_count"] == 2
+    assert source["active_design_fixture_ref"] == "local_forensic_controls_fixture_v0"
+    assert source["real_world_reference_example_ref"] == "nist_csf_2_0_reference"
+    assert source["nist_reference_is_marketing_example_only"] is True
+    assert source["nist_source_text_stored"] is False
+    assert source["nist_materiality_profile_applied"] is False
+    assert source["active_source_rows_are_synthetic_fixture_and_nist_reference_only"] is True
+    assert source["materiality_override_control"] == "uncertainty_visible"
+    assert source["prior_materiality"] == "medium"
+    assert source["override_materiality"] == "high"
+    assert source["override_is_ad_hoc"] is True
+    assert source["override_is_not_certification"] is True
+    assert source["override_does_not_modify_source_standard"] is True
+    for artifact in (
+        "ucc_standards_source_registry.json",
+        "ucc_materiality_profile.json",
+        "ucc_materiality_override_receipt.json",
+        "ucc_standards_source_registry_summary.md",
+    ):
+        assert artifact in artifact_index["phases"]["UCC-STANDARDS-SOURCE-REGISTRY-AND-MATERIALITY-00"]
+
+    repair = phase_by_id["TRIADIC-LLM-SMOKE-PMR-INVENTORY-CONTRACT-REPAIR-REVISION"]["dashboard_summary"]
+    assert repair["sonya_model_candidate_packet_pmr_visible"] is True
+    assert repair["triadic_llm_smoke_artifacts_inventory_visible"] is True
+    assert repair["triadic_llm_smoke_artifacts_parity_visible"] is True
+    assert repair["visibility_repair_creates_final_answer_authority"] is False
+    assert repair["visibility_repair_creates_provider_runtime"] is False
+    assert repair["visibility_repair_creates_product_release"] is False
+
+    page_expectations = {
+        "triadic-llm-metrics-smoke.md": (
+            "raw model output is not final answer",
+            "Sonya model candidate is not final answer",
+            "raw model output is final answer",
+            "Raw model output is not final answer.",
+            "Sonya model candidate packet is candidate-only.",
+            "At least one claim is source-span linked.",
+            "At least one unsupported claim is visible.",
+            "Metrics are diagnostic and non-authoritative.",
+            "No provider runtime occurred.",
+            "No product release occurred.",
+            "No memory write occurred.",
+            "No truth certification occurred.",
+        ),
+        "ucc-sophia-control-forensics.md": (
+            "UCC/Sophia control review is diagnostic, not certification.",
+            "UCC control review is not legal compliance certification.",
+            "UCC control review is not audit opinion.",
+            "UCC control review is not professional attestation.",
+            "UCC control review is not clinical certification.",
+            "UCC control review is not academic endorsement.",
+            "UCC control review is not truth certification.",
+            "UCC control review is not final answer authority.",
+            "UCC control review is not product release.",
+            "UCC control review requires human review.",
+        ),
+        "ucc-standards-source-registry-and-materiality.md": (
+            "Synthetic fixture proves universal internal-control design.",
+            "NIST CSF 2.0 is included as a reference-only real-world applicability example.",
+            "NIST control text is not ingested.",
+            "NIST reference is not compliance certification.",
+            "No AICPA, COSO, PRISMA, ISO, SOC, PCAOB, clinical, legal, or academic standards are ingested in this patch.",
+            "User overrides do not modify the source standard.",
+            "User overrides are not professional judgment.",
+            "User overrides are not certification.",
+            "Human review remains required.",
+        ),
+        "triadic-llm-smoke-pmr-inventory-contract-repair.md": (
+            "sonya_model_candidate_packet.json is PMR-visible.",
+            "Triadic LLM smoke artifacts are inventory-visible and parity-visible.",
+            "Visibility repair does not create final-answer authority.",
+            "Visibility repair does not create provider runtime or product release.",
+        ),
+    }
+    for page_name, phrases in page_expectations.items():
+        text = (docs_dir / page_name).read_text(encoding="utf-8")
+        for phrase in phrases:
+            assert phrase in text
+
+    required_blocked_overclaims = (
+        "Atlas memory admission occurred",
+        "Atlas memory write occurred",
+        "memory candidate was written",
+        "raw model output is final answer",
+        "UCC review certifies compliance",
+        "NIST compliance is certified",
+        "NIST controls were ingested",
+        "theorem validation proves theorem",
+        "COOP-ENTROPY-DIVIDEND-00 is proven",
+        "evidence ledger certifies truth",
+        "Omega detection",
+        "product release",
+        "provider runtime",
+        "population calibration",
+    )
+    for phrase in required_blocked_overclaims:
+        assert phrase in boundary_text
+
+    for phrase in (
+        "TRIADIC-LLM-METRICS-SMOKE-00 demonstrates a local candidate-to-forensic-review smoke",
+        "raw model output is not final answer",
+        "Sonya model candidate is not final answer",
+        "UCC-SOPHIA-CONTROL-FORENSICS-00 applies a synthetic UCC fixture as diagnostic control review",
+        "UCC-STANDARDS-SOURCE-REGISTRY-AND-MATERIALITY-00 provides universal source-profile",
+        "NIST source text is not ingested.",
+        "Visibility repair does not create final-answer authority.",
+    ):
+        assert phrase in boundary_text
+
+    assert status["triadic_llm_metrics_smoke_00_indexed"] is True
+    assert status["ucc_sophia_control_forensics_00_indexed"] is True
+    assert status["ucc_standards_source_registry_and_materiality_00_indexed"] is True
+    assert status["triadic_llm_smoke_pmr_inventory_contract_repair_revision_indexed"] is True
+
+
+def test_ai_forensics_dossier_page_and_registry_are_generated(tmp_path):
+    out_dir, docs_dir = run_builder(tmp_path)
+    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text())
+    reproducibility = json.loads((out_dir / "reproducibility_index.json").read_text())
+    artifact_index = json.loads((out_dir / "artifact_index.json").read_text())
+    claim_boundaries = json.loads((out_dir / "claim_boundary_index.json").read_text())
+    status = json.loads((out_dir / "status.json").read_text())
+    phase_by_id = {entry["phase_id"]: entry for entry in dashboard["accepted_phases"]}
+    reproducibility_text = json.dumps(reproducibility)
+    boundary_text = "\n".join(claim_boundaries["boundaries"])
+
+    assert "AI-FORENSICS-DOSSIER-00" in phase_by_id
+    dossier = phase_by_id["AI-FORENSICS-DOSSIER-00"]["dashboard_summary"]
+    assert dossier["dossier_status"] == "completed"
+    assert dossier["dossier_mode"] == "user_facing_forensic_summary"
+    assert dossier["dossier_sections"] == 16
+    assert dossier["span_linked_claim_count"] == 1
+    assert dossier["unsupported_claim_count"] == 1
+    assert dossier["satisfied_control_count"] == 5
+    assert dossier["uncertain_control_count"] == 1
+    assert dossier["source_profile_count"] == 2
+    assert dossier["nist_reference_only"] is True
+    assert dossier["nist_source_text_stored"] is False
+    assert dossier["human_review_required"] is True
+    for flag in (
+        "raw_model_output_final_answer",
+        "final_answer_emitted",
+        "accepted_evidence_emitted",
+        "truth_certification_emitted",
+        "compliance_certification_emitted",
+        "audit_opinion_emitted",
+        "professional_attestation_emitted",
+        "product_release_performed",
+        "provider_runtime_performed",
+        "memory_write_performed",
+        "atlas_memory_admission_performed",
+    ):
+        assert dossier[flag] is False
+
+    for artifact in (
+        "ai_forensics_dossier_packet.json",
+        "ai_forensics_dossier_section_index.json",
+        "ai_forensics_dossier.md",
+        "ai_forensics_dossier_receipt.json",
+    ):
+        assert artifact in artifact_index["phases"]["AI-FORENSICS-DOSSIER-00"]
+
+    for builder in (
+        "build_triadic_llm_metrics_smoke",
+        "build_sophia_ucc_control_review",
+        "build_ai_forensics_dossier",
+    ):
+        assert builder in reproducibility_text
+
+    page = docs_dir / "ai-forensics-dossier.md"
+    assert page.exists()
+    page_text = page.read_text(encoding="utf-8")
+    required_page_phrases = (
+        "Triadic Brain turns AI outputs into auditable, source-linked, control-aware forensic dossiers.",
+        "The dossier is AI process forensics.",
+        "The dossier is not model mind-reading.",
+        "The dossier is not hidden chain-of-thought disclosure.",
+        "This dossier is not a final answer.",
+        "This dossier is not truth certification.",
+        "This dossier is not compliance certification.",
+        "This dossier is not audit opinion.",
+        "This dossier is not professional attestation.",
+        "Raw model output is not final answer.",
+        "UCC control review is diagnostic, not certification.",
+        "NIST CSF 2.0 is reference-only in this run.",
+        "NIST control text is not ingested.",
+        "Materiality override does not modify the source standard.",
+        "Human review remains required.",
+        "No provider runtime occurred.",
+        "No product release occurred.",
+        "No memory write occurred.",
+        "No Atlas memory admission occurred.",
+        "AI Forensics Dossier is final answer",
+        "AI Forensics Dossier certifies truth",
+        "AI Forensics Dossier certifies compliance",
+        "AI Forensics Dossier is audit opinion",
+        "AI Forensics Dossier is professional attestation",
+        "AI Forensics Dossier reveals hidden chain of thought",
+        "AI Forensics Dossier performs model mind-reading",
+    )
+    for phrase in required_page_phrases:
+        assert phrase in page_text
+        assert phrase in boundary_text or phrase in page_text
+
+    assert "AI-FORENSICS-DOSSIER-00 packages a local AI candidate" in boundary_text
+    assert status["ai_forensics_dossier_00_indexed"] is True
+    assert status["not_ai_forensics_dossier_final_answer"] is True
+    assert status["not_ai_forensics_dossier_truth_certification"] is True
+    assert status["not_ai_forensics_dossier_compliance_certification"] is True
+    assert status["not_ai_forensics_dossier_provider_runtime"] is True
+
+
+def test_human_review_ux_page_and_registry_are_generated(tmp_path):
+    out_dir, docs_dir = run_builder(tmp_path)
+    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text())
+    reproducibility = json.loads((out_dir / "reproducibility_index.json").read_text())
+    artifact_index = json.loads((out_dir / "artifact_index.json").read_text())
+    claim_boundaries = json.loads((out_dir / "claim_boundary_index.json").read_text())
+    status = json.loads((out_dir / "status.json").read_text())
+    phase_by_id = {entry["phase_id"]: entry for entry in dashboard["accepted_phases"]}
+    reproducibility_text = json.dumps(reproducibility)
+    boundary_text = "\n".join(claim_boundaries["boundaries"])
+
+    assert "HUMAN-REVIEW-UX-00" in phase_by_id
+    review = phase_by_id["HUMAN-REVIEW-UX-00"]["dashboard_summary"]
+    assert review["review_status"] == "completed"
+    assert review["review_mode"] == "human_review_dossier_ux"
+    assert review["review_sections"] == 11
+    assert review["allowed_decisions"] == 6
+    assert review["default_decision"] == "needs_more_evidence"
+    assert review["human_review_occurred"] is True
+    assert review["local_test_mode"] is True
+    for flag in (
+        "product_human_review_completed",
+        "final_answer_approved",
+        "accepted_evidence_approved",
+        "truth_certification_approved",
+        "compliance_certification_approved",
+        "audit_opinion_approved",
+        "professional_attestation_approved",
+        "product_release_approved",
+        "provider_runtime_approved",
+        "memory_write_approved",
+        "atlas_memory_admission_approved",
+    ):
+        assert review[flag] is False
+    for decision in (
+        "approve_for_local_next_step",
+        "request_revision",
+        "reject_candidate",
+        "defer_review",
+        "needs_more_evidence",
+        "escalate_to_professional_review",
+    ):
+        assert decision in review["allowed_decision_values"]
+
+    for artifact in (
+        "human_review_ux_packet.json",
+        "human_review_action_menu.json",
+        "human_review_decision_receipt.json",
+        "human_review_summary.md",
+    ):
+        assert artifact in artifact_index["phases"]["HUMAN-REVIEW-UX-00"]
+
+    for builder in (
+        "build_triadic_llm_metrics_smoke",
+        "build_sophia_ucc_control_review",
+        "build_ai_forensics_dossier",
+        "build_human_review_ux_packet",
+    ):
+        assert builder in reproducibility_text
+
+    page = docs_dir / "human-review-ux.md"
+    assert page.exists()
+    page_text = page.read_text(encoding="utf-8")
+    required_page_phrases = (
+        "Human Review UX presents an AI Forensics Dossier for bounded review.",
+        "The reviewer inspected an AI Forensics Dossier.",
+        "The default local-test decision is needs_more_evidence.",
+        "Human review remains bounded by the selected action.",
+        "The review decision is not final-answer authority.",
+        "The review decision is not truth certification.",
+        "The review decision is not compliance certification.",
+        "The review decision is not audit opinion.",
+        "The review decision is not professional attestation.",
+        "The review decision is not product release.",
+        "The review decision is not memory write.",
+        "The review decision is not Atlas memory admission.",
+        "Professional or compliance use requires appropriate qualified review.",
+        "Product human review is not completed in local test mode.",
+        "Human Review UX creates final answer authority",
+        "Human Review UX certifies truth",
+        "Human Review UX certifies compliance",
+        "Human Review UX is audit opinion",
+        "Human Review UX is professional attestation",
+        "Human Review UX approves product release",
+        "Human Review UX approves provider runtime",
+        "Human Review UX approves memory write",
+        "Human Review UX approves Atlas memory admission",
+        "local test review is product human review",
+        "needs_more_evidence is approval",
+        "approve_for_local_next_step is final answer approval",
+        "escalate_to_professional_review is professional attestation",
+    )
+    for phrase in required_page_phrases:
+        assert phrase in page_text
+    assert "HUMAN-REVIEW-UX-00 presents an AI Forensics Dossier" in boundary_text
+    assert status["human_review_ux_00_indexed"] is True
+    assert status["not_human_review_ux_final_answer_authority"] is True
+    assert status["not_human_review_ux_truth_certification"] is True
+    assert status["not_human_review_ux_compliance_certification"] is True
+
+
+def test_perturbation_novelty_lane_pages_and_registry_are_generated(tmp_path):
+    out_dir, docs_dir = run_builder(tmp_path)
+    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text())
+    reproducibility = json.loads((out_dir / "reproducibility_index.json").read_text())
+    artifact_index = json.loads((out_dir / "artifact_index.json").read_text())
+    claim_boundaries = json.loads((out_dir / "claim_boundary_index.json").read_text())
+    status = json.loads((out_dir / "status.json").read_text())
+    phase_by_id = {entry["phase_id"]: entry for entry in dashboard["accepted_phases"]}
+    reproducibility_text = json.dumps(reproducibility)
+    boundary_text = "\n".join(claim_boundaries["boundaries"])
+
+    observation = phase_by_id["PERTURBATION-OBSERVATION-CAPTURE-00"]["dashboard_summary"]
+    assert observation["observation_status"] == "captured"
+    assert observation["perturbation_fixture_id"] == "synthetic_signal_decay_perturbation_fixture_v0"
+    assert observation["observed_signal_type"] == "acoustic_symbolic_fixture"
+    assert observation["source_cause_candidate"] == "energy-constrained signal drift"
+    assert observation["causal_diagnosis_candidate"] is True
+    assert observation["abstraction_affordance_candidate"] is True
+    assert observation["axis_count"] == 9
+    assert observation["novelty_detection_performed"] is False
+    assert observation["trunk_mapping_performed"] is False
+    assert observation["residual_novelty_claimed"] is False
+
+    trunk = phase_by_id["PERTURBATION-TRUNK-MAPPING-00"]["dashboard_summary"]
+    assert trunk["mapping_status"] == "completed"
+    assert trunk["mapping_mode"] == "known_trunk_mapping_only"
+    assert trunk["trunk_count"] == 7
+    assert trunk["mapped_trunk_count"] == 7
+    assert trunk["top_trunk_candidate"] == "electrical_decay_trunk"
+    assert trunk["top_trunk_similarity_score"] == 0.88
+    assert trunk["heatmap_rows"] == 63
+    assert trunk["residual_novelty_mapping_performed"] is False
+    assert trunk["novelty_detection_performed"] is False
+    assert trunk["residual_novelty_claimed"] is False
+    assert trunk["reverse_novel_trunk_claimed"] is False
+
+    residual = phase_by_id["PERTURBATION-RESIDUAL-NOVELTY-MAP-00"]["dashboard_summary"]
+    assert residual["mapping_status"] == "completed"
+    assert residual["mapping_mode"] == "residual_candidate_mapping_after_known_trunks"
+    assert residual["known_trunk_mapping_completed"] is True
+    assert residual["residual_candidate_count"] == 5
+    assert residual["top_residual_candidate_id"] == "cross_trunk_resonance_candidate_00"
+    assert residual["branch_candidate_count"] == 3
+    assert residual["reverse_candidate_count"] == 3
+    assert residual["abstraction_candidate_count"] == 3
+    assert residual["review_required"] is True
+    assert residual["default_recommendation"] == "request_more_observations"
+    assert residual["novelty_discovery_claimed"] is False
+    assert residual["novel_trunk_proof_claimed"] is False
+    assert residual["truth_certification_emitted"] is False
+    assert residual["product_release_performed"] is False
+
+    for artifact in (
+        "perturbation_observation_packet.json",
+        "perturbation_axis_packet.json",
+        "perturbation_boundary_report.json",
+        "perturbation_observation_summary.md",
+    ):
+        assert artifact in artifact_index["phases"]["PERTURBATION-OBSERVATION-CAPTURE-00"]
+    for artifact in (
+        "perturbation_known_trunk_registry.json",
+        "perturbation_trunk_mapping_packet.json",
+        "trunk_similarity_heatmap.json",
+        "mapped_trunk_residue_report.json",
+        "trunk_mapping_boundary_table.json",
+        "perturbation_trunk_mapping_summary.md",
+    ):
+        assert artifact in artifact_index["phases"]["PERTURBATION-TRUNK-MAPPING-00"]
+    for artifact in (
+        "residual_novelty_candidate_map.json",
+        "novel_branch_candidate_packet.json",
+        "reverse_trunk_candidate_report.json",
+        "abstraction_candidate_report.json",
+        "novelty_human_review_packet.json",
+        "residual_novelty_boundary_table.json",
+        "perturbation_residual_novelty_summary.md",
+    ):
+        assert artifact in artifact_index["phases"]["PERTURBATION-RESIDUAL-NOVELTY-MAP-00"]
+
+    for builder in (
+        "build_perturbation_observation_capture",
+        "build_perturbation_trunk_mapping",
+        "build_perturbation_residual_novelty_map",
+    ):
+        assert builder in reproducibility_text
+
+    page_expectations = {
+        "perturbation-observation-capture.md": (
+            "Perturbation is not mere degradation.",
+            "Perturbation observation is not novelty discovery.",
+            "Abstraction affordance is not truth.",
+            "Hyperreal resonance is not authority.",
+            "Causal candidate is not certified diagnosis.",
+            "Human review required.",
+        ),
+        "perturbation-trunk-mapping.md": (
+            "Known trunks were mapped before novelty claims.",
+            "Trunk similarity is not identity.",
+            "Known-trunk mapping is not novelty discovery.",
+            "Residual structure is not novel trunk proof.",
+            "Heatmap values are diagnostic, not probability certification.",
+            "Reverse mapping is not performed in this phase.",
+            "Human review remains required.",
+        ),
+        "perturbation-residual-novelty-map.md": (
+            "Residual novelty mapping was performed only after known trunk mapping.",
+            "Candidate novelty regions were generated.",
+            "Candidate novelty is not novelty discovery.",
+            "Novel branch candidate is not novel trunk proof.",
+            "Reverse trunk candidates are hypotheses only.",
+            "Abstraction candidates are not truth.",
+            "Hyperreal resonance is not authority.",
+            "Creative mapping is not causal diagnosis.",
+            "Single fixture is not theory.",
+            "More observations are required before stronger claims.",
+            "Human review remains required.",
+        ),
+    }
+    for page_name, phrases in page_expectations.items():
+        text = (docs_dir / page_name).read_text(encoding="utf-8")
+        for phrase in phrases:
+            assert phrase in text
+            assert phrase in boundary_text
+
+    for phrase in (
+        "perturbation observation proves novelty",
+        "perturbation observation certifies diagnosis",
+        "abstraction affordance is truth",
+        "hyperreal resonance is authority",
+        "trunk similarity is identity",
+        "trunk mapping is novelty discovery",
+        "heatmap values certify probability",
+        "residual structure proves a novel trunk",
+        "residual novelty map discovers novelty",
+        "novel branch candidate is novel trunk proof",
+        "reverse trunk mapping proves identity",
+        "creative mapping is causal diagnosis",
+        "single fixture proves theory",
+    ):
+        assert phrase in boundary_text
+
+    assert status["perturbation_observation_capture_00_indexed"] is True
+    assert status["perturbation_trunk_mapping_00_indexed"] is True
+    assert status["perturbation_residual_novelty_map_00_indexed"] is True
+
+
+def test_perturbation_structure_affordance_card_page_and_registry_are_generated(tmp_path):
+    out_dir, docs_dir = run_builder(tmp_path)
+    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text())
+    reproducibility = json.loads((out_dir / "reproducibility_index.json").read_text())
+    artifact_index = json.loads((out_dir / "artifact_index.json").read_text())
+    claim_boundaries = json.loads((out_dir / "claim_boundary_index.json").read_text())
+    status = json.loads((out_dir / "status.json").read_text())
+    phase_by_id = {entry["phase_id"]: entry for entry in dashboard["accepted_phases"]}
+    reproducibility_text = json.dumps(reproducibility)
+    boundary_text = "\n".join(claim_boundaries["boundaries"])
+    boundary_entries = set(claim_boundaries["boundaries"])
+
+    phase = phase_by_id["PERTURBATION-STRUCTURE-AFFORDANCE-CARD-00"]
+    summary = phase["dashboard_summary"]
+    assert summary["theorem_cards"] == 2
+    assert summary["theorem_id"] == "PERTURBATION-STRUCTURE-AFFORDANCE-00"
+    assert summary["theorem_family"] == "perturbation_novelty_mapping"
+    assert summary["proof_grade_current"] == "speculative_pattern"
+    assert summary["proof_grade_target"] == "operational_metric_hypothesis"
+    assert summary["proof_grade_claimed"] == "none_yet"
+    assert summary["perturbation_evidence_rows"] == 9
+    assert summary["single_fixture_is_not_theory"] is True
+    assert summary["theorem_card_is_not_proof"] is True
+    assert summary["theorem_card_requires_repeated_observation"] is True
+    assert summary["theorem_card_requires_human_review"] is True
+
+    for artifact in (
+        "theorem_claim_registry.json",
+        "theorem_card_registry.json",
+        "theorem_evidence_ledger.json",
+        "theorem_counterexample_registry.json",
+        "theorem_non_claim_boundary_table.json",
+        "theorem_validation_receipt.md",
+        "perturbation_observation_packet.json",
+        "perturbation_axis_packet.json",
+        "perturbation_trunk_mapping_packet.json",
+        "trunk_similarity_heatmap.json",
+        "residual_novelty_candidate_map.json",
+        "novel_branch_candidate_packet.json",
+        "reverse_trunk_candidate_report.json",
+        "abstraction_candidate_report.json",
+        "novelty_human_review_packet.json",
+        "residual_novelty_boundary_table.json",
+    ):
+        assert artifact in artifact_index["phases"]["PERTURBATION-STRUCTURE-AFFORDANCE-CARD-00"]
+
+    for builder in (
+        "build_perturbation_observation_capture",
+        "build_perturbation_trunk_mapping",
+        "build_perturbation_residual_novelty_map",
+        "build_theorem_validation_pathway",
+    ):
+        assert builder in reproducibility_text
+
+    page_text = (docs_dir / "perturbation-structure-affordance-card.md").read_text(encoding="utf-8")
+    required_phrases = PERTURBATION_STRUCTURE_AFFORDANCE_REQUIRED_BOUNDARY_PHRASES
+    for phrase in required_phrases:
+        assert phrase in page_text
+        assert phrase in boundary_text
+        assert phrase in boundary_entries
+
+    for phrase in PERTURBATION_STRUCTURE_AFFORDANCE_BLOCKED_CLAIM_PHRASES:
+        assert phrase in page_text
+        assert phrase in boundary_text
+        assert phrase in boundary_entries
+
+    assert status["perturbation_structure_affordance_card_00_indexed"] is True
+    assert status["not_perturbation_structure_affordance_proven"] is True
+    assert status["not_perturbation_structure_affordance_novelty_discovery"] is True
+    assert status["not_perturbation_structure_affordance_truth_certification"] is True
+
+
+def test_reviewer_facing_perturbation_language_is_generalized():
+    professional_language_fragments = (
+        "synthetic structured perturbation fixture",
+        "energy-constrained signal drift",
+        "multi-axis perturbation drift",
+        "known-trunk mapping",
+        "residual candidate novelty mapping",
+        "human-reviewable abstraction candidate",
+        "theorem-validation artifact, not proof",
+    )
+    old_language_fragments = (
+        "Thomas" + "’s " + "car" + "-" + "alarm",
+        "Thomas" + "'s " + "car" + "-" + "alarm",
+        "Thomas " + "car" + " " + "alarm",
+        "car" + " " + "alarm",
+        "car" + "-" + "alarm",
+        "dying " + "battery " + "alarm",
+        "poetic" + " insight",
+        "beautiful" + " insight",
+        "spirit enters" + " the lattice",
+        "guts" + " and spirit",
+    )
+    scoped_roots = (
+        Path("docs/experiment-suite"),
+        Path("registry"),
+        Path("tools"),
+        Path("tests"),
+    )
+    searchable_suffixes = {".json", ".md", ".py", ".txt"}
+    scoped_text = "\n".join(
+        path.read_text(encoding="utf-8")
+        for root in scoped_roots
+        for path in root.rglob("*")
+        if path.is_file() and path.suffix in searchable_suffixes and "__pycache__" not in path.parts
+    )
+    for fragment in professional_language_fragments:
+        assert fragment in scoped_text
+
+    for root in scoped_roots:
+        for path in root.rglob("*"):
+            if path.is_file() and path.suffix in searchable_suffixes and "__pycache__" not in path.parts:
+                text = path.read_text(encoding="utf-8")
+                for fragment in old_language_fragments:
+                    assert fragment not in text, f"{fragment!r} remains in {path}"
