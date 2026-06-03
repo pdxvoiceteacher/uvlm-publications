@@ -318,7 +318,7 @@ def test_dedupe_accepted_phases_preserves_order_and_lets_later_entries_win():
 
 def test_dashboard_contains_all_accepted_phases(tmp_path):
     out_dir, _docs_dir = run_builder(tmp_path)
-    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text())
+    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text(encoding="utf-8"))
     accepted_phases = dashboard["accepted_phases"]
     phase_ids = {entry["phase_id"] for entry in accepted_phases}
     assert len(accepted_phases) == len(phase_ids)
@@ -328,14 +328,14 @@ def test_dashboard_contains_all_accepted_phases(tmp_path):
 
 def test_artifact_index_contains_all_accepted_phases(tmp_path):
     out_dir, _docs_dir = run_builder(tmp_path)
-    artifact_index = json.loads((out_dir / "artifact_index.json").read_text())
+    artifact_index = json.loads((out_dir / "artifact_index.json").read_text(encoding="utf-8"))
 
     assert REQUIRED_PHASES <= set(artifact_index["phases"])
 
 
 def test_dashboard_command_summaries_use_accepted_harnesses(tmp_path):
     out_dir, _docs_dir = run_builder(tmp_path)
-    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text())
+    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text(encoding="utf-8"))
     summaries = "\n".join(
         entry["reproduction_command_summary"] for entry in dashboard["accepted_phases"]
     )
@@ -364,10 +364,10 @@ def test_validator_required_phases_include_public_utility_alpha_raw_baseline_and
 
 def test_public_utility_alpha_indexes_and_docs_are_generated(tmp_path):
     out_dir, docs_dir = run_builder(tmp_path)
-    reproducibility = json.loads((out_dir / "reproducibility_index.json").read_text())
-    artifact_index = json.loads((out_dir / "artifact_index.json").read_text())
-    claim_boundaries = json.loads((out_dir / "claim_boundary_index.json").read_text())
-    quickstart = (docs_dir / "reviewer-quickstart.md").read_text()
+    reproducibility = json.loads((out_dir / "reproducibility_index.json").read_text(encoding="utf-8"))
+    artifact_index = json.loads((out_dir / "artifact_index.json").read_text(encoding="utf-8"))
+    claim_boundaries = json.loads((out_dir / "claim_boundary_index.json").read_text(encoding="utf-8"))
+    quickstart = (docs_dir / "reviewer-quickstart.md").read_text(encoding="utf-8")
 
     commands = json.dumps(reproducibility)
     assert "Run-PUBLIC-UTILITY-ALPHA00-Acceptance.ps1" in commands
@@ -383,10 +383,10 @@ def test_public_utility_alpha_indexes_and_docs_are_generated(tmp_path):
 
 def test_raw_baseline_indexes_and_docs_are_generated(tmp_path):
     out_dir, docs_dir = run_builder(tmp_path)
-    reproducibility = json.loads((out_dir / "reproducibility_index.json").read_text())
-    artifact_index = json.loads((out_dir / "artifact_index.json").read_text())
-    claim_boundaries = json.loads((out_dir / "claim_boundary_index.json").read_text())
-    quickstart = (docs_dir / "reviewer-quickstart.md").read_text()
+    reproducibility = json.loads((out_dir / "reproducibility_index.json").read_text(encoding="utf-8"))
+    artifact_index = json.loads((out_dir / "artifact_index.json").read_text(encoding="utf-8"))
+    claim_boundaries = json.loads((out_dir / "claim_boundary_index.json").read_text(encoding="utf-8"))
+    quickstart = (docs_dir / "reviewer-quickstart.md").read_text(encoding="utf-8")
 
     commands = json.dumps(reproducibility)
     assert "Run-RAW-BASELINE-COMPARISON00-Acceptance.ps1" in commands
@@ -403,12 +403,12 @@ def test_raw_baseline_indexes_and_docs_are_generated(tmp_path):
 
 def test_evidence_review_pack_indexes_and_docs_are_generated(tmp_path):
     out_dir, docs_dir = run_builder(tmp_path)
-    reproducibility = json.loads((out_dir / "reproducibility_index.json").read_text())
-    artifact_index = json.loads((out_dir / "artifact_index.json").read_text())
-    claim_boundaries = json.loads((out_dir / "claim_boundary_index.json").read_text())
-    quickstart = (docs_dir / "reviewer-quickstart.md").read_text()
-    boundaries = (docs_dir / "claim-boundaries.md").read_text()
-    index = (docs_dir / "index.md").read_text()
+    reproducibility = json.loads((out_dir / "reproducibility_index.json").read_text(encoding="utf-8"))
+    artifact_index = json.loads((out_dir / "artifact_index.json").read_text(encoding="utf-8"))
+    claim_boundaries = json.loads((out_dir / "claim_boundary_index.json").read_text(encoding="utf-8"))
+    quickstart = (docs_dir / "reviewer-quickstart.md").read_text(encoding="utf-8")
+    boundaries = (docs_dir / "claim-boundaries.md").read_text(encoding="utf-8")
+    index = (docs_dir / "index.md").read_text(encoding="utf-8")
 
     commands = json.dumps(reproducibility)
     assert "Run-EVIDENCE-REVIEW-PACK00-Acceptance.ps1" in commands
@@ -430,12 +430,12 @@ def test_evidence_review_pack_indexes_and_docs_are_generated(tmp_path):
 
 def test_rw_comp_01_indexes_and_docs_are_generated(tmp_path):
     out_dir, docs_dir = run_builder(tmp_path)
-    reproducibility = json.loads((out_dir / "reproducibility_index.json").read_text())
-    artifact_index = json.loads((out_dir / "artifact_index.json").read_text())
-    claim_boundaries = json.loads((out_dir / "claim_boundary_index.json").read_text())
-    quickstart = (docs_dir / "reviewer-quickstart.md").read_text()
-    boundaries = (docs_dir / "claim-boundaries.md").read_text()
-    index = (docs_dir / "index.md").read_text()
+    reproducibility = json.loads((out_dir / "reproducibility_index.json").read_text(encoding="utf-8"))
+    artifact_index = json.loads((out_dir / "artifact_index.json").read_text(encoding="utf-8"))
+    claim_boundaries = json.loads((out_dir / "claim_boundary_index.json").read_text(encoding="utf-8"))
+    quickstart = (docs_dir / "reviewer-quickstart.md").read_text(encoding="utf-8")
+    boundaries = (docs_dir / "claim-boundaries.md").read_text(encoding="utf-8")
+    index = (docs_dir / "index.md").read_text(encoding="utf-8")
 
     commands = json.dumps(reproducibility)
     assert "Run-RW-COMP01-Acceptance.ps1" in commands
@@ -459,12 +459,12 @@ def test_rw_comp_01_indexes_and_docs_are_generated(tmp_path):
 
 def test_rw_comp_02_indexes_and_docs_are_generated(tmp_path):
     out_dir, docs_dir = run_builder(tmp_path)
-    reproducibility = json.loads((out_dir / "reproducibility_index.json").read_text())
-    artifact_index = json.loads((out_dir / "artifact_index.json").read_text())
-    claim_boundaries = json.loads((out_dir / "claim_boundary_index.json").read_text())
-    quickstart = (docs_dir / "reviewer-quickstart.md").read_text()
-    boundaries = (docs_dir / "claim-boundaries.md").read_text()
-    index = (docs_dir / "index.md").read_text()
+    reproducibility = json.loads((out_dir / "reproducibility_index.json").read_text(encoding="utf-8"))
+    artifact_index = json.loads((out_dir / "artifact_index.json").read_text(encoding="utf-8"))
+    claim_boundaries = json.loads((out_dir / "claim_boundary_index.json").read_text(encoding="utf-8"))
+    quickstart = (docs_dir / "reviewer-quickstart.md").read_text(encoding="utf-8")
+    boundaries = (docs_dir / "claim-boundaries.md").read_text(encoding="utf-8")
+    index = (docs_dir / "index.md").read_text(encoding="utf-8")
 
     commands = json.dumps(reproducibility)
     assert "Run-RW-COMP02-Acceptance.ps1" in commands
@@ -489,13 +489,13 @@ def test_rw_comp_02_indexes_and_docs_are_generated(tmp_path):
 
 def test_retrosynthesis_sandbox_cycle_indexes_and_docs_are_generated(tmp_path):
     out_dir, docs_dir = run_builder(tmp_path)
-    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text())
-    reproducibility = json.loads((out_dir / "reproducibility_index.json").read_text())
-    artifact_index = json.loads((out_dir / "artifact_index.json").read_text())
-    claim_boundaries = json.loads((out_dir / "claim_boundary_index.json").read_text())
-    quickstart = (docs_dir / "reviewer-quickstart.md").read_text()
-    boundaries = (docs_dir / "claim-boundaries.md").read_text()
-    index = (docs_dir / "index.md").read_text()
+    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text(encoding="utf-8"))
+    reproducibility = json.loads((out_dir / "reproducibility_index.json").read_text(encoding="utf-8"))
+    artifact_index = json.loads((out_dir / "artifact_index.json").read_text(encoding="utf-8"))
+    claim_boundaries = json.loads((out_dir / "claim_boundary_index.json").read_text(encoding="utf-8"))
+    quickstart = (docs_dir / "reviewer-quickstart.md").read_text(encoding="utf-8")
+    boundaries = (docs_dir / "claim-boundaries.md").read_text(encoding="utf-8")
+    index = (docs_dir / "index.md").read_text(encoding="utf-8")
 
     phase = next(
         entry
@@ -542,7 +542,7 @@ def test_validator_fails_if_retrosynthesis_sandbox_cycle_makes_forbidden_claims(
     for claim in forbidden_claims:
         out_dir, docs_dir = run_builder(tmp_path / claim.replace(" ", "_"))
         page = docs_dir / "retrosynthesis-sandbox-cycle.md"
-        page.write_text(page.read_text() + f"\nRETROSYNTHESIS-SANDBOX-CYCLE-01 claims {claim}.\n")
+        page.write_text(page.read_text(encoding="utf-8") + f"\nRETROSYNTHESIS-SANDBOX-CYCLE-01 claims {claim}.\n", encoding="utf-8")
         result = validate_dashboard(out_dir / "experiment_suite_dashboard.json", docs_dir)
         assert result["passed"] is False, claim
         assert claim.lower() in result["forbidden_claims_found"], result
@@ -550,13 +550,13 @@ def test_validator_fails_if_retrosynthesis_sandbox_cycle_makes_forbidden_claims(
 
 def test_evidence_review_pack_second_pass_indexes_and_docs_are_generated(tmp_path):
     out_dir, docs_dir = run_builder(tmp_path)
-    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text())
-    reproducibility = json.loads((out_dir / "reproducibility_index.json").read_text())
-    artifact_index = json.loads((out_dir / "artifact_index.json").read_text())
-    claim_boundaries = json.loads((out_dir / "claim_boundary_index.json").read_text())
-    quickstart = (docs_dir / "reviewer-quickstart.md").read_text()
-    boundaries = (docs_dir / "claim-boundaries.md").read_text()
-    index = (docs_dir / "index.md").read_text()
+    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text(encoding="utf-8"))
+    reproducibility = json.loads((out_dir / "reproducibility_index.json").read_text(encoding="utf-8"))
+    artifact_index = json.loads((out_dir / "artifact_index.json").read_text(encoding="utf-8"))
+    claim_boundaries = json.loads((out_dir / "claim_boundary_index.json").read_text(encoding="utf-8"))
+    quickstart = (docs_dir / "reviewer-quickstart.md").read_text(encoding="utf-8")
+    boundaries = (docs_dir / "claim-boundaries.md").read_text(encoding="utf-8")
+    index = (docs_dir / "index.md").read_text(encoding="utf-8")
 
     phase = next(
         entry
@@ -605,7 +605,7 @@ def test_validator_fails_if_evidence_review_pack_second_pass_makes_forbidden_cla
     for claim in forbidden_claims:
         out_dir, docs_dir = run_builder(tmp_path / claim.replace(" ", "_"))
         page = docs_dir / "evidence-review-pack-second-pass.md"
-        page.write_text(page.read_text() + f"\nEVIDENCE-REVIEW-PACK-01 {claim}.\n")
+        page.write_text(page.read_text(encoding="utf-8") + f"\nEVIDENCE-REVIEW-PACK-01 {claim}.\n", encoding="utf-8")
         result = validate_dashboard(out_dir / "experiment_suite_dashboard.json", docs_dir)
         assert result["passed"] is False, claim
         forbidden_found = [found.lower() for found in result["forbidden_claims_found"]]
@@ -614,13 +614,13 @@ def test_validator_fails_if_evidence_review_pack_second_pass_makes_forbidden_cla
 
 def test_rw_comp_03_indexes_and_docs_are_generated(tmp_path):
     out_dir, docs_dir = run_builder(tmp_path)
-    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text())
-    reproducibility = json.loads((out_dir / "reproducibility_index.json").read_text())
-    artifact_index = json.loads((out_dir / "artifact_index.json").read_text())
-    claim_boundaries = json.loads((out_dir / "claim_boundary_index.json").read_text())
-    quickstart = (docs_dir / "reviewer-quickstart.md").read_text()
-    boundaries = (docs_dir / "claim-boundaries.md").read_text()
-    index = (docs_dir / "index.md").read_text()
+    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text(encoding="utf-8"))
+    reproducibility = json.loads((out_dir / "reproducibility_index.json").read_text(encoding="utf-8"))
+    artifact_index = json.loads((out_dir / "artifact_index.json").read_text(encoding="utf-8"))
+    claim_boundaries = json.loads((out_dir / "claim_boundary_index.json").read_text(encoding="utf-8"))
+    quickstart = (docs_dir / "reviewer-quickstart.md").read_text(encoding="utf-8")
+    boundaries = (docs_dir / "claim-boundaries.md").read_text(encoding="utf-8")
+    index = (docs_dir / "index.md").read_text(encoding="utf-8")
 
     phase = next(
         entry
@@ -673,7 +673,7 @@ def test_validator_fails_if_rw_comp_03_makes_forbidden_claims(tmp_path):
     for claim in forbidden_claims:
         out_dir, docs_dir = run_builder(tmp_path / claim.replace(" ", "_"))
         page = docs_dir / "rw-comp-03.md"
-        page.write_text(page.read_text() + f"\nRW-COMP-03 claims {claim}.\n")
+        page.write_text(page.read_text(encoding="utf-8") + f"\nRW-COMP-03 claims {claim}.\n", encoding="utf-8")
         result = validate_dashboard(out_dir / "experiment_suite_dashboard.json", docs_dir)
         assert result["passed"] is False, claim
         forbidden_found = [found.lower() for found in result["forbidden_claims_found"]]
@@ -683,13 +683,13 @@ def test_validator_fails_if_rw_comp_03_makes_forbidden_claims(tmp_path):
 
 def test_universal_architecture_indexes_and_docs_are_generated(tmp_path):
     out_dir, docs_dir = run_builder(tmp_path)
-    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text())
-    reproducibility = json.loads((out_dir / "reproducibility_index.json").read_text())
-    artifact_index = json.loads((out_dir / "artifact_index.json").read_text())
-    claim_boundaries = json.loads((out_dir / "claim_boundary_index.json").read_text())
-    quickstart = (docs_dir / "reviewer-quickstart.md").read_text()
-    boundaries = (docs_dir / "claim-boundaries.md").read_text()
-    index = (docs_dir / "index.md").read_text()
+    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text(encoding="utf-8"))
+    reproducibility = json.loads((out_dir / "reproducibility_index.json").read_text(encoding="utf-8"))
+    artifact_index = json.loads((out_dir / "artifact_index.json").read_text(encoding="utf-8"))
+    claim_boundaries = json.loads((out_dir / "claim_boundary_index.json").read_text(encoding="utf-8"))
+    quickstart = (docs_dir / "reviewer-quickstart.md").read_text(encoding="utf-8")
+    boundaries = (docs_dir / "claim-boundaries.md").read_text(encoding="utf-8")
+    index = (docs_dir / "index.md").read_text(encoding="utf-8")
     page = docs_dir / "universal-architecture.md"
 
     phase_ids = {entry["phase_id"] for entry in dashboard["accepted_phases"]}
@@ -704,7 +704,7 @@ def test_universal_architecture_indexes_and_docs_are_generated(tmp_path):
     assert compatibility["dashboard_summary"]["review_status"] == "accepted_as_universal_compatibility_scaffold"
     assert compatibility["dashboard_summary"]["unsupported_inputs_failed_closed_or_hash_only"] is True
     assert page.exists()
-    page_text = page.read_text()
+    page_text = page.read_text(encoding="utf-8")
     assert "# Universal Architecture Scaffold" in page_text
     assert "The brain runs cognition stages; experiments configure those stages." in page_text
     assert "profiles are configuration" in page_text
@@ -758,7 +758,7 @@ def test_validator_fails_if_universal_architecture_makes_forbidden_claims(tmp_pa
     for claim in forbidden_claims:
         out_dir, docs_dir = run_builder(tmp_path / claim.replace(" ", "_"))
         page = docs_dir / "universal-architecture.md"
-        page.write_text(page.read_text() + f"\nUniversal Architecture Scaffold claims {claim}.\n")
+        page.write_text(page.read_text(encoding="utf-8") + f"\nUniversal Architecture Scaffold claims {claim}.\n", encoding="utf-8")
         result = validate_dashboard(out_dir / "experiment_suite_dashboard.json", docs_dir)
         assert result["passed"] is False, claim
         forbidden_found = [found.lower() for found in result["forbidden_claims_found"]]
@@ -767,13 +767,13 @@ def test_validator_fails_if_universal_architecture_makes_forbidden_claims(tmp_pa
 
 def test_sonya_adapter_contract_registry_indexes_and_docs_are_generated(tmp_path):
     out_dir, docs_dir = run_builder(tmp_path)
-    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text())
-    reproducibility = json.loads((out_dir / "reproducibility_index.json").read_text())
-    artifact_index = json.loads((out_dir / "artifact_index.json").read_text())
-    claim_boundaries = json.loads((out_dir / "claim_boundary_index.json").read_text())
-    quickstart = (docs_dir / "reviewer-quickstart.md").read_text()
-    boundaries = (docs_dir / "claim-boundaries.md").read_text()
-    index = (docs_dir / "index.md").read_text()
+    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text(encoding="utf-8"))
+    reproducibility = json.loads((out_dir / "reproducibility_index.json").read_text(encoding="utf-8"))
+    artifact_index = json.loads((out_dir / "artifact_index.json").read_text(encoding="utf-8"))
+    claim_boundaries = json.loads((out_dir / "claim_boundary_index.json").read_text(encoding="utf-8"))
+    quickstart = (docs_dir / "reviewer-quickstart.md").read_text(encoding="utf-8")
+    boundaries = (docs_dir / "claim-boundaries.md").read_text(encoding="utf-8")
+    index = (docs_dir / "index.md").read_text(encoding="utf-8")
     page = docs_dir / "sonya-adapter-contract-registry.md"
 
     phase = next(
@@ -805,7 +805,7 @@ def test_sonya_adapter_contract_registry_indexes_and_docs_are_generated(tmp_path
         assert artifact in artifact_index["phases"]["SONYA-ADAPTER-CONTRACT-REGISTRY-01"]
 
     assert page.exists()
-    page_text = page.read_text()
+    page_text = page.read_text(encoding="utf-8")
     assert "# Sonya Adapter Contract Registry" in page_text
     assert "Adapter capability is not adapter authorization." in page_text
     assert "all adapters disabled or blocked" in page_text
@@ -825,12 +825,12 @@ def test_sonya_adapter_contract_registry_indexes_and_docs_are_generated(tmp_path
 
 def test_sonya_adapter_smoke_indexes_docs_and_boundaries_are_generated(tmp_path):
     out_dir, docs_dir = run_builder(tmp_path)
-    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text())
-    reproducibility = json.loads((out_dir / "reproducibility_index.json").read_text())
-    artifact_index = json.loads((out_dir / "artifact_index.json").read_text())
-    quickstart = (docs_dir / "reviewer-quickstart.md").read_text()
-    boundaries = (docs_dir / "claim-boundaries.md").read_text()
-    index = (docs_dir / "index.md").read_text()
+    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text(encoding="utf-8"))
+    reproducibility = json.loads((out_dir / "reproducibility_index.json").read_text(encoding="utf-8"))
+    artifact_index = json.loads((out_dir / "artifact_index.json").read_text(encoding="utf-8"))
+    quickstart = (docs_dir / "reviewer-quickstart.md").read_text(encoding="utf-8")
+    boundaries = (docs_dir / "claim-boundaries.md").read_text(encoding="utf-8")
+    index = (docs_dir / "index.md").read_text(encoding="utf-8")
     page = docs_dir / "sonya-adapter-smoke.md"
 
     phase = next(
@@ -869,7 +869,7 @@ def test_sonya_adapter_smoke_indexes_docs_and_boundaries_are_generated(tmp_path)
         assert artifact in artifact_index["phases"]["SONYA-ADAPTER-SMOKE-00"]
 
     assert page.exists()
-    page_text = page.read_text()
+    page_text = page.read_text(encoding="utf-8")
     assert "# Sonya Adapter Smoke" in page_text
     assert "Sonya Adapter Smoke exercises contracts, not live adapters." in page_text
     assert "raw output rejected" in page_text
@@ -893,12 +893,12 @@ def test_validator_required_phases_include_sonya_adapter_smoke():
 
 def test_sonya_local_fixture_adapter_indexes_docs_and_boundaries_are_generated(tmp_path):
     out_dir, docs_dir = run_builder(tmp_path)
-    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text())
-    reproducibility = json.loads((out_dir / "reproducibility_index.json").read_text())
-    artifact_index = json.loads((out_dir / "artifact_index.json").read_text())
-    quickstart = (docs_dir / "reviewer-quickstart.md").read_text()
-    boundaries = (docs_dir / "claim-boundaries.md").read_text()
-    index = (docs_dir / "index.md").read_text()
+    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text(encoding="utf-8"))
+    reproducibility = json.loads((out_dir / "reproducibility_index.json").read_text(encoding="utf-8"))
+    artifact_index = json.loads((out_dir / "artifact_index.json").read_text(encoding="utf-8"))
+    quickstart = (docs_dir / "reviewer-quickstart.md").read_text(encoding="utf-8")
+    boundaries = (docs_dir / "claim-boundaries.md").read_text(encoding="utf-8")
+    index = (docs_dir / "index.md").read_text(encoding="utf-8")
     page = docs_dir / "sonya-local-fixture-adapter.md"
 
     phase = next(
@@ -945,7 +945,7 @@ def test_sonya_local_fixture_adapter_indexes_docs_and_boundaries_are_generated(t
         assert artifact in artifact_index["phases"]["SONYA-LOCAL-FIXTURE-ADAPTER-01"]
 
     assert page.exists()
-    page_text = page.read_text()
+    page_text = page.read_text(encoding="utf-8")
     assert "# Sonya Local Fixture Adapter" in page_text
     assert "executes deterministic local fixtures, not live adapters" in page_text
     assert "local fixture adapter execution occurred" in page_text
@@ -979,7 +979,7 @@ def test_validator_fails_if_sonya_local_fixture_adapter_makes_forbidden_claims(t
     for claim in forbidden_claims:
         out_dir, docs_dir = run_builder(tmp_path / claim.replace(" ", "_"))
         page = docs_dir / "sonya-local-fixture-adapter.md"
-        page.write_text(page.read_text() + f"\nSonya Local Fixture Adapter claims {claim}.\n")
+        page.write_text(page.read_text(encoding="utf-8") + f"\nSonya Local Fixture Adapter claims {claim}.\n", encoding="utf-8")
         result = validate_dashboard(out_dir / "experiment_suite_dashboard.json", docs_dir)
         assert result["passed"] is False, claim
         forbidden_found = [found.lower() for found in result["forbidden_claims_found"]]
@@ -988,12 +988,12 @@ def test_validator_fails_if_sonya_local_fixture_adapter_makes_forbidden_claims(t
 
 def test_evidence_review_pack_local_adapter_indexes_docs_and_boundaries_are_generated(tmp_path):
     out_dir, docs_dir = run_builder(tmp_path)
-    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text())
-    reproducibility = json.loads((out_dir / "reproducibility_index.json").read_text())
-    artifact_index = json.loads((out_dir / "artifact_index.json").read_text())
-    quickstart = (docs_dir / "reviewer-quickstart.md").read_text()
-    boundaries = (docs_dir / "claim-boundaries.md").read_text()
-    index = (docs_dir / "index.md").read_text()
+    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text(encoding="utf-8"))
+    reproducibility = json.loads((out_dir / "reproducibility_index.json").read_text(encoding="utf-8"))
+    artifact_index = json.loads((out_dir / "artifact_index.json").read_text(encoding="utf-8"))
+    quickstart = (docs_dir / "reviewer-quickstart.md").read_text(encoding="utf-8")
+    boundaries = (docs_dir / "claim-boundaries.md").read_text(encoding="utf-8")
+    index = (docs_dir / "index.md").read_text(encoding="utf-8")
     page = docs_dir / "evidence-review-pack-local-adapter.md"
 
     phase = next(
@@ -1022,7 +1022,7 @@ def test_evidence_review_pack_local_adapter_indexes_docs_and_boundaries_are_gene
     assert "evidence_review_local_adapter_claim_map.json" in artifact_index["phases"]["EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER-01"]
 
     assert page.exists()
-    page_text = page.read_text()
+    page_text = page.read_text(encoding="utf-8")
     assert "Adapter output is not accepted as cognition directly." in page_text
     assert "Candidate packets require UCC-controlled review." in page_text
     assert "The claim map is not truth certification." in page_text
@@ -1047,7 +1047,7 @@ def test_validator_fails_if_evidence_review_pack_local_adapter_makes_forbidden_c
     for claim in forbidden_claims:
         out_dir, docs_dir = run_builder(tmp_path / claim.replace(" ", "_"))
         page = docs_dir / "evidence-review-pack-local-adapter.md"
-        page.write_text(page.read_text() + f"\nEvidence Review Pack local-adapter route {claim}.\n")
+        page.write_text(page.read_text(encoding="utf-8") + f"\nEvidence Review Pack local-adapter route {claim}.\n", encoding="utf-8")
         result = validate_dashboard(out_dir / "experiment_suite_dashboard.json", docs_dir)
         assert result["passed"] is False, claim
         forbidden_found = [found.lower() for found in result["forbidden_claims_found"]]
@@ -1056,11 +1056,11 @@ def test_validator_fails_if_evidence_review_pack_local_adapter_makes_forbidden_c
 
 def test_sonya_local_fixture_adapter_multi_route_indexes_docs_and_boundaries_are_generated(tmp_path):
     out_dir, docs_dir = run_builder(tmp_path)
-    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text())
-    reproducibility = json.loads((out_dir / "reproducibility_index.json").read_text())
-    artifact_index = json.loads((out_dir / "artifact_index.json").read_text())
-    boundaries = (docs_dir / "claim-boundaries.md").read_text()
-    index = (docs_dir / "index.md").read_text()
+    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text(encoding="utf-8"))
+    reproducibility = json.loads((out_dir / "reproducibility_index.json").read_text(encoding="utf-8"))
+    artifact_index = json.loads((out_dir / "artifact_index.json").read_text(encoding="utf-8"))
+    boundaries = (docs_dir / "claim-boundaries.md").read_text(encoding="utf-8")
+    index = (docs_dir / "index.md").read_text(encoding="utf-8")
     page = docs_dir / "sonya-local-fixture-adapter-multi-route.md"
 
     phase = next(entry for entry in dashboard["accepted_phases"] if entry["phase_id"] == "SONYA-LOCAL-FIXTURE-ADAPTER-02")
@@ -1076,7 +1076,7 @@ def test_sonya_local_fixture_adapter_multi_route_indexes_docs_and_boundaries_are
     assert "Run-SONYA-LOCAL-FIXTURE-ADAPTER02-Acceptance.ps1" in json.dumps(reproducibility)
     assert "sonya_local_adapter_multi_route_packet.json" in artifact_index["phases"]["SONYA-LOCAL-FIXTURE-ADAPTER-02"]
     assert page.exists()
-    page_text = page.read_text()
+    page_text = page.read_text(encoding="utf-8")
     assert "Selection policy is not final answer." in page_text
     assert "candidate comparison is not model quality benchmark" in page_text.lower()
     assert "sonya-local-fixture-adapter-multi-route.md" in index
@@ -1099,7 +1099,7 @@ def test_validator_fails_if_sonya_local_fixture_adapter_multi_route_makes_forbid
     for claim in forbidden_claims:
         out_dir, docs_dir = run_builder(tmp_path / claim.replace(" ", "_"))
         page = docs_dir / "sonya-local-fixture-adapter-multi-route.md"
-        page.write_text(page.read_text() + f"\nSonya Local Fixture Adapter multi-route claims {claim}.\n")
+        page.write_text(page.read_text(encoding="utf-8") + f"\nSonya Local Fixture Adapter multi-route claims {claim}.\n", encoding="utf-8")
         result = validate_dashboard(out_dir / "experiment_suite_dashboard.json", docs_dir)
         assert result["passed"] is False, claim
         forbidden_found = [found.lower() for found in result["forbidden_claims_found"]]
@@ -1122,7 +1122,7 @@ def test_validator_fails_if_sonya_adapter_smoke_makes_forbidden_claims(tmp_path)
     for claim in forbidden_claims:
         out_dir, docs_dir = run_builder(tmp_path / claim.replace(" ", "_"))
         page = docs_dir / "sonya-adapter-smoke.md"
-        page.write_text(page.read_text() + f"\nSonya Adapter Smoke claims {claim}.\n")
+        page.write_text(page.read_text(encoding="utf-8") + f"\nSonya Adapter Smoke claims {claim}.\n", encoding="utf-8")
         result = validate_dashboard(out_dir / "experiment_suite_dashboard.json", docs_dir)
         assert result["passed"] is False, claim
         forbidden_found = [found.lower() for found in result["forbidden_claims_found"]]
@@ -1144,7 +1144,7 @@ def test_validator_fails_if_sonya_adapter_contract_registry_makes_forbidden_clai
     for claim in forbidden_claims:
         out_dir, docs_dir = run_builder(tmp_path / claim.replace(" ", "_"))
         page = docs_dir / "sonya-adapter-contract-registry.md"
-        page.write_text(page.read_text() + f"\nSonya Adapter Contract Registry claims {claim}.\n")
+        page.write_text(page.read_text(encoding="utf-8") + f"\nSonya Adapter Contract Registry claims {claim}.\n", encoding="utf-8")
         result = validate_dashboard(out_dir / "experiment_suite_dashboard.json", docs_dir)
         assert result["passed"] is False, claim
         forbidden_found = [found.lower() for found in result["forbidden_claims_found"]]
@@ -1162,7 +1162,7 @@ def test_public_dashboard_outputs_do_not_include_stale_placeholder_commands(tmp_
 
 def test_claim_boundary_index_contains_non_authority_rules(tmp_path):
     out_dir, _docs_dir = run_builder(tmp_path)
-    payload = json.loads((out_dir / "claim_boundary_index.json").read_text())
+    payload = json.loads((out_dir / "claim_boundary_index.json").read_text(encoding="utf-8"))
     text = "\n".join(payload["boundaries"]).lower()
     for phrase in (
         "route is not authorization",
@@ -1183,7 +1183,7 @@ def test_validator_passes_clean_dashboard(tmp_path):
 def test_validator_fails_if_public_utility_alpha_phase_is_removed(tmp_path):
     out_dir, docs_dir = run_builder(tmp_path)
     dashboard_path = out_dir / "experiment_suite_dashboard.json"
-    dashboard = json.loads(dashboard_path.read_text())
+    dashboard = json.loads(dashboard_path.read_text(encoding="utf-8"))
     dashboard["accepted_phases"] = [
         phase
         for phase in dashboard["accepted_phases"]
@@ -1209,7 +1209,7 @@ def test_validator_fails_if_public_utility_alpha_makes_forbidden_claims(tmp_path
     for claim in forbidden_claims:
         out_dir, docs_dir = run_builder(tmp_path / claim.replace(" ", "_"))
         alpha = docs_dir / "public-utility-alpha.md"
-        alpha.write_text(alpha.read_text() + f"\nPublic Utility Alpha claims {claim}.\n")
+        alpha.write_text(alpha.read_text(encoding="utf-8") + f"\nPublic Utility Alpha claims {claim}.\n", encoding="utf-8")
         result = validate_dashboard(out_dir / "experiment_suite_dashboard.json", docs_dir)
         assert result["passed"] is False, claim
         assert claim.lower() in result["forbidden_claims_found"], result
@@ -1219,7 +1219,7 @@ def test_validator_rejects_explicit_federation_punctuation_overclaims(tmp_path):
     for claim in ("Public Utility Alpha claims federation.", "Public Utility Alpha claims federation,"):
         out_dir, docs_dir = run_builder(tmp_path / claim.replace(" ", "_").replace(",", "comma").replace(".", "period"))
         alpha = docs_dir / "public-utility-alpha.md"
-        alpha.write_text(alpha.read_text() + f"\n{claim}\n")
+        alpha.write_text(alpha.read_text(encoding="utf-8") + f"\n{claim}\n", encoding="utf-8")
         result = validate_dashboard(out_dir / "experiment_suite_dashboard.json", docs_dir)
         assert result["passed"] is False
         assert "federation" in result["forbidden_claims_found"]
@@ -1235,7 +1235,7 @@ def test_validator_fails_if_raw_baseline_makes_forbidden_claims(tmp_path):
     for claim in forbidden_claims:
         out_dir, docs_dir = run_builder(tmp_path / claim.replace(" ", "_"))
         raw = docs_dir / "raw-baseline-comparison.md"
-        raw.write_text(raw.read_text() + f"\nRAW-BASELINE-COMPARISON-00 claims {claim}.\n")
+        raw.write_text(raw.read_text(encoding="utf-8") + f"\nRAW-BASELINE-COMPARISON-00 claims {claim}.\n", encoding="utf-8")
         result = validate_dashboard(out_dir / "experiment_suite_dashboard.json", docs_dir)
         assert result["passed"] is False, claim
         assert claim.lower() in result["forbidden_claims_found"], result
@@ -1245,7 +1245,7 @@ def test_validator_fails_if_raw_baseline_makes_forbidden_claims(tmp_path):
 def test_validator_fails_if_evidence_review_pack_phase_is_removed(tmp_path):
     out_dir, docs_dir = run_builder(tmp_path)
     dashboard_path = out_dir / "experiment_suite_dashboard.json"
-    dashboard = json.loads(dashboard_path.read_text())
+    dashboard = json.loads(dashboard_path.read_text(encoding="utf-8"))
     dashboard["accepted_phases"] = [
         phase
         for phase in dashboard["accepted_phases"]
@@ -1272,7 +1272,7 @@ def test_validator_fails_if_evidence_review_pack_makes_forbidden_claims(tmp_path
     for claim in forbidden_claims:
         out_dir, docs_dir = run_builder(tmp_path / claim.replace(" ", "_"))
         pack = docs_dir / "evidence-review-pack.md"
-        pack.write_text(pack.read_text() + f"\nEvidence Review Pack claims {claim}.\n")
+        pack.write_text(pack.read_text(encoding="utf-8") + f"\nEvidence Review Pack claims {claim}.\n", encoding="utf-8")
         result = validate_dashboard(out_dir / "experiment_suite_dashboard.json", docs_dir)
         assert result["passed"] is False, claim
         assert claim.lower() in result["forbidden_claims_found"], result
@@ -1281,7 +1281,7 @@ def test_validator_fails_if_evidence_review_pack_makes_forbidden_claims(tmp_path
 def test_validator_fails_if_rw_comp_01_phase_is_removed(tmp_path):
     out_dir, docs_dir = run_builder(tmp_path)
     dashboard_path = out_dir / "experiment_suite_dashboard.json"
-    dashboard = json.loads(dashboard_path.read_text())
+    dashboard = json.loads(dashboard_path.read_text(encoding="utf-8"))
     dashboard["accepted_phases"] = [
         phase
         for phase in dashboard["accepted_phases"]
@@ -1311,7 +1311,7 @@ def test_validator_fails_if_rw_comp_01_makes_forbidden_claims(tmp_path):
     for claim in forbidden_claims:
         out_dir, docs_dir = run_builder(tmp_path / claim.replace(" ", "_"))
         page = docs_dir / "rw-comp-01.md"
-        page.write_text(page.read_text() + f"\nRW-COMP-01 claims {claim}.\n")
+        page.write_text(page.read_text(encoding="utf-8") + f"\nRW-COMP-01 claims {claim}.\n", encoding="utf-8")
         result = validate_dashboard(out_dir / "experiment_suite_dashboard.json", docs_dir)
         assert result["passed"] is False, claim
         assert claim.lower() in result["forbidden_claims_found"], result
@@ -1320,7 +1320,7 @@ def test_validator_fails_if_rw_comp_01_makes_forbidden_claims(tmp_path):
 def test_validator_fails_if_rw_comp_02_phase_is_removed(tmp_path):
     out_dir, docs_dir = run_builder(tmp_path)
     dashboard_path = out_dir / "experiment_suite_dashboard.json"
-    dashboard = json.loads(dashboard_path.read_text())
+    dashboard = json.loads(dashboard_path.read_text(encoding="utf-8"))
     dashboard["accepted_phases"] = [
         phase
         for phase in dashboard["accepted_phases"]
@@ -1350,7 +1350,7 @@ def test_validator_fails_if_rw_comp_02_makes_forbidden_claims(tmp_path):
     for claim in forbidden_claims:
         out_dir, docs_dir = run_builder(tmp_path / claim.replace(" ", "_"))
         page = docs_dir / "rw-comp-02.md"
-        page.write_text(page.read_text() + f"\nRW-COMP-02 claims {claim}.\n")
+        page.write_text(page.read_text(encoding="utf-8") + f"\nRW-COMP-02 claims {claim}.\n", encoding="utf-8")
         result = validate_dashboard(out_dir / "experiment_suite_dashboard.json", docs_dir)
         assert result["passed"] is False, claim
         assert claim.lower() in result["forbidden_claims_found"], result
@@ -1358,7 +1358,7 @@ def test_validator_fails_if_rw_comp_02_makes_forbidden_claims(tmp_path):
 def test_validator_fails_if_dashboard_claims_deployment_readiness(tmp_path):
     out_dir, docs_dir = run_builder(tmp_path)
     dashboard_path = out_dir / "experiment_suite_dashboard.json"
-    dashboard = json.loads(dashboard_path.read_text())
+    dashboard = json.loads(dashboard_path.read_text(encoding="utf-8"))
     dashboard["deployment_ready"] = True
     dashboard_path.write_text(json.dumps(dashboard), encoding="utf-8")
     result = validate_dashboard(dashboard_path, docs_dir)
@@ -1369,7 +1369,7 @@ def test_validator_fails_if_dashboard_claims_deployment_readiness(tmp_path):
 def test_validator_fails_if_dashboard_claims_truth_certification(tmp_path):
     out_dir, docs_dir = run_builder(tmp_path)
     dashboard_path = out_dir / "experiment_suite_dashboard.json"
-    dashboard = json.loads(dashboard_path.read_text())
+    dashboard = json.loads(dashboard_path.read_text(encoding="utf-8"))
     dashboard["truth_certified"] = True
     dashboard_path.write_text(json.dumps(dashboard), encoding="utf-8")
     result = validate_dashboard(dashboard_path, docs_dir)
@@ -1380,7 +1380,7 @@ def test_validator_fails_if_dashboard_claims_truth_certification(tmp_path):
 def test_validator_fails_if_retro_lane_is_runtime_execution(tmp_path):
     out_dir, docs_dir = run_builder(tmp_path)
     retro = docs_dir / "retro-lane-00.md"
-    retro.write_text(retro.read_text() + "\nRETRO-LANE-00 is described as retrosynthesis runtime.\n")
+    retro.write_text(retro.read_text(encoding="utf-8") + "\nRETRO-LANE-00 is described as retrosynthesis runtime.\n", encoding="utf-8")
     result = validate_dashboard(out_dir / "experiment_suite_dashboard.json", docs_dir)
     assert result["passed"] is False
     assert "retrosynthesis runtime" in result["forbidden_claims_found"]
@@ -1389,7 +1389,7 @@ def test_validator_fails_if_retro_lane_is_runtime_execution(tmp_path):
 def test_validator_fails_if_uni02d_is_universal_portability_proof(tmp_path):
     out_dir, docs_dir = run_builder(tmp_path)
     uni = docs_dir / "uni02d-sonya-gate.md"
-    uni.write_text(uni.read_text() + "\nUNI-02D is universal portability proof.\n")
+    uni.write_text(uni.read_text(encoding="utf-8") + "\nUNI-02D is universal portability proof.\n", encoding="utf-8")
     result = validate_dashboard(out_dir / "experiment_suite_dashboard.json", docs_dir)
     assert result["passed"] is False
     assert "universal portability proof" in result["forbidden_claims_found"]
@@ -1397,7 +1397,7 @@ def test_validator_fails_if_uni02d_is_universal_portability_proof(tmp_path):
 
 def test_reviewer_quickstart_includes_command_groups(tmp_path):
     _out_dir, docs_dir = run_builder(tmp_path)
-    quickstart = (docs_dir / "reviewer-quickstart.md").read_text()
+    quickstart = (docs_dir / "reviewer-quickstart.md").read_text(encoding="utf-8")
     assert "CoherenceLattice commands" in quickstart
     assert "Sophia commands" in quickstart
     assert "uvlm-publications commands" in quickstart
@@ -1405,7 +1405,7 @@ def test_reviewer_quickstart_includes_command_groups(tmp_path):
 
 def test_status_marks_draft_public_review_and_external_review(tmp_path):
     out_dir, _docs_dir = run_builder(tmp_path)
-    status = json.loads((out_dir / "status.json").read_text())
+    status = json.loads((out_dir / "status.json").read_text(encoding="utf-8"))
     assert status["dashboard_id"] == "PUBLIC-REPRO-DASHBOARD-01"
     assert status["status"] == "draft_public_review"
     assert status["requires_external_peer_review"] is True
@@ -1431,12 +1431,12 @@ def test_validator_cli_passes(tmp_path):
 
 def test_sonya_local_fixture_adapter_lineage_clarity_indexes_docs_and_boundaries_are_generated(tmp_path):
     out_dir, docs_dir = run_builder(tmp_path)
-    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text())
-    reproducibility = json.loads((out_dir / "reproducibility_index.json").read_text())
-    artifact_index = json.loads((out_dir / "artifact_index.json").read_text())
-    quickstart = (docs_dir / "reviewer-quickstart.md").read_text()
-    boundaries = (docs_dir / "claim-boundaries.md").read_text()
-    index = (docs_dir / "index.md").read_text()
+    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text(encoding="utf-8"))
+    reproducibility = json.loads((out_dir / "reproducibility_index.json").read_text(encoding="utf-8"))
+    artifact_index = json.loads((out_dir / "artifact_index.json").read_text(encoding="utf-8"))
+    quickstart = (docs_dir / "reviewer-quickstart.md").read_text(encoding="utf-8")
+    boundaries = (docs_dir / "claim-boundaries.md").read_text(encoding="utf-8")
+    index = (docs_dir / "index.md").read_text(encoding="utf-8")
     page = docs_dir / "sonya-local-fixture-adapter-lineage.md"
 
     phase = next(
@@ -1468,7 +1468,7 @@ def test_sonya_local_fixture_adapter_lineage_clarity_indexes_docs_and_boundaries
     assert "sonya_local_adapter_lineage_review_packet.json" in artifact_index["phases"]["SONYA-LOCAL-FIXTURE-ADAPTER-03"]
 
     assert page.exists()
-    page_text = page.read_text()
+    page_text = page.read_text(encoding="utf-8")
     assert "Source fixture references are not stale identity leakage." in page_text
     assert "Nested SONYA-LOCAL-FIXTURE-ADAPTER-01 references are source fixture dependencies, not stale identity leakage." in page_text
     assert "Current route identity is explicit." in page_text
@@ -1495,7 +1495,7 @@ def test_validator_fails_if_sonya_local_fixture_adapter_lineage_clarity_makes_fo
     for claim in forbidden_claims:
         out_dir, docs_dir = run_builder(tmp_path / claim.replace(" ", "_"))
         page = docs_dir / "sonya-local-fixture-adapter-lineage.md"
-        page.write_text(page.read_text() + f"\nSonya Local Fixture Adapter lineage claims {claim}.\n")
+        page.write_text(page.read_text(encoding="utf-8") + f"\nSonya Local Fixture Adapter lineage claims {claim}.\n", encoding="utf-8")
         result = validate_dashboard(out_dir / "experiment_suite_dashboard.json", docs_dir)
         assert result["passed"] is False, claim
         forbidden_found = [found.lower() for found in result["forbidden_claims_found"]]
@@ -1504,12 +1504,12 @@ def test_validator_fails_if_sonya_local_fixture_adapter_lineage_clarity_makes_fo
 
 def test_evidence_review_pack_local_adapter_revision_indexes_docs_and_boundaries_are_generated(tmp_path):
     out_dir, docs_dir = run_builder(tmp_path)
-    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text())
-    reproducibility = json.loads((out_dir / "reproducibility_index.json").read_text())
-    artifact_index = json.loads((out_dir / "artifact_index.json").read_text())
-    quickstart = (docs_dir / "reviewer-quickstart.md").read_text()
-    boundaries = (docs_dir / "claim-boundaries.md").read_text()
-    index = (docs_dir / "index.md").read_text()
+    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text(encoding="utf-8"))
+    reproducibility = json.loads((out_dir / "reproducibility_index.json").read_text(encoding="utf-8"))
+    artifact_index = json.loads((out_dir / "artifact_index.json").read_text(encoding="utf-8"))
+    quickstart = (docs_dir / "reviewer-quickstart.md").read_text(encoding="utf-8")
+    boundaries = (docs_dir / "claim-boundaries.md").read_text(encoding="utf-8")
+    index = (docs_dir / "index.md").read_text(encoding="utf-8")
     page = docs_dir / "evidence-review-pack-local-adapter-revision.md"
 
     phase = next(
@@ -1541,7 +1541,7 @@ def test_evidence_review_pack_local_adapter_revision_indexes_docs_and_boundaries
     assert "evidence_review_local_adapter_revision_delta.json" in artifact_index["phases"]["EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER-02"]
 
     assert page.exists()
-    page_text = page.read_text()
+    page_text = page.read_text(encoding="utf-8")
     assert "Deltas are structural review descriptors, not hallucination reduction proof." in page_text
     assert "The revised candidate is not final answer and not accepted evidence." in page_text
     assert "EVIDENCE-REVIEW-PACK-LOCAL-ADAPTER-02" in quickstart
@@ -1564,7 +1564,7 @@ def test_validator_fails_if_evidence_review_pack_local_adapter_revision_makes_fo
     for claim in forbidden_claims:
         out_dir, docs_dir = run_builder(tmp_path / claim.replace(" ", "_"))
         page = docs_dir / "evidence-review-pack-local-adapter-revision.md"
-        page.write_text(page.read_text() + f"\nRevision loop claims {claim}.\n")
+        page.write_text(page.read_text(encoding="utf-8") + f"\nRevision loop claims {claim}.\n", encoding="utf-8")
         result = validate_dashboard(out_dir / "experiment_suite_dashboard.json", docs_dir)
         assert result["passed"] is False, claim
         forbidden_found = [found.lower() for found in result["forbidden_claims_found"]]
@@ -1573,12 +1573,12 @@ def test_validator_fails_if_evidence_review_pack_local_adapter_revision_makes_fo
 
 def test_rw_comp_local_adapter_indexes_docs_and_boundaries_are_generated(tmp_path):
     out_dir, docs_dir = run_builder(tmp_path)
-    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text())
-    reproducibility = json.loads((out_dir / "reproducibility_index.json").read_text())
-    artifact_index = json.loads((out_dir / "artifact_index.json").read_text())
-    quickstart = (docs_dir / "reviewer-quickstart.md").read_text()
-    boundaries = (docs_dir / "claim-boundaries.md").read_text()
-    index = (docs_dir / "index.md").read_text()
+    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text(encoding="utf-8"))
+    reproducibility = json.loads((out_dir / "reproducibility_index.json").read_text(encoding="utf-8"))
+    artifact_index = json.loads((out_dir / "artifact_index.json").read_text(encoding="utf-8"))
+    quickstart = (docs_dir / "reviewer-quickstart.md").read_text(encoding="utf-8")
+    boundaries = (docs_dir / "claim-boundaries.md").read_text(encoding="utf-8")
+    index = (docs_dir / "index.md").read_text(encoding="utf-8")
     page = docs_dir / "rw-comp-local-adapter.md"
 
     phase = next(entry for entry in dashboard["accepted_phases"] if entry["phase_id"] == "RW-COMP-LOCAL-ADAPTER-01")
@@ -1607,7 +1607,7 @@ def test_rw_comp_local_adapter_indexes_docs_and_boundaries_are_generated(tmp_pat
     assert "rw_comp_local_adapter_delta_packet.json" in artifact_index["phases"]["RW-COMP-LOCAL-ADAPTER-01"]
 
     assert page.exists()
-    page_text = page.read_text()
+    page_text = page.read_text(encoding="utf-8")
     assert "Deltas are structural review descriptors only." in page_text
     assert "Candidate comparison is not final answer selection." in page_text
     assert "RW-COMP-LOCAL-ADAPTER-01" in quickstart
@@ -1630,7 +1630,7 @@ def test_validator_fails_if_rw_comp_local_adapter_makes_forbidden_claims(tmp_pat
     for claim in forbidden_claims:
         out_dir, docs_dir = run_builder(tmp_path / claim.replace(" ", "_"))
         page = docs_dir / "rw-comp-local-adapter.md"
-        page.write_text(page.read_text() + f"\nRW-COMP local adapter claims {claim}.\n")
+        page.write_text(page.read_text(encoding="utf-8") + f"\nRW-COMP local adapter claims {claim}.\n", encoding="utf-8")
         result = validate_dashboard(out_dir / "experiment_suite_dashboard.json", docs_dir)
         assert result["passed"] is False, claim
         forbidden_found = [found.lower() for found in result["forbidden_claims_found"]]
@@ -1639,11 +1639,11 @@ def test_validator_fails_if_rw_comp_local_adapter_makes_forbidden_claims(tmp_pat
 
 def test_pmr_doctrine_and_local_artifact_index_are_generated(tmp_path):
     out_dir, docs_dir = run_builder(tmp_path)
-    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text())
-    reproducibility = json.loads((out_dir / "reproducibility_index.json").read_text())
-    artifact_index = json.loads((out_dir / "artifact_index.json").read_text())
-    boundaries = (docs_dir / "claim-boundaries.md").read_text()
-    index = (docs_dir / "index.md").read_text()
+    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text(encoding="utf-8"))
+    reproducibility = json.loads((out_dir / "reproducibility_index.json").read_text(encoding="utf-8"))
+    artifact_index = json.loads((out_dir / "artifact_index.json").read_text(encoding="utf-8"))
+    boundaries = (docs_dir / "claim-boundaries.md").read_text(encoding="utf-8")
+    index = (docs_dir / "index.md").read_text(encoding="utf-8")
     pmr00_page = docs_dir / "provenance-memory-reservoir.md"
     pmr01_page = docs_dir / "pmr-local-artifact-index.md"
 
@@ -1696,7 +1696,7 @@ def test_validator_fails_if_pmr_makes_forbidden_claims(tmp_path):
     for claim in forbidden_claims:
         out_dir, docs_dir = run_builder(tmp_path / claim.replace(" ", "_"))
         page = docs_dir / "provenance-memory-reservoir.md"
-        page.write_text(page.read_text() + f"\nPMR claims {claim}.\n")
+        page.write_text(page.read_text(encoding="utf-8") + f"\nPMR claims {claim}.\n", encoding="utf-8")
         result = validate_dashboard(out_dir / "experiment_suite_dashboard.json", docs_dir)
         assert result["passed"] is False, claim
         forbidden_found = [found.lower() for found in result["forbidden_claims_found"]]
@@ -1705,10 +1705,10 @@ def test_validator_fails_if_pmr_makes_forbidden_claims(tmp_path):
 
 def test_pmr_02_gpcu_indexes_and_docs_are_generated(tmp_path):
     out_dir, docs_dir = run_builder(tmp_path)
-    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text())
-    reproducibility = json.loads((out_dir / "reproducibility_index.json").read_text())
-    artifact_index = json.loads((out_dir / "artifact_index.json").read_text())
-    claim_boundaries = json.loads((out_dir / "claim_boundary_index.json").read_text())
+    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text(encoding="utf-8"))
+    reproducibility = json.loads((out_dir / "reproducibility_index.json").read_text(encoding="utf-8"))
+    artifact_index = json.loads((out_dir / "artifact_index.json").read_text(encoding="utf-8"))
+    claim_boundaries = json.loads((out_dir / "claim_boundary_index.json").read_text(encoding="utf-8"))
 
     phase_ids = {entry["phase_id"] for entry in dashboard["accepted_phases"]}
     assert "PMR-02-GLOBAL-PROVENANCE-COHERENCE-UTILITY" in phase_ids
@@ -1735,7 +1735,7 @@ def test_validator_fails_if_pmr_02_makes_forbidden_claims(tmp_path):
     for claim in forbidden_claims:
         out_dir, docs_dir = run_builder(tmp_path / claim.replace(" ", "_"))
         page = docs_dir / "pmr-provenance-coherence-utility.md"
-        page.write_text(page.read_text() + f"\nPMR-02 claims {claim}.\n")
+        page.write_text(page.read_text(encoding="utf-8") + f"\nPMR-02 claims {claim}.\n", encoding="utf-8")
         result = validate_dashboard(out_dir / "experiment_suite_dashboard.json", docs_dir)
         assert result["passed"] is False
         forbidden_found = [found.lower() for found in result["forbidden_claims_found"]]
@@ -1744,10 +1744,10 @@ def test_validator_fails_if_pmr_02_makes_forbidden_claims(tmp_path):
 
 def test_pmr_03_lifecycle_state_machine_indexes_and_docs_are_generated(tmp_path):
     out_dir, docs_dir = run_builder(tmp_path)
-    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text())
-    reproducibility = json.loads((out_dir / "reproducibility_index.json").read_text())
-    artifact_index = json.loads((out_dir / "artifact_index.json").read_text())
-    claim_boundaries = json.loads((out_dir / "claim_boundary_index.json").read_text())
+    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text(encoding="utf-8"))
+    reproducibility = json.loads((out_dir / "reproducibility_index.json").read_text(encoding="utf-8"))
+    artifact_index = json.loads((out_dir / "artifact_index.json").read_text(encoding="utf-8"))
+    claim_boundaries = json.loads((out_dir / "claim_boundary_index.json").read_text(encoding="utf-8"))
 
     phase_ids = {entry["phase_id"] for entry in dashboard["accepted_phases"]}
     assert "PMR-03-LIFECYCLE-STATE-MACHINE" in phase_ids
@@ -1773,7 +1773,7 @@ def test_validator_fails_if_pmr_03_makes_forbidden_claims(tmp_path):
     for claim in forbidden_claims:
         out_dir, docs_dir = run_builder(tmp_path / claim.replace(" ", "_"))
         page = docs_dir / "pmr-lifecycle-state-machine.md"
-        page.write_text(page.read_text() + f"\nPMR-03 claims {claim}.\n")
+        page.write_text(page.read_text(encoding="utf-8") + f"\nPMR-03 claims {claim}.\n", encoding="utf-8")
         result = validate_dashboard(out_dir / "experiment_suite_dashboard.json", docs_dir)
         assert result["passed"] is False
         forbidden_found = [found.lower() for found in result["forbidden_claims_found"]]
@@ -1782,10 +1782,10 @@ def test_validator_fails_if_pmr_03_makes_forbidden_claims(tmp_path):
 
 def test_pmr_04_lifecycle_audit_preflight_indexes_and_docs_are_generated(tmp_path):
     out_dir, docs_dir = run_builder(tmp_path)
-    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text())
-    reproducibility = json.loads((out_dir / "reproducibility_index.json").read_text())
-    artifact_index = json.loads((out_dir / "artifact_index.json").read_text())
-    claim_boundaries = json.loads((out_dir / "claim_boundary_index.json").read_text())
+    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text(encoding="utf-8"))
+    reproducibility = json.loads((out_dir / "reproducibility_index.json").read_text(encoding="utf-8"))
+    artifact_index = json.loads((out_dir / "artifact_index.json").read_text(encoding="utf-8"))
+    claim_boundaries = json.loads((out_dir / "claim_boundary_index.json").read_text(encoding="utf-8"))
 
     phase_ids = {entry["phase_id"] for entry in dashboard["accepted_phases"]}
     assert "PMR-04-LIFECYCLE-AUDIT-PREFLIGHT" in phase_ids
@@ -1814,7 +1814,7 @@ def test_validator_fails_if_pmr_04_makes_forbidden_claims(tmp_path):
     for claim in forbidden_claims:
         out_dir, docs_dir = run_builder(tmp_path / claim.replace(" ", "_"))
         page = docs_dir / "pmr-lifecycle-audit-preflight.md"
-        page.write_text(page.read_text() + f"\nPMR-04 claims {claim}.\n")
+        page.write_text(page.read_text(encoding="utf-8") + f"\nPMR-04 claims {claim}.\n", encoding="utf-8")
         result = validate_dashboard(out_dir / "experiment_suite_dashboard.json", docs_dir)
         assert result["passed"] is False
         forbidden_found = [found.lower() for found in result["forbidden_claims_found"]]
@@ -1823,10 +1823,10 @@ def test_validator_fails_if_pmr_04_makes_forbidden_claims(tmp_path):
 
 def test_pmr_05_sophia_lifecycle_audit_review_indexes_and_docs_are_generated(tmp_path):
     out_dir, docs_dir = run_builder(tmp_path)
-    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text())
-    reproducibility = json.loads((out_dir / "reproducibility_index.json").read_text())
-    artifact_index = json.loads((out_dir / "artifact_index.json").read_text())
-    claim_boundaries = json.loads((out_dir / "claim_boundary_index.json").read_text())
+    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text(encoding="utf-8"))
+    reproducibility = json.loads((out_dir / "reproducibility_index.json").read_text(encoding="utf-8"))
+    artifact_index = json.loads((out_dir / "artifact_index.json").read_text(encoding="utf-8"))
+    claim_boundaries = json.loads((out_dir / "claim_boundary_index.json").read_text(encoding="utf-8"))
 
     phase_ids = {entry["phase_id"] for entry in dashboard["accepted_phases"]}
     assert "PMR-05-SOPHIA-LIFECYCLE-AUDIT-REVIEW" in phase_ids
@@ -1853,7 +1853,7 @@ def test_validator_fails_if_pmr_05_makes_forbidden_claims(tmp_path):
     for claim in forbidden_claims:
         out_dir, docs_dir = run_builder(tmp_path / claim.replace(" ", "_"))
         page = docs_dir / "pmr-sophia-lifecycle-audit-review.md"
-        page.write_text(page.read_text() + f"\nPMR-05 claims {claim}.\n")
+        page.write_text(page.read_text(encoding="utf-8") + f"\nPMR-05 claims {claim}.\n", encoding="utf-8")
         result = validate_dashboard(out_dir / "experiment_suite_dashboard.json", docs_dir)
         assert result["passed"] is False
         forbidden_found = [found.lower() for found in result["forbidden_claims_found"]]
@@ -1862,10 +1862,10 @@ def test_validator_fails_if_pmr_05_makes_forbidden_claims(tmp_path):
 
 def test_pmr_06_user_confirmation_preflight_indexes_and_docs_are_generated(tmp_path):
     out_dir, docs_dir = run_builder(tmp_path)
-    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text())
-    reproducibility = json.loads((out_dir / "reproducibility_index.json").read_text())
-    artifact_index = json.loads((out_dir / "artifact_index.json").read_text())
-    claim_boundaries = json.loads((out_dir / "claim_boundary_index.json").read_text())
+    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text(encoding="utf-8"))
+    reproducibility = json.loads((out_dir / "reproducibility_index.json").read_text(encoding="utf-8"))
+    artifact_index = json.loads((out_dir / "artifact_index.json").read_text(encoding="utf-8"))
+    claim_boundaries = json.loads((out_dir / "claim_boundary_index.json").read_text(encoding="utf-8"))
 
     phase_ids = {entry["phase_id"] for entry in dashboard["accepted_phases"]}
     assert "PMR-06-USER-CONFIRMATION-PREFLIGHT" in phase_ids
@@ -1893,7 +1893,7 @@ def test_validator_fails_if_pmr_06_makes_forbidden_claims(tmp_path):
     for claim in forbidden_claims:
         out_dir, docs_dir = run_builder(tmp_path / claim.replace(" ", "_"))
         page = docs_dir / "pmr-user-confirmation-preflight.md"
-        page.write_text(page.read_text() + f"\nPMR-06 claims {claim}.\n")
+        page.write_text(page.read_text(encoding="utf-8") + f"\nPMR-06 claims {claim}.\n", encoding="utf-8")
         result = validate_dashboard(out_dir / "experiment_suite_dashboard.json", docs_dir)
         assert result["passed"] is False
         forbidden_found = [found.lower() for found in result["forbidden_claims_found"]]
@@ -1902,10 +1902,10 @@ def test_validator_fails_if_pmr_06_makes_forbidden_claims(tmp_path):
 
 def test_pmr_07_user_confirmation_negative_control_indexes_and_docs_are_generated(tmp_path):
     out_dir, docs_dir = run_builder(tmp_path)
-    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text())
-    reproducibility = json.loads((out_dir / "reproducibility_index.json").read_text())
-    artifact_index = json.loads((out_dir / "artifact_index.json").read_text())
-    claim_boundaries = json.loads((out_dir / "claim_boundary_index.json").read_text())
+    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text(encoding="utf-8"))
+    reproducibility = json.loads((out_dir / "reproducibility_index.json").read_text(encoding="utf-8"))
+    artifact_index = json.loads((out_dir / "artifact_index.json").read_text(encoding="utf-8"))
+    claim_boundaries = json.loads((out_dir / "claim_boundary_index.json").read_text(encoding="utf-8"))
 
     phase_ids = {entry["phase_id"] for entry in dashboard["accepted_phases"]}
     assert "PMR-07-USER-CONFIRMATION-NEGATIVE-CONTROL" in phase_ids
@@ -1932,7 +1932,7 @@ def test_validator_fails_if_pmr_07_makes_forbidden_claims(tmp_path):
     for claim in forbidden_claims:
         out_dir, docs_dir = run_builder(tmp_path / claim.replace(" ", "_"))
         page = docs_dir / "pmr-user-confirmation-negative-control.md"
-        page.write_text(page.read_text() + f"\nPMR-07 claims {claim}.\n")
+        page.write_text(page.read_text(encoding="utf-8") + f"\nPMR-07 claims {claim}.\n", encoding="utf-8")
         result = validate_dashboard(out_dir / "experiment_suite_dashboard.json", docs_dir)
         assert result["passed"] is False
         forbidden_found = [found.lower() for found in result["forbidden_claims_found"]]
@@ -1941,10 +1941,10 @@ def test_validator_fails_if_pmr_07_makes_forbidden_claims(tmp_path):
 
 def test_pmr_08_valid_user_confirmation_receipt_scaffold_indexes_and_docs_are_generated(tmp_path):
     out_dir, docs_dir = run_builder(tmp_path)
-    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text())
-    reproducibility = json.loads((out_dir / "reproducibility_index.json").read_text())
-    artifact_index = json.loads((out_dir / "artifact_index.json").read_text())
-    claim_boundaries = json.loads((out_dir / "claim_boundary_index.json").read_text())
+    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text(encoding="utf-8"))
+    reproducibility = json.loads((out_dir / "reproducibility_index.json").read_text(encoding="utf-8"))
+    artifact_index = json.loads((out_dir / "artifact_index.json").read_text(encoding="utf-8"))
+    claim_boundaries = json.loads((out_dir / "claim_boundary_index.json").read_text(encoding="utf-8"))
 
     phase_ids = {entry["phase_id"] for entry in dashboard["accepted_phases"]}
     assert "PMR-08-VALID-USER-CONFIRMATION-RECEIPT-SCAFFOLD" in phase_ids
@@ -1962,10 +1962,10 @@ def test_pmr_08_valid_user_confirmation_receipt_scaffold_indexes_and_docs_are_ge
 
 def test_pmr_09_destructive_action_authorization_negative_control_indexes_and_docs_are_generated(tmp_path):
     out_dir, docs_dir = run_builder(tmp_path)
-    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text())
-    reproducibility = json.loads((out_dir / "reproducibility_index.json").read_text())
-    artifact_index = json.loads((out_dir / "artifact_index.json").read_text())
-    claim_boundaries = json.loads((out_dir / "claim_boundary_index.json").read_text())
+    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text(encoding="utf-8"))
+    reproducibility = json.loads((out_dir / "reproducibility_index.json").read_text(encoding="utf-8"))
+    artifact_index = json.loads((out_dir / "artifact_index.json").read_text(encoding="utf-8"))
+    claim_boundaries = json.loads((out_dir / "claim_boundary_index.json").read_text(encoding="utf-8"))
 
     phase_ids = {entry["phase_id"] for entry in dashboard["accepted_phases"]}
     assert "PMR-09-DESTRUCTIVE-ACTION-AUTHORIZATION-NEGATIVE-CONTROL" in phase_ids
@@ -1983,10 +1983,10 @@ def test_pmr_09_destructive_action_authorization_negative_control_indexes_and_do
 
 def test_pmr_10_destructive_action_authorization_preflight_indexes_and_docs_are_generated(tmp_path):
     out_dir, docs_dir = run_builder(tmp_path)
-    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text())
-    reproducibility = json.loads((out_dir / "reproducibility_index.json").read_text())
-    artifact_index = json.loads((out_dir / "artifact_index.json").read_text())
-    claim_boundaries = json.loads((out_dir / "claim_boundary_index.json").read_text())
+    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text(encoding="utf-8"))
+    reproducibility = json.loads((out_dir / "reproducibility_index.json").read_text(encoding="utf-8"))
+    artifact_index = json.loads((out_dir / "artifact_index.json").read_text(encoding="utf-8"))
+    claim_boundaries = json.loads((out_dir / "claim_boundary_index.json").read_text(encoding="utf-8"))
 
     phase_ids = {entry["phase_id"] for entry in dashboard["accepted_phases"]}
     assert "PMR-10-DESTRUCTIVE-ACTION-AUTHORIZATION-PREFLIGHT" in phase_ids
@@ -2006,10 +2006,10 @@ def test_pmr_10_destructive_action_authorization_preflight_indexes_and_docs_are_
 
 def test_pmr_architecture_diversity_checkpoint_indexes_and_docs_are_generated(tmp_path):
     out_dir, docs_dir = run_builder(tmp_path)
-    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text())
-    reproducibility = json.loads((out_dir / "reproducibility_index.json").read_text())
-    artifact_index = json.loads((out_dir / "artifact_index.json").read_text())
-    claim_boundaries = json.loads((out_dir / "claim_boundary_index.json").read_text())
+    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text(encoding="utf-8"))
+    reproducibility = json.loads((out_dir / "reproducibility_index.json").read_text(encoding="utf-8"))
+    artifact_index = json.loads((out_dir / "artifact_index.json").read_text(encoding="utf-8"))
+    claim_boundaries = json.loads((out_dir / "claim_boundary_index.json").read_text(encoding="utf-8"))
 
     accepted_phases = dashboard["accepted_phases"]
     phase_ids = {entry["phase_id"] for entry in accepted_phases}
@@ -2040,7 +2040,7 @@ def test_validator_fails_if_pmr_architecture_diversity_checkpoint_makes_forbidde
     for claim in forbidden_claims:
         out_dir, docs_dir = run_builder(tmp_path / claim.replace(" ", "_"))
         page = docs_dir / "pmr-architecture-diversity-checkpoint.md"
-        page.write_text(page.read_text() + f"\nPMR-ARCH-DIVERSITY-CHECKPOINT-00 claims {claim}.\n")
+        page.write_text(page.read_text(encoding="utf-8") + f"\nPMR-ARCH-DIVERSITY-CHECKPOINT-00 claims {claim}.\n", encoding="utf-8")
         result = validate_dashboard(out_dir / "experiment_suite_dashboard.json", docs_dir)
         assert result["passed"] is False
         forbidden_found = [found.lower() for found in result["forbidden_claims_found"]]
@@ -2057,7 +2057,7 @@ def test_validator_fails_if_pmr_10_makes_forbidden_claims(tmp_path):
     for claim in forbidden_claims:
         out_dir, docs_dir = run_builder(tmp_path / claim.replace(" ", "_"))
         page = docs_dir / "pmr-destructive-action-authorization-preflight.md"
-        page.write_text(page.read_text() + f"\nPMR-10 claims {claim}.\n")
+        page.write_text(page.read_text(encoding="utf-8") + f"\nPMR-10 claims {claim}.\n", encoding="utf-8")
         result = validate_dashboard(out_dir / "experiment_suite_dashboard.json", docs_dir)
         assert result["passed"] is False
         forbidden_found = [found.lower() for found in result["forbidden_claims_found"]]
@@ -2074,7 +2074,7 @@ def test_validator_fails_if_pmr_09_makes_forbidden_claims(tmp_path):
     for claim in forbidden_claims:
         out_dir, docs_dir = run_builder(tmp_path / claim.replace(" ", "_"))
         page = docs_dir / "pmr-destructive-action-authorization-negative-control.md"
-        page.write_text(page.read_text() + f"\nPMR-09 claims {claim}.\n")
+        page.write_text(page.read_text(encoding="utf-8") + f"\nPMR-09 claims {claim}.\n", encoding="utf-8")
         result = validate_dashboard(out_dir / "experiment_suite_dashboard.json", docs_dir)
         assert result["passed"] is False
         forbidden_found = [found.lower() for found in result["forbidden_claims_found"]]
@@ -2091,7 +2091,7 @@ def test_validator_fails_if_pmr_08_makes_forbidden_claims(tmp_path):
     for claim in forbidden_claims:
         out_dir, docs_dir = run_builder(tmp_path / claim.replace(" ", "_"))
         page = docs_dir / "pmr-user-confirmation-receipt-scaffold.md"
-        page.write_text(page.read_text() + f"\nPMR-08 claims {claim}.\n")
+        page.write_text(page.read_text(encoding="utf-8") + f"\nPMR-08 claims {claim}.\n", encoding="utf-8")
         result = validate_dashboard(out_dir / "experiment_suite_dashboard.json", docs_dir)
         assert result["passed"] is False
         forbidden_found = [found.lower() for found in result["forbidden_claims_found"]]
@@ -2100,10 +2100,10 @@ def test_validator_fails_if_pmr_08_makes_forbidden_claims(tmp_path):
 
 def test_pmr_sim_00_indexes_docs_and_boundaries_are_generated(tmp_path):
     out_dir, docs_dir = run_builder(tmp_path)
-    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text())
-    reproducibility = json.loads((out_dir / "reproducibility_index.json").read_text())
-    artifact_index = json.loads((out_dir / "artifact_index.json").read_text())
-    claim_boundaries = json.loads((out_dir / "claim_boundary_index.json").read_text())
+    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text(encoding="utf-8"))
+    reproducibility = json.loads((out_dir / "reproducibility_index.json").read_text(encoding="utf-8"))
+    artifact_index = json.loads((out_dir / "artifact_index.json").read_text(encoding="utf-8"))
+    claim_boundaries = json.loads((out_dir / "claim_boundary_index.json").read_text(encoding="utf-8"))
 
     accepted_phases = dashboard["accepted_phases"]
     phase_ids = [entry["phase_id"] for entry in accepted_phases]
@@ -2139,7 +2139,7 @@ def test_dashboard_validator_rejects_pmr_sim_00_overclaims(tmp_path):
     ):
         out_dir, docs_dir = run_builder(tmp_path / claim.replace(" ", "_"))
         page = docs_dir / "pmr-simulation-baseline-comparison.md"
-        page.write_text(page.read_text() + f"\nPMR-SIM-00 claims {claim}.\n")
+        page.write_text(page.read_text(encoding="utf-8") + f"\nPMR-SIM-00 claims {claim}.\n", encoding="utf-8")
         result = validate_dashboard(out_dir / "experiment_suite_dashboard.json", docs_dir)
         assert result["passed"] is False
         found = [hit.lower() for hit in result["forbidden_claims_found"]]
@@ -2149,10 +2149,10 @@ def test_dashboard_validator_rejects_pmr_sim_00_overclaims(tmp_path):
 
 def test_pmr_stat_00_indexes_docs_and_boundaries_are_generated(tmp_path):
     out_dir, docs_dir = run_builder(tmp_path)
-    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text())
-    reproducibility = json.loads((out_dir / "reproducibility_index.json").read_text())
-    artifact_index = json.loads((out_dir / "artifact_index.json").read_text())
-    claim_boundaries = json.loads((out_dir / "claim_boundary_index.json").read_text())
+    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text(encoding="utf-8"))
+    reproducibility = json.loads((out_dir / "reproducibility_index.json").read_text(encoding="utf-8"))
+    artifact_index = json.loads((out_dir / "artifact_index.json").read_text(encoding="utf-8"))
+    claim_boundaries = json.loads((out_dir / "claim_boundary_index.json").read_text(encoding="utf-8"))
 
     accepted_phases = dashboard["accepted_phases"]
     phase_ids = [entry["phase_id"] for entry in accepted_phases]
@@ -2189,7 +2189,7 @@ def test_dashboard_validator_rejects_pmr_stat_00_overclaims(tmp_path):
     ):
         out_dir, docs_dir = run_builder(tmp_path / claim.replace(" ", "_").replace("-", "_"))
         page = docs_dir / "pmr-simulation-statistical-analysis.md"
-        page.write_text(page.read_text() + f"\nPMR-STAT-00 claims {claim}.\n")
+        page.write_text(page.read_text(encoding="utf-8") + f"\nPMR-STAT-00 claims {claim}.\n", encoding="utf-8")
         result = validate_dashboard(out_dir / "experiment_suite_dashboard.json", docs_dir)
         assert result["passed"] is False
         found = [hit.lower() for hit in result["forbidden_claims_found"]]
@@ -2199,10 +2199,10 @@ def test_dashboard_validator_rejects_pmr_stat_00_overclaims(tmp_path):
 
 def test_pmr_fed_stress_00_indexes_docs_and_boundaries_are_generated(tmp_path):
     out_dir, docs_dir = run_builder(tmp_path)
-    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text())
-    reproducibility = json.loads((out_dir / "reproducibility_index.json").read_text())
-    artifact_index = json.loads((out_dir / "artifact_index.json").read_text())
-    claim_boundaries = json.loads((out_dir / "claim_boundary_index.json").read_text())
+    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text(encoding="utf-8"))
+    reproducibility = json.loads((out_dir / "reproducibility_index.json").read_text(encoding="utf-8"))
+    artifact_index = json.loads((out_dir / "artifact_index.json").read_text(encoding="utf-8"))
+    claim_boundaries = json.loads((out_dir / "claim_boundary_index.json").read_text(encoding="utf-8"))
 
     accepted_phases = dashboard["accepted_phases"]
     phase_ids = [entry["phase_id"] for entry in accepted_phases]
@@ -2239,7 +2239,7 @@ def test_dashboard_validator_rejects_pmr_fed_stress_00_overclaims(tmp_path):
     ):
         out_dir, docs_dir = run_builder(tmp_path / claim.replace(" ", "_").replace("-", "_"))
         page = docs_dir / "pmr-federation-stress-corpus.md"
-        page.write_text(page.read_text() + f"\nPMR-FED-STRESS-00 claims {claim}.\n")
+        page.write_text(page.read_text(encoding="utf-8") + f"\nPMR-FED-STRESS-00 claims {claim}.\n", encoding="utf-8")
         result = validate_dashboard(out_dir / "experiment_suite_dashboard.json", docs_dir)
         assert result["passed"] is False
         found = [hit.lower() for hit in result["forbidden_claims_found"]]
@@ -2249,10 +2249,10 @@ def test_dashboard_validator_rejects_pmr_fed_stress_00_overclaims(tmp_path):
 
 def test_pmr_human_provenance_00_indexes_docs_and_boundaries_are_generated(tmp_path):
     out_dir, docs_dir = run_builder(tmp_path)
-    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text())
-    reproducibility = json.loads((out_dir / "reproducibility_index.json").read_text())
-    artifact_index = json.loads((out_dir / "artifact_index.json").read_text())
-    claim_boundaries = json.loads((out_dir / "claim_boundary_index.json").read_text())
+    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text(encoding="utf-8"))
+    reproducibility = json.loads((out_dir / "reproducibility_index.json").read_text(encoding="utf-8"))
+    artifact_index = json.loads((out_dir / "artifact_index.json").read_text(encoding="utf-8"))
+    claim_boundaries = json.loads((out_dir / "claim_boundary_index.json").read_text(encoding="utf-8"))
 
     accepted_phases = dashboard["accepted_phases"]
     phase_ids = [entry["phase_id"] for entry in accepted_phases]
@@ -2289,7 +2289,7 @@ def test_dashboard_validator_rejects_pmr_human_provenance_00_overclaims(tmp_path
     ):
         out_dir, docs_dir = run_builder(tmp_path / claim.replace(" ", "_").replace("-", "_"))
         page = docs_dir / "pmr-human-provenance-context.md"
-        page.write_text(page.read_text() + f"\nPMR-HUMAN-PROVENANCE-00 claims {claim}.\n")
+        page.write_text(page.read_text(encoding="utf-8") + f"\nPMR-HUMAN-PROVENANCE-00 claims {claim}.\n", encoding="utf-8")
         result = validate_dashboard(out_dir / "experiment_suite_dashboard.json", docs_dir)
         assert result["passed"] is False
         found = [hit.lower() for hit in result["forbidden_claims_found"]]
@@ -2298,12 +2298,12 @@ def test_dashboard_validator_rejects_pmr_human_provenance_00_overclaims(tmp_path
 
 def test_sonya_required_membrane_checkpoint_dashboard_entries(tmp_path):
     out_dir, docs_dir = run_builder(tmp_path)
-    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text())
+    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text(encoding="utf-8"))
     phase = next(entry for entry in dashboard["accepted_phases"] if entry["phase_id"] == "SONYA-REQUIRED-MEMBRANE-CHECKPOINT-00")
     assert phase["dashboard_summary"]["review_status"] == "accepted_as_sonya_required_membrane_checkpoint"
     assert "sonya_required_membrane_checkpoint_packet.json" in phase["primary_artifacts"]
-    assert "Sonya is the required execution membrane for model/tool/provider-facing paths." in (docs_dir / "claim-boundaries.md").read_text()
-    assert "Missing Sonya posture must fail closed." in (docs_dir / "sonya-required-membrane-checkpoint.md").read_text()
+    assert "Sonya is the required execution membrane for model/tool/provider-facing paths." in (docs_dir / "claim-boundaries.md").read_text(encoding="utf-8")
+    assert "Missing Sonya posture must fail closed." in (docs_dir / "sonya-required-membrane-checkpoint.md").read_text(encoding="utf-8")
 
 
 def test_sonya_required_membrane_validator_rejects_positive_overclaims(tmp_path):
@@ -2337,7 +2337,7 @@ def test_sonya_required_membrane_validator_allows_bounded_negative_contexts(tmp_
 
 def test_tel_event_stack_dashboard_entries(tmp_path):
     out_dir, docs_dir = run_builder(tmp_path)
-    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text())
+    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text(encoding="utf-8"))
     phase = next(entry for entry in dashboard["accepted_phases"] if entry["phase_id"] == "TEL-EVENT-STACK-00")
     assert "tel_event_stack_manifest.json" in phase["primary_artifacts"]
     assert phase["dashboard_summary"]["review_status"] == "accepted_as_tel_event_stack_scaffold"
@@ -2352,11 +2352,11 @@ def test_tel_event_stack_validator_rejects_overclaims(tmp_path):
 
 def test_evidence_review_product_loop_dashboard_entries(tmp_path):
     out_dir, docs_dir = run_builder(tmp_path)
-    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text())
+    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text(encoding="utf-8"))
     phase = next(entry for entry in dashboard["accepted_phases"] if entry["phase_id"] == "EVIDENCE-REVIEW-PRODUCT-LOOP-02")
     assert "evidence_review_product_loop_manifest.json" in phase["primary_artifacts"]
     assert "evidence_review_claim_triage_rows.jsonl" in phase["primary_artifacts"]
-    assert "Evidence Review product loop is not final answer selection." in (docs_dir / "claim-boundaries.md").read_text()
+    assert "Evidence Review product loop is not final answer selection." in (docs_dir / "claim-boundaries.md").read_text(encoding="utf-8")
 
 
 def test_evidence_review_product_loop_validator_rejects_overclaims(tmp_path):
@@ -2377,18 +2377,18 @@ def test_evidence_review_product_loop_validator_rejects_overclaims(tmp_path):
 
 def test_evidence_review_metrics_dashboard_entries(tmp_path):
     out_dir, docs_dir = run_builder(tmp_path)
-    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text())
+    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text(encoding="utf-8"))
     phase = next(entry for entry in dashboard["accepted_phases"] if entry["phase_id"] == "EVIDENCE-REVIEW-METRICS-00")
     assert "evidence_review_metrics_manifest.json" in phase["primary_artifacts"]
-    assert "Hypercompression reduces explanatory distance, not review obligation." in (docs_dir / "claim-boundaries.md").read_text()
+    assert "Hypercompression reduces explanatory distance, not review obligation." in (docs_dir / "claim-boundaries.md").read_text(encoding="utf-8")
 
 
 def test_cognitive_waters_pattern_metrics_dashboard_entries(tmp_path):
     out_dir, docs_dir = run_builder(tmp_path)
-    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text())
+    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text(encoding="utf-8"))
     phase = next(entry for entry in dashboard["accepted_phases"] if entry["phase_id"] == "COGNITIVE-WATERS-PATTERN-METRICS-00")
     assert "cognitive_waters_metrics_manifest.json" in phase["primary_artifacts"]
-    assert "Pattern morphology is not consciousness proof." in (docs_dir / "claim-boundaries.md").read_text()
+    assert "Pattern morphology is not consciousness proof." in (docs_dir / "claim-boundaries.md").read_text(encoding="utf-8")
 
 
 def test_validator_allows_bounded_truth_final_product_release_contexts(tmp_path):
@@ -2442,12 +2442,12 @@ def test_ontology_claim_registry_page_contains_required_boundaries(tmp_path):
 
 def test_local_sonya_path_portability_dashboard_entries(tmp_path):
     out_dir, docs_dir = run_builder(tmp_path)
-    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text())
+    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text(encoding="utf-8"))
     assert any(p["phase_id"] == "LOCAL-SONYA-PATH-PORTABILITY-00" for p in dashboard["accepted_phases"])
-    repro = json.loads((out_dir / "reproducibility_index.json").read_text())
+    repro = json.loads((out_dir / "reproducibility_index.json").read_text(encoding="utf-8"))
     command_blob = json.dumps(repro["commands"])
     assert "Run-LOCAL-SONYA-PATH-PORTABILITY00-Acceptance.ps1" in command_blob
-    artifacts = json.loads((out_dir / "artifact_index.json").read_text())
+    artifacts = json.loads((out_dir / "artifact_index.json").read_text(encoding="utf-8"))
     phase_artifacts = artifacts["phases"]["LOCAL-SONYA-PATH-PORTABILITY-00"]
     for a in ["local_sonya_path_portability_manifest.json","local_sonya_node_environment_packet.json","local_sonya_path_audit_rows.jsonl","local_sonya_path_policy_packet.json","local_sonya_path_portability_review_packet.json"]:
         assert a in phase_artifacts
@@ -2459,11 +2459,11 @@ def test_local_sonya_path_portability_dashboard_entries(tmp_path):
 
 def test_tb_product_slice_dashboard_entries(tmp_path):
     out_dir, docs_dir = run_builder(tmp_path)
-    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text())
+    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text(encoding="utf-8"))
     assert any(p["phase_id"] == "TB-PRODUCT-SLICE-00" for p in dashboard["accepted_phases"])
-    repro = json.loads((out_dir / "reproducibility_index.json").read_text())
+    repro = json.loads((out_dir / "reproducibility_index.json").read_text(encoding="utf-8"))
     assert "Run-TB-PRODUCT-SLICE00-Acceptance.ps1" in json.dumps(repro["commands"])
-    artifacts = json.loads((out_dir / "artifact_index.json").read_text())
+    artifacts = json.loads((out_dir / "artifact_index.json").read_text(encoding="utf-8"))
     phase_artifacts = artifacts["phases"]["TB-PRODUCT-SLICE-00"]
     for a in ["tb_product_slice_manifest.json","source_bundle_manifest.json","sonya_candidate_packet.json","claim_evidence_map.json","unsupported_claim_report.json","uncertainty_report.json","tel_events.jsonl","review_receipt.md"]:
         assert a in phase_artifacts
@@ -2474,11 +2474,11 @@ def test_tb_product_slice_dashboard_entries(tmp_path):
 
 def test_tb_product_slice_01_dashboard_entries(tmp_path):
     out_dir, docs_dir = run_builder(tmp_path)
-    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text())
+    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text(encoding="utf-8"))
     assert any(p["phase_id"] == "TB-PRODUCT-SLICE-01" for p in dashboard["accepted_phases"])
-    repro = json.loads((out_dir / "reproducibility_index.json").read_text())
+    repro = json.loads((out_dir / "reproducibility_index.json").read_text(encoding="utf-8"))
     assert "Run-TB-PRODUCT-SLICE01-Acceptance.ps1" in json.dumps(repro["commands"])
-    artifacts = json.loads((out_dir / "artifact_index.json").read_text())
+    artifacts = json.loads((out_dir / "artifact_index.json").read_text(encoding="utf-8"))
     phase_artifacts = artifacts["phases"]["TB-PRODUCT-SLICE-01"]
     for a in ["tb_product_slice_01_manifest.json","multi_source_bundle_manifest.json","source_link_map.json","cross_source_conflict_report.json","review_receipt.md"]:
         assert a in phase_artifacts
@@ -2501,10 +2501,10 @@ def test_tb_product_slice_01_page_contains_required_content(tmp_path):
 
 def test_sonya_local_server_gateway_updates_present(tmp_path):
     out_dir, _ = run_builder(tmp_path)
-    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text())
-    idx = json.loads((out_dir / "artifact_index.json").read_text())
-    bounds = json.loads((out_dir / "claim_boundary_index.json").read_text())["boundaries"]
-    repro = json.loads((out_dir / "reproducibility_index.json").read_text())
+    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text(encoding="utf-8"))
+    idx = json.loads((out_dir / "artifact_index.json").read_text(encoding="utf-8"))
+    bounds = json.loads((out_dir / "claim_boundary_index.json").read_text(encoding="utf-8"))["boundaries"]
+    repro = json.loads((out_dir / "reproducibility_index.json").read_text(encoding="utf-8"))
     phase_ids = {p["phase_id"] for p in dashboard["accepted_phases"]}
     assert "SONYA-LOCAL-SERVER-GATEWAY-00" in phase_ids
     cmds = str(repro)
@@ -2518,10 +2518,10 @@ def test_sonya_local_server_gateway_updates_present(tmp_path):
 
 def test_sonya_local_server_gateway_01_updates_present(tmp_path):
     out_dir, _ = run_builder(tmp_path)
-    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text())
-    idx = json.loads((out_dir / "artifact_index.json").read_text())
-    bounds = json.loads((out_dir / "claim_boundary_index.json").read_text())["boundaries"]
-    repro = json.loads((out_dir / "reproducibility_index.json").read_text())
+    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text(encoding="utf-8"))
+    idx = json.loads((out_dir / "artifact_index.json").read_text(encoding="utf-8"))
+    bounds = json.loads((out_dir / "claim_boundary_index.json").read_text(encoding="utf-8"))["boundaries"]
+    repro = json.loads((out_dir / "reproducibility_index.json").read_text(encoding="utf-8"))
     phase_ids = {p["phase_id"] for p in dashboard["accepted_phases"]}
     assert "SONYA-LOCAL-SERVER-GATEWAY-01" in phase_ids
     assert "Run-SONYA-LOCAL-SERVER-GATEWAY01-Acceptance.ps1" in str(repro)
@@ -2534,10 +2534,10 @@ def test_sonya_local_server_gateway_01_updates_present(tmp_path):
 
 def test_tb_product_slice_02_updates_present(tmp_path):
     out_dir,_=run_builder(tmp_path)
-    dashboard=json.loads((out_dir/"experiment_suite_dashboard.json").read_text())
-    idx=json.loads((out_dir/"artifact_index.json").read_text())
-    bounds=json.loads((out_dir/"claim_boundary_index.json").read_text())["boundaries"]
-    repro=json.loads((out_dir/"reproducibility_index.json").read_text())
+    dashboard=json.loads((out_dir/"experiment_suite_dashboard.json").read_text(encoding="utf-8"))
+    idx=json.loads((out_dir/"artifact_index.json").read_text(encoding="utf-8"))
+    bounds=json.loads((out_dir/"claim_boundary_index.json").read_text(encoding="utf-8"))["boundaries"]
+    repro=json.loads((out_dir/"reproducibility_index.json").read_text(encoding="utf-8"))
     assert "TB-PRODUCT-SLICE-02" in {p["phase_id"] for p in dashboard["accepted_phases"]}
     assert "Run-TB-PRODUCT-SLICE02-Acceptance.ps1" in str(repro)
     art=idx["phases"]["TB-PRODUCT-SLICE-02"]
@@ -2549,10 +2549,10 @@ def test_tb_product_slice_02_updates_present(tmp_path):
 
 def test_sonya_local_server_gateway_02_updates_present(tmp_path):
     out_dir,_=run_builder(tmp_path)
-    dashboard=json.loads((out_dir/"experiment_suite_dashboard.json").read_text())
-    idx=json.loads((out_dir/"artifact_index.json").read_text())
-    bounds=json.loads((out_dir/"claim_boundary_index.json").read_text())["boundaries"]
-    repro=json.loads((out_dir/"reproducibility_index.json").read_text())
+    dashboard=json.loads((out_dir/"experiment_suite_dashboard.json").read_text(encoding="utf-8"))
+    idx=json.loads((out_dir/"artifact_index.json").read_text(encoding="utf-8"))
+    bounds=json.loads((out_dir/"claim_boundary_index.json").read_text(encoding="utf-8"))["boundaries"]
+    repro=json.loads((out_dir/"reproducibility_index.json").read_text(encoding="utf-8"))
     assert "SONYA-LOCAL-SERVER-GATEWAY-02" in {p["phase_id"] for p in dashboard["accepted_phases"]}
     assert "Run-SONYA-LOCAL-SERVER-GATEWAY02-Acceptance.ps1" in str(repro)
     art=idx["phases"]["SONYA-LOCAL-SERVER-GATEWAY-02"]
@@ -2564,10 +2564,10 @@ def test_sonya_local_server_gateway_02_updates_present(tmp_path):
 
 def test_local_server_user_file_ingress_00_updates_present(tmp_path):
     out_dir,_=run_builder(tmp_path)
-    dashboard=json.loads((out_dir/"experiment_suite_dashboard.json").read_text())
-    idx=json.loads((out_dir/"artifact_index.json").read_text())
-    bounds=json.loads((out_dir/"claim_boundary_index.json").read_text())["boundaries"]
-    repro=json.loads((out_dir/"reproducibility_index.json").read_text())
+    dashboard=json.loads((out_dir/"experiment_suite_dashboard.json").read_text(encoding="utf-8"))
+    idx=json.loads((out_dir/"artifact_index.json").read_text(encoding="utf-8"))
+    bounds=json.loads((out_dir/"claim_boundary_index.json").read_text(encoding="utf-8"))["boundaries"]
+    repro=json.loads((out_dir/"reproducibility_index.json").read_text(encoding="utf-8"))
     assert "LOCAL-SERVER-USER-FILE-INGRESS-00" in {p["phase_id"] for p in dashboard["accepted_phases"]}
     assert "Run-LOCAL-SERVER-USER-FILE-INGRESS00-Acceptance.ps1" in str(repro)
     art=idx["phases"]["LOCAL-SERVER-USER-FILE-INGRESS-00"]
@@ -2579,10 +2579,10 @@ def test_local_server_user_file_ingress_00_updates_present(tmp_path):
 
 def test_pmr_context_availability_ledger_00_updates_present(tmp_path):
     out_dir,_=run_builder(tmp_path)
-    dashboard=json.loads((out_dir/"experiment_suite_dashboard.json").read_text())
-    idx=json.loads((out_dir/"artifact_index.json").read_text())
-    bounds=json.loads((out_dir/"claim_boundary_index.json").read_text())["boundaries"]
-    repro=json.loads((out_dir/"reproducibility_index.json").read_text())
+    dashboard=json.loads((out_dir/"experiment_suite_dashboard.json").read_text(encoding="utf-8"))
+    idx=json.loads((out_dir/"artifact_index.json").read_text(encoding="utf-8"))
+    bounds=json.loads((out_dir/"claim_boundary_index.json").read_text(encoding="utf-8"))["boundaries"]
+    repro=json.loads((out_dir/"reproducibility_index.json").read_text(encoding="utf-8"))
     assert "PMR-CONTEXT-AVAILABILITY-LEDGER-00" in {p["phase_id"] for p in dashboard["accepted_phases"]}
     assert "Run-PMR-CONTEXT-AVAILABILITY-LEDGER00-Acceptance.ps1" in str(repro)
     art=idx["phases"]["PMR-CONTEXT-AVAILABILITY-LEDGER-00"]
@@ -2594,10 +2594,10 @@ def test_pmr_context_availability_ledger_00_updates_present(tmp_path):
 
 def test_local_server_user_file_ingress_01_updates_present(tmp_path):
     out_dir,_=run_builder(tmp_path)
-    dashboard=json.loads((out_dir/"experiment_suite_dashboard.json").read_text())
-    idx=json.loads((out_dir/"artifact_index.json").read_text())
-    bounds=json.loads((out_dir/"claim_boundary_index.json").read_text())["boundaries"]
-    repro=json.loads((out_dir/"reproducibility_index.json").read_text())
+    dashboard=json.loads((out_dir/"experiment_suite_dashboard.json").read_text(encoding="utf-8"))
+    idx=json.loads((out_dir/"artifact_index.json").read_text(encoding="utf-8"))
+    bounds=json.loads((out_dir/"claim_boundary_index.json").read_text(encoding="utf-8"))["boundaries"]
+    repro=json.loads((out_dir/"reproducibility_index.json").read_text(encoding="utf-8"))
     assert "LOCAL-SERVER-USER-FILE-INGRESS-01" in {p["phase_id"] for p in dashboard["accepted_phases"]}
     assert "Run-LOCAL-SERVER-USER-FILE-INGRESS01-Acceptance.ps1" in str(repro)
     art=idx["phases"]["LOCAL-SERVER-USER-FILE-INGRESS-01"]
@@ -2609,10 +2609,10 @@ def test_local_server_user_file_ingress_01_updates_present(tmp_path):
 
 def test_user_facing_receipt_ux_01_updates_present(tmp_path):
     out_dir,_=run_builder(tmp_path)
-    dashboard=json.loads((out_dir/"experiment_suite_dashboard.json").read_text())
-    idx=json.loads((out_dir/"artifact_index.json").read_text())
-    bounds=json.loads((out_dir/"claim_boundary_index.json").read_text())["boundaries"]
-    repro=json.loads((out_dir/"reproducibility_index.json").read_text())
+    dashboard=json.loads((out_dir/"experiment_suite_dashboard.json").read_text(encoding="utf-8"))
+    idx=json.loads((out_dir/"artifact_index.json").read_text(encoding="utf-8"))
+    bounds=json.loads((out_dir/"claim_boundary_index.json").read_text(encoding="utf-8"))["boundaries"]
+    repro=json.loads((out_dir/"reproducibility_index.json").read_text(encoding="utf-8"))
     assert "USER-FACING-RECEIPT-UX-01" in {p["phase_id"] for p in dashboard["accepted_phases"]}
     assert "Run-USER-FACING-RECEIPT-UX01-Acceptance.ps1" in str(repro)
     art=idx["phases"]["USER-FACING-RECEIPT-UX-01"]
@@ -2624,10 +2624,10 @@ def test_user_facing_receipt_ux_01_updates_present(tmp_path):
 
 def test_local_server_user_file_ingress_02_updates_present(tmp_path):
     out_dir,_=run_builder(tmp_path)
-    dashboard=json.loads((out_dir/"experiment_suite_dashboard.json").read_text())
-    idx=json.loads((out_dir/"artifact_index.json").read_text())
-    bounds=json.loads((out_dir/"claim_boundary_index.json").read_text())["boundaries"]
-    repro=json.loads((out_dir/"reproducibility_index.json").read_text())
+    dashboard=json.loads((out_dir/"experiment_suite_dashboard.json").read_text(encoding="utf-8"))
+    idx=json.loads((out_dir/"artifact_index.json").read_text(encoding="utf-8"))
+    bounds=json.loads((out_dir/"claim_boundary_index.json").read_text(encoding="utf-8"))["boundaries"]
+    repro=json.loads((out_dir/"reproducibility_index.json").read_text(encoding="utf-8"))
     assert "LOCAL-SERVER-USER-FILE-INGRESS-02" in {p["phase_id"] for p in dashboard["accepted_phases"]}
     assert "Run-LOCAL-SERVER-USER-FILE-INGRESS02-Acceptance.ps1" in str(repro)
     art=idx["phases"]["LOCAL-SERVER-USER-FILE-INGRESS-02"]
@@ -2639,10 +2639,10 @@ def test_local_server_user_file_ingress_02_updates_present(tmp_path):
 
 def test_lan_readiness_preflight_00_updates_present(tmp_path):
     out_dir,_=run_builder(tmp_path)
-    dashboard=json.loads((out_dir/"experiment_suite_dashboard.json").read_text())
-    idx=json.loads((out_dir/"artifact_index.json").read_text())
-    bounds=json.loads((out_dir/"claim_boundary_index.json").read_text())["boundaries"]
-    repro=json.loads((out_dir/"reproducibility_index.json").read_text())
+    dashboard=json.loads((out_dir/"experiment_suite_dashboard.json").read_text(encoding="utf-8"))
+    idx=json.loads((out_dir/"artifact_index.json").read_text(encoding="utf-8"))
+    bounds=json.loads((out_dir/"claim_boundary_index.json").read_text(encoding="utf-8"))["boundaries"]
+    repro=json.loads((out_dir/"reproducibility_index.json").read_text(encoding="utf-8"))
     assert "LAN-READINESS-PREFLIGHT-00" in {p["phase_id"] for p in dashboard["accepted_phases"]}
     assert "Run-LAN-READINESS-PREFLIGHT00-Acceptance.ps1" in str(repro)
     art=idx["phases"]["LAN-READINESS-PREFLIGHT-00"]
@@ -2653,10 +2653,10 @@ def test_lan_readiness_preflight_00_updates_present(tmp_path):
 
 def test_lan_authority_model_00_updates_present(tmp_path):
     out_dir,_=run_builder(tmp_path)
-    dashboard=json.loads((out_dir/"experiment_suite_dashboard.json").read_text())
-    idx=json.loads((out_dir/"artifact_index.json").read_text())
-    bounds=json.loads((out_dir/"claim_boundary_index.json").read_text())["boundaries"]
-    repro=json.loads((out_dir/"reproducibility_index.json").read_text())
+    dashboard=json.loads((out_dir/"experiment_suite_dashboard.json").read_text(encoding="utf-8"))
+    idx=json.loads((out_dir/"artifact_index.json").read_text(encoding="utf-8"))
+    bounds=json.loads((out_dir/"claim_boundary_index.json").read_text(encoding="utf-8"))["boundaries"]
+    repro=json.loads((out_dir/"reproducibility_index.json").read_text(encoding="utf-8"))
     assert "LAN-AUTHORITY-MODEL-00" in {p["phase_id"] for p in dashboard["accepted_phases"]}
     assert "Run-LAN-AUTHORITY-MODEL00-Acceptance.ps1" in str(repro)
     art=idx["phases"]["LAN-AUTHORITY-MODEL-00"]
@@ -2667,10 +2667,10 @@ def test_lan_authority_model_00_updates_present(tmp_path):
 
 def test_lan_authority_negative_control_00_updates_present(tmp_path):
     out_dir,_=run_builder(tmp_path)
-    dashboard=json.loads((out_dir/"experiment_suite_dashboard.json").read_text())
-    idx=json.loads((out_dir/"artifact_index.json").read_text())
-    bounds=json.loads((out_dir/"claim_boundary_index.json").read_text())["boundaries"]
-    repro=json.loads((out_dir/"reproducibility_index.json").read_text())
+    dashboard=json.loads((out_dir/"experiment_suite_dashboard.json").read_text(encoding="utf-8"))
+    idx=json.loads((out_dir/"artifact_index.json").read_text(encoding="utf-8"))
+    bounds=json.loads((out_dir/"claim_boundary_index.json").read_text(encoding="utf-8"))["boundaries"]
+    repro=json.loads((out_dir/"reproducibility_index.json").read_text(encoding="utf-8"))
     assert "LAN-AUTHORITY-NEGATIVE-CONTROL-00" in {p["phase_id"] for p in dashboard["accepted_phases"]}
     assert "Run-LAN-AUTHORITY-NEGATIVE-CONTROL00-Acceptance.ps1" in str(repro)
     art=idx["phases"]["LAN-AUTHORITY-NEGATIVE-CONTROL-00"]
@@ -2682,11 +2682,11 @@ def test_lan_authority_negative_control_00_updates_present(tmp_path):
 
 def test_lan_operator_consent_preflight_00_updates_present(tmp_path):
     out_dir,_=run_builder(tmp_path)
-    dashboard=json.loads((out_dir/"experiment_suite_dashboard.json").read_text())
-    idx=json.loads((out_dir/"artifact_index.json").read_text())
-    bounds=json.loads((out_dir/"claim_boundary_index.json").read_text())["boundaries"]
-    repro=json.loads((out_dir/"reproducibility_index.json").read_text())
-    status=json.loads((out_dir/"status.json").read_text())
+    dashboard=json.loads((out_dir/"experiment_suite_dashboard.json").read_text(encoding="utf-8"))
+    idx=json.loads((out_dir/"artifact_index.json").read_text(encoding="utf-8"))
+    bounds=json.loads((out_dir/"claim_boundary_index.json").read_text(encoding="utf-8"))["boundaries"]
+    repro=json.loads((out_dir/"reproducibility_index.json").read_text(encoding="utf-8"))
+    status=json.loads((out_dir/"status.json").read_text(encoding="utf-8"))
     phases = {p["phase_id"] for p in dashboard["accepted_phases"]}
     assert "LAN-OPERATOR-CONSENT-PREFLIGHT-00" in phases
     assert "Run-LAN-OPERATOR-CONSENT-PREFLIGHT00-Acceptance.ps1" in str(repro)
@@ -2701,10 +2701,10 @@ def test_lan_operator_consent_preflight_00_updates_present(tmp_path):
 
 def test_local_review_runtime_v0_updates_present(tmp_path):
     out_dir,_=run_builder(tmp_path)
-    dashboard=json.loads((out_dir/"experiment_suite_dashboard.json").read_text())
-    idx=json.loads((out_dir/"artifact_index.json").read_text())
-    bounds=json.loads((out_dir/"claim_boundary_index.json").read_text())["boundaries"]
-    repro=json.loads((out_dir/"reproducibility_index.json").read_text())
+    dashboard=json.loads((out_dir/"experiment_suite_dashboard.json").read_text(encoding="utf-8"))
+    idx=json.loads((out_dir/"artifact_index.json").read_text(encoding="utf-8"))
+    bounds=json.loads((out_dir/"claim_boundary_index.json").read_text(encoding="utf-8"))["boundaries"]
+    repro=json.loads((out_dir/"reproducibility_index.json").read_text(encoding="utf-8"))
     assert "LOCAL-REVIEW-RUNTIME-V0" in {p["phase_id"] for p in dashboard["accepted_phases"]}
     assert "Run-LOCAL-REVIEW-RUNTIME-V0-Acceptance.ps1" in str(repro)
     art=idx["phases"]["LOCAL-REVIEW-RUNTIME-V0"]
@@ -2716,7 +2716,7 @@ def test_local_review_runtime_v0_updates_present(tmp_path):
 
 def test_local_review_metrics_flow_dashboard_entries_and_artifacts(tmp_path):
     out_dir, docs_dir = run_builder(tmp_path)
-    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text())
+    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text(encoding="utf-8"))
     accepted = {phase["phase_id"]: phase for phase in dashboard["accepted_phases"]}
     required_phases = {
         "MET-LOCAL-00": [
@@ -2777,7 +2777,7 @@ def test_local_review_metrics_flow_dashboard_entries_and_artifacts(tmp_path):
     assert summary["repair_capacity_score"] == 1
     assert summary["poetic_alias"] == "waters_spiral_runtime_v0"
 
-    artifact_index = json.loads((out_dir / "artifact_index.json").read_text())["phases"]
+    artifact_index = json.loads((out_dir / "artifact_index.json").read_text(encoding="utf-8"))["phases"]
     for phase_id, artifacts in required_phases.items():
         assert artifact_index[phase_id] == artifacts
 
@@ -2790,14 +2790,14 @@ def test_local_review_metrics_flow_dashboard_entries_and_artifacts(tmp_path):
 
 def test_local_review_metrics_flow_repro_command_and_boundaries(tmp_path):
     out_dir, _ = run_builder(tmp_path)
-    repro = json.loads((out_dir / "reproducibility_index.json").read_text())
+    repro = json.loads((out_dir / "reproducibility_index.json").read_text(encoding="utf-8"))
     repro_text = json.dumps(repro)
     assert "Run-LOCAL-REVIEW-RUNTIME-V0-Acceptance.ps1" in repro_text
     assert "total action functional, formula registry, metric bound taxonomy, cognitive flow morphology" in repro_text
     assert "-SophiaRoot C:\\\\UVLM\\\\Sophia" in repro_text
     assert "-EnableSophiaAudit" in repro_text
 
-    boundaries = json.loads((out_dir / "claim_boundary_index.json").read_text())["boundaries"]
+    boundaries = json.loads((out_dir / "claim_boundary_index.json").read_text(encoding="utf-8"))["boundaries"]
     for phase_id in (
         "MET-LOCAL-00",
         "WAVE-ROSETTA-METRIC-CALIBRATION-00",
@@ -2827,12 +2827,12 @@ def test_local_review_metrics_flow_repro_command_and_boundaries(tmp_path):
 
 def test_runtime_metrics_seed_corpus_indexes_and_docs_are_generated(tmp_path):
     out_dir, docs_dir = run_builder(tmp_path)
-    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text())
-    reproducibility = json.loads((out_dir / "reproducibility_index.json").read_text())
-    artifact_index = json.loads((out_dir / "artifact_index.json").read_text())
-    claim_boundaries = json.loads((out_dir / "claim_boundary_index.json").read_text())
-    page = (docs_dir / "runtime-metrics-seed-corpus.md").read_text()
-    index = (docs_dir / "index.md").read_text()
+    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text(encoding="utf-8"))
+    reproducibility = json.loads((out_dir / "reproducibility_index.json").read_text(encoding="utf-8"))
+    artifact_index = json.loads((out_dir / "artifact_index.json").read_text(encoding="utf-8"))
+    claim_boundaries = json.loads((out_dir / "claim_boundary_index.json").read_text(encoding="utf-8"))
+    page = (docs_dir / "runtime-metrics-seed-corpus.md").read_text(encoding="utf-8")
+    index = (docs_dir / "index.md").read_text(encoding="utf-8")
 
     phase = next(
         entry
@@ -2927,13 +2927,13 @@ def test_runtime_metrics_seed_corpus_indexes_and_docs_are_generated(tmp_path):
 
 def test_pmr_local_queryable_store_indexes_and_docs_are_generated(tmp_path):
     out_dir, docs_dir = run_builder(tmp_path)
-    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text())
-    reproducibility = json.loads((out_dir / "reproducibility_index.json").read_text())
-    artifact_index = json.loads((out_dir / "artifact_index.json").read_text())
-    claim_boundaries = json.loads((out_dir / "claim_boundary_index.json").read_text())
-    status = json.loads((out_dir / "status.json").read_text())
-    page = (docs_dir / "pmr-local-queryable-store.md").read_text()
-    index = (docs_dir / "index.md").read_text()
+    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text(encoding="utf-8"))
+    reproducibility = json.loads((out_dir / "reproducibility_index.json").read_text(encoding="utf-8"))
+    artifact_index = json.loads((out_dir / "artifact_index.json").read_text(encoding="utf-8"))
+    claim_boundaries = json.loads((out_dir / "claim_boundary_index.json").read_text(encoding="utf-8"))
+    status = json.loads((out_dir / "status.json").read_text(encoding="utf-8"))
+    page = (docs_dir / "pmr-local-queryable-store.md").read_text(encoding="utf-8")
+    index = (docs_dir / "index.md").read_text(encoding="utf-8")
 
     phase = next(
         entry
@@ -3024,13 +3024,13 @@ def test_pmr_local_queryable_store_indexes_and_docs_are_generated(tmp_path):
 
 def test_retrosynthesis_readiness_indexes_and_docs_are_generated(tmp_path):
     out_dir, docs_dir = run_builder(tmp_path)
-    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text())
-    reproducibility = json.loads((out_dir / "reproducibility_index.json").read_text())
-    artifact_index = json.loads((out_dir / "artifact_index.json").read_text())
-    claim_boundaries = json.loads((out_dir / "claim_boundary_index.json").read_text())
-    status = json.loads((out_dir / "status.json").read_text())
-    page = (docs_dir / "retrosynthesis-readiness.md").read_text()
-    index = (docs_dir / "index.md").read_text()
+    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text(encoding="utf-8"))
+    reproducibility = json.loads((out_dir / "reproducibility_index.json").read_text(encoding="utf-8"))
+    artifact_index = json.loads((out_dir / "artifact_index.json").read_text(encoding="utf-8"))
+    claim_boundaries = json.loads((out_dir / "claim_boundary_index.json").read_text(encoding="utf-8"))
+    status = json.loads((out_dir / "status.json").read_text(encoding="utf-8"))
+    page = (docs_dir / "retrosynthesis-readiness.md").read_text(encoding="utf-8")
+    index = (docs_dir / "index.md").read_text(encoding="utf-8")
 
     phase = next(
         entry
@@ -3121,13 +3121,13 @@ def test_retrosynthesis_readiness_indexes_and_docs_are_generated(tmp_path):
 
 def test_retrosynthesis_local_prototype_indexes_and_docs_are_generated(tmp_path):
     out_dir, docs_dir = run_builder(tmp_path)
-    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text())
-    reproducibility = json.loads((out_dir / "reproducibility_index.json").read_text())
-    artifact_index = json.loads((out_dir / "artifact_index.json").read_text())
-    claim_boundaries = json.loads((out_dir / "claim_boundary_index.json").read_text())
-    status = json.loads((out_dir / "status.json").read_text())
-    page = (docs_dir / "retrosynthesis-local-prototype.md").read_text()
-    index = (docs_dir / "index.md").read_text()
+    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text(encoding="utf-8"))
+    reproducibility = json.loads((out_dir / "reproducibility_index.json").read_text(encoding="utf-8"))
+    artifact_index = json.loads((out_dir / "artifact_index.json").read_text(encoding="utf-8"))
+    claim_boundaries = json.loads((out_dir / "claim_boundary_index.json").read_text(encoding="utf-8"))
+    status = json.loads((out_dir / "status.json").read_text(encoding="utf-8"))
+    page = (docs_dir / "retrosynthesis-local-prototype.md").read_text(encoding="utf-8")
+    index = (docs_dir / "index.md").read_text(encoding="utf-8")
 
     phase = next(
         entry
@@ -3217,13 +3217,13 @@ def test_retrosynthesis_local_prototype_indexes_and_docs_are_generated(tmp_path)
 
 def test_atlas_local_memory_admission_readiness_indexes_and_docs_are_generated(tmp_path):
     out_dir, docs_dir = run_builder(tmp_path)
-    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text())
-    reproducibility = json.loads((out_dir / "reproducibility_index.json").read_text())
-    artifact_index = json.loads((out_dir / "artifact_index.json").read_text())
-    claim_boundaries = json.loads((out_dir / "claim_boundary_index.json").read_text())
-    status = json.loads((out_dir / "status.json").read_text())
-    page = (docs_dir / "atlas-local-memory-admission-readiness.md").read_text()
-    index = (docs_dir / "index.md").read_text()
+    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text(encoding="utf-8"))
+    reproducibility = json.loads((out_dir / "reproducibility_index.json").read_text(encoding="utf-8"))
+    artifact_index = json.loads((out_dir / "artifact_index.json").read_text(encoding="utf-8"))
+    claim_boundaries = json.loads((out_dir / "claim_boundary_index.json").read_text(encoding="utf-8"))
+    status = json.loads((out_dir / "status.json").read_text(encoding="utf-8"))
+    page = (docs_dir / "atlas-local-memory-admission-readiness.md").read_text(encoding="utf-8")
+    index = (docs_dir / "index.md").read_text(encoding="utf-8")
 
     phase = next(
         entry
@@ -3334,11 +3334,11 @@ def test_atlas_local_memory_admission_readiness_indexes_and_docs_are_generated(t
 
 def test_atlas_prototype_proxy_continuity_theorem_pages_are_generated(tmp_path):
     out_dir, docs_dir = run_builder(tmp_path)
-    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text())
-    reproducibility = json.loads((out_dir / "reproducibility_index.json").read_text())
-    artifact_index = json.loads((out_dir / "artifact_index.json").read_text())
-    claim_boundaries = json.loads((out_dir / "claim_boundary_index.json").read_text())
-    status = json.loads((out_dir / "status.json").read_text())
+    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text(encoding="utf-8"))
+    reproducibility = json.loads((out_dir / "reproducibility_index.json").read_text(encoding="utf-8"))
+    artifact_index = json.loads((out_dir / "artifact_index.json").read_text(encoding="utf-8"))
+    claim_boundaries = json.loads((out_dir / "claim_boundary_index.json").read_text(encoding="utf-8"))
+    status = json.loads((out_dir / "status.json").read_text(encoding="utf-8"))
     phase_by_id = {entry["phase_id"]: entry for entry in dashboard["accepted_phases"]}
     reproducibility_text = json.dumps(reproducibility)
     boundary_text = "\n".join(claim_boundaries["boundaries"])
@@ -3510,11 +3510,11 @@ def test_atlas_prototype_proxy_continuity_theorem_pages_are_generated(tmp_path):
 
 def test_triadic_llm_ucc_source_materiality_pages_are_generated(tmp_path):
     out_dir, docs_dir = run_builder(tmp_path)
-    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text())
-    reproducibility = json.loads((out_dir / "reproducibility_index.json").read_text())
-    artifact_index = json.loads((out_dir / "artifact_index.json").read_text())
-    claim_boundaries = json.loads((out_dir / "claim_boundary_index.json").read_text())
-    status = json.loads((out_dir / "status.json").read_text())
+    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text(encoding="utf-8"))
+    reproducibility = json.loads((out_dir / "reproducibility_index.json").read_text(encoding="utf-8"))
+    artifact_index = json.loads((out_dir / "artifact_index.json").read_text(encoding="utf-8"))
+    claim_boundaries = json.loads((out_dir / "claim_boundary_index.json").read_text(encoding="utf-8"))
+    status = json.loads((out_dir / "status.json").read_text(encoding="utf-8"))
     phase_by_id = {entry["phase_id"]: entry for entry in dashboard["accepted_phases"]}
     reproducibility_text = json.dumps(reproducibility)
     boundary_text = "\n".join(claim_boundaries["boundaries"])
@@ -3696,11 +3696,11 @@ def test_triadic_llm_ucc_source_materiality_pages_are_generated(tmp_path):
 
 def test_ai_forensics_dossier_page_and_registry_are_generated(tmp_path):
     out_dir, docs_dir = run_builder(tmp_path)
-    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text())
-    reproducibility = json.loads((out_dir / "reproducibility_index.json").read_text())
-    artifact_index = json.loads((out_dir / "artifact_index.json").read_text())
-    claim_boundaries = json.loads((out_dir / "claim_boundary_index.json").read_text())
-    status = json.loads((out_dir / "status.json").read_text())
+    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text(encoding="utf-8"))
+    reproducibility = json.loads((out_dir / "reproducibility_index.json").read_text(encoding="utf-8"))
+    artifact_index = json.loads((out_dir / "artifact_index.json").read_text(encoding="utf-8"))
+    claim_boundaries = json.loads((out_dir / "claim_boundary_index.json").read_text(encoding="utf-8"))
+    status = json.loads((out_dir / "status.json").read_text(encoding="utf-8"))
     phase_by_id = {entry["phase_id"]: entry for entry in dashboard["accepted_phases"]}
     reproducibility_text = json.dumps(reproducibility)
     boundary_text = "\n".join(claim_boundaries["boundaries"])
@@ -3793,11 +3793,11 @@ def test_ai_forensics_dossier_page_and_registry_are_generated(tmp_path):
 
 def test_human_review_ux_page_and_registry_are_generated(tmp_path):
     out_dir, docs_dir = run_builder(tmp_path)
-    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text())
-    reproducibility = json.loads((out_dir / "reproducibility_index.json").read_text())
-    artifact_index = json.loads((out_dir / "artifact_index.json").read_text())
-    claim_boundaries = json.loads((out_dir / "claim_boundary_index.json").read_text())
-    status = json.loads((out_dir / "status.json").read_text())
+    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text(encoding="utf-8"))
+    reproducibility = json.loads((out_dir / "reproducibility_index.json").read_text(encoding="utf-8"))
+    artifact_index = json.loads((out_dir / "artifact_index.json").read_text(encoding="utf-8"))
+    claim_boundaries = json.loads((out_dir / "claim_boundary_index.json").read_text(encoding="utf-8"))
+    status = json.loads((out_dir / "status.json").read_text(encoding="utf-8"))
     phase_by_id = {entry["phase_id"]: entry for entry in dashboard["accepted_phases"]}
     reproducibility_text = json.dumps(reproducibility)
     boundary_text = "\n".join(claim_boundaries["boundaries"])
@@ -3894,11 +3894,11 @@ def test_human_review_ux_page_and_registry_are_generated(tmp_path):
 
 def test_perturbation_novelty_lane_pages_and_registry_are_generated(tmp_path):
     out_dir, docs_dir = run_builder(tmp_path)
-    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text())
-    reproducibility = json.loads((out_dir / "reproducibility_index.json").read_text())
-    artifact_index = json.loads((out_dir / "artifact_index.json").read_text())
-    claim_boundaries = json.loads((out_dir / "claim_boundary_index.json").read_text())
-    status = json.loads((out_dir / "status.json").read_text())
+    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text(encoding="utf-8"))
+    reproducibility = json.loads((out_dir / "reproducibility_index.json").read_text(encoding="utf-8"))
+    artifact_index = json.loads((out_dir / "artifact_index.json").read_text(encoding="utf-8"))
+    claim_boundaries = json.loads((out_dir / "claim_boundary_index.json").read_text(encoding="utf-8"))
+    status = json.loads((out_dir / "status.json").read_text(encoding="utf-8"))
     phase_by_id = {entry["phase_id"]: entry for entry in dashboard["accepted_phases"]}
     reproducibility_text = json.dumps(reproducibility)
     boundary_text = "\n".join(claim_boundaries["boundaries"])
@@ -4040,11 +4040,11 @@ def test_perturbation_novelty_lane_pages_and_registry_are_generated(tmp_path):
 
 def test_perturbation_structure_affordance_card_page_and_registry_are_generated(tmp_path):
     out_dir, docs_dir = run_builder(tmp_path)
-    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text())
-    reproducibility = json.loads((out_dir / "reproducibility_index.json").read_text())
-    artifact_index = json.loads((out_dir / "artifact_index.json").read_text())
-    claim_boundaries = json.loads((out_dir / "claim_boundary_index.json").read_text())
-    status = json.loads((out_dir / "status.json").read_text())
+    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text(encoding="utf-8"))
+    reproducibility = json.loads((out_dir / "reproducibility_index.json").read_text(encoding="utf-8"))
+    artifact_index = json.loads((out_dir / "artifact_index.json").read_text(encoding="utf-8"))
+    claim_boundaries = json.loads((out_dir / "claim_boundary_index.json").read_text(encoding="utf-8"))
+    status = json.loads((out_dir / "status.json").read_text(encoding="utf-8"))
     phase_by_id = {entry["phase_id"]: entry for entry in dashboard["accepted_phases"]}
     reproducibility_text = json.dumps(reproducibility)
     boundary_text = "\n".join(claim_boundaries["boundaries"])
@@ -4112,11 +4112,11 @@ def test_perturbation_structure_affordance_card_page_and_registry_are_generated(
 
 def test_metric_semantic_contract_page_and_registry_are_generated(tmp_path):
     out_dir, docs_dir = run_builder(tmp_path)
-    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text())
-    reproducibility = json.loads((out_dir / "reproducibility_index.json").read_text())
-    artifact_index = json.loads((out_dir / "artifact_index.json").read_text())
-    claim_boundaries = json.loads((out_dir / "claim_boundary_index.json").read_text())
-    status = json.loads((out_dir / "status.json").read_text())
+    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text(encoding="utf-8"))
+    reproducibility = json.loads((out_dir / "reproducibility_index.json").read_text(encoding="utf-8"))
+    artifact_index = json.loads((out_dir / "artifact_index.json").read_text(encoding="utf-8"))
+    claim_boundaries = json.loads((out_dir / "claim_boundary_index.json").read_text(encoding="utf-8"))
+    status = json.loads((out_dir / "status.json").read_text(encoding="utf-8"))
     phase_by_id = {entry["phase_id"]: entry for entry in dashboard["accepted_phases"]}
     boundary_text = "\n".join(claim_boundaries["boundaries"])
     reproducibility_text = json.dumps(reproducibility)
@@ -4142,6 +4142,15 @@ def test_metric_semantic_contract_page_and_registry_are_generated(tmp_path):
     assert "build_metric_semantic_reconciliation_packet" in reproducibility_text
 
     page_text = (docs_dir / "metric-semantic-contract.md").read_text(encoding="utf-8")
+    registry_text = "\n".join(
+        (out_dir / name).read_text(encoding="utf-8")
+        for name in REQUIRED_JSON
+    )
+    generated_publication_text = page_text + "\n" + boundary_text + "\n" + registry_text
+    for alias in ("Ψ_review", "ΔS_review", "Λ_boundary", "Eₛ_review"):
+        assert alias in generated_publication_text
+    for mojibake in ("Î¨_review", "Î”S_review", "Î›_boundary", "Eâ‚›_review"):
+        assert mojibake not in generated_publication_text
     assert "MET-SEM-00" in page_text
     assert "coherencelattice.metric_semantic_reconciliation_packet.v1" in page_text
     for artifact in METRIC_SEMANTIC_CONTRACT_ARTIFACTS:

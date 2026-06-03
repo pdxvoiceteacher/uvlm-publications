@@ -1454,10 +1454,10 @@ def test_claim_validator_rejects_pmr_overclaims(tmp_path):
 
 def test_governed_paper_includes_pmr_02_gpcu_boundaries():
     root = Path("papers/governed_artifact_cognition")
-    paper = (root / "PUB_GOV_ARTIFACT_COG_01.md").read_text()
-    artifact_table = (root / "artifact_table.md").read_text()
-    quickstart = (root / "reviewer_quickstart.md").read_text()
-    status = json.loads((root / "status.json").read_text())
+    paper = (root / "PUB_GOV_ARTIFACT_COG_01.md").read_text(encoding="utf-8")
+    artifact_table = (root / "artifact_table.md").read_text(encoding="utf-8")
+    quickstart = (root / "reviewer_quickstart.md").read_text(encoding="utf-8")
+    status = json.loads((root / "status.json").read_text(encoding="utf-8"))
 
     assert "PMR-02-GLOBAL-PROVENANCE-COHERENCE-UTILITY" in paper
     assert "Lifecycle recommendation is not pruning." in paper
@@ -1481,9 +1481,9 @@ def test_governed_validator_rejects_pmr_02_overclaims(tmp_path):
         case.mkdir()
         for source in root.iterdir():
             if source.is_file():
-                (case / source.name).write_text(source.read_text())
+                (case / source.name).write_text(source.read_text(encoding="utf-8"), encoding="utf-8")
         paper = case / "PUB_GOV_ARTIFACT_COG_01.md"
-        paper.write_text(paper.read_text() + f"\nPMR-02 claims {claim}.\n")
+        paper.write_text(paper.read_text(encoding="utf-8") + f"\nPMR-02 claims {claim}.\n", encoding="utf-8")
         result = validate_publication_claims(
             paper,
             case / "reproducibility_appendix.md",
@@ -1497,10 +1497,10 @@ def test_governed_validator_rejects_pmr_02_overclaims(tmp_path):
 
 def test_governed_paper_includes_pmr_03_lifecycle_state_machine_boundaries():
     root = Path("papers/governed_artifact_cognition")
-    paper = (root / "PUB_GOV_ARTIFACT_COG_01.md").read_text()
-    artifact_table = (root / "artifact_table.md").read_text()
-    quickstart = (root / "reviewer_quickstart.md").read_text()
-    status = json.loads((root / "status.json").read_text())
+    paper = (root / "PUB_GOV_ARTIFACT_COG_01.md").read_text(encoding="utf-8")
+    artifact_table = (root / "artifact_table.md").read_text(encoding="utf-8")
+    quickstart = (root / "reviewer_quickstart.md").read_text(encoding="utf-8")
+    status = json.loads((root / "status.json").read_text(encoding="utf-8"))
 
     assert "PMR-03-LIFECYCLE-STATE-MACHINE" in paper
     assert "Lifecycle state is not truth status." in paper
@@ -1523,9 +1523,9 @@ def test_governed_validator_rejects_pmr_03_overclaims(tmp_path):
         case.mkdir()
         for source in root.iterdir():
             if source.is_file():
-                (case / source.name).write_text(source.read_text())
+                (case / source.name).write_text(source.read_text(encoding="utf-8"), encoding="utf-8")
         paper = case / "PUB_GOV_ARTIFACT_COG_01.md"
-        paper.write_text(paper.read_text() + f"\nPMR-03 claims {claim}.\n")
+        paper.write_text(paper.read_text(encoding="utf-8") + f"\nPMR-03 claims {claim}.\n", encoding="utf-8")
         result = validate_publication_claims(
             paper,
             case / "reproducibility_appendix.md",
@@ -1539,10 +1539,10 @@ def test_governed_validator_rejects_pmr_03_overclaims(tmp_path):
 
 def test_governed_paper_includes_pmr_04_lifecycle_audit_preflight_boundaries():
     root = Path("papers/governed_artifact_cognition")
-    paper = (root / "PUB_GOV_ARTIFACT_COG_01.md").read_text()
-    artifact_table = (root / "artifact_table.md").read_text()
-    quickstart = (root / "reviewer_quickstart.md").read_text()
-    status = json.loads((root / "status.json").read_text())
+    paper = (root / "PUB_GOV_ARTIFACT_COG_01.md").read_text(encoding="utf-8")
+    artifact_table = (root / "artifact_table.md").read_text(encoding="utf-8")
+    quickstart = (root / "reviewer_quickstart.md").read_text(encoding="utf-8")
+    status = json.loads((root / "status.json").read_text(encoding="utf-8"))
 
     assert "PMR-04-LIFECYCLE-AUDIT-PREFLIGHT" in paper
     assert "Preflight is not approval." in paper
@@ -1566,9 +1566,9 @@ def test_governed_validator_rejects_pmr_04_overclaims(tmp_path):
         case.mkdir()
         for source in root.iterdir():
             if source.is_file():
-                (case / source.name).write_text(source.read_text())
+                (case / source.name).write_text(source.read_text(encoding="utf-8"), encoding="utf-8")
         paper = case / "PUB_GOV_ARTIFACT_COG_01.md"
-        paper.write_text(paper.read_text() + f"\nPMR-04 claims {claim}.\n")
+        paper.write_text(paper.read_text(encoding="utf-8") + f"\nPMR-04 claims {claim}.\n", encoding="utf-8")
         result = validate_publication_claims(
             paper,
             case / "reproducibility_appendix.md",
@@ -1582,10 +1582,10 @@ def test_governed_validator_rejects_pmr_04_overclaims(tmp_path):
 
 def test_governed_paper_includes_pmr_05_sophia_lifecycle_audit_review_boundaries():
     root = Path("papers/governed_artifact_cognition")
-    paper = (root / "PUB_GOV_ARTIFACT_COG_01.md").read_text()
-    artifact_table = (root / "artifact_table.md").read_text()
-    quickstart = (root / "reviewer_quickstart.md").read_text()
-    status = json.loads((root / "status.json").read_text())
+    paper = (root / "PUB_GOV_ARTIFACT_COG_01.md").read_text(encoding="utf-8")
+    artifact_table = (root / "artifact_table.md").read_text(encoding="utf-8")
+    quickstart = (root / "reviewer_quickstart.md").read_text(encoding="utf-8")
+    status = json.loads((root / "status.json").read_text(encoding="utf-8"))
 
     assert "PMR-05-SOPHIA-LIFECYCLE-AUDIT-REVIEW" in paper
     assert "Sophia review is not Sophia approval." in paper
@@ -1609,9 +1609,9 @@ def test_governed_validator_rejects_pmr_05_overclaims(tmp_path):
         case.mkdir()
         for source in root.iterdir():
             if source.is_file():
-                (case / source.name).write_text(source.read_text())
+                (case / source.name).write_text(source.read_text(encoding="utf-8"), encoding="utf-8")
         paper = case / "PUB_GOV_ARTIFACT_COG_01.md"
-        paper.write_text(paper.read_text() + f"\nPMR-05 claims {claim}.\n")
+        paper.write_text(paper.read_text(encoding="utf-8") + f"\nPMR-05 claims {claim}.\n", encoding="utf-8")
         result = validate_publication_claims(
             paper,
             case / "reproducibility_appendix.md",
@@ -1625,10 +1625,10 @@ def test_governed_validator_rejects_pmr_05_overclaims(tmp_path):
 
 def test_governed_paper_includes_pmr_06_user_confirmation_preflight_boundaries():
     root = Path("papers/governed_artifact_cognition")
-    paper = (root / "PUB_GOV_ARTIFACT_COG_01.md").read_text()
-    artifact_table = (root / "artifact_table.md").read_text()
-    quickstart = (root / "reviewer_quickstart.md").read_text()
-    status = json.loads((root / "status.json").read_text())
+    paper = (root / "PUB_GOV_ARTIFACT_COG_01.md").read_text(encoding="utf-8")
+    artifact_table = (root / "artifact_table.md").read_text(encoding="utf-8")
+    quickstart = (root / "reviewer_quickstart.md").read_text(encoding="utf-8")
+    status = json.loads((root / "status.json").read_text(encoding="utf-8"))
 
     assert "PMR-06-USER-CONFIRMATION-PREFLIGHT" in paper
     assert "User confirmation request is not user confirmation." in paper
@@ -1658,9 +1658,9 @@ def test_governed_validator_rejects_pmr_06_overclaims(tmp_path):
         case.mkdir()
         for source in root.iterdir():
             if source.is_file():
-                (case / source.name).write_text(source.read_text())
+                (case / source.name).write_text(source.read_text(encoding="utf-8"), encoding="utf-8")
         paper = case / "PUB_GOV_ARTIFACT_COG_01.md"
-        paper.write_text(paper.read_text() + f"\nPMR-06 claims {claim}.\n")
+        paper.write_text(paper.read_text(encoding="utf-8") + f"\nPMR-06 claims {claim}.\n", encoding="utf-8")
         result = validate_publication_claims(
             paper,
             case / "reproducibility_appendix.md",
@@ -1674,10 +1674,10 @@ def test_governed_validator_rejects_pmr_06_overclaims(tmp_path):
 
 def test_governed_paper_includes_pmr_07_user_confirmation_negative_control_boundaries():
     root = Path("papers/governed_artifact_cognition")
-    paper = (root / "PUB_GOV_ARTIFACT_COG_01.md").read_text()
-    artifact_table = (root / "artifact_table.md").read_text()
-    quickstart = (root / "reviewer_quickstart.md").read_text()
-    status = json.loads((root / "status.json").read_text())
+    paper = (root / "PUB_GOV_ARTIFACT_COG_01.md").read_text(encoding="utf-8")
+    artifact_table = (root / "artifact_table.md").read_text(encoding="utf-8")
+    quickstart = (root / "reviewer_quickstart.md").read_text(encoding="utf-8")
+    status = json.loads((root / "status.json").read_text(encoding="utf-8"))
 
     assert "PMR-07-USER-CONFIRMATION-NEGATIVE-CONTROL" in paper
     assert "Invalid confirmation is not confirmation." in paper
@@ -1707,9 +1707,9 @@ def test_governed_validator_rejects_pmr_07_overclaims(tmp_path):
         case.mkdir()
         for source in root.iterdir():
             if source.is_file():
-                (case / source.name).write_text(source.read_text())
+                (case / source.name).write_text(source.read_text(encoding="utf-8"), encoding="utf-8")
         paper = case / "PUB_GOV_ARTIFACT_COG_01.md"
-        paper.write_text(paper.read_text() + f"\nPMR-07 claims {claim}.\n")
+        paper.write_text(paper.read_text(encoding="utf-8") + f"\nPMR-07 claims {claim}.\n", encoding="utf-8")
         result = validate_publication_claims(
             paper,
             case / "reproducibility_appendix.md",
@@ -1723,10 +1723,10 @@ def test_governed_validator_rejects_pmr_07_overclaims(tmp_path):
 
 def test_governed_paper_includes_pmr_08_valid_user_confirmation_receipt_boundaries():
     root = Path("papers/governed_artifact_cognition")
-    paper = (root / "PUB_GOV_ARTIFACT_COG_01.md").read_text()
-    artifact_table = (root / "artifact_table.md").read_text()
-    quickstart = (root / "reviewer_quickstart.md").read_text()
-    status = json.loads((root / "status.json").read_text())
+    paper = (root / "PUB_GOV_ARTIFACT_COG_01.md").read_text(encoding="utf-8")
+    artifact_table = (root / "artifact_table.md").read_text(encoding="utf-8")
+    quickstart = (root / "reviewer_quickstart.md").read_text(encoding="utf-8")
+    status = json.loads((root / "status.json").read_text(encoding="utf-8"))
 
     assert "PMR-08-VALID-USER-CONFIRMATION-RECEIPT-SCAFFOLD" in paper
     assert "Valid user confirmation receipt is not action." in paper
@@ -1755,9 +1755,9 @@ def test_governed_validator_rejects_pmr_08_overclaims(tmp_path):
         case.mkdir()
         for source in root.iterdir():
             if source.is_file():
-                (case / source.name).write_text(source.read_text())
+                (case / source.name).write_text(source.read_text(encoding="utf-8"), encoding="utf-8")
         paper = case / "PUB_GOV_ARTIFACT_COG_01.md"
-        paper.write_text(paper.read_text() + f"\nPMR-08 claims {claim}.\n")
+        paper.write_text(paper.read_text(encoding="utf-8") + f"\nPMR-08 claims {claim}.\n", encoding="utf-8")
         result = validate_publication_claims(
             paper,
             case / "reproducibility_appendix.md",
@@ -1770,10 +1770,10 @@ def test_governed_validator_rejects_pmr_08_overclaims(tmp_path):
 
 def test_governed_paper_includes_pmr_10_destructive_action_authorization_preflight_boundaries():
     root = Path("papers/governed_artifact_cognition")
-    paper = (root / "PUB_GOV_ARTIFACT_COG_01.md").read_text()
-    artifact_table = (root / "artifact_table.md").read_text()
-    quickstart = (root / "reviewer_quickstart.md").read_text()
-    status = json.loads((root / "status.json").read_text())
+    paper = (root / "PUB_GOV_ARTIFACT_COG_01.md").read_text(encoding="utf-8")
+    artifact_table = (root / "artifact_table.md").read_text(encoding="utf-8")
+    quickstart = (root / "reviewer_quickstart.md").read_text(encoding="utf-8")
+    status = json.loads((root / "status.json").read_text(encoding="utf-8"))
 
     assert "PMR-10-DESTRUCTIVE-ACTION-AUTHORIZATION-PREFLIGHT" in paper
     assert "Action request candidate is not explicit action request." in paper
@@ -1805,9 +1805,9 @@ def test_governed_validator_rejects_pmr_10_overclaims(tmp_path):
         case.mkdir()
         for source in root.iterdir():
             if source.is_file():
-                (case / source.name).write_text(source.read_text())
+                (case / source.name).write_text(source.read_text(encoding="utf-8"), encoding="utf-8")
         paper = case / "PUB_GOV_ARTIFACT_COG_01.md"
-        paper.write_text(paper.read_text() + f"\nPMR-10 claims {claim}.\n")
+        paper.write_text(paper.read_text(encoding="utf-8") + f"\nPMR-10 claims {claim}.\n", encoding="utf-8")
         result = validate_publication_claims(
             paper,
             case / "reproducibility_appendix.md",
@@ -1820,10 +1820,10 @@ def test_governed_validator_rejects_pmr_10_overclaims(tmp_path):
 
 def test_governed_paper_includes_pmr_architecture_diversity_checkpoint_boundaries():
     root = Path("papers/governed_artifact_cognition")
-    paper = (root / "PUB_GOV_ARTIFACT_COG_01.md").read_text()
-    artifact_table = (root / "artifact_table.md").read_text()
-    quickstart = (root / "reviewer_quickstart.md").read_text()
-    status = json.loads((root / "status.json").read_text())
+    paper = (root / "PUB_GOV_ARTIFACT_COG_01.md").read_text(encoding="utf-8")
+    artifact_table = (root / "artifact_table.md").read_text(encoding="utf-8")
+    quickstart = (root / "reviewer_quickstart.md").read_text(encoding="utf-8")
+    status = json.loads((root / "status.json").read_text(encoding="utf-8"))
 
     assert "PMR-ARCH-DIVERSITY-CHECKPOINT-00" in paper
     assert "PMR authorization ladder is not the whole Triadic Brain." in paper
@@ -1854,9 +1854,9 @@ def test_governed_validator_rejects_pmr_architecture_diversity_checkpoint_overcl
         case.mkdir()
         for source in root.iterdir():
             if source.is_file():
-                (case / source.name).write_text(source.read_text())
+                (case / source.name).write_text(source.read_text(encoding="utf-8"), encoding="utf-8")
         paper = case / "PUB_GOV_ARTIFACT_COG_01.md"
-        paper.write_text(paper.read_text() + f"\nPMR-ARCH-DIVERSITY-CHECKPOINT-00 claims {claim}.\n")
+        paper.write_text(paper.read_text(encoding="utf-8") + f"\nPMR-ARCH-DIVERSITY-CHECKPOINT-00 claims {claim}.\n", encoding="utf-8")
         result = validate_publication_claims(
             paper,
             case / "reproducibility_appendix.md",
@@ -1870,11 +1870,11 @@ def test_governed_validator_rejects_pmr_architecture_diversity_checkpoint_overcl
 
 def test_governed_paper_includes_pmr_sim_00_boundaries():
     root = Path("papers/governed_artifact_cognition")
-    paper = (root / "PUB_GOV_ARTIFACT_COG_01.md").read_text()
-    artifact_table = (root / "artifact_table.md").read_text()
-    boundary_table = (root / "claim_boundary_table.md").read_text()
-    quickstart = (root / "reviewer_quickstart.md").read_text()
-    status = json.loads((root / "status.json").read_text())
+    paper = (root / "PUB_GOV_ARTIFACT_COG_01.md").read_text(encoding="utf-8")
+    artifact_table = (root / "artifact_table.md").read_text(encoding="utf-8")
+    boundary_table = (root / "claim_boundary_table.md").read_text(encoding="utf-8")
+    quickstart = (root / "reviewer_quickstart.md").read_text(encoding="utf-8")
+    status = json.loads((root / "status.json").read_text(encoding="utf-8"))
 
     for phrase in (
         "PMR-SIM-00",
@@ -1917,9 +1917,9 @@ def test_governed_validator_rejects_pmr_sim_00_overclaims(tmp_path):
         case.mkdir()
         for source in root.iterdir():
             if source.is_file():
-                (case / source.name).write_text(source.read_text())
+                (case / source.name).write_text(source.read_text(encoding="utf-8"), encoding="utf-8")
         paper = case / "PUB_GOV_ARTIFACT_COG_01.md"
-        paper.write_text(paper.read_text() + f"\nPMR-SIM-00 claims {claim}.\n")
+        paper.write_text(paper.read_text(encoding="utf-8") + f"\nPMR-SIM-00 claims {claim}.\n", encoding="utf-8")
         result = validate_publication_claims(
             paper,
             case / "reproducibility_appendix.md",
@@ -1938,11 +1938,11 @@ def test_governed_validator_rejects_pmr_sim_00_overclaims(tmp_path):
 
 def test_governed_paper_includes_pmr_stat_00_boundaries():
     root = Path("papers/governed_artifact_cognition")
-    paper = (root / "PUB_GOV_ARTIFACT_COG_01.md").read_text()
-    artifact_table = (root / "artifact_table.md").read_text()
-    boundary_table = (root / "claim_boundary_table.md").read_text()
-    quickstart = (root / "reviewer_quickstart.md").read_text()
-    status = json.loads((root / "status.json").read_text())
+    paper = (root / "PUB_GOV_ARTIFACT_COG_01.md").read_text(encoding="utf-8")
+    artifact_table = (root / "artifact_table.md").read_text(encoding="utf-8")
+    boundary_table = (root / "claim_boundary_table.md").read_text(encoding="utf-8")
+    quickstart = (root / "reviewer_quickstart.md").read_text(encoding="utf-8")
+    status = json.loads((root / "status.json").read_text(encoding="utf-8"))
 
     for phrase in (
         "PMR-STAT-00",
@@ -1981,9 +1981,9 @@ def test_governed_validator_rejects_pmr_stat_00_overclaims(tmp_path):
         case.mkdir()
         for source in root.iterdir():
             if source.is_file():
-                (case / source.name).write_text(source.read_text())
+                (case / source.name).write_text(source.read_text(encoding="utf-8"), encoding="utf-8")
         paper = case / "PUB_GOV_ARTIFACT_COG_01.md"
-        paper.write_text(paper.read_text() + f"\nPMR-STAT-00 claims {claim}.\n")
+        paper.write_text(paper.read_text(encoding="utf-8") + f"\nPMR-STAT-00 claims {claim}.\n", encoding="utf-8")
         result = validate_publication_claims(
             paper,
             case / "reproducibility_appendix.md",
@@ -1998,11 +1998,11 @@ def test_governed_validator_rejects_pmr_stat_00_overclaims(tmp_path):
 
 def test_governed_paper_includes_pmr_fed_stress_00_boundaries():
     root = Path("papers/governed_artifact_cognition")
-    paper = (root / "PUB_GOV_ARTIFACT_COG_01.md").read_text()
-    artifact_table = (root / "artifact_table.md").read_text()
-    boundary_table = (root / "claim_boundary_table.md").read_text()
-    quickstart = (root / "reviewer_quickstart.md").read_text()
-    status = json.loads((root / "status.json").read_text())
+    paper = (root / "PUB_GOV_ARTIFACT_COG_01.md").read_text(encoding="utf-8")
+    artifact_table = (root / "artifact_table.md").read_text(encoding="utf-8")
+    boundary_table = (root / "claim_boundary_table.md").read_text(encoding="utf-8")
+    quickstart = (root / "reviewer_quickstart.md").read_text(encoding="utf-8")
+    status = json.loads((root / "status.json").read_text(encoding="utf-8"))
 
     for phrase in (
         "PMR-FED-STRESS-00",
@@ -2041,9 +2041,9 @@ def test_governed_validator_rejects_pmr_fed_stress_00_overclaims(tmp_path):
         case.mkdir()
         for source in root.iterdir():
             if source.is_file():
-                (case / source.name).write_text(source.read_text())
+                (case / source.name).write_text(source.read_text(encoding="utf-8"), encoding="utf-8")
         paper = case / "PUB_GOV_ARTIFACT_COG_01.md"
-        paper.write_text(paper.read_text() + f"\nPMR-FED-STRESS-00 claims {claim}.\n")
+        paper.write_text(paper.read_text(encoding="utf-8") + f"\nPMR-FED-STRESS-00 claims {claim}.\n", encoding="utf-8")
         result = validate_publication_claims(
             paper,
             case / "reproducibility_appendix.md",
@@ -2058,11 +2058,11 @@ def test_governed_validator_rejects_pmr_fed_stress_00_overclaims(tmp_path):
 
 def test_governed_paper_includes_pmr_human_provenance_00_boundaries():
     root = Path("papers/governed_artifact_cognition")
-    paper = (root / "PUB_GOV_ARTIFACT_COG_01.md").read_text()
-    artifact_table = (root / "artifact_table.md").read_text()
-    boundary_table = (root / "claim_boundary_table.md").read_text()
-    quickstart = (root / "reviewer_quickstart.md").read_text()
-    status = json.loads((root / "status.json").read_text())
+    paper = (root / "PUB_GOV_ARTIFACT_COG_01.md").read_text(encoding="utf-8")
+    artifact_table = (root / "artifact_table.md").read_text(encoding="utf-8")
+    boundary_table = (root / "claim_boundary_table.md").read_text(encoding="utf-8")
+    quickstart = (root / "reviewer_quickstart.md").read_text(encoding="utf-8")
+    status = json.loads((root / "status.json").read_text(encoding="utf-8"))
 
     for phrase in (
         "PMR-HUMAN-PROVENANCE-00",
@@ -2107,9 +2107,9 @@ def test_governed_validator_rejects_pmr_human_provenance_00_overclaims(tmp_path)
         case.mkdir()
         for source in root.iterdir():
             if source.is_file():
-                (case / source.name).write_text(source.read_text())
+                (case / source.name).write_text(source.read_text(encoding="utf-8"), encoding="utf-8")
         paper = case / "PUB_GOV_ARTIFACT_COG_01.md"
-        paper.write_text(paper.read_text() + f"\nPMR-HUMAN-PROVENANCE-00 claims {claim}.\n")
+        paper.write_text(paper.read_text(encoding="utf-8") + f"\nPMR-HUMAN-PROVENANCE-00 claims {claim}.\n", encoding="utf-8")
         result = validate_publication_claims(
             paper,
             case / "reproducibility_appendix.md",
