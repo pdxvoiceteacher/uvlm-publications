@@ -3897,9 +3897,9 @@ def test_perturbation_novelty_lane_pages_and_registry_are_generated(tmp_path):
 
     observation = phase_by_id["PERTURBATION-OBSERVATION-CAPTURE-00"]["dashboard_summary"]
     assert observation["observation_status"] == "captured"
-    assert observation["perturbation_fixture_id"] == "car_alarm_battery_decay_fixture_v0"
+    assert observation["perturbation_fixture_id"] == "synthetic_signal_decay_perturbation_fixture_v0"
     assert observation["observed_signal_type"] == "acoustic_symbolic_fixture"
-    assert observation["source_cause_candidate"] == "battery_energy_decay"
+    assert observation["source_cause_candidate"] == "energy-constrained signal drift"
     assert observation["causal_diagnosis_candidate"] is True
     assert observation["abstraction_affordance_candidate"] is True
     assert observation["axis_count"] == 9
@@ -4100,3 +4100,31 @@ def test_perturbation_structure_affordance_card_page_and_registry_are_generated(
     assert status["not_perturbation_structure_affordance_proven"] is True
     assert status["not_perturbation_structure_affordance_novelty_discovery"] is True
     assert status["not_perturbation_structure_affordance_truth_certification"] is True
+
+
+def test_reviewer_facing_perturbation_language_is_generalized():
+    old_language_fragments = (
+        "Thomas" + "’s " + "car" + "-" + "alarm",
+        "Thomas" + "'s " + "car" + "-" + "alarm",
+        "Thomas " + "car" + " " + "alarm",
+        "car" + " " + "alarm",
+        "car" + "-" + "alarm",
+        "dying " + "battery " + "alarm",
+        "poetic" + " insight",
+        "beautiful" + " insight",
+        "spirit enters" + " the lattice",
+        "guts" + " and spirit",
+    )
+    scoped_roots = (
+        Path("docs/experiment-suite"),
+        Path("registry"),
+        Path("tools"),
+        Path("tests"),
+    )
+    searchable_suffixes = {".json", ".md", ".py", ".txt"}
+    for root in scoped_roots:
+        for path in root.rglob("*"):
+            if path.is_file() and path.suffix in searchable_suffixes and "__pycache__" not in path.parts:
+                text = path.read_text(encoding="utf-8")
+                for fragment in old_language_fragments:
+                    assert fragment not in text, f"{fragment!r} remains in {path}"

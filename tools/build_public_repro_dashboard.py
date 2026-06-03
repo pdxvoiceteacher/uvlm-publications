@@ -2578,9 +2578,9 @@ PERTURBATION_OBSERVATION_ARTIFACTS = [
 ]
 PERTURBATION_OBSERVATION_DASHBOARD_SUMMARY = {
     "observation_status": "captured",
-    "perturbation_fixture_id": "car_alarm_battery_decay_fixture_v0",
+    "perturbation_fixture_id": "synthetic_signal_decay_perturbation_fixture_v0",
     "observed_signal_type": "acoustic_symbolic_fixture",
-    "source_cause_candidate": "battery_energy_decay",
+    "source_cause_candidate": "energy-constrained signal drift",
     "causal_diagnosis_candidate": True,
     "abstraction_affordance_candidate": True,
     "axis_count": 9,
@@ -2753,7 +2753,7 @@ PERTURBATION_STRUCTURE_AFFORDANCE_COUNTEREXAMPLES = (
     "single_fixture_mistaken_for_theory",
 )
 PERTURBATION_STRUCTURE_AFFORDANCE_REQUIRED_BOUNDARY_PHRASES = (
-    "The card preserves Thomas’s car-alarm perturbation insight as a speculative theorem-validation artifact, not as proof.",
+    "The card preserves a synthetic structured perturbation fixture as a speculative theorem-validation artifact, not as proof.",
     "PERTURBATION-STRUCTURE-AFFORDANCE-00 is not proven.",
     "Current grade is speculative_pattern.",
     "Target grade is operational_metric_hypothesis.",

@@ -1169,7 +1169,7 @@
 - creative mapping is causal diagnosis
 - single fixture proves theory
 - PERTURBATION-STRUCTURE-AFFORDANCE-CARD-00 preserves PERTURBATION-STRUCTURE-AFFORDANCE-00 as a speculative theorem-validation card over perturbation observation, trunk mapping, and residual novelty candidate artifacts, while claiming no proof, no novelty discovery, and no authority.
-- The card preserves Thomas’s car-alarm perturbation insight as a speculative theorem-validation artifact, not as proof.
+- The card preserves a synthetic structured perturbation fixture as a speculative theorem-validation artifact, not as proof.
 - PERTURBATION-STRUCTURE-AFFORDANCE-00 is not proven.
 - Current grade is speculative_pattern.
 - Target grade is operational_metric_hypothesis.

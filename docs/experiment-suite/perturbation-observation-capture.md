@@ -5,9 +5,9 @@ PERTURBATION-OBSERVATION-CAPTURE-00 captures a synthetic structured perturbation
 ## Dashboard summary
 
 - observation_status = captured
-- perturbation_fixture_id = car_alarm_battery_decay_fixture_v0
+- perturbation_fixture_id = synthetic_signal_decay_perturbation_fixture_v0
 - observed_signal_type = acoustic_symbolic_fixture
-- source_cause_candidate = battery_energy_decay
+- source_cause_candidate = energy-constrained signal drift
 - causal_diagnosis_candidate = true
 - abstraction_affordance_candidate = true
 - axis_count = 9

@@ -1,6 +1,6 @@
 # Perturbation structure-affordance theorem card
 
-The card preserves Thomas’s car-alarm perturbation insight as a speculative theorem-validation artifact, not as proof.
+The card preserves a synthetic structured perturbation fixture as a speculative theorem-validation artifact, not as proof.
 
 ## Dashboard summary
 
@@ -41,7 +41,7 @@ PERTURBATION-STRUCTURE-AFFORDANCE-CARD-00 preserves PERTURBATION-STRUCTURE-AFFOR
 
 ## Required boundaries
 
-- The card preserves Thomas’s car-alarm perturbation insight as a speculative theorem-validation artifact, not as proof.
+- The card preserves a synthetic structured perturbation fixture as a speculative theorem-validation artifact, not as proof.
 - PERTURBATION-STRUCTURE-AFFORDANCE-00 is not proven.
 - Current grade is speculative_pattern.
 - Target grade is operational_metric_hypothesis.
