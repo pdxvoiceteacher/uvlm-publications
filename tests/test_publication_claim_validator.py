@@ -5,6 +5,11 @@ import subprocess
 import sys
 from pathlib import Path
 
+from tools.build_public_repro_dashboard import (
+    METRIC_SEMANTIC_CONTRACT_BLOCKED_CLAIM_PHRASES,
+    METRIC_SEMANTIC_CLAIM_ALLOWED,
+    PERTURBATION_STRUCTURE_AFFORDANCE_BLOCKED_CLAIM_PHRASES,
+)
 from tools.validate_publication_claims import validate_publication_claims
 
 ROOT = Path("papers/governed_artifact_cognition")
@@ -1449,10 +1454,10 @@ def test_claim_validator_rejects_pmr_overclaims(tmp_path):
 
 def test_governed_paper_includes_pmr_02_gpcu_boundaries():
     root = Path("papers/governed_artifact_cognition")
-    paper = (root / "PUB_GOV_ARTIFACT_COG_01.md").read_text()
-    artifact_table = (root / "artifact_table.md").read_text()
-    quickstart = (root / "reviewer_quickstart.md").read_text()
-    status = json.loads((root / "status.json").read_text())
+    paper = (root / "PUB_GOV_ARTIFACT_COG_01.md").read_text(encoding="utf-8")
+    artifact_table = (root / "artifact_table.md").read_text(encoding="utf-8")
+    quickstart = (root / "reviewer_quickstart.md").read_text(encoding="utf-8")
+    status = json.loads((root / "status.json").read_text(encoding="utf-8"))
 
     assert "PMR-02-GLOBAL-PROVENANCE-COHERENCE-UTILITY" in paper
     assert "Lifecycle recommendation is not pruning." in paper
@@ -1476,9 +1481,9 @@ def test_governed_validator_rejects_pmr_02_overclaims(tmp_path):
         case.mkdir()
         for source in root.iterdir():
             if source.is_file():
-                (case / source.name).write_text(source.read_text())
+                (case / source.name).write_text(source.read_text(encoding="utf-8"), encoding="utf-8")
         paper = case / "PUB_GOV_ARTIFACT_COG_01.md"
-        paper.write_text(paper.read_text() + f"\nPMR-02 claims {claim}.\n")
+        paper.write_text(paper.read_text(encoding="utf-8") + f"\nPMR-02 claims {claim}.\n", encoding="utf-8")
         result = validate_publication_claims(
             paper,
             case / "reproducibility_appendix.md",
@@ -1492,10 +1497,10 @@ def test_governed_validator_rejects_pmr_02_overclaims(tmp_path):
 
 def test_governed_paper_includes_pmr_03_lifecycle_state_machine_boundaries():
     root = Path("papers/governed_artifact_cognition")
-    paper = (root / "PUB_GOV_ARTIFACT_COG_01.md").read_text()
-    artifact_table = (root / "artifact_table.md").read_text()
-    quickstart = (root / "reviewer_quickstart.md").read_text()
-    status = json.loads((root / "status.json").read_text())
+    paper = (root / "PUB_GOV_ARTIFACT_COG_01.md").read_text(encoding="utf-8")
+    artifact_table = (root / "artifact_table.md").read_text(encoding="utf-8")
+    quickstart = (root / "reviewer_quickstart.md").read_text(encoding="utf-8")
+    status = json.loads((root / "status.json").read_text(encoding="utf-8"))
 
     assert "PMR-03-LIFECYCLE-STATE-MACHINE" in paper
     assert "Lifecycle state is not truth status." in paper
@@ -1518,9 +1523,9 @@ def test_governed_validator_rejects_pmr_03_overclaims(tmp_path):
         case.mkdir()
         for source in root.iterdir():
             if source.is_file():
-                (case / source.name).write_text(source.read_text())
+                (case / source.name).write_text(source.read_text(encoding="utf-8"), encoding="utf-8")
         paper = case / "PUB_GOV_ARTIFACT_COG_01.md"
-        paper.write_text(paper.read_text() + f"\nPMR-03 claims {claim}.\n")
+        paper.write_text(paper.read_text(encoding="utf-8") + f"\nPMR-03 claims {claim}.\n", encoding="utf-8")
         result = validate_publication_claims(
             paper,
             case / "reproducibility_appendix.md",
@@ -1534,10 +1539,10 @@ def test_governed_validator_rejects_pmr_03_overclaims(tmp_path):
 
 def test_governed_paper_includes_pmr_04_lifecycle_audit_preflight_boundaries():
     root = Path("papers/governed_artifact_cognition")
-    paper = (root / "PUB_GOV_ARTIFACT_COG_01.md").read_text()
-    artifact_table = (root / "artifact_table.md").read_text()
-    quickstart = (root / "reviewer_quickstart.md").read_text()
-    status = json.loads((root / "status.json").read_text())
+    paper = (root / "PUB_GOV_ARTIFACT_COG_01.md").read_text(encoding="utf-8")
+    artifact_table = (root / "artifact_table.md").read_text(encoding="utf-8")
+    quickstart = (root / "reviewer_quickstart.md").read_text(encoding="utf-8")
+    status = json.loads((root / "status.json").read_text(encoding="utf-8"))
 
     assert "PMR-04-LIFECYCLE-AUDIT-PREFLIGHT" in paper
     assert "Preflight is not approval." in paper
@@ -1561,9 +1566,9 @@ def test_governed_validator_rejects_pmr_04_overclaims(tmp_path):
         case.mkdir()
         for source in root.iterdir():
             if source.is_file():
-                (case / source.name).write_text(source.read_text())
+                (case / source.name).write_text(source.read_text(encoding="utf-8"), encoding="utf-8")
         paper = case / "PUB_GOV_ARTIFACT_COG_01.md"
-        paper.write_text(paper.read_text() + f"\nPMR-04 claims {claim}.\n")
+        paper.write_text(paper.read_text(encoding="utf-8") + f"\nPMR-04 claims {claim}.\n", encoding="utf-8")
         result = validate_publication_claims(
             paper,
             case / "reproducibility_appendix.md",
@@ -1577,10 +1582,10 @@ def test_governed_validator_rejects_pmr_04_overclaims(tmp_path):
 
 def test_governed_paper_includes_pmr_05_sophia_lifecycle_audit_review_boundaries():
     root = Path("papers/governed_artifact_cognition")
-    paper = (root / "PUB_GOV_ARTIFACT_COG_01.md").read_text()
-    artifact_table = (root / "artifact_table.md").read_text()
-    quickstart = (root / "reviewer_quickstart.md").read_text()
-    status = json.loads((root / "status.json").read_text())
+    paper = (root / "PUB_GOV_ARTIFACT_COG_01.md").read_text(encoding="utf-8")
+    artifact_table = (root / "artifact_table.md").read_text(encoding="utf-8")
+    quickstart = (root / "reviewer_quickstart.md").read_text(encoding="utf-8")
+    status = json.loads((root / "status.json").read_text(encoding="utf-8"))
 
     assert "PMR-05-SOPHIA-LIFECYCLE-AUDIT-REVIEW" in paper
     assert "Sophia review is not Sophia approval." in paper
@@ -1604,9 +1609,9 @@ def test_governed_validator_rejects_pmr_05_overclaims(tmp_path):
         case.mkdir()
         for source in root.iterdir():
             if source.is_file():
-                (case / source.name).write_text(source.read_text())
+                (case / source.name).write_text(source.read_text(encoding="utf-8"), encoding="utf-8")
         paper = case / "PUB_GOV_ARTIFACT_COG_01.md"
-        paper.write_text(paper.read_text() + f"\nPMR-05 claims {claim}.\n")
+        paper.write_text(paper.read_text(encoding="utf-8") + f"\nPMR-05 claims {claim}.\n", encoding="utf-8")
         result = validate_publication_claims(
             paper,
             case / "reproducibility_appendix.md",
@@ -1620,10 +1625,10 @@ def test_governed_validator_rejects_pmr_05_overclaims(tmp_path):
 
 def test_governed_paper_includes_pmr_06_user_confirmation_preflight_boundaries():
     root = Path("papers/governed_artifact_cognition")
-    paper = (root / "PUB_GOV_ARTIFACT_COG_01.md").read_text()
-    artifact_table = (root / "artifact_table.md").read_text()
-    quickstart = (root / "reviewer_quickstart.md").read_text()
-    status = json.loads((root / "status.json").read_text())
+    paper = (root / "PUB_GOV_ARTIFACT_COG_01.md").read_text(encoding="utf-8")
+    artifact_table = (root / "artifact_table.md").read_text(encoding="utf-8")
+    quickstart = (root / "reviewer_quickstart.md").read_text(encoding="utf-8")
+    status = json.loads((root / "status.json").read_text(encoding="utf-8"))
 
     assert "PMR-06-USER-CONFIRMATION-PREFLIGHT" in paper
     assert "User confirmation request is not user confirmation." in paper
@@ -1653,9 +1658,9 @@ def test_governed_validator_rejects_pmr_06_overclaims(tmp_path):
         case.mkdir()
         for source in root.iterdir():
             if source.is_file():
-                (case / source.name).write_text(source.read_text())
+                (case / source.name).write_text(source.read_text(encoding="utf-8"), encoding="utf-8")
         paper = case / "PUB_GOV_ARTIFACT_COG_01.md"
-        paper.write_text(paper.read_text() + f"\nPMR-06 claims {claim}.\n")
+        paper.write_text(paper.read_text(encoding="utf-8") + f"\nPMR-06 claims {claim}.\n", encoding="utf-8")
         result = validate_publication_claims(
             paper,
             case / "reproducibility_appendix.md",
@@ -1669,10 +1674,10 @@ def test_governed_validator_rejects_pmr_06_overclaims(tmp_path):
 
 def test_governed_paper_includes_pmr_07_user_confirmation_negative_control_boundaries():
     root = Path("papers/governed_artifact_cognition")
-    paper = (root / "PUB_GOV_ARTIFACT_COG_01.md").read_text()
-    artifact_table = (root / "artifact_table.md").read_text()
-    quickstart = (root / "reviewer_quickstart.md").read_text()
-    status = json.loads((root / "status.json").read_text())
+    paper = (root / "PUB_GOV_ARTIFACT_COG_01.md").read_text(encoding="utf-8")
+    artifact_table = (root / "artifact_table.md").read_text(encoding="utf-8")
+    quickstart = (root / "reviewer_quickstart.md").read_text(encoding="utf-8")
+    status = json.loads((root / "status.json").read_text(encoding="utf-8"))
 
     assert "PMR-07-USER-CONFIRMATION-NEGATIVE-CONTROL" in paper
     assert "Invalid confirmation is not confirmation." in paper
@@ -1702,9 +1707,9 @@ def test_governed_validator_rejects_pmr_07_overclaims(tmp_path):
         case.mkdir()
         for source in root.iterdir():
             if source.is_file():
-                (case / source.name).write_text(source.read_text())
+                (case / source.name).write_text(source.read_text(encoding="utf-8"), encoding="utf-8")
         paper = case / "PUB_GOV_ARTIFACT_COG_01.md"
-        paper.write_text(paper.read_text() + f"\nPMR-07 claims {claim}.\n")
+        paper.write_text(paper.read_text(encoding="utf-8") + f"\nPMR-07 claims {claim}.\n", encoding="utf-8")
         result = validate_publication_claims(
             paper,
             case / "reproducibility_appendix.md",
@@ -1718,10 +1723,10 @@ def test_governed_validator_rejects_pmr_07_overclaims(tmp_path):
 
 def test_governed_paper_includes_pmr_08_valid_user_confirmation_receipt_boundaries():
     root = Path("papers/governed_artifact_cognition")
-    paper = (root / "PUB_GOV_ARTIFACT_COG_01.md").read_text()
-    artifact_table = (root / "artifact_table.md").read_text()
-    quickstart = (root / "reviewer_quickstart.md").read_text()
-    status = json.loads((root / "status.json").read_text())
+    paper = (root / "PUB_GOV_ARTIFACT_COG_01.md").read_text(encoding="utf-8")
+    artifact_table = (root / "artifact_table.md").read_text(encoding="utf-8")
+    quickstart = (root / "reviewer_quickstart.md").read_text(encoding="utf-8")
+    status = json.loads((root / "status.json").read_text(encoding="utf-8"))
 
     assert "PMR-08-VALID-USER-CONFIRMATION-RECEIPT-SCAFFOLD" in paper
     assert "Valid user confirmation receipt is not action." in paper
@@ -1750,9 +1755,9 @@ def test_governed_validator_rejects_pmr_08_overclaims(tmp_path):
         case.mkdir()
         for source in root.iterdir():
             if source.is_file():
-                (case / source.name).write_text(source.read_text())
+                (case / source.name).write_text(source.read_text(encoding="utf-8"), encoding="utf-8")
         paper = case / "PUB_GOV_ARTIFACT_COG_01.md"
-        paper.write_text(paper.read_text() + f"\nPMR-08 claims {claim}.\n")
+        paper.write_text(paper.read_text(encoding="utf-8") + f"\nPMR-08 claims {claim}.\n", encoding="utf-8")
         result = validate_publication_claims(
             paper,
             case / "reproducibility_appendix.md",
@@ -1765,10 +1770,10 @@ def test_governed_validator_rejects_pmr_08_overclaims(tmp_path):
 
 def test_governed_paper_includes_pmr_10_destructive_action_authorization_preflight_boundaries():
     root = Path("papers/governed_artifact_cognition")
-    paper = (root / "PUB_GOV_ARTIFACT_COG_01.md").read_text()
-    artifact_table = (root / "artifact_table.md").read_text()
-    quickstart = (root / "reviewer_quickstart.md").read_text()
-    status = json.loads((root / "status.json").read_text())
+    paper = (root / "PUB_GOV_ARTIFACT_COG_01.md").read_text(encoding="utf-8")
+    artifact_table = (root / "artifact_table.md").read_text(encoding="utf-8")
+    quickstart = (root / "reviewer_quickstart.md").read_text(encoding="utf-8")
+    status = json.loads((root / "status.json").read_text(encoding="utf-8"))
 
     assert "PMR-10-DESTRUCTIVE-ACTION-AUTHORIZATION-PREFLIGHT" in paper
     assert "Action request candidate is not explicit action request." in paper
@@ -1800,9 +1805,9 @@ def test_governed_validator_rejects_pmr_10_overclaims(tmp_path):
         case.mkdir()
         for source in root.iterdir():
             if source.is_file():
-                (case / source.name).write_text(source.read_text())
+                (case / source.name).write_text(source.read_text(encoding="utf-8"), encoding="utf-8")
         paper = case / "PUB_GOV_ARTIFACT_COG_01.md"
-        paper.write_text(paper.read_text() + f"\nPMR-10 claims {claim}.\n")
+        paper.write_text(paper.read_text(encoding="utf-8") + f"\nPMR-10 claims {claim}.\n", encoding="utf-8")
         result = validate_publication_claims(
             paper,
             case / "reproducibility_appendix.md",
@@ -1815,10 +1820,10 @@ def test_governed_validator_rejects_pmr_10_overclaims(tmp_path):
 
 def test_governed_paper_includes_pmr_architecture_diversity_checkpoint_boundaries():
     root = Path("papers/governed_artifact_cognition")
-    paper = (root / "PUB_GOV_ARTIFACT_COG_01.md").read_text()
-    artifact_table = (root / "artifact_table.md").read_text()
-    quickstart = (root / "reviewer_quickstart.md").read_text()
-    status = json.loads((root / "status.json").read_text())
+    paper = (root / "PUB_GOV_ARTIFACT_COG_01.md").read_text(encoding="utf-8")
+    artifact_table = (root / "artifact_table.md").read_text(encoding="utf-8")
+    quickstart = (root / "reviewer_quickstart.md").read_text(encoding="utf-8")
+    status = json.loads((root / "status.json").read_text(encoding="utf-8"))
 
     assert "PMR-ARCH-DIVERSITY-CHECKPOINT-00" in paper
     assert "PMR authorization ladder is not the whole Triadic Brain." in paper
@@ -1849,9 +1854,9 @@ def test_governed_validator_rejects_pmr_architecture_diversity_checkpoint_overcl
         case.mkdir()
         for source in root.iterdir():
             if source.is_file():
-                (case / source.name).write_text(source.read_text())
+                (case / source.name).write_text(source.read_text(encoding="utf-8"), encoding="utf-8")
         paper = case / "PUB_GOV_ARTIFACT_COG_01.md"
-        paper.write_text(paper.read_text() + f"\nPMR-ARCH-DIVERSITY-CHECKPOINT-00 claims {claim}.\n")
+        paper.write_text(paper.read_text(encoding="utf-8") + f"\nPMR-ARCH-DIVERSITY-CHECKPOINT-00 claims {claim}.\n", encoding="utf-8")
         result = validate_publication_claims(
             paper,
             case / "reproducibility_appendix.md",
@@ -1865,11 +1870,11 @@ def test_governed_validator_rejects_pmr_architecture_diversity_checkpoint_overcl
 
 def test_governed_paper_includes_pmr_sim_00_boundaries():
     root = Path("papers/governed_artifact_cognition")
-    paper = (root / "PUB_GOV_ARTIFACT_COG_01.md").read_text()
-    artifact_table = (root / "artifact_table.md").read_text()
-    boundary_table = (root / "claim_boundary_table.md").read_text()
-    quickstart = (root / "reviewer_quickstart.md").read_text()
-    status = json.loads((root / "status.json").read_text())
+    paper = (root / "PUB_GOV_ARTIFACT_COG_01.md").read_text(encoding="utf-8")
+    artifact_table = (root / "artifact_table.md").read_text(encoding="utf-8")
+    boundary_table = (root / "claim_boundary_table.md").read_text(encoding="utf-8")
+    quickstart = (root / "reviewer_quickstart.md").read_text(encoding="utf-8")
+    status = json.loads((root / "status.json").read_text(encoding="utf-8"))
 
     for phrase in (
         "PMR-SIM-00",
@@ -1912,9 +1917,9 @@ def test_governed_validator_rejects_pmr_sim_00_overclaims(tmp_path):
         case.mkdir()
         for source in root.iterdir():
             if source.is_file():
-                (case / source.name).write_text(source.read_text())
+                (case / source.name).write_text(source.read_text(encoding="utf-8"), encoding="utf-8")
         paper = case / "PUB_GOV_ARTIFACT_COG_01.md"
-        paper.write_text(paper.read_text() + f"\nPMR-SIM-00 claims {claim}.\n")
+        paper.write_text(paper.read_text(encoding="utf-8") + f"\nPMR-SIM-00 claims {claim}.\n", encoding="utf-8")
         result = validate_publication_claims(
             paper,
             case / "reproducibility_appendix.md",
@@ -1933,11 +1938,11 @@ def test_governed_validator_rejects_pmr_sim_00_overclaims(tmp_path):
 
 def test_governed_paper_includes_pmr_stat_00_boundaries():
     root = Path("papers/governed_artifact_cognition")
-    paper = (root / "PUB_GOV_ARTIFACT_COG_01.md").read_text()
-    artifact_table = (root / "artifact_table.md").read_text()
-    boundary_table = (root / "claim_boundary_table.md").read_text()
-    quickstart = (root / "reviewer_quickstart.md").read_text()
-    status = json.loads((root / "status.json").read_text())
+    paper = (root / "PUB_GOV_ARTIFACT_COG_01.md").read_text(encoding="utf-8")
+    artifact_table = (root / "artifact_table.md").read_text(encoding="utf-8")
+    boundary_table = (root / "claim_boundary_table.md").read_text(encoding="utf-8")
+    quickstart = (root / "reviewer_quickstart.md").read_text(encoding="utf-8")
+    status = json.loads((root / "status.json").read_text(encoding="utf-8"))
 
     for phrase in (
         "PMR-STAT-00",
@@ -1976,9 +1981,9 @@ def test_governed_validator_rejects_pmr_stat_00_overclaims(tmp_path):
         case.mkdir()
         for source in root.iterdir():
             if source.is_file():
-                (case / source.name).write_text(source.read_text())
+                (case / source.name).write_text(source.read_text(encoding="utf-8"), encoding="utf-8")
         paper = case / "PUB_GOV_ARTIFACT_COG_01.md"
-        paper.write_text(paper.read_text() + f"\nPMR-STAT-00 claims {claim}.\n")
+        paper.write_text(paper.read_text(encoding="utf-8") + f"\nPMR-STAT-00 claims {claim}.\n", encoding="utf-8")
         result = validate_publication_claims(
             paper,
             case / "reproducibility_appendix.md",
@@ -1993,11 +1998,11 @@ def test_governed_validator_rejects_pmr_stat_00_overclaims(tmp_path):
 
 def test_governed_paper_includes_pmr_fed_stress_00_boundaries():
     root = Path("papers/governed_artifact_cognition")
-    paper = (root / "PUB_GOV_ARTIFACT_COG_01.md").read_text()
-    artifact_table = (root / "artifact_table.md").read_text()
-    boundary_table = (root / "claim_boundary_table.md").read_text()
-    quickstart = (root / "reviewer_quickstart.md").read_text()
-    status = json.loads((root / "status.json").read_text())
+    paper = (root / "PUB_GOV_ARTIFACT_COG_01.md").read_text(encoding="utf-8")
+    artifact_table = (root / "artifact_table.md").read_text(encoding="utf-8")
+    boundary_table = (root / "claim_boundary_table.md").read_text(encoding="utf-8")
+    quickstart = (root / "reviewer_quickstart.md").read_text(encoding="utf-8")
+    status = json.loads((root / "status.json").read_text(encoding="utf-8"))
 
     for phrase in (
         "PMR-FED-STRESS-00",
@@ -2036,9 +2041,9 @@ def test_governed_validator_rejects_pmr_fed_stress_00_overclaims(tmp_path):
         case.mkdir()
         for source in root.iterdir():
             if source.is_file():
-                (case / source.name).write_text(source.read_text())
+                (case / source.name).write_text(source.read_text(encoding="utf-8"), encoding="utf-8")
         paper = case / "PUB_GOV_ARTIFACT_COG_01.md"
-        paper.write_text(paper.read_text() + f"\nPMR-FED-STRESS-00 claims {claim}.\n")
+        paper.write_text(paper.read_text(encoding="utf-8") + f"\nPMR-FED-STRESS-00 claims {claim}.\n", encoding="utf-8")
         result = validate_publication_claims(
             paper,
             case / "reproducibility_appendix.md",
@@ -2053,11 +2058,11 @@ def test_governed_validator_rejects_pmr_fed_stress_00_overclaims(tmp_path):
 
 def test_governed_paper_includes_pmr_human_provenance_00_boundaries():
     root = Path("papers/governed_artifact_cognition")
-    paper = (root / "PUB_GOV_ARTIFACT_COG_01.md").read_text()
-    artifact_table = (root / "artifact_table.md").read_text()
-    boundary_table = (root / "claim_boundary_table.md").read_text()
-    quickstart = (root / "reviewer_quickstart.md").read_text()
-    status = json.loads((root / "status.json").read_text())
+    paper = (root / "PUB_GOV_ARTIFACT_COG_01.md").read_text(encoding="utf-8")
+    artifact_table = (root / "artifact_table.md").read_text(encoding="utf-8")
+    boundary_table = (root / "claim_boundary_table.md").read_text(encoding="utf-8")
+    quickstart = (root / "reviewer_quickstart.md").read_text(encoding="utf-8")
+    status = json.loads((root / "status.json").read_text(encoding="utf-8"))
 
     for phrase in (
         "PMR-HUMAN-PROVENANCE-00",
@@ -2102,9 +2107,9 @@ def test_governed_validator_rejects_pmr_human_provenance_00_overclaims(tmp_path)
         case.mkdir()
         for source in root.iterdir():
             if source.is_file():
-                (case / source.name).write_text(source.read_text())
+                (case / source.name).write_text(source.read_text(encoding="utf-8"), encoding="utf-8")
         paper = case / "PUB_GOV_ARTIFACT_COG_01.md"
-        paper.write_text(paper.read_text() + f"\nPMR-HUMAN-PROVENANCE-00 claims {claim}.\n")
+        paper.write_text(paper.read_text(encoding="utf-8") + f"\nPMR-HUMAN-PROVENANCE-00 claims {claim}.\n", encoding="utf-8")
         result = validate_publication_claims(
             paper,
             case / "reproducibility_appendix.md",
@@ -2708,7 +2713,9 @@ def test_claim_validator_rejects_runtime_metrics_seed_corpus_overclaims(tmp_path
         encoding="utf-8",
     )
     for claim in blocked:
-        (paper_root / "PUB_GOV_ARTIFACT_COG_01.md").write_text(base + "\n" + claim, encoding="utf-8")
+        (paper_root / "PUB_GOV_ARTIFACT_COG_01.md").write_text(
+            base + "\nThis publication overclaim says: " + claim, encoding="utf-8"
+        )
         result = validate_publication_claims(paper_root / "PUB_GOV_ARTIFACT_COG_01.md")
         assert result["passed"] is False, claim
         assert result["forbidden_overclaims_found"], claim
@@ -2814,7 +2821,9 @@ def test_claim_validator_rejects_pmr_local_queryable_store_overclaims(tmp_path):
         encoding="utf-8",
     )
     for claim in blocked:
-        (paper_root / "PUB_GOV_ARTIFACT_COG_01.md").write_text(base + "\n" + claim, encoding="utf-8")
+        (paper_root / "PUB_GOV_ARTIFACT_COG_01.md").write_text(
+            base + "\nThis publication overclaim says: " + claim, encoding="utf-8"
+        )
         result = validate_publication_claims(paper_root / "PUB_GOV_ARTIFACT_COG_01.md")
         assert result["passed"] is False, claim
         assert result["forbidden_overclaims_found"], claim
@@ -3035,3 +3044,690 @@ def test_claim_validator_rejects_retrosynthesis_local_prototype_overclaims(tmp_p
         result = validate_publication_claims(paper_root / "PUB_GOV_ARTIFACT_COG_01.md")
         assert result["passed"] is False, claim
         assert result["forbidden_overclaims_found"], claim
+
+
+
+def test_claim_validator_allows_bounded_atlas_prototype_proxy_continuity_theorem_claims(tmp_path):
+    paper_root = tmp_path / "paper"
+    paper_root.mkdir(parents=True)
+    allowed = (
+        "ATLAS-LOCAL-MEMORY-ADMISSION-PROTOTYPE-00 generates candidate admission reviews and eligibility assessments "
+        "without performing Atlas memory admission or memory write.\n"
+        "HUMAN-REVIEW-PROXY-LOCAL-TESTING-00 provides local deterministic development proxy review only and does not replace product human review.\n"
+        "AI-CONTEXT-PERFORMANCE-CONTINUITY-00 records repo-persisted continuity and context pressure metadata without writing memory.\n"
+        "THEOREM-VALIDATION-PATHWAY-00 creates theorem cards, evidence ledgers, counterexamples, and non-claim boundaries without proving theorems.\n"
+        "COOP-ENTROPY-DIVIDEND-00 is scaffolded as an operational metric hypothesis, not a proven theorem.\n"
+        "Candidate admission reviews are not Atlas memory admission. No Atlas memory write occurred. No memory candidate was written.\n"
+        "Proxy review is not product human review. Theorem cards are not proof. Evidence ledger entries are evidence inputs, not proof.\n"
+        "not truth certification\nnot deployment authority\nnot final answer release\nlocal fixture only\n"
+        "requires external peer review\nnot AI consciousness\nnot recursive Sonya federation\n"
+        "not retrosynthesis runtime\nnot Omega detection\nnot live Atlas memory writes\nnot live Sophia calls\n"
+        "not product release\nnot accepted evidence authority\nnot universal ontology proof\nnot provider runtime\nnot LAN enablement\n"
+    )
+    for name in (
+        "PUB_GOV_ARTIFACT_COG_01.md",
+        "reproducibility_appendix.md",
+        "claim_boundary_table.md",
+        "artifact_table.md",
+        "reviewer_quickstart.md",
+    ):
+        (paper_root / name).write_text(allowed, encoding="utf-8")
+    (paper_root / "status.json").write_text(
+        json.dumps(
+            {
+                "paper_id": "PUB-GOV-ARTIFACT-COG-01",
+                "repo": "pdxvoiceteacher/uvlm-publications",
+                "status": "drafted",
+                "claim_level": "internal_preprint_draft",
+                "requires_external_peer_review": True,
+                "not_truth_certification": True,
+                "not_deployment_authority": True,
+                "not_final_answer_release": True,
+                "not_live_model_execution": True,
+                "not_live_model_evaluation": True,
+                "not_production_evaluation": True,
+                "not_ai_consciousness_claim": True,
+            }
+        ),
+        encoding="utf-8",
+    )
+
+    result = validate_publication_claims(paper_root / "PUB_GOV_ARTIFACT_COG_01.md")
+
+    assert result["forbidden_overclaims_found"] == []
+
+
+def test_claim_validator_rejects_atlas_prototype_proxy_theorem_overclaims(tmp_path):
+    paper_root = tmp_path / "paper"
+    paper_root.mkdir(parents=True)
+    base = (
+        "not truth certification\nnot deployment authority\nnot final answer release\nlocal fixture only\n"
+        "requires external peer review\nnot AI consciousness\nnot recursive Sonya federation\n"
+        "not retrosynthesis runtime\nnot Omega detection\nnot live Atlas memory writes\nnot live Sophia calls\n"
+    )
+    blocked = (
+        "ATLAS-LOCAL-MEMORY-ADMISSION-PROTOTYPE-00 says Atlas memory admission occurred.",
+        "ATLAS-LOCAL-MEMORY-ADMISSION-PROTOTYPE-00 says Atlas memory write occurred.",
+        "ATLAS-LOCAL-MEMORY-ADMISSION-PROTOTYPE-00 says memory candidate was written.",
+        "ATLAS-LOCAL-MEMORY-ADMISSION-PROTOTYPE-00 says Atlas memory entry was written.",
+        "HUMAN-REVIEW-PROXY-LOCAL-TESTING-00 says local-test proxy review is product human review.",
+        "HUMAN-REVIEW-PROXY-LOCAL-TESTING-00 says local-test proxy review approves memory write.",
+        "HUMAN-REVIEW-PROXY-LOCAL-TESTING-00 says local-test proxy review approves Atlas admission.",
+        "THEOREM-VALIDATION-PATHWAY-00 says theorem validation proves theorem.",
+        "COOP-ENTROPY-DIVIDEND-00 is proven.",
+        "THEOREM-VALIDATION-PATHWAY-00 says evidence ledger certifies truth.",
+        "THEOREM-VALIDATION-PATHWAY-00 says theorem card proves universal ontology.",
+    )
+    for name in (
+        "reproducibility_appendix.md",
+        "claim_boundary_table.md",
+        "artifact_table.md",
+        "reviewer_quickstart.md",
+    ):
+        (paper_root / name).write_text(base, encoding="utf-8")
+    (paper_root / "status.json").write_text(
+        json.dumps(
+            {
+                "paper_id": "PUB-GOV-ARTIFACT-COG-01",
+                "repo": "pdxvoiceteacher/uvlm-publications",
+                "status": "drafted",
+                "claim_level": "internal_preprint_draft",
+                "requires_external_peer_review": True,
+                "not_truth_certification": True,
+                "not_deployment_authority": True,
+                "not_final_answer_release": True,
+                "not_live_model_execution": True,
+                "not_live_model_evaluation": True,
+                "not_production_evaluation": True,
+                "not_ai_consciousness_claim": True,
+            }
+        ),
+        encoding="utf-8",
+    )
+    for claim in blocked:
+        (paper_root / "PUB_GOV_ARTIFACT_COG_01.md").write_text(base + "\n" + claim, encoding="utf-8")
+        result = validate_publication_claims(paper_root / "PUB_GOV_ARTIFACT_COG_01.md")
+        assert result["passed"] is False, claim
+        assert result["forbidden_overclaims_found"], claim
+
+
+
+def test_claim_validator_allows_bounded_triadic_llm_ucc_source_materiality_claims(tmp_path):
+    paper_root = tmp_path / "paper"
+    paper_root.mkdir(parents=True)
+    allowed = (
+        "TRIADIC-LLM-METRICS-SMOKE-00 demonstrates a local candidate-to-forensic-review smoke with source-linked and unsupported claims visible.\n"
+        "UCC-SOPHIA-CONTROL-FORENSICS-00 applies a synthetic UCC fixture as diagnostic control review, not certification.\n"
+        "UCC-STANDARDS-SOURCE-REGISTRY-AND-MATERIALITY-00 provides universal source-profile and materiality-profile scaffolding using a synthetic fixture and NIST reference-only example.\n"
+        "NIST CSF 2.0 is present as a reference-only example; NIST source text is not ingested and no NIST compliance is certified.\n"
+        "Raw model output is not final answer. UCC control review is not legal compliance certification. User overrides are not professional judgment.\n"
+        "not truth certification\nnot deployment authority\nnot final answer release\nlocal fixture only\n"
+        "requires external peer review\nnot AI consciousness\nnot recursive Sonya federation\n"
+        "not retrosynthesis runtime\nnot Omega detection\nnot live Atlas memory writes\nnot live Sophia calls\n"
+        "not product release\nnot accepted evidence authority\nnot provider runtime\nnot LAN enablement\nnot market validation\n"
+    )
+    for name in (
+        "PUB_GOV_ARTIFACT_COG_01.md",
+        "reproducibility_appendix.md",
+        "claim_boundary_table.md",
+        "artifact_table.md",
+        "reviewer_quickstart.md",
+    ):
+        (paper_root / name).write_text(allowed, encoding="utf-8")
+    (paper_root / "status.json").write_text(
+        json.dumps(
+            {
+                "paper_id": "PUB-GOV-ARTIFACT-COG-01",
+                "repo": "pdxvoiceteacher/uvlm-publications",
+                "status": "drafted",
+                "claim_level": "internal_preprint_draft",
+                "requires_external_peer_review": True,
+                "not_truth_certification": True,
+                "not_deployment_authority": True,
+                "not_final_answer_release": True,
+                "not_live_model_execution": True,
+                "not_live_model_evaluation": True,
+                "not_production_evaluation": True,
+                "not_ai_consciousness_claim": True,
+            }
+        ),
+        encoding="utf-8",
+    )
+
+    result = validate_publication_claims(paper_root / "PUB_GOV_ARTIFACT_COG_01.md")
+
+    assert result["forbidden_overclaims_found"] == []
+
+
+def test_claim_validator_rejects_triadic_llm_ucc_source_materiality_overclaims(tmp_path):
+    paper_root = tmp_path / "paper"
+    paper_root.mkdir(parents=True)
+    base = (
+        "not truth certification\nnot deployment authority\nnot final answer release\nlocal fixture only\n"
+        "requires external peer review\nnot AI consciousness\nnot recursive Sonya federation\n"
+        "not retrosynthesis runtime\nnot Omega detection\nnot live Atlas memory writes\nnot live Sophia calls\n"
+    )
+    blocked = (
+        "Atlas memory admission occurred",
+        "Atlas memory write occurred",
+        "memory candidate was written",
+        "raw model output is final answer",
+        "UCC review certifies compliance",
+        "NIST compliance is certified",
+        "NIST controls were ingested",
+        "theorem validation proves theorem",
+        "COOP-ENTROPY-DIVIDEND-00 is proven",
+        "evidence ledger certifies truth",
+        "Omega detection",
+        "product release",
+        "provider runtime",
+        "population calibration",
+        "TRIADIC-LLM-METRICS-SMOKE-00 says raw model output is final answer.",
+        "TRIADIC-LLM-METRICS-SMOKE-00 says Sonya candidate is final answer.",
+        "UCC-SOPHIA-CONTROL-FORENSICS-00 says UCC review certifies compliance.",
+        "UCC-SOPHIA-CONTROL-FORENSICS-00 says UCC review is audit opinion.",
+        "UCC-SOPHIA-CONTROL-FORENSICS-00 says UCC review is professional attestation.",
+        "UCC-SOPHIA-CONTROL-FORENSICS-00 says UCC review is legal advice.",
+        "UCC-SOPHIA-CONTROL-FORENSICS-00 says UCC review is clinical certification.",
+        "UCC-SOPHIA-CONTROL-FORENSICS-00 says UCC review is academic endorsement.",
+        "UCC-STANDARDS-SOURCE-REGISTRY-AND-MATERIALITY-00 says NIST compliance is certified.",
+        "UCC-STANDARDS-SOURCE-REGISTRY-AND-MATERIALITY-00 says NIST controls were ingested.",
+        "UCC-STANDARDS-SOURCE-REGISTRY-AND-MATERIALITY-00 says AICPA controls were ingested.",
+        "UCC-STANDARDS-SOURCE-REGISTRY-AND-MATERIALITY-00 says COSO controls were ingested.",
+        "UCC-STANDARDS-SOURCE-REGISTRY-AND-MATERIALITY-00 says PRISMA controls were ingested.",
+        "UCC-STANDARDS-SOURCE-REGISTRY-AND-MATERIALITY-00 says ISO controls were ingested.",
+        "UCC-STANDARDS-SOURCE-REGISTRY-AND-MATERIALITY-00 says SOC controls were ingested.",
+        "UCC-STANDARDS-SOURCE-REGISTRY-AND-MATERIALITY-00 says materiality override is professional judgment.",
+        "UCC-STANDARDS-SOURCE-REGISTRY-AND-MATERIALITY-00 says materiality override modifies the source standard.",
+    )
+    for name in (
+        "reproducibility_appendix.md",
+        "claim_boundary_table.md",
+        "artifact_table.md",
+        "reviewer_quickstart.md",
+    ):
+        (paper_root / name).write_text(base, encoding="utf-8")
+    (paper_root / "status.json").write_text(
+        json.dumps(
+            {
+                "paper_id": "PUB-GOV-ARTIFACT-COG-01",
+                "repo": "pdxvoiceteacher/uvlm-publications",
+                "status": "drafted",
+                "claim_level": "internal_preprint_draft",
+                "requires_external_peer_review": True,
+                "not_truth_certification": True,
+                "not_deployment_authority": True,
+                "not_final_answer_release": True,
+                "not_live_model_execution": True,
+                "not_live_model_evaluation": True,
+                "not_production_evaluation": True,
+                "not_ai_consciousness_claim": True,
+            }
+        ),
+        encoding="utf-8",
+    )
+    for claim in blocked:
+        (paper_root / "PUB_GOV_ARTIFACT_COG_01.md").write_text(base + "\n" + claim, encoding="utf-8")
+        result = validate_publication_claims(paper_root / "PUB_GOV_ARTIFACT_COG_01.md")
+        assert result["passed"] is False, claim
+        assert result["forbidden_overclaims_found"], claim
+
+
+
+
+def test_claim_validator_rejects_ai_forensics_dossier_overclaims(tmp_path):
+    paper_root = tmp_path / "paper"
+    paper_root.mkdir(parents=True)
+    base = (
+        "not truth certification\nnot deployment authority\nnot final answer release\nlocal fixture only\n"
+        "requires external peer review\nnot AI consciousness\nnot recursive Sonya federation\n"
+        "not retrosynthesis runtime\nnot Omega detection\nnot live Atlas memory writes\nnot live Sophia calls\n"
+    )
+    blocked = (
+        "AI Forensics Dossier is final answer",
+        "AI Forensics Dossier certifies truth",
+        "AI Forensics Dossier certifies compliance",
+        "AI Forensics Dossier is audit opinion",
+        "AI Forensics Dossier is professional attestation",
+        "AI Forensics Dossier reveals hidden chain of thought",
+        "AI Forensics Dossier performs model mind-reading",
+    )
+    for name in (
+        "reproducibility_appendix.md",
+        "claim_boundary_table.md",
+        "artifact_table.md",
+        "reviewer_quickstart.md",
+    ):
+        (paper_root / name).write_text(base, encoding="utf-8")
+    (paper_root / "status.json").write_text(
+        json.dumps(
+            {
+                "paper_id": "PUB-GOV-ARTIFACT-COG-01",
+                "repo": "pdxvoiceteacher/uvlm-publications",
+                "status": "drafted",
+                "claim_level": "internal_preprint_draft",
+                "requires_external_peer_review": True,
+                "not_truth_certification": True,
+                "not_deployment_authority": True,
+                "not_final_answer_release": True,
+                "not_live_model_execution": True,
+                "not_live_model_evaluation": True,
+                "not_production_evaluation": True,
+                "not_ai_consciousness_claim": True,
+            }
+        ),
+        encoding="utf-8",
+    )
+    for claim in blocked:
+        (paper_root / "PUB_GOV_ARTIFACT_COG_01.md").write_text(base + "\n" + claim, encoding="utf-8")
+        result = validate_publication_claims(paper_root / "PUB_GOV_ARTIFACT_COG_01.md")
+        assert result["passed"] is False, claim
+        assert result["forbidden_overclaims_found"], claim
+
+
+def test_claim_validator_allows_ai_forensics_dossier_bounded_claim(tmp_path):
+    paper_root = tmp_path / "paper"
+    paper_root.mkdir(parents=True)
+    allowed = (
+        "not truth certification\nnot deployment authority\nnot final answer release\nlocal fixture only\n"
+        "requires external peer review\nnot AI consciousness\nnot recursive Sonya federation\n"
+        "not retrosynthesis runtime\nnot Omega detection\nnot live Atlas memory writes\nnot live Sophia calls\n"
+        "AI-FORENSICS-DOSSIER-00 packages a local AI candidate, source evidence, unsupported claims, "
+        "diagnostic metrics, UCC/Sophia control review, source registry, materiality profile, PMR provenance, "
+        "and export parity into a human-reviewable forensic dossier without issuing final-answer, certification, "
+        "product, provider, memory, or Atlas authority.\n"
+    )
+    for name in (
+        "PUB_GOV_ARTIFACT_COG_01.md",
+        "reproducibility_appendix.md",
+        "claim_boundary_table.md",
+        "artifact_table.md",
+        "reviewer_quickstart.md",
+    ):
+        (paper_root / name).write_text(allowed, encoding="utf-8")
+    (paper_root / "status.json").write_text(
+        json.dumps(
+            {
+                "paper_id": "PUB-GOV-ARTIFACT-COG-01",
+                "repo": "pdxvoiceteacher/uvlm-publications",
+                "status": "drafted",
+                "claim_level": "internal_preprint_draft",
+                "requires_external_peer_review": True,
+                "not_truth_certification": True,
+                "not_deployment_authority": True,
+                "not_final_answer_release": True,
+                "not_live_model_execution": True,
+                "not_live_model_evaluation": True,
+                "not_production_evaluation": True,
+                "not_ai_consciousness_claim": True,
+            }
+        ),
+        encoding="utf-8",
+    )
+    result = validate_publication_claims(paper_root / "PUB_GOV_ARTIFACT_COG_01.md")
+    assert result["forbidden_overclaims_found"] == []
+
+
+def test_claim_validator_rejects_human_review_ux_overclaims(tmp_path):
+    paper_root = tmp_path / "paper"
+    paper_root.mkdir(parents=True)
+    base = (
+        "not truth certification\nnot deployment authority\nnot final answer release\nlocal fixture only\n"
+        "requires external peer review\nnot AI consciousness\nnot recursive Sonya federation\n"
+        "not retrosynthesis runtime\nnot Omega detection\nnot live Atlas memory writes\nnot live Sophia calls\n"
+    )
+    blocked = (
+        "Human Review UX creates final answer authority",
+        "Human Review UX certifies truth",
+        "Human Review UX certifies compliance",
+        "Human Review UX is audit opinion",
+        "Human Review UX is professional attestation",
+        "Human Review UX approves product release",
+        "Human Review UX approves provider runtime",
+        "Human Review UX approves memory write",
+        "Human Review UX approves Atlas memory admission",
+        "local test review is product human review",
+        "needs_more_evidence is approval",
+        "approve_for_local_next_step is final answer approval",
+        "escalate_to_professional_review is professional attestation",
+    )
+    for name in (
+        "reproducibility_appendix.md",
+        "claim_boundary_table.md",
+        "artifact_table.md",
+        "reviewer_quickstart.md",
+    ):
+        (paper_root / name).write_text(base, encoding="utf-8")
+    (paper_root / "status.json").write_text(
+        json.dumps(
+            {
+                "paper_id": "PUB-GOV-ARTIFACT-COG-01",
+                "repo": "pdxvoiceteacher/uvlm-publications",
+                "status": "drafted",
+                "claim_level": "internal_preprint_draft",
+                "requires_external_peer_review": True,
+                "not_truth_certification": True,
+                "not_deployment_authority": True,
+                "not_final_answer_release": True,
+                "not_live_model_execution": True,
+                "not_live_model_evaluation": True,
+                "not_production_evaluation": True,
+                "not_ai_consciousness_claim": True,
+            }
+        ),
+        encoding="utf-8",
+    )
+    for claim in blocked:
+        (paper_root / "PUB_GOV_ARTIFACT_COG_01.md").write_text(base + "\n" + claim, encoding="utf-8")
+        result = validate_publication_claims(paper_root / "PUB_GOV_ARTIFACT_COG_01.md")
+        assert result["passed"] is False, claim
+        assert result["forbidden_overclaims_found"], claim
+
+
+def test_claim_validator_allows_human_review_ux_bounded_claim(tmp_path):
+    paper_root = tmp_path / "paper"
+    paper_root.mkdir(parents=True)
+    allowed = (
+        "not truth certification\nnot deployment authority\nnot final answer release\nlocal fixture only\n"
+        "requires external peer review\nnot AI consciousness\nnot recursive Sonya federation\n"
+        "not retrosynthesis runtime\nnot Omega detection\nnot live Atlas memory writes\nnot live Sophia calls\n"
+        "HUMAN-REVIEW-UX-00 presents an AI Forensics Dossier to a reviewer and emits a bounded review "
+        "decision receipt without granting final-answer, certification, product, provider, memory, or Atlas authority.\n"
+    )
+    for name in (
+        "PUB_GOV_ARTIFACT_COG_01.md",
+        "reproducibility_appendix.md",
+        "claim_boundary_table.md",
+        "artifact_table.md",
+        "reviewer_quickstart.md",
+    ):
+        (paper_root / name).write_text(allowed, encoding="utf-8")
+    (paper_root / "status.json").write_text(
+        json.dumps(
+            {
+                "paper_id": "PUB-GOV-ARTIFACT-COG-01",
+                "repo": "pdxvoiceteacher/uvlm-publications",
+                "status": "drafted",
+                "claim_level": "internal_preprint_draft",
+                "requires_external_peer_review": True,
+                "not_truth_certification": True,
+                "not_deployment_authority": True,
+                "not_final_answer_release": True,
+                "not_live_model_execution": True,
+                "not_live_model_evaluation": True,
+                "not_production_evaluation": True,
+                "not_ai_consciousness_claim": True,
+            }
+        ),
+        encoding="utf-8",
+    )
+    result = validate_publication_claims(paper_root / "PUB_GOV_ARTIFACT_COG_01.md")
+    assert result["forbidden_overclaims_found"] == []
+
+
+def test_claim_validator_rejects_perturbation_novelty_overclaims(tmp_path):
+    paper_root = tmp_path / "paper"
+    paper_root.mkdir(parents=True)
+    base = (
+        "not truth certification\nnot deployment authority\nnot final answer release\nlocal fixture only\n"
+        "requires external peer review\nnot AI consciousness\nnot recursive Sonya federation\n"
+        "not retrosynthesis runtime\nnot Omega detection\nnot live Atlas memory writes\nnot live Sophia calls\n"
+    )
+    blocked = (
+        "perturbation observation proves novelty",
+        "perturbation observation certifies diagnosis",
+        "abstraction affordance is truth",
+        "hyperreal resonance is authority",
+        "trunk similarity is identity",
+        "trunk mapping is novelty discovery",
+        "heatmap values certify probability",
+        "residual structure proves a novel trunk",
+        "residual novelty map discovers novelty",
+        "novel branch candidate is novel trunk proof",
+        "reverse trunk mapping proves identity",
+        "creative mapping is causal diagnosis",
+        "single fixture proves theory",
+    )
+    for name in (
+        "reproducibility_appendix.md",
+        "claim_boundary_table.md",
+        "artifact_table.md",
+        "reviewer_quickstart.md",
+    ):
+        (paper_root / name).write_text(base, encoding="utf-8")
+    (paper_root / "status.json").write_text(
+        json.dumps(
+            {
+                "paper_id": "PUB-GOV-ARTIFACT-COG-01",
+                "repo": "pdxvoiceteacher/uvlm-publications",
+                "status": "drafted",
+                "claim_level": "internal_preprint_draft",
+                "requires_external_peer_review": True,
+                "not_truth_certification": True,
+                "not_deployment_authority": True,
+                "not_final_answer_release": True,
+                "not_live_model_execution": True,
+                "not_live_model_evaluation": True,
+                "not_production_evaluation": True,
+                "not_ai_consciousness_claim": True,
+            }
+        ),
+        encoding="utf-8",
+    )
+    for claim in blocked:
+        (paper_root / "PUB_GOV_ARTIFACT_COG_01.md").write_text(base + "\n" + claim, encoding="utf-8")
+        result = validate_publication_claims(paper_root / "PUB_GOV_ARTIFACT_COG_01.md")
+        assert result["passed"] is False, claim
+        assert result["forbidden_overclaims_found"], claim
+
+
+def test_claim_validator_allows_perturbation_novelty_bounded_claims(tmp_path):
+    paper_root = tmp_path / "paper"
+    paper_root.mkdir(parents=True)
+    allowed = (
+        "not truth certification\nnot deployment authority\nnot final answer release\nlocal fixture only\n"
+        "requires external peer review\nnot AI consciousness\nnot recursive Sonya federation\n"
+        "not retrosynthesis runtime\nnot Omega detection\nnot live Atlas memory writes\nnot live Sophia calls\n"
+        "PERTURBATION-OBSERVATION-CAPTURE-00 captures a synthetic structured perturbation fixture and diagnostic axes without claiming novelty.\n"
+        "PERTURBATION-TRUNK-MAPPING-00 maps known trunk families before novelty claims and does not claim identity or discovery.\n"
+        "PERTURBATION-RESIDUAL-NOVELTY-MAP-00 generates candidate residual novelty regions, branch candidates, reverse trunk hypotheses, and abstraction candidates for human review without claiming novelty discovery or proof.\n"
+    )
+    for name in (
+        "PUB_GOV_ARTIFACT_COG_01.md",
+        "reproducibility_appendix.md",
+        "claim_boundary_table.md",
+        "artifact_table.md",
+        "reviewer_quickstart.md",
+    ):
+        (paper_root / name).write_text(allowed, encoding="utf-8")
+    (paper_root / "status.json").write_text(
+        json.dumps(
+            {
+                "paper_id": "PUB-GOV-ARTIFACT-COG-01",
+                "repo": "pdxvoiceteacher/uvlm-publications",
+                "status": "drafted",
+                "claim_level": "internal_preprint_draft",
+                "requires_external_peer_review": True,
+                "not_truth_certification": True,
+                "not_deployment_authority": True,
+                "not_final_answer_release": True,
+                "not_live_model_execution": True,
+                "not_live_model_evaluation": True,
+                "not_production_evaluation": True,
+                "not_ai_consciousness_claim": True,
+            }
+        ),
+        encoding="utf-8",
+    )
+    result = validate_publication_claims(paper_root / "PUB_GOV_ARTIFACT_COG_01.md")
+    assert result["forbidden_overclaims_found"] == []
+
+
+def test_claim_validator_rejects_perturbation_structure_affordance_card_overclaims(tmp_path):
+    paper_root = tmp_path / "paper"
+    paper_root.mkdir(parents=True)
+    base = (
+        "not truth certification\nnot deployment authority\nnot final answer release\nlocal fixture only\n"
+        "requires external peer review\nnot AI consciousness\nnot recursive Sonya federation\n"
+        "not retrosynthesis runtime\nnot Omega detection\nnot live Atlas memory writes\nnot live Sophia calls\n"
+    )
+    blocked = PERTURBATION_STRUCTURE_AFFORDANCE_BLOCKED_CLAIM_PHRASES
+    for name in (
+        "reproducibility_appendix.md",
+        "claim_boundary_table.md",
+        "artifact_table.md",
+        "reviewer_quickstart.md",
+    ):
+        (paper_root / name).write_text(base, encoding="utf-8")
+    (paper_root / "status.json").write_text(
+        json.dumps(
+            {
+                "paper_id": "PUB-GOV-ARTIFACT-COG-01",
+                "repo": "pdxvoiceteacher/uvlm-publications",
+                "status": "drafted",
+                "claim_level": "internal_preprint_draft",
+                "requires_external_peer_review": True,
+                "not_truth_certification": True,
+                "not_deployment_authority": True,
+                "not_final_answer_release": True,
+                "not_live_model_execution": True,
+                "not_live_model_evaluation": True,
+                "not_production_evaluation": True,
+                "not_ai_consciousness_claim": True,
+            }
+        ),
+        encoding="utf-8",
+    )
+    for claim in blocked:
+        (paper_root / "PUB_GOV_ARTIFACT_COG_01.md").write_text(
+            base + "\nThis publication overclaim says: " + claim, encoding="utf-8"
+        )
+        result = validate_publication_claims(paper_root / "PUB_GOV_ARTIFACT_COG_01.md")
+        assert result["passed"] is False, claim
+        assert result["forbidden_overclaims_found"], claim
+
+
+def test_claim_validator_allows_perturbation_structure_affordance_card_bounded_claim(tmp_path):
+    paper_root = tmp_path / "paper"
+    paper_root.mkdir(parents=True)
+    allowed = (
+        "not truth certification\nnot deployment authority\nnot final answer release\nlocal fixture only\n"
+        "requires external peer review\nnot AI consciousness\nnot recursive Sonya federation\n"
+        "not retrosynthesis runtime\nnot Omega detection\nnot live Atlas memory writes\nnot live Sophia calls\n"
+        "PERTURBATION-STRUCTURE-AFFORDANCE-CARD-00 preserves PERTURBATION-STRUCTURE-AFFORDANCE-00 "
+        "as a speculative theorem-validation card over perturbation observation, trunk mapping, and residual novelty "
+        "candidate artifacts, while claiming no proof, no novelty discovery, and no authority.\n"
+    )
+    for name in (
+        "PUB_GOV_ARTIFACT_COG_01.md",
+        "reproducibility_appendix.md",
+        "claim_boundary_table.md",
+        "artifact_table.md",
+        "reviewer_quickstart.md",
+    ):
+        (paper_root / name).write_text(allowed, encoding="utf-8")
+    (paper_root / "status.json").write_text(
+        json.dumps(
+            {
+                "paper_id": "PUB-GOV-ARTIFACT-COG-01",
+                "repo": "pdxvoiceteacher/uvlm-publications",
+                "status": "drafted",
+                "claim_level": "internal_preprint_draft",
+                "requires_external_peer_review": True,
+                "not_truth_certification": True,
+                "not_deployment_authority": True,
+                "not_final_answer_release": True,
+                "not_live_model_execution": True,
+                "not_live_model_evaluation": True,
+                "not_production_evaluation": True,
+                "not_ai_consciousness_claim": True,
+            }
+        ),
+        encoding="utf-8",
+    )
+    result = validate_publication_claims(paper_root / "PUB_GOV_ARTIFACT_COG_01.md")
+    assert result["forbidden_overclaims_found"] == []
+
+
+def test_claim_validator_rejects_metric_semantic_contract_overclaims(tmp_path):
+    paper_root = tmp_path / "paper"
+    paper_root.mkdir(parents=True)
+    base = (
+        "not truth certification\nnot deployment authority\nnot final answer release\nlocal fixture only\n"
+        "requires external peer review\nnot AI consciousness\nnot recursive Sonya federation\n"
+        "not retrosynthesis runtime\nnot Omega detection\nnot live Atlas memory writes\nnot live Sophia calls\n"
+    )
+    for name in (
+        "reproducibility_appendix.md",
+        "claim_boundary_table.md",
+        "artifact_table.md",
+        "reviewer_quickstart.md",
+    ):
+        (paper_root / name).write_text(base, encoding="utf-8")
+    (paper_root / "status.json").write_text(
+        json.dumps(
+            {
+                "paper_id": "PUB-GOV-ARTIFACT-COG-01",
+                "repo": "pdxvoiceteacher/uvlm-publications",
+                "status": "drafted",
+                "claim_level": "internal_preprint_draft",
+                "requires_external_peer_review": True,
+                "not_truth_certification": True,
+                "not_deployment_authority": True,
+                "not_final_answer_release": True,
+                "not_live_model_execution": True,
+                "not_live_model_evaluation": True,
+                "not_production_evaluation": True,
+                "not_ai_consciousness_claim": True,
+            }
+        ),
+        encoding="utf-8",
+    )
+    for claim in METRIC_SEMANTIC_CONTRACT_BLOCKED_CLAIM_PHRASES:
+        (paper_root / "PUB_GOV_ARTIFACT_COG_01.md").write_text(
+            base + "\nThis publication overclaim says: " + claim, encoding="utf-8"
+        )
+        result = validate_publication_claims(paper_root / "PUB_GOV_ARTIFACT_COG_01.md")
+        assert result["passed"] is False, claim
+        assert result["forbidden_overclaims_found"], claim
+
+
+def test_claim_validator_allows_metric_semantic_contract_bounded_claim(tmp_path):
+    paper_root = tmp_path / "paper"
+    paper_root.mkdir(parents=True)
+    allowed = (
+        "not truth certification\nnot deployment authority\nnot final answer release\nlocal fixture only\n"
+        "requires external peer review\nnot AI consciousness\nnot recursive Sonya federation\n"
+        "not retrosynthesis runtime\nnot Omega detection\nnot live Atlas memory writes\nnot live Sophia calls\n"
+        + METRIC_SEMANTIC_CLAIM_ALLOWED
+        + "\n"
+    )
+    for name in (
+        "PUB_GOV_ARTIFACT_COG_01.md",
+        "reproducibility_appendix.md",
+        "claim_boundary_table.md",
+        "artifact_table.md",
+        "reviewer_quickstart.md",
+    ):
+        (paper_root / name).write_text(allowed, encoding="utf-8")
+    (paper_root / "status.json").write_text(
+        json.dumps(
+            {
+                "paper_id": "PUB-GOV-ARTIFACT-COG-01",
+                "repo": "pdxvoiceteacher/uvlm-publications",
+                "status": "drafted",
+                "claim_level": "internal_preprint_draft",
+                "requires_external_peer_review": True,
+                "not_truth_certification": True,
+                "not_deployment_authority": True,
+                "not_final_answer_release": True,
+                "not_live_model_execution": True,
+                "not_live_model_evaluation": True,
+                "not_production_evaluation": True,
+                "not_ai_consciousness_claim": True,
+            }
+        ),
+        encoding="utf-8",
+    )
+    result = validate_publication_claims(paper_root / "PUB_GOV_ARTIFACT_COG_01.md")
+    assert result["forbidden_overclaims_found"] == []
