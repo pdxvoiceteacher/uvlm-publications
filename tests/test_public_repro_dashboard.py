@@ -51,6 +51,18 @@ from tools.build_public_repro_dashboard import (
     STATIC_HTML_USABILITY_REVIEW_REQUIRED_DOC_PHRASES,
     STATIC_HTML_USABILITY_REVIEW_RESPONSE_SUMMARY,
     STATIC_HTML_USABILITY_REVIEW_REVISION_THEMES,
+    STATIC_HTML_USABILITY_REVISION_ARTIFACTS,
+    STATIC_HTML_USABILITY_REVISION_BLOCKED_CLAIMS,
+    STATIC_HTML_USABILITY_REVISION_CLAIM_ALLOWED,
+    STATIC_HTML_USABILITY_REVISION_IMPROVEMENTS,
+    STATIC_HTML_USABILITY_REVISION_INPUT_ARTIFACTS,
+    STATIC_HTML_USABILITY_REVISION_LANGUAGE_AUDIT_TERMS,
+    STATIC_HTML_USABILITY_REVISION_METRIC_EXPLAINER_TERMS,
+    STATIC_HTML_USABILITY_REVISION_NON_AUTHORITY_BANNERS,
+    STATIC_HTML_USABILITY_REVISION_REPRO_FRAGMENTS,
+    STATIC_HTML_USABILITY_REVISION_REQUIRED_DOC_PHRASES,
+    STATIC_HTML_USABILITY_REVISION_THEMES,
+    STATIC_HTML_USABILITY_REVISION_TRACEABILITY_TERMS,
     _dedupe_accepted_phases,
 )
 from tools.validate_public_repro_dashboard import REQUIRED_PHASES as VALIDATOR_REQUIRED_PHASES
@@ -219,6 +231,7 @@ REQUIRED_PHASES = {
     "VISUAL-REVIEW-MODEL-00",
     "VISUAL-REVIEW-STATIC-HTML-PROTOTYPE-00",
     "STATIC-HTML-USABILITY-REVIEW-SEED-00",
+    "STATIC-HTML-USABILITY-REVISION-00",
     "RUNTIME-METRICS-CORPUS-SEED-00",
     "PMR-LOCAL-RUNTIME-QUERYABLE-STORE-00",
     "RETROSYNTHESIS-READINESS-00",
@@ -4496,6 +4509,81 @@ def test_static_html_usability_review_seed_page_and_registry_are_generated(tmp_p
     assert status["not_static_html_usability_human_benefit_proof"] is True
     assert status["not_static_html_usability_market_validation"] is True
     assert status["not_static_html_usability_product_readiness"] is True
+
+
+
+def test_static_html_usability_revision_page_and_registry_are_generated(tmp_path):
+    out_dir, docs_dir = run_builder(tmp_path)
+    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text(encoding="utf-8"))
+    reproducibility = json.loads((out_dir / "reproducibility_index.json").read_text(encoding="utf-8"))
+    artifact_index = json.loads((out_dir / "artifact_index.json").read_text(encoding="utf-8"))
+    claim_boundaries = json.loads((out_dir / "claim_boundary_index.json").read_text(encoding="utf-8"))
+    status = json.loads((out_dir / "status.json").read_text(encoding="utf-8"))
+    phase_by_id = {entry["phase_id"]: entry for entry in dashboard["accepted_phases"]}
+    boundary_text = "\n".join(claim_boundaries["boundaries"])
+    reproducibility_text = json.dumps(reproducibility)
+
+    phase = phase_by_id["STATIC-HTML-USABILITY-REVISION-00"]
+    summary = phase["dashboard_summary"]
+    assert summary["revision_status"] == "completed"
+    assert summary["revision_mode"] == "local_static_html_usability_revision"
+    assert summary["local_test_mode"] is True
+    assert summary["applied_revision_theme_count"] == 4
+    assert summary["improved_metric_semantic_explainer"] is True
+    assert summary["clarified_language_audit_status"] is True
+    assert summary["made_artifact_traceability_more_visible"] is True
+    assert summary["preserved_non_authority_banners"] is True
+    assert summary["original_html_preserved"] is True
+    assert summary["external_resource_count"] == 0
+    assert summary["network_call_performed"] is False
+    assert summary["provider_runtime_performed"] is False
+    assert summary["ui_implementation_performed"] is False
+    assert summary["ui_release_performed"] is False
+    assert summary["product_release_performed"] is False
+    assert summary["deployment_performed"] is False
+    assert summary["human_subject_study_performed"] is False
+    assert summary["human_benefit_proof_emitted"] is False
+    assert summary["market_validation_emitted"] is False
+    assert summary["product_readiness_emitted"] is False
+    assert summary["receipt_is_not_human_benefit_proof"] is True
+    assert summary["receipt_is_not_market_validation"] is True
+    assert summary["receipt_is_not_product_release"] is True
+    assert summary["receipt_is_not_ui_release"] is True
+    assert summary["receipt_requires_human_review"] is True
+
+    page_text = (docs_dir / "static-html-usability-revision.md").read_text(encoding="utf-8")
+    assert "STATIC-HTML-USABILITY-REVISION-00" in page_text
+    for artifact in STATIC_HTML_USABILITY_REVISION_ARTIFACTS:
+        assert artifact in artifact_index["phases"]["STATIC-HTML-USABILITY-REVISION-00"]
+        assert artifact in page_text
+    for artifact in STATIC_HTML_USABILITY_REVISION_INPUT_ARTIFACTS:
+        assert artifact in page_text
+        assert artifact in boundary_text
+    for phrase_set in (
+        STATIC_HTML_USABILITY_REVISION_THEMES,
+        STATIC_HTML_USABILITY_REVISION_IMPROVEMENTS,
+        STATIC_HTML_USABILITY_REVISION_REQUIRED_DOC_PHRASES,
+        STATIC_HTML_USABILITY_REVISION_METRIC_EXPLAINER_TERMS,
+        STATIC_HTML_USABILITY_REVISION_LANGUAGE_AUDIT_TERMS,
+        STATIC_HTML_USABILITY_REVISION_TRACEABILITY_TERMS,
+        STATIC_HTML_USABILITY_REVISION_NON_AUTHORITY_BANNERS,
+        STATIC_HTML_USABILITY_REVISION_REPRO_FRAGMENTS,
+        STATIC_HTML_USABILITY_REVISION_BLOCKED_CLAIMS,
+    ):
+        for phrase in phrase_set:
+            assert phrase in page_text
+            assert phrase in boundary_text
+    for fragment in STATIC_HTML_USABILITY_REVISION_REPRO_FRAGMENTS:
+        assert fragment in reproducibility_text
+    assert STATIC_HTML_USABILITY_REVISION_CLAIM_ALLOWED in page_text
+    assert STATIC_HTML_USABILITY_REVISION_CLAIM_ALLOWED in boundary_text
+    assert status["static_html_usability_revision_00_indexed"] is True
+    assert status["static_html_usability_revision_status"] == "completed"
+    assert status["static_html_usability_revision_applied_theme_count"] == 4
+    assert status["static_html_usability_revision_network_call_performed"] is False
+    assert status["not_static_html_usability_revision_human_benefit_proof"] is True
+    assert status["not_static_html_usability_revision_market_validation"] is True
+    assert status["not_static_html_usability_revision_product_readiness"] is True
 
 
 def test_metric_semantic_contract_page_and_registry_are_generated(tmp_path):

@@ -130,6 +130,8 @@ python -c "from pathlib import Path; from coherence.product.triadic_llm_metrics_
 
 STATIC-HTML-USABILITY-REVIEW-SEED-00 records a deterministic local usability-review scaffold over this static HTML prototype; it is not a real user study, human benefit proof, market validation, or product readiness.
 
+STATIC-HTML-USABILITY-REVISION-00 applies the local seed themes to a revised static review surface while preserving the original HTML, no-external-resource posture, and non-authority banners.
+
 ## Blocked static HTML overclaim examples
 
 - Visual Review Static HTML Prototype is a UI release

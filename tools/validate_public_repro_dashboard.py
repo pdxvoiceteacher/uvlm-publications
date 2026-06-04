@@ -58,6 +58,18 @@ from tools.build_public_repro_dashboard import (
     STATIC_HTML_USABILITY_REVIEW_REQUIRED_DOC_PHRASES,
     STATIC_HTML_USABILITY_REVIEW_RESPONSE_SUMMARY,
     STATIC_HTML_USABILITY_REVIEW_REVISION_THEMES,
+    STATIC_HTML_USABILITY_REVISION_ARTIFACTS,
+    STATIC_HTML_USABILITY_REVISION_BLOCKED_CLAIMS,
+    STATIC_HTML_USABILITY_REVISION_CLAIM_ALLOWED,
+    STATIC_HTML_USABILITY_REVISION_IMPROVEMENTS,
+    STATIC_HTML_USABILITY_REVISION_INPUT_ARTIFACTS,
+    STATIC_HTML_USABILITY_REVISION_LANGUAGE_AUDIT_TERMS,
+    STATIC_HTML_USABILITY_REVISION_METRIC_EXPLAINER_TERMS,
+    STATIC_HTML_USABILITY_REVISION_NON_AUTHORITY_BANNERS,
+    STATIC_HTML_USABILITY_REVISION_REPRO_FRAGMENTS,
+    STATIC_HTML_USABILITY_REVISION_REQUIRED_DOC_PHRASES,
+    STATIC_HTML_USABILITY_REVISION_THEMES,
+    STATIC_HTML_USABILITY_REVISION_TRACEABILITY_TERMS,
 )
 
 
@@ -283,6 +295,21 @@ REQUIRED_BOUNDARY_PHRASES = (
     *STATIC_HTML_USABILITY_REVIEW_REQUIRED_DOC_PHRASES,
     *STATIC_HTML_USABILITY_REVIEW_REPRO_FRAGMENTS,
     *STATIC_HTML_USABILITY_REVIEW_BLOCKED_CLAIMS,
+    "STATIC-HTML-USABILITY-REVISION-00",
+    "local_static_html_usability_revision",
+    "build_static_html_usability_revision",
+    STATIC_HTML_USABILITY_REVISION_CLAIM_ALLOWED,
+    *STATIC_HTML_USABILITY_REVISION_ARTIFACTS,
+    *STATIC_HTML_USABILITY_REVISION_INPUT_ARTIFACTS,
+    *STATIC_HTML_USABILITY_REVISION_THEMES,
+    *STATIC_HTML_USABILITY_REVISION_IMPROVEMENTS,
+    *STATIC_HTML_USABILITY_REVISION_REQUIRED_DOC_PHRASES,
+    *STATIC_HTML_USABILITY_REVISION_METRIC_EXPLAINER_TERMS,
+    *STATIC_HTML_USABILITY_REVISION_LANGUAGE_AUDIT_TERMS,
+    *STATIC_HTML_USABILITY_REVISION_TRACEABILITY_TERMS,
+    *STATIC_HTML_USABILITY_REVISION_NON_AUTHORITY_BANNERS,
+    *STATIC_HTML_USABILITY_REVISION_REPRO_FRAGMENTS,
+    *STATIC_HTML_USABILITY_REVISION_BLOCKED_CLAIMS,
     "RUNTIME-METRICS-CORPUS-SEED-00",
     "bounded seed corpus instrumentation only",
     "not population calibration",
@@ -1485,7 +1512,7 @@ def _forbidden_hits(text: str) -> list[str]:
                 start = index + len(normalized_phrase)
                 continue
             if phrase == "federation" and (
-                any(_normalize(claim) in text[max(0, index - 220) : index + 220] for claim in (*VISUAL_REVIEW_MODEL_BLOCKED_CLAIMS, *VISUAL_REVIEW_STATIC_HTML_BLOCKED_CLAIMS, *STATIC_HTML_USABILITY_REVIEW_BLOCKED_CLAIMS))
+                any(_normalize(claim) in text[max(0, index - 220) : index + 220] for claim in (*VISUAL_REVIEW_MODEL_BLOCKED_CLAIMS, *VISUAL_REVIEW_STATIC_HTML_BLOCKED_CLAIMS, *STATIC_HTML_USABILITY_REVIEW_BLOCKED_CLAIMS, *STATIC_HTML_USABILITY_REVISION_BLOCKED_CLAIMS))
                 or "without implementing a ui or granting" in text[max(0, index - 500) : index]
                 or "it implements no ui and grants no" in text[max(0, index - 500) : index]
             ):
@@ -1516,7 +1543,7 @@ def _forbidden_hits(text: str) -> list[str]:
                 continue
             if (
                 phrase in {"truth certification", "product release"}
-                and any(_normalize(claim) in text[max(0, index - 180) : index + 180] for claim in (*LANGUAGE_GOVERNANCE_AUDIT_BLOCKED_CLAIMS, *VISUAL_REVIEW_MODEL_BLOCKED_CLAIMS, *VISUAL_REVIEW_STATIC_HTML_BLOCKED_CLAIMS, *STATIC_HTML_USABILITY_REVIEW_BLOCKED_CLAIMS))
+                and any(_normalize(claim) in text[max(0, index - 180) : index + 180] for claim in (*LANGUAGE_GOVERNANCE_AUDIT_BLOCKED_CLAIMS, *VISUAL_REVIEW_MODEL_BLOCKED_CLAIMS, *VISUAL_REVIEW_STATIC_HTML_BLOCKED_CLAIMS, *STATIC_HTML_USABILITY_REVIEW_BLOCKED_CLAIMS, *STATIC_HTML_USABILITY_REVISION_BLOCKED_CLAIMS))
             ):
                 start = index + len(normalized_phrase)
                 continue
@@ -1548,7 +1575,8 @@ def _forbidden_hits(text: str) -> list[str]:
                 and (
                     "without creating" in text[max(0, index - 260) : index]
                     or "without claiming" in text[max(0, index - 260) : index]
-                    or any(_normalize(claim) in text[max(0, index - 220) : index + 220] for claim in (*VISUAL_REVIEW_STATIC_HTML_BLOCKED_CLAIMS, *STATIC_HTML_USABILITY_REVIEW_BLOCKED_CLAIMS))
+                    or "claiming no" in text[max(0, index - 260) : index]
+                    or any(_normalize(claim) in text[max(0, index - 220) : index + 220] for claim in (*VISUAL_REVIEW_STATIC_HTML_BLOCKED_CLAIMS, *STATIC_HTML_USABILITY_REVIEW_BLOCKED_CLAIMS, *STATIC_HTML_USABILITY_REVISION_BLOCKED_CLAIMS))
                 )
             ):
                 start = index + len(normalized_phrase)

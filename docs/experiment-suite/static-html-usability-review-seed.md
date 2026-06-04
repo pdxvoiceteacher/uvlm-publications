@@ -134,6 +134,10 @@ STATIC-HTML-USABILITY-REVIEW-SEED-00 synchronizes a deterministic local usabilit
 python -c "from pathlib import Path; from coherence.product.triadic_llm_metrics_smoke import build_triadic_llm_metrics_smoke; from coherence.ucc.sophia_control_review import build_sophia_ucc_control_review; from coherence.product.ai_forensics_dossier import build_ai_forensics_dossier; from coherence.review.human_review_ux import build_human_review_ux_packet; from coherence.product.raw_vs_triadic_comparison import build_raw_vs_triadic_comparison; from coherence.local_review.metric_semantics import build_metric_semantic_reconciliation_packet; from coherence.governance.language_audit_runtime import build_reviewer_language_audit; from coherence.product.visual_review_model import build_visual_review_model; from coherence.product.visual_review_static_html import build_visual_review_static_html; from coherence.product.static_html_usability_review import build_static_html_usability_review_seed; root=Path(r'C:\UVLM\run_artifacts\triadic_llm_metrics_smoke'); bridge=root / 'bridge'; build_triadic_llm_metrics_smoke(root); build_sophia_ucc_control_review(bridge); build_ai_forensics_dossier(bridge); build_human_review_ux_packet(bridge); build_raw_vs_triadic_comparison(bridge); build_metric_semantic_reconciliation_packet(bridge); build_reviewer_language_audit(bridge); build_visual_review_model(bridge); build_visual_review_static_html(bridge); build_static_html_usability_review_seed(bridge)"
 ```
 
+## Static HTML usability revision linkage
+
+STATIC-HTML-USABILITY-REVISION-00 applies these deterministic local-test revision themes to produce a revised local static review surface while preserving the original HTML and claiming no real user study, product validation, or runtime authority.
+
 ## Blocked usability overclaim examples
 
 - Static HTML Usability Review Seed is a real user study
