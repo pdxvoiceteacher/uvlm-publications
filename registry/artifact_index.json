@@ -1126,6 +1126,11 @@
       "visual_review_model.md",
       "visual_review_receipt.json"
     ],
+    "VISUAL-REVIEW-STATIC-HTML-PROTOTYPE-00": [
+      "visual_review_static_html_packet.json",
+      "visual_review_static_review.html",
+      "visual_review_static_html_receipt.json"
+    ],
     "PERTURBATION-OBSERVATION-CAPTURE-00": [
       "perturbation_observation_packet.json",
       "perturbation_axis_packet.json",

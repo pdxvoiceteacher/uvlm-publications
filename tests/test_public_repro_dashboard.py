@@ -34,6 +34,13 @@ from tools.build_public_repro_dashboard import (
     VISUAL_REVIEW_MODEL_REQUIRED_DOC_PHRASES,
     VISUAL_REVIEW_MODEL_REPRO_FRAGMENTS,
     VISUAL_REVIEW_MODEL_SECTIONS,
+    VISUAL_REVIEW_STATIC_HTML_ACCESSIBILITY_STATEMENTS,
+    VISUAL_REVIEW_STATIC_HTML_ARTIFACTS,
+    VISUAL_REVIEW_STATIC_HTML_BLOCKED_CLAIMS,
+    VISUAL_REVIEW_STATIC_HTML_CLAIM_ALLOWED,
+    VISUAL_REVIEW_STATIC_HTML_INPUT_ARTIFACTS,
+    VISUAL_REVIEW_STATIC_HTML_REQUIRED_DOC_PHRASES,
+    VISUAL_REVIEW_STATIC_HTML_REPRO_FRAGMENTS,
     _dedupe_accepted_phases,
 )
 from tools.validate_public_repro_dashboard import REQUIRED_PHASES as VALIDATOR_REQUIRED_PHASES
@@ -96,6 +103,7 @@ REQUIRED_DOCS = {
     "language-governance.md",
     "language-governance-audit-runtime.md",
     "visual-review-model.md",
+    "visual-review-static-html-prototype.md",
     "runtime-metrics-seed-corpus.md",
     "pmr-local-queryable-store.md",
     "retrosynthesis-readiness.md",
@@ -199,6 +207,7 @@ REQUIRED_PHASES = {
     "PROJECT-LANGUAGE-GOVERNANCE-00",
     "LANGUAGE-GOVERNANCE-AUDIT-RUNTIME-00",
     "VISUAL-REVIEW-MODEL-00",
+    "VISUAL-REVIEW-STATIC-HTML-PROTOTYPE-00",
     "RUNTIME-METRICS-CORPUS-SEED-00",
     "PMR-LOCAL-RUNTIME-QUERYABLE-STORE-00",
     "RETROSYNTHESIS-READINESS-00",
@@ -4326,6 +4335,73 @@ def test_visual_review_model_page_and_registry_are_generated(tmp_path):
     assert status["visual_review_model_is_ui_implementation"] is False
     assert status["visual_review_model_language_audit_error_count"] == 0
     assert status["not_visual_review_model_product_release"] is True
+
+
+def test_visual_review_static_html_prototype_page_and_registry_are_generated(tmp_path):
+    out_dir, docs_dir = run_builder(tmp_path)
+    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text(encoding="utf-8"))
+    reproducibility = json.loads((out_dir / "reproducibility_index.json").read_text(encoding="utf-8"))
+    artifact_index = json.loads((out_dir / "artifact_index.json").read_text(encoding="utf-8"))
+    claim_boundaries = json.loads((out_dir / "claim_boundary_index.json").read_text(encoding="utf-8"))
+    status = json.loads((out_dir / "status.json").read_text(encoding="utf-8"))
+    phase_by_id = {entry["phase_id"]: entry for entry in dashboard["accepted_phases"]}
+    boundary_text = "\n".join(claim_boundaries["boundaries"])
+    reproducibility_text = json.dumps(reproducibility)
+
+    phase = phase_by_id["VISUAL-REVIEW-STATIC-HTML-PROTOTYPE-00"]
+    summary = phase["dashboard_summary"]
+    assert summary["prototype_status"] == "completed"
+    assert summary["prototype_mode"] == "local_static_html_review_surface"
+    assert summary["html_ref"] == "visual_review_static_review.html"
+    assert summary["rendered_section_count"] == 15
+    assert summary["external_resource_count"] == 0
+    assert summary["network_call_performed"] is False
+    assert summary["provider_runtime_performed"] is False
+    assert summary["ui_implementation_performed"] is False
+    assert summary["ui_release_performed"] is False
+    assert summary["product_release_performed"] is False
+    assert summary["deployment_performed"] is False
+    assert summary["memory_write_performed"] is False
+    assert summary["atlas_memory_admission_performed"] is False
+    assert summary["prototype_is_not_ui_release"] is True
+    assert summary["prototype_is_not_product_release"] is True
+    assert summary["prototype_is_not_truth_certification"] is True
+    assert summary["prototype_requires_human_review"] is True
+
+    page_text = (docs_dir / "visual-review-static-html-prototype.md").read_text(encoding="utf-8")
+    assert "VISUAL-REVIEW-STATIC-HTML-PROTOTYPE-00" in page_text
+    for artifact in VISUAL_REVIEW_STATIC_HTML_ARTIFACTS:
+        assert artifact in artifact_index["phases"]["VISUAL-REVIEW-STATIC-HTML-PROTOTYPE-00"]
+        assert artifact in page_text
+    for artifact in VISUAL_REVIEW_STATIC_HTML_INPUT_ARTIFACTS:
+        assert artifact in page_text
+        assert artifact in boundary_text
+    for section in VISUAL_REVIEW_MODEL_SECTIONS:
+        assert section in page_text
+        assert section in boundary_text
+    for badge in VISUAL_REVIEW_MODEL_CAUTION_BADGES:
+        assert badge in page_text
+        assert badge in boundary_text
+    for phrase in VISUAL_REVIEW_STATIC_HTML_REQUIRED_DOC_PHRASES:
+        assert phrase in page_text
+        assert phrase in boundary_text
+    for statement in VISUAL_REVIEW_STATIC_HTML_ACCESSIBILITY_STATEMENTS:
+        assert statement in page_text
+        assert statement in boundary_text
+    for fragment in VISUAL_REVIEW_STATIC_HTML_REPRO_FRAGMENTS:
+        assert fragment in reproducibility_text
+        assert fragment in page_text
+        assert fragment in boundary_text
+    for claim in VISUAL_REVIEW_STATIC_HTML_BLOCKED_CLAIMS:
+        assert claim in page_text
+        assert claim in boundary_text
+    assert VISUAL_REVIEW_STATIC_HTML_CLAIM_ALLOWED in page_text
+    assert VISUAL_REVIEW_STATIC_HTML_CLAIM_ALLOWED in boundary_text
+    assert status["visual_review_static_html_prototype_00_indexed"] is True
+    assert status["visual_review_static_html_prototype_status"] == "completed"
+    assert status["visual_review_static_html_external_resource_count"] == 0
+    assert status["visual_review_static_html_network_call_performed"] is False
+    assert status["not_visual_review_static_html_product_release"] is True
 
 
 def test_metric_semantic_contract_page_and_registry_are_generated(tmp_path):

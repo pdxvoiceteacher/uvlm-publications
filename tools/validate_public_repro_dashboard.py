@@ -41,6 +41,13 @@ from tools.build_public_repro_dashboard import (
     VISUAL_REVIEW_MODEL_REPRO_FRAGMENTS,
     VISUAL_REVIEW_MODEL_REQUIRED_DOC_PHRASES,
     VISUAL_REVIEW_MODEL_SECTIONS,
+    VISUAL_REVIEW_STATIC_HTML_ACCESSIBILITY_STATEMENTS,
+    VISUAL_REVIEW_STATIC_HTML_ARTIFACTS,
+    VISUAL_REVIEW_STATIC_HTML_BLOCKED_CLAIMS,
+    VISUAL_REVIEW_STATIC_HTML_CLAIM_ALLOWED,
+    VISUAL_REVIEW_STATIC_HTML_INPUT_ARTIFACTS,
+    VISUAL_REVIEW_STATIC_HTML_REQUIRED_DOC_PHRASES,
+    VISUAL_REVIEW_STATIC_HTML_REPRO_FRAGMENTS,
 )
 
 
@@ -238,6 +245,20 @@ REQUIRED_BOUNDARY_PHRASES = (
     *VISUAL_REVIEW_MODEL_PROHIBITED_RENDER_CLAIMS,
     *VISUAL_REVIEW_MODEL_REPRO_FRAGMENTS,
     *VISUAL_REVIEW_MODEL_BLOCKED_CLAIMS,
+    "VISUAL-REVIEW-STATIC-HTML-PROTOTYPE-00",
+    "local_static_html_review_surface",
+    "visual_review_static_review.html",
+    "external_resource_count",
+    "network_call_performed",
+    "ui_release_performed",
+    "build_visual_review_static_html",
+    VISUAL_REVIEW_STATIC_HTML_CLAIM_ALLOWED,
+    *VISUAL_REVIEW_STATIC_HTML_ARTIFACTS,
+    *VISUAL_REVIEW_STATIC_HTML_INPUT_ARTIFACTS,
+    *VISUAL_REVIEW_STATIC_HTML_REQUIRED_DOC_PHRASES,
+    *VISUAL_REVIEW_STATIC_HTML_ACCESSIBILITY_STATEMENTS,
+    *VISUAL_REVIEW_STATIC_HTML_REPRO_FRAGMENTS,
+    *VISUAL_REVIEW_STATIC_HTML_BLOCKED_CLAIMS,
     "RUNTIME-METRICS-CORPUS-SEED-00",
     "bounded seed corpus instrumentation only",
     "not population calibration",
@@ -1440,7 +1461,7 @@ def _forbidden_hits(text: str) -> list[str]:
                 start = index + len(normalized_phrase)
                 continue
             if phrase == "federation" and (
-                any(_normalize(claim) in text[max(0, index - 220) : index + 220] for claim in VISUAL_REVIEW_MODEL_BLOCKED_CLAIMS)
+                any(_normalize(claim) in text[max(0, index - 220) : index + 220] for claim in (*VISUAL_REVIEW_MODEL_BLOCKED_CLAIMS, *VISUAL_REVIEW_STATIC_HTML_BLOCKED_CLAIMS))
                 or "without implementing a ui or granting" in text[max(0, index - 500) : index]
                 or "it implements no ui and grants no" in text[max(0, index - 500) : index]
             ):
@@ -1471,7 +1492,7 @@ def _forbidden_hits(text: str) -> list[str]:
                 continue
             if (
                 phrase in {"truth certification", "product release"}
-                and any(_normalize(claim) in text[max(0, index - 180) : index + 180] for claim in (*LANGUAGE_GOVERNANCE_AUDIT_BLOCKED_CLAIMS, *VISUAL_REVIEW_MODEL_BLOCKED_CLAIMS))
+                and any(_normalize(claim) in text[max(0, index - 180) : index + 180] for claim in (*LANGUAGE_GOVERNANCE_AUDIT_BLOCKED_CLAIMS, *VISUAL_REVIEW_MODEL_BLOCKED_CLAIMS, *VISUAL_REVIEW_STATIC_HTML_BLOCKED_CLAIMS))
             ):
                 start = index + len(normalized_phrase)
                 continue
@@ -1482,6 +1503,15 @@ def _forbidden_hits(text: str) -> list[str]:
                 start = index + len(normalized_phrase)
                 continue
             if phrase == "product release" and "does not authorize" in text[max(0, index - 180) : index]:
+                start = index + len(normalized_phrase)
+                continue
+            if (
+                phrase in {"final answer authority", "product release", "provider runtime", "runtime authority"}
+                and (
+                    "without creating" in text[max(0, index - 260) : index]
+                    or any(_normalize(claim) in text[max(0, index - 220) : index + 220] for claim in VISUAL_REVIEW_STATIC_HTML_BLOCKED_CLAIMS)
+                )
+            ):
                 start = index + len(normalized_phrase)
                 continue
             if phrase == "compliance certification" and "it is not final answer" in text[max(0, index - 140) : index]:

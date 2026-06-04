@@ -3036,6 +3036,1233 @@ VISUAL_REVIEW_MODEL_PHASE = {
 }
 
 
+VISUAL_REVIEW_STATIC_HTML_COMMAND = "python -c \"from pathlib import Path; from coherence.product.triadic_llm_metrics_smoke import build_triadic_llm_metrics_smoke; from coherence.ucc.sophia_control_review import build_sophia_ucc_control_review; from coherence.product.ai_forensics_dossier import build_ai_forensics_dossier; from coherence.review.human_review_ux import build_human_review_ux_packet; from coherence.product.raw_vs_triadic_comparison import build_raw_vs_triadic_comparison; from coherence.local_review.metric_semantics import build_metric_semantic_reconciliation_packet; from coherence.governance.language_audit_runtime import build_reviewer_language_audit; from coherence.product.visual_review_model import build_visual_review_model; from coherence.product.visual_review_static_html import build_visual_review_static_html; root=Path(r'C:\\UVLM\\run_artifacts\\triadic_llm_metrics_smoke'); bridge=root / 'bridge'; build_triadic_llm_metrics_smoke(root); build_sophia_ucc_control_review(bridge); build_ai_forensics_dossier(bridge); build_human_review_ux_packet(bridge); build_raw_vs_triadic_comparison(bridge); build_metric_semantic_reconciliation_packet(bridge); build_reviewer_language_audit(bridge); build_visual_review_model(bridge); build_visual_review_static_html(bridge)\""
+VISUAL_REVIEW_STATIC_HTML_ARTIFACTS = [
+    "visual_review_static_html_packet.json",
+    "visual_review_static_review.html",
+    "visual_review_static_html_receipt.json",
+]
+VISUAL_REVIEW_STATIC_HTML_INPUT_ARTIFACTS = [
+    "visual_review_model_packet.json",
+    "visual_review_section_index.json",
+    "visual_review_render_contract.json",
+    "visual_review_model.md",
+    "visual_review_receipt.json",
+    "ai_forensics_dossier.md",
+    "human_review_ux_packet.json",
+    "human_review_action_menu.json",
+    "raw_vs_triadic_comparison_packet.json",
+    "metric_semantic_reconciliation_packet.json",
+    "reviewer_language_audit_report.json",
+    "reviewer_language_audit_summary.md",
+    "pmr_local_runtime_artifact_index.json",
+    "artifact_inventory.json",
+    "export_bundle_parity_report.json",
+]
+VISUAL_REVIEW_STATIC_HTML_REQUIRED_DOC_PHRASES = [
+    "Visual Review Static HTML Prototype",
+    "Local static prototype only.",
+    "This is not a UI release.",
+    "This is not product release.",
+    "This is not deployment.",
+    "This is not provider runtime.",
+    "Raw model output is not final answer.",
+    "Metrics are operational proxies, not canonical metric completion.",
+    "Language audit is not truth certification.",
+    "UCC/Sophia control review is diagnostic, not certification.",
+    "Human review remains required.",
+    "No memory write occurred.",
+    "No Atlas memory admission occurred.",
+    "The prototype uses no external resources.",
+    "The prototype performs no network calls.",
+    "The prototype is self-contained for local human inspection.",
+]
+VISUAL_REVIEW_STATIC_HTML_ACCESSIBILITY_STATEMENTS = [
+    "Uses semantic headings.",
+    "Includes clear local navigation or skip-style navigation.",
+    "Avoids color-only meaning.",
+    "Requires no JavaScript.",
+    "Uses no external CSS or external assets.",
+    "Remains local-only and self-contained.",
+]
+VISUAL_REVIEW_STATIC_HTML_REPRO_FRAGMENTS = [
+    "build_triadic_llm_metrics_smoke",
+    "build_sophia_ucc_control_review",
+    "build_ai_forensics_dossier",
+    "build_human_review_ux_packet",
+    "build_raw_vs_triadic_comparison",
+    "build_metric_semantic_reconciliation_packet",
+    "build_reviewer_language_audit",
+    "build_visual_review_model",
+    "build_visual_review_static_html",
+]
+VISUAL_REVIEW_STATIC_HTML_BLOCKED_CLAIMS = [
+    "Visual Review Static HTML Prototype is a UI release",
+    "Visual Review Static HTML Prototype is product release",
+    "Visual Review Static HTML Prototype is deployment",
+    "Visual Review Static HTML Prototype performs provider runtime",
+    "Visual Review Static HTML Prototype performs network runtime",
+    "Visual Review Static HTML Prototype authorizes final answers",
+    "Visual Review Static HTML Prototype authorizes accepted evidence",
+    "Visual Review Static HTML Prototype certifies truth",
+    "Visual Review Static HTML Prototype certifies compliance",
+    "Visual Review Static HTML Prototype proves theorem",
+    "Visual Review Static HTML Prototype proves product readiness",
+    "Visual Review Static HTML Prototype authorizes memory write",
+    "Visual Review Static HTML Prototype authorizes Atlas memory admission",
+    "Visual Review Static HTML Prototype proves consciousness",
+    "Visual Review Static HTML Prototype detects Omega",
+    "Visual Review Static HTML Prototype proves universal ontology",
+    "static HTML prototype means UI is ready",
+    "zero external resources means product release is approved",
+    "self-contained HTML means deployment is approved",
+    "local static prototype is production UI",
+]
+VISUAL_REVIEW_STATIC_HTML_CLAIM_ALLOWED = "VISUAL-REVIEW-STATIC-HTML-PROTOTYPE-00 renders a local, self-contained static HTML review surface from the Visual Review Model so humans can inspect the artifact-backed review flow without creating a UI release, product release, deployment, provider runtime, final-answer authority, certification, memory write, Atlas admission, or other runtime authority."
+VISUAL_REVIEW_STATIC_HTML_DASHBOARD_SUMMARY = {
+    "prototype_status": "completed",
+    "prototype_mode": "local_static_html_review_surface",
+    "html_ref": "visual_review_static_review.html",
+    "rendered_section_count": 15,
+    "external_resource_count": 0,
+    "network_call_performed": False,
+    "provider_runtime_performed": False,
+    "ui_implementation_performed": False,
+    "ui_release_performed": False,
+    "product_release_performed": False,
+    "deployment_performed": False,
+    "final_answer_emitted": False,
+    "truth_certification_emitted": False,
+    "memory_write_performed": False,
+    "atlas_memory_admission_performed": False,
+    "prototype_is_not_ui_release": True,
+    "prototype_is_not_product_release": True,
+    "prototype_is_not_final_answer": True,
+    "prototype_is_not_truth_certification": True,
+    "prototype_requires_human_review": True,
+}
+VISUAL_REVIEW_STATIC_HTML_PHASE = {
+    "phase_id": "VISUAL-REVIEW-STATIC-HTML-PROTOTYPE-00",
+    "repo": "pdxvoiceteacher/CoherenceLattice",
+    "source_phase": "VISUAL-REVIEW-STATIC-HTML-PROTOTYPE-00",
+    "status": "accepted_local_validation",
+    "publication_status": "dashboard_synced",
+    "evidence_type": "local_static_html_review_surface_prototype",
+    "product_posture": "local_static_html_prototype_only_no_ui_release_or_product_release",
+    "authority_posture": "non_authoritative",
+    "public_claim_boundary": "local_static_html_prototype_only_no_ui_release_deployment_runtime_or_authority",
+    "primary_artifacts": VISUAL_REVIEW_STATIC_HTML_ARTIFACTS,
+    "input_artifacts": VISUAL_REVIEW_STATIC_HTML_INPUT_ARTIFACTS,
+    "dashboard_summary": VISUAL_REVIEW_STATIC_HTML_DASHBOARD_SUMMARY,
+    "reproduction_command_summary": VISUAL_REVIEW_STATIC_HTML_COMMAND,
+    "claims_blocked": VISUAL_REVIEW_STATIC_HTML_BLOCKED_CLAIMS,
+    "claim_allowed": VISUAL_REVIEW_STATIC_HTML_CLAIM_ALLOWED,
+    "reviewer_caution": "VISUAL-REVIEW-STATIC-HTML-PROTOTYPE-00 is a local self-contained static HTML prototype only; it is not UI release, product release, deployment, provider runtime, network runtime, final-answer authority, certification, memory write, or Atlas admission, and it grants no runtime authority.",
+}
+
+
+PERTURBATION_OBSERVATION_ARTIFACTS = [
+    "perturbation_observation_packet.json",
+    "perturbation_axis_packet.json",
+    "perturbation_boundary_report.json",
+    "perturbation_observation_summary.md",
+]
+PERTURBATION_OBSERVATION_DASHBOARD_SUMMARY = {
+    "observation_status": "captured",
+    "perturbation_fixture_id": "synthetic_signal_decay_perturbation_fixture_v0",
+    "observed_signal_type": "acoustic_symbolic_fixture",
+    "source_cause_candidate": "energy-constrained signal drift",
+    "causal_diagnosis_candidate": True,
+    "abstraction_affordance_candidate": True,
+    "axis_count": 9,
+    "novelty_detection_performed": False,
+    "trunk_mapping_performed": False,
+    "residual_novelty_claimed": False,
+}
+PERTURBATION_OBSERVATION_CLAIM_ALLOWED = "PERTURBATION-OBSERVATION-CAPTURE-00 captures a synthetic structured perturbation fixture and diagnostic axes without claiming novelty."
+PERTURBATION_OBSERVATION_CLAIMS_BLOCKED = [
+    "perturbation observation proves novelty",
+    "perturbation observation certifies diagnosis",
+    "abstraction affordance is truth",
+    "hyperreal resonance is authority",
+    "not certified diagnosis",
+    "not novelty discovery",
+    "not truth certification",
+    "not final-answer authority",
+    "not product release",
+]
+PERTURBATION_OBSERVATION_CAPTURE_PHASE = {
+    "phase_id": "PERTURBATION-OBSERVATION-CAPTURE-00",
+    "repo": "pdxvoiceteacher/CoherenceLattice",
+    "source_phase": "HUMAN-REVIEW-UX-00",
+    "status": "accepted_local_validation",
+    "publication_status": "dashboard_synced",
+    "evidence_type": "synthetic_structured_perturbation_observation",
+    "product_posture": "diagnostic_observation_only_not_novelty_discovery",
+    "authority_posture": "non_authoritative",
+    "public_claim_boundary": "observation_capture_only_no_novelty_diagnosis_or_truth_authority",
+    "primary_artifacts": PERTURBATION_OBSERVATION_ARTIFACTS,
+    "dashboard_summary": PERTURBATION_OBSERVATION_DASHBOARD_SUMMARY,
+    "reproduction_command_summary": PERTURBATION_NOVELTY_LANE_COMMAND,
+    "claims_blocked": PERTURBATION_OBSERVATION_CLAIMS_BLOCKED,
+    "claim_allowed": PERTURBATION_OBSERVATION_CLAIM_ALLOWED,
+    "reviewer_caution": "Perturbation observation is diagnostic fixture capture only; it is not novelty discovery, certified diagnosis, truth certification, final-answer authority, or product release.",
+}
+
+PERTURBATION_TRUNK_MAPPING_ARTIFACTS = [
+    "perturbation_known_trunk_registry.json",
+    "perturbation_trunk_mapping_packet.json",
+    "trunk_similarity_heatmap.json",
+    "mapped_trunk_residue_report.json",
+    "trunk_mapping_boundary_table.json",
+    "perturbation_trunk_mapping_summary.md",
+]
+PERTURBATION_TRUNK_MAPPING_DASHBOARD_SUMMARY = {
+    "mapping_status": "completed",
+    "mapping_mode": "known_trunk_mapping_only",
+    "trunk_count": 7,
+    "mapped_trunk_count": 7,
+    "top_trunk_candidate": "electrical_decay_trunk",
+    "top_trunk_similarity_score": 0.88,
+    "heatmap_rows": 63,
+    "residual_novelty_mapping_performed": False,
+    "novelty_detection_performed": False,
+    "residual_novelty_claimed": False,
+    "reverse_novel_trunk_claimed": False,
+}
+PERTURBATION_TRUNK_MAPPING_CLAIM_ALLOWED = "PERTURBATION-TRUNK-MAPPING-00 maps known trunk families before novelty claims and does not claim identity or discovery."
+PERTURBATION_TRUNK_MAPPING_CLAIMS_BLOCKED = [
+    "trunk similarity is identity",
+    "trunk mapping is novelty discovery",
+    "heatmap values certify probability",
+    "residual structure proves a novel trunk",
+    "not novelty discovery",
+    "not novel trunk proof",
+    "not probability certification",
+    "not truth certification",
+    "not final-answer authority",
+]
+PERTURBATION_TRUNK_MAPPING_PHASE = {
+    "phase_id": "PERTURBATION-TRUNK-MAPPING-00",
+    "repo": "pdxvoiceteacher/CoherenceLattice",
+    "source_phase": "PERTURBATION-OBSERVATION-CAPTURE-00",
+    "status": "accepted_local_validation",
+    "publication_status": "dashboard_synced",
+    "evidence_type": "known_trunk_mapping_before_novelty_review",
+    "product_posture": "diagnostic_mapping_only_not_identity_or_discovery",
+    "authority_posture": "non_authoritative",
+    "public_claim_boundary": "known_trunk_mapping_only_no_identity_discovery_or_probability_certification",
+    "primary_artifacts": PERTURBATION_TRUNK_MAPPING_ARTIFACTS,
+    "dashboard_summary": PERTURBATION_TRUNK_MAPPING_DASHBOARD_SUMMARY,
+    "reproduction_command_summary": PERTURBATION_NOVELTY_LANE_COMMAND,
+    "claims_blocked": PERTURBATION_TRUNK_MAPPING_CLAIMS_BLOCKED,
+    "claim_allowed": PERTURBATION_TRUNK_MAPPING_CLAIM_ALLOWED,
+    "reviewer_caution": "Known-trunk mapping is diagnostic only; similarity is not identity, heatmap values are not probability certification, and no novelty discovery is claimed.",
+}
+
+PERTURBATION_RESIDUAL_NOVELTY_ARTIFACTS = [
+    "residual_novelty_candidate_map.json",
+    "novel_branch_candidate_packet.json",
+    "reverse_trunk_candidate_report.json",
+    "abstraction_candidate_report.json",
+    "novelty_human_review_packet.json",
+    "residual_novelty_boundary_table.json",
+    "perturbation_residual_novelty_summary.md",
+]
+PERTURBATION_RESIDUAL_NOVELTY_DASHBOARD_SUMMARY = {
+    "mapping_status": "completed",
+    "mapping_mode": "residual_candidate_mapping_after_known_trunks",
+    "known_trunk_mapping_completed": True,
+    "residual_candidate_count": 5,
+    "top_residual_candidate_id": "cross_trunk_resonance_candidate_00",
+    "branch_candidate_count": 3,
+    "reverse_candidate_count": 3,
+    "abstraction_candidate_count": 3,
+    "review_required": True,
+    "default_recommendation": "request_more_observations",
+    "novelty_discovery_claimed": False,
+    "novel_trunk_proof_claimed": False,
+    "truth_certification_emitted": False,
+    "product_release_performed": False,
+}
+PERTURBATION_RESIDUAL_NOVELTY_CLAIM_ALLOWED = "PERTURBATION-RESIDUAL-NOVELTY-MAP-00 generates candidate residual novelty regions, branch candidates, reverse trunk hypotheses, and abstraction candidates for human review without claiming novelty discovery or proof."
+PERTURBATION_RESIDUAL_NOVELTY_CLAIMS_BLOCKED = [
+    "residual novelty map discovers novelty",
+    "novel branch candidate is novel trunk proof",
+    "reverse trunk mapping proves identity",
+    "creative mapping is causal diagnosis",
+    "single fixture proves theory",
+    "candidate novelty is novelty discovery",
+    "not novelty discovery",
+    "not novel trunk proof",
+    "not truth certification",
+    "not product release",
+]
+PERTURBATION_RESIDUAL_NOVELTY_MAP_PHASE = {
+    "phase_id": "PERTURBATION-RESIDUAL-NOVELTY-MAP-00",
+    "repo": "pdxvoiceteacher/CoherenceLattice",
+    "source_phase": "PERTURBATION-TRUNK-MAPPING-00",
+    "status": "accepted_local_validation",
+    "publication_status": "dashboard_synced",
+    "evidence_type": "residual_candidate_novelty_mapping_after_known_trunks",
+    "product_posture": "candidate_mapping_only_not_novelty_discovery_or_proof",
+    "authority_posture": "non_authoritative",
+    "public_claim_boundary": "candidate_residual_mapping_only_no_novelty_discovery_proof_or_truth_authority",
+    "primary_artifacts": PERTURBATION_RESIDUAL_NOVELTY_ARTIFACTS,
+    "dashboard_summary": PERTURBATION_RESIDUAL_NOVELTY_DASHBOARD_SUMMARY,
+    "reproduction_command_summary": PERTURBATION_NOVELTY_LANE_COMMAND,
+    "claims_blocked": PERTURBATION_RESIDUAL_NOVELTY_CLAIMS_BLOCKED,
+    "claim_allowed": PERTURBATION_RESIDUAL_NOVELTY_CLAIM_ALLOWED,
+    "reviewer_caution": "Residual novelty mapping produces candidates for human review only; candidate novelty is not novelty discovery, novel trunk proof, truth certification, scientific proof, product release, or final-answer authority.",
+}
+PERTURBATION_STRUCTURE_AFFORDANCE_CARD_ARTIFACTS = [
+    "theorem_claim_registry.json",
+    "theorem_card_registry.json",
+    "theorem_evidence_ledger.json",
+    "theorem_counterexample_registry.json",
+    "theorem_non_claim_boundary_table.json",
+    "theorem_validation_receipt.md",
+    "perturbation_observation_packet.json",
+    "perturbation_axis_packet.json",
+    "perturbation_trunk_mapping_packet.json",
+    "trunk_similarity_heatmap.json",
+    "residual_novelty_candidate_map.json",
+    "novel_branch_candidate_packet.json",
+    "reverse_trunk_candidate_report.json",
+    "abstraction_candidate_report.json",
+    "novelty_human_review_packet.json",
+    "residual_novelty_boundary_table.json",
+]
+PERTURBATION_STRUCTURE_AFFORDANCE_COUNTEREXAMPLES = (
+    "perturbation_mistaken_for_novelty",
+    "abstraction_affordance_mistaken_for_truth",
+    "hyperreal_resonance_mistaken_for_authority",
+    "residual_structure_mistaken_for_discovery",
+    "trunk_similarity_mistaken_for_identity",
+    "creative_mapping_mistaken_for_causal_diagnosis",
+    "novel_branch_candidate_mistaken_for_novel_trunk",
+    "single_fixture_mistaken_for_theory",
+)
+PERTURBATION_STRUCTURE_AFFORDANCE_REQUIRED_BOUNDARY_PHRASES = (
+    "The card preserves a synthetic structured perturbation fixture as a speculative theorem-validation artifact, not as proof.",
+    "The perturbation lane models multi-axis perturbation drift through a synthetic structured perturbation fixture, known-trunk mapping, residual candidate novelty mapping, and a human-reviewable abstraction candidate.",
+    "PERTURBATION-STRUCTURE-AFFORDANCE-00 is not proven.",
+    "Current grade is speculative_pattern.",
+    "Target grade is operational_metric_hypothesis.",
+    "Claimed grade is none_yet.",
+    "A structured perturbation may reveal abstraction affordances when multi-axis drift remains coherent after known causal and analogical trunk mapping.",
+    "Single fixture is not theory.",
+    "Perturbation evidence artifacts are evidence inputs, not proof.",
+    "Residual novelty candidate is not novelty discovery.",
+    "Novel branch candidate is not novel trunk proof.",
+    "Reverse trunk hypothesis is not proof.",
+    "Abstraction affordance is not truth.",
+    "Hyperreal resonance is not authority.",
+    "Repeated observations are required for stronger claims.",
+    "Human review remains required.",
+    "not novelty discovery",
+    "not novel trunk proof",
+    "not truth certification",
+    "not consciousness proof",
+    "not Omega detection",
+    "not universal ontology proof",
+    "not product release",
+    "not model superiority proof",
+    "not human benefit proof",
+    "not market validation",
+    "not certified diagnosis",
+    "not final answer",
+    "not accepted evidence",
+    "not proof from a single fixture",
+    *PERTURBATION_STRUCTURE_AFFORDANCE_COUNTEREXAMPLES,
+)
+PERTURBATION_STRUCTURE_AFFORDANCE_BLOCKED_CLAIM_PHRASES = (
+    "PERTURBATION-STRUCTURE-AFFORDANCE-00 is proven",
+    "perturbation structure-affordance is a proven theorem",
+    "speculative_pattern is proof",
+    "operational_metric_hypothesis target has already been achieved",
+    "single fixture proves theory",
+    "perturbation evidence proves theorem",
+    "perturbation evidence certifies novelty",
+    "residual novelty candidate is novelty discovery",
+    "novel branch candidate is novel trunk proof",
+    "reverse trunk hypothesis is proof",
+    "abstraction affordance is truth",
+    "hyperreal resonance is authority",
+    "trunk similarity is identity",
+    "creative mapping is causal diagnosis",
+    "truth certification",
+    "final-answer authority",
+    "accepted-evidence authority",
+    "product release",
+    "model superiority proof",
+    "human benefit proof",
+    "market validation",
+    "consciousness proof",
+    "Omega detection",
+    "universal ontology proof",
+    "certified diagnosis",
+)
+PERTURBATION_STRUCTURE_AFFORDANCE_DASHBOARD_SUMMARY = {
+    "theorem_cards": 2,
+    "theorem_id": "PERTURBATION-STRUCTURE-AFFORDANCE-00",
+    "theorem_family": "perturbation_novelty_mapping",
+    "proof_grade_current": "speculative_pattern",
+    "proof_grade_target": "operational_metric_hypothesis",
+    "proof_grade_claimed": "none_yet",
+    "perturbation_evidence_rows": 9,
+    "single_fixture_is_not_theory": True,
+    "theorem_card_is_not_proof": True,
+    "theorem_card_requires_repeated_observation": True,
+    "theorem_card_requires_human_review": True,
+}
+PERTURBATION_STRUCTURE_AFFORDANCE_CLAIM_ALLOWED = "PERTURBATION-STRUCTURE-AFFORDANCE-CARD-00 preserves PERTURBATION-STRUCTURE-AFFORDANCE-00 as a speculative theorem-validation card over perturbation observation, trunk mapping, and residual novelty candidate artifacts, while claiming no proof, no novelty discovery, and no authority."
+PERTURBATION_STRUCTURE_AFFORDANCE_CLAIMS_BLOCKED = PERTURBATION_STRUCTURE_AFFORDANCE_BLOCKED_CLAIM_PHRASES
+PERTURBATION_STRUCTURE_AFFORDANCE_CARD_PHASE = {
+    "phase_id": "PERTURBATION-STRUCTURE-AFFORDANCE-CARD-00",
+    "repo": "pdxvoiceteacher/CoherenceLattice",
+    "source_phase": "PERTURBATION-RESIDUAL-NOVELTY-MAP-00",
+    "status": "accepted_local_validation",
+    "publication_status": "dashboard_synced",
+    "evidence_type": "speculative_perturbation_structure_affordance_theorem_card",
+    "product_posture": "theorem_validation_card_only_not_proof_not_novelty_discovery",
+    "authority_posture": "non_authoritative",
+    "public_claim_boundary": "speculative_theorem_card_only_no_proof_novelty_or_authority",
+    "primary_artifacts": PERTURBATION_STRUCTURE_AFFORDANCE_CARD_ARTIFACTS,
+    "dashboard_summary": PERTURBATION_STRUCTURE_AFFORDANCE_DASHBOARD_SUMMARY,
+    "reproduction_command_summary": PERTURBATION_STRUCTURE_AFFORDANCE_CARD_COMMAND,
+    "claims_blocked": PERTURBATION_STRUCTURE_AFFORDANCE_CLAIMS_BLOCKED,
+    "claim_allowed": PERTURBATION_STRUCTURE_AFFORDANCE_CLAIM_ALLOWED,
+    "reviewer_caution": "PERTURBATION-STRUCTURE-AFFORDANCE-00 is a speculative theorem-validation card only; it is not proof, novelty discovery, truth certification, ontology proof, consciousness proof, product release, final answer, or accepted evidence.",
+}
+
+
+ATLAS_MEMORY_ADMISSION_READINESS_COMMAND = r""".\experiments\Run-ATLAS-LOCAL-MEMORY-ADMISSION-READINESS00-Acceptance.ps1 `
+  -OutputRoot C:\UVLM\run_artifacts\atlas_local_memory_admission_readiness_00 `
+  -LogDir C:\UVLM\run_artifacts\atlas_local_memory_admission_readiness_00_logs `
+  -CiMode"""
+ATLAS_MEMORY_ADMISSION_READINESS_PYTHON_ENTRYPOINT = "python -c \"from pathlib import Path; from coherence.local_review.seed_corpus import build_runtime_metrics_seed_corpus; from coherence.pmr.local_query_store import build_pmr_local_query_store; from coherence.retrosynthesis.readiness import build_retrosynthesis_readiness_assessment; from coherence.retrosynthesis.local_prototype import build_retrosynthesis_local_prototype; from coherence.atlas.local_memory_admission_readiness import build_atlas_local_memory_admission_readiness; root=Path(r'C:\\UVLM\\run_artifacts\\runtime_metrics_seed_corpus'); build_runtime_metrics_seed_corpus(output_root=root); build_pmr_local_query_store(root / 'bridge'); build_retrosynthesis_readiness_assessment(root / 'bridge'); build_retrosynthesis_local_prototype(root / 'bridge'); build_atlas_local_memory_admission_readiness(root / 'bridge')\""
+ATLAS_MEMORY_ADMISSION_READINESS_ARTIFACTS = [
+    "atlas_local_memory_admission_readiness_packet.json",
+    "atlas_local_memory_admission_readiness_checklist.json",
+    "atlas_local_memory_admission_readiness_receipt.json",
+    "atlas_local_memory_admission_readiness_summary.md",
+]
+ATLAS_MEMORY_ADMISSION_READINESS_DASHBOARD_SUMMARY = {
+    "readiness_status": "ready_for_bounded_atlas_memory_admission_prototype",
+    "source_prototype_status": "completed_candidate_generation",
+    "readiness_score": 1,
+    "recommended_next_phase": "ATLAS-LOCAL-MEMORY-ADMISSION-PROTOTYPE-00",
+    "readiness_dimensions": 21,
+    "readiness_dimension_count": 21,
+    "failed_checks": 0,
+    "blocking_reasons": 0,
+    "candidate_hypotheses": 7,
+    "candidate_repair_plans": 3,
+    "pattern_observations": 5,
+    "local_review_only": True,
+    "atlas_memory_admission_performed": False,
+    "atlas_memory_write_performed": False,
+    "atlas_memory_candidate_written": False,
+    "memory_candidate_write_performed": False,
+    "memory_admission_performed": False,
+    "federation_performed": False,
+    "product_release_performed": False,
+    "final_answer_emitted": False,
+    "truth_certification_emitted": False,
+    "consciousness_proof_emitted": False,
+    "omega_detection_performed": False,
+    "universal_ontology_proof_emitted": False,
+}
+ATLAS_MEMORY_ADMISSION_READINESS_CLAIM_ALLOWED = (
+    "ATLAS-LOCAL-MEMORY-ADMISSION-READINESS-00 records Atlas memory admission readiness for a bounded future prototype, "
+    "based on PMR queryability, retrosynthesis readiness, bounded local prototype receipts, TEL replay, runtime metrics, "
+    "formula registry coverage, metric-bound taxonomy, seed corpus variation, cognitive flow morphology, Sonya coverage, and Sophia posture."
+)
+ATLAS_MEMORY_ADMISSION_READINESS_CLAIMS_BLOCKED = [
+    "not Atlas memory admission",
+    "not Atlas memory write",
+    "not memory candidate write",
+    "not memory write",
+    "not product release",
+    "not federation",
+    "not final answer authority",
+    "not accepted evidence authority",
+    "not truth certification",
+    "not consciousness proof",
+    "not Omega detection",
+    "not universal ontology proof",
+    "not provider runtime",
+    "not LAN enablement",
+    "not deployment readiness",
+    "not population calibration",
+]
+ATLAS_MEMORY_ADMISSION_READINESS_PHASE = {
+    "phase_id": "ATLAS-LOCAL-MEMORY-ADMISSION-READINESS-00",
+    "repo": "pdxvoiceteacher/CoherenceLattice",
+    "source_phase": "RETROSYNTHESIS-LOCAL-PROTOTYPE-00",
+    "status": "accepted_local_validation",
+    "publication_status": "dashboard_synced",
+    "evidence_type": "bounded_local_atlas_local_memory_admission_readiness_gate",
+    "product_posture": "readiness_only_not_memory_admission_not_product_release",
+    "authority_posture": "non_authoritative",
+    "public_claim_boundary": "readiness_only_local_review_gate_no_memory_write",
+    "primary_artifacts": ATLAS_MEMORY_ADMISSION_READINESS_ARTIFACTS,
+    "dashboard_summary": ATLAS_MEMORY_ADMISSION_READINESS_DASHBOARD_SUMMARY,
+    "reproduction_command_summary": ATLAS_MEMORY_ADMISSION_READINESS_COMMAND + "\n\n" + ATLAS_MEMORY_ADMISSION_READINESS_PYTHON_ENTRYPOINT,
+    "claims_blocked": ATLAS_MEMORY_ADMISSION_READINESS_CLAIMS_BLOCKED,
+    "claim_allowed": ATLAS_MEMORY_ADMISSION_READINESS_CLAIM_ALLOWED,
+    "reviewer_caution": (
+        "ATLAS-LOCAL-MEMORY-ADMISSION-READINESS-00 is Atlas memory admission readiness, not Atlas memory admission. "
+        "It does not write Atlas memory, write memory candidates, perform memory admission, federate, release product behavior, "
+        "emit final answers, emit accepted evidence, certify truth, or prove consciousness. It is not Omega detection, "
+        "not universal ontology proof, not deployment, not provider runtime, not LAN enablement, not population calibration, "
+        "not human benefit proof, not market validation, and not autonomous self-improvement."
+    ),
+}
+
+
+ATLAS_LOCAL_MEMORY_ADMISSION_STACK_COMMAND = "python -c \"from pathlib import Path; from coherence.local_review.seed_corpus import build_runtime_metrics_seed_corpus; from coherence.pmr.local_query_store import build_pmr_local_query_store; from coherence.retrosynthesis.readiness import build_retrosynthesis_readiness_assessment; from coherence.retrosynthesis.local_prototype import build_retrosynthesis_local_prototype; from coherence.atlas.local_memory_admission_readiness import build_atlas_local_memory_admission_readiness; from coherence.atlas.local_memory_admission_prototype import build_atlas_local_memory_admission_prototype; from coherence.review.local_test_proxy_review import build_local_test_proxy_review_receipt; from coherence.continuity.ai_context_performance_continuity import build_ai_context_performance_continuity; from coherence.theorem.validation_pathway import build_theorem_validation_pathway; root=Path(r'C:\\UVLM\\run_artifacts\\runtime_metrics_seed_corpus'); build_runtime_metrics_seed_corpus(output_root=root); build_pmr_local_query_store(root / 'bridge'); build_retrosynthesis_readiness_assessment(root / 'bridge'); build_retrosynthesis_local_prototype(root / 'bridge'); build_atlas_local_memory_admission_readiness(root / 'bridge'); build_atlas_local_memory_admission_prototype(root / 'bridge'); build_local_test_proxy_review_receipt(root / 'bridge'); build_ai_context_performance_continuity(root / 'bridge'); build_theorem_validation_pathway(root / 'bridge')\""
+
+ATLAS_LOCAL_MEMORY_ADMISSION_PROTOTYPE_ARTIFACTS = [
+    "atlas_local_memory_admission_prototype_packet.json",
+    "atlas_candidate_admission_reviews.jsonl",
+    "atlas_admission_eligibility_assessments.jsonl",
+    "atlas_local_memory_admission_prototype_receipt.json",
+    "atlas_local_memory_admission_prototype_summary.md",
+]
+ATLAS_LOCAL_MEMORY_ADMISSION_PROTOTYPE_DASHBOARD_SUMMARY = {
+    "prototype_status": "completed_candidate_admission_review",
+    "candidate_admission_reviews_not_atlas_memory_admission": True,
+    "candidate_admission_reviews_not_memory_write": True,
+    "candidate_admission_reviews_not_memory_candidates": True,
+    "human_review_required": True,
+    "atlas_memory_admission_performed": False,
+    "atlas_memory_write_performed": False,
+    "atlas_memory_candidate_written": False,
+    "product_release_performed": False,
+}
+ATLAS_LOCAL_MEMORY_ADMISSION_PROTOTYPE_CLAIM_ALLOWED = (
+    "ATLAS-LOCAL-MEMORY-ADMISSION-PROTOTYPE-00 generates candidate admission reviews and eligibility assessments "
+    "without performing Atlas memory admission or memory write."
+)
+ATLAS_LOCAL_MEMORY_ADMISSION_PROTOTYPE_CLAIMS_BLOCKED = [
+    "not Atlas memory admission",
+    "not Atlas memory write",
+    "not memory candidate write",
+    "not Atlas memory entry write",
+    "not memory write",
+    "not federation",
+    "not product release",
+    "not final answer authority",
+    "not accepted evidence authority",
+    "not truth certification",
+    "not deployment",
+]
+ATLAS_LOCAL_MEMORY_ADMISSION_PROTOTYPE_PHASE = {
+    "phase_id": "ATLAS-LOCAL-MEMORY-ADMISSION-PROTOTYPE-00",
+    "repo": "pdxvoiceteacher/CoherenceLattice",
+    "source_phase": "ATLAS-LOCAL-MEMORY-ADMISSION-READINESS-00",
+    "status": "accepted_local_validation",
+    "publication_status": "dashboard_synced",
+    "evidence_type": "bounded_local_candidate_admission_review",
+    "product_posture": "candidate_review_only_not_memory_admission_not_product_release",
+    "authority_posture": "non_authoritative",
+    "public_claim_boundary": "candidate_admission_reviews_only_no_memory_write",
+    "primary_artifacts": ATLAS_LOCAL_MEMORY_ADMISSION_PROTOTYPE_ARTIFACTS,
+    "dashboard_summary": ATLAS_LOCAL_MEMORY_ADMISSION_PROTOTYPE_DASHBOARD_SUMMARY,
+    "reproduction_command_summary": ATLAS_LOCAL_MEMORY_ADMISSION_STACK_COMMAND,
+    "claims_blocked": ATLAS_LOCAL_MEMORY_ADMISSION_PROTOTYPE_CLAIMS_BLOCKED,
+    "claim_allowed": ATLAS_LOCAL_MEMORY_ADMISSION_PROTOTYPE_CLAIM_ALLOWED,
+    "reviewer_caution": "Candidate admission reviews are not Atlas memory admission, not memory write, and not memory candidates. Human review is required before any future Atlas memory admission.",
+}
+
+LOCAL_TEST_PROXY_REVIEW_ARTIFACTS = ["local_test_proxy_review_receipt.json"]
+LOCAL_TEST_PROXY_REVIEW_DASHBOARD_SUMMARY = {
+    "review_mode": "local_test_proxy_only",
+    "receipt_status": "emitted_local_test_proxy_only",
+    "human_review_required": True,
+    "human_review_satisfied_for_local_test": True,
+    "product_human_review_completed": False,
+    "atlas_memory_admission_approved": False,
+    "memory_write_approved": False,
+    "deployment_approved": False,
+    "federation_approved": False,
+    "final_answer_approved": False,
+    "accepted_evidence_approved": False,
+    "truth_certification_approved": False,
+}
+LOCAL_TEST_PROXY_REVIEW_CLAIM_ALLOWED = "HUMAN-REVIEW-PROXY-LOCAL-TESTING-00 provides local deterministic development proxy review only and does not replace product human review."
+LOCAL_TEST_PROXY_REVIEW_CLAIMS_BLOCKED = [
+    "not product human review",
+    "not Atlas admission approval",
+    "not memory write approval",
+    "not deployment approval",
+    "not federation approval",
+    "not final answer approval",
+    "not accepted evidence approval",
+    "not truth certification",
+]
+LOCAL_TEST_PROXY_REVIEW_PHASE = {
+    "phase_id": "HUMAN-REVIEW-PROXY-LOCAL-TESTING-00",
+    "repo": "pdxvoiceteacher/CoherenceLattice",
+    "source_phase": "ATLAS-LOCAL-MEMORY-ADMISSION-PROTOTYPE-00",
+    "status": "accepted_local_validation",
+    "publication_status": "dashboard_synced",
+    "evidence_type": "local_deterministic_proxy_review_receipt",
+    "product_posture": "local_test_proxy_only_not_product_human_review",
+    "authority_posture": "non_authoritative",
+    "public_claim_boundary": "proxy_review_only_no_approval_authority",
+    "primary_artifacts": LOCAL_TEST_PROXY_REVIEW_ARTIFACTS,
+    "dashboard_summary": LOCAL_TEST_PROXY_REVIEW_DASHBOARD_SUMMARY,
+    "reproduction_command_summary": ATLAS_LOCAL_MEMORY_ADMISSION_STACK_COMMAND,
+    "claims_blocked": LOCAL_TEST_PROXY_REVIEW_CLAIMS_BLOCKED,
+    "claim_allowed": LOCAL_TEST_PROXY_REVIEW_CLAIM_ALLOWED,
+    "reviewer_caution": "Proxy review is local deterministic development validation only and is not product human review or approval authority.",
+}
+
+AI_CONTEXT_PERFORMANCE_CONTINUITY_ARTIFACTS = [
+    "ai_context_continuity_packet.json",
+    "active_phase_focus_packet.json",
+    "validation_status_snapshot.json",
+    "assistant_handoff_summary.md",
+    "expired_or_external_file_manifest.json",
+    "open_patch_queue.json",
+    "context_budget_recommendation.md",
+]
+AI_CONTEXT_PERFORMANCE_CONTINUITY_DASHBOARD_SUMMARY = {
+    "waiting_status": "WAITING_FOR_LOCAL_VALIDATION",
+    "context_pressure_level": "high",
+    "recommended_handoff_now": True,
+    "continuity_packet_is_not_memory_write": True,
+    "continuity_packet_is_not_truth_certification": True,
+    "continuity_packet_is_not_product_release": True,
+    "live_chat_is_not_primary_memory_substrate": True,
+    "repo_persisted_continuity_is_durable_handoff_substrate": True,
+    "context_budget_inventory_visible": True,
+}
+AI_CONTEXT_PERFORMANCE_CONTINUITY_CLAIM_ALLOWED = "AI-CONTEXT-PERFORMANCE-CONTINUITY-00 records repo-persisted continuity and context pressure metadata without writing memory."
+AI_CONTEXT_PERFORMANCE_CONTINUITY_CLAIMS_BLOCKED = [
+    "not memory write",
+    "not truth certification",
+    "not product release",
+    "not final answer authority",
+    "not accepted evidence authority",
+]
+AI_CONTEXT_PERFORMANCE_CONTINUITY_PHASE = {
+    "phase_id": "AI-CONTEXT-PERFORMANCE-CONTINUITY-00",
+    "repo": "pdxvoiceteacher/CoherenceLattice",
+    "source_phase": "HUMAN-REVIEW-PROXY-LOCAL-TESTING-00",
+    "status": "waiting_for_local_validation",
+    "publication_status": "dashboard_synced",
+    "evidence_type": "repo_persisted_continuity_and_context_pressure_metadata",
+    "product_posture": "continuity_metadata_only_not_memory_write",
+    "authority_posture": "non_authoritative",
+    "public_claim_boundary": "handoff_metadata_only_no_memory_authority",
+    "primary_artifacts": AI_CONTEXT_PERFORMANCE_CONTINUITY_ARTIFACTS,
+    "dashboard_summary": AI_CONTEXT_PERFORMANCE_CONTINUITY_DASHBOARD_SUMMARY,
+    "reproduction_command_summary": ATLAS_LOCAL_MEMORY_ADMISSION_STACK_COMMAND,
+    "claims_blocked": AI_CONTEXT_PERFORMANCE_CONTINUITY_CLAIMS_BLOCKED,
+    "claim_allowed": AI_CONTEXT_PERFORMANCE_CONTINUITY_CLAIM_ALLOWED,
+    "reviewer_caution": "Live chat is not the primary memory substrate; repo-persisted continuity is the durable handoff substrate.",
+}
+
+THEOREM_VALIDATION_PATHWAY_ARTIFACTS = [
+    "theorem_claim_registry.json",
+    "theorem_card_registry.json",
+    "theorem_evidence_ledger.json",
+    "theorem_counterexample_registry.json",
+    "theorem_non_claim_boundary_table.json",
+    "theorem_validation_receipt.md",
+]
+THEOREM_VALIDATION_PATHWAY_DASHBOARD_SUMMARY = {
+    "theorem_validation_pathway_status": "locally_validated",
+    "theorem_card_count": 2,
+    "theorem_evidence_rows": 9,
+    "theorem_counterexamples": 9,
+    "theorem_cards_are_validation_artifacts_not_proof": True,
+    "theorem_evidence_inputs_are_not_proof": True,
+    "truth_certification_occurred": False,
+    "product_release_occurred": False,
+    "universal_ontology_proof_occurred": False,
+    "consciousness_proof_occurred": False,
+}
+THEOREM_VALIDATION_PATHWAY_CLAIM_ALLOWED = "THEOREM-VALIDATION-PATHWAY-00 creates theorem cards, evidence ledgers, counterexamples, and non-claim boundaries without proving theorems."
+THEOREM_VALIDATION_PATHWAY_CLAIMS_BLOCKED = [
+    "not theorem proof",
+    "theorem cards are not proof",
+    "evidence inputs are not proof",
+    "not truth certification",
+    "not product release",
+    "not universal ontology proof",
+    "not consciousness proof",
+]
+THEOREM_VALIDATION_PATHWAY_PHASE = {
+    "phase_id": "THEOREM-VALIDATION-PATHWAY-00",
+    "repo": "pdxvoiceteacher/CoherenceLattice",
+    "source_phase": "AI-CONTEXT-PERFORMANCE-CONTINUITY-00",
+    "status": "accepted_local_validation",
+    "publication_status": "dashboard_synced",
+    "evidence_type": "theorem_card_evidence_counterexample_validation_pathway",
+    "product_posture": "validation_pathway_only_not_theorem_proof",
+    "authority_posture": "non_authoritative",
+    "public_claim_boundary": "theorem_validation_artifacts_not_proof",
+    "primary_artifacts": THEOREM_VALIDATION_PATHWAY_ARTIFACTS,
+    "dashboard_summary": THEOREM_VALIDATION_PATHWAY_DASHBOARD_SUMMARY,
+    "reproduction_command_summary": ATLAS_LOCAL_MEMORY_ADMISSION_STACK_COMMAND,
+    "claims_blocked": THEOREM_VALIDATION_PATHWAY_CLAIMS_BLOCKED,
+    "claim_allowed": THEOREM_VALIDATION_PATHWAY_CLAIM_ALLOWED,
+    "reviewer_caution": "Theorem cards and evidence ledgers are validation artifacts and evidence inputs, not proof or truth certification.",
+}
+
+COOP_ENTROPY_DIVIDEND_ARTIFACTS = THEOREM_VALIDATION_PATHWAY_ARTIFACTS
+COOP_ENTROPY_DIVIDEND_DASHBOARD_SUMMARY = {
+    "theorem_id": "COOP-ENTROPY-DIVIDEND-00",
+    "proof_grade_current": "operational_metric_hypothesis",
+    "proof_grade_target": "repeated_empirical_evidence",
+    "proof_grade_claimed": "none_yet",
+    "current_status": "scaffolded theorem card, not proven theorem",
+    "repeated_runs_and_external_replication_required": True,
+}
+COOP_ENTROPY_DIVIDEND_CLAIM_ALLOWED = "COOP-ENTROPY-DIVIDEND-00 is scaffolded as an operational metric hypothesis, not a proven theorem."
+COOP_ENTROPY_DIVIDEND_CLAIMS_BLOCKED = [
+    "not proven theorem",
+    "not universal ontology proof",
+    "not consciousness proof",
+    "not product readiness",
+    "not human benefit proof",
+    "not market validation",
+    "not deployment readiness",
+    "not model superiority proof",
+]
+COOP_ENTROPY_DIVIDEND_PHASE = {
+    "phase_id": "COOP-ENTROPY-DIVIDEND-00",
+    "repo": "pdxvoiceteacher/CoherenceLattice",
+    "source_phase": "THEOREM-VALIDATION-PATHWAY-00",
+    "status": "scaffolded_theorem_card",
+    "publication_status": "dashboard_synced",
+    "evidence_type": "operational_metric_hypothesis_theorem_card",
+    "product_posture": "hypothesis_only_not_proven_not_product_readiness",
+    "authority_posture": "non_authoritative",
+    "public_claim_boundary": "operational_metric_hypothesis_only_not_proof",
+    "primary_artifacts": COOP_ENTROPY_DIVIDEND_ARTIFACTS,
+    "dashboard_summary": COOP_ENTROPY_DIVIDEND_DASHBOARD_SUMMARY,
+    "reproduction_command_summary": ATLAS_LOCAL_MEMORY_ADMISSION_STACK_COMMAND,
+    "claims_blocked": COOP_ENTROPY_DIVIDEND_CLAIMS_BLOCKED,
+    "claim_allowed": COOP_ENTROPY_DIVIDEND_CLAIM_ALLOWED,
+    "reviewer_caution": "COOP-ENTROPY-DIVIDEND-00 is not proven; repeated runs and external replication are required for stronger claims.",
+}
+
+
+
+TRIADIC_UCC_BLOCKED_OVERCLAIM_EXAMPLES = [
+    "Atlas memory admission occurred",
+    "Atlas memory write occurred",
+    "memory candidate was written",
+    "raw model output is final answer",
+    "UCC review certifies compliance",
+    "NIST compliance is certified",
+    "NIST controls were ingested",
+    "theorem validation proves theorem",
+    "COOP-ENTROPY-DIVIDEND-00 is proven",
+    "evidence ledger certifies truth",
+    "Omega detection",
+    "product release",
+    "provider runtime",
+    "population calibration",
+]
+TRIADIC_UCC_BLOCKED_OVERCLAIM_SECTION = "\n".join(
+    f"- {phrase}" for phrase in TRIADIC_UCC_BLOCKED_OVERCLAIM_EXAMPLES
+)
+
+TRIADIC_LLM_UCC_SOURCE_MATERIALITY_COMMAND = "python -c \"from pathlib import Path; from coherence.triadic.llm_metrics_smoke import build_triadic_llm_metrics_smoke; from coherence.ucc.sophia_control_review import build_sophia_ucc_control_review; from coherence.ucc.standards_source_registry import build_ucc_standards_source_registry; from coherence.ucc.materiality_profile import build_ucc_materiality_profile; from coherence.ucc.materiality_override import build_ucc_materiality_override_receipt; root=Path(r'C:\\UVLM\\run_artifacts\\triadic_llm_ucc_source_materiality'); build_triadic_llm_metrics_smoke(output_root=root); build_sophia_ucc_control_review(root / 'bridge'); build_ucc_standards_source_registry(root / 'bridge'); build_ucc_materiality_profile(root / 'bridge'); build_ucc_materiality_override_receipt(root / 'bridge')\""
+
+AI_FORENSICS_DOSSIER_COMMAND = "python -c \"from pathlib import Path; from coherence.product.triadic_llm_metrics_smoke import build_triadic_llm_metrics_smoke; from coherence.ucc.sophia_control_review import build_sophia_ucc_control_review; from coherence.product.ai_forensics_dossier import build_ai_forensics_dossier; root=Path(r'C:\\UVLM\\run_artifacts\\triadic_llm_metrics_smoke'); bridge=root / 'bridge'; build_triadic_llm_metrics_smoke(root); build_sophia_ucc_control_review(bridge); build_ai_forensics_dossier(bridge)\""
+HUMAN_REVIEW_UX_COMMAND = "python -c \"from pathlib import Path; from coherence.product.triadic_llm_metrics_smoke import build_triadic_llm_metrics_smoke; from coherence.ucc.sophia_control_review import build_sophia_ucc_control_review; from coherence.product.ai_forensics_dossier import build_ai_forensics_dossier; from coherence.review.human_review_ux import build_human_review_ux_packet; root=Path(r'C:\\UVLM\\run_artifacts\\triadic_llm_metrics_smoke'); bridge=root / 'bridge'; build_triadic_llm_metrics_smoke(root); build_sophia_ucc_control_review(bridge); build_ai_forensics_dossier(bridge); build_human_review_ux_packet(bridge)\""
+PERTURBATION_NOVELTY_LANE_COMMAND = "python -c \"from pathlib import Path; from coherence.perturbation.observation_capture import build_perturbation_observation_capture; from coherence.perturbation.trunk_mapping import build_perturbation_trunk_mapping; from coherence.perturbation.residual_novelty_map import build_perturbation_residual_novelty_map; bridge=Path(r'C:\\UVLM\\run_artifacts\\perturbation_observation_capture\\bridge'); build_perturbation_observation_capture(bridge); build_perturbation_trunk_mapping(bridge); build_perturbation_residual_novelty_map(bridge)\""
+PERTURBATION_STRUCTURE_AFFORDANCE_CARD_COMMAND = "python -c \"from pathlib import Path; from coherence.perturbation.observation_capture import build_perturbation_observation_capture; from coherence.perturbation.trunk_mapping import build_perturbation_trunk_mapping; from coherence.perturbation.residual_novelty_map import build_perturbation_residual_novelty_map; from coherence.theorem import build_theorem_validation_pathway; bridge=Path(r'C:\\UVLM\\run_artifacts\\perturbation_observation_capture\\bridge'); build_perturbation_observation_capture(bridge); build_perturbation_trunk_mapping(bridge); build_perturbation_residual_novelty_map(bridge); build_theorem_validation_pathway(bridge)\""
+
+TRIADIC_LLM_METRICS_SMOKE_ARTIFACTS = [
+    "llm_metrics_smoke_request.json",
+    "sonya_model_candidate_packet.json",
+    "source_integrity_packet.json",
+    "source_span_map.json",
+    "claim_classification_packet.json",
+    "claim_evidence_map.json",
+    "unsupported_claim_report.json",
+    "coherence_runtime_metrics_packet.json",
+    "coherence_action_functional_packet.json",
+    "ai_decision_trace_packet.json",
+    "review_receipt.md",
+    "llm_metrics_smoke_receipt.json",
+]
+TRIADIC_LLM_METRICS_SMOKE_DASHBOARD_SUMMARY = {
+    "smoke_status": "completed",
+    "span_linked_claim_count": 1,
+    "unsupported_claim_count": 1,
+    "raw_model_output_final_answer": False,
+    "provider_runtime_performed": False,
+    "product_release_performed": False,
+    "final_answer_emitted": False,
+    "truth_certification_emitted": False,
+    "memory_write_performed": False,
+    "atlas_memory_admission_performed": False,
+}
+TRIADIC_LLM_METRICS_SMOKE_CLAIM_ALLOWED = "TRIADIC-LLM-METRICS-SMOKE-00 demonstrates a local candidate-to-forensic-review smoke with source-linked and unsupported claims visible."
+TRIADIC_LLM_METRICS_SMOKE_CLAIMS_BLOCKED = [
+    "raw model output is not final answer",
+    "Sonya candidate is not final answer",
+    "not provider runtime",
+    "not product release",
+    "not memory write",
+    "not truth certification",
+    "not final answer authority",
+    "not accepted evidence authority",
+]
+TRIADIC_LLM_METRICS_SMOKE_PHASE = {
+    "phase_id": "TRIADIC-LLM-METRICS-SMOKE-00",
+    "repo": "pdxvoiceteacher/CoherenceLattice",
+    "source_phase": "COOP-ENTROPY-DIVIDEND-00",
+    "status": "accepted_local_validation",
+    "publication_status": "dashboard_synced",
+    "evidence_type": "local_candidate_to_forensic_review_smoke",
+    "product_posture": "diagnostic_candidate_only_not_final_answer_not_product_release",
+    "authority_posture": "non_authoritative",
+    "public_claim_boundary": "diagnostic_smoke_only_no_final_answer_authority",
+    "primary_artifacts": TRIADIC_LLM_METRICS_SMOKE_ARTIFACTS,
+    "dashboard_summary": TRIADIC_LLM_METRICS_SMOKE_DASHBOARD_SUMMARY,
+    "reproduction_command_summary": TRIADIC_LLM_UCC_SOURCE_MATERIALITY_COMMAND,
+    "claims_blocked": TRIADIC_LLM_METRICS_SMOKE_CLAIMS_BLOCKED,
+    "claim_allowed": TRIADIC_LLM_METRICS_SMOKE_CLAIM_ALLOWED,
+    "reviewer_caution": "Raw model output is not final answer; Sonya model candidate packets are candidate-only and metrics are diagnostic/non-authoritative.",
+}
+
+UCC_SOPHIA_CONTROL_FORENSICS_ARTIFACTS = [
+    "ucc_control_profile_packet.json",
+    "ucc_control_selection_receipt.json",
+    "sophia_ucc_control_review_packet.json",
+    "ucc_control_evidence_map.json",
+    "ucc_control_gap_report.json",
+    "ucc_control_non_certification_boundary_table.json",
+    "ucc_control_review_summary.md",
+]
+UCC_SOPHIA_CONTROL_FORENSICS_DASHBOARD_SUMMARY = {
+    "ucc_profile_id": "local_forensic_controls_fixture_v0",
+    "control_source_type": "synthetic_fixture",
+    "control_review_status": "completed_diagnostic_review",
+    "satisfied_control_count": 5,
+    "failed_control_count": 0,
+    "partial_control_count": 0,
+    "uncertain_control_count": 1,
+    "control_review_is_not_compliance_certification": True,
+    "control_review_is_not_professional_attestation": True,
+    "control_review_is_not_truth_certification": True,
+    "control_review_requires_human_review": True,
+}
+UCC_SOPHIA_CONTROL_FORENSICS_CLAIM_ALLOWED = "UCC-SOPHIA-CONTROL-FORENSICS-00 applies a synthetic UCC fixture as diagnostic control review, not certification."
+UCC_SOPHIA_CONTROL_FORENSICS_CLAIMS_BLOCKED = [
+    "not compliance certification",
+    "not audit opinion",
+    "not professional attestation",
+    "not legal advice",
+    "not clinical certification",
+    "not academic endorsement",
+    "not truth certification",
+    "not final answer authority",
+    "not product release",
+]
+UCC_SOPHIA_CONTROL_FORENSICS_PHASE = {
+    "phase_id": "UCC-SOPHIA-CONTROL-FORENSICS-00",
+    "repo": "pdxvoiceteacher/CoherenceLattice",
+    "source_phase": "TRIADIC-LLM-METRICS-SMOKE-00",
+    "status": "accepted_local_validation",
+    "publication_status": "dashboard_synced",
+    "evidence_type": "synthetic_fixture_diagnostic_control_review",
+    "product_posture": "diagnostic_control_review_not_certification",
+    "authority_posture": "non_authoritative",
+    "public_claim_boundary": "diagnostic_controls_only_no_certification_or_attestation",
+    "primary_artifacts": UCC_SOPHIA_CONTROL_FORENSICS_ARTIFACTS,
+    "dashboard_summary": UCC_SOPHIA_CONTROL_FORENSICS_DASHBOARD_SUMMARY,
+    "reproduction_command_summary": TRIADIC_LLM_UCC_SOURCE_MATERIALITY_COMMAND,
+    "claims_blocked": UCC_SOPHIA_CONTROL_FORENSICS_CLAIMS_BLOCKED,
+    "claim_allowed": UCC_SOPHIA_CONTROL_FORENSICS_CLAIM_ALLOWED,
+    "reviewer_caution": "UCC/Sophia control review is diagnostic and is not legal compliance certification, audit opinion, professional attestation, clinical certification, academic endorsement, or truth certification.",
+}
+
+UCC_STANDARDS_SOURCE_REGISTRY_ARTIFACTS = [
+    "ucc_standards_source_registry.json",
+    "ucc_materiality_profile.json",
+    "ucc_materiality_override_receipt.json",
+    "ucc_standards_source_registry_summary.md",
+]
+UCC_STANDARDS_SOURCE_REGISTRY_DASHBOARD_SUMMARY = {
+    "source_profile_count": 2,
+    "active_design_fixture_ref": "local_forensic_controls_fixture_v0",
+    "real_world_reference_example_ref": "nist_csf_2_0_reference",
+    "nist_reference_is_marketing_example_only": True,
+    "nist_source_text_stored": False,
+    "nist_materiality_profile_applied": False,
+    "active_source_rows_are_synthetic_fixture_and_nist_reference_only": True,
+    "materiality_override_control": "uncertainty_visible",
+    "prior_materiality": "medium",
+    "override_materiality": "high",
+    "override_is_ad_hoc": True,
+    "override_is_not_certification": True,
+    "override_does_not_modify_source_standard": True,
+}
+UCC_STANDARDS_SOURCE_REGISTRY_CLAIM_ALLOWED = "UCC-STANDARDS-SOURCE-REGISTRY-AND-MATERIALITY-00 provides universal source-profile and materiality-profile scaffolding using a synthetic fixture and NIST reference-only example. NIST CSF 2.0 is present as a reference-only example; NIST source text is not ingested and no NIST compliance is certified."
+UCC_STANDARDS_SOURCE_REGISTRY_CLAIMS_BLOCKED = [
+    "not NIST compliance certification",
+    "not NIST controls ingestion",
+    "not AICPA ingestion",
+    "not COSO ingestion",
+    "not PRISMA ingestion",
+    "not ISO ingestion",
+    "not SOC ingestion",
+    "not professional judgment",
+    "not source standard modification",
+    "not certification",
+]
+UCC_STANDARDS_SOURCE_REGISTRY_PHASE = {
+    "phase_id": "UCC-STANDARDS-SOURCE-REGISTRY-AND-MATERIALITY-00",
+    "repo": "pdxvoiceteacher/CoherenceLattice",
+    "source_phase": "UCC-SOPHIA-CONTROL-FORENSICS-00",
+    "status": "accepted_local_validation",
+    "publication_status": "dashboard_synced",
+    "evidence_type": "source_profile_materiality_profile_scaffold",
+    "product_posture": "reference_only_not_certification_not_standard_ingestion",
+    "authority_posture": "non_authoritative",
+    "public_claim_boundary": "source_materiality_scaffold_only_no_certification",
+    "primary_artifacts": UCC_STANDARDS_SOURCE_REGISTRY_ARTIFACTS,
+    "dashboard_summary": UCC_STANDARDS_SOURCE_REGISTRY_DASHBOARD_SUMMARY,
+    "reproduction_command_summary": TRIADIC_LLM_UCC_SOURCE_MATERIALITY_COMMAND,
+    "claims_blocked": UCC_STANDARDS_SOURCE_REGISTRY_CLAIMS_BLOCKED,
+    "claim_allowed": UCC_STANDARDS_SOURCE_REGISTRY_CLAIM_ALLOWED,
+    "reviewer_caution": "NIST CSF 2.0 is a reference-only example; source text is not ingested, no NIST compliance is certified, and materiality overrides are not professional judgment.",
+}
+
+TRIADIC_LLM_INVENTORY_REPAIR_ARTIFACTS = [
+    "sonya_model_candidate_packet.json",
+    "llm_metrics_smoke_receipt.json",
+    "review_receipt.md",
+]
+TRIADIC_LLM_INVENTORY_REPAIR_DASHBOARD_SUMMARY = {
+    "sonya_model_candidate_packet_pmr_visible": True,
+    "triadic_llm_smoke_artifacts_inventory_visible": True,
+    "triadic_llm_smoke_artifacts_parity_visible": True,
+    "visibility_repair_creates_final_answer_authority": False,
+    "visibility_repair_creates_provider_runtime": False,
+    "visibility_repair_creates_product_release": False,
+}
+TRIADIC_LLM_INVENTORY_REPAIR_CLAIM_ALLOWED = "TRIADIC-LLM-SMOKE-PMR-INVENTORY-CONTRACT-REPAIR-REVISION records that Triadic LLM smoke artifacts are PMR-visible, inventory-visible, and parity-visible without granting authority."
+TRIADIC_LLM_INVENTORY_REPAIR_CLAIMS_BLOCKED = [
+    "not final answer authority",
+    "not provider runtime",
+    "not product release",
+    "not accepted evidence authority",
+    "not truth certification",
+]
+TRIADIC_LLM_INVENTORY_REPAIR_PHASE = {
+    "phase_id": "TRIADIC-LLM-SMOKE-PMR-INVENTORY-CONTRACT-REPAIR-REVISION",
+    "repo": "pdxvoiceteacher/CoherenceLattice",
+    "source_phase": "TRIADIC-LLM-METRICS-SMOKE-00",
+    "status": "accepted_local_validation",
+    "publication_status": "dashboard_synced",
+    "evidence_type": "pmr_inventory_parity_visibility_repair",
+    "product_posture": "visibility_repair_only_no_runtime_or_authority",
+    "authority_posture": "non_authoritative",
+    "public_claim_boundary": "inventory_visibility_only_no_final_answer_authority",
+    "primary_artifacts": TRIADIC_LLM_INVENTORY_REPAIR_ARTIFACTS,
+    "dashboard_summary": TRIADIC_LLM_INVENTORY_REPAIR_DASHBOARD_SUMMARY,
+    "reproduction_command_summary": TRIADIC_LLM_UCC_SOURCE_MATERIALITY_COMMAND,
+    "claims_blocked": TRIADIC_LLM_INVENTORY_REPAIR_CLAIMS_BLOCKED,
+    "claim_allowed": TRIADIC_LLM_INVENTORY_REPAIR_CLAIM_ALLOWED,
+    "reviewer_caution": "Visibility repair does not create final-answer authority, provider runtime, or product release.",
+}
+
+
+AI_FORENSICS_DOSSIER_ARTIFACTS = [
+    "ai_forensics_dossier_packet.json",
+    "ai_forensics_dossier_section_index.json",
+    "ai_forensics_dossier.md",
+    "ai_forensics_dossier_receipt.json",
+]
+AI_FORENSICS_DOSSIER_DASHBOARD_SUMMARY = {
+    "dossier_status": "completed",
+    "dossier_mode": "user_facing_forensic_summary",
+    "dossier_sections": 16,
+    "span_linked_claim_count": 1,
+    "unsupported_claim_count": 1,
+    "satisfied_control_count": 5,
+    "uncertain_control_count": 1,
+    "source_profile_count": 2,
+    "nist_reference_only": True,
+    "nist_source_text_stored": False,
+    "human_review_required": True,
+    "raw_model_output_final_answer": False,
+    "final_answer_emitted": False,
+    "accepted_evidence_emitted": False,
+    "truth_certification_emitted": False,
+    "compliance_certification_emitted": False,
+    "audit_opinion_emitted": False,
+    "professional_attestation_emitted": False,
+    "product_release_performed": False,
+    "provider_runtime_performed": False,
+    "memory_write_performed": False,
+    "atlas_memory_admission_performed": False,
+}
+AI_FORENSICS_DOSSIER_CLAIM_ALLOWED = "AI-FORENSICS-DOSSIER-00 packages a local AI candidate, source evidence, unsupported claims, diagnostic metrics, UCC/Sophia control review, source registry, materiality profile, PMR provenance, and export parity into a human-reviewable forensic dossier without issuing final-answer, certification, product, provider, memory, or Atlas authority."
+AI_FORENSICS_DOSSIER_CLAIMS_BLOCKED = [
+    "AI Forensics Dossier is final answer",
+    "AI Forensics Dossier certifies truth",
+    "AI Forensics Dossier certifies compliance",
+    "AI Forensics Dossier is audit opinion",
+    "AI Forensics Dossier is professional attestation",
+    "AI Forensics Dossier reveals hidden chain of thought",
+    "AI Forensics Dossier performs model mind-reading",
+    "raw model output is final answer",
+    "UCC review certifies compliance",
+    "NIST compliance is certified",
+    "NIST controls were ingested",
+    "not final-answer authority",
+    "not accepted-evidence authority",
+    "not truth certification",
+    "not product release",
+    "not provider runtime",
+    "not LAN enablement",
+    "not deployment",
+    "not federation",
+    "not Atlas memory admission",
+    "not memory write",
+    "not consciousness proof",
+    "not Omega detection",
+    "not universal ontology proof",
+    "not population calibration",
+    "not human benefit proof",
+    "not market validation",
+]
+AI_FORENSICS_DOSSIER_PHASE = {
+    "phase_id": "AI-FORENSICS-DOSSIER-00",
+    "repo": "pdxvoiceteacher/CoherenceLattice",
+    "source_phase": "UCC-STANDARDS-SOURCE-REGISTRY-AND-MATERIALITY-00",
+    "status": "accepted_local_validation",
+    "publication_status": "dashboard_synced",
+    "evidence_type": "user_facing_ai_process_forensics_dossier",
+    "product_posture": "forensic_summary_only_not_final_answer_not_certification_not_release",
+    "authority_posture": "non_authoritative",
+    "public_claim_boundary": "ai_process_forensics_only_no_final_answer_certification_or_runtime_authority",
+    "primary_artifacts": AI_FORENSICS_DOSSIER_ARTIFACTS,
+    "dashboard_summary": AI_FORENSICS_DOSSIER_DASHBOARD_SUMMARY,
+    "reproduction_command_summary": AI_FORENSICS_DOSSIER_COMMAND,
+    "claims_blocked": AI_FORENSICS_DOSSIER_CLAIMS_BLOCKED,
+    "claim_allowed": AI_FORENSICS_DOSSIER_CLAIM_ALLOWED,
+    "reviewer_caution": "AI-FORENSICS-DOSSIER-00 is AI process forensics only; it is not final answer, truth certification, compliance certification, audit opinion, professional attestation, provider runtime, product release, memory write, or Atlas memory admission.",
+}
+
+HUMAN_REVIEW_UX_ALLOWED_DECISIONS = [
+    "approve_for_local_next_step",
+    "request_revision",
+    "reject_candidate",
+    "defer_review",
+    "needs_more_evidence",
+    "escalate_to_professional_review",
+]
+HUMAN_REVIEW_UX_ARTIFACTS = [
+    "human_review_ux_packet.json",
+    "human_review_action_menu.json",
+    "human_review_decision_receipt.json",
+    "human_review_summary.md",
+]
+HUMAN_REVIEW_UX_DASHBOARD_SUMMARY = {
+    "review_status": "completed",
+    "review_mode": "human_review_dossier_ux",
+    "review_sections": 11,
+    "allowed_decisions": 6,
+    "default_decision": "needs_more_evidence",
+    "human_review_occurred": True,
+    "local_test_mode": True,
+    "product_human_review_completed": False,
+    "final_answer_approved": False,
+    "accepted_evidence_approved": False,
+    "truth_certification_approved": False,
+    "compliance_certification_approved": False,
+    "audit_opinion_approved": False,
+    "professional_attestation_approved": False,
+    "product_release_approved": False,
+    "provider_runtime_approved": False,
+    "memory_write_approved": False,
+    "atlas_memory_admission_approved": False,
+    "allowed_decision_values": HUMAN_REVIEW_UX_ALLOWED_DECISIONS,
+}
+HUMAN_REVIEW_UX_CLAIM_ALLOWED = "HUMAN-REVIEW-UX-00 presents an AI Forensics Dossier to a reviewer and emits a bounded review decision receipt without granting final-answer, certification, product, provider, memory, or Atlas authority."
+HUMAN_REVIEW_UX_CLAIMS_BLOCKED = [
+    "Human Review UX creates final answer authority",
+    "Human Review UX certifies truth",
+    "Human Review UX certifies compliance",
+    "Human Review UX is audit opinion",
+    "Human Review UX is professional attestation",
+    "Human Review UX approves product release",
+    "Human Review UX approves provider runtime",
+    "Human Review UX approves memory write",
+    "Human Review UX approves Atlas memory admission",
+    "local test review is product human review",
+    "needs_more_evidence is approval",
+    "approve_for_local_next_step is final answer approval",
+    "escalate_to_professional_review is professional attestation",
+    "AI Forensics Dossier is final answer",
+    "UCC review certifies compliance",
+    "NIST compliance is certified",
+    "hidden chain-of-thought disclosure",
+    "model mind-reading",
+    "not product release",
+    "not deployment",
+    "not federation",
+    "not consciousness proof",
+    "not Omega detection",
+    "not universal ontology proof",
+    "not market validation",
+]
+HUMAN_REVIEW_UX_PHASE = {
+    "phase_id": "HUMAN-REVIEW-UX-00",
+    "repo": "pdxvoiceteacher/CoherenceLattice",
+    "source_phase": "AI-FORENSICS-DOSSIER-00",
+    "status": "accepted_local_validation",
+    "publication_status": "dashboard_synced",
+    "evidence_type": "bounded_human_review_dossier_ux",
+    "product_posture": "local_test_review_decision_only_not_product_human_review",
+    "authority_posture": "non_authoritative",
+    "public_claim_boundary": "bounded_review_receipt_only_no_final_answer_certification_product_provider_memory_or_atlas_authority",
+    "primary_artifacts": HUMAN_REVIEW_UX_ARTIFACTS,
+    "dashboard_summary": HUMAN_REVIEW_UX_DASHBOARD_SUMMARY,
+    "reproduction_command_summary": HUMAN_REVIEW_UX_COMMAND,
+    "claims_blocked": HUMAN_REVIEW_UX_CLAIMS_BLOCKED,
+    "claim_allowed": HUMAN_REVIEW_UX_CLAIM_ALLOWED,
+    "reviewer_caution": "HUMAN-REVIEW-UX-00 records a local-test bounded review decision only; product human review is not completed and no final-answer, certification, product, provider, memory, or Atlas authority is granted.",
+}
+
+VISUAL_REVIEW_MODEL_COMMAND = "python -c \"from pathlib import Path; from coherence.product.triadic_llm_metrics_smoke import build_triadic_llm_metrics_smoke; from coherence.ucc.sophia_control_review import build_sophia_ucc_control_review; from coherence.product.ai_forensics_dossier import build_ai_forensics_dossier; from coherence.review.human_review_ux import build_human_review_ux_packet; from coherence.product.raw_vs_triadic_comparison import build_raw_vs_triadic_comparison; from coherence.local_review.metric_semantics import build_metric_semantic_reconciliation_packet; from coherence.governance.language_audit_runtime import build_reviewer_language_audit; from coherence.product.visual_review_model import build_visual_review_model; root=Path(r'C:\\UVLM\\run_artifacts\\triadic_llm_metrics_smoke'); bridge=root / 'bridge'; build_triadic_llm_metrics_smoke(root); build_sophia_ucc_control_review(bridge); build_ai_forensics_dossier(bridge); build_human_review_ux_packet(bridge); build_raw_vs_triadic_comparison(bridge); build_metric_semantic_reconciliation_packet(bridge); build_reviewer_language_audit(bridge); build_visual_review_model(bridge)\""
+VISUAL_REVIEW_MODEL_ARTIFACTS = [
+    "visual_review_model_packet.json",
+    "visual_review_section_index.json",
+    "visual_review_render_contract.json",
+    "visual_review_model.md",
+    "visual_review_receipt.json",
+]
+VISUAL_REVIEW_MODEL_INPUT_ARTIFACTS = [
+    "sonya_model_candidate_packet.json",
+    "claim_evidence_map.json",
+    "unsupported_claim_report.json",
+    "ai_forensics_dossier_packet.json",
+    "ai_forensics_dossier_section_index.json",
+    "ai_forensics_dossier.md",
+    "ai_forensics_dossier_receipt.json",
+    "human_review_ux_packet.json",
+    "human_review_action_menu.json",
+    "human_review_decision_receipt.json",
+    "raw_vs_triadic_comparison_packet.json",
+    "raw_output_risk_report.json",
+    "triadic_added_value_report.json",
+    "claim_visibility_delta.json",
+    "control_visibility_delta.json",
+    "review_burden_delta.json",
+    "sophia_ucc_control_review_packet.json",
+    "ucc_control_gap_report.json",
+    "ucc_standards_source_registry.json",
+    "ucc_materiality_profile.json",
+    "metric_semantic_reconciliation_packet.json",
+    "reviewer_language_audit_report.json",
+    "reviewer_language_audit_summary.md",
+    "pmr_local_runtime_artifact_index.json",
+    "artifact_inventory.json",
+    "export_bundle_parity_report.json",
+]
+VISUAL_REVIEW_MODEL_SECTIONS = ["review_header", "raw_candidate_snapshot", "forensic_dossier_summary", "source_linked_claims", "unsupported_claims", "raw_vs_triadic_delta", "ucc_sophia_control_review", "materiality_profile", "metric_semantic_context", "language_governance_audit", "pmr_provenance", "export_parity", "human_review_actions", "non_authority_boundaries", "next_review_steps"]
+VISUAL_REVIEW_MODEL_CAUTION_BADGES = ["candidate_not_final_answer", "unsupported_claims_visible", "controls_are_diagnostic", "metrics_are_operational_proxies", "language_audit_not_certification", "human_review_required", "no_product_release", "no_memory_write", "no_atlas_admission", "no_truth_certification"]
+VISUAL_REVIEW_MODEL_REQUIRED_DOC_PHRASES = [
+    "Visual Review Model",
+    "This is a rendering contract, not a UI implementation.",
+    "The model organizes an AI Forensics Dossier for future reviewer-facing display.",
+    "Raw model output is not final answer.",
+    "Metrics are operational proxies, not canonical metric completion.",
+    "Language audit is not truth certification.",
+    "UCC/Sophia control review is diagnostic, not certification.",
+    "Human review remains required.",
+    "No product release occurred.",
+    "No provider runtime occurred.",
+    "No memory write occurred.",
+    "No Atlas memory admission occurred.",
+    "Future UI implementations must preserve artifact refs, source hashes, non-authority boundaries, and reviewer action constraints.",
+]
+VISUAL_REVIEW_MODEL_PERMITTED_RENDER_TARGETS = ["markdown", "local_static_html_future", "dashboard_future", "reviewer_workbench_future"]
+VISUAL_REVIEW_MODEL_PROHIBITED_RENDER_CLAIMS = ["final_answer", "truth_certification", "product_release", "provider_runtime", "memory_write", "atlas_admission", "compliance_certification", "theorem_proof", "consciousness_proof", "omega_detection", "universal_ontology_proof"]
+VISUAL_REVIEW_MODEL_REPRO_FRAGMENTS = ["build_triadic_llm_metrics_smoke", "build_sophia_ucc_control_review", "build_ai_forensics_dossier", "build_human_review_ux_packet", "build_raw_vs_triadic_comparison", "build_metric_semantic_reconciliation_packet", "build_reviewer_language_audit", "build_visual_review_model"]
+VISUAL_REVIEW_MODEL_BLOCKED_CLAIMS = [
+    "Visual Review Model is a UI implementation",
+    "Visual Review Model is a UI release",
+    "Visual Review Model is product release",
+    "Visual Review Model authorizes final answers",
+    "Visual Review Model authorizes accepted evidence",
+    "Visual Review Model certifies truth",
+    "Visual Review Model certifies compliance",
+    "Visual Review Model proves theorem",
+    "Visual Review Model proves product readiness",
+    "Visual Review Model performs provider runtime",
+    "Visual Review Model authorizes deployment",
+    "Visual Review Model authorizes federation",
+    "Visual Review Model authorizes memory write",
+    "Visual Review Model authorizes Atlas memory admission",
+    "Visual Review Model proves consciousness",
+    "Visual Review Model detects Omega",
+    "Visual Review Model proves universal ontology",
+    "zero language audit errors means UI is ready",
+    "future UI render target is current UI implementation",
+    "reviewer workbench future is current product release",
+]
+VISUAL_REVIEW_MODEL_CLAIM_ALLOWED = "VISUAL-REVIEW-MODEL-00 defines a future UI rendering contract over AI Forensics, Human Review UX, Raw-vs-Triadic, UCC/Sophia, MET-SEM, language audit, PMR, and export parity artifacts without implementing a UI or granting final-answer, proof, product, provider, memory, Atlas, deployment, federation, consciousness, Omega, ontology, human benefit, or market authority."
+VISUAL_REVIEW_MODEL_DASHBOARD_SUMMARY = {
+    "model_status": "completed",
+    "model_mode": "future_ui_rendering_contract",
+    "model_is_ui_implementation": False,
+    "visual_section_count": 15,
+    "unsupported_claim_count": 1,
+    "source_linked_claim_count": 1,
+    "ucc_uncertain_control_count": 1,
+    "language_audit_error_count": 0,
+    "render_contract_mode": "data_model_only_no_ui",
+    "ui_implementation_performed": False,
+    "product_release_performed": False,
+    "provider_runtime_performed": False,
+    "memory_write_performed": False,
+    "atlas_memory_admission_performed": False,
+    "model_is_not_final_answer": True,
+    "model_is_not_truth_certification": True,
+    "model_is_not_product_release": True,
+    "model_is_not_ui_release": True,
+    "model_is_not_provider_runtime": True,
+    "model_is_not_memory_write": True,
+    "model_is_not_atlas_admission": True,
+    "model_requires_human_review": True,
+}
+VISUAL_REVIEW_MODEL_PHASE = {
+    "phase_id": "VISUAL-REVIEW-MODEL-00",
+    "repo": "pdxvoiceteacher/CoherenceLattice",
+    "source_phase": "VISUAL-REVIEW-MODEL-00",
+    "status": "accepted_local_validation",
+    "publication_status": "dashboard_synced",
+    "evidence_type": "future_ui_rendering_contract_data_model",
+    "product_posture": "render_contract_only_no_ui_or_product_release",
+    "authority_posture": "non_authoritative",
+    "public_claim_boundary": "future_ui_rendering_contract_only_no_ui_release_or_authority",
+    "primary_artifacts": VISUAL_REVIEW_MODEL_ARTIFACTS,
+    "input_artifacts": VISUAL_REVIEW_MODEL_INPUT_ARTIFACTS,
+    "dashboard_summary": VISUAL_REVIEW_MODEL_DASHBOARD_SUMMARY,
+    "reproduction_command_summary": VISUAL_REVIEW_MODEL_COMMAND,
+    "claims_blocked": VISUAL_REVIEW_MODEL_BLOCKED_CLAIMS,
+    "claim_allowed": VISUAL_REVIEW_MODEL_CLAIM_ALLOWED,
+    "reviewer_caution": "VISUAL-REVIEW-MODEL-00 is a future UI rendering contract data model only; it implements no UI and grants no final-answer, accepted-evidence, proof, truth, product, provider, memory, Atlas, deployment, federation, consciousness, Omega, ontology, benefit, market, compliance, audit, or professional authority.",
+}
+
+
 PERTURBATION_OBSERVATION_ARTIFACTS = [
     "perturbation_observation_packet.json",
     "perturbation_axis_packet.json",
@@ -5220,6 +6447,7 @@ TRIADIC_LLM_INVENTORY_REPAIR_PHASE,
 AI_FORENSICS_DOSSIER_PHASE,
 HUMAN_REVIEW_UX_PHASE,
 VISUAL_REVIEW_MODEL_PHASE,
+VISUAL_REVIEW_STATIC_HTML_PHASE,
 PERTURBATION_OBSERVATION_CAPTURE_PHASE,
 PERTURBATION_TRUNK_MAPPING_PHASE,
 PERTURBATION_RESIDUAL_NOVELTY_MAP_PHASE,
@@ -7260,6 +8488,15 @@ BOUNDARIES.extend(
         *VISUAL_REVIEW_MODEL_PROHIBITED_RENDER_CLAIMS,
         *VISUAL_REVIEW_MODEL_REPRO_FRAGMENTS,
         *VISUAL_REVIEW_MODEL_BLOCKED_CLAIMS,
+        VISUAL_REVIEW_STATIC_HTML_CLAIM_ALLOWED,
+        *VISUAL_REVIEW_STATIC_HTML_ARTIFACTS,
+        *VISUAL_REVIEW_STATIC_HTML_INPUT_ARTIFACTS,
+        *VISUAL_REVIEW_MODEL_SECTIONS,
+        *VISUAL_REVIEW_MODEL_CAUTION_BADGES,
+        *VISUAL_REVIEW_STATIC_HTML_REQUIRED_DOC_PHRASES,
+        *VISUAL_REVIEW_STATIC_HTML_ACCESSIBILITY_STATEMENTS,
+        *VISUAL_REVIEW_STATIC_HTML_REPRO_FRAGMENTS,
+        *VISUAL_REVIEW_STATIC_HTML_BLOCKED_CLAIMS,
         PERTURBATION_OBSERVATION_CLAIM_ALLOWED,
         "Perturbation is not mere degradation.",
         "Perturbation observation is not novelty discovery.",
@@ -7737,6 +8974,19 @@ def dashboard_payload() -> dict[str, Any]:
         "not_visual_review_model_provider_runtime": True,
         "not_visual_review_model_memory_write": True,
         "not_visual_review_model_atlas_admission": True,
+        "visual_review_static_html_prototype_00_indexed": True,
+        "visual_review_static_html_prototype_status": "completed",
+        "visual_review_static_html_prototype_mode": "local_static_html_review_surface",
+        "visual_review_static_html_external_resource_count": 0,
+        "visual_review_static_html_network_call_performed": False,
+        "visual_review_static_html_provider_runtime_performed": False,
+        "visual_review_static_html_ui_release_performed": False,
+        "visual_review_static_html_product_release_performed": False,
+        "visual_review_static_html_deployment_performed": False,
+        "not_visual_review_static_html_ui_release": True,
+        "not_visual_review_static_html_product_release": True,
+        "not_visual_review_static_html_deployment": True,
+        "not_visual_review_static_html_runtime_authority": True,
         "perturbation_observation_capture_00_indexed": True,
         "not_perturbation_observation_novelty_discovery": True,
         "not_perturbation_observation_certified_diagnosis": True,
@@ -7809,6 +9059,7 @@ def reproducibility_index() -> dict[str, Any]:
                 {"name": "AI Forensics Dossier Python entrypoint", "command": AI_FORENSICS_DOSSIER_COMMAND},
                 {"name": "Human Review UX Python entrypoint", "command": HUMAN_REVIEW_UX_COMMAND},
                 {"name": "Visual Review Model Python entrypoint", "command": VISUAL_REVIEW_MODEL_COMMAND},
+                {"name": "Visual Review Static HTML Prototype Python entrypoint", "command": VISUAL_REVIEW_STATIC_HTML_COMMAND},
                 {"name": "Perturbation novelty lane Python entrypoint", "command": PERTURBATION_NOVELTY_LANE_COMMAND},
                 {"name": "Perturbation structure-affordance theorem card Python entrypoint", "command": PERTURBATION_STRUCTURE_AFFORDANCE_CARD_COMMAND},
                 {"name": "PMR Context Availability Ledger acceptance", "command": PMR_CONTEXT_AVAILABILITY_LEDGER_00_COMMAND},
@@ -8427,6 +9678,19 @@ def status_payload() -> dict[str, Any]:
         "not_visual_review_model_provider_runtime": True,
         "not_visual_review_model_memory_write": True,
         "not_visual_review_model_atlas_admission": True,
+        "visual_review_static_html_prototype_00_indexed": True,
+        "visual_review_static_html_prototype_status": "completed",
+        "visual_review_static_html_prototype_mode": "local_static_html_review_surface",
+        "visual_review_static_html_external_resource_count": 0,
+        "visual_review_static_html_network_call_performed": False,
+        "visual_review_static_html_provider_runtime_performed": False,
+        "visual_review_static_html_ui_release_performed": False,
+        "visual_review_static_html_product_release_performed": False,
+        "visual_review_static_html_deployment_performed": False,
+        "not_visual_review_static_html_ui_release": True,
+        "not_visual_review_static_html_product_release": True,
+        "not_visual_review_static_html_deployment": True,
+        "not_visual_review_static_html_runtime_authority": True,
         "perturbation_observation_capture_00_indexed": True,
         "not_perturbation_observation_novelty_discovery": True,
         "not_perturbation_observation_certified_diagnosis": True,
@@ -8488,10 +9752,16 @@ def docs() -> dict[str, str]:
     visual_review_model_prohibited_claims = "\n".join(f"- {claim}" for claim in VISUAL_REVIEW_MODEL_PROHIBITED_RENDER_CLAIMS)
     visual_review_model_repro_fragments = "\n".join(f"- {fragment}" for fragment in VISUAL_REVIEW_MODEL_REPRO_FRAGMENTS)
     visual_review_model_blocked = "\n".join(f"- {claim}" for claim in VISUAL_REVIEW_MODEL_BLOCKED_CLAIMS)
+    visual_review_static_html_artifacts = "\n".join(f"- {artifact}" for artifact in VISUAL_REVIEW_STATIC_HTML_ARTIFACTS)
+    visual_review_static_html_input_artifacts = "\n".join(f"- {artifact}" for artifact in VISUAL_REVIEW_STATIC_HTML_INPUT_ARTIFACTS)
+    visual_review_static_html_doc_phrases = "\n".join(f"- {phrase}" for phrase in VISUAL_REVIEW_STATIC_HTML_REQUIRED_DOC_PHRASES)
+    visual_review_static_html_accessibility = "\n".join(f"- {statement}" for statement in VISUAL_REVIEW_STATIC_HTML_ACCESSIBILITY_STATEMENTS)
+    visual_review_static_html_repro_fragments = "\n".join(f"- {fragment}" for fragment in VISUAL_REVIEW_STATIC_HTML_REPRO_FRAGMENTS)
+    visual_review_static_html_blocked = "\n".join(f"- {claim}" for claim in VISUAL_REVIEW_STATIC_HTML_BLOCKED_CLAIMS)
     return {
         "README.md": "# Experiment Suite Docs\n\nPublic reviewer documentation for the claim-bounded reproducibility dashboard.\n",
         "assets/README.md": "# Assets\n\nOptional static assets for the public reproducibility dashboard.\n",
-        "index.md": f"# Public Experiment Suite Dashboard\n\nThis dashboard presents accepted evidence for reviewer orientation. It is not truth certification, not deployment authority, not final answer release, local fixture only, and requires external peer review.\n\n## Accepted evidence\n\n| Phase | Repo | Status | What this supports | Reviewer caution |\n| --- | --- | --- | --- | --- |\n{phase_rows}\n\n## Reviewer path\n\nStart with claim boundaries, then read the governed artifact cognition paper, WAVE Rosetta paper, SONYA-AEGIS-SMOKE-02, WAVE family, UNI-02D Sonya gate, and RETRO-LANE-00, Public Utility Alpha, Raw Baseline Comparison, Evidence Review Pack, RW-COMP-01, RW-COMP-02, Retrosynthesis Sandbox Cycle, Evidence Review Pack second-pass, RW-COMP-03, Universal Architecture Scaffold, Sonya Adapter Contract Registry, Sonya Adapter Smoke, Sonya Local Fixture Adapter, and Evidence Review Pack local adapter, Evidence Review Pack local adapter revision, RW-COMP local adapter, PMR doctrine, PMR local artifact index, PMR GPCU utility scoring, PMR lifecycle state machine, PMR lifecycle audit preflight, PMR Sophia lifecycle audit review, PMR destructive-action authorization preflight, PMR architecture diversity checkpoint, PMR simulation baseline comparison, PMR simulation statistical analysis, PMR federation stress corpus, PMR human provenance context, Sonya Local Fixture Adapter multi-route, and Sonya Local Fixture Adapter lineage clarity, Local Review metrics and flow, Metric Semantic Contract, Language Governance, Language Governance Audit Runtime, and Runtime Metrics Seed Corpus, PMR local queryable store, Retrosynthesis Readiness, Retrosynthesis Local Prototype, and Atlas Local Memory Admission Readiness, Atlas Local Memory Admission Prototype, Local-test Proxy Review, AI Context Performance Continuity, Theorem Validation Pathway, and COOP Entropy Dividend, Triadic LLM Metrics Smoke, UCC Sophia Control Forensics, UCC Standards Source Registry and Materiality, Triadic LLM Smoke PMR Inventory Contract Repair, AI Forensics Dossier, Human Review UX, and Visual Review Model, Perturbation Observation Capture, Perturbation Trunk Mapping, and Perturbation Residual Novelty Map, and Perturbation Structure-Affordance Card pages.\n\n## What this proves\n\nIt proves only that accepted local fixture artifacts and draft publication materials are organized for review.\n\n## What this does not prove\n\nNo oracle posture, no deployment posture, no final-answer posture, no AI consciousness claim, and no universal ontology claim.\n\n## Phase pages\n\n- [SONYA-AEGIS-SMOKE-02](sonya-aegis-smoke-02.md)\n- [WAVE Gold-Physics](wave-gold-physics.md)\n- [UNI-02D Sonya gate](uni02d-sonya-gate.md)\n- [RETRO-LANE-00](retro-lane-00.md)\n- [Public Utility Alpha](public-utility-alpha.md)\n- [Raw Baseline Comparison](raw-baseline-comparison.md)\n- [Evidence Review Pack](evidence-review-pack.md)\n- [RW-COMP-01](rw-comp-01.md)\n- [RW-COMP-02](rw-comp-02.md)\n- [Retrosynthesis Sandbox Cycle](retrosynthesis-sandbox-cycle.md)\n- [Evidence Review Pack second pass](evidence-review-pack-second-pass.md)\n- [RW-COMP-03](rw-comp-03.md)\n- [Universal Architecture Scaffold](universal-architecture.md)\n- [Sonya Adapter Contract Registry](sonya-adapter-contract-registry.md)\n- [Sonya required membrane checkpoint](sonya-required-membrane-checkpoint.md)\n- [TEL event stack](tel-event-stack.md)\n- [Sonya Adapter Smoke](sonya-adapter-smoke.md)\n- [Sonya Local Fixture Adapter](sonya-local-fixture-adapter.md)\n- [Evidence Review Pack local adapter](evidence-review-pack-local-adapter.md)\n- [Evidence Review Pack local adapter revision](evidence-review-pack-local-adapter-revision.md)\n- [RW-COMP local adapter](rw-comp-local-adapter.md)\n- [Provenance Memory Reservoir](provenance-memory-reservoir.md)\n- [PMR local artifact index](pmr-local-artifact-index.md)\n- [Ontology Claim Registry](ontology-claim-registry.md)\n- [Local Sonya path portability](local-sonya-path-portability.md)\n- [TB Product Slice](tb-product-slice.md)\n- [TB Product Slice 01](tb-product-slice-01.md)\n- [Sonya Local Fixture Adapter multi-route](sonya-local-fixture-adapter-multi-route.md)\n- [Sonya Local Fixture Adapter lineage clarity](sonya-local-fixture-adapter-lineage.md)\n- [Local Review Runtime V0](local-review-runtime-v0.md)\n- [Local Review metrics and flow](local-review-metrics-flow.md)\n- [Runtime metrics seed corpus](runtime-metrics-seed-corpus.md)\n- [PMR local queryable store](pmr-local-queryable-store.md)\n- [Retrosynthesis readiness](retrosynthesis-readiness.md)\n- [Retrosynthesis local prototype](retrosynthesis-local-prototype.md)\n- [Atlas local memory admission readiness](atlas-local-memory-admission-readiness.md)\n- [AI Forensics Dossier](ai-forensics-dossier.md)\n- [Human Review UX](human-review-ux.md)\n- [Perturbation Observation Capture](perturbation-observation-capture.md)\n- [Perturbation Trunk Mapping](perturbation-trunk-mapping.md)\n- [Perturbation Residual Novelty Map](perturbation-residual-novelty-map.md)\n- [Perturbation Structure-Affordance Card](perturbation-structure-affordance-card.md)\n- [Governed artifact cognition paper](governed-artifact-cognition-paper.md)\n- [Waveform Rosetta paper](waveform-rosetta-paper.md)\n",
+        "index.md": f"# Public Experiment Suite Dashboard\n\nThis dashboard presents accepted evidence for reviewer orientation. It is not truth certification, not deployment authority, not final answer release, local fixture only, and requires external peer review.\n\n## Accepted evidence\n\n| Phase | Repo | Status | What this supports | Reviewer caution |\n| --- | --- | --- | --- | --- |\n{phase_rows}\n\n## Reviewer path\n\nStart with claim boundaries, then read the governed artifact cognition paper, WAVE Rosetta paper, SONYA-AEGIS-SMOKE-02, WAVE family, UNI-02D Sonya gate, and RETRO-LANE-00, Public Utility Alpha, Raw Baseline Comparison, Evidence Review Pack, RW-COMP-01, RW-COMP-02, Retrosynthesis Sandbox Cycle, Evidence Review Pack second-pass, RW-COMP-03, Universal Architecture Scaffold, Sonya Adapter Contract Registry, Sonya Adapter Smoke, Sonya Local Fixture Adapter, and Evidence Review Pack local adapter, Evidence Review Pack local adapter revision, RW-COMP local adapter, PMR doctrine, PMR local artifact index, PMR GPCU utility scoring, PMR lifecycle state machine, PMR lifecycle audit preflight, PMR Sophia lifecycle audit review, PMR destructive-action authorization preflight, PMR architecture diversity checkpoint, PMR simulation baseline comparison, PMR simulation statistical analysis, PMR federation stress corpus, PMR human provenance context, Sonya Local Fixture Adapter multi-route, and Sonya Local Fixture Adapter lineage clarity, Local Review metrics and flow, Metric Semantic Contract, Language Governance, Language Governance Audit Runtime, and Runtime Metrics Seed Corpus, PMR local queryable store, Retrosynthesis Readiness, Retrosynthesis Local Prototype, and Atlas Local Memory Admission Readiness, Atlas Local Memory Admission Prototype, Local-test Proxy Review, AI Context Performance Continuity, Theorem Validation Pathway, and COOP Entropy Dividend, Triadic LLM Metrics Smoke, UCC Sophia Control Forensics, UCC Standards Source Registry and Materiality, Triadic LLM Smoke PMR Inventory Contract Repair, AI Forensics Dossier, Human Review UX, Visual Review Model, and Visual Review Static HTML Prototype, Perturbation Observation Capture, Perturbation Trunk Mapping, and Perturbation Residual Novelty Map, and Perturbation Structure-Affordance Card pages.\n\n## What this proves\n\nIt proves only that accepted local fixture artifacts and draft publication materials are organized for review.\n\n## What this does not prove\n\nNo oracle posture, no deployment posture, no final-answer posture, no AI consciousness claim, and no universal ontology claim.\n\n## Phase pages\n\n- [SONYA-AEGIS-SMOKE-02](sonya-aegis-smoke-02.md)\n- [WAVE Gold-Physics](wave-gold-physics.md)\n- [UNI-02D Sonya gate](uni02d-sonya-gate.md)\n- [RETRO-LANE-00](retro-lane-00.md)\n- [Public Utility Alpha](public-utility-alpha.md)\n- [Raw Baseline Comparison](raw-baseline-comparison.md)\n- [Evidence Review Pack](evidence-review-pack.md)\n- [RW-COMP-01](rw-comp-01.md)\n- [RW-COMP-02](rw-comp-02.md)\n- [Retrosynthesis Sandbox Cycle](retrosynthesis-sandbox-cycle.md)\n- [Evidence Review Pack second pass](evidence-review-pack-second-pass.md)\n- [RW-COMP-03](rw-comp-03.md)\n- [Universal Architecture Scaffold](universal-architecture.md)\n- [Sonya Adapter Contract Registry](sonya-adapter-contract-registry.md)\n- [Sonya required membrane checkpoint](sonya-required-membrane-checkpoint.md)\n- [TEL event stack](tel-event-stack.md)\n- [Sonya Adapter Smoke](sonya-adapter-smoke.md)\n- [Sonya Local Fixture Adapter](sonya-local-fixture-adapter.md)\n- [Evidence Review Pack local adapter](evidence-review-pack-local-adapter.md)\n- [Evidence Review Pack local adapter revision](evidence-review-pack-local-adapter-revision.md)\n- [RW-COMP local adapter](rw-comp-local-adapter.md)\n- [Provenance Memory Reservoir](provenance-memory-reservoir.md)\n- [PMR local artifact index](pmr-local-artifact-index.md)\n- [Ontology Claim Registry](ontology-claim-registry.md)\n- [Local Sonya path portability](local-sonya-path-portability.md)\n- [TB Product Slice](tb-product-slice.md)\n- [TB Product Slice 01](tb-product-slice-01.md)\n- [Sonya Local Fixture Adapter multi-route](sonya-local-fixture-adapter-multi-route.md)\n- [Sonya Local Fixture Adapter lineage clarity](sonya-local-fixture-adapter-lineage.md)\n- [Local Review Runtime V0](local-review-runtime-v0.md)\n- [Local Review metrics and flow](local-review-metrics-flow.md)\n- [Runtime metrics seed corpus](runtime-metrics-seed-corpus.md)\n- [PMR local queryable store](pmr-local-queryable-store.md)\n- [Retrosynthesis readiness](retrosynthesis-readiness.md)\n- [Retrosynthesis local prototype](retrosynthesis-local-prototype.md)\n- [Atlas local memory admission readiness](atlas-local-memory-admission-readiness.md)\n- [AI Forensics Dossier](ai-forensics-dossier.md)\n- [Human Review UX](human-review-ux.md)\n- [Visual Review Model](visual-review-model.md)\n- [Visual Review Static HTML Prototype](visual-review-static-html-prototype.md)\n- [Perturbation Observation Capture](perturbation-observation-capture.md)\n- [Perturbation Trunk Mapping](perturbation-trunk-mapping.md)\n- [Perturbation Residual Novelty Map](perturbation-residual-novelty-map.md)\n- [Perturbation Structure-Affordance Card](perturbation-structure-affordance-card.md)\n- [Governed artifact cognition paper](governed-artifact-cognition-paper.md)\n- [Waveform Rosetta paper](waveform-rosetta-paper.md)\n",
         "language-governance.md": f"""# Language Governance
 
 ## What was validated
@@ -8679,6 +9949,10 @@ VISUAL-REVIEW-MODEL-00 synchronizes a future reviewer-facing visual rendering co
 {VISUAL_REVIEW_MODEL_COMMAND}
 ```
 
+## Static HTML prototype linkage
+
+VISUAL-REVIEW-STATIC-HTML-PROTOTYPE-00 renders this data model into a local static HTML review surface while preserving all non-authority boundaries.
+
 ## Blocked visual-review overclaim examples
 
 {visual_review_model_blocked}
@@ -8686,6 +9960,75 @@ VISUAL-REVIEW-MODEL-00 synchronizes a future reviewer-facing visual rendering co
 ## Allowed bounded claim
 
 {VISUAL_REVIEW_MODEL_CLAIM_ALLOWED}
+""",
+        "visual-review-static-html-prototype.md": f"""# Visual Review Static HTML Prototype
+
+## What was validated
+
+VISUAL-REVIEW-STATIC-HTML-PROTOTYPE-00 synchronizes a local static HTML review surface prototype to publication surfaces. Visual Review Static HTML Prototype. Local static prototype only. This is publication/dashboard synchronization only and grants no runtime authority.
+
+## Dashboard summary
+
+- prototype_status = completed
+- prototype_mode = local_static_html_review_surface
+- html_ref = visual_review_static_review.html
+- rendered_section_count = 15
+- external_resource_count = 0
+- network_call_performed = false
+- provider_runtime_performed = false
+- ui_implementation_performed = false
+- ui_release_performed = false
+- product_release_performed = false
+- deployment_performed = false
+- final_answer_emitted = false
+- truth_certification_emitted = false
+- memory_write_performed = false
+- atlas_memory_admission_performed = false
+- prototype_is_not_ui_release = true
+- prototype_is_not_product_release = true
+- prototype_is_not_final_answer = true
+- prototype_is_not_truth_certification = true
+- prototype_requires_human_review = true
+
+## Required static HTML prototype language
+
+{visual_review_static_html_doc_phrases}
+
+## Rendered visual sections
+
+{visual_review_model_sections}
+
+## Caution badges
+
+{visual_review_model_badges}
+
+## Accessibility and local-only notes
+
+{visual_review_static_html_accessibility}
+
+## Output artifacts
+
+{visual_review_static_html_artifacts}
+
+## Input artifact references
+
+{visual_review_static_html_input_artifacts}
+
+## Reproducibility fragments
+
+{visual_review_static_html_repro_fragments}
+
+```powershell
+{VISUAL_REVIEW_STATIC_HTML_COMMAND}
+```
+
+## Blocked static HTML overclaim examples
+
+{visual_review_static_html_blocked}
+
+## Allowed bounded claim
+
+{VISUAL_REVIEW_STATIC_HTML_CLAIM_ALLOWED}
 """,
         "metric-semantic-contract.md": f"""# Metric Semantic Contract
 

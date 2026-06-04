@@ -18,6 +18,7 @@ from tools.build_public_repro_dashboard import (
     METRIC_SEMANTIC_CONTRACT_BLOCKED_CLAIM_PHRASES,
     PERTURBATION_STRUCTURE_AFFORDANCE_BLOCKED_CLAIM_PHRASES,
     VISUAL_REVIEW_MODEL_BLOCKED_CLAIMS,
+    VISUAL_REVIEW_STATIC_HTML_BLOCKED_CLAIMS,
 )
 
 
@@ -790,6 +791,7 @@ PAPER_CONFIGS: dict[str, dict[str, Any]] = {
             *LANGUAGE_GOVERNANCE_BLOCKED_CLAIMS,
             *LANGUAGE_GOVERNANCE_AUDIT_BLOCKED_CLAIMS,
             *VISUAL_REVIEW_MODEL_BLOCKED_CLAIMS,
+            *VISUAL_REVIEW_STATIC_HTML_BLOCKED_CLAIMS,
             "raw model output is final answer",
             "Omega detection",
             "provider runtime",
@@ -1216,12 +1218,21 @@ def _forbidden_hits(normalized_text: str, forbidden: tuple[str, ...]) -> list[st
                 search_from = index + len(normalized_phrase)
                 continue
             if (
-                phrase in {"federation", "accepted evidence", "product release", *PERTURBATION_STRUCTURE_AFFORDANCE_BLOCKED_CLAIM_PHRASES, *METRIC_SEMANTIC_CONTRACT_BLOCKED_CLAIM_PHRASES, *LANGUAGE_GOVERNANCE_BLOCKED_CLAIMS, *LANGUAGE_GOVERNANCE_AUDIT_BLOCKED_CLAIMS, *VISUAL_REVIEW_MODEL_BLOCKED_CLAIMS}
+                phrase in {"federation", "accepted evidence", "product release", *PERTURBATION_STRUCTURE_AFFORDANCE_BLOCKED_CLAIM_PHRASES, *METRIC_SEMANTIC_CONTRACT_BLOCKED_CLAIM_PHRASES, *LANGUAGE_GOVERNANCE_BLOCKED_CLAIMS, *LANGUAGE_GOVERNANCE_AUDIT_BLOCKED_CLAIMS, *VISUAL_REVIEW_MODEL_BLOCKED_CLAIMS, *VISUAL_REVIEW_STATIC_HTML_BLOCKED_CLAIMS}
                 and "request must fail closed" in normalized_text[index : index + 72]
             ):
                 search_from = index + len(normalized_phrase)
                 continue
             if phrase == "federation" and ("without granting" in normalized_text[max(0, index - 500) : index] or "or granting" in normalized_text[max(0, index - 500) : index]):
+                search_from = index + len(normalized_phrase)
+                continue
+            if (
+                phrase in {"final answer authority", "final-answer authority", "product release", "provider runtime", "runtime authority"}
+                and (
+                    "without creating" in normalized_text[max(0, index - 260) : index]
+                    or any(_normalize(claim) in normalized_text[max(0, index - 220) : index + 220] for claim in VISUAL_REVIEW_STATIC_HTML_BLOCKED_CLAIMS)
+                )
+            ):
                 search_from = index + len(normalized_phrase)
                 continue
             if phrase == "runtime authority" and (
@@ -1295,6 +1306,7 @@ def _forbidden_hits(normalized_text: str, forbidden: tuple[str, ...]) -> list[st
                 *LANGUAGE_GOVERNANCE_BLOCKED_CLAIMS,
                 *LANGUAGE_GOVERNANCE_AUDIT_BLOCKED_CLAIMS,
             *VISUAL_REVIEW_MODEL_BLOCKED_CLAIMS,
+            *VISUAL_REVIEW_STATIC_HTML_BLOCKED_CLAIMS,
             }
             if phrase in manual_blocked_examples:
                 if "no artifact in this chain authorizes" in normalized_text[max(0, index - 120) : index]:

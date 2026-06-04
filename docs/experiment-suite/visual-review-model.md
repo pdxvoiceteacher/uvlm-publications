@@ -153,6 +153,10 @@ VISUAL-REVIEW-MODEL-00 synchronizes a future reviewer-facing visual rendering co
 python -c "from pathlib import Path; from coherence.product.triadic_llm_metrics_smoke import build_triadic_llm_metrics_smoke; from coherence.ucc.sophia_control_review import build_sophia_ucc_control_review; from coherence.product.ai_forensics_dossier import build_ai_forensics_dossier; from coherence.review.human_review_ux import build_human_review_ux_packet; from coherence.product.raw_vs_triadic_comparison import build_raw_vs_triadic_comparison; from coherence.local_review.metric_semantics import build_metric_semantic_reconciliation_packet; from coherence.governance.language_audit_runtime import build_reviewer_language_audit; from coherence.product.visual_review_model import build_visual_review_model; root=Path(r'C:\UVLM\run_artifacts\triadic_llm_metrics_smoke'); bridge=root / 'bridge'; build_triadic_llm_metrics_smoke(root); build_sophia_ucc_control_review(bridge); build_ai_forensics_dossier(bridge); build_human_review_ux_packet(bridge); build_raw_vs_triadic_comparison(bridge); build_metric_semantic_reconciliation_packet(bridge); build_reviewer_language_audit(bridge); build_visual_review_model(bridge)"
 ```
 
+## Static HTML prototype linkage
+
+VISUAL-REVIEW-STATIC-HTML-PROTOTYPE-00 renders this data model into a local static HTML review surface while preserving all non-authority boundaries.
+
 ## Blocked visual-review overclaim examples
 
 - Visual Review Model is a UI implementation
