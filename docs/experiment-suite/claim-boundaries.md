@@ -1520,6 +1520,98 @@
 - zero external resources means product release is approved
 - self-contained HTML means deployment is approved
 - local static prototype is production UI
+- STATIC-HTML-USABILITY-REVIEW-SEED-00 emits a local deterministic usability-review scaffold over the static HTML prototype, including a questionnaire, local-test response fixture, revision themes, and receipt, without claiming a real user study, human benefit proof, market validation, product readiness, UI release, product release, deployment, provider runtime, final-answer authority, certification, memory write, or Atlas admission.
+- static_html_usability_review_packet.json
+- static_html_usability_questionnaire.json
+- static_html_usability_response_fixture.json
+- static_html_usability_review_summary.md
+- static_html_usability_review_receipt.json
+- visual_review_static_html_packet.json
+- visual_review_static_review.html
+- visual_review_static_html_receipt.json
+- visual_review_model_packet.json
+- visual_review_section_index.json
+- visual_review_render_contract.json
+- visual_review_model.md
+- visual_review_receipt.json
+- human_review_ux_packet.json
+- human_review_action_menu.json
+- metric_semantic_reconciliation_packet.json
+- reviewer_language_audit_report.json
+- reviewer_language_audit_summary.md
+- pmr_local_runtime_artifact_index.json
+- artifact_inventory.json
+- export_bundle_parity_report.json
+- orientation_clarity
+- section_navigation_clarity
+- claim_visibility_clarity
+- unsupported_claim_visibility
+- caution_badge_understandability
+- non_authority_boundary_understandability
+- metric_semantic_label_clarity
+- language_audit_status_clarity
+- human_review_action_clarity
+- artifact_reference_traceability
+- overall_review_burden
+- clear
+- somewhat_clear
+- unclear
+- not_applicable
+- orientation_clarity = somewhat_clear
+- section_navigation_clarity = clear
+- claim_visibility_clarity = clear
+- unsupported_claim_visibility = clear
+- caution_badge_understandability = somewhat_clear
+- non_authority_boundary_understandability = clear
+- metric_semantic_label_clarity = somewhat_clear
+- language_audit_status_clarity = somewhat_clear
+- human_review_action_clarity = clear
+- artifact_reference_traceability = somewhat_clear
+- overall_review_burden = somewhat_clear
+- improve_metric_semantic_explainer
+- clarify_language_audit_status
+- make_artifact_traceability_more_visible
+- preserve_non_authority_banners
+- Static HTML Usability Review Seed
+- This is a local usability-review scaffold, not a human-subject study.
+- This is not human benefit proof.
+- This is not market validation.
+- This is not product readiness.
+- This is not UI release.
+- This is not product release.
+- Human review remains required.
+- Suggested revision themes are local-test feedback targets, not product validation.
+- Later real usability studies require explicit study design, consent, participant handling, and appropriate review.
+- build_triadic_llm_metrics_smoke
+- build_sophia_ucc_control_review
+- build_ai_forensics_dossier
+- build_human_review_ux_packet
+- build_raw_vs_triadic_comparison
+- build_metric_semantic_reconciliation_packet
+- build_reviewer_language_audit
+- build_visual_review_model
+- build_visual_review_static_html
+- build_static_html_usability_review_seed
+- Static HTML Usability Review Seed is a real user study
+- Static HTML Usability Review Seed is a human-subject study
+- Static HTML Usability Review Seed proves human benefit
+- Static HTML Usability Review Seed is market validation
+- Static HTML Usability Review Seed proves product readiness
+- Static HTML Usability Review Seed is UI release
+- Static HTML Usability Review Seed is product release
+- Static HTML Usability Review Seed authorizes deployment
+- Static HTML Usability Review Seed performs provider runtime
+- Static HTML Usability Review Seed authorizes final answers
+- Static HTML Usability Review Seed authorizes accepted evidence
+- Static HTML Usability Review Seed certifies truth
+- Static HTML Usability Review Seed proves theorem
+- Static HTML Usability Review Seed authorizes memory write
+- Static HTML Usability Review Seed authorizes Atlas memory admission
+- zero unclear responses means product readiness
+- local test reviewer means real participant study
+- suggested revision themes prove product-market fit
+- usability scaffold proves human benefit
+- usability review receipt is market validation
 - PERTURBATION-OBSERVATION-CAPTURE-00 captures a synthetic structured perturbation fixture and diagnostic axes without claiming novelty.
 - Perturbation is not mere degradation.
 - Perturbation observation is not novelty discovery.

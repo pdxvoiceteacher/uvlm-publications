@@ -41,6 +41,16 @@ from tools.build_public_repro_dashboard import (
     VISUAL_REVIEW_STATIC_HTML_INPUT_ARTIFACTS,
     VISUAL_REVIEW_STATIC_HTML_REQUIRED_DOC_PHRASES,
     VISUAL_REVIEW_STATIC_HTML_REPRO_FRAGMENTS,
+    STATIC_HTML_USABILITY_REVIEW_ANSWER_SCALE,
+    STATIC_HTML_USABILITY_REVIEW_ARTIFACTS,
+    STATIC_HTML_USABILITY_REVIEW_BLOCKED_CLAIMS,
+    STATIC_HTML_USABILITY_REVIEW_CLAIM_ALLOWED,
+    STATIC_HTML_USABILITY_REVIEW_DIMENSIONS,
+    STATIC_HTML_USABILITY_REVIEW_INPUT_ARTIFACTS,
+    STATIC_HTML_USABILITY_REVIEW_REPRO_FRAGMENTS,
+    STATIC_HTML_USABILITY_REVIEW_REQUIRED_DOC_PHRASES,
+    STATIC_HTML_USABILITY_REVIEW_RESPONSE_SUMMARY,
+    STATIC_HTML_USABILITY_REVIEW_REVISION_THEMES,
     _dedupe_accepted_phases,
 )
 from tools.validate_public_repro_dashboard import REQUIRED_PHASES as VALIDATOR_REQUIRED_PHASES
@@ -208,6 +218,7 @@ REQUIRED_PHASES = {
     "LANGUAGE-GOVERNANCE-AUDIT-RUNTIME-00",
     "VISUAL-REVIEW-MODEL-00",
     "VISUAL-REVIEW-STATIC-HTML-PROTOTYPE-00",
+    "STATIC-HTML-USABILITY-REVIEW-SEED-00",
     "RUNTIME-METRICS-CORPUS-SEED-00",
     "PMR-LOCAL-RUNTIME-QUERYABLE-STORE-00",
     "RETROSYNTHESIS-READINESS-00",
@@ -4402,6 +4413,89 @@ def test_visual_review_static_html_prototype_page_and_registry_are_generated(tmp
     assert status["visual_review_static_html_external_resource_count"] == 0
     assert status["visual_review_static_html_network_call_performed"] is False
     assert status["not_visual_review_static_html_product_release"] is True
+
+
+
+def test_static_html_usability_review_seed_page_and_registry_are_generated(tmp_path):
+    out_dir, docs_dir = run_builder(tmp_path)
+    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text(encoding="utf-8"))
+    reproducibility = json.loads((out_dir / "reproducibility_index.json").read_text(encoding="utf-8"))
+    artifact_index = json.loads((out_dir / "artifact_index.json").read_text(encoding="utf-8"))
+    claim_boundaries = json.loads((out_dir / "claim_boundary_index.json").read_text(encoding="utf-8"))
+    status = json.loads((out_dir / "status.json").read_text(encoding="utf-8"))
+    phase_by_id = {entry["phase_id"]: entry for entry in dashboard["accepted_phases"]}
+    boundary_text = "\n".join(claim_boundaries["boundaries"])
+    reproducibility_text = json.dumps(reproducibility)
+
+    phase = phase_by_id["STATIC-HTML-USABILITY-REVIEW-SEED-00"]
+    summary = phase["dashboard_summary"]
+    assert summary["review_status"] == "completed"
+    assert summary["review_mode"] == "local_static_html_usability_seed"
+    assert summary["local_test_mode"] is True
+    assert summary["reviewer_id"] == "local_test_reviewer"
+    assert summary["response_count"] == 11
+    assert summary["dimension_count"] == 11
+    assert summary["clear_count"] == 5
+    assert summary["somewhat_clear_count"] == 6
+    assert summary["unclear_count"] == 0
+    assert summary["not_applicable_count"] == 0
+    assert summary["suggested_revision_count"] == 4
+    assert summary["human_subject_study_performed"] is False
+    assert summary["real_user_study_performed"] is False
+    assert summary["human_benefit_proof_emitted"] is False
+    assert summary["market_validation_emitted"] is False
+    assert summary["product_readiness_emitted"] is False
+    assert summary["ui_release_performed"] is False
+    assert summary["product_release_performed"] is False
+    assert summary["deployment_performed"] is False
+    assert summary["provider_runtime_performed"] is False
+    assert summary["memory_write_performed"] is False
+    assert summary["atlas_memory_admission_performed"] is False
+    assert summary["receipt_is_not_human_benefit_proof"] is True
+    assert summary["receipt_is_not_market_validation"] is True
+    assert summary["receipt_is_not_product_release"] is True
+    assert summary["receipt_requires_human_review"] is True
+
+    page_text = (docs_dir / "static-html-usability-review-seed.md").read_text(encoding="utf-8")
+    assert "STATIC-HTML-USABILITY-REVIEW-SEED-00" in page_text
+    assert (docs_dir / "static-html-usability-review-seed.md").exists()
+    for artifact in STATIC_HTML_USABILITY_REVIEW_ARTIFACTS:
+        assert artifact in artifact_index["phases"]["STATIC-HTML-USABILITY-REVIEW-SEED-00"]
+        assert artifact in page_text
+    for artifact in STATIC_HTML_USABILITY_REVIEW_INPUT_ARTIFACTS:
+        assert artifact in page_text
+        assert artifact in boundary_text
+    for dimension in STATIC_HTML_USABILITY_REVIEW_DIMENSIONS:
+        assert dimension in page_text
+        assert dimension in boundary_text
+    for answer in STATIC_HTML_USABILITY_REVIEW_ANSWER_SCALE:
+        assert answer in page_text
+        assert answer in boundary_text
+    for response in STATIC_HTML_USABILITY_REVIEW_RESPONSE_SUMMARY:
+        assert response in page_text
+        assert response in boundary_text
+    for theme in STATIC_HTML_USABILITY_REVIEW_REVISION_THEMES:
+        assert theme in page_text
+        assert theme in boundary_text
+    for phrase in STATIC_HTML_USABILITY_REVIEW_REQUIRED_DOC_PHRASES:
+        assert phrase in page_text
+        assert phrase in boundary_text
+    for fragment in STATIC_HTML_USABILITY_REVIEW_REPRO_FRAGMENTS:
+        assert fragment in reproducibility_text
+        assert fragment in page_text
+        assert fragment in boundary_text
+    for claim in STATIC_HTML_USABILITY_REVIEW_BLOCKED_CLAIMS:
+        assert claim in page_text
+        assert claim in boundary_text
+    assert STATIC_HTML_USABILITY_REVIEW_CLAIM_ALLOWED in page_text
+    assert STATIC_HTML_USABILITY_REVIEW_CLAIM_ALLOWED in boundary_text
+    assert status["static_html_usability_review_seed_00_indexed"] is True
+    assert status["static_html_usability_review_status"] == "completed"
+    assert status["static_html_usability_review_response_count"] == 11
+    assert status["static_html_usability_review_unclear_count"] == 0
+    assert status["not_static_html_usability_human_benefit_proof"] is True
+    assert status["not_static_html_usability_market_validation"] is True
+    assert status["not_static_html_usability_product_readiness"] is True
 
 
 def test_metric_semantic_contract_page_and_registry_are_generated(tmp_path):

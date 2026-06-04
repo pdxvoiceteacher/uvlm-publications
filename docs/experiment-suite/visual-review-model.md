@@ -157,6 +157,10 @@ python -c "from pathlib import Path; from coherence.product.triadic_llm_metrics_
 
 VISUAL-REVIEW-STATIC-HTML-PROTOTYPE-00 renders this data model into a local static HTML review surface while preserving all non-authority boundaries.
 
+## Static HTML usability seed linkage
+
+STATIC-HTML-USABILITY-REVIEW-SEED-00 adds a deterministic local-test usability review scaffold over the static HTML prototype without claiming a real user study or product validation.
+
 ## Blocked visual-review overclaim examples
 
 - Visual Review Model is a UI implementation

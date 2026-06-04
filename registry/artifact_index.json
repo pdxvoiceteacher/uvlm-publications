@@ -1131,6 +1131,13 @@
       "visual_review_static_review.html",
       "visual_review_static_html_receipt.json"
     ],
+    "STATIC-HTML-USABILITY-REVIEW-SEED-00": [
+      "static_html_usability_review_packet.json",
+      "static_html_usability_questionnaire.json",
+      "static_html_usability_response_fixture.json",
+      "static_html_usability_review_summary.md",
+      "static_html_usability_review_receipt.json"
+    ],
     "PERTURBATION-OBSERVATION-CAPTURE-00": [
       "perturbation_observation_packet.json",
       "perturbation_axis_packet.json",
