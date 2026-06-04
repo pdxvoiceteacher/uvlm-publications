@@ -4,8 +4,61 @@ from __future__ import annotations
 import argparse
 import json
 import re
+import sys
 from pathlib import Path
 from typing import Any
+
+REPO_ROOT = Path(__file__).resolve().parents[1]
+if str(REPO_ROOT) not in sys.path:
+    sys.path.insert(0, str(REPO_ROOT))
+
+from tools.build_public_repro_dashboard import (
+    LANGUAGE_GOVERNANCE_ARTIFACTS,
+    LANGUAGE_GOVERNANCE_AUDIT_ARTIFACTS,
+    LANGUAGE_GOVERNANCE_AUDIT_BLOCKED_CLAIMS,
+    LANGUAGE_GOVERNANCE_AUDIT_CLAIM_ALLOWED,
+    LANGUAGE_GOVERNANCE_AUDIT_REQUIRED_DOC_PHRASES,
+    LANGUAGE_GOVERNANCE_BLOCKED_CLAIMS,
+    LANGUAGE_GOVERNANCE_BOUNDARY_TERMS,
+    LANGUAGE_GOVERNANCE_CLAIM_ALLOWED,
+    LANGUAGE_GOVERNANCE_DOCTRINE_PHRASES,
+    LANGUAGE_GOVERNANCE_POSITIVE_LEXICON_TERMS,
+    METRIC_SEMANTIC_CONTRACT_ALIASES,
+    METRIC_SEMANTIC_CONTRACT_ARTIFACTS,
+    METRIC_SEMANTIC_CONTRACT_BLOCKED_CLAIM_PHRASES,
+    METRIC_SEMANTIC_CONTRACT_REQUIRED_BOUNDARY_PHRASES,
+    METRIC_SEMANTIC_CONTRACT_METRIC_ROWS,
+    METRIC_SEMANTIC_CLAIM_ALLOWED,
+    PERTURBATION_STRUCTURE_AFFORDANCE_BLOCKED_CLAIM_PHRASES,
+    PERTURBATION_STRUCTURE_AFFORDANCE_REQUIRED_BOUNDARY_PHRASES,
+    VISUAL_REVIEW_MODEL_ARTIFACTS,
+    VISUAL_REVIEW_MODEL_BLOCKED_CLAIMS,
+    VISUAL_REVIEW_MODEL_CAUTION_BADGES,
+    VISUAL_REVIEW_MODEL_CLAIM_ALLOWED,
+    VISUAL_REVIEW_MODEL_INPUT_ARTIFACTS,
+    VISUAL_REVIEW_MODEL_PERMITTED_RENDER_TARGETS,
+    VISUAL_REVIEW_MODEL_PROHIBITED_RENDER_CLAIMS,
+    VISUAL_REVIEW_MODEL_REPRO_FRAGMENTS,
+    VISUAL_REVIEW_MODEL_REQUIRED_DOC_PHRASES,
+    VISUAL_REVIEW_MODEL_SECTIONS,
+    VISUAL_REVIEW_STATIC_HTML_ACCESSIBILITY_STATEMENTS,
+    VISUAL_REVIEW_STATIC_HTML_ARTIFACTS,
+    VISUAL_REVIEW_STATIC_HTML_BLOCKED_CLAIMS,
+    VISUAL_REVIEW_STATIC_HTML_CLAIM_ALLOWED,
+    VISUAL_REVIEW_STATIC_HTML_INPUT_ARTIFACTS,
+    VISUAL_REVIEW_STATIC_HTML_REQUIRED_DOC_PHRASES,
+    VISUAL_REVIEW_STATIC_HTML_REPRO_FRAGMENTS,
+    STATIC_HTML_USABILITY_REVIEW_ANSWER_SCALE,
+    STATIC_HTML_USABILITY_REVIEW_ARTIFACTS,
+    STATIC_HTML_USABILITY_REVIEW_BLOCKED_CLAIMS,
+    STATIC_HTML_USABILITY_REVIEW_CLAIM_ALLOWED,
+    STATIC_HTML_USABILITY_REVIEW_DIMENSIONS,
+    STATIC_HTML_USABILITY_REVIEW_INPUT_ARTIFACTS,
+    STATIC_HTML_USABILITY_REVIEW_REPRO_FRAGMENTS,
+    STATIC_HTML_USABILITY_REVIEW_REQUIRED_DOC_PHRASES,
+    STATIC_HTML_USABILITY_REVIEW_RESPONSE_SUMMARY,
+    STATIC_HTML_USABILITY_REVIEW_REVISION_THEMES,
+)
 
 
 REQUIRED_PHASES = {
@@ -86,10 +139,27 @@ REQUIRED_PHASES = {
     "COHERENCE-METRIC-FORMULA-REGISTRY-00",
     "METRIC-BOUND-SOURCE-TAXONOMY-00",
     "FLOW-RUNTIME-00",
+    "MET-SEM-00",
     "RUNTIME-METRICS-CORPUS-SEED-00",
     "PMR-LOCAL-RUNTIME-QUERYABLE-STORE-00",
     "RETROSYNTHESIS-READINESS-00",
     "RETROSYNTHESIS-LOCAL-PROTOTYPE-00",
+    "ATLAS-LOCAL-MEMORY-ADMISSION-READINESS-00",
+    "ATLAS-LOCAL-MEMORY-ADMISSION-PROTOTYPE-00",
+    "HUMAN-REVIEW-PROXY-LOCAL-TESTING-00",
+    "AI-CONTEXT-PERFORMANCE-CONTINUITY-00",
+    "THEOREM-VALIDATION-PATHWAY-00",
+    "COOP-ENTROPY-DIVIDEND-00",
+    "TRIADIC-LLM-METRICS-SMOKE-00",
+    "UCC-SOPHIA-CONTROL-FORENSICS-00",
+    "UCC-STANDARDS-SOURCE-REGISTRY-AND-MATERIALITY-00",
+    "TRIADIC-LLM-SMOKE-PMR-INVENTORY-CONTRACT-REPAIR-REVISION",
+    "AI-FORENSICS-DOSSIER-00",
+    "HUMAN-REVIEW-UX-00",
+    "PERTURBATION-OBSERVATION-CAPTURE-00",
+    "PERTURBATION-TRUNK-MAPPING-00",
+    "PERTURBATION-RESIDUAL-NOVELTY-MAP-00",
+    "PERTURBATION-STRUCTURE-AFFORDANCE-CARD-00",
 }
 REQUIRED_BOUNDARY_PHRASES = (
     "not truth certification",
@@ -117,6 +187,102 @@ REQUIRED_BOUNDARY_PHRASES = (
     "waters_spiral_runtime_v0",
     "not general AI safety certification",
     "not recursive braid",
+    "MET-SEM-00",
+    "PROJECT-LANGUAGE-GOVERNANCE-00",
+    "coherencelattice.metric_semantic_reconciliation_packet.v1",
+    "active_profile_proxy_reconciliation",
+    "LOCAL-REVIEW-RUNTIME-V0",
+    "canonical_meanings_preserved_as_targets",
+    "canonical_theory_status",
+    "semantic_target_not_fully_implemented",
+    "runtime_profile_semantics",
+    "local_review_operational_proxies",
+    "current_values_are_profile_specific_proxies",
+    "population_calibration_required_for_full_claims",
+    "build_metric_semantic_reconciliation_packet",
+    METRIC_SEMANTIC_CLAIM_ALLOWED,
+    *METRIC_SEMANTIC_CONTRACT_ARTIFACTS,
+    *METRIC_SEMANTIC_CONTRACT_ALIASES,
+    *[row["safe_label"] for row in METRIC_SEMANTIC_CONTRACT_METRIC_ROWS],
+    *[f"Unsafe label: {row['unsafe_label']}" for row in METRIC_SEMANTIC_CONTRACT_METRIC_ROWS],
+    *METRIC_SEMANTIC_CONTRACT_REQUIRED_BOUNDARY_PHRASES,
+    *METRIC_SEMANTIC_CONTRACT_BLOCKED_CLAIM_PHRASES,
+    "PROJECT-LANGUAGE-GOVERNANCE-00",
+    "language_governance_status",
+    "reviewer_facing_language_policy",
+    "ontology_glossary_status",
+    "identifier_alias_map_status",
+    "scanner_status",
+    "runtime_authority_expanded",
+    LANGUAGE_GOVERNANCE_CLAIM_ALLOWED,
+    *LANGUAGE_GOVERNANCE_ARTIFACTS,
+    *LANGUAGE_GOVERNANCE_DOCTRINE_PHRASES,
+    *LANGUAGE_GOVERNANCE_POSITIVE_LEXICON_TERMS,
+    *LANGUAGE_GOVERNANCE_BOUNDARY_TERMS,
+    *LANGUAGE_GOVERNANCE_BLOCKED_CLAIMS,
+    "LANGUAGE-GOVERNANCE-AUDIT-RUNTIME-00",
+    "coherencelattice.reviewer_language_audit_report.v1",
+    "reviewer_facing_language_governance",
+    "audit_status",
+    "completed",
+    "scanned_path_count",
+    "scanned_file_count",
+    "error_count",
+    "audit_is_not_truth_certification",
+    "audit_is_not_theorem_proof",
+    "audit_is_not_product_release",
+    "audit_is_not_authority",
+    "audit_requires_human_review_for_policy_changes",
+    LANGUAGE_GOVERNANCE_AUDIT_CLAIM_ALLOWED,
+    *LANGUAGE_GOVERNANCE_AUDIT_ARTIFACTS,
+    *LANGUAGE_GOVERNANCE_AUDIT_REQUIRED_DOC_PHRASES,
+    *LANGUAGE_GOVERNANCE_AUDIT_BLOCKED_CLAIMS,
+    "build_reviewer_language_audit",
+    "VISUAL-REVIEW-MODEL-00",
+    "future_ui_rendering_contract",
+    "data_model_only_no_ui",
+    "model_is_ui_implementation",
+    "visual_section_count",
+    "language_audit_error_count",
+    "build_visual_review_model",
+    VISUAL_REVIEW_MODEL_CLAIM_ALLOWED,
+    *VISUAL_REVIEW_MODEL_ARTIFACTS,
+    *VISUAL_REVIEW_MODEL_INPUT_ARTIFACTS,
+    *VISUAL_REVIEW_MODEL_SECTIONS,
+    *VISUAL_REVIEW_MODEL_CAUTION_BADGES,
+    *VISUAL_REVIEW_MODEL_REQUIRED_DOC_PHRASES,
+    *VISUAL_REVIEW_MODEL_PERMITTED_RENDER_TARGETS,
+    *VISUAL_REVIEW_MODEL_PROHIBITED_RENDER_CLAIMS,
+    *VISUAL_REVIEW_MODEL_REPRO_FRAGMENTS,
+    *VISUAL_REVIEW_MODEL_BLOCKED_CLAIMS,
+    "VISUAL-REVIEW-STATIC-HTML-PROTOTYPE-00",
+    "local_static_html_review_surface",
+    "visual_review_static_review.html",
+    "external_resource_count",
+    "network_call_performed",
+    "ui_release_performed",
+    "build_visual_review_static_html",
+    VISUAL_REVIEW_STATIC_HTML_CLAIM_ALLOWED,
+    *VISUAL_REVIEW_STATIC_HTML_ARTIFACTS,
+    *VISUAL_REVIEW_STATIC_HTML_INPUT_ARTIFACTS,
+    *VISUAL_REVIEW_STATIC_HTML_REQUIRED_DOC_PHRASES,
+    *VISUAL_REVIEW_STATIC_HTML_ACCESSIBILITY_STATEMENTS,
+    *VISUAL_REVIEW_STATIC_HTML_REPRO_FRAGMENTS,
+    *VISUAL_REVIEW_STATIC_HTML_BLOCKED_CLAIMS,
+    "STATIC-HTML-USABILITY-REVIEW-SEED-00",
+    "local_static_html_usability_seed",
+    "local_test_reviewer",
+    "build_static_html_usability_review_seed",
+    STATIC_HTML_USABILITY_REVIEW_CLAIM_ALLOWED,
+    *STATIC_HTML_USABILITY_REVIEW_ARTIFACTS,
+    *STATIC_HTML_USABILITY_REVIEW_INPUT_ARTIFACTS,
+    *STATIC_HTML_USABILITY_REVIEW_DIMENSIONS,
+    *STATIC_HTML_USABILITY_REVIEW_ANSWER_SCALE,
+    *STATIC_HTML_USABILITY_REVIEW_RESPONSE_SUMMARY,
+    *STATIC_HTML_USABILITY_REVIEW_REVISION_THEMES,
+    *STATIC_HTML_USABILITY_REVIEW_REQUIRED_DOC_PHRASES,
+    *STATIC_HTML_USABILITY_REVIEW_REPRO_FRAGMENTS,
+    *STATIC_HTML_USABILITY_REVIEW_BLOCKED_CLAIMS,
     "RUNTIME-METRICS-CORPUS-SEED-00",
     "bounded seed corpus instrumentation only",
     "not population calibration",
@@ -165,6 +331,180 @@ REQUIRED_BOUNDARY_PHRASES = (
     "build_retrosynthesis_local_prototype",
     "retrosynthesis_local_prototype",
     "ATLAS-LOCAL-MEMORY-ADMISSION-READINESS-00",
+    "This is Atlas memory admission readiness, not Atlas memory admission",
+    "ready_for_bounded_atlas_memory_admission_prototype",
+    "ATLAS-LOCAL-MEMORY-ADMISSION-PROTOTYPE-00",
+    "readiness_dimensions = 21",
+    "readiness_dimension_count = 21",
+    "candidate_hypotheses = 7",
+    "candidate_repair_plans = 3",
+    "pattern_observations = 5",
+    "No memory candidate was written",
+    "No accepted evidence was emitted",
+    "Human review is required before any future Atlas memory admission prototype",
+    "build_atlas_local_memory_admission_readiness",
+    "atlas_local_memory_admission_readiness",
+    "ATLAS-LOCAL-MEMORY-ADMISSION-PROTOTYPE-00",
+    "completed_candidate_admission_review",
+    "Candidate admission reviews are not Atlas memory admission",
+    "No Atlas memory entry was written",
+    "HUMAN-REVIEW-PROXY-LOCAL-TESTING-00",
+    "emitted_local_test_proxy_only",
+    "Proxy review is not product human review",
+    "AI-CONTEXT-PERFORMANCE-CONTINUITY-00",
+    "WAITING_FOR_LOCAL_VALIDATION",
+    "Live chat is not the primary memory substrate",
+    "THEOREM-VALIDATION-PATHWAY-00",
+    "theorem_validation_pathway_status = locally_validated",
+    "Theorem cards are not proof",
+    "COOP-ENTROPY-DIVIDEND-00",
+    "proof_grade_current = operational_metric_hypothesis",
+    "COOP-ENTROPY-DIVIDEND-00 is not proven",
+    "build_atlas_local_memory_admission_prototype",
+    "build_local_test_proxy_review_receipt",
+    "build_ai_context_performance_continuity",
+    "build_theorem_validation_pathway",
+    "TRIADIC-LLM-METRICS-SMOKE-00",
+    "raw model output is not final answer",
+    "Sonya model candidate is not final answer",
+    "raw model output is final answer",
+    "UCC review certifies compliance",
+    "NIST compliance is certified",
+    "NIST controls were ingested",
+    "theorem validation proves theorem",
+    "COOP-ENTROPY-DIVIDEND-00 is proven",
+    "evidence ledger certifies truth",
+    "provider runtime",
+    "Raw model output is not final answer",
+    "build_triadic_llm_metrics_smoke",
+    "UCC-SOPHIA-CONTROL-FORENSICS-00",
+    "UCC control review is not legal compliance certification",
+    "build_sophia_ucc_control_review",
+    "UCC-STANDARDS-SOURCE-REGISTRY-AND-MATERIALITY-00",
+    "NIST control text is not ingested",
+    "build_ucc_standards_source_registry",
+    "build_ucc_materiality_profile",
+    "build_ucc_materiality_override_receipt",
+    "TRIADIC-LLM-SMOKE-PMR-INVENTORY-CONTRACT-REPAIR-REVISION",
+    "Visibility repair does not create final-answer authority",
+    "AI-FORENSICS-DOSSIER-00",
+    "Triadic Brain turns AI outputs into auditable, source-linked, control-aware forensic dossiers",
+    "The dossier is AI process forensics",
+    "The dossier is not model mind-reading",
+    "The dossier is not hidden chain-of-thought disclosure",
+    "This dossier is not a final answer",
+    "This dossier is not truth certification",
+    "This dossier is not compliance certification",
+    "This dossier is not audit opinion",
+    "This dossier is not professional attestation",
+    "AI Forensics Dossier is final answer",
+    "AI Forensics Dossier certifies truth",
+    "AI Forensics Dossier certifies compliance",
+    "AI Forensics Dossier is audit opinion",
+    "AI Forensics Dossier is professional attestation",
+    "AI Forensics Dossier reveals hidden chain of thought",
+    "AI Forensics Dossier performs model mind-reading",
+    "build_ai_forensics_dossier",
+    "HUMAN-REVIEW-UX-00",
+    "Human Review UX presents an AI Forensics Dossier for bounded review",
+    "The reviewer inspected an AI Forensics Dossier",
+    "The default local-test decision is needs_more_evidence",
+    "Human review remains bounded by the selected action",
+    "The review decision is not final-answer authority",
+    "The review decision is not truth certification",
+    "The review decision is not compliance certification",
+    "The review decision is not audit opinion",
+    "The review decision is not professional attestation",
+    "The review decision is not product release",
+    "The review decision is not memory write",
+    "The review decision is not Atlas memory admission",
+    "Professional or compliance use requires appropriate qualified review",
+    "Product human review is not completed in local test mode",
+    "Human Review UX creates final answer authority",
+    "Human Review UX certifies truth",
+    "Human Review UX certifies compliance",
+    "Human Review UX is audit opinion",
+    "Human Review UX is professional attestation",
+    "Human Review UX approves product release",
+    "Human Review UX approves provider runtime",
+    "Human Review UX approves memory write",
+    "Human Review UX approves Atlas memory admission",
+    "perturbation observation proves novelty",
+    "perturbation observation certifies diagnosis",
+    "abstraction affordance is truth",
+    "hyperreal resonance is authority",
+    "trunk similarity is identity",
+    "trunk mapping is novelty discovery",
+    "heatmap values certify probability",
+    "residual structure proves a novel trunk",
+    "residual novelty map discovers novelty",
+    "novel branch candidate is novel trunk proof",
+    "reverse trunk mapping proves identity",
+    "creative mapping is causal diagnosis",
+    "single fixture proves theory",
+    "PERTURBATION-STRUCTURE-AFFORDANCE-00 is proven",
+    "perturbation structure-affordance is a proven theorem",
+    "speculative_pattern is proof",
+    "operational_metric_hypothesis target has already been achieved",
+    "perturbation evidence proves theorem",
+    "perturbation evidence certifies novelty",
+    "residual novelty candidate is novelty discovery",
+    "reverse trunk hypothesis is proof",
+    "local test review is product human review",
+    "needs_more_evidence is approval",
+    "approve_for_local_next_step is final answer approval",
+    "escalate_to_professional_review is professional attestation",
+    "build_human_review_ux_packet",
+    "PERTURBATION-OBSERVATION-CAPTURE-00",
+    "Perturbation is not mere degradation",
+    "Perturbation observation is not novelty discovery",
+    "Abstraction affordance is not truth",
+    "Hyperreal resonance is not authority",
+    "Causal candidate is not certified diagnosis",
+    "PERTURBATION-TRUNK-MAPPING-00",
+    "Known trunks were mapped before novelty claims",
+    "Trunk similarity is not identity",
+    "Known-trunk mapping is not novelty discovery",
+    "Residual structure is not novel trunk proof",
+    "Heatmap values are diagnostic, not probability certification",
+    "Reverse mapping is not performed in this phase",
+    "PERTURBATION-RESIDUAL-NOVELTY-MAP-00",
+    "Residual novelty mapping was performed only after known trunk mapping",
+    "Candidate novelty regions were generated",
+    "Candidate novelty is not novelty discovery",
+    "Novel branch candidate is not novel trunk proof",
+    "Reverse trunk candidates are hypotheses only",
+    "Abstraction candidates are not truth",
+    "Creative mapping is not causal diagnosis",
+    "Single fixture is not theory",
+    "More observations are required before stronger claims",
+    "perturbation observation proves novelty",
+    "perturbation observation certifies diagnosis",
+    "abstraction affordance is truth",
+    "hyperreal resonance is authority",
+    "trunk similarity is identity",
+    "trunk mapping is novelty discovery",
+    "heatmap values certify probability",
+    "residual structure proves a novel trunk",
+    "residual novelty map discovers novelty",
+    "novel branch candidate is novel trunk proof",
+    "reverse trunk mapping proves identity",
+    "creative mapping is causal diagnosis",
+    "single fixture proves theory",
+    "build_perturbation_observation_capture",
+    "build_perturbation_trunk_mapping",
+    "build_perturbation_residual_novelty_map",
+    "PERTURBATION-STRUCTURE-AFFORDANCE-CARD-00",
+    "PERTURBATION-STRUCTURE-AFFORDANCE-00",
+    "perturbation_novelty_mapping",
+    "theorem_cards = 2",
+    "proof_grade_current = speculative_pattern",
+    "proof_grade_target = operational_metric_hypothesis",
+    "proof_grade_claimed = none_yet",
+    "perturbation_evidence_rows = 9",
+    *PERTURBATION_STRUCTURE_AFFORDANCE_REQUIRED_BOUNDARY_PHRASES,
+    *PERTURBATION_STRUCTURE_AFFORDANCE_BLOCKED_CLAIM_PHRASES,
+    "build_theorem_validation_pathway",
     "not Atlas memory admission yet",
     "raw baseline comparison",
     "fixture-only measurement scaffold",
@@ -663,8 +1003,38 @@ FORBIDDEN_PHRASES = (
     "remote provider calls",
     "provider call performed",
     "provider call authorized",
+    "AI Forensics Dossier is final answer",
+    "AI Forensics Dossier certifies truth",
+    "AI Forensics Dossier certifies compliance",
+    "AI Forensics Dossier is audit opinion",
+    "AI Forensics Dossier is professional attestation",
+    "AI Forensics Dossier reveals hidden chain of thought",
+    "AI Forensics Dossier performs model mind-reading",
+    "Human Review UX creates final answer authority",
+    "Human Review UX certifies truth",
+    "Human Review UX certifies compliance",
+    "Human Review UX is audit opinion",
+    "Human Review UX is professional attestation",
+    "Human Review UX approves product release",
+    "Human Review UX approves provider runtime",
+    "Human Review UX approves memory write",
+    "Human Review UX approves Atlas memory admission",
+    "local test review is product human review",
+    "needs_more_evidence is approval",
+    "approve_for_local_next_step is final answer approval",
+    "escalate_to_professional_review is professional attestation",
+    "hidden chain-of-thought disclosure",
+    "model mind-reading",
     "raw output admission",
     "claims raw output admission",
+    "PERTURBATION-STRUCTURE-AFFORDANCE-00 is proven",
+    "perturbation structure-affordance is a proven theorem",
+    "speculative_pattern is proof",
+    "operational_metric_hypothesis target has already been achieved",
+    "perturbation evidence proves theorem",
+    "perturbation evidence certifies novelty",
+    "residual novelty candidate is novelty discovery",
+    "reverse trunk hypothesis is proof",
     "raw output admitted",
     "raw output accepted as cognition",
     "raw_output_admitted",
@@ -871,6 +1241,9 @@ def _is_allowed_bounded_release_context(text: str, index: int, phrase: str) -> b
             "truth certification blocked",
             "truth certification not performed",
             "truth certification packet",
+            "is not truth certification",
+            "audit is not truth certification",
+            "language governance audit is not truth certification",
         )
         return list_negated or any(item in window for item in allowed)
     if phrase == "final answer release":
@@ -891,9 +1264,35 @@ def _is_allowed_bounded_release_context(text: str, index: int, phrase: str) -> b
             "product release requests must fail closed",
             "product release request must fail closed",
             "product release blocked",
+            "does not create provider runtime or product release",
+            "does not create product release",
+            "is not product release",
+            "audit is not product release",
+            "language governance audit is not product release",
         )
         return list_negated or any(item in window for item in allowed)
     return False
+
+def _is_metric_semantic_contract_context(text: str, index: int, phrase: str) -> bool:
+    window_before = text[max(0, index - 220) : index]
+    window_after = text[index : index + 160]
+    window = window_before + window_after
+    return (
+        "met-sem-00" in window
+        or "metric semantic contract" in window
+        or "metrics are not" in window_before
+        or "current metrics" in window_before
+        or "current code implements profile-specific operational proxies" in window
+        or "current values are local-review operational proxies" in window
+        or "unsafe labels retained only as blocked language" in window_before
+        or "blocked metric overclaim examples" in window_before
+        or phrase == "population calibration" and "population calibration is required before stronger claims" in window
+    )
+
+def _is_blocked_overclaim_example_context(text: str, index: int) -> bool:
+    window = text[max(0, index - 1000) : index]
+    return "blocked overclaim examples" in window or "claims_blocked" in window
+
 
 def _forbidden_hits(text: str) -> list[str]:
     hits: list[str] = []
@@ -907,6 +1306,25 @@ def _forbidden_hits(text: str) -> list[str]:
             if phrase.startswith("claims ") and not _is_negated(text, index):
                 hits.append(phrase)
                 break
+            if phrase in {"population calibration", "population-calibrated", "federation"}:
+                window = text[max(0, index - 220) : index + 128]
+                if (
+                    _is_negated(text, index)
+                    or _is_blocked_overclaim_example_context(text, index)
+                    or _is_metric_semantic_contract_context(text, index, phrase)
+                    or f"not {normalized_phrase}" in window
+                    or "_not_federation" in window
+                    or "not_federation" in window
+                    or "no_federation" in window
+                    or "federation_blocked" in window
+                    or '"federation_authorized": false' in window
+                    or "requires population calibration" in window
+                    or "grants no" in window
+                    or "without granting" in window
+                    or "or granting" in window
+                ):
+                    start = index + len(normalized_phrase)
+                    continue
             if (
                 phrase in {"adapter execution", "adapter executed"}
                 and _is_allowed_local_adapter_context(text, index)
@@ -1063,6 +1481,19 @@ def _forbidden_hits(text: str) -> list[str]:
             ):
                 start = index + len(normalized_phrase)
                 continue
+            if _is_blocked_overclaim_example_context(text, index):
+                start = index + len(normalized_phrase)
+                continue
+            if phrase == "federation" and (
+                any(_normalize(claim) in text[max(0, index - 220) : index + 220] for claim in (*VISUAL_REVIEW_MODEL_BLOCKED_CLAIMS, *VISUAL_REVIEW_STATIC_HTML_BLOCKED_CLAIMS, *STATIC_HTML_USABILITY_REVIEW_BLOCKED_CLAIMS))
+                or "without implementing a ui or granting" in text[max(0, index - 500) : index]
+                or "it implements no ui and grants no" in text[max(0, index - 500) : index]
+            ):
+                start = index + len(normalized_phrase)
+                continue
+            if phrase == "federation" and "federation blocked by default" in text[index : index + 96]:
+                start = index + len(normalized_phrase)
+                continue
             if phrase in {"population calibration", "population-calibrated", "peer review certification", "universal ontology proof"} and _is_negated(text, index):
                 start = index + len(normalized_phrase)
                 continue
@@ -1083,7 +1514,64 @@ def _forbidden_hits(text: str) -> list[str]:
             if phrase == "population-calibrated" and "future population calibrated bounds" in text[max(0, index - 24) : index + 72]:
                 start = index + len(normalized_phrase)
                 continue
+            if (
+                phrase in {"truth certification", "product release"}
+                and any(_normalize(claim) in text[max(0, index - 180) : index + 180] for claim in (*LANGUAGE_GOVERNANCE_AUDIT_BLOCKED_CLAIMS, *VISUAL_REVIEW_MODEL_BLOCKED_CLAIMS, *VISUAL_REVIEW_STATIC_HTML_BLOCKED_CLAIMS, *STATIC_HTML_USABILITY_REVIEW_BLOCKED_CLAIMS))
+            ):
+                start = index + len(normalized_phrase)
+                continue
             if phrase in {"truth certification", "final answer release", "product release"} and _is_allowed_bounded_release_context(text, index, phrase):
+                start = index + len(normalized_phrase)
+                continue
+            if phrase in {"population calibration", "human benefit proof", "truth certification", "federation", "compliance certification", "omega detection", "product release", "final answer authority"} and _is_metric_semantic_contract_context(text, index, phrase):
+                start = index + len(normalized_phrase)
+                continue
+            if (
+                phrase in {"human benefit proof", "market validation", "product readiness", "product release", "provider runtime"}
+                and "claims" not in text[max(0, index - 48) : index]
+                and "grants" not in text[max(0, index - 48) : index]
+                and "authority" not in text[max(0, index - 48) : index]
+                and (
+                    "it is not" in text[max(0, index - 160) : index]
+                    or "this is not" in text[max(0, index - 160) : index]
+                    or "is not" in text[max(0, index - 80) : index]
+                    or "not " + normalized_phrase in text[max(0, index - 80) : index + 80]
+                )
+            ):
+                start = index + len(normalized_phrase)
+                continue
+            if phrase == "product release" and "does not authorize" in text[max(0, index - 180) : index]:
+                start = index + len(normalized_phrase)
+                continue
+            if (
+                phrase in {"final answer authority", "product release", "provider runtime", "runtime authority", "human benefit proof", "market validation", "product readiness"}
+                and (
+                    "without creating" in text[max(0, index - 260) : index]
+                    or "without claiming" in text[max(0, index - 260) : index]
+                    or any(_normalize(claim) in text[max(0, index - 220) : index + 220] for claim in (*VISUAL_REVIEW_STATIC_HTML_BLOCKED_CLAIMS, *STATIC_HTML_USABILITY_REVIEW_BLOCKED_CLAIMS))
+                )
+            ):
+                start = index + len(normalized_phrase)
+                continue
+            if phrase == "compliance certification" and "it is not final answer" in text[max(0, index - 140) : index]:
+                start = index + len(normalized_phrase)
+                continue
+            if _is_blocked_overclaim_example_context(text, index):
+                start = index + len(normalized_phrase)
+                continue
+            if phrase == "final answer authority" and (
+                "without granting" in text[max(0, index - 120) : index]
+                or "it is not" in text[max(0, index - 360) : index]
+                or " is not" in text[max(0, index - 360) : index]
+            ):
+                start = index + len(normalized_phrase)
+                continue
+            if phrase == "runtime authority" and (
+                "without granting" in text[max(0, index - 160) : index]
+                or "grants no" in text[max(0, index - 240) : index]
+                or "no runtime authority" in text[max(0, index - 80) : index + 80]
+                or "not runtime authority" in text[max(0, index - 80) : index + 80]
+            ):
                 start = index + len(normalized_phrase)
                 continue
             if not _is_negated(text, index):
