@@ -1776,6 +1776,86 @@ LANGUAGE_GOVERNANCE_PHASE = {
     "reviewer_caution": "PROJECT-LANGUAGE-GOVERNANCE-00 documents reviewer-facing language policy, lexicon, aliases, and scanning only; it grants no proof, truth, product, runtime, final-answer, accepted-evidence, Atlas, memory, deployment, provider, LAN, federation, consciousness, Omega, ontology, benefit, market, or compliance authority.",
 }
 
+LANGUAGE_GOVERNANCE_AUDIT_COMMAND = "python -c \"from pathlib import Path; from coherence.governance.language_audit_runtime import build_reviewer_language_audit; bridge=Path(r'C:\\UVLM\\run_artifacts\\language_governance_audit\\bridge'); build_reviewer_language_audit(bridge)\""
+LANGUAGE_GOVERNANCE_AUDIT_ARTIFACTS = [
+    "reviewer_language_audit_report.json",
+    "reviewer_language_audit_summary.md",
+    "pmr_local_runtime_artifact_index.json",
+    "artifact_inventory.json",
+    "export_bundle_parity_report.json",
+]
+LANGUAGE_GOVERNANCE_AUDIT_REQUIRED_DOC_PHRASES = [
+    "Reviewer-facing language audit",
+    "The audit runs the reviewer-facing language governance scanner.",
+    "The audit checks reviewer-facing authored surfaces against the language policy, positive ontology lexicon, and identifier alias map.",
+    "The audit report is PMR-visible, inventory-visible, and export-parity-visible.",
+    "The current local run scanned 21 paths and 1865 files.",
+    "The current local run completed with zero error findings.",
+    "Findings are audit records, not proof.",
+    "Language governance audit is not truth certification.",
+    "Language governance audit is not theorem proof.",
+    "Language governance audit is not product release.",
+    "Language governance audit is not runtime authority.",
+    "Human review is required for policy changes.",
+]
+LANGUAGE_GOVERNANCE_AUDIT_BLOCKED_CLAIMS = [
+    "reviewer language audit certifies truth",
+    "reviewer language audit proves theorem",
+    "reviewer language audit proves product readiness",
+    "reviewer language audit authorizes final answers",
+    "reviewer language audit authorizes accepted evidence",
+    "reviewer language audit authorizes product release",
+    "reviewer language audit authorizes deployment",
+    "reviewer language audit authorizes provider runtime",
+    "reviewer language audit authorizes Atlas memory admission",
+    "reviewer language audit authorizes memory write",
+    "zero language audit errors means the theory is proven",
+    "zero language audit errors means product release is approved",
+    "language audit findings are proof",
+    "language audit findings are truth certification",
+    "language governance detects consciousness",
+    "language governance detects Omega",
+    "language governance proves universal ontology",
+    "metaphor is evidence",
+    "analogy is proof",
+    "provenance is authority",
+]
+LANGUAGE_GOVERNANCE_AUDIT_CLAIM_ALLOWED = "LANGUAGE-GOVERNANCE-AUDIT-RUNTIME-00 emits reviewer-facing language audit artifacts that record policy/lexicon/alias checks and make the audit PMR-visible, inventory-visible, and parity-visible without granting proof, truth, product, or runtime authority."
+LANGUAGE_GOVERNANCE_AUDIT_DASHBOARD_SUMMARY = {
+    "schema": "coherencelattice.reviewer_language_audit_report.v1",
+    "audit_mode": "reviewer_facing_language_governance",
+    "audit_status": "completed",
+    "scanned_path_count": 21,
+    "scanned_file_count": 1865,
+    "finding_count": 111,
+    "error_count": 0,
+    "warning_count": 0,
+    "info_count": 0,
+    "review_count": 0,
+    "audit_is_not_truth_certification": True,
+    "audit_is_not_theorem_proof": True,
+    "audit_is_not_product_release": True,
+    "audit_is_not_authority": True,
+    "audit_requires_human_review_for_policy_changes": True,
+}
+LANGUAGE_GOVERNANCE_AUDIT_PHASE = {
+    "phase_id": "LANGUAGE-GOVERNANCE-AUDIT-RUNTIME-00",
+    "repo": "pdxvoiceteacher/CoherenceLattice",
+    "source_phase": "LANGUAGE-GOVERNANCE-AUDIT-RUNTIME-00",
+    "status": "accepted_local_validation",
+    "publication_status": "dashboard_synced",
+    "evidence_type": "reviewer_language_audit_runtime_artifacts",
+    "product_posture": "publication_language_audit_artifacts_only_not_runtime_or_product_release",
+    "authority_posture": "non_authoritative",
+    "public_claim_boundary": "language_audit_records_only_no_proof_truth_product_or_authority",
+    "primary_artifacts": LANGUAGE_GOVERNANCE_AUDIT_ARTIFACTS,
+    "dashboard_summary": LANGUAGE_GOVERNANCE_AUDIT_DASHBOARD_SUMMARY,
+    "reproduction_command_summary": LANGUAGE_GOVERNANCE_AUDIT_COMMAND,
+    "claims_blocked": LANGUAGE_GOVERNANCE_AUDIT_BLOCKED_CLAIMS,
+    "claim_allowed": LANGUAGE_GOVERNANCE_AUDIT_CLAIM_ALLOWED,
+    "reviewer_caution": "LANGUAGE-GOVERNANCE-AUDIT-RUNTIME-00 publishes reviewer-facing language audit records only; it grants no proof, truth, product, runtime, final-answer, accepted-evidence, Atlas, memory, deployment, provider, LAN, federation, consciousness, Omega, ontology, benefit, market, or compliance authority.",
+}
+
 
 RUNTIME_METRICS_SEED_CORPUS_COMMAND = "python -c \"from pathlib import Path; from coherence.local_review.seed_corpus import build_runtime_metrics_seed_corpus; build_runtime_metrics_seed_corpus(output_root=Path(r'C:\\UVLM\\run_artifacts\\runtime_metrics_seed_corpus'))\""
 RUNTIME_METRICS_SEED_CORPUS_ARTIFACTS = [
@@ -4999,6 +5079,7 @@ ACCEPTED_PHASES = [
 *LOCAL_REVIEW_METRICS_FLOW_PHASES,
 METRIC_SEMANTIC_CONTRACT_PHASE,
 LANGUAGE_GOVERNANCE_PHASE,
+LANGUAGE_GOVERNANCE_AUDIT_PHASE,
 RUNTIME_METRICS_SEED_CORPUS_PHASE,
 PMR_LOCAL_QUERYABLE_STORE_PHASE,
 RETROSYNTHESIS_READINESS_PHASE,
@@ -6854,6 +6935,20 @@ BOUNDARIES.extend(
 )
 BOUNDARIES.extend(
     [
+        LANGUAGE_GOVERNANCE_AUDIT_CLAIM_ALLOWED,
+        *LANGUAGE_GOVERNANCE_AUDIT_REQUIRED_DOC_PHRASES,
+        *LANGUAGE_GOVERNANCE_DOCTRINE_PHRASES[:5],
+        *LANGUAGE_GOVERNANCE_POSITIVE_LEXICON_TERMS,
+        *LANGUAGE_GOVERNANCE_AUDIT_BLOCKED_CLAIMS,
+        "build_reviewer_language_audit",
+        "reviewer_facing_language_policy.v1.json",
+        "project_lexicon.v1.json",
+        "identifier_aliases.v1.json",
+        "check_reviewer_facing_language.py",
+    ]
+)
+BOUNDARIES.extend(
+    [
         "RUNTIME-METRICS-CORPUS-SEED-00 is bounded seed corpus instrumentation only.",
         RUNTIME_METRICS_SEED_CORPUS_CLAIM_ALLOWED,
         "RUNTIME-METRICS-CORPUS-SEED-00 is not population calibration.",
@@ -7373,6 +7468,15 @@ def dashboard_payload() -> dict[str, Any]:
         "not_language_governance_theorem_proof": True,
         "not_language_governance_product_release": True,
         "not_language_governance_runtime_authority": True,
+        "language_governance_audit_runtime_00_indexed": True,
+        "language_governance_audit_schema": "coherencelattice.reviewer_language_audit_report.v1",
+        "language_governance_audit_status": "completed",
+        "language_governance_audit_error_count": 0,
+        "language_governance_audit_runtime_authority_expanded": False,
+        "not_language_governance_audit_truth_certification": True,
+        "not_language_governance_audit_theorem_proof": True,
+        "not_language_governance_audit_product_release": True,
+        "not_language_governance_audit_authority": True,
         "not_metric_semantic_canonical_cross_domain_measurement": True,
         "not_metric_semantic_psychological_measurement": True,
         "not_metric_semantic_full_ethical_symmetry_measurement": True,
@@ -7544,6 +7648,7 @@ def reproducibility_index() -> dict[str, Any]:
                 {"name": "Runtime metrics seed corpus Python entrypoint", "command": RUNTIME_METRICS_SEED_CORPUS_COMMAND},
                 {"name": "Metric semantic contract Python entrypoint", "command": METRIC_SEMANTIC_CONTRACT_COMMAND},
                 {"name": "Project language governance scanner", "command": LANGUAGE_GOVERNANCE_COMMAND},
+                {"name": "Reviewer-facing language audit runtime", "command": LANGUAGE_GOVERNANCE_AUDIT_COMMAND},
                 {"name": "PMR local queryable store acceptance", "command": PMR_LOCAL_QUERYABLE_STORE_COMMAND},
                 {"name": "PMR local queryable store Python entrypoint", "command": PMR_LOCAL_QUERYABLE_STORE_PYTHON_ENTRYPOINT},
                 {"name": "Retrosynthesis readiness acceptance", "command": RETROSYNTHESIS_READINESS_COMMAND},
@@ -8039,6 +8144,15 @@ def status_payload() -> dict[str, Any]:
         "not_language_governance_theorem_proof": True,
         "not_language_governance_product_release": True,
         "not_language_governance_runtime_authority": True,
+        "language_governance_audit_runtime_00_indexed": True,
+        "language_governance_audit_schema": "coherencelattice.reviewer_language_audit_report.v1",
+        "language_governance_audit_status": "completed",
+        "language_governance_audit_error_count": 0,
+        "language_governance_audit_runtime_authority_expanded": False,
+        "not_language_governance_audit_truth_certification": True,
+        "not_language_governance_audit_theorem_proof": True,
+        "not_language_governance_audit_product_release": True,
+        "not_language_governance_audit_authority": True,
         "not_metric_semantic_canonical_cross_domain_measurement": True,
         "not_metric_semantic_psychological_measurement": True,
         "not_metric_semantic_full_ethical_symmetry_measurement": True,
@@ -8200,10 +8314,13 @@ def docs() -> dict[str, str]:
     language_governance_lexicon = "\n".join(f"- {term}" for term in LANGUAGE_GOVERNANCE_POSITIVE_LEXICON_TERMS)
     language_governance_boundaries = "\n".join(f"- {term}" for term in LANGUAGE_GOVERNANCE_BOUNDARY_TERMS)
     language_governance_blocked = "\n".join(f"- {claim}" for claim in LANGUAGE_GOVERNANCE_BLOCKED_CLAIMS)
+    language_governance_audit_artifacts = "\n".join(f"- {artifact}" for artifact in LANGUAGE_GOVERNANCE_AUDIT_ARTIFACTS)
+    language_governance_audit_phrases = "\n".join(f"- {phrase}" for phrase in LANGUAGE_GOVERNANCE_AUDIT_REQUIRED_DOC_PHRASES)
+    language_governance_audit_blocked = "\n".join(f"- {claim}" for claim in LANGUAGE_GOVERNANCE_AUDIT_BLOCKED_CLAIMS)
     return {
         "README.md": "# Experiment Suite Docs\n\nPublic reviewer documentation for the claim-bounded reproducibility dashboard.\n",
         "assets/README.md": "# Assets\n\nOptional static assets for the public reproducibility dashboard.\n",
-        "index.md": f"# Public Experiment Suite Dashboard\n\nThis dashboard presents accepted evidence for reviewer orientation. It is not truth certification, not deployment authority, not final answer release, local fixture only, and requires external peer review.\n\n## Accepted evidence\n\n| Phase | Repo | Status | What this supports | Reviewer caution |\n| --- | --- | --- | --- | --- |\n{phase_rows}\n\n## Reviewer path\n\nStart with claim boundaries, then read the governed artifact cognition paper, WAVE Rosetta paper, SONYA-AEGIS-SMOKE-02, WAVE family, UNI-02D Sonya gate, and RETRO-LANE-00, Public Utility Alpha, Raw Baseline Comparison, Evidence Review Pack, RW-COMP-01, RW-COMP-02, Retrosynthesis Sandbox Cycle, Evidence Review Pack second-pass, RW-COMP-03, Universal Architecture Scaffold, Sonya Adapter Contract Registry, Sonya Adapter Smoke, Sonya Local Fixture Adapter, and Evidence Review Pack local adapter, Evidence Review Pack local adapter revision, RW-COMP local adapter, PMR doctrine, PMR local artifact index, PMR GPCU utility scoring, PMR lifecycle state machine, PMR lifecycle audit preflight, PMR Sophia lifecycle audit review, PMR destructive-action authorization preflight, PMR architecture diversity checkpoint, PMR simulation baseline comparison, PMR simulation statistical analysis, PMR federation stress corpus, PMR human provenance context, Sonya Local Fixture Adapter multi-route, and Sonya Local Fixture Adapter lineage clarity, Local Review metrics and flow, Metric Semantic Contract, Language Governance, and Runtime Metrics Seed Corpus, PMR local queryable store, Retrosynthesis Readiness, Retrosynthesis Local Prototype, and Atlas Local Memory Admission Readiness, Atlas Local Memory Admission Prototype, Local-test Proxy Review, AI Context Performance Continuity, Theorem Validation Pathway, and COOP Entropy Dividend, Triadic LLM Metrics Smoke, UCC Sophia Control Forensics, UCC Standards Source Registry and Materiality, Triadic LLM Smoke PMR Inventory Contract Repair, AI Forensics Dossier, and Human Review UX, Perturbation Observation Capture, Perturbation Trunk Mapping, and Perturbation Residual Novelty Map, and Perturbation Structure-Affordance Card pages.\n\n## What this proves\n\nIt proves only that accepted local fixture artifacts and draft publication materials are organized for review.\n\n## What this does not prove\n\nNo oracle posture, no deployment posture, no final-answer posture, no AI consciousness claim, and no universal ontology claim.\n\n## Phase pages\n\n- [SONYA-AEGIS-SMOKE-02](sonya-aegis-smoke-02.md)\n- [WAVE Gold-Physics](wave-gold-physics.md)\n- [UNI-02D Sonya gate](uni02d-sonya-gate.md)\n- [RETRO-LANE-00](retro-lane-00.md)\n- [Public Utility Alpha](public-utility-alpha.md)\n- [Raw Baseline Comparison](raw-baseline-comparison.md)\n- [Evidence Review Pack](evidence-review-pack.md)\n- [RW-COMP-01](rw-comp-01.md)\n- [RW-COMP-02](rw-comp-02.md)\n- [Retrosynthesis Sandbox Cycle](retrosynthesis-sandbox-cycle.md)\n- [Evidence Review Pack second pass](evidence-review-pack-second-pass.md)\n- [RW-COMP-03](rw-comp-03.md)\n- [Universal Architecture Scaffold](universal-architecture.md)\n- [Sonya Adapter Contract Registry](sonya-adapter-contract-registry.md)\n- [Sonya required membrane checkpoint](sonya-required-membrane-checkpoint.md)\n- [TEL event stack](tel-event-stack.md)\n- [Sonya Adapter Smoke](sonya-adapter-smoke.md)\n- [Sonya Local Fixture Adapter](sonya-local-fixture-adapter.md)\n- [Evidence Review Pack local adapter](evidence-review-pack-local-adapter.md)\n- [Evidence Review Pack local adapter revision](evidence-review-pack-local-adapter-revision.md)\n- [RW-COMP local adapter](rw-comp-local-adapter.md)\n- [Provenance Memory Reservoir](provenance-memory-reservoir.md)\n- [PMR local artifact index](pmr-local-artifact-index.md)\n- [Ontology Claim Registry](ontology-claim-registry.md)\n- [Local Sonya path portability](local-sonya-path-portability.md)\n- [TB Product Slice](tb-product-slice.md)\n- [TB Product Slice 01](tb-product-slice-01.md)\n- [Sonya Local Fixture Adapter multi-route](sonya-local-fixture-adapter-multi-route.md)\n- [Sonya Local Fixture Adapter lineage clarity](sonya-local-fixture-adapter-lineage.md)\n- [Local Review Runtime V0](local-review-runtime-v0.md)\n- [Local Review metrics and flow](local-review-metrics-flow.md)\n- [Runtime metrics seed corpus](runtime-metrics-seed-corpus.md)\n- [PMR local queryable store](pmr-local-queryable-store.md)\n- [Retrosynthesis readiness](retrosynthesis-readiness.md)\n- [Retrosynthesis local prototype](retrosynthesis-local-prototype.md)\n- [Atlas local memory admission readiness](atlas-local-memory-admission-readiness.md)\n- [AI Forensics Dossier](ai-forensics-dossier.md)\n- [Human Review UX](human-review-ux.md)\n- [Perturbation Observation Capture](perturbation-observation-capture.md)\n- [Perturbation Trunk Mapping](perturbation-trunk-mapping.md)\n- [Perturbation Residual Novelty Map](perturbation-residual-novelty-map.md)\n- [Perturbation Structure-Affordance Card](perturbation-structure-affordance-card.md)\n- [Governed artifact cognition paper](governed-artifact-cognition-paper.md)\n- [Waveform Rosetta paper](waveform-rosetta-paper.md)\n",
+        "index.md": f"# Public Experiment Suite Dashboard\n\nThis dashboard presents accepted evidence for reviewer orientation. It is not truth certification, not deployment authority, not final answer release, local fixture only, and requires external peer review.\n\n## Accepted evidence\n\n| Phase | Repo | Status | What this supports | Reviewer caution |\n| --- | --- | --- | --- | --- |\n{phase_rows}\n\n## Reviewer path\n\nStart with claim boundaries, then read the governed artifact cognition paper, WAVE Rosetta paper, SONYA-AEGIS-SMOKE-02, WAVE family, UNI-02D Sonya gate, and RETRO-LANE-00, Public Utility Alpha, Raw Baseline Comparison, Evidence Review Pack, RW-COMP-01, RW-COMP-02, Retrosynthesis Sandbox Cycle, Evidence Review Pack second-pass, RW-COMP-03, Universal Architecture Scaffold, Sonya Adapter Contract Registry, Sonya Adapter Smoke, Sonya Local Fixture Adapter, and Evidence Review Pack local adapter, Evidence Review Pack local adapter revision, RW-COMP local adapter, PMR doctrine, PMR local artifact index, PMR GPCU utility scoring, PMR lifecycle state machine, PMR lifecycle audit preflight, PMR Sophia lifecycle audit review, PMR destructive-action authorization preflight, PMR architecture diversity checkpoint, PMR simulation baseline comparison, PMR simulation statistical analysis, PMR federation stress corpus, PMR human provenance context, Sonya Local Fixture Adapter multi-route, and Sonya Local Fixture Adapter lineage clarity, Local Review metrics and flow, Metric Semantic Contract, Language Governance, Language Governance Audit Runtime, and Runtime Metrics Seed Corpus, PMR local queryable store, Retrosynthesis Readiness, Retrosynthesis Local Prototype, and Atlas Local Memory Admission Readiness, Atlas Local Memory Admission Prototype, Local-test Proxy Review, AI Context Performance Continuity, Theorem Validation Pathway, and COOP Entropy Dividend, Triadic LLM Metrics Smoke, UCC Sophia Control Forensics, UCC Standards Source Registry and Materiality, Triadic LLM Smoke PMR Inventory Contract Repair, AI Forensics Dossier, and Human Review UX, Perturbation Observation Capture, Perturbation Trunk Mapping, and Perturbation Residual Novelty Map, and Perturbation Structure-Affordance Card pages.\n\n## What this proves\n\nIt proves only that accepted local fixture artifacts and draft publication materials are organized for review.\n\n## What this does not prove\n\nNo oracle posture, no deployment posture, no final-answer posture, no AI consciousness claim, and no universal ontology claim.\n\n## Phase pages\n\n- [SONYA-AEGIS-SMOKE-02](sonya-aegis-smoke-02.md)\n- [WAVE Gold-Physics](wave-gold-physics.md)\n- [UNI-02D Sonya gate](uni02d-sonya-gate.md)\n- [RETRO-LANE-00](retro-lane-00.md)\n- [Public Utility Alpha](public-utility-alpha.md)\n- [Raw Baseline Comparison](raw-baseline-comparison.md)\n- [Evidence Review Pack](evidence-review-pack.md)\n- [RW-COMP-01](rw-comp-01.md)\n- [RW-COMP-02](rw-comp-02.md)\n- [Retrosynthesis Sandbox Cycle](retrosynthesis-sandbox-cycle.md)\n- [Evidence Review Pack second pass](evidence-review-pack-second-pass.md)\n- [RW-COMP-03](rw-comp-03.md)\n- [Universal Architecture Scaffold](universal-architecture.md)\n- [Sonya Adapter Contract Registry](sonya-adapter-contract-registry.md)\n- [Sonya required membrane checkpoint](sonya-required-membrane-checkpoint.md)\n- [TEL event stack](tel-event-stack.md)\n- [Sonya Adapter Smoke](sonya-adapter-smoke.md)\n- [Sonya Local Fixture Adapter](sonya-local-fixture-adapter.md)\n- [Evidence Review Pack local adapter](evidence-review-pack-local-adapter.md)\n- [Evidence Review Pack local adapter revision](evidence-review-pack-local-adapter-revision.md)\n- [RW-COMP local adapter](rw-comp-local-adapter.md)\n- [Provenance Memory Reservoir](provenance-memory-reservoir.md)\n- [PMR local artifact index](pmr-local-artifact-index.md)\n- [Ontology Claim Registry](ontology-claim-registry.md)\n- [Local Sonya path portability](local-sonya-path-portability.md)\n- [TB Product Slice](tb-product-slice.md)\n- [TB Product Slice 01](tb-product-slice-01.md)\n- [Sonya Local Fixture Adapter multi-route](sonya-local-fixture-adapter-multi-route.md)\n- [Sonya Local Fixture Adapter lineage clarity](sonya-local-fixture-adapter-lineage.md)\n- [Local Review Runtime V0](local-review-runtime-v0.md)\n- [Local Review metrics and flow](local-review-metrics-flow.md)\n- [Runtime metrics seed corpus](runtime-metrics-seed-corpus.md)\n- [PMR local queryable store](pmr-local-queryable-store.md)\n- [Retrosynthesis readiness](retrosynthesis-readiness.md)\n- [Retrosynthesis local prototype](retrosynthesis-local-prototype.md)\n- [Atlas local memory admission readiness](atlas-local-memory-admission-readiness.md)\n- [AI Forensics Dossier](ai-forensics-dossier.md)\n- [Human Review UX](human-review-ux.md)\n- [Perturbation Observation Capture](perturbation-observation-capture.md)\n- [Perturbation Trunk Mapping](perturbation-trunk-mapping.md)\n- [Perturbation Residual Novelty Map](perturbation-residual-novelty-map.md)\n- [Perturbation Structure-Affordance Card](perturbation-structure-affordance-card.md)\n- [Governed artifact cognition paper](governed-artifact-cognition-paper.md)\n- [Waveform Rosetta paper](waveform-rosetta-paper.md)\n",
         "language-governance.md": f"""# Language Governance
 
 ## What was validated
@@ -8252,9 +8369,73 @@ PROJECT-LANGUAGE-GOVERNANCE-00 synchronizes the CoherenceLattice project languag
 {LANGUAGE_GOVERNANCE_COMMAND}
 ```
 
+## Runtime audit linkage
+
+LANGUAGE-GOVERNANCE-AUDIT-RUNTIME-00 publishes reviewer-facing language audit artifacts for this policy surface without granting proof, truth, product, or runtime authority.
+
 ## Allowed bounded claim
 
 {LANGUAGE_GOVERNANCE_CLAIM_ALLOWED}
+""",
+        "language-governance-audit-runtime.md": f"""# Reviewer-facing Language Audit Runtime
+
+## What was validated
+
+LANGUAGE-GOVERNANCE-AUDIT-RUNTIME-00 synchronizes reviewer-facing language audit runtime artifacts to publication surfaces. Reviewer-facing language audit. This is publication/dashboard synchronization only and grants no runtime authority.
+
+## Dashboard summary
+
+- schema = coherencelattice.reviewer_language_audit_report.v1
+- audit_mode = reviewer_facing_language_governance
+- audit_status = completed
+- scanned_path_count = 21
+- scanned_file_count = 1865
+- finding_count = 111
+- error_count = 0
+- warning_count = 0
+- info_count = 0
+- review_count = 0
+- audit_is_not_truth_certification = true
+- audit_is_not_theorem_proof = true
+- audit_is_not_product_release = true
+- audit_is_not_authority = true
+- audit_requires_human_review_for_policy_changes = true
+
+## Required audit language
+
+{language_governance_audit_phrases}
+
+## Doctrine references
+
+{chr(10).join(f"- {phrase}" for phrase in LANGUAGE_GOVERNANCE_DOCTRINE_PHRASES[:5])}
+
+## Positive ontology terms
+
+{language_governance_lexicon}
+
+## Artifacts
+
+{language_governance_audit_artifacts}
+
+## Reproducibility fragments
+
+- build_reviewer_language_audit
+- reviewer_facing_language_policy.v1.json
+- project_lexicon.v1.json
+- identifier_aliases.v1.json
+- check_reviewer_facing_language.py
+
+```powershell
+{LANGUAGE_GOVERNANCE_AUDIT_COMMAND}
+```
+
+## Blocked language-audit overclaim examples
+
+{language_governance_audit_blocked}
+
+## Allowed bounded claim
+
+{LANGUAGE_GOVERNANCE_AUDIT_CLAIM_ALLOWED}
 """,
         "metric-semantic-contract.md": f"""# Metric Semantic Contract
 

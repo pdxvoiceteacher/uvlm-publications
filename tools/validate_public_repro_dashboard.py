@@ -14,6 +14,10 @@ if str(REPO_ROOT) not in sys.path:
 
 from tools.build_public_repro_dashboard import (
     LANGUAGE_GOVERNANCE_ARTIFACTS,
+    LANGUAGE_GOVERNANCE_AUDIT_ARTIFACTS,
+    LANGUAGE_GOVERNANCE_AUDIT_BLOCKED_CLAIMS,
+    LANGUAGE_GOVERNANCE_AUDIT_CLAIM_ALLOWED,
+    LANGUAGE_GOVERNANCE_AUDIT_REQUIRED_DOC_PHRASES,
     LANGUAGE_GOVERNANCE_BLOCKED_CLAIMS,
     LANGUAGE_GOVERNANCE_BOUNDARY_TERMS,
     LANGUAGE_GOVERNANCE_CLAIM_ALLOWED,
@@ -189,6 +193,24 @@ REQUIRED_BOUNDARY_PHRASES = (
     *LANGUAGE_GOVERNANCE_POSITIVE_LEXICON_TERMS,
     *LANGUAGE_GOVERNANCE_BOUNDARY_TERMS,
     *LANGUAGE_GOVERNANCE_BLOCKED_CLAIMS,
+    "LANGUAGE-GOVERNANCE-AUDIT-RUNTIME-00",
+    "coherencelattice.reviewer_language_audit_report.v1",
+    "reviewer_facing_language_governance",
+    "audit_status",
+    "completed",
+    "scanned_path_count",
+    "scanned_file_count",
+    "error_count",
+    "audit_is_not_truth_certification",
+    "audit_is_not_theorem_proof",
+    "audit_is_not_product_release",
+    "audit_is_not_authority",
+    "audit_requires_human_review_for_policy_changes",
+    LANGUAGE_GOVERNANCE_AUDIT_CLAIM_ALLOWED,
+    *LANGUAGE_GOVERNANCE_AUDIT_ARTIFACTS,
+    *LANGUAGE_GOVERNANCE_AUDIT_REQUIRED_DOC_PHRASES,
+    *LANGUAGE_GOVERNANCE_AUDIT_BLOCKED_CLAIMS,
+    "build_reviewer_language_audit",
     "RUNTIME-METRICS-CORPUS-SEED-00",
     "bounded seed corpus instrumentation only",
     "not population calibration",
@@ -1147,6 +1169,9 @@ def _is_allowed_bounded_release_context(text: str, index: int, phrase: str) -> b
             "truth certification blocked",
             "truth certification not performed",
             "truth certification packet",
+            "is not truth certification",
+            "audit is not truth certification",
+            "language governance audit is not truth certification",
         )
         return list_negated or any(item in window for item in allowed)
     if phrase == "final answer release":
@@ -1169,6 +1194,9 @@ def _is_allowed_bounded_release_context(text: str, index: int, phrase: str) -> b
             "product release blocked",
             "does not create provider runtime or product release",
             "does not create product release",
+            "is not product release",
+            "audit is not product release",
+            "language governance audit is not product release",
         )
         return list_negated or any(item in window for item in allowed)
     return False
@@ -1403,6 +1431,12 @@ def _forbidden_hits(text: str) -> list[str]:
                 start = index + len(normalized_phrase)
                 continue
             if phrase == "population-calibrated" and "future population calibrated bounds" in text[max(0, index - 24) : index + 72]:
+                start = index + len(normalized_phrase)
+                continue
+            if (
+                phrase in {"truth certification", "product release"}
+                and any(_normalize(claim) in text[max(0, index - 180) : index + 180] for claim in LANGUAGE_GOVERNANCE_AUDIT_BLOCKED_CLAIMS)
+            ):
                 start = index + len(normalized_phrase)
                 continue
             if phrase in {"truth certification", "final answer release", "product release"} and _is_allowed_bounded_release_context(text, index, phrase):

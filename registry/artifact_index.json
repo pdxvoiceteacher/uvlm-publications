@@ -998,6 +998,13 @@
       "reviewer_language_audit_report.json",
       "reviewer_language_audit_summary.md"
     ],
+    "LANGUAGE-GOVERNANCE-AUDIT-RUNTIME-00": [
+      "reviewer_language_audit_report.json",
+      "reviewer_language_audit_summary.md",
+      "pmr_local_runtime_artifact_index.json",
+      "artifact_inventory.json",
+      "export_bundle_parity_report.json"
+    ],
     "RUNTIME-METRICS-CORPUS-SEED-00": [
       "runtime_metrics_seed_corpus.json",
       "runtime_metrics_seed_observations.jsonl",

@@ -95,6 +95,10 @@ PROJECT-LANGUAGE-GOVERNANCE-00 synchronizes the CoherenceLattice project languag
 python tools/check_reviewer_facing_language.py --policy config/language_governance/reviewer_facing_language_policy.v1.json --lexicon config/language_governance/project_lexicon.v1.json --aliases config/language_governance/identifier_aliases.v1.json
 ```
 
+## Runtime audit linkage
+
+LANGUAGE-GOVERNANCE-AUDIT-RUNTIME-00 publishes reviewer-facing language audit artifacts for this policy surface without granting proof, truth, product, or runtime authority.
+
 ## Allowed bounded claim
 
 PROJECT-LANGUAGE-GOVERNANCE-00 documents audience-aware language rules, positive ontology terms, identifier alias migration, and reviewer-facing language scanning without granting proof, truth, product, or runtime authority.

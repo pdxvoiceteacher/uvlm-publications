@@ -7,6 +7,10 @@ from pathlib import Path
 
 from tools.build_public_repro_dashboard import (
     LANGUAGE_GOVERNANCE_ARTIFACTS,
+    LANGUAGE_GOVERNANCE_AUDIT_ARTIFACTS,
+    LANGUAGE_GOVERNANCE_AUDIT_BLOCKED_CLAIMS,
+    LANGUAGE_GOVERNANCE_AUDIT_CLAIM_ALLOWED,
+    LANGUAGE_GOVERNANCE_AUDIT_REQUIRED_DOC_PHRASES,
     LANGUAGE_GOVERNANCE_BLOCKED_CLAIMS,
     LANGUAGE_GOVERNANCE_BOUNDARY_TERMS,
     LANGUAGE_GOVERNANCE_CLAIM_ALLOWED,
@@ -80,6 +84,7 @@ REQUIRED_DOCS = {
     "local-review-metrics-flow.md",
     "metric-semantic-contract.md",
     "language-governance.md",
+    "language-governance-audit-runtime.md",
     "runtime-metrics-seed-corpus.md",
     "pmr-local-queryable-store.md",
     "retrosynthesis-readiness.md",
@@ -181,6 +186,7 @@ REQUIRED_PHASES = {
     "FLOW-RUNTIME-00",
     "MET-SEM-00",
     "PROJECT-LANGUAGE-GOVERNANCE-00",
+    "LANGUAGE-GOVERNANCE-AUDIT-RUNTIME-00",
     "RUNTIME-METRICS-CORPUS-SEED-00",
     "PMR-LOCAL-RUNTIME-QUERYABLE-STORE-00",
     "RETROSYNTHESIS-READINESS-00",
@@ -4172,6 +4178,71 @@ def test_language_governance_page_and_registry_are_generated(tmp_path):
     assert status["language_governance_runtime_authority_expanded"] is False
     assert status["not_language_governance_truth_certification"] is True
     assert status["not_language_governance_product_release"] is True
+
+
+def test_language_governance_audit_runtime_page_and_registry_are_generated(tmp_path):
+    out_dir, docs_dir = run_builder(tmp_path)
+    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text(encoding="utf-8"))
+    reproducibility = json.loads((out_dir / "reproducibility_index.json").read_text(encoding="utf-8"))
+    artifact_index = json.loads((out_dir / "artifact_index.json").read_text(encoding="utf-8"))
+    claim_boundaries = json.loads((out_dir / "claim_boundary_index.json").read_text(encoding="utf-8"))
+    status = json.loads((out_dir / "status.json").read_text(encoding="utf-8"))
+    phase_by_id = {entry["phase_id"]: entry for entry in dashboard["accepted_phases"]}
+    boundary_text = "\n".join(claim_boundaries["boundaries"])
+    reproducibility_text = json.dumps(reproducibility)
+
+    phase = phase_by_id["LANGUAGE-GOVERNANCE-AUDIT-RUNTIME-00"]
+    summary = phase["dashboard_summary"]
+    assert summary["schema"] == "coherencelattice.reviewer_language_audit_report.v1"
+    assert summary["audit_mode"] == "reviewer_facing_language_governance"
+    assert summary["audit_status"] == "completed"
+    assert summary["scanned_path_count"] == 21
+    assert summary["scanned_file_count"] == 1865
+    assert summary["finding_count"] == 111
+    assert summary["error_count"] == 0
+    assert summary["warning_count"] == 0
+    assert summary["info_count"] == 0
+    assert summary["review_count"] == 0
+    assert summary["audit_is_not_truth_certification"] is True
+    assert summary["audit_is_not_theorem_proof"] is True
+    assert summary["audit_is_not_product_release"] is True
+    assert summary["audit_is_not_authority"] is True
+    assert summary["audit_requires_human_review_for_policy_changes"] is True
+
+    page_text = (docs_dir / "language-governance-audit-runtime.md").read_text(encoding="utf-8")
+    assert "LANGUAGE-GOVERNANCE-AUDIT-RUNTIME-00" in page_text
+    for artifact in LANGUAGE_GOVERNANCE_AUDIT_ARTIFACTS:
+        assert artifact in artifact_index["phases"]["LANGUAGE-GOVERNANCE-AUDIT-RUNTIME-00"]
+        assert artifact in page_text
+    for fragment in (
+        "build_reviewer_language_audit",
+        "reviewer_facing_language_policy.v1.json",
+        "project_lexicon.v1.json",
+        "identifier_aliases.v1.json",
+        "check_reviewer_facing_language.py",
+    ):
+        assert fragment in reproducibility_text
+        assert fragment in page_text
+        assert fragment in boundary_text
+    for phrase in LANGUAGE_GOVERNANCE_DOCTRINE_PHRASES[:5]:
+        assert phrase in page_text
+        assert phrase in boundary_text
+    for term in LANGUAGE_GOVERNANCE_POSITIVE_LEXICON_TERMS:
+        assert term in page_text
+        assert term in boundary_text
+    for phrase in LANGUAGE_GOVERNANCE_AUDIT_REQUIRED_DOC_PHRASES:
+        assert phrase in page_text
+        assert phrase in boundary_text
+    for claim in LANGUAGE_GOVERNANCE_AUDIT_BLOCKED_CLAIMS:
+        assert claim in page_text
+        assert claim in boundary_text
+    assert LANGUAGE_GOVERNANCE_AUDIT_CLAIM_ALLOWED in page_text
+    assert LANGUAGE_GOVERNANCE_AUDIT_CLAIM_ALLOWED in boundary_text
+    assert status["language_governance_audit_runtime_00_indexed"] is True
+    assert status["language_governance_audit_status"] == "completed"
+    assert status["language_governance_audit_error_count"] == 0
+    assert status["not_language_governance_audit_truth_certification"] is True
+    assert status["not_language_governance_audit_product_release"] is True
 
 
 def test_metric_semantic_contract_page_and_registry_are_generated(tmp_path):
