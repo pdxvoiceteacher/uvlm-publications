@@ -982,6 +982,29 @@
       "cognitive_flow_topology_packet.json",
       "cognitive_flow_morphology_summary.md"
     ],
+    "MET-SEM-00": [
+      "config/metric_semantics/metric_semantic_contract.v1.json",
+      "metric_semantic_reconciliation_packet.json",
+      "docs/METRIC_SEMANTIC_RECONCILIATION.md"
+    ],
+    "PROJECT-LANGUAGE-GOVERNANCE-00": [
+      "docs/PROJECT_LANGUAGE_GOVERNANCE.md",
+      "docs/PROJECT_ONTOLOGY_GLOSSARY.md",
+      "docs/LANGUAGE_MIGRATION_MAP.md",
+      "config/language_governance/reviewer_facing_language_policy.v1.json",
+      "config/language_governance/project_lexicon.v1.json",
+      "config/language_governance/identifier_aliases.v1.json",
+      "tools/check_reviewer_facing_language.py",
+      "reviewer_language_audit_report.json",
+      "reviewer_language_audit_summary.md"
+    ],
+    "LANGUAGE-GOVERNANCE-AUDIT-RUNTIME-00": [
+      "reviewer_language_audit_report.json",
+      "reviewer_language_audit_summary.md",
+      "pmr_local_runtime_artifact_index.json",
+      "artifact_inventory.json",
+      "export_bundle_parity_report.json"
+    ],
     "RUNTIME-METRICS-CORPUS-SEED-00": [
       "runtime_metrics_seed_corpus.json",
       "runtime_metrics_seed_observations.jsonl",
@@ -1008,6 +1031,159 @@
       "retrosynthesis_pattern_observations.jsonl",
       "retrosynthesis_local_prototype_receipt.json",
       "retrosynthesis_local_prototype_summary.md"
+    ],
+    "ATLAS-LOCAL-MEMORY-ADMISSION-READINESS-00": [
+      "atlas_local_memory_admission_readiness_packet.json",
+      "atlas_local_memory_admission_readiness_checklist.json",
+      "atlas_local_memory_admission_readiness_receipt.json",
+      "atlas_local_memory_admission_readiness_summary.md"
+    ],
+    "ATLAS-LOCAL-MEMORY-ADMISSION-PROTOTYPE-00": [
+      "atlas_local_memory_admission_prototype_packet.json",
+      "atlas_candidate_admission_reviews.jsonl",
+      "atlas_admission_eligibility_assessments.jsonl",
+      "atlas_local_memory_admission_prototype_receipt.json",
+      "atlas_local_memory_admission_prototype_summary.md"
+    ],
+    "HUMAN-REVIEW-PROXY-LOCAL-TESTING-00": [
+      "local_test_proxy_review_receipt.json"
+    ],
+    "AI-CONTEXT-PERFORMANCE-CONTINUITY-00": [
+      "ai_context_continuity_packet.json",
+      "active_phase_focus_packet.json",
+      "validation_status_snapshot.json",
+      "assistant_handoff_summary.md",
+      "expired_or_external_file_manifest.json",
+      "open_patch_queue.json",
+      "context_budget_recommendation.md"
+    ],
+    "THEOREM-VALIDATION-PATHWAY-00": [
+      "theorem_claim_registry.json",
+      "theorem_card_registry.json",
+      "theorem_evidence_ledger.json",
+      "theorem_counterexample_registry.json",
+      "theorem_non_claim_boundary_table.json",
+      "theorem_validation_receipt.md"
+    ],
+    "COOP-ENTROPY-DIVIDEND-00": [
+      "theorem_claim_registry.json",
+      "theorem_card_registry.json",
+      "theorem_evidence_ledger.json",
+      "theorem_counterexample_registry.json",
+      "theorem_non_claim_boundary_table.json",
+      "theorem_validation_receipt.md"
+    ],
+    "TRIADIC-LLM-METRICS-SMOKE-00": [
+      "llm_metrics_smoke_request.json",
+      "sonya_model_candidate_packet.json",
+      "source_integrity_packet.json",
+      "source_span_map.json",
+      "claim_classification_packet.json",
+      "claim_evidence_map.json",
+      "unsupported_claim_report.json",
+      "coherence_runtime_metrics_packet.json",
+      "coherence_action_functional_packet.json",
+      "ai_decision_trace_packet.json",
+      "review_receipt.md",
+      "llm_metrics_smoke_receipt.json"
+    ],
+    "UCC-SOPHIA-CONTROL-FORENSICS-00": [
+      "ucc_control_profile_packet.json",
+      "ucc_control_selection_receipt.json",
+      "sophia_ucc_control_review_packet.json",
+      "ucc_control_evidence_map.json",
+      "ucc_control_gap_report.json",
+      "ucc_control_non_certification_boundary_table.json",
+      "ucc_control_review_summary.md"
+    ],
+    "UCC-STANDARDS-SOURCE-REGISTRY-AND-MATERIALITY-00": [
+      "ucc_standards_source_registry.json",
+      "ucc_materiality_profile.json",
+      "ucc_materiality_override_receipt.json",
+      "ucc_standards_source_registry_summary.md"
+    ],
+    "TRIADIC-LLM-SMOKE-PMR-INVENTORY-CONTRACT-REPAIR-REVISION": [
+      "sonya_model_candidate_packet.json",
+      "llm_metrics_smoke_receipt.json",
+      "review_receipt.md"
+    ],
+    "AI-FORENSICS-DOSSIER-00": [
+      "ai_forensics_dossier_packet.json",
+      "ai_forensics_dossier_section_index.json",
+      "ai_forensics_dossier.md",
+      "ai_forensics_dossier_receipt.json"
+    ],
+    "HUMAN-REVIEW-UX-00": [
+      "human_review_ux_packet.json",
+      "human_review_action_menu.json",
+      "human_review_decision_receipt.json",
+      "human_review_summary.md"
+    ],
+    "VISUAL-REVIEW-MODEL-00": [
+      "visual_review_model_packet.json",
+      "visual_review_section_index.json",
+      "visual_review_render_contract.json",
+      "visual_review_model.md",
+      "visual_review_receipt.json"
+    ],
+    "VISUAL-REVIEW-STATIC-HTML-PROTOTYPE-00": [
+      "visual_review_static_html_packet.json",
+      "visual_review_static_review.html",
+      "visual_review_static_html_receipt.json"
+    ],
+    "STATIC-HTML-USABILITY-REVIEW-SEED-00": [
+      "static_html_usability_review_packet.json",
+      "static_html_usability_questionnaire.json",
+      "static_html_usability_response_fixture.json",
+      "static_html_usability_review_summary.md",
+      "static_html_usability_review_receipt.json"
+    ],
+    "STATIC-HTML-USABILITY-REVISION-00": [
+      "static_html_usability_revision_packet.json",
+      "visual_review_static_review_revised.html",
+      "static_html_usability_revision_summary.md",
+      "static_html_usability_revision_receipt.json"
+    ],
+    "PERTURBATION-OBSERVATION-CAPTURE-00": [
+      "perturbation_observation_packet.json",
+      "perturbation_axis_packet.json",
+      "perturbation_boundary_report.json",
+      "perturbation_observation_summary.md"
+    ],
+    "PERTURBATION-TRUNK-MAPPING-00": [
+      "perturbation_known_trunk_registry.json",
+      "perturbation_trunk_mapping_packet.json",
+      "trunk_similarity_heatmap.json",
+      "mapped_trunk_residue_report.json",
+      "trunk_mapping_boundary_table.json",
+      "perturbation_trunk_mapping_summary.md"
+    ],
+    "PERTURBATION-RESIDUAL-NOVELTY-MAP-00": [
+      "residual_novelty_candidate_map.json",
+      "novel_branch_candidate_packet.json",
+      "reverse_trunk_candidate_report.json",
+      "abstraction_candidate_report.json",
+      "novelty_human_review_packet.json",
+      "residual_novelty_boundary_table.json",
+      "perturbation_residual_novelty_summary.md"
+    ],
+    "PERTURBATION-STRUCTURE-AFFORDANCE-CARD-00": [
+      "theorem_claim_registry.json",
+      "theorem_card_registry.json",
+      "theorem_evidence_ledger.json",
+      "theorem_counterexample_registry.json",
+      "theorem_non_claim_boundary_table.json",
+      "theorem_validation_receipt.md",
+      "perturbation_observation_packet.json",
+      "perturbation_axis_packet.json",
+      "perturbation_trunk_mapping_packet.json",
+      "trunk_similarity_heatmap.json",
+      "residual_novelty_candidate_map.json",
+      "novel_branch_candidate_packet.json",
+      "reverse_trunk_candidate_report.json",
+      "abstraction_candidate_report.json",
+      "novelty_human_review_packet.json",
+      "residual_novelty_boundary_table.json"
     ],
     "PMR-HUMAN-CONSENT-NEGATIVE-CONTROL-00": [
       "pmr_human_consent_negative_control_manifest.json",
