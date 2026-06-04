@@ -1119,6 +1119,13 @@
       "human_review_decision_receipt.json",
       "human_review_summary.md"
     ],
+    "VISUAL-REVIEW-MODEL-00": [
+      "visual_review_model_packet.json",
+      "visual_review_section_index.json",
+      "visual_review_render_contract.json",
+      "visual_review_model.md",
+      "visual_review_receipt.json"
+    ],
     "PERTURBATION-OBSERVATION-CAPTURE-00": [
       "perturbation_observation_packet.json",
       "perturbation_axis_packet.json",

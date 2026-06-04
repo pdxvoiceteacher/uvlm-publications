@@ -13,6 +13,8 @@ from tools.build_public_repro_dashboard import (
     METRIC_SEMANTIC_CONTRACT_BLOCKED_CLAIM_PHRASES,
     METRIC_SEMANTIC_CLAIM_ALLOWED,
     PERTURBATION_STRUCTURE_AFFORDANCE_BLOCKED_CLAIM_PHRASES,
+    VISUAL_REVIEW_MODEL_BLOCKED_CLAIMS,
+    VISUAL_REVIEW_MODEL_CLAIM_ALLOWED,
 )
 from tools.validate_publication_claims import validate_publication_claims
 
@@ -3778,6 +3780,86 @@ def test_claim_validator_rejects_language_governance_overclaims(tmp_path):
         result = validate_publication_claims(paper_root / "PUB_GOV_ARTIFACT_COG_01.md")
         assert result["passed"] is False, claim
         assert result["forbidden_overclaims_found"], claim
+
+
+def test_claim_validator_rejects_visual_review_model_overclaims(tmp_path):
+    paper_root = tmp_path / "paper"
+    paper_root.mkdir(parents=True)
+    base = "not truth certification\nnot deployment authority\nnot final answer release\nlocal fixture only\nrequires external peer review\nnot AI consciousness\nnot Omega detection\nnot live Atlas memory writes\n"
+    for name in (
+        "reproducibility_appendix.md",
+        "claim_boundary_table.md",
+        "artifact_table.md",
+        "reviewer_quickstart.md",
+    ):
+        (paper_root / name).write_text(base, encoding="utf-8")
+    (paper_root / "status.json").write_text(
+        json.dumps(
+            {
+                "paper_id": "PUB-GOV-ARTIFACT-COG-01",
+                "repo": "pdxvoiceteacher/uvlm-publications",
+                "status": "drafted",
+                "claim_level": "internal_preprint_draft",
+                "requires_external_peer_review": True,
+                "not_truth_certification": True,
+                "not_deployment_authority": True,
+                "not_final_answer_release": True,
+                "not_live_model_execution": True,
+                "not_live_model_evaluation": True,
+                "not_production_evaluation": True,
+                "not_ai_consciousness_claim": True,
+            }
+        ),
+        encoding="utf-8",
+    )
+    for claim in VISUAL_REVIEW_MODEL_BLOCKED_CLAIMS:
+        (paper_root / "PUB_GOV_ARTIFACT_COG_01.md").write_text(
+            base + "\nThis publication overclaim says: " + claim, encoding="utf-8"
+        )
+        result = validate_publication_claims(paper_root / "PUB_GOV_ARTIFACT_COG_01.md")
+        assert result["passed"] is False, claim
+        assert result["forbidden_overclaims_found"], claim
+
+
+def test_claim_validator_allows_visual_review_model_bounded_claim(tmp_path):
+    paper_root = tmp_path / "paper"
+    paper_root.mkdir(parents=True)
+    allowed = (
+        "not truth certification\nnot deployment authority\nnot final answer release\nlocal fixture only\n"
+        "requires external peer review\nnot AI consciousness\nnot recursive Sonya federation\n"
+        "not retrosynthesis runtime\nnot Omega detection\nnot live Atlas memory writes\nnot live Sophia calls\n"
+        + VISUAL_REVIEW_MODEL_CLAIM_ALLOWED
+        + "\n"
+    )
+    for name in (
+        "PUB_GOV_ARTIFACT_COG_01.md",
+        "reproducibility_appendix.md",
+        "claim_boundary_table.md",
+        "artifact_table.md",
+        "reviewer_quickstart.md",
+    ):
+        (paper_root / name).write_text(allowed, encoding="utf-8")
+    (paper_root / "status.json").write_text(
+        json.dumps(
+            {
+                "paper_id": "PUB-GOV-ARTIFACT-COG-01",
+                "repo": "pdxvoiceteacher/uvlm-publications",
+                "status": "drafted",
+                "claim_level": "internal_preprint_draft",
+                "requires_external_peer_review": True,
+                "not_truth_certification": True,
+                "not_deployment_authority": True,
+                "not_final_answer_release": True,
+                "not_live_model_execution": True,
+                "not_live_model_evaluation": True,
+                "not_production_evaluation": True,
+                "not_ai_consciousness_claim": True,
+            }
+        ),
+        encoding="utf-8",
+    )
+    result = validate_publication_claims(paper_root / "PUB_GOV_ARTIFACT_COG_01.md")
+    assert result["forbidden_overclaims_found"] == []
 
 
 def test_claim_validator_rejects_language_governance_audit_overclaims(tmp_path):

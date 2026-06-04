@@ -31,6 +31,16 @@ from tools.build_public_repro_dashboard import (
     METRIC_SEMANTIC_CLAIM_ALLOWED,
     PERTURBATION_STRUCTURE_AFFORDANCE_BLOCKED_CLAIM_PHRASES,
     PERTURBATION_STRUCTURE_AFFORDANCE_REQUIRED_BOUNDARY_PHRASES,
+    VISUAL_REVIEW_MODEL_ARTIFACTS,
+    VISUAL_REVIEW_MODEL_BLOCKED_CLAIMS,
+    VISUAL_REVIEW_MODEL_CAUTION_BADGES,
+    VISUAL_REVIEW_MODEL_CLAIM_ALLOWED,
+    VISUAL_REVIEW_MODEL_INPUT_ARTIFACTS,
+    VISUAL_REVIEW_MODEL_PERMITTED_RENDER_TARGETS,
+    VISUAL_REVIEW_MODEL_PROHIBITED_RENDER_CLAIMS,
+    VISUAL_REVIEW_MODEL_REPRO_FRAGMENTS,
+    VISUAL_REVIEW_MODEL_REQUIRED_DOC_PHRASES,
+    VISUAL_REVIEW_MODEL_SECTIONS,
 )
 
 
@@ -211,6 +221,23 @@ REQUIRED_BOUNDARY_PHRASES = (
     *LANGUAGE_GOVERNANCE_AUDIT_REQUIRED_DOC_PHRASES,
     *LANGUAGE_GOVERNANCE_AUDIT_BLOCKED_CLAIMS,
     "build_reviewer_language_audit",
+    "VISUAL-REVIEW-MODEL-00",
+    "future_ui_rendering_contract",
+    "data_model_only_no_ui",
+    "model_is_ui_implementation",
+    "visual_section_count",
+    "language_audit_error_count",
+    "build_visual_review_model",
+    VISUAL_REVIEW_MODEL_CLAIM_ALLOWED,
+    *VISUAL_REVIEW_MODEL_ARTIFACTS,
+    *VISUAL_REVIEW_MODEL_INPUT_ARTIFACTS,
+    *VISUAL_REVIEW_MODEL_SECTIONS,
+    *VISUAL_REVIEW_MODEL_CAUTION_BADGES,
+    *VISUAL_REVIEW_MODEL_REQUIRED_DOC_PHRASES,
+    *VISUAL_REVIEW_MODEL_PERMITTED_RENDER_TARGETS,
+    *VISUAL_REVIEW_MODEL_PROHIBITED_RENDER_CLAIMS,
+    *VISUAL_REVIEW_MODEL_REPRO_FRAGMENTS,
+    *VISUAL_REVIEW_MODEL_BLOCKED_CLAIMS,
     "RUNTIME-METRICS-CORPUS-SEED-00",
     "bounded seed corpus instrumentation only",
     "not population calibration",
@@ -1248,6 +1275,8 @@ def _forbidden_hits(text: str) -> list[str]:
                     or '"federation_authorized": false' in window
                     or "requires population calibration" in window
                     or "grants no" in window
+                    or "without granting" in window
+                    or "or granting" in window
                 ):
                     start = index + len(normalized_phrase)
                     continue
@@ -1410,6 +1439,13 @@ def _forbidden_hits(text: str) -> list[str]:
             if _is_blocked_overclaim_example_context(text, index):
                 start = index + len(normalized_phrase)
                 continue
+            if phrase == "federation" and (
+                any(_normalize(claim) in text[max(0, index - 220) : index + 220] for claim in VISUAL_REVIEW_MODEL_BLOCKED_CLAIMS)
+                or "without implementing a ui or granting" in text[max(0, index - 500) : index]
+                or "it implements no ui and grants no" in text[max(0, index - 500) : index]
+            ):
+                start = index + len(normalized_phrase)
+                continue
             if phrase == "federation" and "federation blocked by default" in text[index : index + 96]:
                 start = index + len(normalized_phrase)
                 continue
@@ -1435,7 +1471,7 @@ def _forbidden_hits(text: str) -> list[str]:
                 continue
             if (
                 phrase in {"truth certification", "product release"}
-                and any(_normalize(claim) in text[max(0, index - 180) : index + 180] for claim in LANGUAGE_GOVERNANCE_AUDIT_BLOCKED_CLAIMS)
+                and any(_normalize(claim) in text[max(0, index - 180) : index + 180] for claim in (*LANGUAGE_GOVERNANCE_AUDIT_BLOCKED_CLAIMS, *VISUAL_REVIEW_MODEL_BLOCKED_CLAIMS))
             ):
                 start = index + len(normalized_phrase)
                 continue
