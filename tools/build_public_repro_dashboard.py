@@ -5764,7 +5764,7 @@ PERTURBATION_STRUCTURE_AFFORDANCE_REQUIRED_BOUNDARY_PHRASES = (
     "not model superiority proof",
     "not human benefit proof",
     "not market validation",
-]
+)
 RETROSYNTHESIS_LOCAL_PROTOTYPE_PHASE = {
     "phase_id": "RETROSYNTHESIS-LOCAL-PROTOTYPE-00",
     "repo": "pdxvoiceteacher/CoherenceLattice",
@@ -7079,6 +7079,195 @@ STATIC_HTML_USABILITY_REVISION_PHASE = {
     "claims_blocked": STATIC_HTML_USABILITY_REVISION_BLOCKED_CLAIMS,
     "claim_allowed": STATIC_HTML_USABILITY_REVISION_CLAIM_ALLOWED,
     "reviewer_caution": "STATIC-HTML-USABILITY-REVISION-00 is a deterministic local usability revision only; it is not a real user study, human-subject study, human benefit proof, market validation, product readiness, UI release, product release, deployment, provider runtime, network runtime, memory write, or Atlas admission.",
+}
+
+
+AI_RECEIPT_ARCHITECTURE_COMMAND = "python -c \"from pathlib import Path; from coherence.product.triadic_llm_metrics_smoke import build_triadic_llm_metrics_smoke; from coherence.ucc.sophia_control_review import build_sophia_ucc_control_review; from coherence.product.ai_forensics_dossier import build_ai_forensics_dossier; from coherence.review.human_review_ux import build_human_review_ux_packet; from coherence.product.raw_vs_triadic_comparison import build_raw_vs_triadic_comparison; from coherence.local_review.metric_semantics import build_metric_semantic_reconciliation_packet; from coherence.governance.language_audit_runtime import build_reviewer_language_audit; from coherence.product.visual_review_model import build_visual_review_model; from coherence.product.visual_review_static_html import build_visual_review_static_html; from coherence.product.static_html_usability_review import build_static_html_usability_review_seed; from coherence.product.static_html_usability_revision import build_static_html_usability_revision; from coherence.product.ai_receipt_architecture import build_ai_receipt_architecture; root=Path(r'C:\\UVLM\\run_artifacts\\triadic_llm_metrics_smoke'); bridge=root / 'bridge'; build_triadic_llm_metrics_smoke(root); build_sophia_ucc_control_review(bridge); build_ai_forensics_dossier(bridge); build_human_review_ux_packet(bridge); build_raw_vs_triadic_comparison(bridge); build_metric_semantic_reconciliation_packet(bridge); build_reviewer_language_audit(bridge); build_visual_review_model(bridge); build_visual_review_static_html(bridge); build_static_html_usability_review_seed(bridge); build_static_html_usability_revision(bridge); build_ai_receipt_architecture(bridge)\""
+AI_RECEIPT_ARCHITECTURE_ARTIFACTS = [
+    "ai_receipt_architecture_packet.json",
+    "ai_receipt_event_chain.json",
+    "ai_receipt_architecture.md",
+    "ai_receipt_architecture_receipt.json",
+]
+AI_RECEIPT_ARCHITECTURE_INPUT_ARTIFACTS = [
+    "sonya_model_candidate_packet.json",
+    "claim_evidence_map.json",
+    "unsupported_claim_report.json",
+    "ai_forensics_dossier_packet.json",
+    "ai_forensics_dossier_section_index.json",
+    "ai_forensics_dossier.md",
+    "ai_forensics_dossier_receipt.json",
+    "human_review_ux_packet.json",
+    "human_review_action_menu.json",
+    "human_review_decision_receipt.json",
+    "raw_vs_triadic_comparison_packet.json",
+    "raw_output_risk_report.json",
+    "triadic_added_value_report.json",
+    "claim_visibility_delta.json",
+    "control_visibility_delta.json",
+    "review_burden_delta.json",
+    "sophia_ucc_control_review_packet.json",
+    "ucc_control_gap_report.json",
+    "ucc_standards_source_registry.json",
+    "ucc_materiality_profile.json",
+    "metric_semantic_reconciliation_packet.json",
+    "reviewer_language_audit_report.json",
+    "reviewer_language_audit_summary.md",
+    "visual_review_model_packet.json",
+    "visual_review_section_index.json",
+    "visual_review_render_contract.json",
+    "visual_review_receipt.json",
+    "visual_review_static_html_packet.json",
+    "visual_review_static_review.html",
+    "visual_review_static_html_receipt.json",
+    "static_html_usability_review_packet.json",
+    "static_html_usability_questionnaire.json",
+    "static_html_usability_response_fixture.json",
+    "static_html_usability_review_summary.md",
+    "static_html_usability_review_receipt.json",
+    "static_html_usability_revision_packet.json",
+    "visual_review_static_review_revised.html",
+    "static_html_usability_revision_summary.md",
+    "static_html_usability_revision_receipt.json",
+    "pmr_local_runtime_artifact_index.json",
+    "artifact_inventory.json",
+    "export_bundle_parity_report.json",
+]
+AI_RECEIPT_ARCHITECTURE_EVENT_CHAIN = [
+    "candidate_output_captured",
+    "claim_evidence_mapped",
+    "unsupported_claims_identified",
+    "ucc_sophia_controls_reviewed",
+    "materiality_profile_applied",
+    "ai_forensics_dossier_built",
+    "human_review_actions_scaffolded",
+    "raw_vs_triadic_compared",
+    "metric_semantics_reconciled",
+    "language_governance_audited",
+    "visual_review_model_built",
+    "static_html_review_rendered",
+    "static_html_usability_seed_recorded",
+    "static_html_usability_revision_applied",
+    "export_parity_checked",
+]
+AI_RECEIPT_ARCHITECTURE_REQUIRED_DOC_PHRASES = [
+    "AI Receipt Architecture",
+    "A watermark says AI was here. A receipt says what happened.",
+    "The receipt records source inputs, candidate output, claim support, unsupported claims, governance controls, metric semantic labels, human review status, provenance, and export parity.",
+    "The receipt is evidence organization, not truth certification.",
+    "The receipt is provenance and traceability, not accepted-evidence authority.",
+    "The receipt is not product release.",
+    "The receipt is not compliance certification.",
+    "The receipt is not a real user study.",
+    "The receipt is not human benefit proof.",
+    "The receipt is not market validation.",
+    "Human review remains required.",
+    "Unsupported claims remain visible.",
+    "Source-linked claim count is recorded as observed, not inflated.",
+    "Receipt events are non-authoritative records.",
+]
+AI_RECEIPT_ARCHITECTURE_PRODUCT_FRAMING = [
+    "A watermark says AI was here. A receipt says what happened.",
+    "AI Receipt Architecture records what happened.",
+    "Receipt architecture wraps the artifact-backed review stack without certifying truth or releasing product.",
+]
+AI_RECEIPT_ARCHITECTURE_REPRO_FRAGMENTS = [
+    "build_triadic_llm_metrics_smoke",
+    "build_sophia_ucc_control_review",
+    "build_ai_forensics_dossier",
+    "build_human_review_ux_packet",
+    "build_raw_vs_triadic_comparison",
+    "build_metric_semantic_reconciliation_packet",
+    "build_reviewer_language_audit",
+    "build_visual_review_model",
+    "build_visual_review_static_html",
+    "build_static_html_usability_review_seed",
+    "build_static_html_usability_revision",
+    "build_ai_receipt_architecture",
+]
+AI_RECEIPT_ARCHITECTURE_BLOCKED_CLAIMS = [
+    "AI Receipt Architecture certifies truth",
+    "AI Receipt Architecture grants accepted-evidence authority",
+    "AI Receipt Architecture is product release",
+    "AI Receipt Architecture certifies compliance",
+    "AI Receipt Architecture is an audit opinion",
+    "AI Receipt Architecture is professional attestation",
+    "AI Receipt Architecture authorizes final answers",
+    "AI Receipt Architecture authorizes deployment",
+    "AI Receipt Architecture performs provider runtime",
+    "AI Receipt Architecture performs network runtime",
+    "AI Receipt Architecture authorizes federation",
+    "AI Receipt Architecture authorizes memory write",
+    "AI Receipt Architecture authorizes Atlas memory admission",
+    "AI Receipt Architecture proves theorem",
+    "AI Receipt Architecture proves product readiness",
+    "AI Receipt Architecture proves human benefit",
+    "AI Receipt Architecture is market validation",
+    "AI Receipt Architecture proves consciousness",
+    "AI Receipt Architecture detects Omega",
+    "AI Receipt Architecture proves universal ontology",
+    "receipt event chain is proof",
+    "receipt event chain certifies truth",
+    "receipt provenance is accepted evidence",
+    "a receipt means the AI answer is correct",
+    "zero language audit errors means product release is approved",
+    "static usability revision means product-market fit",
+]
+AI_RECEIPT_ARCHITECTURE_CLAIM_ALLOWED = "AI-RECEIPT-ARCHITECTURE-00 records the artifact-backed review chain as AI Receipt Architecture, organizing source inputs, candidate output, claim support, unsupported claims, controls, metric semantics, language audit, visual review, usability scaffolds, PMR provenance, and export parity without certifying truth, accepting evidence, releasing product, deploying runtime, writing memory, admitting Atlas memory, or proving human benefit or market validation."
+AI_RECEIPT_ARCHITECTURE_DASHBOARD_SUMMARY = {
+    "architecture_status": "completed",
+    "architecture_mode": "ai_receipt_architecture",
+    "product_framing": "AI Receipt Architecture",
+    "product_sentence": "A watermark says AI was here. A receipt says what happened.",
+    "receipt_event_count": 15,
+    "event_rows": 15,
+    "source_linked_claim_count": 0,
+    "unsupported_claim_count": 1,
+    "control_review_status": "completed_diagnostic_review",
+    "metric_semantic_status": "active_profile_proxy_reconciliation",
+    "language_audit_error_count": 0,
+    "visual_review_status": "completed",
+    "static_html_status": "completed",
+    "usability_review_status": "completed",
+    "usability_revision_status": "completed",
+    "receipt_is_evidence_organization": True,
+    "receipt_is_not_truth_certification": True,
+    "receipt_is_not_accepted_evidence_authority": True,
+    "receipt_is_not_product_release": True,
+    "receipt_requires_human_review": True,
+    "human_subject_study_performed": False,
+    "real_user_study_performed": False,
+    "human_benefit_proof_emitted": False,
+    "market_validation_emitted": False,
+    "product_readiness_emitted": False,
+    "product_release_performed": False,
+    "provider_runtime_performed": False,
+    "deployment_performed": False,
+    "final_answer_emitted": False,
+    "truth_certification_emitted": False,
+    "accepted_evidence_authority_granted": False,
+    "compliance_certification_emitted": False,
+    "memory_write_performed": False,
+    "atlas_memory_admission_performed": False,
+}
+AI_RECEIPT_ARCHITECTURE_PHASE = {
+    "phase_id": "AI-RECEIPT-ARCHITECTURE-00",
+    "repo": "pdxvoiceteacher/CoherenceLattice",
+    "source_phase": "AI-RECEIPT-ARCHITECTURE-00",
+    "status": "accepted_local_validation",
+    "publication_status": "dashboard_synced",
+    "evidence_type": "artifact_backed_ai_receipt_architecture",
+    "product_posture": "receipt_architecture_only_no_truth_compliance_product_or_runtime_authority",
+    "authority_posture": "non_authoritative",
+    "public_claim_boundary": "receipt_architecture_only_no_truth_accepted_evidence_compliance_product_deployment_memory_or_benefit_authority",
+    "primary_artifacts": AI_RECEIPT_ARCHITECTURE_ARTIFACTS,
+    "input_artifacts": AI_RECEIPT_ARCHITECTURE_INPUT_ARTIFACTS,
+    "event_chain": AI_RECEIPT_ARCHITECTURE_EVENT_CHAIN,
+    "dashboard_summary": AI_RECEIPT_ARCHITECTURE_DASHBOARD_SUMMARY,
+    "reproduction_command_summary": AI_RECEIPT_ARCHITECTURE_COMMAND,
+    "claims_blocked": AI_RECEIPT_ARCHITECTURE_BLOCKED_CLAIMS,
+    "claim_allowed": AI_RECEIPT_ARCHITECTURE_CLAIM_ALLOWED,
+    "reviewer_caution": "AI-RECEIPT-ARCHITECTURE-00 organizes an artifact-backed receipt chain only; it is not truth certification, accepted-evidence authority, compliance certification, audit opinion, professional attestation, product release, provider runtime, deployment, federation, memory write, Atlas admission, human benefit proof, market validation, product readiness, consciousness proof, Omega detection, or universal ontology proof.",
 }
 
 
@@ -9269,6 +9458,7 @@ VISUAL_REVIEW_MODEL_PHASE,
 VISUAL_REVIEW_STATIC_HTML_PHASE,
 STATIC_HTML_USABILITY_REVIEW_PHASE,
 STATIC_HTML_USABILITY_REVISION_PHASE,
+AI_RECEIPT_ARCHITECTURE_PHASE,
 PERTURBATION_OBSERVATION_CAPTURE_PHASE,
 PERTURBATION_TRUNK_MAPPING_PHASE,
 PERTURBATION_RESIDUAL_NOVELTY_MAP_PHASE,
@@ -11387,6 +11577,19 @@ BOUNDARIES.extend(
 )
 BOUNDARIES.extend(
     [
+        AI_RECEIPT_ARCHITECTURE_CLAIM_ALLOWED,
+        *AI_RECEIPT_ARCHITECTURE_ARTIFACTS,
+        *AI_RECEIPT_ARCHITECTURE_INPUT_ARTIFACTS,
+        *AI_RECEIPT_ARCHITECTURE_EVENT_CHAIN,
+        *AI_RECEIPT_ARCHITECTURE_REQUIRED_DOC_PHRASES,
+        *AI_RECEIPT_ARCHITECTURE_PRODUCT_FRAMING,
+        *AI_RECEIPT_ARCHITECTURE_REPRO_FRAGMENTS,
+        "Blocked overclaim examples for AI receipt architecture publication boundaries.",
+        *AI_RECEIPT_ARCHITECTURE_BLOCKED_CLAIMS,
+    ]
+)
+BOUNDARIES.extend(
+    [
         "RETROSYNTHESIS-LOCAL-PROTOTYPE-00 is bounded local candidate generation only.",
         RETROSYNTHESIS_LOCAL_PROTOTYPE_CLAIM_ALLOWED,
         "Candidate hypotheses are not truth.",
@@ -11867,6 +12070,18 @@ def dashboard_payload() -> dict[str, Any]:
         "not_static_html_usability_revision_deployment": True,
         "not_static_html_usability_revision_memory_write": True,
         "not_static_html_usability_revision_atlas_admission": True,
+        "ai_receipt_architecture_00_indexed": True,
+        "ai_receipt_architecture_status": "completed",
+        "ai_receipt_architecture_mode": "ai_receipt_architecture",
+        "ai_receipt_architecture_event_count": 15,
+        "not_ai_receipt_architecture_truth_certification": True,
+        "not_ai_receipt_architecture_accepted_evidence_authority": True,
+        "not_ai_receipt_architecture_compliance_certification": True,
+        "not_ai_receipt_architecture_product_release": True,
+        "not_ai_receipt_architecture_provider_runtime": True,
+        "not_ai_receipt_architecture_deployment": True,
+        "not_ai_receipt_architecture_memory_write": True,
+        "not_ai_receipt_architecture_atlas_admission": True,
         "perturbation_observation_capture_00_indexed": True,
         "not_perturbation_observation_novelty_discovery": True,
         "not_perturbation_observation_certified_diagnosis": True,
@@ -11942,6 +12157,7 @@ def reproducibility_index() -> dict[str, Any]:
                 {"name": "Visual Review Static HTML Prototype Python entrypoint", "command": VISUAL_REVIEW_STATIC_HTML_COMMAND},
                 {"name": "Static HTML Usability Review Seed Python entrypoint", "command": STATIC_HTML_USABILITY_REVIEW_COMMAND},
                 {"name": "Static HTML Usability Revision Python entrypoint", "command": STATIC_HTML_USABILITY_REVISION_COMMAND},
+                {"name": "AI Receipt Architecture Python entrypoint", "command": AI_RECEIPT_ARCHITECTURE_COMMAND},
                 {"name": "Perturbation novelty lane Python entrypoint", "command": PERTURBATION_NOVELTY_LANE_COMMAND},
                 {"name": "Perturbation structure-affordance theorem card Python entrypoint", "command": PERTURBATION_STRUCTURE_AFFORDANCE_CARD_COMMAND},
                 {"name": "PMR Context Availability Ledger acceptance", "command": PMR_CONTEXT_AVAILABILITY_LEDGER_00_COMMAND},
@@ -12610,6 +12826,18 @@ def status_payload() -> dict[str, Any]:
         "not_static_html_usability_revision_deployment": True,
         "not_static_html_usability_revision_memory_write": True,
         "not_static_html_usability_revision_atlas_admission": True,
+        "ai_receipt_architecture_00_indexed": True,
+        "ai_receipt_architecture_status": "completed",
+        "ai_receipt_architecture_mode": "ai_receipt_architecture",
+        "ai_receipt_architecture_event_count": 15,
+        "not_ai_receipt_architecture_truth_certification": True,
+        "not_ai_receipt_architecture_accepted_evidence_authority": True,
+        "not_ai_receipt_architecture_compliance_certification": True,
+        "not_ai_receipt_architecture_product_release": True,
+        "not_ai_receipt_architecture_provider_runtime": True,
+        "not_ai_receipt_architecture_deployment": True,
+        "not_ai_receipt_architecture_memory_write": True,
+        "not_ai_receipt_architecture_atlas_admission": True,
         "perturbation_observation_capture_00_indexed": True,
         "not_perturbation_observation_novelty_discovery": True,
         "not_perturbation_observation_certified_diagnosis": True,
@@ -12697,10 +12925,17 @@ def docs() -> dict[str, str]:
     static_html_usability_revision_banner_terms = "\n".join(f"- {term}" for term in STATIC_HTML_USABILITY_REVISION_NON_AUTHORITY_BANNERS)
     static_html_usability_revision_repro_fragments = "\n".join(f"- {fragment}" for fragment in STATIC_HTML_USABILITY_REVISION_REPRO_FRAGMENTS)
     static_html_usability_revision_blocked = "\n".join(f"- {claim}" for claim in STATIC_HTML_USABILITY_REVISION_BLOCKED_CLAIMS)
+    ai_receipt_architecture_artifacts = "\n".join(f"- {artifact}" for artifact in AI_RECEIPT_ARCHITECTURE_ARTIFACTS)
+    ai_receipt_architecture_input_artifacts = "\n".join(f"- {artifact}" for artifact in AI_RECEIPT_ARCHITECTURE_INPUT_ARTIFACTS)
+    ai_receipt_architecture_event_chain = "\n".join(f"- {event}" for event in AI_RECEIPT_ARCHITECTURE_EVENT_CHAIN)
+    ai_receipt_architecture_doc_phrases = "\n".join(f"- {phrase}" for phrase in AI_RECEIPT_ARCHITECTURE_REQUIRED_DOC_PHRASES)
+    ai_receipt_architecture_product_framing = "\n".join(f"- {phrase}" for phrase in AI_RECEIPT_ARCHITECTURE_PRODUCT_FRAMING)
+    ai_receipt_architecture_repro_fragments = "\n".join(f"- {fragment}" for fragment in AI_RECEIPT_ARCHITECTURE_REPRO_FRAGMENTS)
+    ai_receipt_architecture_blocked = "\n".join(f"- {claim}" for claim in AI_RECEIPT_ARCHITECTURE_BLOCKED_CLAIMS)
     return {
         "README.md": "# Experiment Suite Docs\n\nPublic reviewer documentation for the claim-bounded reproducibility dashboard.\n",
         "assets/README.md": "# Assets\n\nOptional static assets for the public reproducibility dashboard.\n",
-        "index.md": f"# Public Experiment Suite Dashboard\n\nThis dashboard presents accepted evidence for reviewer orientation. It is not truth certification, not deployment authority, not final answer release, local fixture only, and requires external peer review.\n\n## Accepted evidence\n\n| Phase | Repo | Status | What this supports | Reviewer caution |\n| --- | --- | --- | --- | --- |\n{phase_rows}\n\n## Reviewer path\n\nStart with claim boundaries, then read the governed artifact cognition paper, WAVE Rosetta paper, SONYA-AEGIS-SMOKE-02, WAVE family, UNI-02D Sonya gate, and RETRO-LANE-00, Public Utility Alpha, Raw Baseline Comparison, Evidence Review Pack, RW-COMP-01, RW-COMP-02, Retrosynthesis Sandbox Cycle, Evidence Review Pack second-pass, RW-COMP-03, Universal Architecture Scaffold, Sonya Adapter Contract Registry, Sonya Adapter Smoke, Sonya Local Fixture Adapter, and Evidence Review Pack local adapter, Evidence Review Pack local adapter revision, RW-COMP local adapter, PMR doctrine, PMR local artifact index, PMR GPCU utility scoring, PMR lifecycle state machine, PMR lifecycle audit preflight, PMR Sophia lifecycle audit review, PMR destructive-action authorization preflight, PMR architecture diversity checkpoint, PMR simulation baseline comparison, PMR simulation statistical analysis, PMR federation stress corpus, PMR human provenance context, Sonya Local Fixture Adapter multi-route, and Sonya Local Fixture Adapter lineage clarity, Local Review metrics and flow, Metric Semantic Contract, Language Governance, Language Governance Audit Runtime, and Runtime Metrics Seed Corpus, PMR local queryable store, Retrosynthesis Readiness, Retrosynthesis Local Prototype, and Atlas Local Memory Admission Readiness, Atlas Local Memory Admission Prototype, Local-test Proxy Review, AI Context Performance Continuity, Theorem Validation Pathway, and COOP Entropy Dividend, Triadic LLM Metrics Smoke, UCC Sophia Control Forensics, UCC Standards Source Registry and Materiality, Triadic LLM Smoke PMR Inventory Contract Repair, AI Forensics Dossier, Human Review UX, Visual Review Model, Visual Review Static HTML Prototype, Static HTML Usability Review Seed, and Static HTML Usability Revision, Perturbation Observation Capture, Perturbation Trunk Mapping, and Perturbation Residual Novelty Map, and Perturbation Structure-Affordance Card pages.\n\n## What this proves\n\nIt proves only that accepted local fixture artifacts and draft publication materials are organized for review.\n\n## What this does not prove\n\nNo oracle posture, no deployment posture, no final-answer posture, no AI consciousness claim, and no universal ontology claim.\n\n## Phase pages\n\n- [SONYA-AEGIS-SMOKE-02](sonya-aegis-smoke-02.md)\n- [WAVE Gold-Physics](wave-gold-physics.md)\n- [UNI-02D Sonya gate](uni02d-sonya-gate.md)\n- [RETRO-LANE-00](retro-lane-00.md)\n- [Public Utility Alpha](public-utility-alpha.md)\n- [Raw Baseline Comparison](raw-baseline-comparison.md)\n- [Evidence Review Pack](evidence-review-pack.md)\n- [RW-COMP-01](rw-comp-01.md)\n- [RW-COMP-02](rw-comp-02.md)\n- [Retrosynthesis Sandbox Cycle](retrosynthesis-sandbox-cycle.md)\n- [Evidence Review Pack second pass](evidence-review-pack-second-pass.md)\n- [RW-COMP-03](rw-comp-03.md)\n- [Universal Architecture Scaffold](universal-architecture.md)\n- [Sonya Adapter Contract Registry](sonya-adapter-contract-registry.md)\n- [Sonya required membrane checkpoint](sonya-required-membrane-checkpoint.md)\n- [TEL event stack](tel-event-stack.md)\n- [Sonya Adapter Smoke](sonya-adapter-smoke.md)\n- [Sonya Local Fixture Adapter](sonya-local-fixture-adapter.md)\n- [Evidence Review Pack local adapter](evidence-review-pack-local-adapter.md)\n- [Evidence Review Pack local adapter revision](evidence-review-pack-local-adapter-revision.md)\n- [RW-COMP local adapter](rw-comp-local-adapter.md)\n- [Provenance Memory Reservoir](provenance-memory-reservoir.md)\n- [PMR local artifact index](pmr-local-artifact-index.md)\n- [Ontology Claim Registry](ontology-claim-registry.md)\n- [Local Sonya path portability](local-sonya-path-portability.md)\n- [TB Product Slice](tb-product-slice.md)\n- [TB Product Slice 01](tb-product-slice-01.md)\n- [Sonya Local Fixture Adapter multi-route](sonya-local-fixture-adapter-multi-route.md)\n- [Sonya Local Fixture Adapter lineage clarity](sonya-local-fixture-adapter-lineage.md)\n- [Local Review Runtime V0](local-review-runtime-v0.md)\n- [Local Review metrics and flow](local-review-metrics-flow.md)\n- [Runtime metrics seed corpus](runtime-metrics-seed-corpus.md)\n- [PMR local queryable store](pmr-local-queryable-store.md)\n- [Retrosynthesis readiness](retrosynthesis-readiness.md)\n- [Retrosynthesis local prototype](retrosynthesis-local-prototype.md)\n- [Atlas local memory admission readiness](atlas-local-memory-admission-readiness.md)\n- [AI Forensics Dossier](ai-forensics-dossier.md)\n- [Human Review UX](human-review-ux.md)\n- [Visual Review Model](visual-review-model.md)\n- [Visual Review Static HTML Prototype](visual-review-static-html-prototype.md)\n- [Perturbation Observation Capture](perturbation-observation-capture.md)\n- [Perturbation Trunk Mapping](perturbation-trunk-mapping.md)\n- [Perturbation Residual Novelty Map](perturbation-residual-novelty-map.md)\n- [Perturbation Structure-Affordance Card](perturbation-structure-affordance-card.md)\n- [Governed artifact cognition paper](governed-artifact-cognition-paper.md)\n- [Waveform Rosetta paper](waveform-rosetta-paper.md)\n",
+        "index.md": f"# Public Experiment Suite Dashboard\n\nThis dashboard presents accepted evidence for reviewer orientation. It is not truth certification, not deployment authority, not final answer release, local fixture only, and requires external peer review.\n\n## Accepted evidence\n\n| Phase | Repo | Status | What this supports | Reviewer caution |\n| --- | --- | --- | --- | --- |\n{phase_rows}\n\n## Reviewer path\n\nStart with claim boundaries, then read the governed artifact cognition paper, WAVE Rosetta paper, SONYA-AEGIS-SMOKE-02, WAVE family, UNI-02D Sonya gate, and RETRO-LANE-00, Public Utility Alpha, Raw Baseline Comparison, Evidence Review Pack, RW-COMP-01, RW-COMP-02, Retrosynthesis Sandbox Cycle, Evidence Review Pack second-pass, RW-COMP-03, Universal Architecture Scaffold, Sonya Adapter Contract Registry, Sonya Adapter Smoke, Sonya Local Fixture Adapter, and Evidence Review Pack local adapter, Evidence Review Pack local adapter revision, RW-COMP local adapter, PMR doctrine, PMR local artifact index, PMR GPCU utility scoring, PMR lifecycle state machine, PMR lifecycle audit preflight, PMR Sophia lifecycle audit review, PMR destructive-action authorization preflight, PMR architecture diversity checkpoint, PMR simulation baseline comparison, PMR simulation statistical analysis, PMR federation stress corpus, PMR human provenance context, Sonya Local Fixture Adapter multi-route, and Sonya Local Fixture Adapter lineage clarity, Local Review metrics and flow, Metric Semantic Contract, Language Governance, Language Governance Audit Runtime, and Runtime Metrics Seed Corpus, PMR local queryable store, Retrosynthesis Readiness, Retrosynthesis Local Prototype, and Atlas Local Memory Admission Readiness, Atlas Local Memory Admission Prototype, Local-test Proxy Review, AI Context Performance Continuity, Theorem Validation Pathway, and COOP Entropy Dividend, Triadic LLM Metrics Smoke, UCC Sophia Control Forensics, UCC Standards Source Registry and Materiality, Triadic LLM Smoke PMR Inventory Contract Repair, AI Forensics Dossier, Human Review UX, Visual Review Model, Visual Review Static HTML Prototype, Static HTML Usability Review Seed, Static HTML Usability Revision, and AI Receipt Architecture, Perturbation Observation Capture, Perturbation Trunk Mapping, and Perturbation Residual Novelty Map, and Perturbation Structure-Affordance Card pages.\n\n## What this proves\n\nIt proves only that accepted local fixture artifacts and draft publication materials are organized for review.\n\n## What this does not prove\n\nNo oracle posture, no deployment posture, no final-answer posture, no AI consciousness claim, and no universal ontology claim.\n\n## Phase pages\n\n- [SONYA-AEGIS-SMOKE-02](sonya-aegis-smoke-02.md)\n- [WAVE Gold-Physics](wave-gold-physics.md)\n- [UNI-02D Sonya gate](uni02d-sonya-gate.md)\n- [RETRO-LANE-00](retro-lane-00.md)\n- [Public Utility Alpha](public-utility-alpha.md)\n- [Raw Baseline Comparison](raw-baseline-comparison.md)\n- [Evidence Review Pack](evidence-review-pack.md)\n- [RW-COMP-01](rw-comp-01.md)\n- [RW-COMP-02](rw-comp-02.md)\n- [Retrosynthesis Sandbox Cycle](retrosynthesis-sandbox-cycle.md)\n- [Evidence Review Pack second pass](evidence-review-pack-second-pass.md)\n- [RW-COMP-03](rw-comp-03.md)\n- [Universal Architecture Scaffold](universal-architecture.md)\n- [Sonya Adapter Contract Registry](sonya-adapter-contract-registry.md)\n- [Sonya required membrane checkpoint](sonya-required-membrane-checkpoint.md)\n- [TEL event stack](tel-event-stack.md)\n- [Sonya Adapter Smoke](sonya-adapter-smoke.md)\n- [Sonya Local Fixture Adapter](sonya-local-fixture-adapter.md)\n- [Evidence Review Pack local adapter](evidence-review-pack-local-adapter.md)\n- [Evidence Review Pack local adapter revision](evidence-review-pack-local-adapter-revision.md)\n- [RW-COMP local adapter](rw-comp-local-adapter.md)\n- [Provenance Memory Reservoir](provenance-memory-reservoir.md)\n- [PMR local artifact index](pmr-local-artifact-index.md)\n- [Ontology Claim Registry](ontology-claim-registry.md)\n- [Local Sonya path portability](local-sonya-path-portability.md)\n- [TB Product Slice](tb-product-slice.md)\n- [TB Product Slice 01](tb-product-slice-01.md)\n- [Sonya Local Fixture Adapter multi-route](sonya-local-fixture-adapter-multi-route.md)\n- [Sonya Local Fixture Adapter lineage clarity](sonya-local-fixture-adapter-lineage.md)\n- [Local Review Runtime V0](local-review-runtime-v0.md)\n- [Local Review metrics and flow](local-review-metrics-flow.md)\n- [Runtime metrics seed corpus](runtime-metrics-seed-corpus.md)\n- [PMR local queryable store](pmr-local-queryable-store.md)\n- [Retrosynthesis readiness](retrosynthesis-readiness.md)\n- [Retrosynthesis local prototype](retrosynthesis-local-prototype.md)\n- [Atlas local memory admission readiness](atlas-local-memory-admission-readiness.md)\n- [AI Forensics Dossier](ai-forensics-dossier.md)\n- [Human Review UX](human-review-ux.md)\n- [Visual Review Model](visual-review-model.md)\n- [Visual Review Static HTML Prototype](visual-review-static-html-prototype.md)\n- [Perturbation Observation Capture](perturbation-observation-capture.md)\n- [Perturbation Trunk Mapping](perturbation-trunk-mapping.md)\n- [Perturbation Residual Novelty Map](perturbation-residual-novelty-map.md)\n- [Perturbation Structure-Affordance Card](perturbation-structure-affordance-card.md)\n- [Governed artifact cognition paper](governed-artifact-cognition-paper.md)\n- [Waveform Rosetta paper](waveform-rosetta-paper.md)\n",
         "language-governance.md": f"""# Language Governance
 
 ## What was validated
@@ -12897,6 +13132,9 @@ VISUAL-REVIEW-STATIC-HTML-PROTOTYPE-00 renders this data model into a local stat
 STATIC-HTML-USABILITY-REVIEW-SEED-00 adds a deterministic local-test usability review scaffold over the static HTML prototype without claiming a real user study or product validation.
 
 STATIC-HTML-USABILITY-REVISION-00 applies those deterministic local themes to a revised static review surface while preserving the original HTML and non-authority boundaries.
+## AI Receipt Architecture linkage
+
+AI-RECEIPT-ARCHITECTURE-00 records this artifact-backed review stack in AI Receipt Architecture. A watermark says AI was here. A receipt says what happened. Receipt architecture wraps the artifact-backed review stack without certifying truth or releasing product.
 
 ## Blocked visual-review overclaim examples
 
@@ -12972,6 +13210,9 @@ VISUAL-REVIEW-STATIC-HTML-PROTOTYPE-00 synchronizes a local static HTML review s
 STATIC-HTML-USABILITY-REVIEW-SEED-00 records a deterministic local usability-review scaffold over this static HTML prototype; it is not a real user study, human benefit proof, market validation, or product readiness.
 
 STATIC-HTML-USABILITY-REVISION-00 applies the local seed themes to a revised static review surface while preserving the original HTML, no-external-resource posture, and non-authority banners.
+## AI Receipt Architecture linkage
+
+AI-RECEIPT-ARCHITECTURE-00 records this artifact-backed review stack in AI Receipt Architecture. A watermark says AI was here. A receipt says what happened. Receipt architecture wraps the artifact-backed review stack without certifying truth or releasing product.
 
 ## Blocked static HTML overclaim examples
 
@@ -13057,6 +13298,9 @@ STATIC-HTML-USABILITY-REVIEW-SEED-00 synchronizes a deterministic local usabilit
 ## Static HTML usability revision linkage
 
 STATIC-HTML-USABILITY-REVISION-00 applies these deterministic local-test revision themes to produce a revised local static review surface while preserving the original HTML and claiming no real user study, product validation, or runtime authority.
+## AI Receipt Architecture linkage
+
+AI-RECEIPT-ARCHITECTURE-00 records this artifact-backed review stack in AI Receipt Architecture. A watermark says AI was here. A receipt says what happened. Receipt architecture wraps the artifact-backed review stack without certifying truth or releasing product.
 
 ## Blocked usability overclaim examples
 
@@ -13158,6 +13402,89 @@ The revised static review surface adds or strengthens:
 ## Allowed bounded claim
 
 {STATIC_HTML_USABILITY_REVISION_CLAIM_ALLOWED}
+
+## AI Receipt Architecture linkage
+
+AI-RECEIPT-ARCHITECTURE-00 wraps this revised static review surface into AI Receipt Architecture. A watermark says AI was here. A receipt says what happened. Receipt architecture wraps the artifact-backed review stack without certifying truth or releasing product.
+""",
+        "ai-receipt-architecture.md": f"""# AI Receipt Architecture
+
+## What was validated
+
+AI-RECEIPT-ARCHITECTURE-00 synchronizes the locally validated AI Receipt Architecture to publication surfaces. A watermark says AI was here. A receipt says what happened. AI Receipt Architecture records what happened. Receipt architecture wraps the artifact-backed review stack without certifying truth or releasing product. This is publication/dashboard synchronization only and grants no runtime authority.
+
+## Dashboard summary
+
+- architecture_status = completed
+- architecture_mode = ai_receipt_architecture
+- product_framing = AI Receipt Architecture
+- product_sentence = A watermark says AI was here. A receipt says what happened.
+- receipt_event_count = 15
+- event_rows = 15
+- source_linked_claim_count = 0
+- unsupported_claim_count = 1
+- control_review_status = completed_diagnostic_review
+- metric_semantic_status = active_profile_proxy_reconciliation
+- language_audit_error_count = 0
+- visual_review_status = completed
+- static_html_status = completed
+- usability_review_status = completed
+- usability_revision_status = completed
+- receipt_is_evidence_organization = true
+- receipt_is_not_truth_certification = true
+- receipt_is_not_accepted_evidence_authority = true
+- receipt_is_not_product_release = true
+- receipt_requires_human_review = true
+- human_subject_study_performed = false
+- real_user_study_performed = false
+- human_benefit_proof_emitted = false
+- market_validation_emitted = false
+- product_readiness_emitted = false
+- product_release_performed = false
+- provider_runtime_performed = false
+- deployment_performed = false
+- final_answer_emitted = false
+- truth_certification_emitted = false
+- accepted_evidence_authority_granted = false
+- compliance_certification_emitted = false
+- memory_write_performed = false
+- atlas_memory_admission_performed = false
+
+## Product framing
+
+{ai_receipt_architecture_product_framing}
+
+## Required receipt language
+
+{ai_receipt_architecture_doc_phrases}
+
+## Receipt event chain
+
+{ai_receipt_architecture_event_chain}
+
+## Output artifacts
+
+{ai_receipt_architecture_artifacts}
+
+## Input artifact references
+
+{ai_receipt_architecture_input_artifacts}
+
+## Reproducibility fragments
+
+{ai_receipt_architecture_repro_fragments}
+
+```powershell
+{AI_RECEIPT_ARCHITECTURE_COMMAND}
+```
+
+## Blocked overclaim examples for AI receipt architecture publication boundaries
+
+{ai_receipt_architecture_blocked}
+
+## Allowed bounded claim
+
+{AI_RECEIPT_ARCHITECTURE_CLAIM_ALLOWED}
 """,
         "metric-semantic-contract.md": f"""# Metric Semantic Contract
 
@@ -15554,6 +15881,9 @@ Triadic Brain turns AI outputs into auditable, source-linked, control-aware fore
 - No product release occurred.
 - No memory write occurred.
 - No Atlas memory admission occurred.
+## AI Receipt Architecture linkage
+
+AI-RECEIPT-ARCHITECTURE-00 records this artifact-backed review stack in AI Receipt Architecture. A watermark says AI was here. A receipt says what happened. Receipt architecture wraps the artifact-backed review stack without certifying truth or releasing product.
 
 ## Blocked overclaim examples
 
