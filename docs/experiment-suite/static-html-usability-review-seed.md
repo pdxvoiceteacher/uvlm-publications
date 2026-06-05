@@ -137,6 +137,9 @@ python -c "from pathlib import Path; from coherence.product.triadic_llm_metrics_
 ## Static HTML usability revision linkage
 
 STATIC-HTML-USABILITY-REVISION-00 applies these deterministic local-test revision themes to produce a revised local static review surface while preserving the original HTML and claiming no real user study, product validation, or runtime authority.
+## AI Receipt Architecture linkage
+
+AI-RECEIPT-ARCHITECTURE-00 records this artifact-backed review stack in AI Receipt Architecture. A watermark says AI was here. A receipt says what happened. Receipt architecture wraps the artifact-backed review stack without certifying truth or releasing product.
 
 ## Blocked usability overclaim examples
 

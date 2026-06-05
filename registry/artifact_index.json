@@ -1144,6 +1144,19 @@
       "static_html_usability_revision_summary.md",
       "static_html_usability_revision_receipt.json"
     ],
+    "AI-RECEIPT-ARCHITECTURE-00": [
+      "ai_receipt_architecture_packet.json",
+      "ai_receipt_event_chain.json",
+      "ai_receipt_architecture.md",
+      "ai_receipt_architecture_receipt.json"
+    ],
+    "VALIDATION-TIERING-PROVENANCE-00": [
+      "config/validation/validation_tier_policy.v1.json",
+      "validation_tier_receipt.json",
+      "validation_tier_summary.md",
+      "schema/bridge/validation_tier_receipt.schema.json",
+      "docs/VALIDATION_TIERING_AND_PROVENANCE.md"
+    ],
     "PERTURBATION-OBSERVATION-CAPTURE-00": [
       "perturbation_observation_packet.json",
       "perturbation_axis_packet.json",

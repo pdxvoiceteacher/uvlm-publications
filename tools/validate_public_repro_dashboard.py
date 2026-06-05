@@ -70,6 +70,25 @@ from tools.build_public_repro_dashboard import (
     STATIC_HTML_USABILITY_REVISION_REQUIRED_DOC_PHRASES,
     STATIC_HTML_USABILITY_REVISION_THEMES,
     STATIC_HTML_USABILITY_REVISION_TRACEABILITY_TERMS,
+    AI_RECEIPT_ARCHITECTURE_ARTIFACTS,
+    AI_RECEIPT_ARCHITECTURE_BLOCKED_CLAIMS,
+    AI_RECEIPT_ARCHITECTURE_CLAIM_ALLOWED,
+    AI_RECEIPT_ARCHITECTURE_EVENT_CHAIN,
+    AI_RECEIPT_ARCHITECTURE_INPUT_ARTIFACTS,
+    AI_RECEIPT_ARCHITECTURE_PRODUCT_FRAMING,
+    AI_RECEIPT_ARCHITECTURE_REPRO_FRAGMENTS,
+    AI_RECEIPT_ARCHITECTURE_REQUIRED_DOC_PHRASES,
+    VALIDATION_TIERING_PROVENANCE_ACCEPTANCE_TERMS,
+    VALIDATION_TIERING_PROVENANCE_ARTIFACTS,
+    VALIDATION_TIERING_PROVENANCE_BLOCKED_CLAIMS,
+    VALIDATION_TIERING_PROVENANCE_CLAIM_ALLOWED,
+    VALIDATION_TIERING_PROVENANCE_DEEP_TERMS,
+    VALIDATION_TIERING_PROVENANCE_FAILURE_CLASSES,
+    VALIDATION_TIERING_PROVENANCE_RECEIPT_TERMS,
+    VALIDATION_TIERING_PROVENANCE_REPRO_FRAGMENTS,
+    VALIDATION_TIERING_PROVENANCE_REQUIRED_DOC_PHRASES,
+    VALIDATION_TIERING_PROVENANCE_SMOKE_TERMS,
+    VALIDATION_TIERING_PROVENANCE_TIER_TERMS,
 )
 
 
@@ -310,6 +329,31 @@ REQUIRED_BOUNDARY_PHRASES = (
     *STATIC_HTML_USABILITY_REVISION_NON_AUTHORITY_BANNERS,
     *STATIC_HTML_USABILITY_REVISION_REPRO_FRAGMENTS,
     *STATIC_HTML_USABILITY_REVISION_BLOCKED_CLAIMS,
+    "AI-RECEIPT-ARCHITECTURE-00",
+    "ai_receipt_architecture",
+    "A watermark says AI was here. A receipt says what happened.",
+    AI_RECEIPT_ARCHITECTURE_CLAIM_ALLOWED,
+    *AI_RECEIPT_ARCHITECTURE_ARTIFACTS,
+    *AI_RECEIPT_ARCHITECTURE_INPUT_ARTIFACTS,
+    *AI_RECEIPT_ARCHITECTURE_EVENT_CHAIN,
+    *AI_RECEIPT_ARCHITECTURE_REQUIRED_DOC_PHRASES,
+    *AI_RECEIPT_ARCHITECTURE_PRODUCT_FRAMING,
+    *AI_RECEIPT_ARCHITECTURE_REPRO_FRAGMENTS,
+    *AI_RECEIPT_ARCHITECTURE_BLOCKED_CLAIMS,
+    "VALIDATION-TIERING-PROVENANCE-00",
+    "policy_status",
+    "validation_tier = deep",
+    VALIDATION_TIERING_PROVENANCE_CLAIM_ALLOWED,
+    *VALIDATION_TIERING_PROVENANCE_ARTIFACTS,
+    *VALIDATION_TIERING_PROVENANCE_TIER_TERMS,
+    *VALIDATION_TIERING_PROVENANCE_SMOKE_TERMS,
+    *VALIDATION_TIERING_PROVENANCE_ACCEPTANCE_TERMS,
+    *VALIDATION_TIERING_PROVENANCE_DEEP_TERMS,
+    *VALIDATION_TIERING_PROVENANCE_REQUIRED_DOC_PHRASES,
+    *VALIDATION_TIERING_PROVENANCE_FAILURE_CLASSES,
+    *VALIDATION_TIERING_PROVENANCE_RECEIPT_TERMS,
+    *VALIDATION_TIERING_PROVENANCE_REPRO_FRAGMENTS,
+    *VALIDATION_TIERING_PROVENANCE_BLOCKED_CLAIMS,
     "RUNTIME-METRICS-CORPUS-SEED-00",
     "bounded seed corpus instrumentation only",
     "not population calibration",
@@ -1318,7 +1362,7 @@ def _is_metric_semantic_contract_context(text: str, index: int, phrase: str) -> 
 
 def _is_blocked_overclaim_example_context(text: str, index: int) -> bool:
     window = text[max(0, index - 1000) : index]
-    return "blocked overclaim examples" in window or "claims_blocked" in window
+    return "blocked overclaim examples" in window or "blocked ai receipt overclaim examples" in window or "validation tiering provenance publication boundaries" in window or "claims_blocked" in window
 
 
 def _forbidden_hits(text: str) -> list[str]:
@@ -1512,7 +1556,7 @@ def _forbidden_hits(text: str) -> list[str]:
                 start = index + len(normalized_phrase)
                 continue
             if phrase == "federation" and (
-                any(_normalize(claim) in text[max(0, index - 220) : index + 220] for claim in (*VISUAL_REVIEW_MODEL_BLOCKED_CLAIMS, *VISUAL_REVIEW_STATIC_HTML_BLOCKED_CLAIMS, *STATIC_HTML_USABILITY_REVIEW_BLOCKED_CLAIMS, *STATIC_HTML_USABILITY_REVISION_BLOCKED_CLAIMS))
+                any(_normalize(claim) in text[max(0, index - 220) : index + 220] for claim in (*VISUAL_REVIEW_MODEL_BLOCKED_CLAIMS, *VISUAL_REVIEW_STATIC_HTML_BLOCKED_CLAIMS, *STATIC_HTML_USABILITY_REVIEW_BLOCKED_CLAIMS, *STATIC_HTML_USABILITY_REVISION_BLOCKED_CLAIMS, *AI_RECEIPT_ARCHITECTURE_BLOCKED_CLAIMS, *VALIDATION_TIERING_PROVENANCE_BLOCKED_CLAIMS))
                 or "without implementing a ui or granting" in text[max(0, index - 500) : index]
                 or "it implements no ui and grants no" in text[max(0, index - 500) : index]
             ):
@@ -1543,7 +1587,7 @@ def _forbidden_hits(text: str) -> list[str]:
                 continue
             if (
                 phrase in {"truth certification", "product release"}
-                and any(_normalize(claim) in text[max(0, index - 180) : index + 180] for claim in (*LANGUAGE_GOVERNANCE_AUDIT_BLOCKED_CLAIMS, *VISUAL_REVIEW_MODEL_BLOCKED_CLAIMS, *VISUAL_REVIEW_STATIC_HTML_BLOCKED_CLAIMS, *STATIC_HTML_USABILITY_REVIEW_BLOCKED_CLAIMS, *STATIC_HTML_USABILITY_REVISION_BLOCKED_CLAIMS))
+                and any(_normalize(claim) in text[max(0, index - 180) : index + 180] for claim in (*LANGUAGE_GOVERNANCE_AUDIT_BLOCKED_CLAIMS, *VISUAL_REVIEW_MODEL_BLOCKED_CLAIMS, *VISUAL_REVIEW_STATIC_HTML_BLOCKED_CLAIMS, *STATIC_HTML_USABILITY_REVIEW_BLOCKED_CLAIMS, *STATIC_HTML_USABILITY_REVISION_BLOCKED_CLAIMS, *AI_RECEIPT_ARCHITECTURE_BLOCKED_CLAIMS, *VALIDATION_TIERING_PROVENANCE_BLOCKED_CLAIMS))
             ):
                 start = index + len(normalized_phrase)
                 continue
@@ -1567,6 +1611,16 @@ def _forbidden_hits(text: str) -> list[str]:
             ):
                 start = index + len(normalized_phrase)
                 continue
+            if phrase in {"market validation", "human benefit proof"} and "without certifying truth" in text[max(0, index - 260) : index]:
+                start = index + len(normalized_phrase)
+                continue
+            if (
+                phrase in {"market validation", "human benefit proof", "federation", "compliance certification", "omega detection", "product release"}
+                and "ai receipt architecture" in text[max(0, index - 700) : index + 200]
+                and ("without" in text[max(0, index - 700) : index] or "not" in text[max(0, index - 700) : index])
+            ):
+                start = index + len(normalized_phrase)
+                continue
             if phrase == "product release" and "does not authorize" in text[max(0, index - 180) : index]:
                 start = index + len(normalized_phrase)
                 continue
@@ -1576,7 +1630,7 @@ def _forbidden_hits(text: str) -> list[str]:
                     "without creating" in text[max(0, index - 260) : index]
                     or "without claiming" in text[max(0, index - 260) : index]
                     or "claiming no" in text[max(0, index - 260) : index]
-                    or any(_normalize(claim) in text[max(0, index - 220) : index + 220] for claim in (*VISUAL_REVIEW_STATIC_HTML_BLOCKED_CLAIMS, *STATIC_HTML_USABILITY_REVIEW_BLOCKED_CLAIMS, *STATIC_HTML_USABILITY_REVISION_BLOCKED_CLAIMS))
+                    or any(_normalize(claim) in text[max(0, index - 220) : index + 220] for claim in (*VISUAL_REVIEW_STATIC_HTML_BLOCKED_CLAIMS, *STATIC_HTML_USABILITY_REVIEW_BLOCKED_CLAIMS, *STATIC_HTML_USABILITY_REVISION_BLOCKED_CLAIMS, *AI_RECEIPT_ARCHITECTURE_BLOCKED_CLAIMS, *VALIDATION_TIERING_PROVENANCE_BLOCKED_CLAIMS))
                 )
             ):
                 start = index + len(normalized_phrase)

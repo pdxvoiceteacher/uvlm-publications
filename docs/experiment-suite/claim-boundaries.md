@@ -1817,6 +1817,209 @@
 - Omega detection
 - universal ontology proof
 - certified diagnosis
+- AI-RECEIPT-ARCHITECTURE-00 records the artifact-backed review chain as AI Receipt Architecture, organizing source inputs, candidate output, claim support, unsupported claims, controls, metric semantics, language audit, visual review, usability scaffolds, PMR provenance, and export parity without certifying truth, accepting evidence, releasing product, deploying runtime, writing memory, admitting Atlas memory, or proving human benefit or market validation.
+- ai_receipt_architecture_packet.json
+- ai_receipt_event_chain.json
+- ai_receipt_architecture.md
+- ai_receipt_architecture_receipt.json
+- sonya_model_candidate_packet.json
+- claim_evidence_map.json
+- unsupported_claim_report.json
+- ai_forensics_dossier_packet.json
+- ai_forensics_dossier_section_index.json
+- ai_forensics_dossier.md
+- ai_forensics_dossier_receipt.json
+- human_review_ux_packet.json
+- human_review_action_menu.json
+- human_review_decision_receipt.json
+- raw_vs_triadic_comparison_packet.json
+- raw_output_risk_report.json
+- triadic_added_value_report.json
+- claim_visibility_delta.json
+- control_visibility_delta.json
+- review_burden_delta.json
+- sophia_ucc_control_review_packet.json
+- ucc_control_gap_report.json
+- ucc_standards_source_registry.json
+- ucc_materiality_profile.json
+- metric_semantic_reconciliation_packet.json
+- reviewer_language_audit_report.json
+- reviewer_language_audit_summary.md
+- visual_review_model_packet.json
+- visual_review_section_index.json
+- visual_review_render_contract.json
+- visual_review_receipt.json
+- visual_review_static_html_packet.json
+- visual_review_static_review.html
+- visual_review_static_html_receipt.json
+- static_html_usability_review_packet.json
+- static_html_usability_questionnaire.json
+- static_html_usability_response_fixture.json
+- static_html_usability_review_summary.md
+- static_html_usability_review_receipt.json
+- static_html_usability_revision_packet.json
+- visual_review_static_review_revised.html
+- static_html_usability_revision_summary.md
+- static_html_usability_revision_receipt.json
+- pmr_local_runtime_artifact_index.json
+- artifact_inventory.json
+- export_bundle_parity_report.json
+- candidate_output_captured
+- claim_evidence_mapped
+- unsupported_claims_identified
+- ucc_sophia_controls_reviewed
+- materiality_profile_applied
+- ai_forensics_dossier_built
+- human_review_actions_scaffolded
+- raw_vs_triadic_compared
+- metric_semantics_reconciled
+- language_governance_audited
+- visual_review_model_built
+- static_html_review_rendered
+- static_html_usability_seed_recorded
+- static_html_usability_revision_applied
+- export_parity_checked
+- AI Receipt Architecture
+- A watermark says AI was here. A receipt says what happened.
+- The receipt records source inputs, candidate output, claim support, unsupported claims, governance controls, metric semantic labels, human review status, provenance, and export parity.
+- The receipt is evidence organization, not truth certification.
+- The receipt is provenance and traceability, not accepted-evidence authority.
+- The receipt is not product release.
+- The receipt is not compliance certification.
+- The receipt is not a real user study.
+- The receipt is not human benefit proof.
+- The receipt is not market validation.
+- Human review remains required.
+- Unsupported claims remain visible.
+- Source-linked claim count is recorded as observed, not inflated.
+- Receipt events are non-authoritative records.
+- A watermark says AI was here. A receipt says what happened.
+- AI Receipt Architecture records what happened.
+- Receipt architecture wraps the artifact-backed review stack without certifying truth or releasing product.
+- build_triadic_llm_metrics_smoke
+- build_sophia_ucc_control_review
+- build_ai_forensics_dossier
+- build_human_review_ux_packet
+- build_raw_vs_triadic_comparison
+- build_metric_semantic_reconciliation_packet
+- build_reviewer_language_audit
+- build_visual_review_model
+- build_visual_review_static_html
+- build_static_html_usability_review_seed
+- build_static_html_usability_revision
+- build_ai_receipt_architecture
+- Blocked overclaim examples for AI receipt architecture publication boundaries.
+- AI Receipt Architecture certifies truth
+- AI Receipt Architecture grants accepted-evidence authority
+- AI Receipt Architecture is product release
+- AI Receipt Architecture certifies compliance
+- AI Receipt Architecture is an audit opinion
+- AI Receipt Architecture is professional attestation
+- AI Receipt Architecture authorizes final answers
+- AI Receipt Architecture authorizes deployment
+- AI Receipt Architecture performs provider runtime
+- AI Receipt Architecture performs network runtime
+- AI Receipt Architecture authorizes federation
+- AI Receipt Architecture authorizes memory write
+- AI Receipt Architecture authorizes Atlas memory admission
+- AI Receipt Architecture proves theorem
+- AI Receipt Architecture proves product readiness
+- AI Receipt Architecture proves human benefit
+- AI Receipt Architecture is market validation
+- AI Receipt Architecture proves consciousness
+- AI Receipt Architecture detects Omega
+- AI Receipt Architecture proves universal ontology
+- receipt event chain is proof
+- receipt event chain certifies truth
+- receipt provenance is accepted evidence
+- a receipt means the AI answer is correct
+- zero language audit errors means product release is approved
+- static usability revision means product-market fit
+- VALIDATION-TIERING-PROVENANCE-00 documents smoke, acceptance, and deep validation tiers and emits validation receipts that record tier, scope, commands, artifact chain, duration, sufficient-for decisions, and not-sufficient-for boundaries without certifying truth, releasing product, proving science, validating market or human benefit, deploying runtime, writing memory, or admitting Atlas memory.
+- config/validation/validation_tier_policy.v1.json
+- validation_tier_receipt.json
+- validation_tier_summary.md
+- schema/bridge/validation_tier_receipt.schema.json
+- docs/VALIDATION_TIERING_AND_PROVENANCE.md
+- smoke
+- acceptance
+- deep
+- smoke
+- fast_patch_local_feedback
+- targeted_tests
+- compileall
+- git_diff_check
+- Smoke validation is not phase acceptance.
+- acceptance
+- targeted_artifact_chain_confidence
+- targeted_artifact_chain_smoke
+- expected_artifact_presence
+- forbidden_artifact_absence
+- non_authority_boundary_presence
+- Acceptance smoke is not full regression.
+- deep
+- full_multi_module_confidence
+- full_multi_module_suite
+- not_default_patch_loop
+- long_running
+- Deep validation is not the normal patch loop.
+- Long-running green suites are deep acceptance evidence, not default developer workflow.
+- Validation Tiering and Provenance
+- Validation tiering is provenance, not convenience.
+- A validation result is meaningful only when its tier, scope, duration, commands, artifact chain covered, sufficient-for decisions, not-sufficient-for decisions, and deferred deeper validation status are recorded.
+- Smoke green is not phase acceptance.
+- Acceptance smoke green is not full regression.
+- Deep green is not truth certification.
+- The 32131.86-second AI Receipt Architecture validation is recorded as deep validation evidence, not the default developer loop.
+- Run the tier that matches the decision, then record what that tier does and does not prove.
+- Human review remains required.
+- Validation is not product release.
+- Validation is not compliance certification.
+- Validation is not scientific proof.
+- Validation is not human benefit proof.
+- Validation is not market validation.
+- Validation is not deployment authority.
+- Validation is not memory write.
+- Validation is not Atlas memory admission.
+- deep_validation_mistaken_for_normal_patch_loop
+- nine_hour_green_mistaken_for_sustainable_workflow
+- smoke_green_mistaken_for_phase_acceptance
+- acceptance_smoke_mistaken_for_full_regression
+- deep_green_mistaken_for_truth_certification
+- validation_tier_omitted_from_receipt
+- validation_scope_omitted_from_receipt
+- deep_validation_deferred_without_reason
+- long_runtime_causing_validation_avoidance
+- minor_phrase_patch_triggering_full_suite
+- validation_tier_receipt.json
+- validation_tier_summary.md
+- validation_tier_policy.v1.json
+- validation_tier_receipt.schema.json
+- build_validation_tier_receipt
+- validation_tier_policy.v1.json
+- Blocked overclaim examples for validation tiering provenance publication boundaries.
+- validation tiering certifies truth
+- validation tiering certifies compliance
+- validation tiering is product release
+- validation tiering is scientific proof
+- validation tiering proves human benefit
+- validation tiering is market validation
+- validation tiering proves product readiness
+- validation tiering authorizes deployment
+- validation tiering performs provider runtime
+- validation tiering authorizes memory write
+- validation tiering authorizes Atlas memory admission
+- smoke green means phase acceptance
+- acceptance smoke means full regression
+- deep green means truth certification
+- deep green means product release
+- nine-hour green means sustainable default workflow
+- long validation is always required for every patch
+- minor phrase patch requires full deep suite
+- validation receipt grants accepted-evidence authority
+- validation receipt authorizes final answers
+- validation receipt proves theorem
+- validation receipt proves universal ontology
 - RETROSYNTHESIS-LOCAL-PROTOTYPE-00 is bounded local candidate generation only.
 - RETROSYNTHESIS-LOCAL-PROTOTYPE-00 generates bounded local candidate hypotheses, candidate repair plans, and pattern observations from PMR query results, TEL replay, runtime metrics, formula registry, metric bounds, seed corpus observations, cognitive flow morphology, Sonya coverage, and Sophia posture.
 - Candidate hypotheses are not truth.
