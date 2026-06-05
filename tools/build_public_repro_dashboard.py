@@ -5764,7 +5764,7 @@ PERTURBATION_STRUCTURE_AFFORDANCE_REQUIRED_BOUNDARY_PHRASES = (
     "not model superiority proof",
     "not human benefit proof",
     "not market validation",
-]
+)
 RETROSYNTHESIS_LOCAL_PROTOTYPE_PHASE = {
     "phase_id": "RETROSYNTHESIS-LOCAL-PROTOTYPE-00",
     "repo": "pdxvoiceteacher/CoherenceLattice",
