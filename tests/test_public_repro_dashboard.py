@@ -82,6 +82,21 @@ from tools.build_public_repro_dashboard import (
     VALIDATION_TIERING_PROVENANCE_REQUIRED_DOC_PHRASES,
     VALIDATION_TIERING_PROVENANCE_SMOKE_TERMS,
     VALIDATION_TIERING_PROVENANCE_TIER_TERMS,
+    TELEMETRY_APERTURE_BLOCKED_CLAIMS,
+    TELEMETRY_APERTURE_CLAIM_ALLOWED,
+    TELEMETRY_APERTURE_DESIGN_ARTIFACTS,
+    TELEMETRY_APERTURE_DIMENSIONS,
+    TELEMETRY_APERTURE_ESCALATION_TRIGGERS,
+    TELEMETRY_APERTURE_FAILURE_CLASSES,
+    TELEMETRY_APERTURE_HARD_BLOCKS,
+    TELEMETRY_APERTURE_HUMAN_REVIEW_GATES,
+    TELEMETRY_APERTURE_MINIMUM_AUDIT_FLOOR_TERMS,
+    TELEMETRY_APERTURE_MODES,
+    TELEMETRY_APERTURE_POLICY_DEFAULTS,
+    TELEMETRY_APERTURE_REPRO_FRAGMENTS,
+    TELEMETRY_APERTURE_REQUIRED_DOC_PHRASES,
+    TELEMETRY_APERTURE_SAFE_MET_SEM_ALIASES,
+    TELEMETRY_APERTURE_UNSAFE_METRIC_BOUNDARIES,
     _dedupe_accepted_phases,
 )
 from tools.validate_public_repro_dashboard import REQUIRED_PHASES as VALIDATOR_REQUIRED_PHASES
@@ -253,6 +268,7 @@ REQUIRED_PHASES = {
     "STATIC-HTML-USABILITY-REVISION-00",
     "AI-RECEIPT-ARCHITECTURE-00",
     "VALIDATION-TIERING-PROVENANCE-00",
+    "TELEMETRY-APERTURE-DESIGN-00",
     "RUNTIME-METRICS-CORPUS-SEED-00",
     "PMR-LOCAL-RUNTIME-QUERYABLE-STORE-00",
     "RETROSYNTHESIS-READINESS-00",
@@ -4864,3 +4880,75 @@ def test_reviewer_facing_perturbation_language_is_generalized():
                 text = path.read_text(encoding="utf-8")
                 for fragment in old_language_fragments:
                     assert fragment not in text, f"{fragment!r} remains in {path}"
+
+
+
+def test_telemetry_aperture_design_page_and_registry_are_generated(tmp_path):
+    out_dir, docs_dir = run_builder(tmp_path)
+    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text(encoding="utf-8"))
+    artifact_index = json.loads((out_dir / "artifact_index.json").read_text(encoding="utf-8"))
+    reproducibility_text = (out_dir / "reproducibility_index.json").read_text(encoding="utf-8")
+    boundary_text = (out_dir / "claim_boundary_index.json").read_text(encoding="utf-8")
+    status = json.loads((out_dir / "status.json").read_text(encoding="utf-8"))
+    page_text = (docs_dir / "telemetry-aperture-controller.md").read_text(encoding="utf-8")
+
+    phase_by_id = {phase["phase_id"]: phase for phase in dashboard["accepted_phases"]}
+    assert "TELEMETRY-APERTURE-DESIGN-00" in phase_by_id
+    phase = phase_by_id["TELEMETRY-APERTURE-DESIGN-00"]
+    summary = phase["dashboard_summary"]
+    assert summary["mode_policy_status"] == "active_design_only"
+    assert summary["runtime_behavior_changed"] is False
+    assert summary["default_aperture_mode"] == "pulse"
+    assert summary["raw_trace_retention"] == "requires_explicit_approval"
+    assert summary["trace_export"] == "blocked"
+    assert summary["pmr_federation"] == "blocked_by_default"
+    assert summary["minimum_audit_floor_failure_policy"] == "fail_closed"
+    assert summary["aperture_reduction_cannot_remove_acceptance_evidence"] is True
+    assert summary["consent_bounded_observability_aperture"] is True
+    assert summary["tac_is_not_surveillance_authorization"] is True
+    assert summary["tac_is_not_memory_write"] is True
+    assert summary["tac_is_not_trace_export_authorization"] is True
+    assert summary["tac_is_not_federation_authorization"] is True
+    assert summary["human_review_required"] is True
+
+    for artifact in TELEMETRY_APERTURE_DESIGN_ARTIFACTS:
+        assert artifact in artifact_index["phases"]["TELEMETRY-APERTURE-DESIGN-00"]
+        assert artifact in page_text
+        assert artifact in boundary_text
+    for phrase_group in (
+        TELEMETRY_APERTURE_MODES,
+        TELEMETRY_APERTURE_DIMENSIONS,
+        TELEMETRY_APERTURE_MINIMUM_AUDIT_FLOOR_TERMS,
+        TELEMETRY_APERTURE_POLICY_DEFAULTS,
+        TELEMETRY_APERTURE_ESCALATION_TRIGGERS,
+        TELEMETRY_APERTURE_HARD_BLOCKS,
+        TELEMETRY_APERTURE_HUMAN_REVIEW_GATES,
+        TELEMETRY_APERTURE_SAFE_MET_SEM_ALIASES,
+        TELEMETRY_APERTURE_REQUIRED_DOC_PHRASES,
+        TELEMETRY_APERTURE_FAILURE_CLASSES,
+        TELEMETRY_APERTURE_UNSAFE_METRIC_BOUNDARIES,
+        TELEMETRY_APERTURE_BLOCKED_CLAIMS,
+    ):
+        for phrase in phrase_group:
+            assert phrase in page_text
+            assert phrase in boundary_text
+    for fragment in TELEMETRY_APERTURE_REPRO_FRAGMENTS:
+        assert fragment in reproducibility_text
+        assert fragment in page_text
+        assert fragment in boundary_text
+    assert "This design patch has no runtime builder" in page_text
+    assert TELEMETRY_APERTURE_CLAIM_ALLOWED in page_text
+    assert TELEMETRY_APERTURE_CLAIM_ALLOWED in boundary_text
+    assert status["telemetry_aperture_design_00_indexed"] is True
+    assert status["telemetry_aperture_mode_policy_status"] == "active_design_only"
+    assert status["telemetry_aperture_runtime_behavior_changed"] is False
+    assert status["telemetry_aperture_default_aperture_mode"] == "pulse"
+    assert status["telemetry_aperture_raw_trace_retention"] == "requires_explicit_approval"
+    assert status["telemetry_aperture_trace_export"] == "blocked"
+    assert status["telemetry_aperture_pmr_federation"] == "blocked_by_default"
+    assert status["telemetry_aperture_minimum_audit_floor_failure_policy"] == "fail_closed"
+    assert status["not_telemetry_aperture_surveillance_authorization"] is True
+    assert status["not_telemetry_aperture_memory_write"] is True
+    assert status["not_telemetry_aperture_trace_export_authorization"] is True
+    assert status["not_telemetry_aperture_federation_authorization"] is True
+    assert status["not_telemetry_aperture_product_release"] is True

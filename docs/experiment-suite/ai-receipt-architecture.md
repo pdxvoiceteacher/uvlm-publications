@@ -189,3 +189,7 @@ AI-RECEIPT-ARCHITECTURE-00 records the artifact-backed review chain as AI Receip
 ## Validation tiering provenance linkage
 
 VALIDATION-TIERING-PROVENANCE-00 records the 32131.86-second AI Receipt Architecture validation as deep validation evidence, not the default developer loop. Validation tiering is provenance, not convenience. Run the tier that matches the decision, then record what that tier does and does not prove.
+
+## Telemetry aperture linkage
+
+TELEMETRY-APERTURE-DESIGN-00 preserves AI Receipt traceability as a minimum audit floor item. Aperture reduction cannot remove acceptance evidence, and Future TAC implementation must preserve AI Receipt traceability.

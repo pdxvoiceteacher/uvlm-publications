@@ -89,6 +89,21 @@ from tools.build_public_repro_dashboard import (
     VALIDATION_TIERING_PROVENANCE_REQUIRED_DOC_PHRASES,
     VALIDATION_TIERING_PROVENANCE_SMOKE_TERMS,
     VALIDATION_TIERING_PROVENANCE_TIER_TERMS,
+    TELEMETRY_APERTURE_BLOCKED_CLAIMS,
+    TELEMETRY_APERTURE_CLAIM_ALLOWED,
+    TELEMETRY_APERTURE_DESIGN_ARTIFACTS,
+    TELEMETRY_APERTURE_DIMENSIONS,
+    TELEMETRY_APERTURE_ESCALATION_TRIGGERS,
+    TELEMETRY_APERTURE_FAILURE_CLASSES,
+    TELEMETRY_APERTURE_HARD_BLOCKS,
+    TELEMETRY_APERTURE_HUMAN_REVIEW_GATES,
+    TELEMETRY_APERTURE_MINIMUM_AUDIT_FLOOR_TERMS,
+    TELEMETRY_APERTURE_MODES,
+    TELEMETRY_APERTURE_POLICY_DEFAULTS,
+    TELEMETRY_APERTURE_REPRO_FRAGMENTS,
+    TELEMETRY_APERTURE_REQUIRED_DOC_PHRASES,
+    TELEMETRY_APERTURE_SAFE_MET_SEM_ALIASES,
+    TELEMETRY_APERTURE_UNSAFE_METRIC_BOUNDARIES,
 )
 
 
@@ -1374,6 +1389,9 @@ def _forbidden_hits(text: str) -> list[str]:
             index = text.find(normalized_phrase, start)
             if index == -1:
                 break
+            if phrase == "surveillance" and "authorizes surveillance" not in text[max(0, index - 64) : index + 64] and "claims surveillance" not in text[max(0, index - 32) : index + 32]:
+                start = index + len(normalized_phrase)
+                continue
             if phrase.startswith("claims ") and not _is_negated(text, index):
                 hits.append(phrase)
                 break
@@ -1532,6 +1550,12 @@ def _forbidden_hits(text: str) -> list[str]:
                 phrase == "surveillance"
                 and (
                     "not surveillance" in text[max(0, index - 48) : index + 24]
+                    or "not surveillance authorization" in text[max(0, index - 64) : index + 48]
+                    or "tac is not surveillance" in text[max(0, index - 64) : index + 48]
+                    or "without changing runtime behavior or granting" in text[max(0, index - 80) : index]
+                    or "grants no surveillance" in text[max(0, index - 80) : index + 80]
+                    or "is not surveillance" in text[max(0, index - 80) : index + 80]
+                    or "no_surveillance" in text[max(0, index - 80) : index + 80]
                     or "telemetry_not_surveillance" in text[max(0, index - 64) : index + 32]
                 )
             ):
@@ -1556,13 +1580,19 @@ def _forbidden_hits(text: str) -> list[str]:
                 start = index + len(normalized_phrase)
                 continue
             if phrase == "federation" and (
-                any(_normalize(claim) in text[max(0, index - 220) : index + 220] for claim in (*VISUAL_REVIEW_MODEL_BLOCKED_CLAIMS, *VISUAL_REVIEW_STATIC_HTML_BLOCKED_CLAIMS, *STATIC_HTML_USABILITY_REVIEW_BLOCKED_CLAIMS, *STATIC_HTML_USABILITY_REVISION_BLOCKED_CLAIMS, *AI_RECEIPT_ARCHITECTURE_BLOCKED_CLAIMS, *VALIDATION_TIERING_PROVENANCE_BLOCKED_CLAIMS))
+                any(_normalize(claim) in text[max(0, index - 220) : index + 220] for claim in (*VISUAL_REVIEW_MODEL_BLOCKED_CLAIMS, *VISUAL_REVIEW_STATIC_HTML_BLOCKED_CLAIMS, *STATIC_HTML_USABILITY_REVIEW_BLOCKED_CLAIMS, *STATIC_HTML_USABILITY_REVISION_BLOCKED_CLAIMS, *AI_RECEIPT_ARCHITECTURE_BLOCKED_CLAIMS, *VALIDATION_TIERING_PROVENANCE_BLOCKED_CLAIMS, *TELEMETRY_APERTURE_BLOCKED_CLAIMS))
                 or "without implementing a ui or granting" in text[max(0, index - 500) : index]
                 or "it implements no ui and grants no" in text[max(0, index - 500) : index]
             ):
                 start = index + len(normalized_phrase)
                 continue
-            if phrase == "federation" and "federation blocked by default" in text[index : index + 96]:
+            if phrase == "federation" and (
+                "federation blocked by default" in text[index : index + 96]
+                or "not federation authorization" in text[max(0, index - 64) : index + 64]
+                or "tac is not federation" in text[max(0, index - 64) : index + 64]
+                or "pmr_federation = blocked_by_default" in text[max(0, index - 64) : index + 64]
+                or "pmr federation is allowed by default" in text[max(0, index - 160) : index + 160]
+            ):
                 start = index + len(normalized_phrase)
                 continue
             if phrase in {"population calibration", "population-calibrated", "peer review certification", "universal ontology proof"} and _is_negated(text, index):
@@ -1587,7 +1617,7 @@ def _forbidden_hits(text: str) -> list[str]:
                 continue
             if (
                 phrase in {"truth certification", "product release"}
-                and any(_normalize(claim) in text[max(0, index - 180) : index + 180] for claim in (*LANGUAGE_GOVERNANCE_AUDIT_BLOCKED_CLAIMS, *VISUAL_REVIEW_MODEL_BLOCKED_CLAIMS, *VISUAL_REVIEW_STATIC_HTML_BLOCKED_CLAIMS, *STATIC_HTML_USABILITY_REVIEW_BLOCKED_CLAIMS, *STATIC_HTML_USABILITY_REVISION_BLOCKED_CLAIMS, *AI_RECEIPT_ARCHITECTURE_BLOCKED_CLAIMS, *VALIDATION_TIERING_PROVENANCE_BLOCKED_CLAIMS))
+                and any(_normalize(claim) in text[max(0, index - 180) : index + 180] for claim in (*LANGUAGE_GOVERNANCE_AUDIT_BLOCKED_CLAIMS, *VISUAL_REVIEW_MODEL_BLOCKED_CLAIMS, *VISUAL_REVIEW_STATIC_HTML_BLOCKED_CLAIMS, *STATIC_HTML_USABILITY_REVIEW_BLOCKED_CLAIMS, *STATIC_HTML_USABILITY_REVISION_BLOCKED_CLAIMS, *AI_RECEIPT_ARCHITECTURE_BLOCKED_CLAIMS, *VALIDATION_TIERING_PROVENANCE_BLOCKED_CLAIMS, *TELEMETRY_APERTURE_BLOCKED_CLAIMS))
             ):
                 start = index + len(normalized_phrase)
                 continue
@@ -1630,7 +1660,7 @@ def _forbidden_hits(text: str) -> list[str]:
                     "without creating" in text[max(0, index - 260) : index]
                     or "without claiming" in text[max(0, index - 260) : index]
                     or "claiming no" in text[max(0, index - 260) : index]
-                    or any(_normalize(claim) in text[max(0, index - 220) : index + 220] for claim in (*VISUAL_REVIEW_STATIC_HTML_BLOCKED_CLAIMS, *STATIC_HTML_USABILITY_REVIEW_BLOCKED_CLAIMS, *STATIC_HTML_USABILITY_REVISION_BLOCKED_CLAIMS, *AI_RECEIPT_ARCHITECTURE_BLOCKED_CLAIMS, *VALIDATION_TIERING_PROVENANCE_BLOCKED_CLAIMS))
+                    or any(_normalize(claim) in text[max(0, index - 220) : index + 220] for claim in (*VISUAL_REVIEW_STATIC_HTML_BLOCKED_CLAIMS, *STATIC_HTML_USABILITY_REVIEW_BLOCKED_CLAIMS, *STATIC_HTML_USABILITY_REVISION_BLOCKED_CLAIMS, *AI_RECEIPT_ARCHITECTURE_BLOCKED_CLAIMS, *VALIDATION_TIERING_PROVENANCE_BLOCKED_CLAIMS, *TELEMETRY_APERTURE_BLOCKED_CLAIMS))
                 )
             ):
                 start = index + len(normalized_phrase)
@@ -1639,6 +1669,30 @@ def _forbidden_hits(text: str) -> list[str]:
                 start = index + len(normalized_phrase)
                 continue
             if _is_blocked_overclaim_example_context(text, index):
+                start = index + len(normalized_phrase)
+                continue
+            if phrase in {"federation", "surveillance"} and any(
+                _normalize(claim) in text[max(0, index - 240) : index + 240]
+                for claim in TELEMETRY_APERTURE_BLOCKED_CLAIMS
+            ):
+                start = index + len(normalized_phrase)
+                continue
+            if phrase == "surveillance" and (
+                "not surveillance authorization" in text[max(0, index - 80) : index + 80]
+                or "tac is not surveillance" in text[max(0, index - 80) : index + 80]
+                or "without changing runtime behavior or granting" in text[max(0, index - 80) : index]
+                or "grants no surveillance" in text[max(0, index - 80) : index + 80]
+                or "no_surveillance" in text[max(0, index - 80) : index + 80]
+                or "telemetry_not_surveillance" in text[max(0, index - 80) : index + 80]
+                or "is not surveillance" in text[max(0, index - 80) : index + 80]
+            ):
+                start = index + len(normalized_phrase)
+                continue
+            if phrase == "federation" and (
+                "not federation authorization" in text[max(0, index - 80) : index + 80]
+                or "tac is not federation" in text[max(0, index - 80) : index + 80]
+                or "pmr_federation" in text[max(0, index - 64) : index + 64]
+            ):
                 start = index + len(normalized_phrase)
                 continue
             if phrase == "final answer authority" and (

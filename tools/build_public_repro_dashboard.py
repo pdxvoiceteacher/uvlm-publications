@@ -7418,6 +7418,216 @@ VALIDATION_TIERING_PROVENANCE_PHASE = {
 }
 
 
+TELEMETRY_APERTURE_DESIGN_COMMAND = "python -m json.tool config/telemetry_aperture/telemetry_aperture_modes.v1.json && python -m json.tool config/telemetry_aperture/minimum_audit_floor.v1.json && python -m json.tool config/telemetry_aperture/telemetry_aperture_policy_schema.v1.json && python -m json.tool schema/bridge/telemetry_aperture_policy_packet.schema.json && python -m json.tool schema/bridge/telemetry_aperture_decision_packet.schema.json && python -m json.tool schema/bridge/telemetry_aperture_retention_intent_packet.schema.json"
+TELEMETRY_APERTURE_DESIGN_ARTIFACTS = [
+    "docs/TELEMETRY_APERTURE_CONTROLLER.md",
+    "config/telemetry_aperture/telemetry_aperture_modes.v1.json",
+    "config/telemetry_aperture/minimum_audit_floor.v1.json",
+    "config/telemetry_aperture/telemetry_aperture_policy_schema.v1.json",
+    "schema/bridge/telemetry_aperture_policy_packet.schema.json",
+    "schema/bridge/telemetry_aperture_decision_packet.schema.json",
+    "schema/bridge/telemetry_aperture_retention_intent_packet.schema.json",
+]
+TELEMETRY_APERTURE_MODES = [
+    "off: no optional telemetry beyond mandatory safety/status receipts",
+    "minimal: required inventory, manifest, parity, review packet, and failure receipts only",
+    "pulse: thin periodic metric pulses using safe MET-SEM aliases",
+    "snapshot: periodic structured snapshots of task state and key artifacts",
+    "trace: step-level TEL events and route transitions",
+    "tail_retain: trace temporarily, retain full detail only if trigger conditions fire",
+    "full_audit: high-resolution trace only under explicit consent and retention policy",
+    "quarantine: restricted safety capture after boundary violation or critical anomaly",
+]
+TELEMETRY_APERTURE_DIMENSIONS = [
+    "temporal_resolution",
+    "semantic_resolution",
+    "retention_depth",
+    "privacy_transformation",
+    "review_visibility",
+]
+TELEMETRY_APERTURE_MINIMUM_AUDIT_FLOOR_TERMS = [
+    "artifact_inventory.json",
+    "run_artifact_manifest.json",
+    "export_bundle_parity_report.json",
+    "phase_manifest",
+    "phase_review_packet",
+    "acceptance_receipt",
+    "failure_receipts",
+    "non_authority_boundary_table",
+    "source_span_or_claim_classification_refs_when_applicable",
+    "tel_replay_summary_when_applicable",
+    "pmr_retention_or_context_status_when_applicable",
+    "validation_tier_receipt_when_available",
+    "ai_receipt_event_chain_when_available",
+]
+TELEMETRY_APERTURE_POLICY_DEFAULTS = [
+    "default_aperture_mode = pulse",
+    "user_consent_scope = local_replay_allowed",
+    "raw_trace_retention = requires_explicit_approval",
+    "trace_export = blocked",
+    "pmr_federation = blocked_by_default",
+    "minimum_audit_floor_required = true",
+]
+TELEMETRY_APERTURE_ESCALATION_TRIGGERS = [
+    "schema_validation_error",
+    "unsupported_claim_surge",
+    "low_T_review",
+    "high_Λ_boundary",
+    "high_risk_ucc_domain",
+    "user_requested_deep_audit",
+    "source_span_review_bound",
+    "sophia_nonpass_or_uncertain",
+    "ai_receipt_incomplete",
+]
+TELEMETRY_APERTURE_HARD_BLOCKS = [
+    "increase_raw_retention_without_consent",
+    "export_trace_without_consent",
+    "federate_tel_without_consent",
+    "drop_failure_receipts_for_cost",
+    "drop_source_spans_for_cost",
+    "drop_run_manifest_for_cost",
+    "drop_boundary_table_for_cost",
+    "full_audit_mode_without_consent",
+    "privacy_redaction_override_without_consent",
+    "retain_sensitive_content_without_consent",
+]
+TELEMETRY_APERTURE_HUMAN_REVIEW_GATES = [
+    "increase_durable_retention",
+    "export_trace",
+    "federate_memory",
+    "override_privacy_redaction",
+    "enable_full_audit",
+    "reduce_below_minimum_audit_floor",
+    "convert_trace_to_pmr_memory_intent",
+]
+TELEMETRY_APERTURE_SAFE_MET_SEM_ALIASES = [
+    "Ψ_review",
+    "E_review",
+    "T_review",
+    "ΔS_review",
+    "Λ_boundary",
+    "Eₛ_review",
+    "TAF_review_runtime_v0",
+]
+TELEMETRY_APERTURE_REQUIRED_DOC_PHRASES = [
+    "Telemetry Aperture Controller",
+    "TAC is a consent-bounded observability aperture controller.",
+    "TAC regulates temporal, semantic, retention, privacy, and review apertures.",
+    "TAC optimizes coherent sufficiency, not maximum capture.",
+    "TAC is computational observability aperture, not consciousness.",
+    "TAC is not surveillance authorization.",
+    "TAC is not memory write.",
+    "TAC is not trace export authorization.",
+    "TAC is not federation authorization.",
+    "TAC is not product release.",
+    "A narrow aperture is not permission to omit failure receipts.",
+    "A high-resolution aperture is not permission to retain private data.",
+    "Aperture reduction cannot remove acceptance evidence.",
+    "Human review remains required.",
+    "TAC does not change runtime behavior in TELEMETRY-APERTURE-DESIGN-00.",
+    "Future TAC implementation must distinguish temporary observation from durable retention.",
+    "Future TAC implementation must preserve AI Receipt traceability.",
+]
+TELEMETRY_APERTURE_FAILURE_CLASSES = [
+    "aperture_theater",
+    "silent_escalation",
+    "pmr_hoarding",
+    "under_observation",
+    "over_observation",
+    "dashboard_theater",
+    "privacy_drift",
+    "minimum_audit_floor_violation",
+    "raw_retention_without_consent",
+    "federation_without_consent",
+    "trace_export_without_consent",
+    "full_audit_without_consent",
+    "omission_debt_hidden",
+]
+TELEMETRY_APERTURE_REPRO_FRAGMENTS = [
+    "TELEMETRY-APERTURE-DESIGN-00",
+    "telemetry_aperture_modes.v1.json",
+    "minimum_audit_floor.v1.json",
+    "telemetry_aperture_policy_schema.v1.json",
+    "telemetry_aperture_policy_packet.schema.json",
+    "telemetry_aperture_decision_packet.schema.json",
+    "telemetry_aperture_retention_intent_packet.schema.json",
+]
+TELEMETRY_APERTURE_BLOCKED_CLAIMS = [
+    "TAC changed runtime telemetry behavior",
+    "TAC is consciousness",
+    "TAC is adaptive awareness",
+    "TAC authorizes surveillance",
+    "TAC authorizes trace export",
+    "TAC authorizes PMR federation",
+    "TAC authorizes memory write",
+    "TAC authorizes Atlas memory admission",
+    "TAC authorizes provider runtime",
+    "TAC authorizes deployment",
+    "TAC is product release",
+    "TAC certifies truth",
+    "TAC certifies compliance",
+    "TAC authorizes final answers",
+    "TAC grants accepted-evidence authority",
+    "full_audit mode can run without consent",
+    "raw trace retention is allowed without consent",
+    "trace export is allowed without consent",
+    "PMR federation is allowed by default",
+    "aperture reduction can remove acceptance evidence",
+    "narrow aperture can omit failure receipts",
+    "high-resolution aperture can retain private data without consent",
+    "safe MET-SEM aliases are canonical metric completion",
+    "TAC proves human benefit",
+    "TAC is market validation",
+    "TAC proves consciousness",
+    "TAC detects Omega",
+    "TAC proves universal ontology",
+]
+TELEMETRY_APERTURE_UNSAFE_METRIC_BOUNDARIES = [
+    "unqualified empathy score",
+    "unqualified transparency score",
+    "unqualified phase-lock score",
+    "unqualified entropy score",
+    "unqualified ethical symmetry score",
+    "canonical total action",
+]
+TELEMETRY_APERTURE_CLAIM_ALLOWED = "TELEMETRY-APERTURE-DESIGN-00 defines a design-only, consent-bounded Telemetry Aperture Controller policy over observability modes, minimum audit floor, retention/export/federation blocks, and human-review gates without changing runtime behavior or granting surveillance, memory, trace export, federation, product, certification, deployment, final-answer, accepted-evidence, Atlas, human benefit, market, consciousness, Omega, or ontology authority."
+TELEMETRY_APERTURE_DASHBOARD_SUMMARY = {
+    "mode_policy_status": "active_design_only",
+    "runtime_behavior_changed": False,
+    "default_aperture_mode": "pulse",
+    "raw_trace_retention": "requires_explicit_approval",
+    "trace_export": "blocked",
+    "pmr_federation": "blocked_by_default",
+    "minimum_audit_floor_failure_policy": "fail_closed",
+    "aperture_reduction_cannot_remove_acceptance_evidence": True,
+    "consent_bounded_observability_aperture": True,
+    "tac_is_not_consciousness": True,
+    "tac_is_not_surveillance_authorization": True,
+    "tac_is_not_memory_write": True,
+    "tac_is_not_trace_export_authorization": True,
+    "tac_is_not_federation_authorization": True,
+    "tac_is_not_product_release": True,
+    "human_review_required": True,
+}
+TELEMETRY_APERTURE_DESIGN_PHASE = {
+    "phase_id": "TELEMETRY-APERTURE-DESIGN-00",
+    "repo": "pdxvoiceteacher/CoherenceLattice",
+    "source_phase": "TELEMETRY-APERTURE-DESIGN-00",
+    "status": "accepted_local_validation",
+    "publication_status": "dashboard_synced",
+    "evidence_type": "design_policy_config_schema_inspection",
+    "product_posture": "design_only_consent_bounded_observability_aperture_without_runtime_behavior_change",
+    "authority_posture": "non_authoritative",
+    "public_claim_boundary": "design_only_no_surveillance_retention_export_federation_memory_product_certification_deployment_or_final_answer_authority",
+    "primary_artifacts": TELEMETRY_APERTURE_DESIGN_ARTIFACTS,
+    "dashboard_summary": TELEMETRY_APERTURE_DASHBOARD_SUMMARY,
+    "reproduction_command_summary": TELEMETRY_APERTURE_DESIGN_COMMAND,
+    "claims_blocked": TELEMETRY_APERTURE_BLOCKED_CLAIMS,
+    "claim_allowed": TELEMETRY_APERTURE_CLAIM_ALLOWED,
+    "reviewer_caution": "TELEMETRY-APERTURE-DESIGN-00 is design-only consent-bounded observability aperture policy; it changes no runtime behavior and grants no surveillance, trace export, federation, memory, product, certification, deployment, final-answer, accepted-evidence, Atlas, human benefit, market, consciousness, Omega, or ontology authority.",
+}
+
+
 PERTURBATION_OBSERVATION_ARTIFACTS = [
     "perturbation_observation_packet.json",
     "perturbation_axis_packet.json",
@@ -9607,6 +9817,7 @@ STATIC_HTML_USABILITY_REVIEW_PHASE,
 STATIC_HTML_USABILITY_REVISION_PHASE,
 AI_RECEIPT_ARCHITECTURE_PHASE,
 VALIDATION_TIERING_PROVENANCE_PHASE,
+TELEMETRY_APERTURE_DESIGN_PHASE,
 PERTURBATION_OBSERVATION_CAPTURE_PHASE,
 PERTURBATION_TRUNK_MAPPING_PHASE,
 PERTURBATION_RESIDUAL_NOVELTY_MAP_PHASE,
@@ -11746,6 +11957,22 @@ BOUNDARIES.extend(
         *VALIDATION_TIERING_PROVENANCE_REPRO_FRAGMENTS,
         "Blocked overclaim examples for validation tiering provenance publication boundaries.",
         *VALIDATION_TIERING_PROVENANCE_BLOCKED_CLAIMS,
+        TELEMETRY_APERTURE_CLAIM_ALLOWED,
+        *TELEMETRY_APERTURE_DESIGN_ARTIFACTS,
+        *TELEMETRY_APERTURE_MODES,
+        *TELEMETRY_APERTURE_DIMENSIONS,
+        *TELEMETRY_APERTURE_MINIMUM_AUDIT_FLOOR_TERMS,
+        *TELEMETRY_APERTURE_POLICY_DEFAULTS,
+        *TELEMETRY_APERTURE_ESCALATION_TRIGGERS,
+        *TELEMETRY_APERTURE_HARD_BLOCKS,
+        *TELEMETRY_APERTURE_HUMAN_REVIEW_GATES,
+        *TELEMETRY_APERTURE_SAFE_MET_SEM_ALIASES,
+        *TELEMETRY_APERTURE_REQUIRED_DOC_PHRASES,
+        *TELEMETRY_APERTURE_FAILURE_CLASSES,
+        *TELEMETRY_APERTURE_REPRO_FRAGMENTS,
+        *TELEMETRY_APERTURE_UNSAFE_METRIC_BOUNDARIES,
+        "Blocked overclaim examples for telemetry aperture controller publication boundaries.",
+        *TELEMETRY_APERTURE_BLOCKED_CLAIMS,
     ]
 )
 BOUNDARIES.extend(
@@ -12251,6 +12478,19 @@ def dashboard_payload() -> dict[str, Any]:
         "validation_tiering_validation_result": "passed",
         "validation_tiering_full_multi_module_suite_run": True,
         "validation_tiering_deep_validation_deferred": False,
+        "telemetry_aperture_design_00_indexed": True,
+        "telemetry_aperture_mode_policy_status": "active_design_only",
+        "telemetry_aperture_runtime_behavior_changed": False,
+        "telemetry_aperture_default_aperture_mode": "pulse",
+        "telemetry_aperture_raw_trace_retention": "requires_explicit_approval",
+        "telemetry_aperture_trace_export": "blocked",
+        "telemetry_aperture_pmr_federation": "blocked_by_default",
+        "telemetry_aperture_minimum_audit_floor_failure_policy": "fail_closed",
+        "not_telemetry_aperture_surveillance_authorization": True,
+        "not_telemetry_aperture_memory_write": True,
+        "not_telemetry_aperture_trace_export_authorization": True,
+        "not_telemetry_aperture_federation_authorization": True,
+        "not_telemetry_aperture_product_release": True,
         "not_validation_tiering_product_release": True,
         "not_validation_tiering_truth_certification": True,
         "not_validation_tiering_compliance_certification": True,
@@ -12337,6 +12577,7 @@ def reproducibility_index() -> dict[str, Any]:
                 {"name": "Static HTML Usability Revision Python entrypoint", "command": STATIC_HTML_USABILITY_REVISION_COMMAND},
                 {"name": "AI Receipt Architecture Python entrypoint", "command": AI_RECEIPT_ARCHITECTURE_COMMAND},
                 {"name": "Validation Tiering Provenance Python entrypoint", "command": VALIDATION_TIERING_PROVENANCE_COMMAND},
+                {"name": "TELEMETRY-APERTURE-DESIGN-00 config/schema inspection", "command": TELEMETRY_APERTURE_DESIGN_COMMAND},
                 {"name": "Perturbation novelty lane Python entrypoint", "command": PERTURBATION_NOVELTY_LANE_COMMAND},
                 {"name": "Perturbation structure-affordance theorem card Python entrypoint", "command": PERTURBATION_STRUCTURE_AFFORDANCE_CARD_COMMAND},
                 {"name": "PMR Context Availability Ledger acceptance", "command": PMR_CONTEXT_AVAILABILITY_LEDGER_00_COMMAND},
@@ -13026,6 +13267,19 @@ def status_payload() -> dict[str, Any]:
         "validation_tiering_validation_result": "passed",
         "validation_tiering_full_multi_module_suite_run": True,
         "validation_tiering_deep_validation_deferred": False,
+        "telemetry_aperture_design_00_indexed": True,
+        "telemetry_aperture_mode_policy_status": "active_design_only",
+        "telemetry_aperture_runtime_behavior_changed": False,
+        "telemetry_aperture_default_aperture_mode": "pulse",
+        "telemetry_aperture_raw_trace_retention": "requires_explicit_approval",
+        "telemetry_aperture_trace_export": "blocked",
+        "telemetry_aperture_pmr_federation": "blocked_by_default",
+        "telemetry_aperture_minimum_audit_floor_failure_policy": "fail_closed",
+        "not_telemetry_aperture_surveillance_authorization": True,
+        "not_telemetry_aperture_memory_write": True,
+        "not_telemetry_aperture_trace_export_authorization": True,
+        "not_telemetry_aperture_federation_authorization": True,
+        "not_telemetry_aperture_product_release": True,
         "not_validation_tiering_product_release": True,
         "not_validation_tiering_truth_certification": True,
         "not_validation_tiering_compliance_certification": True,
@@ -13139,10 +13393,24 @@ def docs() -> dict[str, str]:
     validation_tiering_receipt_terms = "\n".join(f"- {term}" for term in VALIDATION_TIERING_PROVENANCE_RECEIPT_TERMS)
     validation_tiering_repro_fragments = "\n".join(f"- {fragment}" for fragment in VALIDATION_TIERING_PROVENANCE_REPRO_FRAGMENTS)
     validation_tiering_blocked = "\n".join(f"- {claim}" for claim in VALIDATION_TIERING_PROVENANCE_BLOCKED_CLAIMS)
+    telemetry_aperture_artifacts = "\n".join(f"- {artifact}" for artifact in TELEMETRY_APERTURE_DESIGN_ARTIFACTS)
+    telemetry_aperture_modes = "\n".join(f"- {mode}" for mode in TELEMETRY_APERTURE_MODES)
+    telemetry_aperture_dimensions = "\n".join(f"- {dimension}" for dimension in TELEMETRY_APERTURE_DIMENSIONS)
+    telemetry_aperture_minimum_floor = "\n".join(f"- {term}" for term in TELEMETRY_APERTURE_MINIMUM_AUDIT_FLOOR_TERMS)
+    telemetry_aperture_policy_defaults = "\n".join(f"- {default}" for default in TELEMETRY_APERTURE_POLICY_DEFAULTS)
+    telemetry_aperture_escalation_triggers = "\n".join(f"- {trigger}" for trigger in TELEMETRY_APERTURE_ESCALATION_TRIGGERS)
+    telemetry_aperture_hard_blocks = "\n".join(f"- {block}" for block in TELEMETRY_APERTURE_HARD_BLOCKS)
+    telemetry_aperture_human_review_gates = "\n".join(f"- {gate}" for gate in TELEMETRY_APERTURE_HUMAN_REVIEW_GATES)
+    telemetry_aperture_safe_aliases = "\n".join(f"- {alias}" for alias in TELEMETRY_APERTURE_SAFE_MET_SEM_ALIASES)
+    telemetry_aperture_doc_phrases = "\n".join(f"- {phrase}" for phrase in TELEMETRY_APERTURE_REQUIRED_DOC_PHRASES)
+    telemetry_aperture_failure_classes = "\n".join(f"- {failure_class}" for failure_class in TELEMETRY_APERTURE_FAILURE_CLASSES)
+    telemetry_aperture_repro_fragments = "\n".join(f"- {fragment}" for fragment in TELEMETRY_APERTURE_REPRO_FRAGMENTS)
+    telemetry_aperture_blocked = "\n".join(f"- {claim}" for claim in TELEMETRY_APERTURE_BLOCKED_CLAIMS)
+    telemetry_aperture_unsafe_boundaries = "\n".join(f"- {boundary}" for boundary in TELEMETRY_APERTURE_UNSAFE_METRIC_BOUNDARIES)
     return {
         "README.md": "# Experiment Suite Docs\n\nPublic reviewer documentation for the claim-bounded reproducibility dashboard.\n",
         "assets/README.md": "# Assets\n\nOptional static assets for the public reproducibility dashboard.\n",
-        "index.md": f"# Public Experiment Suite Dashboard\n\nThis dashboard presents accepted evidence for reviewer orientation. It is not truth certification, not deployment authority, not final answer release, local fixture only, and requires external peer review.\n\n## Accepted evidence\n\n| Phase | Repo | Status | What this supports | Reviewer caution |\n| --- | --- | --- | --- | --- |\n{phase_rows}\n\n## Reviewer path\n\nStart with claim boundaries, then read the governed artifact cognition paper, WAVE Rosetta paper, SONYA-AEGIS-SMOKE-02, WAVE family, UNI-02D Sonya gate, and RETRO-LANE-00, Public Utility Alpha, Raw Baseline Comparison, Evidence Review Pack, RW-COMP-01, RW-COMP-02, Retrosynthesis Sandbox Cycle, Evidence Review Pack second-pass, RW-COMP-03, Universal Architecture Scaffold, Sonya Adapter Contract Registry, Sonya Adapter Smoke, Sonya Local Fixture Adapter, and Evidence Review Pack local adapter, Evidence Review Pack local adapter revision, RW-COMP local adapter, PMR doctrine, PMR local artifact index, PMR GPCU utility scoring, PMR lifecycle state machine, PMR lifecycle audit preflight, PMR Sophia lifecycle audit review, PMR destructive-action authorization preflight, PMR architecture diversity checkpoint, PMR simulation baseline comparison, PMR simulation statistical analysis, PMR federation stress corpus, PMR human provenance context, Sonya Local Fixture Adapter multi-route, and Sonya Local Fixture Adapter lineage clarity, Local Review metrics and flow, Metric Semantic Contract, Language Governance, Language Governance Audit Runtime, and Runtime Metrics Seed Corpus, PMR local queryable store, Retrosynthesis Readiness, Retrosynthesis Local Prototype, and Atlas Local Memory Admission Readiness, Atlas Local Memory Admission Prototype, Local-test Proxy Review, AI Context Performance Continuity, Theorem Validation Pathway, and COOP Entropy Dividend, Triadic LLM Metrics Smoke, UCC Sophia Control Forensics, UCC Standards Source Registry and Materiality, Triadic LLM Smoke PMR Inventory Contract Repair, AI Forensics Dossier, Human Review UX, Visual Review Model, Visual Review Static HTML Prototype, Static HTML Usability Review Seed, Static HTML Usability Revision, AI Receipt Architecture, and Validation Tiering and Provenance, Perturbation Observation Capture, Perturbation Trunk Mapping, and Perturbation Residual Novelty Map, and Perturbation Structure-Affordance Card pages.\n\n## What this proves\n\nIt proves only that accepted local fixture artifacts and draft publication materials are organized for review.\n\n## What this does not prove\n\nNo oracle posture, no deployment posture, no final-answer posture, no AI consciousness claim, and no universal ontology claim.\n\n## Phase pages\n\n- [SONYA-AEGIS-SMOKE-02](sonya-aegis-smoke-02.md)\n- [WAVE Gold-Physics](wave-gold-physics.md)\n- [UNI-02D Sonya gate](uni02d-sonya-gate.md)\n- [RETRO-LANE-00](retro-lane-00.md)\n- [Public Utility Alpha](public-utility-alpha.md)\n- [Raw Baseline Comparison](raw-baseline-comparison.md)\n- [Evidence Review Pack](evidence-review-pack.md)\n- [RW-COMP-01](rw-comp-01.md)\n- [RW-COMP-02](rw-comp-02.md)\n- [Retrosynthesis Sandbox Cycle](retrosynthesis-sandbox-cycle.md)\n- [Evidence Review Pack second pass](evidence-review-pack-second-pass.md)\n- [RW-COMP-03](rw-comp-03.md)\n- [Universal Architecture Scaffold](universal-architecture.md)\n- [Sonya Adapter Contract Registry](sonya-adapter-contract-registry.md)\n- [Sonya required membrane checkpoint](sonya-required-membrane-checkpoint.md)\n- [TEL event stack](tel-event-stack.md)\n- [Sonya Adapter Smoke](sonya-adapter-smoke.md)\n- [Sonya Local Fixture Adapter](sonya-local-fixture-adapter.md)\n- [Evidence Review Pack local adapter](evidence-review-pack-local-adapter.md)\n- [Evidence Review Pack local adapter revision](evidence-review-pack-local-adapter-revision.md)\n- [RW-COMP local adapter](rw-comp-local-adapter.md)\n- [Provenance Memory Reservoir](provenance-memory-reservoir.md)\n- [PMR local artifact index](pmr-local-artifact-index.md)\n- [Ontology Claim Registry](ontology-claim-registry.md)\n- [Local Sonya path portability](local-sonya-path-portability.md)\n- [TB Product Slice](tb-product-slice.md)\n- [TB Product Slice 01](tb-product-slice-01.md)\n- [Sonya Local Fixture Adapter multi-route](sonya-local-fixture-adapter-multi-route.md)\n- [Sonya Local Fixture Adapter lineage clarity](sonya-local-fixture-adapter-lineage.md)\n- [Local Review Runtime V0](local-review-runtime-v0.md)\n- [Local Review metrics and flow](local-review-metrics-flow.md)\n- [Runtime metrics seed corpus](runtime-metrics-seed-corpus.md)\n- [PMR local queryable store](pmr-local-queryable-store.md)\n- [Retrosynthesis readiness](retrosynthesis-readiness.md)\n- [Retrosynthesis local prototype](retrosynthesis-local-prototype.md)\n- [Atlas local memory admission readiness](atlas-local-memory-admission-readiness.md)\n- [AI Forensics Dossier](ai-forensics-dossier.md)\n- [Human Review UX](human-review-ux.md)\n- [Visual Review Model](visual-review-model.md)\n- [Visual Review Static HTML Prototype](visual-review-static-html-prototype.md)\n- [Perturbation Observation Capture](perturbation-observation-capture.md)\n- [Perturbation Trunk Mapping](perturbation-trunk-mapping.md)\n- [Perturbation Residual Novelty Map](perturbation-residual-novelty-map.md)\n- [Perturbation Structure-Affordance Card](perturbation-structure-affordance-card.md)\n- [Governed artifact cognition paper](governed-artifact-cognition-paper.md)\n- [Waveform Rosetta paper](waveform-rosetta-paper.md)\n",
+        "index.md": f"# Public Experiment Suite Dashboard\n\nThis dashboard presents accepted evidence for reviewer orientation. It is not truth certification, not deployment authority, not final answer release, local fixture only, and requires external peer review.\n\n## Accepted evidence\n\n| Phase | Repo | Status | What this supports | Reviewer caution |\n| --- | --- | --- | --- | --- |\n{phase_rows}\n\n## Reviewer path\n\nStart with claim boundaries, then read the governed artifact cognition paper, WAVE Rosetta paper, SONYA-AEGIS-SMOKE-02, WAVE family, UNI-02D Sonya gate, and RETRO-LANE-00, Public Utility Alpha, Raw Baseline Comparison, Evidence Review Pack, RW-COMP-01, RW-COMP-02, Retrosynthesis Sandbox Cycle, Evidence Review Pack second-pass, RW-COMP-03, Universal Architecture Scaffold, Sonya Adapter Contract Registry, Sonya Adapter Smoke, Sonya Local Fixture Adapter, and Evidence Review Pack local adapter, Evidence Review Pack local adapter revision, RW-COMP local adapter, PMR doctrine, PMR local artifact index, PMR GPCU utility scoring, PMR lifecycle state machine, PMR lifecycle audit preflight, PMR Sophia lifecycle audit review, PMR destructive-action authorization preflight, PMR architecture diversity checkpoint, PMR simulation baseline comparison, PMR simulation statistical analysis, PMR federation stress corpus, PMR human provenance context, Sonya Local Fixture Adapter multi-route, and Sonya Local Fixture Adapter lineage clarity, Local Review metrics and flow, Metric Semantic Contract, Language Governance, Language Governance Audit Runtime, and Runtime Metrics Seed Corpus, PMR local queryable store, Retrosynthesis Readiness, Retrosynthesis Local Prototype, and Atlas Local Memory Admission Readiness, Atlas Local Memory Admission Prototype, Local-test Proxy Review, AI Context Performance Continuity, Theorem Validation Pathway, and COOP Entropy Dividend, Triadic LLM Metrics Smoke, UCC Sophia Control Forensics, UCC Standards Source Registry and Materiality, Triadic LLM Smoke PMR Inventory Contract Repair, AI Forensics Dossier, Human Review UX, Visual Review Model, Visual Review Static HTML Prototype, Static HTML Usability Review Seed, Static HTML Usability Revision, AI Receipt Architecture, Validation Tiering and Provenance, and Telemetry Aperture Controller, Perturbation Observation Capture, Perturbation Trunk Mapping, and Perturbation Residual Novelty Map, and Perturbation Structure-Affordance Card pages.\n\n## What this proves\n\nIt proves only that accepted local fixture artifacts and draft publication materials are organized for review.\n\n## What this does not prove\n\nNo oracle posture, no deployment posture, no final-answer posture, no AI consciousness claim, and no universal ontology claim.\n\n## Phase pages\n\n- [SONYA-AEGIS-SMOKE-02](sonya-aegis-smoke-02.md)\n- [WAVE Gold-Physics](wave-gold-physics.md)\n- [UNI-02D Sonya gate](uni02d-sonya-gate.md)\n- [RETRO-LANE-00](retro-lane-00.md)\n- [Public Utility Alpha](public-utility-alpha.md)\n- [Raw Baseline Comparison](raw-baseline-comparison.md)\n- [Evidence Review Pack](evidence-review-pack.md)\n- [RW-COMP-01](rw-comp-01.md)\n- [RW-COMP-02](rw-comp-02.md)\n- [Retrosynthesis Sandbox Cycle](retrosynthesis-sandbox-cycle.md)\n- [Evidence Review Pack second pass](evidence-review-pack-second-pass.md)\n- [RW-COMP-03](rw-comp-03.md)\n- [Universal Architecture Scaffold](universal-architecture.md)\n- [Sonya Adapter Contract Registry](sonya-adapter-contract-registry.md)\n- [Sonya required membrane checkpoint](sonya-required-membrane-checkpoint.md)\n- [TEL event stack](tel-event-stack.md)\n- [Sonya Adapter Smoke](sonya-adapter-smoke.md)\n- [Sonya Local Fixture Adapter](sonya-local-fixture-adapter.md)\n- [Evidence Review Pack local adapter](evidence-review-pack-local-adapter.md)\n- [Evidence Review Pack local adapter revision](evidence-review-pack-local-adapter-revision.md)\n- [RW-COMP local adapter](rw-comp-local-adapter.md)\n- [Provenance Memory Reservoir](provenance-memory-reservoir.md)\n- [PMR local artifact index](pmr-local-artifact-index.md)\n- [Ontology Claim Registry](ontology-claim-registry.md)\n- [Local Sonya path portability](local-sonya-path-portability.md)\n- [TB Product Slice](tb-product-slice.md)\n- [TB Product Slice 01](tb-product-slice-01.md)\n- [Sonya Local Fixture Adapter multi-route](sonya-local-fixture-adapter-multi-route.md)\n- [Sonya Local Fixture Adapter lineage clarity](sonya-local-fixture-adapter-lineage.md)\n- [Local Review Runtime V0](local-review-runtime-v0.md)\n- [Local Review metrics and flow](local-review-metrics-flow.md)\n- [Runtime metrics seed corpus](runtime-metrics-seed-corpus.md)\n- [PMR local queryable store](pmr-local-queryable-store.md)\n- [Retrosynthesis readiness](retrosynthesis-readiness.md)\n- [Retrosynthesis local prototype](retrosynthesis-local-prototype.md)\n- [Atlas local memory admission readiness](atlas-local-memory-admission-readiness.md)\n- [AI Forensics Dossier](ai-forensics-dossier.md)\n- [Human Review UX](human-review-ux.md)\n- [Visual Review Model](visual-review-model.md)\n- [Visual Review Static HTML Prototype](visual-review-static-html-prototype.md)\n- [Perturbation Observation Capture](perturbation-observation-capture.md)\n- [Perturbation Trunk Mapping](perturbation-trunk-mapping.md)\n- [Perturbation Residual Novelty Map](perturbation-residual-novelty-map.md)\n- [Telemetry Aperture Controller](telemetry-aperture-controller.md)\n- [Perturbation Structure-Affordance Card](perturbation-structure-affordance-card.md)\n- [Governed artifact cognition paper](governed-artifact-cognition-paper.md)\n- [Waveform Rosetta paper](waveform-rosetta-paper.md)\n",
         "language-governance.md": f"""# Language Governance
 
 ## What was validated
@@ -13194,6 +13462,10 @@ PROJECT-LANGUAGE-GOVERNANCE-00 synchronizes the CoherenceLattice project languag
 ## Runtime audit linkage
 
 LANGUAGE-GOVERNANCE-AUDIT-RUNTIME-00 publishes reviewer-facing language audit artifacts for this policy surface without granting proof, truth, product, or runtime authority.
+
+## Telemetry aperture linkage
+
+TELEMETRY-APERTURE-DESIGN-00 follows project language governance by stating TAC is computational observability aperture, not consciousness; TAC is not surveillance authorization; and TAC is not product release.
 
 ## Allowed bounded claim
 
@@ -13696,6 +13968,10 @@ AI-RECEIPT-ARCHITECTURE-00 synchronizes the locally validated AI Receipt Archite
 ## Validation tiering provenance linkage
 
 VALIDATION-TIERING-PROVENANCE-00 records the 32131.86-second AI Receipt Architecture validation as deep validation evidence, not the default developer loop. Validation tiering is provenance, not convenience. Run the tier that matches the decision, then record what that tier does and does not prove.
+
+## Telemetry aperture linkage
+
+TELEMETRY-APERTURE-DESIGN-00 preserves AI Receipt traceability as a minimum audit floor item. Aperture reduction cannot remove acceptance evidence, and Future TAC implementation must preserve AI Receipt traceability.
 """,
         "validation-tiering-provenance.md": f"""# Validation Tiering and Provenance
 
@@ -13774,6 +14050,10 @@ VALIDATION-TIERING-PROVENANCE-00 synchronizes validation tier policy and validat
 ## Allowed bounded claim
 
 {VALIDATION_TIERING_PROVENANCE_CLAIM_ALLOWED}
+
+## Telemetry aperture linkage
+
+TELEMETRY-APERTURE-DESIGN-00 records validation_tier_receipt_when_available in the minimum audit floor. TAC is design-only and does not change runtime behavior in TELEMETRY-APERTURE-DESIGN-00.
 """,
         "metric-semantic-contract.md": f"""# Metric Semantic Contract
 
@@ -13846,6 +14126,104 @@ Publication surfaces include `build_runtime_metrics_seed_corpus` and `build_metr
 ## Allowed bounded claim
 
 {METRIC_SEMANTIC_CLAIM_ALLOWED}
+
+## Telemetry aperture linkage
+
+TELEMETRY-APERTURE-DESIGN-00 uses safe MET-SEM aliases for pulse mode only: Ψ_review, E_review, T_review, ΔS_review, Λ_boundary, Eₛ_review, and TAF_review_runtime_v0. Safe MET-SEM aliases are not canonical metric completion and TAC does not present unqualified empathy score, unqualified transparency score, unqualified phase-lock score, unqualified entropy score, unqualified ethical symmetry score, or canonical total action as TAC measurements.
+""",
+
+        "telemetry-aperture-controller.md": f"""# Telemetry Aperture Controller
+
+## What was validated
+
+TELEMETRY-APERTURE-DESIGN-00 synchronizes the locally validated Telemetry Aperture Controller design to publication surfaces. This is publication/dashboard synchronization only and grants no runtime authority. TAC docs/config/schema and experiment registry tests passed locally in CoherenceLattice. TAC does not change runtime behavior in TELEMETRY-APERTURE-DESIGN-00.
+
+## Dashboard summary
+
+- mode_policy_status = active_design_only
+- runtime_behavior_changed = false
+- default_aperture_mode = pulse
+- raw_trace_retention = requires_explicit_approval
+- trace_export = blocked
+- pmr_federation = blocked_by_default
+- minimum_audit_floor_failure_policy = fail_closed
+- aperture_reduction_cannot_remove_acceptance_evidence = true
+- consent_bounded_observability_aperture = true
+- tac_is_not_consciousness = true
+- tac_is_not_surveillance_authorization = true
+- tac_is_not_memory_write = true
+- tac_is_not_trace_export_authorization = true
+- tac_is_not_federation_authorization = true
+- tac_is_not_product_release = true
+- human_review_required = true
+
+## Required TAC language
+
+{telemetry_aperture_doc_phrases}
+
+## Modes
+
+{telemetry_aperture_modes}
+
+## Aperture dimensions
+
+{telemetry_aperture_dimensions}
+
+## Minimum audit floor
+
+{telemetry_aperture_minimum_floor}
+
+## Policy defaults
+
+{telemetry_aperture_policy_defaults}
+
+## Escalation triggers
+
+{telemetry_aperture_escalation_triggers}
+
+## Hard blocks
+
+{telemetry_aperture_hard_blocks}
+
+## Human review gates
+
+{telemetry_aperture_human_review_gates}
+
+## Safe MET-SEM aliases
+
+{telemetry_aperture_safe_aliases}
+
+## Unsafe metric boundary
+
+TAC does not present these as TAC measurements:
+
+{telemetry_aperture_unsafe_boundaries}
+
+## Failure classes
+
+{telemetry_aperture_failure_classes}
+
+## Artifacts
+
+{telemetry_aperture_artifacts}
+
+## Reproducibility fragments
+
+{telemetry_aperture_repro_fragments}
+
+This design patch has no runtime builder. Reproducibility points to config/schema inspection, not runtime packet emission.
+
+```powershell
+{TELEMETRY_APERTURE_DESIGN_COMMAND}
+```
+
+## Blocked overclaim examples for telemetry aperture controller publication boundaries
+
+{telemetry_aperture_blocked}
+
+## Allowed bounded claim
+
+{TELEMETRY_APERTURE_CLAIM_ALLOWED}
 """,
         "runtime-metrics-seed-corpus.md": f"""# Runtime metrics seed corpus
 
