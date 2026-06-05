@@ -185,3 +185,7 @@ python -c "from pathlib import Path; from coherence.product.triadic_llm_metrics_
 ## Allowed bounded claim
 
 AI-RECEIPT-ARCHITECTURE-00 records the artifact-backed review chain as AI Receipt Architecture, organizing source inputs, candidate output, claim support, unsupported claims, controls, metric semantics, language audit, visual review, usability scaffolds, PMR provenance, and export parity without certifying truth, accepting evidence, releasing product, deploying runtime, writing memory, admitting Atlas memory, or proving human benefit or market validation.
+
+## Validation tiering provenance linkage
+
+VALIDATION-TIERING-PROVENANCE-00 records the 32131.86-second AI Receipt Architecture validation as deep validation evidence, not the default developer loop. Validation tiering is provenance, not convenience. Run the tier that matches the decision, then record what that tier does and does not prove.

@@ -71,6 +71,17 @@ from tools.build_public_repro_dashboard import (
     AI_RECEIPT_ARCHITECTURE_PRODUCT_FRAMING,
     AI_RECEIPT_ARCHITECTURE_REPRO_FRAGMENTS,
     AI_RECEIPT_ARCHITECTURE_REQUIRED_DOC_PHRASES,
+    VALIDATION_TIERING_PROVENANCE_ACCEPTANCE_TERMS,
+    VALIDATION_TIERING_PROVENANCE_ARTIFACTS,
+    VALIDATION_TIERING_PROVENANCE_BLOCKED_CLAIMS,
+    VALIDATION_TIERING_PROVENANCE_CLAIM_ALLOWED,
+    VALIDATION_TIERING_PROVENANCE_DEEP_TERMS,
+    VALIDATION_TIERING_PROVENANCE_FAILURE_CLASSES,
+    VALIDATION_TIERING_PROVENANCE_RECEIPT_TERMS,
+    VALIDATION_TIERING_PROVENANCE_REPRO_FRAGMENTS,
+    VALIDATION_TIERING_PROVENANCE_REQUIRED_DOC_PHRASES,
+    VALIDATION_TIERING_PROVENANCE_SMOKE_TERMS,
+    VALIDATION_TIERING_PROVENANCE_TIER_TERMS,
     _dedupe_accepted_phases,
 )
 from tools.validate_public_repro_dashboard import REQUIRED_PHASES as VALIDATOR_REQUIRED_PHASES
@@ -241,6 +252,7 @@ REQUIRED_PHASES = {
     "STATIC-HTML-USABILITY-REVIEW-SEED-00",
     "STATIC-HTML-USABILITY-REVISION-00",
     "AI-RECEIPT-ARCHITECTURE-00",
+    "VALIDATION-TIERING-PROVENANCE-00",
     "RUNTIME-METRICS-CORPUS-SEED-00",
     "PMR-LOCAL-RUNTIME-QUERYABLE-STORE-00",
     "RETROSYNTHESIS-READINESS-00",
@@ -4590,6 +4602,76 @@ def test_ai_receipt_architecture_page_and_registry_are_generated(tmp_path):
     assert status["not_ai_receipt_architecture_deployment"] is True
     assert status["not_ai_receipt_architecture_memory_write"] is True
     assert status["not_ai_receipt_architecture_atlas_admission"] is True
+
+
+def test_validation_tiering_provenance_page_and_registry_are_generated(tmp_path):
+    out_dir = tmp_path / "registry"
+    docs_dir = tmp_path / "docs"
+    subprocess.run([sys.executable, str(BUILDER), "--out-dir", str(out_dir), "--docs-dir", str(docs_dir)], check=True)
+    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text(encoding="utf-8"))
+    artifact_index = json.loads((out_dir / "artifact_index.json").read_text(encoding="utf-8"))
+    reproducibility_text = (out_dir / "reproducibility_index.json").read_text(encoding="utf-8")
+    boundary_text = (out_dir / "claim_boundary_index.json").read_text(encoding="utf-8")
+    status = json.loads((out_dir / "status.json").read_text(encoding="utf-8"))
+    page_text = (docs_dir / "validation-tiering-provenance.md").read_text(encoding="utf-8")
+
+    phase_by_id = {phase["phase_id"]: phase for phase in dashboard["accepted_phases"]}
+    assert "VALIDATION-TIERING-PROVENANCE-00" in phase_by_id
+    phase = phase_by_id["VALIDATION-TIERING-PROVENANCE-00"]
+    summary = phase["dashboard_summary"]
+    assert summary["policy_status"] == "active"
+    assert summary["source_phase"] == "VALIDATION-TIERING-PROVENANCE-00"
+    assert summary["receipt_source_phase"] == "AI-RECEIPT-ARCHITECTURE-00"
+    assert summary["validation_tier"] == "deep"
+    assert summary["validation_scope"] == "full_multi_module_suite"
+    assert summary["duration_seconds_total"] == 32131.86
+    assert summary["validation_result"] == "passed"
+    assert summary["full_multi_module_suite_run"] is True
+    assert summary["deep_validation_deferred"] is False
+    assert summary["validation_result_is_not_product_release"] is True
+    assert summary["validation_result_is_not_truth_certification"] is True
+    assert summary["validation_result_is_not_compliance_certification"] is True
+    assert summary["validation_result_is_not_scientific_proof"] is True
+    assert summary["validation_result_is_not_human_benefit_proof"] is True
+    assert summary["validation_result_is_not_market_validation"] is True
+    assert summary["validation_result_is_not_deployment_authority"] is True
+    assert summary["validation_result_is_not_memory_write"] is True
+    assert summary["validation_result_is_not_atlas_memory_admission"] is True
+
+    for artifact in VALIDATION_TIERING_PROVENANCE_ARTIFACTS:
+        assert artifact in artifact_index["phases"]["VALIDATION-TIERING-PROVENANCE-00"]
+        assert artifact in page_text
+        assert artifact in boundary_text
+    for phrase_group in (
+        VALIDATION_TIERING_PROVENANCE_TIER_TERMS,
+        VALIDATION_TIERING_PROVENANCE_SMOKE_TERMS,
+        VALIDATION_TIERING_PROVENANCE_ACCEPTANCE_TERMS,
+        VALIDATION_TIERING_PROVENANCE_DEEP_TERMS,
+        VALIDATION_TIERING_PROVENANCE_REQUIRED_DOC_PHRASES,
+        VALIDATION_TIERING_PROVENANCE_FAILURE_CLASSES,
+        VALIDATION_TIERING_PROVENANCE_RECEIPT_TERMS,
+        VALIDATION_TIERING_PROVENANCE_REPRO_FRAGMENTS,
+        VALIDATION_TIERING_PROVENANCE_BLOCKED_CLAIMS,
+    ):
+        for phrase in phrase_group:
+            assert phrase in page_text
+            assert phrase in boundary_text
+    for fragment in VALIDATION_TIERING_PROVENANCE_REPRO_FRAGMENTS:
+        assert fragment in reproducibility_text
+    assert VALIDATION_TIERING_PROVENANCE_CLAIM_ALLOWED in page_text
+    assert VALIDATION_TIERING_PROVENANCE_CLAIM_ALLOWED in boundary_text
+    assert status["validation_tiering_provenance_00_indexed"] is True
+    assert status["validation_tiering_policy_status"] == "active"
+    assert status["validation_tiering_validation_tier"] == "deep"
+    assert status["validation_tiering_validation_scope"] == "full_multi_module_suite"
+    assert status["validation_tiering_duration_seconds_total"] == 32131.86
+    assert status["validation_tiering_full_multi_module_suite_run"] is True
+    assert status["validation_tiering_deep_validation_deferred"] is False
+    assert status["not_validation_tiering_product_release"] is True
+    assert status["not_validation_tiering_truth_certification"] is True
+    assert status["not_validation_tiering_deployment_authority"] is True
+    assert status["not_validation_tiering_memory_write"] is True
+    assert status["not_validation_tiering_atlas_memory_admission"] is True
 
 def test_static_html_usability_revision_page_and_registry_are_generated(tmp_path):
     out_dir, docs_dir = run_builder(tmp_path)

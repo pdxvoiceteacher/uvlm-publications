@@ -7271,6 +7271,153 @@ AI_RECEIPT_ARCHITECTURE_PHASE = {
 }
 
 
+VALIDATION_TIERING_PROVENANCE_COMMAND = "python -c \"from pathlib import Path; from coherence.validation.validation_receipt import build_validation_tier_receipt; bridge=Path(r'C:\\UVLM\\run_artifacts\\validation_tiering\\bridge'); policy_ref='validation_tier_policy.v1.json'; build_validation_tier_receipt(bridge, source_phase='AI-RECEIPT-ARCHITECTURE-00', validation_tier='deep', validation_scope='full_multi_module_suite', validation_intent='major_sync_or_handoff_grade_validation', commands_run=[{'command':'python -m pytest -q <full_multi_module_suite>', 'result':'passed', 'duration_seconds':32131.86}], artifact_chain_name='ai_receipt_architecture_product_stack', expected_artifacts=['ai_receipt_architecture_packet.json','ai_receipt_event_chain.json','ai_receipt_architecture.md','ai_receipt_architecture_receipt.json'], observed_artifacts=['ai_receipt_architecture_packet.json','ai_receipt_event_chain.json','ai_receipt_architecture.md','ai_receipt_architecture_receipt.json'], validation_result='passed')\""
+VALIDATION_TIERING_PROVENANCE_ARTIFACTS = [
+    "config/validation/validation_tier_policy.v1.json",
+    "validation_tier_receipt.json",
+    "validation_tier_summary.md",
+    "schema/bridge/validation_tier_receipt.schema.json",
+    "docs/VALIDATION_TIERING_AND_PROVENANCE.md",
+]
+VALIDATION_TIERING_PROVENANCE_TIER_TERMS = [
+    "smoke",
+    "acceptance",
+    "deep",
+]
+VALIDATION_TIERING_PROVENANCE_SMOKE_TERMS = [
+    "smoke",
+    "fast_patch_local_feedback",
+    "targeted_tests",
+    "compileall",
+    "git_diff_check",
+    "Smoke validation is not phase acceptance.",
+]
+VALIDATION_TIERING_PROVENANCE_ACCEPTANCE_TERMS = [
+    "acceptance",
+    "targeted_artifact_chain_confidence",
+    "targeted_artifact_chain_smoke",
+    "expected_artifact_presence",
+    "forbidden_artifact_absence",
+    "non_authority_boundary_presence",
+    "Acceptance smoke is not full regression.",
+]
+VALIDATION_TIERING_PROVENANCE_DEEP_TERMS = [
+    "deep",
+    "full_multi_module_confidence",
+    "full_multi_module_suite",
+    "not_default_patch_loop",
+    "long_running",
+    "Deep validation is not the normal patch loop.",
+    "Long-running green suites are deep acceptance evidence, not default developer workflow.",
+]
+VALIDATION_TIERING_PROVENANCE_REQUIRED_DOC_PHRASES = [
+    "Validation Tiering and Provenance",
+    "Validation tiering is provenance, not convenience.",
+    "A validation result is meaningful only when its tier, scope, duration, commands, artifact chain covered, sufficient-for decisions, not-sufficient-for decisions, and deferred deeper validation status are recorded.",
+    "Smoke green is not phase acceptance.",
+    "Acceptance smoke green is not full regression.",
+    "Deep green is not truth certification.",
+    "The 32131.86-second AI Receipt Architecture validation is recorded as deep validation evidence, not the default developer loop.",
+    "Run the tier that matches the decision, then record what that tier does and does not prove.",
+    "Human review remains required.",
+    "Validation is not product release.",
+    "Validation is not compliance certification.",
+    "Validation is not scientific proof.",
+    "Validation is not human benefit proof.",
+    "Validation is not market validation.",
+    "Validation is not deployment authority.",
+    "Validation is not memory write.",
+    "Validation is not Atlas memory admission.",
+]
+VALIDATION_TIERING_PROVENANCE_FAILURE_CLASSES = [
+    "deep_validation_mistaken_for_normal_patch_loop",
+    "nine_hour_green_mistaken_for_sustainable_workflow",
+    "smoke_green_mistaken_for_phase_acceptance",
+    "acceptance_smoke_mistaken_for_full_regression",
+    "deep_green_mistaken_for_truth_certification",
+    "validation_tier_omitted_from_receipt",
+    "validation_scope_omitted_from_receipt",
+    "deep_validation_deferred_without_reason",
+    "long_runtime_causing_validation_avoidance",
+    "minor_phrase_patch_triggering_full_suite",
+]
+VALIDATION_TIERING_PROVENANCE_RECEIPT_TERMS = [
+    "validation_tier_receipt.json",
+    "validation_tier_summary.md",
+    "validation_tier_policy.v1.json",
+    "validation_tier_receipt.schema.json",
+]
+VALIDATION_TIERING_PROVENANCE_REPRO_FRAGMENTS = [
+    "build_validation_tier_receipt",
+    "validation_tier_policy.v1.json",
+]
+VALIDATION_TIERING_PROVENANCE_BLOCKED_CLAIMS = [
+    "validation tiering certifies truth",
+    "validation tiering certifies compliance",
+    "validation tiering is product release",
+    "validation tiering is scientific proof",
+    "validation tiering proves human benefit",
+    "validation tiering is market validation",
+    "validation tiering proves product readiness",
+    "validation tiering authorizes deployment",
+    "validation tiering performs provider runtime",
+    "validation tiering authorizes memory write",
+    "validation tiering authorizes Atlas memory admission",
+    "smoke green means phase acceptance",
+    "acceptance smoke means full regression",
+    "deep green means truth certification",
+    "deep green means product release",
+    "nine-hour green means sustainable default workflow",
+    "long validation is always required for every patch",
+    "minor phrase patch requires full deep suite",
+    "validation receipt grants accepted-evidence authority",
+    "validation receipt authorizes final answers",
+    "validation receipt proves theorem",
+    "validation receipt proves universal ontology",
+]
+VALIDATION_TIERING_PROVENANCE_CLAIM_ALLOWED = "VALIDATION-TIERING-PROVENANCE-00 documents smoke, acceptance, and deep validation tiers and emits validation receipts that record tier, scope, commands, artifact chain, duration, sufficient-for decisions, and not-sufficient-for boundaries without certifying truth, releasing product, proving science, validating market or human benefit, deploying runtime, writing memory, or admitting Atlas memory."
+VALIDATION_TIERING_PROVENANCE_DASHBOARD_SUMMARY = {
+    "policy_status": "active",
+    "source_phase": "VALIDATION-TIERING-PROVENANCE-00",
+    "receipt_source_phase": "AI-RECEIPT-ARCHITECTURE-00",
+    "validation_tier": "deep",
+    "validation_scope": "full_multi_module_suite",
+    "validation_intent": "major_sync_or_handoff_grade_validation",
+    "duration_seconds_total": 32131.86,
+    "artifact_chain_name": "ai_receipt_architecture_product_stack",
+    "validation_result": "passed",
+    "artifact_chain_smoke_run": False,
+    "full_multi_module_suite_run": True,
+    "deep_validation_deferred": False,
+    "validation_result_is_not_product_release": True,
+    "validation_result_is_not_truth_certification": True,
+    "validation_result_is_not_compliance_certification": True,
+    "validation_result_is_not_scientific_proof": True,
+    "validation_result_is_not_human_benefit_proof": True,
+    "validation_result_is_not_market_validation": True,
+    "validation_result_is_not_deployment_authority": True,
+    "validation_result_is_not_memory_write": True,
+    "validation_result_is_not_atlas_memory_admission": True,
+}
+VALIDATION_TIERING_PROVENANCE_PHASE = {
+    "phase_id": "VALIDATION-TIERING-PROVENANCE-00",
+    "repo": "pdxvoiceteacher/CoherenceLattice",
+    "source_phase": "VALIDATION-TIERING-PROVENANCE-00",
+    "status": "accepted_local_validation",
+    "publication_status": "dashboard_synced",
+    "evidence_type": "validation_tiering_policy_and_provenance_receipts",
+    "product_posture": "validation_provenance_only_no_product_release_or_truth_authority",
+    "authority_posture": "non_authoritative",
+    "public_claim_boundary": "validation_tier_receipts_only_no_truth_compliance_science_product_deployment_memory_or_benefit_authority",
+    "primary_artifacts": VALIDATION_TIERING_PROVENANCE_ARTIFACTS,
+    "dashboard_summary": VALIDATION_TIERING_PROVENANCE_DASHBOARD_SUMMARY,
+    "reproduction_command_summary": VALIDATION_TIERING_PROVENANCE_COMMAND,
+    "claims_blocked": VALIDATION_TIERING_PROVENANCE_BLOCKED_CLAIMS,
+    "claim_allowed": VALIDATION_TIERING_PROVENANCE_CLAIM_ALLOWED,
+    "reviewer_caution": "VALIDATION-TIERING-PROVENANCE-00 records validation tiers and receipts as provenance only; it is not product release, truth certification, a compliance certificate, scientific proof, theorem proof, human benefit proof, market validation, product readiness, deployment authority, provider runtime, network runtime, memory write, Atlas admission, accepted-evidence authority, final-answer authority, consciousness proof, Omega finding, or universal ontology proof.",
+}
+
+
 PERTURBATION_OBSERVATION_ARTIFACTS = [
     "perturbation_observation_packet.json",
     "perturbation_axis_packet.json",
@@ -9459,6 +9606,7 @@ VISUAL_REVIEW_STATIC_HTML_PHASE,
 STATIC_HTML_USABILITY_REVIEW_PHASE,
 STATIC_HTML_USABILITY_REVISION_PHASE,
 AI_RECEIPT_ARCHITECTURE_PHASE,
+VALIDATION_TIERING_PROVENANCE_PHASE,
 PERTURBATION_OBSERVATION_CAPTURE_PHASE,
 PERTURBATION_TRUNK_MAPPING_PHASE,
 PERTURBATION_RESIDUAL_NOVELTY_MAP_PHASE,
@@ -11586,6 +11734,18 @@ BOUNDARIES.extend(
         *AI_RECEIPT_ARCHITECTURE_REPRO_FRAGMENTS,
         "Blocked overclaim examples for AI receipt architecture publication boundaries.",
         *AI_RECEIPT_ARCHITECTURE_BLOCKED_CLAIMS,
+        VALIDATION_TIERING_PROVENANCE_CLAIM_ALLOWED,
+        *VALIDATION_TIERING_PROVENANCE_ARTIFACTS,
+        *VALIDATION_TIERING_PROVENANCE_TIER_TERMS,
+        *VALIDATION_TIERING_PROVENANCE_SMOKE_TERMS,
+        *VALIDATION_TIERING_PROVENANCE_ACCEPTANCE_TERMS,
+        *VALIDATION_TIERING_PROVENANCE_DEEP_TERMS,
+        *VALIDATION_TIERING_PROVENANCE_REQUIRED_DOC_PHRASES,
+        *VALIDATION_TIERING_PROVENANCE_FAILURE_CLASSES,
+        *VALIDATION_TIERING_PROVENANCE_RECEIPT_TERMS,
+        *VALIDATION_TIERING_PROVENANCE_REPRO_FRAGMENTS,
+        "Blocked overclaim examples for validation tiering provenance publication boundaries.",
+        *VALIDATION_TIERING_PROVENANCE_BLOCKED_CLAIMS,
     ]
 )
 BOUNDARIES.extend(
@@ -12082,6 +12242,24 @@ def dashboard_payload() -> dict[str, Any]:
         "not_ai_receipt_architecture_deployment": True,
         "not_ai_receipt_architecture_memory_write": True,
         "not_ai_receipt_architecture_atlas_admission": True,
+        "validation_tiering_provenance_00_indexed": True,
+        "validation_tiering_policy_status": "active",
+        "validation_tiering_receipt_source_phase": "AI-RECEIPT-ARCHITECTURE-00",
+        "validation_tiering_validation_tier": "deep",
+        "validation_tiering_validation_scope": "full_multi_module_suite",
+        "validation_tiering_duration_seconds_total": 32131.86,
+        "validation_tiering_validation_result": "passed",
+        "validation_tiering_full_multi_module_suite_run": True,
+        "validation_tiering_deep_validation_deferred": False,
+        "not_validation_tiering_product_release": True,
+        "not_validation_tiering_truth_certification": True,
+        "not_validation_tiering_compliance_certification": True,
+        "not_validation_tiering_scientific_proof": True,
+        "not_validation_tiering_human_benefit_proof": True,
+        "not_validation_tiering_market_validation": True,
+        "not_validation_tiering_deployment_authority": True,
+        "not_validation_tiering_memory_write": True,
+        "not_validation_tiering_atlas_memory_admission": True,
         "perturbation_observation_capture_00_indexed": True,
         "not_perturbation_observation_novelty_discovery": True,
         "not_perturbation_observation_certified_diagnosis": True,
@@ -12158,6 +12336,7 @@ def reproducibility_index() -> dict[str, Any]:
                 {"name": "Static HTML Usability Review Seed Python entrypoint", "command": STATIC_HTML_USABILITY_REVIEW_COMMAND},
                 {"name": "Static HTML Usability Revision Python entrypoint", "command": STATIC_HTML_USABILITY_REVISION_COMMAND},
                 {"name": "AI Receipt Architecture Python entrypoint", "command": AI_RECEIPT_ARCHITECTURE_COMMAND},
+                {"name": "Validation Tiering Provenance Python entrypoint", "command": VALIDATION_TIERING_PROVENANCE_COMMAND},
                 {"name": "Perturbation novelty lane Python entrypoint", "command": PERTURBATION_NOVELTY_LANE_COMMAND},
                 {"name": "Perturbation structure-affordance theorem card Python entrypoint", "command": PERTURBATION_STRUCTURE_AFFORDANCE_CARD_COMMAND},
                 {"name": "PMR Context Availability Ledger acceptance", "command": PMR_CONTEXT_AVAILABILITY_LEDGER_00_COMMAND},
@@ -12838,6 +13017,24 @@ def status_payload() -> dict[str, Any]:
         "not_ai_receipt_architecture_deployment": True,
         "not_ai_receipt_architecture_memory_write": True,
         "not_ai_receipt_architecture_atlas_admission": True,
+        "validation_tiering_provenance_00_indexed": True,
+        "validation_tiering_policy_status": "active",
+        "validation_tiering_receipt_source_phase": "AI-RECEIPT-ARCHITECTURE-00",
+        "validation_tiering_validation_tier": "deep",
+        "validation_tiering_validation_scope": "full_multi_module_suite",
+        "validation_tiering_duration_seconds_total": 32131.86,
+        "validation_tiering_validation_result": "passed",
+        "validation_tiering_full_multi_module_suite_run": True,
+        "validation_tiering_deep_validation_deferred": False,
+        "not_validation_tiering_product_release": True,
+        "not_validation_tiering_truth_certification": True,
+        "not_validation_tiering_compliance_certification": True,
+        "not_validation_tiering_scientific_proof": True,
+        "not_validation_tiering_human_benefit_proof": True,
+        "not_validation_tiering_market_validation": True,
+        "not_validation_tiering_deployment_authority": True,
+        "not_validation_tiering_memory_write": True,
+        "not_validation_tiering_atlas_memory_admission": True,
         "perturbation_observation_capture_00_indexed": True,
         "not_perturbation_observation_novelty_discovery": True,
         "not_perturbation_observation_certified_diagnosis": True,
@@ -12932,10 +13129,20 @@ def docs() -> dict[str, str]:
     ai_receipt_architecture_product_framing = "\n".join(f"- {phrase}" for phrase in AI_RECEIPT_ARCHITECTURE_PRODUCT_FRAMING)
     ai_receipt_architecture_repro_fragments = "\n".join(f"- {fragment}" for fragment in AI_RECEIPT_ARCHITECTURE_REPRO_FRAGMENTS)
     ai_receipt_architecture_blocked = "\n".join(f"- {claim}" for claim in AI_RECEIPT_ARCHITECTURE_BLOCKED_CLAIMS)
+    validation_tiering_artifacts = "\n".join(f"- {artifact}" for artifact in VALIDATION_TIERING_PROVENANCE_ARTIFACTS)
+    validation_tiering_tier_terms = "\n".join(f"- {term}" for term in VALIDATION_TIERING_PROVENANCE_TIER_TERMS)
+    validation_tiering_smoke_terms = "\n".join(f"- {term}" for term in VALIDATION_TIERING_PROVENANCE_SMOKE_TERMS)
+    validation_tiering_acceptance_terms = "\n".join(f"- {term}" for term in VALIDATION_TIERING_PROVENANCE_ACCEPTANCE_TERMS)
+    validation_tiering_deep_terms = "\n".join(f"- {term}" for term in VALIDATION_TIERING_PROVENANCE_DEEP_TERMS)
+    validation_tiering_doc_phrases = "\n".join(f"- {phrase}" for phrase in VALIDATION_TIERING_PROVENANCE_REQUIRED_DOC_PHRASES)
+    validation_tiering_failure_classes = "\n".join(f"- {failure_class}" for failure_class in VALIDATION_TIERING_PROVENANCE_FAILURE_CLASSES)
+    validation_tiering_receipt_terms = "\n".join(f"- {term}" for term in VALIDATION_TIERING_PROVENANCE_RECEIPT_TERMS)
+    validation_tiering_repro_fragments = "\n".join(f"- {fragment}" for fragment in VALIDATION_TIERING_PROVENANCE_REPRO_FRAGMENTS)
+    validation_tiering_blocked = "\n".join(f"- {claim}" for claim in VALIDATION_TIERING_PROVENANCE_BLOCKED_CLAIMS)
     return {
         "README.md": "# Experiment Suite Docs\n\nPublic reviewer documentation for the claim-bounded reproducibility dashboard.\n",
         "assets/README.md": "# Assets\n\nOptional static assets for the public reproducibility dashboard.\n",
-        "index.md": f"# Public Experiment Suite Dashboard\n\nThis dashboard presents accepted evidence for reviewer orientation. It is not truth certification, not deployment authority, not final answer release, local fixture only, and requires external peer review.\n\n## Accepted evidence\n\n| Phase | Repo | Status | What this supports | Reviewer caution |\n| --- | --- | --- | --- | --- |\n{phase_rows}\n\n## Reviewer path\n\nStart with claim boundaries, then read the governed artifact cognition paper, WAVE Rosetta paper, SONYA-AEGIS-SMOKE-02, WAVE family, UNI-02D Sonya gate, and RETRO-LANE-00, Public Utility Alpha, Raw Baseline Comparison, Evidence Review Pack, RW-COMP-01, RW-COMP-02, Retrosynthesis Sandbox Cycle, Evidence Review Pack second-pass, RW-COMP-03, Universal Architecture Scaffold, Sonya Adapter Contract Registry, Sonya Adapter Smoke, Sonya Local Fixture Adapter, and Evidence Review Pack local adapter, Evidence Review Pack local adapter revision, RW-COMP local adapter, PMR doctrine, PMR local artifact index, PMR GPCU utility scoring, PMR lifecycle state machine, PMR lifecycle audit preflight, PMR Sophia lifecycle audit review, PMR destructive-action authorization preflight, PMR architecture diversity checkpoint, PMR simulation baseline comparison, PMR simulation statistical analysis, PMR federation stress corpus, PMR human provenance context, Sonya Local Fixture Adapter multi-route, and Sonya Local Fixture Adapter lineage clarity, Local Review metrics and flow, Metric Semantic Contract, Language Governance, Language Governance Audit Runtime, and Runtime Metrics Seed Corpus, PMR local queryable store, Retrosynthesis Readiness, Retrosynthesis Local Prototype, and Atlas Local Memory Admission Readiness, Atlas Local Memory Admission Prototype, Local-test Proxy Review, AI Context Performance Continuity, Theorem Validation Pathway, and COOP Entropy Dividend, Triadic LLM Metrics Smoke, UCC Sophia Control Forensics, UCC Standards Source Registry and Materiality, Triadic LLM Smoke PMR Inventory Contract Repair, AI Forensics Dossier, Human Review UX, Visual Review Model, Visual Review Static HTML Prototype, Static HTML Usability Review Seed, Static HTML Usability Revision, and AI Receipt Architecture, Perturbation Observation Capture, Perturbation Trunk Mapping, and Perturbation Residual Novelty Map, and Perturbation Structure-Affordance Card pages.\n\n## What this proves\n\nIt proves only that accepted local fixture artifacts and draft publication materials are organized for review.\n\n## What this does not prove\n\nNo oracle posture, no deployment posture, no final-answer posture, no AI consciousness claim, and no universal ontology claim.\n\n## Phase pages\n\n- [SONYA-AEGIS-SMOKE-02](sonya-aegis-smoke-02.md)\n- [WAVE Gold-Physics](wave-gold-physics.md)\n- [UNI-02D Sonya gate](uni02d-sonya-gate.md)\n- [RETRO-LANE-00](retro-lane-00.md)\n- [Public Utility Alpha](public-utility-alpha.md)\n- [Raw Baseline Comparison](raw-baseline-comparison.md)\n- [Evidence Review Pack](evidence-review-pack.md)\n- [RW-COMP-01](rw-comp-01.md)\n- [RW-COMP-02](rw-comp-02.md)\n- [Retrosynthesis Sandbox Cycle](retrosynthesis-sandbox-cycle.md)\n- [Evidence Review Pack second pass](evidence-review-pack-second-pass.md)\n- [RW-COMP-03](rw-comp-03.md)\n- [Universal Architecture Scaffold](universal-architecture.md)\n- [Sonya Adapter Contract Registry](sonya-adapter-contract-registry.md)\n- [Sonya required membrane checkpoint](sonya-required-membrane-checkpoint.md)\n- [TEL event stack](tel-event-stack.md)\n- [Sonya Adapter Smoke](sonya-adapter-smoke.md)\n- [Sonya Local Fixture Adapter](sonya-local-fixture-adapter.md)\n- [Evidence Review Pack local adapter](evidence-review-pack-local-adapter.md)\n- [Evidence Review Pack local adapter revision](evidence-review-pack-local-adapter-revision.md)\n- [RW-COMP local adapter](rw-comp-local-adapter.md)\n- [Provenance Memory Reservoir](provenance-memory-reservoir.md)\n- [PMR local artifact index](pmr-local-artifact-index.md)\n- [Ontology Claim Registry](ontology-claim-registry.md)\n- [Local Sonya path portability](local-sonya-path-portability.md)\n- [TB Product Slice](tb-product-slice.md)\n- [TB Product Slice 01](tb-product-slice-01.md)\n- [Sonya Local Fixture Adapter multi-route](sonya-local-fixture-adapter-multi-route.md)\n- [Sonya Local Fixture Adapter lineage clarity](sonya-local-fixture-adapter-lineage.md)\n- [Local Review Runtime V0](local-review-runtime-v0.md)\n- [Local Review metrics and flow](local-review-metrics-flow.md)\n- [Runtime metrics seed corpus](runtime-metrics-seed-corpus.md)\n- [PMR local queryable store](pmr-local-queryable-store.md)\n- [Retrosynthesis readiness](retrosynthesis-readiness.md)\n- [Retrosynthesis local prototype](retrosynthesis-local-prototype.md)\n- [Atlas local memory admission readiness](atlas-local-memory-admission-readiness.md)\n- [AI Forensics Dossier](ai-forensics-dossier.md)\n- [Human Review UX](human-review-ux.md)\n- [Visual Review Model](visual-review-model.md)\n- [Visual Review Static HTML Prototype](visual-review-static-html-prototype.md)\n- [Perturbation Observation Capture](perturbation-observation-capture.md)\n- [Perturbation Trunk Mapping](perturbation-trunk-mapping.md)\n- [Perturbation Residual Novelty Map](perturbation-residual-novelty-map.md)\n- [Perturbation Structure-Affordance Card](perturbation-structure-affordance-card.md)\n- [Governed artifact cognition paper](governed-artifact-cognition-paper.md)\n- [Waveform Rosetta paper](waveform-rosetta-paper.md)\n",
+        "index.md": f"# Public Experiment Suite Dashboard\n\nThis dashboard presents accepted evidence for reviewer orientation. It is not truth certification, not deployment authority, not final answer release, local fixture only, and requires external peer review.\n\n## Accepted evidence\n\n| Phase | Repo | Status | What this supports | Reviewer caution |\n| --- | --- | --- | --- | --- |\n{phase_rows}\n\n## Reviewer path\n\nStart with claim boundaries, then read the governed artifact cognition paper, WAVE Rosetta paper, SONYA-AEGIS-SMOKE-02, WAVE family, UNI-02D Sonya gate, and RETRO-LANE-00, Public Utility Alpha, Raw Baseline Comparison, Evidence Review Pack, RW-COMP-01, RW-COMP-02, Retrosynthesis Sandbox Cycle, Evidence Review Pack second-pass, RW-COMP-03, Universal Architecture Scaffold, Sonya Adapter Contract Registry, Sonya Adapter Smoke, Sonya Local Fixture Adapter, and Evidence Review Pack local adapter, Evidence Review Pack local adapter revision, RW-COMP local adapter, PMR doctrine, PMR local artifact index, PMR GPCU utility scoring, PMR lifecycle state machine, PMR lifecycle audit preflight, PMR Sophia lifecycle audit review, PMR destructive-action authorization preflight, PMR architecture diversity checkpoint, PMR simulation baseline comparison, PMR simulation statistical analysis, PMR federation stress corpus, PMR human provenance context, Sonya Local Fixture Adapter multi-route, and Sonya Local Fixture Adapter lineage clarity, Local Review metrics and flow, Metric Semantic Contract, Language Governance, Language Governance Audit Runtime, and Runtime Metrics Seed Corpus, PMR local queryable store, Retrosynthesis Readiness, Retrosynthesis Local Prototype, and Atlas Local Memory Admission Readiness, Atlas Local Memory Admission Prototype, Local-test Proxy Review, AI Context Performance Continuity, Theorem Validation Pathway, and COOP Entropy Dividend, Triadic LLM Metrics Smoke, UCC Sophia Control Forensics, UCC Standards Source Registry and Materiality, Triadic LLM Smoke PMR Inventory Contract Repair, AI Forensics Dossier, Human Review UX, Visual Review Model, Visual Review Static HTML Prototype, Static HTML Usability Review Seed, Static HTML Usability Revision, AI Receipt Architecture, and Validation Tiering and Provenance, Perturbation Observation Capture, Perturbation Trunk Mapping, and Perturbation Residual Novelty Map, and Perturbation Structure-Affordance Card pages.\n\n## What this proves\n\nIt proves only that accepted local fixture artifacts and draft publication materials are organized for review.\n\n## What this does not prove\n\nNo oracle posture, no deployment posture, no final-answer posture, no AI consciousness claim, and no universal ontology claim.\n\n## Phase pages\n\n- [SONYA-AEGIS-SMOKE-02](sonya-aegis-smoke-02.md)\n- [WAVE Gold-Physics](wave-gold-physics.md)\n- [UNI-02D Sonya gate](uni02d-sonya-gate.md)\n- [RETRO-LANE-00](retro-lane-00.md)\n- [Public Utility Alpha](public-utility-alpha.md)\n- [Raw Baseline Comparison](raw-baseline-comparison.md)\n- [Evidence Review Pack](evidence-review-pack.md)\n- [RW-COMP-01](rw-comp-01.md)\n- [RW-COMP-02](rw-comp-02.md)\n- [Retrosynthesis Sandbox Cycle](retrosynthesis-sandbox-cycle.md)\n- [Evidence Review Pack second pass](evidence-review-pack-second-pass.md)\n- [RW-COMP-03](rw-comp-03.md)\n- [Universal Architecture Scaffold](universal-architecture.md)\n- [Sonya Adapter Contract Registry](sonya-adapter-contract-registry.md)\n- [Sonya required membrane checkpoint](sonya-required-membrane-checkpoint.md)\n- [TEL event stack](tel-event-stack.md)\n- [Sonya Adapter Smoke](sonya-adapter-smoke.md)\n- [Sonya Local Fixture Adapter](sonya-local-fixture-adapter.md)\n- [Evidence Review Pack local adapter](evidence-review-pack-local-adapter.md)\n- [Evidence Review Pack local adapter revision](evidence-review-pack-local-adapter-revision.md)\n- [RW-COMP local adapter](rw-comp-local-adapter.md)\n- [Provenance Memory Reservoir](provenance-memory-reservoir.md)\n- [PMR local artifact index](pmr-local-artifact-index.md)\n- [Ontology Claim Registry](ontology-claim-registry.md)\n- [Local Sonya path portability](local-sonya-path-portability.md)\n- [TB Product Slice](tb-product-slice.md)\n- [TB Product Slice 01](tb-product-slice-01.md)\n- [Sonya Local Fixture Adapter multi-route](sonya-local-fixture-adapter-multi-route.md)\n- [Sonya Local Fixture Adapter lineage clarity](sonya-local-fixture-adapter-lineage.md)\n- [Local Review Runtime V0](local-review-runtime-v0.md)\n- [Local Review metrics and flow](local-review-metrics-flow.md)\n- [Runtime metrics seed corpus](runtime-metrics-seed-corpus.md)\n- [PMR local queryable store](pmr-local-queryable-store.md)\n- [Retrosynthesis readiness](retrosynthesis-readiness.md)\n- [Retrosynthesis local prototype](retrosynthesis-local-prototype.md)\n- [Atlas local memory admission readiness](atlas-local-memory-admission-readiness.md)\n- [AI Forensics Dossier](ai-forensics-dossier.md)\n- [Human Review UX](human-review-ux.md)\n- [Visual Review Model](visual-review-model.md)\n- [Visual Review Static HTML Prototype](visual-review-static-html-prototype.md)\n- [Perturbation Observation Capture](perturbation-observation-capture.md)\n- [Perturbation Trunk Mapping](perturbation-trunk-mapping.md)\n- [Perturbation Residual Novelty Map](perturbation-residual-novelty-map.md)\n- [Perturbation Structure-Affordance Card](perturbation-structure-affordance-card.md)\n- [Governed artifact cognition paper](governed-artifact-cognition-paper.md)\n- [Waveform Rosetta paper](waveform-rosetta-paper.md)\n",
         "language-governance.md": f"""# Language Governance
 
 ## What was validated
@@ -13485,6 +13692,88 @@ AI-RECEIPT-ARCHITECTURE-00 synchronizes the locally validated AI Receipt Archite
 ## Allowed bounded claim
 
 {AI_RECEIPT_ARCHITECTURE_CLAIM_ALLOWED}
+
+## Validation tiering provenance linkage
+
+VALIDATION-TIERING-PROVENANCE-00 records the 32131.86-second AI Receipt Architecture validation as deep validation evidence, not the default developer loop. Validation tiering is provenance, not convenience. Run the tier that matches the decision, then record what that tier does and does not prove.
+""",
+        "validation-tiering-provenance.md": f"""# Validation Tiering and Provenance
+
+## What was validated
+
+VALIDATION-TIERING-PROVENANCE-00 synchronizes validation tier policy and validation receipt provenance to publication surfaces. Validation tiering is provenance, not convenience. This is publication/dashboard synchronization only and grants no runtime authority.
+
+## Dashboard summary
+
+- policy_status = active
+- source_phase = VALIDATION-TIERING-PROVENANCE-00
+- receipt_source_phase = AI-RECEIPT-ARCHITECTURE-00
+- validation_tier = deep
+- validation_scope = full_multi_module_suite
+- validation_intent = major_sync_or_handoff_grade_validation
+- duration_seconds_total = 32131.86
+- artifact_chain_name = ai_receipt_architecture_product_stack
+- validation_result = passed
+- artifact_chain_smoke_run = false
+- full_multi_module_suite_run = true
+- deep_validation_deferred = false
+- validation_result_is_not_product_release = true
+- validation_result_is_not_truth_certification = true
+- validation_result_is_not_compliance_certification = true
+- validation_result_is_not_scientific_proof = true
+- validation_result_is_not_human_benefit_proof = true
+- validation_result_is_not_market_validation = true
+- validation_result_is_not_deployment_authority = true
+- validation_result_is_not_memory_write = true
+- validation_result_is_not_atlas_memory_admission = true
+
+## Tier terms
+
+{validation_tiering_tier_terms}
+
+## Smoke tier
+
+{validation_tiering_smoke_terms}
+
+## Acceptance tier
+
+{validation_tiering_acceptance_terms}
+
+## Deep tier
+
+{validation_tiering_deep_terms}
+
+## Required validation provenance language
+
+{validation_tiering_doc_phrases}
+
+## Failure classes
+
+{validation_tiering_failure_classes}
+
+## Receipt artifact terms
+
+{validation_tiering_receipt_terms}
+
+## Output artifacts
+
+{validation_tiering_artifacts}
+
+## Reproducibility fragments
+
+{validation_tiering_repro_fragments}
+
+```powershell
+{VALIDATION_TIERING_PROVENANCE_COMMAND}
+```
+
+## Blocked overclaim examples for validation tiering provenance publication boundaries
+
+{validation_tiering_blocked}
+
+## Allowed bounded claim
+
+{VALIDATION_TIERING_PROVENANCE_CLAIM_ALLOWED}
 """,
         "metric-semantic-contract.md": f"""# Metric Semantic Contract
 
