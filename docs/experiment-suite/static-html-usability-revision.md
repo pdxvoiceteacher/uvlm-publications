@@ -179,3 +179,7 @@ python -c "from pathlib import Path; from coherence.product.triadic_llm_metrics_
 ## Allowed bounded claim
 
 STATIC-HTML-USABILITY-REVISION-00 applies deterministic local usability-review seed themes to produce a revised local static review surface, while preserving the original HTML and claiming no real user study, human benefit proof, market validation, product readiness, UI release, product release, deployment, provider runtime, final-answer authority, certification, memory write, or Atlas admission.
+
+## AI Receipt Architecture linkage
+
+AI-RECEIPT-ARCHITECTURE-00 wraps this revised static review surface into AI Receipt Architecture. A watermark says AI was here. A receipt says what happened. Receipt architecture wraps the artifact-backed review stack without certifying truth or releasing product.

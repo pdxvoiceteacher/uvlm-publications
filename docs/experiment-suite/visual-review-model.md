@@ -162,6 +162,9 @@ VISUAL-REVIEW-STATIC-HTML-PROTOTYPE-00 renders this data model into a local stat
 STATIC-HTML-USABILITY-REVIEW-SEED-00 adds a deterministic local-test usability review scaffold over the static HTML prototype without claiming a real user study or product validation.
 
 STATIC-HTML-USABILITY-REVISION-00 applies those deterministic local themes to a revised static review surface while preserving the original HTML and non-authority boundaries.
+## AI Receipt Architecture linkage
+
+AI-RECEIPT-ARCHITECTURE-00 records this artifact-backed review stack in AI Receipt Architecture. A watermark says AI was here. A receipt says what happened. Receipt architecture wraps the artifact-backed review stack without certifying truth or releasing product.
 
 ## Blocked visual-review overclaim examples
 

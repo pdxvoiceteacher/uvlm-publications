@@ -63,6 +63,14 @@ from tools.build_public_repro_dashboard import (
     STATIC_HTML_USABILITY_REVISION_REQUIRED_DOC_PHRASES,
     STATIC_HTML_USABILITY_REVISION_THEMES,
     STATIC_HTML_USABILITY_REVISION_TRACEABILITY_TERMS,
+    AI_RECEIPT_ARCHITECTURE_ARTIFACTS,
+    AI_RECEIPT_ARCHITECTURE_BLOCKED_CLAIMS,
+    AI_RECEIPT_ARCHITECTURE_CLAIM_ALLOWED,
+    AI_RECEIPT_ARCHITECTURE_EVENT_CHAIN,
+    AI_RECEIPT_ARCHITECTURE_INPUT_ARTIFACTS,
+    AI_RECEIPT_ARCHITECTURE_PRODUCT_FRAMING,
+    AI_RECEIPT_ARCHITECTURE_REPRO_FRAGMENTS,
+    AI_RECEIPT_ARCHITECTURE_REQUIRED_DOC_PHRASES,
     _dedupe_accepted_phases,
 )
 from tools.validate_public_repro_dashboard import REQUIRED_PHASES as VALIDATOR_REQUIRED_PHASES
@@ -232,6 +240,7 @@ REQUIRED_PHASES = {
     "VISUAL-REVIEW-STATIC-HTML-PROTOTYPE-00",
     "STATIC-HTML-USABILITY-REVIEW-SEED-00",
     "STATIC-HTML-USABILITY-REVISION-00",
+    "AI-RECEIPT-ARCHITECTURE-00",
     "RUNTIME-METRICS-CORPUS-SEED-00",
     "PMR-LOCAL-RUNTIME-QUERYABLE-STORE-00",
     "RETROSYNTHESIS-READINESS-00",
@@ -4511,6 +4520,76 @@ def test_static_html_usability_review_seed_page_and_registry_are_generated(tmp_p
     assert status["not_static_html_usability_product_readiness"] is True
 
 
+
+
+def test_ai_receipt_architecture_page_and_registry_are_generated(tmp_path):
+    out_dir = tmp_path / "registry"
+    docs_dir = tmp_path / "docs"
+    subprocess.run([sys.executable, str(BUILDER), "--out-dir", str(out_dir), "--docs-dir", str(docs_dir)], check=True)
+    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text(encoding="utf-8"))
+    artifact_index = json.loads((out_dir / "artifact_index.json").read_text(encoding="utf-8"))
+    reproducibility_text = (out_dir / "reproducibility_index.json").read_text(encoding="utf-8")
+    boundary_text = (out_dir / "claim_boundary_index.json").read_text(encoding="utf-8")
+    status = json.loads((out_dir / "status.json").read_text(encoding="utf-8"))
+    page_text = (docs_dir / "ai-receipt-architecture.md").read_text(encoding="utf-8")
+
+    phase_by_id = {phase["phase_id"]: phase for phase in dashboard["accepted_phases"]}
+    assert "AI-RECEIPT-ARCHITECTURE-00" in phase_by_id
+    phase = phase_by_id["AI-RECEIPT-ARCHITECTURE-00"]
+    summary = phase["dashboard_summary"]
+    assert summary["architecture_status"] == "completed"
+    assert summary["architecture_mode"] == "ai_receipt_architecture"
+    assert summary["product_framing"] == "AI Receipt Architecture"
+    assert summary["product_sentence"] == "A watermark says AI was here. A receipt says what happened."
+    assert summary["receipt_event_count"] == 15
+    assert summary["event_rows"] == 15
+    assert summary["unsupported_claim_count"] == 1
+    assert summary["source_linked_claim_count"] == 0
+    assert summary["receipt_is_evidence_organization"] is True
+    assert summary["receipt_is_not_truth_certification"] is True
+    assert summary["receipt_is_not_accepted_evidence_authority"] is True
+    assert summary["receipt_is_not_product_release"] is True
+    assert summary["product_release_performed"] is False
+    assert summary["provider_runtime_performed"] is False
+    assert summary["deployment_performed"] is False
+    assert summary["memory_write_performed"] is False
+    assert summary["atlas_memory_admission_performed"] is False
+
+    for artifact in AI_RECEIPT_ARCHITECTURE_ARTIFACTS:
+        assert artifact in artifact_index["phases"]["AI-RECEIPT-ARCHITECTURE-00"]
+        assert artifact in page_text
+        assert artifact in boundary_text
+    for artifact in AI_RECEIPT_ARCHITECTURE_INPUT_ARTIFACTS:
+        assert artifact in page_text
+        assert artifact in boundary_text
+    for event in AI_RECEIPT_ARCHITECTURE_EVENT_CHAIN:
+        assert event in page_text
+        assert event in boundary_text
+    for phrase in AI_RECEIPT_ARCHITECTURE_REQUIRED_DOC_PHRASES:
+        assert phrase in page_text
+        assert phrase in boundary_text
+    for phrase in AI_RECEIPT_ARCHITECTURE_PRODUCT_FRAMING:
+        assert phrase in page_text
+        assert phrase in boundary_text
+    for fragment in AI_RECEIPT_ARCHITECTURE_REPRO_FRAGMENTS:
+        assert fragment in reproducibility_text
+        assert fragment in page_text
+        assert fragment in boundary_text
+    for claim in AI_RECEIPT_ARCHITECTURE_BLOCKED_CLAIMS:
+        assert claim in page_text
+        assert claim in boundary_text
+    assert AI_RECEIPT_ARCHITECTURE_CLAIM_ALLOWED in page_text
+    assert AI_RECEIPT_ARCHITECTURE_CLAIM_ALLOWED in boundary_text
+    assert status["ai_receipt_architecture_00_indexed"] is True
+    assert status["ai_receipt_architecture_status"] == "completed"
+    assert status["ai_receipt_architecture_mode"] == "ai_receipt_architecture"
+    assert status["ai_receipt_architecture_event_count"] == 15
+    assert status["not_ai_receipt_architecture_truth_certification"] is True
+    assert status["not_ai_receipt_architecture_product_release"] is True
+    assert status["not_ai_receipt_architecture_provider_runtime"] is True
+    assert status["not_ai_receipt_architecture_deployment"] is True
+    assert status["not_ai_receipt_architecture_memory_write"] is True
+    assert status["not_ai_receipt_architecture_atlas_admission"] is True
 
 def test_static_html_usability_revision_page_and_registry_are_generated(tmp_path):
     out_dir, docs_dir = run_builder(tmp_path)

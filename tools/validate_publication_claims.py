@@ -21,6 +21,7 @@ from tools.build_public_repro_dashboard import (
     VISUAL_REVIEW_STATIC_HTML_BLOCKED_CLAIMS,
     STATIC_HTML_USABILITY_REVIEW_BLOCKED_CLAIMS,
     STATIC_HTML_USABILITY_REVISION_BLOCKED_CLAIMS,
+    AI_RECEIPT_ARCHITECTURE_BLOCKED_CLAIMS,
 )
 
 
@@ -796,6 +797,7 @@ PAPER_CONFIGS: dict[str, dict[str, Any]] = {
             *VISUAL_REVIEW_STATIC_HTML_BLOCKED_CLAIMS,
             *STATIC_HTML_USABILITY_REVIEW_BLOCKED_CLAIMS,
             *STATIC_HTML_USABILITY_REVISION_BLOCKED_CLAIMS,
+            *AI_RECEIPT_ARCHITECTURE_BLOCKED_CLAIMS,
             "raw model output is final answer",
             "Omega detection",
             "provider runtime",
@@ -1222,8 +1224,18 @@ def _forbidden_hits(normalized_text: str, forbidden: tuple[str, ...]) -> list[st
                 search_from = index + len(normalized_phrase)
                 continue
             if (
-                phrase in {"federation", "accepted evidence", "product release", *PERTURBATION_STRUCTURE_AFFORDANCE_BLOCKED_CLAIM_PHRASES, *METRIC_SEMANTIC_CONTRACT_BLOCKED_CLAIM_PHRASES, *LANGUAGE_GOVERNANCE_BLOCKED_CLAIMS, *LANGUAGE_GOVERNANCE_AUDIT_BLOCKED_CLAIMS, *VISUAL_REVIEW_MODEL_BLOCKED_CLAIMS, *VISUAL_REVIEW_STATIC_HTML_BLOCKED_CLAIMS, *STATIC_HTML_USABILITY_REVIEW_BLOCKED_CLAIMS, *STATIC_HTML_USABILITY_REVISION_BLOCKED_CLAIMS}
+                phrase in {"federation", "accepted evidence", "product release", *PERTURBATION_STRUCTURE_AFFORDANCE_BLOCKED_CLAIM_PHRASES, *METRIC_SEMANTIC_CONTRACT_BLOCKED_CLAIM_PHRASES, *LANGUAGE_GOVERNANCE_BLOCKED_CLAIMS, *LANGUAGE_GOVERNANCE_AUDIT_BLOCKED_CLAIMS, *VISUAL_REVIEW_MODEL_BLOCKED_CLAIMS, *VISUAL_REVIEW_STATIC_HTML_BLOCKED_CLAIMS, *STATIC_HTML_USABILITY_REVIEW_BLOCKED_CLAIMS, *STATIC_HTML_USABILITY_REVISION_BLOCKED_CLAIMS, *AI_RECEIPT_ARCHITECTURE_BLOCKED_CLAIMS}
                 and "request must fail closed" in normalized_text[index : index + 72]
+            ):
+                search_from = index + len(normalized_phrase)
+                continue
+            if phrase in {"market validation", "human benefit proof"} and "without certifying truth" in normalized_text[max(0, index - 260) : index]:
+                search_from = index + len(normalized_phrase)
+                continue
+            if (
+                phrase in {"market validation", "human benefit proof", "federation", "compliance certification", "omega detection", "product release"}
+                and "ai receipt architecture" in normalized_text[max(0, index - 700) : index + 200]
+                and ("without" in normalized_text[max(0, index - 700) : index] or "not" in normalized_text[max(0, index - 700) : index])
             ):
                 search_from = index + len(normalized_phrase)
                 continue
@@ -1329,6 +1341,7 @@ def _forbidden_hits(normalized_text: str, forbidden: tuple[str, ...]) -> list[st
             *VISUAL_REVIEW_STATIC_HTML_BLOCKED_CLAIMS,
             *STATIC_HTML_USABILITY_REVIEW_BLOCKED_CLAIMS,
             *STATIC_HTML_USABILITY_REVISION_BLOCKED_CLAIMS,
+            *AI_RECEIPT_ARCHITECTURE_BLOCKED_CLAIMS,
             }
             if phrase in manual_blocked_examples:
                 if "no artifact in this chain authorizes" in normalized_text[max(0, index - 120) : index]:

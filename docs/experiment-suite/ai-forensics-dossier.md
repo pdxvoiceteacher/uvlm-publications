@@ -58,6 +58,9 @@ AI-FORENSICS-DOSSIER-00 packages a local AI candidate, source evidence, unsuppor
 - No product release occurred.
 - No memory write occurred.
 - No Atlas memory admission occurred.
+## AI Receipt Architecture linkage
+
+AI-RECEIPT-ARCHITECTURE-00 records this artifact-backed review stack in AI Receipt Architecture. A watermark says AI was here. A receipt says what happened. Receipt architecture wraps the artifact-backed review stack without certifying truth or releasing product.
 
 ## Blocked overclaim examples
 
