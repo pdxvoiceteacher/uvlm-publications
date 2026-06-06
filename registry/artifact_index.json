@@ -1157,6 +1157,42 @@
       "schema/bridge/validation_tier_receipt.schema.json",
       "docs/VALIDATION_TIERING_AND_PROVENANCE.md"
     ],
+    "TELEMETRY-APERTURE-DESIGN-00": [
+      "docs/TELEMETRY_APERTURE_CONTROLLER.md",
+      "config/telemetry_aperture/telemetry_aperture_modes.v1.json",
+      "config/telemetry_aperture/minimum_audit_floor.v1.json",
+      "config/telemetry_aperture/telemetry_aperture_policy_schema.v1.json",
+      "schema/bridge/telemetry_aperture_policy_packet.schema.json",
+      "schema/bridge/telemetry_aperture_decision_packet.schema.json",
+      "schema/bridge/telemetry_aperture_retention_intent_packet.schema.json"
+    ],
+    "TAC-POLICY-SIMULATION-00": [
+      "telemetry_aperture_policy_packet.json",
+      "telemetry_aperture_simulation_packet.json",
+      "telemetry_aperture_decision_packet.json",
+      "telemetry_aperture_retention_intent_packet.json",
+      "telemetry_aperture_simulation_summary.md",
+      "telemetry_aperture_simulation_receipt.json"
+    ],
+    "TAC-LOCAL-REVIEW-INTEGRATION-00": [
+      "tac_local_review_integration_packet.json",
+      "tac_local_review_overlay.json",
+      "tac_local_review_integration_summary.md",
+      "tac_local_review_integration_receipt.json"
+    ],
+    "TAC-AI-RECEIPT-EVENT-LINK-00": [
+      "tac_ai_receipt_event_link_packet.json",
+      "tac_ai_receipt_event_reference_table.json",
+      "tac_ai_receipt_event_link_summary.md",
+      "tac_ai_receipt_event_link_receipt.json"
+    ],
+    "PMR-PATHWAY-PRIORS-DESIGN-DOCTRINE-00": [
+      "docs/PMR_PATHWAY_PRIORS_DESIGN_DOCTRINE.md",
+      "config/pmr/pathway_prior_policy.v1.json",
+      "schema/bridge/pmr_pathway_prior_policy_packet.schema.json",
+      "schema/bridge/pmr_pathway_prior_candidate.schema.json",
+      "schema/bridge/pmr_pathway_prior_non_authority_boundary.schema.json"
+    ],
     "PERTURBATION-OBSERVATION-CAPTURE-00": [
       "perturbation_observation_packet.json",
       "perturbation_axis_packet.json",
