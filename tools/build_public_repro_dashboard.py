@@ -3161,6 +3161,176 @@ VISUAL_REVIEW_STATIC_HTML_PHASE = {
 }
 
 
+TAC_POLICY_SIMULATION_COMMAND = "python -c \"from pathlib import Path; from coherence.telemetry.aperture_simulation import build_telemetry_aperture_simulation; bridge=Path(r'C:\\UVLM\\run_artifacts\\telemetry_aperture_simulation\\bridge'); build_telemetry_aperture_simulation(bridge)\""
+TAC_POLICY_SIMULATION_ARTIFACTS = [
+    "telemetry_aperture_policy_packet.json",
+    "telemetry_aperture_simulation_packet.json",
+    "telemetry_aperture_decision_packet.json",
+    "telemetry_aperture_retention_intent_packet.json",
+    "telemetry_aperture_simulation_summary.md",
+    "telemetry_aperture_simulation_receipt.json",
+]
+TAC_POLICY_SIMULATION_INPUT_REFERENCES = [
+    "config/telemetry_aperture/telemetry_aperture_modes.v1.json",
+    "config/telemetry_aperture/minimum_audit_floor.v1.json",
+    "config/telemetry_aperture/telemetry_aperture_policy_schema.v1.json",
+    "schema/bridge/telemetry_aperture_policy_packet.schema.json",
+    "schema/bridge/telemetry_aperture_decision_packet.schema.json",
+    "schema/bridge/telemetry_aperture_retention_intent_packet.schema.json",
+    "schema/bridge/telemetry_aperture_simulation_packet.schema.json",
+    "schema/bridge/telemetry_aperture_simulation_receipt.schema.json",
+]
+TAC_POLICY_SIMULATION_SCENARIOS = [
+    "local_default_receipt_review",
+    "unsupported_claim_surge",
+    "high_boundary_pressure",
+    "user_requested_deep_audit_without_retention_consent",
+    "full_audit_requested_without_consent",
+    "trace_export_requested_without_consent",
+    "pmr_federation_requested_without_consent",
+    "drop_failure_receipts_for_cost",
+]
+TAC_POLICY_SIMULATION_SCENARIO_OUTCOMES = [
+    "local_default_receipt_review selects pulse",
+    "unsupported_claim_surge escalates to snapshot",
+    "high_boundary_pressure escalates to tail_retain",
+    "user_requested_deep_audit_without_retention_consent escalates to trace while blocking durable raw trace retention",
+    "full_audit_requested_without_consent triggers full_audit_mode_without_consent",
+    "trace_export_requested_without_consent triggers export_trace_without_consent",
+    "pmr_federation_requested_without_consent triggers federate_tel_without_consent",
+    "drop_failure_receipts_for_cost triggers drop_failure_receipts_for_cost and blocked_fail_closed",
+]
+TAC_POLICY_SIMULATION_HARD_BLOCK_TERMS = [
+    "full_audit_mode_without_consent",
+    "export_trace_without_consent",
+    "federate_tel_without_consent",
+    "drop_failure_receipts_for_cost",
+    "increase_raw_retention_without_consent",
+    "drop_source_spans_for_cost",
+    "drop_run_manifest_for_cost",
+    "drop_boundary_table_for_cost",
+    "privacy_redaction_override_without_consent",
+    "retain_sensitive_content_without_consent",
+]
+TAC_POLICY_SIMULATION_DECISION_RETENTION_TERMS = [
+    "telemetry_aperture_decision_packet.json",
+    "telemetry_aperture_retention_intent_packet.json",
+    "selected_mode",
+    "decision_status",
+    "hard_blocks_triggered",
+    "minimum_audit_floor_preserved",
+    "raw_trace_retention_allowed",
+    "trace_export_allowed",
+    "federation_allowed",
+    "raw_trace_retention_status",
+    "blocked_requires_explicit_approval",
+    "temporary_only_no_durable_retention_without_approval",
+]
+TAC_POLICY_SIMULATION_REQUIRED_DOC_PHRASES = [
+    "TAC Policy Simulation",
+    "This is design-only policy rehearsal, not runtime control.",
+    "TAC simulation does not change runtime telemetry behavior.",
+    "TAC simulation is not surveillance authorization.",
+    "TAC simulation is not memory write.",
+    "TAC simulation is not trace export authorization.",
+    "TAC simulation is not federation authorization.",
+    "TAC simulation is not product release.",
+    "Minimum audit floor is preserved.",
+    "Human review remains required for aperture expansion, retention, export, federation, and PMR memory intent.",
+    "Default scenario selects pulse.",
+    "Trace export remains blocked without consent.",
+    "PMR federation remains blocked without consent.",
+    "Raw trace retention remains blocked without explicit approval.",
+    "Dropping failure receipts for cost is blocked fail-closed.",
+]
+TAC_POLICY_SIMULATION_DESIGN_RELATION = [
+    "TELEMETRY-APERTURE-DESIGN-00 defines TAC policy.",
+    "TAC-POLICY-SIMULATION-00 rehearses deterministic policy decisions.",
+    "TAC-POLICY-SIMULATION-00 does not implement live runtime control.",
+]
+TAC_POLICY_SIMULATION_REPRO_FRAGMENTS = [
+    "build_telemetry_aperture_simulation",
+    "telemetry_aperture_modes.v1.json",
+    "minimum_audit_floor.v1.json",
+    "telemetry_aperture_policy_schema.v1.json",
+]
+TAC_POLICY_SIMULATION_BLOCKED_CLAIMS = [
+    "TAC policy simulation changed runtime telemetry behavior",
+    "TAC policy simulation is runtime control",
+    "TAC policy simulation authorizes surveillance",
+    "TAC policy simulation authorizes trace export",
+    "TAC policy simulation authorizes PMR federation",
+    "TAC policy simulation authorizes memory write",
+    "TAC policy simulation authorizes Atlas memory admission",
+    "TAC policy simulation authorizes provider runtime",
+    "TAC policy simulation authorizes network runtime",
+    "TAC policy simulation authorizes deployment",
+    "TAC policy simulation is product release",
+    "TAC policy simulation certifies truth",
+    "TAC policy simulation certifies compliance",
+    "TAC policy simulation authorizes final answers",
+    "TAC policy simulation grants accepted-evidence authority",
+    "TAC policy simulation proves human benefit",
+    "TAC policy simulation is market validation",
+    "TAC policy simulation proves product readiness",
+    "TAC policy simulation proves consciousness",
+    "TAC policy simulation detects Omega",
+    "TAC policy simulation proves universal ontology",
+    "full audit mode can run without consent",
+    "raw trace retention is allowed without explicit approval",
+    "trace export is allowed without consent",
+    "PMR federation is allowed by default",
+    "dropping failure receipts for cost is permitted",
+    "aperture simulation permits memory write",
+    "simulation decision is consent execution",
+]
+TAC_POLICY_SIMULATION_CLAIM_ALLOWED = "TAC-POLICY-SIMULATION-00 emits design-only Telemetry Aperture Controller policy simulation packets for deterministic local scenarios, showing selected modes, hard blocks, retention intent, and minimum-audit-floor preservation without changing runtime behavior or granting surveillance, memory, trace export, federation, product, deployment, provider, final-answer, accepted-evidence, certification, Atlas, human benefit, market, consciousness, Omega, or ontology authority."
+TAC_POLICY_SIMULATION_DASHBOARD_SUMMARY = {
+    "simulation_status": "completed",
+    "simulation_mode": "design_only_policy_rehearsal",
+    "scenario_count": 8,
+    "default_scenario_id": "local_default_receipt_review",
+    "default_selected_mode": "pulse",
+    "default_raw_trace_retention_allowed": False,
+    "default_trace_export_allowed": False,
+    "default_federation_allowed": False,
+    "minimum_audit_floor_preserved": True,
+    "runtime_behavior_changed": False,
+    "provider_runtime_performed": False,
+    "network_call_performed": False,
+    "memory_write_performed": False,
+    "atlas_memory_admission_performed": False,
+    "trace_export_performed": False,
+    "federation_performed": False,
+    "product_release_performed": False,
+    "simulation_is_not_runtime_control": True,
+    "simulation_is_not_surveillance_authorization": True,
+    "simulation_is_not_memory_write": True,
+    "simulation_is_not_trace_export_authorization": True,
+    "simulation_is_not_federation_authorization": True,
+    "simulation_is_not_product_release": True,
+    "simulation_requires_human_review_for_expansion": True,
+}
+TAC_POLICY_SIMULATION_PHASE = {
+    "phase_id": "TAC-POLICY-SIMULATION-00",
+    "repo": "pdxvoiceteacher/CoherenceLattice",
+    "source_phase": "TAC-POLICY-SIMULATION-00",
+    "status": "accepted_local_validation",
+    "publication_status": "dashboard_synced",
+    "evidence_type": "design_only_policy_simulation_packets",
+    "product_posture": "policy_simulation_only_no_runtime_control_or_product_release",
+    "authority_posture": "non_authoritative",
+    "public_claim_boundary": "policy_rehearsal_only_no_runtime_surveillance_export_federation_memory_product_deployment_certification_or_final_answer_authority",
+    "primary_artifacts": TAC_POLICY_SIMULATION_ARTIFACTS,
+    "input_artifacts": TAC_POLICY_SIMULATION_INPUT_REFERENCES,
+    "dashboard_summary": TAC_POLICY_SIMULATION_DASHBOARD_SUMMARY,
+    "reproduction_command_summary": TAC_POLICY_SIMULATION_COMMAND,
+    "claims_blocked": TAC_POLICY_SIMULATION_BLOCKED_CLAIMS,
+    "claim_allowed": TAC_POLICY_SIMULATION_CLAIM_ALLOWED,
+    "reviewer_caution": "TAC-POLICY-SIMULATION-00 is design-only policy rehearsal, not runtime control. It changes no runtime telemetry behavior and grants no surveillance, trace export, federation, memory, provider, network, product, deployment, certification, final-answer, accepted-evidence, Atlas, human benefit, market, consciousness, Omega, or ontology authority.",
+}
+
+
 PERTURBATION_OBSERVATION_ARTIFACTS = [
     "perturbation_observation_packet.json",
     "perturbation_axis_packet.json",
@@ -9818,6 +9988,7 @@ STATIC_HTML_USABILITY_REVISION_PHASE,
 AI_RECEIPT_ARCHITECTURE_PHASE,
 VALIDATION_TIERING_PROVENANCE_PHASE,
 TELEMETRY_APERTURE_DESIGN_PHASE,
+TAC_POLICY_SIMULATION_PHASE,
 PERTURBATION_OBSERVATION_CAPTURE_PHASE,
 PERTURBATION_TRUNK_MAPPING_PHASE,
 PERTURBATION_RESIDUAL_NOVELTY_MAP_PHASE,
@@ -11973,6 +12144,18 @@ BOUNDARIES.extend(
         *TELEMETRY_APERTURE_UNSAFE_METRIC_BOUNDARIES,
         "Blocked overclaim examples for telemetry aperture controller publication boundaries.",
         *TELEMETRY_APERTURE_BLOCKED_CLAIMS,
+        TAC_POLICY_SIMULATION_CLAIM_ALLOWED,
+        *TAC_POLICY_SIMULATION_ARTIFACTS,
+        *TAC_POLICY_SIMULATION_INPUT_REFERENCES,
+        *TAC_POLICY_SIMULATION_SCENARIOS,
+        *TAC_POLICY_SIMULATION_SCENARIO_OUTCOMES,
+        *TAC_POLICY_SIMULATION_HARD_BLOCK_TERMS,
+        *TAC_POLICY_SIMULATION_DECISION_RETENTION_TERMS,
+        *TAC_POLICY_SIMULATION_REQUIRED_DOC_PHRASES,
+        *TAC_POLICY_SIMULATION_DESIGN_RELATION,
+        *TAC_POLICY_SIMULATION_REPRO_FRAGMENTS,
+        "Blocked overclaim examples for TAC policy simulation publication boundaries.",
+        *TAC_POLICY_SIMULATION_BLOCKED_CLAIMS,
     ]
 )
 BOUNDARIES.extend(
@@ -12491,6 +12674,26 @@ def dashboard_payload() -> dict[str, Any]:
         "not_telemetry_aperture_trace_export_authorization": True,
         "not_telemetry_aperture_federation_authorization": True,
         "not_telemetry_aperture_product_release": True,
+        "tac_policy_simulation_00_indexed": True,
+        "tac_policy_simulation_status": "completed",
+        "tac_policy_simulation_mode": "design_only_policy_rehearsal",
+        "tac_policy_simulation_scenario_count": 8,
+        "tac_policy_simulation_default_selected_mode": "pulse",
+        "tac_policy_simulation_minimum_audit_floor_preserved": True,
+        "tac_policy_simulation_runtime_behavior_changed": False,
+        "tac_policy_simulation_provider_runtime_performed": False,
+        "tac_policy_simulation_network_call_performed": False,
+        "tac_policy_simulation_memory_write_performed": False,
+        "tac_policy_simulation_atlas_memory_admission_performed": False,
+        "tac_policy_simulation_trace_export_performed": False,
+        "tac_policy_simulation_federation_performed": False,
+        "tac_policy_simulation_product_release_performed": False,
+        "not_tac_policy_simulation_runtime_control": True,
+        "not_tac_policy_simulation_surveillance_authorization": True,
+        "not_tac_policy_simulation_memory_write": True,
+        "not_tac_policy_simulation_trace_export_authorization": True,
+        "not_tac_policy_simulation_federation_authorization": True,
+        "not_tac_policy_simulation_product_release": True,
         "not_validation_tiering_product_release": True,
         "not_validation_tiering_truth_certification": True,
         "not_validation_tiering_compliance_certification": True,
@@ -12578,6 +12781,7 @@ def reproducibility_index() -> dict[str, Any]:
                 {"name": "AI Receipt Architecture Python entrypoint", "command": AI_RECEIPT_ARCHITECTURE_COMMAND},
                 {"name": "Validation Tiering Provenance Python entrypoint", "command": VALIDATION_TIERING_PROVENANCE_COMMAND},
                 {"name": "TELEMETRY-APERTURE-DESIGN-00 config/schema inspection", "command": TELEMETRY_APERTURE_DESIGN_COMMAND},
+                {"name": "TAC-POLICY-SIMULATION-00 Python entrypoint", "command": TAC_POLICY_SIMULATION_COMMAND},
                 {"name": "Perturbation novelty lane Python entrypoint", "command": PERTURBATION_NOVELTY_LANE_COMMAND},
                 {"name": "Perturbation structure-affordance theorem card Python entrypoint", "command": PERTURBATION_STRUCTURE_AFFORDANCE_CARD_COMMAND},
                 {"name": "PMR Context Availability Ledger acceptance", "command": PMR_CONTEXT_AVAILABILITY_LEDGER_00_COMMAND},
@@ -13280,6 +13484,26 @@ def status_payload() -> dict[str, Any]:
         "not_telemetry_aperture_trace_export_authorization": True,
         "not_telemetry_aperture_federation_authorization": True,
         "not_telemetry_aperture_product_release": True,
+        "tac_policy_simulation_00_indexed": True,
+        "tac_policy_simulation_status": "completed",
+        "tac_policy_simulation_mode": "design_only_policy_rehearsal",
+        "tac_policy_simulation_scenario_count": 8,
+        "tac_policy_simulation_default_selected_mode": "pulse",
+        "tac_policy_simulation_minimum_audit_floor_preserved": True,
+        "tac_policy_simulation_runtime_behavior_changed": False,
+        "tac_policy_simulation_provider_runtime_performed": False,
+        "tac_policy_simulation_network_call_performed": False,
+        "tac_policy_simulation_memory_write_performed": False,
+        "tac_policy_simulation_atlas_memory_admission_performed": False,
+        "tac_policy_simulation_trace_export_performed": False,
+        "tac_policy_simulation_federation_performed": False,
+        "tac_policy_simulation_product_release_performed": False,
+        "not_tac_policy_simulation_runtime_control": True,
+        "not_tac_policy_simulation_surveillance_authorization": True,
+        "not_tac_policy_simulation_memory_write": True,
+        "not_tac_policy_simulation_trace_export_authorization": True,
+        "not_tac_policy_simulation_federation_authorization": True,
+        "not_tac_policy_simulation_product_release": True,
         "not_validation_tiering_product_release": True,
         "not_validation_tiering_truth_certification": True,
         "not_validation_tiering_compliance_certification": True,
@@ -13407,10 +13631,20 @@ def docs() -> dict[str, str]:
     telemetry_aperture_repro_fragments = "\n".join(f"- {fragment}" for fragment in TELEMETRY_APERTURE_REPRO_FRAGMENTS)
     telemetry_aperture_blocked = "\n".join(f"- {claim}" for claim in TELEMETRY_APERTURE_BLOCKED_CLAIMS)
     telemetry_aperture_unsafe_boundaries = "\n".join(f"- {boundary}" for boundary in TELEMETRY_APERTURE_UNSAFE_METRIC_BOUNDARIES)
+    tac_policy_simulation_artifacts = "\n".join(f"- {artifact}" for artifact in TAC_POLICY_SIMULATION_ARTIFACTS)
+    tac_policy_simulation_input_refs = "\n".join(f"- {artifact}" for artifact in TAC_POLICY_SIMULATION_INPUT_REFERENCES)
+    tac_policy_simulation_scenarios = "\n".join(f"- {scenario}" for scenario in TAC_POLICY_SIMULATION_SCENARIOS)
+    tac_policy_simulation_outcomes = "\n".join(f"- {outcome}" for outcome in TAC_POLICY_SIMULATION_SCENARIO_OUTCOMES)
+    tac_policy_simulation_hard_blocks = "\n".join(f"- {term}" for term in TAC_POLICY_SIMULATION_HARD_BLOCK_TERMS)
+    tac_policy_simulation_decision_terms = "\n".join(f"- {term}" for term in TAC_POLICY_SIMULATION_DECISION_RETENTION_TERMS)
+    tac_policy_simulation_doc_phrases = "\n".join(f"- {phrase}" for phrase in TAC_POLICY_SIMULATION_REQUIRED_DOC_PHRASES)
+    tac_policy_simulation_relation = "\n".join(f"- {phrase}" for phrase in TAC_POLICY_SIMULATION_DESIGN_RELATION)
+    tac_policy_simulation_repro_fragments = "\n".join(f"- {fragment}" for fragment in TAC_POLICY_SIMULATION_REPRO_FRAGMENTS)
+    tac_policy_simulation_blocked = "\n".join(f"- {claim}" for claim in TAC_POLICY_SIMULATION_BLOCKED_CLAIMS)
     return {
         "README.md": "# Experiment Suite Docs\n\nPublic reviewer documentation for the claim-bounded reproducibility dashboard.\n",
         "assets/README.md": "# Assets\n\nOptional static assets for the public reproducibility dashboard.\n",
-        "index.md": f"# Public Experiment Suite Dashboard\n\nThis dashboard presents accepted evidence for reviewer orientation. It is not truth certification, not deployment authority, not final answer release, local fixture only, and requires external peer review.\n\n## Accepted evidence\n\n| Phase | Repo | Status | What this supports | Reviewer caution |\n| --- | --- | --- | --- | --- |\n{phase_rows}\n\n## Reviewer path\n\nStart with claim boundaries, then read the governed artifact cognition paper, WAVE Rosetta paper, SONYA-AEGIS-SMOKE-02, WAVE family, UNI-02D Sonya gate, and RETRO-LANE-00, Public Utility Alpha, Raw Baseline Comparison, Evidence Review Pack, RW-COMP-01, RW-COMP-02, Retrosynthesis Sandbox Cycle, Evidence Review Pack second-pass, RW-COMP-03, Universal Architecture Scaffold, Sonya Adapter Contract Registry, Sonya Adapter Smoke, Sonya Local Fixture Adapter, and Evidence Review Pack local adapter, Evidence Review Pack local adapter revision, RW-COMP local adapter, PMR doctrine, PMR local artifact index, PMR GPCU utility scoring, PMR lifecycle state machine, PMR lifecycle audit preflight, PMR Sophia lifecycle audit review, PMR destructive-action authorization preflight, PMR architecture diversity checkpoint, PMR simulation baseline comparison, PMR simulation statistical analysis, PMR federation stress corpus, PMR human provenance context, Sonya Local Fixture Adapter multi-route, and Sonya Local Fixture Adapter lineage clarity, Local Review metrics and flow, Metric Semantic Contract, Language Governance, Language Governance Audit Runtime, and Runtime Metrics Seed Corpus, PMR local queryable store, Retrosynthesis Readiness, Retrosynthesis Local Prototype, and Atlas Local Memory Admission Readiness, Atlas Local Memory Admission Prototype, Local-test Proxy Review, AI Context Performance Continuity, Theorem Validation Pathway, and COOP Entropy Dividend, Triadic LLM Metrics Smoke, UCC Sophia Control Forensics, UCC Standards Source Registry and Materiality, Triadic LLM Smoke PMR Inventory Contract Repair, AI Forensics Dossier, Human Review UX, Visual Review Model, Visual Review Static HTML Prototype, Static HTML Usability Review Seed, Static HTML Usability Revision, AI Receipt Architecture, Validation Tiering and Provenance, and Telemetry Aperture Controller, Perturbation Observation Capture, Perturbation Trunk Mapping, and Perturbation Residual Novelty Map, and Perturbation Structure-Affordance Card pages.\n\n## What this proves\n\nIt proves only that accepted local fixture artifacts and draft publication materials are organized for review.\n\n## What this does not prove\n\nNo oracle posture, no deployment posture, no final-answer posture, no AI consciousness claim, and no universal ontology claim.\n\n## Phase pages\n\n- [SONYA-AEGIS-SMOKE-02](sonya-aegis-smoke-02.md)\n- [WAVE Gold-Physics](wave-gold-physics.md)\n- [UNI-02D Sonya gate](uni02d-sonya-gate.md)\n- [RETRO-LANE-00](retro-lane-00.md)\n- [Public Utility Alpha](public-utility-alpha.md)\n- [Raw Baseline Comparison](raw-baseline-comparison.md)\n- [Evidence Review Pack](evidence-review-pack.md)\n- [RW-COMP-01](rw-comp-01.md)\n- [RW-COMP-02](rw-comp-02.md)\n- [Retrosynthesis Sandbox Cycle](retrosynthesis-sandbox-cycle.md)\n- [Evidence Review Pack second pass](evidence-review-pack-second-pass.md)\n- [RW-COMP-03](rw-comp-03.md)\n- [Universal Architecture Scaffold](universal-architecture.md)\n- [Sonya Adapter Contract Registry](sonya-adapter-contract-registry.md)\n- [Sonya required membrane checkpoint](sonya-required-membrane-checkpoint.md)\n- [TEL event stack](tel-event-stack.md)\n- [Sonya Adapter Smoke](sonya-adapter-smoke.md)\n- [Sonya Local Fixture Adapter](sonya-local-fixture-adapter.md)\n- [Evidence Review Pack local adapter](evidence-review-pack-local-adapter.md)\n- [Evidence Review Pack local adapter revision](evidence-review-pack-local-adapter-revision.md)\n- [RW-COMP local adapter](rw-comp-local-adapter.md)\n- [Provenance Memory Reservoir](provenance-memory-reservoir.md)\n- [PMR local artifact index](pmr-local-artifact-index.md)\n- [Ontology Claim Registry](ontology-claim-registry.md)\n- [Local Sonya path portability](local-sonya-path-portability.md)\n- [TB Product Slice](tb-product-slice.md)\n- [TB Product Slice 01](tb-product-slice-01.md)\n- [Sonya Local Fixture Adapter multi-route](sonya-local-fixture-adapter-multi-route.md)\n- [Sonya Local Fixture Adapter lineage clarity](sonya-local-fixture-adapter-lineage.md)\n- [Local Review Runtime V0](local-review-runtime-v0.md)\n- [Local Review metrics and flow](local-review-metrics-flow.md)\n- [Runtime metrics seed corpus](runtime-metrics-seed-corpus.md)\n- [PMR local queryable store](pmr-local-queryable-store.md)\n- [Retrosynthesis readiness](retrosynthesis-readiness.md)\n- [Retrosynthesis local prototype](retrosynthesis-local-prototype.md)\n- [Atlas local memory admission readiness](atlas-local-memory-admission-readiness.md)\n- [AI Forensics Dossier](ai-forensics-dossier.md)\n- [Human Review UX](human-review-ux.md)\n- [Visual Review Model](visual-review-model.md)\n- [Visual Review Static HTML Prototype](visual-review-static-html-prototype.md)\n- [Perturbation Observation Capture](perturbation-observation-capture.md)\n- [Perturbation Trunk Mapping](perturbation-trunk-mapping.md)\n- [Perturbation Residual Novelty Map](perturbation-residual-novelty-map.md)\n- [Telemetry Aperture Controller](telemetry-aperture-controller.md)\n- [Perturbation Structure-Affordance Card](perturbation-structure-affordance-card.md)\n- [Governed artifact cognition paper](governed-artifact-cognition-paper.md)\n- [Waveform Rosetta paper](waveform-rosetta-paper.md)\n",
+        "index.md": f"# Public Experiment Suite Dashboard\n\nThis dashboard presents accepted evidence for reviewer orientation. It is not truth certification, not deployment authority, not final answer release, local fixture only, and requires external peer review.\n\n## Accepted evidence\n\n| Phase | Repo | Status | What this supports | Reviewer caution |\n| --- | --- | --- | --- | --- |\n{phase_rows}\n\n## Reviewer path\n\nStart with claim boundaries, then read the governed artifact cognition paper, WAVE Rosetta paper, SONYA-AEGIS-SMOKE-02, WAVE family, UNI-02D Sonya gate, and RETRO-LANE-00, Public Utility Alpha, Raw Baseline Comparison, Evidence Review Pack, RW-COMP-01, RW-COMP-02, Retrosynthesis Sandbox Cycle, Evidence Review Pack second-pass, RW-COMP-03, Universal Architecture Scaffold, Sonya Adapter Contract Registry, Sonya Adapter Smoke, Sonya Local Fixture Adapter, and Evidence Review Pack local adapter, Evidence Review Pack local adapter revision, RW-COMP local adapter, PMR doctrine, PMR local artifact index, PMR GPCU utility scoring, PMR lifecycle state machine, PMR lifecycle audit preflight, PMR Sophia lifecycle audit review, PMR destructive-action authorization preflight, PMR architecture diversity checkpoint, PMR simulation baseline comparison, PMR simulation statistical analysis, PMR federation stress corpus, PMR human provenance context, Sonya Local Fixture Adapter multi-route, and Sonya Local Fixture Adapter lineage clarity, Local Review metrics and flow, Metric Semantic Contract, Language Governance, Language Governance Audit Runtime, and Runtime Metrics Seed Corpus, PMR local queryable store, Retrosynthesis Readiness, Retrosynthesis Local Prototype, and Atlas Local Memory Admission Readiness, Atlas Local Memory Admission Prototype, Local-test Proxy Review, AI Context Performance Continuity, Theorem Validation Pathway, and COOP Entropy Dividend, Triadic LLM Metrics Smoke, UCC Sophia Control Forensics, UCC Standards Source Registry and Materiality, Triadic LLM Smoke PMR Inventory Contract Repair, AI Forensics Dossier, Human Review UX, Visual Review Model, Visual Review Static HTML Prototype, Static HTML Usability Review Seed, Static HTML Usability Revision, AI Receipt Architecture, Validation Tiering and Provenance, and Telemetry Aperture Controller, TAC Policy Simulation, Perturbation Observation Capture, Perturbation Trunk Mapping, and Perturbation Residual Novelty Map, and Perturbation Structure-Affordance Card pages.\n\n## What this proves\n\nIt proves only that accepted local fixture artifacts and draft publication materials are organized for review.\n\n## What this does not prove\n\nNo oracle posture, no deployment posture, no final-answer posture, no AI consciousness claim, and no universal ontology claim.\n\n## Phase pages\n\n- [SONYA-AEGIS-SMOKE-02](sonya-aegis-smoke-02.md)\n- [WAVE Gold-Physics](wave-gold-physics.md)\n- [UNI-02D Sonya gate](uni02d-sonya-gate.md)\n- [RETRO-LANE-00](retro-lane-00.md)\n- [Public Utility Alpha](public-utility-alpha.md)\n- [Raw Baseline Comparison](raw-baseline-comparison.md)\n- [Evidence Review Pack](evidence-review-pack.md)\n- [RW-COMP-01](rw-comp-01.md)\n- [RW-COMP-02](rw-comp-02.md)\n- [Retrosynthesis Sandbox Cycle](retrosynthesis-sandbox-cycle.md)\n- [Evidence Review Pack second pass](evidence-review-pack-second-pass.md)\n- [RW-COMP-03](rw-comp-03.md)\n- [Universal Architecture Scaffold](universal-architecture.md)\n- [Sonya Adapter Contract Registry](sonya-adapter-contract-registry.md)\n- [Sonya required membrane checkpoint](sonya-required-membrane-checkpoint.md)\n- [TEL event stack](tel-event-stack.md)\n- [Sonya Adapter Smoke](sonya-adapter-smoke.md)\n- [Sonya Local Fixture Adapter](sonya-local-fixture-adapter.md)\n- [Evidence Review Pack local adapter](evidence-review-pack-local-adapter.md)\n- [Evidence Review Pack local adapter revision](evidence-review-pack-local-adapter-revision.md)\n- [RW-COMP local adapter](rw-comp-local-adapter.md)\n- [Provenance Memory Reservoir](provenance-memory-reservoir.md)\n- [PMR local artifact index](pmr-local-artifact-index.md)\n- [Ontology Claim Registry](ontology-claim-registry.md)\n- [Local Sonya path portability](local-sonya-path-portability.md)\n- [TB Product Slice](tb-product-slice.md)\n- [TB Product Slice 01](tb-product-slice-01.md)\n- [Sonya Local Fixture Adapter multi-route](sonya-local-fixture-adapter-multi-route.md)\n- [Sonya Local Fixture Adapter lineage clarity](sonya-local-fixture-adapter-lineage.md)\n- [Local Review Runtime V0](local-review-runtime-v0.md)\n- [Local Review metrics and flow](local-review-metrics-flow.md)\n- [Runtime metrics seed corpus](runtime-metrics-seed-corpus.md)\n- [PMR local queryable store](pmr-local-queryable-store.md)\n- [Retrosynthesis readiness](retrosynthesis-readiness.md)\n- [Retrosynthesis local prototype](retrosynthesis-local-prototype.md)\n- [Atlas local memory admission readiness](atlas-local-memory-admission-readiness.md)\n- [AI Forensics Dossier](ai-forensics-dossier.md)\n- [Human Review UX](human-review-ux.md)\n- [Visual Review Model](visual-review-model.md)\n- [Visual Review Static HTML Prototype](visual-review-static-html-prototype.md)\n- [Perturbation Observation Capture](perturbation-observation-capture.md)\n- [Perturbation Trunk Mapping](perturbation-trunk-mapping.md)\n- [Perturbation Residual Novelty Map](perturbation-residual-novelty-map.md)\n- [Telemetry Aperture Controller](telemetry-aperture-controller.md)\n- [TAC Policy Simulation](tac-policy-simulation.md)\n- [Perturbation Structure-Affordance Card](perturbation-structure-affordance-card.md)\n- [Governed artifact cognition paper](governed-artifact-cognition-paper.md)\n- [Waveform Rosetta paper](waveform-rosetta-paper.md)\n",
         "language-governance.md": f"""# Language Governance
 
 ## What was validated
@@ -13971,7 +14205,7 @@ VALIDATION-TIERING-PROVENANCE-00 records the 32131.86-second AI Receipt Architec
 
 ## Telemetry aperture linkage
 
-TELEMETRY-APERTURE-DESIGN-00 preserves AI Receipt traceability as a minimum audit floor item. Aperture reduction cannot remove acceptance evidence, and Future TAC implementation must preserve AI Receipt traceability.
+TELEMETRY-APERTURE-DESIGN-00 preserves AI Receipt traceability as a minimum audit floor item. TAC-POLICY-SIMULATION-00 keeps the minimum audit floor preserved in deterministic scenario rehearsal. Aperture reduction cannot remove acceptance evidence, and Future TAC implementation must preserve AI Receipt traceability.
 """,
         "validation-tiering-provenance.md": f"""# Validation Tiering and Provenance
 
@@ -14053,7 +14287,7 @@ VALIDATION-TIERING-PROVENANCE-00 synchronizes validation tier policy and validat
 
 ## Telemetry aperture linkage
 
-TELEMETRY-APERTURE-DESIGN-00 records validation_tier_receipt_when_available in the minimum audit floor. TAC is design-only and does not change runtime behavior in TELEMETRY-APERTURE-DESIGN-00.
+TELEMETRY-APERTURE-DESIGN-00 records validation_tier_receipt_when_available in the minimum audit floor. TAC-POLICY-SIMULATION-00 records design-only policy rehearsal outcomes without runtime control. TAC is design-only and does not change runtime behavior in TELEMETRY-APERTURE-DESIGN-00.
 """,
         "metric-semantic-contract.md": f"""# Metric Semantic Contract
 
@@ -14224,6 +14458,92 @@ This design patch has no runtime builder. Reproducibility points to config/schem
 ## Allowed bounded claim
 
 {TELEMETRY_APERTURE_CLAIM_ALLOWED}
+
+## Policy simulation linkage
+
+TAC-POLICY-SIMULATION-00 rehearses deterministic policy decisions from TELEMETRY-APERTURE-DESIGN-00. TAC-POLICY-SIMULATION-00 does not implement live runtime control.
+""",
+
+        "tac-policy-simulation.md": f"""# TAC Policy Simulation
+
+## What was validated
+
+TAC-POLICY-SIMULATION-00 synchronizes locally validated Telemetry Aperture Controller policy simulation artifacts to publication surfaces. This is publication/dashboard synchronization only and grants no runtime authority. TAC policy simulation, TAC design, artifact contract, inventory, and registry tests passed locally in CoherenceLattice; the local validation reports 181 tests passed. TAC simulation artifacts are PMR-visible, inventory-visible, and parity-visible.
+
+## Dashboard summary
+
+- simulation_status = completed
+- simulation_mode = design_only_policy_rehearsal
+- scenario_count = 8
+- default_scenario_id = local_default_receipt_review
+- default_selected_mode = pulse
+- default_raw_trace_retention_allowed = false
+- default_trace_export_allowed = false
+- default_federation_allowed = false
+- minimum_audit_floor_preserved = true
+- runtime_behavior_changed = false
+- provider_runtime_performed = false
+- network_call_performed = false
+- memory_write_performed = false
+- atlas_memory_admission_performed = false
+- trace_export_performed = false
+- federation_performed = false
+- product_release_performed = false
+- simulation_is_not_runtime_control = true
+- simulation_is_not_surveillance_authorization = true
+- simulation_is_not_memory_write = true
+- simulation_is_not_trace_export_authorization = true
+- simulation_is_not_federation_authorization = true
+- simulation_is_not_product_release = true
+- simulation_requires_human_review_for_expansion = true
+
+## Required TAC simulation language
+
+{tac_policy_simulation_doc_phrases}
+
+## Relation to TAC design
+
+{tac_policy_simulation_relation}
+
+## Scenarios
+
+{tac_policy_simulation_scenarios}
+
+## Scenario outcomes
+
+{tac_policy_simulation_outcomes}
+
+## Hard-block terms
+
+{tac_policy_simulation_hard_blocks}
+
+## Decision and retention terms
+
+{tac_policy_simulation_decision_terms}
+
+## Output artifacts
+
+{tac_policy_simulation_artifacts}
+
+## Input/config references
+
+{tac_policy_simulation_input_refs}
+
+## Reproducibility fragments
+
+{tac_policy_simulation_repro_fragments}
+
+```powershell
+{TAC_POLICY_SIMULATION_COMMAND}
+```
+
+## Blocked overclaim examples for TAC policy simulation publication boundaries
+
+{tac_policy_simulation_blocked}
+
+## Allowed bounded claim
+
+{TAC_POLICY_SIMULATION_CLAIM_ALLOWED}
 """,
         "runtime-metrics-seed-corpus.md": f"""# Runtime metrics seed corpus
 

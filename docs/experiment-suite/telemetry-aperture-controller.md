@@ -219,3 +219,7 @@ python -m json.tool config/telemetry_aperture/telemetry_aperture_modes.v1.json &
 ## Allowed bounded claim
 
 TELEMETRY-APERTURE-DESIGN-00 defines a design-only, consent-bounded Telemetry Aperture Controller policy over observability modes, minimum audit floor, retention/export/federation blocks, and human-review gates without changing runtime behavior or granting surveillance, memory, trace export, federation, product, certification, deployment, final-answer, accepted-evidence, Atlas, human benefit, market, consciousness, Omega, or ontology authority.
+
+## Policy simulation linkage
+
+TAC-POLICY-SIMULATION-00 rehearses deterministic policy decisions from TELEMETRY-APERTURE-DESIGN-00. TAC-POLICY-SIMULATION-00 does not implement live runtime control.

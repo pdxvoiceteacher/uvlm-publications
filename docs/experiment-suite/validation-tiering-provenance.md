@@ -151,4 +151,4 @@ VALIDATION-TIERING-PROVENANCE-00 documents smoke, acceptance, and deep validatio
 
 ## Telemetry aperture linkage
 
-TELEMETRY-APERTURE-DESIGN-00 records validation_tier_receipt_when_available in the minimum audit floor. TAC is design-only and does not change runtime behavior in TELEMETRY-APERTURE-DESIGN-00.
+TELEMETRY-APERTURE-DESIGN-00 records validation_tier_receipt_when_available in the minimum audit floor. TAC-POLICY-SIMULATION-00 records design-only policy rehearsal outcomes without runtime control. TAC is design-only and does not change runtime behavior in TELEMETRY-APERTURE-DESIGN-00.

@@ -1166,6 +1166,14 @@
       "schema/bridge/telemetry_aperture_decision_packet.schema.json",
       "schema/bridge/telemetry_aperture_retention_intent_packet.schema.json"
     ],
+    "TAC-POLICY-SIMULATION-00": [
+      "telemetry_aperture_policy_packet.json",
+      "telemetry_aperture_simulation_packet.json",
+      "telemetry_aperture_decision_packet.json",
+      "telemetry_aperture_retention_intent_packet.json",
+      "telemetry_aperture_simulation_summary.md",
+      "telemetry_aperture_simulation_receipt.json"
+    ],
     "PERTURBATION-OBSERVATION-CAPTURE-00": [
       "perturbation_observation_packet.json",
       "perturbation_axis_packet.json",

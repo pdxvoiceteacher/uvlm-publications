@@ -104,6 +104,17 @@ from tools.build_public_repro_dashboard import (
     TELEMETRY_APERTURE_REQUIRED_DOC_PHRASES,
     TELEMETRY_APERTURE_SAFE_MET_SEM_ALIASES,
     TELEMETRY_APERTURE_UNSAFE_METRIC_BOUNDARIES,
+    TAC_POLICY_SIMULATION_ARTIFACTS,
+    TAC_POLICY_SIMULATION_BLOCKED_CLAIMS,
+    TAC_POLICY_SIMULATION_CLAIM_ALLOWED,
+    TAC_POLICY_SIMULATION_DECISION_RETENTION_TERMS,
+    TAC_POLICY_SIMULATION_DESIGN_RELATION,
+    TAC_POLICY_SIMULATION_HARD_BLOCK_TERMS,
+    TAC_POLICY_SIMULATION_INPUT_REFERENCES,
+    TAC_POLICY_SIMULATION_REPRO_FRAGMENTS,
+    TAC_POLICY_SIMULATION_REQUIRED_DOC_PHRASES,
+    TAC_POLICY_SIMULATION_SCENARIO_OUTCOMES,
+    TAC_POLICY_SIMULATION_SCENARIOS,
 )
 
 
@@ -369,6 +380,34 @@ REQUIRED_BOUNDARY_PHRASES = (
     *VALIDATION_TIERING_PROVENANCE_RECEIPT_TERMS,
     *VALIDATION_TIERING_PROVENANCE_REPRO_FRAGMENTS,
     *VALIDATION_TIERING_PROVENANCE_BLOCKED_CLAIMS,
+    "TELEMETRY-APERTURE-DESIGN-00",
+    TELEMETRY_APERTURE_CLAIM_ALLOWED,
+    *TELEMETRY_APERTURE_DESIGN_ARTIFACTS,
+    *TELEMETRY_APERTURE_MODES,
+    *TELEMETRY_APERTURE_DIMENSIONS,
+    *TELEMETRY_APERTURE_MINIMUM_AUDIT_FLOOR_TERMS,
+    *TELEMETRY_APERTURE_POLICY_DEFAULTS,
+    *TELEMETRY_APERTURE_ESCALATION_TRIGGERS,
+    *TELEMETRY_APERTURE_HARD_BLOCKS,
+    *TELEMETRY_APERTURE_HUMAN_REVIEW_GATES,
+    *TELEMETRY_APERTURE_SAFE_MET_SEM_ALIASES,
+    *TELEMETRY_APERTURE_REQUIRED_DOC_PHRASES,
+    *TELEMETRY_APERTURE_FAILURE_CLASSES,
+    *TELEMETRY_APERTURE_REPRO_FRAGMENTS,
+    *TELEMETRY_APERTURE_UNSAFE_METRIC_BOUNDARIES,
+    *TELEMETRY_APERTURE_BLOCKED_CLAIMS,
+    "TAC-POLICY-SIMULATION-00",
+    TAC_POLICY_SIMULATION_CLAIM_ALLOWED,
+    *TAC_POLICY_SIMULATION_ARTIFACTS,
+    *TAC_POLICY_SIMULATION_INPUT_REFERENCES,
+    *TAC_POLICY_SIMULATION_SCENARIOS,
+    *TAC_POLICY_SIMULATION_SCENARIO_OUTCOMES,
+    *TAC_POLICY_SIMULATION_HARD_BLOCK_TERMS,
+    *TAC_POLICY_SIMULATION_DECISION_RETENTION_TERMS,
+    *TAC_POLICY_SIMULATION_REQUIRED_DOC_PHRASES,
+    *TAC_POLICY_SIMULATION_DESIGN_RELATION,
+    *TAC_POLICY_SIMULATION_REPRO_FRAGMENTS,
+    *TAC_POLICY_SIMULATION_BLOCKED_CLAIMS,
     "RUNTIME-METRICS-CORPUS-SEED-00",
     "bounded seed corpus instrumentation only",
     "not population calibration",
@@ -1377,7 +1416,7 @@ def _is_metric_semantic_contract_context(text: str, index: int, phrase: str) -> 
 
 def _is_blocked_overclaim_example_context(text: str, index: int) -> bool:
     window = text[max(0, index - 1000) : index]
-    return "blocked overclaim examples" in window or "blocked ai receipt overclaim examples" in window or "validation tiering provenance publication boundaries" in window or "claims_blocked" in window
+    return "blocked overclaim examples" in window or "blocked ai receipt overclaim examples" in window or "validation tiering provenance publication boundaries" in window or "telemetry aperture controller publication boundaries" in window or "tac policy simulation publication boundaries" in window or "claims_blocked" in window
 
 
 def _forbidden_hits(text: str) -> list[str]:
@@ -1389,6 +1428,13 @@ def _forbidden_hits(text: str) -> list[str]:
             index = text.find(normalized_phrase, start)
             if index == -1:
                 break
+            if phrase == "consent execution" and (
+                _is_negated(text, index)
+                or _is_blocked_overclaim_example_context(text, index)
+                or "simulation decision is consent execution" in text[max(0, index - 80) : index + 80]
+            ):
+                start = index + len(normalized_phrase)
+                continue
             if phrase == "surveillance" and "authorizes surveillance" not in text[max(0, index - 64) : index + 64] and "claims surveillance" not in text[max(0, index - 32) : index + 32]:
                 start = index + len(normalized_phrase)
                 continue
@@ -1580,7 +1626,7 @@ def _forbidden_hits(text: str) -> list[str]:
                 start = index + len(normalized_phrase)
                 continue
             if phrase == "federation" and (
-                any(_normalize(claim) in text[max(0, index - 220) : index + 220] for claim in (*VISUAL_REVIEW_MODEL_BLOCKED_CLAIMS, *VISUAL_REVIEW_STATIC_HTML_BLOCKED_CLAIMS, *STATIC_HTML_USABILITY_REVIEW_BLOCKED_CLAIMS, *STATIC_HTML_USABILITY_REVISION_BLOCKED_CLAIMS, *AI_RECEIPT_ARCHITECTURE_BLOCKED_CLAIMS, *VALIDATION_TIERING_PROVENANCE_BLOCKED_CLAIMS, *TELEMETRY_APERTURE_BLOCKED_CLAIMS))
+                any(_normalize(claim) in text[max(0, index - 220) : index + 220] for claim in (*VISUAL_REVIEW_MODEL_BLOCKED_CLAIMS, *VISUAL_REVIEW_STATIC_HTML_BLOCKED_CLAIMS, *STATIC_HTML_USABILITY_REVIEW_BLOCKED_CLAIMS, *STATIC_HTML_USABILITY_REVISION_BLOCKED_CLAIMS, *AI_RECEIPT_ARCHITECTURE_BLOCKED_CLAIMS, *VALIDATION_TIERING_PROVENANCE_BLOCKED_CLAIMS, *TELEMETRY_APERTURE_BLOCKED_CLAIMS, *TAC_POLICY_SIMULATION_BLOCKED_CLAIMS))
                 or "without implementing a ui or granting" in text[max(0, index - 500) : index]
                 or "it implements no ui and grants no" in text[max(0, index - 500) : index]
             ):
@@ -1617,7 +1663,7 @@ def _forbidden_hits(text: str) -> list[str]:
                 continue
             if (
                 phrase in {"truth certification", "product release"}
-                and any(_normalize(claim) in text[max(0, index - 180) : index + 180] for claim in (*LANGUAGE_GOVERNANCE_AUDIT_BLOCKED_CLAIMS, *VISUAL_REVIEW_MODEL_BLOCKED_CLAIMS, *VISUAL_REVIEW_STATIC_HTML_BLOCKED_CLAIMS, *STATIC_HTML_USABILITY_REVIEW_BLOCKED_CLAIMS, *STATIC_HTML_USABILITY_REVISION_BLOCKED_CLAIMS, *AI_RECEIPT_ARCHITECTURE_BLOCKED_CLAIMS, *VALIDATION_TIERING_PROVENANCE_BLOCKED_CLAIMS, *TELEMETRY_APERTURE_BLOCKED_CLAIMS))
+                and any(_normalize(claim) in text[max(0, index - 180) : index + 180] for claim in (*LANGUAGE_GOVERNANCE_AUDIT_BLOCKED_CLAIMS, *VISUAL_REVIEW_MODEL_BLOCKED_CLAIMS, *VISUAL_REVIEW_STATIC_HTML_BLOCKED_CLAIMS, *STATIC_HTML_USABILITY_REVIEW_BLOCKED_CLAIMS, *STATIC_HTML_USABILITY_REVISION_BLOCKED_CLAIMS, *AI_RECEIPT_ARCHITECTURE_BLOCKED_CLAIMS, *VALIDATION_TIERING_PROVENANCE_BLOCKED_CLAIMS, *TELEMETRY_APERTURE_BLOCKED_CLAIMS, *TAC_POLICY_SIMULATION_BLOCKED_CLAIMS))
             ):
                 start = index + len(normalized_phrase)
                 continue
@@ -1660,7 +1706,7 @@ def _forbidden_hits(text: str) -> list[str]:
                     "without creating" in text[max(0, index - 260) : index]
                     or "without claiming" in text[max(0, index - 260) : index]
                     or "claiming no" in text[max(0, index - 260) : index]
-                    or any(_normalize(claim) in text[max(0, index - 220) : index + 220] for claim in (*VISUAL_REVIEW_STATIC_HTML_BLOCKED_CLAIMS, *STATIC_HTML_USABILITY_REVIEW_BLOCKED_CLAIMS, *STATIC_HTML_USABILITY_REVISION_BLOCKED_CLAIMS, *AI_RECEIPT_ARCHITECTURE_BLOCKED_CLAIMS, *VALIDATION_TIERING_PROVENANCE_BLOCKED_CLAIMS, *TELEMETRY_APERTURE_BLOCKED_CLAIMS))
+                    or any(_normalize(claim) in text[max(0, index - 220) : index + 220] for claim in (*VISUAL_REVIEW_STATIC_HTML_BLOCKED_CLAIMS, *STATIC_HTML_USABILITY_REVIEW_BLOCKED_CLAIMS, *STATIC_HTML_USABILITY_REVISION_BLOCKED_CLAIMS, *AI_RECEIPT_ARCHITECTURE_BLOCKED_CLAIMS, *VALIDATION_TIERING_PROVENANCE_BLOCKED_CLAIMS, *TELEMETRY_APERTURE_BLOCKED_CLAIMS, *TAC_POLICY_SIMULATION_BLOCKED_CLAIMS))
                 )
             ):
                 start = index + len(normalized_phrase)
@@ -1673,7 +1719,7 @@ def _forbidden_hits(text: str) -> list[str]:
                 continue
             if phrase in {"federation", "surveillance"} and any(
                 _normalize(claim) in text[max(0, index - 240) : index + 240]
-                for claim in TELEMETRY_APERTURE_BLOCKED_CLAIMS
+                for claim in (*TELEMETRY_APERTURE_BLOCKED_CLAIMS, *TAC_POLICY_SIMULATION_BLOCKED_CLAIMS)
             ):
                 start = index + len(normalized_phrase)
                 continue

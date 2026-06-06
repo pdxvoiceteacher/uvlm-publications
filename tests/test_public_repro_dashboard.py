@@ -97,6 +97,17 @@ from tools.build_public_repro_dashboard import (
     TELEMETRY_APERTURE_REQUIRED_DOC_PHRASES,
     TELEMETRY_APERTURE_SAFE_MET_SEM_ALIASES,
     TELEMETRY_APERTURE_UNSAFE_METRIC_BOUNDARIES,
+    TAC_POLICY_SIMULATION_ARTIFACTS,
+    TAC_POLICY_SIMULATION_BLOCKED_CLAIMS,
+    TAC_POLICY_SIMULATION_CLAIM_ALLOWED,
+    TAC_POLICY_SIMULATION_DECISION_RETENTION_TERMS,
+    TAC_POLICY_SIMULATION_DESIGN_RELATION,
+    TAC_POLICY_SIMULATION_HARD_BLOCK_TERMS,
+    TAC_POLICY_SIMULATION_INPUT_REFERENCES,
+    TAC_POLICY_SIMULATION_REPRO_FRAGMENTS,
+    TAC_POLICY_SIMULATION_REQUIRED_DOC_PHRASES,
+    TAC_POLICY_SIMULATION_SCENARIO_OUTCOMES,
+    TAC_POLICY_SIMULATION_SCENARIOS,
     _dedupe_accepted_phases,
 )
 from tools.validate_public_repro_dashboard import REQUIRED_PHASES as VALIDATOR_REQUIRED_PHASES
@@ -269,6 +280,7 @@ REQUIRED_PHASES = {
     "AI-RECEIPT-ARCHITECTURE-00",
     "VALIDATION-TIERING-PROVENANCE-00",
     "TELEMETRY-APERTURE-DESIGN-00",
+    "TAC-POLICY-SIMULATION-00",
     "RUNTIME-METRICS-CORPUS-SEED-00",
     "PMR-LOCAL-RUNTIME-QUERYABLE-STORE-00",
     "RETROSYNTHESIS-READINESS-00",
@@ -4952,3 +4964,87 @@ def test_telemetry_aperture_design_page_and_registry_are_generated(tmp_path):
     assert status["not_telemetry_aperture_trace_export_authorization"] is True
     assert status["not_telemetry_aperture_federation_authorization"] is True
     assert status["not_telemetry_aperture_product_release"] is True
+
+
+
+def test_tac_policy_simulation_page_and_registry_are_generated(tmp_path):
+    out_dir, docs_dir = run_builder(tmp_path)
+    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text(encoding="utf-8"))
+    artifact_index = json.loads((out_dir / "artifact_index.json").read_text(encoding="utf-8"))
+    reproducibility_text = (out_dir / "reproducibility_index.json").read_text(encoding="utf-8")
+    boundary_text = (out_dir / "claim_boundary_index.json").read_text(encoding="utf-8")
+    status = json.loads((out_dir / "status.json").read_text(encoding="utf-8"))
+    page_text = (docs_dir / "tac-policy-simulation.md").read_text(encoding="utf-8")
+
+    phase_by_id = {phase["phase_id"]: phase for phase in dashboard["accepted_phases"]}
+    assert "TAC-POLICY-SIMULATION-00" in phase_by_id
+    phase = phase_by_id["TAC-POLICY-SIMULATION-00"]
+    summary = phase["dashboard_summary"]
+    assert summary["simulation_status"] == "completed"
+    assert summary["simulation_mode"] == "design_only_policy_rehearsal"
+    assert summary["scenario_count"] == 8
+    assert summary["default_scenario_id"] == "local_default_receipt_review"
+    assert summary["default_selected_mode"] == "pulse"
+    assert summary["default_raw_trace_retention_allowed"] is False
+    assert summary["default_trace_export_allowed"] is False
+    assert summary["default_federation_allowed"] is False
+    assert summary["minimum_audit_floor_preserved"] is True
+    assert summary["runtime_behavior_changed"] is False
+    assert summary["provider_runtime_performed"] is False
+    assert summary["network_call_performed"] is False
+    assert summary["memory_write_performed"] is False
+    assert summary["atlas_memory_admission_performed"] is False
+    assert summary["trace_export_performed"] is False
+    assert summary["federation_performed"] is False
+    assert summary["product_release_performed"] is False
+    assert summary["simulation_is_not_runtime_control"] is True
+    assert summary["simulation_is_not_surveillance_authorization"] is True
+    assert summary["simulation_is_not_memory_write"] is True
+    assert summary["simulation_is_not_trace_export_authorization"] is True
+    assert summary["simulation_is_not_federation_authorization"] is True
+    assert summary["simulation_is_not_product_release"] is True
+    assert summary["simulation_requires_human_review_for_expansion"] is True
+
+    for artifact in TAC_POLICY_SIMULATION_ARTIFACTS:
+        assert artifact in artifact_index["phases"]["TAC-POLICY-SIMULATION-00"]
+        assert artifact in page_text
+        assert artifact in boundary_text
+    for phrase_group in (
+        TAC_POLICY_SIMULATION_INPUT_REFERENCES,
+        TAC_POLICY_SIMULATION_SCENARIOS,
+        TAC_POLICY_SIMULATION_SCENARIO_OUTCOMES,
+        TAC_POLICY_SIMULATION_HARD_BLOCK_TERMS,
+        TAC_POLICY_SIMULATION_DECISION_RETENTION_TERMS,
+        TAC_POLICY_SIMULATION_REQUIRED_DOC_PHRASES,
+        TAC_POLICY_SIMULATION_DESIGN_RELATION,
+        TAC_POLICY_SIMULATION_BLOCKED_CLAIMS,
+    ):
+        for phrase in phrase_group:
+            assert phrase in page_text
+            assert phrase in boundary_text
+    for fragment in TAC_POLICY_SIMULATION_REPRO_FRAGMENTS:
+        assert fragment in reproducibility_text
+        assert fragment in page_text
+        assert fragment in boundary_text
+    assert "build_telemetry_aperture_simulation" in reproducibility_text
+    assert TAC_POLICY_SIMULATION_CLAIM_ALLOWED in page_text
+    assert TAC_POLICY_SIMULATION_CLAIM_ALLOWED in boundary_text
+    assert status["tac_policy_simulation_00_indexed"] is True
+    assert status["tac_policy_simulation_status"] == "completed"
+    assert status["tac_policy_simulation_mode"] == "design_only_policy_rehearsal"
+    assert status["tac_policy_simulation_default_selected_mode"] == "pulse"
+    assert status["tac_policy_simulation_minimum_audit_floor_preserved"] is True
+    assert status["tac_policy_simulation_runtime_behavior_changed"] is False
+    assert status["tac_policy_simulation_provider_runtime_performed"] is False
+    assert status["tac_policy_simulation_network_call_performed"] is False
+    assert status["tac_policy_simulation_memory_write_performed"] is False
+    assert status["tac_policy_simulation_atlas_memory_admission_performed"] is False
+    assert status["tac_policy_simulation_trace_export_performed"] is False
+    assert status["tac_policy_simulation_federation_performed"] is False
+    assert status["tac_policy_simulation_product_release_performed"] is False
+    assert status["not_tac_policy_simulation_runtime_control"] is True
+    assert status["not_tac_policy_simulation_surveillance_authorization"] is True
+    assert status["not_tac_policy_simulation_memory_write"] is True
+    assert status["not_tac_policy_simulation_trace_export_authorization"] is True
+    assert status["not_tac_policy_simulation_federation_authorization"] is True
+    assert status["not_tac_policy_simulation_product_release"] is True
