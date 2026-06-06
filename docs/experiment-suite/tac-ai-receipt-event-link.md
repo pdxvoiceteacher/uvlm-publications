@@ -158,3 +158,7 @@ python -c "from pathlib import Path; from coherence.product.triadic_llm_metrics_
 ## Allowed bounded claim
 
 TAC-AI-RECEIPT-EVENT-LINK-00 links TAC posture to AI Receipt Architecture through supplemental, non-rewriting event references, preserving the original receipt event chain while making selected aperture mode, hard blocks, minimum-audit-floor status, retention/export/federation blocks, and TAC review posture visible without changing runtime behavior or granting surveillance, memory, trace export, federation, product, deployment, provider, final-answer, accepted-evidence, certification, Atlas, human benefit, market, consciousness, Omega, or ontology authority.
+
+## PMR pathway-prior linkage
+
+PMR-PATHWAY-PRIORS-DESIGN-DOCTRINE-00 preserves AI Receipt traceability, replay lineage, TAC retention/export/federation boundaries, Sophia reality status, and validation-tier evidence for revocable review recommendations without writing memory or generating pathway priors.

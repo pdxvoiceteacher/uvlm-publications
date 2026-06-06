@@ -1186,6 +1186,13 @@
       "tac_ai_receipt_event_link_summary.md",
       "tac_ai_receipt_event_link_receipt.json"
     ],
+    "PMR-PATHWAY-PRIORS-DESIGN-DOCTRINE-00": [
+      "docs/PMR_PATHWAY_PRIORS_DESIGN_DOCTRINE.md",
+      "config/pmr/pathway_prior_policy.v1.json",
+      "schema/bridge/pmr_pathway_prior_policy_packet.schema.json",
+      "schema/bridge/pmr_pathway_prior_candidate.schema.json",
+      "schema/bridge/pmr_pathway_prior_non_authority_boundary.schema.json"
+    ],
     "PERTURBATION-OBSERVATION-CAPTURE-00": [
       "perturbation_observation_packet.json",
       "perturbation_axis_packet.json",

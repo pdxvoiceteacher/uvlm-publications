@@ -3656,6 +3656,110 @@ TAC_AI_RECEIPT_EVENT_LINK_PHASE = {
     "reviewer_caution": "TAC-AI-RECEIPT-EVENT-LINK-00 links TAC posture to AI Receipt through supplemental references only; it does not rewrite history, perform runtime control, authorize surveillance, export, federation, memory, provider, network, deployment, product release, certification, final answers, accepted-evidence authority, Atlas admission, benefit proof, market validation, consciousness proof, Omega detection, or ontology proof.",
 }
 
+
+PMR_PATHWAY_PRIORS_DESIGN_COMMAND = "python -c \"from pathlib import Path; Path('docs/PMR_PATHWAY_PRIORS_DESIGN_DOCTRINE.md').read_text(encoding='utf-8')\"; python -m json.tool config/pmr/pathway_prior_policy.v1.json >/dev/null; python -m json.tool schema/bridge/pmr_pathway_prior_policy_packet.schema.json >/dev/null; python -m json.tool schema/bridge/pmr_pathway_prior_candidate.schema.json >/dev/null; python -m json.tool schema/bridge/pmr_pathway_prior_non_authority_boundary.schema.json >/dev/null"
+PMR_PATHWAY_PRIORS_DESIGN_ARTIFACTS = [
+    "docs/PMR_PATHWAY_PRIORS_DESIGN_DOCTRINE.md",
+    "config/pmr/pathway_prior_policy.v1.json",
+    "schema/bridge/pmr_pathway_prior_policy_packet.schema.json",
+    "schema/bridge/pmr_pathway_prior_candidate.schema.json",
+    "schema/bridge/pmr_pathway_prior_non_authority_boundary.schema.json",
+]
+PMR_PATHWAY_PRIORS_DESIGN_DOCTRINE_LANGUAGE = [
+    "Summary is not source.",
+    "Compression is not erasure.",
+    "Preferred route is not authority.",
+    "Route prior is not truth.",
+    "Route prior is not memory canon.",
+    "Route prior is not model training.",
+    "Route prior cannot skip future review.",
+    "PMR pathway priors are revocable, materiality-scoped review recommendations.",
+    "PMR pathway priors are derived only from provenance-backed artifact histories.",
+    "PMR pathway priors preserve replay lineage.",
+    "PMR pathway priors preserve AI Receipt traceability.",
+    "PMR pathway priors must respect TAC retention, trace export, and federation boundaries.",
+    "PMR pathway priors must record Sophia execution reality when applicable.",
+    "PMR pathway priors must record validation-tier evidence when applicable.",
+    "Human review remains required.",
+    "PMR-PATHWAY-PRIORS-DESIGN-DOCTRINE-00 does not generate pathway priors.",
+    "PMR-PATHWAY-PRIORS-DESIGN-DOCTRINE-00 does not write memory.",
+    "PMR-PATHWAY-PRIORS-DESIGN-DOCTRINE-00 does not admit Atlas memory.",
+    "PMR-PATHWAY-PRIORS-DESIGN-DOCTRINE-00 does not train a model.",
+    "PMR-PATHWAY-PRIORS-DESIGN-DOCTRINE-00 does not authorize review skipping.",
+    "PMR-PATHWAY-PRIORS-DESIGN-DOCTRINE-00 does not change runtime behavior.",
+]
+PMR_PATHWAY_PRIORS_DESIGN_REPRO_FRAGMENTS = [
+    "PMR_PATHWAY_PRIORS_DESIGN_DOCTRINE.md",
+    "pathway_prior_policy.v1.json",
+    "pmr_pathway_prior_policy_packet.schema.json",
+    "pmr_pathway_prior_candidate.schema.json",
+    "pmr_pathway_prior_non_authority_boundary.schema.json",
+]
+PMR_PATHWAY_PRIORS_DESIGN_BLOCKED_CLAIMS = [
+    "PMR pathway prior is truth",
+    "PMR pathway prior is memory canon",
+    "PMR pathway prior trains the model",
+    "PMR pathway prior skips human review",
+    "PMR pathway prior authorizes final answers",
+    "PMR pathway prior grants accepted-evidence authority",
+    "PMR pathway prior writes memory",
+    "PMR pathway prior admits Atlas memory",
+    "PMR pathway prior authorizes trace export",
+    "PMR pathway prior authorizes PMR federation",
+    "PMR pathway prior is product release",
+    "PMR pathway prior proves human benefit",
+    "PMR pathway prior is market validation",
+    "preferred route means correct route",
+    "compressed route means source can be deleted",
+    "summary route replaces replay lineage",
+    "prior route overrides materiality review",
+    "route prior can ignore TAC boundary",
+    "route prior can ignore Sophia reality",
+    "route prior can ignore validation tier",
+]
+PMR_PATHWAY_PRIORS_DESIGN_CLAIM_ALLOWED = "PMR pathway priors are proposed as revocable, materiality-scoped review recommendations derived from provenance-backed artifact histories, preserving replay lineage, AI Receipt traceability, TAC boundaries, Sophia reality status, validation-tier evidence, and human review requirements without certifying truth, writing memory, training models, skipping review, admitting Atlas memory, exporting traces, federating PMR, releasing product, or granting final-answer or accepted-evidence authority."
+PMR_PATHWAY_PRIORS_DESIGN_DASHBOARD_SUMMARY = {
+    "policy_status": "active_design_only",
+    "runtime_behavior_changed": False,
+    "pathway_priors_enabled": False,
+    "pathway_prior_generation_performed": False,
+    "memory_write_performed": False,
+    "atlas_memory_admission_performed": False,
+    "model_training_performed": False,
+    "review_skip_authorized": False,
+    "product_release_performed": False,
+    "pathway_prior_definition": "revocable_materiality_scoped_review_recommendation",
+    "pathway_prior_is_not_truth": True,
+    "pathway_prior_is_not_memory_canon": True,
+    "pathway_prior_is_not_model_training": True,
+    "pathway_prior_is_not_review_skip": True,
+    "pathway_prior_is_not_final_answer_authority": True,
+    "pathway_prior_is_not_accepted_evidence_authority": True,
+    "pathway_prior_is_not_product_release": True,
+    "pathway_prior_is_not_trace_export_authorization": True,
+    "pathway_prior_is_not_federation_authorization": True,
+    "pathway_prior_is_not_memory_write": True,
+    "pathway_prior_is_not_atlas_memory_admission": True,
+    "pathway_prior_requires_human_review": True,
+}
+PMR_PATHWAY_PRIORS_DESIGN_PHASE = {
+    "phase_id": "PMR-PATHWAY-PRIORS-DESIGN-DOCTRINE-00",
+    "repo": "pdxvoiceteacher/CoherenceLattice",
+    "source_phase": "PMR-PATHWAY-PRIORS-DESIGN-DOCTRINE-00",
+    "status": "accepted_local_validation",
+    "publication_status": "dashboard_synced",
+    "evidence_type": "design_doctrine_config_schema_inspection",
+    "product_posture": "design_only_pathway_prior_doctrine_no_runtime_generation_memory_training_or_release",
+    "authority_posture": "non_authoritative",
+    "public_claim_boundary": "design_doctrine_only_no_truth_memory_canon_training_review_skip_export_federation_product_deployment_final_answer_or_accepted_evidence_authority",
+    "primary_artifacts": PMR_PATHWAY_PRIORS_DESIGN_ARTIFACTS,
+    "dashboard_summary": PMR_PATHWAY_PRIORS_DESIGN_DASHBOARD_SUMMARY,
+    "reproduction_command_summary": PMR_PATHWAY_PRIORS_DESIGN_COMMAND,
+    "claims_blocked": PMR_PATHWAY_PRIORS_DESIGN_BLOCKED_CLAIMS,
+    "claim_allowed": PMR_PATHWAY_PRIORS_DESIGN_CLAIM_ALLOWED,
+    "reviewer_caution": "PMR-PATHWAY-PRIORS-DESIGN-DOCTRINE-00 is design doctrine only; it does not generate priors, write memory, admit Atlas memory, train models, skip review, export traces, federate PMR, release product, deploy, certify truth, or grant final-answer or accepted-evidence authority.",
+}
+
 PERTURBATION_OBSERVATION_ARTIFACTS = [
     "perturbation_observation_packet.json",
     "perturbation_axis_packet.json",
@@ -10316,6 +10420,7 @@ TELEMETRY_APERTURE_DESIGN_PHASE,
 TAC_POLICY_SIMULATION_PHASE,
 TAC_LOCAL_REVIEW_INTEGRATION_PHASE,
 TAC_AI_RECEIPT_EVENT_LINK_PHASE,
+PMR_PATHWAY_PRIORS_DESIGN_PHASE,
 PERTURBATION_OBSERVATION_CAPTURE_PHASE,
 PERTURBATION_TRUNK_MAPPING_PHASE,
 PERTURBATION_RESIDUAL_NOVELTY_MAP_PHASE,
@@ -12504,6 +12609,13 @@ BOUNDARIES.extend(
         TAC_AI_RECEIPT_EVENT_LINK_COMMAND,
         "Blocked overclaim examples for TAC AI Receipt event-link publication boundaries.",
         *TAC_AI_RECEIPT_EVENT_LINK_BLOCKED_CLAIMS,
+        PMR_PATHWAY_PRIORS_DESIGN_CLAIM_ALLOWED,
+        *PMR_PATHWAY_PRIORS_DESIGN_ARTIFACTS,
+        *PMR_PATHWAY_PRIORS_DESIGN_DOCTRINE_LANGUAGE,
+        *PMR_PATHWAY_PRIORS_DESIGN_REPRO_FRAGMENTS,
+        PMR_PATHWAY_PRIORS_DESIGN_COMMAND,
+        "Blocked overclaim examples for PMR pathway-prior design doctrine publication boundaries.",
+        *PMR_PATHWAY_PRIORS_DESIGN_BLOCKED_CLAIMS,
     ]
 )
 BOUNDARIES.extend(
@@ -13093,6 +13205,29 @@ def dashboard_payload() -> dict[str, Any]:
         "not_tac_ai_receipt_event_link_trace_export_authorization": True,
         "not_tac_ai_receipt_event_link_federation_authorization": True,
         "not_tac_ai_receipt_event_link_product_release": True,
+        "pmr_pathway_priors_design_doctrine_00_indexed": True,
+        "pmr_pathway_priors_policy_status": "active_design_only",
+        "pmr_pathway_priors_runtime_behavior_changed": False,
+        "pmr_pathway_priors_enabled": False,
+        "pmr_pathway_prior_generation_performed": False,
+        "pmr_pathway_priors_memory_write_performed": False,
+        "pmr_pathway_priors_atlas_memory_admission_performed": False,
+        "pmr_pathway_priors_model_training_performed": False,
+        "pmr_pathway_priors_review_skip_authorized": False,
+        "pmr_pathway_priors_product_release_performed": False,
+        "pmr_pathway_prior_definition": "revocable_materiality_scoped_review_recommendation",
+        "not_pmr_pathway_prior_truth": True,
+        "not_pmr_pathway_prior_memory_canon": True,
+        "not_pmr_pathway_prior_model_training": True,
+        "not_pmr_pathway_prior_review_skip": True,
+        "not_pmr_pathway_prior_final_answer_authority": True,
+        "not_pmr_pathway_prior_accepted_evidence_authority": True,
+        "not_pmr_pathway_prior_product_release": True,
+        "not_pmr_pathway_prior_trace_export_authorization": True,
+        "not_pmr_pathway_prior_federation_authorization": True,
+        "not_pmr_pathway_prior_memory_write": True,
+        "not_pmr_pathway_prior_atlas_memory_admission": True,
+        "pmr_pathway_prior_requires_human_review": True,
         "not_validation_tiering_product_release": True,
         "not_validation_tiering_truth_certification": True,
         "not_validation_tiering_compliance_certification": True,
@@ -13183,6 +13318,7 @@ def reproducibility_index() -> dict[str, Any]:
                 {"name": "TAC-POLICY-SIMULATION-00 Python entrypoint", "command": TAC_POLICY_SIMULATION_COMMAND},
                 {"name": "TAC-LOCAL-REVIEW-INTEGRATION-00 Python entrypoint", "command": TAC_LOCAL_REVIEW_INTEGRATION_COMMAND},
                 {"name": "TAC-AI-RECEIPT-EVENT-LINK-00 Python entrypoint", "command": TAC_AI_RECEIPT_EVENT_LINK_COMMAND},
+                {"name": "PMR-PATHWAY-PRIORS-DESIGN-DOCTRINE-00 config/schema inspection", "command": PMR_PATHWAY_PRIORS_DESIGN_COMMAND},
                 {"name": "Perturbation novelty lane Python entrypoint", "command": PERTURBATION_NOVELTY_LANE_COMMAND},
                 {"name": "Perturbation structure-affordance theorem card Python entrypoint", "command": PERTURBATION_STRUCTURE_AFFORDANCE_CARD_COMMAND},
                 {"name": "PMR Context Availability Ledger acceptance", "command": PMR_CONTEXT_AVAILABILITY_LEDGER_00_COMMAND},
@@ -13956,6 +14092,29 @@ def status_payload() -> dict[str, Any]:
         "not_tac_ai_receipt_event_link_trace_export_authorization": True,
         "not_tac_ai_receipt_event_link_federation_authorization": True,
         "not_tac_ai_receipt_event_link_product_release": True,
+        "pmr_pathway_priors_design_doctrine_00_indexed": True,
+        "pmr_pathway_priors_policy_status": "active_design_only",
+        "pmr_pathway_priors_runtime_behavior_changed": False,
+        "pmr_pathway_priors_enabled": False,
+        "pmr_pathway_prior_generation_performed": False,
+        "pmr_pathway_priors_memory_write_performed": False,
+        "pmr_pathway_priors_atlas_memory_admission_performed": False,
+        "pmr_pathway_priors_model_training_performed": False,
+        "pmr_pathway_priors_review_skip_authorized": False,
+        "pmr_pathway_priors_product_release_performed": False,
+        "pmr_pathway_prior_definition": "revocable_materiality_scoped_review_recommendation",
+        "not_pmr_pathway_prior_truth": True,
+        "not_pmr_pathway_prior_memory_canon": True,
+        "not_pmr_pathway_prior_model_training": True,
+        "not_pmr_pathway_prior_review_skip": True,
+        "not_pmr_pathway_prior_final_answer_authority": True,
+        "not_pmr_pathway_prior_accepted_evidence_authority": True,
+        "not_pmr_pathway_prior_product_release": True,
+        "not_pmr_pathway_prior_trace_export_authorization": True,
+        "not_pmr_pathway_prior_federation_authorization": True,
+        "not_pmr_pathway_prior_memory_write": True,
+        "not_pmr_pathway_prior_atlas_memory_admission": True,
+        "pmr_pathway_prior_requires_human_review": True,
         "not_validation_tiering_product_release": True,
         "not_validation_tiering_truth_certification": True,
         "not_validation_tiering_compliance_certification": True,
@@ -14109,10 +14268,14 @@ def docs() -> dict[str, str]:
     tac_ai_receipt_event_link_relation = "\n".join(f"- {phrase}" for phrase in TAC_AI_RECEIPT_EVENT_LINK_PRIOR_PHASE_RELATION)
     tac_ai_receipt_event_link_repro_fragments = "\n".join(f"- {fragment}" for fragment in TAC_AI_RECEIPT_EVENT_LINK_REPRO_FRAGMENTS)
     tac_ai_receipt_event_link_blocked = "\n".join(f"- {claim}" for claim in TAC_AI_RECEIPT_EVENT_LINK_BLOCKED_CLAIMS)
+    pmr_pathway_priors_design_artifacts = "\n".join(f"- {artifact}" for artifact in PMR_PATHWAY_PRIORS_DESIGN_ARTIFACTS)
+    pmr_pathway_priors_design_doctrine = "\n".join(f"- {phrase}" for phrase in PMR_PATHWAY_PRIORS_DESIGN_DOCTRINE_LANGUAGE)
+    pmr_pathway_priors_design_repro_fragments = "\n".join(f"- {fragment}" for fragment in PMR_PATHWAY_PRIORS_DESIGN_REPRO_FRAGMENTS)
+    pmr_pathway_priors_design_blocked = "\n".join(f"- {claim}" for claim in PMR_PATHWAY_PRIORS_DESIGN_BLOCKED_CLAIMS)
     return {
         "README.md": "# Experiment Suite Docs\n\nPublic reviewer documentation for the claim-bounded reproducibility dashboard.\n",
         "assets/README.md": "# Assets\n\nOptional static assets for the public reproducibility dashboard.\n",
-        "index.md": f"# Public Experiment Suite Dashboard\n\nThis dashboard presents accepted evidence for reviewer orientation. It is not truth certification, not deployment authority, not final answer release, local fixture only, and requires external peer review.\n\n## Accepted evidence\n\n| Phase | Repo | Status | What this supports | Reviewer caution |\n| --- | --- | --- | --- | --- |\n{phase_rows}\n\n## Reviewer path\n\nStart with claim boundaries, then read the governed artifact cognition paper, WAVE Rosetta paper, SONYA-AEGIS-SMOKE-02, WAVE family, UNI-02D Sonya gate, and RETRO-LANE-00, Public Utility Alpha, Raw Baseline Comparison, Evidence Review Pack, RW-COMP-01, RW-COMP-02, Retrosynthesis Sandbox Cycle, Evidence Review Pack second-pass, RW-COMP-03, Universal Architecture Scaffold, Sonya Adapter Contract Registry, Sonya Adapter Smoke, Sonya Local Fixture Adapter, and Evidence Review Pack local adapter, Evidence Review Pack local adapter revision, RW-COMP local adapter, PMR doctrine, PMR local artifact index, PMR GPCU utility scoring, PMR lifecycle state machine, PMR lifecycle audit preflight, PMR Sophia lifecycle audit review, PMR destructive-action authorization preflight, PMR architecture diversity checkpoint, PMR simulation baseline comparison, PMR simulation statistical analysis, PMR federation stress corpus, PMR human provenance context, Sonya Local Fixture Adapter multi-route, and Sonya Local Fixture Adapter lineage clarity, Local Review metrics and flow, Metric Semantic Contract, Language Governance, Language Governance Audit Runtime, and Runtime Metrics Seed Corpus, PMR local queryable store, Retrosynthesis Readiness, Retrosynthesis Local Prototype, and Atlas Local Memory Admission Readiness, Atlas Local Memory Admission Prototype, Local-test Proxy Review, AI Context Performance Continuity, Theorem Validation Pathway, and COOP Entropy Dividend, Triadic LLM Metrics Smoke, UCC Sophia Control Forensics, UCC Standards Source Registry and Materiality, Triadic LLM Smoke PMR Inventory Contract Repair, AI Forensics Dossier, Human Review UX, Visual Review Model, Visual Review Static HTML Prototype, Static HTML Usability Review Seed, Static HTML Usability Revision, AI Receipt Architecture, Validation Tiering and Provenance, and Telemetry Aperture Controller, TAC Policy Simulation, TAC Local Review Integration, TAC AI Receipt Event Link, Perturbation Observation Capture, Perturbation Trunk Mapping, and Perturbation Residual Novelty Map, and Perturbation Structure-Affordance Card pages.\n\n## What this proves\n\nIt proves only that accepted local fixture artifacts and draft publication materials are organized for review.\n\n## What this does not prove\n\nNo oracle posture, no deployment posture, no final-answer posture, no AI consciousness claim, and no universal ontology claim.\n\n## Phase pages\n\n- [SONYA-AEGIS-SMOKE-02](sonya-aegis-smoke-02.md)\n- [WAVE Gold-Physics](wave-gold-physics.md)\n- [UNI-02D Sonya gate](uni02d-sonya-gate.md)\n- [RETRO-LANE-00](retro-lane-00.md)\n- [Public Utility Alpha](public-utility-alpha.md)\n- [Raw Baseline Comparison](raw-baseline-comparison.md)\n- [Evidence Review Pack](evidence-review-pack.md)\n- [RW-COMP-01](rw-comp-01.md)\n- [RW-COMP-02](rw-comp-02.md)\n- [Retrosynthesis Sandbox Cycle](retrosynthesis-sandbox-cycle.md)\n- [Evidence Review Pack second pass](evidence-review-pack-second-pass.md)\n- [RW-COMP-03](rw-comp-03.md)\n- [Universal Architecture Scaffold](universal-architecture.md)\n- [Sonya Adapter Contract Registry](sonya-adapter-contract-registry.md)\n- [Sonya required membrane checkpoint](sonya-required-membrane-checkpoint.md)\n- [TEL event stack](tel-event-stack.md)\n- [Sonya Adapter Smoke](sonya-adapter-smoke.md)\n- [Sonya Local Fixture Adapter](sonya-local-fixture-adapter.md)\n- [Evidence Review Pack local adapter](evidence-review-pack-local-adapter.md)\n- [Evidence Review Pack local adapter revision](evidence-review-pack-local-adapter-revision.md)\n- [RW-COMP local adapter](rw-comp-local-adapter.md)\n- [Provenance Memory Reservoir](provenance-memory-reservoir.md)\n- [PMR local artifact index](pmr-local-artifact-index.md)\n- [Ontology Claim Registry](ontology-claim-registry.md)\n- [Local Sonya path portability](local-sonya-path-portability.md)\n- [TB Product Slice](tb-product-slice.md)\n- [TB Product Slice 01](tb-product-slice-01.md)\n- [Sonya Local Fixture Adapter multi-route](sonya-local-fixture-adapter-multi-route.md)\n- [Sonya Local Fixture Adapter lineage clarity](sonya-local-fixture-adapter-lineage.md)\n- [Local Review Runtime V0](local-review-runtime-v0.md)\n- [Local Review metrics and flow](local-review-metrics-flow.md)\n- [Runtime metrics seed corpus](runtime-metrics-seed-corpus.md)\n- [PMR local queryable store](pmr-local-queryable-store.md)\n- [Retrosynthesis readiness](retrosynthesis-readiness.md)\n- [Retrosynthesis local prototype](retrosynthesis-local-prototype.md)\n- [Atlas local memory admission readiness](atlas-local-memory-admission-readiness.md)\n- [AI Forensics Dossier](ai-forensics-dossier.md)\n- [Human Review UX](human-review-ux.md)\n- [Visual Review Model](visual-review-model.md)\n- [Visual Review Static HTML Prototype](visual-review-static-html-prototype.md)\n- [Perturbation Observation Capture](perturbation-observation-capture.md)\n- [Perturbation Trunk Mapping](perturbation-trunk-mapping.md)\n- [Perturbation Residual Novelty Map](perturbation-residual-novelty-map.md)\n- [Telemetry Aperture Controller](telemetry-aperture-controller.md)\n- [TAC Policy Simulation](tac-policy-simulation.md)\n- [TAC Local Review Integration](tac-local-review-integration.md)\n- [Perturbation Structure-Affordance Card](perturbation-structure-affordance-card.md)\n- [Governed artifact cognition paper](governed-artifact-cognition-paper.md)\n- [Waveform Rosetta paper](waveform-rosetta-paper.md)\n",
+        "index.md": f"# Public Experiment Suite Dashboard\n\nThis dashboard presents accepted evidence for reviewer orientation. It is not truth certification, not deployment authority, not final answer release, local fixture only, and requires external peer review.\n\n## Accepted evidence\n\n| Phase | Repo | Status | What this supports | Reviewer caution |\n| --- | --- | --- | --- | --- |\n{phase_rows}\n\n## Reviewer path\n\nStart with claim boundaries, then read the governed artifact cognition paper, WAVE Rosetta paper, SONYA-AEGIS-SMOKE-02, WAVE family, UNI-02D Sonya gate, and RETRO-LANE-00, Public Utility Alpha, Raw Baseline Comparison, Evidence Review Pack, RW-COMP-01, RW-COMP-02, Retrosynthesis Sandbox Cycle, Evidence Review Pack second-pass, RW-COMP-03, Universal Architecture Scaffold, Sonya Adapter Contract Registry, Sonya Adapter Smoke, Sonya Local Fixture Adapter, and Evidence Review Pack local adapter, Evidence Review Pack local adapter revision, RW-COMP local adapter, PMR doctrine, PMR local artifact index, PMR GPCU utility scoring, PMR lifecycle state machine, PMR lifecycle audit preflight, PMR Sophia lifecycle audit review, PMR destructive-action authorization preflight, PMR architecture diversity checkpoint, PMR simulation baseline comparison, PMR simulation statistical analysis, PMR federation stress corpus, PMR human provenance context, Sonya Local Fixture Adapter multi-route, and Sonya Local Fixture Adapter lineage clarity, Local Review metrics and flow, Metric Semantic Contract, Language Governance, Language Governance Audit Runtime, and Runtime Metrics Seed Corpus, PMR local queryable store, Retrosynthesis Readiness, Retrosynthesis Local Prototype, and Atlas Local Memory Admission Readiness, Atlas Local Memory Admission Prototype, Local-test Proxy Review, AI Context Performance Continuity, Theorem Validation Pathway, and COOP Entropy Dividend, Triadic LLM Metrics Smoke, UCC Sophia Control Forensics, UCC Standards Source Registry and Materiality, Triadic LLM Smoke PMR Inventory Contract Repair, AI Forensics Dossier, Human Review UX, Visual Review Model, Visual Review Static HTML Prototype, Static HTML Usability Review Seed, Static HTML Usability Revision, AI Receipt Architecture, Validation Tiering and Provenance, and Telemetry Aperture Controller, TAC Policy Simulation, TAC Local Review Integration, TAC AI Receipt Event Link, PMR Pathway Priors Design Doctrine, Perturbation Observation Capture, Perturbation Trunk Mapping, and Perturbation Residual Novelty Map, and Perturbation Structure-Affordance Card pages.\n\n## What this proves\n\nIt proves only that accepted local fixture artifacts and draft publication materials are organized for review.\n\n## What this does not prove\n\nNo oracle posture, no deployment posture, no final-answer posture, no AI consciousness claim, and no universal ontology claim.\n\n## Phase pages\n\n- [SONYA-AEGIS-SMOKE-02](sonya-aegis-smoke-02.md)\n- [WAVE Gold-Physics](wave-gold-physics.md)\n- [UNI-02D Sonya gate](uni02d-sonya-gate.md)\n- [RETRO-LANE-00](retro-lane-00.md)\n- [Public Utility Alpha](public-utility-alpha.md)\n- [Raw Baseline Comparison](raw-baseline-comparison.md)\n- [Evidence Review Pack](evidence-review-pack.md)\n- [RW-COMP-01](rw-comp-01.md)\n- [RW-COMP-02](rw-comp-02.md)\n- [Retrosynthesis Sandbox Cycle](retrosynthesis-sandbox-cycle.md)\n- [Evidence Review Pack second pass](evidence-review-pack-second-pass.md)\n- [RW-COMP-03](rw-comp-03.md)\n- [Universal Architecture Scaffold](universal-architecture.md)\n- [Sonya Adapter Contract Registry](sonya-adapter-contract-registry.md)\n- [Sonya required membrane checkpoint](sonya-required-membrane-checkpoint.md)\n- [TEL event stack](tel-event-stack.md)\n- [Sonya Adapter Smoke](sonya-adapter-smoke.md)\n- [Sonya Local Fixture Adapter](sonya-local-fixture-adapter.md)\n- [Evidence Review Pack local adapter](evidence-review-pack-local-adapter.md)\n- [Evidence Review Pack local adapter revision](evidence-review-pack-local-adapter-revision.md)\n- [RW-COMP local adapter](rw-comp-local-adapter.md)\n- [Provenance Memory Reservoir](provenance-memory-reservoir.md)\n- [PMR local artifact index](pmr-local-artifact-index.md)\n- [Ontology Claim Registry](ontology-claim-registry.md)\n- [Local Sonya path portability](local-sonya-path-portability.md)\n- [TB Product Slice](tb-product-slice.md)\n- [TB Product Slice 01](tb-product-slice-01.md)\n- [Sonya Local Fixture Adapter multi-route](sonya-local-fixture-adapter-multi-route.md)\n- [Sonya Local Fixture Adapter lineage clarity](sonya-local-fixture-adapter-lineage.md)\n- [Local Review Runtime V0](local-review-runtime-v0.md)\n- [Local Review metrics and flow](local-review-metrics-flow.md)\n- [Runtime metrics seed corpus](runtime-metrics-seed-corpus.md)\n- [PMR local queryable store](pmr-local-queryable-store.md)\n- [Retrosynthesis readiness](retrosynthesis-readiness.md)\n- [Retrosynthesis local prototype](retrosynthesis-local-prototype.md)\n- [Atlas local memory admission readiness](atlas-local-memory-admission-readiness.md)\n- [AI Forensics Dossier](ai-forensics-dossier.md)\n- [Human Review UX](human-review-ux.md)\n- [Visual Review Model](visual-review-model.md)\n- [Visual Review Static HTML Prototype](visual-review-static-html-prototype.md)\n- [Perturbation Observation Capture](perturbation-observation-capture.md)\n- [Perturbation Trunk Mapping](perturbation-trunk-mapping.md)\n- [Perturbation Residual Novelty Map](perturbation-residual-novelty-map.md)\n- [Telemetry Aperture Controller](telemetry-aperture-controller.md)\n- [TAC Policy Simulation](tac-policy-simulation.md)\n- [TAC Local Review Integration](tac-local-review-integration.md)\n- [Perturbation Structure-Affordance Card](perturbation-structure-affordance-card.md)\n- [Governed artifact cognition paper](governed-artifact-cognition-paper.md)\n- [Waveform Rosetta paper](waveform-rosetta-paper.md)\n",
         "language-governance.md": f"""# Language Governance
 
 ## What was validated
@@ -14677,7 +14840,7 @@ VALIDATION-TIERING-PROVENANCE-00 records the 32131.86-second AI Receipt Architec
 
 ## Telemetry aperture linkage
 
-TELEMETRY-APERTURE-DESIGN-00 preserves AI Receipt traceability as a minimum audit floor item. TAC-POLICY-SIMULATION-00 keeps the minimum audit floor preserved in deterministic scenario rehearsal. TAC-LOCAL-REVIEW-INTEGRATION-00 links simulated TAC posture into local review surfaces and references AI Receipt event history only; no history rewrite occurs. TAC-AI-RECEIPT-EVENT-LINK-00 links TAC posture to AI Receipt through supplemental references and does not rewrite ai_receipt_event_chain.json. Aperture reduction cannot remove acceptance evidence, and Future TAC implementation must preserve AI Receipt traceability.
+TELEMETRY-APERTURE-DESIGN-00 preserves AI Receipt traceability as a minimum audit floor item. TAC-POLICY-SIMULATION-00 keeps the minimum audit floor preserved in deterministic scenario rehearsal. TAC-LOCAL-REVIEW-INTEGRATION-00 links simulated TAC posture into local review surfaces and references AI Receipt event history only; no history rewrite occurs. TAC-AI-RECEIPT-EVENT-LINK-00 links TAC posture to AI Receipt through supplemental references and does not rewrite ai_receipt_event_chain.json. PMR-PATHWAY-PRIORS-DESIGN-DOCTRINE-00 preserves AI Receipt traceability and replay lineage for revocable, materiality-scoped review recommendations without writing memory. Aperture reduction cannot remove acceptance evidence, and Future TAC implementation must preserve AI Receipt traceability.
 """,
         "validation-tiering-provenance.md": f"""# Validation Tiering and Provenance
 
@@ -14759,7 +14922,7 @@ VALIDATION-TIERING-PROVENANCE-00 synchronizes validation tier policy and validat
 
 ## Telemetry aperture linkage
 
-TELEMETRY-APERTURE-DESIGN-00 records validation_tier_receipt_when_available in the minimum audit floor. TAC-POLICY-SIMULATION-00 records design-only policy rehearsal outcomes without runtime control. TAC-LOCAL-REVIEW-INTEGRATION-00 carries TAC posture into review surfaces as a non-authoritative overlay. TAC-AI-RECEIPT-EVENT-LINK-00 adds supplemental AI Receipt event references without rewriting receipt history or changing validation authority. TAC is design-only and does not change runtime behavior in TELEMETRY-APERTURE-DESIGN-00.
+TELEMETRY-APERTURE-DESIGN-00 records validation_tier_receipt_when_available in the minimum audit floor. TAC-POLICY-SIMULATION-00 records design-only policy rehearsal outcomes without runtime control. TAC-LOCAL-REVIEW-INTEGRATION-00 carries TAC posture into review surfaces as a non-authoritative overlay. TAC-AI-RECEIPT-EVENT-LINK-00 adds supplemental AI Receipt event references without rewriting receipt history or changing validation authority. PMR-PATHWAY-PRIORS-DESIGN-DOCTRINE-00 records that pathway priors must record validation-tier evidence when applicable and remain review recommendations only. TAC is design-only and does not change runtime behavior in TELEMETRY-APERTURE-DESIGN-00.
 """,
         "metric-semantic-contract.md": f"""# Metric Semantic Contract
 
@@ -14933,7 +15096,7 @@ This design patch has no runtime builder. Reproducibility points to config/schem
 
 ## Policy simulation linkage
 
-TAC-POLICY-SIMULATION-00 rehearses deterministic policy decisions from TELEMETRY-APERTURE-DESIGN-00. TAC-LOCAL-REVIEW-INTEGRATION-00 links simulated TAC posture into local review surfaces. TAC-AI-RECEIPT-EVENT-LINK-00 links TAC posture through supplemental, non-rewriting AI Receipt event references. TAC-POLICY-SIMULATION-00 does not implement live runtime control.
+TAC-POLICY-SIMULATION-00 rehearses deterministic policy decisions from TELEMETRY-APERTURE-DESIGN-00. TAC-LOCAL-REVIEW-INTEGRATION-00 links simulated TAC posture into local review surfaces. TAC-AI-RECEIPT-EVENT-LINK-00 links TAC posture through supplemental, non-rewriting AI Receipt event references. PMR-PATHWAY-PRIORS-DESIGN-DOCTRINE-00 must respect TAC retention, trace export, and federation boundaries. TAC-POLICY-SIMULATION-00 does not implement live runtime control.
 """,
 
         "tac-policy-simulation.md": f"""# TAC Policy Simulation
@@ -15019,7 +15182,7 @@ TAC-POLICY-SIMULATION-00 synchronizes locally validated Telemetry Aperture Contr
 
 ## Local review integration linkage
 
-TAC-LOCAL-REVIEW-INTEGRATION-00 links simulated TAC posture into local review surfaces through a non-authoritative overlay and does not implement live runtime control. TAC-AI-RECEIPT-EVENT-LINK-00 then links TAC posture through supplemental, non-rewriting AI Receipt event references.
+TAC-LOCAL-REVIEW-INTEGRATION-00 links simulated TAC posture into local review surfaces through a non-authoritative overlay and does not implement live runtime control. TAC-AI-RECEIPT-EVENT-LINK-00 then links TAC posture through supplemental, non-rewriting AI Receipt event references. PMR-PATHWAY-PRIORS-DESIGN-DOCTRINE-00 must respect TAC retention, trace export, and federation boundaries.
 """,
 
         "tac-local-review-integration.md": f"""# TAC Local Review Integration
@@ -15104,7 +15267,7 @@ TAC-LOCAL-REVIEW-INTEGRATION-00 synchronizes locally validated TAC local review 
 
 ## AI Receipt event-link linkage
 
-TAC-AI-RECEIPT-EVENT-LINK-00 links this non-authoritative overlay to AI Receipt through supplemental references and does not rewrite ai_receipt_event_chain.json.
+TAC-AI-RECEIPT-EVENT-LINK-00 links this non-authoritative overlay to AI Receipt through supplemental references and does not rewrite ai_receipt_event_chain.json. PMR-PATHWAY-PRIORS-DESIGN-DOCTRINE-00 preserves TAC boundaries and AI Receipt traceability for future pathway-prior review recommendations without generating priors or writing memory.
 """,
         "tac-ai-receipt-event-link.md": f"""# TAC AI Receipt Event Link
 
@@ -15186,6 +15349,65 @@ TAC-AI-RECEIPT-EVENT-LINK-00 synchronizes locally validated TAC AI Receipt event
 ## Allowed bounded claim
 
 {TAC_AI_RECEIPT_EVENT_LINK_CLAIM_ALLOWED}
+
+## PMR pathway-prior linkage
+
+PMR-PATHWAY-PRIORS-DESIGN-DOCTRINE-00 preserves AI Receipt traceability, replay lineage, TAC retention/export/federation boundaries, Sophia reality status, and validation-tier evidence for revocable review recommendations without writing memory or generating pathway priors.
+""",
+        "pmr-pathway-priors-design-doctrine.md": f"""# PMR Pathway Priors Design Doctrine
+
+## What was validated
+
+PMR-PATHWAY-PRIORS-DESIGN-DOCTRINE-00 synchronizes locally validated PMR pathway-prior design doctrine to publication surfaces. This is publication/dashboard synchronization only and grants no runtime authority. The phase is active design-only doctrine: pathway priors are disabled, no pathway-prior generation is performed, no memory is written, no Atlas memory is admitted, no model is trained, and no review skipping is authorized.
+
+## Dashboard summary
+
+- policy_status = active_design_only
+- runtime_behavior_changed = false
+- pathway_priors_enabled = false
+- pathway_prior_generation_performed = false
+- memory_write_performed = false
+- atlas_memory_admission_performed = false
+- model_training_performed = false
+- review_skip_authorized = false
+- product_release_performed = false
+- pathway_prior_definition = revocable_materiality_scoped_review_recommendation
+- pathway_prior_is_not_truth = true
+- pathway_prior_is_not_memory_canon = true
+- pathway_prior_is_not_model_training = true
+- pathway_prior_is_not_review_skip = true
+- pathway_prior_is_not_final_answer_authority = true
+- pathway_prior_is_not_accepted_evidence_authority = true
+- pathway_prior_is_not_product_release = true
+- pathway_prior_is_not_trace_export_authorization = true
+- pathway_prior_is_not_federation_authorization = true
+- pathway_prior_is_not_memory_write = true
+- pathway_prior_is_not_atlas_memory_admission = true
+- pathway_prior_requires_human_review = true
+
+## Required doctrine language
+
+{pmr_pathway_priors_design_doctrine}
+
+## Artifacts
+
+{pmr_pathway_priors_design_artifacts}
+
+## Reproducibility fragments
+
+{pmr_pathway_priors_design_repro_fragments}
+
+```powershell
+{PMR_PATHWAY_PRIORS_DESIGN_COMMAND}
+```
+
+## Blocked overclaim examples for PMR pathway-prior design doctrine publication boundaries
+
+{pmr_pathway_priors_design_blocked}
+
+## Allowed bounded claim
+
+{PMR_PATHWAY_PRIORS_DESIGN_CLAIM_ALLOWED}
 """,
         "runtime-metrics-seed-corpus.md": f"""# Runtime metrics seed corpus
 
