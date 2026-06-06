@@ -163,3 +163,7 @@ python -c "from pathlib import Path; from coherence.telemetry.aperture_simulatio
 ## Allowed bounded claim
 
 TAC-LOCAL-REVIEW-INTEGRATION-00 links simulated TAC policy evidence into local review surfaces through a non-authoritative overlay, recording selected aperture mode, hard blocks, minimum-audit-floor status, retention/export/federation blocks, and human-review prompts without changing runtime behavior or granting surveillance, memory, trace export, federation, product, deployment, provider, final-answer, accepted-evidence, certification, Atlas, human benefit, market, consciousness, Omega, or ontology authority.
+
+## AI Receipt event-link linkage
+
+TAC-AI-RECEIPT-EVENT-LINK-00 links this non-authoritative overlay to AI Receipt through supplemental references and does not rewrite ai_receipt_event_chain.json.

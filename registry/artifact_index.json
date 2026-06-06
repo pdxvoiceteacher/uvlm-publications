@@ -1180,6 +1180,12 @@
       "tac_local_review_integration_summary.md",
       "tac_local_review_integration_receipt.json"
     ],
+    "TAC-AI-RECEIPT-EVENT-LINK-00": [
+      "tac_ai_receipt_event_link_packet.json",
+      "tac_ai_receipt_event_reference_table.json",
+      "tac_ai_receipt_event_link_summary.md",
+      "tac_ai_receipt_event_link_receipt.json"
+    ],
     "PERTURBATION-OBSERVATION-CAPTURE-00": [
       "perturbation_observation_packet.json",
       "perturbation_axis_packet.json",

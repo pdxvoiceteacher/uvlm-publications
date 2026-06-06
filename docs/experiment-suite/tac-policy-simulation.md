@@ -173,4 +173,4 @@ TAC-POLICY-SIMULATION-00 emits design-only Telemetry Aperture Controller policy 
 
 ## Local review integration linkage
 
-TAC-LOCAL-REVIEW-INTEGRATION-00 links simulated TAC posture into local review surfaces through a non-authoritative overlay and does not implement live runtime control.
+TAC-LOCAL-REVIEW-INTEGRATION-00 links simulated TAC posture into local review surfaces through a non-authoritative overlay and does not implement live runtime control. TAC-AI-RECEIPT-EVENT-LINK-00 then links TAC posture through supplemental, non-rewriting AI Receipt event references.

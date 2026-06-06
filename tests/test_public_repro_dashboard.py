@@ -117,6 +117,15 @@ from tools.build_public_repro_dashboard import (
     TAC_LOCAL_REVIEW_INTEGRATION_REPRO_FRAGMENTS,
     TAC_LOCAL_REVIEW_INTEGRATION_REQUIRED_DOC_PHRASES,
     TAC_LOCAL_REVIEW_INTEGRATION_REVIEWER_PROMPTS,
+    TAC_AI_RECEIPT_EVENT_LINK_ARTIFACTS,
+    TAC_AI_RECEIPT_EVENT_LINK_BLOCKED_CLAIMS,
+    TAC_AI_RECEIPT_EVENT_LINK_CLAIM_ALLOWED,
+    TAC_AI_RECEIPT_EVENT_LINK_EVENTS,
+    TAC_AI_RECEIPT_EVENT_LINK_INPUT_ARTIFACTS,
+    TAC_AI_RECEIPT_EVENT_LINK_PRIOR_PHASE_RELATION,
+    TAC_AI_RECEIPT_EVENT_LINK_REFERENCE_TERMS,
+    TAC_AI_RECEIPT_EVENT_LINK_REPRO_FRAGMENTS,
+    TAC_AI_RECEIPT_EVENT_LINK_REQUIRED_DOC_PHRASES,
     _dedupe_accepted_phases,
 )
 from tools.validate_public_repro_dashboard import REQUIRED_PHASES as VALIDATOR_REQUIRED_PHASES
@@ -291,6 +300,7 @@ REQUIRED_PHASES = {
     "TELEMETRY-APERTURE-DESIGN-00",
     "TAC-POLICY-SIMULATION-00",
     "TAC-LOCAL-REVIEW-INTEGRATION-00",
+    "TAC-AI-RECEIPT-EVENT-LINK-00",
     "RUNTIME-METRICS-CORPUS-SEED-00",
     "PMR-LOCAL-RUNTIME-QUERYABLE-STORE-00",
     "RETROSYNTHESIS-READINESS-00",
@@ -5153,3 +5163,101 @@ def test_tac_local_review_integration_page_and_registry_are_generated(tmp_path):
     assert status["not_tac_local_review_integration_trace_export_authorization"] is True
     assert status["not_tac_local_review_integration_federation_authorization"] is True
     assert status["not_tac_local_review_integration_product_release"] is True
+
+
+
+def test_tac_ai_receipt_event_link_page_and_registry_are_generated(tmp_path):
+    out_dir, docs_dir = run_builder(tmp_path)
+    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text(encoding="utf-8"))
+    reproducibility = json.loads((out_dir / "reproducibility_index.json").read_text(encoding="utf-8"))
+    artifact_index = json.loads((out_dir / "artifact_index.json").read_text(encoding="utf-8"))
+    claim_boundaries = json.loads((out_dir / "claim_boundary_index.json").read_text(encoding="utf-8"))
+    status = json.loads((out_dir / "status.json").read_text(encoding="utf-8"))
+    phase_by_id = {entry["phase_id"]: entry for entry in dashboard["accepted_phases"]}
+    boundary_text = "\n".join(claim_boundaries["boundaries"])
+    reproducibility_text = json.dumps(reproducibility)
+    page_text = (docs_dir / "tac-ai-receipt-event-link.md").read_text(encoding="utf-8")
+
+    phase = phase_by_id["TAC-AI-RECEIPT-EVENT-LINK-00"]
+    summary = phase["dashboard_summary"]
+    assert summary["link_status"] == "completed"
+    assert summary["link_mode"] == "supplemental_non_rewriting_event_reference"
+    assert summary["scenario_id"] == "local_default_receipt_review"
+    assert summary["receipt_history_rewritten"] is False
+    assert summary["chain_hash_unchanged"] is True
+    assert summary["referenced_event_count"] == 5
+    assert summary["supplemental_link_count"] == 5
+    assert summary["selected_mode"] == "pulse"
+    assert summary["decision_status"] == "simulated_allowed"
+    assert summary["minimum_audit_floor_preserved"] is True
+    assert summary["raw_trace_retention_allowed"] is False
+    assert summary["trace_export_allowed"] is False
+    assert summary["federation_allowed"] is False
+    assert summary["live_runtime_behavior_changed"] is False
+    assert summary["telemetry_runtime_control_performed"] is False
+    assert summary["provider_runtime_performed"] is False
+    assert summary["network_call_performed"] is False
+    assert summary["memory_write_performed"] is False
+    assert summary["atlas_memory_admission_performed"] is False
+    assert summary["trace_export_performed"] is False
+    assert summary["federation_performed"] is False
+    assert summary["product_release_performed"] is False
+    assert summary["final_answer_emitted"] is False
+    assert summary["truth_certification_emitted"] is False
+    assert summary["accepted_evidence_authority_granted"] is False
+    assert summary["link_is_not_runtime_control"] is True
+    assert summary["link_is_not_surveillance_authorization"] is True
+    assert summary["link_is_not_memory_write"] is True
+    assert summary["link_is_not_trace_export_authorization"] is True
+    assert summary["link_is_not_federation_authorization"] is True
+    assert summary["link_is_not_product_release"] is True
+    assert summary["link_requires_human_review"] is True
+
+    for artifact in TAC_AI_RECEIPT_EVENT_LINK_ARTIFACTS:
+        assert artifact in artifact_index["phases"]["TAC-AI-RECEIPT-EVENT-LINK-00"]
+        assert artifact in page_text
+        assert artifact in boundary_text
+    for phrase_group in (
+        TAC_AI_RECEIPT_EVENT_LINK_INPUT_ARTIFACTS,
+        TAC_AI_RECEIPT_EVENT_LINK_EVENTS,
+        TAC_AI_RECEIPT_EVENT_LINK_REFERENCE_TERMS,
+        TAC_AI_RECEIPT_EVENT_LINK_REQUIRED_DOC_PHRASES,
+        TAC_AI_RECEIPT_EVENT_LINK_PRIOR_PHASE_RELATION,
+        TAC_AI_RECEIPT_EVENT_LINK_BLOCKED_CLAIMS,
+    ):
+        for phrase in phrase_group:
+            assert phrase in page_text
+            assert phrase in boundary_text
+    for fragment in TAC_AI_RECEIPT_EVENT_LINK_REPRO_FRAGMENTS:
+        assert fragment in reproducibility_text
+        assert fragment in page_text
+        assert fragment in boundary_text
+    assert "build_tac_ai_receipt_event_link" in reproducibility_text
+    assert TAC_AI_RECEIPT_EVENT_LINK_CLAIM_ALLOWED in page_text
+    assert TAC_AI_RECEIPT_EVENT_LINK_CLAIM_ALLOWED in boundary_text
+    assert status["tac_ai_receipt_event_link_00_indexed"] is True
+    assert status["tac_ai_receipt_event_link_status"] == "completed"
+    assert status["tac_ai_receipt_event_link_mode"] == "supplemental_non_rewriting_event_reference"
+    assert status["tac_ai_receipt_event_link_receipt_history_rewritten"] is False
+    assert status["tac_ai_receipt_event_link_chain_hash_unchanged"] is True
+    assert status["tac_ai_receipt_event_link_referenced_event_count"] == 5
+    assert status["tac_ai_receipt_event_link_supplemental_link_count"] == 5
+    assert status["tac_ai_receipt_event_link_selected_mode"] == "pulse"
+    assert status["tac_ai_receipt_event_link_minimum_audit_floor_preserved"] is True
+    assert status["tac_ai_receipt_event_link_raw_trace_retention_allowed"] is False
+    assert status["tac_ai_receipt_event_link_trace_export_allowed"] is False
+    assert status["tac_ai_receipt_event_link_federation_allowed"] is False
+    assert status["tac_ai_receipt_event_link_live_runtime_behavior_changed"] is False
+    assert status["tac_ai_receipt_event_link_telemetry_runtime_control_performed"] is False
+    assert status["tac_ai_receipt_event_link_memory_write_performed"] is False
+    assert status["tac_ai_receipt_event_link_atlas_memory_admission_performed"] is False
+    assert status["tac_ai_receipt_event_link_product_release_performed"] is False
+    assert status["tac_ai_receipt_event_link_final_answer_emitted"] is False
+    assert status["tac_ai_receipt_event_link_truth_certification_emitted"] is False
+    assert status["tac_ai_receipt_event_link_accepted_evidence_authority_granted"] is False
+    assert status["not_tac_ai_receipt_event_link_runtime_control"] is True
+    assert status["not_tac_ai_receipt_event_link_surveillance_authorization"] is True
+    assert status["not_tac_ai_receipt_event_link_memory_write"] is True
+    assert status["not_tac_ai_receipt_event_link_trace_export_authorization"] is True
+    assert status["not_tac_ai_receipt_event_link_federation_authorization"] is True
+    assert status["not_tac_ai_receipt_event_link_product_release"] is True
