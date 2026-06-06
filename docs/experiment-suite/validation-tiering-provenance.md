@@ -148,3 +148,7 @@ python -c "from pathlib import Path; from coherence.validation.validation_receip
 ## Allowed bounded claim
 
 VALIDATION-TIERING-PROVENANCE-00 documents smoke, acceptance, and deep validation tiers and emits validation receipts that record tier, scope, commands, artifact chain, duration, sufficient-for decisions, and not-sufficient-for boundaries without certifying truth, releasing product, proving science, validating market or human benefit, deploying runtime, writing memory, or admitting Atlas memory.
+
+## Telemetry aperture linkage
+
+TELEMETRY-APERTURE-DESIGN-00 records validation_tier_receipt_when_available in the minimum audit floor. TAC-POLICY-SIMULATION-00 records design-only policy rehearsal outcomes without runtime control. TAC-LOCAL-REVIEW-INTEGRATION-00 carries TAC posture into review surfaces as a non-authoritative overlay. TAC is design-only and does not change runtime behavior in TELEMETRY-APERTURE-DESIGN-00.
