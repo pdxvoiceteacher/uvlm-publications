@@ -192,4 +192,4 @@ VALIDATION-TIERING-PROVENANCE-00 records the 32131.86-second AI Receipt Architec
 
 ## Telemetry aperture linkage
 
-TELEMETRY-APERTURE-DESIGN-00 preserves AI Receipt traceability as a minimum audit floor item. TAC-POLICY-SIMULATION-00 keeps the minimum audit floor preserved in deterministic scenario rehearsal. Aperture reduction cannot remove acceptance evidence, and Future TAC implementation must preserve AI Receipt traceability.
+TELEMETRY-APERTURE-DESIGN-00 preserves AI Receipt traceability as a minimum audit floor item. TAC-POLICY-SIMULATION-00 keeps the minimum audit floor preserved in deterministic scenario rehearsal. TAC-LOCAL-REVIEW-INTEGRATION-00 links simulated TAC posture into local review surfaces and references AI Receipt event history only; no history rewrite occurs. Aperture reduction cannot remove acceptance evidence, and Future TAC implementation must preserve AI Receipt traceability.

@@ -115,6 +115,15 @@ from tools.build_public_repro_dashboard import (
     TAC_POLICY_SIMULATION_REQUIRED_DOC_PHRASES,
     TAC_POLICY_SIMULATION_SCENARIO_OUTCOMES,
     TAC_POLICY_SIMULATION_SCENARIOS,
+    TAC_LOCAL_REVIEW_INTEGRATION_ARTIFACTS,
+    TAC_LOCAL_REVIEW_INTEGRATION_BLOCKED_CLAIMS,
+    TAC_LOCAL_REVIEW_INTEGRATION_CLAIM_ALLOWED,
+    TAC_LOCAL_REVIEW_INTEGRATION_INPUT_ARTIFACTS,
+    TAC_LOCAL_REVIEW_INTEGRATION_OVERLAY_TERMS,
+    TAC_LOCAL_REVIEW_INTEGRATION_PRIOR_PHASE_RELATION,
+    TAC_LOCAL_REVIEW_INTEGRATION_REPRO_FRAGMENTS,
+    TAC_LOCAL_REVIEW_INTEGRATION_REQUIRED_DOC_PHRASES,
+    TAC_LOCAL_REVIEW_INTEGRATION_REVIEWER_PROMPTS,
 )
 
 
@@ -408,6 +417,16 @@ REQUIRED_BOUNDARY_PHRASES = (
     *TAC_POLICY_SIMULATION_DESIGN_RELATION,
     *TAC_POLICY_SIMULATION_REPRO_FRAGMENTS,
     *TAC_POLICY_SIMULATION_BLOCKED_CLAIMS,
+    "TAC-LOCAL-REVIEW-INTEGRATION-00",
+    TAC_LOCAL_REVIEW_INTEGRATION_CLAIM_ALLOWED,
+    *TAC_LOCAL_REVIEW_INTEGRATION_ARTIFACTS,
+    *TAC_LOCAL_REVIEW_INTEGRATION_INPUT_ARTIFACTS,
+    *TAC_LOCAL_REVIEW_INTEGRATION_OVERLAY_TERMS,
+    *TAC_LOCAL_REVIEW_INTEGRATION_REVIEWER_PROMPTS,
+    *TAC_LOCAL_REVIEW_INTEGRATION_REQUIRED_DOC_PHRASES,
+    *TAC_LOCAL_REVIEW_INTEGRATION_PRIOR_PHASE_RELATION,
+    *TAC_LOCAL_REVIEW_INTEGRATION_REPRO_FRAGMENTS,
+    *TAC_LOCAL_REVIEW_INTEGRATION_BLOCKED_CLAIMS,
     "RUNTIME-METRICS-CORPUS-SEED-00",
     "bounded seed corpus instrumentation only",
     "not population calibration",
@@ -1416,7 +1435,7 @@ def _is_metric_semantic_contract_context(text: str, index: int, phrase: str) -> 
 
 def _is_blocked_overclaim_example_context(text: str, index: int) -> bool:
     window = text[max(0, index - 1000) : index]
-    return "blocked overclaim examples" in window or "blocked ai receipt overclaim examples" in window or "validation tiering provenance publication boundaries" in window or "telemetry aperture controller publication boundaries" in window or "tac policy simulation publication boundaries" in window or "claims_blocked" in window
+    return "blocked overclaim examples" in window or "blocked ai receipt overclaim examples" in window or "validation tiering provenance publication boundaries" in window or "telemetry aperture controller publication boundaries" in window or "tac policy simulation publication boundaries" in window or "tac local review integration publication boundaries" in window or "claims_blocked" in window
 
 
 def _forbidden_hits(text: str) -> list[str]:
@@ -1428,10 +1447,35 @@ def _forbidden_hits(text: str) -> list[str]:
             index = text.find(normalized_phrase, start)
             if index == -1:
                 break
+            if _is_blocked_overclaim_example_context(text, index):
+                start = index + len(normalized_phrase)
+                continue
+            if phrase in {"market validation", "federation", "omega detection", "federation authorization", "product readiness", "human benefit proof"} and (
+                "without changing runtime behavior or granting" in text[max(0, index - 900) : index]
+                or "without certifying truth" in text[max(0, index - 260) : index]
+                or "grants no" in text[max(0, index - 240) : index]
+                or f"not {normalized_phrase}" in text[max(0, index - 128) : index + 128]
+                or f"is not {normalized_phrase}" in text[max(0, index - 128) : index + 128]
+                or ("tac-policy-simulation-00" in text[max(0, index - 900) : index + 220] and ("without" in text[max(0, index - 900) : index] or "not" in text[max(0, index - 220) : index + 220] or "blocked overclaim" in text[max(0, index - 220) : index]))
+                or ("tac-local-review-integration-00" in text[max(0, index - 900) : index + 220] and ("without" in text[max(0, index - 900) : index] or "not" in text[max(0, index - 220) : index + 220] or "blocked overclaim" in text[max(0, index - 220) : index]))
+                or (phrase == "federation" and "retention/export/federation blocks" in text[max(0, index - 128) : index + 128])
+                or (phrase == "federation" and "federation_blocked_by_default" in text[max(0, index - 64) : index + 64])
+            ):
+                start = index + len(normalized_phrase)
+                continue
             if phrase == "consent execution" and (
                 _is_negated(text, index)
-                or _is_blocked_overclaim_example_context(text, index)
                 or "simulation decision is consent execution" in text[max(0, index - 80) : index + 80]
+            ):
+                start = index + len(normalized_phrase)
+                continue
+            if phrase == "federation" and (
+                "_not_federation" in text[max(0, index - 160) : index + 160]
+                or "not_federation" in text[max(0, index - 160) : index + 160]
+                or "federation_allowed" in text[max(0, index - 80) : index + 80]
+                or "federation_performed" in text[max(0, index - 80) : index + 80]
+                or "federation_blocked" in text[max(0, index - 80) : index + 80]
+                or "federation remains blocked" in text[max(0, index - 80) : index + 80]
             ):
                 start = index + len(normalized_phrase)
                 continue
@@ -1452,6 +1496,7 @@ def _forbidden_hits(text: str) -> list[str]:
                     or "not_federation" in window
                     or "no_federation" in window
                     or "federation_blocked" in window
+                    or "federation_blocked_by_default" in window
                     or '"federation_authorized": false' in window
                     or "requires population calibration" in window
                     or "grants no" in window
@@ -1626,7 +1671,7 @@ def _forbidden_hits(text: str) -> list[str]:
                 start = index + len(normalized_phrase)
                 continue
             if phrase == "federation" and (
-                any(_normalize(claim) in text[max(0, index - 220) : index + 220] for claim in (*VISUAL_REVIEW_MODEL_BLOCKED_CLAIMS, *VISUAL_REVIEW_STATIC_HTML_BLOCKED_CLAIMS, *STATIC_HTML_USABILITY_REVIEW_BLOCKED_CLAIMS, *STATIC_HTML_USABILITY_REVISION_BLOCKED_CLAIMS, *AI_RECEIPT_ARCHITECTURE_BLOCKED_CLAIMS, *VALIDATION_TIERING_PROVENANCE_BLOCKED_CLAIMS, *TELEMETRY_APERTURE_BLOCKED_CLAIMS, *TAC_POLICY_SIMULATION_BLOCKED_CLAIMS))
+                any(_normalize(claim) in text[max(0, index - 220) : index + 220] for claim in (*VISUAL_REVIEW_MODEL_BLOCKED_CLAIMS, *VISUAL_REVIEW_STATIC_HTML_BLOCKED_CLAIMS, *STATIC_HTML_USABILITY_REVIEW_BLOCKED_CLAIMS, *STATIC_HTML_USABILITY_REVISION_BLOCKED_CLAIMS, *AI_RECEIPT_ARCHITECTURE_BLOCKED_CLAIMS, *VALIDATION_TIERING_PROVENANCE_BLOCKED_CLAIMS, *TELEMETRY_APERTURE_BLOCKED_CLAIMS, *TAC_POLICY_SIMULATION_BLOCKED_CLAIMS, *TAC_LOCAL_REVIEW_INTEGRATION_BLOCKED_CLAIMS))
                 or "without implementing a ui or granting" in text[max(0, index - 500) : index]
                 or "it implements no ui and grants no" in text[max(0, index - 500) : index]
             ):
@@ -1663,7 +1708,7 @@ def _forbidden_hits(text: str) -> list[str]:
                 continue
             if (
                 phrase in {"truth certification", "product release"}
-                and any(_normalize(claim) in text[max(0, index - 180) : index + 180] for claim in (*LANGUAGE_GOVERNANCE_AUDIT_BLOCKED_CLAIMS, *VISUAL_REVIEW_MODEL_BLOCKED_CLAIMS, *VISUAL_REVIEW_STATIC_HTML_BLOCKED_CLAIMS, *STATIC_HTML_USABILITY_REVIEW_BLOCKED_CLAIMS, *STATIC_HTML_USABILITY_REVISION_BLOCKED_CLAIMS, *AI_RECEIPT_ARCHITECTURE_BLOCKED_CLAIMS, *VALIDATION_TIERING_PROVENANCE_BLOCKED_CLAIMS, *TELEMETRY_APERTURE_BLOCKED_CLAIMS, *TAC_POLICY_SIMULATION_BLOCKED_CLAIMS))
+                and any(_normalize(claim) in text[max(0, index - 180) : index + 180] for claim in (*LANGUAGE_GOVERNANCE_AUDIT_BLOCKED_CLAIMS, *VISUAL_REVIEW_MODEL_BLOCKED_CLAIMS, *VISUAL_REVIEW_STATIC_HTML_BLOCKED_CLAIMS, *STATIC_HTML_USABILITY_REVIEW_BLOCKED_CLAIMS, *STATIC_HTML_USABILITY_REVISION_BLOCKED_CLAIMS, *AI_RECEIPT_ARCHITECTURE_BLOCKED_CLAIMS, *VALIDATION_TIERING_PROVENANCE_BLOCKED_CLAIMS, *TELEMETRY_APERTURE_BLOCKED_CLAIMS, *TAC_POLICY_SIMULATION_BLOCKED_CLAIMS, *TAC_LOCAL_REVIEW_INTEGRATION_BLOCKED_CLAIMS))
             ):
                 start = index + len(normalized_phrase)
                 continue
@@ -1706,7 +1751,7 @@ def _forbidden_hits(text: str) -> list[str]:
                     "without creating" in text[max(0, index - 260) : index]
                     or "without claiming" in text[max(0, index - 260) : index]
                     or "claiming no" in text[max(0, index - 260) : index]
-                    or any(_normalize(claim) in text[max(0, index - 220) : index + 220] for claim in (*VISUAL_REVIEW_STATIC_HTML_BLOCKED_CLAIMS, *STATIC_HTML_USABILITY_REVIEW_BLOCKED_CLAIMS, *STATIC_HTML_USABILITY_REVISION_BLOCKED_CLAIMS, *AI_RECEIPT_ARCHITECTURE_BLOCKED_CLAIMS, *VALIDATION_TIERING_PROVENANCE_BLOCKED_CLAIMS, *TELEMETRY_APERTURE_BLOCKED_CLAIMS, *TAC_POLICY_SIMULATION_BLOCKED_CLAIMS))
+                    or any(_normalize(claim) in text[max(0, index - 220) : index + 220] for claim in (*VISUAL_REVIEW_STATIC_HTML_BLOCKED_CLAIMS, *STATIC_HTML_USABILITY_REVIEW_BLOCKED_CLAIMS, *STATIC_HTML_USABILITY_REVISION_BLOCKED_CLAIMS, *AI_RECEIPT_ARCHITECTURE_BLOCKED_CLAIMS, *VALIDATION_TIERING_PROVENANCE_BLOCKED_CLAIMS, *TELEMETRY_APERTURE_BLOCKED_CLAIMS, *TAC_POLICY_SIMULATION_BLOCKED_CLAIMS, *TAC_LOCAL_REVIEW_INTEGRATION_BLOCKED_CLAIMS))
                 )
             ):
                 start = index + len(normalized_phrase)
@@ -1719,7 +1764,7 @@ def _forbidden_hits(text: str) -> list[str]:
                 continue
             if phrase in {"federation", "surveillance"} and any(
                 _normalize(claim) in text[max(0, index - 240) : index + 240]
-                for claim in (*TELEMETRY_APERTURE_BLOCKED_CLAIMS, *TAC_POLICY_SIMULATION_BLOCKED_CLAIMS)
+                for claim in (*TELEMETRY_APERTURE_BLOCKED_CLAIMS, *TAC_POLICY_SIMULATION_BLOCKED_CLAIMS, *TAC_LOCAL_REVIEW_INTEGRATION_BLOCKED_CLAIMS)
             ):
                 start = index + len(normalized_phrase)
                 continue

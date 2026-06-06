@@ -222,4 +222,4 @@ TELEMETRY-APERTURE-DESIGN-00 defines a design-only, consent-bounded Telemetry Ap
 
 ## Policy simulation linkage
 
-TAC-POLICY-SIMULATION-00 rehearses deterministic policy decisions from TELEMETRY-APERTURE-DESIGN-00. TAC-POLICY-SIMULATION-00 does not implement live runtime control.
+TAC-POLICY-SIMULATION-00 rehearses deterministic policy decisions from TELEMETRY-APERTURE-DESIGN-00. TAC-LOCAL-REVIEW-INTEGRATION-00 links simulated TAC posture into local review surfaces. TAC-POLICY-SIMULATION-00 does not implement live runtime control.

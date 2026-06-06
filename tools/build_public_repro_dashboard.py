@@ -3331,6 +3331,171 @@ TAC_POLICY_SIMULATION_PHASE = {
 }
 
 
+TAC_LOCAL_REVIEW_INTEGRATION_COMMAND = "python -c \"from pathlib import Path; from coherence.telemetry.aperture_simulation import build_telemetry_aperture_simulation; from coherence.telemetry.local_review_integration import build_tac_local_review_integration; bridge=Path(r'C:\\UVLM\\run_artifacts\\tac_local_review_integration\\bridge'); build_telemetry_aperture_simulation(bridge); build_tac_local_review_integration(bridge)\""
+TAC_LOCAL_REVIEW_INTEGRATION_ARTIFACTS = [
+    "tac_local_review_integration_packet.json",
+    "tac_local_review_overlay.json",
+    "tac_local_review_integration_summary.md",
+    "tac_local_review_integration_receipt.json",
+]
+TAC_LOCAL_REVIEW_INTEGRATION_INPUT_ARTIFACTS = [
+    "telemetry_aperture_policy_packet.json",
+    "telemetry_aperture_simulation_packet.json",
+    "telemetry_aperture_decision_packet.json",
+    "telemetry_aperture_retention_intent_packet.json",
+    "telemetry_aperture_simulation_summary.md",
+    "telemetry_aperture_simulation_receipt.json",
+    "ai_receipt_architecture_packet.json",
+    "ai_receipt_event_chain.json",
+    "ai_receipt_architecture.md",
+    "ai_receipt_architecture_receipt.json",
+    "visual_review_model_packet.json",
+    "visual_review_section_index.json",
+    "visual_review_render_contract.json",
+    "visual_review_receipt.json",
+    "visual_review_static_html_packet.json",
+    "visual_review_static_review.html",
+    "visual_review_static_html_receipt.json",
+    "static_html_usability_revision_packet.json",
+    "visual_review_static_review_revised.html",
+    "static_html_usability_revision_receipt.json",
+    "sophia_execution_reality_packet.json",
+    "validation_tier_receipt.json",
+    "pmr_local_runtime_artifact_index.json",
+    "artifact_inventory.json",
+    "export_bundle_parity_report.json",
+]
+TAC_LOCAL_REVIEW_INTEGRATION_OVERLAY_TERMS = [
+    "Telemetry Aperture Status",
+    "human_review_tac_status_overlay",
+    "ready_for_human_review",
+    "tac_is_design_policy_rehearsal",
+    "tac_did_not_change_runtime_behavior",
+    "retention_requires_explicit_approval",
+    "trace_export_blocked_without_consent",
+    "federation_blocked_without_consent",
+    "minimum_audit_floor_preserved",
+    "human_review_required_for_expansion",
+]
+TAC_LOCAL_REVIEW_INTEGRATION_REVIEWER_PROMPTS = [
+    "Review whether selected aperture mode is sufficient for the task risk.",
+    "Review whether any hard block requires human escalation.",
+    "Review whether raw trace retention is necessary and consented.",
+    "Review whether trace export remains blocked.",
+    "Review whether PMR federation remains blocked.",
+    "Review whether minimum audit floor evidence is preserved.",
+]
+TAC_LOCAL_REVIEW_INTEGRATION_REQUIRED_DOC_PHRASES = [
+    "TAC Local Review Integration",
+    "This integration links TAC policy simulation evidence into local review surfaces.",
+    "This integration is not live runtime control.",
+    "This integration is not surveillance authorization.",
+    "This integration is not memory write.",
+    "This integration is not trace export authorization.",
+    "This integration is not federation authorization.",
+    "This integration is not product release.",
+    "Minimum audit floor is preserved.",
+    "Human review remains required for aperture expansion, retention, export, federation, and PMR memory intent.",
+    "AI Receipt records TAC posture as review evidence, not truth certification.",
+    "AI Receipt event history is referenced only; no history rewrite occurs.",
+    "Default local review overlay selects pulse.",
+    "Raw trace retention remains blocked by default.",
+    "Trace export remains blocked by default.",
+    "PMR federation remains blocked by default.",
+]
+TAC_LOCAL_REVIEW_INTEGRATION_PRIOR_PHASE_RELATION = [
+    "TELEMETRY-APERTURE-DESIGN-00 defines TAC policy.",
+    "TAC-POLICY-SIMULATION-00 rehearses deterministic TAC policy decisions.",
+    "TAC-LOCAL-REVIEW-INTEGRATION-00 links simulated TAC posture into local review surfaces.",
+    "TAC-LOCAL-REVIEW-INTEGRATION-00 does not implement live runtime control.",
+]
+TAC_LOCAL_REVIEW_INTEGRATION_REPRO_FRAGMENTS = [
+    "build_telemetry_aperture_simulation",
+    "build_tac_local_review_integration",
+]
+TAC_LOCAL_REVIEW_INTEGRATION_BLOCKED_CLAIMS = [
+    "TAC local review integration changed runtime telemetry behavior",
+    "TAC local review integration is runtime control",
+    "TAC local review integration authorizes surveillance",
+    "TAC local review integration authorizes trace export",
+    "TAC local review integration authorizes PMR federation",
+    "TAC local review integration authorizes memory write",
+    "TAC local review integration authorizes Atlas memory admission",
+    "TAC local review integration authorizes provider runtime",
+    "TAC local review integration authorizes network runtime",
+    "TAC local review integration authorizes deployment",
+    "TAC local review integration is product release",
+    "TAC local review integration certifies truth",
+    "TAC local review integration certifies compliance",
+    "TAC local review integration authorizes final answers",
+    "TAC local review integration grants accepted-evidence authority",
+    "TAC local review integration proves human benefit",
+    "TAC local review integration is market validation",
+    "TAC local review integration proves product readiness",
+    "TAC local review integration proves consciousness",
+    "TAC local review integration detects Omega",
+    "TAC local review integration proves universal ontology",
+    "TAC overlay is authority",
+    "TAC overlay is runtime control",
+    "AI Receipt history was rewritten by TAC",
+    "TAC retention intent is memory write",
+    "TAC export field authorizes trace export",
+    "TAC federation field authorizes PMR federation",
+]
+TAC_LOCAL_REVIEW_INTEGRATION_CLAIM_ALLOWED = "TAC-LOCAL-REVIEW-INTEGRATION-00 links simulated TAC policy evidence into local review surfaces through a non-authoritative overlay, recording selected aperture mode, hard blocks, minimum-audit-floor status, retention/export/federation blocks, and human-review prompts without changing runtime behavior or granting surveillance, memory, trace export, federation, product, deployment, provider, final-answer, accepted-evidence, certification, Atlas, human benefit, market, consciousness, Omega, or ontology authority."
+TAC_LOCAL_REVIEW_INTEGRATION_DASHBOARD_SUMMARY = {
+    "integration_status": "completed",
+    "integration_mode": "local_review_overlay",
+    "scenario_id": "local_default_receipt_review",
+    "selected_mode": "pulse",
+    "decision_status": "simulated_allowed",
+    "minimum_audit_floor_preserved": True,
+    "raw_trace_retention_allowed": False,
+    "trace_export_allowed": False,
+    "federation_allowed": False,
+    "receipt_event_link_status": "referenced_only_no_history_rewrite",
+    "overlay_status": "ready_for_human_review",
+    "overlay_mode": "human_review_tac_status_overlay",
+    "live_runtime_behavior_changed": False,
+    "provider_runtime_performed": False,
+    "network_call_performed": False,
+    "telemetry_runtime_control_performed": False,
+    "memory_write_performed": False,
+    "atlas_memory_admission_performed": False,
+    "trace_export_performed": False,
+    "federation_performed": False,
+    "product_release_performed": False,
+    "final_answer_emitted": False,
+    "truth_certification_emitted": False,
+    "accepted_evidence_authority_granted": False,
+    "integration_is_not_runtime_control": True,
+    "integration_is_not_surveillance_authorization": True,
+    "integration_is_not_memory_write": True,
+    "integration_is_not_trace_export_authorization": True,
+    "integration_is_not_federation_authorization": True,
+    "integration_is_not_product_release": True,
+    "integration_requires_human_review_for_expansion": True,
+}
+TAC_LOCAL_REVIEW_INTEGRATION_PHASE = {
+    "phase_id": "TAC-LOCAL-REVIEW-INTEGRATION-00",
+    "repo": "pdxvoiceteacher/CoherenceLattice",
+    "source_phase": "TAC-LOCAL-REVIEW-INTEGRATION-00",
+    "status": "accepted_local_validation",
+    "publication_status": "dashboard_synced",
+    "evidence_type": "local_review_tac_status_overlay",
+    "product_posture": "non_authoritative_local_review_overlay_no_runtime_control_or_product_release",
+    "authority_posture": "non_authoritative",
+    "public_claim_boundary": "local_review_overlay_only_no_runtime_surveillance_export_federation_memory_product_deployment_certification_or_final_answer_authority",
+    "primary_artifacts": TAC_LOCAL_REVIEW_INTEGRATION_ARTIFACTS,
+    "input_artifacts": TAC_LOCAL_REVIEW_INTEGRATION_INPUT_ARTIFACTS,
+    "dashboard_summary": TAC_LOCAL_REVIEW_INTEGRATION_DASHBOARD_SUMMARY,
+    "reproduction_command_summary": TAC_LOCAL_REVIEW_INTEGRATION_COMMAND,
+    "claims_blocked": TAC_LOCAL_REVIEW_INTEGRATION_BLOCKED_CLAIMS,
+    "claim_allowed": TAC_LOCAL_REVIEW_INTEGRATION_CLAIM_ALLOWED,
+    "reviewer_caution": "TAC-LOCAL-REVIEW-INTEGRATION-00 links simulated TAC posture into local review surfaces only; it is not runtime control, surveillance authorization, memory write, trace export authorization, federation authorization, product release, deployment, certification, final-answer authority, accepted-evidence authority, Atlas admission, benefit proof, market validation, consciousness proof, Omega detection, or ontology proof.",
+}
+
+
 PERTURBATION_OBSERVATION_ARTIFACTS = [
     "perturbation_observation_packet.json",
     "perturbation_axis_packet.json",
@@ -9989,6 +10154,7 @@ AI_RECEIPT_ARCHITECTURE_PHASE,
 VALIDATION_TIERING_PROVENANCE_PHASE,
 TELEMETRY_APERTURE_DESIGN_PHASE,
 TAC_POLICY_SIMULATION_PHASE,
+TAC_LOCAL_REVIEW_INTEGRATION_PHASE,
 PERTURBATION_OBSERVATION_CAPTURE_PHASE,
 PERTURBATION_TRUNK_MAPPING_PHASE,
 PERTURBATION_RESIDUAL_NOVELTY_MAP_PHASE,
@@ -12156,6 +12322,16 @@ BOUNDARIES.extend(
         *TAC_POLICY_SIMULATION_REPRO_FRAGMENTS,
         "Blocked overclaim examples for TAC policy simulation publication boundaries.",
         *TAC_POLICY_SIMULATION_BLOCKED_CLAIMS,
+        TAC_LOCAL_REVIEW_INTEGRATION_CLAIM_ALLOWED,
+        *TAC_LOCAL_REVIEW_INTEGRATION_ARTIFACTS,
+        *TAC_LOCAL_REVIEW_INTEGRATION_INPUT_ARTIFACTS,
+        *TAC_LOCAL_REVIEW_INTEGRATION_OVERLAY_TERMS,
+        *TAC_LOCAL_REVIEW_INTEGRATION_REVIEWER_PROMPTS,
+        *TAC_LOCAL_REVIEW_INTEGRATION_REQUIRED_DOC_PHRASES,
+        *TAC_LOCAL_REVIEW_INTEGRATION_PRIOR_PHASE_RELATION,
+        *TAC_LOCAL_REVIEW_INTEGRATION_REPRO_FRAGMENTS,
+        "Blocked overclaim examples for TAC local review integration publication boundaries.",
+        *TAC_LOCAL_REVIEW_INTEGRATION_BLOCKED_CLAIMS,
     ]
 )
 BOUNDARIES.extend(
@@ -12694,6 +12870,31 @@ def dashboard_payload() -> dict[str, Any]:
         "not_tac_policy_simulation_trace_export_authorization": True,
         "not_tac_policy_simulation_federation_authorization": True,
         "not_tac_policy_simulation_product_release": True,
+        "tac_local_review_integration_00_indexed": True,
+        "tac_local_review_integration_status": "completed",
+        "tac_local_review_integration_mode": "local_review_overlay",
+        "tac_local_review_integration_selected_mode": "pulse",
+        "tac_local_review_integration_minimum_audit_floor_preserved": True,
+        "tac_local_review_integration_raw_trace_retention_allowed": False,
+        "tac_local_review_integration_trace_export_allowed": False,
+        "tac_local_review_integration_federation_allowed": False,
+        "tac_local_review_integration_receipt_event_link_status": "referenced_only_no_history_rewrite",
+        "tac_local_review_integration_live_runtime_behavior_changed": False,
+        "tac_local_review_integration_telemetry_runtime_control_performed": False,
+        "tac_local_review_integration_memory_write_performed": False,
+        "tac_local_review_integration_atlas_memory_admission_performed": False,
+        "tac_local_review_integration_trace_export_performed": False,
+        "tac_local_review_integration_federation_performed": False,
+        "tac_local_review_integration_product_release_performed": False,
+        "tac_local_review_integration_final_answer_emitted": False,
+        "tac_local_review_integration_truth_certification_emitted": False,
+        "tac_local_review_integration_accepted_evidence_authority_granted": False,
+        "not_tac_local_review_integration_runtime_control": True,
+        "not_tac_local_review_integration_surveillance_authorization": True,
+        "not_tac_local_review_integration_memory_write": True,
+        "not_tac_local_review_integration_trace_export_authorization": True,
+        "not_tac_local_review_integration_federation_authorization": True,
+        "not_tac_local_review_integration_product_release": True,
         "not_validation_tiering_product_release": True,
         "not_validation_tiering_truth_certification": True,
         "not_validation_tiering_compliance_certification": True,
@@ -12782,6 +12983,7 @@ def reproducibility_index() -> dict[str, Any]:
                 {"name": "Validation Tiering Provenance Python entrypoint", "command": VALIDATION_TIERING_PROVENANCE_COMMAND},
                 {"name": "TELEMETRY-APERTURE-DESIGN-00 config/schema inspection", "command": TELEMETRY_APERTURE_DESIGN_COMMAND},
                 {"name": "TAC-POLICY-SIMULATION-00 Python entrypoint", "command": TAC_POLICY_SIMULATION_COMMAND},
+                {"name": "TAC-LOCAL-REVIEW-INTEGRATION-00 Python entrypoint", "command": TAC_LOCAL_REVIEW_INTEGRATION_COMMAND},
                 {"name": "Perturbation novelty lane Python entrypoint", "command": PERTURBATION_NOVELTY_LANE_COMMAND},
                 {"name": "Perturbation structure-affordance theorem card Python entrypoint", "command": PERTURBATION_STRUCTURE_AFFORDANCE_CARD_COMMAND},
                 {"name": "PMR Context Availability Ledger acceptance", "command": PMR_CONTEXT_AVAILABILITY_LEDGER_00_COMMAND},
@@ -13504,6 +13706,31 @@ def status_payload() -> dict[str, Any]:
         "not_tac_policy_simulation_trace_export_authorization": True,
         "not_tac_policy_simulation_federation_authorization": True,
         "not_tac_policy_simulation_product_release": True,
+        "tac_local_review_integration_00_indexed": True,
+        "tac_local_review_integration_status": "completed",
+        "tac_local_review_integration_mode": "local_review_overlay",
+        "tac_local_review_integration_selected_mode": "pulse",
+        "tac_local_review_integration_minimum_audit_floor_preserved": True,
+        "tac_local_review_integration_raw_trace_retention_allowed": False,
+        "tac_local_review_integration_trace_export_allowed": False,
+        "tac_local_review_integration_federation_allowed": False,
+        "tac_local_review_integration_receipt_event_link_status": "referenced_only_no_history_rewrite",
+        "tac_local_review_integration_live_runtime_behavior_changed": False,
+        "tac_local_review_integration_telemetry_runtime_control_performed": False,
+        "tac_local_review_integration_memory_write_performed": False,
+        "tac_local_review_integration_atlas_memory_admission_performed": False,
+        "tac_local_review_integration_trace_export_performed": False,
+        "tac_local_review_integration_federation_performed": False,
+        "tac_local_review_integration_product_release_performed": False,
+        "tac_local_review_integration_final_answer_emitted": False,
+        "tac_local_review_integration_truth_certification_emitted": False,
+        "tac_local_review_integration_accepted_evidence_authority_granted": False,
+        "not_tac_local_review_integration_runtime_control": True,
+        "not_tac_local_review_integration_surveillance_authorization": True,
+        "not_tac_local_review_integration_memory_write": True,
+        "not_tac_local_review_integration_trace_export_authorization": True,
+        "not_tac_local_review_integration_federation_authorization": True,
+        "not_tac_local_review_integration_product_release": True,
         "not_validation_tiering_product_release": True,
         "not_validation_tiering_truth_certification": True,
         "not_validation_tiering_compliance_certification": True,
@@ -13641,10 +13868,18 @@ def docs() -> dict[str, str]:
     tac_policy_simulation_relation = "\n".join(f"- {phrase}" for phrase in TAC_POLICY_SIMULATION_DESIGN_RELATION)
     tac_policy_simulation_repro_fragments = "\n".join(f"- {fragment}" for fragment in TAC_POLICY_SIMULATION_REPRO_FRAGMENTS)
     tac_policy_simulation_blocked = "\n".join(f"- {claim}" for claim in TAC_POLICY_SIMULATION_BLOCKED_CLAIMS)
+    tac_local_review_integration_artifacts = "\n".join(f"- {artifact}" for artifact in TAC_LOCAL_REVIEW_INTEGRATION_ARTIFACTS)
+    tac_local_review_integration_input_artifacts = "\n".join(f"- {artifact}" for artifact in TAC_LOCAL_REVIEW_INTEGRATION_INPUT_ARTIFACTS)
+    tac_local_review_integration_overlay_terms = "\n".join(f"- {term}" for term in TAC_LOCAL_REVIEW_INTEGRATION_OVERLAY_TERMS)
+    tac_local_review_integration_reviewer_prompts = "\n".join(f"- {prompt}" for prompt in TAC_LOCAL_REVIEW_INTEGRATION_REVIEWER_PROMPTS)
+    tac_local_review_integration_doc_phrases = "\n".join(f"- {phrase}" for phrase in TAC_LOCAL_REVIEW_INTEGRATION_REQUIRED_DOC_PHRASES)
+    tac_local_review_integration_relation = "\n".join(f"- {phrase}" for phrase in TAC_LOCAL_REVIEW_INTEGRATION_PRIOR_PHASE_RELATION)
+    tac_local_review_integration_repro_fragments = "\n".join(f"- {fragment}" for fragment in TAC_LOCAL_REVIEW_INTEGRATION_REPRO_FRAGMENTS)
+    tac_local_review_integration_blocked = "\n".join(f"- {claim}" for claim in TAC_LOCAL_REVIEW_INTEGRATION_BLOCKED_CLAIMS)
     return {
         "README.md": "# Experiment Suite Docs\n\nPublic reviewer documentation for the claim-bounded reproducibility dashboard.\n",
         "assets/README.md": "# Assets\n\nOptional static assets for the public reproducibility dashboard.\n",
-        "index.md": f"# Public Experiment Suite Dashboard\n\nThis dashboard presents accepted evidence for reviewer orientation. It is not truth certification, not deployment authority, not final answer release, local fixture only, and requires external peer review.\n\n## Accepted evidence\n\n| Phase | Repo | Status | What this supports | Reviewer caution |\n| --- | --- | --- | --- | --- |\n{phase_rows}\n\n## Reviewer path\n\nStart with claim boundaries, then read the governed artifact cognition paper, WAVE Rosetta paper, SONYA-AEGIS-SMOKE-02, WAVE family, UNI-02D Sonya gate, and RETRO-LANE-00, Public Utility Alpha, Raw Baseline Comparison, Evidence Review Pack, RW-COMP-01, RW-COMP-02, Retrosynthesis Sandbox Cycle, Evidence Review Pack second-pass, RW-COMP-03, Universal Architecture Scaffold, Sonya Adapter Contract Registry, Sonya Adapter Smoke, Sonya Local Fixture Adapter, and Evidence Review Pack local adapter, Evidence Review Pack local adapter revision, RW-COMP local adapter, PMR doctrine, PMR local artifact index, PMR GPCU utility scoring, PMR lifecycle state machine, PMR lifecycle audit preflight, PMR Sophia lifecycle audit review, PMR destructive-action authorization preflight, PMR architecture diversity checkpoint, PMR simulation baseline comparison, PMR simulation statistical analysis, PMR federation stress corpus, PMR human provenance context, Sonya Local Fixture Adapter multi-route, and Sonya Local Fixture Adapter lineage clarity, Local Review metrics and flow, Metric Semantic Contract, Language Governance, Language Governance Audit Runtime, and Runtime Metrics Seed Corpus, PMR local queryable store, Retrosynthesis Readiness, Retrosynthesis Local Prototype, and Atlas Local Memory Admission Readiness, Atlas Local Memory Admission Prototype, Local-test Proxy Review, AI Context Performance Continuity, Theorem Validation Pathway, and COOP Entropy Dividend, Triadic LLM Metrics Smoke, UCC Sophia Control Forensics, UCC Standards Source Registry and Materiality, Triadic LLM Smoke PMR Inventory Contract Repair, AI Forensics Dossier, Human Review UX, Visual Review Model, Visual Review Static HTML Prototype, Static HTML Usability Review Seed, Static HTML Usability Revision, AI Receipt Architecture, Validation Tiering and Provenance, and Telemetry Aperture Controller, TAC Policy Simulation, Perturbation Observation Capture, Perturbation Trunk Mapping, and Perturbation Residual Novelty Map, and Perturbation Structure-Affordance Card pages.\n\n## What this proves\n\nIt proves only that accepted local fixture artifacts and draft publication materials are organized for review.\n\n## What this does not prove\n\nNo oracle posture, no deployment posture, no final-answer posture, no AI consciousness claim, and no universal ontology claim.\n\n## Phase pages\n\n- [SONYA-AEGIS-SMOKE-02](sonya-aegis-smoke-02.md)\n- [WAVE Gold-Physics](wave-gold-physics.md)\n- [UNI-02D Sonya gate](uni02d-sonya-gate.md)\n- [RETRO-LANE-00](retro-lane-00.md)\n- [Public Utility Alpha](public-utility-alpha.md)\n- [Raw Baseline Comparison](raw-baseline-comparison.md)\n- [Evidence Review Pack](evidence-review-pack.md)\n- [RW-COMP-01](rw-comp-01.md)\n- [RW-COMP-02](rw-comp-02.md)\n- [Retrosynthesis Sandbox Cycle](retrosynthesis-sandbox-cycle.md)\n- [Evidence Review Pack second pass](evidence-review-pack-second-pass.md)\n- [RW-COMP-03](rw-comp-03.md)\n- [Universal Architecture Scaffold](universal-architecture.md)\n- [Sonya Adapter Contract Registry](sonya-adapter-contract-registry.md)\n- [Sonya required membrane checkpoint](sonya-required-membrane-checkpoint.md)\n- [TEL event stack](tel-event-stack.md)\n- [Sonya Adapter Smoke](sonya-adapter-smoke.md)\n- [Sonya Local Fixture Adapter](sonya-local-fixture-adapter.md)\n- [Evidence Review Pack local adapter](evidence-review-pack-local-adapter.md)\n- [Evidence Review Pack local adapter revision](evidence-review-pack-local-adapter-revision.md)\n- [RW-COMP local adapter](rw-comp-local-adapter.md)\n- [Provenance Memory Reservoir](provenance-memory-reservoir.md)\n- [PMR local artifact index](pmr-local-artifact-index.md)\n- [Ontology Claim Registry](ontology-claim-registry.md)\n- [Local Sonya path portability](local-sonya-path-portability.md)\n- [TB Product Slice](tb-product-slice.md)\n- [TB Product Slice 01](tb-product-slice-01.md)\n- [Sonya Local Fixture Adapter multi-route](sonya-local-fixture-adapter-multi-route.md)\n- [Sonya Local Fixture Adapter lineage clarity](sonya-local-fixture-adapter-lineage.md)\n- [Local Review Runtime V0](local-review-runtime-v0.md)\n- [Local Review metrics and flow](local-review-metrics-flow.md)\n- [Runtime metrics seed corpus](runtime-metrics-seed-corpus.md)\n- [PMR local queryable store](pmr-local-queryable-store.md)\n- [Retrosynthesis readiness](retrosynthesis-readiness.md)\n- [Retrosynthesis local prototype](retrosynthesis-local-prototype.md)\n- [Atlas local memory admission readiness](atlas-local-memory-admission-readiness.md)\n- [AI Forensics Dossier](ai-forensics-dossier.md)\n- [Human Review UX](human-review-ux.md)\n- [Visual Review Model](visual-review-model.md)\n- [Visual Review Static HTML Prototype](visual-review-static-html-prototype.md)\n- [Perturbation Observation Capture](perturbation-observation-capture.md)\n- [Perturbation Trunk Mapping](perturbation-trunk-mapping.md)\n- [Perturbation Residual Novelty Map](perturbation-residual-novelty-map.md)\n- [Telemetry Aperture Controller](telemetry-aperture-controller.md)\n- [TAC Policy Simulation](tac-policy-simulation.md)\n- [Perturbation Structure-Affordance Card](perturbation-structure-affordance-card.md)\n- [Governed artifact cognition paper](governed-artifact-cognition-paper.md)\n- [Waveform Rosetta paper](waveform-rosetta-paper.md)\n",
+        "index.md": f"# Public Experiment Suite Dashboard\n\nThis dashboard presents accepted evidence for reviewer orientation. It is not truth certification, not deployment authority, not final answer release, local fixture only, and requires external peer review.\n\n## Accepted evidence\n\n| Phase | Repo | Status | What this supports | Reviewer caution |\n| --- | --- | --- | --- | --- |\n{phase_rows}\n\n## Reviewer path\n\nStart with claim boundaries, then read the governed artifact cognition paper, WAVE Rosetta paper, SONYA-AEGIS-SMOKE-02, WAVE family, UNI-02D Sonya gate, and RETRO-LANE-00, Public Utility Alpha, Raw Baseline Comparison, Evidence Review Pack, RW-COMP-01, RW-COMP-02, Retrosynthesis Sandbox Cycle, Evidence Review Pack second-pass, RW-COMP-03, Universal Architecture Scaffold, Sonya Adapter Contract Registry, Sonya Adapter Smoke, Sonya Local Fixture Adapter, and Evidence Review Pack local adapter, Evidence Review Pack local adapter revision, RW-COMP local adapter, PMR doctrine, PMR local artifact index, PMR GPCU utility scoring, PMR lifecycle state machine, PMR lifecycle audit preflight, PMR Sophia lifecycle audit review, PMR destructive-action authorization preflight, PMR architecture diversity checkpoint, PMR simulation baseline comparison, PMR simulation statistical analysis, PMR federation stress corpus, PMR human provenance context, Sonya Local Fixture Adapter multi-route, and Sonya Local Fixture Adapter lineage clarity, Local Review metrics and flow, Metric Semantic Contract, Language Governance, Language Governance Audit Runtime, and Runtime Metrics Seed Corpus, PMR local queryable store, Retrosynthesis Readiness, Retrosynthesis Local Prototype, and Atlas Local Memory Admission Readiness, Atlas Local Memory Admission Prototype, Local-test Proxy Review, AI Context Performance Continuity, Theorem Validation Pathway, and COOP Entropy Dividend, Triadic LLM Metrics Smoke, UCC Sophia Control Forensics, UCC Standards Source Registry and Materiality, Triadic LLM Smoke PMR Inventory Contract Repair, AI Forensics Dossier, Human Review UX, Visual Review Model, Visual Review Static HTML Prototype, Static HTML Usability Review Seed, Static HTML Usability Revision, AI Receipt Architecture, Validation Tiering and Provenance, and Telemetry Aperture Controller, TAC Policy Simulation, TAC Local Review Integration, Perturbation Observation Capture, Perturbation Trunk Mapping, and Perturbation Residual Novelty Map, and Perturbation Structure-Affordance Card pages.\n\n## What this proves\n\nIt proves only that accepted local fixture artifacts and draft publication materials are organized for review.\n\n## What this does not prove\n\nNo oracle posture, no deployment posture, no final-answer posture, no AI consciousness claim, and no universal ontology claim.\n\n## Phase pages\n\n- [SONYA-AEGIS-SMOKE-02](sonya-aegis-smoke-02.md)\n- [WAVE Gold-Physics](wave-gold-physics.md)\n- [UNI-02D Sonya gate](uni02d-sonya-gate.md)\n- [RETRO-LANE-00](retro-lane-00.md)\n- [Public Utility Alpha](public-utility-alpha.md)\n- [Raw Baseline Comparison](raw-baseline-comparison.md)\n- [Evidence Review Pack](evidence-review-pack.md)\n- [RW-COMP-01](rw-comp-01.md)\n- [RW-COMP-02](rw-comp-02.md)\n- [Retrosynthesis Sandbox Cycle](retrosynthesis-sandbox-cycle.md)\n- [Evidence Review Pack second pass](evidence-review-pack-second-pass.md)\n- [RW-COMP-03](rw-comp-03.md)\n- [Universal Architecture Scaffold](universal-architecture.md)\n- [Sonya Adapter Contract Registry](sonya-adapter-contract-registry.md)\n- [Sonya required membrane checkpoint](sonya-required-membrane-checkpoint.md)\n- [TEL event stack](tel-event-stack.md)\n- [Sonya Adapter Smoke](sonya-adapter-smoke.md)\n- [Sonya Local Fixture Adapter](sonya-local-fixture-adapter.md)\n- [Evidence Review Pack local adapter](evidence-review-pack-local-adapter.md)\n- [Evidence Review Pack local adapter revision](evidence-review-pack-local-adapter-revision.md)\n- [RW-COMP local adapter](rw-comp-local-adapter.md)\n- [Provenance Memory Reservoir](provenance-memory-reservoir.md)\n- [PMR local artifact index](pmr-local-artifact-index.md)\n- [Ontology Claim Registry](ontology-claim-registry.md)\n- [Local Sonya path portability](local-sonya-path-portability.md)\n- [TB Product Slice](tb-product-slice.md)\n- [TB Product Slice 01](tb-product-slice-01.md)\n- [Sonya Local Fixture Adapter multi-route](sonya-local-fixture-adapter-multi-route.md)\n- [Sonya Local Fixture Adapter lineage clarity](sonya-local-fixture-adapter-lineage.md)\n- [Local Review Runtime V0](local-review-runtime-v0.md)\n- [Local Review metrics and flow](local-review-metrics-flow.md)\n- [Runtime metrics seed corpus](runtime-metrics-seed-corpus.md)\n- [PMR local queryable store](pmr-local-queryable-store.md)\n- [Retrosynthesis readiness](retrosynthesis-readiness.md)\n- [Retrosynthesis local prototype](retrosynthesis-local-prototype.md)\n- [Atlas local memory admission readiness](atlas-local-memory-admission-readiness.md)\n- [AI Forensics Dossier](ai-forensics-dossier.md)\n- [Human Review UX](human-review-ux.md)\n- [Visual Review Model](visual-review-model.md)\n- [Visual Review Static HTML Prototype](visual-review-static-html-prototype.md)\n- [Perturbation Observation Capture](perturbation-observation-capture.md)\n- [Perturbation Trunk Mapping](perturbation-trunk-mapping.md)\n- [Perturbation Residual Novelty Map](perturbation-residual-novelty-map.md)\n- [Telemetry Aperture Controller](telemetry-aperture-controller.md)\n- [TAC Policy Simulation](tac-policy-simulation.md)\n- [TAC Local Review Integration](tac-local-review-integration.md)\n- [Perturbation Structure-Affordance Card](perturbation-structure-affordance-card.md)\n- [Governed artifact cognition paper](governed-artifact-cognition-paper.md)\n- [Waveform Rosetta paper](waveform-rosetta-paper.md)\n",
         "language-governance.md": f"""# Language Governance
 
 ## What was validated
@@ -13856,6 +14091,10 @@ AI-RECEIPT-ARCHITECTURE-00 records this artifact-backed review stack in AI Recei
 ## Allowed bounded claim
 
 {VISUAL_REVIEW_MODEL_CLAIM_ALLOWED}
+
+## TAC local review integration linkage
+
+TAC-LOCAL-REVIEW-INTEGRATION-00 adds a human_review_tac_status_overlay review status surface. It is not runtime control, product release, or UI release.
 """,
         "visual-review-static-html-prototype.md": f"""# Visual Review Static HTML Prototype
 
@@ -14205,7 +14444,7 @@ VALIDATION-TIERING-PROVENANCE-00 records the 32131.86-second AI Receipt Architec
 
 ## Telemetry aperture linkage
 
-TELEMETRY-APERTURE-DESIGN-00 preserves AI Receipt traceability as a minimum audit floor item. TAC-POLICY-SIMULATION-00 keeps the minimum audit floor preserved in deterministic scenario rehearsal. Aperture reduction cannot remove acceptance evidence, and Future TAC implementation must preserve AI Receipt traceability.
+TELEMETRY-APERTURE-DESIGN-00 preserves AI Receipt traceability as a minimum audit floor item. TAC-POLICY-SIMULATION-00 keeps the minimum audit floor preserved in deterministic scenario rehearsal. TAC-LOCAL-REVIEW-INTEGRATION-00 links simulated TAC posture into local review surfaces and references AI Receipt event history only; no history rewrite occurs. Aperture reduction cannot remove acceptance evidence, and Future TAC implementation must preserve AI Receipt traceability.
 """,
         "validation-tiering-provenance.md": f"""# Validation Tiering and Provenance
 
@@ -14287,7 +14526,7 @@ VALIDATION-TIERING-PROVENANCE-00 synchronizes validation tier policy and validat
 
 ## Telemetry aperture linkage
 
-TELEMETRY-APERTURE-DESIGN-00 records validation_tier_receipt_when_available in the minimum audit floor. TAC-POLICY-SIMULATION-00 records design-only policy rehearsal outcomes without runtime control. TAC is design-only and does not change runtime behavior in TELEMETRY-APERTURE-DESIGN-00.
+TELEMETRY-APERTURE-DESIGN-00 records validation_tier_receipt_when_available in the minimum audit floor. TAC-POLICY-SIMULATION-00 records design-only policy rehearsal outcomes without runtime control. TAC-LOCAL-REVIEW-INTEGRATION-00 carries TAC posture into review surfaces as a non-authoritative overlay. TAC is design-only and does not change runtime behavior in TELEMETRY-APERTURE-DESIGN-00.
 """,
         "metric-semantic-contract.md": f"""# Metric Semantic Contract
 
@@ -14461,7 +14700,7 @@ This design patch has no runtime builder. Reproducibility points to config/schem
 
 ## Policy simulation linkage
 
-TAC-POLICY-SIMULATION-00 rehearses deterministic policy decisions from TELEMETRY-APERTURE-DESIGN-00. TAC-POLICY-SIMULATION-00 does not implement live runtime control.
+TAC-POLICY-SIMULATION-00 rehearses deterministic policy decisions from TELEMETRY-APERTURE-DESIGN-00. TAC-LOCAL-REVIEW-INTEGRATION-00 links simulated TAC posture into local review surfaces. TAC-POLICY-SIMULATION-00 does not implement live runtime control.
 """,
 
         "tac-policy-simulation.md": f"""# TAC Policy Simulation
@@ -14544,6 +14783,91 @@ TAC-POLICY-SIMULATION-00 synchronizes locally validated Telemetry Aperture Contr
 ## Allowed bounded claim
 
 {TAC_POLICY_SIMULATION_CLAIM_ALLOWED}
+
+## Local review integration linkage
+
+TAC-LOCAL-REVIEW-INTEGRATION-00 links simulated TAC posture into local review surfaces through a non-authoritative overlay and does not implement live runtime control.
+""",
+
+        "tac-local-review-integration.md": f"""# TAC Local Review Integration
+
+## What was validated
+
+TAC-LOCAL-REVIEW-INTEGRATION-00 synchronizes locally validated TAC local review integration artifacts to publication surfaces. This is publication/dashboard synchronization only and grants no runtime authority. TAC local review integration, TAC simulation, TAC design, artifact contract, inventory, and registry tests passed locally in CoherenceLattice; the local validation reports 191 tests passed. TAC local review artifacts are PMR-visible, inventory-visible, and parity-visible.
+
+## Dashboard summary
+
+- integration_status = completed
+- integration_mode = local_review_overlay
+- scenario_id = local_default_receipt_review
+- selected_mode = pulse
+- decision_status = simulated_allowed
+- minimum_audit_floor_preserved = true
+- raw_trace_retention_allowed = false
+- trace_export_allowed = false
+- federation_allowed = false
+- receipt_event_link_status = referenced_only_no_history_rewrite
+- overlay_status = ready_for_human_review
+- overlay_mode = human_review_tac_status_overlay
+- live_runtime_behavior_changed = false
+- provider_runtime_performed = false
+- network_call_performed = false
+- telemetry_runtime_control_performed = false
+- memory_write_performed = false
+- atlas_memory_admission_performed = false
+- trace_export_performed = false
+- federation_performed = false
+- product_release_performed = false
+- final_answer_emitted = false
+- truth_certification_emitted = false
+- accepted_evidence_authority_granted = false
+- integration_is_not_runtime_control = true
+- integration_is_not_surveillance_authorization = true
+- integration_is_not_memory_write = true
+- integration_is_not_trace_export_authorization = true
+- integration_is_not_federation_authorization = true
+- integration_is_not_product_release = true
+- integration_requires_human_review_for_expansion = true
+
+## Required local review integration language
+
+{tac_local_review_integration_doc_phrases}
+
+## Relation to prior TAC phases
+
+{tac_local_review_integration_relation}
+
+## Overlay terms
+
+{tac_local_review_integration_overlay_terms}
+
+## Reviewer prompts
+
+{tac_local_review_integration_reviewer_prompts}
+
+## Output artifacts
+
+{tac_local_review_integration_artifacts}
+
+## Input artifact references
+
+{tac_local_review_integration_input_artifacts}
+
+## Reproducibility fragments
+
+{tac_local_review_integration_repro_fragments}
+
+```powershell
+{TAC_LOCAL_REVIEW_INTEGRATION_COMMAND}
+```
+
+## Blocked overclaim examples for TAC local review integration publication boundaries
+
+{tac_local_review_integration_blocked}
+
+## Allowed bounded claim
+
+{TAC_LOCAL_REVIEW_INTEGRATION_CLAIM_ALLOWED}
 """,
         "runtime-metrics-seed-corpus.md": f"""# Runtime metrics seed corpus
 

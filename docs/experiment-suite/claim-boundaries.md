@@ -2269,6 +2269,102 @@
 - dropping failure receipts for cost is permitted
 - aperture simulation permits memory write
 - simulation decision is consent execution
+- TAC-LOCAL-REVIEW-INTEGRATION-00 links simulated TAC policy evidence into local review surfaces through a non-authoritative overlay, recording selected aperture mode, hard blocks, minimum-audit-floor status, retention/export/federation blocks, and human-review prompts without changing runtime behavior or granting surveillance, memory, trace export, federation, product, deployment, provider, final-answer, accepted-evidence, certification, Atlas, human benefit, market, consciousness, Omega, or ontology authority.
+- tac_local_review_integration_packet.json
+- tac_local_review_overlay.json
+- tac_local_review_integration_summary.md
+- tac_local_review_integration_receipt.json
+- telemetry_aperture_policy_packet.json
+- telemetry_aperture_simulation_packet.json
+- telemetry_aperture_decision_packet.json
+- telemetry_aperture_retention_intent_packet.json
+- telemetry_aperture_simulation_summary.md
+- telemetry_aperture_simulation_receipt.json
+- ai_receipt_architecture_packet.json
+- ai_receipt_event_chain.json
+- ai_receipt_architecture.md
+- ai_receipt_architecture_receipt.json
+- visual_review_model_packet.json
+- visual_review_section_index.json
+- visual_review_render_contract.json
+- visual_review_receipt.json
+- visual_review_static_html_packet.json
+- visual_review_static_review.html
+- visual_review_static_html_receipt.json
+- static_html_usability_revision_packet.json
+- visual_review_static_review_revised.html
+- static_html_usability_revision_receipt.json
+- sophia_execution_reality_packet.json
+- validation_tier_receipt.json
+- pmr_local_runtime_artifact_index.json
+- artifact_inventory.json
+- export_bundle_parity_report.json
+- Telemetry Aperture Status
+- human_review_tac_status_overlay
+- ready_for_human_review
+- tac_is_design_policy_rehearsal
+- tac_did_not_change_runtime_behavior
+- retention_requires_explicit_approval
+- trace_export_blocked_without_consent
+- federation_blocked_without_consent
+- minimum_audit_floor_preserved
+- human_review_required_for_expansion
+- Review whether selected aperture mode is sufficient for the task risk.
+- Review whether any hard block requires human escalation.
+- Review whether raw trace retention is necessary and consented.
+- Review whether trace export remains blocked.
+- Review whether PMR federation remains blocked.
+- Review whether minimum audit floor evidence is preserved.
+- TAC Local Review Integration
+- This integration links TAC policy simulation evidence into local review surfaces.
+- This integration is not live runtime control.
+- This integration is not surveillance authorization.
+- This integration is not memory write.
+- This integration is not trace export authorization.
+- This integration is not federation authorization.
+- This integration is not product release.
+- Minimum audit floor is preserved.
+- Human review remains required for aperture expansion, retention, export, federation, and PMR memory intent.
+- AI Receipt records TAC posture as review evidence, not truth certification.
+- AI Receipt event history is referenced only; no history rewrite occurs.
+- Default local review overlay selects pulse.
+- Raw trace retention remains blocked by default.
+- Trace export remains blocked by default.
+- PMR federation remains blocked by default.
+- TELEMETRY-APERTURE-DESIGN-00 defines TAC policy.
+- TAC-POLICY-SIMULATION-00 rehearses deterministic TAC policy decisions.
+- TAC-LOCAL-REVIEW-INTEGRATION-00 links simulated TAC posture into local review surfaces.
+- TAC-LOCAL-REVIEW-INTEGRATION-00 does not implement live runtime control.
+- build_telemetry_aperture_simulation
+- build_tac_local_review_integration
+- Blocked overclaim examples for TAC local review integration publication boundaries.
+- TAC local review integration changed runtime telemetry behavior
+- TAC local review integration is runtime control
+- TAC local review integration authorizes surveillance
+- TAC local review integration authorizes trace export
+- TAC local review integration authorizes PMR federation
+- TAC local review integration authorizes memory write
+- TAC local review integration authorizes Atlas memory admission
+- TAC local review integration authorizes provider runtime
+- TAC local review integration authorizes network runtime
+- TAC local review integration authorizes deployment
+- TAC local review integration is product release
+- TAC local review integration certifies truth
+- TAC local review integration certifies compliance
+- TAC local review integration authorizes final answers
+- TAC local review integration grants accepted-evidence authority
+- TAC local review integration proves human benefit
+- TAC local review integration is market validation
+- TAC local review integration proves product readiness
+- TAC local review integration proves consciousness
+- TAC local review integration detects Omega
+- TAC local review integration proves universal ontology
+- TAC overlay is authority
+- TAC overlay is runtime control
+- AI Receipt history was rewritten by TAC
+- TAC retention intent is memory write
+- TAC export field authorizes trace export
+- TAC federation field authorizes PMR federation
 - RETROSYNTHESIS-LOCAL-PROTOTYPE-00 is bounded local candidate generation only.
 - RETROSYNTHESIS-LOCAL-PROTOTYPE-00 generates bounded local candidate hypotheses, candidate repair plans, and pattern observations from PMR query results, TEL replay, runtime metrics, formula registry, metric bounds, seed corpus observations, cognitive flow morphology, Sonya coverage, and Sophia posture.
 - Candidate hypotheses are not truth.

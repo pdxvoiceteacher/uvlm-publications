@@ -170,3 +170,7 @@ python -c "from pathlib import Path; from coherence.telemetry.aperture_simulatio
 ## Allowed bounded claim
 
 TAC-POLICY-SIMULATION-00 emits design-only Telemetry Aperture Controller policy simulation packets for deterministic local scenarios, showing selected modes, hard blocks, retention intent, and minimum-audit-floor preservation without changing runtime behavior or granting surveillance, memory, trace export, federation, product, deployment, provider, final-answer, accepted-evidence, certification, Atlas, human benefit, market, consciousness, Omega, or ontology authority.
+
+## Local review integration linkage
+
+TAC-LOCAL-REVIEW-INTEGRATION-00 links simulated TAC posture into local review surfaces through a non-authoritative overlay and does not implement live runtime control.

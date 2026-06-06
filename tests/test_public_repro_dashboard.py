@@ -108,6 +108,15 @@ from tools.build_public_repro_dashboard import (
     TAC_POLICY_SIMULATION_REQUIRED_DOC_PHRASES,
     TAC_POLICY_SIMULATION_SCENARIO_OUTCOMES,
     TAC_POLICY_SIMULATION_SCENARIOS,
+    TAC_LOCAL_REVIEW_INTEGRATION_ARTIFACTS,
+    TAC_LOCAL_REVIEW_INTEGRATION_BLOCKED_CLAIMS,
+    TAC_LOCAL_REVIEW_INTEGRATION_CLAIM_ALLOWED,
+    TAC_LOCAL_REVIEW_INTEGRATION_INPUT_ARTIFACTS,
+    TAC_LOCAL_REVIEW_INTEGRATION_OVERLAY_TERMS,
+    TAC_LOCAL_REVIEW_INTEGRATION_PRIOR_PHASE_RELATION,
+    TAC_LOCAL_REVIEW_INTEGRATION_REPRO_FRAGMENTS,
+    TAC_LOCAL_REVIEW_INTEGRATION_REQUIRED_DOC_PHRASES,
+    TAC_LOCAL_REVIEW_INTEGRATION_REVIEWER_PROMPTS,
     _dedupe_accepted_phases,
 )
 from tools.validate_public_repro_dashboard import REQUIRED_PHASES as VALIDATOR_REQUIRED_PHASES
@@ -281,6 +290,7 @@ REQUIRED_PHASES = {
     "VALIDATION-TIERING-PROVENANCE-00",
     "TELEMETRY-APERTURE-DESIGN-00",
     "TAC-POLICY-SIMULATION-00",
+    "TAC-LOCAL-REVIEW-INTEGRATION-00",
     "RUNTIME-METRICS-CORPUS-SEED-00",
     "PMR-LOCAL-RUNTIME-QUERYABLE-STORE-00",
     "RETROSYNTHESIS-READINESS-00",
@@ -5048,3 +5058,98 @@ def test_tac_policy_simulation_page_and_registry_are_generated(tmp_path):
     assert status["not_tac_policy_simulation_trace_export_authorization"] is True
     assert status["not_tac_policy_simulation_federation_authorization"] is True
     assert status["not_tac_policy_simulation_product_release"] is True
+
+
+
+def test_tac_local_review_integration_page_and_registry_are_generated(tmp_path):
+    out_dir, docs_dir = run_builder(tmp_path)
+    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text(encoding="utf-8"))
+    artifact_index = json.loads((out_dir / "artifact_index.json").read_text(encoding="utf-8"))
+    reproducibility_text = (out_dir / "reproducibility_index.json").read_text(encoding="utf-8")
+    boundary_text = (out_dir / "claim_boundary_index.json").read_text(encoding="utf-8")
+    status = json.loads((out_dir / "status.json").read_text(encoding="utf-8"))
+    page_text = (docs_dir / "tac-local-review-integration.md").read_text(encoding="utf-8")
+
+    phase_by_id = {phase["phase_id"]: phase for phase in dashboard["accepted_phases"]}
+    assert "TAC-LOCAL-REVIEW-INTEGRATION-00" in phase_by_id
+    phase = phase_by_id["TAC-LOCAL-REVIEW-INTEGRATION-00"]
+    summary = phase["dashboard_summary"]
+    assert summary["integration_status"] == "completed"
+    assert summary["integration_mode"] == "local_review_overlay"
+    assert summary["scenario_id"] == "local_default_receipt_review"
+    assert summary["selected_mode"] == "pulse"
+    assert summary["decision_status"] == "simulated_allowed"
+    assert summary["minimum_audit_floor_preserved"] is True
+    assert summary["raw_trace_retention_allowed"] is False
+    assert summary["trace_export_allowed"] is False
+    assert summary["federation_allowed"] is False
+    assert summary["receipt_event_link_status"] == "referenced_only_no_history_rewrite"
+    assert summary["overlay_status"] == "ready_for_human_review"
+    assert summary["overlay_mode"] == "human_review_tac_status_overlay"
+    assert summary["live_runtime_behavior_changed"] is False
+    assert summary["provider_runtime_performed"] is False
+    assert summary["network_call_performed"] is False
+    assert summary["telemetry_runtime_control_performed"] is False
+    assert summary["memory_write_performed"] is False
+    assert summary["atlas_memory_admission_performed"] is False
+    assert summary["trace_export_performed"] is False
+    assert summary["federation_performed"] is False
+    assert summary["product_release_performed"] is False
+    assert summary["final_answer_emitted"] is False
+    assert summary["truth_certification_emitted"] is False
+    assert summary["accepted_evidence_authority_granted"] is False
+    assert summary["integration_is_not_runtime_control"] is True
+    assert summary["integration_is_not_surveillance_authorization"] is True
+    assert summary["integration_is_not_memory_write"] is True
+    assert summary["integration_is_not_trace_export_authorization"] is True
+    assert summary["integration_is_not_federation_authorization"] is True
+    assert summary["integration_is_not_product_release"] is True
+    assert summary["integration_requires_human_review_for_expansion"] is True
+
+    for artifact in TAC_LOCAL_REVIEW_INTEGRATION_ARTIFACTS:
+        assert artifact in artifact_index["phases"]["TAC-LOCAL-REVIEW-INTEGRATION-00"]
+        assert artifact in page_text
+        assert artifact in boundary_text
+    for phrase_group in (
+        TAC_LOCAL_REVIEW_INTEGRATION_INPUT_ARTIFACTS,
+        TAC_LOCAL_REVIEW_INTEGRATION_OVERLAY_TERMS,
+        TAC_LOCAL_REVIEW_INTEGRATION_REVIEWER_PROMPTS,
+        TAC_LOCAL_REVIEW_INTEGRATION_REQUIRED_DOC_PHRASES,
+        TAC_LOCAL_REVIEW_INTEGRATION_PRIOR_PHASE_RELATION,
+        TAC_LOCAL_REVIEW_INTEGRATION_BLOCKED_CLAIMS,
+    ):
+        for phrase in phrase_group:
+            assert phrase in page_text
+            assert phrase in boundary_text
+    for fragment in TAC_LOCAL_REVIEW_INTEGRATION_REPRO_FRAGMENTS:
+        assert fragment in reproducibility_text
+        assert fragment in page_text
+        assert fragment in boundary_text
+    assert "build_tac_local_review_integration" in reproducibility_text
+    assert TAC_LOCAL_REVIEW_INTEGRATION_CLAIM_ALLOWED in page_text
+    assert TAC_LOCAL_REVIEW_INTEGRATION_CLAIM_ALLOWED in boundary_text
+    assert status["tac_local_review_integration_00_indexed"] is True
+    assert status["tac_local_review_integration_status"] == "completed"
+    assert status["tac_local_review_integration_mode"] == "local_review_overlay"
+    assert status["tac_local_review_integration_selected_mode"] == "pulse"
+    assert status["tac_local_review_integration_minimum_audit_floor_preserved"] is True
+    assert status["tac_local_review_integration_raw_trace_retention_allowed"] is False
+    assert status["tac_local_review_integration_trace_export_allowed"] is False
+    assert status["tac_local_review_integration_federation_allowed"] is False
+    assert status["tac_local_review_integration_receipt_event_link_status"] == "referenced_only_no_history_rewrite"
+    assert status["tac_local_review_integration_live_runtime_behavior_changed"] is False
+    assert status["tac_local_review_integration_telemetry_runtime_control_performed"] is False
+    assert status["tac_local_review_integration_memory_write_performed"] is False
+    assert status["tac_local_review_integration_atlas_memory_admission_performed"] is False
+    assert status["tac_local_review_integration_trace_export_performed"] is False
+    assert status["tac_local_review_integration_federation_performed"] is False
+    assert status["tac_local_review_integration_product_release_performed"] is False
+    assert status["tac_local_review_integration_final_answer_emitted"] is False
+    assert status["tac_local_review_integration_truth_certification_emitted"] is False
+    assert status["tac_local_review_integration_accepted_evidence_authority_granted"] is False
+    assert status["not_tac_local_review_integration_runtime_control"] is True
+    assert status["not_tac_local_review_integration_surveillance_authorization"] is True
+    assert status["not_tac_local_review_integration_memory_write"] is True
+    assert status["not_tac_local_review_integration_trace_export_authorization"] is True
+    assert status["not_tac_local_review_integration_federation_authorization"] is True
+    assert status["not_tac_local_review_integration_product_release"] is True

@@ -1174,6 +1174,12 @@
       "telemetry_aperture_simulation_summary.md",
       "telemetry_aperture_simulation_receipt.json"
     ],
+    "TAC-LOCAL-REVIEW-INTEGRATION-00": [
+      "tac_local_review_integration_packet.json",
+      "tac_local_review_overlay.json",
+      "tac_local_review_integration_summary.md",
+      "tac_local_review_integration_receipt.json"
+    ],
     "PERTURBATION-OBSERVATION-CAPTURE-00": [
       "perturbation_observation_packet.json",
       "perturbation_axis_packet.json",

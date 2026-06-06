@@ -192,3 +192,7 @@ AI-RECEIPT-ARCHITECTURE-00 records this artifact-backed review stack in AI Recei
 ## Allowed bounded claim
 
 VISUAL-REVIEW-MODEL-00 defines a future UI rendering contract over AI Forensics, Human Review UX, Raw-vs-Triadic, UCC/Sophia, MET-SEM, language audit, PMR, and export parity artifacts without implementing a UI or granting final-answer, proof, product, provider, memory, Atlas, deployment, federation, consciousness, Omega, ontology, human benefit, or market authority.
+
+## TAC local review integration linkage
+
+TAC-LOCAL-REVIEW-INTEGRATION-00 adds a human_review_tac_status_overlay review status surface. It is not runtime control, product release, or UI release.
