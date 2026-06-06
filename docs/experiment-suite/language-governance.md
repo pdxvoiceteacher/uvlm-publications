@@ -99,6 +99,10 @@ python tools/check_reviewer_facing_language.py --policy config/language_governan
 
 LANGUAGE-GOVERNANCE-AUDIT-RUNTIME-00 publishes reviewer-facing language audit artifacts for this policy surface without granting proof, truth, product, or runtime authority.
 
+## Telemetry aperture linkage
+
+TELEMETRY-APERTURE-DESIGN-00 follows project language governance by stating TAC is computational observability aperture, not consciousness; TAC is not surveillance authorization; and TAC is not product release.
+
 ## Allowed bounded claim
 
 PROJECT-LANGUAGE-GOVERNANCE-00 documents audience-aware language rules, positive ontology terms, identifier alias migration, and reviewer-facing language scanning without granting proof, truth, product, or runtime authority.

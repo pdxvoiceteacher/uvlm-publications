@@ -2020,6 +2020,255 @@
 - validation receipt authorizes final answers
 - validation receipt proves theorem
 - validation receipt proves universal ontology
+- TELEMETRY-APERTURE-DESIGN-00 defines a design-only, consent-bounded Telemetry Aperture Controller policy over observability modes, minimum audit floor, retention/export/federation blocks, and human-review gates without changing runtime behavior or granting surveillance, memory, trace export, federation, product, certification, deployment, final-answer, accepted-evidence, Atlas, human benefit, market, consciousness, Omega, or ontology authority.
+- docs/TELEMETRY_APERTURE_CONTROLLER.md
+- config/telemetry_aperture/telemetry_aperture_modes.v1.json
+- config/telemetry_aperture/minimum_audit_floor.v1.json
+- config/telemetry_aperture/telemetry_aperture_policy_schema.v1.json
+- schema/bridge/telemetry_aperture_policy_packet.schema.json
+- schema/bridge/telemetry_aperture_decision_packet.schema.json
+- schema/bridge/telemetry_aperture_retention_intent_packet.schema.json
+- off: no optional telemetry beyond mandatory safety/status receipts
+- minimal: required inventory, manifest, parity, review packet, and failure receipts only
+- pulse: thin periodic metric pulses using safe MET-SEM aliases
+- snapshot: periodic structured snapshots of task state and key artifacts
+- trace: step-level TEL events and route transitions
+- tail_retain: trace temporarily, retain full detail only if trigger conditions fire
+- full_audit: high-resolution trace only under explicit consent and retention policy
+- quarantine: restricted safety capture after boundary violation or critical anomaly
+- temporal_resolution
+- semantic_resolution
+- retention_depth
+- privacy_transformation
+- review_visibility
+- artifact_inventory.json
+- run_artifact_manifest.json
+- export_bundle_parity_report.json
+- phase_manifest
+- phase_review_packet
+- acceptance_receipt
+- failure_receipts
+- non_authority_boundary_table
+- source_span_or_claim_classification_refs_when_applicable
+- tel_replay_summary_when_applicable
+- pmr_retention_or_context_status_when_applicable
+- validation_tier_receipt_when_available
+- ai_receipt_event_chain_when_available
+- default_aperture_mode = pulse
+- user_consent_scope = local_replay_allowed
+- raw_trace_retention = requires_explicit_approval
+- trace_export = blocked
+- pmr_federation = blocked_by_default
+- minimum_audit_floor_required = true
+- schema_validation_error
+- unsupported_claim_surge
+- low_T_review
+- high_Λ_boundary
+- high_risk_ucc_domain
+- user_requested_deep_audit
+- source_span_review_bound
+- sophia_nonpass_or_uncertain
+- ai_receipt_incomplete
+- increase_raw_retention_without_consent
+- export_trace_without_consent
+- federate_tel_without_consent
+- drop_failure_receipts_for_cost
+- drop_source_spans_for_cost
+- drop_run_manifest_for_cost
+- drop_boundary_table_for_cost
+- full_audit_mode_without_consent
+- privacy_redaction_override_without_consent
+- retain_sensitive_content_without_consent
+- increase_durable_retention
+- export_trace
+- federate_memory
+- override_privacy_redaction
+- enable_full_audit
+- reduce_below_minimum_audit_floor
+- convert_trace_to_pmr_memory_intent
+- Ψ_review
+- E_review
+- T_review
+- ΔS_review
+- Λ_boundary
+- Eₛ_review
+- TAF_review_runtime_v0
+- Telemetry Aperture Controller
+- TAC is a consent-bounded observability aperture controller.
+- TAC regulates temporal, semantic, retention, privacy, and review apertures.
+- TAC optimizes coherent sufficiency, not maximum capture.
+- TAC is computational observability aperture, not consciousness.
+- TAC is not surveillance authorization.
+- TAC is not memory write.
+- TAC is not trace export authorization.
+- TAC is not federation authorization.
+- TAC is not product release.
+- A narrow aperture is not permission to omit failure receipts.
+- A high-resolution aperture is not permission to retain private data.
+- Aperture reduction cannot remove acceptance evidence.
+- Human review remains required.
+- TAC does not change runtime behavior in TELEMETRY-APERTURE-DESIGN-00.
+- Future TAC implementation must distinguish temporary observation from durable retention.
+- Future TAC implementation must preserve AI Receipt traceability.
+- aperture_theater
+- silent_escalation
+- pmr_hoarding
+- under_observation
+- over_observation
+- dashboard_theater
+- privacy_drift
+- minimum_audit_floor_violation
+- raw_retention_without_consent
+- federation_without_consent
+- trace_export_without_consent
+- full_audit_without_consent
+- omission_debt_hidden
+- TELEMETRY-APERTURE-DESIGN-00
+- telemetry_aperture_modes.v1.json
+- minimum_audit_floor.v1.json
+- telemetry_aperture_policy_schema.v1.json
+- telemetry_aperture_policy_packet.schema.json
+- telemetry_aperture_decision_packet.schema.json
+- telemetry_aperture_retention_intent_packet.schema.json
+- unqualified empathy score
+- unqualified transparency score
+- unqualified phase-lock score
+- unqualified entropy score
+- unqualified ethical symmetry score
+- canonical total action
+- Blocked overclaim examples for telemetry aperture controller publication boundaries.
+- TAC changed runtime telemetry behavior
+- TAC is consciousness
+- TAC is adaptive awareness
+- TAC authorizes surveillance
+- TAC authorizes trace export
+- TAC authorizes PMR federation
+- TAC authorizes memory write
+- TAC authorizes Atlas memory admission
+- TAC authorizes provider runtime
+- TAC authorizes deployment
+- TAC is product release
+- TAC certifies truth
+- TAC certifies compliance
+- TAC authorizes final answers
+- TAC grants accepted-evidence authority
+- full_audit mode can run without consent
+- raw trace retention is allowed without consent
+- trace export is allowed without consent
+- PMR federation is allowed by default
+- aperture reduction can remove acceptance evidence
+- narrow aperture can omit failure receipts
+- high-resolution aperture can retain private data without consent
+- safe MET-SEM aliases are canonical metric completion
+- TAC proves human benefit
+- TAC is market validation
+- TAC proves consciousness
+- TAC detects Omega
+- TAC proves universal ontology
+- TAC-POLICY-SIMULATION-00 emits design-only Telemetry Aperture Controller policy simulation packets for deterministic local scenarios, showing selected modes, hard blocks, retention intent, and minimum-audit-floor preservation without changing runtime behavior or granting surveillance, memory, trace export, federation, product, deployment, provider, final-answer, accepted-evidence, certification, Atlas, human benefit, market, consciousness, Omega, or ontology authority.
+- telemetry_aperture_policy_packet.json
+- telemetry_aperture_simulation_packet.json
+- telemetry_aperture_decision_packet.json
+- telemetry_aperture_retention_intent_packet.json
+- telemetry_aperture_simulation_summary.md
+- telemetry_aperture_simulation_receipt.json
+- config/telemetry_aperture/telemetry_aperture_modes.v1.json
+- config/telemetry_aperture/minimum_audit_floor.v1.json
+- config/telemetry_aperture/telemetry_aperture_policy_schema.v1.json
+- schema/bridge/telemetry_aperture_policy_packet.schema.json
+- schema/bridge/telemetry_aperture_decision_packet.schema.json
+- schema/bridge/telemetry_aperture_retention_intent_packet.schema.json
+- schema/bridge/telemetry_aperture_simulation_packet.schema.json
+- schema/bridge/telemetry_aperture_simulation_receipt.schema.json
+- local_default_receipt_review
+- unsupported_claim_surge
+- high_boundary_pressure
+- user_requested_deep_audit_without_retention_consent
+- full_audit_requested_without_consent
+- trace_export_requested_without_consent
+- pmr_federation_requested_without_consent
+- drop_failure_receipts_for_cost
+- local_default_receipt_review selects pulse
+- unsupported_claim_surge escalates to snapshot
+- high_boundary_pressure escalates to tail_retain
+- user_requested_deep_audit_without_retention_consent escalates to trace while blocking durable raw trace retention
+- full_audit_requested_without_consent triggers full_audit_mode_without_consent
+- trace_export_requested_without_consent triggers export_trace_without_consent
+- pmr_federation_requested_without_consent triggers federate_tel_without_consent
+- drop_failure_receipts_for_cost triggers drop_failure_receipts_for_cost and blocked_fail_closed
+- full_audit_mode_without_consent
+- export_trace_without_consent
+- federate_tel_without_consent
+- drop_failure_receipts_for_cost
+- increase_raw_retention_without_consent
+- drop_source_spans_for_cost
+- drop_run_manifest_for_cost
+- drop_boundary_table_for_cost
+- privacy_redaction_override_without_consent
+- retain_sensitive_content_without_consent
+- telemetry_aperture_decision_packet.json
+- telemetry_aperture_retention_intent_packet.json
+- selected_mode
+- decision_status
+- hard_blocks_triggered
+- minimum_audit_floor_preserved
+- raw_trace_retention_allowed
+- trace_export_allowed
+- federation_allowed
+- raw_trace_retention_status
+- blocked_requires_explicit_approval
+- temporary_only_no_durable_retention_without_approval
+- TAC Policy Simulation
+- This is design-only policy rehearsal, not runtime control.
+- TAC simulation does not change runtime telemetry behavior.
+- TAC simulation is not surveillance authorization.
+- TAC simulation is not memory write.
+- TAC simulation is not trace export authorization.
+- TAC simulation is not federation authorization.
+- TAC simulation is not product release.
+- Minimum audit floor is preserved.
+- Human review remains required for aperture expansion, retention, export, federation, and PMR memory intent.
+- Default scenario selects pulse.
+- Trace export remains blocked without consent.
+- PMR federation remains blocked without consent.
+- Raw trace retention remains blocked without explicit approval.
+- Dropping failure receipts for cost is blocked fail-closed.
+- TELEMETRY-APERTURE-DESIGN-00 defines TAC policy.
+- TAC-POLICY-SIMULATION-00 rehearses deterministic policy decisions.
+- TAC-POLICY-SIMULATION-00 does not implement live runtime control.
+- build_telemetry_aperture_simulation
+- telemetry_aperture_modes.v1.json
+- minimum_audit_floor.v1.json
+- telemetry_aperture_policy_schema.v1.json
+- Blocked overclaim examples for TAC policy simulation publication boundaries.
+- TAC policy simulation changed runtime telemetry behavior
+- TAC policy simulation is runtime control
+- TAC policy simulation authorizes surveillance
+- TAC policy simulation authorizes trace export
+- TAC policy simulation authorizes PMR federation
+- TAC policy simulation authorizes memory write
+- TAC policy simulation authorizes Atlas memory admission
+- TAC policy simulation authorizes provider runtime
+- TAC policy simulation authorizes network runtime
+- TAC policy simulation authorizes deployment
+- TAC policy simulation is product release
+- TAC policy simulation certifies truth
+- TAC policy simulation certifies compliance
+- TAC policy simulation authorizes final answers
+- TAC policy simulation grants accepted-evidence authority
+- TAC policy simulation proves human benefit
+- TAC policy simulation is market validation
+- TAC policy simulation proves product readiness
+- TAC policy simulation proves consciousness
+- TAC policy simulation detects Omega
+- TAC policy simulation proves universal ontology
+- full audit mode can run without consent
+- raw trace retention is allowed without explicit approval
+- trace export is allowed without consent
+- PMR federation is allowed by default
+- dropping failure receipts for cost is permitted
+- aperture simulation permits memory write
+- simulation decision is consent execution
 - RETROSYNTHESIS-LOCAL-PROTOTYPE-00 is bounded local candidate generation only.
 - RETROSYNTHESIS-LOCAL-PROTOTYPE-00 generates bounded local candidate hypotheses, candidate repair plans, and pattern observations from PMR query results, TEL replay, runtime metrics, formula registry, metric bounds, seed corpus observations, cognitive flow morphology, Sonya coverage, and Sophia posture.
 - Candidate hypotheses are not truth.
