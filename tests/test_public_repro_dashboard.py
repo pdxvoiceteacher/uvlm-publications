@@ -82,6 +82,83 @@ from tools.build_public_repro_dashboard import (
     VALIDATION_TIERING_PROVENANCE_REQUIRED_DOC_PHRASES,
     VALIDATION_TIERING_PROVENANCE_SMOKE_TERMS,
     VALIDATION_TIERING_PROVENANCE_TIER_TERMS,
+    TELEMETRY_APERTURE_BLOCKED_CLAIMS,
+    TELEMETRY_APERTURE_CLAIM_ALLOWED,
+    TELEMETRY_APERTURE_DESIGN_ARTIFACTS,
+    TELEMETRY_APERTURE_DIMENSIONS,
+    TELEMETRY_APERTURE_ESCALATION_TRIGGERS,
+    TELEMETRY_APERTURE_FAILURE_CLASSES,
+    TELEMETRY_APERTURE_HARD_BLOCKS,
+    TELEMETRY_APERTURE_HUMAN_REVIEW_GATES,
+    TELEMETRY_APERTURE_MINIMUM_AUDIT_FLOOR_TERMS,
+    TELEMETRY_APERTURE_MODES,
+    TELEMETRY_APERTURE_POLICY_DEFAULTS,
+    TELEMETRY_APERTURE_REPRO_FRAGMENTS,
+    TELEMETRY_APERTURE_REQUIRED_DOC_PHRASES,
+    TELEMETRY_APERTURE_SAFE_MET_SEM_ALIASES,
+    TELEMETRY_APERTURE_UNSAFE_METRIC_BOUNDARIES,
+    TAC_POLICY_SIMULATION_ARTIFACTS,
+    TAC_POLICY_SIMULATION_BLOCKED_CLAIMS,
+    TAC_POLICY_SIMULATION_CLAIM_ALLOWED,
+    TAC_POLICY_SIMULATION_DECISION_RETENTION_TERMS,
+    TAC_POLICY_SIMULATION_DESIGN_RELATION,
+    TAC_POLICY_SIMULATION_HARD_BLOCK_TERMS,
+    TAC_POLICY_SIMULATION_INPUT_REFERENCES,
+    TAC_POLICY_SIMULATION_REPRO_FRAGMENTS,
+    TAC_POLICY_SIMULATION_REQUIRED_DOC_PHRASES,
+    TAC_POLICY_SIMULATION_SCENARIO_OUTCOMES,
+    TAC_POLICY_SIMULATION_SCENARIOS,
+    TAC_LOCAL_REVIEW_INTEGRATION_ARTIFACTS,
+    TAC_LOCAL_REVIEW_INTEGRATION_BLOCKED_CLAIMS,
+    TAC_LOCAL_REVIEW_INTEGRATION_CLAIM_ALLOWED,
+    TAC_LOCAL_REVIEW_INTEGRATION_INPUT_ARTIFACTS,
+    TAC_LOCAL_REVIEW_INTEGRATION_OVERLAY_TERMS,
+    TAC_LOCAL_REVIEW_INTEGRATION_PRIOR_PHASE_RELATION,
+    TAC_LOCAL_REVIEW_INTEGRATION_REPRO_FRAGMENTS,
+    TAC_LOCAL_REVIEW_INTEGRATION_REQUIRED_DOC_PHRASES,
+    TAC_LOCAL_REVIEW_INTEGRATION_REVIEWER_PROMPTS,
+    TAC_AI_RECEIPT_EVENT_LINK_ARTIFACTS,
+    TAC_AI_RECEIPT_EVENT_LINK_BLOCKED_CLAIMS,
+    TAC_AI_RECEIPT_EVENT_LINK_CLAIM_ALLOWED,
+    TAC_AI_RECEIPT_EVENT_LINK_EVENTS,
+    TAC_AI_RECEIPT_EVENT_LINK_INPUT_ARTIFACTS,
+    TAC_AI_RECEIPT_EVENT_LINK_PRIOR_PHASE_RELATION,
+    TAC_AI_RECEIPT_EVENT_LINK_REFERENCE_TERMS,
+    TAC_AI_RECEIPT_EVENT_LINK_REPRO_FRAGMENTS,
+    TAC_AI_RECEIPT_EVENT_LINK_REQUIRED_DOC_PHRASES,
+    PMR_PATHWAY_PRIORS_DESIGN_ARTIFACTS,
+    PMR_PATHWAY_PRIORS_DESIGN_BLOCKED_CLAIMS,
+    PMR_PATHWAY_PRIORS_DESIGN_CLAIM_ALLOWED,
+    PMR_PATHWAY_PRIORS_DESIGN_DOCTRINE_LANGUAGE,
+    PMR_PATHWAY_PRIORS_DESIGN_REPRO_FRAGMENTS,
+    CES_DESIGN_ARTIFACTS,
+    CES_DESIGN_BLOCKED_CLAIMS,
+    CES_DESIGN_CLAIM_ALLOWED,
+    CES_DESIGN_DOCTRINE_LANGUAGE,
+    CES_DESIGN_EVENT_TYPES,
+    CES_DESIGN_FAILURE_CLASSES,
+    CES_DESIGN_IDENTITY_INTEGRITY_DOCTRINE,
+    CES_DESIGN_LAYERS,
+    CES_DESIGN_NEGATIVE_CONTROLS,
+    CES_DESIGN_PMR_RELATION,
+    CES_DESIGN_PRODUCT_LANGUAGE,
+    CES_DESIGN_REPRO_FRAGMENTS,
+    CES_DESIGN_SAFE_METRIC_ALIASES,
+    CES_DESIGN_SIMILARITY_PRIVACY_DOCTRINE,
+    CES_PMR_INDEXING_ARTIFACTS,
+    CES_PMR_INDEXING_BLOCKED_CLAIMS,
+    CES_PMR_INDEXING_BOUNDARIES,
+    CES_PMR_INDEXING_CLAIM_ALLOWED,
+    CES_PMR_INDEXING_DOCTRINE_LANGUAGE,
+    CES_PMR_INDEXING_FAILURE_CLASSES,
+    CES_PMR_INDEXING_FORBIDDEN_ROLES,
+    CES_PMR_INDEXING_INDEX_FIELDS,
+    CES_PMR_INDEXING_INDEX_ROLES,
+    CES_PMR_INDEXING_PRESERVED_SOURCE_CLASSES,
+    CES_PMR_INDEXING_QUERY_INTENTS,
+    CES_PMR_INDEXING_RELATION,
+    CES_PMR_INDEXING_REPRO_FRAGMENTS,
+    CES_PMR_INDEXING_REVOCATION_TRIGGERS,
     _dedupe_accepted_phases,
 )
 from tools.validate_public_repro_dashboard import REQUIRED_PHASES as VALIDATOR_REQUIRED_PHASES
@@ -253,6 +330,13 @@ REQUIRED_PHASES = {
     "STATIC-HTML-USABILITY-REVISION-00",
     "AI-RECEIPT-ARCHITECTURE-00",
     "VALIDATION-TIERING-PROVENANCE-00",
+    "TELEMETRY-APERTURE-DESIGN-00",
+    "TAC-POLICY-SIMULATION-00",
+    "TAC-LOCAL-REVIEW-INTEGRATION-00",
+    "TAC-AI-RECEIPT-EVENT-LINK-00",
+    "PMR-PATHWAY-PRIORS-DESIGN-DOCTRINE-00",
+    "COHERENCE-EVENT-SIGNATURES-DESIGN-00",
+    "CES-PMR-INDEXING-DESIGN-00",
     "RUNTIME-METRICS-CORPUS-SEED-00",
     "PMR-LOCAL-RUNTIME-QUERYABLE-STORE-00",
     "RETROSYNTHESIS-READINESS-00",
@@ -4864,3 +4948,630 @@ def test_reviewer_facing_perturbation_language_is_generalized():
                 text = path.read_text(encoding="utf-8")
                 for fragment in old_language_fragments:
                     assert fragment not in text, f"{fragment!r} remains in {path}"
+
+
+
+def test_telemetry_aperture_design_page_and_registry_are_generated(tmp_path):
+    out_dir, docs_dir = run_builder(tmp_path)
+    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text(encoding="utf-8"))
+    artifact_index = json.loads((out_dir / "artifact_index.json").read_text(encoding="utf-8"))
+    reproducibility_text = (out_dir / "reproducibility_index.json").read_text(encoding="utf-8")
+    boundary_text = (out_dir / "claim_boundary_index.json").read_text(encoding="utf-8")
+    status = json.loads((out_dir / "status.json").read_text(encoding="utf-8"))
+    page_text = (docs_dir / "telemetry-aperture-controller.md").read_text(encoding="utf-8")
+
+    phase_by_id = {phase["phase_id"]: phase for phase in dashboard["accepted_phases"]}
+    assert "TELEMETRY-APERTURE-DESIGN-00" in phase_by_id
+    phase = phase_by_id["TELEMETRY-APERTURE-DESIGN-00"]
+    summary = phase["dashboard_summary"]
+    assert summary["mode_policy_status"] == "active_design_only"
+    assert summary["runtime_behavior_changed"] is False
+    assert summary["default_aperture_mode"] == "pulse"
+    assert summary["raw_trace_retention"] == "requires_explicit_approval"
+    assert summary["trace_export"] == "blocked"
+    assert summary["pmr_federation"] == "blocked_by_default"
+    assert summary["minimum_audit_floor_failure_policy"] == "fail_closed"
+    assert summary["aperture_reduction_cannot_remove_acceptance_evidence"] is True
+    assert summary["consent_bounded_observability_aperture"] is True
+    assert summary["tac_is_not_surveillance_authorization"] is True
+    assert summary["tac_is_not_memory_write"] is True
+    assert summary["tac_is_not_trace_export_authorization"] is True
+    assert summary["tac_is_not_federation_authorization"] is True
+    assert summary["human_review_required"] is True
+
+    for artifact in TELEMETRY_APERTURE_DESIGN_ARTIFACTS:
+        assert artifact in artifact_index["phases"]["TELEMETRY-APERTURE-DESIGN-00"]
+        assert artifact in page_text
+        assert artifact in boundary_text
+    for phrase_group in (
+        TELEMETRY_APERTURE_MODES,
+        TELEMETRY_APERTURE_DIMENSIONS,
+        TELEMETRY_APERTURE_MINIMUM_AUDIT_FLOOR_TERMS,
+        TELEMETRY_APERTURE_POLICY_DEFAULTS,
+        TELEMETRY_APERTURE_ESCALATION_TRIGGERS,
+        TELEMETRY_APERTURE_HARD_BLOCKS,
+        TELEMETRY_APERTURE_HUMAN_REVIEW_GATES,
+        TELEMETRY_APERTURE_SAFE_MET_SEM_ALIASES,
+        TELEMETRY_APERTURE_REQUIRED_DOC_PHRASES,
+        TELEMETRY_APERTURE_FAILURE_CLASSES,
+        TELEMETRY_APERTURE_UNSAFE_METRIC_BOUNDARIES,
+        TELEMETRY_APERTURE_BLOCKED_CLAIMS,
+    ):
+        for phrase in phrase_group:
+            assert phrase in page_text
+            assert phrase in boundary_text
+    for fragment in TELEMETRY_APERTURE_REPRO_FRAGMENTS:
+        assert fragment in reproducibility_text
+        assert fragment in page_text
+        assert fragment in boundary_text
+    assert "This design patch has no runtime builder" in page_text
+    assert TELEMETRY_APERTURE_CLAIM_ALLOWED in page_text
+    assert TELEMETRY_APERTURE_CLAIM_ALLOWED in boundary_text
+    assert status["telemetry_aperture_design_00_indexed"] is True
+    assert status["telemetry_aperture_mode_policy_status"] == "active_design_only"
+    assert status["telemetry_aperture_runtime_behavior_changed"] is False
+    assert status["telemetry_aperture_default_aperture_mode"] == "pulse"
+    assert status["telemetry_aperture_raw_trace_retention"] == "requires_explicit_approval"
+    assert status["telemetry_aperture_trace_export"] == "blocked"
+    assert status["telemetry_aperture_pmr_federation"] == "blocked_by_default"
+    assert status["telemetry_aperture_minimum_audit_floor_failure_policy"] == "fail_closed"
+    assert status["not_telemetry_aperture_surveillance_authorization"] is True
+    assert status["not_telemetry_aperture_memory_write"] is True
+    assert status["not_telemetry_aperture_trace_export_authorization"] is True
+    assert status["not_telemetry_aperture_federation_authorization"] is True
+    assert status["not_telemetry_aperture_product_release"] is True
+
+
+
+def test_tac_policy_simulation_page_and_registry_are_generated(tmp_path):
+    out_dir, docs_dir = run_builder(tmp_path)
+    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text(encoding="utf-8"))
+    artifact_index = json.loads((out_dir / "artifact_index.json").read_text(encoding="utf-8"))
+    reproducibility_text = (out_dir / "reproducibility_index.json").read_text(encoding="utf-8")
+    boundary_text = (out_dir / "claim_boundary_index.json").read_text(encoding="utf-8")
+    status = json.loads((out_dir / "status.json").read_text(encoding="utf-8"))
+    page_text = (docs_dir / "tac-policy-simulation.md").read_text(encoding="utf-8")
+
+    phase_by_id = {phase["phase_id"]: phase for phase in dashboard["accepted_phases"]}
+    assert "TAC-POLICY-SIMULATION-00" in phase_by_id
+    phase = phase_by_id["TAC-POLICY-SIMULATION-00"]
+    summary = phase["dashboard_summary"]
+    assert summary["simulation_status"] == "completed"
+    assert summary["simulation_mode"] == "design_only_policy_rehearsal"
+    assert summary["scenario_count"] == 8
+    assert summary["default_scenario_id"] == "local_default_receipt_review"
+    assert summary["default_selected_mode"] == "pulse"
+    assert summary["default_raw_trace_retention_allowed"] is False
+    assert summary["default_trace_export_allowed"] is False
+    assert summary["default_federation_allowed"] is False
+    assert summary["minimum_audit_floor_preserved"] is True
+    assert summary["runtime_behavior_changed"] is False
+    assert summary["provider_runtime_performed"] is False
+    assert summary["network_call_performed"] is False
+    assert summary["memory_write_performed"] is False
+    assert summary["atlas_memory_admission_performed"] is False
+    assert summary["trace_export_performed"] is False
+    assert summary["federation_performed"] is False
+    assert summary["product_release_performed"] is False
+    assert summary["simulation_is_not_runtime_control"] is True
+    assert summary["simulation_is_not_surveillance_authorization"] is True
+    assert summary["simulation_is_not_memory_write"] is True
+    assert summary["simulation_is_not_trace_export_authorization"] is True
+    assert summary["simulation_is_not_federation_authorization"] is True
+    assert summary["simulation_is_not_product_release"] is True
+    assert summary["simulation_requires_human_review_for_expansion"] is True
+
+    for artifact in TAC_POLICY_SIMULATION_ARTIFACTS:
+        assert artifact in artifact_index["phases"]["TAC-POLICY-SIMULATION-00"]
+        assert artifact in page_text
+        assert artifact in boundary_text
+    for phrase_group in (
+        TAC_POLICY_SIMULATION_INPUT_REFERENCES,
+        TAC_POLICY_SIMULATION_SCENARIOS,
+        TAC_POLICY_SIMULATION_SCENARIO_OUTCOMES,
+        TAC_POLICY_SIMULATION_HARD_BLOCK_TERMS,
+        TAC_POLICY_SIMULATION_DECISION_RETENTION_TERMS,
+        TAC_POLICY_SIMULATION_REQUIRED_DOC_PHRASES,
+        TAC_POLICY_SIMULATION_DESIGN_RELATION,
+        TAC_POLICY_SIMULATION_BLOCKED_CLAIMS,
+    ):
+        for phrase in phrase_group:
+            assert phrase in page_text
+            assert phrase in boundary_text
+    for fragment in TAC_POLICY_SIMULATION_REPRO_FRAGMENTS:
+        assert fragment in reproducibility_text
+        assert fragment in page_text
+        assert fragment in boundary_text
+    assert "build_telemetry_aperture_simulation" in reproducibility_text
+    assert TAC_POLICY_SIMULATION_CLAIM_ALLOWED in page_text
+    assert TAC_POLICY_SIMULATION_CLAIM_ALLOWED in boundary_text
+    assert status["tac_policy_simulation_00_indexed"] is True
+    assert status["tac_policy_simulation_status"] == "completed"
+    assert status["tac_policy_simulation_mode"] == "design_only_policy_rehearsal"
+    assert status["tac_policy_simulation_default_selected_mode"] == "pulse"
+    assert status["tac_policy_simulation_minimum_audit_floor_preserved"] is True
+    assert status["tac_policy_simulation_runtime_behavior_changed"] is False
+    assert status["tac_policy_simulation_provider_runtime_performed"] is False
+    assert status["tac_policy_simulation_network_call_performed"] is False
+    assert status["tac_policy_simulation_memory_write_performed"] is False
+    assert status["tac_policy_simulation_atlas_memory_admission_performed"] is False
+    assert status["tac_policy_simulation_trace_export_performed"] is False
+    assert status["tac_policy_simulation_federation_performed"] is False
+    assert status["tac_policy_simulation_product_release_performed"] is False
+    assert status["not_tac_policy_simulation_runtime_control"] is True
+    assert status["not_tac_policy_simulation_surveillance_authorization"] is True
+    assert status["not_tac_policy_simulation_memory_write"] is True
+    assert status["not_tac_policy_simulation_trace_export_authorization"] is True
+    assert status["not_tac_policy_simulation_federation_authorization"] is True
+    assert status["not_tac_policy_simulation_product_release"] is True
+
+
+
+def test_tac_local_review_integration_page_and_registry_are_generated(tmp_path):
+    out_dir, docs_dir = run_builder(tmp_path)
+    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text(encoding="utf-8"))
+    artifact_index = json.loads((out_dir / "artifact_index.json").read_text(encoding="utf-8"))
+    reproducibility_text = (out_dir / "reproducibility_index.json").read_text(encoding="utf-8")
+    boundary_text = (out_dir / "claim_boundary_index.json").read_text(encoding="utf-8")
+    status = json.loads((out_dir / "status.json").read_text(encoding="utf-8"))
+    page_text = (docs_dir / "tac-local-review-integration.md").read_text(encoding="utf-8")
+
+    phase_by_id = {phase["phase_id"]: phase for phase in dashboard["accepted_phases"]}
+    assert "TAC-LOCAL-REVIEW-INTEGRATION-00" in phase_by_id
+    phase = phase_by_id["TAC-LOCAL-REVIEW-INTEGRATION-00"]
+    summary = phase["dashboard_summary"]
+    assert summary["integration_status"] == "completed"
+    assert summary["integration_mode"] == "local_review_overlay"
+    assert summary["scenario_id"] == "local_default_receipt_review"
+    assert summary["selected_mode"] == "pulse"
+    assert summary["decision_status"] == "simulated_allowed"
+    assert summary["minimum_audit_floor_preserved"] is True
+    assert summary["raw_trace_retention_allowed"] is False
+    assert summary["trace_export_allowed"] is False
+    assert summary["federation_allowed"] is False
+    assert summary["receipt_event_link_status"] == "referenced_only_no_history_rewrite"
+    assert summary["overlay_status"] == "ready_for_human_review"
+    assert summary["overlay_mode"] == "human_review_tac_status_overlay"
+    assert summary["live_runtime_behavior_changed"] is False
+    assert summary["provider_runtime_performed"] is False
+    assert summary["network_call_performed"] is False
+    assert summary["telemetry_runtime_control_performed"] is False
+    assert summary["memory_write_performed"] is False
+    assert summary["atlas_memory_admission_performed"] is False
+    assert summary["trace_export_performed"] is False
+    assert summary["federation_performed"] is False
+    assert summary["product_release_performed"] is False
+    assert summary["final_answer_emitted"] is False
+    assert summary["truth_certification_emitted"] is False
+    assert summary["accepted_evidence_authority_granted"] is False
+    assert summary["integration_is_not_runtime_control"] is True
+    assert summary["integration_is_not_surveillance_authorization"] is True
+    assert summary["integration_is_not_memory_write"] is True
+    assert summary["integration_is_not_trace_export_authorization"] is True
+    assert summary["integration_is_not_federation_authorization"] is True
+    assert summary["integration_is_not_product_release"] is True
+    assert summary["integration_requires_human_review_for_expansion"] is True
+
+    for artifact in TAC_LOCAL_REVIEW_INTEGRATION_ARTIFACTS:
+        assert artifact in artifact_index["phases"]["TAC-LOCAL-REVIEW-INTEGRATION-00"]
+        assert artifact in page_text
+        assert artifact in boundary_text
+    for phrase_group in (
+        TAC_LOCAL_REVIEW_INTEGRATION_INPUT_ARTIFACTS,
+        TAC_LOCAL_REVIEW_INTEGRATION_OVERLAY_TERMS,
+        TAC_LOCAL_REVIEW_INTEGRATION_REVIEWER_PROMPTS,
+        TAC_LOCAL_REVIEW_INTEGRATION_REQUIRED_DOC_PHRASES,
+        TAC_LOCAL_REVIEW_INTEGRATION_PRIOR_PHASE_RELATION,
+        TAC_LOCAL_REVIEW_INTEGRATION_BLOCKED_CLAIMS,
+    ):
+        for phrase in phrase_group:
+            assert phrase in page_text
+            assert phrase in boundary_text
+    for fragment in TAC_LOCAL_REVIEW_INTEGRATION_REPRO_FRAGMENTS:
+        assert fragment in reproducibility_text
+        assert fragment in page_text
+        assert fragment in boundary_text
+    assert "build_tac_local_review_integration" in reproducibility_text
+    assert TAC_LOCAL_REVIEW_INTEGRATION_CLAIM_ALLOWED in page_text
+    assert TAC_LOCAL_REVIEW_INTEGRATION_CLAIM_ALLOWED in boundary_text
+    assert status["tac_local_review_integration_00_indexed"] is True
+    assert status["tac_local_review_integration_status"] == "completed"
+    assert status["tac_local_review_integration_mode"] == "local_review_overlay"
+    assert status["tac_local_review_integration_selected_mode"] == "pulse"
+    assert status["tac_local_review_integration_minimum_audit_floor_preserved"] is True
+    assert status["tac_local_review_integration_raw_trace_retention_allowed"] is False
+    assert status["tac_local_review_integration_trace_export_allowed"] is False
+    assert status["tac_local_review_integration_federation_allowed"] is False
+    assert status["tac_local_review_integration_receipt_event_link_status"] == "referenced_only_no_history_rewrite"
+    assert status["tac_local_review_integration_live_runtime_behavior_changed"] is False
+    assert status["tac_local_review_integration_telemetry_runtime_control_performed"] is False
+    assert status["tac_local_review_integration_memory_write_performed"] is False
+    assert status["tac_local_review_integration_atlas_memory_admission_performed"] is False
+    assert status["tac_local_review_integration_trace_export_performed"] is False
+    assert status["tac_local_review_integration_federation_performed"] is False
+    assert status["tac_local_review_integration_product_release_performed"] is False
+    assert status["tac_local_review_integration_final_answer_emitted"] is False
+    assert status["tac_local_review_integration_truth_certification_emitted"] is False
+    assert status["tac_local_review_integration_accepted_evidence_authority_granted"] is False
+    assert status["not_tac_local_review_integration_runtime_control"] is True
+    assert status["not_tac_local_review_integration_surveillance_authorization"] is True
+    assert status["not_tac_local_review_integration_memory_write"] is True
+    assert status["not_tac_local_review_integration_trace_export_authorization"] is True
+    assert status["not_tac_local_review_integration_federation_authorization"] is True
+    assert status["not_tac_local_review_integration_product_release"] is True
+
+
+
+def test_tac_ai_receipt_event_link_page_and_registry_are_generated(tmp_path):
+    out_dir, docs_dir = run_builder(tmp_path)
+    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text(encoding="utf-8"))
+    reproducibility = json.loads((out_dir / "reproducibility_index.json").read_text(encoding="utf-8"))
+    artifact_index = json.loads((out_dir / "artifact_index.json").read_text(encoding="utf-8"))
+    claim_boundaries = json.loads((out_dir / "claim_boundary_index.json").read_text(encoding="utf-8"))
+    status = json.loads((out_dir / "status.json").read_text(encoding="utf-8"))
+    phase_by_id = {entry["phase_id"]: entry for entry in dashboard["accepted_phases"]}
+    boundary_text = "\n".join(claim_boundaries["boundaries"])
+    reproducibility_text = json.dumps(reproducibility)
+    page_text = (docs_dir / "tac-ai-receipt-event-link.md").read_text(encoding="utf-8")
+
+    phase = phase_by_id["TAC-AI-RECEIPT-EVENT-LINK-00"]
+    summary = phase["dashboard_summary"]
+    assert summary["link_status"] == "completed"
+    assert summary["link_mode"] == "supplemental_non_rewriting_event_reference"
+    assert summary["scenario_id"] == "local_default_receipt_review"
+    assert summary["receipt_history_rewritten"] is False
+    assert summary["chain_hash_unchanged"] is True
+    assert summary["referenced_event_count"] == 5
+    assert summary["supplemental_link_count"] == 5
+    assert summary["selected_mode"] == "pulse"
+    assert summary["decision_status"] == "simulated_allowed"
+    assert summary["minimum_audit_floor_preserved"] is True
+    assert summary["raw_trace_retention_allowed"] is False
+    assert summary["trace_export_allowed"] is False
+    assert summary["federation_allowed"] is False
+    assert summary["live_runtime_behavior_changed"] is False
+    assert summary["telemetry_runtime_control_performed"] is False
+    assert summary["provider_runtime_performed"] is False
+    assert summary["network_call_performed"] is False
+    assert summary["memory_write_performed"] is False
+    assert summary["atlas_memory_admission_performed"] is False
+    assert summary["trace_export_performed"] is False
+    assert summary["federation_performed"] is False
+    assert summary["product_release_performed"] is False
+    assert summary["final_answer_emitted"] is False
+    assert summary["truth_certification_emitted"] is False
+    assert summary["accepted_evidence_authority_granted"] is False
+    assert summary["link_is_not_runtime_control"] is True
+    assert summary["link_is_not_surveillance_authorization"] is True
+    assert summary["link_is_not_memory_write"] is True
+    assert summary["link_is_not_trace_export_authorization"] is True
+    assert summary["link_is_not_federation_authorization"] is True
+    assert summary["link_is_not_product_release"] is True
+    assert summary["link_requires_human_review"] is True
+
+    for artifact in TAC_AI_RECEIPT_EVENT_LINK_ARTIFACTS:
+        assert artifact in artifact_index["phases"]["TAC-AI-RECEIPT-EVENT-LINK-00"]
+        assert artifact in page_text
+        assert artifact in boundary_text
+    for phrase_group in (
+        TAC_AI_RECEIPT_EVENT_LINK_INPUT_ARTIFACTS,
+        TAC_AI_RECEIPT_EVENT_LINK_EVENTS,
+        TAC_AI_RECEIPT_EVENT_LINK_REFERENCE_TERMS,
+        TAC_AI_RECEIPT_EVENT_LINK_REQUIRED_DOC_PHRASES,
+        TAC_AI_RECEIPT_EVENT_LINK_PRIOR_PHASE_RELATION,
+        TAC_AI_RECEIPT_EVENT_LINK_BLOCKED_CLAIMS,
+    ):
+        for phrase in phrase_group:
+            assert phrase in page_text
+            assert phrase in boundary_text
+    for fragment in TAC_AI_RECEIPT_EVENT_LINK_REPRO_FRAGMENTS:
+        assert fragment in reproducibility_text
+        assert fragment in page_text
+        assert fragment in boundary_text
+    assert "build_tac_ai_receipt_event_link" in reproducibility_text
+    assert TAC_AI_RECEIPT_EVENT_LINK_CLAIM_ALLOWED in page_text
+    assert TAC_AI_RECEIPT_EVENT_LINK_CLAIM_ALLOWED in boundary_text
+    assert status["tac_ai_receipt_event_link_00_indexed"] is True
+    assert status["tac_ai_receipt_event_link_status"] == "completed"
+    assert status["tac_ai_receipt_event_link_mode"] == "supplemental_non_rewriting_event_reference"
+    assert status["tac_ai_receipt_event_link_receipt_history_rewritten"] is False
+    assert status["tac_ai_receipt_event_link_chain_hash_unchanged"] is True
+    assert status["tac_ai_receipt_event_link_referenced_event_count"] == 5
+    assert status["tac_ai_receipt_event_link_supplemental_link_count"] == 5
+    assert status["tac_ai_receipt_event_link_selected_mode"] == "pulse"
+    assert status["tac_ai_receipt_event_link_minimum_audit_floor_preserved"] is True
+    assert status["tac_ai_receipt_event_link_raw_trace_retention_allowed"] is False
+    assert status["tac_ai_receipt_event_link_trace_export_allowed"] is False
+    assert status["tac_ai_receipt_event_link_federation_allowed"] is False
+    assert status["tac_ai_receipt_event_link_live_runtime_behavior_changed"] is False
+    assert status["tac_ai_receipt_event_link_telemetry_runtime_control_performed"] is False
+    assert status["tac_ai_receipt_event_link_memory_write_performed"] is False
+    assert status["tac_ai_receipt_event_link_atlas_memory_admission_performed"] is False
+    assert status["tac_ai_receipt_event_link_product_release_performed"] is False
+    assert status["tac_ai_receipt_event_link_final_answer_emitted"] is False
+    assert status["tac_ai_receipt_event_link_truth_certification_emitted"] is False
+    assert status["tac_ai_receipt_event_link_accepted_evidence_authority_granted"] is False
+    assert status["not_tac_ai_receipt_event_link_runtime_control"] is True
+    assert status["not_tac_ai_receipt_event_link_surveillance_authorization"] is True
+    assert status["not_tac_ai_receipt_event_link_memory_write"] is True
+    assert status["not_tac_ai_receipt_event_link_trace_export_authorization"] is True
+    assert status["not_tac_ai_receipt_event_link_federation_authorization"] is True
+    assert status["not_tac_ai_receipt_event_link_product_release"] is True
+
+
+
+def test_pmr_pathway_priors_design_doctrine_page_and_registry_are_generated(tmp_path):
+    out_dir, docs_dir = run_builder(tmp_path)
+    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text(encoding="utf-8"))
+    reproducibility = json.loads((out_dir / "reproducibility_index.json").read_text(encoding="utf-8"))
+    artifact_index = json.loads((out_dir / "artifact_index.json").read_text(encoding="utf-8"))
+    claim_boundaries = json.loads((out_dir / "claim_boundary_index.json").read_text(encoding="utf-8"))
+    status = json.loads((out_dir / "status.json").read_text(encoding="utf-8"))
+    phase_by_id = {entry["phase_id"]: entry for entry in dashboard["accepted_phases"]}
+    boundary_text = "\n".join(claim_boundaries["boundaries"])
+    reproducibility_text = json.dumps(reproducibility)
+    page_text = (docs_dir / "pmr-pathway-priors-design-doctrine.md").read_text(encoding="utf-8")
+
+    phase = phase_by_id["PMR-PATHWAY-PRIORS-DESIGN-DOCTRINE-00"]
+    summary = phase["dashboard_summary"]
+    assert summary["policy_status"] == "active_design_only"
+    assert summary["runtime_behavior_changed"] is False
+    assert summary["pathway_priors_enabled"] is False
+    assert summary["pathway_prior_generation_performed"] is False
+    assert summary["memory_write_performed"] is False
+    assert summary["atlas_memory_admission_performed"] is False
+    assert summary["model_training_performed"] is False
+    assert summary["review_skip_authorized"] is False
+    assert summary["product_release_performed"] is False
+    assert summary["pathway_prior_definition"] == "revocable_materiality_scoped_review_recommendation"
+    assert summary["pathway_prior_is_not_truth"] is True
+    assert summary["pathway_prior_is_not_memory_canon"] is True
+    assert summary["pathway_prior_is_not_model_training"] is True
+    assert summary["pathway_prior_is_not_review_skip"] is True
+    assert summary["pathway_prior_is_not_final_answer_authority"] is True
+    assert summary["pathway_prior_is_not_accepted_evidence_authority"] is True
+    assert summary["pathway_prior_is_not_product_release"] is True
+    assert summary["pathway_prior_is_not_trace_export_authorization"] is True
+    assert summary["pathway_prior_is_not_federation_authorization"] is True
+    assert summary["pathway_prior_is_not_memory_write"] is True
+    assert summary["pathway_prior_is_not_atlas_memory_admission"] is True
+    assert summary["pathway_prior_requires_human_review"] is True
+
+    for artifact in PMR_PATHWAY_PRIORS_DESIGN_ARTIFACTS:
+        assert artifact in artifact_index["phases"]["PMR-PATHWAY-PRIORS-DESIGN-DOCTRINE-00"]
+        assert artifact in page_text
+        assert artifact in boundary_text
+    for phrase_group in (
+        PMR_PATHWAY_PRIORS_DESIGN_DOCTRINE_LANGUAGE,
+        PMR_PATHWAY_PRIORS_DESIGN_BLOCKED_CLAIMS,
+    ):
+        for phrase in phrase_group:
+            assert phrase in page_text
+            assert phrase in boundary_text
+    for fragment in PMR_PATHWAY_PRIORS_DESIGN_REPRO_FRAGMENTS:
+        assert fragment in reproducibility_text
+        assert fragment in page_text
+        assert fragment in boundary_text
+    assert PMR_PATHWAY_PRIORS_DESIGN_CLAIM_ALLOWED in page_text
+    assert PMR_PATHWAY_PRIORS_DESIGN_CLAIM_ALLOWED in boundary_text
+    assert status["pmr_pathway_priors_design_doctrine_00_indexed"] is True
+    assert status["pmr_pathway_priors_policy_status"] == "active_design_only"
+    assert status["pmr_pathway_priors_runtime_behavior_changed"] is False
+    assert status["pmr_pathway_priors_enabled"] is False
+    assert status["pmr_pathway_prior_generation_performed"] is False
+    assert status["pmr_pathway_priors_memory_write_performed"] is False
+    assert status["pmr_pathway_priors_atlas_memory_admission_performed"] is False
+    assert status["pmr_pathway_priors_model_training_performed"] is False
+    assert status["pmr_pathway_priors_review_skip_authorized"] is False
+    assert status["pmr_pathway_priors_product_release_performed"] is False
+    assert status["pmr_pathway_prior_definition"] == "revocable_materiality_scoped_review_recommendation"
+    assert status["not_pmr_pathway_prior_truth"] is True
+    assert status["not_pmr_pathway_prior_memory_canon"] is True
+    assert status["not_pmr_pathway_prior_model_training"] is True
+    assert status["not_pmr_pathway_prior_review_skip"] is True
+    assert status["not_pmr_pathway_prior_final_answer_authority"] is True
+    assert status["not_pmr_pathway_prior_accepted_evidence_authority"] is True
+    assert status["not_pmr_pathway_prior_product_release"] is True
+    assert status["not_pmr_pathway_prior_trace_export_authorization"] is True
+    assert status["not_pmr_pathway_prior_federation_authorization"] is True
+    assert status["not_pmr_pathway_prior_memory_write"] is True
+    assert status["not_pmr_pathway_prior_atlas_memory_admission"] is True
+    assert status["pmr_pathway_prior_requires_human_review"] is True
+
+
+
+def test_coherence_event_signatures_design_page_and_registry_are_generated(tmp_path):
+    out_dir, docs_dir = run_builder(tmp_path)
+    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text(encoding="utf-8"))
+    reproducibility = json.loads((out_dir / "reproducibility_index.json").read_text(encoding="utf-8"))
+    artifact_index = json.loads((out_dir / "artifact_index.json").read_text(encoding="utf-8"))
+    claim_boundaries = json.loads((out_dir / "claim_boundary_index.json").read_text(encoding="utf-8"))
+    status = json.loads((out_dir / "status.json").read_text(encoding="utf-8"))
+    phase_by_id = {entry["phase_id"]: entry for entry in dashboard["accepted_phases"]}
+    boundary_text = "\n".join(claim_boundaries["boundaries"])
+    reproducibility_text = json.dumps(reproducibility)
+    page_text = (docs_dir / "coherence-event-signatures.md").read_text(encoding="utf-8")
+
+    phase = phase_by_id["COHERENCE-EVENT-SIGNATURES-DESIGN-00"]
+    summary = phase["dashboard_summary"]
+    assert summary["policy_status"] == "active_design_only"
+    assert summary["runtime_behavior_changed"] is False
+    assert summary["ces_emission_enabled"] is False
+    assert summary["ces_runtime_artifacts_emitted"] is False
+    assert summary["ces_similarity_search_enabled"] is False
+    assert summary["cross_user_similarity_enabled"] is False
+    assert summary["federated_similarity_enabled"] is False
+    assert summary["raw_trace_retention_performed"] is False
+    assert summary["memory_write_performed"] is False
+    assert summary["atlas_memory_admission_performed"] is False
+    assert summary["model_training_performed"] is False
+    assert summary["product_release_performed"] is False
+    assert summary["event_scope"] == "significant_transactive_events_only"
+    assert summary["ces_definition"] == "trace_compatible_hash_sealed_coherence_indexed_event_receipt"
+    assert summary["metric_profile_is_not_exact_identity"] is True
+    assert summary["canonical_hash_is_not_truth_certification"] is True
+    assert summary["cross_user_similarity_disabled_by_default"] is True
+    assert summary["federated_similarity_requires_review"] is True
+    assert summary["ces_is_not_truth_certification"] is True
+    assert summary["ces_is_not_final_answer_authority"] is True
+    assert summary["ces_is_not_accepted_evidence_authority"] is True
+    assert summary["ces_is_not_biometric_score"] is True
+    assert summary["ces_is_not_user_identity"] is True
+    assert summary["ces_is_not_memory_write_authorization"] is True
+    assert summary["ces_is_not_atlas_memory_admission"] is True
+    assert summary["ces_is_not_model_training"] is True
+    assert summary["ces_is_not_trace_export_authorization"] is True
+    assert summary["ces_is_not_federation_authorization"] is True
+    assert summary["ces_is_not_product_release"] is True
+    assert summary["ces_requires_human_review"] is True
+
+    for artifact in CES_DESIGN_ARTIFACTS:
+        assert artifact in artifact_index["phases"]["COHERENCE-EVENT-SIGNATURES-DESIGN-00"]
+        assert artifact in page_text
+        assert artifact in boundary_text
+    for phrase_group in (
+        CES_DESIGN_DOCTRINE_LANGUAGE,
+        CES_DESIGN_PRODUCT_LANGUAGE,
+        CES_DESIGN_LAYERS,
+        CES_DESIGN_SAFE_METRIC_ALIASES,
+        CES_DESIGN_IDENTITY_INTEGRITY_DOCTRINE,
+        CES_DESIGN_SIMILARITY_PRIVACY_DOCTRINE,
+        CES_DESIGN_EVENT_TYPES,
+        CES_DESIGN_NEGATIVE_CONTROLS,
+        CES_DESIGN_FAILURE_CLASSES,
+        CES_DESIGN_PMR_RELATION,
+        CES_DESIGN_BLOCKED_CLAIMS,
+    ):
+        for phrase in phrase_group:
+            assert phrase in page_text
+            assert phrase in boundary_text
+    for fragment in CES_DESIGN_REPRO_FRAGMENTS:
+        assert fragment in reproducibility_text
+        assert fragment in page_text
+        assert fragment in boundary_text
+    assert CES_DESIGN_CLAIM_ALLOWED in page_text
+    assert CES_DESIGN_CLAIM_ALLOWED in boundary_text
+    assert status["coherence_event_signatures_design_00_indexed"] is True
+    assert status["ces_policy_status"] == "active_design_only"
+    assert status["ces_runtime_behavior_changed"] is False
+    assert status["ces_emission_enabled"] is False
+    assert status["ces_runtime_artifacts_emitted"] is False
+    assert status["ces_similarity_search_enabled"] is False
+    assert status["ces_cross_user_similarity_enabled"] is False
+    assert status["ces_federated_similarity_enabled"] is False
+    assert status["ces_raw_trace_retention_performed"] is False
+    assert status["ces_memory_write_performed"] is False
+    assert status["ces_atlas_memory_admission_performed"] is False
+    assert status["ces_model_training_performed"] is False
+    assert status["ces_product_release_performed"] is False
+    assert status["ces_event_scope"] == "significant_transactive_events_only"
+    assert status["ces_definition"] == "trace_compatible_hash_sealed_coherence_indexed_event_receipt"
+    assert status["not_ces_truth_certification"] is True
+    assert status["not_ces_final_answer_authority"] is True
+    assert status["not_ces_accepted_evidence_authority"] is True
+    assert status["not_ces_biometric_score"] is True
+    assert status["not_ces_user_identity"] is True
+    assert status["not_ces_memory_write_authorization"] is True
+    assert status["not_ces_atlas_memory_admission"] is True
+    assert status["not_ces_model_training"] is True
+    assert status["not_ces_trace_export_authorization"] is True
+    assert status["not_ces_federation_authorization"] is True
+    assert status["not_ces_product_release"] is True
+    assert status["ces_requires_human_review"] is True
+
+
+def test_ces_pmr_indexing_design_page_and_registry_are_generated(tmp_path):
+    out_dir, docs_dir = run_builder(tmp_path)
+    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text(encoding="utf-8"))
+    reproducibility = json.loads((out_dir / "reproducibility_index.json").read_text(encoding="utf-8"))
+    artifact_index = json.loads((out_dir / "artifact_index.json").read_text(encoding="utf-8"))
+    claim_boundaries = json.loads((out_dir / "claim_boundary_index.json").read_text(encoding="utf-8"))
+    status = json.loads((out_dir / "status.json").read_text(encoding="utf-8"))
+    phase_by_id = {entry["phase_id"]: entry for entry in dashboard["accepted_phases"]}
+    boundary_text = "\n".join(claim_boundaries["boundaries"])
+    reproducibility_text = json.dumps(reproducibility)
+    page_text = (docs_dir / "ces-pmr-indexing-design.md").read_text(encoding="utf-8")
+
+    phase = phase_by_id["CES-PMR-INDEXING-DESIGN-00"]
+    summary = phase["dashboard_summary"]
+    assert summary["policy_status"] == "active_design_only"
+    assert summary["runtime_behavior_changed"] is False
+    assert summary["ces_pmr_indexing_enabled"] is False
+    assert summary["ces_pmr_index_runtime_artifacts_emitted"] is False
+    assert summary["pmr_source_replacement_performed"] is False
+    assert summary["pmr_source_deletion_authorized"] is False
+    assert summary["memory_write_performed"] is False
+    assert summary["atlas_memory_admission_performed"] is False
+    assert summary["model_training_performed"] is False
+    assert summary["review_skip_authorized"] is False
+    assert summary["similarity_search_enabled"] is False
+    assert summary["cross_user_similarity_enabled"] is False
+    assert summary["federated_similarity_enabled"] is False
+    assert summary["trace_export_performed"] is False
+    assert summary["pmr_federation_performed"] is False
+    assert summary["product_release_performed"] is False
+    assert summary["ces_pmr_index_definition"] == "compact_searchable_event_signature_index_for_replayable_pmr_records"
+    assert summary["source_expansion_required_for_decisions"] is True
+    assert summary["human_review_required"] is True
+    assert summary["index_is_not_source"] is True
+    assert summary["index_is_not_truth_certification"] is True
+    assert summary["index_is_not_final_answer_authority"] is True
+    assert summary["index_is_not_accepted_evidence_authority"] is True
+    assert summary["index_is_not_memory_write"] is True
+    assert summary["index_is_not_atlas_memory_admission"] is True
+    assert summary["index_is_not_model_training"] is True
+    assert summary["index_is_not_review_skip"] is True
+    assert summary["index_is_not_trace_export_authorization"] is True
+    assert summary["index_is_not_federation_authorization"] is True
+    assert summary["index_is_not_product_release"] is True
+
+    for artifact in CES_PMR_INDEXING_ARTIFACTS:
+        assert artifact in artifact_index["phases"]["CES-PMR-INDEXING-DESIGN-00"]
+        assert artifact in page_text
+        assert artifact in boundary_text
+    for phrase_group in (
+        CES_PMR_INDEXING_DOCTRINE_LANGUAGE,
+        CES_PMR_INDEXING_INDEX_ROLES,
+        CES_PMR_INDEXING_FORBIDDEN_ROLES,
+        CES_PMR_INDEXING_PRESERVED_SOURCE_CLASSES,
+        CES_PMR_INDEXING_INDEX_FIELDS,
+        CES_PMR_INDEXING_QUERY_INTENTS,
+        CES_PMR_INDEXING_BOUNDARIES,
+        CES_PMR_INDEXING_REVOCATION_TRIGGERS,
+        CES_PMR_INDEXING_BLOCKED_CLAIMS,
+        CES_PMR_INDEXING_FAILURE_CLASSES,
+        CES_PMR_INDEXING_RELATION,
+    ):
+        for phrase in phrase_group:
+            assert phrase in page_text
+            assert phrase in boundary_text
+    for fragment in CES_PMR_INDEXING_REPRO_FRAGMENTS:
+        assert fragment in reproducibility_text
+        assert fragment in page_text
+        assert fragment in boundary_text
+    assert CES_PMR_INDEXING_CLAIM_ALLOWED in page_text
+    assert CES_PMR_INDEXING_CLAIM_ALLOWED in boundary_text
+    assert status["ces_pmr_indexing_design_00_indexed"] is True
+    assert status["ces_pmr_policy_status"] == "active_design_only"
+    assert status["ces_pmr_runtime_behavior_changed"] is False
+    assert status["ces_pmr_indexing_enabled"] is False
+    assert status["ces_pmr_index_runtime_artifacts_emitted"] is False
+    assert status["ces_pmr_source_replacement_performed"] is False
+    assert status["ces_pmr_source_deletion_authorized"] is False
+    assert status["ces_pmr_memory_write_performed"] is False
+    assert status["ces_pmr_atlas_memory_admission_performed"] is False
+    assert status["ces_pmr_model_training_performed"] is False
+    assert status["ces_pmr_review_skip_authorized"] is False
+    assert status["ces_pmr_similarity_search_enabled"] is False
+    assert status["ces_pmr_cross_user_similarity_enabled"] is False
+    assert status["ces_pmr_federated_similarity_enabled"] is False
+    assert status["ces_pmr_trace_export_performed"] is False
+    assert status["ces_pmr_pmr_federation_performed"] is False
+    assert status["ces_pmr_product_release_performed"] is False
+    assert status["ces_pmr_source_expansion_required_for_decisions"] is True
+    assert status["not_ces_pmr_index_source"] is True
+    assert status["not_ces_pmr_index_memory_write"] is True
+    assert status["not_ces_pmr_index_model_training"] is True
+    assert status["not_ces_pmr_index_review_skip"] is True
+    assert status["not_ces_pmr_index_trace_export_authorization"] is True
+    assert status["not_ces_pmr_index_federation_authorization"] is True
