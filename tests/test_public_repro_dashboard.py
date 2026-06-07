@@ -159,6 +159,16 @@ from tools.build_public_repro_dashboard import (
     CES_PMR_INDEXING_DESIGN_RELATION,
     CES_PMR_INDEXING_DESIGN_REPRO_FRAGMENTS,
     CES_PMR_INDEXING_DESIGN_REVOCATION_TRIGGERS,
+    TRIADIC_OBSERVATION_CONTRACT_ARTIFACTS,
+    TRIADIC_OBSERVATION_CONTRACT_BLOCKED_CLAIMS,
+    TRIADIC_OBSERVATION_CONTRACT_CLAIM_ALLOWED,
+    TRIADIC_OBSERVATION_CONTRACT_DECLARATIONS,
+    TRIADIC_OBSERVATION_CONTRACT_DOCTRINE_LANGUAGE,
+    TRIADIC_OBSERVATION_CONTRACT_FAILURE_CLASSES,
+    TRIADIC_OBSERVATION_CONTRACT_NO_SILENT_MODE_SHIFT_TRIGGERS,
+    TRIADIC_OBSERVATION_CONTRACT_PRIOR_PHASE_RELATION,
+    TRIADIC_OBSERVATION_CONTRACT_RECIPROCITY_BUDGET_DIMENSIONS,
+    TRIADIC_OBSERVATION_CONTRACT_RECOVERY_RIGHTS,
     _dedupe_accepted_phases,
 )
 from tools.validate_public_repro_dashboard import REQUIRED_PHASES as VALIDATOR_REQUIRED_PHASES
@@ -242,6 +252,7 @@ REQUIRED_DOCS = {
     "perturbation-trunk-mapping.md",
     "perturbation-residual-novelty-map.md",
     "perturbation-structure-affordance-card.md",
+    "triadic-observation-contract.md",
 }
 REQUIRED_PHASES = {
     "EXP-SUITE-REGISTRY-01",
@@ -337,6 +348,7 @@ REQUIRED_PHASES = {
     "PMR-PATHWAY-PRIORS-DESIGN-DOCTRINE-00",
     "COHERENCE-EVENT-SIGNATURES-DESIGN-00",
     "CES-PMR-INDEXING-DESIGN-00",
+    "TRIADIC-OBSERVATION-CONTRACT-DESIGN-00",
     "RUNTIME-METRICS-CORPUS-SEED-00",
     "PMR-LOCAL-RUNTIME-QUERYABLE-STORE-00",
     "RETROSYNTHESIS-READINESS-00",
@@ -5553,3 +5565,90 @@ def test_ces_pmr_indexing_design_page_and_registry_are_generated(tmp_path):
     assert status["ces_pmr_memory_write_performed"] is False
     assert status["ces_pmr_model_training_performed"] is False
     assert status["ces_pmr_product_release_performed"] is False
+
+
+def test_triadic_observation_contract_page_and_registry_are_generated(tmp_path):
+    out_dir, docs_dir = run_builder(tmp_path)
+    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text(encoding="utf-8"))
+    reproducibility = json.loads((out_dir / "reproducibility_index.json").read_text(encoding="utf-8"))
+    artifact_index = json.loads((out_dir / "artifact_index.json").read_text(encoding="utf-8"))
+    claim_boundaries = json.loads((out_dir / "claim_boundary_index.json").read_text(encoding="utf-8"))
+    status = json.loads((out_dir / "status.json").read_text(encoding="utf-8"))
+    phase_by_id = {entry["phase_id"]: entry for entry in dashboard["accepted_phases"]}
+    boundary_text = "\n".join(claim_boundaries["boundaries"])
+    reproducibility_text = json.dumps(reproducibility)
+    page_text = (docs_dir / "triadic-observation-contract.md").read_text(encoding="utf-8")
+
+    assert "TRIADIC-OBSERVATION-CONTRACT-DESIGN-00" in phase_by_id
+    phase = phase_by_id["TRIADIC-OBSERVATION-CONTRACT-DESIGN-00"]
+    summary = phase["dashboard_summary"]
+    expected_summary = {
+        "policy_status": "active_design_only",
+        "runtime_behavior_changed": False,
+        "observation_contract_enabled": False,
+        "mode_shift_receipts_emitted": False,
+        "user_recovery_actions_performed": False,
+        "telemetry_behavior_changed": False,
+        "memory_write_performed": False,
+        "atlas_memory_admission_performed": False,
+        "trace_export_performed": False,
+        "pmr_federation_performed": False,
+        "provider_runtime_performed": False,
+        "network_call_performed": False,
+        "product_release_performed": False,
+        "observation_contract_definition": "consent_bounded_governed_attention_contract",
+        "observation_contract_is_not_runtime_control": True,
+        "observation_contract_is_not_surveillance_authorization": True,
+        "observation_contract_is_not_memory_write": True,
+        "observation_contract_is_not_trace_export_authorization": True,
+        "observation_contract_is_not_federation_authorization": True,
+        "observation_contract_is_not_product_release": True,
+        "observation_contract_is_not_truth_certification": True,
+        "observation_contract_is_not_final_answer_authority": True,
+        "observation_contract_is_not_accepted_evidence_authority": True,
+        "observation_contract_requires_human_review": True,
+    }
+    for key, value in expected_summary.items():
+        assert summary[key] == value
+
+    for artifact in TRIADIC_OBSERVATION_CONTRACT_ARTIFACTS:
+        assert artifact in artifact_index["phases"]["TRIADIC-OBSERVATION-CONTRACT-DESIGN-00"]
+        assert artifact in page_text
+        assert artifact in boundary_text
+    for phrase_group in (
+        TRIADIC_OBSERVATION_CONTRACT_DOCTRINE_LANGUAGE,
+        TRIADIC_OBSERVATION_CONTRACT_DECLARATIONS,
+        TRIADIC_OBSERVATION_CONTRACT_NO_SILENT_MODE_SHIFT_TRIGGERS,
+        TRIADIC_OBSERVATION_CONTRACT_RECOVERY_RIGHTS,
+        TRIADIC_OBSERVATION_CONTRACT_RECIPROCITY_BUDGET_DIMENSIONS,
+        TRIADIC_OBSERVATION_CONTRACT_FAILURE_CLASSES,
+        TRIADIC_OBSERVATION_CONTRACT_PRIOR_PHASE_RELATION,
+        TRIADIC_OBSERVATION_CONTRACT_BLOCKED_CLAIMS,
+    ):
+        for phrase in phrase_group:
+            assert phrase in page_text
+            assert phrase in boundary_text
+    for fragment in (
+        "TRIADIC_OBSERVATION_CONTRACT.md",
+        "triadic_observation_contract_policy.v1.json",
+        "triadic_observation_contract_packet.schema.json",
+        "mode_shift_receipt.schema.json",
+        "observation_rights_profile.schema.json",
+        "user_recovery_options_packet.schema.json",
+        "observation_contract_non_authority_boundary.schema.json",
+    ):
+        assert fragment in reproducibility_text
+        assert fragment in page_text
+        assert fragment in boundary_text
+    assert TRIADIC_OBSERVATION_CONTRACT_CLAIM_ALLOWED in page_text
+    assert TRIADIC_OBSERVATION_CONTRACT_CLAIM_ALLOWED in boundary_text
+    assert "Publication sync grants no runtime authority." in page_text
+    assert status["triadic_observation_contract_design_00_indexed"] is True
+    assert status["observation_contract_policy_status"] == "active_design_only"
+    assert status["observation_contract_runtime_behavior_changed"] is False
+    assert status["observation_contract_enabled"] is False
+    assert status["observation_contract_mode_shift_receipts_emitted"] is False
+    assert status["observation_contract_user_recovery_actions_performed"] is False
+    assert status["observation_contract_trace_export_performed"] is False
+    assert status["observation_contract_pmr_federation_performed"] is False
+    assert status["observation_contract_product_release_performed"] is False

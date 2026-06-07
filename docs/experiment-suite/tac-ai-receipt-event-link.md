@@ -167,3 +167,9 @@ TAC-AI-RECEIPT-EVENT-LINK-00 links TAC posture to AI Receipt Architecture throug
 ## PMR pathway-prior linkage
 
 PMR-PATHWAY-PRIORS-DESIGN-DOCTRINE-00 preserves AI Receipt traceability, replay lineage, TAC retention/export/federation boundaries, Sophia reality status, and validation-tier evidence for revocable review recommendations without writing memory or generating pathway priors. COHERENCE-EVENT-SIGNATURES-DESIGN-00 can provide event-level receipt signatures for this posture without runtime emission or similarity search.
+
+## Triadic Observation Contract publication sync
+
+TRIADIC-OBSERVATION-CONTRACT-DESIGN-00 adds a design-only Triadic Observation Contract publication surface. Governed Attention Precedes Governed Intelligence. No silent mode shift. Human review remains required. This sync grants no runtime authority: it does not change runtime behavior, does not enable an observation contract, does not emit mode-shift receipts, does not perform user recovery actions, does not change telemetry behavior, does not write memory, does not admit Atlas memory, does not export traces, does not federate PMR, does not run providers or networks, and does not release product.
+
+The contract names allowed_observation_scope, observation_resolution, purpose_binding, consent_scope, retention_scope, replay_scope, disclosure_scope, federation_scope, recovery_rights, and non_authority_boundaries. It relates TAC aperture policy and simulation, CES event receipts, CES PMR indexing, PMR pathway priors, AI Receipt Architecture, Sophia execution-reality boundaries, and Validation Tiering Provenance without granting final-answer authority, accepted-evidence authority, truth certification, or surveillance authorization.

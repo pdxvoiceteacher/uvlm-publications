@@ -166,6 +166,16 @@ from tools.build_public_repro_dashboard import (
     CES_PMR_INDEXING_DESIGN_RELATION,
     CES_PMR_INDEXING_DESIGN_REPRO_FRAGMENTS,
     CES_PMR_INDEXING_DESIGN_REVOCATION_TRIGGERS,
+    TRIADIC_OBSERVATION_CONTRACT_ARTIFACTS,
+    TRIADIC_OBSERVATION_CONTRACT_BLOCKED_CLAIMS,
+    TRIADIC_OBSERVATION_CONTRACT_CLAIM_ALLOWED,
+    TRIADIC_OBSERVATION_CONTRACT_DECLARATIONS,
+    TRIADIC_OBSERVATION_CONTRACT_DOCTRINE_LANGUAGE,
+    TRIADIC_OBSERVATION_CONTRACT_FAILURE_CLASSES,
+    TRIADIC_OBSERVATION_CONTRACT_NO_SILENT_MODE_SHIFT_TRIGGERS,
+    TRIADIC_OBSERVATION_CONTRACT_PRIOR_PHASE_RELATION,
+    TRIADIC_OBSERVATION_CONTRACT_RECIPROCITY_BUDGET_DIMENSIONS,
+    TRIADIC_OBSERVATION_CONTRACT_RECOVERY_RIGHTS,
 )
 
 
@@ -188,6 +198,7 @@ REQUIRED_PHASES = {
     "EVIDENCE-REVIEW-PACK-01",
     "RW-COMP-03",
     "UNIVERSAL-STAGE-PIPELINE-00",
+    "TRIADIC-OBSERVATION-CONTRACT-DESIGN-00",
     "ARTIFACT-CONTRACT-REGISTRY-01",
     "UNIVERSAL-COMPATIBILITY-MATRIX-00",
     "SONYA-ADAPTER-CONTRACT-REGISTRY-01",
@@ -464,6 +475,18 @@ REQUIRED_BOUNDARY_PHRASES = (
     "PMR-PATHWAY-PRIORS-DESIGN-DOCTRINE-00",
     "COHERENCE-EVENT-SIGNATURES-DESIGN-00",
     "CES-PMR-INDEXING-DESIGN-00",
+    "TRIADIC-OBSERVATION-CONTRACT-DESIGN-00",
+    TRIADIC_OBSERVATION_CONTRACT_CLAIM_ALLOWED,
+    *TRIADIC_OBSERVATION_CONTRACT_ARTIFACTS,
+    *TRIADIC_OBSERVATION_CONTRACT_DOCTRINE_LANGUAGE,
+    *TRIADIC_OBSERVATION_CONTRACT_DECLARATIONS,
+    *TRIADIC_OBSERVATION_CONTRACT_NO_SILENT_MODE_SHIFT_TRIGGERS,
+    *TRIADIC_OBSERVATION_CONTRACT_RECOVERY_RIGHTS,
+    *TRIADIC_OBSERVATION_CONTRACT_RECIPROCITY_BUDGET_DIMENSIONS,
+    *TRIADIC_OBSERVATION_CONTRACT_FAILURE_CLASSES,
+    *TRIADIC_OBSERVATION_CONTRACT_PRIOR_PHASE_RELATION,
+    *TRIADIC_OBSERVATION_CONTRACT_BLOCKED_CLAIMS,
+    "Publication sync grants no runtime authority.",
     TAC_LOCAL_REVIEW_INTEGRATION_CLAIM_ALLOWED,
     *TAC_LOCAL_REVIEW_INTEGRATION_ARTIFACTS,
     *TAC_LOCAL_REVIEW_INTEGRATION_INPUT_ARTIFACTS,
@@ -1549,6 +1572,7 @@ def _forbidden_hits(text: str) -> list[str]:
                 or ("coherence-event-signatures-design-00" in text[max(0, index - 900) : index + 220] and ("without" in text[max(0, index - 900) : index] or "not" in text[max(0, index - 220) : index + 220] or "blocked overclaim" in text[max(0, index - 220) : index]))
                 or ("ces pmr indexing design 00" in text[max(0, index - 900) : index + 220] and ("without" in text[max(0, index - 900) : index] or "not" in text[max(0, index - 220) : index + 220] or "no " in text[max(0, index - 220) : index + 220] or "blocked overclaim" in text[max(0, index - 220) : index]))
                 or ("ces pmr indexing is proposed" in text[max(0, index - 500) : index + 500] and ("no " in text[max(0, index - 300) : index] or "not" in text[max(0, index - 220) : index + 220]))
+                or ("triadic observation contract" in text[max(0, index - 900) : index + 500] and ("without" in text[max(0, index - 900) : index + 500] or "not" in text[max(0, index - 220) : index + 220] or "blocked overclaim" in text[max(0, index - 220) : index]))
                 or (phrase == "federation" and "retention/export/federation blocks" in text[max(0, index - 128) : index + 128])
                 or (phrase == "federation" and "federation_blocked_by_default" in text[max(0, index - 64) : index + 64])
                 or (phrase == "federation" and "pmr pathway priors must respect tac retention" in text[max(0, index - 128) : index + 128])
@@ -1562,6 +1586,7 @@ def _forbidden_hits(text: str) -> list[str]:
             if phrase == "consent execution" and (
                 _is_negated(text, index)
                 or "simulation decision is consent execution" in text[max(0, index - 80) : index + 80]
+                or "mode shift receipt is consent execution" in text[max(0, index - 80) : index + 80]
             ):
                 start = index + len(normalized_phrase)
                 continue
@@ -1770,7 +1795,7 @@ def _forbidden_hits(text: str) -> list[str]:
                 start = index + len(normalized_phrase)
                 continue
             if phrase == "federation" and (
-                any(_normalize(claim) in text[max(0, index - 220) : index + 220] for claim in (*VISUAL_REVIEW_MODEL_BLOCKED_CLAIMS, *VISUAL_REVIEW_STATIC_HTML_BLOCKED_CLAIMS, *STATIC_HTML_USABILITY_REVIEW_BLOCKED_CLAIMS, *STATIC_HTML_USABILITY_REVISION_BLOCKED_CLAIMS, *AI_RECEIPT_ARCHITECTURE_BLOCKED_CLAIMS, *VALIDATION_TIERING_PROVENANCE_BLOCKED_CLAIMS, *TELEMETRY_APERTURE_BLOCKED_CLAIMS, *TAC_POLICY_SIMULATION_BLOCKED_CLAIMS, *TAC_LOCAL_REVIEW_INTEGRATION_BLOCKED_CLAIMS, *TAC_AI_RECEIPT_EVENT_LINK_BLOCKED_CLAIMS, *PMR_PATHWAY_PRIORS_DESIGN_BLOCKED_CLAIMS, *CES_DESIGN_BLOCKED_CLAIMS))
+                any(_normalize(claim) in text[max(0, index - 220) : index + 220] for claim in (*VISUAL_REVIEW_MODEL_BLOCKED_CLAIMS, *VISUAL_REVIEW_STATIC_HTML_BLOCKED_CLAIMS, *STATIC_HTML_USABILITY_REVIEW_BLOCKED_CLAIMS, *STATIC_HTML_USABILITY_REVISION_BLOCKED_CLAIMS, *AI_RECEIPT_ARCHITECTURE_BLOCKED_CLAIMS, *VALIDATION_TIERING_PROVENANCE_BLOCKED_CLAIMS, *TELEMETRY_APERTURE_BLOCKED_CLAIMS, *TAC_POLICY_SIMULATION_BLOCKED_CLAIMS, *TAC_LOCAL_REVIEW_INTEGRATION_BLOCKED_CLAIMS, *TAC_AI_RECEIPT_EVENT_LINK_BLOCKED_CLAIMS, *PMR_PATHWAY_PRIORS_DESIGN_BLOCKED_CLAIMS, *CES_DESIGN_BLOCKED_CLAIMS, *TRIADIC_OBSERVATION_CONTRACT_BLOCKED_CLAIMS))
                 or "without implementing a ui or granting" in text[max(0, index - 500) : index]
                 or "it implements no ui and grants no" in text[max(0, index - 500) : index]
             ):
@@ -1807,7 +1832,7 @@ def _forbidden_hits(text: str) -> list[str]:
                 continue
             if (
                 phrase in {"truth certification", "product release"}
-                and any(_normalize(claim) in text[max(0, index - 180) : index + 180] for claim in (*LANGUAGE_GOVERNANCE_AUDIT_BLOCKED_CLAIMS, *VISUAL_REVIEW_MODEL_BLOCKED_CLAIMS, *VISUAL_REVIEW_STATIC_HTML_BLOCKED_CLAIMS, *STATIC_HTML_USABILITY_REVIEW_BLOCKED_CLAIMS, *STATIC_HTML_USABILITY_REVISION_BLOCKED_CLAIMS, *AI_RECEIPT_ARCHITECTURE_BLOCKED_CLAIMS, *VALIDATION_TIERING_PROVENANCE_BLOCKED_CLAIMS, *TELEMETRY_APERTURE_BLOCKED_CLAIMS, *TAC_POLICY_SIMULATION_BLOCKED_CLAIMS, *TAC_LOCAL_REVIEW_INTEGRATION_BLOCKED_CLAIMS, *TAC_AI_RECEIPT_EVENT_LINK_BLOCKED_CLAIMS, *PMR_PATHWAY_PRIORS_DESIGN_BLOCKED_CLAIMS, *CES_DESIGN_BLOCKED_CLAIMS))
+                and any(_normalize(claim) in text[max(0, index - 180) : index + 180] for claim in (*LANGUAGE_GOVERNANCE_AUDIT_BLOCKED_CLAIMS, *VISUAL_REVIEW_MODEL_BLOCKED_CLAIMS, *VISUAL_REVIEW_STATIC_HTML_BLOCKED_CLAIMS, *STATIC_HTML_USABILITY_REVIEW_BLOCKED_CLAIMS, *STATIC_HTML_USABILITY_REVISION_BLOCKED_CLAIMS, *AI_RECEIPT_ARCHITECTURE_BLOCKED_CLAIMS, *VALIDATION_TIERING_PROVENANCE_BLOCKED_CLAIMS, *TELEMETRY_APERTURE_BLOCKED_CLAIMS, *TAC_POLICY_SIMULATION_BLOCKED_CLAIMS, *TAC_LOCAL_REVIEW_INTEGRATION_BLOCKED_CLAIMS, *TAC_AI_RECEIPT_EVENT_LINK_BLOCKED_CLAIMS, *PMR_PATHWAY_PRIORS_DESIGN_BLOCKED_CLAIMS, *CES_DESIGN_BLOCKED_CLAIMS, *TRIADIC_OBSERVATION_CONTRACT_BLOCKED_CLAIMS))
             ):
                 start = index + len(normalized_phrase)
                 continue
@@ -1850,7 +1875,7 @@ def _forbidden_hits(text: str) -> list[str]:
                     "without creating" in text[max(0, index - 260) : index]
                     or "without claiming" in text[max(0, index - 260) : index]
                     or "claiming no" in text[max(0, index - 260) : index]
-                    or any(_normalize(claim) in text[max(0, index - 220) : index + 220] for claim in (*VISUAL_REVIEW_STATIC_HTML_BLOCKED_CLAIMS, *STATIC_HTML_USABILITY_REVIEW_BLOCKED_CLAIMS, *STATIC_HTML_USABILITY_REVISION_BLOCKED_CLAIMS, *AI_RECEIPT_ARCHITECTURE_BLOCKED_CLAIMS, *VALIDATION_TIERING_PROVENANCE_BLOCKED_CLAIMS, *TELEMETRY_APERTURE_BLOCKED_CLAIMS, *TAC_POLICY_SIMULATION_BLOCKED_CLAIMS, *TAC_LOCAL_REVIEW_INTEGRATION_BLOCKED_CLAIMS, *TAC_AI_RECEIPT_EVENT_LINK_BLOCKED_CLAIMS, *PMR_PATHWAY_PRIORS_DESIGN_BLOCKED_CLAIMS, *CES_DESIGN_BLOCKED_CLAIMS))
+                    or any(_normalize(claim) in text[max(0, index - 220) : index + 220] for claim in (*VISUAL_REVIEW_STATIC_HTML_BLOCKED_CLAIMS, *STATIC_HTML_USABILITY_REVIEW_BLOCKED_CLAIMS, *STATIC_HTML_USABILITY_REVISION_BLOCKED_CLAIMS, *AI_RECEIPT_ARCHITECTURE_BLOCKED_CLAIMS, *VALIDATION_TIERING_PROVENANCE_BLOCKED_CLAIMS, *TELEMETRY_APERTURE_BLOCKED_CLAIMS, *TAC_POLICY_SIMULATION_BLOCKED_CLAIMS, *TAC_LOCAL_REVIEW_INTEGRATION_BLOCKED_CLAIMS, *TAC_AI_RECEIPT_EVENT_LINK_BLOCKED_CLAIMS, *PMR_PATHWAY_PRIORS_DESIGN_BLOCKED_CLAIMS, *CES_DESIGN_BLOCKED_CLAIMS, *TRIADIC_OBSERVATION_CONTRACT_BLOCKED_CLAIMS))
                 )
             ):
                 start = index + len(normalized_phrase)
@@ -1866,7 +1891,7 @@ def _forbidden_hits(text: str) -> list[str]:
                 continue
             if phrase in {"federation", "surveillance"} and any(
                 _normalize(claim) in text[max(0, index - 240) : index + 240]
-                for claim in (*TELEMETRY_APERTURE_BLOCKED_CLAIMS, *TAC_POLICY_SIMULATION_BLOCKED_CLAIMS, *TAC_LOCAL_REVIEW_INTEGRATION_BLOCKED_CLAIMS, *TAC_AI_RECEIPT_EVENT_LINK_BLOCKED_CLAIMS, *PMR_PATHWAY_PRIORS_DESIGN_BLOCKED_CLAIMS, *CES_DESIGN_BLOCKED_CLAIMS)
+                for claim in (*TELEMETRY_APERTURE_BLOCKED_CLAIMS, *TAC_POLICY_SIMULATION_BLOCKED_CLAIMS, *TAC_LOCAL_REVIEW_INTEGRATION_BLOCKED_CLAIMS, *TAC_AI_RECEIPT_EVENT_LINK_BLOCKED_CLAIMS, *PMR_PATHWAY_PRIORS_DESIGN_BLOCKED_CLAIMS, *CES_DESIGN_BLOCKED_CLAIMS, *TRIADIC_OBSERVATION_CONTRACT_BLOCKED_CLAIMS)
             ):
                 start = index + len(normalized_phrase)
                 continue

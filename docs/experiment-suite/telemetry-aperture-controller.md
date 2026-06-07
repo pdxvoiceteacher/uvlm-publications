@@ -223,3 +223,9 @@ TELEMETRY-APERTURE-DESIGN-00 defines a design-only, consent-bounded Telemetry Ap
 ## Policy simulation linkage
 
 TAC-POLICY-SIMULATION-00 rehearses deterministic policy decisions from TELEMETRY-APERTURE-DESIGN-00. TAC-LOCAL-REVIEW-INTEGRATION-00 links simulated TAC posture into local review surfaces. TAC-AI-RECEIPT-EVENT-LINK-00 links TAC posture through supplemental, non-rewriting AI Receipt event references. PMR-PATHWAY-PRIORS-DESIGN-DOCTRINE-00 must respect TAC retention, trace export, and federation boundaries. COHERENCE-EVENT-SIGNATURES-DESIGN-00 is aperture-aware and PMR-retention-aware but does not emit CES runtime artifacts. TAC-POLICY-SIMULATION-00 does not implement live runtime control.
+
+## Triadic Observation Contract publication sync
+
+TRIADIC-OBSERVATION-CONTRACT-DESIGN-00 adds a design-only Triadic Observation Contract publication surface. Governed Attention Precedes Governed Intelligence. No silent mode shift. Human review remains required. This sync grants no runtime authority: it does not change runtime behavior, does not enable an observation contract, does not emit mode-shift receipts, does not perform user recovery actions, does not change telemetry behavior, does not write memory, does not admit Atlas memory, does not export traces, does not federate PMR, does not run providers or networks, and does not release product.
+
+The contract names allowed_observation_scope, observation_resolution, purpose_binding, consent_scope, retention_scope, replay_scope, disclosure_scope, federation_scope, recovery_rights, and non_authority_boundaries. It relates TAC aperture policy and simulation, CES event receipts, CES PMR indexing, PMR pathway priors, AI Receipt Architecture, Sophia execution-reality boundaries, and Validation Tiering Provenance without granting final-answer authority, accepted-evidence authority, truth certification, or surveillance authorization.

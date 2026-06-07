@@ -4192,6 +4192,181 @@ CES_PMR_INDEXING_DESIGN_PHASE = {
     "reviewer_caution": "CES-PMR-INDEXING-DESIGN-00 is design doctrine only; it emits no runtime index artifacts, enables no similarity search, replaces no PMR source, deletes no replay lineage, writes no memory, admits no Atlas memory, trains no model, skips no human review, exports no traces, federates no PMR, releases no product, and grants no truth, final-answer, accepted-evidence, identity, or biometric authority.",
 }
 
+
+TRIADIC_OBSERVATION_CONTRACT_COMMAND = "python -c \"from pathlib import Path; Path('docs/TRIADIC_OBSERVATION_CONTRACT.md').read_text(encoding='utf-8')\"; python -m json.tool config/observation_contract/triadic_observation_contract_policy.v1.json >/dev/null; python -m json.tool schema/bridge/triadic_observation_contract_packet.schema.json >/dev/null; python -m json.tool schema/bridge/mode_shift_receipt.schema.json >/dev/null; python -m json.tool schema/bridge/observation_rights_profile.schema.json >/dev/null; python -m json.tool schema/bridge/user_recovery_options_packet.schema.json >/dev/null; python -m json.tool schema/bridge/observation_contract_non_authority_boundary.schema.json >/dev/null"
+TRIADIC_OBSERVATION_CONTRACT_ARTIFACTS = [
+    "docs/TRIADIC_OBSERVATION_CONTRACT.md",
+    "config/observation_contract/triadic_observation_contract_policy.v1.json",
+    "schema/bridge/triadic_observation_contract_packet.schema.json",
+    "schema/bridge/mode_shift_receipt.schema.json",
+    "schema/bridge/observation_rights_profile.schema.json",
+    "schema/bridge/user_recovery_options_packet.schema.json",
+    "schema/bridge/observation_contract_non_authority_boundary.schema.json",
+]
+TRIADIC_OBSERVATION_CONTRACT_DOCTRINE_LANGUAGE = [
+    "Triadic Observation Contract",
+    "Governed Attention Precedes Governed Intelligence.",
+    "The system must govern how the receipt is born.",
+    "A Triadic Observation Contract declares what the system may observe, at what resolution, under what consent, for what purpose, with what retention, with what recovery rights, and with what non-authority boundaries.",
+    "No silent mode shift.",
+    "Compression must remain reversible enough for audit, repair, and consent.",
+    "Canonical evidence comes before new abstraction.",
+    "Negative results are stewardship artifacts.",
+    "Discovery is not deployment.",
+    "Reciprocity budget must name exported burden.",
+    "Failure must be runnable.",
+    "User recovery is more than appeal.",
+    "Anti-priesthood interface means safety must be legible to unbelievers.",
+    "Minimal viable reality means one working receipt is worth more than ten named future layers.",
+    "Consent-bounded phase-lock means resonance, not absorption.",
+    "Beautiful names require boring tests.",
+    "TRIADIC-OBSERVATION-CONTRACT-DESIGN-00 does not change runtime behavior.",
+    "TRIADIC-OBSERVATION-CONTRACT-DESIGN-00 does not emit mode-shift receipts.",
+    "TRIADIC-OBSERVATION-CONTRACT-DESIGN-00 does not perform user recovery actions.",
+    "Human review remains required.",
+]
+TRIADIC_OBSERVATION_CONTRACT_DECLARATIONS = [
+    "allowed_observation_scope",
+    "observation_resolution",
+    "purpose_binding",
+    "consent_scope",
+    "retention_scope",
+    "replay_scope",
+    "disclosure_scope",
+    "federation_scope",
+    "recovery_rights",
+    "non_authority_boundaries",
+]
+TRIADIC_OBSERVATION_CONTRACT_NO_SILENT_MODE_SHIFT_TRIGGERS = [
+    "observation_depth_increase",
+    "durable_retention_increase",
+    "execution_posture_change",
+    "disclosure_scope_change",
+    "trace_export_request",
+    "pmr_federation_request",
+    "replay_rehydration_request",
+    "source_expansion_decision",
+    "pathway_prior_candidate_use",
+    "ces_similarity_query",
+    "user_recovery_action",
+    "sophia_nonpass_or_uncertain",
+    "tac_full_audit_request",
+]
+TRIADIC_OBSERVATION_CONTRACT_RECOVERY_RIGHTS = [
+    "inspect",
+    "correct",
+    "revoke",
+    "quarantine",
+    "replay",
+    "downgrade",
+    "rehydrate",
+    "export_when_authorized",
+    "reset",
+    "request_human_review",
+]
+TRIADIC_OBSERVATION_CONTRACT_RECIPROCITY_BUDGET_DIMENSIONS = [
+    "human_review_time",
+    "privacy_exposure",
+    "compute_cost",
+    "local_storage_cost",
+    "pmr_retention_cost",
+    "federated_availability_burden",
+    "correction_burden",
+    "audit_burden",
+    "user_confusion_burden",
+]
+TRIADIC_OBSERVATION_CONTRACT_FAILURE_CLASSES = [
+    "silent_mode_shift",
+    "observation_contract_missing",
+    "consent_scope_missing",
+    "retention_scope_missing",
+    "recovery_path_missing",
+    "compression_without_replay_path",
+    "negative_result_discarded",
+    "operationalization_boundary_skipped",
+    "reciprocity_budget_omitted",
+    "failure_mode_not_runnable",
+    "anti_priesthood_interface_violation",
+    "minimal_viable_reality_skipped",
+    "consent_bounded_phaselock_violation",
+    "beautiful_name_without_boring_test",
+]
+TRIADIC_OBSERVATION_CONTRACT_PRIOR_PHASE_RELATION = [
+    "TELEMETRY-APERTURE-DESIGN-00 defines aperture policy.",
+    "TAC-POLICY-SIMULATION-00 rehearses TAC policy decisions.",
+    "COHERENCE-EVENT-SIGNATURES-DESIGN-00 defines CES event receipts.",
+    "CES-PMR-INDEXING-DESIGN-00 defines CES as a compact PMR index, not a PMR source replacement.",
+    "PMR-PATHWAY-PRIORS-DESIGN-DOCTRINE-00 defines route priors as revocable review recommendations.",
+    "AI-RECEIPT-ARCHITECTURE-00 exposes what happened to humans.",
+    "SOPHIA-EXECUTIVE-AUDIT-REALITY-CHECK-00 distinguishes internal builder output from external Sophia agency.",
+    "VALIDATION-TIERING-PROVENANCE-00 records validation confidence scope.",
+]
+TRIADIC_OBSERVATION_CONTRACT_BLOCKED_CLAIMS = [
+    "Observation contract is runtime control",
+    "Observation contract authorizes surveillance",
+    "Observation contract authorizes memory write",
+    "Observation contract authorizes trace export",
+    "Observation contract authorizes PMR federation",
+    "Observation contract is product release",
+    "Observation contract certifies truth",
+    "Observation contract authorizes final answers",
+    "Observation contract grants accepted-evidence authority",
+    "Mode shift can be silent",
+    "Mode shift receipt is consent execution",
+    "Recovery option performs memory write",
+    "Recovery option authorizes trace export",
+    "User recovery means automatic deletion",
+    "Consent-bounded phase-lock means dependence",
+    "Beautiful name is sufficient validation",
+    "Minimal viable reality means product release",
+    "Reciprocity budget proves ethical symmetry",
+    "Failure harness proves safety",
+]
+TRIADIC_OBSERVATION_CONTRACT_CLAIM_ALLOWED = "TRIADIC-OBSERVATION-CONTRACT-DESIGN-00 defines a design-only, consent-bounded governed-attention contract for observation scope, resolution, purpose, consent, retention, replay, disclosure, federation, recovery rights, reciprocity budget, and non-authority boundaries without changing runtime behavior, emitting mode-shift receipts, performing recovery actions, writing memory, admitting Atlas memory, exporting traces, federating PMR, releasing product, certifying truth, or granting final-answer or accepted-evidence authority."
+TRIADIC_OBSERVATION_CONTRACT_DASHBOARD_SUMMARY = {
+    "policy_status": "active_design_only",
+    "runtime_behavior_changed": False,
+    "observation_contract_enabled": False,
+    "mode_shift_receipts_emitted": False,
+    "user_recovery_actions_performed": False,
+    "telemetry_behavior_changed": False,
+    "memory_write_performed": False,
+    "atlas_memory_admission_performed": False,
+    "trace_export_performed": False,
+    "pmr_federation_performed": False,
+    "provider_runtime_performed": False,
+    "network_call_performed": False,
+    "product_release_performed": False,
+    "observation_contract_definition": "consent_bounded_governed_attention_contract",
+    "observation_contract_is_not_runtime_control": True,
+    "observation_contract_is_not_surveillance_authorization": True,
+    "observation_contract_is_not_memory_write": True,
+    "observation_contract_is_not_trace_export_authorization": True,
+    "observation_contract_is_not_federation_authorization": True,
+    "observation_contract_is_not_product_release": True,
+    "observation_contract_is_not_truth_certification": True,
+    "observation_contract_is_not_final_answer_authority": True,
+    "observation_contract_is_not_accepted_evidence_authority": True,
+    "observation_contract_requires_human_review": True,
+}
+TRIADIC_OBSERVATION_CONTRACT_PHASE = {
+    "phase_id": "TRIADIC-OBSERVATION-CONTRACT-DESIGN-00",
+    "repo": "pdxvoiceteacher/CoherenceLattice",
+    "source_phase": "TRIADIC-OBSERVATION-CONTRACT-DESIGN-00",
+    "status": "accepted_local_validation",
+    "publication_status": "dashboard_synced",
+    "evidence_type": "design_doctrine_config_schema_inspection",
+    "product_posture": "design_only_observation_contract_no_runtime_behavior_or_receipt_emission",
+    "authority_posture": "non_authoritative",
+    "public_claim_boundary": "design_only_governed_attention_contract_no_surveillance_export_federation_memory_product_truth_final_answer_or_accepted_evidence_authority",
+    "primary_artifacts": TRIADIC_OBSERVATION_CONTRACT_ARTIFACTS,
+    "dashboard_summary": TRIADIC_OBSERVATION_CONTRACT_DASHBOARD_SUMMARY,
+    "reproduction_command_summary": TRIADIC_OBSERVATION_CONTRACT_COMMAND,
+    "claims_blocked": TRIADIC_OBSERVATION_CONTRACT_BLOCKED_CLAIMS,
+    "claim_allowed": TRIADIC_OBSERVATION_CONTRACT_CLAIM_ALLOWED,
+    "reviewer_caution": "TRIADIC-OBSERVATION-CONTRACT-DESIGN-00 is design doctrine only; it changes no runtime behavior, emits no mode-shift receipts, performs no recovery actions, writes no memory, admits no Atlas memory, exports no traces, federates no PMR, releases no product, and grants no surveillance, truth, final-answer, or accepted-evidence authority.",
+}
+
 PERTURBATION_OBSERVATION_ARTIFACTS = [
     "perturbation_observation_packet.json",
     "perturbation_axis_packet.json",
@@ -5293,6 +5468,181 @@ VISUAL_REVIEW_MODEL_PHASE = {
     "reviewer_caution": "VISUAL-REVIEW-MODEL-00 is a future UI rendering contract data model only; it implements no UI and grants no final-answer, accepted-evidence, proof, truth, product, provider, memory, Atlas, deployment, federation, consciousness, Omega, ontology, benefit, market, compliance, audit, or professional authority.",
 }
 
+
+
+TRIADIC_OBSERVATION_CONTRACT_COMMAND = "python -c \"from pathlib import Path; Path('docs/TRIADIC_OBSERVATION_CONTRACT.md').read_text(encoding='utf-8')\"; python -m json.tool config/observation_contract/triadic_observation_contract_policy.v1.json >/dev/null; python -m json.tool schema/bridge/triadic_observation_contract_packet.schema.json >/dev/null; python -m json.tool schema/bridge/mode_shift_receipt.schema.json >/dev/null; python -m json.tool schema/bridge/observation_rights_profile.schema.json >/dev/null; python -m json.tool schema/bridge/user_recovery_options_packet.schema.json >/dev/null; python -m json.tool schema/bridge/observation_contract_non_authority_boundary.schema.json >/dev/null"
+TRIADIC_OBSERVATION_CONTRACT_ARTIFACTS = [
+    "docs/TRIADIC_OBSERVATION_CONTRACT.md",
+    "config/observation_contract/triadic_observation_contract_policy.v1.json",
+    "schema/bridge/triadic_observation_contract_packet.schema.json",
+    "schema/bridge/mode_shift_receipt.schema.json",
+    "schema/bridge/observation_rights_profile.schema.json",
+    "schema/bridge/user_recovery_options_packet.schema.json",
+    "schema/bridge/observation_contract_non_authority_boundary.schema.json",
+]
+TRIADIC_OBSERVATION_CONTRACT_DOCTRINE_LANGUAGE = [
+    "Triadic Observation Contract",
+    "Governed Attention Precedes Governed Intelligence.",
+    "The system must govern how the receipt is born.",
+    "A Triadic Observation Contract declares what the system may observe, at what resolution, under what consent, for what purpose, with what retention, with what recovery rights, and with what non-authority boundaries.",
+    "No silent mode shift.",
+    "Compression must remain reversible enough for audit, repair, and consent.",
+    "Canonical evidence comes before new abstraction.",
+    "Negative results are stewardship artifacts.",
+    "Discovery is not deployment.",
+    "Reciprocity budget must name exported burden.",
+    "Failure must be runnable.",
+    "User recovery is more than appeal.",
+    "Anti-priesthood interface means safety must be legible to unbelievers.",
+    "Minimal viable reality means one working receipt is worth more than ten named future layers.",
+    "Consent-bounded phase-lock means resonance, not absorption.",
+    "Beautiful names require boring tests.",
+    "TRIADIC-OBSERVATION-CONTRACT-DESIGN-00 does not change runtime behavior.",
+    "TRIADIC-OBSERVATION-CONTRACT-DESIGN-00 does not emit mode-shift receipts.",
+    "TRIADIC-OBSERVATION-CONTRACT-DESIGN-00 does not perform user recovery actions.",
+    "Human review remains required.",
+]
+TRIADIC_OBSERVATION_CONTRACT_DECLARATIONS = [
+    "allowed_observation_scope",
+    "observation_resolution",
+    "purpose_binding",
+    "consent_scope",
+    "retention_scope",
+    "replay_scope",
+    "disclosure_scope",
+    "federation_scope",
+    "recovery_rights",
+    "non_authority_boundaries",
+]
+TRIADIC_OBSERVATION_CONTRACT_NO_SILENT_MODE_SHIFT_TRIGGERS = [
+    "observation_depth_increase",
+    "durable_retention_increase",
+    "execution_posture_change",
+    "disclosure_scope_change",
+    "trace_export_request",
+    "pmr_federation_request",
+    "replay_rehydration_request",
+    "source_expansion_decision",
+    "pathway_prior_candidate_use",
+    "ces_similarity_query",
+    "user_recovery_action",
+    "sophia_nonpass_or_uncertain",
+    "tac_full_audit_request",
+]
+TRIADIC_OBSERVATION_CONTRACT_RECOVERY_RIGHTS = [
+    "inspect",
+    "correct",
+    "revoke",
+    "quarantine",
+    "replay",
+    "downgrade",
+    "rehydrate",
+    "export_when_authorized",
+    "reset",
+    "request_human_review",
+]
+TRIADIC_OBSERVATION_CONTRACT_RECIPROCITY_BUDGET_DIMENSIONS = [
+    "human_review_time",
+    "privacy_exposure",
+    "compute_cost",
+    "local_storage_cost",
+    "pmr_retention_cost",
+    "federated_availability_burden",
+    "correction_burden",
+    "audit_burden",
+    "user_confusion_burden",
+]
+TRIADIC_OBSERVATION_CONTRACT_FAILURE_CLASSES = [
+    "silent_mode_shift",
+    "observation_contract_missing",
+    "consent_scope_missing",
+    "retention_scope_missing",
+    "recovery_path_missing",
+    "compression_without_replay_path",
+    "negative_result_discarded",
+    "operationalization_boundary_skipped",
+    "reciprocity_budget_omitted",
+    "failure_mode_not_runnable",
+    "anti_priesthood_interface_violation",
+    "minimal_viable_reality_skipped",
+    "consent_bounded_phaselock_violation",
+    "beautiful_name_without_boring_test",
+]
+TRIADIC_OBSERVATION_CONTRACT_PRIOR_PHASE_RELATION = [
+    "TELEMETRY-APERTURE-DESIGN-00 defines aperture policy.",
+    "TAC-POLICY-SIMULATION-00 rehearses TAC policy decisions.",
+    "COHERENCE-EVENT-SIGNATURES-DESIGN-00 defines CES event receipts.",
+    "CES-PMR-INDEXING-DESIGN-00 defines CES as a compact PMR index, not a PMR source replacement.",
+    "PMR-PATHWAY-PRIORS-DESIGN-DOCTRINE-00 defines route priors as revocable review recommendations.",
+    "AI-RECEIPT-ARCHITECTURE-00 exposes what happened to humans.",
+    "SOPHIA-EXECUTIVE-AUDIT-REALITY-CHECK-00 distinguishes internal builder output from external Sophia agency.",
+    "VALIDATION-TIERING-PROVENANCE-00 records validation confidence scope.",
+]
+TRIADIC_OBSERVATION_CONTRACT_BLOCKED_CLAIMS = [
+    "Observation contract is runtime control",
+    "Observation contract authorizes surveillance",
+    "Observation contract authorizes memory write",
+    "Observation contract authorizes trace export",
+    "Observation contract authorizes PMR federation",
+    "Observation contract is product release",
+    "Observation contract certifies truth",
+    "Observation contract authorizes final answers",
+    "Observation contract grants accepted-evidence authority",
+    "Mode shift can be silent",
+    "Mode shift receipt is consent execution",
+    "Recovery option performs memory write",
+    "Recovery option authorizes trace export",
+    "User recovery means automatic deletion",
+    "Consent-bounded phase-lock means dependence",
+    "Beautiful name is sufficient validation",
+    "Minimal viable reality means product release",
+    "Reciprocity budget proves ethical symmetry",
+    "Failure harness proves safety",
+]
+TRIADIC_OBSERVATION_CONTRACT_CLAIM_ALLOWED = "TRIADIC-OBSERVATION-CONTRACT-DESIGN-00 defines a design-only, consent-bounded governed-attention contract for observation scope, resolution, purpose, consent, retention, replay, disclosure, federation, recovery rights, reciprocity budget, and non-authority boundaries without changing runtime behavior, emitting mode-shift receipts, performing recovery actions, writing memory, admitting Atlas memory, exporting traces, federating PMR, releasing product, certifying truth, or granting final-answer or accepted-evidence authority."
+TRIADIC_OBSERVATION_CONTRACT_DASHBOARD_SUMMARY = {
+    "policy_status": "active_design_only",
+    "runtime_behavior_changed": False,
+    "observation_contract_enabled": False,
+    "mode_shift_receipts_emitted": False,
+    "user_recovery_actions_performed": False,
+    "telemetry_behavior_changed": False,
+    "memory_write_performed": False,
+    "atlas_memory_admission_performed": False,
+    "trace_export_performed": False,
+    "pmr_federation_performed": False,
+    "provider_runtime_performed": False,
+    "network_call_performed": False,
+    "product_release_performed": False,
+    "observation_contract_definition": "consent_bounded_governed_attention_contract",
+    "observation_contract_is_not_runtime_control": True,
+    "observation_contract_is_not_surveillance_authorization": True,
+    "observation_contract_is_not_memory_write": True,
+    "observation_contract_is_not_trace_export_authorization": True,
+    "observation_contract_is_not_federation_authorization": True,
+    "observation_contract_is_not_product_release": True,
+    "observation_contract_is_not_truth_certification": True,
+    "observation_contract_is_not_final_answer_authority": True,
+    "observation_contract_is_not_accepted_evidence_authority": True,
+    "observation_contract_requires_human_review": True,
+}
+TRIADIC_OBSERVATION_CONTRACT_PHASE = {
+    "phase_id": "TRIADIC-OBSERVATION-CONTRACT-DESIGN-00",
+    "repo": "pdxvoiceteacher/CoherenceLattice",
+    "source_phase": "TRIADIC-OBSERVATION-CONTRACT-DESIGN-00",
+    "status": "accepted_local_validation",
+    "publication_status": "dashboard_synced",
+    "evidence_type": "design_doctrine_config_schema_inspection",
+    "product_posture": "design_only_observation_contract_no_runtime_behavior_or_receipt_emission",
+    "authority_posture": "non_authoritative",
+    "public_claim_boundary": "design_only_governed_attention_contract_no_surveillance_export_federation_memory_product_truth_final_answer_or_accepted_evidence_authority",
+    "primary_artifacts": TRIADIC_OBSERVATION_CONTRACT_ARTIFACTS,
+    "dashboard_summary": TRIADIC_OBSERVATION_CONTRACT_DASHBOARD_SUMMARY,
+    "reproduction_command_summary": TRIADIC_OBSERVATION_CONTRACT_COMMAND,
+    "claims_blocked": TRIADIC_OBSERVATION_CONTRACT_BLOCKED_CLAIMS,
+    "claim_allowed": TRIADIC_OBSERVATION_CONTRACT_CLAIM_ALLOWED,
+    "reviewer_caution": "TRIADIC-OBSERVATION-CONTRACT-DESIGN-00 is design doctrine only; it changes no runtime behavior, emits no mode-shift receipts, performs no recovery actions, writes no memory, admits no Atlas memory, exports no traces, federates no PMR, releases no product, and grants no surveillance, truth, final-answer, or accepted-evidence authority.",
+}
 
 PERTURBATION_OBSERVATION_ARTIFACTS = [
     "perturbation_observation_packet.json",
@@ -6585,6 +6935,181 @@ STATIC_HTML_USABILITY_REVIEW_PHASE = {
     "reviewer_caution": "STATIC-HTML-USABILITY-REVIEW-SEED-00 is a deterministic local-test usability scaffold only; it is not a real user study, human-subject study, human benefit proof, market validation, product readiness, UI release, product release, deployment, provider runtime, memory write, or Atlas admission.",
 }
 
+
+
+TRIADIC_OBSERVATION_CONTRACT_COMMAND = "python -c \"from pathlib import Path; Path('docs/TRIADIC_OBSERVATION_CONTRACT.md').read_text(encoding='utf-8')\"; python -m json.tool config/observation_contract/triadic_observation_contract_policy.v1.json >/dev/null; python -m json.tool schema/bridge/triadic_observation_contract_packet.schema.json >/dev/null; python -m json.tool schema/bridge/mode_shift_receipt.schema.json >/dev/null; python -m json.tool schema/bridge/observation_rights_profile.schema.json >/dev/null; python -m json.tool schema/bridge/user_recovery_options_packet.schema.json >/dev/null; python -m json.tool schema/bridge/observation_contract_non_authority_boundary.schema.json >/dev/null"
+TRIADIC_OBSERVATION_CONTRACT_ARTIFACTS = [
+    "docs/TRIADIC_OBSERVATION_CONTRACT.md",
+    "config/observation_contract/triadic_observation_contract_policy.v1.json",
+    "schema/bridge/triadic_observation_contract_packet.schema.json",
+    "schema/bridge/mode_shift_receipt.schema.json",
+    "schema/bridge/observation_rights_profile.schema.json",
+    "schema/bridge/user_recovery_options_packet.schema.json",
+    "schema/bridge/observation_contract_non_authority_boundary.schema.json",
+]
+TRIADIC_OBSERVATION_CONTRACT_DOCTRINE_LANGUAGE = [
+    "Triadic Observation Contract",
+    "Governed Attention Precedes Governed Intelligence.",
+    "The system must govern how the receipt is born.",
+    "A Triadic Observation Contract declares what the system may observe, at what resolution, under what consent, for what purpose, with what retention, with what recovery rights, and with what non-authority boundaries.",
+    "No silent mode shift.",
+    "Compression must remain reversible enough for audit, repair, and consent.",
+    "Canonical evidence comes before new abstraction.",
+    "Negative results are stewardship artifacts.",
+    "Discovery is not deployment.",
+    "Reciprocity budget must name exported burden.",
+    "Failure must be runnable.",
+    "User recovery is more than appeal.",
+    "Anti-priesthood interface means safety must be legible to unbelievers.",
+    "Minimal viable reality means one working receipt is worth more than ten named future layers.",
+    "Consent-bounded phase-lock means resonance, not absorption.",
+    "Beautiful names require boring tests.",
+    "TRIADIC-OBSERVATION-CONTRACT-DESIGN-00 does not change runtime behavior.",
+    "TRIADIC-OBSERVATION-CONTRACT-DESIGN-00 does not emit mode-shift receipts.",
+    "TRIADIC-OBSERVATION-CONTRACT-DESIGN-00 does not perform user recovery actions.",
+    "Human review remains required.",
+]
+TRIADIC_OBSERVATION_CONTRACT_DECLARATIONS = [
+    "allowed_observation_scope",
+    "observation_resolution",
+    "purpose_binding",
+    "consent_scope",
+    "retention_scope",
+    "replay_scope",
+    "disclosure_scope",
+    "federation_scope",
+    "recovery_rights",
+    "non_authority_boundaries",
+]
+TRIADIC_OBSERVATION_CONTRACT_NO_SILENT_MODE_SHIFT_TRIGGERS = [
+    "observation_depth_increase",
+    "durable_retention_increase",
+    "execution_posture_change",
+    "disclosure_scope_change",
+    "trace_export_request",
+    "pmr_federation_request",
+    "replay_rehydration_request",
+    "source_expansion_decision",
+    "pathway_prior_candidate_use",
+    "ces_similarity_query",
+    "user_recovery_action",
+    "sophia_nonpass_or_uncertain",
+    "tac_full_audit_request",
+]
+TRIADIC_OBSERVATION_CONTRACT_RECOVERY_RIGHTS = [
+    "inspect",
+    "correct",
+    "revoke",
+    "quarantine",
+    "replay",
+    "downgrade",
+    "rehydrate",
+    "export_when_authorized",
+    "reset",
+    "request_human_review",
+]
+TRIADIC_OBSERVATION_CONTRACT_RECIPROCITY_BUDGET_DIMENSIONS = [
+    "human_review_time",
+    "privacy_exposure",
+    "compute_cost",
+    "local_storage_cost",
+    "pmr_retention_cost",
+    "federated_availability_burden",
+    "correction_burden",
+    "audit_burden",
+    "user_confusion_burden",
+]
+TRIADIC_OBSERVATION_CONTRACT_FAILURE_CLASSES = [
+    "silent_mode_shift",
+    "observation_contract_missing",
+    "consent_scope_missing",
+    "retention_scope_missing",
+    "recovery_path_missing",
+    "compression_without_replay_path",
+    "negative_result_discarded",
+    "operationalization_boundary_skipped",
+    "reciprocity_budget_omitted",
+    "failure_mode_not_runnable",
+    "anti_priesthood_interface_violation",
+    "minimal_viable_reality_skipped",
+    "consent_bounded_phaselock_violation",
+    "beautiful_name_without_boring_test",
+]
+TRIADIC_OBSERVATION_CONTRACT_PRIOR_PHASE_RELATION = [
+    "TELEMETRY-APERTURE-DESIGN-00 defines aperture policy.",
+    "TAC-POLICY-SIMULATION-00 rehearses TAC policy decisions.",
+    "COHERENCE-EVENT-SIGNATURES-DESIGN-00 defines CES event receipts.",
+    "CES-PMR-INDEXING-DESIGN-00 defines CES as a compact PMR index, not a PMR source replacement.",
+    "PMR-PATHWAY-PRIORS-DESIGN-DOCTRINE-00 defines route priors as revocable review recommendations.",
+    "AI-RECEIPT-ARCHITECTURE-00 exposes what happened to humans.",
+    "SOPHIA-EXECUTIVE-AUDIT-REALITY-CHECK-00 distinguishes internal builder output from external Sophia agency.",
+    "VALIDATION-TIERING-PROVENANCE-00 records validation confidence scope.",
+]
+TRIADIC_OBSERVATION_CONTRACT_BLOCKED_CLAIMS = [
+    "Observation contract is runtime control",
+    "Observation contract authorizes surveillance",
+    "Observation contract authorizes memory write",
+    "Observation contract authorizes trace export",
+    "Observation contract authorizes PMR federation",
+    "Observation contract is product release",
+    "Observation contract certifies truth",
+    "Observation contract authorizes final answers",
+    "Observation contract grants accepted-evidence authority",
+    "Mode shift can be silent",
+    "Mode shift receipt is consent execution",
+    "Recovery option performs memory write",
+    "Recovery option authorizes trace export",
+    "User recovery means automatic deletion",
+    "Consent-bounded phase-lock means dependence",
+    "Beautiful name is sufficient validation",
+    "Minimal viable reality means product release",
+    "Reciprocity budget proves ethical symmetry",
+    "Failure harness proves safety",
+]
+TRIADIC_OBSERVATION_CONTRACT_CLAIM_ALLOWED = "TRIADIC-OBSERVATION-CONTRACT-DESIGN-00 defines a design-only, consent-bounded governed-attention contract for observation scope, resolution, purpose, consent, retention, replay, disclosure, federation, recovery rights, reciprocity budget, and non-authority boundaries without changing runtime behavior, emitting mode-shift receipts, performing recovery actions, writing memory, admitting Atlas memory, exporting traces, federating PMR, releasing product, certifying truth, or granting final-answer or accepted-evidence authority."
+TRIADIC_OBSERVATION_CONTRACT_DASHBOARD_SUMMARY = {
+    "policy_status": "active_design_only",
+    "runtime_behavior_changed": False,
+    "observation_contract_enabled": False,
+    "mode_shift_receipts_emitted": False,
+    "user_recovery_actions_performed": False,
+    "telemetry_behavior_changed": False,
+    "memory_write_performed": False,
+    "atlas_memory_admission_performed": False,
+    "trace_export_performed": False,
+    "pmr_federation_performed": False,
+    "provider_runtime_performed": False,
+    "network_call_performed": False,
+    "product_release_performed": False,
+    "observation_contract_definition": "consent_bounded_governed_attention_contract",
+    "observation_contract_is_not_runtime_control": True,
+    "observation_contract_is_not_surveillance_authorization": True,
+    "observation_contract_is_not_memory_write": True,
+    "observation_contract_is_not_trace_export_authorization": True,
+    "observation_contract_is_not_federation_authorization": True,
+    "observation_contract_is_not_product_release": True,
+    "observation_contract_is_not_truth_certification": True,
+    "observation_contract_is_not_final_answer_authority": True,
+    "observation_contract_is_not_accepted_evidence_authority": True,
+    "observation_contract_requires_human_review": True,
+}
+TRIADIC_OBSERVATION_CONTRACT_PHASE = {
+    "phase_id": "TRIADIC-OBSERVATION-CONTRACT-DESIGN-00",
+    "repo": "pdxvoiceteacher/CoherenceLattice",
+    "source_phase": "TRIADIC-OBSERVATION-CONTRACT-DESIGN-00",
+    "status": "accepted_local_validation",
+    "publication_status": "dashboard_synced",
+    "evidence_type": "design_doctrine_config_schema_inspection",
+    "product_posture": "design_only_observation_contract_no_runtime_behavior_or_receipt_emission",
+    "authority_posture": "non_authoritative",
+    "public_claim_boundary": "design_only_governed_attention_contract_no_surveillance_export_federation_memory_product_truth_final_answer_or_accepted_evidence_authority",
+    "primary_artifacts": TRIADIC_OBSERVATION_CONTRACT_ARTIFACTS,
+    "dashboard_summary": TRIADIC_OBSERVATION_CONTRACT_DASHBOARD_SUMMARY,
+    "reproduction_command_summary": TRIADIC_OBSERVATION_CONTRACT_COMMAND,
+    "claims_blocked": TRIADIC_OBSERVATION_CONTRACT_BLOCKED_CLAIMS,
+    "claim_allowed": TRIADIC_OBSERVATION_CONTRACT_CLAIM_ALLOWED,
+    "reviewer_caution": "TRIADIC-OBSERVATION-CONTRACT-DESIGN-00 is design doctrine only; it changes no runtime behavior, emits no mode-shift receipts, performs no recovery actions, writes no memory, admits no Atlas memory, exports no traces, federates no PMR, releases no product, and grants no surveillance, truth, final-answer, or accepted-evidence authority.",
+}
 
 PERTURBATION_OBSERVATION_ARTIFACTS = [
     "perturbation_observation_packet.json",
@@ -8658,6 +9183,181 @@ TELEMETRY_APERTURE_DESIGN_PHASE = {
     "reviewer_caution": "TELEMETRY-APERTURE-DESIGN-00 is design-only consent-bounded observability aperture policy; it changes no runtime behavior and grants no surveillance, trace export, federation, memory, product, certification, deployment, final-answer, accepted-evidence, Atlas, human benefit, market, consciousness, Omega, or ontology authority.",
 }
 
+
+
+TRIADIC_OBSERVATION_CONTRACT_COMMAND = "python -c \"from pathlib import Path; Path('docs/TRIADIC_OBSERVATION_CONTRACT.md').read_text(encoding='utf-8')\"; python -m json.tool config/observation_contract/triadic_observation_contract_policy.v1.json >/dev/null; python -m json.tool schema/bridge/triadic_observation_contract_packet.schema.json >/dev/null; python -m json.tool schema/bridge/mode_shift_receipt.schema.json >/dev/null; python -m json.tool schema/bridge/observation_rights_profile.schema.json >/dev/null; python -m json.tool schema/bridge/user_recovery_options_packet.schema.json >/dev/null; python -m json.tool schema/bridge/observation_contract_non_authority_boundary.schema.json >/dev/null"
+TRIADIC_OBSERVATION_CONTRACT_ARTIFACTS = [
+    "docs/TRIADIC_OBSERVATION_CONTRACT.md",
+    "config/observation_contract/triadic_observation_contract_policy.v1.json",
+    "schema/bridge/triadic_observation_contract_packet.schema.json",
+    "schema/bridge/mode_shift_receipt.schema.json",
+    "schema/bridge/observation_rights_profile.schema.json",
+    "schema/bridge/user_recovery_options_packet.schema.json",
+    "schema/bridge/observation_contract_non_authority_boundary.schema.json",
+]
+TRIADIC_OBSERVATION_CONTRACT_DOCTRINE_LANGUAGE = [
+    "Triadic Observation Contract",
+    "Governed Attention Precedes Governed Intelligence.",
+    "The system must govern how the receipt is born.",
+    "A Triadic Observation Contract declares what the system may observe, at what resolution, under what consent, for what purpose, with what retention, with what recovery rights, and with what non-authority boundaries.",
+    "No silent mode shift.",
+    "Compression must remain reversible enough for audit, repair, and consent.",
+    "Canonical evidence comes before new abstraction.",
+    "Negative results are stewardship artifacts.",
+    "Discovery is not deployment.",
+    "Reciprocity budget must name exported burden.",
+    "Failure must be runnable.",
+    "User recovery is more than appeal.",
+    "Anti-priesthood interface means safety must be legible to unbelievers.",
+    "Minimal viable reality means one working receipt is worth more than ten named future layers.",
+    "Consent-bounded phase-lock means resonance, not absorption.",
+    "Beautiful names require boring tests.",
+    "TRIADIC-OBSERVATION-CONTRACT-DESIGN-00 does not change runtime behavior.",
+    "TRIADIC-OBSERVATION-CONTRACT-DESIGN-00 does not emit mode-shift receipts.",
+    "TRIADIC-OBSERVATION-CONTRACT-DESIGN-00 does not perform user recovery actions.",
+    "Human review remains required.",
+]
+TRIADIC_OBSERVATION_CONTRACT_DECLARATIONS = [
+    "allowed_observation_scope",
+    "observation_resolution",
+    "purpose_binding",
+    "consent_scope",
+    "retention_scope",
+    "replay_scope",
+    "disclosure_scope",
+    "federation_scope",
+    "recovery_rights",
+    "non_authority_boundaries",
+]
+TRIADIC_OBSERVATION_CONTRACT_NO_SILENT_MODE_SHIFT_TRIGGERS = [
+    "observation_depth_increase",
+    "durable_retention_increase",
+    "execution_posture_change",
+    "disclosure_scope_change",
+    "trace_export_request",
+    "pmr_federation_request",
+    "replay_rehydration_request",
+    "source_expansion_decision",
+    "pathway_prior_candidate_use",
+    "ces_similarity_query",
+    "user_recovery_action",
+    "sophia_nonpass_or_uncertain",
+    "tac_full_audit_request",
+]
+TRIADIC_OBSERVATION_CONTRACT_RECOVERY_RIGHTS = [
+    "inspect",
+    "correct",
+    "revoke",
+    "quarantine",
+    "replay",
+    "downgrade",
+    "rehydrate",
+    "export_when_authorized",
+    "reset",
+    "request_human_review",
+]
+TRIADIC_OBSERVATION_CONTRACT_RECIPROCITY_BUDGET_DIMENSIONS = [
+    "human_review_time",
+    "privacy_exposure",
+    "compute_cost",
+    "local_storage_cost",
+    "pmr_retention_cost",
+    "federated_availability_burden",
+    "correction_burden",
+    "audit_burden",
+    "user_confusion_burden",
+]
+TRIADIC_OBSERVATION_CONTRACT_FAILURE_CLASSES = [
+    "silent_mode_shift",
+    "observation_contract_missing",
+    "consent_scope_missing",
+    "retention_scope_missing",
+    "recovery_path_missing",
+    "compression_without_replay_path",
+    "negative_result_discarded",
+    "operationalization_boundary_skipped",
+    "reciprocity_budget_omitted",
+    "failure_mode_not_runnable",
+    "anti_priesthood_interface_violation",
+    "minimal_viable_reality_skipped",
+    "consent_bounded_phaselock_violation",
+    "beautiful_name_without_boring_test",
+]
+TRIADIC_OBSERVATION_CONTRACT_PRIOR_PHASE_RELATION = [
+    "TELEMETRY-APERTURE-DESIGN-00 defines aperture policy.",
+    "TAC-POLICY-SIMULATION-00 rehearses TAC policy decisions.",
+    "COHERENCE-EVENT-SIGNATURES-DESIGN-00 defines CES event receipts.",
+    "CES-PMR-INDEXING-DESIGN-00 defines CES as a compact PMR index, not a PMR source replacement.",
+    "PMR-PATHWAY-PRIORS-DESIGN-DOCTRINE-00 defines route priors as revocable review recommendations.",
+    "AI-RECEIPT-ARCHITECTURE-00 exposes what happened to humans.",
+    "SOPHIA-EXECUTIVE-AUDIT-REALITY-CHECK-00 distinguishes internal builder output from external Sophia agency.",
+    "VALIDATION-TIERING-PROVENANCE-00 records validation confidence scope.",
+]
+TRIADIC_OBSERVATION_CONTRACT_BLOCKED_CLAIMS = [
+    "Observation contract is runtime control",
+    "Observation contract authorizes surveillance",
+    "Observation contract authorizes memory write",
+    "Observation contract authorizes trace export",
+    "Observation contract authorizes PMR federation",
+    "Observation contract is product release",
+    "Observation contract certifies truth",
+    "Observation contract authorizes final answers",
+    "Observation contract grants accepted-evidence authority",
+    "Mode shift can be silent",
+    "Mode shift receipt is consent execution",
+    "Recovery option performs memory write",
+    "Recovery option authorizes trace export",
+    "User recovery means automatic deletion",
+    "Consent-bounded phase-lock means dependence",
+    "Beautiful name is sufficient validation",
+    "Minimal viable reality means product release",
+    "Reciprocity budget proves ethical symmetry",
+    "Failure harness proves safety",
+]
+TRIADIC_OBSERVATION_CONTRACT_CLAIM_ALLOWED = "TRIADIC-OBSERVATION-CONTRACT-DESIGN-00 defines a design-only, consent-bounded governed-attention contract for observation scope, resolution, purpose, consent, retention, replay, disclosure, federation, recovery rights, reciprocity budget, and non-authority boundaries without changing runtime behavior, emitting mode-shift receipts, performing recovery actions, writing memory, admitting Atlas memory, exporting traces, federating PMR, releasing product, certifying truth, or granting final-answer or accepted-evidence authority."
+TRIADIC_OBSERVATION_CONTRACT_DASHBOARD_SUMMARY = {
+    "policy_status": "active_design_only",
+    "runtime_behavior_changed": False,
+    "observation_contract_enabled": False,
+    "mode_shift_receipts_emitted": False,
+    "user_recovery_actions_performed": False,
+    "telemetry_behavior_changed": False,
+    "memory_write_performed": False,
+    "atlas_memory_admission_performed": False,
+    "trace_export_performed": False,
+    "pmr_federation_performed": False,
+    "provider_runtime_performed": False,
+    "network_call_performed": False,
+    "product_release_performed": False,
+    "observation_contract_definition": "consent_bounded_governed_attention_contract",
+    "observation_contract_is_not_runtime_control": True,
+    "observation_contract_is_not_surveillance_authorization": True,
+    "observation_contract_is_not_memory_write": True,
+    "observation_contract_is_not_trace_export_authorization": True,
+    "observation_contract_is_not_federation_authorization": True,
+    "observation_contract_is_not_product_release": True,
+    "observation_contract_is_not_truth_certification": True,
+    "observation_contract_is_not_final_answer_authority": True,
+    "observation_contract_is_not_accepted_evidence_authority": True,
+    "observation_contract_requires_human_review": True,
+}
+TRIADIC_OBSERVATION_CONTRACT_PHASE = {
+    "phase_id": "TRIADIC-OBSERVATION-CONTRACT-DESIGN-00",
+    "repo": "pdxvoiceteacher/CoherenceLattice",
+    "source_phase": "TRIADIC-OBSERVATION-CONTRACT-DESIGN-00",
+    "status": "accepted_local_validation",
+    "publication_status": "dashboard_synced",
+    "evidence_type": "design_doctrine_config_schema_inspection",
+    "product_posture": "design_only_observation_contract_no_runtime_behavior_or_receipt_emission",
+    "authority_posture": "non_authoritative",
+    "public_claim_boundary": "design_only_governed_attention_contract_no_surveillance_export_federation_memory_product_truth_final_answer_or_accepted_evidence_authority",
+    "primary_artifacts": TRIADIC_OBSERVATION_CONTRACT_ARTIFACTS,
+    "dashboard_summary": TRIADIC_OBSERVATION_CONTRACT_DASHBOARD_SUMMARY,
+    "reproduction_command_summary": TRIADIC_OBSERVATION_CONTRACT_COMMAND,
+    "claims_blocked": TRIADIC_OBSERVATION_CONTRACT_BLOCKED_CLAIMS,
+    "claim_allowed": TRIADIC_OBSERVATION_CONTRACT_CLAIM_ALLOWED,
+    "reviewer_caution": "TRIADIC-OBSERVATION-CONTRACT-DESIGN-00 is design doctrine only; it changes no runtime behavior, emits no mode-shift receipts, performs no recovery actions, writes no memory, admits no Atlas memory, exports no traces, federates no PMR, releases no product, and grants no surveillance, truth, final-answer, or accepted-evidence authority.",
+}
 
 PERTURBATION_OBSERVATION_ARTIFACTS = [
     "perturbation_observation_packet.json",
@@ -10855,6 +11555,7 @@ TAC_AI_RECEIPT_EVENT_LINK_PHASE,
 PMR_PATHWAY_PRIORS_DESIGN_PHASE,
 CES_DESIGN_PHASE,
 CES_PMR_INDEXING_DESIGN_PHASE,
+TRIADIC_OBSERVATION_CONTRACT_PHASE,
 PERTURBATION_OBSERVATION_CAPTURE_PHASE,
 PERTURBATION_TRUNK_MAPPING_PHASE,
 PERTURBATION_RESIDUAL_NOVELTY_MAP_PHASE,
@@ -13082,6 +13783,19 @@ BOUNDARIES.extend(
         CES_PMR_INDEXING_DESIGN_COMMAND,
         "Blocked overclaim examples for CES PMR Indexing Design publication boundaries.",
         *CES_PMR_INDEXING_DESIGN_BLOCKED_CLAIMS,
+        TRIADIC_OBSERVATION_CONTRACT_CLAIM_ALLOWED,
+        *TRIADIC_OBSERVATION_CONTRACT_ARTIFACTS,
+        *TRIADIC_OBSERVATION_CONTRACT_DOCTRINE_LANGUAGE,
+        *TRIADIC_OBSERVATION_CONTRACT_DECLARATIONS,
+        *TRIADIC_OBSERVATION_CONTRACT_NO_SILENT_MODE_SHIFT_TRIGGERS,
+        *TRIADIC_OBSERVATION_CONTRACT_RECOVERY_RIGHTS,
+        *TRIADIC_OBSERVATION_CONTRACT_RECIPROCITY_BUDGET_DIMENSIONS,
+        *TRIADIC_OBSERVATION_CONTRACT_FAILURE_CLASSES,
+        *TRIADIC_OBSERVATION_CONTRACT_PRIOR_PHASE_RELATION,
+        *TRIADIC_OBSERVATION_CONTRACT_BLOCKED_CLAIMS,
+        TRIADIC_OBSERVATION_CONTRACT_COMMAND,
+        "Publication sync grants no runtime authority.",
+        "TRIADIC-OBSERVATION-CONTRACT-DESIGN-00 grants no runtime authority.",
     ]
 )
 BOUNDARIES.extend(
@@ -13750,6 +14464,31 @@ def dashboard_payload() -> dict[str, Any]:
         "ces_pmr_index_similarity_is_not_identity_merge": True,
         "ces_pmr_source_expansion_required_for_decisions": True,
         "ces_pmr_human_review_required": True,
+        "triadic_observation_contract_design_00_indexed": True,
+        "observation_contract_policy_status": "active_design_only",
+        "observation_contract_runtime_behavior_changed": False,
+        "observation_contract_enabled": False,
+        "observation_contract_mode_shift_receipts_emitted": False,
+        "observation_contract_user_recovery_actions_performed": False,
+        "observation_contract_telemetry_behavior_changed": False,
+        "observation_contract_memory_write_performed": False,
+        "observation_contract_atlas_memory_admission_performed": False,
+        "observation_contract_trace_export_performed": False,
+        "observation_contract_pmr_federation_performed": False,
+        "observation_contract_provider_runtime_performed": False,
+        "observation_contract_network_call_performed": False,
+        "observation_contract_product_release_performed": False,
+        "observation_contract_definition": "consent_bounded_governed_attention_contract",
+        "observation_contract_is_not_runtime_control": True,
+        "observation_contract_is_not_surveillance_authorization": True,
+        "observation_contract_is_not_memory_write": True,
+        "observation_contract_is_not_trace_export_authorization": True,
+        "observation_contract_is_not_federation_authorization": True,
+        "observation_contract_is_not_product_release": True,
+        "observation_contract_is_not_truth_certification": True,
+        "observation_contract_is_not_final_answer_authority": True,
+        "observation_contract_is_not_accepted_evidence_authority": True,
+        "observation_contract_requires_human_review": True,
         "not_validation_tiering_product_release": True,
         "not_validation_tiering_truth_certification": True,
         "not_validation_tiering_compliance_certification": True,
@@ -13843,6 +14582,7 @@ def reproducibility_index() -> dict[str, Any]:
                 {"name": "PMR-PATHWAY-PRIORS-DESIGN-DOCTRINE-00 config/schema inspection", "command": PMR_PATHWAY_PRIORS_DESIGN_COMMAND},
                 {"name": "COHERENCE-EVENT-SIGNATURES-DESIGN-00 config/schema inspection", "command": CES_DESIGN_COMMAND},
                 {"name": "CES-PMR-INDEXING-DESIGN-00 config/schema inspection", "command": CES_PMR_INDEXING_DESIGN_COMMAND},
+                {"name": "TRIADIC-OBSERVATION-CONTRACT-DESIGN-00 config/schema inspection", "command": TRIADIC_OBSERVATION_CONTRACT_COMMAND},
                 {"name": "Perturbation novelty lane Python entrypoint", "command": PERTURBATION_NOVELTY_LANE_COMMAND},
                 {"name": "Perturbation structure-affordance theorem card Python entrypoint", "command": PERTURBATION_STRUCTURE_AFFORDANCE_CARD_COMMAND},
                 {"name": "PMR Context Availability Ledger acceptance", "command": PMR_CONTEXT_AVAILABILITY_LEDGER_00_COMMAND},
@@ -14695,6 +15435,31 @@ def status_payload() -> dict[str, Any]:
         "ces_pmr_index_similarity_is_not_identity_merge": True,
         "ces_pmr_source_expansion_required_for_decisions": True,
         "ces_pmr_human_review_required": True,
+        "triadic_observation_contract_design_00_indexed": True,
+        "observation_contract_policy_status": "active_design_only",
+        "observation_contract_runtime_behavior_changed": False,
+        "observation_contract_enabled": False,
+        "observation_contract_mode_shift_receipts_emitted": False,
+        "observation_contract_user_recovery_actions_performed": False,
+        "observation_contract_telemetry_behavior_changed": False,
+        "observation_contract_memory_write_performed": False,
+        "observation_contract_atlas_memory_admission_performed": False,
+        "observation_contract_trace_export_performed": False,
+        "observation_contract_pmr_federation_performed": False,
+        "observation_contract_provider_runtime_performed": False,
+        "observation_contract_network_call_performed": False,
+        "observation_contract_product_release_performed": False,
+        "observation_contract_definition": "consent_bounded_governed_attention_contract",
+        "observation_contract_is_not_runtime_control": True,
+        "observation_contract_is_not_surveillance_authorization": True,
+        "observation_contract_is_not_memory_write": True,
+        "observation_contract_is_not_trace_export_authorization": True,
+        "observation_contract_is_not_federation_authorization": True,
+        "observation_contract_is_not_product_release": True,
+        "observation_contract_is_not_truth_certification": True,
+        "observation_contract_is_not_final_answer_authority": True,
+        "observation_contract_is_not_accepted_evidence_authority": True,
+        "observation_contract_requires_human_review": True,
         "not_validation_tiering_product_release": True,
         "not_validation_tiering_truth_certification": True,
         "not_validation_tiering_compliance_certification": True,
@@ -14878,10 +15643,19 @@ def docs() -> dict[str, str]:
     ces_pmr_indexing_failure_classes = "\n".join(f"- {failure_class}" for failure_class in CES_PMR_INDEXING_DESIGN_FAILURE_CLASSES)
     ces_pmr_indexing_relation = "\n".join(f"- {relation}" for relation in CES_PMR_INDEXING_DESIGN_RELATION)
     ces_pmr_indexing_repro_fragments = "\n".join(f"- {fragment}" for fragment in CES_PMR_INDEXING_DESIGN_REPRO_FRAGMENTS)
+    triadic_observation_contract_artifacts = "\n".join(f"- {artifact}" for artifact in TRIADIC_OBSERVATION_CONTRACT_ARTIFACTS)
+    triadic_observation_contract_doctrine = "\n".join(f"- {phrase}" for phrase in TRIADIC_OBSERVATION_CONTRACT_DOCTRINE_LANGUAGE)
+    triadic_observation_contract_declarations = "\n".join(f"- {declaration}" for declaration in TRIADIC_OBSERVATION_CONTRACT_DECLARATIONS)
+    triadic_observation_contract_triggers = "\n".join(f"- {trigger}" for trigger in TRIADIC_OBSERVATION_CONTRACT_NO_SILENT_MODE_SHIFT_TRIGGERS)
+    triadic_observation_contract_recovery = "\n".join(f"- {right}" for right in TRIADIC_OBSERVATION_CONTRACT_RECOVERY_RIGHTS)
+    triadic_observation_contract_reciprocity = "\n".join(f"- {dimension}" for dimension in TRIADIC_OBSERVATION_CONTRACT_RECIPROCITY_BUDGET_DIMENSIONS)
+    triadic_observation_contract_failures = "\n".join(f"- {failure_class}" for failure_class in TRIADIC_OBSERVATION_CONTRACT_FAILURE_CLASSES)
+    triadic_observation_contract_relation = "\n".join(f"- {relation}" for relation in TRIADIC_OBSERVATION_CONTRACT_PRIOR_PHASE_RELATION)
+    triadic_observation_contract_blocked = "\n".join(f"- {claim}" for claim in TRIADIC_OBSERVATION_CONTRACT_BLOCKED_CLAIMS)
     return {
         "README.md": "# Experiment Suite Docs\n\nPublic reviewer documentation for the claim-bounded reproducibility dashboard.\n",
         "assets/README.md": "# Assets\n\nOptional static assets for the public reproducibility dashboard.\n",
-        "index.md": f"# Public Experiment Suite Dashboard\n\nThis dashboard presents accepted evidence for reviewer orientation. It is not truth certification, not deployment authority, not final answer release, local fixture only, and requires external peer review.\n\n## Accepted evidence\n\n| Phase | Repo | Status | What this supports | Reviewer caution |\n| --- | --- | --- | --- | --- |\n{phase_rows}\n\n## Reviewer path\n\nStart with claim boundaries, then read the governed artifact cognition paper, WAVE Rosetta paper, SONYA-AEGIS-SMOKE-02, WAVE family, UNI-02D Sonya gate, and RETRO-LANE-00, Public Utility Alpha, Raw Baseline Comparison, Evidence Review Pack, RW-COMP-01, RW-COMP-02, Retrosynthesis Sandbox Cycle, Evidence Review Pack second-pass, RW-COMP-03, Universal Architecture Scaffold, Sonya Adapter Contract Registry, Sonya Adapter Smoke, Sonya Local Fixture Adapter, and Evidence Review Pack local adapter, Evidence Review Pack local adapter revision, RW-COMP local adapter, PMR doctrine, PMR local artifact index, PMR GPCU utility scoring, PMR lifecycle state machine, PMR lifecycle audit preflight, PMR Sophia lifecycle audit review, PMR destructive-action authorization preflight, PMR architecture diversity checkpoint, PMR simulation baseline comparison, PMR simulation statistical analysis, PMR federation stress corpus, PMR human provenance context, Sonya Local Fixture Adapter multi-route, and Sonya Local Fixture Adapter lineage clarity, Local Review metrics and flow, Metric Semantic Contract, Language Governance, Language Governance Audit Runtime, and Runtime Metrics Seed Corpus, PMR local queryable store, Retrosynthesis Readiness, Retrosynthesis Local Prototype, and Atlas Local Memory Admission Readiness, Atlas Local Memory Admission Prototype, Local-test Proxy Review, AI Context Performance Continuity, Theorem Validation Pathway, and COOP Entropy Dividend, Triadic LLM Metrics Smoke, UCC Sophia Control Forensics, UCC Standards Source Registry and Materiality, Triadic LLM Smoke PMR Inventory Contract Repair, AI Forensics Dossier, Human Review UX, Visual Review Model, Visual Review Static HTML Prototype, Static HTML Usability Review Seed, Static HTML Usability Revision, AI Receipt Architecture, Validation Tiering and Provenance, and Telemetry Aperture Controller, TAC Policy Simulation, TAC Local Review Integration, TAC AI Receipt Event Link, PMR Pathway Priors Design Doctrine, Coherence Event Signatures, CES PMR Indexing Design, Perturbation Observation Capture, Perturbation Trunk Mapping, and Perturbation Residual Novelty Map, and Perturbation Structure-Affordance Card pages.\n\n## What this proves\n\nIt proves only that accepted local fixture artifacts and draft publication materials are organized for review.\n\n## What this does not prove\n\nNo oracle posture, no deployment posture, no final-answer posture, no AI consciousness claim, and no universal ontology claim.\n\n## Phase pages\n\n- [SONYA-AEGIS-SMOKE-02](sonya-aegis-smoke-02.md)\n- [WAVE Gold-Physics](wave-gold-physics.md)\n- [UNI-02D Sonya gate](uni02d-sonya-gate.md)\n- [RETRO-LANE-00](retro-lane-00.md)\n- [Public Utility Alpha](public-utility-alpha.md)\n- [Raw Baseline Comparison](raw-baseline-comparison.md)\n- [Evidence Review Pack](evidence-review-pack.md)\n- [RW-COMP-01](rw-comp-01.md)\n- [RW-COMP-02](rw-comp-02.md)\n- [Retrosynthesis Sandbox Cycle](retrosynthesis-sandbox-cycle.md)\n- [Evidence Review Pack second pass](evidence-review-pack-second-pass.md)\n- [RW-COMP-03](rw-comp-03.md)\n- [Universal Architecture Scaffold](universal-architecture.md)\n- [Sonya Adapter Contract Registry](sonya-adapter-contract-registry.md)\n- [Sonya required membrane checkpoint](sonya-required-membrane-checkpoint.md)\n- [TEL event stack](tel-event-stack.md)\n- [Sonya Adapter Smoke](sonya-adapter-smoke.md)\n- [Sonya Local Fixture Adapter](sonya-local-fixture-adapter.md)\n- [Evidence Review Pack local adapter](evidence-review-pack-local-adapter.md)\n- [Evidence Review Pack local adapter revision](evidence-review-pack-local-adapter-revision.md)\n- [RW-COMP local adapter](rw-comp-local-adapter.md)\n- [Provenance Memory Reservoir](provenance-memory-reservoir.md)\n- [PMR local artifact index](pmr-local-artifact-index.md)\n- [Ontology Claim Registry](ontology-claim-registry.md)\n- [Local Sonya path portability](local-sonya-path-portability.md)\n- [TB Product Slice](tb-product-slice.md)\n- [TB Product Slice 01](tb-product-slice-01.md)\n- [Sonya Local Fixture Adapter multi-route](sonya-local-fixture-adapter-multi-route.md)\n- [Sonya Local Fixture Adapter lineage clarity](sonya-local-fixture-adapter-lineage.md)\n- [Local Review Runtime V0](local-review-runtime-v0.md)\n- [Local Review metrics and flow](local-review-metrics-flow.md)\n- [Runtime metrics seed corpus](runtime-metrics-seed-corpus.md)\n- [PMR local queryable store](pmr-local-queryable-store.md)\n- [Retrosynthesis readiness](retrosynthesis-readiness.md)\n- [Retrosynthesis local prototype](retrosynthesis-local-prototype.md)\n- [Atlas local memory admission readiness](atlas-local-memory-admission-readiness.md)\n- [AI Forensics Dossier](ai-forensics-dossier.md)\n- [Human Review UX](human-review-ux.md)\n- [Visual Review Model](visual-review-model.md)\n- [Visual Review Static HTML Prototype](visual-review-static-html-prototype.md)\n- [Perturbation Observation Capture](perturbation-observation-capture.md)\n- [Perturbation Trunk Mapping](perturbation-trunk-mapping.md)\n- [Perturbation Residual Novelty Map](perturbation-residual-novelty-map.md)\n- [Telemetry Aperture Controller](telemetry-aperture-controller.md)\n- [TAC Policy Simulation](tac-policy-simulation.md)\n- [TAC Local Review Integration](tac-local-review-integration.md)\n- [TAC AI Receipt Event Link](tac-ai-receipt-event-link.md)\n- [PMR Pathway Priors Design Doctrine](pmr-pathway-priors-design-doctrine.md)\n- [Coherence Event Signatures](coherence-event-signatures.md)\n- [Perturbation Structure-Affordance Card](perturbation-structure-affordance-card.md)\n- [Governed artifact cognition paper](governed-artifact-cognition-paper.md)\n- [Waveform Rosetta paper](waveform-rosetta-paper.md)\n",
+        "index.md": f"# Public Experiment Suite Dashboard\n\nThis dashboard presents accepted evidence for reviewer orientation. It is not truth certification, not deployment authority, not final answer release, local fixture only, and requires external peer review.\n\n## Accepted evidence\n\n| Phase | Repo | Status | What this supports | Reviewer caution |\n| --- | --- | --- | --- | --- |\n{phase_rows}\n\n## Reviewer path\n\nStart with claim boundaries, then read the governed artifact cognition paper, WAVE Rosetta paper, SONYA-AEGIS-SMOKE-02, WAVE family, UNI-02D Sonya gate, and RETRO-LANE-00, Public Utility Alpha, Raw Baseline Comparison, Evidence Review Pack, RW-COMP-01, RW-COMP-02, Retrosynthesis Sandbox Cycle, Evidence Review Pack second-pass, RW-COMP-03, Universal Architecture Scaffold, Sonya Adapter Contract Registry, Sonya Adapter Smoke, Sonya Local Fixture Adapter, and Evidence Review Pack local adapter, Evidence Review Pack local adapter revision, RW-COMP local adapter, PMR doctrine, PMR local artifact index, PMR GPCU utility scoring, PMR lifecycle state machine, PMR lifecycle audit preflight, PMR Sophia lifecycle audit review, PMR destructive-action authorization preflight, PMR architecture diversity checkpoint, PMR simulation baseline comparison, PMR simulation statistical analysis, PMR federation stress corpus, PMR human provenance context, Sonya Local Fixture Adapter multi-route, and Sonya Local Fixture Adapter lineage clarity, Local Review metrics and flow, Metric Semantic Contract, Language Governance, Language Governance Audit Runtime, and Runtime Metrics Seed Corpus, PMR local queryable store, Retrosynthesis Readiness, Retrosynthesis Local Prototype, and Atlas Local Memory Admission Readiness, Atlas Local Memory Admission Prototype, Local-test Proxy Review, AI Context Performance Continuity, Theorem Validation Pathway, and COOP Entropy Dividend, Triadic LLM Metrics Smoke, UCC Sophia Control Forensics, UCC Standards Source Registry and Materiality, Triadic LLM Smoke PMR Inventory Contract Repair, AI Forensics Dossier, Human Review UX, Visual Review Model, Visual Review Static HTML Prototype, Static HTML Usability Review Seed, Static HTML Usability Revision, AI Receipt Architecture, Validation Tiering and Provenance, and Telemetry Aperture Controller, TAC Policy Simulation, TAC Local Review Integration, TAC AI Receipt Event Link, PMR Pathway Priors Design Doctrine, Coherence Event Signatures, CES PMR Indexing Design, Triadic Observation Contract, Perturbation Observation Capture, Perturbation Trunk Mapping, and Perturbation Residual Novelty Map, and Perturbation Structure-Affordance Card pages.\n\n## What this proves\n\nIt proves only that accepted local fixture artifacts and draft publication materials are organized for review.\n\n## What this does not prove\n\nNo oracle posture, no deployment posture, no final-answer posture, no AI consciousness claim, and no universal ontology claim.\n\n## Phase pages\n\n- [SONYA-AEGIS-SMOKE-02](sonya-aegis-smoke-02.md)\n- [WAVE Gold-Physics](wave-gold-physics.md)\n- [UNI-02D Sonya gate](uni02d-sonya-gate.md)\n- [RETRO-LANE-00](retro-lane-00.md)\n- [Public Utility Alpha](public-utility-alpha.md)\n- [Raw Baseline Comparison](raw-baseline-comparison.md)\n- [Evidence Review Pack](evidence-review-pack.md)\n- [RW-COMP-01](rw-comp-01.md)\n- [RW-COMP-02](rw-comp-02.md)\n- [Retrosynthesis Sandbox Cycle](retrosynthesis-sandbox-cycle.md)\n- [Evidence Review Pack second pass](evidence-review-pack-second-pass.md)\n- [RW-COMP-03](rw-comp-03.md)\n- [Universal Architecture Scaffold](universal-architecture.md)\n- [Sonya Adapter Contract Registry](sonya-adapter-contract-registry.md)\n- [Sonya required membrane checkpoint](sonya-required-membrane-checkpoint.md)\n- [TEL event stack](tel-event-stack.md)\n- [Sonya Adapter Smoke](sonya-adapter-smoke.md)\n- [Sonya Local Fixture Adapter](sonya-local-fixture-adapter.md)\n- [Evidence Review Pack local adapter](evidence-review-pack-local-adapter.md)\n- [Evidence Review Pack local adapter revision](evidence-review-pack-local-adapter-revision.md)\n- [RW-COMP local adapter](rw-comp-local-adapter.md)\n- [Provenance Memory Reservoir](provenance-memory-reservoir.md)\n- [PMR local artifact index](pmr-local-artifact-index.md)\n- [Ontology Claim Registry](ontology-claim-registry.md)\n- [Local Sonya path portability](local-sonya-path-portability.md)\n- [TB Product Slice](tb-product-slice.md)\n- [TB Product Slice 01](tb-product-slice-01.md)\n- [Sonya Local Fixture Adapter multi-route](sonya-local-fixture-adapter-multi-route.md)\n- [Sonya Local Fixture Adapter lineage clarity](sonya-local-fixture-adapter-lineage.md)\n- [Local Review Runtime V0](local-review-runtime-v0.md)\n- [Local Review metrics and flow](local-review-metrics-flow.md)\n- [Runtime metrics seed corpus](runtime-metrics-seed-corpus.md)\n- [PMR local queryable store](pmr-local-queryable-store.md)\n- [Retrosynthesis readiness](retrosynthesis-readiness.md)\n- [Retrosynthesis local prototype](retrosynthesis-local-prototype.md)\n- [Atlas local memory admission readiness](atlas-local-memory-admission-readiness.md)\n- [AI Forensics Dossier](ai-forensics-dossier.md)\n- [Human Review UX](human-review-ux.md)\n- [Visual Review Model](visual-review-model.md)\n- [Visual Review Static HTML Prototype](visual-review-static-html-prototype.md)\n- [Perturbation Observation Capture](perturbation-observation-capture.md)\n- [Perturbation Trunk Mapping](perturbation-trunk-mapping.md)\n- [Perturbation Residual Novelty Map](perturbation-residual-novelty-map.md)\n- [Telemetry Aperture Controller](telemetry-aperture-controller.md)\n- [TAC Policy Simulation](tac-policy-simulation.md)\n- [TAC Local Review Integration](tac-local-review-integration.md)\n- [TAC AI Receipt Event Link](tac-ai-receipt-event-link.md)\n- [PMR Pathway Priors Design Doctrine](pmr-pathway-priors-design-doctrine.md)\n- [Coherence Event Signatures](coherence-event-signatures.md)\n- [Perturbation Structure-Affordance Card](perturbation-structure-affordance-card.md)\n- [Governed artifact cognition paper](governed-artifact-cognition-paper.md)\n- [Waveform Rosetta paper](waveform-rosetta-paper.md)\n",
         "language-governance.md": f"""# Language Governance
 
 ## What was validated
@@ -16143,6 +16917,89 @@ CES-PMR-INDEXING-DESIGN-00 defines CES as a compact PMR index, not a PMR source 
 ## Allowed bounded claim
 
 {CES_DESIGN_CLAIM_ALLOWED}
+""",
+        "triadic-observation-contract.md": f"""# Triadic Observation Contract
+
+## What was validated
+
+TRIADIC-OBSERVATION-CONTRACT-DESIGN-00 synchronizes locally validated Triadic Observation Contract design doctrine to publication surfaces. This is publication/dashboard synchronization only and grants no runtime authority. The observation contract is design-only; no live observation-contract enforcement, runtime telemetry behavior change, mode-shift receipt emission, user recovery action, surveillance authorization, trace export authorization, PMR federation authorization, memory write, Atlas memory admission, provider runtime, network runtime, deployment, product release, final-answer authority, accepted-evidence authority, or truth certification is authorized.
+
+## Dashboard summary
+
+- policy_status = active_design_only
+- runtime_behavior_changed = false
+- observation_contract_enabled = false
+- mode_shift_receipts_emitted = false
+- user_recovery_actions_performed = false
+- telemetry_behavior_changed = false
+- memory_write_performed = false
+- atlas_memory_admission_performed = false
+- trace_export_performed = false
+- pmr_federation_performed = false
+- provider_runtime_performed = false
+- network_call_performed = false
+- product_release_performed = false
+- observation_contract_definition = consent_bounded_governed_attention_contract
+- observation_contract_is_not_runtime_control = true
+- observation_contract_is_not_surveillance_authorization = true
+- observation_contract_is_not_memory_write = true
+- observation_contract_is_not_trace_export_authorization = true
+- observation_contract_is_not_federation_authorization = true
+- observation_contract_is_not_product_release = true
+- observation_contract_is_not_truth_certification = true
+- observation_contract_is_not_final_answer_authority = true
+- observation_contract_is_not_accepted_evidence_authority = true
+- observation_contract_requires_human_review = true
+
+## Core doctrine language
+
+{triadic_observation_contract_doctrine}
+
+## Contract declarations
+
+{triadic_observation_contract_declarations}
+
+## No-silent-mode-shift triggers
+
+{triadic_observation_contract_triggers}
+
+## Recovery rights
+
+{triadic_observation_contract_recovery}
+
+## Reciprocity budget dimensions
+
+{triadic_observation_contract_reciprocity}
+
+## Failure classes
+
+{triadic_observation_contract_failures}
+
+## Relation to TAC, CES, PMR, AI Receipt, Sophia, and validation tiering
+
+{triadic_observation_contract_relation}
+
+## Artifacts
+
+{triadic_observation_contract_artifacts}
+
+## Reproducibility
+
+```powershell
+{TRIADIC_OBSERVATION_CONTRACT_COMMAND}
+```
+
+## Blocked overclaim examples for Triadic Observation Contract design publication boundaries
+
+{triadic_observation_contract_blocked}
+
+## Allowed bounded claim
+
+{TRIADIC_OBSERVATION_CONTRACT_CLAIM_ALLOWED}
+
+## Runtime authority boundary
+
+Publication sync grants no runtime authority. TRIADIC-OBSERVATION-CONTRACT-DESIGN-00 grants no runtime authority.
 """,
         "ces-pmr-indexing-design.md": f"""# CES PMR Indexing Design
 
@@ -19440,6 +20297,26 @@ not truth certification; not deployment authority; not final answer release; loc
     }
 
 
+TRIADIC_OBSERVATION_CONTRACT_SYNC_DOCS = {
+    "telemetry-aperture-controller.md",
+    "tac-policy-simulation.md",
+    "tac-local-review-integration.md",
+    "tac-ai-receipt-event-link.md",
+    "coherence-event-signatures.md",
+    "ces-pmr-indexing-design.md",
+    "pmr-pathway-priors-design-doctrine.md",
+    "ai-receipt-architecture.md",
+    "validation-tiering-provenance.md",
+}
+TRIADIC_OBSERVATION_CONTRACT_SYNC_NOTE = """
+
+## Triadic Observation Contract publication sync
+
+TRIADIC-OBSERVATION-CONTRACT-DESIGN-00 adds a design-only Triadic Observation Contract publication surface. Governed Attention Precedes Governed Intelligence. No silent mode shift. Human review remains required. This sync grants no runtime authority: it does not change runtime behavior, does not enable an observation contract, does not emit mode-shift receipts, does not perform user recovery actions, does not change telemetry behavior, does not write memory, does not admit Atlas memory, does not export traces, does not federate PMR, does not run providers or networks, and does not release product.
+
+The contract names allowed_observation_scope, observation_resolution, purpose_binding, consent_scope, retention_scope, replay_scope, disclosure_scope, federation_scope, recovery_rights, and non_authority_boundaries. It relates TAC aperture policy and simulation, CES event receipts, CES PMR indexing, PMR pathway priors, AI Receipt Architecture, Sophia execution-reality boundaries, and Validation Tiering Provenance without granting final-answer authority, accepted-evidence authority, truth certification, or surveillance authorization.
+"""
+
 def build(out_dir: Path, docs_dir: Path) -> None:
     _write_json(out_dir / "experiment_suite_dashboard.json", dashboard_payload())
     _write_json(out_dir / "accepted_phase_matrix.json", accepted_phase_matrix())
@@ -19447,7 +20324,11 @@ def build(out_dir: Path, docs_dir: Path) -> None:
     _write_json(out_dir / "claim_boundary_index.json", claim_boundary_index())
     _write_json(out_dir / "artifact_index.json", artifact_index())
     _write_json(out_dir / "status.json", status_payload())
-    for name, text in docs().items():
+    docs_payload = docs()
+    for name in TRIADIC_OBSERVATION_CONTRACT_SYNC_DOCS:
+        if name in docs_payload:
+            docs_payload[name] = docs_payload[name].rstrip() + TRIADIC_OBSERVATION_CONTRACT_SYNC_NOTE
+    for name, text in docs_payload.items():
         _write_text(docs_dir / name, text)
 
 
