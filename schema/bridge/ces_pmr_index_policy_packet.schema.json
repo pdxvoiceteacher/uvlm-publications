@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "uvlm.schema.bridge.ces_pmr_index_policy_packet.v1",
+  "type": "object",
+  "required": ["policy_status", "runtime_behavior_changed", "ces_pmr_indexing_enabled"],
+  "properties": {
+    "policy_status": {"const": "active_design_only"},
+    "runtime_behavior_changed": {"const": false},
+    "ces_pmr_indexing_enabled": {"const": false},
+    "source_expansion_required_for_decisions": {"const": true},
+    "human_review_required": {"const": true}
+  },
+  "additionalProperties": true
+}

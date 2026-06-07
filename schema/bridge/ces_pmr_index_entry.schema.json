@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "uvlm.schema.bridge.ces_pmr_index_entry.v1",
+  "type": "object",
+  "required": ["ces_id", "trace_id", "canonical_json_hash", "human_review_required"],
+  "properties": {
+    "ces_id": {"type": "string"},
+    "trace_id": {"type": "string"},
+    "span_id": {"type": "string"},
+    "event_index": {"type": "integer"},
+    "canonical_json_hash": {"type": "string"},
+    "human_review_required": {"const": true}
+  },
+  "additionalProperties": true
+}

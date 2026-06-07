@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "uvlm.schema.bridge.ces_pmr_non_authority_boundary.v1",
+  "type": "object",
+  "required": ["index_is_not_source", "index_is_not_truth_certification", "index_requires_human_review"],
+  "properties": {
+    "index_is_not_source": {"const": true},
+    "index_is_not_truth_certification": {"const": true},
+    "index_is_not_final_answer_authority": {"const": true},
+    "index_is_not_accepted_evidence_authority": {"const": true},
+    "index_is_not_memory_write": {"const": true},
+    "index_is_not_model_training": {"const": true},
+    "index_is_not_product_release": {"const": true},
+    "index_requires_human_review": {"const": true}
+  },
+  "additionalProperties": true
+}
