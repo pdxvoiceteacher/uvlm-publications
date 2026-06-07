@@ -9045,6 +9045,259 @@ AI_RECEIPT_ARCHITECTURE_PHASE = {
 }
 
 
+
+
+MINIMAL_VIABLE_RECEIPT_DESIGN_COMMAND = "python -m pytest -q tests/test_minimal_viable_receipt_design.py tests/test_minimal_viable_receipt_env_isolation_repair.py"
+MINIMAL_VIABLE_RECEIPT_DESIGN_ARTIFACTS = [
+    "docs/MINIMAL_VIABLE_RECEIPT_DESIGN.md",
+    "config/receipt/minimal_viable_receipt_policy.v1.json",
+    "schema/bridge/minimal_viable_receipt_packet.schema.json",
+    "schema/bridge/minimal_viable_receipt_checklist.schema.json",
+    "schema/bridge/minimal_viable_receipt_section_index.schema.json",
+    "schema/bridge/receipt_readability_profile.schema.json",
+    "schema/bridge/receipt_contestability_profile.schema.json",
+    "schema/bridge/receipt_cost_burden_profile.schema.json",
+    "schema/bridge/minimal_viable_receipt_non_authority_boundary.schema.json",
+]
+MINIMAL_VIABLE_RECEIPT_DESIGN_DOCTRINE_LANGUAGE = [
+    "Minimal Viable Receipt Design",
+    "One working receipt before more ontology.",
+    "One transaction, many governed receipt sections.",
+    "The receipt is not proof of truth.",
+    "The receipt is proof of process.",
+    "Minimal Viable Receipt is a product-readiness target, not product release.",
+    "Minimal Viable Receipt Transaction is the preferred product object.",
+    "Governed Receipt Transaction is the internal/system object.",
+    "Triadic Cognition Transaction is avoided as a public product object because it may imply cognition certification.",
+    "If the receipt is not readable, the product is not ready.",
+    "A receipt that only impresses architects is not product-ready.",
+    "A governed AI cognition system is not trustworthy because it answers.",
+    "It is trustworthy only to the degree that it can show what evidence it used, what rules constrained it, what trace it left, what costs it incurred, what memory rights attach, and how the user can contest it.",
+    "Minimal Viable Receipt binds evidence, controls, output, telemetry, memory posture, cost/burden, contestability, recovery, and boundaries.",
+    "A receipt without contestability is incomplete.",
+    "A receipt without source expansion is incomplete.",
+    "A receipt without non-authority boundaries is misleading.",
+    "A receipt without recovery options exports burden to the user.",
+    "A receipt without validation tiering hides confidence scope.",
+    "A receipt without Observation Contract posture hides notice, consent, and recovery posture.",
+    "A receipt without TAC posture hides observation cost and privacy posture.",
+    "A receipt without CES/PMR linkage hides replayability.",
+    "Human review remains required.",
+    "MINIMAL-VIABLE-RECEIPT-DESIGN-00 does not emit runtime receipt artifacts.",
+    "MINIMAL-VIABLE-RECEIPT-DESIGN-00 does not claim product readiness.",
+    "MINIMAL-VIABLE-RECEIPT-DESIGN-00 does not release product.",
+    "MINIMAL-VIABLE-RECEIPT-DESIGN-00 does not change runtime behavior.",
+]
+MINIMAL_VIABLE_RECEIPT_DESIGN_PRODUCT_EVENT_COMPONENTS = [
+    "user_request",
+    "canonical_request_envelope",
+    "grounding_bundle",
+    "grounding_quarantine_status",
+    "ucc_or_policy_profile",
+    "model_or_tool_output",
+    "claim_evidence_map",
+    "unsupported_claim_report",
+    "telemetry_or_tel_summary",
+    "observation_contract_posture",
+    "observation_contract_policy_simulation_refs",
+    "tac_aperture_posture",
+    "coherence_event_signature_or_design_ref",
+    "ces_pmr_indexing_ref",
+    "pmr_memory_posture",
+    "ai_receipt_event_chain",
+    "sophia_execution_reality",
+    "validation_tier_receipt",
+    "language_governance_status",
+    "metric_semantic_profile",
+    "human_review_status",
+    "readability_profile",
+    "contestability_profile",
+    "cost_burden_profile",
+    "recovery_options",
+    "non_authority_boundaries",
+    "user_visible_receipt",
+]
+MINIMAL_VIABLE_RECEIPT_DESIGN_RECEIPT_SECTIONS = [
+    "what_was_asked",
+    "what_evidence_was_used",
+    "what_evidence_was_rejected_or_quarantined",
+    "what_the_ai_claimed",
+    "which_claims_are_supported",
+    "which_claims_are_unsupported",
+    "what_controls_were_applied",
+    "what_observation_contract_required",
+    "what_required_notice_or_consent",
+    "what_tac_aperture_posture_applied",
+    "what_ces_pmr_replay_posture_exists",
+    "what_sophia_routed_or_flagged",
+    "what_validation_covered",
+    "what_was_retained_or_not_retained",
+    "what_it_cost_or_burdened",
+    "what_the_user_can_challenge_repair_revoke_or_export",
+    "what_is_explicitly_not_authorized",
+]
+MINIMAL_VIABLE_RECEIPT_DESIGN_USER_QUESTIONS = [
+    "What was asked?",
+    "What evidence was used?",
+    "What did the AI claim?",
+    "Which claims are supported?",
+    "Which claims are unsupported?",
+    "Which controls were applied?",
+    "What did the Observation Contract require?",
+    "What required notice or consent?",
+    "What did Sophia route or flag?",
+    "What telemetry or replay posture exists?",
+    "What was retained or not retained?",
+    "What did validation cover?",
+    "What did it cost or burden?",
+    "What can the user challenge, repair, revoke, or export?",
+    "What is explicitly not authorized?",
+]
+MINIMAL_VIABLE_RECEIPT_DESIGN_CONTESTABILITY_OPTIONS = [
+    "inspect_sources",
+    "challenge_claim",
+    "request_source_expansion",
+    "request_human_review",
+    "request_correction",
+    "request_replay",
+    "request_memory_downgrade",
+    "request_retention_review",
+    "request_quarantine",
+    "revoke_consent_where_applicable",
+    "request_export_when_authorized",
+    "request_recovery_path",
+]
+MINIMAL_VIABLE_RECEIPT_DESIGN_COST_BURDEN_DIMENSIONS = [
+    "compute_cost_proxy",
+    "local_storage_cost_proxy",
+    "human_review_time_proxy",
+    "privacy_exposure_proxy",
+    "observation_burden_proxy",
+    "tac_aperture_burden_proxy",
+    "pmr_retention_burden_proxy",
+    "correction_burden_proxy",
+    "audit_burden_proxy",
+    "user_confusion_burden_proxy",
+]
+MINIMAL_VIABLE_RECEIPT_DESIGN_PRIOR_PHASE_RELATION = [
+    "AI-RECEIPT-ARCHITECTURE-00 defines the receipt architecture.",
+    "TRIADIC-OBSERVATION-CONTRACT-DESIGN-00 defines governed attention.",
+    "OBSERVATION-CONTRACT-POLICY-SIMULATION-00 rehearses notice, consent, recovery, source-expansion, pathway-prior, retention, trace-export, and PMR-federation policy outcomes.",
+    "TAC phases define aperture posture and review visibility.",
+    "COHERENCE-EVENT-SIGNATURES-DESIGN-00 defines event signatures.",
+    "CES-PMR-INDEXING-DESIGN-00 defines CES as a compact PMR index, not source replacement.",
+    "PMR-PATHWAY-PRIORS-DESIGN-DOCTRINE-00 prevents route-prior authority drift.",
+    "SOPHIA-EXECUTIVE-AUDIT-REALITY-CHECK-00 records whether external Sophia actually ran.",
+    "VALIDATION-TIERING-PROVENANCE-00 records validation confidence scope.",
+    "MET-SEM-00 keeps metric labels profile-scoped.",
+]
+MINIMAL_VIABLE_RECEIPT_DESIGN_FAILURE_CLASSES = [
+    "receipt_mistaken_for_truth",
+    "receipt_mistaken_for_product_release",
+    "receipt_mistaken_for_product_readiness",
+    "triadic_cognition_transaction_mistaken_for_cognition_claim",
+    "receipt_readability_mistaken_for_visual_polish",
+    "receipt_that_only_impresses_architects",
+    "unsupported_claims_hidden",
+    "source_expansion_missing",
+    "grounding_quarantine_missing",
+    "contestability_missing",
+    "recovery_path_missing",
+    "cost_burden_hidden",
+    "observation_contract_posture_hidden",
+    "observation_contract_simulation_missing",
+    "tac_posture_hidden",
+    "ces_pmr_linkage_missing",
+    "validation_tier_missing",
+    "sophia_reality_missing",
+    "metric_semantics_overclaimed",
+    "non_authority_boundaries_missing",
+    "one_working_receipt_replaced_by_more_ontology",
+]
+MINIMAL_VIABLE_RECEIPT_DESIGN_BLOCKED_CLAIMS = [
+    "Minimal Viable Receipt proves truth",
+    "Minimal Viable Receipt is product release",
+    "Minimal Viable Receipt proves product readiness",
+    "Minimal Viable Receipt certifies compliance",
+    "Minimal Viable Receipt authorizes final answers",
+    "Minimal Viable Receipt grants accepted-evidence authority",
+    "Minimal Viable Receipt writes memory",
+    "Minimal Viable Receipt admits Atlas memory",
+    "Minimal Viable Receipt trains the model",
+    "Minimal Viable Receipt skips human review",
+    "Minimal Viable Receipt proves human benefit",
+    "Minimal Viable Receipt is market validation",
+    "receipt completeness means answer correctness",
+    "cost burden score is truth weight",
+    "contestability option guarantees reversal",
+    "recovery option performs memory write",
+    "source expansion can be skipped",
+    "unsupported claims can be hidden",
+    "one receipt means product is ready",
+    "readable receipt means product is ready",
+    "Triadic Cognition Transaction certifies cognition",
+    "receipt readability is just visual polish",
+]
+MINIMAL_VIABLE_RECEIPT_DESIGN_CLAIM_ALLOWED = "MINIMAL-VIABLE-RECEIPT-DESIGN-00 defines a design-only standard for one local governed AI work-event receipt that makes request, evidence, controls, output, claim support, unsupported claims, Observation Contract posture, TAC posture, CES/PMR replayability, Sophia reality, validation tier, cost/burden, contestability, recovery options, human review requirements, and non-authority boundaries visible without changing runtime behavior, releasing product, claiming product readiness, certifying truth, authorizing final answers, accepting evidence, writing memory, admitting Atlas memory, training models, skipping review, proving human benefit, or validating market demand."
+MINIMAL_VIABLE_RECEIPT_DESIGN_DASHBOARD_SUMMARY = {
+    "policy_status": "active_design_only",
+    "runtime_behavior_changed": False,
+    "minimal_viable_receipt_enabled": False,
+    "minimal_viable_receipt_runtime_artifacts_emitted": False,
+    "product_release_performed": False,
+    "product_readiness_claimed": False,
+    "provider_runtime_performed": False,
+    "network_call_performed": False,
+    "memory_write_performed": False,
+    "atlas_memory_admission_performed": False,
+    "trace_export_performed": False,
+    "pmr_federation_performed": False,
+    "final_answer_authority_granted": False,
+    "accepted_evidence_authority_granted": False,
+    "truth_certification_emitted": False,
+    "compliance_certification_emitted": False,
+    "model_training_performed": False,
+    "review_skip_authorized": False,
+    "minimal_viable_receipt_definition": "one_local_governed_ai_work_event_receipt_standard",
+    "preferred_product_object": "Minimal Viable Receipt Transaction",
+    "internal_system_object": "Governed Receipt Transaction",
+    "avoided_public_object": "Triadic Cognition Transaction",
+    "avoided_public_object_reason": "avoids_cognition_certification_overclaim",
+    "receipt_readability_gate": "required_for_product_readiness_target",
+    "non_developer_readability_profile_required": True,
+    "receipt_must_answer_user_questions": True,
+    "architecture_jargon_requires_plain_language_label": True,
+    "section_index_required": True,
+    "receipt_that_only_impresses_architects_is_not_product_ready": True,
+    "receipt_is_not_truth_certification": True,
+    "receipt_is_not_final_answer_authority": True,
+    "receipt_is_not_accepted_evidence_authority": True,
+    "receipt_is_not_product_release": True,
+    "receipt_is_not_product_readiness_claim": True,
+    "receipt_is_not_compliance_certification": True,
+    "receipt_is_not_human_benefit_proof": True,
+    "receipt_is_not_market_validation": True,
+    "receipt_is_not_memory_write": True,
+    "receipt_is_not_atlas_memory_admission": True,
+    "receipt_is_not_model_training": True,
+    "receipt_is_not_review_skip": True,
+    "receipt_requires_human_review": True,
+}
+MINIMAL_VIABLE_RECEIPT_DESIGN_PHASE = {
+    "phase_id": "MINIMAL-VIABLE-RECEIPT-DESIGN-00",
+    "repo": "pdxvoiceteacher/CoherenceLattice",
+    "status": "accepted",
+    "evidence_type": "design_only_publication_sync",
+    "product_posture": "active_design_only_minimal_viable_receipt_standard_without_runtime_artifacts",
+    "primary_artifacts": MINIMAL_VIABLE_RECEIPT_DESIGN_ARTIFACTS,
+    "dashboard_summary": MINIMAL_VIABLE_RECEIPT_DESIGN_DASHBOARD_SUMMARY,
+    "reproduction_command_summary": MINIMAL_VIABLE_RECEIPT_DESIGN_COMMAND,
+    "claim_allowed": MINIMAL_VIABLE_RECEIPT_DESIGN_CLAIM_ALLOWED,
+    "claims_blocked": MINIMAL_VIABLE_RECEIPT_DESIGN_BLOCKED_CLAIMS,
+    "reviewer_caution": "MINIMAL-VIABLE-RECEIPT-DESIGN-00 is design-only publication synchronization. It changes no runtime behavior, emits no runtime receipt artifacts, releases no product, claims no product readiness, grants no final-answer authority or accepted-evidence authority, writes no memory, admits no Atlas memory, trains no model, skips no review, certifies no truth, and validates no market demand.",
+    "publication_status": "dashboard_indexed",
+    "repair_note": "MINIMAL-VIABLE-RECEIPT-DESIGN-ENV-ISOLATION-REPAIR-00 made the design-only forbidden-artifact test inspect tracked/source-controlled files rather than untracked local bridge debris; this repair does not change MVR doctrine, emit runtime artifacts, or grant product, memory, final-answer, accepted-evidence, or truth authority.",
+}
 VALIDATION_TIERING_PROVENANCE_COMMAND = "python -c \"from pathlib import Path; from coherence.validation.validation_receipt import build_validation_tier_receipt; bridge=Path(r'C:\\UVLM\\run_artifacts\\validation_tiering\\bridge'); policy_ref='validation_tier_policy.v1.json'; build_validation_tier_receipt(bridge, source_phase='AI-RECEIPT-ARCHITECTURE-00', validation_tier='deep', validation_scope='full_multi_module_suite', validation_intent='major_sync_or_handoff_grade_validation', commands_run=[{'command':'python -m pytest -q <full_multi_module_suite>', 'result':'passed', 'duration_seconds':32131.86}], artifact_chain_name='ai_receipt_architecture_product_stack', expected_artifacts=['ai_receipt_architecture_packet.json','ai_receipt_event_chain.json','ai_receipt_architecture.md','ai_receipt_architecture_receipt.json'], observed_artifacts=['ai_receipt_architecture_packet.json','ai_receipt_event_chain.json','ai_receipt_architecture.md','ai_receipt_architecture_receipt.json'], validation_result='passed')\""
 VALIDATION_TIERING_PROVENANCE_ARTIFACTS = [
     "config/validation/validation_tier_policy.v1.json",
@@ -11765,6 +12018,7 @@ VISUAL_REVIEW_STATIC_HTML_PHASE,
 STATIC_HTML_USABILITY_REVIEW_PHASE,
 STATIC_HTML_USABILITY_REVISION_PHASE,
 AI_RECEIPT_ARCHITECTURE_PHASE,
+MINIMAL_VIABLE_RECEIPT_DESIGN_PHASE,
 VALIDATION_TIERING_PROVENANCE_PHASE,
 TELEMETRY_APERTURE_DESIGN_PHASE,
 TAC_POLICY_SIMULATION_PHASE,
@@ -13902,6 +14156,22 @@ BOUNDARIES.extend(
         *AI_RECEIPT_ARCHITECTURE_REPRO_FRAGMENTS,
         "Blocked overclaim examples for AI receipt architecture publication boundaries.",
         *AI_RECEIPT_ARCHITECTURE_BLOCKED_CLAIMS,
+        MINIMAL_VIABLE_RECEIPT_DESIGN_CLAIM_ALLOWED,
+        *MINIMAL_VIABLE_RECEIPT_DESIGN_ARTIFACTS,
+        *MINIMAL_VIABLE_RECEIPT_DESIGN_DOCTRINE_LANGUAGE,
+        *MINIMAL_VIABLE_RECEIPT_DESIGN_PRODUCT_EVENT_COMPONENTS,
+        *MINIMAL_VIABLE_RECEIPT_DESIGN_RECEIPT_SECTIONS,
+        *MINIMAL_VIABLE_RECEIPT_DESIGN_USER_QUESTIONS,
+        *MINIMAL_VIABLE_RECEIPT_DESIGN_CONTESTABILITY_OPTIONS,
+        *MINIMAL_VIABLE_RECEIPT_DESIGN_COST_BURDEN_DIMENSIONS,
+        *MINIMAL_VIABLE_RECEIPT_DESIGN_PRIOR_PHASE_RELATION,
+        *MINIMAL_VIABLE_RECEIPT_DESIGN_FAILURE_CLASSES,
+        "MINIMAL-VIABLE-RECEIPT-DESIGN-ENV-ISOLATION-REPAIR-00 made the design-only forbidden-artifact test inspect tracked/source-controlled files rather than untracked local bridge debris.",
+        "This repair does not change MVR doctrine.",
+        "This repair does not emit runtime artifacts.",
+        "This repair does not grant product, memory, final-answer, accepted-evidence, or truth authority.",
+        "Blocked overclaim examples for Minimal Viable Receipt Design publication boundaries.",
+        *MINIMAL_VIABLE_RECEIPT_DESIGN_BLOCKED_CLAIMS,
         VALIDATION_TIERING_PROVENANCE_CLAIM_ALLOWED,
         *VALIDATION_TIERING_PROVENANCE_ARTIFACTS,
         *VALIDATION_TIERING_PROVENANCE_TIER_TERMS,
@@ -14524,6 +14794,19 @@ def dashboard_payload() -> dict[str, Any]:
         "not_ai_receipt_architecture_deployment": True,
         "not_ai_receipt_architecture_memory_write": True,
         "not_ai_receipt_architecture_atlas_admission": True,
+        "minimal_viable_receipt_design_00_indexed": True,
+        "minimal_viable_receipt_policy_status": "active_design_only",
+        "minimal_viable_receipt_runtime_behavior_changed": False,
+        "minimal_viable_receipt_enabled": False,
+        "minimal_viable_receipt_runtime_artifacts_emitted": False,
+        "minimal_viable_receipt_product_release_performed": False,
+        "minimal_viable_receipt_product_readiness_claimed": False,
+        "minimal_viable_receipt_memory_write_performed": False,
+        "minimal_viable_receipt_atlas_memory_admission_performed": False,
+        "minimal_viable_receipt_final_answer_authority_granted": False,
+        "minimal_viable_receipt_accepted_evidence_authority_granted": False,
+        "minimal_viable_receipt_truth_certification_emitted": False,
+        "minimal_viable_receipt_env_isolation_repair": "tracked_source_controlled_forbidden_artifact_test_only",
         "validation_tiering_provenance_00_indexed": True,
         "validation_tiering_policy_status": "active",
         "validation_tiering_receipt_source_phase": "AI-RECEIPT-ARCHITECTURE-00",
@@ -14821,6 +15104,7 @@ def reproducibility_index() -> dict[str, Any]:
                 {"name": "Static HTML Usability Review Seed Python entrypoint", "command": STATIC_HTML_USABILITY_REVIEW_COMMAND},
                 {"name": "Static HTML Usability Revision Python entrypoint", "command": STATIC_HTML_USABILITY_REVISION_COMMAND},
                 {"name": "AI Receipt Architecture Python entrypoint", "command": AI_RECEIPT_ARCHITECTURE_COMMAND},
+                {"name": "MINIMAL-VIABLE-RECEIPT-DESIGN-00 design validation", "command": MINIMAL_VIABLE_RECEIPT_DESIGN_COMMAND},
                 {"name": "Validation Tiering Provenance Python entrypoint", "command": VALIDATION_TIERING_PROVENANCE_COMMAND},
                 {"name": "TELEMETRY-APERTURE-DESIGN-00 config/schema inspection", "command": TELEMETRY_APERTURE_DESIGN_COMMAND},
                 {"name": "TAC-POLICY-SIMULATION-00 Python entrypoint", "command": TAC_POLICY_SIMULATION_COMMAND},
@@ -15511,6 +15795,19 @@ def status_payload() -> dict[str, Any]:
         "not_ai_receipt_architecture_deployment": True,
         "not_ai_receipt_architecture_memory_write": True,
         "not_ai_receipt_architecture_atlas_admission": True,
+        "minimal_viable_receipt_design_00_indexed": True,
+        "minimal_viable_receipt_policy_status": "active_design_only",
+        "minimal_viable_receipt_runtime_behavior_changed": False,
+        "minimal_viable_receipt_enabled": False,
+        "minimal_viable_receipt_runtime_artifacts_emitted": False,
+        "minimal_viable_receipt_product_release_performed": False,
+        "minimal_viable_receipt_product_readiness_claimed": False,
+        "minimal_viable_receipt_memory_write_performed": False,
+        "minimal_viable_receipt_atlas_memory_admission_performed": False,
+        "minimal_viable_receipt_final_answer_authority_granted": False,
+        "minimal_viable_receipt_accepted_evidence_authority_granted": False,
+        "minimal_viable_receipt_truth_certification_emitted": False,
+        "minimal_viable_receipt_env_isolation_repair": "tracked_source_controlled_forbidden_artifact_test_only",
         "validation_tiering_provenance_00_indexed": True,
         "validation_tiering_policy_status": "active",
         "validation_tiering_receipt_source_phase": "AI-RECEIPT-ARCHITECTURE-00",
@@ -20680,6 +20977,116 @@ not truth certification; not deployment authority; not final answer release; loc
 
 
 
+
+
+MINIMAL_VIABLE_RECEIPT_DESIGN_SYNC_DOCS = {
+    "index.md",
+    "ai-receipt-architecture.md",
+    "triadic-observation-contract.md",
+    "observation-contract-policy-simulation.md",
+    "telemetry-aperture-controller.md",
+    "tac-policy-simulation.md",
+    "tac-local-review-integration.md",
+    "tac-ai-receipt-event-link.md",
+    "coherence-event-signatures.md",
+    "ces-pmr-indexing-design.md",
+    "pmr-pathway-priors-design-doctrine.md",
+    "validation-tiering-provenance.md",
+    "metric-semantic-contract.md",
+    "claim-boundaries.md",
+}
+
+
+def _bullets(items: list[str]) -> str:
+    return "\n".join(f"- {item}" for item in items)
+
+
+def minimal_viable_receipt_design_doc() -> str:
+    dashboard_lines = "\n".join(
+        f"- `{key} = {str(value).lower() if isinstance(value, bool) else value}`"
+        for key, value in MINIMAL_VIABLE_RECEIPT_DESIGN_DASHBOARD_SUMMARY.items()
+    )
+    return f"""# Minimal Viable Receipt Design
+
+## Phase
+
+MINIMAL-VIABLE-RECEIPT-DESIGN-00 synchronizes the locally validated CoherenceLattice Minimal Viable Receipt Design into publication dashboards. This is publication/dashboard synchronization only and grants no runtime authority.
+
+## Doctrine
+
+{_bullets(MINIMAL_VIABLE_RECEIPT_DESIGN_DOCTRINE_LANGUAGE)}
+
+## Dashboard summary
+
+{dashboard_lines}
+
+## Product event components
+
+{_bullets(MINIMAL_VIABLE_RECEIPT_DESIGN_PRODUCT_EVENT_COMPONENTS)}
+
+## Required receipt sections
+
+{_bullets(MINIMAL_VIABLE_RECEIPT_DESIGN_RECEIPT_SECTIONS)}
+
+## User-readable questions
+
+{_bullets(MINIMAL_VIABLE_RECEIPT_DESIGN_USER_QUESTIONS)}
+
+## Contestability options
+
+{_bullets(MINIMAL_VIABLE_RECEIPT_DESIGN_CONTESTABILITY_OPTIONS)}
+
+## Cost and burden dimensions
+
+{_bullets(MINIMAL_VIABLE_RECEIPT_DESIGN_COST_BURDEN_DIMENSIONS)}
+
+## Relation to prior phases
+
+{_bullets(MINIMAL_VIABLE_RECEIPT_DESIGN_PRIOR_PHASE_RELATION)}
+
+## Required artifacts
+
+{_bullets(MINIMAL_VIABLE_RECEIPT_DESIGN_ARTIFACTS)}
+
+## Failure classes
+
+{_bullets(MINIMAL_VIABLE_RECEIPT_DESIGN_FAILURE_CLASSES)}
+
+## Environment-isolation repair note
+
+- MINIMAL-VIABLE-RECEIPT-DESIGN-ENV-ISOLATION-REPAIR-00 made the design-only forbidden-artifact test inspect tracked/source-controlled files rather than untracked local bridge debris.
+- This repair does not change MVR doctrine.
+- This repair does not emit runtime artifacts.
+- This repair does not grant product, memory, final-answer, accepted-evidence, or truth authority.
+- Publication sync grants no runtime authority.
+
+## Blocked overclaim examples
+
+{_bullets(MINIMAL_VIABLE_RECEIPT_DESIGN_BLOCKED_CLAIMS)}
+
+## Allowed bounded claim
+
+{MINIMAL_VIABLE_RECEIPT_DESIGN_CLAIM_ALLOWED}
+
+## Reproducibility command summary
+
+```bash
+{MINIMAL_VIABLE_RECEIPT_DESIGN_COMMAND}
+```
+"""
+
+MINIMAL_VIABLE_RECEIPT_DESIGN_SYNC_NOTE = f"""
+
+## Minimal Viable Receipt Design publication sync
+
+MINIMAL-VIABLE-RECEIPT-DESIGN-00 adds Minimal Viable Receipt Design as a design-only standard for one local governed AI work-event receipt. One working receipt before more ontology. One transaction, many governed receipt sections. The receipt is not proof of truth. The receipt is proof of process. Minimal Viable Receipt is a product-readiness target, not product release. Minimal Viable Receipt Transaction is the preferred product object. Governed Receipt Transaction is the internal/system object. Triadic Cognition Transaction is avoided as a public product object because it may imply cognition certification. If the receipt is not readable, the product is not ready. A receipt that only impresses architects is not product-ready. Human review remains required.
+
+MINIMAL-VIABLE-RECEIPT-DESIGN-00 does not emit runtime receipt artifacts, does not claim product readiness, does not release product, and does not change runtime behavior. It binds evidence, controls, output, telemetry, memory posture, cost/burden, contestability, recovery, and boundaries. It grants no product, memory, final-answer, accepted-evidence, truth, compliance, model-training, review-skip, human-benefit, market-validation, trace-export, PMR-federation, provider-runtime, or network authority.
+
+MINIMAL-VIABLE-RECEIPT-DESIGN-ENV-ISOLATION-REPAIR-00 made the design-only forbidden-artifact test inspect tracked/source-controlled files rather than untracked local bridge debris. This repair does not change MVR doctrine. This repair does not emit runtime artifacts. This repair does not grant product, memory, final-answer, accepted-evidence, or truth authority.
+
+See [Minimal Viable Receipt Design](minimal-viable-receipt-design.md).
+"""
 OBSERVATION_CONTRACT_POLICY_SIMULATION_SYNC_DOCS = {
     "triadic-observation-contract.md",
     "telemetry-aperture-controller.md",
@@ -20727,6 +21134,10 @@ def build(out_dir: Path, docs_dir: Path) -> None:
     _write_json(out_dir / "artifact_index.json", artifact_index())
     _write_json(out_dir / "status.json", status_payload())
     docs_payload = docs()
+    docs_payload["minimal-viable-receipt-design.md"] = minimal_viable_receipt_design_doc()
+    for name in MINIMAL_VIABLE_RECEIPT_DESIGN_SYNC_DOCS:
+        if name in docs_payload:
+            docs_payload[name] = docs_payload[name].rstrip() + MINIMAL_VIABLE_RECEIPT_DESIGN_SYNC_NOTE
     for name in TRIADIC_OBSERVATION_CONTRACT_SYNC_DOCS:
         if name in docs_payload:
             docs_payload[name] = docs_payload[name].rstrip() + TRIADIC_OBSERVATION_CONTRACT_SYNC_NOTE

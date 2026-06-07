@@ -1150,6 +1150,17 @@
       "ai_receipt_architecture.md",
       "ai_receipt_architecture_receipt.json"
     ],
+    "MINIMAL-VIABLE-RECEIPT-DESIGN-00": [
+      "docs/MINIMAL_VIABLE_RECEIPT_DESIGN.md",
+      "config/receipt/minimal_viable_receipt_policy.v1.json",
+      "schema/bridge/minimal_viable_receipt_packet.schema.json",
+      "schema/bridge/minimal_viable_receipt_checklist.schema.json",
+      "schema/bridge/minimal_viable_receipt_section_index.schema.json",
+      "schema/bridge/receipt_readability_profile.schema.json",
+      "schema/bridge/receipt_contestability_profile.schema.json",
+      "schema/bridge/receipt_cost_burden_profile.schema.json",
+      "schema/bridge/minimal_viable_receipt_non_authority_boundary.schema.json"
+    ],
     "VALIDATION-TIERING-PROVENANCE-00": [
       "config/validation/validation_tier_policy.v1.json",
       "validation_tier_receipt.json",

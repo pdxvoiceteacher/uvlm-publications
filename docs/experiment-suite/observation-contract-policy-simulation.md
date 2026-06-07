@@ -228,3 +228,13 @@ OBSERVATION-CONTRACT-POLICY-SIMULATION-00 emits design-only Observation Contract
 ## Runtime authority boundary
 
 Publication sync grants no runtime authority. OBSERVATION-CONTRACT-POLICY-SIMULATION-00 grants no runtime authority. simulation_only = true; observation_contract_enabled = false; recovery_surface_is_not_recovery_action = true; table_is_not_runtime_enforcement = true.
+
+## Minimal Viable Receipt Design publication sync
+
+MINIMAL-VIABLE-RECEIPT-DESIGN-00 adds Minimal Viable Receipt Design as a design-only standard for one local governed AI work-event receipt. One working receipt before more ontology. One transaction, many governed receipt sections. The receipt is not proof of truth. The receipt is proof of process. Minimal Viable Receipt is a product-readiness target, not product release. Minimal Viable Receipt Transaction is the preferred product object. Governed Receipt Transaction is the internal/system object. Triadic Cognition Transaction is avoided as a public product object because it may imply cognition certification. If the receipt is not readable, the product is not ready. A receipt that only impresses architects is not product-ready. Human review remains required.
+
+MINIMAL-VIABLE-RECEIPT-DESIGN-00 does not emit runtime receipt artifacts, does not claim product readiness, does not release product, and does not change runtime behavior. It binds evidence, controls, output, telemetry, memory posture, cost/burden, contestability, recovery, and boundaries. It grants no product, memory, final-answer, accepted-evidence, truth, compliance, model-training, review-skip, human-benefit, market-validation, trace-export, PMR-federation, provider-runtime, or network authority.
+
+MINIMAL-VIABLE-RECEIPT-DESIGN-ENV-ISOLATION-REPAIR-00 made the design-only forbidden-artifact test inspect tracked/source-controlled files rather than untracked local bridge debris. This repair does not change MVR doctrine. This repair does not emit runtime artifacts. This repair does not grant product, memory, final-answer, accepted-evidence, or truth authority.
+
+See [Minimal Viable Receipt Design](minimal-viable-receipt-design.md).
