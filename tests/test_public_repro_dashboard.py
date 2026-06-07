@@ -71,6 +71,18 @@ from tools.build_public_repro_dashboard import (
     AI_RECEIPT_ARCHITECTURE_PRODUCT_FRAMING,
     AI_RECEIPT_ARCHITECTURE_REPRO_FRAGMENTS,
     AI_RECEIPT_ARCHITECTURE_REQUIRED_DOC_PHRASES,
+    MINIMAL_VIABLE_RECEIPT_DESIGN_ARTIFACTS,
+    MINIMAL_VIABLE_RECEIPT_DESIGN_BLOCKED_CLAIMS,
+    MINIMAL_VIABLE_RECEIPT_DESIGN_CLAIM_ALLOWED,
+    MINIMAL_VIABLE_RECEIPT_DESIGN_CONTESTABILITY_OPTIONS,
+    MINIMAL_VIABLE_RECEIPT_DESIGN_COST_BURDEN_DIMENSIONS,
+    MINIMAL_VIABLE_RECEIPT_DESIGN_DASHBOARD_SUMMARY,
+    MINIMAL_VIABLE_RECEIPT_DESIGN_DOCTRINE_LANGUAGE,
+    MINIMAL_VIABLE_RECEIPT_DESIGN_FAILURE_CLASSES,
+    MINIMAL_VIABLE_RECEIPT_DESIGN_PRIOR_PHASE_RELATION,
+    MINIMAL_VIABLE_RECEIPT_DESIGN_PRODUCT_EVENT_COMPONENTS,
+    MINIMAL_VIABLE_RECEIPT_DESIGN_RECEIPT_SECTIONS,
+    MINIMAL_VIABLE_RECEIPT_DESIGN_USER_QUESTIONS,
     VALIDATION_TIERING_PROVENANCE_ACCEPTANCE_TERMS,
     VALIDATION_TIERING_PROVENANCE_ARTIFACTS,
     VALIDATION_TIERING_PROVENANCE_BLOCKED_CLAIMS,
@@ -264,6 +276,7 @@ REQUIRED_DOCS = {
     "perturbation-structure-affordance-card.md",
     "triadic-observation-contract.md",
     "observation-contract-policy-simulation.md",
+    "minimal-viable-receipt-design.md",
 }
 REQUIRED_PHASES = {
     "EXP-SUITE-REGISTRY-01",
@@ -351,6 +364,7 @@ REQUIRED_PHASES = {
     "STATIC-HTML-USABILITY-REVIEW-SEED-00",
     "STATIC-HTML-USABILITY-REVISION-00",
     "AI-RECEIPT-ARCHITECTURE-00",
+    "MINIMAL-VIABLE-RECEIPT-DESIGN-00",
     "VALIDATION-TIERING-PROVENANCE-00",
     "TELEMETRY-APERTURE-DESIGN-00",
     "TAC-POLICY-SIMULATION-00",
@@ -441,6 +455,7 @@ REQUIRED_COMMAND_FRAGMENTS = (
     "Run-ATLAS-LOCAL-MEMORY-ADMISSION-READINESS00-Acceptance.ps1",
     "build_atlas_local_memory_admission_readiness",
     "build_atlas_local_memory_admission_prototype",
+    "test_minimal_viable_receipt_design",
     "build_local_test_proxy_review_receipt",
     "build_ai_context_performance_continuity",
     "build_theorem_validation_pathway",
@@ -5783,3 +5798,65 @@ def test_validator_fails_if_observation_contract_policy_simulation_makes_forbidd
         assert result["passed"] is False, claim
         forbidden_found = [found.lower() for found in result["forbidden_claims_found"]]
         assert claim.lower() in forbidden_found or f"claims {claim.lower()}" in forbidden_found, result
+
+
+
+def test_minimal_viable_receipt_design_indexes_and_docs_are_generated(tmp_path):
+    out_dir, docs_dir = run_builder(tmp_path)
+    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text(encoding="utf-8"))
+    artifact_index = json.loads((out_dir / "artifact_index.json").read_text(encoding="utf-8"))
+    claim_boundaries = json.loads((out_dir / "claim_boundary_index.json").read_text(encoding="utf-8"))
+    page = (docs_dir / "minimal-viable-receipt-design.md").read_text(encoding="utf-8")
+    index = (docs_dir / "index.md").read_text(encoding="utf-8")
+
+    phase = next(entry for entry in dashboard["accepted_phases"] if entry["phase_id"] == "MINIMAL-VIABLE-RECEIPT-DESIGN-00")
+    summary = phase["dashboard_summary"]
+    assert summary == MINIMAL_VIABLE_RECEIPT_DESIGN_DASHBOARD_SUMMARY
+    assert summary["policy_status"] == "active_design_only"
+    assert summary["runtime_behavior_changed"] is False
+    assert summary["minimal_viable_receipt_enabled"] is False
+    assert summary["minimal_viable_receipt_runtime_artifacts_emitted"] is False
+    assert summary["product_release_performed"] is False
+    assert summary["product_readiness_claimed"] is False
+    assert summary["memory_write_performed"] is False
+    assert summary["atlas_memory_admission_performed"] is False
+    assert summary["final_answer_authority_granted"] is False
+    assert summary["accepted_evidence_authority_granted"] is False
+    assert summary["truth_certification_emitted"] is False
+    assert summary["preferred_product_object"] == "Minimal Viable Receipt Transaction"
+    assert summary["internal_system_object"] == "Governed Receipt Transaction"
+    assert summary["avoided_public_object"] == "Triadic Cognition Transaction"
+    assert summary["receipt_readability_gate"] == "required_for_product_readiness_target"
+    assert summary["non_developer_readability_profile_required"] is True
+    assert summary["receipt_must_answer_user_questions"] is True
+    assert summary["architecture_jargon_requires_plain_language_label"] is True
+    assert summary["section_index_required"] is True
+
+    assert "MINIMAL-VIABLE-RECEIPT-DESIGN-00" in {entry["phase_id"] for entry in dashboard["accepted_phases"]}
+    assert "MINIMAL-VIABLE-RECEIPT-DESIGN-00" in artifact_index["phases"]
+    for artifact in MINIMAL_VIABLE_RECEIPT_DESIGN_ARTIFACTS:
+        assert artifact in artifact_index["phases"]["MINIMAL-VIABLE-RECEIPT-DESIGN-00"]
+        assert artifact in page
+
+    for required in (
+        *MINIMAL_VIABLE_RECEIPT_DESIGN_DOCTRINE_LANGUAGE,
+        *MINIMAL_VIABLE_RECEIPT_DESIGN_PRODUCT_EVENT_COMPONENTS,
+        *MINIMAL_VIABLE_RECEIPT_DESIGN_RECEIPT_SECTIONS,
+        *MINIMAL_VIABLE_RECEIPT_DESIGN_USER_QUESTIONS,
+        *MINIMAL_VIABLE_RECEIPT_DESIGN_CONTESTABILITY_OPTIONS,
+        *MINIMAL_VIABLE_RECEIPT_DESIGN_COST_BURDEN_DIMENSIONS,
+        *MINIMAL_VIABLE_RECEIPT_DESIGN_PRIOR_PHASE_RELATION,
+        *MINIMAL_VIABLE_RECEIPT_DESIGN_FAILURE_CLASSES,
+        MINIMAL_VIABLE_RECEIPT_DESIGN_CLAIM_ALLOWED,
+        "MINIMAL-VIABLE-RECEIPT-DESIGN-ENV-ISOLATION-REPAIR-00 made the design-only forbidden-artifact test inspect tracked/source-controlled files rather than untracked local bridge debris.",
+        "This repair does not change MVR doctrine.",
+        "This repair does not emit runtime artifacts.",
+        "This repair does not grant product, memory, final-answer, accepted-evidence, or truth authority.",
+        "Publication sync grants no runtime authority.",
+    ):
+        assert required in page
+
+    boundaries = "\n".join(claim_boundaries["boundaries"])
+    for blocked in MINIMAL_VIABLE_RECEIPT_DESIGN_BLOCKED_CLAIMS:
+        assert blocked in boundaries
+    assert "minimal-viable-receipt-design.md" in index
