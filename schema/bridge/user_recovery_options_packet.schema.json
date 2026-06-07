@@ -1,0 +1,11 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/schema/bridge/user_recovery_options_packet.schema.json",
+  "title": "user_recovery_options_packet",
+  "type": "object",
+  "additionalProperties": true,
+  "properties": {
+    "phase_id": {"const": "TRIADIC-OBSERVATION-CONTRACT-DESIGN-00"},
+    "policy_status": {"const": "active_design_only"}
+  }
+}

@@ -30,6 +30,8 @@ from tools.build_public_repro_dashboard import (
     PMR_PATHWAY_PRIORS_DESIGN_BLOCKED_CLAIMS,
     CES_DESIGN_BLOCKED_CLAIMS,
     CES_PMR_INDEXING_DESIGN_BLOCKED_CLAIMS,
+    TRIADIC_OBSERVATION_CONTRACT_BLOCKED_CLAIMS,
+    OBSERVATION_CONTRACT_POLICY_SIMULATION_BLOCKED_CLAIMS,
 )
 
 
@@ -814,6 +816,8 @@ PAPER_CONFIGS: dict[str, dict[str, Any]] = {
             *PMR_PATHWAY_PRIORS_DESIGN_BLOCKED_CLAIMS,
             *CES_DESIGN_BLOCKED_CLAIMS,
             *CES_PMR_INDEXING_DESIGN_BLOCKED_CLAIMS,
+            *TRIADIC_OBSERVATION_CONTRACT_BLOCKED_CLAIMS,
+            *OBSERVATION_CONTRACT_POLICY_SIMULATION_BLOCKED_CLAIMS,
             "raw model output is final answer",
             "Omega detection",
             "provider runtime",
@@ -1168,6 +1172,15 @@ def _forbidden_hits(normalized_text: str, forbidden: tuple[str, ...]) -> list[st
             if phrase in {"federation", "accepted evidence", "surveillance"} and "without changing runtime behavior or granting" in normalized_text[max(0, index - 160) : index]:
                 search_from = index + len(normalized_phrase)
                 continue
+            if phrase == "federation" and "design only consent bounded governed attention contract" in normalized_text[max(0, index - 220) : index + 220] and "without changing runtime behavior" in normalized_text[max(0, index - 80) : index + 260]:
+                search_from = index + len(normalized_phrase)
+                continue
+            if phrase == "federation" and "design only observation contract policy simulation artifacts" in normalized_text[max(0, index - 220) : index + 220] and "without changing runtime behavior" in normalized_text[max(0, index - 80) : index + 360]:
+                search_from = index + len(normalized_phrase)
+                continue
+            if phrase == "federation" and "non authority boundaries without changing runtime behavior" in normalized_text[max(0, index - 220) : index + 220]:
+                search_from = index + len(normalized_phrase)
+                continue
             if phrase == "federation" and "retention/export/federation blocks" in normalized_text[max(0, index - 80) : index + 80]:
                 search_from = index + len(normalized_phrase)
                 continue
@@ -1405,6 +1418,8 @@ def _forbidden_hits(normalized_text: str, forbidden: tuple[str, ...]) -> list[st
             *PMR_PATHWAY_PRIORS_DESIGN_BLOCKED_CLAIMS,
             *CES_DESIGN_BLOCKED_CLAIMS,
             *CES_PMR_INDEXING_DESIGN_BLOCKED_CLAIMS,
+            *TRIADIC_OBSERVATION_CONTRACT_BLOCKED_CLAIMS,
+            *OBSERVATION_CONTRACT_POLICY_SIMULATION_BLOCKED_CLAIMS,
             }
             if phrase in manual_blocked_examples:
                 if "no artifact in this chain authorizes" in normalized_text[max(0, index - 120) : index]:

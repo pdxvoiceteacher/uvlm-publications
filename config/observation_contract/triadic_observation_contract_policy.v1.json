@@ -1,0 +1,18 @@
+{
+  "schema": "coherencelattice.observation_contract_policy.v1",
+  "phase_id": "TRIADIC-OBSERVATION-CONTRACT-DESIGN-00",
+  "policy_status": "active_design_only",
+  "observation_contract_definition": "consent_bounded_governed_attention_contract",
+  "runtime_behavior_changed": false,
+  "observation_contract_enabled": false,
+  "mode_shift_receipts_emitted": false,
+  "user_recovery_actions_performed": false,
+  "telemetry_behavior_changed": false,
+  "memory_write_performed": false,
+  "atlas_memory_admission_performed": false,
+  "trace_export_performed": false,
+  "pmr_federation_performed": false,
+  "provider_runtime_performed": false,
+  "network_call_performed": false,
+  "product_release_performed": false
+}

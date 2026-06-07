@@ -1209,6 +1209,28 @@
       "schema/bridge/ces_pmr_query_hint.schema.json",
       "schema/bridge/ces_pmr_non_authority_boundary.schema.json"
     ],
+    "TRIADIC-OBSERVATION-CONTRACT-DESIGN-00": [
+      "docs/TRIADIC_OBSERVATION_CONTRACT.md",
+      "config/observation_contract/triadic_observation_contract_policy.v1.json",
+      "schema/bridge/triadic_observation_contract_packet.schema.json",
+      "schema/bridge/mode_shift_receipt.schema.json",
+      "schema/bridge/observation_rights_profile.schema.json",
+      "schema/bridge/user_recovery_options_packet.schema.json",
+      "schema/bridge/observation_contract_non_authority_boundary.schema.json"
+    ],
+    "OBSERVATION-CONTRACT-POLICY-SIMULATION-00": [
+      "observation_contract_policy_simulation_packet.json",
+      "observation_contract_simulated_mode_shift.json",
+      "observation_contract_recovery_simulation.json",
+      "observation_contract_policy_simulation_summary.md",
+      "observation_contract_simulation_receipt.json",
+      "observation_contract_scenario_matrix.json",
+      "mode_shift_requirement_matrix.json",
+      "user_notice_requirement_simulation.json",
+      "consent_requirement_simulation.json",
+      "recovery_rights_surface_packet.json",
+      "no_silent_mode_shift_boundary_table.json"
+    ],
     "PERTURBATION-OBSERVATION-CAPTURE-00": [
       "perturbation_observation_packet.json",
       "perturbation_axis_packet.json",

@@ -276,3 +276,11 @@ python -c "from pathlib import Path; Path('docs/CES_PMR_INDEXING_DESIGN.md').rea
 ## Allowed bounded claim
 
 CES-PMR indexing is proposed as a design-only compact event-index layer in which Coherence Event Signatures help retrieve and filter replayable PMR records while PMR remains the evidentiary store, source expansion remains required for decisions, and no memory write, Atlas admission, model training, review skipping, truth certification, accepted-evidence authority, trace export, PMR federation, cross-user matching, biometric scoring, product release, or runtime behavior change is authorized.
+
+## Triadic Observation Contract publication sync
+
+TRIADIC-OBSERVATION-CONTRACT-DESIGN-00 adds a design-only Triadic Observation Contract publication surface. Governed Attention Precedes Governed Intelligence. No silent mode shift. Human review remains required. This sync grants no runtime authority: it does not change runtime behavior, does not enable an observation contract, does not emit mode-shift receipts, does not perform user recovery actions, does not change telemetry behavior, does not write memory, does not admit Atlas memory, does not export traces, does not federate PMR, does not run providers or networks, and does not release product.
+
+The contract names allowed_observation_scope, observation_resolution, purpose_binding, consent_scope, retention_scope, replay_scope, disclosure_scope, federation_scope, recovery_rights, and non_authority_boundaries. It relates TAC aperture policy and simulation, CES event receipts, CES PMR indexing, PMR pathway priors, AI Receipt Architecture, Sophia execution-reality boundaries, and Validation Tiering Provenance without granting final-answer authority, accepted-evidence authority, truth certification, or surveillance authorization.
+
+OBSERVATION-CONTRACT-POLICY-SIMULATION-00 rehearses deterministic policy outcomes for no-silent-mode-shift, notice, consent, recovery-rights, source-expansion, pathway-prior, trace-export, and PMR-federation scenarios. Simulated notice is not user notice. Simulated consent is not actual consent. Recovery option simulation is not recovery action. The simulation is not runtime enforcement, not consent execution, not memory write, not trace export authorization, not PMR federation authorization, and not product release.

@@ -167,3 +167,11 @@ TAC-LOCAL-REVIEW-INTEGRATION-00 links simulated TAC policy evidence into local r
 ## AI Receipt event-link linkage
 
 TAC-AI-RECEIPT-EVENT-LINK-00 links this non-authoritative overlay to AI Receipt through supplemental references and does not rewrite ai_receipt_event_chain.json. PMR-PATHWAY-PRIORS-DESIGN-DOCTRINE-00 preserves TAC boundaries and AI Receipt traceability for future pathway-prior review recommendations without generating priors or writing memory. COHERENCE-EVENT-SIGNATURES-DESIGN-00 can serve as a compact PMR event index but does not replace PMR source artifacts or authorize pathway-prior generation.
+
+## Triadic Observation Contract publication sync
+
+TRIADIC-OBSERVATION-CONTRACT-DESIGN-00 adds a design-only Triadic Observation Contract publication surface. Governed Attention Precedes Governed Intelligence. No silent mode shift. Human review remains required. This sync grants no runtime authority: it does not change runtime behavior, does not enable an observation contract, does not emit mode-shift receipts, does not perform user recovery actions, does not change telemetry behavior, does not write memory, does not admit Atlas memory, does not export traces, does not federate PMR, does not run providers or networks, and does not release product.
+
+The contract names allowed_observation_scope, observation_resolution, purpose_binding, consent_scope, retention_scope, replay_scope, disclosure_scope, federation_scope, recovery_rights, and non_authority_boundaries. It relates TAC aperture policy and simulation, CES event receipts, CES PMR indexing, PMR pathway priors, AI Receipt Architecture, Sophia execution-reality boundaries, and Validation Tiering Provenance without granting final-answer authority, accepted-evidence authority, truth certification, or surveillance authorization.
+
+OBSERVATION-CONTRACT-POLICY-SIMULATION-00 rehearses deterministic policy outcomes for no-silent-mode-shift, notice, consent, recovery-rights, source-expansion, pathway-prior, trace-export, and PMR-federation scenarios. Simulated notice is not user notice. Simulated consent is not actual consent. Recovery option simulation is not recovery action. The simulation is not runtime enforcement, not consent execution, not memory write, not trace export authorization, not PMR federation authorization, and not product release.

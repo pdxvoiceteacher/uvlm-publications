@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/schema/bridge/observation_contract_simulation_receipt.schema.json",
+  "title": "observation_contract_simulation_receipt",
+  "type": "object",
+  "additionalProperties": true,
+  "properties": {
+    "phase_id": {"const": "OBSERVATION-CONTRACT-POLICY-SIMULATION-00"},
+    "simulation_mode": {"const": "design_only_policy_rehearsal"},
+    "simulation_only": {"const": true}
+  }
+}

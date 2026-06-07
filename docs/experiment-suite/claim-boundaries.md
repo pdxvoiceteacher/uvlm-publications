@@ -2853,6 +2853,254 @@
 - compact index means source can be deleted
 - index hit means final answer is authorized
 - index hit means memory write is approved
+- TRIADIC-OBSERVATION-CONTRACT-DESIGN-00 defines a design-only, consent-bounded governed-attention contract for observation scope, resolution, purpose, consent, retention, replay, disclosure, federation, recovery rights, reciprocity budget, and non-authority boundaries without changing runtime behavior, emitting mode-shift receipts, performing recovery actions, writing memory, admitting Atlas memory, exporting traces, federating PMR, releasing product, certifying truth, or granting final-answer or accepted-evidence authority.
+- docs/TRIADIC_OBSERVATION_CONTRACT.md
+- config/observation_contract/triadic_observation_contract_policy.v1.json
+- schema/bridge/triadic_observation_contract_packet.schema.json
+- schema/bridge/mode_shift_receipt.schema.json
+- schema/bridge/observation_rights_profile.schema.json
+- schema/bridge/user_recovery_options_packet.schema.json
+- schema/bridge/observation_contract_non_authority_boundary.schema.json
+- Triadic Observation Contract
+- Governed Attention Precedes Governed Intelligence.
+- The system must govern how the receipt is born.
+- A Triadic Observation Contract declares what the system may observe, at what resolution, under what consent, for what purpose, with what retention, with what recovery rights, and with what non-authority boundaries.
+- No silent mode shift.
+- Compression must remain reversible enough for audit, repair, and consent.
+- Canonical evidence comes before new abstraction.
+- Negative results are stewardship artifacts.
+- Discovery is not deployment.
+- Reciprocity budget must name exported burden.
+- Failure must be runnable.
+- User recovery is more than appeal.
+- Anti-priesthood interface means safety must be legible to unbelievers.
+- Minimal viable reality means one working receipt is worth more than ten named future layers.
+- Consent-bounded phase-lock means resonance, not absorption.
+- Beautiful names require boring tests.
+- TRIADIC-OBSERVATION-CONTRACT-DESIGN-00 does not change runtime behavior.
+- TRIADIC-OBSERVATION-CONTRACT-DESIGN-00 does not emit mode-shift receipts.
+- TRIADIC-OBSERVATION-CONTRACT-DESIGN-00 does not perform user recovery actions.
+- Human review remains required.
+- allowed_observation_scope
+- observation_resolution
+- purpose_binding
+- consent_scope
+- retention_scope
+- replay_scope
+- disclosure_scope
+- federation_scope
+- recovery_rights
+- non_authority_boundaries
+- observation_depth_increase
+- durable_retention_increase
+- execution_posture_change
+- disclosure_scope_change
+- trace_export_request
+- pmr_federation_request
+- replay_rehydration_request
+- source_expansion_decision
+- pathway_prior_candidate_use
+- ces_similarity_query
+- user_recovery_action
+- sophia_nonpass_or_uncertain
+- tac_full_audit_request
+- inspect
+- correct
+- revoke
+- quarantine
+- replay
+- downgrade
+- rehydrate
+- export_when_authorized
+- reset
+- request_human_review
+- human_review_time
+- privacy_exposure
+- compute_cost
+- local_storage_cost
+- pmr_retention_cost
+- federated_availability_burden
+- correction_burden
+- audit_burden
+- user_confusion_burden
+- silent_mode_shift
+- observation_contract_missing
+- consent_scope_missing
+- retention_scope_missing
+- recovery_path_missing
+- compression_without_replay_path
+- negative_result_discarded
+- operationalization_boundary_skipped
+- reciprocity_budget_omitted
+- failure_mode_not_runnable
+- anti_priesthood_interface_violation
+- minimal_viable_reality_skipped
+- consent_bounded_phaselock_violation
+- beautiful_name_without_boring_test
+- TELEMETRY-APERTURE-DESIGN-00 defines aperture policy.
+- TAC-POLICY-SIMULATION-00 rehearses TAC policy decisions.
+- COHERENCE-EVENT-SIGNATURES-DESIGN-00 defines CES event receipts.
+- CES-PMR-INDEXING-DESIGN-00 defines CES as a compact PMR index, not a PMR source replacement.
+- PMR-PATHWAY-PRIORS-DESIGN-DOCTRINE-00 defines route priors as revocable review recommendations.
+- AI-RECEIPT-ARCHITECTURE-00 exposes what happened to humans.
+- SOPHIA-EXECUTIVE-AUDIT-REALITY-CHECK-00 distinguishes internal builder output from external Sophia agency.
+- VALIDATION-TIERING-PROVENANCE-00 records validation confidence scope.
+- Observation contract is runtime control
+- Observation contract authorizes surveillance
+- Observation contract authorizes memory write
+- Observation contract authorizes trace export
+- Observation contract authorizes PMR federation
+- Observation contract is product release
+- Observation contract certifies truth
+- Observation contract authorizes final answers
+- Observation contract grants accepted-evidence authority
+- Mode shift can be silent
+- Mode shift receipt is consent execution
+- Recovery option performs memory write
+- Recovery option authorizes trace export
+- User recovery means automatic deletion
+- Consent-bounded phase-lock means dependence
+- Beautiful name is sufficient validation
+- Minimal viable reality means product release
+- Reciprocity budget proves ethical symmetry
+- Failure harness proves safety
+- python -c "from pathlib import Path; Path('docs/TRIADIC_OBSERVATION_CONTRACT.md').read_text(encoding='utf-8')"; python -m json.tool config/observation_contract/triadic_observation_contract_policy.v1.json >/dev/null; python -m json.tool schema/bridge/triadic_observation_contract_packet.schema.json >/dev/null; python -m json.tool schema/bridge/mode_shift_receipt.schema.json >/dev/null; python -m json.tool schema/bridge/observation_rights_profile.schema.json >/dev/null; python -m json.tool schema/bridge/user_recovery_options_packet.schema.json >/dev/null; python -m json.tool schema/bridge/observation_contract_non_authority_boundary.schema.json >/dev/null
+- Publication sync grants no runtime authority.
+- TRIADIC-OBSERVATION-CONTRACT-DESIGN-00 grants no runtime authority.
+- OBSERVATION-CONTRACT-POLICY-SIMULATION-00 emits design-only Observation Contract policy simulation artifacts for deterministic local scenarios, rehearsing no-silent-mode-shift, notice, consent, recovery-rights, source-expansion, pathway-prior, trace-export, and PMR-federation requirements without changing runtime behavior, delivering user notice, obtaining consent, performing recovery actions, writing memory, admitting Atlas memory, exporting traces, federating PMR, releasing product, certifying truth, or granting final-answer or accepted-evidence authority.
+- observation_contract_policy_simulation_packet.json
+- observation_contract_simulated_mode_shift.json
+- observation_contract_recovery_simulation.json
+- observation_contract_policy_simulation_summary.md
+- observation_contract_simulation_receipt.json
+- observation_contract_scenario_matrix.json
+- mode_shift_requirement_matrix.json
+- user_notice_requirement_simulation.json
+- consent_requirement_simulation.json
+- recovery_rights_surface_packet.json
+- no_silent_mode_shift_boundary_table.json
+- config/observation_contract/triadic_observation_contract_policy.v1.json
+- schema/bridge/triadic_observation_contract_packet.schema.json
+- schema/bridge/mode_shift_receipt.schema.json
+- schema/bridge/observation_rights_profile.schema.json
+- schema/bridge/user_recovery_options_packet.schema.json
+- schema/bridge/observation_contract_non_authority_boundary.schema.json
+- schema/bridge/observation_contract_policy_simulation_packet.schema.json
+- schema/bridge/observation_contract_simulated_mode_shift.schema.json
+- schema/bridge/observation_contract_recovery_simulation.schema.json
+- schema/bridge/observation_contract_simulation_receipt.schema.json
+- schema/bridge/observation_contract_scenario_matrix.schema.json
+- schema/bridge/mode_shift_requirement_matrix.schema.json
+- schema/bridge/user_notice_requirement_simulation.schema.json
+- schema/bridge/consent_requirement_simulation.schema.json
+- schema/bridge/recovery_rights_surface_packet.schema.json
+- schema/bridge/no_silent_mode_shift_boundary_table.schema.json
+- local_default_receipt_review
+- observation_depth_increase_without_notice
+- durable_retention_increase_without_consent
+- trace_export_request_without_consent
+- pmr_federation_request_without_consent
+- source_expansion_decision
+- pathway_prior_candidate_use
+- user_recovery_action
+- telemetry_aperture_escalation_requires_notice
+- telemetry_aperture_escalation_requires_consent
+- silent_mode_shift_blocked
+- recovery_rights_must_be_surfaced
+- user_denies_consent
+- user_requests_recovery_path
+- high_materiality_task_requires_stricter_observation_posture
+- local_default_receipt_review completes and requires receipt and human review.
+- observation_depth_increase_without_notice is blocked fail-closed.
+- durable_retention_increase_without_consent is blocked fail-closed and surfaces recovery rights.
+- trace_export_request_without_consent is blocked fail-closed and trace export remains disallowed.
+- pmr_federation_request_without_consent is blocked fail-closed and PMR federation remains disallowed.
+- source_expansion_decision requires source expansion, receipt, and human review.
+- pathway_prior_candidate_use requires materiality review and remains non-authoritative.
+- user_recovery_action surfaces recovery rights but performs no recovery action.
+- silent_mode_shift_blocked demonstrates that mode shifts cannot be silent.
+- Observation Contract Policy Simulation
+- This is design-only policy rehearsal, not runtime control.
+- No silent mode shift.
+- Mode shift simulation is not consent execution.
+- Recovery option simulation is not recovery action.
+- User recovery is more than appeal.
+- Compression must remain reversible enough for audit, repair, and consent.
+- Failure must be runnable.
+- Human review remains required.
+- No runtime behavior changed.
+- No mode-shift receipt was emitted for live runtime use.
+- No user recovery action was performed.
+- Simulated notice is not user notice.
+- Simulated consent is not actual consent.
+- Observation Contract simulation rehearses no-silent-mode-shift, notice, consent, recovery, source expansion, pathway-prior, retention, trace export, and PMR federation cases without runtime enforcement or authority.
+- TRIADIC-OBSERVATION-CONTRACT-DESIGN-00 defines governed-attention doctrine.
+- OBSERVATION-CONTRACT-POLICY-SIMULATION-00 rehearses deterministic policy outcomes.
+- TELEMETRY-APERTURE-DESIGN-00 defines aperture policy.
+- TAC-POLICY-SIMULATION-00 rehearses TAC policy decisions.
+- COHERENCE-EVENT-SIGNATURES-DESIGN-00 defines CES event receipts.
+- CES-PMR-INDEXING-DESIGN-00 defines CES as a compact PMR index, not a PMR source replacement.
+- PMR-PATHWAY-PRIORS-DESIGN-DOCTRINE-00 defines route priors as revocable review recommendations.
+- AI-RECEIPT-ARCHITECTURE-00 exposes what happened to humans.
+- VALIDATION-TIERING-PROVENANCE-00 records validation confidence scope.
+- observation_contract_scenario_matrix.json
+- mode_shift_requirement_matrix.json
+- user_notice_requirement_simulation.json
+- consent_requirement_simulation.json
+- recovery_rights_surface_packet.json
+- no_silent_mode_shift_boundary_table.json
+- simulation_only = true
+- observation_contract_enabled = false
+- simulated_notice_delivered = false
+- simulated_notice_is_not_user_notice = true
+- simulated_consent_obtained = false
+- simulated_consent_is_not_actual_consent = true
+- recovery_surface_is_not_recovery_action = true
+- no_silent_mode_shift_boundary_triggered
+- silent_mode_shift_blocked
+- table_is_not_runtime_enforcement = true
+- observation_contract_simulation_mistaken_for_runtime_enforcement
+- simulated_notice_mistaken_for_user_notice
+- simulated_consent_mistaken_for_actual_consent
+- mode_shift_policy_mistaken_for_live_mode_shift_receipt
+- no_silent_mode_shift_boundary_mistaken_for_runtime_block
+- receipt_references_unsimulated_governance_contract
+- governance_contract_named_but_not_rehearsed
+- silent_mode_shift
+- recovery_path_missing
+- compression_without_replay_path
+- failure_mode_not_runnable
+- beautiful_name_without_boring_test
+- Observation Contract policy simulation is runtime control
+- Observation Contract policy simulation authorizes surveillance
+- Observation Contract policy simulation changes telemetry behavior
+- Observation Contract policy simulation emits live mode-shift receipts
+- Observation Contract policy simulation delivers user notice
+- Observation Contract policy simulation obtains user consent
+- simulated notice is user notice
+- simulated consent is actual consent
+- mode shift simulation is consent execution
+- recovery simulation performs recovery action
+- recovery surface writes memory
+- recovery surface authorizes trace export
+- no-silent-mode-shift table is runtime enforcement
+- Observation Contract policy simulation writes memory
+- Observation Contract policy simulation admits Atlas memory
+- Observation Contract policy simulation authorizes trace export
+- Observation Contract policy simulation authorizes PMR federation
+- Observation Contract policy simulation releases product
+- Observation Contract policy simulation certifies truth
+- Observation Contract policy simulation authorizes final answers
+- Observation Contract policy simulation grants accepted-evidence authority
+- Observation Contract policy simulation proves human benefit
+- Observation Contract policy simulation is market validation
+- Observation Contract policy simulation trains the model
+- Observation Contract policy simulation skips review
+- receipt_required means consent was obtained
+- human_review_required means human review already occurred
+- python -c "from pathlib import Path; from coherence.governance.observation_contract_simulation import build_observation_contract_policy_simulation; bridge=Path(r'C:\UVLM\run_artifacts\observation_contract_policy_simulation\bridge'); build_observation_contract_policy_simulation(bridge)"
+- Publication sync grants no runtime authority.
+- OBSERVATION-CONTRACT-POLICY-SIMULATION-00 grants no runtime authority.
 - RETROSYNTHESIS-LOCAL-PROTOTYPE-00 is bounded local candidate generation only.
 - RETROSYNTHESIS-LOCAL-PROTOTYPE-00 generates bounded local candidate hypotheses, candidate repair plans, and pattern observations from PMR query results, TEL replay, runtime metrics, formula registry, metric bounds, seed corpus observations, cognitive flow morphology, Sonya coverage, and Sophia posture.
 - Candidate hypotheses are not truth.
