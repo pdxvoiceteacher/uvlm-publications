@@ -166,4 +166,4 @@ TAC-LOCAL-REVIEW-INTEGRATION-00 links simulated TAC policy evidence into local r
 
 ## AI Receipt event-link linkage
 
-TAC-AI-RECEIPT-EVENT-LINK-00 links this non-authoritative overlay to AI Receipt through supplemental references and does not rewrite ai_receipt_event_chain.json. PMR-PATHWAY-PRIORS-DESIGN-DOCTRINE-00 preserves TAC boundaries and AI Receipt traceability for future pathway-prior review recommendations without generating priors or writing memory.
+TAC-AI-RECEIPT-EVENT-LINK-00 links this non-authoritative overlay to AI Receipt through supplemental references and does not rewrite ai_receipt_event_chain.json. PMR-PATHWAY-PRIORS-DESIGN-DOCTRINE-00 preserves TAC boundaries and AI Receipt traceability for future pathway-prior review recommendations without generating priors or writing memory. COHERENCE-EVENT-SIGNATURES-DESIGN-00 can serve as a compact PMR event index but does not replace PMR source artifacts or authorize pathway-prior generation.

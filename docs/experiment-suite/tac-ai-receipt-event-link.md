@@ -161,4 +161,4 @@ TAC-AI-RECEIPT-EVENT-LINK-00 links TAC posture to AI Receipt Architecture throug
 
 ## PMR pathway-prior linkage
 
-PMR-PATHWAY-PRIORS-DESIGN-DOCTRINE-00 preserves AI Receipt traceability, replay lineage, TAC retention/export/federation boundaries, Sophia reality status, and validation-tier evidence for revocable review recommendations without writing memory or generating pathway priors.
+PMR-PATHWAY-PRIORS-DESIGN-DOCTRINE-00 preserves AI Receipt traceability, replay lineage, TAC retention/export/federation boundaries, Sophia reality status, and validation-tier evidence for revocable review recommendations without writing memory or generating pathway priors. COHERENCE-EVENT-SIGNATURES-DESIGN-00 can provide event-level receipt signatures for this posture without runtime emission or similarity search.

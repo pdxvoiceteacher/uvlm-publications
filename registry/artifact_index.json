@@ -1193,6 +1193,14 @@
       "schema/bridge/pmr_pathway_prior_candidate.schema.json",
       "schema/bridge/pmr_pathway_prior_non_authority_boundary.schema.json"
     ],
+    "COHERENCE-EVENT-SIGNATURES-DESIGN-00": [
+      "docs/COHERENCE_EVENT_SIGNATURES.md",
+      "config/ces/coherence_event_signature_policy.v1.json",
+      "schema/bridge/coherence_event_signature_packet.schema.json",
+      "schema/bridge/ces_chain_summary_packet.schema.json",
+      "schema/bridge/ces_similarity_index_packet.schema.json",
+      "schema/bridge/ces_non_authority_boundary.schema.json"
+    ],
     "PERTURBATION-OBSERVATION-CAPTURE-00": [
       "perturbation_observation_packet.json",
       "perturbation_axis_packet.json",

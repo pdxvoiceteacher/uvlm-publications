@@ -144,3 +144,7 @@ MET-SEM-00 publishes a metric semantic contract that preserves canonical coheren
 ## Telemetry aperture linkage
 
 TELEMETRY-APERTURE-DESIGN-00 uses safe MET-SEM aliases for pulse mode only: Ψ_review, E_review, T_review, ΔS_review, Λ_boundary, Eₛ_review, and TAF_review_runtime_v0. Safe MET-SEM aliases are not canonical metric completion and TAC does not present unqualified empathy score, unqualified transparency score, unqualified phase-lock score, unqualified entropy score, unqualified ethical symmetry score, or canonical total action as TAC measurements.
+
+## Coherence Event Signatures linkage
+
+COHERENCE-EVENT-SIGNATURES-DESIGN-00 uses safe metric aliases as process-state signatures, not identity, biometric, truth, or model-training signals.

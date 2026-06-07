@@ -131,6 +131,20 @@ from tools.build_public_repro_dashboard import (
     PMR_PATHWAY_PRIORS_DESIGN_CLAIM_ALLOWED,
     PMR_PATHWAY_PRIORS_DESIGN_DOCTRINE_LANGUAGE,
     PMR_PATHWAY_PRIORS_DESIGN_REPRO_FRAGMENTS,
+    CES_DESIGN_ARTIFACTS,
+    CES_DESIGN_BLOCKED_CLAIMS,
+    CES_DESIGN_CLAIM_ALLOWED,
+    CES_DESIGN_DOCTRINE_LANGUAGE,
+    CES_DESIGN_EVENT_TYPES,
+    CES_DESIGN_FAILURE_CLASSES,
+    CES_DESIGN_IDENTITY_INTEGRITY_DOCTRINE,
+    CES_DESIGN_LAYERS,
+    CES_DESIGN_NEGATIVE_CONTROLS,
+    CES_DESIGN_PMR_RELATION,
+    CES_DESIGN_PRODUCT_LANGUAGE,
+    CES_DESIGN_REPRO_FRAGMENTS,
+    CES_DESIGN_SAFE_METRIC_ALIASES,
+    CES_DESIGN_SIMILARITY_PRIVACY_DOCTRINE,
     _dedupe_accepted_phases,
 )
 from tools.validate_public_repro_dashboard import REQUIRED_PHASES as VALIDATOR_REQUIRED_PHASES
@@ -307,6 +321,7 @@ REQUIRED_PHASES = {
     "TAC-LOCAL-REVIEW-INTEGRATION-00",
     "TAC-AI-RECEIPT-EVENT-LINK-00",
     "PMR-PATHWAY-PRIORS-DESIGN-DOCTRINE-00",
+    "COHERENCE-EVENT-SIGNATURES-DESIGN-00",
     "RUNTIME-METRICS-CORPUS-SEED-00",
     "PMR-LOCAL-RUNTIME-QUERYABLE-STORE-00",
     "RETROSYNTHESIS-READINESS-00",
@@ -5347,3 +5362,104 @@ def test_pmr_pathway_priors_design_doctrine_page_and_registry_are_generated(tmp_
     assert status["not_pmr_pathway_prior_memory_write"] is True
     assert status["not_pmr_pathway_prior_atlas_memory_admission"] is True
     assert status["pmr_pathway_prior_requires_human_review"] is True
+
+
+
+def test_coherence_event_signatures_design_page_and_registry_are_generated(tmp_path):
+    out_dir, docs_dir = run_builder(tmp_path)
+    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text(encoding="utf-8"))
+    reproducibility = json.loads((out_dir / "reproducibility_index.json").read_text(encoding="utf-8"))
+    artifact_index = json.loads((out_dir / "artifact_index.json").read_text(encoding="utf-8"))
+    claim_boundaries = json.loads((out_dir / "claim_boundary_index.json").read_text(encoding="utf-8"))
+    status = json.loads((out_dir / "status.json").read_text(encoding="utf-8"))
+    phase_by_id = {entry["phase_id"]: entry for entry in dashboard["accepted_phases"]}
+    boundary_text = "\n".join(claim_boundaries["boundaries"])
+    reproducibility_text = json.dumps(reproducibility)
+    page_text = (docs_dir / "coherence-event-signatures.md").read_text(encoding="utf-8")
+
+    phase = phase_by_id["COHERENCE-EVENT-SIGNATURES-DESIGN-00"]
+    summary = phase["dashboard_summary"]
+    assert summary["policy_status"] == "active_design_only"
+    assert summary["runtime_behavior_changed"] is False
+    assert summary["ces_emission_enabled"] is False
+    assert summary["ces_runtime_artifacts_emitted"] is False
+    assert summary["ces_similarity_search_enabled"] is False
+    assert summary["cross_user_similarity_enabled"] is False
+    assert summary["federated_similarity_enabled"] is False
+    assert summary["raw_trace_retention_performed"] is False
+    assert summary["memory_write_performed"] is False
+    assert summary["atlas_memory_admission_performed"] is False
+    assert summary["model_training_performed"] is False
+    assert summary["product_release_performed"] is False
+    assert summary["event_scope"] == "significant_transactive_events_only"
+    assert summary["ces_definition"] == "trace_compatible_hash_sealed_coherence_indexed_event_receipt"
+    assert summary["metric_profile_is_not_exact_identity"] is True
+    assert summary["canonical_hash_is_not_truth_certification"] is True
+    assert summary["cross_user_similarity_disabled_by_default"] is True
+    assert summary["federated_similarity_requires_review"] is True
+    assert summary["ces_is_not_truth_certification"] is True
+    assert summary["ces_is_not_final_answer_authority"] is True
+    assert summary["ces_is_not_accepted_evidence_authority"] is True
+    assert summary["ces_is_not_biometric_score"] is True
+    assert summary["ces_is_not_user_identity"] is True
+    assert summary["ces_is_not_memory_write_authorization"] is True
+    assert summary["ces_is_not_atlas_memory_admission"] is True
+    assert summary["ces_is_not_model_training"] is True
+    assert summary["ces_is_not_trace_export_authorization"] is True
+    assert summary["ces_is_not_federation_authorization"] is True
+    assert summary["ces_is_not_product_release"] is True
+    assert summary["ces_requires_human_review"] is True
+
+    for artifact in CES_DESIGN_ARTIFACTS:
+        assert artifact in artifact_index["phases"]["COHERENCE-EVENT-SIGNATURES-DESIGN-00"]
+        assert artifact in page_text
+        assert artifact in boundary_text
+    for phrase_group in (
+        CES_DESIGN_DOCTRINE_LANGUAGE,
+        CES_DESIGN_PRODUCT_LANGUAGE,
+        CES_DESIGN_LAYERS,
+        CES_DESIGN_SAFE_METRIC_ALIASES,
+        CES_DESIGN_IDENTITY_INTEGRITY_DOCTRINE,
+        CES_DESIGN_SIMILARITY_PRIVACY_DOCTRINE,
+        CES_DESIGN_EVENT_TYPES,
+        CES_DESIGN_NEGATIVE_CONTROLS,
+        CES_DESIGN_FAILURE_CLASSES,
+        CES_DESIGN_PMR_RELATION,
+        CES_DESIGN_BLOCKED_CLAIMS,
+    ):
+        for phrase in phrase_group:
+            assert phrase in page_text
+            assert phrase in boundary_text
+    for fragment in CES_DESIGN_REPRO_FRAGMENTS:
+        assert fragment in reproducibility_text
+        assert fragment in page_text
+        assert fragment in boundary_text
+    assert CES_DESIGN_CLAIM_ALLOWED in page_text
+    assert CES_DESIGN_CLAIM_ALLOWED in boundary_text
+    assert status["coherence_event_signatures_design_00_indexed"] is True
+    assert status["ces_policy_status"] == "active_design_only"
+    assert status["ces_runtime_behavior_changed"] is False
+    assert status["ces_emission_enabled"] is False
+    assert status["ces_runtime_artifacts_emitted"] is False
+    assert status["ces_similarity_search_enabled"] is False
+    assert status["ces_cross_user_similarity_enabled"] is False
+    assert status["ces_federated_similarity_enabled"] is False
+    assert status["ces_raw_trace_retention_performed"] is False
+    assert status["ces_memory_write_performed"] is False
+    assert status["ces_atlas_memory_admission_performed"] is False
+    assert status["ces_model_training_performed"] is False
+    assert status["ces_product_release_performed"] is False
+    assert status["ces_event_scope"] == "significant_transactive_events_only"
+    assert status["ces_definition"] == "trace_compatible_hash_sealed_coherence_indexed_event_receipt"
+    assert status["not_ces_truth_certification"] is True
+    assert status["not_ces_final_answer_authority"] is True
+    assert status["not_ces_accepted_evidence_authority"] is True
+    assert status["not_ces_biometric_score"] is True
+    assert status["not_ces_user_identity"] is True
+    assert status["not_ces_memory_write_authorization"] is True
+    assert status["not_ces_atlas_memory_admission"] is True
+    assert status["not_ces_model_training"] is True
+    assert status["not_ces_trace_export_authorization"] is True
+    assert status["not_ces_federation_authorization"] is True
+    assert status["not_ces_product_release"] is True
+    assert status["ces_requires_human_review"] is True

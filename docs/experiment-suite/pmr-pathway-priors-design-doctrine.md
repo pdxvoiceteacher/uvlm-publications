@@ -99,3 +99,7 @@ python -c "from pathlib import Path; Path('docs/PMR_PATHWAY_PRIORS_DESIGN_DOCTRI
 ## Allowed bounded claim
 
 PMR pathway priors are proposed as revocable, materiality-scoped review recommendations derived from provenance-backed artifact histories, preserving replay lineage, AI Receipt traceability, TAC boundaries, Sophia reality status, validation-tier evidence, and human review requirements without certifying truth, writing memory, training models, skipping review, admitting Atlas memory, exporting traces, federating PMR, releasing product, or granting final-answer or accepted-evidence authority.
+
+## Coherence Event Signatures relation
+
+COHERENCE-EVENT-SIGNATURES-DESIGN-00 can serve as a compact PMR event index and may support future revocable pathway-prior candidates, but CES does not replace PMR source artifacts, does not authorize pathway-prior generation, does not write memory, and does not admit Atlas memory.
