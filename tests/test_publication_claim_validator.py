@@ -41,6 +41,8 @@ from tools.build_public_repro_dashboard import (
     CES_PMR_INDEXING_DESIGN_CLAIM_ALLOWED,
     TRIADIC_OBSERVATION_CONTRACT_BLOCKED_CLAIMS,
     TRIADIC_OBSERVATION_CONTRACT_CLAIM_ALLOWED,
+    OBSERVATION_CONTRACT_POLICY_SIMULATION_BLOCKED_CLAIMS,
+    OBSERVATION_CONTRACT_POLICY_SIMULATION_CLAIM_ALLOWED,
 )
 from tools.validate_publication_claims import validate_publication_claims
 
@@ -5050,5 +5052,57 @@ def test_claim_validator_allows_triadic_observation_contract_bounded_claim(tmp_p
         ),
         encoding="utf-8",
     )
+    result = validate_publication_claims(paper_root / "PUB_GOV_ARTIFACT_COG_01.md")
+    assert result["forbidden_overclaims_found"] == []
+
+
+
+def _write_minimal_publication_claim_fixture(paper_root: Path, text: str) -> None:
+    paper_root.mkdir(parents=True, exist_ok=True)
+    base = (
+        "not truth certification\nnot deployment authority\nnot final answer release\nlocal fixture only\n"
+        "requires external peer review\nnot AI consciousness\nnot recursive Sonya federation\n"
+        "not retrosynthesis runtime\nnot Omega detection\nnot live Atlas memory writes\nnot live Sophia calls\n"
+    )
+    for name in (
+        "PUB_GOV_ARTIFACT_COG_01.md",
+        "reproducibility_appendix.md",
+        "claim_boundary_table.md",
+        "artifact_table.md",
+        "reviewer_quickstart.md",
+    ):
+        (paper_root / name).write_text(base + text + "\n", encoding="utf-8")
+    (paper_root / "status.json").write_text(
+        json.dumps(
+            {
+                "paper_id": "PUB-GOV-ARTIFACT-COG-01",
+                "repo": "pdxvoiceteacher/uvlm-publications",
+                "status": "drafted",
+                "claim_level": "internal_preprint_draft",
+                "requires_external_peer_review": True,
+                "not_truth_certification": True,
+                "not_deployment_authority": True,
+                "not_final_answer_release": True,
+                "not_live_model_execution": True,
+                "not_live_model_evaluation": True,
+                "not_production_evaluation": True,
+                "not_ai_consciousness_claim": True,
+            }
+        ),
+        encoding="utf-8",
+    )
+
+
+def test_claim_validator_rejects_observation_contract_policy_simulation_overclaims(tmp_path):
+    for claim in OBSERVATION_CONTRACT_POLICY_SIMULATION_BLOCKED_CLAIMS:
+        paper_root = tmp_path / claim.replace(" ", "_")
+        _write_minimal_publication_claim_fixture(paper_root, f"Observation Contract policy simulation claims {claim}.")
+        result = validate_publication_claims(paper_root / "PUB_GOV_ARTIFACT_COG_01.md")
+        assert result["forbidden_overclaims_found"], claim
+
+
+def test_claim_validator_allows_observation_contract_policy_simulation_bounded_claim(tmp_path):
+    paper_root = tmp_path / "paper"
+    _write_minimal_publication_claim_fixture(paper_root, OBSERVATION_CONTRACT_POLICY_SIMULATION_CLAIM_ALLOWED)
     result = validate_publication_claims(paper_root / "PUB_GOV_ARTIFACT_COG_01.md")
     assert result["forbidden_overclaims_found"] == []
