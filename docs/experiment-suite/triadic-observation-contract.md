@@ -181,3 +181,7 @@ TRIADIC-OBSERVATION-CONTRACT-DESIGN-00 defines a design-only, consent-bounded go
 ## Runtime authority boundary
 
 Publication sync grants no runtime authority. TRIADIC-OBSERVATION-CONTRACT-DESIGN-00 grants no runtime authority.
+
+## Observation Contract policy simulation publication sync
+
+OBSERVATION-CONTRACT-POLICY-SIMULATION-00 rehearses deterministic policy outcomes while TRIADIC-OBSERVATION-CONTRACT-DESIGN-00 defines governed-attention doctrine. This is design-only policy rehearsal, not runtime control. No silent mode shift. Simulated notice is not user notice. Simulated consent is not actual consent. Mode shift simulation is not consent execution. Recovery option simulation is not recovery action. Human review remains required. No runtime behavior changed, no live mode-shift receipt was emitted, no user recovery action was performed, and publication sync grants no runtime authority.

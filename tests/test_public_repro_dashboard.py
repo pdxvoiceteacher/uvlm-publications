@@ -169,6 +169,16 @@ from tools.build_public_repro_dashboard import (
     TRIADIC_OBSERVATION_CONTRACT_PRIOR_PHASE_RELATION,
     TRIADIC_OBSERVATION_CONTRACT_RECIPROCITY_BUDGET_DIMENSIONS,
     TRIADIC_OBSERVATION_CONTRACT_RECOVERY_RIGHTS,
+    OBSERVATION_CONTRACT_POLICY_SIMULATION_ARTIFACTS,
+    OBSERVATION_CONTRACT_POLICY_SIMULATION_BLOCKED_CLAIMS,
+    OBSERVATION_CONTRACT_POLICY_SIMULATION_CLAIM_ALLOWED,
+    OBSERVATION_CONTRACT_POLICY_SIMULATION_DOCTRINE_LANGUAGE,
+    OBSERVATION_CONTRACT_POLICY_SIMULATION_FAILURE_CLASSES,
+    OBSERVATION_CONTRACT_POLICY_SIMULATION_INPUT_REFERENCES,
+    OBSERVATION_CONTRACT_POLICY_SIMULATION_MATRIX_TERMS,
+    OBSERVATION_CONTRACT_POLICY_SIMULATION_PRIOR_PHASE_RELATION,
+    OBSERVATION_CONTRACT_POLICY_SIMULATION_SCENARIO_OUTCOMES,
+    OBSERVATION_CONTRACT_POLICY_SIMULATION_SCENARIOS,
     _dedupe_accepted_phases,
 )
 from tools.validate_public_repro_dashboard import REQUIRED_PHASES as VALIDATOR_REQUIRED_PHASES
@@ -253,6 +263,7 @@ REQUIRED_DOCS = {
     "perturbation-residual-novelty-map.md",
     "perturbation-structure-affordance-card.md",
     "triadic-observation-contract.md",
+    "observation-contract-policy-simulation.md",
 }
 REQUIRED_PHASES = {
     "EXP-SUITE-REGISTRY-01",
@@ -349,6 +360,7 @@ REQUIRED_PHASES = {
     "COHERENCE-EVENT-SIGNATURES-DESIGN-00",
     "CES-PMR-INDEXING-DESIGN-00",
     "TRIADIC-OBSERVATION-CONTRACT-DESIGN-00",
+    "OBSERVATION-CONTRACT-POLICY-SIMULATION-00",
     "RUNTIME-METRICS-CORPUS-SEED-00",
     "PMR-LOCAL-RUNTIME-QUERYABLE-STORE-00",
     "RETROSYNTHESIS-READINESS-00",
@@ -5652,3 +5664,122 @@ def test_triadic_observation_contract_page_and_registry_are_generated(tmp_path):
     assert status["observation_contract_trace_export_performed"] is False
     assert status["observation_contract_pmr_federation_performed"] is False
     assert status["observation_contract_product_release_performed"] is False
+
+
+def test_observation_contract_policy_simulation_page_and_registry_are_generated(tmp_path):
+    out_dir, docs_dir = run_builder(tmp_path)
+    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text(encoding="utf-8"))
+    reproducibility = json.loads((out_dir / "reproducibility_index.json").read_text(encoding="utf-8"))
+    artifact_index = json.loads((out_dir / "artifact_index.json").read_text(encoding="utf-8"))
+    claim_boundaries = json.loads((out_dir / "claim_boundary_index.json").read_text(encoding="utf-8"))
+    status = json.loads((out_dir / "status.json").read_text(encoding="utf-8"))
+    phase_by_id = {entry["phase_id"]: entry for entry in dashboard["accepted_phases"]}
+    boundary_text = "\n".join(claim_boundaries["boundaries"])
+    reproducibility_text = json.dumps(reproducibility)
+    page_text = (docs_dir / "observation-contract-policy-simulation.md").read_text(encoding="utf-8")
+
+    assert "OBSERVATION-CONTRACT-POLICY-SIMULATION-00" in phase_by_id
+    phase = phase_by_id["OBSERVATION-CONTRACT-POLICY-SIMULATION-00"]
+    summary = phase["dashboard_summary"]
+    expected_summary = {
+        "simulation_status": "completed",
+        "simulation_mode": "design_only_policy_rehearsal",
+        "default_scenario_id": "local_default_receipt_review",
+        "default_status": "completed",
+        "scenario_matrix_present": True,
+        "mode_shift_requirement_matrix_present": True,
+        "user_notice_requirement_simulation_present": True,
+        "consent_requirement_simulation_present": True,
+        "recovery_rights_surface_present": True,
+        "no_silent_mode_shift_boundary_table_present": True,
+        "default_receipt_required": True,
+        "default_human_review_required": True,
+        "observation_depth_without_notice_status": "blocked_fail_closed",
+        "durable_retention_without_consent_status": "blocked_fail_closed",
+        "trace_export_without_consent_status": "blocked_fail_closed",
+        "pmr_federation_without_consent_status": "blocked_fail_closed",
+        "trace_export_allowed": False,
+        "pmr_federation_allowed": False,
+        "source_expansion_required": True,
+        "pathway_prior_materiality_review_required": True,
+        "recovery_rights_visible": True,
+        "recovery_action_performed": False,
+        "runtime_behavior_changed": False,
+        "telemetry_behavior_changed": False,
+        "provider_runtime_performed": False,
+        "network_call_performed": False,
+        "memory_write_performed": False,
+        "atlas_memory_admission_performed": False,
+        "trace_export_performed": False,
+        "pmr_federation_performed": False,
+        "product_release_performed": False,
+        "final_answer_authority_granted": False,
+        "accepted_evidence_authority_granted": False,
+        "truth_certification_emitted": False,
+        "simulated_notice_delivered": False,
+        "simulated_notice_is_not_user_notice": True,
+        "simulated_consent_obtained": False,
+        "simulated_consent_is_not_actual_consent": True,
+        "simulation_is_not_runtime_control": True,
+        "simulation_is_not_surveillance_authorization": True,
+        "simulation_is_not_consent_execution": True,
+        "simulation_is_not_memory_write": True,
+        "simulation_is_not_trace_export_authorization": True,
+        "simulation_is_not_federation_authorization": True,
+        "simulation_is_not_product_release": True,
+        "simulation_requires_human_review": True,
+    }
+    assert summary["scenario_count"] >= 8
+    for key, value in expected_summary.items():
+        assert summary[key] == value
+
+    for artifact in OBSERVATION_CONTRACT_POLICY_SIMULATION_ARTIFACTS:
+        assert artifact in artifact_index["phases"]["OBSERVATION-CONTRACT-POLICY-SIMULATION-00"]
+        assert artifact in page_text
+        assert artifact in boundary_text
+    for phrase_group in (
+        OBSERVATION_CONTRACT_POLICY_SIMULATION_INPUT_REFERENCES,
+        OBSERVATION_CONTRACT_POLICY_SIMULATION_SCENARIOS,
+        OBSERVATION_CONTRACT_POLICY_SIMULATION_SCENARIO_OUTCOMES,
+        OBSERVATION_CONTRACT_POLICY_SIMULATION_DOCTRINE_LANGUAGE,
+        OBSERVATION_CONTRACT_POLICY_SIMULATION_PRIOR_PHASE_RELATION,
+        OBSERVATION_CONTRACT_POLICY_SIMULATION_MATRIX_TERMS,
+        OBSERVATION_CONTRACT_POLICY_SIMULATION_FAILURE_CLASSES,
+        OBSERVATION_CONTRACT_POLICY_SIMULATION_BLOCKED_CLAIMS,
+    ):
+        for phrase in phrase_group:
+            assert phrase in page_text
+            assert phrase in boundary_text
+
+    assert "build_observation_contract_policy_simulation" in reproducibility_text
+    assert "build_observation_contract_policy_simulation" in page_text
+    assert OBSERVATION_CONTRACT_POLICY_SIMULATION_CLAIM_ALLOWED in page_text
+    assert OBSERVATION_CONTRACT_POLICY_SIMULATION_CLAIM_ALLOWED in boundary_text
+    assert "Publication sync grants no runtime authority." in page_text
+    assert status["observation_contract_policy_simulation_00_indexed"] is True
+    assert status["observation_contract_policy_simulation_status"] == "completed"
+    assert status["observation_contract_policy_simulation_mode"] == "design_only_policy_rehearsal"
+    assert status["observation_contract_policy_simulation_runtime_behavior_changed"] is False
+    assert status["observation_contract_policy_simulation_notice_delivered"] is False
+    assert status["observation_contract_policy_simulation_consent_obtained"] is False
+    assert status["observation_contract_policy_simulation_recovery_action_performed"] is False
+    assert status["observation_contract_policy_simulation_memory_write_performed"] is False
+    assert status["observation_contract_policy_simulation_trace_export_performed"] is False
+    assert status["observation_contract_policy_simulation_pmr_federation_performed"] is False
+    assert status["observation_contract_policy_simulation_product_release_performed"] is False
+    assert status["observation_contract_policy_simulation_truth_certification_emitted"] is False
+
+
+def test_validator_required_phases_include_observation_contract_policy_simulation():
+    assert "OBSERVATION-CONTRACT-POLICY-SIMULATION-00" in VALIDATOR_REQUIRED_PHASES
+
+
+def test_validator_fails_if_observation_contract_policy_simulation_makes_forbidden_claims(tmp_path):
+    for claim in OBSERVATION_CONTRACT_POLICY_SIMULATION_BLOCKED_CLAIMS:
+        out_dir, docs_dir = run_builder(tmp_path / claim.replace(" ", "_"))
+        page = docs_dir / "observation-contract-policy-simulation.md"
+        page.write_text(page.read_text(encoding="utf-8") + f"\nObservation Contract simulation claims {claim}.\n", encoding="utf-8")
+        result = validate_dashboard(out_dir / "experiment_suite_dashboard.json", docs_dir)
+        assert result["passed"] is False, claim
+        forbidden_found = [found.lower() for found in result["forbidden_claims_found"]]
+        assert claim.lower() in forbidden_found or f"claims {claim.lower()}" in forbidden_found, result

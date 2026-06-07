@@ -4367,6 +4367,224 @@ TRIADIC_OBSERVATION_CONTRACT_PHASE = {
     "reviewer_caution": "TRIADIC-OBSERVATION-CONTRACT-DESIGN-00 is design doctrine only; it changes no runtime behavior, emits no mode-shift receipts, performs no recovery actions, writes no memory, admits no Atlas memory, exports no traces, federates no PMR, releases no product, and grants no surveillance, truth, final-answer, or accepted-evidence authority.",
 }
 
+OBSERVATION_CONTRACT_POLICY_SIMULATION_COMMAND = r'''python -c "from pathlib import Path; from coherence.governance.observation_contract_simulation import build_observation_contract_policy_simulation; bridge=Path(r'C:\UVLM\run_artifacts\observation_contract_policy_simulation\bridge'); build_observation_contract_policy_simulation(bridge)"'''
+OBSERVATION_CONTRACT_POLICY_SIMULATION_ARTIFACTS = [
+    "observation_contract_policy_simulation_packet.json",
+    "observation_contract_simulated_mode_shift.json",
+    "observation_contract_recovery_simulation.json",
+    "observation_contract_policy_simulation_summary.md",
+    "observation_contract_simulation_receipt.json",
+    "observation_contract_scenario_matrix.json",
+    "mode_shift_requirement_matrix.json",
+    "user_notice_requirement_simulation.json",
+    "consent_requirement_simulation.json",
+    "recovery_rights_surface_packet.json",
+    "no_silent_mode_shift_boundary_table.json",
+]
+OBSERVATION_CONTRACT_POLICY_SIMULATION_INPUT_REFERENCES = [
+    "config/observation_contract/triadic_observation_contract_policy.v1.json",
+    "schema/bridge/triadic_observation_contract_packet.schema.json",
+    "schema/bridge/mode_shift_receipt.schema.json",
+    "schema/bridge/observation_rights_profile.schema.json",
+    "schema/bridge/user_recovery_options_packet.schema.json",
+    "schema/bridge/observation_contract_non_authority_boundary.schema.json",
+    "schema/bridge/observation_contract_policy_simulation_packet.schema.json",
+    "schema/bridge/observation_contract_simulated_mode_shift.schema.json",
+    "schema/bridge/observation_contract_recovery_simulation.schema.json",
+    "schema/bridge/observation_contract_simulation_receipt.schema.json",
+    "schema/bridge/observation_contract_scenario_matrix.schema.json",
+    "schema/bridge/mode_shift_requirement_matrix.schema.json",
+    "schema/bridge/user_notice_requirement_simulation.schema.json",
+    "schema/bridge/consent_requirement_simulation.schema.json",
+    "schema/bridge/recovery_rights_surface_packet.schema.json",
+    "schema/bridge/no_silent_mode_shift_boundary_table.schema.json",
+]
+OBSERVATION_CONTRACT_POLICY_SIMULATION_SCENARIOS = [
+    "local_default_receipt_review",
+    "observation_depth_increase_without_notice",
+    "durable_retention_increase_without_consent",
+    "trace_export_request_without_consent",
+    "pmr_federation_request_without_consent",
+    "source_expansion_decision",
+    "pathway_prior_candidate_use",
+    "user_recovery_action",
+    "telemetry_aperture_escalation_requires_notice",
+    "telemetry_aperture_escalation_requires_consent",
+    "silent_mode_shift_blocked",
+    "recovery_rights_must_be_surfaced",
+    "user_denies_consent",
+    "user_requests_recovery_path",
+    "high_materiality_task_requires_stricter_observation_posture",
+]
+OBSERVATION_CONTRACT_POLICY_SIMULATION_SCENARIO_OUTCOMES = [
+    "local_default_receipt_review completes and requires receipt and human review.",
+    "observation_depth_increase_without_notice is blocked fail-closed.",
+    "durable_retention_increase_without_consent is blocked fail-closed and surfaces recovery rights.",
+    "trace_export_request_without_consent is blocked fail-closed and trace export remains disallowed.",
+    "pmr_federation_request_without_consent is blocked fail-closed and PMR federation remains disallowed.",
+    "source_expansion_decision requires source expansion, receipt, and human review.",
+    "pathway_prior_candidate_use requires materiality review and remains non-authoritative.",
+    "user_recovery_action surfaces recovery rights but performs no recovery action.",
+    "silent_mode_shift_blocked demonstrates that mode shifts cannot be silent.",
+]
+OBSERVATION_CONTRACT_POLICY_SIMULATION_DOCTRINE_LANGUAGE = [
+    "Observation Contract Policy Simulation",
+    "This is design-only policy rehearsal, not runtime control.",
+    "No silent mode shift.",
+    "Mode shift simulation is not consent execution.",
+    "Recovery option simulation is not recovery action.",
+    "User recovery is more than appeal.",
+    "Compression must remain reversible enough for audit, repair, and consent.",
+    "Failure must be runnable.",
+    "Human review remains required.",
+    "No runtime behavior changed.",
+    "No mode-shift receipt was emitted for live runtime use.",
+    "No user recovery action was performed.",
+    "Simulated notice is not user notice.",
+    "Simulated consent is not actual consent.",
+    "Observation Contract simulation rehearses no-silent-mode-shift, notice, consent, recovery, source expansion, pathway-prior, retention, trace export, and PMR federation cases without runtime enforcement or authority.",
+]
+OBSERVATION_CONTRACT_POLICY_SIMULATION_PRIOR_PHASE_RELATION = [
+    "TRIADIC-OBSERVATION-CONTRACT-DESIGN-00 defines governed-attention doctrine.",
+    "OBSERVATION-CONTRACT-POLICY-SIMULATION-00 rehearses deterministic policy outcomes.",
+    "TELEMETRY-APERTURE-DESIGN-00 defines aperture policy.",
+    "TAC-POLICY-SIMULATION-00 rehearses TAC policy decisions.",
+    "COHERENCE-EVENT-SIGNATURES-DESIGN-00 defines CES event receipts.",
+    "CES-PMR-INDEXING-DESIGN-00 defines CES as a compact PMR index, not a PMR source replacement.",
+    "PMR-PATHWAY-PRIORS-DESIGN-DOCTRINE-00 defines route priors as revocable review recommendations.",
+    "AI-RECEIPT-ARCHITECTURE-00 exposes what happened to humans.",
+    "VALIDATION-TIERING-PROVENANCE-00 records validation confidence scope.",
+]
+OBSERVATION_CONTRACT_POLICY_SIMULATION_MATRIX_TERMS = [
+    "observation_contract_scenario_matrix.json",
+    "mode_shift_requirement_matrix.json",
+    "user_notice_requirement_simulation.json",
+    "consent_requirement_simulation.json",
+    "recovery_rights_surface_packet.json",
+    "no_silent_mode_shift_boundary_table.json",
+    "simulation_only = true",
+    "observation_contract_enabled = false",
+    "simulated_notice_delivered = false",
+    "simulated_notice_is_not_user_notice = true",
+    "simulated_consent_obtained = false",
+    "simulated_consent_is_not_actual_consent = true",
+    "recovery_surface_is_not_recovery_action = true",
+    "no_silent_mode_shift_boundary_triggered",
+    "silent_mode_shift_blocked",
+    "table_is_not_runtime_enforcement = true",
+]
+OBSERVATION_CONTRACT_POLICY_SIMULATION_FAILURE_CLASSES = [
+    "observation_contract_simulation_mistaken_for_runtime_enforcement",
+    "simulated_notice_mistaken_for_user_notice",
+    "simulated_consent_mistaken_for_actual_consent",
+    "mode_shift_policy_mistaken_for_live_mode_shift_receipt",
+    "no_silent_mode_shift_boundary_mistaken_for_runtime_block",
+    "receipt_references_unsimulated_governance_contract",
+    "governance_contract_named_but_not_rehearsed",
+    "silent_mode_shift",
+    "recovery_path_missing",
+    "compression_without_replay_path",
+    "failure_mode_not_runnable",
+    "beautiful_name_without_boring_test",
+]
+OBSERVATION_CONTRACT_POLICY_SIMULATION_BLOCKED_CLAIMS = [
+    "Observation Contract policy simulation is runtime control",
+    "Observation Contract policy simulation authorizes surveillance",
+    "Observation Contract policy simulation changes telemetry behavior",
+    "Observation Contract policy simulation emits live mode-shift receipts",
+    "Observation Contract policy simulation delivers user notice",
+    "Observation Contract policy simulation obtains user consent",
+    "simulated notice is user notice",
+    "simulated consent is actual consent",
+    "mode shift simulation is consent execution",
+    "recovery simulation performs recovery action",
+    "recovery surface writes memory",
+    "recovery surface authorizes trace export",
+    "no-silent-mode-shift table is runtime enforcement",
+    "Observation Contract policy simulation writes memory",
+    "Observation Contract policy simulation admits Atlas memory",
+    "Observation Contract policy simulation authorizes trace export",
+    "Observation Contract policy simulation authorizes PMR federation",
+    "Observation Contract policy simulation releases product",
+    "Observation Contract policy simulation certifies truth",
+    "Observation Contract policy simulation authorizes final answers",
+    "Observation Contract policy simulation grants accepted-evidence authority",
+    "Observation Contract policy simulation proves human benefit",
+    "Observation Contract policy simulation is market validation",
+    "Observation Contract policy simulation trains the model",
+    "Observation Contract policy simulation skips review",
+    "receipt_required means consent was obtained",
+    "human_review_required means human review already occurred",
+]
+OBSERVATION_CONTRACT_POLICY_SIMULATION_CLAIM_ALLOWED = "OBSERVATION-CONTRACT-POLICY-SIMULATION-00 emits design-only Observation Contract policy simulation artifacts for deterministic local scenarios, rehearsing no-silent-mode-shift, notice, consent, recovery-rights, source-expansion, pathway-prior, trace-export, and PMR-federation requirements without changing runtime behavior, delivering user notice, obtaining consent, performing recovery actions, writing memory, admitting Atlas memory, exporting traces, federating PMR, releasing product, certifying truth, or granting final-answer or accepted-evidence authority."
+OBSERVATION_CONTRACT_POLICY_SIMULATION_DASHBOARD_SUMMARY = {
+    "simulation_status": "completed",
+    "simulation_mode": "design_only_policy_rehearsal",
+    "default_scenario_id": "local_default_receipt_review",
+    "default_status": "completed",
+    "scenario_count": len(OBSERVATION_CONTRACT_POLICY_SIMULATION_SCENARIOS),
+    "scenario_matrix_present": True,
+    "mode_shift_requirement_matrix_present": True,
+    "user_notice_requirement_simulation_present": True,
+    "consent_requirement_simulation_present": True,
+    "recovery_rights_surface_present": True,
+    "no_silent_mode_shift_boundary_table_present": True,
+    "default_receipt_required": True,
+    "default_human_review_required": True,
+    "observation_depth_without_notice_status": "blocked_fail_closed",
+    "durable_retention_without_consent_status": "blocked_fail_closed",
+    "trace_export_without_consent_status": "blocked_fail_closed",
+    "pmr_federation_without_consent_status": "blocked_fail_closed",
+    "trace_export_allowed": False,
+    "pmr_federation_allowed": False,
+    "source_expansion_required": True,
+    "pathway_prior_materiality_review_required": True,
+    "recovery_rights_visible": True,
+    "recovery_action_performed": False,
+    "runtime_behavior_changed": False,
+    "telemetry_behavior_changed": False,
+    "provider_runtime_performed": False,
+    "network_call_performed": False,
+    "memory_write_performed": False,
+    "atlas_memory_admission_performed": False,
+    "trace_export_performed": False,
+    "pmr_federation_performed": False,
+    "product_release_performed": False,
+    "final_answer_authority_granted": False,
+    "accepted_evidence_authority_granted": False,
+    "truth_certification_emitted": False,
+    "simulated_notice_delivered": False,
+    "simulated_notice_is_not_user_notice": True,
+    "simulated_consent_obtained": False,
+    "simulated_consent_is_not_actual_consent": True,
+    "simulation_is_not_runtime_control": True,
+    "simulation_is_not_surveillance_authorization": True,
+    "simulation_is_not_consent_execution": True,
+    "simulation_is_not_memory_write": True,
+    "simulation_is_not_trace_export_authorization": True,
+    "simulation_is_not_federation_authorization": True,
+    "simulation_is_not_product_release": True,
+    "simulation_requires_human_review": True,
+}
+OBSERVATION_CONTRACT_POLICY_SIMULATION_PHASE = {
+    "phase_id": "OBSERVATION-CONTRACT-POLICY-SIMULATION-00",
+    "repo": "pdxvoiceteacher/CoherenceLattice",
+    "source_phase": "OBSERVATION-CONTRACT-POLICY-SIMULATION-00",
+    "status": "accepted_local_validation",
+    "publication_status": "dashboard_synced",
+    "evidence_type": "design_only_policy_simulation_artifacts",
+    "product_posture": "design_only_policy_rehearsal_no_runtime_control_notice_consent_or_recovery_action",
+    "authority_posture": "non_authoritative",
+    "public_claim_boundary": "design_only_policy_rehearsal_no_runtime_observation_contract_enforcement_notice_consent_recovery_memory_export_federation_product_truth_final_answer_or_accepted_evidence_authority",
+    "primary_artifacts": OBSERVATION_CONTRACT_POLICY_SIMULATION_ARTIFACTS,
+    "input_design_references": OBSERVATION_CONTRACT_POLICY_SIMULATION_INPUT_REFERENCES,
+    "dashboard_summary": OBSERVATION_CONTRACT_POLICY_SIMULATION_DASHBOARD_SUMMARY,
+    "reproduction_command_summary": OBSERVATION_CONTRACT_POLICY_SIMULATION_COMMAND,
+    "claims_blocked": OBSERVATION_CONTRACT_POLICY_SIMULATION_BLOCKED_CLAIMS,
+    "claim_allowed": OBSERVATION_CONTRACT_POLICY_SIMULATION_CLAIM_ALLOWED,
+    "reviewer_caution": "OBSERVATION-CONTRACT-POLICY-SIMULATION-00 is design-only policy rehearsal; it changes no runtime behavior, emits no live mode-shift receipts, delivers no user notice, obtains no actual consent, performs no recovery action, writes no memory, admits no Atlas memory, exports no traces, federates no PMR, releases no product, and grants no truth, final-answer, accepted-evidence, surveillance, trace-export, or federation authority.",
+}
+
 PERTURBATION_OBSERVATION_ARTIFACTS = [
     "perturbation_observation_packet.json",
     "perturbation_axis_packet.json",
@@ -11556,6 +11774,7 @@ PMR_PATHWAY_PRIORS_DESIGN_PHASE,
 CES_DESIGN_PHASE,
 CES_PMR_INDEXING_DESIGN_PHASE,
 TRIADIC_OBSERVATION_CONTRACT_PHASE,
+OBSERVATION_CONTRACT_POLICY_SIMULATION_PHASE,
 PERTURBATION_OBSERVATION_CAPTURE_PHASE,
 PERTURBATION_TRUNK_MAPPING_PHASE,
 PERTURBATION_RESIDUAL_NOVELTY_MAP_PHASE,
@@ -13794,6 +14013,19 @@ BOUNDARIES.extend(
         *TRIADIC_OBSERVATION_CONTRACT_PRIOR_PHASE_RELATION,
         *TRIADIC_OBSERVATION_CONTRACT_BLOCKED_CLAIMS,
         TRIADIC_OBSERVATION_CONTRACT_COMMAND,
+        OBSERVATION_CONTRACT_POLICY_SIMULATION_CLAIM_ALLOWED,
+        *OBSERVATION_CONTRACT_POLICY_SIMULATION_ARTIFACTS,
+        *OBSERVATION_CONTRACT_POLICY_SIMULATION_INPUT_REFERENCES,
+        *OBSERVATION_CONTRACT_POLICY_SIMULATION_SCENARIOS,
+        *OBSERVATION_CONTRACT_POLICY_SIMULATION_SCENARIO_OUTCOMES,
+        *OBSERVATION_CONTRACT_POLICY_SIMULATION_DOCTRINE_LANGUAGE,
+        *OBSERVATION_CONTRACT_POLICY_SIMULATION_PRIOR_PHASE_RELATION,
+        *OBSERVATION_CONTRACT_POLICY_SIMULATION_MATRIX_TERMS,
+        *OBSERVATION_CONTRACT_POLICY_SIMULATION_FAILURE_CLASSES,
+        "Blocked overclaim examples for Observation Contract policy simulation publication boundaries.",
+        *OBSERVATION_CONTRACT_POLICY_SIMULATION_BLOCKED_CLAIMS,
+        OBSERVATION_CONTRACT_POLICY_SIMULATION_COMMAND,
+        "build_observation_contract_policy_simulation",
         "Publication sync grants no runtime authority.",
         "TRIADIC-OBSERVATION-CONTRACT-DESIGN-00 grants no runtime authority.",
     ]
@@ -14489,6 +14721,21 @@ def dashboard_payload() -> dict[str, Any]:
         "observation_contract_is_not_final_answer_authority": True,
         "observation_contract_is_not_accepted_evidence_authority": True,
         "observation_contract_requires_human_review": True,
+        "observation_contract_policy_simulation_00_indexed": True,
+        "observation_contract_policy_simulation_status": "completed",
+        "observation_contract_policy_simulation_mode": "design_only_policy_rehearsal",
+        "observation_contract_policy_simulation_runtime_behavior_changed": False,
+        "observation_contract_policy_simulation_telemetry_behavior_changed": False,
+        "observation_contract_policy_simulation_notice_delivered": False,
+        "observation_contract_policy_simulation_consent_obtained": False,
+        "observation_contract_policy_simulation_recovery_action_performed": False,
+        "observation_contract_policy_simulation_memory_write_performed": False,
+        "observation_contract_policy_simulation_atlas_memory_admission_performed": False,
+        "observation_contract_policy_simulation_trace_export_performed": False,
+        "observation_contract_policy_simulation_pmr_federation_performed": False,
+        "observation_contract_policy_simulation_product_release_performed": False,
+        "observation_contract_policy_simulation_truth_certification_emitted": False,
+        "observation_contract_policy_simulation_requires_human_review": True,
         "not_validation_tiering_product_release": True,
         "not_validation_tiering_truth_certification": True,
         "not_validation_tiering_compliance_certification": True,
@@ -14583,6 +14830,7 @@ def reproducibility_index() -> dict[str, Any]:
                 {"name": "COHERENCE-EVENT-SIGNATURES-DESIGN-00 config/schema inspection", "command": CES_DESIGN_COMMAND},
                 {"name": "CES-PMR-INDEXING-DESIGN-00 config/schema inspection", "command": CES_PMR_INDEXING_DESIGN_COMMAND},
                 {"name": "TRIADIC-OBSERVATION-CONTRACT-DESIGN-00 config/schema inspection", "command": TRIADIC_OBSERVATION_CONTRACT_COMMAND},
+                {"name": "OBSERVATION-CONTRACT-POLICY-SIMULATION-00 Python entrypoint", "command": OBSERVATION_CONTRACT_POLICY_SIMULATION_COMMAND},
                 {"name": "Perturbation novelty lane Python entrypoint", "command": PERTURBATION_NOVELTY_LANE_COMMAND},
                 {"name": "Perturbation structure-affordance theorem card Python entrypoint", "command": PERTURBATION_STRUCTURE_AFFORDANCE_CARD_COMMAND},
                 {"name": "PMR Context Availability Ledger acceptance", "command": PMR_CONTEXT_AVAILABILITY_LEDGER_00_COMMAND},
@@ -15460,6 +15708,21 @@ def status_payload() -> dict[str, Any]:
         "observation_contract_is_not_final_answer_authority": True,
         "observation_contract_is_not_accepted_evidence_authority": True,
         "observation_contract_requires_human_review": True,
+        "observation_contract_policy_simulation_00_indexed": True,
+        "observation_contract_policy_simulation_status": "completed",
+        "observation_contract_policy_simulation_mode": "design_only_policy_rehearsal",
+        "observation_contract_policy_simulation_runtime_behavior_changed": False,
+        "observation_contract_policy_simulation_telemetry_behavior_changed": False,
+        "observation_contract_policy_simulation_notice_delivered": False,
+        "observation_contract_policy_simulation_consent_obtained": False,
+        "observation_contract_policy_simulation_recovery_action_performed": False,
+        "observation_contract_policy_simulation_memory_write_performed": False,
+        "observation_contract_policy_simulation_atlas_memory_admission_performed": False,
+        "observation_contract_policy_simulation_trace_export_performed": False,
+        "observation_contract_policy_simulation_pmr_federation_performed": False,
+        "observation_contract_policy_simulation_product_release_performed": False,
+        "observation_contract_policy_simulation_truth_certification_emitted": False,
+        "observation_contract_policy_simulation_requires_human_review": True,
         "not_validation_tiering_product_release": True,
         "not_validation_tiering_truth_certification": True,
         "not_validation_tiering_compliance_certification": True,
@@ -15652,10 +15915,19 @@ def docs() -> dict[str, str]:
     triadic_observation_contract_failures = "\n".join(f"- {failure_class}" for failure_class in TRIADIC_OBSERVATION_CONTRACT_FAILURE_CLASSES)
     triadic_observation_contract_relation = "\n".join(f"- {relation}" for relation in TRIADIC_OBSERVATION_CONTRACT_PRIOR_PHASE_RELATION)
     triadic_observation_contract_blocked = "\n".join(f"- {claim}" for claim in TRIADIC_OBSERVATION_CONTRACT_BLOCKED_CLAIMS)
+    observation_contract_policy_simulation_artifacts = "\n".join(f"- {artifact}" for artifact in OBSERVATION_CONTRACT_POLICY_SIMULATION_ARTIFACTS)
+    observation_contract_policy_simulation_inputs = "\n".join(f"- {artifact}" for artifact in OBSERVATION_CONTRACT_POLICY_SIMULATION_INPUT_REFERENCES)
+    observation_contract_policy_simulation_scenarios = "\n".join(f"- {scenario}" for scenario in OBSERVATION_CONTRACT_POLICY_SIMULATION_SCENARIOS)
+    observation_contract_policy_simulation_outcomes = "\n".join(f"- {outcome}" for outcome in OBSERVATION_CONTRACT_POLICY_SIMULATION_SCENARIO_OUTCOMES)
+    observation_contract_policy_simulation_doctrine = "\n".join(f"- {phrase}" for phrase in OBSERVATION_CONTRACT_POLICY_SIMULATION_DOCTRINE_LANGUAGE)
+    observation_contract_policy_simulation_relation = "\n".join(f"- {relation}" for relation in OBSERVATION_CONTRACT_POLICY_SIMULATION_PRIOR_PHASE_RELATION)
+    observation_contract_policy_simulation_matrix_terms = "\n".join(f"- {term}" for term in OBSERVATION_CONTRACT_POLICY_SIMULATION_MATRIX_TERMS)
+    observation_contract_policy_simulation_failures = "\n".join(f"- {failure}" for failure in OBSERVATION_CONTRACT_POLICY_SIMULATION_FAILURE_CLASSES)
+    observation_contract_policy_simulation_blocked = "\n".join(f"- {claim}" for claim in OBSERVATION_CONTRACT_POLICY_SIMULATION_BLOCKED_CLAIMS)
     return {
         "README.md": "# Experiment Suite Docs\n\nPublic reviewer documentation for the claim-bounded reproducibility dashboard.\n",
         "assets/README.md": "# Assets\n\nOptional static assets for the public reproducibility dashboard.\n",
-        "index.md": f"# Public Experiment Suite Dashboard\n\nThis dashboard presents accepted evidence for reviewer orientation. It is not truth certification, not deployment authority, not final answer release, local fixture only, and requires external peer review.\n\n## Accepted evidence\n\n| Phase | Repo | Status | What this supports | Reviewer caution |\n| --- | --- | --- | --- | --- |\n{phase_rows}\n\n## Reviewer path\n\nStart with claim boundaries, then read the governed artifact cognition paper, WAVE Rosetta paper, SONYA-AEGIS-SMOKE-02, WAVE family, UNI-02D Sonya gate, and RETRO-LANE-00, Public Utility Alpha, Raw Baseline Comparison, Evidence Review Pack, RW-COMP-01, RW-COMP-02, Retrosynthesis Sandbox Cycle, Evidence Review Pack second-pass, RW-COMP-03, Universal Architecture Scaffold, Sonya Adapter Contract Registry, Sonya Adapter Smoke, Sonya Local Fixture Adapter, and Evidence Review Pack local adapter, Evidence Review Pack local adapter revision, RW-COMP local adapter, PMR doctrine, PMR local artifact index, PMR GPCU utility scoring, PMR lifecycle state machine, PMR lifecycle audit preflight, PMR Sophia lifecycle audit review, PMR destructive-action authorization preflight, PMR architecture diversity checkpoint, PMR simulation baseline comparison, PMR simulation statistical analysis, PMR federation stress corpus, PMR human provenance context, Sonya Local Fixture Adapter multi-route, and Sonya Local Fixture Adapter lineage clarity, Local Review metrics and flow, Metric Semantic Contract, Language Governance, Language Governance Audit Runtime, and Runtime Metrics Seed Corpus, PMR local queryable store, Retrosynthesis Readiness, Retrosynthesis Local Prototype, and Atlas Local Memory Admission Readiness, Atlas Local Memory Admission Prototype, Local-test Proxy Review, AI Context Performance Continuity, Theorem Validation Pathway, and COOP Entropy Dividend, Triadic LLM Metrics Smoke, UCC Sophia Control Forensics, UCC Standards Source Registry and Materiality, Triadic LLM Smoke PMR Inventory Contract Repair, AI Forensics Dossier, Human Review UX, Visual Review Model, Visual Review Static HTML Prototype, Static HTML Usability Review Seed, Static HTML Usability Revision, AI Receipt Architecture, Validation Tiering and Provenance, and Telemetry Aperture Controller, TAC Policy Simulation, TAC Local Review Integration, TAC AI Receipt Event Link, PMR Pathway Priors Design Doctrine, Coherence Event Signatures, CES PMR Indexing Design, Triadic Observation Contract, Perturbation Observation Capture, Perturbation Trunk Mapping, and Perturbation Residual Novelty Map, and Perturbation Structure-Affordance Card pages.\n\n## What this proves\n\nIt proves only that accepted local fixture artifacts and draft publication materials are organized for review.\n\n## What this does not prove\n\nNo oracle posture, no deployment posture, no final-answer posture, no AI consciousness claim, and no universal ontology claim.\n\n## Phase pages\n\n- [SONYA-AEGIS-SMOKE-02](sonya-aegis-smoke-02.md)\n- [WAVE Gold-Physics](wave-gold-physics.md)\n- [UNI-02D Sonya gate](uni02d-sonya-gate.md)\n- [RETRO-LANE-00](retro-lane-00.md)\n- [Public Utility Alpha](public-utility-alpha.md)\n- [Raw Baseline Comparison](raw-baseline-comparison.md)\n- [Evidence Review Pack](evidence-review-pack.md)\n- [RW-COMP-01](rw-comp-01.md)\n- [RW-COMP-02](rw-comp-02.md)\n- [Retrosynthesis Sandbox Cycle](retrosynthesis-sandbox-cycle.md)\n- [Evidence Review Pack second pass](evidence-review-pack-second-pass.md)\n- [RW-COMP-03](rw-comp-03.md)\n- [Universal Architecture Scaffold](universal-architecture.md)\n- [Sonya Adapter Contract Registry](sonya-adapter-contract-registry.md)\n- [Sonya required membrane checkpoint](sonya-required-membrane-checkpoint.md)\n- [TEL event stack](tel-event-stack.md)\n- [Sonya Adapter Smoke](sonya-adapter-smoke.md)\n- [Sonya Local Fixture Adapter](sonya-local-fixture-adapter.md)\n- [Evidence Review Pack local adapter](evidence-review-pack-local-adapter.md)\n- [Evidence Review Pack local adapter revision](evidence-review-pack-local-adapter-revision.md)\n- [RW-COMP local adapter](rw-comp-local-adapter.md)\n- [Provenance Memory Reservoir](provenance-memory-reservoir.md)\n- [PMR local artifact index](pmr-local-artifact-index.md)\n- [Ontology Claim Registry](ontology-claim-registry.md)\n- [Local Sonya path portability](local-sonya-path-portability.md)\n- [TB Product Slice](tb-product-slice.md)\n- [TB Product Slice 01](tb-product-slice-01.md)\n- [Sonya Local Fixture Adapter multi-route](sonya-local-fixture-adapter-multi-route.md)\n- [Sonya Local Fixture Adapter lineage clarity](sonya-local-fixture-adapter-lineage.md)\n- [Local Review Runtime V0](local-review-runtime-v0.md)\n- [Local Review metrics and flow](local-review-metrics-flow.md)\n- [Runtime metrics seed corpus](runtime-metrics-seed-corpus.md)\n- [PMR local queryable store](pmr-local-queryable-store.md)\n- [Retrosynthesis readiness](retrosynthesis-readiness.md)\n- [Retrosynthesis local prototype](retrosynthesis-local-prototype.md)\n- [Atlas local memory admission readiness](atlas-local-memory-admission-readiness.md)\n- [AI Forensics Dossier](ai-forensics-dossier.md)\n- [Human Review UX](human-review-ux.md)\n- [Visual Review Model](visual-review-model.md)\n- [Visual Review Static HTML Prototype](visual-review-static-html-prototype.md)\n- [Perturbation Observation Capture](perturbation-observation-capture.md)\n- [Perturbation Trunk Mapping](perturbation-trunk-mapping.md)\n- [Perturbation Residual Novelty Map](perturbation-residual-novelty-map.md)\n- [Telemetry Aperture Controller](telemetry-aperture-controller.md)\n- [TAC Policy Simulation](tac-policy-simulation.md)\n- [TAC Local Review Integration](tac-local-review-integration.md)\n- [TAC AI Receipt Event Link](tac-ai-receipt-event-link.md)\n- [PMR Pathway Priors Design Doctrine](pmr-pathway-priors-design-doctrine.md)\n- [Coherence Event Signatures](coherence-event-signatures.md)\n- [Perturbation Structure-Affordance Card](perturbation-structure-affordance-card.md)\n- [Governed artifact cognition paper](governed-artifact-cognition-paper.md)\n- [Waveform Rosetta paper](waveform-rosetta-paper.md)\n",
+        "index.md": f"# Public Experiment Suite Dashboard\n\nThis dashboard presents accepted evidence for reviewer orientation. It is not truth certification, not deployment authority, not final answer release, local fixture only, and requires external peer review.\n\n## Accepted evidence\n\n| Phase | Repo | Status | What this supports | Reviewer caution |\n| --- | --- | --- | --- | --- |\n{phase_rows}\n\n## Reviewer path\n\nStart with claim boundaries, then read the governed artifact cognition paper, WAVE Rosetta paper, SONYA-AEGIS-SMOKE-02, WAVE family, UNI-02D Sonya gate, and RETRO-LANE-00, Public Utility Alpha, Raw Baseline Comparison, Evidence Review Pack, RW-COMP-01, RW-COMP-02, Retrosynthesis Sandbox Cycle, Evidence Review Pack second-pass, RW-COMP-03, Universal Architecture Scaffold, Sonya Adapter Contract Registry, Sonya Adapter Smoke, Sonya Local Fixture Adapter, and Evidence Review Pack local adapter, Evidence Review Pack local adapter revision, RW-COMP local adapter, PMR doctrine, PMR local artifact index, PMR GPCU utility scoring, PMR lifecycle state machine, PMR lifecycle audit preflight, PMR Sophia lifecycle audit review, PMR destructive-action authorization preflight, PMR architecture diversity checkpoint, PMR simulation baseline comparison, PMR simulation statistical analysis, PMR federation stress corpus, PMR human provenance context, Sonya Local Fixture Adapter multi-route, and Sonya Local Fixture Adapter lineage clarity, Local Review metrics and flow, Metric Semantic Contract, Language Governance, Language Governance Audit Runtime, and Runtime Metrics Seed Corpus, PMR local queryable store, Retrosynthesis Readiness, Retrosynthesis Local Prototype, and Atlas Local Memory Admission Readiness, Atlas Local Memory Admission Prototype, Local-test Proxy Review, AI Context Performance Continuity, Theorem Validation Pathway, and COOP Entropy Dividend, Triadic LLM Metrics Smoke, UCC Sophia Control Forensics, UCC Standards Source Registry and Materiality, Triadic LLM Smoke PMR Inventory Contract Repair, AI Forensics Dossier, Human Review UX, Visual Review Model, Visual Review Static HTML Prototype, Static HTML Usability Review Seed, Static HTML Usability Revision, AI Receipt Architecture, Validation Tiering and Provenance, and Telemetry Aperture Controller, TAC Policy Simulation, TAC Local Review Integration, TAC AI Receipt Event Link, PMR Pathway Priors Design Doctrine, Coherence Event Signatures, CES PMR Indexing Design, Triadic Observation Contract, Observation Contract Policy Simulation, Perturbation Observation Capture, Perturbation Trunk Mapping, and Perturbation Residual Novelty Map, and Perturbation Structure-Affordance Card pages.\n\n## What this proves\n\nIt proves only that accepted local fixture artifacts and draft publication materials are organized for review.\n\n## What this does not prove\n\nNo oracle posture, no deployment posture, no final-answer posture, no AI consciousness claim, and no universal ontology claim.\n\n## Phase pages\n\n- [SONYA-AEGIS-SMOKE-02](sonya-aegis-smoke-02.md)\n- [WAVE Gold-Physics](wave-gold-physics.md)\n- [UNI-02D Sonya gate](uni02d-sonya-gate.md)\n- [RETRO-LANE-00](retro-lane-00.md)\n- [Public Utility Alpha](public-utility-alpha.md)\n- [Raw Baseline Comparison](raw-baseline-comparison.md)\n- [Evidence Review Pack](evidence-review-pack.md)\n- [RW-COMP-01](rw-comp-01.md)\n- [RW-COMP-02](rw-comp-02.md)\n- [Retrosynthesis Sandbox Cycle](retrosynthesis-sandbox-cycle.md)\n- [Evidence Review Pack second pass](evidence-review-pack-second-pass.md)\n- [RW-COMP-03](rw-comp-03.md)\n- [Universal Architecture Scaffold](universal-architecture.md)\n- [Sonya Adapter Contract Registry](sonya-adapter-contract-registry.md)\n- [Sonya required membrane checkpoint](sonya-required-membrane-checkpoint.md)\n- [TEL event stack](tel-event-stack.md)\n- [Sonya Adapter Smoke](sonya-adapter-smoke.md)\n- [Sonya Local Fixture Adapter](sonya-local-fixture-adapter.md)\n- [Evidence Review Pack local adapter](evidence-review-pack-local-adapter.md)\n- [Evidence Review Pack local adapter revision](evidence-review-pack-local-adapter-revision.md)\n- [RW-COMP local adapter](rw-comp-local-adapter.md)\n- [Provenance Memory Reservoir](provenance-memory-reservoir.md)\n- [PMR local artifact index](pmr-local-artifact-index.md)\n- [Ontology Claim Registry](ontology-claim-registry.md)\n- [Local Sonya path portability](local-sonya-path-portability.md)\n- [TB Product Slice](tb-product-slice.md)\n- [TB Product Slice 01](tb-product-slice-01.md)\n- [Sonya Local Fixture Adapter multi-route](sonya-local-fixture-adapter-multi-route.md)\n- [Sonya Local Fixture Adapter lineage clarity](sonya-local-fixture-adapter-lineage.md)\n- [Local Review Runtime V0](local-review-runtime-v0.md)\n- [Local Review metrics and flow](local-review-metrics-flow.md)\n- [Runtime metrics seed corpus](runtime-metrics-seed-corpus.md)\n- [PMR local queryable store](pmr-local-queryable-store.md)\n- [Retrosynthesis readiness](retrosynthesis-readiness.md)\n- [Retrosynthesis local prototype](retrosynthesis-local-prototype.md)\n- [Atlas local memory admission readiness](atlas-local-memory-admission-readiness.md)\n- [AI Forensics Dossier](ai-forensics-dossier.md)\n- [Human Review UX](human-review-ux.md)\n- [Visual Review Model](visual-review-model.md)\n- [Visual Review Static HTML Prototype](visual-review-static-html-prototype.md)\n- [Perturbation Observation Capture](perturbation-observation-capture.md)\n- [Perturbation Trunk Mapping](perturbation-trunk-mapping.md)\n- [Perturbation Residual Novelty Map](perturbation-residual-novelty-map.md)\n- [Telemetry Aperture Controller](telemetry-aperture-controller.md)\n- [TAC Policy Simulation](tac-policy-simulation.md)\n- [TAC Local Review Integration](tac-local-review-integration.md)\n- [TAC AI Receipt Event Link](tac-ai-receipt-event-link.md)\n- [PMR Pathway Priors Design Doctrine](pmr-pathway-priors-design-doctrine.md)\n- [Coherence Event Signatures](coherence-event-signatures.md)\n- [Perturbation Structure-Affordance Card](perturbation-structure-affordance-card.md)\n- [Governed artifact cognition paper](governed-artifact-cognition-paper.md)\n- [Waveform Rosetta paper](waveform-rosetta-paper.md)\n",
         "language-governance.md": f"""# Language Governance
 
 ## What was validated
@@ -17000,6 +17272,116 @@ TRIADIC-OBSERVATION-CONTRACT-DESIGN-00 synchronizes locally validated Triadic Ob
 ## Runtime authority boundary
 
 Publication sync grants no runtime authority. TRIADIC-OBSERVATION-CONTRACT-DESIGN-00 grants no runtime authority.
+""",
+        "observation-contract-policy-simulation.md": f"""# Observation Contract Policy Simulation
+
+## What was validated
+
+OBSERVATION-CONTRACT-POLICY-SIMULATION-00 synchronizes locally validated Observation Contract policy simulation artifacts to publication surfaces. This is publication/dashboard synchronization only. This is design-only policy rehearsal, not runtime control. No runtime behavior changed. No mode-shift receipt was emitted for live runtime use. No actual user notice was delivered, no actual consent was obtained, and no user recovery action was performed.
+
+Observation Contract simulation rehearses no-silent-mode-shift, notice, consent, recovery, source expansion, pathway-prior, retention, trace export, and PMR federation cases without runtime enforcement or authority.
+
+## Dashboard summary
+
+- simulation_status = completed
+- simulation_mode = design_only_policy_rehearsal
+- default_scenario_id = local_default_receipt_review
+- default_status = completed
+- scenario_count = {len(OBSERVATION_CONTRACT_POLICY_SIMULATION_SCENARIOS)}
+- scenario_matrix_present = true
+- mode_shift_requirement_matrix_present = true
+- user_notice_requirement_simulation_present = true
+- consent_requirement_simulation_present = true
+- recovery_rights_surface_present = true
+- no_silent_mode_shift_boundary_table_present = true
+- default_receipt_required = true
+- default_human_review_required = true
+- observation_depth_without_notice_status = blocked_fail_closed
+- durable_retention_without_consent_status = blocked_fail_closed
+- trace_export_without_consent_status = blocked_fail_closed
+- pmr_federation_without_consent_status = blocked_fail_closed
+- trace_export_allowed = false
+- pmr_federation_allowed = false
+- source_expansion_required = true
+- pathway_prior_materiality_review_required = true
+- recovery_rights_visible = true
+- recovery_action_performed = false
+- runtime_behavior_changed = false
+- telemetry_behavior_changed = false
+- provider_runtime_performed = false
+- network_call_performed = false
+- memory_write_performed = false
+- atlas_memory_admission_performed = false
+- trace_export_performed = false
+- pmr_federation_performed = false
+- product_release_performed = false
+- final_answer_authority_granted = false
+- accepted_evidence_authority_granted = false
+- truth_certification_emitted = false
+- simulated_notice_delivered = false
+- simulated_notice_is_not_user_notice = true
+- simulated_consent_obtained = false
+- simulated_consent_is_not_actual_consent = true
+- simulation_is_not_runtime_control = true
+- simulation_is_not_surveillance_authorization = true
+- simulation_is_not_consent_execution = true
+- simulation_is_not_memory_write = true
+- simulation_is_not_trace_export_authorization = true
+- simulation_is_not_federation_authorization = true
+- simulation_is_not_product_release = true
+- simulation_requires_human_review = true
+
+## Doctrine language
+
+{observation_contract_policy_simulation_doctrine}
+
+## Scenario IDs
+
+{observation_contract_policy_simulation_scenarios}
+
+## Scenario outcomes
+
+{observation_contract_policy_simulation_outcomes}
+
+## Matrix and simulation terms
+
+{observation_contract_policy_simulation_matrix_terms}
+
+## Relation to prior phases
+
+{observation_contract_policy_simulation_relation}
+
+## Output artifacts
+
+{observation_contract_policy_simulation_artifacts}
+
+## Input and design references
+
+{observation_contract_policy_simulation_inputs}
+
+## Failure classes
+
+{observation_contract_policy_simulation_failures}
+
+## Reproducibility
+
+- build_observation_contract_policy_simulation
+
+```powershell
+{OBSERVATION_CONTRACT_POLICY_SIMULATION_COMMAND}
+```
+
+## Blocked overclaim examples for Observation Contract policy simulation publication boundaries
+
+{observation_contract_policy_simulation_blocked}
+
+## Allowed bounded claim
+
+{OBSERVATION_CONTRACT_POLICY_SIMULATION_CLAIM_ALLOWED}
+
+## Runtime authority boundary
+
+Publication sync grants no runtime authority. OBSERVATION-CONTRACT-POLICY-SIMULATION-00 grants no runtime authority. simulation_only = true; observation_contract_enabled = false; recovery_surface_is_not_recovery_action = true; table_is_not_runtime_enforcement = true.
 """,
         "ces-pmr-indexing-design.md": f"""# CES PMR Indexing Design
 
@@ -20297,6 +20679,26 @@ not truth certification; not deployment authority; not final answer release; loc
     }
 
 
+
+OBSERVATION_CONTRACT_POLICY_SIMULATION_SYNC_DOCS = {
+    "triadic-observation-contract.md",
+    "telemetry-aperture-controller.md",
+    "tac-policy-simulation.md",
+    "tac-local-review-integration.md",
+    "tac-ai-receipt-event-link.md",
+    "coherence-event-signatures.md",
+    "ces-pmr-indexing-design.md",
+    "pmr-pathway-priors-design-doctrine.md",
+    "ai-receipt-architecture.md",
+    "validation-tiering-provenance.md",
+}
+OBSERVATION_CONTRACT_POLICY_SIMULATION_SYNC_NOTE = """
+
+## Observation Contract policy simulation publication sync
+
+OBSERVATION-CONTRACT-POLICY-SIMULATION-00 rehearses deterministic policy outcomes while TRIADIC-OBSERVATION-CONTRACT-DESIGN-00 defines governed-attention doctrine. This is design-only policy rehearsal, not runtime control. No silent mode shift. Simulated notice is not user notice. Simulated consent is not actual consent. Mode shift simulation is not consent execution. Recovery option simulation is not recovery action. Human review remains required. No runtime behavior changed, no live mode-shift receipt was emitted, no user recovery action was performed, and publication sync grants no runtime authority.
+"""
+
 TRIADIC_OBSERVATION_CONTRACT_SYNC_DOCS = {
     "telemetry-aperture-controller.md",
     "tac-policy-simulation.md",
@@ -20328,6 +20730,9 @@ def build(out_dir: Path, docs_dir: Path) -> None:
     for name in TRIADIC_OBSERVATION_CONTRACT_SYNC_DOCS:
         if name in docs_payload:
             docs_payload[name] = docs_payload[name].rstrip() + TRIADIC_OBSERVATION_CONTRACT_SYNC_NOTE
+    for name in OBSERVATION_CONTRACT_POLICY_SIMULATION_SYNC_DOCS:
+        if name in docs_payload:
+            docs_payload[name] = docs_payload[name].rstrip() + OBSERVATION_CONTRACT_POLICY_SIMULATION_SYNC_NOTE
     for name, text in docs_payload.items():
         _write_text(docs_dir / name, text)
 
