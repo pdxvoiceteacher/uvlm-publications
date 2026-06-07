@@ -73,6 +73,16 @@ PMR-PATHWAY-PRIORS-DESIGN-DOCTRINE-00 synchronizes locally validated PMR pathway
 python -c "from pathlib import Path; Path('docs/PMR_PATHWAY_PRIORS_DESIGN_DOCTRINE.md').read_text(encoding='utf-8')"; python -m json.tool config/pmr/pathway_prior_policy.v1.json >/dev/null; python -m json.tool schema/bridge/pmr_pathway_prior_policy_packet.schema.json >/dev/null; python -m json.tool schema/bridge/pmr_pathway_prior_candidate.schema.json >/dev/null; python -m json.tool schema/bridge/pmr_pathway_prior_non_authority_boundary.schema.json >/dev/null
 ```
 
+
+## CES PMR Indexing Design relation
+
+CES-PMR-INDEXING-DESIGN-00 defines CES as a compact PMR index, not a PMR source replacement. CES indexes PMR; CES does not replace PMR. CES-PMR indexing requires source expansion before decisions, requires human review, emits no runtime index artifacts, changes no runtime behavior, and authorizes no memory write, Atlas admission, model training, review skipping, trace export, PMR federation, cross-user similarity, biometric scoring, product release, truth certification, final-answer authority, or accepted-evidence authority.
+
+
+## Triadic Observation Contract relation
+
+TRIADIC-OBSERVATION-CONTRACT-DESIGN-00 defines a design-only, consent-bounded governed-attention contract. It does not enforce live observation contracts, change telemetry behavior, emit mode-shift receipts, perform recovery actions, authorize surveillance, export traces, federate PMR, write memory, admit Atlas memory, call providers or networks, release product, certify truth, or grant final-answer or accepted-evidence authority.
+
 ## Blocked overclaim examples for PMR pathway-prior design doctrine publication boundaries
 
 - PMR pathway prior is truth

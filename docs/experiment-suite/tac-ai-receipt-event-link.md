@@ -125,6 +125,16 @@ TAC-AI-RECEIPT-EVENT-LINK-00 synchronizes locally validated TAC AI Receipt event
 python -c "from pathlib import Path; from coherence.product.triadic_llm_metrics_smoke import build_triadic_llm_metrics_smoke; from coherence.ucc.sophia_control_review import build_sophia_ucc_control_review; from coherence.product.ai_forensics_dossier import build_ai_forensics_dossier; from coherence.review.human_review_ux import build_human_review_ux_packet; from coherence.product.raw_vs_triadic_comparison import build_raw_vs_triadic_comparison; from coherence.local_review.metric_semantics import build_metric_semantic_reconciliation_packet; from coherence.governance.language_audit_runtime import build_reviewer_language_audit; from coherence.product.visual_review_model import build_visual_review_model; from coherence.product.visual_review_static_html import build_visual_review_static_html; from coherence.product.static_html_usability_review import build_static_html_usability_review_seed; from coherence.product.static_html_usability_revision import build_static_html_usability_revision; from coherence.product.ai_receipt_architecture import build_ai_receipt_architecture; from coherence.telemetry.aperture_simulation import build_telemetry_aperture_simulation; from coherence.telemetry.local_review_integration import build_tac_local_review_integration; from coherence.telemetry.ai_receipt_event_link import build_tac_ai_receipt_event_link; bridge=Path(r'C:\UVLM\run_artifacts\tac_ai_receipt_event_link\bridge'); root=bridge.parent; build_triadic_llm_metrics_smoke(root); build_sophia_ucc_control_review(bridge); build_ai_forensics_dossier(bridge); build_human_review_ux_packet(bridge); build_raw_vs_triadic_comparison(bridge); build_metric_semantic_reconciliation_packet(bridge); build_reviewer_language_audit(bridge); build_visual_review_model(bridge); build_visual_review_static_html(bridge); build_static_html_usability_review_seed(bridge); build_static_html_usability_revision(bridge); build_ai_receipt_architecture(bridge); build_telemetry_aperture_simulation(bridge); build_tac_local_review_integration(bridge); build_tac_ai_receipt_event_link(bridge)"
 ```
 
+
+## CES PMR Indexing Design relation
+
+CES-PMR-INDEXING-DESIGN-00 defines CES as a compact PMR index, not a PMR source replacement. CES indexes PMR; CES does not replace PMR. CES-PMR indexing requires source expansion before decisions, requires human review, emits no runtime index artifacts, changes no runtime behavior, and authorizes no memory write, Atlas admission, model training, review skipping, trace export, PMR federation, cross-user similarity, biometric scoring, product release, truth certification, final-answer authority, or accepted-evidence authority.
+
+
+## Triadic Observation Contract relation
+
+TRIADIC-OBSERVATION-CONTRACT-DESIGN-00 defines a design-only, consent-bounded governed-attention contract. It does not enforce live observation contracts, change telemetry behavior, emit mode-shift receipts, perform recovery actions, authorize surveillance, export traces, federate PMR, write memory, admit Atlas memory, call providers or networks, release product, certify truth, or grant final-answer or accepted-evidence authority.
+
 ## Blocked overclaim examples for TAC AI Receipt event-link publication boundaries
 
 - TAC AI Receipt event link rewrites AI Receipt history

@@ -183,6 +183,8 @@ COHERENCE-EVENT-SIGNATURES-DESIGN-00 synchronizes locally validated Coherence Ev
 - CES does not write memory.
 - CES does not admit Atlas memory.
 
+CES-PMR-INDEXING-DESIGN-00 defines CES as a compact PMR index, not a PMR source replacement. Future runtime CES-PMR indexing remains disabled in this design patch.
+
 ## Artifacts
 
 - docs/COHERENCE_EVENT_SIGNATURES.md
@@ -204,6 +206,11 @@ COHERENCE-EVENT-SIGNATURES-DESIGN-00 synchronizes locally validated Coherence Ev
 ```powershell
 python -c "from pathlib import Path; Path('docs/COHERENCE_EVENT_SIGNATURES.md').read_text(encoding='utf-8')"; python -m json.tool config/ces/coherence_event_signature_policy.v1.json >/dev/null; python -m json.tool schema/bridge/coherence_event_signature_packet.schema.json >/dev/null; python -m json.tool schema/bridge/ces_chain_summary_packet.schema.json >/dev/null; python -m json.tool schema/bridge/ces_similarity_index_packet.schema.json >/dev/null; python -m json.tool schema/bridge/ces_non_authority_boundary.schema.json >/dev/null
 ```
+
+
+## Triadic Observation Contract relation
+
+TRIADIC-OBSERVATION-CONTRACT-DESIGN-00 defines a design-only, consent-bounded governed-attention contract. It does not enforce live observation contracts, change telemetry behavior, emit mode-shift receipts, perform recovery actions, authorize surveillance, export traces, federate PMR, write memory, admit Atlas memory, call providers or networks, release product, certify truth, or grant final-answer or accepted-evidence authority.
 
 ## Blocked overclaim examples for Coherence Event Signatures design publication boundaries
 

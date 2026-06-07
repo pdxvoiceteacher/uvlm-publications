@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "uvlm.schema.bridge.observation_rights_profile.v1",
+  "type": "object",
+  "required": ["recovery_rights", "human_review_required"],
+  "properties": {
+    "recovery_rights": {"type": "array", "items": {"type": "string"}},
+    "human_review_required": {"const": true},
+    "automatic_deletion_authorized": {"const": false},
+    "memory_write_authorized": {"const": false}
+  },
+  "additionalProperties": true
+}

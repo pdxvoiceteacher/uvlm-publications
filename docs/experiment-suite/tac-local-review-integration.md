@@ -130,6 +130,11 @@ TAC-LOCAL-REVIEW-INTEGRATION-00 synchronizes locally validated TAC local review 
 python -c "from pathlib import Path; from coherence.telemetry.aperture_simulation import build_telemetry_aperture_simulation; from coherence.telemetry.local_review_integration import build_tac_local_review_integration; bridge=Path(r'C:\UVLM\run_artifacts\tac_local_review_integration\bridge'); build_telemetry_aperture_simulation(bridge); build_tac_local_review_integration(bridge)"
 ```
 
+
+## Triadic Observation Contract relation
+
+TRIADIC-OBSERVATION-CONTRACT-DESIGN-00 defines a design-only, consent-bounded governed-attention contract. It does not enforce live observation contracts, change telemetry behavior, emit mode-shift receipts, perform recovery actions, authorize surveillance, export traces, federate PMR, write memory, admit Atlas memory, call providers or networks, release product, certify truth, or grant final-answer or accepted-evidence authority.
+
 ## Blocked overclaim examples for TAC local review integration publication boundaries
 
 - TAC local review integration changed runtime telemetry behavior

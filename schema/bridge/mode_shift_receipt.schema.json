@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "uvlm.schema.bridge.mode_shift_receipt.v1",
+  "type": "object",
+  "required": ["mode_shift_trigger", "receipt_emitted", "human_review_required"],
+  "properties": {
+    "mode_shift_trigger": {"type": "string"},
+    "receipt_emitted": {"const": false},
+    "human_review_required": {"const": true},
+    "consent_execution_performed": {"const": false}
+  },
+  "additionalProperties": true
+}

@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "uvlm.schema.bridge.user_recovery_options_packet.v1",
+  "type": "object",
+  "required": ["recovery_options", "actions_performed", "human_review_required"],
+  "properties": {
+    "recovery_options": {"type": "array", "items": {"type": "string"}},
+    "actions_performed": {"const": false},
+    "human_review_required": {"const": true},
+    "trace_export_authorized": {"const": false},
+    "memory_write_authorized": {"const": false}
+  },
+  "additionalProperties": true
+}

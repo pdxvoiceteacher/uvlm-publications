@@ -185,6 +185,11 @@ This design patch has no runtime builder. Reproducibility points to config/schem
 python -m json.tool config/telemetry_aperture/telemetry_aperture_modes.v1.json && python -m json.tool config/telemetry_aperture/minimum_audit_floor.v1.json && python -m json.tool config/telemetry_aperture/telemetry_aperture_policy_schema.v1.json && python -m json.tool schema/bridge/telemetry_aperture_policy_packet.schema.json && python -m json.tool schema/bridge/telemetry_aperture_decision_packet.schema.json && python -m json.tool schema/bridge/telemetry_aperture_retention_intent_packet.schema.json
 ```
 
+
+## Triadic Observation Contract relation
+
+TRIADIC-OBSERVATION-CONTRACT-DESIGN-00 defines a design-only, consent-bounded governed-attention contract. It does not enforce live observation contracts, change telemetry behavior, emit mode-shift receipts, perform recovery actions, authorize surveillance, export traces, federate PMR, write memory, admit Atlas memory, call providers or networks, release product, certify truth, or grant final-answer or accepted-evidence authority.
+
 ## Blocked overclaim examples for telemetry aperture controller publication boundaries
 
 - TAC changed runtime telemetry behavior

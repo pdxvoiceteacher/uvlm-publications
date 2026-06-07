@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "uvlm.schema.bridge.ces_pmr_query_hint.v1",
+  "type": "object",
+  "required": ["query_intent", "source_expansion_required_for_decisions"],
+  "properties": {
+    "query_intent": {"type": "string"},
+    "source_expansion_required_for_decisions": {"const": true},
+    "human_review_required": {"const": true}
+  },
+  "additionalProperties": true
+}

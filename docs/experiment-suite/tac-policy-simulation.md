@@ -136,6 +136,11 @@ TAC-POLICY-SIMULATION-00 synchronizes locally validated Telemetry Aperture Contr
 python -c "from pathlib import Path; from coherence.telemetry.aperture_simulation import build_telemetry_aperture_simulation; bridge=Path(r'C:\UVLM\run_artifacts\telemetry_aperture_simulation\bridge'); build_telemetry_aperture_simulation(bridge)"
 ```
 
+
+## Triadic Observation Contract relation
+
+TRIADIC-OBSERVATION-CONTRACT-DESIGN-00 defines a design-only, consent-bounded governed-attention contract. It does not enforce live observation contracts, change telemetry behavior, emit mode-shift receipts, perform recovery actions, authorize surveillance, export traces, federate PMR, write memory, admit Atlas memory, call providers or networks, release product, certify truth, or grant final-answer or accepted-evidence authority.
+
 ## Blocked overclaim examples for TAC policy simulation publication boundaries
 
 - TAC policy simulation changed runtime telemetry behavior

@@ -145,6 +145,31 @@ from tools.build_public_repro_dashboard import (
     CES_DESIGN_REPRO_FRAGMENTS,
     CES_DESIGN_SAFE_METRIC_ALIASES,
     CES_DESIGN_SIMILARITY_PRIVACY_DOCTRINE,
+    CES_PMR_INDEXING_DESIGN_ARTIFACTS,
+    CES_PMR_INDEXING_DESIGN_BLOCKED_CLAIMS,
+    CES_PMR_INDEXING_DESIGN_BOUNDARIES,
+    CES_PMR_INDEXING_DESIGN_CLAIM_ALLOWED,
+    CES_PMR_INDEXING_DESIGN_DOCTRINE_LANGUAGE,
+    CES_PMR_INDEXING_DESIGN_FAILURE_CLASSES,
+    CES_PMR_INDEXING_DESIGN_FORBIDDEN_ROLES,
+    CES_PMR_INDEXING_DESIGN_INDEX_FIELDS,
+    CES_PMR_INDEXING_DESIGN_INDEX_ROLES,
+    CES_PMR_INDEXING_DESIGN_PRESERVED_SOURCE_CLASSES,
+    CES_PMR_INDEXING_DESIGN_QUERY_INTENTS,
+    CES_PMR_INDEXING_DESIGN_RELATION,
+    CES_PMR_INDEXING_DESIGN_REPRO_FRAGMENTS,
+    CES_PMR_INDEXING_DESIGN_REVOCATION_TRIGGERS,
+    TRIADIC_OBSERVATION_CONTRACT_ARTIFACTS,
+    TRIADIC_OBSERVATION_CONTRACT_BLOCKED_CLAIMS,
+    TRIADIC_OBSERVATION_CONTRACT_CLAIM_ALLOWED,
+    TRIADIC_OBSERVATION_CONTRACT_DECLARATIONS,
+    TRIADIC_OBSERVATION_CONTRACT_DOCTRINE_LANGUAGE,
+    TRIADIC_OBSERVATION_CONTRACT_FAILURE_CLASSES,
+    TRIADIC_OBSERVATION_CONTRACT_MODE_SHIFT_TRIGGERS,
+    TRIADIC_OBSERVATION_CONTRACT_RECIPROCITY_BUDGET_DIMENSIONS,
+    TRIADIC_OBSERVATION_CONTRACT_RECOVERY_RIGHTS,
+    TRIADIC_OBSERVATION_CONTRACT_RELATION,
+    TRIADIC_OBSERVATION_CONTRACT_REPRO_FRAGMENTS,
     _dedupe_accepted_phases,
 )
 from tools.validate_public_repro_dashboard import REQUIRED_PHASES as VALIDATOR_REQUIRED_PHASES
@@ -227,6 +252,14 @@ REQUIRED_DOCS = {
     "perturbation-observation-capture.md",
     "perturbation-trunk-mapping.md",
     "perturbation-residual-novelty-map.md",
+    "telemetry-aperture-controller.md",
+    "tac-policy-simulation.md",
+    "tac-local-review-integration.md",
+    "tac-ai-receipt-event-link.md",
+    "pmr-pathway-priors-design-doctrine.md",
+    "coherence-event-signatures.md",
+    "ces-pmr-indexing-design.md",
+    "triadic-observation-contract.md",
     "perturbation-structure-affordance-card.md",
 }
 REQUIRED_PHASES = {
@@ -322,6 +355,8 @@ REQUIRED_PHASES = {
     "TAC-AI-RECEIPT-EVENT-LINK-00",
     "PMR-PATHWAY-PRIORS-DESIGN-DOCTRINE-00",
     "COHERENCE-EVENT-SIGNATURES-DESIGN-00",
+    "CES-PMR-INDEXING-DESIGN-00",
+    "TRIADIC-OBSERVATION-CONTRACT-DESIGN-00",
     "RUNTIME-METRICS-CORPUS-SEED-00",
     "PMR-LOCAL-RUNTIME-QUERYABLE-STORE-00",
     "RETROSYNTHESIS-READINESS-00",
@@ -5463,3 +5498,157 @@ def test_coherence_event_signatures_design_page_and_registry_are_generated(tmp_p
     assert status["not_ces_federation_authorization"] is True
     assert status["not_ces_product_release"] is True
     assert status["ces_requires_human_review"] is True
+
+
+def test_ces_pmr_indexing_design_page_and_registry_are_generated(tmp_path):
+    out_dir, docs_dir = run_builder(tmp_path)
+    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text(encoding="utf-8"))
+    reproducibility = json.loads((out_dir / "reproducibility_index.json").read_text(encoding="utf-8"))
+    artifact_index = json.loads((out_dir / "artifact_index.json").read_text(encoding="utf-8"))
+    claim_boundaries = json.loads((out_dir / "claim_boundary_index.json").read_text(encoding="utf-8"))
+    status = json.loads((out_dir / "status.json").read_text(encoding="utf-8"))
+    phase_by_id = {entry["phase_id"]: entry for entry in dashboard["accepted_phases"]}
+    boundary_text = "\n".join(claim_boundaries["boundaries"])
+    reproducibility_text = json.dumps(reproducibility)
+    page_text = (docs_dir / "ces-pmr-indexing-design.md").read_text(encoding="utf-8")
+
+    phase = phase_by_id["CES-PMR-INDEXING-DESIGN-00"]
+    summary = phase["dashboard_summary"]
+    expected_summary = {
+        "policy_status": "active_design_only",
+        "runtime_behavior_changed": False,
+        "ces_pmr_indexing_enabled": False,
+        "ces_pmr_index_runtime_artifacts_emitted": False,
+        "pmr_source_replacement_performed": False,
+        "pmr_source_deletion_authorized": False,
+        "memory_write_performed": False,
+        "atlas_memory_admission_performed": False,
+        "model_training_performed": False,
+        "review_skip_authorized": False,
+        "similarity_search_enabled": False,
+        "cross_user_similarity_enabled": False,
+        "federated_similarity_enabled": False,
+        "trace_export_performed": False,
+        "pmr_federation_performed": False,
+        "product_release_performed": False,
+        "ces_pmr_index_definition": "compact_searchable_event_signature_index_for_replayable_pmr_records",
+    }
+    for key, value in expected_summary.items():
+        assert summary[key] == value
+    for key in CES_PMR_INDEXING_DESIGN_BOUNDARIES:
+        assert summary[key] is True
+    assert summary["human_review_required"] is True
+
+    for artifact in CES_PMR_INDEXING_DESIGN_ARTIFACTS:
+        assert artifact in artifact_index["phases"]["CES-PMR-INDEXING-DESIGN-00"]
+        assert artifact in page_text
+        assert artifact in boundary_text
+    for phrase_group in (
+        CES_PMR_INDEXING_DESIGN_DOCTRINE_LANGUAGE,
+        CES_PMR_INDEXING_DESIGN_INDEX_ROLES,
+        CES_PMR_INDEXING_DESIGN_FORBIDDEN_ROLES,
+        CES_PMR_INDEXING_DESIGN_PRESERVED_SOURCE_CLASSES,
+        CES_PMR_INDEXING_DESIGN_INDEX_FIELDS,
+        CES_PMR_INDEXING_DESIGN_QUERY_INTENTS,
+        CES_PMR_INDEXING_DESIGN_BOUNDARIES,
+        CES_PMR_INDEXING_DESIGN_REVOCATION_TRIGGERS,
+        CES_PMR_INDEXING_DESIGN_BLOCKED_CLAIMS,
+        CES_PMR_INDEXING_DESIGN_FAILURE_CLASSES,
+        CES_PMR_INDEXING_DESIGN_RELATION,
+    ):
+        for phrase in phrase_group:
+            assert phrase in page_text
+            assert phrase in boundary_text
+    for fragment in CES_PMR_INDEXING_DESIGN_REPRO_FRAGMENTS:
+        assert fragment in reproducibility_text
+        assert fragment in page_text
+        assert fragment in boundary_text
+    assert CES_PMR_INDEXING_DESIGN_CLAIM_ALLOWED in page_text
+    assert CES_PMR_INDEXING_DESIGN_CLAIM_ALLOWED in boundary_text
+    assert status["ces_pmr_indexing_design_00_indexed"] is True
+    assert status["ces_pmr_policy_status"] == "active_design_only"
+    assert status["ces_pmr_runtime_behavior_changed"] is False
+    assert status["ces_pmr_indexing_enabled"] is False
+    assert status["ces_pmr_index_runtime_artifacts_emitted"] is False
+    assert status["ces_pmr_memory_write_performed"] is False
+    assert status["ces_pmr_model_training_performed"] is False
+    assert status["ces_pmr_product_release_performed"] is False
+
+
+def test_triadic_observation_contract_design_page_and_registry_are_generated(tmp_path):
+    out_dir, docs_dir = run_builder(tmp_path)
+    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text(encoding="utf-8"))
+    reproducibility = json.loads((out_dir / "reproducibility_index.json").read_text(encoding="utf-8"))
+    artifact_index = json.loads((out_dir / "artifact_index.json").read_text(encoding="utf-8"))
+    claim_boundaries = json.loads((out_dir / "claim_boundary_index.json").read_text(encoding="utf-8"))
+    status = json.loads((out_dir / "status.json").read_text(encoding="utf-8"))
+    phase_by_id = {entry["phase_id"]: entry for entry in dashboard["accepted_phases"]}
+    boundary_text = "\n".join(claim_boundaries["boundaries"])
+    reproducibility_text = json.dumps(reproducibility)
+    page_text = (docs_dir / "triadic-observation-contract.md").read_text(encoding="utf-8")
+
+    phase = phase_by_id["TRIADIC-OBSERVATION-CONTRACT-DESIGN-00"]
+    summary = phase["dashboard_summary"]
+    expected_summary = {
+        "policy_status": "active_design_only",
+        "runtime_behavior_changed": False,
+        "observation_contract_enabled": False,
+        "mode_shift_receipts_emitted": False,
+        "user_recovery_actions_performed": False,
+        "telemetry_behavior_changed": False,
+        "memory_write_performed": False,
+        "atlas_memory_admission_performed": False,
+        "trace_export_performed": False,
+        "pmr_federation_performed": False,
+        "provider_runtime_performed": False,
+        "network_call_performed": False,
+        "product_release_performed": False,
+        "observation_contract_definition": "consent_bounded_governed_attention_contract",
+    }
+    for key, value in expected_summary.items():
+        assert summary[key] == value
+    for key in (
+        "observation_contract_is_not_runtime_control",
+        "observation_contract_is_not_surveillance_authorization",
+        "observation_contract_is_not_memory_write",
+        "observation_contract_is_not_trace_export_authorization",
+        "observation_contract_is_not_federation_authorization",
+        "observation_contract_is_not_product_release",
+        "observation_contract_is_not_truth_certification",
+        "observation_contract_is_not_final_answer_authority",
+        "observation_contract_is_not_accepted_evidence_authority",
+        "observation_contract_requires_human_review",
+    ):
+        assert summary[key] is True
+
+    for artifact in TRIADIC_OBSERVATION_CONTRACT_ARTIFACTS:
+        assert artifact in artifact_index["phases"]["TRIADIC-OBSERVATION-CONTRACT-DESIGN-00"]
+        assert artifact in page_text
+        assert artifact in boundary_text
+    for phrase_group in (
+        TRIADIC_OBSERVATION_CONTRACT_DOCTRINE_LANGUAGE,
+        TRIADIC_OBSERVATION_CONTRACT_DECLARATIONS,
+        TRIADIC_OBSERVATION_CONTRACT_MODE_SHIFT_TRIGGERS,
+        TRIADIC_OBSERVATION_CONTRACT_RECOVERY_RIGHTS,
+        TRIADIC_OBSERVATION_CONTRACT_RECIPROCITY_BUDGET_DIMENSIONS,
+        TRIADIC_OBSERVATION_CONTRACT_FAILURE_CLASSES,
+        TRIADIC_OBSERVATION_CONTRACT_RELATION,
+        TRIADIC_OBSERVATION_CONTRACT_BLOCKED_CLAIMS,
+    ):
+        for phrase in phrase_group:
+            assert phrase in page_text
+            assert phrase in boundary_text
+    for fragment in TRIADIC_OBSERVATION_CONTRACT_REPRO_FRAGMENTS:
+        assert fragment in reproducibility_text
+        assert fragment in page_text
+        assert fragment in boundary_text
+    assert TRIADIC_OBSERVATION_CONTRACT_CLAIM_ALLOWED in page_text
+    assert TRIADIC_OBSERVATION_CONTRACT_CLAIM_ALLOWED in boundary_text
+    assert status["triadic_observation_contract_design_00_indexed"] is True
+    assert status["triadic_observation_policy_status"] == "active_design_only"
+    assert status["triadic_observation_runtime_behavior_changed"] is False
+    assert status["triadic_observation_contract_enabled"] is False
+    assert status["triadic_observation_mode_shift_receipts_emitted"] is False
+    assert status["triadic_observation_user_recovery_actions_performed"] is False
+    assert status["triadic_observation_memory_write_performed"] is False
+    assert status["triadic_observation_product_release_performed"] is False

@@ -152,6 +152,31 @@ from tools.build_public_repro_dashboard import (
     CES_DESIGN_REPRO_FRAGMENTS,
     CES_DESIGN_SAFE_METRIC_ALIASES,
     CES_DESIGN_SIMILARITY_PRIVACY_DOCTRINE,
+    CES_PMR_INDEXING_DESIGN_ARTIFACTS,
+    CES_PMR_INDEXING_DESIGN_BLOCKED_CLAIMS,
+    CES_PMR_INDEXING_DESIGN_BOUNDARIES,
+    CES_PMR_INDEXING_DESIGN_CLAIM_ALLOWED,
+    CES_PMR_INDEXING_DESIGN_DOCTRINE_LANGUAGE,
+    CES_PMR_INDEXING_DESIGN_FAILURE_CLASSES,
+    CES_PMR_INDEXING_DESIGN_FORBIDDEN_ROLES,
+    CES_PMR_INDEXING_DESIGN_INDEX_FIELDS,
+    CES_PMR_INDEXING_DESIGN_INDEX_ROLES,
+    CES_PMR_INDEXING_DESIGN_PRESERVED_SOURCE_CLASSES,
+    CES_PMR_INDEXING_DESIGN_QUERY_INTENTS,
+    CES_PMR_INDEXING_DESIGN_RELATION,
+    CES_PMR_INDEXING_DESIGN_REPRO_FRAGMENTS,
+    CES_PMR_INDEXING_DESIGN_REVOCATION_TRIGGERS,
+    TRIADIC_OBSERVATION_CONTRACT_ARTIFACTS,
+    TRIADIC_OBSERVATION_CONTRACT_BLOCKED_CLAIMS,
+    TRIADIC_OBSERVATION_CONTRACT_CLAIM_ALLOWED,
+    TRIADIC_OBSERVATION_CONTRACT_DECLARATIONS,
+    TRIADIC_OBSERVATION_CONTRACT_DOCTRINE_LANGUAGE,
+    TRIADIC_OBSERVATION_CONTRACT_FAILURE_CLASSES,
+    TRIADIC_OBSERVATION_CONTRACT_MODE_SHIFT_TRIGGERS,
+    TRIADIC_OBSERVATION_CONTRACT_RECIPROCITY_BUDGET_DIMENSIONS,
+    TRIADIC_OBSERVATION_CONTRACT_RECOVERY_RIGHTS,
+    TRIADIC_OBSERVATION_CONTRACT_RELATION,
+    TRIADIC_OBSERVATION_CONTRACT_REPRO_FRAGMENTS,
 )
 
 
@@ -449,6 +474,8 @@ REQUIRED_BOUNDARY_PHRASES = (
     "TAC-AI-RECEIPT-EVENT-LINK-00",
     "PMR-PATHWAY-PRIORS-DESIGN-DOCTRINE-00",
     "COHERENCE-EVENT-SIGNATURES-DESIGN-00",
+    "CES-PMR-INDEXING-DESIGN-00",
+    "TRIADIC-OBSERVATION-CONTRACT-DESIGN-00",
     TAC_LOCAL_REVIEW_INTEGRATION_CLAIM_ALLOWED,
     *TAC_LOCAL_REVIEW_INTEGRATION_ARTIFACTS,
     *TAC_LOCAL_REVIEW_INTEGRATION_INPUT_ARTIFACTS,
@@ -1465,8 +1492,11 @@ def _is_metric_semantic_contract_context(text: str, index: int, phrase: str) -> 
     )
 
 def _is_blocked_overclaim_example_context(text: str, index: int) -> bool:
-    window = text[max(0, index - 1000) : index]
-    return "blocked overclaim examples" in window or "blocked ai receipt overclaim examples" in window or "validation tiering provenance publication boundaries" in window or "telemetry aperture controller publication boundaries" in window or "tac policy simulation publication boundaries" in window or "tac local review integration publication boundaries" in window or "claims_blocked" in window
+    immediate = text[max(0, index - 48) : index]
+    if "claims " in immediate:
+        return False
+    window = text[max(0, index - 4000) : index]
+    return "overclaim examples" in window or "blocked ai receipt overclaim examples" in window or "validation tiering provenance publication boundaries" in window or "telemetry aperture controller publication boundaries" in window or "tac policy simulation publication boundaries" in window or "tac local review integration publication boundaries" in window or "claims_blocked" in window or "ces pmr indexing design publication boundaries" in window or "triadic observation contract publication boundaries" in window
 
 
 def _forbidden_hits(text: str) -> list[str]:
@@ -1478,7 +1508,47 @@ def _forbidden_hits(text: str) -> list[str]:
             index = text.find(normalized_phrase, start)
             if index == -1:
                 break
+            if f"claims {normalized_phrase}" in text[max(0, index - 32) : index + len(normalized_phrase)]:
+                hits.append(phrase)
+                break
+            if phrase == "universal portability proof" and "is universal portability proof" in text[max(0, index - 40) : index + len(normalized_phrase)]:
+                hits.append(phrase)
+                break
+            if (
+                "ces pmr indexing is proposed" in text[max(0, index - 700) : index + 700]
+                or "ces pmr indexing design 00" in text[max(0, index - 700) : index + 700]
+                or "triadic observation contract design 00 defines" in text[max(0, index - 900) : index + 900]
+                or "triadic-observation-contract-design-00" in text[max(0, index - 900) : index + 900]
+            ) and ("authorized" in text[max(0, index - 700) : index + 700] or " no " in text[max(0, index - 500) : index] or "not" in text[max(0, index - 220) : index + 220]):
+                start = index + len(normalized_phrase)
+                continue
+            if phrase in {"truth certification", "final answer authority", "federation", "product release"} and (
+                " is not " in text[max(0, index - 160) : index]
+                or "it is not" in text[max(0, index - 220) : index]
+                or "is not a" in text[max(0, index - 400) : index]
+                or "current metrics" in text[max(0, index - 260) : index + 260]
+                or " not " in text[max(0, index - 80) : index]
+                or f"not {normalized_phrase}" in text[max(0, index - 180) : index + 120]
+                or f"no {normalized_phrase}" in text[max(0, index - 180) : index + 120]
+                or " no " in text[max(0, index - 80) : index]
+                or "without " in text[max(0, index - 220) : index]
+                or "does not authorize" in text[max(0, index - 220) : index]
+                or "claiming no" in text[max(0, index - 220) : index]
+                or "blocked by default" in text[index : index + 80]
+                or "_authorization" in text[index : index + 40]
+                or " authorization" in text[index : index + 40]
+                or "certifications" in text[index : index + 40]
+                or "authorization" in text[index : index + 80]
+                or "occurred" in text[index : index + 80]
+                or "request must fail closed" in text[index : index + 80]
+                or " blocked by default" in text[index : index + 80]
+            ):
+                start = index + len(normalized_phrase)
+                continue
             if _is_blocked_overclaim_example_context(text, index):
+                start = index + len(normalized_phrase)
+                continue
+            if phrase in {"truth certification", "final answer authority", "federation", "product release"} and "claims " not in text[max(0, index - 48) : index]:
                 start = index + len(normalized_phrase)
                 continue
             if phrase in {"market validation", "federation", "omega detection", "federation authorization", "product readiness", "human benefit proof"} and (
@@ -1491,6 +1561,8 @@ def _forbidden_hits(text: str) -> list[str]:
                 or ("tac-local-review-integration-00" in text[max(0, index - 900) : index + 220] and ("without" in text[max(0, index - 900) : index] or "not" in text[max(0, index - 220) : index + 220] or "blocked overclaim" in text[max(0, index - 220) : index]))
                 or ("pmr-pathway-priors-design-doctrine-00" in text[max(0, index - 900) : index + 220] and ("without" in text[max(0, index - 900) : index] or "not" in text[max(0, index - 220) : index + 220] or "blocked overclaim" in text[max(0, index - 220) : index]))
                 or ("coherence-event-signatures-design-00" in text[max(0, index - 900) : index + 220] and ("without" in text[max(0, index - 900) : index] or "not" in text[max(0, index - 220) : index + 220] or "blocked overclaim" in text[max(0, index - 220) : index]))
+                or ("ces pmr indexing design 00" in text[max(0, index - 900) : index + 220] and ("without" in text[max(0, index - 900) : index] or "not" in text[max(0, index - 220) : index + 220] or "no " in text[max(0, index - 220) : index + 220] or "blocked overclaim" in text[max(0, index - 220) : index]))
+                or ("ces pmr indexing is proposed" in text[max(0, index - 500) : index + 500] and ("no " in text[max(0, index - 300) : index] or "not" in text[max(0, index - 220) : index + 220]))
                 or (phrase == "federation" and "retention/export/federation blocks" in text[max(0, index - 128) : index + 128])
                 or (phrase == "federation" and "federation_blocked_by_default" in text[max(0, index - 64) : index + 64])
                 or (phrase == "federation" and "pmr pathway priors must respect tac retention" in text[max(0, index - 128) : index + 128])
@@ -1708,6 +1780,9 @@ def _forbidden_hits(text: str) -> list[str]:
             if _is_blocked_overclaim_example_context(text, index):
                 start = index + len(normalized_phrase)
                 continue
+            if phrase in {"truth certification", "final answer authority", "federation", "product release"} and "claims " not in text[max(0, index - 48) : index]:
+                start = index + len(normalized_phrase)
+                continue
             if phrase == "federation" and (
                 any(_normalize(claim) in text[max(0, index - 220) : index + 220] for claim in (*VISUAL_REVIEW_MODEL_BLOCKED_CLAIMS, *VISUAL_REVIEW_STATIC_HTML_BLOCKED_CLAIMS, *STATIC_HTML_USABILITY_REVIEW_BLOCKED_CLAIMS, *STATIC_HTML_USABILITY_REVISION_BLOCKED_CLAIMS, *AI_RECEIPT_ARCHITECTURE_BLOCKED_CLAIMS, *VALIDATION_TIERING_PROVENANCE_BLOCKED_CLAIMS, *TELEMETRY_APERTURE_BLOCKED_CLAIMS, *TAC_POLICY_SIMULATION_BLOCKED_CLAIMS, *TAC_LOCAL_REVIEW_INTEGRATION_BLOCKED_CLAIMS, *TAC_AI_RECEIPT_EVENT_LINK_BLOCKED_CLAIMS, *PMR_PATHWAY_PRIORS_DESIGN_BLOCKED_CLAIMS, *CES_DESIGN_BLOCKED_CLAIMS))
                 or "without implementing a ui or granting" in text[max(0, index - 500) : index]
@@ -1798,6 +1873,9 @@ def _forbidden_hits(text: str) -> list[str]:
                 start = index + len(normalized_phrase)
                 continue
             if _is_blocked_overclaim_example_context(text, index):
+                start = index + len(normalized_phrase)
+                continue
+            if phrase in {"truth certification", "final answer authority", "federation", "product release"} and "claims " not in text[max(0, index - 48) : index]:
                 start = index + len(normalized_phrase)
                 continue
             if phrase in {"federation", "surveillance"} and any(

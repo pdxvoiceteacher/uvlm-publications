@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "uvlm.schema.bridge.triadic_observation_contract_packet.v1",
+  "type": "object",
+  "required": ["policy_status", "allowed_observation_scope", "observation_resolution", "purpose_binding", "consent_scope", "recovery_rights", "non_authority_boundaries"],
+  "properties": {
+    "policy_status": {"const": "active_design_only"},
+    "allowed_observation_scope": {"type": "array", "items": {"type": "string"}},
+    "observation_resolution": {"type": "string"},
+    "purpose_binding": {"type": "string"},
+    "consent_scope": {"type": "string"},
+    "retention_scope": {"type": "string"},
+    "replay_scope": {"type": "string"},
+    "disclosure_scope": {"type": "string"},
+    "federation_scope": {"type": "string"},
+    "recovery_rights": {"type": "array", "items": {"type": "string"}},
+    "non_authority_boundaries": {"type": "array", "items": {"type": "string"}}
+  },
+  "additionalProperties": true
+}
