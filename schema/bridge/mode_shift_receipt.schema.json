@@ -1,0 +1,11 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/schema/bridge/mode_shift_receipt.schema.json",
+  "title": "mode_shift_receipt",
+  "type": "object",
+  "additionalProperties": true,
+  "properties": {
+    "phase_id": {"const": "TRIADIC-OBSERVATION-CONTRACT-DESIGN-00"},
+    "policy_status": {"const": "active_design_only"}
+  }
+}

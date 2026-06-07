@@ -1,0 +1,11 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/schema/bridge/observation_rights_profile.schema.json",
+  "title": "observation_rights_profile",
+  "type": "object",
+  "additionalProperties": true,
+  "properties": {
+    "phase_id": {"const": "TRIADIC-OBSERVATION-CONTRACT-DESIGN-00"},
+    "policy_status": {"const": "active_design_only"}
+  }
+}

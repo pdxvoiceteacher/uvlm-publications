@@ -1,0 +1,11 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/schema/bridge/triadic_observation_contract_packet.schema.json",
+  "title": "triadic_observation_contract_packet",
+  "type": "object",
+  "additionalProperties": true,
+  "properties": {
+    "phase_id": {"const": "TRIADIC-OBSERVATION-CONTRACT-DESIGN-00"},
+    "policy_status": {"const": "active_design_only"}
+  }
+}
