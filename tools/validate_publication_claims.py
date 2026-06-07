@@ -23,6 +23,12 @@ from tools.build_public_repro_dashboard import (
     STATIC_HTML_USABILITY_REVISION_BLOCKED_CLAIMS,
     AI_RECEIPT_ARCHITECTURE_BLOCKED_CLAIMS,
     VALIDATION_TIERING_PROVENANCE_BLOCKED_CLAIMS,
+    TELEMETRY_APERTURE_BLOCKED_CLAIMS,
+    TAC_POLICY_SIMULATION_BLOCKED_CLAIMS,
+    TAC_LOCAL_REVIEW_INTEGRATION_BLOCKED_CLAIMS,
+    TAC_AI_RECEIPT_EVENT_LINK_BLOCKED_CLAIMS,
+    PMR_PATHWAY_PRIORS_DESIGN_BLOCKED_CLAIMS,
+    CES_DESIGN_BLOCKED_CLAIMS,
 )
 
 
@@ -800,6 +806,12 @@ PAPER_CONFIGS: dict[str, dict[str, Any]] = {
             *STATIC_HTML_USABILITY_REVISION_BLOCKED_CLAIMS,
             *AI_RECEIPT_ARCHITECTURE_BLOCKED_CLAIMS,
             *VALIDATION_TIERING_PROVENANCE_BLOCKED_CLAIMS,
+            *TELEMETRY_APERTURE_BLOCKED_CLAIMS,
+            *TAC_POLICY_SIMULATION_BLOCKED_CLAIMS,
+            *TAC_LOCAL_REVIEW_INTEGRATION_BLOCKED_CLAIMS,
+            *TAC_AI_RECEIPT_EVENT_LINK_BLOCKED_CLAIMS,
+            *PMR_PATHWAY_PRIORS_DESIGN_BLOCKED_CLAIMS,
+            *CES_DESIGN_BLOCKED_CLAIMS,
             "raw model output is final answer",
             "Omega detection",
             "provider runtime",
@@ -1142,6 +1154,15 @@ def _forbidden_hits(normalized_text: str, forbidden: tuple[str, ...]) -> list[st
             index = normalized_text.find(normalized_phrase, search_from)
             if index == -1:
                 break
+            if phrase in {"federation", "accepted evidence", "surveillance"} and "without changing runtime behavior or granting" in normalized_text[max(0, index - 160) : index]:
+                search_from = index + len(normalized_phrase)
+                continue
+            if phrase == "federation" and "retention/export/federation blocks" in normalized_text[max(0, index - 80) : index + 80]:
+                search_from = index + len(normalized_phrase)
+                continue
+            if phrase == "federation" and "not recursive sonya federation" in normalized_text[max(0, index - 32) : index + 32]:
+                search_from = index + len(normalized_phrase)
+                continue
             if (
                 phrase == "Sophia approval"
                 and (
@@ -1187,6 +1208,13 @@ def _forbidden_hits(normalized_text: str, forbidden: tuple[str, ...]) -> list[st
             ):
                 search_from = index + len(normalized_phrase)
                 continue
+            if phrase in {"federation", "surveillance", "accepted evidence"} and (
+                "without changing runtime behavior or granting" in normalized_text[max(0, index - 120) : index]
+                or "grants no" in normalized_text[max(0, index - 80) : index]
+                or "no " + normalized_phrase in normalized_text[max(0, index - 80) : index + 80]
+            ):
+                search_from = index + len(normalized_phrase)
+                continue
             if phrase == "federation" and (
                 normalized_text[index : index + 40].startswith("federation is blocked by default")
                 or normalized_text[index : index + 48].startswith("federation stress corpus is not federation")
@@ -1226,7 +1254,7 @@ def _forbidden_hits(normalized_text: str, forbidden: tuple[str, ...]) -> list[st
                 search_from = index + len(normalized_phrase)
                 continue
             if (
-                phrase in {"federation", "accepted evidence", "product release", *PERTURBATION_STRUCTURE_AFFORDANCE_BLOCKED_CLAIM_PHRASES, *METRIC_SEMANTIC_CONTRACT_BLOCKED_CLAIM_PHRASES, *LANGUAGE_GOVERNANCE_BLOCKED_CLAIMS, *LANGUAGE_GOVERNANCE_AUDIT_BLOCKED_CLAIMS, *VISUAL_REVIEW_MODEL_BLOCKED_CLAIMS, *VISUAL_REVIEW_STATIC_HTML_BLOCKED_CLAIMS, *STATIC_HTML_USABILITY_REVIEW_BLOCKED_CLAIMS, *STATIC_HTML_USABILITY_REVISION_BLOCKED_CLAIMS, *AI_RECEIPT_ARCHITECTURE_BLOCKED_CLAIMS, *VALIDATION_TIERING_PROVENANCE_BLOCKED_CLAIMS}
+                phrase in {"federation", "accepted evidence", "product release", *PERTURBATION_STRUCTURE_AFFORDANCE_BLOCKED_CLAIM_PHRASES, *METRIC_SEMANTIC_CONTRACT_BLOCKED_CLAIM_PHRASES, *LANGUAGE_GOVERNANCE_BLOCKED_CLAIMS, *LANGUAGE_GOVERNANCE_AUDIT_BLOCKED_CLAIMS, *VISUAL_REVIEW_MODEL_BLOCKED_CLAIMS, *VISUAL_REVIEW_STATIC_HTML_BLOCKED_CLAIMS, *STATIC_HTML_USABILITY_REVIEW_BLOCKED_CLAIMS, *STATIC_HTML_USABILITY_REVISION_BLOCKED_CLAIMS, *AI_RECEIPT_ARCHITECTURE_BLOCKED_CLAIMS, *VALIDATION_TIERING_PROVENANCE_BLOCKED_CLAIMS, *TELEMETRY_APERTURE_BLOCKED_CLAIMS, *TAC_POLICY_SIMULATION_BLOCKED_CLAIMS, *TAC_LOCAL_REVIEW_INTEGRATION_BLOCKED_CLAIMS, *TAC_AI_RECEIPT_EVENT_LINK_BLOCKED_CLAIMS, *PMR_PATHWAY_PRIORS_DESIGN_BLOCKED_CLAIMS, *CES_DESIGN_BLOCKED_CLAIMS}
                 and "request must fail closed" in normalized_text[index : index + 72]
             ):
                 search_from = index + len(normalized_phrase)
@@ -1266,6 +1294,14 @@ def _forbidden_hits(normalized_text: str, forbidden: tuple[str, ...]) -> list[st
                     or "claiming no" in normalized_text[max(0, index - 260) : index]
                     or any(_normalize(claim) in normalized_text[max(0, index - 220) : index + 220] for claim in (*VISUAL_REVIEW_STATIC_HTML_BLOCKED_CLAIMS, *STATIC_HTML_USABILITY_REVIEW_BLOCKED_CLAIMS, *STATIC_HTML_USABILITY_REVISION_BLOCKED_CLAIMS))
                 )
+            ):
+                search_from = index + len(normalized_phrase)
+                continue
+            if phrase in {"surveillance", "accepted evidence", "accepted-evidence authority"} and (
+                "without changing runtime behavior or granting" in normalized_text[max(0, index - 120) : index]
+                or "without certifying truth" in normalized_text[max(0, index - 260) : index]
+                or "or granting" in normalized_text[max(0, index - 120) : index]
+                or "grants no" in normalized_text[max(0, index - 80) : index]
             ):
                 search_from = index + len(normalized_phrase)
                 continue
@@ -1345,6 +1381,12 @@ def _forbidden_hits(normalized_text: str, forbidden: tuple[str, ...]) -> list[st
             *STATIC_HTML_USABILITY_REVISION_BLOCKED_CLAIMS,
             *AI_RECEIPT_ARCHITECTURE_BLOCKED_CLAIMS,
             *VALIDATION_TIERING_PROVENANCE_BLOCKED_CLAIMS,
+            *TELEMETRY_APERTURE_BLOCKED_CLAIMS,
+            *TAC_POLICY_SIMULATION_BLOCKED_CLAIMS,
+            *TAC_LOCAL_REVIEW_INTEGRATION_BLOCKED_CLAIMS,
+            *TAC_AI_RECEIPT_EVENT_LINK_BLOCKED_CLAIMS,
+            *PMR_PATHWAY_PRIORS_DESIGN_BLOCKED_CLAIMS,
+            *CES_DESIGN_BLOCKED_CLAIMS,
             }
             if phrase in manual_blocked_examples:
                 if "no artifact in this chain authorizes" in normalized_text[max(0, index - 120) : index]:

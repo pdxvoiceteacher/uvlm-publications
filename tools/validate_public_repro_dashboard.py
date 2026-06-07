@@ -89,6 +89,69 @@ from tools.build_public_repro_dashboard import (
     VALIDATION_TIERING_PROVENANCE_REQUIRED_DOC_PHRASES,
     VALIDATION_TIERING_PROVENANCE_SMOKE_TERMS,
     VALIDATION_TIERING_PROVENANCE_TIER_TERMS,
+    TELEMETRY_APERTURE_BLOCKED_CLAIMS,
+    TELEMETRY_APERTURE_CLAIM_ALLOWED,
+    TELEMETRY_APERTURE_DESIGN_ARTIFACTS,
+    TELEMETRY_APERTURE_DIMENSIONS,
+    TELEMETRY_APERTURE_ESCALATION_TRIGGERS,
+    TELEMETRY_APERTURE_FAILURE_CLASSES,
+    TELEMETRY_APERTURE_HARD_BLOCKS,
+    TELEMETRY_APERTURE_HUMAN_REVIEW_GATES,
+    TELEMETRY_APERTURE_MINIMUM_AUDIT_FLOOR_TERMS,
+    TELEMETRY_APERTURE_MODES,
+    TELEMETRY_APERTURE_POLICY_DEFAULTS,
+    TELEMETRY_APERTURE_REPRO_FRAGMENTS,
+    TELEMETRY_APERTURE_REQUIRED_DOC_PHRASES,
+    TELEMETRY_APERTURE_SAFE_MET_SEM_ALIASES,
+    TELEMETRY_APERTURE_UNSAFE_METRIC_BOUNDARIES,
+    TAC_POLICY_SIMULATION_ARTIFACTS,
+    TAC_POLICY_SIMULATION_BLOCKED_CLAIMS,
+    TAC_POLICY_SIMULATION_CLAIM_ALLOWED,
+    TAC_POLICY_SIMULATION_DECISION_RETENTION_TERMS,
+    TAC_POLICY_SIMULATION_DESIGN_RELATION,
+    TAC_POLICY_SIMULATION_HARD_BLOCK_TERMS,
+    TAC_POLICY_SIMULATION_INPUT_REFERENCES,
+    TAC_POLICY_SIMULATION_REPRO_FRAGMENTS,
+    TAC_POLICY_SIMULATION_REQUIRED_DOC_PHRASES,
+    TAC_POLICY_SIMULATION_SCENARIO_OUTCOMES,
+    TAC_POLICY_SIMULATION_SCENARIOS,
+    TAC_LOCAL_REVIEW_INTEGRATION_ARTIFACTS,
+    TAC_LOCAL_REVIEW_INTEGRATION_BLOCKED_CLAIMS,
+    TAC_LOCAL_REVIEW_INTEGRATION_CLAIM_ALLOWED,
+    TAC_LOCAL_REVIEW_INTEGRATION_INPUT_ARTIFACTS,
+    TAC_LOCAL_REVIEW_INTEGRATION_OVERLAY_TERMS,
+    TAC_LOCAL_REVIEW_INTEGRATION_PRIOR_PHASE_RELATION,
+    TAC_LOCAL_REVIEW_INTEGRATION_REPRO_FRAGMENTS,
+    TAC_LOCAL_REVIEW_INTEGRATION_REQUIRED_DOC_PHRASES,
+    TAC_LOCAL_REVIEW_INTEGRATION_REVIEWER_PROMPTS,
+    TAC_AI_RECEIPT_EVENT_LINK_ARTIFACTS,
+    TAC_AI_RECEIPT_EVENT_LINK_BLOCKED_CLAIMS,
+    TAC_AI_RECEIPT_EVENT_LINK_CLAIM_ALLOWED,
+    TAC_AI_RECEIPT_EVENT_LINK_EVENTS,
+    TAC_AI_RECEIPT_EVENT_LINK_INPUT_ARTIFACTS,
+    TAC_AI_RECEIPT_EVENT_LINK_PRIOR_PHASE_RELATION,
+    TAC_AI_RECEIPT_EVENT_LINK_REFERENCE_TERMS,
+    TAC_AI_RECEIPT_EVENT_LINK_REPRO_FRAGMENTS,
+    TAC_AI_RECEIPT_EVENT_LINK_REQUIRED_DOC_PHRASES,
+    PMR_PATHWAY_PRIORS_DESIGN_ARTIFACTS,
+    PMR_PATHWAY_PRIORS_DESIGN_BLOCKED_CLAIMS,
+    PMR_PATHWAY_PRIORS_DESIGN_CLAIM_ALLOWED,
+    PMR_PATHWAY_PRIORS_DESIGN_DOCTRINE_LANGUAGE,
+    PMR_PATHWAY_PRIORS_DESIGN_REPRO_FRAGMENTS,
+    CES_DESIGN_ARTIFACTS,
+    CES_DESIGN_BLOCKED_CLAIMS,
+    CES_DESIGN_CLAIM_ALLOWED,
+    CES_DESIGN_DOCTRINE_LANGUAGE,
+    CES_DESIGN_EVENT_TYPES,
+    CES_DESIGN_FAILURE_CLASSES,
+    CES_DESIGN_IDENTITY_INTEGRITY_DOCTRINE,
+    CES_DESIGN_LAYERS,
+    CES_DESIGN_NEGATIVE_CONTROLS,
+    CES_DESIGN_PMR_RELATION,
+    CES_DESIGN_PRODUCT_LANGUAGE,
+    CES_DESIGN_REPRO_FRAGMENTS,
+    CES_DESIGN_SAFE_METRIC_ALIASES,
+    CES_DESIGN_SIMILARITY_PRIVACY_DOCTRINE,
 )
 
 
@@ -354,6 +417,47 @@ REQUIRED_BOUNDARY_PHRASES = (
     *VALIDATION_TIERING_PROVENANCE_RECEIPT_TERMS,
     *VALIDATION_TIERING_PROVENANCE_REPRO_FRAGMENTS,
     *VALIDATION_TIERING_PROVENANCE_BLOCKED_CLAIMS,
+    "TELEMETRY-APERTURE-DESIGN-00",
+    TELEMETRY_APERTURE_CLAIM_ALLOWED,
+    *TELEMETRY_APERTURE_DESIGN_ARTIFACTS,
+    *TELEMETRY_APERTURE_MODES,
+    *TELEMETRY_APERTURE_DIMENSIONS,
+    *TELEMETRY_APERTURE_MINIMUM_AUDIT_FLOOR_TERMS,
+    *TELEMETRY_APERTURE_POLICY_DEFAULTS,
+    *TELEMETRY_APERTURE_ESCALATION_TRIGGERS,
+    *TELEMETRY_APERTURE_HARD_BLOCKS,
+    *TELEMETRY_APERTURE_HUMAN_REVIEW_GATES,
+    *TELEMETRY_APERTURE_SAFE_MET_SEM_ALIASES,
+    *TELEMETRY_APERTURE_REQUIRED_DOC_PHRASES,
+    *TELEMETRY_APERTURE_FAILURE_CLASSES,
+    *TELEMETRY_APERTURE_REPRO_FRAGMENTS,
+    *TELEMETRY_APERTURE_UNSAFE_METRIC_BOUNDARIES,
+    *TELEMETRY_APERTURE_BLOCKED_CLAIMS,
+    "TAC-POLICY-SIMULATION-00",
+    TAC_POLICY_SIMULATION_CLAIM_ALLOWED,
+    *TAC_POLICY_SIMULATION_ARTIFACTS,
+    *TAC_POLICY_SIMULATION_INPUT_REFERENCES,
+    *TAC_POLICY_SIMULATION_SCENARIOS,
+    *TAC_POLICY_SIMULATION_SCENARIO_OUTCOMES,
+    *TAC_POLICY_SIMULATION_HARD_BLOCK_TERMS,
+    *TAC_POLICY_SIMULATION_DECISION_RETENTION_TERMS,
+    *TAC_POLICY_SIMULATION_REQUIRED_DOC_PHRASES,
+    *TAC_POLICY_SIMULATION_DESIGN_RELATION,
+    *TAC_POLICY_SIMULATION_REPRO_FRAGMENTS,
+    *TAC_POLICY_SIMULATION_BLOCKED_CLAIMS,
+    "TAC-LOCAL-REVIEW-INTEGRATION-00",
+    "TAC-AI-RECEIPT-EVENT-LINK-00",
+    "PMR-PATHWAY-PRIORS-DESIGN-DOCTRINE-00",
+    "COHERENCE-EVENT-SIGNATURES-DESIGN-00",
+    TAC_LOCAL_REVIEW_INTEGRATION_CLAIM_ALLOWED,
+    *TAC_LOCAL_REVIEW_INTEGRATION_ARTIFACTS,
+    *TAC_LOCAL_REVIEW_INTEGRATION_INPUT_ARTIFACTS,
+    *TAC_LOCAL_REVIEW_INTEGRATION_OVERLAY_TERMS,
+    *TAC_LOCAL_REVIEW_INTEGRATION_REVIEWER_PROMPTS,
+    *TAC_LOCAL_REVIEW_INTEGRATION_REQUIRED_DOC_PHRASES,
+    *TAC_LOCAL_REVIEW_INTEGRATION_PRIOR_PHASE_RELATION,
+    *TAC_LOCAL_REVIEW_INTEGRATION_REPRO_FRAGMENTS,
+    *TAC_LOCAL_REVIEW_INTEGRATION_BLOCKED_CLAIMS,
     "RUNTIME-METRICS-CORPUS-SEED-00",
     "bounded seed corpus instrumentation only",
     "not population calibration",
@@ -1362,7 +1466,7 @@ def _is_metric_semantic_contract_context(text: str, index: int, phrase: str) -> 
 
 def _is_blocked_overclaim_example_context(text: str, index: int) -> bool:
     window = text[max(0, index - 1000) : index]
-    return "blocked overclaim examples" in window or "blocked ai receipt overclaim examples" in window or "validation tiering provenance publication boundaries" in window or "claims_blocked" in window
+    return "blocked overclaim examples" in window or "blocked ai receipt overclaim examples" in window or "validation tiering provenance publication boundaries" in window or "telemetry aperture controller publication boundaries" in window or "tac policy simulation publication boundaries" in window or "tac local review integration publication boundaries" in window or "claims_blocked" in window
 
 
 def _forbidden_hits(text: str) -> list[str]:
@@ -1374,6 +1478,48 @@ def _forbidden_hits(text: str) -> list[str]:
             index = text.find(normalized_phrase, start)
             if index == -1:
                 break
+            if _is_blocked_overclaim_example_context(text, index):
+                start = index + len(normalized_phrase)
+                continue
+            if phrase in {"market validation", "federation", "omega detection", "federation authorization", "product readiness", "human benefit proof"} and (
+                "without changing runtime behavior or granting" in text[max(0, index - 900) : index]
+                or "without certifying truth" in text[max(0, index - 260) : index]
+                or "grants no" in text[max(0, index - 240) : index]
+                or f"not {normalized_phrase}" in text[max(0, index - 128) : index + 128]
+                or f"is not {normalized_phrase}" in text[max(0, index - 128) : index + 128]
+                or ("tac-policy-simulation-00" in text[max(0, index - 900) : index + 220] and ("without" in text[max(0, index - 900) : index] or "not" in text[max(0, index - 220) : index + 220] or "blocked overclaim" in text[max(0, index - 220) : index]))
+                or ("tac-local-review-integration-00" in text[max(0, index - 900) : index + 220] and ("without" in text[max(0, index - 900) : index] or "not" in text[max(0, index - 220) : index + 220] or "blocked overclaim" in text[max(0, index - 220) : index]))
+                or ("pmr-pathway-priors-design-doctrine-00" in text[max(0, index - 900) : index + 220] and ("without" in text[max(0, index - 900) : index] or "not" in text[max(0, index - 220) : index + 220] or "blocked overclaim" in text[max(0, index - 220) : index]))
+                or ("coherence-event-signatures-design-00" in text[max(0, index - 900) : index + 220] and ("without" in text[max(0, index - 900) : index] or "not" in text[max(0, index - 220) : index + 220] or "blocked overclaim" in text[max(0, index - 220) : index]))
+                or (phrase == "federation" and "retention/export/federation blocks" in text[max(0, index - 128) : index + 128])
+                or (phrase == "federation" and "federation_blocked_by_default" in text[max(0, index - 64) : index + 64])
+                or (phrase == "federation" and "pmr pathway priors must respect tac retention" in text[max(0, index - 128) : index + 128])
+                or (phrase == "federation" and "pmr pathway prior authorizes pmr federation" in text[max(0, index - 128) : index + 128])
+                or (phrase == "federation" and "ces authorizes pmr federation" in text[max(0, index - 128) : index + 128])
+                or (phrase == "federation" and "federating pmr" in text[max(0, index - 128) : index + 128] and "without certifying truth" in text[max(0, index - 320) : index])
+                or (phrase == "federation" and "federating pmr" in text[max(0, index - 80) : index + 80] and "without certifying truth" in text[max(0, index - 260) : index])
+            ):
+                start = index + len(normalized_phrase)
+                continue
+            if phrase == "consent execution" and (
+                _is_negated(text, index)
+                or "simulation decision is consent execution" in text[max(0, index - 80) : index + 80]
+            ):
+                start = index + len(normalized_phrase)
+                continue
+            if phrase == "federation" and (
+                "_not_federation" in text[max(0, index - 160) : index + 160]
+                or "not_federation" in text[max(0, index - 160) : index + 160]
+                or "federation_allowed" in text[max(0, index - 80) : index + 80]
+                or "federation_performed" in text[max(0, index - 80) : index + 80]
+                or "federation_blocked" in text[max(0, index - 80) : index + 80]
+                or "federation remains blocked" in text[max(0, index - 80) : index + 80]
+            ):
+                start = index + len(normalized_phrase)
+                continue
+            if phrase == "surveillance" and "authorizes surveillance" not in text[max(0, index - 64) : index + 64] and "claims surveillance" not in text[max(0, index - 32) : index + 32]:
+                start = index + len(normalized_phrase)
+                continue
             if phrase.startswith("claims ") and not _is_negated(text, index):
                 hits.append(phrase)
                 break
@@ -1388,6 +1534,7 @@ def _forbidden_hits(text: str) -> list[str]:
                     or "not_federation" in window
                     or "no_federation" in window
                     or "federation_blocked" in window
+                    or "federation_blocked_by_default" in window
                     or '"federation_authorized": false' in window
                     or "requires population calibration" in window
                     or "grants no" in window
@@ -1532,6 +1679,12 @@ def _forbidden_hits(text: str) -> list[str]:
                 phrase == "surveillance"
                 and (
                     "not surveillance" in text[max(0, index - 48) : index + 24]
+                    or "not surveillance authorization" in text[max(0, index - 64) : index + 48]
+                    or "tac is not surveillance" in text[max(0, index - 64) : index + 48]
+                    or "without changing runtime behavior or granting" in text[max(0, index - 80) : index]
+                    or "grants no surveillance" in text[max(0, index - 80) : index + 80]
+                    or "is not surveillance" in text[max(0, index - 80) : index + 80]
+                    or "no_surveillance" in text[max(0, index - 80) : index + 80]
                     or "telemetry_not_surveillance" in text[max(0, index - 64) : index + 32]
                 )
             ):
@@ -1556,13 +1709,19 @@ def _forbidden_hits(text: str) -> list[str]:
                 start = index + len(normalized_phrase)
                 continue
             if phrase == "federation" and (
-                any(_normalize(claim) in text[max(0, index - 220) : index + 220] for claim in (*VISUAL_REVIEW_MODEL_BLOCKED_CLAIMS, *VISUAL_REVIEW_STATIC_HTML_BLOCKED_CLAIMS, *STATIC_HTML_USABILITY_REVIEW_BLOCKED_CLAIMS, *STATIC_HTML_USABILITY_REVISION_BLOCKED_CLAIMS, *AI_RECEIPT_ARCHITECTURE_BLOCKED_CLAIMS, *VALIDATION_TIERING_PROVENANCE_BLOCKED_CLAIMS))
+                any(_normalize(claim) in text[max(0, index - 220) : index + 220] for claim in (*VISUAL_REVIEW_MODEL_BLOCKED_CLAIMS, *VISUAL_REVIEW_STATIC_HTML_BLOCKED_CLAIMS, *STATIC_HTML_USABILITY_REVIEW_BLOCKED_CLAIMS, *STATIC_HTML_USABILITY_REVISION_BLOCKED_CLAIMS, *AI_RECEIPT_ARCHITECTURE_BLOCKED_CLAIMS, *VALIDATION_TIERING_PROVENANCE_BLOCKED_CLAIMS, *TELEMETRY_APERTURE_BLOCKED_CLAIMS, *TAC_POLICY_SIMULATION_BLOCKED_CLAIMS, *TAC_LOCAL_REVIEW_INTEGRATION_BLOCKED_CLAIMS, *TAC_AI_RECEIPT_EVENT_LINK_BLOCKED_CLAIMS, *PMR_PATHWAY_PRIORS_DESIGN_BLOCKED_CLAIMS, *CES_DESIGN_BLOCKED_CLAIMS))
                 or "without implementing a ui or granting" in text[max(0, index - 500) : index]
                 or "it implements no ui and grants no" in text[max(0, index - 500) : index]
             ):
                 start = index + len(normalized_phrase)
                 continue
-            if phrase == "federation" and "federation blocked by default" in text[index : index + 96]:
+            if phrase == "federation" and (
+                "federation blocked by default" in text[index : index + 96]
+                or "not federation authorization" in text[max(0, index - 64) : index + 64]
+                or "tac is not federation" in text[max(0, index - 64) : index + 64]
+                or "pmr_federation = blocked_by_default" in text[max(0, index - 64) : index + 64]
+                or "pmr federation is allowed by default" in text[max(0, index - 160) : index + 160]
+            ):
                 start = index + len(normalized_phrase)
                 continue
             if phrase in {"population calibration", "population-calibrated", "peer review certification", "universal ontology proof"} and _is_negated(text, index):
@@ -1587,7 +1746,7 @@ def _forbidden_hits(text: str) -> list[str]:
                 continue
             if (
                 phrase in {"truth certification", "product release"}
-                and any(_normalize(claim) in text[max(0, index - 180) : index + 180] for claim in (*LANGUAGE_GOVERNANCE_AUDIT_BLOCKED_CLAIMS, *VISUAL_REVIEW_MODEL_BLOCKED_CLAIMS, *VISUAL_REVIEW_STATIC_HTML_BLOCKED_CLAIMS, *STATIC_HTML_USABILITY_REVIEW_BLOCKED_CLAIMS, *STATIC_HTML_USABILITY_REVISION_BLOCKED_CLAIMS, *AI_RECEIPT_ARCHITECTURE_BLOCKED_CLAIMS, *VALIDATION_TIERING_PROVENANCE_BLOCKED_CLAIMS))
+                and any(_normalize(claim) in text[max(0, index - 180) : index + 180] for claim in (*LANGUAGE_GOVERNANCE_AUDIT_BLOCKED_CLAIMS, *VISUAL_REVIEW_MODEL_BLOCKED_CLAIMS, *VISUAL_REVIEW_STATIC_HTML_BLOCKED_CLAIMS, *STATIC_HTML_USABILITY_REVIEW_BLOCKED_CLAIMS, *STATIC_HTML_USABILITY_REVISION_BLOCKED_CLAIMS, *AI_RECEIPT_ARCHITECTURE_BLOCKED_CLAIMS, *VALIDATION_TIERING_PROVENANCE_BLOCKED_CLAIMS, *TELEMETRY_APERTURE_BLOCKED_CLAIMS, *TAC_POLICY_SIMULATION_BLOCKED_CLAIMS, *TAC_LOCAL_REVIEW_INTEGRATION_BLOCKED_CLAIMS, *TAC_AI_RECEIPT_EVENT_LINK_BLOCKED_CLAIMS, *PMR_PATHWAY_PRIORS_DESIGN_BLOCKED_CLAIMS, *CES_DESIGN_BLOCKED_CLAIMS))
             ):
                 start = index + len(normalized_phrase)
                 continue
@@ -1611,7 +1770,7 @@ def _forbidden_hits(text: str) -> list[str]:
             ):
                 start = index + len(normalized_phrase)
                 continue
-            if phrase in {"market validation", "human benefit proof"} and "without certifying truth" in text[max(0, index - 260) : index]:
+            if phrase in {"market validation", "human benefit proof", "federation"} and "without certifying truth" in text[max(0, index - 260) : index]:
                 start = index + len(normalized_phrase)
                 continue
             if (
@@ -1630,7 +1789,7 @@ def _forbidden_hits(text: str) -> list[str]:
                     "without creating" in text[max(0, index - 260) : index]
                     or "without claiming" in text[max(0, index - 260) : index]
                     or "claiming no" in text[max(0, index - 260) : index]
-                    or any(_normalize(claim) in text[max(0, index - 220) : index + 220] for claim in (*VISUAL_REVIEW_STATIC_HTML_BLOCKED_CLAIMS, *STATIC_HTML_USABILITY_REVIEW_BLOCKED_CLAIMS, *STATIC_HTML_USABILITY_REVISION_BLOCKED_CLAIMS, *AI_RECEIPT_ARCHITECTURE_BLOCKED_CLAIMS, *VALIDATION_TIERING_PROVENANCE_BLOCKED_CLAIMS))
+                    or any(_normalize(claim) in text[max(0, index - 220) : index + 220] for claim in (*VISUAL_REVIEW_STATIC_HTML_BLOCKED_CLAIMS, *STATIC_HTML_USABILITY_REVIEW_BLOCKED_CLAIMS, *STATIC_HTML_USABILITY_REVISION_BLOCKED_CLAIMS, *AI_RECEIPT_ARCHITECTURE_BLOCKED_CLAIMS, *VALIDATION_TIERING_PROVENANCE_BLOCKED_CLAIMS, *TELEMETRY_APERTURE_BLOCKED_CLAIMS, *TAC_POLICY_SIMULATION_BLOCKED_CLAIMS, *TAC_LOCAL_REVIEW_INTEGRATION_BLOCKED_CLAIMS, *TAC_AI_RECEIPT_EVENT_LINK_BLOCKED_CLAIMS, *PMR_PATHWAY_PRIORS_DESIGN_BLOCKED_CLAIMS, *CES_DESIGN_BLOCKED_CLAIMS))
                 )
             ):
                 start = index + len(normalized_phrase)
@@ -1639,6 +1798,30 @@ def _forbidden_hits(text: str) -> list[str]:
                 start = index + len(normalized_phrase)
                 continue
             if _is_blocked_overclaim_example_context(text, index):
+                start = index + len(normalized_phrase)
+                continue
+            if phrase in {"federation", "surveillance"} and any(
+                _normalize(claim) in text[max(0, index - 240) : index + 240]
+                for claim in (*TELEMETRY_APERTURE_BLOCKED_CLAIMS, *TAC_POLICY_SIMULATION_BLOCKED_CLAIMS, *TAC_LOCAL_REVIEW_INTEGRATION_BLOCKED_CLAIMS, *TAC_AI_RECEIPT_EVENT_LINK_BLOCKED_CLAIMS, *PMR_PATHWAY_PRIORS_DESIGN_BLOCKED_CLAIMS, *CES_DESIGN_BLOCKED_CLAIMS)
+            ):
+                start = index + len(normalized_phrase)
+                continue
+            if phrase == "surveillance" and (
+                "not surveillance authorization" in text[max(0, index - 80) : index + 80]
+                or "tac is not surveillance" in text[max(0, index - 80) : index + 80]
+                or "without changing runtime behavior or granting" in text[max(0, index - 80) : index]
+                or "grants no surveillance" in text[max(0, index - 80) : index + 80]
+                or "no_surveillance" in text[max(0, index - 80) : index + 80]
+                or "telemetry_not_surveillance" in text[max(0, index - 80) : index + 80]
+                or "is not surveillance" in text[max(0, index - 80) : index + 80]
+            ):
+                start = index + len(normalized_phrase)
+                continue
+            if phrase == "federation" and (
+                "not federation authorization" in text[max(0, index - 80) : index + 80]
+                or "tac is not federation" in text[max(0, index - 80) : index + 80]
+                or "pmr_federation" in text[max(0, index - 64) : index + 64]
+            ):
                 start = index + len(normalized_phrase)
                 continue
             if phrase == "final answer authority" and (

@@ -3161,6 +3161,836 @@ VISUAL_REVIEW_STATIC_HTML_PHASE = {
 }
 
 
+TAC_POLICY_SIMULATION_COMMAND = "python -c \"from pathlib import Path; from coherence.telemetry.aperture_simulation import build_telemetry_aperture_simulation; bridge=Path(r'C:\\UVLM\\run_artifacts\\telemetry_aperture_simulation\\bridge'); build_telemetry_aperture_simulation(bridge)\""
+TAC_POLICY_SIMULATION_ARTIFACTS = [
+    "telemetry_aperture_policy_packet.json",
+    "telemetry_aperture_simulation_packet.json",
+    "telemetry_aperture_decision_packet.json",
+    "telemetry_aperture_retention_intent_packet.json",
+    "telemetry_aperture_simulation_summary.md",
+    "telemetry_aperture_simulation_receipt.json",
+]
+TAC_POLICY_SIMULATION_INPUT_REFERENCES = [
+    "config/telemetry_aperture/telemetry_aperture_modes.v1.json",
+    "config/telemetry_aperture/minimum_audit_floor.v1.json",
+    "config/telemetry_aperture/telemetry_aperture_policy_schema.v1.json",
+    "schema/bridge/telemetry_aperture_policy_packet.schema.json",
+    "schema/bridge/telemetry_aperture_decision_packet.schema.json",
+    "schema/bridge/telemetry_aperture_retention_intent_packet.schema.json",
+    "schema/bridge/telemetry_aperture_simulation_packet.schema.json",
+    "schema/bridge/telemetry_aperture_simulation_receipt.schema.json",
+]
+TAC_POLICY_SIMULATION_SCENARIOS = [
+    "local_default_receipt_review",
+    "unsupported_claim_surge",
+    "high_boundary_pressure",
+    "user_requested_deep_audit_without_retention_consent",
+    "full_audit_requested_without_consent",
+    "trace_export_requested_without_consent",
+    "pmr_federation_requested_without_consent",
+    "drop_failure_receipts_for_cost",
+]
+TAC_POLICY_SIMULATION_SCENARIO_OUTCOMES = [
+    "local_default_receipt_review selects pulse",
+    "unsupported_claim_surge escalates to snapshot",
+    "high_boundary_pressure escalates to tail_retain",
+    "user_requested_deep_audit_without_retention_consent escalates to trace while blocking durable raw trace retention",
+    "full_audit_requested_without_consent triggers full_audit_mode_without_consent",
+    "trace_export_requested_without_consent triggers export_trace_without_consent",
+    "pmr_federation_requested_without_consent triggers federate_tel_without_consent",
+    "drop_failure_receipts_for_cost triggers drop_failure_receipts_for_cost and blocked_fail_closed",
+]
+TAC_POLICY_SIMULATION_HARD_BLOCK_TERMS = [
+    "full_audit_mode_without_consent",
+    "export_trace_without_consent",
+    "federate_tel_without_consent",
+    "drop_failure_receipts_for_cost",
+    "increase_raw_retention_without_consent",
+    "drop_source_spans_for_cost",
+    "drop_run_manifest_for_cost",
+    "drop_boundary_table_for_cost",
+    "privacy_redaction_override_without_consent",
+    "retain_sensitive_content_without_consent",
+]
+TAC_POLICY_SIMULATION_DECISION_RETENTION_TERMS = [
+    "telemetry_aperture_decision_packet.json",
+    "telemetry_aperture_retention_intent_packet.json",
+    "selected_mode",
+    "decision_status",
+    "hard_blocks_triggered",
+    "minimum_audit_floor_preserved",
+    "raw_trace_retention_allowed",
+    "trace_export_allowed",
+    "federation_allowed",
+    "raw_trace_retention_status",
+    "blocked_requires_explicit_approval",
+    "temporary_only_no_durable_retention_without_approval",
+]
+TAC_POLICY_SIMULATION_REQUIRED_DOC_PHRASES = [
+    "TAC Policy Simulation",
+    "This is design-only policy rehearsal, not runtime control.",
+    "TAC simulation does not change runtime telemetry behavior.",
+    "TAC simulation is not surveillance authorization.",
+    "TAC simulation is not memory write.",
+    "TAC simulation is not trace export authorization.",
+    "TAC simulation is not federation authorization.",
+    "TAC simulation is not product release.",
+    "Minimum audit floor is preserved.",
+    "Human review remains required for aperture expansion, retention, export, federation, and PMR memory intent.",
+    "Default scenario selects pulse.",
+    "Trace export remains blocked without consent.",
+    "PMR federation remains blocked without consent.",
+    "Raw trace retention remains blocked without explicit approval.",
+    "Dropping failure receipts for cost is blocked fail-closed.",
+]
+TAC_POLICY_SIMULATION_DESIGN_RELATION = [
+    "TELEMETRY-APERTURE-DESIGN-00 defines TAC policy.",
+    "TAC-POLICY-SIMULATION-00 rehearses deterministic policy decisions.",
+    "TAC-POLICY-SIMULATION-00 does not implement live runtime control.",
+]
+TAC_POLICY_SIMULATION_REPRO_FRAGMENTS = [
+    "build_telemetry_aperture_simulation",
+    "telemetry_aperture_modes.v1.json",
+    "minimum_audit_floor.v1.json",
+    "telemetry_aperture_policy_schema.v1.json",
+]
+TAC_POLICY_SIMULATION_BLOCKED_CLAIMS = [
+    "TAC policy simulation changed runtime telemetry behavior",
+    "TAC policy simulation is runtime control",
+    "TAC policy simulation authorizes surveillance",
+    "TAC policy simulation authorizes trace export",
+    "TAC policy simulation authorizes PMR federation",
+    "TAC policy simulation authorizes memory write",
+    "TAC policy simulation authorizes Atlas memory admission",
+    "TAC policy simulation authorizes provider runtime",
+    "TAC policy simulation authorizes network runtime",
+    "TAC policy simulation authorizes deployment",
+    "TAC policy simulation is product release",
+    "TAC policy simulation certifies truth",
+    "TAC policy simulation certifies compliance",
+    "TAC policy simulation authorizes final answers",
+    "TAC policy simulation grants accepted-evidence authority",
+    "TAC policy simulation proves human benefit",
+    "TAC policy simulation is market validation",
+    "TAC policy simulation proves product readiness",
+    "TAC policy simulation proves consciousness",
+    "TAC policy simulation detects Omega",
+    "TAC policy simulation proves universal ontology",
+    "full audit mode can run without consent",
+    "raw trace retention is allowed without explicit approval",
+    "trace export is allowed without consent",
+    "PMR federation is allowed by default",
+    "dropping failure receipts for cost is permitted",
+    "aperture simulation permits memory write",
+    "simulation decision is consent execution",
+]
+TAC_POLICY_SIMULATION_CLAIM_ALLOWED = "TAC-POLICY-SIMULATION-00 emits design-only Telemetry Aperture Controller policy simulation packets for deterministic local scenarios, showing selected modes, hard blocks, retention intent, and minimum-audit-floor preservation without changing runtime behavior or granting surveillance, memory, trace export, federation, product, deployment, provider, final-answer, accepted-evidence, certification, Atlas, human benefit, market, consciousness, Omega, or ontology authority."
+TAC_POLICY_SIMULATION_DASHBOARD_SUMMARY = {
+    "simulation_status": "completed",
+    "simulation_mode": "design_only_policy_rehearsal",
+    "scenario_count": 8,
+    "default_scenario_id": "local_default_receipt_review",
+    "default_selected_mode": "pulse",
+    "default_raw_trace_retention_allowed": False,
+    "default_trace_export_allowed": False,
+    "default_federation_allowed": False,
+    "minimum_audit_floor_preserved": True,
+    "runtime_behavior_changed": False,
+    "provider_runtime_performed": False,
+    "network_call_performed": False,
+    "memory_write_performed": False,
+    "atlas_memory_admission_performed": False,
+    "trace_export_performed": False,
+    "federation_performed": False,
+    "product_release_performed": False,
+    "simulation_is_not_runtime_control": True,
+    "simulation_is_not_surveillance_authorization": True,
+    "simulation_is_not_memory_write": True,
+    "simulation_is_not_trace_export_authorization": True,
+    "simulation_is_not_federation_authorization": True,
+    "simulation_is_not_product_release": True,
+    "simulation_requires_human_review_for_expansion": True,
+}
+TAC_POLICY_SIMULATION_PHASE = {
+    "phase_id": "TAC-POLICY-SIMULATION-00",
+    "repo": "pdxvoiceteacher/CoherenceLattice",
+    "source_phase": "TAC-POLICY-SIMULATION-00",
+    "status": "accepted_local_validation",
+    "publication_status": "dashboard_synced",
+    "evidence_type": "design_only_policy_simulation_packets",
+    "product_posture": "policy_simulation_only_no_runtime_control_or_product_release",
+    "authority_posture": "non_authoritative",
+    "public_claim_boundary": "policy_rehearsal_only_no_runtime_surveillance_export_federation_memory_product_deployment_certification_or_final_answer_authority",
+    "primary_artifacts": TAC_POLICY_SIMULATION_ARTIFACTS,
+    "input_artifacts": TAC_POLICY_SIMULATION_INPUT_REFERENCES,
+    "dashboard_summary": TAC_POLICY_SIMULATION_DASHBOARD_SUMMARY,
+    "reproduction_command_summary": TAC_POLICY_SIMULATION_COMMAND,
+    "claims_blocked": TAC_POLICY_SIMULATION_BLOCKED_CLAIMS,
+    "claim_allowed": TAC_POLICY_SIMULATION_CLAIM_ALLOWED,
+    "reviewer_caution": "TAC-POLICY-SIMULATION-00 is design-only policy rehearsal, not runtime control. It changes no runtime telemetry behavior and grants no surveillance, trace export, federation, memory, provider, network, product, deployment, certification, final-answer, accepted-evidence, Atlas, human benefit, market, consciousness, Omega, or ontology authority.",
+}
+
+
+TAC_LOCAL_REVIEW_INTEGRATION_COMMAND = "python -c \"from pathlib import Path; from coherence.telemetry.aperture_simulation import build_telemetry_aperture_simulation; from coherence.telemetry.local_review_integration import build_tac_local_review_integration; bridge=Path(r'C:\\UVLM\\run_artifacts\\tac_local_review_integration\\bridge'); build_telemetry_aperture_simulation(bridge); build_tac_local_review_integration(bridge)\""
+TAC_LOCAL_REVIEW_INTEGRATION_ARTIFACTS = [
+    "tac_local_review_integration_packet.json",
+    "tac_local_review_overlay.json",
+    "tac_local_review_integration_summary.md",
+    "tac_local_review_integration_receipt.json",
+]
+TAC_LOCAL_REVIEW_INTEGRATION_INPUT_ARTIFACTS = [
+    "telemetry_aperture_policy_packet.json",
+    "telemetry_aperture_simulation_packet.json",
+    "telemetry_aperture_decision_packet.json",
+    "telemetry_aperture_retention_intent_packet.json",
+    "telemetry_aperture_simulation_summary.md",
+    "telemetry_aperture_simulation_receipt.json",
+    "ai_receipt_architecture_packet.json",
+    "ai_receipt_event_chain.json",
+    "ai_receipt_architecture.md",
+    "ai_receipt_architecture_receipt.json",
+    "visual_review_model_packet.json",
+    "visual_review_section_index.json",
+    "visual_review_render_contract.json",
+    "visual_review_receipt.json",
+    "visual_review_static_html_packet.json",
+    "visual_review_static_review.html",
+    "visual_review_static_html_receipt.json",
+    "static_html_usability_revision_packet.json",
+    "visual_review_static_review_revised.html",
+    "static_html_usability_revision_receipt.json",
+    "sophia_execution_reality_packet.json",
+    "validation_tier_receipt.json",
+    "pmr_local_runtime_artifact_index.json",
+    "artifact_inventory.json",
+    "export_bundle_parity_report.json",
+]
+TAC_LOCAL_REVIEW_INTEGRATION_OVERLAY_TERMS = [
+    "Telemetry Aperture Status",
+    "human_review_tac_status_overlay",
+    "ready_for_human_review",
+    "tac_is_design_policy_rehearsal",
+    "tac_did_not_change_runtime_behavior",
+    "retention_requires_explicit_approval",
+    "trace_export_blocked_without_consent",
+    "federation_blocked_without_consent",
+    "minimum_audit_floor_preserved",
+    "human_review_required_for_expansion",
+]
+TAC_LOCAL_REVIEW_INTEGRATION_REVIEWER_PROMPTS = [
+    "Review whether selected aperture mode is sufficient for the task risk.",
+    "Review whether any hard block requires human escalation.",
+    "Review whether raw trace retention is necessary and consented.",
+    "Review whether trace export remains blocked.",
+    "Review whether PMR federation remains blocked.",
+    "Review whether minimum audit floor evidence is preserved.",
+]
+TAC_LOCAL_REVIEW_INTEGRATION_REQUIRED_DOC_PHRASES = [
+    "TAC Local Review Integration",
+    "This integration links TAC policy simulation evidence into local review surfaces.",
+    "This integration is not live runtime control.",
+    "This integration is not surveillance authorization.",
+    "This integration is not memory write.",
+    "This integration is not trace export authorization.",
+    "This integration is not federation authorization.",
+    "This integration is not product release.",
+    "Minimum audit floor is preserved.",
+    "Human review remains required for aperture expansion, retention, export, federation, and PMR memory intent.",
+    "AI Receipt records TAC posture as review evidence, not truth certification.",
+    "AI Receipt event history is referenced only; no history rewrite occurs.",
+    "Default local review overlay selects pulse.",
+    "Raw trace retention remains blocked by default.",
+    "Trace export remains blocked by default.",
+    "PMR federation remains blocked by default.",
+]
+TAC_LOCAL_REVIEW_INTEGRATION_PRIOR_PHASE_RELATION = [
+    "TELEMETRY-APERTURE-DESIGN-00 defines TAC policy.",
+    "TAC-POLICY-SIMULATION-00 rehearses deterministic TAC policy decisions.",
+    "TAC-LOCAL-REVIEW-INTEGRATION-00 links simulated TAC posture into local review surfaces.",
+    "TAC-LOCAL-REVIEW-INTEGRATION-00 does not implement live runtime control.",
+]
+TAC_LOCAL_REVIEW_INTEGRATION_REPRO_FRAGMENTS = [
+    "build_telemetry_aperture_simulation",
+    "build_tac_local_review_integration",
+]
+TAC_LOCAL_REVIEW_INTEGRATION_BLOCKED_CLAIMS = [
+    "TAC local review integration changed runtime telemetry behavior",
+    "TAC local review integration is runtime control",
+    "TAC local review integration authorizes surveillance",
+    "TAC local review integration authorizes trace export",
+    "TAC local review integration authorizes PMR federation",
+    "TAC local review integration authorizes memory write",
+    "TAC local review integration authorizes Atlas memory admission",
+    "TAC local review integration authorizes provider runtime",
+    "TAC local review integration authorizes network runtime",
+    "TAC local review integration authorizes deployment",
+    "TAC local review integration is product release",
+    "TAC local review integration certifies truth",
+    "TAC local review integration certifies compliance",
+    "TAC local review integration authorizes final answers",
+    "TAC local review integration grants accepted-evidence authority",
+    "TAC local review integration proves human benefit",
+    "TAC local review integration is market validation",
+    "TAC local review integration proves product readiness",
+    "TAC local review integration proves consciousness",
+    "TAC local review integration detects Omega",
+    "TAC local review integration proves universal ontology",
+    "TAC overlay is authority",
+    "TAC overlay is runtime control",
+    "AI Receipt history was rewritten by TAC",
+    "TAC retention intent is memory write",
+    "TAC export field authorizes trace export",
+    "TAC federation field authorizes PMR federation",
+]
+TAC_LOCAL_REVIEW_INTEGRATION_CLAIM_ALLOWED = "TAC-LOCAL-REVIEW-INTEGRATION-00 links simulated TAC policy evidence into local review surfaces through a non-authoritative overlay, recording selected aperture mode, hard blocks, minimum-audit-floor status, retention/export/federation blocks, and human-review prompts without changing runtime behavior or granting surveillance, memory, trace export, federation, product, deployment, provider, final-answer, accepted-evidence, certification, Atlas, human benefit, market, consciousness, Omega, or ontology authority."
+TAC_LOCAL_REVIEW_INTEGRATION_DASHBOARD_SUMMARY = {
+    "integration_status": "completed",
+    "integration_mode": "local_review_overlay",
+    "scenario_id": "local_default_receipt_review",
+    "selected_mode": "pulse",
+    "decision_status": "simulated_allowed",
+    "minimum_audit_floor_preserved": True,
+    "raw_trace_retention_allowed": False,
+    "trace_export_allowed": False,
+    "federation_allowed": False,
+    "receipt_event_link_status": "referenced_only_no_history_rewrite",
+    "overlay_status": "ready_for_human_review",
+    "overlay_mode": "human_review_tac_status_overlay",
+    "live_runtime_behavior_changed": False,
+    "provider_runtime_performed": False,
+    "network_call_performed": False,
+    "telemetry_runtime_control_performed": False,
+    "memory_write_performed": False,
+    "atlas_memory_admission_performed": False,
+    "trace_export_performed": False,
+    "federation_performed": False,
+    "product_release_performed": False,
+    "final_answer_emitted": False,
+    "truth_certification_emitted": False,
+    "accepted_evidence_authority_granted": False,
+    "integration_is_not_runtime_control": True,
+    "integration_is_not_surveillance_authorization": True,
+    "integration_is_not_memory_write": True,
+    "integration_is_not_trace_export_authorization": True,
+    "integration_is_not_federation_authorization": True,
+    "integration_is_not_product_release": True,
+    "integration_requires_human_review_for_expansion": True,
+}
+TAC_LOCAL_REVIEW_INTEGRATION_PHASE = {
+    "phase_id": "TAC-LOCAL-REVIEW-INTEGRATION-00",
+    "repo": "pdxvoiceteacher/CoherenceLattice",
+    "source_phase": "TAC-LOCAL-REVIEW-INTEGRATION-00",
+    "status": "accepted_local_validation",
+    "publication_status": "dashboard_synced",
+    "evidence_type": "local_review_tac_status_overlay",
+    "product_posture": "non_authoritative_local_review_overlay_no_runtime_control_or_product_release",
+    "authority_posture": "non_authoritative",
+    "public_claim_boundary": "local_review_overlay_only_no_runtime_surveillance_export_federation_memory_product_deployment_certification_or_final_answer_authority",
+    "primary_artifacts": TAC_LOCAL_REVIEW_INTEGRATION_ARTIFACTS,
+    "input_artifacts": TAC_LOCAL_REVIEW_INTEGRATION_INPUT_ARTIFACTS,
+    "dashboard_summary": TAC_LOCAL_REVIEW_INTEGRATION_DASHBOARD_SUMMARY,
+    "reproduction_command_summary": TAC_LOCAL_REVIEW_INTEGRATION_COMMAND,
+    "claims_blocked": TAC_LOCAL_REVIEW_INTEGRATION_BLOCKED_CLAIMS,
+    "claim_allowed": TAC_LOCAL_REVIEW_INTEGRATION_CLAIM_ALLOWED,
+    "reviewer_caution": "TAC-LOCAL-REVIEW-INTEGRATION-00 links simulated TAC posture into local review surfaces only; it is not runtime control, surveillance authorization, memory write, trace export authorization, federation authorization, product release, deployment, certification, final-answer authority, accepted-evidence authority, Atlas admission, benefit proof, market validation, consciousness proof, Omega detection, or ontology proof.",
+}
+
+
+
+TAC_AI_RECEIPT_EVENT_LINK_COMMAND = "python -c \"from pathlib import Path; from coherence.product.triadic_llm_metrics_smoke import build_triadic_llm_metrics_smoke; from coherence.ucc.sophia_control_review import build_sophia_ucc_control_review; from coherence.product.ai_forensics_dossier import build_ai_forensics_dossier; from coherence.review.human_review_ux import build_human_review_ux_packet; from coherence.product.raw_vs_triadic_comparison import build_raw_vs_triadic_comparison; from coherence.local_review.metric_semantics import build_metric_semantic_reconciliation_packet; from coherence.governance.language_audit_runtime import build_reviewer_language_audit; from coherence.product.visual_review_model import build_visual_review_model; from coherence.product.visual_review_static_html import build_visual_review_static_html; from coherence.product.static_html_usability_review import build_static_html_usability_review_seed; from coherence.product.static_html_usability_revision import build_static_html_usability_revision; from coherence.product.ai_receipt_architecture import build_ai_receipt_architecture; from coherence.telemetry.aperture_simulation import build_telemetry_aperture_simulation; from coherence.telemetry.local_review_integration import build_tac_local_review_integration; from coherence.telemetry.ai_receipt_event_link import build_tac_ai_receipt_event_link; bridge=Path(r'C:\\UVLM\\run_artifacts\\tac_ai_receipt_event_link\\bridge'); root=bridge.parent; build_triadic_llm_metrics_smoke(root); build_sophia_ucc_control_review(bridge); build_ai_forensics_dossier(bridge); build_human_review_ux_packet(bridge); build_raw_vs_triadic_comparison(bridge); build_metric_semantic_reconciliation_packet(bridge); build_reviewer_language_audit(bridge); build_visual_review_model(bridge); build_visual_review_static_html(bridge); build_static_html_usability_review_seed(bridge); build_static_html_usability_revision(bridge); build_ai_receipt_architecture(bridge); build_telemetry_aperture_simulation(bridge); build_tac_local_review_integration(bridge); build_tac_ai_receipt_event_link(bridge)\""
+TAC_AI_RECEIPT_EVENT_LINK_ARTIFACTS = [
+    "tac_ai_receipt_event_link_packet.json",
+    "tac_ai_receipt_event_reference_table.json",
+    "tac_ai_receipt_event_link_summary.md",
+    "tac_ai_receipt_event_link_receipt.json",
+]
+TAC_AI_RECEIPT_EVENT_LINK_INPUT_ARTIFACTS = [
+    "ai_receipt_architecture_packet.json",
+    "ai_receipt_event_chain.json",
+    "ai_receipt_architecture.md",
+    "ai_receipt_architecture_receipt.json",
+    "tac_local_review_integration_packet.json",
+    "tac_local_review_overlay.json",
+    "tac_local_review_integration_summary.md",
+    "tac_local_review_integration_receipt.json",
+    "telemetry_aperture_policy_packet.json",
+    "telemetry_aperture_simulation_packet.json",
+    "telemetry_aperture_decision_packet.json",
+    "telemetry_aperture_retention_intent_packet.json",
+    "telemetry_aperture_simulation_receipt.json",
+    "sophia_execution_reality_packet.json",
+    "validation_tier_receipt.json",
+    "pmr_local_runtime_artifact_index.json",
+    "artifact_inventory.json",
+    "export_bundle_parity_report.json",
+]
+TAC_AI_RECEIPT_EVENT_LINK_EVENTS = [
+    "language_governance_audited",
+    "visual_review_model_built",
+    "static_html_review_rendered",
+    "static_html_usability_revision_applied",
+    "export_parity_checked",
+]
+TAC_AI_RECEIPT_EVENT_LINK_REFERENCE_TERMS = [
+    "supplemental_receipt_event_references",
+    "link_is_supplemental = true",
+    "link_does_not_rewrite_receipt_history = true",
+    "link_is_not_authority = true",
+    "human_review_required = true",
+    "tac_artifact_refs",
+    "tac_artifact_sha256s",
+    "selected_mode",
+    "decision_status",
+    "minimum_audit_floor_preserved",
+    "raw_trace_retention_allowed",
+    "trace_export_allowed",
+    "federation_allowed",
+]
+TAC_AI_RECEIPT_EVENT_LINK_REQUIRED_DOC_PHRASES = [
+    "TAC AI Receipt Event Link",
+    "This link references TAC posture from AI Receipt Architecture without rewriting receipt history.",
+    "AI Receipt event history is referenced, not rewritten.",
+    "TAC event links are supplemental review evidence, not authority.",
+    "TAC event links are not live runtime control.",
+    "TAC event links are not surveillance authorization.",
+    "TAC event links are not memory write.",
+    "TAC event links are not trace export authorization.",
+    "TAC event links are not federation authorization.",
+    "TAC event links are not product release.",
+    "Human review remains required.",
+    "The AI Receipt event-chain hash remains unchanged.",
+    "TAC posture is cited through supplemental references, not history mutation.",
+]
+TAC_AI_RECEIPT_EVENT_LINK_PRIOR_PHASE_RELATION = [
+    "AI-RECEIPT-ARCHITECTURE-00 records the original artifact-backed review chain.",
+    "TAC-LOCAL-REVIEW-INTEGRATION-00 creates a non-authoritative TAC review overlay.",
+    "TAC-AI-RECEIPT-EVENT-LINK-00 links TAC posture to AI Receipt through supplemental references.",
+    "TAC-AI-RECEIPT-EVENT-LINK-00 does not rewrite ai_receipt_event_chain.json.",
+]
+TAC_AI_RECEIPT_EVENT_LINK_REPRO_FRAGMENTS = [
+    "build_tac_ai_receipt_event_link",
+    "build_tac_local_review_integration",
+    "build_telemetry_aperture_simulation",
+    "build_ai_receipt_architecture",
+]
+TAC_AI_RECEIPT_EVENT_LINK_BLOCKED_CLAIMS = [
+    "TAC AI Receipt event link rewrites AI Receipt history",
+    "TAC AI Receipt event link is runtime control",
+    "TAC AI Receipt event link authorizes surveillance",
+    "TAC AI Receipt event link authorizes trace export",
+    "TAC AI Receipt event link authorizes PMR federation",
+    "TAC AI Receipt event link authorizes memory write",
+    "TAC AI Receipt event link authorizes Atlas memory admission",
+    "TAC AI Receipt event link authorizes provider runtime",
+    "TAC AI Receipt event link authorizes network runtime",
+    "TAC AI Receipt event link authorizes deployment",
+    "TAC AI Receipt event link is product release",
+    "TAC AI Receipt event link certifies truth",
+    "TAC AI Receipt event link certifies compliance",
+    "TAC AI Receipt event link authorizes final answers",
+    "TAC AI Receipt event link grants accepted-evidence authority",
+    "TAC AI Receipt event link proves human benefit",
+    "TAC AI Receipt event link is market validation",
+    "TAC AI Receipt event link proves product readiness",
+    "TAC AI Receipt event link proves consciousness",
+    "TAC AI Receipt event link detects Omega",
+    "TAC AI Receipt event link proves universal ontology",
+    "supplemental event references are authority",
+    "TAC event links are proof",
+    "TAC posture link means trace export is approved",
+    "TAC posture link means PMR federation is approved",
+    "TAC posture link means memory write is approved",
+    "chain hash unchanged means truth certification",
+]
+TAC_AI_RECEIPT_EVENT_LINK_CLAIM_ALLOWED = "TAC-AI-RECEIPT-EVENT-LINK-00 links TAC posture to AI Receipt Architecture through supplemental, non-rewriting event references, preserving the original receipt event chain while making selected aperture mode, hard blocks, minimum-audit-floor status, retention/export/federation blocks, and TAC review posture visible without changing runtime behavior or granting surveillance, memory, trace export, federation, product, deployment, provider, final-answer, accepted-evidence, certification, Atlas, human benefit, market, consciousness, Omega, or ontology authority."
+TAC_AI_RECEIPT_EVENT_LINK_DASHBOARD_SUMMARY = {
+    "link_status": "completed",
+    "link_mode": "supplemental_non_rewriting_event_reference",
+    "scenario_id": "local_default_receipt_review",
+    "receipt_history_rewritten": False,
+    "chain_hash_unchanged": True,
+    "referenced_event_count": 5,
+    "supplemental_link_count": 5,
+    "selected_mode": "pulse",
+    "decision_status": "simulated_allowed",
+    "minimum_audit_floor_preserved": True,
+    "raw_trace_retention_allowed": False,
+    "trace_export_allowed": False,
+    "federation_allowed": False,
+    "live_runtime_behavior_changed": False,
+    "telemetry_runtime_control_performed": False,
+    "provider_runtime_performed": False,
+    "network_call_performed": False,
+    "memory_write_performed": False,
+    "atlas_memory_admission_performed": False,
+    "trace_export_performed": False,
+    "federation_performed": False,
+    "product_release_performed": False,
+    "final_answer_emitted": False,
+    "truth_certification_emitted": False,
+    "accepted_evidence_authority_granted": False,
+    "link_is_not_runtime_control": True,
+    "link_is_not_surveillance_authorization": True,
+    "link_is_not_memory_write": True,
+    "link_is_not_trace_export_authorization": True,
+    "link_is_not_federation_authorization": True,
+    "link_is_not_product_release": True,
+    "link_requires_human_review": True,
+}
+TAC_AI_RECEIPT_EVENT_LINK_PHASE = {
+    "phase_id": "TAC-AI-RECEIPT-EVENT-LINK-00",
+    "repo": "pdxvoiceteacher/CoherenceLattice",
+    "source_phase": "TAC-AI-RECEIPT-EVENT-LINK-00",
+    "status": "accepted_local_validation",
+    "publication_status": "dashboard_synced",
+    "evidence_type": "supplemental_non_rewriting_ai_receipt_event_reference",
+    "product_posture": "non_authoritative_supplemental_event_link_no_runtime_control_or_product_release",
+    "authority_posture": "non_authoritative",
+    "public_claim_boundary": "supplemental_event_link_only_no_history_rewrite_runtime_surveillance_export_federation_memory_product_deployment_certification_or_final_answer_authority",
+    "primary_artifacts": TAC_AI_RECEIPT_EVENT_LINK_ARTIFACTS,
+    "input_artifacts": TAC_AI_RECEIPT_EVENT_LINK_INPUT_ARTIFACTS,
+    "dashboard_summary": TAC_AI_RECEIPT_EVENT_LINK_DASHBOARD_SUMMARY,
+    "reproduction_command_summary": TAC_AI_RECEIPT_EVENT_LINK_COMMAND,
+    "claims_blocked": TAC_AI_RECEIPT_EVENT_LINK_BLOCKED_CLAIMS,
+    "claim_allowed": TAC_AI_RECEIPT_EVENT_LINK_CLAIM_ALLOWED,
+    "reviewer_caution": "TAC-AI-RECEIPT-EVENT-LINK-00 links TAC posture to AI Receipt through supplemental references only; it does not rewrite history, perform runtime control, authorize surveillance, export, federation, memory, provider, network, deployment, product release, certification, final answers, accepted-evidence authority, Atlas admission, benefit proof, market validation, consciousness proof, Omega detection, or ontology proof.",
+}
+
+
+PMR_PATHWAY_PRIORS_DESIGN_COMMAND = "python -c \"from pathlib import Path; Path('docs/PMR_PATHWAY_PRIORS_DESIGN_DOCTRINE.md').read_text(encoding='utf-8')\"; python -m json.tool config/pmr/pathway_prior_policy.v1.json >/dev/null; python -m json.tool schema/bridge/pmr_pathway_prior_policy_packet.schema.json >/dev/null; python -m json.tool schema/bridge/pmr_pathway_prior_candidate.schema.json >/dev/null; python -m json.tool schema/bridge/pmr_pathway_prior_non_authority_boundary.schema.json >/dev/null"
+PMR_PATHWAY_PRIORS_DESIGN_ARTIFACTS = [
+    "docs/PMR_PATHWAY_PRIORS_DESIGN_DOCTRINE.md",
+    "config/pmr/pathway_prior_policy.v1.json",
+    "schema/bridge/pmr_pathway_prior_policy_packet.schema.json",
+    "schema/bridge/pmr_pathway_prior_candidate.schema.json",
+    "schema/bridge/pmr_pathway_prior_non_authority_boundary.schema.json",
+]
+PMR_PATHWAY_PRIORS_DESIGN_DOCTRINE_LANGUAGE = [
+    "Summary is not source.",
+    "Compression is not erasure.",
+    "Preferred route is not authority.",
+    "Route prior is not truth.",
+    "Route prior is not memory canon.",
+    "Route prior is not model training.",
+    "Route prior cannot skip future review.",
+    "PMR pathway priors are revocable, materiality-scoped review recommendations.",
+    "PMR pathway priors are derived only from provenance-backed artifact histories.",
+    "PMR pathway priors preserve replay lineage.",
+    "PMR pathway priors preserve AI Receipt traceability.",
+    "PMR pathway priors must respect TAC retention, trace export, and federation boundaries.",
+    "PMR pathway priors must record Sophia execution reality when applicable.",
+    "PMR pathway priors must record validation-tier evidence when applicable.",
+    "Human review remains required.",
+    "PMR-PATHWAY-PRIORS-DESIGN-DOCTRINE-00 does not generate pathway priors.",
+    "PMR-PATHWAY-PRIORS-DESIGN-DOCTRINE-00 does not write memory.",
+    "PMR-PATHWAY-PRIORS-DESIGN-DOCTRINE-00 does not admit Atlas memory.",
+    "PMR-PATHWAY-PRIORS-DESIGN-DOCTRINE-00 does not train a model.",
+    "PMR-PATHWAY-PRIORS-DESIGN-DOCTRINE-00 does not authorize review skipping.",
+    "PMR-PATHWAY-PRIORS-DESIGN-DOCTRINE-00 does not change runtime behavior.",
+]
+PMR_PATHWAY_PRIORS_DESIGN_REPRO_FRAGMENTS = [
+    "PMR_PATHWAY_PRIORS_DESIGN_DOCTRINE.md",
+    "pathway_prior_policy.v1.json",
+    "pmr_pathway_prior_policy_packet.schema.json",
+    "pmr_pathway_prior_candidate.schema.json",
+    "pmr_pathway_prior_non_authority_boundary.schema.json",
+]
+PMR_PATHWAY_PRIORS_DESIGN_BLOCKED_CLAIMS = [
+    "PMR pathway prior is truth",
+    "PMR pathway prior is memory canon",
+    "PMR pathway prior trains the model",
+    "PMR pathway prior skips human review",
+    "PMR pathway prior authorizes final answers",
+    "PMR pathway prior grants accepted-evidence authority",
+    "PMR pathway prior writes memory",
+    "PMR pathway prior admits Atlas memory",
+    "PMR pathway prior authorizes trace export",
+    "PMR pathway prior authorizes PMR federation",
+    "PMR pathway prior is product release",
+    "PMR pathway prior proves human benefit",
+    "PMR pathway prior is market validation",
+    "preferred route means correct route",
+    "compressed route means source can be deleted",
+    "summary route replaces replay lineage",
+    "prior route overrides materiality review",
+    "route prior can ignore TAC boundary",
+    "route prior can ignore Sophia reality",
+    "route prior can ignore validation tier",
+]
+PMR_PATHWAY_PRIORS_DESIGN_CLAIM_ALLOWED = "PMR pathway priors are proposed as revocable, materiality-scoped review recommendations derived from provenance-backed artifact histories, preserving replay lineage, AI Receipt traceability, TAC boundaries, Sophia reality status, validation-tier evidence, and human review requirements without certifying truth, writing memory, training models, skipping review, admitting Atlas memory, exporting traces, federating PMR, releasing product, or granting final-answer or accepted-evidence authority."
+PMR_PATHWAY_PRIORS_DESIGN_DASHBOARD_SUMMARY = {
+    "policy_status": "active_design_only",
+    "runtime_behavior_changed": False,
+    "pathway_priors_enabled": False,
+    "pathway_prior_generation_performed": False,
+    "memory_write_performed": False,
+    "atlas_memory_admission_performed": False,
+    "model_training_performed": False,
+    "review_skip_authorized": False,
+    "product_release_performed": False,
+    "pathway_prior_definition": "revocable_materiality_scoped_review_recommendation",
+    "pathway_prior_is_not_truth": True,
+    "pathway_prior_is_not_memory_canon": True,
+    "pathway_prior_is_not_model_training": True,
+    "pathway_prior_is_not_review_skip": True,
+    "pathway_prior_is_not_final_answer_authority": True,
+    "pathway_prior_is_not_accepted_evidence_authority": True,
+    "pathway_prior_is_not_product_release": True,
+    "pathway_prior_is_not_trace_export_authorization": True,
+    "pathway_prior_is_not_federation_authorization": True,
+    "pathway_prior_is_not_memory_write": True,
+    "pathway_prior_is_not_atlas_memory_admission": True,
+    "pathway_prior_requires_human_review": True,
+}
+PMR_PATHWAY_PRIORS_DESIGN_PHASE = {
+    "phase_id": "PMR-PATHWAY-PRIORS-DESIGN-DOCTRINE-00",
+    "repo": "pdxvoiceteacher/CoherenceLattice",
+    "source_phase": "PMR-PATHWAY-PRIORS-DESIGN-DOCTRINE-00",
+    "status": "accepted_local_validation",
+    "publication_status": "dashboard_synced",
+    "evidence_type": "design_doctrine_config_schema_inspection",
+    "product_posture": "design_only_pathway_prior_doctrine_no_runtime_generation_memory_training_or_release",
+    "authority_posture": "non_authoritative",
+    "public_claim_boundary": "design_doctrine_only_no_truth_memory_canon_training_review_skip_export_federation_product_deployment_final_answer_or_accepted_evidence_authority",
+    "primary_artifacts": PMR_PATHWAY_PRIORS_DESIGN_ARTIFACTS,
+    "dashboard_summary": PMR_PATHWAY_PRIORS_DESIGN_DASHBOARD_SUMMARY,
+    "reproduction_command_summary": PMR_PATHWAY_PRIORS_DESIGN_COMMAND,
+    "claims_blocked": PMR_PATHWAY_PRIORS_DESIGN_BLOCKED_CLAIMS,
+    "claim_allowed": PMR_PATHWAY_PRIORS_DESIGN_CLAIM_ALLOWED,
+    "reviewer_caution": "PMR-PATHWAY-PRIORS-DESIGN-DOCTRINE-00 is design doctrine only; it does not generate priors, write memory, admit Atlas memory, train models, skip review, export traces, federate PMR, release product, deploy, certify truth, or grant final-answer or accepted-evidence authority.",
+}
+
+
+CES_DESIGN_COMMAND = "python -c \"from pathlib import Path; Path('docs/COHERENCE_EVENT_SIGNATURES.md').read_text(encoding='utf-8')\"; python -m json.tool config/ces/coherence_event_signature_policy.v1.json >/dev/null; python -m json.tool schema/bridge/coherence_event_signature_packet.schema.json >/dev/null; python -m json.tool schema/bridge/ces_chain_summary_packet.schema.json >/dev/null; python -m json.tool schema/bridge/ces_similarity_index_packet.schema.json >/dev/null; python -m json.tool schema/bridge/ces_non_authority_boundary.schema.json >/dev/null"
+CES_DESIGN_ARTIFACTS = [
+    "docs/COHERENCE_EVENT_SIGNATURES.md",
+    "config/ces/coherence_event_signature_policy.v1.json",
+    "schema/bridge/coherence_event_signature_packet.schema.json",
+    "schema/bridge/ces_chain_summary_packet.schema.json",
+    "schema/bridge/ces_similarity_index_packet.schema.json",
+    "schema/bridge/ces_non_authority_boundary.schema.json",
+]
+CES_DESIGN_DOCTRINE_LANGUAGE = [
+    "Coherence Event Signatures",
+    "Coherence metrics are not identity.",
+    "Coherence metrics are state signatures.",
+    "Trace ID identifies event position.",
+    "Hash seals integrity.",
+    "TEL gives topology.",
+    "UCC gives control context.",
+    "Sophia gives governance status.",
+    "TAC gives observation aperture.",
+    "PMR gives memory and retention posture.",
+    "AI Receipt exposes what happened to humans.",
+    "CES binds these into an event-level cognitive receipt.",
+    "CES should become the event-level receipt layer for Triadic Brain.",
+    "CES is trace-compatible, hash-sealed, coherence-indexed, topology-aware, aperture-aware, PMR-retention-aware, and privacy-bounded.",
+    "CES records what happened, what evidence it touched, how coherent the process was, what governance applied, and whether the event has any right to return as memory.",
+    "CES is not truth certification.",
+    "CES is not final-answer authority.",
+    "CES is not accepted-evidence authority.",
+    "CES is not a biometric score.",
+    "CES is not user identity.",
+    "CES is not memory write authorization.",
+    "CES is not model training.",
+    "CES is not product release.",
+    "CES similarity is not identity merge.",
+    "CES clustering is not model training permission.",
+    "CES retention is not memory write.",
+    "CES replay value is not truth.",
+    "Human review remains required.",
+    "COHERENCE-EVENT-SIGNATURES-DESIGN-00 does not emit CES runtime artifacts.",
+    "COHERENCE-EVENT-SIGNATURES-DESIGN-00 does not enable similarity search.",
+    "COHERENCE-EVENT-SIGNATURES-DESIGN-00 does not change runtime behavior.",
+]
+CES_DESIGN_PRODUCT_LANGUAGE = [
+    "Coherence Event Signatures turn AI activity into auditable cognitive receipts.",
+    "CES records what happened, what evidence it touched, how coherent the process was, what governance applied, and whether the event has any right to return as memory.",
+]
+CES_DESIGN_LAYERS = [
+    "trace_identity",
+    "integrity_profile",
+    "coherence_profile",
+    "topology_profile",
+    "context_profile",
+    "privacy_profile",
+    "rights_retention_profile",
+    "non_authority_boundaries",
+]
+CES_DESIGN_SAFE_METRIC_ALIASES = [
+    "E_review",
+    "T_review",
+    "Ψ_review",
+    "ΔS_review",
+    "Λ_boundary",
+    "Eₛ_review",
+    "TAF_review_runtime_v0",
+    "Psi_review",
+    "DeltaS_review",
+    "Lambda_boundary",
+    "Es_review",
+]
+CES_DESIGN_IDENTITY_INTEGRITY_DOCTRINE = [
+    "metric_profile_is_similarity_signal",
+    "metric_profile_is_not_exact_identity",
+    "trace_id_span_id_event_index_define_identity",
+    "canonical_hash_is_integrity_signal",
+    "canonical_hash_is_not_truth_certification",
+    "canonical_json_sorted_keys",
+    "canonical_json_utf8",
+    "no_volatile_local_absolute_paths_in_ces_id",
+    "hashes_use_sha256",
+    "normalization_version_recorded",
+]
+CES_DESIGN_SIMILARITY_PRIVACY_DOCTRINE = [
+    "similarity_search_design_only",
+    "cross_user_similarity_disabled_by_default",
+    "federated_similarity_requires_review",
+    "similarity_is_not_identity_merge",
+    "basin_label_is_not_truth",
+    "ces_describes_process_state_not_personal_essence",
+    "ces_must_not_be_hidden_user_score",
+    "ces_must_not_be_used_for_employment_credit_health_civic_or_social_ranking",
+    "ces_retention_must_be_consent_bounded",
+    "ces_sharing_defaults_to_local_minimal_revocable",
+]
+CES_DESIGN_EVENT_TYPES = [
+    "review_request_created",
+    "source_file_accepted",
+    "source_file_rejected",
+    "source_normalized",
+    "claim_extracted",
+    "source_span_created",
+    "claim_classified",
+    "unsupported_claim_preserved",
+    "metric_packet_emitted",
+    "taf_packet_emitted",
+    "flow_topology_emitted",
+    "sophia_audit_bound",
+    "pmr_context_linked",
+    "human_receipt_emitted",
+    "acceptance_receipt_emitted",
+]
+CES_DESIGN_NEGATIVE_CONTROLS = [
+    "metric_collision_negative_control",
+    "replay_nondeterminism_negative_control",
+    "privacy_behavioral_biometric_negative_control",
+    "tamper_negative_control",
+    "sampling_aperture_negative_control",
+]
+CES_DESIGN_FAILURE_CLASSES = [
+    "metric_profile_mistaken_for_identity",
+    "hash_mistaken_for_truth_certification",
+    "ces_mistaken_for_biometric_score",
+    "ces_mistaken_for_user_identity",
+    "ces_similarity_mistaken_for_identity_merge",
+    "ces_clustering_mistaken_for_model_training",
+    "ces_retention_mistaken_for_memory_write",
+    "ces_replay_mistaken_for_truth",
+    "cross_user_similarity_enabled_without_review",
+    "federated_similarity_enabled_without_review",
+    "behavioral_biometric_risk_ignored",
+    "volatile_local_path_in_ces_id",
+    "replay_lineage_missing",
+    "tac_aperture_context_missing",
+    "pmr_retention_context_missing",
+    "sophia_governance_context_missing",
+    "metric_semantic_profile_missing",
+]
+CES_DESIGN_PMR_RELATION = [
+    "CES can serve as a compact PMR event index.",
+    "CES does not replace PMR source artifacts.",
+    "CES is a searchable event signature for PMR, while PMR remains the evidentiary replay store.",
+    "CES may support future revocable pathway-prior candidates.",
+    "CES does not authorize pathway-prior generation in COHERENCE-EVENT-SIGNATURES-DESIGN-00.",
+    "CES does not write memory.",
+    "CES does not admit Atlas memory.",
+]
+CES_DESIGN_REPRO_FRAGMENTS = [
+    "COHERENCE_EVENT_SIGNATURES.md",
+    "coherence_event_signature_policy.v1.json",
+    "coherence_event_signature_packet.schema.json",
+    "ces_chain_summary_packet.schema.json",
+    "ces_similarity_index_packet.schema.json",
+    "ces_non_authority_boundary.schema.json",
+]
+CES_DESIGN_BLOCKED_CLAIMS = [
+    "CES proves truth",
+    "CES reveals the model's reasoning",
+    "CES fingerprints the user",
+    "CES is a biometric score",
+    "CES identifies the user",
+    "CES certifies cognition",
+    "CES certifies professional oversight",
+    "CES authorizes final answers",
+    "CES grants accepted-evidence authority",
+    "CES authorizes memory write",
+    "CES admits Atlas memory",
+    "CES authorizes trace export",
+    "CES authorizes PMR federation",
+    "CES trains the model",
+    "CES similarity is identity",
+    "CES clustering is model training",
+    "CES replay value is truth",
+    "CES retention is memory write",
+    "CES makes memory safe",
+    "hash seal certifies truth",
+    "metric profile uniquely identifies event",
+    "basin label is truth",
+    "cross-user similarity is enabled by default",
+    "federated similarity is allowed without review",
+]
+CES_DESIGN_CLAIM_ALLOWED = "Coherence Event Signatures are proposed as trace-compatible, hash-sealed, coherence-indexed, topology-aware, aperture-aware, PMR-retention-aware, and privacy-bounded event receipts for significant Triadic Brain transactions, preserving trace identity, integrity, coherence state, process topology, governance context, retention rights, and non-authority boundaries without certifying truth, identifying users, authorizing final answers, accepting evidence, writing memory, admitting Atlas memory, training models, exporting traces, federating PMR, or releasing product."
+CES_DESIGN_DASHBOARD_SUMMARY = {
+    "policy_status": "active_design_only",
+    "runtime_behavior_changed": False,
+    "ces_emission_enabled": False,
+    "ces_runtime_artifacts_emitted": False,
+    "ces_similarity_search_enabled": False,
+    "cross_user_similarity_enabled": False,
+    "federated_similarity_enabled": False,
+    "raw_trace_retention_performed": False,
+    "memory_write_performed": False,
+    "atlas_memory_admission_performed": False,
+    "model_training_performed": False,
+    "product_release_performed": False,
+    "event_scope": "significant_transactive_events_only",
+    "ces_definition": "trace_compatible_hash_sealed_coherence_indexed_event_receipt",
+    "metric_profile_is_not_exact_identity": True,
+    "canonical_hash_is_not_truth_certification": True,
+    "cross_user_similarity_disabled_by_default": True,
+    "federated_similarity_requires_review": True,
+    "ces_is_not_truth_certification": True,
+    "ces_is_not_final_answer_authority": True,
+    "ces_is_not_accepted_evidence_authority": True,
+    "ces_is_not_biometric_score": True,
+    "ces_is_not_user_identity": True,
+    "ces_is_not_memory_write_authorization": True,
+    "ces_is_not_atlas_memory_admission": True,
+    "ces_is_not_model_training": True,
+    "ces_is_not_trace_export_authorization": True,
+    "ces_is_not_federation_authorization": True,
+    "ces_is_not_product_release": True,
+    "ces_requires_human_review": True,
+}
+CES_DESIGN_PHASE = {
+    "phase_id": "COHERENCE-EVENT-SIGNATURES-DESIGN-00",
+    "repo": "pdxvoiceteacher/CoherenceLattice",
+    "source_phase": "COHERENCE-EVENT-SIGNATURES-DESIGN-00",
+    "status": "accepted_local_validation",
+    "publication_status": "dashboard_synced",
+    "evidence_type": "design_doctrine_config_schema_inspection",
+    "product_posture": "design_only_event_signature_doctrine_no_runtime_emission_similarity_memory_training_or_release",
+    "authority_posture": "non_authoritative",
+    "public_claim_boundary": "design_doctrine_only_no_truth_reasoning_identity_biometric_memory_training_export_federation_product_final_answer_or_accepted_evidence_authority",
+    "primary_artifacts": CES_DESIGN_ARTIFACTS,
+    "dashboard_summary": CES_DESIGN_DASHBOARD_SUMMARY,
+    "reproduction_command_summary": CES_DESIGN_COMMAND,
+    "claims_blocked": CES_DESIGN_BLOCKED_CLAIMS,
+    "claim_allowed": CES_DESIGN_CLAIM_ALLOWED,
+    "reviewer_caution": "COHERENCE-EVENT-SIGNATURES-DESIGN-00 is design doctrine only; it emits no runtime artifacts, performs no similarity search, writes no memory, admits no Atlas memory, trains no model, exports no traces, federates no PMR, releases no product, and grants no truth, final-answer, accepted-evidence, identity, or biometric authority.",
+}
+
 PERTURBATION_OBSERVATION_ARTIFACTS = [
     "perturbation_observation_packet.json",
     "perturbation_axis_packet.json",
@@ -7418,6 +8248,216 @@ VALIDATION_TIERING_PROVENANCE_PHASE = {
 }
 
 
+TELEMETRY_APERTURE_DESIGN_COMMAND = "python -m json.tool config/telemetry_aperture/telemetry_aperture_modes.v1.json && python -m json.tool config/telemetry_aperture/minimum_audit_floor.v1.json && python -m json.tool config/telemetry_aperture/telemetry_aperture_policy_schema.v1.json && python -m json.tool schema/bridge/telemetry_aperture_policy_packet.schema.json && python -m json.tool schema/bridge/telemetry_aperture_decision_packet.schema.json && python -m json.tool schema/bridge/telemetry_aperture_retention_intent_packet.schema.json"
+TELEMETRY_APERTURE_DESIGN_ARTIFACTS = [
+    "docs/TELEMETRY_APERTURE_CONTROLLER.md",
+    "config/telemetry_aperture/telemetry_aperture_modes.v1.json",
+    "config/telemetry_aperture/minimum_audit_floor.v1.json",
+    "config/telemetry_aperture/telemetry_aperture_policy_schema.v1.json",
+    "schema/bridge/telemetry_aperture_policy_packet.schema.json",
+    "schema/bridge/telemetry_aperture_decision_packet.schema.json",
+    "schema/bridge/telemetry_aperture_retention_intent_packet.schema.json",
+]
+TELEMETRY_APERTURE_MODES = [
+    "off: no optional telemetry beyond mandatory safety/status receipts",
+    "minimal: required inventory, manifest, parity, review packet, and failure receipts only",
+    "pulse: thin periodic metric pulses using safe MET-SEM aliases",
+    "snapshot: periodic structured snapshots of task state and key artifacts",
+    "trace: step-level TEL events and route transitions",
+    "tail_retain: trace temporarily, retain full detail only if trigger conditions fire",
+    "full_audit: high-resolution trace only under explicit consent and retention policy",
+    "quarantine: restricted safety capture after boundary violation or critical anomaly",
+]
+TELEMETRY_APERTURE_DIMENSIONS = [
+    "temporal_resolution",
+    "semantic_resolution",
+    "retention_depth",
+    "privacy_transformation",
+    "review_visibility",
+]
+TELEMETRY_APERTURE_MINIMUM_AUDIT_FLOOR_TERMS = [
+    "artifact_inventory.json",
+    "run_artifact_manifest.json",
+    "export_bundle_parity_report.json",
+    "phase_manifest",
+    "phase_review_packet",
+    "acceptance_receipt",
+    "failure_receipts",
+    "non_authority_boundary_table",
+    "source_span_or_claim_classification_refs_when_applicable",
+    "tel_replay_summary_when_applicable",
+    "pmr_retention_or_context_status_when_applicable",
+    "validation_tier_receipt_when_available",
+    "ai_receipt_event_chain_when_available",
+]
+TELEMETRY_APERTURE_POLICY_DEFAULTS = [
+    "default_aperture_mode = pulse",
+    "user_consent_scope = local_replay_allowed",
+    "raw_trace_retention = requires_explicit_approval",
+    "trace_export = blocked",
+    "pmr_federation = blocked_by_default",
+    "minimum_audit_floor_required = true",
+]
+TELEMETRY_APERTURE_ESCALATION_TRIGGERS = [
+    "schema_validation_error",
+    "unsupported_claim_surge",
+    "low_T_review",
+    "high_Λ_boundary",
+    "high_risk_ucc_domain",
+    "user_requested_deep_audit",
+    "source_span_review_bound",
+    "sophia_nonpass_or_uncertain",
+    "ai_receipt_incomplete",
+]
+TELEMETRY_APERTURE_HARD_BLOCKS = [
+    "increase_raw_retention_without_consent",
+    "export_trace_without_consent",
+    "federate_tel_without_consent",
+    "drop_failure_receipts_for_cost",
+    "drop_source_spans_for_cost",
+    "drop_run_manifest_for_cost",
+    "drop_boundary_table_for_cost",
+    "full_audit_mode_without_consent",
+    "privacy_redaction_override_without_consent",
+    "retain_sensitive_content_without_consent",
+]
+TELEMETRY_APERTURE_HUMAN_REVIEW_GATES = [
+    "increase_durable_retention",
+    "export_trace",
+    "federate_memory",
+    "override_privacy_redaction",
+    "enable_full_audit",
+    "reduce_below_minimum_audit_floor",
+    "convert_trace_to_pmr_memory_intent",
+]
+TELEMETRY_APERTURE_SAFE_MET_SEM_ALIASES = [
+    "Ψ_review",
+    "E_review",
+    "T_review",
+    "ΔS_review",
+    "Λ_boundary",
+    "Eₛ_review",
+    "TAF_review_runtime_v0",
+]
+TELEMETRY_APERTURE_REQUIRED_DOC_PHRASES = [
+    "Telemetry Aperture Controller",
+    "TAC is a consent-bounded observability aperture controller.",
+    "TAC regulates temporal, semantic, retention, privacy, and review apertures.",
+    "TAC optimizes coherent sufficiency, not maximum capture.",
+    "TAC is computational observability aperture, not consciousness.",
+    "TAC is not surveillance authorization.",
+    "TAC is not memory write.",
+    "TAC is not trace export authorization.",
+    "TAC is not federation authorization.",
+    "TAC is not product release.",
+    "A narrow aperture is not permission to omit failure receipts.",
+    "A high-resolution aperture is not permission to retain private data.",
+    "Aperture reduction cannot remove acceptance evidence.",
+    "Human review remains required.",
+    "TAC does not change runtime behavior in TELEMETRY-APERTURE-DESIGN-00.",
+    "Future TAC implementation must distinguish temporary observation from durable retention.",
+    "Future TAC implementation must preserve AI Receipt traceability.",
+]
+TELEMETRY_APERTURE_FAILURE_CLASSES = [
+    "aperture_theater",
+    "silent_escalation",
+    "pmr_hoarding",
+    "under_observation",
+    "over_observation",
+    "dashboard_theater",
+    "privacy_drift",
+    "minimum_audit_floor_violation",
+    "raw_retention_without_consent",
+    "federation_without_consent",
+    "trace_export_without_consent",
+    "full_audit_without_consent",
+    "omission_debt_hidden",
+]
+TELEMETRY_APERTURE_REPRO_FRAGMENTS = [
+    "TELEMETRY-APERTURE-DESIGN-00",
+    "telemetry_aperture_modes.v1.json",
+    "minimum_audit_floor.v1.json",
+    "telemetry_aperture_policy_schema.v1.json",
+    "telemetry_aperture_policy_packet.schema.json",
+    "telemetry_aperture_decision_packet.schema.json",
+    "telemetry_aperture_retention_intent_packet.schema.json",
+]
+TELEMETRY_APERTURE_BLOCKED_CLAIMS = [
+    "TAC changed runtime telemetry behavior",
+    "TAC is consciousness",
+    "TAC is adaptive awareness",
+    "TAC authorizes surveillance",
+    "TAC authorizes trace export",
+    "TAC authorizes PMR federation",
+    "TAC authorizes memory write",
+    "TAC authorizes Atlas memory admission",
+    "TAC authorizes provider runtime",
+    "TAC authorizes deployment",
+    "TAC is product release",
+    "TAC certifies truth",
+    "TAC certifies compliance",
+    "TAC authorizes final answers",
+    "TAC grants accepted-evidence authority",
+    "full_audit mode can run without consent",
+    "raw trace retention is allowed without consent",
+    "trace export is allowed without consent",
+    "PMR federation is allowed by default",
+    "aperture reduction can remove acceptance evidence",
+    "narrow aperture can omit failure receipts",
+    "high-resolution aperture can retain private data without consent",
+    "safe MET-SEM aliases are canonical metric completion",
+    "TAC proves human benefit",
+    "TAC is market validation",
+    "TAC proves consciousness",
+    "TAC detects Omega",
+    "TAC proves universal ontology",
+]
+TELEMETRY_APERTURE_UNSAFE_METRIC_BOUNDARIES = [
+    "unqualified empathy score",
+    "unqualified transparency score",
+    "unqualified phase-lock score",
+    "unqualified entropy score",
+    "unqualified ethical symmetry score",
+    "canonical total action",
+]
+TELEMETRY_APERTURE_CLAIM_ALLOWED = "TELEMETRY-APERTURE-DESIGN-00 defines a design-only, consent-bounded Telemetry Aperture Controller policy over observability modes, minimum audit floor, retention/export/federation blocks, and human-review gates without changing runtime behavior or granting surveillance, memory, trace export, federation, product, certification, deployment, final-answer, accepted-evidence, Atlas, human benefit, market, consciousness, Omega, or ontology authority."
+TELEMETRY_APERTURE_DASHBOARD_SUMMARY = {
+    "mode_policy_status": "active_design_only",
+    "runtime_behavior_changed": False,
+    "default_aperture_mode": "pulse",
+    "raw_trace_retention": "requires_explicit_approval",
+    "trace_export": "blocked",
+    "pmr_federation": "blocked_by_default",
+    "minimum_audit_floor_failure_policy": "fail_closed",
+    "aperture_reduction_cannot_remove_acceptance_evidence": True,
+    "consent_bounded_observability_aperture": True,
+    "tac_is_not_consciousness": True,
+    "tac_is_not_surveillance_authorization": True,
+    "tac_is_not_memory_write": True,
+    "tac_is_not_trace_export_authorization": True,
+    "tac_is_not_federation_authorization": True,
+    "tac_is_not_product_release": True,
+    "human_review_required": True,
+}
+TELEMETRY_APERTURE_DESIGN_PHASE = {
+    "phase_id": "TELEMETRY-APERTURE-DESIGN-00",
+    "repo": "pdxvoiceteacher/CoherenceLattice",
+    "source_phase": "TELEMETRY-APERTURE-DESIGN-00",
+    "status": "accepted_local_validation",
+    "publication_status": "dashboard_synced",
+    "evidence_type": "design_policy_config_schema_inspection",
+    "product_posture": "design_only_consent_bounded_observability_aperture_without_runtime_behavior_change",
+    "authority_posture": "non_authoritative",
+    "public_claim_boundary": "design_only_no_surveillance_retention_export_federation_memory_product_certification_deployment_or_final_answer_authority",
+    "primary_artifacts": TELEMETRY_APERTURE_DESIGN_ARTIFACTS,
+    "dashboard_summary": TELEMETRY_APERTURE_DASHBOARD_SUMMARY,
+    "reproduction_command_summary": TELEMETRY_APERTURE_DESIGN_COMMAND,
+    "claims_blocked": TELEMETRY_APERTURE_BLOCKED_CLAIMS,
+    "claim_allowed": TELEMETRY_APERTURE_CLAIM_ALLOWED,
+    "reviewer_caution": "TELEMETRY-APERTURE-DESIGN-00 is design-only consent-bounded observability aperture policy; it changes no runtime behavior and grants no surveillance, trace export, federation, memory, product, certification, deployment, final-answer, accepted-evidence, Atlas, human benefit, market, consciousness, Omega, or ontology authority.",
+}
+
+
 PERTURBATION_OBSERVATION_ARTIFACTS = [
     "perturbation_observation_packet.json",
     "perturbation_axis_packet.json",
@@ -9607,6 +10647,12 @@ STATIC_HTML_USABILITY_REVIEW_PHASE,
 STATIC_HTML_USABILITY_REVISION_PHASE,
 AI_RECEIPT_ARCHITECTURE_PHASE,
 VALIDATION_TIERING_PROVENANCE_PHASE,
+TELEMETRY_APERTURE_DESIGN_PHASE,
+TAC_POLICY_SIMULATION_PHASE,
+TAC_LOCAL_REVIEW_INTEGRATION_PHASE,
+TAC_AI_RECEIPT_EVENT_LINK_PHASE,
+PMR_PATHWAY_PRIORS_DESIGN_PHASE,
+CES_DESIGN_PHASE,
 PERTURBATION_OBSERVATION_CAPTURE_PHASE,
 PERTURBATION_TRUNK_MAPPING_PHASE,
 PERTURBATION_RESIDUAL_NOVELTY_MAP_PHASE,
@@ -11746,6 +12792,78 @@ BOUNDARIES.extend(
         *VALIDATION_TIERING_PROVENANCE_REPRO_FRAGMENTS,
         "Blocked overclaim examples for validation tiering provenance publication boundaries.",
         *VALIDATION_TIERING_PROVENANCE_BLOCKED_CLAIMS,
+        TELEMETRY_APERTURE_CLAIM_ALLOWED,
+        *TELEMETRY_APERTURE_DESIGN_ARTIFACTS,
+        *TELEMETRY_APERTURE_MODES,
+        *TELEMETRY_APERTURE_DIMENSIONS,
+        *TELEMETRY_APERTURE_MINIMUM_AUDIT_FLOOR_TERMS,
+        *TELEMETRY_APERTURE_POLICY_DEFAULTS,
+        *TELEMETRY_APERTURE_ESCALATION_TRIGGERS,
+        *TELEMETRY_APERTURE_HARD_BLOCKS,
+        *TELEMETRY_APERTURE_HUMAN_REVIEW_GATES,
+        *TELEMETRY_APERTURE_SAFE_MET_SEM_ALIASES,
+        *TELEMETRY_APERTURE_REQUIRED_DOC_PHRASES,
+        *TELEMETRY_APERTURE_FAILURE_CLASSES,
+        *TELEMETRY_APERTURE_REPRO_FRAGMENTS,
+        *TELEMETRY_APERTURE_UNSAFE_METRIC_BOUNDARIES,
+        "Blocked overclaim examples for telemetry aperture controller publication boundaries.",
+        *TELEMETRY_APERTURE_BLOCKED_CLAIMS,
+        TAC_POLICY_SIMULATION_CLAIM_ALLOWED,
+        *TAC_POLICY_SIMULATION_ARTIFACTS,
+        *TAC_POLICY_SIMULATION_INPUT_REFERENCES,
+        *TAC_POLICY_SIMULATION_SCENARIOS,
+        *TAC_POLICY_SIMULATION_SCENARIO_OUTCOMES,
+        *TAC_POLICY_SIMULATION_HARD_BLOCK_TERMS,
+        *TAC_POLICY_SIMULATION_DECISION_RETENTION_TERMS,
+        *TAC_POLICY_SIMULATION_REQUIRED_DOC_PHRASES,
+        *TAC_POLICY_SIMULATION_DESIGN_RELATION,
+        *TAC_POLICY_SIMULATION_REPRO_FRAGMENTS,
+        "Blocked overclaim examples for TAC policy simulation publication boundaries.",
+        *TAC_POLICY_SIMULATION_BLOCKED_CLAIMS,
+        TAC_LOCAL_REVIEW_INTEGRATION_CLAIM_ALLOWED,
+        *TAC_LOCAL_REVIEW_INTEGRATION_ARTIFACTS,
+        *TAC_LOCAL_REVIEW_INTEGRATION_INPUT_ARTIFACTS,
+        *TAC_LOCAL_REVIEW_INTEGRATION_OVERLAY_TERMS,
+        *TAC_LOCAL_REVIEW_INTEGRATION_REVIEWER_PROMPTS,
+        *TAC_LOCAL_REVIEW_INTEGRATION_REQUIRED_DOC_PHRASES,
+        *TAC_LOCAL_REVIEW_INTEGRATION_PRIOR_PHASE_RELATION,
+        *TAC_LOCAL_REVIEW_INTEGRATION_REPRO_FRAGMENTS,
+        "Blocked overclaim examples for TAC local review integration publication boundaries.",
+        *TAC_LOCAL_REVIEW_INTEGRATION_BLOCKED_CLAIMS,
+        TAC_AI_RECEIPT_EVENT_LINK_CLAIM_ALLOWED,
+        *TAC_AI_RECEIPT_EVENT_LINK_ARTIFACTS,
+        *TAC_AI_RECEIPT_EVENT_LINK_INPUT_ARTIFACTS,
+        *TAC_AI_RECEIPT_EVENT_LINK_EVENTS,
+        *TAC_AI_RECEIPT_EVENT_LINK_REFERENCE_TERMS,
+        *TAC_AI_RECEIPT_EVENT_LINK_REQUIRED_DOC_PHRASES,
+        *TAC_AI_RECEIPT_EVENT_LINK_PRIOR_PHASE_RELATION,
+        *TAC_AI_RECEIPT_EVENT_LINK_REPRO_FRAGMENTS,
+        TAC_AI_RECEIPT_EVENT_LINK_COMMAND,
+        "Blocked overclaim examples for TAC AI Receipt event-link publication boundaries.",
+        *TAC_AI_RECEIPT_EVENT_LINK_BLOCKED_CLAIMS,
+        PMR_PATHWAY_PRIORS_DESIGN_CLAIM_ALLOWED,
+        *PMR_PATHWAY_PRIORS_DESIGN_ARTIFACTS,
+        *PMR_PATHWAY_PRIORS_DESIGN_DOCTRINE_LANGUAGE,
+        *PMR_PATHWAY_PRIORS_DESIGN_REPRO_FRAGMENTS,
+        PMR_PATHWAY_PRIORS_DESIGN_COMMAND,
+        "Blocked overclaim examples for PMR pathway-prior design doctrine publication boundaries.",
+        *PMR_PATHWAY_PRIORS_DESIGN_BLOCKED_CLAIMS,
+        CES_DESIGN_CLAIM_ALLOWED,
+        *CES_DESIGN_ARTIFACTS,
+        *CES_DESIGN_DOCTRINE_LANGUAGE,
+        *CES_DESIGN_PRODUCT_LANGUAGE,
+        *CES_DESIGN_LAYERS,
+        *CES_DESIGN_SAFE_METRIC_ALIASES,
+        *CES_DESIGN_IDENTITY_INTEGRITY_DOCTRINE,
+        *CES_DESIGN_SIMILARITY_PRIVACY_DOCTRINE,
+        *CES_DESIGN_EVENT_TYPES,
+        *CES_DESIGN_NEGATIVE_CONTROLS,
+        *CES_DESIGN_FAILURE_CLASSES,
+        *CES_DESIGN_PMR_RELATION,
+        *CES_DESIGN_REPRO_FRAGMENTS,
+        CES_DESIGN_COMMAND,
+        "Blocked overclaim examples for Coherence Event Signatures design publication boundaries.",
+        *CES_DESIGN_BLOCKED_CLAIMS,
     ]
 )
 BOUNDARIES.extend(
@@ -12251,6 +13369,144 @@ def dashboard_payload() -> dict[str, Any]:
         "validation_tiering_validation_result": "passed",
         "validation_tiering_full_multi_module_suite_run": True,
         "validation_tiering_deep_validation_deferred": False,
+        "telemetry_aperture_design_00_indexed": True,
+        "telemetry_aperture_mode_policy_status": "active_design_only",
+        "telemetry_aperture_runtime_behavior_changed": False,
+        "telemetry_aperture_default_aperture_mode": "pulse",
+        "telemetry_aperture_raw_trace_retention": "requires_explicit_approval",
+        "telemetry_aperture_trace_export": "blocked",
+        "telemetry_aperture_pmr_federation": "blocked_by_default",
+        "telemetry_aperture_minimum_audit_floor_failure_policy": "fail_closed",
+        "not_telemetry_aperture_surveillance_authorization": True,
+        "not_telemetry_aperture_memory_write": True,
+        "not_telemetry_aperture_trace_export_authorization": True,
+        "not_telemetry_aperture_federation_authorization": True,
+        "not_telemetry_aperture_product_release": True,
+        "tac_policy_simulation_00_indexed": True,
+        "tac_policy_simulation_status": "completed",
+        "tac_policy_simulation_mode": "design_only_policy_rehearsal",
+        "tac_policy_simulation_scenario_count": 8,
+        "tac_policy_simulation_default_selected_mode": "pulse",
+        "tac_policy_simulation_minimum_audit_floor_preserved": True,
+        "tac_policy_simulation_runtime_behavior_changed": False,
+        "tac_policy_simulation_provider_runtime_performed": False,
+        "tac_policy_simulation_network_call_performed": False,
+        "tac_policy_simulation_memory_write_performed": False,
+        "tac_policy_simulation_atlas_memory_admission_performed": False,
+        "tac_policy_simulation_trace_export_performed": False,
+        "tac_policy_simulation_federation_performed": False,
+        "tac_policy_simulation_product_release_performed": False,
+        "not_tac_policy_simulation_runtime_control": True,
+        "not_tac_policy_simulation_surveillance_authorization": True,
+        "not_tac_policy_simulation_memory_write": True,
+        "not_tac_policy_simulation_trace_export_authorization": True,
+        "not_tac_policy_simulation_federation_authorization": True,
+        "not_tac_policy_simulation_product_release": True,
+        "tac_local_review_integration_00_indexed": True,
+        "tac_local_review_integration_status": "completed",
+        "tac_local_review_integration_mode": "local_review_overlay",
+        "tac_local_review_integration_selected_mode": "pulse",
+        "tac_local_review_integration_minimum_audit_floor_preserved": True,
+        "tac_local_review_integration_raw_trace_retention_allowed": False,
+        "tac_local_review_integration_trace_export_allowed": False,
+        "tac_local_review_integration_federation_allowed": False,
+        "tac_local_review_integration_receipt_event_link_status": "referenced_only_no_history_rewrite",
+        "tac_local_review_integration_live_runtime_behavior_changed": False,
+        "tac_local_review_integration_telemetry_runtime_control_performed": False,
+        "tac_local_review_integration_memory_write_performed": False,
+        "tac_local_review_integration_atlas_memory_admission_performed": False,
+        "tac_local_review_integration_trace_export_performed": False,
+        "tac_local_review_integration_federation_performed": False,
+        "tac_local_review_integration_product_release_performed": False,
+        "tac_local_review_integration_final_answer_emitted": False,
+        "tac_local_review_integration_truth_certification_emitted": False,
+        "tac_local_review_integration_accepted_evidence_authority_granted": False,
+        "not_tac_local_review_integration_runtime_control": True,
+        "not_tac_local_review_integration_surveillance_authorization": True,
+        "not_tac_local_review_integration_memory_write": True,
+        "not_tac_local_review_integration_trace_export_authorization": True,
+        "not_tac_local_review_integration_federation_authorization": True,
+        "not_tac_local_review_integration_product_release": True,
+        "tac_ai_receipt_event_link_00_indexed": True,
+        "tac_ai_receipt_event_link_status": "completed",
+        "tac_ai_receipt_event_link_mode": "supplemental_non_rewriting_event_reference",
+        "tac_ai_receipt_event_link_receipt_history_rewritten": False,
+        "tac_ai_receipt_event_link_chain_hash_unchanged": True,
+        "tac_ai_receipt_event_link_referenced_event_count": 5,
+        "tac_ai_receipt_event_link_supplemental_link_count": 5,
+        "tac_ai_receipt_event_link_selected_mode": "pulse",
+        "tac_ai_receipt_event_link_minimum_audit_floor_preserved": True,
+        "tac_ai_receipt_event_link_raw_trace_retention_allowed": False,
+        "tac_ai_receipt_event_link_trace_export_allowed": False,
+        "tac_ai_receipt_event_link_federation_allowed": False,
+        "tac_ai_receipt_event_link_live_runtime_behavior_changed": False,
+        "tac_ai_receipt_event_link_telemetry_runtime_control_performed": False,
+        "tac_ai_receipt_event_link_memory_write_performed": False,
+        "tac_ai_receipt_event_link_atlas_memory_admission_performed": False,
+        "tac_ai_receipt_event_link_product_release_performed": False,
+        "tac_ai_receipt_event_link_final_answer_emitted": False,
+        "tac_ai_receipt_event_link_truth_certification_emitted": False,
+        "tac_ai_receipt_event_link_accepted_evidence_authority_granted": False,
+        "not_tac_ai_receipt_event_link_runtime_control": True,
+        "not_tac_ai_receipt_event_link_surveillance_authorization": True,
+        "not_tac_ai_receipt_event_link_memory_write": True,
+        "not_tac_ai_receipt_event_link_trace_export_authorization": True,
+        "not_tac_ai_receipt_event_link_federation_authorization": True,
+        "not_tac_ai_receipt_event_link_product_release": True,
+        "pmr_pathway_priors_design_doctrine_00_indexed": True,
+        "pmr_pathway_priors_policy_status": "active_design_only",
+        "pmr_pathway_priors_runtime_behavior_changed": False,
+        "pmr_pathway_priors_enabled": False,
+        "pmr_pathway_prior_generation_performed": False,
+        "pmr_pathway_priors_memory_write_performed": False,
+        "pmr_pathway_priors_atlas_memory_admission_performed": False,
+        "pmr_pathway_priors_model_training_performed": False,
+        "pmr_pathway_priors_review_skip_authorized": False,
+        "pmr_pathway_priors_product_release_performed": False,
+        "pmr_pathway_prior_definition": "revocable_materiality_scoped_review_recommendation",
+        "not_pmr_pathway_prior_truth": True,
+        "not_pmr_pathway_prior_memory_canon": True,
+        "not_pmr_pathway_prior_model_training": True,
+        "not_pmr_pathway_prior_review_skip": True,
+        "not_pmr_pathway_prior_final_answer_authority": True,
+        "not_pmr_pathway_prior_accepted_evidence_authority": True,
+        "not_pmr_pathway_prior_product_release": True,
+        "not_pmr_pathway_prior_trace_export_authorization": True,
+        "not_pmr_pathway_prior_federation_authorization": True,
+        "not_pmr_pathway_prior_memory_write": True,
+        "not_pmr_pathway_prior_atlas_memory_admission": True,
+        "pmr_pathway_prior_requires_human_review": True,
+        "coherence_event_signatures_design_00_indexed": True,
+        "ces_policy_status": "active_design_only",
+        "ces_runtime_behavior_changed": False,
+        "ces_emission_enabled": False,
+        "ces_runtime_artifacts_emitted": False,
+        "ces_similarity_search_enabled": False,
+        "ces_cross_user_similarity_enabled": False,
+        "ces_federated_similarity_enabled": False,
+        "ces_raw_trace_retention_performed": False,
+        "ces_memory_write_performed": False,
+        "ces_atlas_memory_admission_performed": False,
+        "ces_model_training_performed": False,
+        "ces_product_release_performed": False,
+        "ces_event_scope": "significant_transactive_events_only",
+        "ces_definition": "trace_compatible_hash_sealed_coherence_indexed_event_receipt",
+        "ces_metric_profile_is_not_exact_identity": True,
+        "ces_canonical_hash_is_not_truth_certification": True,
+        "ces_cross_user_similarity_disabled_by_default": True,
+        "ces_federated_similarity_requires_review": True,
+        "not_ces_truth_certification": True,
+        "not_ces_final_answer_authority": True,
+        "not_ces_accepted_evidence_authority": True,
+        "not_ces_biometric_score": True,
+        "not_ces_user_identity": True,
+        "not_ces_memory_write_authorization": True,
+        "not_ces_atlas_memory_admission": True,
+        "not_ces_model_training": True,
+        "not_ces_trace_export_authorization": True,
+        "not_ces_federation_authorization": True,
+        "not_ces_product_release": True,
+        "ces_requires_human_review": True,
         "not_validation_tiering_product_release": True,
         "not_validation_tiering_truth_certification": True,
         "not_validation_tiering_compliance_certification": True,
@@ -12337,6 +13593,12 @@ def reproducibility_index() -> dict[str, Any]:
                 {"name": "Static HTML Usability Revision Python entrypoint", "command": STATIC_HTML_USABILITY_REVISION_COMMAND},
                 {"name": "AI Receipt Architecture Python entrypoint", "command": AI_RECEIPT_ARCHITECTURE_COMMAND},
                 {"name": "Validation Tiering Provenance Python entrypoint", "command": VALIDATION_TIERING_PROVENANCE_COMMAND},
+                {"name": "TELEMETRY-APERTURE-DESIGN-00 config/schema inspection", "command": TELEMETRY_APERTURE_DESIGN_COMMAND},
+                {"name": "TAC-POLICY-SIMULATION-00 Python entrypoint", "command": TAC_POLICY_SIMULATION_COMMAND},
+                {"name": "TAC-LOCAL-REVIEW-INTEGRATION-00 Python entrypoint", "command": TAC_LOCAL_REVIEW_INTEGRATION_COMMAND},
+                {"name": "TAC-AI-RECEIPT-EVENT-LINK-00 Python entrypoint", "command": TAC_AI_RECEIPT_EVENT_LINK_COMMAND},
+                {"name": "PMR-PATHWAY-PRIORS-DESIGN-DOCTRINE-00 config/schema inspection", "command": PMR_PATHWAY_PRIORS_DESIGN_COMMAND},
+                {"name": "COHERENCE-EVENT-SIGNATURES-DESIGN-00 config/schema inspection", "command": CES_DESIGN_COMMAND},
                 {"name": "Perturbation novelty lane Python entrypoint", "command": PERTURBATION_NOVELTY_LANE_COMMAND},
                 {"name": "Perturbation structure-affordance theorem card Python entrypoint", "command": PERTURBATION_STRUCTURE_AFFORDANCE_CARD_COMMAND},
                 {"name": "PMR Context Availability Ledger acceptance", "command": PMR_CONTEXT_AVAILABILITY_LEDGER_00_COMMAND},
@@ -13026,6 +14288,144 @@ def status_payload() -> dict[str, Any]:
         "validation_tiering_validation_result": "passed",
         "validation_tiering_full_multi_module_suite_run": True,
         "validation_tiering_deep_validation_deferred": False,
+        "telemetry_aperture_design_00_indexed": True,
+        "telemetry_aperture_mode_policy_status": "active_design_only",
+        "telemetry_aperture_runtime_behavior_changed": False,
+        "telemetry_aperture_default_aperture_mode": "pulse",
+        "telemetry_aperture_raw_trace_retention": "requires_explicit_approval",
+        "telemetry_aperture_trace_export": "blocked",
+        "telemetry_aperture_pmr_federation": "blocked_by_default",
+        "telemetry_aperture_minimum_audit_floor_failure_policy": "fail_closed",
+        "not_telemetry_aperture_surveillance_authorization": True,
+        "not_telemetry_aperture_memory_write": True,
+        "not_telemetry_aperture_trace_export_authorization": True,
+        "not_telemetry_aperture_federation_authorization": True,
+        "not_telemetry_aperture_product_release": True,
+        "tac_policy_simulation_00_indexed": True,
+        "tac_policy_simulation_status": "completed",
+        "tac_policy_simulation_mode": "design_only_policy_rehearsal",
+        "tac_policy_simulation_scenario_count": 8,
+        "tac_policy_simulation_default_selected_mode": "pulse",
+        "tac_policy_simulation_minimum_audit_floor_preserved": True,
+        "tac_policy_simulation_runtime_behavior_changed": False,
+        "tac_policy_simulation_provider_runtime_performed": False,
+        "tac_policy_simulation_network_call_performed": False,
+        "tac_policy_simulation_memory_write_performed": False,
+        "tac_policy_simulation_atlas_memory_admission_performed": False,
+        "tac_policy_simulation_trace_export_performed": False,
+        "tac_policy_simulation_federation_performed": False,
+        "tac_policy_simulation_product_release_performed": False,
+        "not_tac_policy_simulation_runtime_control": True,
+        "not_tac_policy_simulation_surveillance_authorization": True,
+        "not_tac_policy_simulation_memory_write": True,
+        "not_tac_policy_simulation_trace_export_authorization": True,
+        "not_tac_policy_simulation_federation_authorization": True,
+        "not_tac_policy_simulation_product_release": True,
+        "tac_local_review_integration_00_indexed": True,
+        "tac_local_review_integration_status": "completed",
+        "tac_local_review_integration_mode": "local_review_overlay",
+        "tac_local_review_integration_selected_mode": "pulse",
+        "tac_local_review_integration_minimum_audit_floor_preserved": True,
+        "tac_local_review_integration_raw_trace_retention_allowed": False,
+        "tac_local_review_integration_trace_export_allowed": False,
+        "tac_local_review_integration_federation_allowed": False,
+        "tac_local_review_integration_receipt_event_link_status": "referenced_only_no_history_rewrite",
+        "tac_local_review_integration_live_runtime_behavior_changed": False,
+        "tac_local_review_integration_telemetry_runtime_control_performed": False,
+        "tac_local_review_integration_memory_write_performed": False,
+        "tac_local_review_integration_atlas_memory_admission_performed": False,
+        "tac_local_review_integration_trace_export_performed": False,
+        "tac_local_review_integration_federation_performed": False,
+        "tac_local_review_integration_product_release_performed": False,
+        "tac_local_review_integration_final_answer_emitted": False,
+        "tac_local_review_integration_truth_certification_emitted": False,
+        "tac_local_review_integration_accepted_evidence_authority_granted": False,
+        "not_tac_local_review_integration_runtime_control": True,
+        "not_tac_local_review_integration_surveillance_authorization": True,
+        "not_tac_local_review_integration_memory_write": True,
+        "not_tac_local_review_integration_trace_export_authorization": True,
+        "not_tac_local_review_integration_federation_authorization": True,
+        "not_tac_local_review_integration_product_release": True,
+        "tac_ai_receipt_event_link_00_indexed": True,
+        "tac_ai_receipt_event_link_status": "completed",
+        "tac_ai_receipt_event_link_mode": "supplemental_non_rewriting_event_reference",
+        "tac_ai_receipt_event_link_receipt_history_rewritten": False,
+        "tac_ai_receipt_event_link_chain_hash_unchanged": True,
+        "tac_ai_receipt_event_link_referenced_event_count": 5,
+        "tac_ai_receipt_event_link_supplemental_link_count": 5,
+        "tac_ai_receipt_event_link_selected_mode": "pulse",
+        "tac_ai_receipt_event_link_minimum_audit_floor_preserved": True,
+        "tac_ai_receipt_event_link_raw_trace_retention_allowed": False,
+        "tac_ai_receipt_event_link_trace_export_allowed": False,
+        "tac_ai_receipt_event_link_federation_allowed": False,
+        "tac_ai_receipt_event_link_live_runtime_behavior_changed": False,
+        "tac_ai_receipt_event_link_telemetry_runtime_control_performed": False,
+        "tac_ai_receipt_event_link_memory_write_performed": False,
+        "tac_ai_receipt_event_link_atlas_memory_admission_performed": False,
+        "tac_ai_receipt_event_link_product_release_performed": False,
+        "tac_ai_receipt_event_link_final_answer_emitted": False,
+        "tac_ai_receipt_event_link_truth_certification_emitted": False,
+        "tac_ai_receipt_event_link_accepted_evidence_authority_granted": False,
+        "not_tac_ai_receipt_event_link_runtime_control": True,
+        "not_tac_ai_receipt_event_link_surveillance_authorization": True,
+        "not_tac_ai_receipt_event_link_memory_write": True,
+        "not_tac_ai_receipt_event_link_trace_export_authorization": True,
+        "not_tac_ai_receipt_event_link_federation_authorization": True,
+        "not_tac_ai_receipt_event_link_product_release": True,
+        "pmr_pathway_priors_design_doctrine_00_indexed": True,
+        "pmr_pathway_priors_policy_status": "active_design_only",
+        "pmr_pathway_priors_runtime_behavior_changed": False,
+        "pmr_pathway_priors_enabled": False,
+        "pmr_pathway_prior_generation_performed": False,
+        "pmr_pathway_priors_memory_write_performed": False,
+        "pmr_pathway_priors_atlas_memory_admission_performed": False,
+        "pmr_pathway_priors_model_training_performed": False,
+        "pmr_pathway_priors_review_skip_authorized": False,
+        "pmr_pathway_priors_product_release_performed": False,
+        "pmr_pathway_prior_definition": "revocable_materiality_scoped_review_recommendation",
+        "not_pmr_pathway_prior_truth": True,
+        "not_pmr_pathway_prior_memory_canon": True,
+        "not_pmr_pathway_prior_model_training": True,
+        "not_pmr_pathway_prior_review_skip": True,
+        "not_pmr_pathway_prior_final_answer_authority": True,
+        "not_pmr_pathway_prior_accepted_evidence_authority": True,
+        "not_pmr_pathway_prior_product_release": True,
+        "not_pmr_pathway_prior_trace_export_authorization": True,
+        "not_pmr_pathway_prior_federation_authorization": True,
+        "not_pmr_pathway_prior_memory_write": True,
+        "not_pmr_pathway_prior_atlas_memory_admission": True,
+        "pmr_pathway_prior_requires_human_review": True,
+        "coherence_event_signatures_design_00_indexed": True,
+        "ces_policy_status": "active_design_only",
+        "ces_runtime_behavior_changed": False,
+        "ces_emission_enabled": False,
+        "ces_runtime_artifacts_emitted": False,
+        "ces_similarity_search_enabled": False,
+        "ces_cross_user_similarity_enabled": False,
+        "ces_federated_similarity_enabled": False,
+        "ces_raw_trace_retention_performed": False,
+        "ces_memory_write_performed": False,
+        "ces_atlas_memory_admission_performed": False,
+        "ces_model_training_performed": False,
+        "ces_product_release_performed": False,
+        "ces_event_scope": "significant_transactive_events_only",
+        "ces_definition": "trace_compatible_hash_sealed_coherence_indexed_event_receipt",
+        "ces_metric_profile_is_not_exact_identity": True,
+        "ces_canonical_hash_is_not_truth_certification": True,
+        "ces_cross_user_similarity_disabled_by_default": True,
+        "ces_federated_similarity_requires_review": True,
+        "not_ces_truth_certification": True,
+        "not_ces_final_answer_authority": True,
+        "not_ces_accepted_evidence_authority": True,
+        "not_ces_biometric_score": True,
+        "not_ces_user_identity": True,
+        "not_ces_memory_write_authorization": True,
+        "not_ces_atlas_memory_admission": True,
+        "not_ces_model_training": True,
+        "not_ces_trace_export_authorization": True,
+        "not_ces_federation_authorization": True,
+        "not_ces_product_release": True,
+        "ces_requires_human_review": True,
         "not_validation_tiering_product_release": True,
         "not_validation_tiering_truth_certification": True,
         "not_validation_tiering_compliance_certification": True,
@@ -13139,10 +14539,67 @@ def docs() -> dict[str, str]:
     validation_tiering_receipt_terms = "\n".join(f"- {term}" for term in VALIDATION_TIERING_PROVENANCE_RECEIPT_TERMS)
     validation_tiering_repro_fragments = "\n".join(f"- {fragment}" for fragment in VALIDATION_TIERING_PROVENANCE_REPRO_FRAGMENTS)
     validation_tiering_blocked = "\n".join(f"- {claim}" for claim in VALIDATION_TIERING_PROVENANCE_BLOCKED_CLAIMS)
+    telemetry_aperture_artifacts = "\n".join(f"- {artifact}" for artifact in TELEMETRY_APERTURE_DESIGN_ARTIFACTS)
+    telemetry_aperture_modes = "\n".join(f"- {mode}" for mode in TELEMETRY_APERTURE_MODES)
+    telemetry_aperture_dimensions = "\n".join(f"- {dimension}" for dimension in TELEMETRY_APERTURE_DIMENSIONS)
+    telemetry_aperture_minimum_floor = "\n".join(f"- {term}" for term in TELEMETRY_APERTURE_MINIMUM_AUDIT_FLOOR_TERMS)
+    telemetry_aperture_policy_defaults = "\n".join(f"- {default}" for default in TELEMETRY_APERTURE_POLICY_DEFAULTS)
+    telemetry_aperture_escalation_triggers = "\n".join(f"- {trigger}" for trigger in TELEMETRY_APERTURE_ESCALATION_TRIGGERS)
+    telemetry_aperture_hard_blocks = "\n".join(f"- {block}" for block in TELEMETRY_APERTURE_HARD_BLOCKS)
+    telemetry_aperture_human_review_gates = "\n".join(f"- {gate}" for gate in TELEMETRY_APERTURE_HUMAN_REVIEW_GATES)
+    telemetry_aperture_safe_aliases = "\n".join(f"- {alias}" for alias in TELEMETRY_APERTURE_SAFE_MET_SEM_ALIASES)
+    telemetry_aperture_doc_phrases = "\n".join(f"- {phrase}" for phrase in TELEMETRY_APERTURE_REQUIRED_DOC_PHRASES)
+    telemetry_aperture_failure_classes = "\n".join(f"- {failure_class}" for failure_class in TELEMETRY_APERTURE_FAILURE_CLASSES)
+    telemetry_aperture_repro_fragments = "\n".join(f"- {fragment}" for fragment in TELEMETRY_APERTURE_REPRO_FRAGMENTS)
+    telemetry_aperture_blocked = "\n".join(f"- {claim}" for claim in TELEMETRY_APERTURE_BLOCKED_CLAIMS)
+    telemetry_aperture_unsafe_boundaries = "\n".join(f"- {boundary}" for boundary in TELEMETRY_APERTURE_UNSAFE_METRIC_BOUNDARIES)
+    tac_policy_simulation_artifacts = "\n".join(f"- {artifact}" for artifact in TAC_POLICY_SIMULATION_ARTIFACTS)
+    tac_policy_simulation_input_refs = "\n".join(f"- {artifact}" for artifact in TAC_POLICY_SIMULATION_INPUT_REFERENCES)
+    tac_policy_simulation_scenarios = "\n".join(f"- {scenario}" for scenario in TAC_POLICY_SIMULATION_SCENARIOS)
+    tac_policy_simulation_outcomes = "\n".join(f"- {outcome}" for outcome in TAC_POLICY_SIMULATION_SCENARIO_OUTCOMES)
+    tac_policy_simulation_hard_blocks = "\n".join(f"- {term}" for term in TAC_POLICY_SIMULATION_HARD_BLOCK_TERMS)
+    tac_policy_simulation_decision_terms = "\n".join(f"- {term}" for term in TAC_POLICY_SIMULATION_DECISION_RETENTION_TERMS)
+    tac_policy_simulation_doc_phrases = "\n".join(f"- {phrase}" for phrase in TAC_POLICY_SIMULATION_REQUIRED_DOC_PHRASES)
+    tac_policy_simulation_relation = "\n".join(f"- {phrase}" for phrase in TAC_POLICY_SIMULATION_DESIGN_RELATION)
+    tac_policy_simulation_repro_fragments = "\n".join(f"- {fragment}" for fragment in TAC_POLICY_SIMULATION_REPRO_FRAGMENTS)
+    tac_policy_simulation_blocked = "\n".join(f"- {claim}" for claim in TAC_POLICY_SIMULATION_BLOCKED_CLAIMS)
+    tac_local_review_integration_artifacts = "\n".join(f"- {artifact}" for artifact in TAC_LOCAL_REVIEW_INTEGRATION_ARTIFACTS)
+    tac_local_review_integration_input_artifacts = "\n".join(f"- {artifact}" for artifact in TAC_LOCAL_REVIEW_INTEGRATION_INPUT_ARTIFACTS)
+    tac_local_review_integration_overlay_terms = "\n".join(f"- {term}" for term in TAC_LOCAL_REVIEW_INTEGRATION_OVERLAY_TERMS)
+    tac_local_review_integration_reviewer_prompts = "\n".join(f"- {prompt}" for prompt in TAC_LOCAL_REVIEW_INTEGRATION_REVIEWER_PROMPTS)
+    tac_local_review_integration_doc_phrases = "\n".join(f"- {phrase}" for phrase in TAC_LOCAL_REVIEW_INTEGRATION_REQUIRED_DOC_PHRASES)
+    tac_local_review_integration_relation = "\n".join(f"- {phrase}" for phrase in TAC_LOCAL_REVIEW_INTEGRATION_PRIOR_PHASE_RELATION)
+    tac_local_review_integration_repro_fragments = "\n".join(f"- {fragment}" for fragment in TAC_LOCAL_REVIEW_INTEGRATION_REPRO_FRAGMENTS)
+    tac_local_review_integration_blocked = "\n".join(f"- {claim}" for claim in TAC_LOCAL_REVIEW_INTEGRATION_BLOCKED_CLAIMS)
+    tac_ai_receipt_event_link_artifacts = "\n".join(f"- {artifact}" for artifact in TAC_AI_RECEIPT_EVENT_LINK_ARTIFACTS)
+    tac_ai_receipt_event_link_input_artifacts = "\n".join(f"- {artifact}" for artifact in TAC_AI_RECEIPT_EVENT_LINK_INPUT_ARTIFACTS)
+    tac_ai_receipt_event_link_events = "\n".join(f"- {event}" for event in TAC_AI_RECEIPT_EVENT_LINK_EVENTS)
+    tac_ai_receipt_event_link_reference_terms = "\n".join(f"- {term}" for term in TAC_AI_RECEIPT_EVENT_LINK_REFERENCE_TERMS)
+    tac_ai_receipt_event_link_doc_phrases = "\n".join(f"- {phrase}" for phrase in TAC_AI_RECEIPT_EVENT_LINK_REQUIRED_DOC_PHRASES)
+    tac_ai_receipt_event_link_relation = "\n".join(f"- {phrase}" for phrase in TAC_AI_RECEIPT_EVENT_LINK_PRIOR_PHASE_RELATION)
+    tac_ai_receipt_event_link_repro_fragments = "\n".join(f"- {fragment}" for fragment in TAC_AI_RECEIPT_EVENT_LINK_REPRO_FRAGMENTS)
+    tac_ai_receipt_event_link_blocked = "\n".join(f"- {claim}" for claim in TAC_AI_RECEIPT_EVENT_LINK_BLOCKED_CLAIMS)
+    pmr_pathway_priors_design_artifacts = "\n".join(f"- {artifact}" for artifact in PMR_PATHWAY_PRIORS_DESIGN_ARTIFACTS)
+    pmr_pathway_priors_design_doctrine = "\n".join(f"- {phrase}" for phrase in PMR_PATHWAY_PRIORS_DESIGN_DOCTRINE_LANGUAGE)
+    pmr_pathway_priors_design_repro_fragments = "\n".join(f"- {fragment}" for fragment in PMR_PATHWAY_PRIORS_DESIGN_REPRO_FRAGMENTS)
+    pmr_pathway_priors_design_blocked = "\n".join(f"- {claim}" for claim in PMR_PATHWAY_PRIORS_DESIGN_BLOCKED_CLAIMS)
+    ces_design_artifacts = "\n".join(f"- {artifact}" for artifact in CES_DESIGN_ARTIFACTS)
+    ces_design_doctrine = "\n".join(f"- {phrase}" for phrase in CES_DESIGN_DOCTRINE_LANGUAGE)
+    ces_design_product_language = "\n".join(f"- {phrase}" for phrase in CES_DESIGN_PRODUCT_LANGUAGE)
+    ces_design_layers = "\n".join(f"- {layer}" for layer in CES_DESIGN_LAYERS)
+    ces_design_safe_metric_aliases = "\n".join(f"- {alias}" for alias in CES_DESIGN_SAFE_METRIC_ALIASES)
+    ces_design_identity_integrity = "\n".join(f"- {term}" for term in CES_DESIGN_IDENTITY_INTEGRITY_DOCTRINE)
+    ces_design_similarity_privacy = "\n".join(f"- {term}" for term in CES_DESIGN_SIMILARITY_PRIVACY_DOCTRINE)
+    ces_design_event_types = "\n".join(f"- {event_type}" for event_type in CES_DESIGN_EVENT_TYPES)
+    ces_design_negative_controls = "\n".join(f"- {control}" for control in CES_DESIGN_NEGATIVE_CONTROLS)
+    ces_design_failure_classes = "\n".join(f"- {failure_class}" for failure_class in CES_DESIGN_FAILURE_CLASSES)
+    ces_design_pmr_relation = "\n".join(f"- {relation}" for relation in CES_DESIGN_PMR_RELATION)
+    ces_design_repro_fragments = "\n".join(f"- {fragment}" for fragment in CES_DESIGN_REPRO_FRAGMENTS)
+    ces_design_blocked = "\n".join(f"- {claim}" for claim in CES_DESIGN_BLOCKED_CLAIMS)
     return {
         "README.md": "# Experiment Suite Docs\n\nPublic reviewer documentation for the claim-bounded reproducibility dashboard.\n",
         "assets/README.md": "# Assets\n\nOptional static assets for the public reproducibility dashboard.\n",
-        "index.md": f"# Public Experiment Suite Dashboard\n\nThis dashboard presents accepted evidence for reviewer orientation. It is not truth certification, not deployment authority, not final answer release, local fixture only, and requires external peer review.\n\n## Accepted evidence\n\n| Phase | Repo | Status | What this supports | Reviewer caution |\n| --- | --- | --- | --- | --- |\n{phase_rows}\n\n## Reviewer path\n\nStart with claim boundaries, then read the governed artifact cognition paper, WAVE Rosetta paper, SONYA-AEGIS-SMOKE-02, WAVE family, UNI-02D Sonya gate, and RETRO-LANE-00, Public Utility Alpha, Raw Baseline Comparison, Evidence Review Pack, RW-COMP-01, RW-COMP-02, Retrosynthesis Sandbox Cycle, Evidence Review Pack second-pass, RW-COMP-03, Universal Architecture Scaffold, Sonya Adapter Contract Registry, Sonya Adapter Smoke, Sonya Local Fixture Adapter, and Evidence Review Pack local adapter, Evidence Review Pack local adapter revision, RW-COMP local adapter, PMR doctrine, PMR local artifact index, PMR GPCU utility scoring, PMR lifecycle state machine, PMR lifecycle audit preflight, PMR Sophia lifecycle audit review, PMR destructive-action authorization preflight, PMR architecture diversity checkpoint, PMR simulation baseline comparison, PMR simulation statistical analysis, PMR federation stress corpus, PMR human provenance context, Sonya Local Fixture Adapter multi-route, and Sonya Local Fixture Adapter lineage clarity, Local Review metrics and flow, Metric Semantic Contract, Language Governance, Language Governance Audit Runtime, and Runtime Metrics Seed Corpus, PMR local queryable store, Retrosynthesis Readiness, Retrosynthesis Local Prototype, and Atlas Local Memory Admission Readiness, Atlas Local Memory Admission Prototype, Local-test Proxy Review, AI Context Performance Continuity, Theorem Validation Pathway, and COOP Entropy Dividend, Triadic LLM Metrics Smoke, UCC Sophia Control Forensics, UCC Standards Source Registry and Materiality, Triadic LLM Smoke PMR Inventory Contract Repair, AI Forensics Dossier, Human Review UX, Visual Review Model, Visual Review Static HTML Prototype, Static HTML Usability Review Seed, Static HTML Usability Revision, AI Receipt Architecture, and Validation Tiering and Provenance, Perturbation Observation Capture, Perturbation Trunk Mapping, and Perturbation Residual Novelty Map, and Perturbation Structure-Affordance Card pages.\n\n## What this proves\n\nIt proves only that accepted local fixture artifacts and draft publication materials are organized for review.\n\n## What this does not prove\n\nNo oracle posture, no deployment posture, no final-answer posture, no AI consciousness claim, and no universal ontology claim.\n\n## Phase pages\n\n- [SONYA-AEGIS-SMOKE-02](sonya-aegis-smoke-02.md)\n- [WAVE Gold-Physics](wave-gold-physics.md)\n- [UNI-02D Sonya gate](uni02d-sonya-gate.md)\n- [RETRO-LANE-00](retro-lane-00.md)\n- [Public Utility Alpha](public-utility-alpha.md)\n- [Raw Baseline Comparison](raw-baseline-comparison.md)\n- [Evidence Review Pack](evidence-review-pack.md)\n- [RW-COMP-01](rw-comp-01.md)\n- [RW-COMP-02](rw-comp-02.md)\n- [Retrosynthesis Sandbox Cycle](retrosynthesis-sandbox-cycle.md)\n- [Evidence Review Pack second pass](evidence-review-pack-second-pass.md)\n- [RW-COMP-03](rw-comp-03.md)\n- [Universal Architecture Scaffold](universal-architecture.md)\n- [Sonya Adapter Contract Registry](sonya-adapter-contract-registry.md)\n- [Sonya required membrane checkpoint](sonya-required-membrane-checkpoint.md)\n- [TEL event stack](tel-event-stack.md)\n- [Sonya Adapter Smoke](sonya-adapter-smoke.md)\n- [Sonya Local Fixture Adapter](sonya-local-fixture-adapter.md)\n- [Evidence Review Pack local adapter](evidence-review-pack-local-adapter.md)\n- [Evidence Review Pack local adapter revision](evidence-review-pack-local-adapter-revision.md)\n- [RW-COMP local adapter](rw-comp-local-adapter.md)\n- [Provenance Memory Reservoir](provenance-memory-reservoir.md)\n- [PMR local artifact index](pmr-local-artifact-index.md)\n- [Ontology Claim Registry](ontology-claim-registry.md)\n- [Local Sonya path portability](local-sonya-path-portability.md)\n- [TB Product Slice](tb-product-slice.md)\n- [TB Product Slice 01](tb-product-slice-01.md)\n- [Sonya Local Fixture Adapter multi-route](sonya-local-fixture-adapter-multi-route.md)\n- [Sonya Local Fixture Adapter lineage clarity](sonya-local-fixture-adapter-lineage.md)\n- [Local Review Runtime V0](local-review-runtime-v0.md)\n- [Local Review metrics and flow](local-review-metrics-flow.md)\n- [Runtime metrics seed corpus](runtime-metrics-seed-corpus.md)\n- [PMR local queryable store](pmr-local-queryable-store.md)\n- [Retrosynthesis readiness](retrosynthesis-readiness.md)\n- [Retrosynthesis local prototype](retrosynthesis-local-prototype.md)\n- [Atlas local memory admission readiness](atlas-local-memory-admission-readiness.md)\n- [AI Forensics Dossier](ai-forensics-dossier.md)\n- [Human Review UX](human-review-ux.md)\n- [Visual Review Model](visual-review-model.md)\n- [Visual Review Static HTML Prototype](visual-review-static-html-prototype.md)\n- [Perturbation Observation Capture](perturbation-observation-capture.md)\n- [Perturbation Trunk Mapping](perturbation-trunk-mapping.md)\n- [Perturbation Residual Novelty Map](perturbation-residual-novelty-map.md)\n- [Perturbation Structure-Affordance Card](perturbation-structure-affordance-card.md)\n- [Governed artifact cognition paper](governed-artifact-cognition-paper.md)\n- [Waveform Rosetta paper](waveform-rosetta-paper.md)\n",
+        "index.md": f"# Public Experiment Suite Dashboard\n\nThis dashboard presents accepted evidence for reviewer orientation. It is not truth certification, not deployment authority, not final answer release, local fixture only, and requires external peer review.\n\n## Accepted evidence\n\n| Phase | Repo | Status | What this supports | Reviewer caution |\n| --- | --- | --- | --- | --- |\n{phase_rows}\n\n## Reviewer path\n\nStart with claim boundaries, then read the governed artifact cognition paper, WAVE Rosetta paper, SONYA-AEGIS-SMOKE-02, WAVE family, UNI-02D Sonya gate, and RETRO-LANE-00, Public Utility Alpha, Raw Baseline Comparison, Evidence Review Pack, RW-COMP-01, RW-COMP-02, Retrosynthesis Sandbox Cycle, Evidence Review Pack second-pass, RW-COMP-03, Universal Architecture Scaffold, Sonya Adapter Contract Registry, Sonya Adapter Smoke, Sonya Local Fixture Adapter, and Evidence Review Pack local adapter, Evidence Review Pack local adapter revision, RW-COMP local adapter, PMR doctrine, PMR local artifact index, PMR GPCU utility scoring, PMR lifecycle state machine, PMR lifecycle audit preflight, PMR Sophia lifecycle audit review, PMR destructive-action authorization preflight, PMR architecture diversity checkpoint, PMR simulation baseline comparison, PMR simulation statistical analysis, PMR federation stress corpus, PMR human provenance context, Sonya Local Fixture Adapter multi-route, and Sonya Local Fixture Adapter lineage clarity, Local Review metrics and flow, Metric Semantic Contract, Language Governance, Language Governance Audit Runtime, and Runtime Metrics Seed Corpus, PMR local queryable store, Retrosynthesis Readiness, Retrosynthesis Local Prototype, and Atlas Local Memory Admission Readiness, Atlas Local Memory Admission Prototype, Local-test Proxy Review, AI Context Performance Continuity, Theorem Validation Pathway, and COOP Entropy Dividend, Triadic LLM Metrics Smoke, UCC Sophia Control Forensics, UCC Standards Source Registry and Materiality, Triadic LLM Smoke PMR Inventory Contract Repair, AI Forensics Dossier, Human Review UX, Visual Review Model, Visual Review Static HTML Prototype, Static HTML Usability Review Seed, Static HTML Usability Revision, AI Receipt Architecture, Validation Tiering and Provenance, and Telemetry Aperture Controller, TAC Policy Simulation, TAC Local Review Integration, TAC AI Receipt Event Link, PMR Pathway Priors Design Doctrine, Coherence Event Signatures, Perturbation Observation Capture, Perturbation Trunk Mapping, and Perturbation Residual Novelty Map, and Perturbation Structure-Affordance Card pages.\n\n## What this proves\n\nIt proves only that accepted local fixture artifacts and draft publication materials are organized for review.\n\n## What this does not prove\n\nNo oracle posture, no deployment posture, no final-answer posture, no AI consciousness claim, and no universal ontology claim.\n\n## Phase pages\n\n- [SONYA-AEGIS-SMOKE-02](sonya-aegis-smoke-02.md)\n- [WAVE Gold-Physics](wave-gold-physics.md)\n- [UNI-02D Sonya gate](uni02d-sonya-gate.md)\n- [RETRO-LANE-00](retro-lane-00.md)\n- [Public Utility Alpha](public-utility-alpha.md)\n- [Raw Baseline Comparison](raw-baseline-comparison.md)\n- [Evidence Review Pack](evidence-review-pack.md)\n- [RW-COMP-01](rw-comp-01.md)\n- [RW-COMP-02](rw-comp-02.md)\n- [Retrosynthesis Sandbox Cycle](retrosynthesis-sandbox-cycle.md)\n- [Evidence Review Pack second pass](evidence-review-pack-second-pass.md)\n- [RW-COMP-03](rw-comp-03.md)\n- [Universal Architecture Scaffold](universal-architecture.md)\n- [Sonya Adapter Contract Registry](sonya-adapter-contract-registry.md)\n- [Sonya required membrane checkpoint](sonya-required-membrane-checkpoint.md)\n- [TEL event stack](tel-event-stack.md)\n- [Sonya Adapter Smoke](sonya-adapter-smoke.md)\n- [Sonya Local Fixture Adapter](sonya-local-fixture-adapter.md)\n- [Evidence Review Pack local adapter](evidence-review-pack-local-adapter.md)\n- [Evidence Review Pack local adapter revision](evidence-review-pack-local-adapter-revision.md)\n- [RW-COMP local adapter](rw-comp-local-adapter.md)\n- [Provenance Memory Reservoir](provenance-memory-reservoir.md)\n- [PMR local artifact index](pmr-local-artifact-index.md)\n- [Ontology Claim Registry](ontology-claim-registry.md)\n- [Local Sonya path portability](local-sonya-path-portability.md)\n- [TB Product Slice](tb-product-slice.md)\n- [TB Product Slice 01](tb-product-slice-01.md)\n- [Sonya Local Fixture Adapter multi-route](sonya-local-fixture-adapter-multi-route.md)\n- [Sonya Local Fixture Adapter lineage clarity](sonya-local-fixture-adapter-lineage.md)\n- [Local Review Runtime V0](local-review-runtime-v0.md)\n- [Local Review metrics and flow](local-review-metrics-flow.md)\n- [Runtime metrics seed corpus](runtime-metrics-seed-corpus.md)\n- [PMR local queryable store](pmr-local-queryable-store.md)\n- [Retrosynthesis readiness](retrosynthesis-readiness.md)\n- [Retrosynthesis local prototype](retrosynthesis-local-prototype.md)\n- [Atlas local memory admission readiness](atlas-local-memory-admission-readiness.md)\n- [AI Forensics Dossier](ai-forensics-dossier.md)\n- [Human Review UX](human-review-ux.md)\n- [Visual Review Model](visual-review-model.md)\n- [Visual Review Static HTML Prototype](visual-review-static-html-prototype.md)\n- [Perturbation Observation Capture](perturbation-observation-capture.md)\n- [Perturbation Trunk Mapping](perturbation-trunk-mapping.md)\n- [Perturbation Residual Novelty Map](perturbation-residual-novelty-map.md)\n- [Telemetry Aperture Controller](telemetry-aperture-controller.md)\n- [TAC Policy Simulation](tac-policy-simulation.md)\n- [TAC Local Review Integration](tac-local-review-integration.md)\n- [TAC AI Receipt Event Link](tac-ai-receipt-event-link.md)\n- [PMR Pathway Priors Design Doctrine](pmr-pathway-priors-design-doctrine.md)\n- [Coherence Event Signatures](coherence-event-signatures.md)\n- [Perturbation Structure-Affordance Card](perturbation-structure-affordance-card.md)\n- [Governed artifact cognition paper](governed-artifact-cognition-paper.md)\n- [Waveform Rosetta paper](waveform-rosetta-paper.md)\n",
         "language-governance.md": f"""# Language Governance
 
 ## What was validated
@@ -13194,6 +14651,10 @@ PROJECT-LANGUAGE-GOVERNANCE-00 synchronizes the CoherenceLattice project languag
 ## Runtime audit linkage
 
 LANGUAGE-GOVERNANCE-AUDIT-RUNTIME-00 publishes reviewer-facing language audit artifacts for this policy surface without granting proof, truth, product, or runtime authority.
+
+## Telemetry aperture linkage
+
+TELEMETRY-APERTURE-DESIGN-00 follows project language governance by stating TAC is computational observability aperture, not consciousness; TAC is not surveillance authorization; and TAC is not product release.
 
 ## Allowed bounded claim
 
@@ -13350,6 +14811,10 @@ AI-RECEIPT-ARCHITECTURE-00 records this artifact-backed review stack in AI Recei
 ## Allowed bounded claim
 
 {VISUAL_REVIEW_MODEL_CLAIM_ALLOWED}
+
+## TAC local review integration linkage
+
+TAC-LOCAL-REVIEW-INTEGRATION-00 adds a human_review_tac_status_overlay review status surface. It is not runtime control, product release, or UI release.
 """,
         "visual-review-static-html-prototype.md": f"""# Visual Review Static HTML Prototype
 
@@ -13696,6 +15161,10 @@ AI-RECEIPT-ARCHITECTURE-00 synchronizes the locally validated AI Receipt Archite
 ## Validation tiering provenance linkage
 
 VALIDATION-TIERING-PROVENANCE-00 records the 32131.86-second AI Receipt Architecture validation as deep validation evidence, not the default developer loop. Validation tiering is provenance, not convenience. Run the tier that matches the decision, then record what that tier does and does not prove.
+
+## Telemetry aperture linkage
+
+TELEMETRY-APERTURE-DESIGN-00 preserves AI Receipt traceability as a minimum audit floor item. TAC-POLICY-SIMULATION-00 keeps the minimum audit floor preserved in deterministic scenario rehearsal. TAC-LOCAL-REVIEW-INTEGRATION-00 links simulated TAC posture into local review surfaces and references AI Receipt event history only; no history rewrite occurs. TAC-AI-RECEIPT-EVENT-LINK-00 links TAC posture to AI Receipt through supplemental references and does not rewrite ai_receipt_event_chain.json. PMR-PATHWAY-PRIORS-DESIGN-DOCTRINE-00 preserves AI Receipt traceability and replay lineage for revocable, materiality-scoped review recommendations without writing memory. COHERENCE-EVENT-SIGNATURES-DESIGN-00 proposes event-level cognitive receipts that expose what happened to humans without certifying truth or authorizing memory. Aperture reduction cannot remove acceptance evidence, and Future TAC implementation must preserve AI Receipt traceability.
 """,
         "validation-tiering-provenance.md": f"""# Validation Tiering and Provenance
 
@@ -13774,6 +15243,10 @@ VALIDATION-TIERING-PROVENANCE-00 synchronizes validation tier policy and validat
 ## Allowed bounded claim
 
 {VALIDATION_TIERING_PROVENANCE_CLAIM_ALLOWED}
+
+## Telemetry aperture linkage
+
+TELEMETRY-APERTURE-DESIGN-00 records validation_tier_receipt_when_available in the minimum audit floor. TAC-POLICY-SIMULATION-00 records design-only policy rehearsal outcomes without runtime control. TAC-LOCAL-REVIEW-INTEGRATION-00 carries TAC posture into review surfaces as a non-authoritative overlay. TAC-AI-RECEIPT-EVENT-LINK-00 adds supplemental AI Receipt event references without rewriting receipt history or changing validation authority. PMR-PATHWAY-PRIORS-DESIGN-DOCTRINE-00 records that pathway priors must record validation-tier evidence when applicable and remain review recommendations only. COHERENCE-EVENT-SIGNATURES-DESIGN-00 records validation/governance context as event-level design doctrine only. TAC is design-only and does not change runtime behavior in TELEMETRY-APERTURE-DESIGN-00.
 """,
         "metric-semantic-contract.md": f"""# Metric Semantic Contract
 
@@ -13846,6 +15319,526 @@ Publication surfaces include `build_runtime_metrics_seed_corpus` and `build_metr
 ## Allowed bounded claim
 
 {METRIC_SEMANTIC_CLAIM_ALLOWED}
+
+## Telemetry aperture linkage
+
+TELEMETRY-APERTURE-DESIGN-00 uses safe MET-SEM aliases for pulse mode only: Ψ_review, E_review, T_review, ΔS_review, Λ_boundary, Eₛ_review, and TAF_review_runtime_v0. Safe MET-SEM aliases are not canonical metric completion and TAC does not present unqualified empathy score, unqualified transparency score, unqualified phase-lock score, unqualified entropy score, unqualified ethical symmetry score, or canonical total action as TAC measurements.
+
+## Coherence Event Signatures linkage
+
+COHERENCE-EVENT-SIGNATURES-DESIGN-00 uses safe metric aliases as process-state signatures, not identity, biometric, truth, or model-training signals.
+""",
+
+        "telemetry-aperture-controller.md": f"""# Telemetry Aperture Controller
+
+## What was validated
+
+TELEMETRY-APERTURE-DESIGN-00 synchronizes the locally validated Telemetry Aperture Controller design to publication surfaces. This is publication/dashboard synchronization only and grants no runtime authority. TAC docs/config/schema and experiment registry tests passed locally in CoherenceLattice. TAC does not change runtime behavior in TELEMETRY-APERTURE-DESIGN-00.
+
+## Dashboard summary
+
+- mode_policy_status = active_design_only
+- runtime_behavior_changed = false
+- default_aperture_mode = pulse
+- raw_trace_retention = requires_explicit_approval
+- trace_export = blocked
+- pmr_federation = blocked_by_default
+- minimum_audit_floor_failure_policy = fail_closed
+- aperture_reduction_cannot_remove_acceptance_evidence = true
+- consent_bounded_observability_aperture = true
+- tac_is_not_consciousness = true
+- tac_is_not_surveillance_authorization = true
+- tac_is_not_memory_write = true
+- tac_is_not_trace_export_authorization = true
+- tac_is_not_federation_authorization = true
+- tac_is_not_product_release = true
+- human_review_required = true
+
+## Required TAC language
+
+{telemetry_aperture_doc_phrases}
+
+## Modes
+
+{telemetry_aperture_modes}
+
+## Aperture dimensions
+
+{telemetry_aperture_dimensions}
+
+## Minimum audit floor
+
+{telemetry_aperture_minimum_floor}
+
+## Policy defaults
+
+{telemetry_aperture_policy_defaults}
+
+## Escalation triggers
+
+{telemetry_aperture_escalation_triggers}
+
+## Hard blocks
+
+{telemetry_aperture_hard_blocks}
+
+## Human review gates
+
+{telemetry_aperture_human_review_gates}
+
+## Safe MET-SEM aliases
+
+{telemetry_aperture_safe_aliases}
+
+## Unsafe metric boundary
+
+TAC does not present these as TAC measurements:
+
+{telemetry_aperture_unsafe_boundaries}
+
+## Failure classes
+
+{telemetry_aperture_failure_classes}
+
+## Artifacts
+
+{telemetry_aperture_artifacts}
+
+## Reproducibility fragments
+
+{telemetry_aperture_repro_fragments}
+
+This design patch has no runtime builder. Reproducibility points to config/schema inspection, not runtime packet emission.
+
+```powershell
+{TELEMETRY_APERTURE_DESIGN_COMMAND}
+```
+
+## Blocked overclaim examples for telemetry aperture controller publication boundaries
+
+{telemetry_aperture_blocked}
+
+## Allowed bounded claim
+
+{TELEMETRY_APERTURE_CLAIM_ALLOWED}
+
+## Policy simulation linkage
+
+TAC-POLICY-SIMULATION-00 rehearses deterministic policy decisions from TELEMETRY-APERTURE-DESIGN-00. TAC-LOCAL-REVIEW-INTEGRATION-00 links simulated TAC posture into local review surfaces. TAC-AI-RECEIPT-EVENT-LINK-00 links TAC posture through supplemental, non-rewriting AI Receipt event references. PMR-PATHWAY-PRIORS-DESIGN-DOCTRINE-00 must respect TAC retention, trace export, and federation boundaries. COHERENCE-EVENT-SIGNATURES-DESIGN-00 is aperture-aware and PMR-retention-aware but does not emit CES runtime artifacts. TAC-POLICY-SIMULATION-00 does not implement live runtime control.
+""",
+
+        "tac-policy-simulation.md": f"""# TAC Policy Simulation
+
+## What was validated
+
+TAC-POLICY-SIMULATION-00 synchronizes locally validated Telemetry Aperture Controller policy simulation artifacts to publication surfaces. This is publication/dashboard synchronization only and grants no runtime authority. TAC policy simulation, TAC design, artifact contract, inventory, and registry tests passed locally in CoherenceLattice; the local validation reports 181 tests passed. TAC simulation artifacts are PMR-visible, inventory-visible, and parity-visible.
+
+## Dashboard summary
+
+- simulation_status = completed
+- simulation_mode = design_only_policy_rehearsal
+- scenario_count = 8
+- default_scenario_id = local_default_receipt_review
+- default_selected_mode = pulse
+- default_raw_trace_retention_allowed = false
+- default_trace_export_allowed = false
+- default_federation_allowed = false
+- minimum_audit_floor_preserved = true
+- runtime_behavior_changed = false
+- provider_runtime_performed = false
+- network_call_performed = false
+- memory_write_performed = false
+- atlas_memory_admission_performed = false
+- trace_export_performed = false
+- federation_performed = false
+- product_release_performed = false
+- simulation_is_not_runtime_control = true
+- simulation_is_not_surveillance_authorization = true
+- simulation_is_not_memory_write = true
+- simulation_is_not_trace_export_authorization = true
+- simulation_is_not_federation_authorization = true
+- simulation_is_not_product_release = true
+- simulation_requires_human_review_for_expansion = true
+
+## Required TAC simulation language
+
+{tac_policy_simulation_doc_phrases}
+
+## Relation to TAC design
+
+{tac_policy_simulation_relation}
+
+## Scenarios
+
+{tac_policy_simulation_scenarios}
+
+## Scenario outcomes
+
+{tac_policy_simulation_outcomes}
+
+## Hard-block terms
+
+{tac_policy_simulation_hard_blocks}
+
+## Decision and retention terms
+
+{tac_policy_simulation_decision_terms}
+
+## Output artifacts
+
+{tac_policy_simulation_artifacts}
+
+## Input/config references
+
+{tac_policy_simulation_input_refs}
+
+## Reproducibility fragments
+
+{tac_policy_simulation_repro_fragments}
+
+```powershell
+{TAC_POLICY_SIMULATION_COMMAND}
+```
+
+## Blocked overclaim examples for TAC policy simulation publication boundaries
+
+{tac_policy_simulation_blocked}
+
+## Allowed bounded claim
+
+{TAC_POLICY_SIMULATION_CLAIM_ALLOWED}
+
+## Local review integration linkage
+
+TAC-LOCAL-REVIEW-INTEGRATION-00 links simulated TAC posture into local review surfaces through a non-authoritative overlay and does not implement live runtime control. TAC-AI-RECEIPT-EVENT-LINK-00 then links TAC posture through supplemental, non-rewriting AI Receipt event references. PMR-PATHWAY-PRIORS-DESIGN-DOCTRINE-00 must respect TAC retention, trace export, and federation boundaries.
+""",
+
+        "tac-local-review-integration.md": f"""# TAC Local Review Integration
+
+## What was validated
+
+TAC-LOCAL-REVIEW-INTEGRATION-00 synchronizes locally validated TAC local review integration artifacts to publication surfaces. This is publication/dashboard synchronization only and grants no runtime authority. TAC local review integration, TAC simulation, TAC design, artifact contract, inventory, and registry tests passed locally in CoherenceLattice; the local validation reports 191 tests passed. TAC local review artifacts are PMR-visible, inventory-visible, and parity-visible.
+
+## Dashboard summary
+
+- integration_status = completed
+- integration_mode = local_review_overlay
+- scenario_id = local_default_receipt_review
+- selected_mode = pulse
+- decision_status = simulated_allowed
+- minimum_audit_floor_preserved = true
+- raw_trace_retention_allowed = false
+- trace_export_allowed = false
+- federation_allowed = false
+- receipt_event_link_status = referenced_only_no_history_rewrite
+- overlay_status = ready_for_human_review
+- overlay_mode = human_review_tac_status_overlay
+- live_runtime_behavior_changed = false
+- provider_runtime_performed = false
+- network_call_performed = false
+- telemetry_runtime_control_performed = false
+- memory_write_performed = false
+- atlas_memory_admission_performed = false
+- trace_export_performed = false
+- federation_performed = false
+- product_release_performed = false
+- final_answer_emitted = false
+- truth_certification_emitted = false
+- accepted_evidence_authority_granted = false
+- integration_is_not_runtime_control = true
+- integration_is_not_surveillance_authorization = true
+- integration_is_not_memory_write = true
+- integration_is_not_trace_export_authorization = true
+- integration_is_not_federation_authorization = true
+- integration_is_not_product_release = true
+- integration_requires_human_review_for_expansion = true
+
+## Required local review integration language
+
+{tac_local_review_integration_doc_phrases}
+
+## Relation to prior TAC phases
+
+{tac_local_review_integration_relation}
+
+## Overlay terms
+
+{tac_local_review_integration_overlay_terms}
+
+## Reviewer prompts
+
+{tac_local_review_integration_reviewer_prompts}
+
+## Output artifacts
+
+{tac_local_review_integration_artifacts}
+
+## Input artifact references
+
+{tac_local_review_integration_input_artifacts}
+
+## Reproducibility fragments
+
+{tac_local_review_integration_repro_fragments}
+
+```powershell
+{TAC_LOCAL_REVIEW_INTEGRATION_COMMAND}
+```
+
+## Blocked overclaim examples for TAC local review integration publication boundaries
+
+{tac_local_review_integration_blocked}
+
+## Allowed bounded claim
+
+{TAC_LOCAL_REVIEW_INTEGRATION_CLAIM_ALLOWED}
+
+## AI Receipt event-link linkage
+
+TAC-AI-RECEIPT-EVENT-LINK-00 links this non-authoritative overlay to AI Receipt through supplemental references and does not rewrite ai_receipt_event_chain.json. PMR-PATHWAY-PRIORS-DESIGN-DOCTRINE-00 preserves TAC boundaries and AI Receipt traceability for future pathway-prior review recommendations without generating priors or writing memory. COHERENCE-EVENT-SIGNATURES-DESIGN-00 can serve as a compact PMR event index but does not replace PMR source artifacts or authorize pathway-prior generation.
+""",
+        "tac-ai-receipt-event-link.md": f"""# TAC AI Receipt Event Link
+
+## What was validated
+
+TAC-AI-RECEIPT-EVENT-LINK-00 synchronizes locally validated TAC AI Receipt event-link artifacts to publication surfaces. This is publication/dashboard synchronization only and grants no runtime authority. TAC AI Receipt event link, TAC local review, AI Receipt, and inventory tests passed locally in CoherenceLattice; the local validation reports 207 tests passed.
+
+## Dashboard summary
+
+- link_status = completed
+- link_mode = supplemental_non_rewriting_event_reference
+- scenario_id = local_default_receipt_review
+- receipt_history_rewritten = false
+- chain_hash_unchanged = true
+- referenced_event_count = 5
+- supplemental_link_count = 5
+- selected_mode = pulse
+- decision_status = simulated_allowed
+- minimum_audit_floor_preserved = true
+- raw_trace_retention_allowed = false
+- trace_export_allowed = false
+- federation_allowed = false
+- live_runtime_behavior_changed = false
+- telemetry_runtime_control_performed = false
+- provider_runtime_performed = false
+- network_call_performed = false
+- memory_write_performed = false
+- atlas_memory_admission_performed = false
+- trace_export_performed = false
+- federation_performed = false
+- product_release_performed = false
+- final_answer_emitted = false
+- truth_certification_emitted = false
+- accepted_evidence_authority_granted = false
+- link_is_not_runtime_control = true
+- link_is_not_surveillance_authorization = true
+- link_is_not_memory_write = true
+- link_is_not_trace_export_authorization = true
+- link_is_not_federation_authorization = true
+- link_is_not_product_release = true
+- link_requires_human_review = true
+
+## Required event-link language
+
+{tac_ai_receipt_event_link_doc_phrases}
+
+## Relation to prior phases
+
+{tac_ai_receipt_event_link_relation}
+
+## Linked receipt events
+
+{tac_ai_receipt_event_link_events}
+
+## Reference-table terms
+
+{tac_ai_receipt_event_link_reference_terms}
+
+## Output artifacts
+
+{tac_ai_receipt_event_link_artifacts}
+
+## Input artifact references
+
+{tac_ai_receipt_event_link_input_artifacts}
+
+## Reproducibility fragments
+
+{tac_ai_receipt_event_link_repro_fragments}
+
+```powershell
+{TAC_AI_RECEIPT_EVENT_LINK_COMMAND}
+```
+
+## Blocked overclaim examples for TAC AI Receipt event-link publication boundaries
+
+{tac_ai_receipt_event_link_blocked}
+
+## Allowed bounded claim
+
+{TAC_AI_RECEIPT_EVENT_LINK_CLAIM_ALLOWED}
+
+## PMR pathway-prior linkage
+
+PMR-PATHWAY-PRIORS-DESIGN-DOCTRINE-00 preserves AI Receipt traceability, replay lineage, TAC retention/export/federation boundaries, Sophia reality status, and validation-tier evidence for revocable review recommendations without writing memory or generating pathway priors. COHERENCE-EVENT-SIGNATURES-DESIGN-00 can provide event-level receipt signatures for this posture without runtime emission or similarity search.
+""",
+        "pmr-pathway-priors-design-doctrine.md": f"""# PMR Pathway Priors Design Doctrine
+
+## What was validated
+
+PMR-PATHWAY-PRIORS-DESIGN-DOCTRINE-00 synchronizes locally validated PMR pathway-prior design doctrine to publication surfaces. This is publication/dashboard synchronization only and grants no runtime authority. The phase is active design-only doctrine: pathway priors are disabled, no pathway-prior generation is performed, no memory is written, no Atlas memory is admitted, no model is trained, and no review skipping is authorized.
+
+## Dashboard summary
+
+- policy_status = active_design_only
+- runtime_behavior_changed = false
+- pathway_priors_enabled = false
+- pathway_prior_generation_performed = false
+- memory_write_performed = false
+- atlas_memory_admission_performed = false
+- model_training_performed = false
+- review_skip_authorized = false
+- product_release_performed = false
+- pathway_prior_definition = revocable_materiality_scoped_review_recommendation
+- pathway_prior_is_not_truth = true
+- pathway_prior_is_not_memory_canon = true
+- pathway_prior_is_not_model_training = true
+- pathway_prior_is_not_review_skip = true
+- pathway_prior_is_not_final_answer_authority = true
+- pathway_prior_is_not_accepted_evidence_authority = true
+- pathway_prior_is_not_product_release = true
+- pathway_prior_is_not_trace_export_authorization = true
+- pathway_prior_is_not_federation_authorization = true
+- pathway_prior_is_not_memory_write = true
+- pathway_prior_is_not_atlas_memory_admission = true
+- pathway_prior_requires_human_review = true
+
+## Required doctrine language
+
+{pmr_pathway_priors_design_doctrine}
+
+## Artifacts
+
+{pmr_pathway_priors_design_artifacts}
+
+## Reproducibility fragments
+
+{pmr_pathway_priors_design_repro_fragments}
+
+```powershell
+{PMR_PATHWAY_PRIORS_DESIGN_COMMAND}
+```
+
+## Blocked overclaim examples for PMR pathway-prior design doctrine publication boundaries
+
+{pmr_pathway_priors_design_blocked}
+
+## Allowed bounded claim
+
+{PMR_PATHWAY_PRIORS_DESIGN_CLAIM_ALLOWED}
+
+## Coherence Event Signatures relation
+
+COHERENCE-EVENT-SIGNATURES-DESIGN-00 can serve as a compact PMR event index and may support future revocable pathway-prior candidates, but CES does not replace PMR source artifacts, does not authorize pathway-prior generation, does not write memory, and does not admit Atlas memory.
+""",
+        "coherence-event-signatures.md": f"""# Coherence Event Signatures
+
+## What was validated
+
+COHERENCE-EVENT-SIGNATURES-DESIGN-00 synchronizes locally validated Coherence Event Signatures design doctrine to publication surfaces. This is publication/dashboard synchronization only and grants no runtime authority. CES is design-only, event-level receipt doctrine; no runtime artifacts or authority are emitted.
+
+## Dashboard summary
+
+- policy_status = active_design_only
+- runtime_behavior_changed = false
+- ces_emission_enabled = false
+- ces_runtime_artifacts_emitted = false
+- ces_similarity_search_enabled = false
+- cross_user_similarity_enabled = false
+- federated_similarity_enabled = false
+- raw_trace_retention_performed = false
+- memory_write_performed = false
+- atlas_memory_admission_performed = false
+- model_training_performed = false
+- product_release_performed = false
+- event_scope = significant_transactive_events_only
+- ces_definition = trace_compatible_hash_sealed_coherence_indexed_event_receipt
+- metric_profile_is_not_exact_identity = true
+- canonical_hash_is_not_truth_certification = true
+- cross_user_similarity_disabled_by_default = true
+- federated_similarity_requires_review = true
+- ces_is_not_truth_certification = true
+- ces_is_not_final_answer_authority = true
+- ces_is_not_accepted_evidence_authority = true
+- ces_is_not_biometric_score = true
+- ces_is_not_user_identity = true
+- ces_is_not_memory_write_authorization = true
+- ces_is_not_atlas_memory_admission = true
+- ces_is_not_model_training = true
+- ces_is_not_trace_export_authorization = true
+- ces_is_not_federation_authorization = true
+- ces_is_not_product_release = true
+- ces_requires_human_review = true
+
+## Required CES doctrine language
+
+{ces_design_doctrine}
+
+## Product language
+
+{ces_design_product_language}
+
+## CES layers
+
+{ces_design_layers}
+
+## Safe metric aliases
+
+{ces_design_safe_metric_aliases}
+
+## Identity and integrity doctrine
+
+{ces_design_identity_integrity}
+
+## Similarity and privacy doctrine
+
+{ces_design_similarity_privacy}
+
+## Proposed design-only event types
+
+{ces_design_event_types}
+
+## Negative controls
+
+{ces_design_negative_controls}
+
+## Failure classes
+
+{ces_design_failure_classes}
+
+## Relation to PMR
+
+{ces_design_pmr_relation}
+
+## Artifacts
+
+{ces_design_artifacts}
+
+## Reproducibility fragments
+
+{ces_design_repro_fragments}
+
+```powershell
+{CES_DESIGN_COMMAND}
+```
+
+## Blocked overclaim examples for Coherence Event Signatures design publication boundaries
+
+{ces_design_blocked}
+
+## Allowed bounded claim
+
+{CES_DESIGN_CLAIM_ALLOWED}
 """,
         "runtime-metrics-seed-corpus.md": f"""# Runtime metrics seed corpus
 
