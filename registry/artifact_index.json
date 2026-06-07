@@ -1201,6 +1201,14 @@
       "schema/bridge/ces_similarity_index_packet.schema.json",
       "schema/bridge/ces_non_authority_boundary.schema.json"
     ],
+    "CES-PMR-INDEXING-DESIGN-00": [
+      "docs/CES_PMR_INDEXING_DESIGN.md",
+      "config/ces/ces_pmr_indexing_policy.v1.json",
+      "schema/bridge/ces_pmr_index_entry.schema.json",
+      "schema/bridge/ces_pmr_index_policy_packet.schema.json",
+      "schema/bridge/ces_pmr_query_hint.schema.json",
+      "schema/bridge/ces_pmr_non_authority_boundary.schema.json"
+    ],
     "PERTURBATION-OBSERVATION-CAPTURE-00": [
       "perturbation_observation_packet.json",
       "perturbation_axis_packet.json",

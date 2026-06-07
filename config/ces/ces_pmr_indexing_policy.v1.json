@@ -1,0 +1,12 @@
+{
+  "schema": "uvlm.ces_pmr_indexing_policy.v1",
+  "policy_status": "active_design_only",
+  "runtime_behavior_changed": false,
+  "ces_pmr_indexing_enabled": false,
+  "source_expansion_required_for_decisions": true,
+  "human_review_required": true,
+  "index_is_not_source": true,
+  "index_is_not_memory_write": true,
+  "index_is_not_model_training": true,
+  "index_is_not_product_release": true
+}

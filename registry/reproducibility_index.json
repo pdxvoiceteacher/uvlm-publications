@@ -219,6 +219,10 @@
         "command": "python -c \"from pathlib import Path; Path('docs/COHERENCE_EVENT_SIGNATURES.md').read_text(encoding='utf-8')\"; python -m json.tool config/ces/coherence_event_signature_policy.v1.json >/dev/null; python -m json.tool schema/bridge/coherence_event_signature_packet.schema.json >/dev/null; python -m json.tool schema/bridge/ces_chain_summary_packet.schema.json >/dev/null; python -m json.tool schema/bridge/ces_similarity_index_packet.schema.json >/dev/null; python -m json.tool schema/bridge/ces_non_authority_boundary.schema.json >/dev/null"
       },
       {
+        "name": "CES-PMR-INDEXING-DESIGN-00 config/schema inspection",
+        "command": "python -c \"from pathlib import Path; Path('docs/CES_PMR_INDEXING_DESIGN.md').read_text(encoding='utf-8')\"; python -m json.tool config/ces/ces_pmr_indexing_policy.v1.json >/dev/null; python -m json.tool schema/bridge/ces_pmr_index_entry.schema.json >/dev/null; python -m json.tool schema/bridge/ces_pmr_index_policy_packet.schema.json >/dev/null; python -m json.tool schema/bridge/ces_pmr_query_hint.schema.json >/dev/null; python -m json.tool schema/bridge/ces_pmr_non_authority_boundary.schema.json >/dev/null"
+      },
+      {
         "name": "Perturbation novelty lane Python entrypoint",
         "command": "python -c \"from pathlib import Path; from coherence.perturbation.observation_capture import build_perturbation_observation_capture; from coherence.perturbation.trunk_mapping import build_perturbation_trunk_mapping; from coherence.perturbation.residual_novelty_map import build_perturbation_residual_novelty_map; bridge=Path(r'C:\\UVLM\\run_artifacts\\perturbation_observation_capture\\bridge'); build_perturbation_observation_capture(bridge); build_perturbation_trunk_mapping(bridge); build_perturbation_residual_novelty_map(bridge)\""
       },

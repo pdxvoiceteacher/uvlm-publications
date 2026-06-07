@@ -3991,6 +3991,207 @@ CES_DESIGN_PHASE = {
     "reviewer_caution": "COHERENCE-EVENT-SIGNATURES-DESIGN-00 is design doctrine only; it emits no runtime artifacts, performs no similarity search, writes no memory, admits no Atlas memory, trains no model, exports no traces, federates no PMR, releases no product, and grants no truth, final-answer, accepted-evidence, identity, or biometric authority.",
 }
 
+CES_PMR_INDEXING_DESIGN_COMMAND = "python -c \"from pathlib import Path; Path('docs/CES_PMR_INDEXING_DESIGN.md').read_text(encoding='utf-8')\"; python -m json.tool config/ces/ces_pmr_indexing_policy.v1.json >/dev/null; python -m json.tool schema/bridge/ces_pmr_index_entry.schema.json >/dev/null; python -m json.tool schema/bridge/ces_pmr_index_policy_packet.schema.json >/dev/null; python -m json.tool schema/bridge/ces_pmr_query_hint.schema.json >/dev/null; python -m json.tool schema/bridge/ces_pmr_non_authority_boundary.schema.json >/dev/null"
+CES_PMR_INDEXING_DESIGN_ARTIFACTS = [
+    "docs/CES_PMR_INDEXING_DESIGN.md",
+    "config/ces/ces_pmr_indexing_policy.v1.json",
+    "schema/bridge/ces_pmr_index_entry.schema.json",
+    "schema/bridge/ces_pmr_index_policy_packet.schema.json",
+    "schema/bridge/ces_pmr_query_hint.schema.json",
+    "schema/bridge/ces_pmr_non_authority_boundary.schema.json",
+]
+CES_PMR_INDEXING_DESIGN_DOCTRINE_LANGUAGE = [
+    "CES PMR Indexing Design",
+    "CES indexes PMR.",
+    "CES does not replace PMR.",
+    "CES summarizes event state.",
+    "CES does not erase source.",
+    "CES accelerates retrieval.",
+    "CES does not authorize memory.",
+    "CES supports route-prior review.",
+    "CES does not train the model.",
+    "CES is the searchable event signature for PMR, while PMR remains the evidentiary replay store.",
+    "Every useful compression must preserve replayable provenance.",
+    "Compression without provenance becomes authority drift.",
+    "Provenance without compression becomes artifact bloat.",
+    "PMR stores the evidentiary body.",
+    "CES provides compact event index cards.",
+    "CES-PMR indexing may help find similar reviewed events, high-boundary-pressure events, TAC retention blocks, Sophia reality states, and candidate pathway-prior review cases.",
+    "CES-PMR indexing requires source expansion before decisions.",
+    "CES-PMR indexing does not authorize pathway-prior generation.",
+    "CES-PMR indexing does not write memory.",
+    "CES-PMR indexing does not admit Atlas memory.",
+    "CES-PMR indexing does not train a model.",
+    "CES-PMR indexing does not skip human review.",
+    "CES-PMR indexing does not delete PMR source artifacts.",
+    "CES-PMR indexing does not authorize trace export.",
+    "CES-PMR indexing does not authorize PMR federation.",
+    "CES-PMR indexing does not enable cross-user similarity.",
+    "CES-PMR indexing does not perform biometric scoring.",
+    "Human review remains required.",
+    "CES-PMR-INDEXING-DESIGN-00 does not emit runtime index artifacts.",
+    "CES-PMR-INDEXING-DESIGN-00 does not change runtime behavior.",
+]
+CES_PMR_INDEXING_DESIGN_INDEX_ROLES = [
+    "retrieve_candidate_events", "filter_by_governance_posture", "filter_by_tac_aperture",
+    "filter_by_retention_rights", "filter_by_validation_tier", "filter_by_sophia_reality",
+    "filter_by_metric_proxy_state", "surface_revocation_or_re_review_needs",
+    "support_future_pathway_prior_candidate_review",
+]
+CES_PMR_INDEXING_DESIGN_FORBIDDEN_ROLES = [
+    "replace_source_artifacts", "delete_replay_lineage", "certify_truth",
+    "authorize_final_answers", "grant_accepted_evidence_authority", "write_memory",
+    "admit_atlas_memory", "train_model", "skip_human_review", "authorize_trace_export",
+    "authorize_pmr_federation", "perform_cross_user_identity_matching",
+    "perform_biometric_scoring", "release_product",
+]
+CES_PMR_INDEXING_DESIGN_PRESERVED_SOURCE_CLASSES = [
+    "source_artifacts", "claim_evidence_map", "unsupported_claim_report",
+    "ai_receipt_event_chain", "tac_ai_receipt_event_reference_table",
+    "human_review_decision_receipt", "sophia_execution_reality_packet",
+    "validation_tier_receipt", "artifact_inventory", "export_bundle_parity_report",
+    "pmr_local_runtime_artifact_index",
+]
+CES_PMR_INDEXING_DESIGN_INDEX_FIELDS = [
+    "ces_id", "trace_id", "span_id", "event_index", "canonical_json_hash",
+    "metric_profile_ref", "E_review", "T_review", "Psi_review", "DeltaS_review",
+    "Lambda_boundary", "Es_review", "TAF_review_runtime_v0", "tac_aperture_mode",
+    "tac_retention_status", "tac_export_status", "tac_federation_status", "sophia_mode",
+    "sophia_decision_status", "validation_tier", "ai_receipt_refs", "pmr_record_refs",
+    "source_artifact_refs", "source_artifact_hashes", "revocation_state",
+    "expiration_or_re_review_policy", "human_review_required",
+]
+CES_PMR_INDEXING_DESIGN_QUERY_INTENTS = [
+    "find_similar_governed_review_paths", "find_events_with_high_boundary_pressure",
+    "find_events_with_low_T_review", "find_events_with_tac_retention_block",
+    "find_events_with_trace_export_block", "find_events_with_sophia_internal_builder_only",
+    "find_events_with_unsupported_claims",
+    "find_events_eligible_for_pathway_prior_candidate_review", "find_events_due_for_re_review",
+]
+CES_PMR_INDEXING_DESIGN_BOUNDARIES = [
+    "ces_pmr_index_is_not_user_identity", "ces_pmr_index_is_not_biometric_score",
+    "ces_pmr_index_is_not_cross_user_matching", "ces_pmr_index_similarity_is_not_truth",
+    "ces_pmr_index_similarity_is_not_identity_merge", "cross_user_similarity_disabled_by_default",
+    "federated_similarity_requires_review", "source_expansion_required_for_decisions",
+    "index_is_not_source", "index_is_not_truth_certification",
+    "index_is_not_final_answer_authority", "index_is_not_accepted_evidence_authority",
+    "index_is_not_memory_write", "index_is_not_atlas_memory_admission",
+    "index_is_not_model_training", "index_is_not_review_skip",
+    "index_is_not_trace_export_authorization", "index_is_not_federation_authorization",
+    "index_is_not_product_release", "index_requires_human_review",
+]
+CES_PMR_INDEXING_DESIGN_REVOCATION_TRIGGERS = [
+    "source_artifact_withdrawn", "source_hash_mismatch", "ces_hash_mismatch",
+    "ai_receipt_chain_superseded", "tac_boundary_violation", "sophia_reality_changed",
+    "validation_tier_reclassified", "human_review_reversal", "materiality_scope_changed",
+    "consent_scope_changed", "privacy_redaction_required", "retention_expired",
+]
+CES_PMR_INDEXING_DESIGN_BLOCKED_CLAIMS = [
+    "CES PMR index replaces PMR source artifacts",
+    "CES PMR index deletes replay lineage",
+    "CES PMR index certifies truth",
+    "CES PMR index authorizes final answers",
+    "CES PMR index grants accepted-evidence authority",
+    "CES PMR index writes memory",
+    "CES PMR index admits Atlas memory",
+    "CES PMR index trains the model",
+    "CES PMR index skips human review",
+    "CES PMR index authorizes trace export",
+    "CES PMR index authorizes PMR federation",
+    "CES PMR index performs cross-user identity matching",
+    "CES PMR index is a biometric score",
+    "CES PMR index releases product",
+    "CES similarity means same event",
+    "CES similarity means same user",
+    "CES cluster means truth",
+    "CES cluster means route prior is approved",
+    "CES lookup can avoid source expansion",
+    "compact index means source can be deleted",
+    "index hit means final answer is authorized",
+    "index hit means memory write is approved",
+]
+CES_PMR_INDEXING_DESIGN_CLAIM_ALLOWED = "CES-PMR indexing is proposed as a design-only compact event-index layer in which Coherence Event Signatures help retrieve and filter replayable PMR records while PMR remains the evidentiary store, source expansion remains required for decisions, and no memory write, Atlas admission, model training, review skipping, truth certification, accepted-evidence authority, trace export, PMR federation, cross-user matching, biometric scoring, product release, or runtime behavior change is authorized."
+CES_PMR_INDEXING_DESIGN_FAILURE_CLASSES = [
+    "index_mistaken_for_source", "index_hit_mistaken_for_truth",
+    "ces_similarity_mistaken_for_same_event", "ces_similarity_mistaken_for_same_user",
+    "compact_index_used_to_delete_source", "source_expansion_skipped",
+    "pathway_prior_approved_from_index_only", "memory_write_approved_from_index_hit",
+    "cross_user_similarity_performed_without_review", "biometric_risk_ignored",
+    "tac_boundary_status_ignored", "sophia_reality_status_ignored",
+    "validation_tier_status_ignored", "revocation_state_ignored", "retention_expiration_ignored",
+]
+CES_PMR_INDEXING_DESIGN_RELATION = [
+    "COHERENCE-EVENT-SIGNATURES-DESIGN-00 defines CES as event-level cognitive receipts.",
+    "PMR-PATHWAY-PRIORS-DESIGN-DOCTRINE-00 defines route priors as revocable review recommendations.",
+    "CES-PMR-INDEXING-DESIGN-00 defines CES as a compact PMR index, not a PMR source replacement.",
+    "Future runtime CES-PMR indexing remains disabled in this design patch.",
+]
+CES_PMR_INDEXING_DESIGN_REPRO_FRAGMENTS = [
+    "CES_PMR_INDEXING_DESIGN.md",
+    "ces_pmr_indexing_policy.v1.json",
+    "ces_pmr_index_entry.schema.json",
+    "ces_pmr_index_policy_packet.schema.json",
+    "ces_pmr_query_hint.schema.json",
+    "ces_pmr_non_authority_boundary.schema.json",
+]
+CES_PMR_INDEXING_DESIGN_DASHBOARD_SUMMARY = {
+    "policy_status": "active_design_only",
+    "runtime_behavior_changed": False,
+    "ces_pmr_indexing_enabled": False,
+    "ces_pmr_index_runtime_artifacts_emitted": False,
+    "pmr_source_replacement_performed": False,
+    "pmr_source_deletion_authorized": False,
+    "memory_write_performed": False,
+    "atlas_memory_admission_performed": False,
+    "model_training_performed": False,
+    "review_skip_authorized": False,
+    "similarity_search_enabled": False,
+    "cross_user_similarity_enabled": False,
+    "federated_similarity_enabled": False,
+    "trace_export_performed": False,
+    "pmr_federation_performed": False,
+    "product_release_performed": False,
+    "ces_pmr_index_definition": "compact_searchable_event_signature_index_for_replayable_pmr_records",
+    "ces_pmr_index_is_not_user_identity": True,
+    "ces_pmr_index_is_not_biometric_score": True,
+    "ces_pmr_index_is_not_cross_user_matching": True,
+    "ces_pmr_index_similarity_is_not_truth": True,
+    "ces_pmr_index_similarity_is_not_identity_merge": True,
+    "cross_user_similarity_disabled_by_default": True,
+    "federated_similarity_requires_review": True,
+    "source_expansion_required_for_decisions": True,
+    "human_review_required": True,
+    "index_is_not_source": True,
+    "index_is_not_truth_certification": True,
+    "index_is_not_final_answer_authority": True,
+    "index_is_not_accepted_evidence_authority": True,
+    "index_is_not_memory_write": True,
+    "index_is_not_atlas_memory_admission": True,
+    "index_is_not_model_training": True,
+    "index_is_not_review_skip": True,
+    "index_is_not_trace_export_authorization": True,
+    "index_is_not_federation_authorization": True,
+    "index_is_not_product_release": True,
+    "index_requires_human_review": True,
+}
+CES_PMR_INDEXING_DESIGN_PHASE = {
+    "phase_id": "CES-PMR-INDEXING-DESIGN-00",
+    "repo": "pdxvoiceteacher/CoherenceLattice",
+    "source_phase": "CES-PMR-INDEXING-DESIGN-00",
+    "status": "accepted_local_validation",
+    "publication_status": "dashboard_synced",
+    "evidence_type": "design_doctrine_config_schema_inspection",
+    "product_posture": "design_only_ces_pmr_indexing_no_runtime_emission_similarity_memory_training_or_release",
+    "authority_posture": "non_authoritative",
+    "public_claim_boundary": "design_doctrine_only_no_source_replacement_truth_memory_training_review_skip_export_federation_cross_user_biometric_product_or_runtime_authority",
+    "primary_artifacts": CES_PMR_INDEXING_DESIGN_ARTIFACTS,
+    "dashboard_summary": CES_PMR_INDEXING_DESIGN_DASHBOARD_SUMMARY,
+    "reproduction_command_summary": CES_PMR_INDEXING_DESIGN_COMMAND,
+    "claims_blocked": CES_PMR_INDEXING_DESIGN_BLOCKED_CLAIMS,
+    "claim_allowed": CES_PMR_INDEXING_DESIGN_CLAIM_ALLOWED,
+    "reviewer_caution": "CES-PMR-INDEXING-DESIGN-00 is design doctrine only; it emits no runtime index artifacts, enables no similarity search, replaces no PMR source, deletes no replay lineage, writes no memory, admits no Atlas memory, trains no model, skips no human review, exports no traces, federates no PMR, releases no product, and grants no truth, final-answer, accepted-evidence, identity, or biometric authority.",
+}
+
 PERTURBATION_OBSERVATION_ARTIFACTS = [
     "perturbation_observation_packet.json",
     "perturbation_axis_packet.json",
@@ -10653,6 +10854,7 @@ TAC_LOCAL_REVIEW_INTEGRATION_PHASE,
 TAC_AI_RECEIPT_EVENT_LINK_PHASE,
 PMR_PATHWAY_PRIORS_DESIGN_PHASE,
 CES_DESIGN_PHASE,
+CES_PMR_INDEXING_DESIGN_PHASE,
 PERTURBATION_OBSERVATION_CAPTURE_PHASE,
 PERTURBATION_TRUNK_MAPPING_PHASE,
 PERTURBATION_RESIDUAL_NOVELTY_MAP_PHASE,
@@ -12864,6 +13066,22 @@ BOUNDARIES.extend(
         CES_DESIGN_COMMAND,
         "Blocked overclaim examples for Coherence Event Signatures design publication boundaries.",
         *CES_DESIGN_BLOCKED_CLAIMS,
+        CES_PMR_INDEXING_DESIGN_CLAIM_ALLOWED,
+        *CES_PMR_INDEXING_DESIGN_ARTIFACTS,
+        *CES_PMR_INDEXING_DESIGN_DOCTRINE_LANGUAGE,
+        *CES_PMR_INDEXING_DESIGN_INDEX_ROLES,
+        *CES_PMR_INDEXING_DESIGN_FORBIDDEN_ROLES,
+        *CES_PMR_INDEXING_DESIGN_PRESERVED_SOURCE_CLASSES,
+        *CES_PMR_INDEXING_DESIGN_INDEX_FIELDS,
+        *CES_PMR_INDEXING_DESIGN_QUERY_INTENTS,
+        *CES_PMR_INDEXING_DESIGN_BOUNDARIES,
+        *CES_PMR_INDEXING_DESIGN_REVOCATION_TRIGGERS,
+        *CES_PMR_INDEXING_DESIGN_FAILURE_CLASSES,
+        *CES_PMR_INDEXING_DESIGN_RELATION,
+        *CES_PMR_INDEXING_DESIGN_REPRO_FRAGMENTS,
+        CES_PMR_INDEXING_DESIGN_COMMAND,
+        "Blocked overclaim examples for CES PMR Indexing Design publication boundaries.",
+        *CES_PMR_INDEXING_DESIGN_BLOCKED_CLAIMS,
     ]
 )
 BOUNDARIES.extend(
@@ -13507,6 +13725,31 @@ def dashboard_payload() -> dict[str, Any]:
         "not_ces_federation_authorization": True,
         "not_ces_product_release": True,
         "ces_requires_human_review": True,
+        "ces_pmr_indexing_design_00_indexed": True,
+        "ces_pmr_policy_status": "active_design_only",
+        "ces_pmr_runtime_behavior_changed": False,
+        "ces_pmr_indexing_enabled": False,
+        "ces_pmr_index_runtime_artifacts_emitted": False,
+        "ces_pmr_source_replacement_performed": False,
+        "ces_pmr_source_deletion_authorized": False,
+        "ces_pmr_memory_write_performed": False,
+        "ces_pmr_atlas_memory_admission_performed": False,
+        "ces_pmr_model_training_performed": False,
+        "ces_pmr_review_skip_authorized": False,
+        "ces_pmr_similarity_search_enabled": False,
+        "ces_pmr_cross_user_similarity_enabled": False,
+        "ces_pmr_federated_similarity_enabled": False,
+        "ces_pmr_trace_export_performed": False,
+        "ces_pmr_federation_performed": False,
+        "ces_pmr_product_release_performed": False,
+        "ces_pmr_index_definition": "compact_searchable_event_signature_index_for_replayable_pmr_records",
+        "ces_pmr_index_is_not_user_identity": True,
+        "ces_pmr_index_is_not_biometric_score": True,
+        "ces_pmr_index_is_not_cross_user_matching": True,
+        "ces_pmr_index_similarity_is_not_truth": True,
+        "ces_pmr_index_similarity_is_not_identity_merge": True,
+        "ces_pmr_source_expansion_required_for_decisions": True,
+        "ces_pmr_human_review_required": True,
         "not_validation_tiering_product_release": True,
         "not_validation_tiering_truth_certification": True,
         "not_validation_tiering_compliance_certification": True,
@@ -13599,6 +13842,7 @@ def reproducibility_index() -> dict[str, Any]:
                 {"name": "TAC-AI-RECEIPT-EVENT-LINK-00 Python entrypoint", "command": TAC_AI_RECEIPT_EVENT_LINK_COMMAND},
                 {"name": "PMR-PATHWAY-PRIORS-DESIGN-DOCTRINE-00 config/schema inspection", "command": PMR_PATHWAY_PRIORS_DESIGN_COMMAND},
                 {"name": "COHERENCE-EVENT-SIGNATURES-DESIGN-00 config/schema inspection", "command": CES_DESIGN_COMMAND},
+                {"name": "CES-PMR-INDEXING-DESIGN-00 config/schema inspection", "command": CES_PMR_INDEXING_DESIGN_COMMAND},
                 {"name": "Perturbation novelty lane Python entrypoint", "command": PERTURBATION_NOVELTY_LANE_COMMAND},
                 {"name": "Perturbation structure-affordance theorem card Python entrypoint", "command": PERTURBATION_STRUCTURE_AFFORDANCE_CARD_COMMAND},
                 {"name": "PMR Context Availability Ledger acceptance", "command": PMR_CONTEXT_AVAILABILITY_LEDGER_00_COMMAND},
@@ -14426,6 +14670,31 @@ def status_payload() -> dict[str, Any]:
         "not_ces_federation_authorization": True,
         "not_ces_product_release": True,
         "ces_requires_human_review": True,
+        "ces_pmr_indexing_design_00_indexed": True,
+        "ces_pmr_policy_status": "active_design_only",
+        "ces_pmr_runtime_behavior_changed": False,
+        "ces_pmr_indexing_enabled": False,
+        "ces_pmr_index_runtime_artifacts_emitted": False,
+        "ces_pmr_source_replacement_performed": False,
+        "ces_pmr_source_deletion_authorized": False,
+        "ces_pmr_memory_write_performed": False,
+        "ces_pmr_atlas_memory_admission_performed": False,
+        "ces_pmr_model_training_performed": False,
+        "ces_pmr_review_skip_authorized": False,
+        "ces_pmr_similarity_search_enabled": False,
+        "ces_pmr_cross_user_similarity_enabled": False,
+        "ces_pmr_federated_similarity_enabled": False,
+        "ces_pmr_trace_export_performed": False,
+        "ces_pmr_federation_performed": False,
+        "ces_pmr_product_release_performed": False,
+        "ces_pmr_index_definition": "compact_searchable_event_signature_index_for_replayable_pmr_records",
+        "ces_pmr_index_is_not_user_identity": True,
+        "ces_pmr_index_is_not_biometric_score": True,
+        "ces_pmr_index_is_not_cross_user_matching": True,
+        "ces_pmr_index_similarity_is_not_truth": True,
+        "ces_pmr_index_similarity_is_not_identity_merge": True,
+        "ces_pmr_source_expansion_required_for_decisions": True,
+        "ces_pmr_human_review_required": True,
         "not_validation_tiering_product_release": True,
         "not_validation_tiering_truth_certification": True,
         "not_validation_tiering_compliance_certification": True,
@@ -14596,10 +14865,23 @@ def docs() -> dict[str, str]:
     ces_design_pmr_relation = "\n".join(f"- {relation}" for relation in CES_DESIGN_PMR_RELATION)
     ces_design_repro_fragments = "\n".join(f"- {fragment}" for fragment in CES_DESIGN_REPRO_FRAGMENTS)
     ces_design_blocked = "\n".join(f"- {claim}" for claim in CES_DESIGN_BLOCKED_CLAIMS)
+    ces_pmr_indexing_artifacts = "\n".join(f"- {artifact}" for artifact in CES_PMR_INDEXING_DESIGN_ARTIFACTS)
+    ces_pmr_indexing_doctrine = "\n".join(f"- {phrase}" for phrase in CES_PMR_INDEXING_DESIGN_DOCTRINE_LANGUAGE)
+    ces_pmr_indexing_roles = "\n".join(f"- {role}" for role in CES_PMR_INDEXING_DESIGN_INDEX_ROLES)
+    ces_pmr_indexing_forbidden_roles = "\n".join(f"- {role}" for role in CES_PMR_INDEXING_DESIGN_FORBIDDEN_ROLES)
+    ces_pmr_indexing_source_classes = "\n".join(f"- {source_class}" for source_class in CES_PMR_INDEXING_DESIGN_PRESERVED_SOURCE_CLASSES)
+    ces_pmr_indexing_fields = "\n".join(f"- {field}" for field in CES_PMR_INDEXING_DESIGN_INDEX_FIELDS)
+    ces_pmr_indexing_query_intents = "\n".join(f"- {intent}" for intent in CES_PMR_INDEXING_DESIGN_QUERY_INTENTS)
+    ces_pmr_indexing_boundaries = "\n".join(f"- {boundary}" for boundary in CES_PMR_INDEXING_DESIGN_BOUNDARIES)
+    ces_pmr_indexing_revocation_triggers = "\n".join(f"- {trigger}" for trigger in CES_PMR_INDEXING_DESIGN_REVOCATION_TRIGGERS)
+    ces_pmr_indexing_blocked = "\n".join(f"- {claim}" for claim in CES_PMR_INDEXING_DESIGN_BLOCKED_CLAIMS)
+    ces_pmr_indexing_failure_classes = "\n".join(f"- {failure_class}" for failure_class in CES_PMR_INDEXING_DESIGN_FAILURE_CLASSES)
+    ces_pmr_indexing_relation = "\n".join(f"- {relation}" for relation in CES_PMR_INDEXING_DESIGN_RELATION)
+    ces_pmr_indexing_repro_fragments = "\n".join(f"- {fragment}" for fragment in CES_PMR_INDEXING_DESIGN_REPRO_FRAGMENTS)
     return {
         "README.md": "# Experiment Suite Docs\n\nPublic reviewer documentation for the claim-bounded reproducibility dashboard.\n",
         "assets/README.md": "# Assets\n\nOptional static assets for the public reproducibility dashboard.\n",
-        "index.md": f"# Public Experiment Suite Dashboard\n\nThis dashboard presents accepted evidence for reviewer orientation. It is not truth certification, not deployment authority, not final answer release, local fixture only, and requires external peer review.\n\n## Accepted evidence\n\n| Phase | Repo | Status | What this supports | Reviewer caution |\n| --- | --- | --- | --- | --- |\n{phase_rows}\n\n## Reviewer path\n\nStart with claim boundaries, then read the governed artifact cognition paper, WAVE Rosetta paper, SONYA-AEGIS-SMOKE-02, WAVE family, UNI-02D Sonya gate, and RETRO-LANE-00, Public Utility Alpha, Raw Baseline Comparison, Evidence Review Pack, RW-COMP-01, RW-COMP-02, Retrosynthesis Sandbox Cycle, Evidence Review Pack second-pass, RW-COMP-03, Universal Architecture Scaffold, Sonya Adapter Contract Registry, Sonya Adapter Smoke, Sonya Local Fixture Adapter, and Evidence Review Pack local adapter, Evidence Review Pack local adapter revision, RW-COMP local adapter, PMR doctrine, PMR local artifact index, PMR GPCU utility scoring, PMR lifecycle state machine, PMR lifecycle audit preflight, PMR Sophia lifecycle audit review, PMR destructive-action authorization preflight, PMR architecture diversity checkpoint, PMR simulation baseline comparison, PMR simulation statistical analysis, PMR federation stress corpus, PMR human provenance context, Sonya Local Fixture Adapter multi-route, and Sonya Local Fixture Adapter lineage clarity, Local Review metrics and flow, Metric Semantic Contract, Language Governance, Language Governance Audit Runtime, and Runtime Metrics Seed Corpus, PMR local queryable store, Retrosynthesis Readiness, Retrosynthesis Local Prototype, and Atlas Local Memory Admission Readiness, Atlas Local Memory Admission Prototype, Local-test Proxy Review, AI Context Performance Continuity, Theorem Validation Pathway, and COOP Entropy Dividend, Triadic LLM Metrics Smoke, UCC Sophia Control Forensics, UCC Standards Source Registry and Materiality, Triadic LLM Smoke PMR Inventory Contract Repair, AI Forensics Dossier, Human Review UX, Visual Review Model, Visual Review Static HTML Prototype, Static HTML Usability Review Seed, Static HTML Usability Revision, AI Receipt Architecture, Validation Tiering and Provenance, and Telemetry Aperture Controller, TAC Policy Simulation, TAC Local Review Integration, TAC AI Receipt Event Link, PMR Pathway Priors Design Doctrine, Coherence Event Signatures, Perturbation Observation Capture, Perturbation Trunk Mapping, and Perturbation Residual Novelty Map, and Perturbation Structure-Affordance Card pages.\n\n## What this proves\n\nIt proves only that accepted local fixture artifacts and draft publication materials are organized for review.\n\n## What this does not prove\n\nNo oracle posture, no deployment posture, no final-answer posture, no AI consciousness claim, and no universal ontology claim.\n\n## Phase pages\n\n- [SONYA-AEGIS-SMOKE-02](sonya-aegis-smoke-02.md)\n- [WAVE Gold-Physics](wave-gold-physics.md)\n- [UNI-02D Sonya gate](uni02d-sonya-gate.md)\n- [RETRO-LANE-00](retro-lane-00.md)\n- [Public Utility Alpha](public-utility-alpha.md)\n- [Raw Baseline Comparison](raw-baseline-comparison.md)\n- [Evidence Review Pack](evidence-review-pack.md)\n- [RW-COMP-01](rw-comp-01.md)\n- [RW-COMP-02](rw-comp-02.md)\n- [Retrosynthesis Sandbox Cycle](retrosynthesis-sandbox-cycle.md)\n- [Evidence Review Pack second pass](evidence-review-pack-second-pass.md)\n- [RW-COMP-03](rw-comp-03.md)\n- [Universal Architecture Scaffold](universal-architecture.md)\n- [Sonya Adapter Contract Registry](sonya-adapter-contract-registry.md)\n- [Sonya required membrane checkpoint](sonya-required-membrane-checkpoint.md)\n- [TEL event stack](tel-event-stack.md)\n- [Sonya Adapter Smoke](sonya-adapter-smoke.md)\n- [Sonya Local Fixture Adapter](sonya-local-fixture-adapter.md)\n- [Evidence Review Pack local adapter](evidence-review-pack-local-adapter.md)\n- [Evidence Review Pack local adapter revision](evidence-review-pack-local-adapter-revision.md)\n- [RW-COMP local adapter](rw-comp-local-adapter.md)\n- [Provenance Memory Reservoir](provenance-memory-reservoir.md)\n- [PMR local artifact index](pmr-local-artifact-index.md)\n- [Ontology Claim Registry](ontology-claim-registry.md)\n- [Local Sonya path portability](local-sonya-path-portability.md)\n- [TB Product Slice](tb-product-slice.md)\n- [TB Product Slice 01](tb-product-slice-01.md)\n- [Sonya Local Fixture Adapter multi-route](sonya-local-fixture-adapter-multi-route.md)\n- [Sonya Local Fixture Adapter lineage clarity](sonya-local-fixture-adapter-lineage.md)\n- [Local Review Runtime V0](local-review-runtime-v0.md)\n- [Local Review metrics and flow](local-review-metrics-flow.md)\n- [Runtime metrics seed corpus](runtime-metrics-seed-corpus.md)\n- [PMR local queryable store](pmr-local-queryable-store.md)\n- [Retrosynthesis readiness](retrosynthesis-readiness.md)\n- [Retrosynthesis local prototype](retrosynthesis-local-prototype.md)\n- [Atlas local memory admission readiness](atlas-local-memory-admission-readiness.md)\n- [AI Forensics Dossier](ai-forensics-dossier.md)\n- [Human Review UX](human-review-ux.md)\n- [Visual Review Model](visual-review-model.md)\n- [Visual Review Static HTML Prototype](visual-review-static-html-prototype.md)\n- [Perturbation Observation Capture](perturbation-observation-capture.md)\n- [Perturbation Trunk Mapping](perturbation-trunk-mapping.md)\n- [Perturbation Residual Novelty Map](perturbation-residual-novelty-map.md)\n- [Telemetry Aperture Controller](telemetry-aperture-controller.md)\n- [TAC Policy Simulation](tac-policy-simulation.md)\n- [TAC Local Review Integration](tac-local-review-integration.md)\n- [TAC AI Receipt Event Link](tac-ai-receipt-event-link.md)\n- [PMR Pathway Priors Design Doctrine](pmr-pathway-priors-design-doctrine.md)\n- [Coherence Event Signatures](coherence-event-signatures.md)\n- [Perturbation Structure-Affordance Card](perturbation-structure-affordance-card.md)\n- [Governed artifact cognition paper](governed-artifact-cognition-paper.md)\n- [Waveform Rosetta paper](waveform-rosetta-paper.md)\n",
+        "index.md": f"# Public Experiment Suite Dashboard\n\nThis dashboard presents accepted evidence for reviewer orientation. It is not truth certification, not deployment authority, not final answer release, local fixture only, and requires external peer review.\n\n## Accepted evidence\n\n| Phase | Repo | Status | What this supports | Reviewer caution |\n| --- | --- | --- | --- | --- |\n{phase_rows}\n\n## Reviewer path\n\nStart with claim boundaries, then read the governed artifact cognition paper, WAVE Rosetta paper, SONYA-AEGIS-SMOKE-02, WAVE family, UNI-02D Sonya gate, and RETRO-LANE-00, Public Utility Alpha, Raw Baseline Comparison, Evidence Review Pack, RW-COMP-01, RW-COMP-02, Retrosynthesis Sandbox Cycle, Evidence Review Pack second-pass, RW-COMP-03, Universal Architecture Scaffold, Sonya Adapter Contract Registry, Sonya Adapter Smoke, Sonya Local Fixture Adapter, and Evidence Review Pack local adapter, Evidence Review Pack local adapter revision, RW-COMP local adapter, PMR doctrine, PMR local artifact index, PMR GPCU utility scoring, PMR lifecycle state machine, PMR lifecycle audit preflight, PMR Sophia lifecycle audit review, PMR destructive-action authorization preflight, PMR architecture diversity checkpoint, PMR simulation baseline comparison, PMR simulation statistical analysis, PMR federation stress corpus, PMR human provenance context, Sonya Local Fixture Adapter multi-route, and Sonya Local Fixture Adapter lineage clarity, Local Review metrics and flow, Metric Semantic Contract, Language Governance, Language Governance Audit Runtime, and Runtime Metrics Seed Corpus, PMR local queryable store, Retrosynthesis Readiness, Retrosynthesis Local Prototype, and Atlas Local Memory Admission Readiness, Atlas Local Memory Admission Prototype, Local-test Proxy Review, AI Context Performance Continuity, Theorem Validation Pathway, and COOP Entropy Dividend, Triadic LLM Metrics Smoke, UCC Sophia Control Forensics, UCC Standards Source Registry and Materiality, Triadic LLM Smoke PMR Inventory Contract Repair, AI Forensics Dossier, Human Review UX, Visual Review Model, Visual Review Static HTML Prototype, Static HTML Usability Review Seed, Static HTML Usability Revision, AI Receipt Architecture, Validation Tiering and Provenance, and Telemetry Aperture Controller, TAC Policy Simulation, TAC Local Review Integration, TAC AI Receipt Event Link, PMR Pathway Priors Design Doctrine, Coherence Event Signatures, CES PMR Indexing Design, Perturbation Observation Capture, Perturbation Trunk Mapping, and Perturbation Residual Novelty Map, and Perturbation Structure-Affordance Card pages.\n\n## What this proves\n\nIt proves only that accepted local fixture artifacts and draft publication materials are organized for review.\n\n## What this does not prove\n\nNo oracle posture, no deployment posture, no final-answer posture, no AI consciousness claim, and no universal ontology claim.\n\n## Phase pages\n\n- [SONYA-AEGIS-SMOKE-02](sonya-aegis-smoke-02.md)\n- [WAVE Gold-Physics](wave-gold-physics.md)\n- [UNI-02D Sonya gate](uni02d-sonya-gate.md)\n- [RETRO-LANE-00](retro-lane-00.md)\n- [Public Utility Alpha](public-utility-alpha.md)\n- [Raw Baseline Comparison](raw-baseline-comparison.md)\n- [Evidence Review Pack](evidence-review-pack.md)\n- [RW-COMP-01](rw-comp-01.md)\n- [RW-COMP-02](rw-comp-02.md)\n- [Retrosynthesis Sandbox Cycle](retrosynthesis-sandbox-cycle.md)\n- [Evidence Review Pack second pass](evidence-review-pack-second-pass.md)\n- [RW-COMP-03](rw-comp-03.md)\n- [Universal Architecture Scaffold](universal-architecture.md)\n- [Sonya Adapter Contract Registry](sonya-adapter-contract-registry.md)\n- [Sonya required membrane checkpoint](sonya-required-membrane-checkpoint.md)\n- [TEL event stack](tel-event-stack.md)\n- [Sonya Adapter Smoke](sonya-adapter-smoke.md)\n- [Sonya Local Fixture Adapter](sonya-local-fixture-adapter.md)\n- [Evidence Review Pack local adapter](evidence-review-pack-local-adapter.md)\n- [Evidence Review Pack local adapter revision](evidence-review-pack-local-adapter-revision.md)\n- [RW-COMP local adapter](rw-comp-local-adapter.md)\n- [Provenance Memory Reservoir](provenance-memory-reservoir.md)\n- [PMR local artifact index](pmr-local-artifact-index.md)\n- [Ontology Claim Registry](ontology-claim-registry.md)\n- [Local Sonya path portability](local-sonya-path-portability.md)\n- [TB Product Slice](tb-product-slice.md)\n- [TB Product Slice 01](tb-product-slice-01.md)\n- [Sonya Local Fixture Adapter multi-route](sonya-local-fixture-adapter-multi-route.md)\n- [Sonya Local Fixture Adapter lineage clarity](sonya-local-fixture-adapter-lineage.md)\n- [Local Review Runtime V0](local-review-runtime-v0.md)\n- [Local Review metrics and flow](local-review-metrics-flow.md)\n- [Runtime metrics seed corpus](runtime-metrics-seed-corpus.md)\n- [PMR local queryable store](pmr-local-queryable-store.md)\n- [Retrosynthesis readiness](retrosynthesis-readiness.md)\n- [Retrosynthesis local prototype](retrosynthesis-local-prototype.md)\n- [Atlas local memory admission readiness](atlas-local-memory-admission-readiness.md)\n- [AI Forensics Dossier](ai-forensics-dossier.md)\n- [Human Review UX](human-review-ux.md)\n- [Visual Review Model](visual-review-model.md)\n- [Visual Review Static HTML Prototype](visual-review-static-html-prototype.md)\n- [Perturbation Observation Capture](perturbation-observation-capture.md)\n- [Perturbation Trunk Mapping](perturbation-trunk-mapping.md)\n- [Perturbation Residual Novelty Map](perturbation-residual-novelty-map.md)\n- [Telemetry Aperture Controller](telemetry-aperture-controller.md)\n- [TAC Policy Simulation](tac-policy-simulation.md)\n- [TAC Local Review Integration](tac-local-review-integration.md)\n- [TAC AI Receipt Event Link](tac-ai-receipt-event-link.md)\n- [PMR Pathway Priors Design Doctrine](pmr-pathway-priors-design-doctrine.md)\n- [Coherence Event Signatures](coherence-event-signatures.md)\n- [Perturbation Structure-Affordance Card](perturbation-structure-affordance-card.md)\n- [Governed artifact cognition paper](governed-artifact-cognition-paper.md)\n- [Waveform Rosetta paper](waveform-rosetta-paper.md)\n",
         "language-governance.md": f"""# Language Governance
 
 ## What was validated
@@ -15150,6 +15432,11 @@ AI-RECEIPT-ARCHITECTURE-00 synchronizes the locally validated AI Receipt Archite
 {AI_RECEIPT_ARCHITECTURE_COMMAND}
 ```
 
+
+## CES PMR Indexing Design relation
+
+CES-PMR-INDEXING-DESIGN-00 defines CES as a compact PMR index, not a PMR source replacement. CES indexes PMR; CES does not replace PMR. CES-PMR indexing requires source expansion before decisions, requires human review, emits no runtime index artifacts, changes no runtime behavior, and authorizes no memory write, Atlas admission, model training, review skipping, trace export, PMR federation, cross-user similarity, biometric scoring, product release, truth certification, final-answer authority, or accepted-evidence authority.
+
 ## Blocked overclaim examples for AI receipt architecture publication boundaries
 
 {ai_receipt_architecture_blocked}
@@ -15235,6 +15522,11 @@ VALIDATION-TIERING-PROVENANCE-00 synchronizes validation tier policy and validat
 ```powershell
 {VALIDATION_TIERING_PROVENANCE_COMMAND}
 ```
+
+
+## CES PMR Indexing Design relation
+
+CES-PMR-INDEXING-DESIGN-00 defines CES as a compact PMR index, not a PMR source replacement. CES indexes PMR; CES does not replace PMR. CES-PMR indexing requires source expansion before decisions, requires human review, emits no runtime index artifacts, changes no runtime behavior, and authorizes no memory write, Atlas admission, model training, review skipping, trace export, PMR federation, cross-user similarity, biometric scoring, product release, truth certification, final-answer authority, or accepted-evidence authority.
 
 ## Blocked overclaim examples for validation tiering provenance publication boundaries
 
@@ -15670,6 +15962,11 @@ TAC-AI-RECEIPT-EVENT-LINK-00 synchronizes locally validated TAC AI Receipt event
 {TAC_AI_RECEIPT_EVENT_LINK_COMMAND}
 ```
 
+
+## CES PMR Indexing Design relation
+
+CES-PMR-INDEXING-DESIGN-00 defines CES as a compact PMR index, not a PMR source replacement. CES indexes PMR; CES does not replace PMR. CES-PMR indexing requires source expansion before decisions, requires human review, emits no runtime index artifacts, changes no runtime behavior, and authorizes no memory write, Atlas admission, model training, review skipping, trace export, PMR federation, cross-user similarity, biometric scoring, product release, truth certification, final-answer authority, or accepted-evidence authority.
+
 ## Blocked overclaim examples for TAC AI Receipt event-link publication boundaries
 
 {tac_ai_receipt_event_link_blocked}
@@ -15728,6 +16025,11 @@ PMR-PATHWAY-PRIORS-DESIGN-DOCTRINE-00 synchronizes locally validated PMR pathway
 ```powershell
 {PMR_PATHWAY_PRIORS_DESIGN_COMMAND}
 ```
+
+
+## CES PMR Indexing Design relation
+
+CES-PMR-INDEXING-DESIGN-00 defines CES as a compact PMR index, not a PMR source replacement. CES indexes PMR; CES does not replace PMR. CES-PMR indexing requires source expansion before decisions, requires human review, emits no runtime index artifacts, changes no runtime behavior, and authorizes no memory write, Atlas admission, model training, review skipping, trace export, PMR federation, cross-user similarity, biometric scoring, product release, truth certification, final-answer authority, or accepted-evidence authority.
 
 ## Blocked overclaim examples for PMR pathway-prior design doctrine publication boundaries
 
@@ -15820,6 +16122,8 @@ COHERENCE-EVENT-SIGNATURES-DESIGN-00 synchronizes locally validated Coherence Ev
 
 {ces_design_pmr_relation}
 
+CES-PMR-INDEXING-DESIGN-00 defines CES as a compact PMR index, not a PMR source replacement. Future runtime CES-PMR indexing remains disabled in this design patch.
+
 ## Artifacts
 
 {ces_design_artifacts}
@@ -15839,6 +16143,113 @@ COHERENCE-EVENT-SIGNATURES-DESIGN-00 synchronizes locally validated Coherence Ev
 ## Allowed bounded claim
 
 {CES_DESIGN_CLAIM_ALLOWED}
+""",
+        "ces-pmr-indexing-design.md": f"""# CES PMR Indexing Design
+
+## What was validated
+
+CES-PMR-INDEXING-DESIGN-00 synchronizes locally validated CES-PMR indexing design doctrine to publication surfaces. This is publication/dashboard synchronization only and grants no runtime authority. CES-PMR indexing is design-only; no runtime index artifacts, similarity search, cross-user similarity, federated similarity, source replacement, source deletion, memory write, Atlas admission, model training, review skipping, trace export, PMR federation, product release, truth certification, final-answer authority, or accepted-evidence authority are authorized.
+
+## Dashboard summary
+
+- policy_status = active_design_only
+- runtime_behavior_changed = false
+- ces_pmr_indexing_enabled = false
+- ces_pmr_index_runtime_artifacts_emitted = false
+- pmr_source_replacement_performed = false
+- pmr_source_deletion_authorized = false
+- memory_write_performed = false
+- atlas_memory_admission_performed = false
+- model_training_performed = false
+- review_skip_authorized = false
+- similarity_search_enabled = false
+- cross_user_similarity_enabled = false
+- federated_similarity_enabled = false
+- trace_export_performed = false
+- pmr_federation_performed = false
+- product_release_performed = false
+- ces_pmr_index_definition = compact_searchable_event_signature_index_for_replayable_pmr_records
+- ces_pmr_index_is_not_user_identity = true
+- ces_pmr_index_is_not_biometric_score = true
+- ces_pmr_index_is_not_cross_user_matching = true
+- ces_pmr_index_similarity_is_not_truth = true
+- ces_pmr_index_similarity_is_not_identity_merge = true
+- cross_user_similarity_disabled_by_default = true
+- federated_similarity_requires_review = true
+- source_expansion_required_for_decisions = true
+- human_review_required = true
+- index_is_not_source = true
+- index_is_not_truth_certification = true
+- index_is_not_final_answer_authority = true
+- index_is_not_accepted_evidence_authority = true
+- index_is_not_memory_write = true
+- index_is_not_atlas_memory_admission = true
+- index_is_not_model_training = true
+- index_is_not_review_skip = true
+- index_is_not_trace_export_authorization = true
+- index_is_not_federation_authorization = true
+- index_is_not_product_release = true
+- index_requires_human_review = true
+
+## Core doctrine language
+
+{ces_pmr_indexing_doctrine}
+
+## Index roles
+
+{ces_pmr_indexing_roles}
+
+## Forbidden roles
+
+{ces_pmr_indexing_forbidden_roles}
+
+## Preserved PMR source classes
+
+{ces_pmr_indexing_source_classes}
+
+## CES index fields
+
+{ces_pmr_indexing_fields}
+
+## Query intents
+
+{ces_pmr_indexing_query_intents}
+
+## Non-authority boundaries
+
+{ces_pmr_indexing_boundaries}
+
+## Revocation triggers
+
+{ces_pmr_indexing_revocation_triggers}
+
+## Failure classes
+
+{ces_pmr_indexing_failure_classes}
+
+## Relation to CES and PMR pathway priors
+
+{ces_pmr_indexing_relation}
+
+## Artifacts
+
+{ces_pmr_indexing_artifacts}
+
+## Reproducibility fragments
+
+{ces_pmr_indexing_repro_fragments}
+
+```powershell
+{CES_PMR_INDEXING_DESIGN_COMMAND}
+```
+
+## Blocked overclaim examples for CES PMR Indexing Design publication boundaries
+
+{ces_pmr_indexing_blocked}
+
+## Allowed bounded claim
+
+{CES_PMR_INDEXING_DESIGN_CLAIM_ALLOWED}
 """,
         "runtime-metrics-seed-corpus.md": f"""# Runtime metrics seed corpus
 

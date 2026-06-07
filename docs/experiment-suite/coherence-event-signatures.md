@@ -183,6 +183,8 @@ COHERENCE-EVENT-SIGNATURES-DESIGN-00 synchronizes locally validated Coherence Ev
 - CES does not write memory.
 - CES does not admit Atlas memory.
 
+CES-PMR-INDEXING-DESIGN-00 defines CES as a compact PMR index, not a PMR source replacement. Future runtime CES-PMR indexing remains disabled in this design patch.
+
 ## Artifacts
 
 - docs/COHERENCE_EVENT_SIGNATURES.md
