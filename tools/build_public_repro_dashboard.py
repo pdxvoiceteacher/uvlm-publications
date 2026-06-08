@@ -9479,6 +9479,201 @@ MINIMAL_VIABLE_RECEIPT_LOCAL_PROTOTYPE_PHASE = {
     "reviewer_caution": "MINIMAL-VIABLE-RECEIPT-LOCAL-PROTOTYPE-00 is a local fixture-backed readable receipt prototype only; it performs no provider calls, network calls, product release, product-readiness claim, final-answer authorization, accepted-evidence grant, truth certification, memory write, Atlas admission, trace export, PMR federation, model training, review skipping, human benefit proof, or market validation.",
     "publication_status": "dashboard_indexed",
 }
+
+MVR_READABILITY_REVIEW_SEED_COMMAND = "python -c \"from pathlib import Path; from coherence.product.minimal_viable_receipt_readability_review import build_mvr_local_prototype_readability_review_seed; bridge=Path(r'C:\\UVLM\\run_artifacts\\mvr_readability_review_seed\\bridge'); build_mvr_local_prototype_readability_review_seed(bridge)\""
+MVR_READABILITY_REVIEW_SEED_REPRO_FRAGMENTS = ["build_mvr_local_prototype_readability_review_seed"]
+MVR_READABILITY_REVIEW_SEED_ARTIFACTS = [
+    "mvr_readability_questionnaire.json",
+    "mvr_readability_response_fixture.json",
+    "mvr_readability_review_packet.json",
+    "mvr_readability_revision_suggestions.json",
+    "mvr_readability_review_summary.md",
+    "mvr_readability_review_receipt.json",
+    "minimal_viable_receipt_human_readable.md",
+    "minimal_viable_receipt_packet.json",
+    "minimal_viable_receipt_local_prototype_receipt.json",
+    "pmr_local_runtime_artifact_index.json",
+    "artifact_inventory.json",
+    "run_artifact_manifest.json",
+    "export_bundle_manifest.json",
+    "export_bundle_parity_report.json",
+]
+MVR_READABILITY_REVIEW_SEED_SCHEMA_REFERENCES = [
+    "schema/bridge/mvr_readability_questionnaire.schema.json",
+    "schema/bridge/mvr_readability_response_fixture.schema.json",
+    "schema/bridge/mvr_readability_review_packet.schema.json",
+    "schema/bridge/mvr_readability_revision_suggestions.schema.json",
+    "schema/bridge/mvr_readability_review_receipt.schema.json",
+]
+MVR_READABILITY_REVIEW_SEED_DOCTRINE_LANGUAGE = [
+    "MVR Local Prototype Readability Review Seed",
+    "If the receipt is not readable, the product is not ready.",
+    "A receipt that only impresses architects is not product-ready.",
+    "This is a local readability review seed, not a human-subject study.",
+    "This is not a real user study.",
+    "This is not user validation.",
+    "This is not product readiness.",
+    "This is not product release.",
+    "This is not market validation.",
+    "This is not human benefit proof.",
+    "This is not truth certification.",
+    "The local fixture receipt remains non-product and non-authoritative.",
+    "Human review remains required.",
+    "Suggested revisions are not applied in this phase.",
+    "Readability gate is not passed in this phase.",
+    "Local fixture evidence is not accepted evidence.",
+    "The deterministic fixture preserves at least one unclear item to retain improvement pressure.",
+]
+MVR_READABILITY_REVIEW_SEED_QUESTIONNAIRE_DIMENSIONS = [
+    "receipt_purpose_clear",
+    "one_transaction_flow_clear",
+    "what_was_asked_clear",
+    "evidence_used_clear",
+    "rejected_or_quarantined_evidence_clear",
+    "ai_claims_clear",
+    "supported_claims_clear",
+    "unsupported_claims_clear",
+    "controls_applied_clear",
+    "observation_contract_notice_consent_clear",
+    "tac_aperture_posture_clear",
+    "ces_pmr_replay_posture_clear",
+    "sophia_governance_status_clear",
+    "validation_tier_clear",
+    "retention_status_clear",
+    "cost_burden_clear",
+    "contestability_options_clear",
+    "recovery_options_clear",
+    "non_authority_boundaries_clear",
+    "architecture_jargon_plain_language_clear",
+    "local_fixture_limitations_clear",
+]
+MVR_READABILITY_REVIEW_SEED_RATING_TERMS = ["clear", "somewhat_clear", "unclear", "not_applicable"]
+MVR_READABILITY_REVIEW_SEED_REVISION_SUGGESTION_IDS = [
+    "add_plain_language_glossary_for_architecture_terms",
+    "clarify_ces_pmr_replay_posture",
+    "clarify_observation_contract_notice_vs_consent",
+    "make_unsupported_claims_more_visually_prominent",
+    "clarify_local_fixture_evidence_is_not_accepted_evidence",
+    "add_top_level_non_authority_summary",
+]
+MVR_READABILITY_REVIEW_SEED_PRIOR_PHASE_RELATION = [
+    "MINIMAL-VIABLE-RECEIPT-DESIGN-00 defines the one-transaction/many-sections receipt standard.",
+    "MINIMAL-VIABLE-RECEIPT-LOCAL-PROTOTYPE-00 emits the local fixture-backed readable receipt.",
+    "MVR-LOCAL-PROTOTYPE-READABILITY-REVIEW-SEED-00 evaluates that receipt with deterministic local fixture responses.",
+    "AI-RECEIPT-ARCHITECTURE-00 defines the receipt architecture.",
+    "TRIADIC-OBSERVATION-CONTRACT-DESIGN-00 defines governed attention.",
+    "OBSERVATION-CONTRACT-POLICY-SIMULATION-00 rehearses notice, consent, recovery, source-expansion, pathway-prior, retention, trace-export, and PMR-federation policy outcomes.",
+    "TAC phases define aperture posture and review visibility.",
+    "COHERENCE-EVENT-SIGNATURES-DESIGN-00 defines event signatures.",
+    "CES-PMR-INDEXING-DESIGN-00 defines CES as a compact PMR index, not source replacement.",
+    "SOPHIA-EXECUTIVE-AUDIT-REALITY-CHECK-00 records whether external Sophia actually ran.",
+    "VALIDATION-TIERING-PROVENANCE-00 records validation confidence scope.",
+    "MET-SEM-00 keeps metric labels profile-scoped.",
+]
+MVR_READABILITY_REVIEW_SEED_BLOCKED_CLAIMS = [
+    "MVR readability review seed is a real user study",
+    "MVR readability review seed is a human-subject study",
+    "MVR readability review seed is user validation",
+    "MVR readability review seed proves product readiness",
+    "MVR readability review seed is product release",
+    "MVR readability review seed is market validation",
+    "MVR readability review seed proves human benefit",
+    "MVR readability review seed certifies truth",
+    "MVR readability review seed authorizes final answers",
+    "MVR readability review seed grants accepted-evidence authority",
+    "MVR readability review seed writes memory",
+    "MVR readability review seed admits Atlas memory",
+    "MVR readability review seed exports traces",
+    "MVR readability review seed federates PMR",
+    "MVR readability review seed trains the model",
+    "MVR readability review seed skips human review",
+    "readability gate passed",
+    "local readability fixture means real usability",
+    "clear_count means product readiness",
+    "suggested revisions are already applied",
+    "local fixture evidence is accepted evidence",
+    "readable fixture means product is ready",
+    "checklist completeness means answer correctness",
+    "contestability option guarantees reversal",
+    "recovery option performs memory write",
+    "source expansion can be skipped",
+    "unsupported claims can be hidden",
+]
+MVR_READABILITY_REVIEW_SEED_CLAIM_ALLOWED = "MVR-LOCAL-PROTOTYPE-READABILITY-REVIEW-SEED-00 emits deterministic local readability review seed artifacts for the fixture-backed Minimal Viable Receipt local prototype, preserving questionnaire dimensions, local response fixtures, revision suggestions, summary, and receipt records while keeping the readability gate unpassed and without performing a real user study, human-subject study, user validation, product-readiness claim, product release, market validation, human benefit proof, truth certification, final-answer authorization, accepted-evidence grant, memory write, Atlas admission, trace export, PMR federation, model training, or review skipping."
+MVR_READABILITY_REVIEW_SEED_FAILURE_CLASSES = [
+    "readability_seed_mistaken_for_user_validation",
+    "readability_seed_mistaken_for_human_subject_study",
+    "readability_seed_mistaken_for_product_readiness",
+    "readability_seed_mistaken_for_market_validation",
+    "clear_count_mistaken_for_product_readiness",
+    "readability_gate_seed_mistaken_for_gate_pass",
+    "suggested_revision_mistaken_for_applied_fix",
+    "local_fixture_evidence_mistaken_for_accepted_evidence",
+    "receipt_readability_mistaken_for_visual_polish",
+    "receipt_that_only_impresses_architects",
+    "unsupported_claims_hidden",
+    "source_expansion_missing",
+    "contestability_missing",
+    "recovery_path_missing",
+    "non_authority_boundaries_missing",
+]
+MVR_READABILITY_REVIEW_SEED_DASHBOARD_SUMMARY = {
+    "review_status": "completed",
+    "review_mode": "local_mvr_readability_review_seed",
+    "reviewer_id": "local_test_reviewer",
+    "response_count": 21,
+    "dimension_count": 21,
+    "clear_count": 13,
+    "somewhat_clear_count": 7,
+    "unclear_count": 1,
+    "suggested_revision_count": 6,
+    "readability_gate_status": "seed_review_only",
+    "readability_gate_passed": False,
+    "local_test_mode": True,
+    "real_user_study_performed": False,
+    "human_subject_study_performed": False,
+    "product_readiness_claimed": False,
+    "product_release_performed": False,
+    "market_validation_emitted": False,
+    "human_benefit_proof_emitted": False,
+    "truth_certification_emitted": False,
+    "memory_write_performed": False,
+    "atlas_memory_admission_performed": False,
+    "trace_export_performed": False,
+    "pmr_federation_performed": False,
+    "provider_runtime_performed": False,
+    "network_call_performed": False,
+    "final_answer_authority_granted": False,
+    "accepted_evidence_authority_granted": False,
+    "review_is_not_product_readiness": True,
+    "review_is_not_user_validation": True,
+    "review_is_not_truth_certification": True,
+    "review_requires_human_review": True,
+    "fixture_is_not_user_validation": True,
+    "fixture_requires_human_review": True,
+    "receipt_is_not_product_readiness": True,
+    "receipt_is_not_user_validation": True,
+    "receipt_requires_human_review": True,
+    "suggestions_are_not_applied": True,
+    "suggestions_are_not_product_readiness": True,
+    "suggestions_require_human_review": True,
+}
+MVR_READABILITY_REVIEW_SEED_PHASE = {
+    "phase_id": "MVR-LOCAL-PROTOTYPE-READABILITY-REVIEW-SEED-00",
+    "repo": "pdxvoiceteacher/CoherenceLattice",
+    "status": "accepted_local_validation",
+    "evidence_type": "local_fixture_readability_review_seed_publication_sync",
+    "product_posture": "deterministic_local_readability_seed_without_user_validation_or_runtime_authority",
+    "primary_artifacts": MVR_READABILITY_REVIEW_SEED_ARTIFACTS,
+    "schema_references": MVR_READABILITY_REVIEW_SEED_SCHEMA_REFERENCES,
+    "dashboard_summary": MVR_READABILITY_REVIEW_SEED_DASHBOARD_SUMMARY,
+    "reproduction_command_summary": MVR_READABILITY_REVIEW_SEED_COMMAND,
+    "claim_allowed": MVR_READABILITY_REVIEW_SEED_CLAIM_ALLOWED,
+    "claims_blocked": MVR_READABILITY_REVIEW_SEED_BLOCKED_CLAIMS,
+    "reviewer_caution": "MVR-LOCAL-PROTOTYPE-READABILITY-REVIEW-SEED-00 is a deterministic local readability review seed, not a real user study, human-subject study, user validation, product readiness, product release, market validation, human benefit proof, truth certification, final-answer authority, accepted-evidence authority, memory write, Atlas admission, trace export, PMR federation, model training, review skip, provider runtime, or network runtime.",
+    "publication_status": "dashboard_indexed",
+}
+
 VALIDATION_TIERING_PROVENANCE_COMMAND = "python -c \"from pathlib import Path; from coherence.validation.validation_receipt import build_validation_tier_receipt; bridge=Path(r'C:\\UVLM\\run_artifacts\\validation_tiering\\bridge'); policy_ref='validation_tier_policy.v1.json'; build_validation_tier_receipt(bridge, source_phase='AI-RECEIPT-ARCHITECTURE-00', validation_tier='deep', validation_scope='full_multi_module_suite', validation_intent='major_sync_or_handoff_grade_validation', commands_run=[{'command':'python -m pytest -q <full_multi_module_suite>', 'result':'passed', 'duration_seconds':32131.86}], artifact_chain_name='ai_receipt_architecture_product_stack', expected_artifacts=['ai_receipt_architecture_packet.json','ai_receipt_event_chain.json','ai_receipt_architecture.md','ai_receipt_architecture_receipt.json'], observed_artifacts=['ai_receipt_architecture_packet.json','ai_receipt_event_chain.json','ai_receipt_architecture.md','ai_receipt_architecture_receipt.json'], validation_result='passed')\""
 VALIDATION_TIERING_PROVENANCE_ARTIFACTS = [
     "config/validation/validation_tier_policy.v1.json",
@@ -12201,6 +12396,7 @@ STATIC_HTML_USABILITY_REVISION_PHASE,
 AI_RECEIPT_ARCHITECTURE_PHASE,
 MINIMAL_VIABLE_RECEIPT_DESIGN_PHASE,
 MINIMAL_VIABLE_RECEIPT_LOCAL_PROTOTYPE_PHASE,
+MVR_READABILITY_REVIEW_SEED_PHASE,
 VALIDATION_TIERING_PROVENANCE_PHASE,
 TELEMETRY_APERTURE_DESIGN_PHASE,
 TAC_POLICY_SIMULATION_PHASE,
@@ -14368,6 +14564,18 @@ BOUNDARIES.extend(
         *MINIMAL_VIABLE_RECEIPT_LOCAL_PROTOTYPE_FAILURE_CLASSES,
         "Blocked overclaim examples for Minimal Viable Receipt Local Prototype publication boundaries.",
         *MINIMAL_VIABLE_RECEIPT_LOCAL_PROTOTYPE_BLOCKED_CLAIMS,
+        MVR_READABILITY_REVIEW_SEED_CLAIM_ALLOWED,
+        *MVR_READABILITY_REVIEW_SEED_ARTIFACTS,
+        *MVR_READABILITY_REVIEW_SEED_SCHEMA_REFERENCES,
+        *MVR_READABILITY_REVIEW_SEED_REPRO_FRAGMENTS,
+        *MVR_READABILITY_REVIEW_SEED_DOCTRINE_LANGUAGE,
+        *MVR_READABILITY_REVIEW_SEED_QUESTIONNAIRE_DIMENSIONS,
+        *MVR_READABILITY_REVIEW_SEED_RATING_TERMS,
+        *MVR_READABILITY_REVIEW_SEED_REVISION_SUGGESTION_IDS,
+        *MVR_READABILITY_REVIEW_SEED_PRIOR_PHASE_RELATION,
+        *MVR_READABILITY_REVIEW_SEED_FAILURE_CLASSES,
+        "Blocked overclaim examples for MVR Local Prototype Readability Review Seed publication boundaries.",
+        *MVR_READABILITY_REVIEW_SEED_BLOCKED_CLAIMS,
         VALIDATION_TIERING_PROVENANCE_CLAIM_ALLOWED,
         *VALIDATION_TIERING_PROVENANCE_ARTIFACTS,
         *VALIDATION_TIERING_PROVENANCE_TIER_TERMS,
@@ -14571,6 +14779,25 @@ def _write_text(path: Path, text: str) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(text, encoding="utf-8")
 
+
+BOUNDARIES.extend(
+    [
+        MVR_READABILITY_REVIEW_SEED_CLAIM_ALLOWED,
+        "MVR-LOCAL-PROTOTYPE-READABILITY-REVIEW-SEED-00 is a local readability review seed, not a real user study.",
+        "MVR-LOCAL-PROTOTYPE-READABILITY-REVIEW-SEED-00 is not user validation.",
+        "MVR-LOCAL-PROTOTYPE-READABILITY-REVIEW-SEED-00 is not product readiness.",
+        "MVR-LOCAL-PROTOTYPE-READABILITY-REVIEW-SEED-00 is not product release.",
+        "MVR-LOCAL-PROTOTYPE-READABILITY-REVIEW-SEED-00 is not market validation.",
+        "MVR-LOCAL-PROTOTYPE-READABILITY-REVIEW-SEED-00 is not human benefit proof.",
+        "MVR-LOCAL-PROTOTYPE-READABILITY-REVIEW-SEED-00 is not truth certification.",
+        "MVR-LOCAL-PROTOTYPE-READABILITY-REVIEW-SEED-00 grants no final-answer authority.",
+        "MVR-LOCAL-PROTOTYPE-READABILITY-REVIEW-SEED-00 grants no accepted-evidence authority.",
+        "MVR-LOCAL-PROTOTYPE-READABILITY-REVIEW-SEED-00 performs no memory write, Atlas admission, trace export, PMR federation, provider runtime, network runtime, model training, or review skipping.",
+        "Readability gate is not passed in this phase.",
+        "Suggested revisions are not applied in this phase.",
+        "Local fixture evidence is not accepted evidence.",
+    ]
+)
 
 def _dedupe_accepted_phases(phases: list[dict[str, Any]]) -> list[dict[str, Any]]:
     """Return one accepted phase entry per phase_id.
@@ -15215,6 +15442,12 @@ def dashboard_payload() -> dict[str, Any]:
         "observation_contract_policy_simulation_product_release_performed": False,
         "observation_contract_policy_simulation_truth_certification_emitted": False,
         "minimal_viable_receipt_local_prototype_00_indexed": True,
+        "mvr_local_prototype_readability_review_seed_00_indexed": True,
+        "mvr_local_prototype_readability_review_seed_status": "completed",
+        "mvr_readability_gate_passed": False,
+        "not_mvr_readability_review_seed_user_validation": True,
+        "not_mvr_readability_review_seed_product_readiness": True,
+        "not_mvr_readability_review_seed_runtime_authority": True,
         "minimal_viable_receipt_local_prototype_status": "completed",
         "minimal_viable_receipt_local_prototype_mode": "local_fixture_receipt_prototype",
         "minimal_viable_receipt_local_prototype_runtime_behavior_changed": False,
@@ -15313,6 +15546,7 @@ def reproducibility_index() -> dict[str, Any]:
                 {"name": "AI Receipt Architecture Python entrypoint", "command": AI_RECEIPT_ARCHITECTURE_COMMAND},
                 {"name": "MINIMAL-VIABLE-RECEIPT-DESIGN-00 design validation", "command": MINIMAL_VIABLE_RECEIPT_DESIGN_COMMAND},
                 {"name": "MINIMAL-VIABLE-RECEIPT-LOCAL-PROTOTYPE-00 Python entrypoint", "command": MINIMAL_VIABLE_RECEIPT_LOCAL_PROTOTYPE_COMMAND},
+                {"name": "MVR-LOCAL-PROTOTYPE-READABILITY-REVIEW-SEED-00 Python entrypoint", "command": MVR_READABILITY_REVIEW_SEED_COMMAND},
                 {"name": "Validation Tiering Provenance Python entrypoint", "command": VALIDATION_TIERING_PROVENANCE_COMMAND},
                 {"name": "TELEMETRY-APERTURE-DESIGN-00 config/schema inspection", "command": TELEMETRY_APERTURE_DESIGN_COMMAND},
                 {"name": "TAC-POLICY-SIMULATION-00 Python entrypoint", "command": TAC_POLICY_SIMULATION_COMMAND},
@@ -16228,6 +16462,12 @@ def status_payload() -> dict[str, Any]:
         "observation_contract_policy_simulation_product_release_performed": False,
         "observation_contract_policy_simulation_truth_certification_emitted": False,
         "minimal_viable_receipt_local_prototype_00_indexed": True,
+        "mvr_local_prototype_readability_review_seed_00_indexed": True,
+        "mvr_local_prototype_readability_review_seed_status": "completed",
+        "mvr_readability_gate_passed": False,
+        "not_mvr_readability_review_seed_user_validation": True,
+        "not_mvr_readability_review_seed_product_readiness": True,
+        "not_mvr_readability_review_seed_runtime_authority": True,
         "minimal_viable_receipt_local_prototype_status": "completed",
         "minimal_viable_receipt_local_prototype_mode": "local_fixture_receipt_prototype",
         "minimal_viable_receipt_local_prototype_runtime_behavior_changed": False,
@@ -21448,6 +21688,89 @@ TRIADIC-OBSERVATION-CONTRACT-DESIGN-00 adds a design-only Triadic Observation Co
 The contract names allowed_observation_scope, observation_resolution, purpose_binding, consent_scope, retention_scope, replay_scope, disclosure_scope, federation_scope, recovery_rights, and non_authority_boundaries. It relates TAC aperture policy and simulation, CES event receipts, CES PMR indexing, PMR pathway priors, AI Receipt Architecture, Sophia execution-reality boundaries, and Validation Tiering Provenance without granting final-answer authority, accepted-evidence authority, truth certification, or surveillance authorization.
 """
 
+MVR_READABILITY_REVIEW_SEED_SYNC_DOCS = {
+    "index.md",
+    "minimal-viable-receipt-design.md",
+    "minimal-viable-receipt-local-prototype.md",
+    "ai-receipt-architecture.md",
+    "triadic-observation-contract.md",
+    "observation-contract-policy-simulation.md",
+    "coherence-event-signatures.md",
+    "ces-pmr-indexing-design.md",
+    "validation-tiering-provenance.md",
+    "claim-boundaries.md",
+}
+MVR_READABILITY_REVIEW_SEED_SYNC_NOTE = f"""
+
+## MVR Local Prototype Readability Review Seed publication sync
+
+MVR-LOCAL-PROTOTYPE-READABILITY-REVIEW-SEED-00 evaluates the MINIMAL-VIABLE-RECEIPT-LOCAL-PROTOTYPE-00 fixture-backed readable receipt with deterministic local fixture responses. If the receipt is not readable, the product is not ready. A receipt that only impresses architects is not product-ready. This is a local readability review seed, not a human-subject study. This is not a real user study. This is not user validation. This is not product readiness. This is not product release. This is not market validation. This is not human benefit proof. This is not truth certification. The local fixture receipt remains non-product and non-authoritative. Human review remains required. Suggested revisions are not applied in this phase. Readability gate is not passed in this phase. Local fixture evidence is not accepted evidence. The deterministic fixture preserves at least one unclear item to retain improvement pressure.
+
+Artifacts include mvr_readability_questionnaire.json, mvr_readability_response_fixture.json, mvr_readability_review_packet.json, mvr_readability_revision_suggestions.json, mvr_readability_review_summary.md, mvr_readability_review_receipt.json, minimal_viable_receipt_human_readable.md, minimal_viable_receipt_packet.json, minimal_viable_receipt_local_prototype_receipt.json, pmr_local_runtime_artifact_index.json, artifact_inventory.json, run_artifact_manifest.json, export_bundle_manifest.json, and export_bundle_parity_report.json. Schemas include schema/bridge/mvr_readability_questionnaire.schema.json, schema/bridge/mvr_readability_response_fixture.schema.json, schema/bridge/mvr_readability_review_packet.schema.json, schema/bridge/mvr_readability_revision_suggestions.schema.json, and schema/bridge/mvr_readability_review_receipt.schema.json. Reproduction references build_mvr_local_prototype_readability_review_seed.
+
+See [MVR Local Prototype Readability Review Seed](mvr-local-prototype-readability-review-seed.md).
+"""
+
+def mvr_local_prototype_readability_review_seed_doc() -> str:
+    summary = "\n".join(f"- {key} = {str(value).lower() if isinstance(value, bool) else value}" for key, value in MVR_READABILITY_REVIEW_SEED_DASHBOARD_SUMMARY.items())
+    return f"""# MVR Local Prototype Readability Review Seed
+
+MVR-LOCAL-PROTOTYPE-READABILITY-REVIEW-SEED-00 synchronizes the locally validated CoherenceLattice MVR Local Prototype Readability Review Seed into publication dashboards. This is publication/dashboard synchronization only. It is a deterministic local scaffold for the fixture-backed Minimal Viable Receipt local prototype.
+
+## Bounded allowed claim
+
+{MVR_READABILITY_REVIEW_SEED_CLAIM_ALLOWED}
+
+## Doctrine language
+
+{_bullets(MVR_READABILITY_REVIEW_SEED_DOCTRINE_LANGUAGE)}
+
+## Dashboard summary
+
+{summary}
+
+## Questionnaire dimensions
+
+{_bullets(MVR_READABILITY_REVIEW_SEED_QUESTIONNAIRE_DIMENSIONS)}
+
+## Rating terms
+
+{_bullets(MVR_READABILITY_REVIEW_SEED_RATING_TERMS)}
+
+## Revision suggestion IDs
+
+{_bullets(MVR_READABILITY_REVIEW_SEED_REVISION_SUGGESTION_IDS)}
+
+## Artifact references
+
+{_bullets(MVR_READABILITY_REVIEW_SEED_ARTIFACTS)}
+
+## Schema references
+
+{_bullets(MVR_READABILITY_REVIEW_SEED_SCHEMA_REFERENCES)}
+
+## Relation to prior phases
+
+{_bullets(MVR_READABILITY_REVIEW_SEED_PRIOR_PHASE_RELATION)}
+
+## Failure classes
+
+{_bullets(MVR_READABILITY_REVIEW_SEED_FAILURE_CLASSES)}
+
+## Blocked claims
+
+{_bullets(MVR_READABILITY_REVIEW_SEED_BLOCKED_CLAIMS)}
+
+## Reproducibility
+
+- {MVR_READABILITY_REVIEW_SEED_REPRO_FRAGMENTS[0]}
+- `{MVR_READABILITY_REVIEW_SEED_COMMAND}`
+
+## Runtime authority boundary
+
+Publication sync grants no runtime authority. It performs no provider runtime, network runtime, memory write, Atlas memory admission, trace export, PMR federation, product release, product-readiness claim, final-answer authorization, accepted-evidence grant, truth certification, model training, or review skipping.
+"""
+
 def build(out_dir: Path, docs_dir: Path) -> None:
     _write_json(out_dir / "experiment_suite_dashboard.json", dashboard_payload())
     _write_json(out_dir / "accepted_phase_matrix.json", accepted_phase_matrix())
@@ -21458,6 +21781,7 @@ def build(out_dir: Path, docs_dir: Path) -> None:
     docs_payload = docs()
     docs_payload["minimal-viable-receipt-design.md"] = minimal_viable_receipt_design_doc()
     docs_payload["minimal-viable-receipt-local-prototype.md"] = minimal_viable_receipt_local_prototype_doc()
+    docs_payload["mvr-local-prototype-readability-review-seed.md"] = mvr_local_prototype_readability_review_seed_doc()
     for name in MINIMAL_VIABLE_RECEIPT_DESIGN_SYNC_DOCS:
         if name in docs_payload:
             docs_payload[name] = docs_payload[name].rstrip() + MINIMAL_VIABLE_RECEIPT_DESIGN_SYNC_NOTE
@@ -21470,6 +21794,9 @@ def build(out_dir: Path, docs_dir: Path) -> None:
     for name in OBSERVATION_CONTRACT_POLICY_SIMULATION_SYNC_DOCS:
         if name in docs_payload:
             docs_payload[name] = docs_payload[name].rstrip() + OBSERVATION_CONTRACT_POLICY_SIMULATION_SYNC_NOTE
+    for name in MVR_READABILITY_REVIEW_SEED_SYNC_DOCS:
+        if name in docs_payload:
+            docs_payload[name] = docs_payload[name].rstrip() + MVR_READABILITY_REVIEW_SEED_SYNC_NOTE
     for name, text in docs_payload.items():
         _write_text(docs_dir / name, text)
 

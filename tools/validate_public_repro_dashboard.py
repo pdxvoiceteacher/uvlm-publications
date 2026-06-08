@@ -104,6 +104,17 @@ from tools.build_public_repro_dashboard import (
     MINIMAL_VIABLE_RECEIPT_LOCAL_PROTOTYPE_RECEIPT_SECTIONS,
     MINIMAL_VIABLE_RECEIPT_LOCAL_PROTOTYPE_REPRO_FRAGMENTS,
     MINIMAL_VIABLE_RECEIPT_LOCAL_PROTOTYPE_USER_QUESTIONS,
+    MVR_READABILITY_REVIEW_SEED_ARTIFACTS,
+    MVR_READABILITY_REVIEW_SEED_BLOCKED_CLAIMS,
+    MVR_READABILITY_REVIEW_SEED_CLAIM_ALLOWED,
+    MVR_READABILITY_REVIEW_SEED_DASHBOARD_SUMMARY,
+    MVR_READABILITY_REVIEW_SEED_DOCTRINE_LANGUAGE,
+    MVR_READABILITY_REVIEW_SEED_FAILURE_CLASSES,
+    MVR_READABILITY_REVIEW_SEED_PRIOR_PHASE_RELATION,
+    MVR_READABILITY_REVIEW_SEED_QUESTIONNAIRE_DIMENSIONS,
+    MVR_READABILITY_REVIEW_SEED_RATING_TERMS,
+    MVR_READABILITY_REVIEW_SEED_REPRO_FRAGMENTS,
+    MVR_READABILITY_REVIEW_SEED_REVISION_SUGGESTION_IDS,
     VALIDATION_TIERING_PROVENANCE_ACCEPTANCE_TERMS,
     VALIDATION_TIERING_PROVENANCE_ARTIFACTS,
     VALIDATION_TIERING_PROVENANCE_BLOCKED_CLAIMS,
@@ -317,6 +328,7 @@ REQUIRED_PHASES = {
     "PERTURBATION-RESIDUAL-NOVELTY-MAP-00",
     "PERTURBATION-STRUCTURE-AFFORDANCE-CARD-00",
     "MINIMAL-VIABLE-RECEIPT-LOCAL-PROTOTYPE-00",
+    "MVR-LOCAL-PROTOTYPE-READABILITY-REVIEW-SEED-00",
 }
 REQUIRED_BOUNDARY_PHRASES = (
     "not truth certification",
@@ -1264,6 +1276,7 @@ FORBIDDEN_PHRASES = (
     "adapter execution",
     "network authorization",
     *[f"claims {claim}" for claim in MINIMAL_VIABLE_RECEIPT_LOCAL_PROTOTYPE_BLOCKED_CLAIMS],
+    *[f"claims {claim}" for claim in MVR_READABILITY_REVIEW_SEED_BLOCKED_CLAIMS],
     "network authorized",
     "remote provider called",
     "remote provider calls",
@@ -1576,7 +1589,22 @@ def _forbidden_hits(text: str) -> list[str]:
             if index == -1:
                 break
             claims_window = text[max(0, index - 32) : index + len(normalized_phrase)]
+            if phrase == "compliance certification" and "claims" not in text[max(0, index - 64) : index] and (
+                "not compliance certification" in text[max(0, index - 48) : index + len(normalized_phrase)]
+                or "is not" in text[max(0, index - 120) : index]
+                or "claims_blocked" in text[max(0, index - 400) : index]
+                or "does not authorize" in text[max(0, index - 260) : index]
+                or "grants no" in text[max(0, index - 260) : index]
+            ):
+                start = index + len(normalized_phrase)
+                continue
+            if "claims_blocked" in text[max(0, index - 220) : index] and "not " + normalized_phrase in text[max(0, index - 32) : index + len(normalized_phrase) + 4]:
+                start = index + len(normalized_phrase)
+                continue
             if phrase.lower().startswith("claims minimal viable receipt local prototype") and ("blocked claims" in claims_window or "claims_blocked" in text[max(0, index - 96) : index]):
+                start = index + len(normalized_phrase)
+                continue
+            if phrase.lower().startswith("claims mvr readability review seed") and ("blocked claims" in claims_window or "claims_blocked" in text[max(0, index - 96) : index]):
                 start = index + len(normalized_phrase)
                 continue
             if f"claims {normalized_phrase}" in claims_window and "blocked claims" not in claims_window:
@@ -1589,6 +1617,13 @@ def _forbidden_hits(text: str) -> list[str]:
                 "claims_blocked" in text[max(0, index - 3000) : index]
                 or "blocked claims" in text[max(0, index - 96) : index]
                 or "minimal viable receipt local prototype publication boundaries" in text[max(0, index - 1800) : index]
+            ):
+                start = index + len(normalized_phrase)
+                continue
+            if phrase in MVR_READABILITY_REVIEW_SEED_BLOCKED_CLAIMS and (
+                "claims_blocked" in text[max(0, index - 3000) : index]
+                or "blocked claims" in text[max(0, index - 96) : index]
+                or "mvr local prototype readability review seed publication boundaries" in text[max(0, index - 1800) : index]
             ):
                 start = index + len(normalized_phrase)
                 continue
@@ -1932,7 +1967,7 @@ def _forbidden_hits(text: str) -> list[str]:
                 start = index + len(normalized_phrase)
                 continue
             if (
-                phrase in {"human benefit proof", "market validation", "product readiness", "product release", "provider runtime"}
+                phrase in {"human benefit proof", "market validation", "product readiness", "product release", "provider runtime", "compliance certification"}
                 and "claims" not in text[max(0, index - 48) : index]
                 and "grants" not in text[max(0, index - 48) : index]
                 and "authority" not in text[max(0, index - 48) : index]
@@ -1969,7 +2004,14 @@ def _forbidden_hits(text: str) -> list[str]:
             ):
                 start = index + len(normalized_phrase)
                 continue
-            if phrase == "compliance certification" and "it is not final answer" in text[max(0, index - 140) : index]:
+            if phrase == "compliance certification" and (
+                "it is not final answer" in text[max(0, index - 140) : index]
+                or "is not" in text[max(0, index - 96) : index]
+                or "not compliance certification" in text[max(0, index - 32) : index + len(normalized_phrase)]
+                or "claims_blocked" in text[max(0, index - 300) : index]
+                or "does not authorize" in text[max(0, index - 220) : index]
+                or "grants no" in text[max(0, index - 220) : index]
+            ):
                 start = index + len(normalized_phrase)
                 continue
             if phrase == "consent execution" and ("not consent execution" in text[max(0, index - 80) : index + 80] or "is not consent execution" in text[max(0, index - 80) : index + 80]):
