@@ -1180,6 +1180,22 @@
       "export_bundle_manifest.json",
       "export_bundle_parity_report.json"
     ],
+    "MVR-LOCAL-PROTOTYPE-READABILITY-REVIEW-SEED-00": [
+      "mvr_readability_questionnaire.json",
+      "mvr_readability_response_fixture.json",
+      "mvr_readability_review_packet.json",
+      "mvr_readability_revision_suggestions.json",
+      "mvr_readability_review_summary.md",
+      "mvr_readability_review_receipt.json",
+      "minimal_viable_receipt_human_readable.md",
+      "minimal_viable_receipt_packet.json",
+      "minimal_viable_receipt_local_prototype_receipt.json",
+      "pmr_local_runtime_artifact_index.json",
+      "artifact_inventory.json",
+      "run_artifact_manifest.json",
+      "export_bundle_manifest.json",
+      "export_bundle_parity_report.json"
+    ],
     "VALIDATION-TIERING-PROVENANCE-00": [
       "config/validation/validation_tier_policy.v1.json",
       "validation_tier_receipt.json",
