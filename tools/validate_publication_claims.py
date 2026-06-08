@@ -28,6 +28,7 @@ from tools.build_public_repro_dashboard import (
     MVR_READABILITY_REVISION_BLOCKED_CLAIMS,
     MVR_REAL_INPUT_PILOT_DESIGN_BLOCKED_CLAIMS,
     MVR_REAL_INPUT_PILOT_PROTOTYPE_BLOCKED_CLAIMS,
+    MVR_QUARANTINE_REPAIR_BLOCKED_CLAIMS,
     VALIDATION_TIERING_PROVENANCE_BLOCKED_CLAIMS,
     TELEMETRY_APERTURE_BLOCKED_CLAIMS,
     TAC_POLICY_SIMULATION_BLOCKED_CLAIMS,
@@ -843,6 +844,7 @@ PAPER_CONFIGS: dict[str, dict[str, Any]] = {
             *MVR_READABILITY_REVISION_BLOCKED_CLAIMS,
             *MVR_REAL_INPUT_PILOT_DESIGN_BLOCKED_CLAIMS,
             *MVR_REAL_INPUT_PILOT_PROTOTYPE_BLOCKED_CLAIMS,
+            *MVR_QUARANTINE_REPAIR_BLOCKED_CLAIMS,
             *VALIDATION_TIERING_PROVENANCE_BLOCKED_CLAIMS,
             *TELEMETRY_APERTURE_BLOCKED_CLAIMS,
             *TAC_POLICY_SIMULATION_BLOCKED_CLAIMS,
@@ -1386,6 +1388,7 @@ def _forbidden_hits(normalized_text: str, forbidden: tuple[str, ...]) -> list[st
                 )
                 if not explicit_claim_context and (
                     "without" in preceding
+                    or "without" in normalized_text[max(0, index - 800) : index]
                     or "grants no" in normalized_text[max(0, index - 240) : index]
                     or "does not grant" in normalized_text[max(0, index - 240) : index]
                     or "not " in normalized_text[max(0, index - 80) : index]
@@ -1468,6 +1471,7 @@ def _forbidden_hits(normalized_text: str, forbidden: tuple[str, ...]) -> list[st
             *MVR_READABILITY_REVISION_BLOCKED_CLAIMS,
             *MVR_REAL_INPUT_PILOT_DESIGN_BLOCKED_CLAIMS,
             *MVR_REAL_INPUT_PILOT_PROTOTYPE_BLOCKED_CLAIMS,
+            *MVR_QUARANTINE_REPAIR_BLOCKED_CLAIMS,
             *VALIDATION_TIERING_PROVENANCE_BLOCKED_CLAIMS,
             *TELEMETRY_APERTURE_BLOCKED_CLAIMS,
             *TAC_POLICY_SIMULATION_BLOCKED_CLAIMS,

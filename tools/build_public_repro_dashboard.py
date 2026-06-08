@@ -10347,6 +10347,184 @@ MVR_REAL_INPUT_PILOT_PROTOTYPE_PHASE = {
 }
 
 
+MVR_QUARANTINE_REPAIR_COMMAND = "python -m pytest -q tests/test_mvr_local_real_input_pilot_quarantine_detection_repair.py tests/test_mvr_local_real_input_pilot.py tests/test_experiment_registry.py"
+MVR_QUARANTINE_REPAIR_REPRO_FRAGMENTS = ["test_mvr_local_real_input_pilot_quarantine_detection_repair.py"]
+MVR_QUARANTINE_REPAIR_ARTIFACTS = [
+    "harmless_mvr_real_input_source_instruction_like.md",
+    "harmless_mvr_real_input_source_no_instruction.md",
+    "mvr_local_real_input_source_manifest.json",
+    "mvr_local_real_input_quarantine_report.json",
+    "minimal_viable_receipt_human_readable.md",
+    "mvr_local_real_input_pilot_receipt.json",
+    "artifact_inventory.json",
+    "run_artifact_manifest.json",
+    "export_bundle_manifest.json",
+    "export_bundle_parity_report.json",
+]
+MVR_QUARANTINE_REPAIR_DETECTOR_TERMS = [
+    "INSTRUCTION_LIKE_CUES",
+    "instruction-like note",
+    "ignore prior rules",
+    "ignore previous rules",
+    "ignore previous instructions",
+    "treat this note as authoritative",
+    "treat this as authoritative",
+    "follow these instructions",
+    "override prior instructions",
+    "system prompt",
+    "developer message",
+    "assistant must",
+    "you must",
+    "do not reveal",
+    "disregard previous",
+    "disregard prior",
+    "_matched_instruction_like_cues",
+    "matched_instruction_like_phrases",
+]
+MVR_QUARANTINE_REPAIR_DOCTRINE_LANGUAGE = [
+    "MVR Local Real Input Pilot Quarantine Detection Repair",
+    "Human-selected local files with instruction-like evidence must be quarantined.",
+    "Harmless human-selected local files must not falsely claim quarantine.",
+    "Instruction-like evidence was quarantined.",
+    "No instruction-like evidence was detected for quarantine.",
+    "Quarantined evidence is not accepted evidence.",
+    "Local source selection is not accepted-evidence authority.",
+    "Local source processing is not memory write.",
+    "Human review remains required.",
+    "The repair does not broaden file access.",
+    "The repair does not scan directories.",
+    "The repair does not read hidden files.",
+    "The repair does not fetch URLs.",
+    "The repair does not call providers.",
+    "The repair does not perform network calls.",
+    "The repair does not write memory.",
+    "The repair does not admit Atlas memory.",
+    "The repair does not export traces.",
+    "The repair does not federate PMR.",
+    "The repair does not claim product readiness.",
+    "The repair does not release product.",
+    "The repair does not grant final-answer authority.",
+    "The repair does not grant accepted-evidence authority.",
+    "The repair does not certify truth.",
+]
+MVR_QUARANTINE_REPAIR_SMOKE_OUTCOMES = [
+    "instruction_like",
+    "harmless",
+    "explicit_local_source_paths",
+    "local_markdown_file",
+    "harmless_mvr_real_input_source_instruction_like.md",
+    "harmless_mvr_real_input_source_no_instruction.md",
+    "instruction_like_evidence_count = 1",
+    "quarantined_items_count = 1",
+    "matched phrases: instruction-like note, ignore prior rules, treat this note as authoritative",
+    "harmless evidence count = 0",
+    "provider_runtime_performed = false",
+    "network_call_performed = false",
+    "product_release_performed = false",
+    "product_readiness_claimed = false",
+    "final_answer_authority_granted = false",
+    "accepted_evidence_authority_granted = false",
+    "truth_certification_emitted = false",
+    "memory_write_performed = false",
+    "atlas_memory_admission_performed = false",
+    "trace_export_performed = false",
+    "pmr_federation_performed = false",
+]
+MVR_QUARANTINE_REPAIR_PRIOR_PHASE_RELATION = [
+    "MVR-LOCAL-REAL-INPUT-PILOT-DESIGN-00 defines boundaries for a future real-local-input pilot.",
+    "MVR-LOCAL-REAL-INPUT-PILOT-PROTOTYPE-00 emits the first bounded local real-input pilot prototype.",
+    "MVR-LOCAL-REAL-INPUT-PILOT-QUARANTINE-DETECTION-REPAIR-00 repairs instruction-like evidence detection for human-selected local files.",
+    "MINIMAL-VIABLE-RECEIPT-DESIGN-00 defines the one-transaction/many-sections receipt standard.",
+    "MINIMAL-VIABLE-RECEIPT-LOCAL-PROTOTYPE-00 emits the local fixture-backed readable receipt.",
+    "MVR-LOCAL-PROTOTYPE-READABILITY-REVISION-00 applies deterministic local readability revisions.",
+    "TRIADIC-OBSERVATION-CONTRACT-DESIGN-00 defines governed attention.",
+    "OBSERVATION-CONTRACT-POLICY-SIMULATION-00 rehearses notice, consent, recovery, source-expansion, pathway-prior, retention, trace-export, and PMR-federation policy outcomes.",
+    "TAC phases define aperture posture and review visibility.",
+    "COHERENCE-EVENT-SIGNATURES-DESIGN-00 defines event signatures.",
+    "CES-PMR-INDEXING-DESIGN-00 defines CES as a compact PMR index, not source replacement.",
+    "VALIDATION-TIERING-PROVENANCE-00 records validation confidence scope.",
+]
+MVR_QUARANTINE_REPAIR_BLOCKED_CLAIMS = [
+    "quarantine repair broadens file access",
+    "quarantine repair scans directories",
+    "quarantine repair reads hidden files",
+    "quarantine repair fetches URLs",
+    "quarantine repair calls provider APIs",
+    "quarantine repair performs network calls",
+    "quarantine repair writes memory",
+    "quarantine repair admits Atlas memory",
+    "quarantine repair exports traces",
+    "quarantine repair federates PMR",
+    "quarantine repair releases product",
+    "quarantine repair proves product readiness",
+    "quarantine repair certifies truth",
+    "quarantine repair grants final-answer authority",
+    "quarantine repair grants accepted-evidence authority",
+    "local source selection is accepted evidence",
+    "quarantined evidence is accepted evidence",
+    "instruction-like evidence can be trusted as evidence",
+    "no-detection means receipt is product ready",
+    "no-detection means source is accepted evidence",
+    "quarantine count means truth score",
+]
+MVR_QUARANTINE_REPAIR_CLAIM_ALLOWED = "MVR-LOCAL-REAL-INPUT-PILOT-QUARANTINE-DETECTION-REPAIR-00 repairs instruction-like evidence detection for human-selected local real-input pilot files, ensuring instruction-like cues such as \"instruction-like note\", \"ignore prior rules\", and \"treat this note as authoritative\" are quarantined while harmless files do not falsely claim quarantine, without broadening file access, scanning directories, reading hidden files, fetching URLs, calling providers, performing network calls, writing memory, admitting Atlas memory, exporting traces, federating PMR, releasing product, claiming product readiness, granting final-answer or accepted-evidence authority, or certifying truth."
+MVR_QUARANTINE_REPAIR_FAILURE_CLASSES = [
+    "instruction_like_evidence_not_quarantined",
+    "harmless_file_falsely_claimed_quarantine",
+    "quarantine_wording_contradicts_count",
+    "matched_instruction_cues_missing",
+    "quarantined_evidence_mistaken_for_accepted_evidence",
+    "local_source_selection_mistaken_for_accepted_evidence",
+    "quarantine_repair_mistaken_for_broader_file_access",
+    "quarantine_repair_mistaken_for_product_readiness",
+    "quarantine_count_mistaken_for_truth_score",
+    "no_detection_mistaken_for_accepted_evidence",
+    "human_review_requirement_hidden",
+]
+MVR_QUARANTINE_REPAIR_DASHBOARD_SUMMARY = {
+    "repair_status": "completed",
+    "repair_mode": "instruction_like_quarantine_detection_repair",
+    "source_mode": "explicit_local_source_paths",
+    "instruction_like_case_source_class": "local_markdown_file",
+    "instruction_like_real_user_files_processed": True,
+    "instruction_like_local_fixture_mode": False,
+    "instruction_like_evidence_count": 1,
+    "instruction_like_quarantined_items_count": 1,
+    "harmless_case_source_class": "local_markdown_file",
+    "harmless_real_user_files_processed": True,
+    "harmless_local_fixture_mode": False,
+    "harmless_instruction_like_evidence_count": 0,
+    "harmless_quarantined_items_count": 0,
+    "no_detection_receipt_wording_conditional": True,
+    "contradictory_quarantine_wording_repaired": True,
+    "provider_runtime_performed": False,
+    "network_call_performed": False,
+    "product_release_performed": False,
+    "product_readiness_claimed": False,
+    "final_answer_authority_granted": False,
+    "accepted_evidence_authority_granted": False,
+    "truth_certification_emitted": False,
+    "memory_write_performed": False,
+    "atlas_memory_admission_performed": False,
+    "trace_export_performed": False,
+    "pmr_federation_performed": False,
+}
+MVR_QUARANTINE_REPAIR_PHASE = {
+    "phase_id": "MVR-LOCAL-REAL-INPUT-PILOT-QUARANTINE-DETECTION-REPAIR-00",
+    "repo": "pdxvoiceteacher/CoherenceLattice",
+    "status": "accepted_local_validation",
+    "evidence_type": "local_real_input_pilot_quarantine_detection_repair_publication_sync",
+    "product_posture": "repair_only_instruction_like_quarantine_detection_without_file_access_or_runtime_authority",
+    "primary_artifacts": MVR_QUARANTINE_REPAIR_ARTIFACTS,
+    "dashboard_summary": MVR_QUARANTINE_REPAIR_DASHBOARD_SUMMARY,
+    "reproduction_command_summary": MVR_QUARANTINE_REPAIR_COMMAND,
+    "claim_allowed": MVR_QUARANTINE_REPAIR_CLAIM_ALLOWED,
+    "claims_blocked": MVR_QUARANTINE_REPAIR_BLOCKED_CLAIMS,
+    "reviewer_caution": "MVR-LOCAL-REAL-INPUT-PILOT-QUARANTINE-DETECTION-REPAIR-00 repairs instruction-like evidence detection and no-detection wording only; it broadens no file access, scans no directories, reads no hidden files, fetches no URLs, calls no providers, performs no network calls, writes no memory, admits no Atlas memory, exports no traces, federates no PMR, releases no product, claims no product readiness, grants no final-answer or accepted-evidence authority, and certifies no truth.",
+    "publication_status": "dashboard_indexed",
+}
+
+
 VALIDATION_TIERING_PROVENANCE_COMMAND = "python -c \"from pathlib import Path; from coherence.validation.validation_receipt import build_validation_tier_receipt; bridge=Path(r'C:\\UVLM\\run_artifacts\\validation_tiering\\bridge'); policy_ref='validation_tier_policy.v1.json'; build_validation_tier_receipt(bridge, source_phase='AI-RECEIPT-ARCHITECTURE-00', validation_tier='deep', validation_scope='full_multi_module_suite', validation_intent='major_sync_or_handoff_grade_validation', commands_run=[{'command':'python -m pytest -q <full_multi_module_suite>', 'result':'passed', 'duration_seconds':32131.86}], artifact_chain_name='ai_receipt_architecture_product_stack', expected_artifacts=['ai_receipt_architecture_packet.json','ai_receipt_event_chain.json','ai_receipt_architecture.md','ai_receipt_architecture_receipt.json'], observed_artifacts=['ai_receipt_architecture_packet.json','ai_receipt_event_chain.json','ai_receipt_architecture.md','ai_receipt_architecture_receipt.json'], validation_result='passed')\""
 VALIDATION_TIERING_PROVENANCE_ARTIFACTS = [
     "config/validation/validation_tier_policy.v1.json",
@@ -13073,6 +13251,7 @@ MVR_READABILITY_REVIEW_SEED_PHASE,
 MVR_READABILITY_REVISION_PHASE,
 MVR_REAL_INPUT_PILOT_DESIGN_PHASE,
 MVR_REAL_INPUT_PILOT_PROTOTYPE_PHASE,
+MVR_QUARANTINE_REPAIR_PHASE,
 VALIDATION_TIERING_PROVENANCE_PHASE,
 TELEMETRY_APERTURE_DESIGN_PHASE,
 TAC_POLICY_SIMULATION_PHASE,
@@ -15287,6 +15466,16 @@ BOUNDARIES.extend(
         *MVR_REAL_INPUT_PILOT_PROTOTYPE_FAILURE_CLASSES,
         "Blocked overclaim examples for MVR Local Real Input Pilot Prototype publication boundaries.",
         *MVR_REAL_INPUT_PILOT_PROTOTYPE_BLOCKED_CLAIMS,
+        MVR_QUARANTINE_REPAIR_CLAIM_ALLOWED,
+        *MVR_QUARANTINE_REPAIR_ARTIFACTS,
+        *MVR_QUARANTINE_REPAIR_REPRO_FRAGMENTS,
+        *MVR_QUARANTINE_REPAIR_DETECTOR_TERMS,
+        *MVR_QUARANTINE_REPAIR_DOCTRINE_LANGUAGE,
+        *MVR_QUARANTINE_REPAIR_SMOKE_OUTCOMES,
+        *MVR_QUARANTINE_REPAIR_PRIOR_PHASE_RELATION,
+        *MVR_QUARANTINE_REPAIR_FAILURE_CLASSES,
+        "Blocked overclaim examples for MVR Local Real Input Pilot Quarantine Detection Repair publication boundaries.",
+        *MVR_QUARANTINE_REPAIR_BLOCKED_CLAIMS,
         VALIDATION_TIERING_PROVENANCE_CLAIM_ALLOWED,
         *VALIDATION_TIERING_PROVENANCE_ARTIFACTS,
         *VALIDATION_TIERING_PROVENANCE_TIER_TERMS,
@@ -16170,6 +16359,12 @@ def dashboard_payload() -> dict[str, Any]:
         "mvr_local_real_input_pilot_prototype_real_input_runtime_artifacts_emitted": True,
         "mvr_local_real_input_pilot_prototype_real_user_files_processed": False,
         "mvr_local_real_input_pilot_prototype_pasted_excerpt_real_user_files_processed": True,
+        "mvr_quarantine_detection_repair_00_indexed": True,
+        "mvr_quarantine_detection_repair_status": "completed",
+        "mvr_quarantine_detection_repair_no_detection_receipt_wording_conditional": True,
+        "mvr_quarantine_detection_repair_contradictory_wording_repaired": True,
+        "not_mvr_quarantine_detection_repair_file_access_broadened": True,
+        "not_mvr_quarantine_detection_repair_runtime_authority": True,
         "not_mvr_local_real_input_pilot_product_readiness": True,
         "not_mvr_local_real_input_pilot_product_release": True,
         "not_mvr_local_real_input_pilot_user_validation": True,
@@ -16282,6 +16477,7 @@ def reproducibility_index() -> dict[str, Any]:
                 {"name": "MVR-LOCAL-PROTOTYPE-READABILITY-REVISION-00 Python entrypoint", "command": MVR_READABILITY_REVISION_COMMAND},
                 {"name": "MVR-LOCAL-REAL-INPUT-PILOT-DESIGN-00 design validation", "command": MVR_REAL_INPUT_PILOT_DESIGN_COMMAND},
                 {"name": "MVR-LOCAL-REAL-INPUT-PILOT-PROTOTYPE-00 Python entrypoint", "command": MVR_REAL_INPUT_PILOT_PROTOTYPE_COMMAND},
+                {"name": "MVR-LOCAL-REAL-INPUT-PILOT-QUARANTINE-DETECTION-REPAIR-00 repair validation", "command": MVR_QUARANTINE_REPAIR_COMMAND},
                 {"name": "Validation Tiering Provenance Python entrypoint", "command": VALIDATION_TIERING_PROVENANCE_COMMAND},
                 {"name": "TELEMETRY-APERTURE-DESIGN-00 config/schema inspection", "command": TELEMETRY_APERTURE_DESIGN_COMMAND},
                 {"name": "TAC-POLICY-SIMULATION-00 Python entrypoint", "command": TAC_POLICY_SIMULATION_COMMAND},
@@ -17214,6 +17410,12 @@ def status_payload() -> dict[str, Any]:
         "mvr_local_real_input_pilot_prototype_real_input_runtime_artifacts_emitted": True,
         "mvr_local_real_input_pilot_prototype_real_user_files_processed": False,
         "mvr_local_real_input_pilot_prototype_pasted_excerpt_real_user_files_processed": True,
+        "mvr_quarantine_detection_repair_00_indexed": True,
+        "mvr_quarantine_detection_repair_status": "completed",
+        "mvr_quarantine_detection_repair_no_detection_receipt_wording_conditional": True,
+        "mvr_quarantine_detection_repair_contradictory_wording_repaired": True,
+        "not_mvr_quarantine_detection_repair_file_access_broadened": True,
+        "not_mvr_quarantine_detection_repair_runtime_authority": True,
         "not_mvr_local_real_input_pilot_product_readiness": True,
         "not_mvr_local_real_input_pilot_product_release": True,
         "not_mvr_local_real_input_pilot_user_validation": True,
@@ -22807,6 +23009,92 @@ MVR-LOCAL-REAL-INPUT-PILOT-PROTOTYPE-00 synchronizes the locally validated Coher
 Publication sync grants no runtime authority. It does not imply product release, product readiness, provider runtime, network runtime, trace export, PMR federation, memory write, Atlas memory admission, deployment, final-answer authorization, accepted-evidence grant, truth certification, compliance certification, user validation, real user study, human-subject study, market validation, human benefit proof, model training, or review skipping.
 """
 
+
+MVR_QUARANTINE_REPAIR_SYNC_DOCS = {
+    "index.md",
+    "mvr-local-real-input-pilot-design.md",
+    "mvr-local-real-input-pilot-prototype.md",
+    "minimal-viable-receipt-local-prototype.md",
+    "minimal-viable-receipt-design.md",
+    "mvr-local-prototype-readability-revision.md",
+    "ai-receipt-architecture.md",
+    "triadic-observation-contract.md",
+    "observation-contract-policy-simulation.md",
+    "tac-ai-receipt-event-link.md",
+    "coherence-event-signatures.md",
+    "ces-pmr-indexing-design.md",
+    "validation-tiering-provenance.md",
+    "claim-boundaries.md",
+}
+MVR_QUARANTINE_REPAIR_SYNC_NOTE = f"""
+
+## MVR Local Real Input Pilot Quarantine Detection Repair publication sync
+
+MVR-LOCAL-REAL-INPUT-PILOT-QUARANTINE-DETECTION-REPAIR-00 repairs instruction-like evidence detection for human-selected local files. Human-selected local files with instruction-like evidence must be quarantined. Harmless human-selected local files must not falsely claim quarantine. Instruction-like evidence was quarantined. No instruction-like evidence was detected for quarantine. Quarantined evidence is not accepted evidence. Local source selection is not accepted-evidence authority. Local source processing is not memory write. Human review remains required.
+
+The repair does not broaden file access, scan directories, read hidden files, fetch URLs, call providers, perform network calls, write memory, admit Atlas memory, export traces, federate PMR, claim product readiness, release product, grant final-answer authority, grant accepted-evidence authority, or certify truth. Publication sync grants no runtime authority.
+
+Detector terms include INSTRUCTION_LIKE_CUES, instruction-like note, ignore prior rules, ignore previous rules, ignore previous instructions, treat this note as authoritative, treat this as authoritative, follow these instructions, override prior instructions, system prompt, developer message, assistant must, you must, do not reveal, disregard previous, disregard prior, _matched_instruction_like_cues, and matched_instruction_like_phrases.
+
+Smoke outcomes include instruction_like and harmless cases with explicit_local_source_paths and local_markdown_file. The instruction-like smoke uses harmless_mvr_real_input_source_instruction_like.md, instruction_like_evidence_count = 1, quarantined_items_count = 1, and matched phrases: instruction-like note, ignore prior rules, treat this note as authoritative. The harmless smoke uses harmless_mvr_real_input_source_no_instruction.md and harmless evidence count = 0. Both smokes keep provider_runtime_performed = false, network_call_performed = false, product_release_performed = false, product_readiness_claimed = false, final_answer_authority_granted = false, accepted_evidence_authority_granted = false, truth_certification_emitted = false, memory_write_performed = false, atlas_memory_admission_performed = false, trace_export_performed = false, and pmr_federation_performed = false.
+
+Relation to prior phases: MVR-LOCAL-REAL-INPUT-PILOT-DESIGN-00 defines boundaries for a future real-local-input pilot. MVR-LOCAL-REAL-INPUT-PILOT-PROTOTYPE-00 emits the first bounded local real-input pilot prototype. MVR-LOCAL-REAL-INPUT-PILOT-QUARANTINE-DETECTION-REPAIR-00 repairs instruction-like evidence detection for human-selected local files. MINIMAL-VIABLE-RECEIPT-DESIGN-00 defines the one-transaction/many-sections receipt standard. MINIMAL-VIABLE-RECEIPT-LOCAL-PROTOTYPE-00 emits the local fixture-backed readable receipt. MVR-LOCAL-PROTOTYPE-READABILITY-REVISION-00 applies deterministic local readability revisions. TRIADIC-OBSERVATION-CONTRACT-DESIGN-00 defines governed attention. OBSERVATION-CONTRACT-POLICY-SIMULATION-00 rehearses notice, consent, recovery, source-expansion, pathway-prior, retention, trace-export, and PMR-federation policy outcomes. TAC phases define aperture posture and review visibility. COHERENCE-EVENT-SIGNATURES-DESIGN-00 defines event signatures. CES-PMR-INDEXING-DESIGN-00 defines CES as a compact PMR index, not source replacement. VALIDATION-TIERING-PROVENANCE-00 records validation confidence scope.
+
+See [MVR Local Real Input Pilot Quarantine Detection Repair](mvr-local-real-input-pilot-quarantine-detection-repair.md).
+"""
+
+def mvr_local_real_input_pilot_quarantine_detection_repair_doc() -> str:
+    summary = "\n".join(f"- {key} = {str(value).lower() if isinstance(value, bool) else value}" for key, value in MVR_QUARANTINE_REPAIR_DASHBOARD_SUMMARY.items())
+    return f"""# MVR Local Real Input Pilot Quarantine Detection Repair
+
+MVR-LOCAL-REAL-INPUT-PILOT-QUARANTINE-DETECTION-REPAIR-00 synchronizes the locally validated CoherenceLattice MVR Local Real Input Pilot Quarantine Detection Repair into publication dashboards. This is publication/dashboard synchronization only and grants no runtime authority.
+
+## Bounded allowed claim
+
+{MVR_QUARANTINE_REPAIR_CLAIM_ALLOWED}
+
+## Dashboard summary
+
+{summary}
+
+## Detector terms
+
+{_bullets(MVR_QUARANTINE_REPAIR_DETECTOR_TERMS)}
+
+## Doctrine language
+
+{_bullets(MVR_QUARANTINE_REPAIR_DOCTRINE_LANGUAGE)}
+
+## Smoke outcomes
+
+{_bullets(MVR_QUARANTINE_REPAIR_SMOKE_OUTCOMES)}
+
+## Artifact references
+
+{_bullets(MVR_QUARANTINE_REPAIR_ARTIFACTS)}
+
+## Relation to prior phases
+
+{_bullets(MVR_QUARANTINE_REPAIR_PRIOR_PHASE_RELATION)}
+
+## Failure classes
+
+{_bullets(MVR_QUARANTINE_REPAIR_FAILURE_CLASSES)}
+
+## Blocked claims
+
+{_bullets(MVR_QUARANTINE_REPAIR_BLOCKED_CLAIMS)}
+
+## Reproducibility
+
+{_bullets(MVR_QUARANTINE_REPAIR_REPRO_FRAGMENTS)}
+- `{MVR_QUARANTINE_REPAIR_COMMAND}`
+
+## Runtime authority boundary
+
+Publication sync grants no runtime authority. It does not imply product release, product readiness, provider runtime, network runtime, trace export, PMR federation, memory write, Atlas memory admission, deployment, final-answer authority, accepted-evidence authority, truth certification, compliance certification, user validation, real user study, human-subject study, market validation, human benefit proof, model training, review skipping, consciousness proof, Omega detection, or universal ontology proof.
+"""
+
 def build(out_dir: Path, docs_dir: Path) -> None:
     _write_json(out_dir / "experiment_suite_dashboard.json", dashboard_payload())
     _write_json(out_dir / "accepted_phase_matrix.json", accepted_phase_matrix())
@@ -22821,6 +23109,7 @@ def build(out_dir: Path, docs_dir: Path) -> None:
     docs_payload["mvr-local-prototype-readability-revision.md"] = mvr_local_prototype_readability_revision_doc()
     docs_payload["mvr-local-real-input-pilot-design.md"] = mvr_local_real_input_pilot_design_doc()
     docs_payload["mvr-local-real-input-pilot-prototype.md"] = mvr_local_real_input_pilot_prototype_doc()
+    docs_payload["mvr-local-real-input-pilot-quarantine-detection-repair.md"] = mvr_local_real_input_pilot_quarantine_detection_repair_doc()
     for name in MINIMAL_VIABLE_RECEIPT_DESIGN_SYNC_DOCS:
         if name in docs_payload:
             docs_payload[name] = docs_payload[name].rstrip() + MINIMAL_VIABLE_RECEIPT_DESIGN_SYNC_NOTE
@@ -22845,6 +23134,9 @@ def build(out_dir: Path, docs_dir: Path) -> None:
     for name in MVR_REAL_INPUT_PILOT_PROTOTYPE_SYNC_DOCS:
         if name in docs_payload:
             docs_payload[name] = docs_payload[name].rstrip() + MVR_REAL_INPUT_PILOT_PROTOTYPE_SYNC_NOTE
+    for name in MVR_QUARANTINE_REPAIR_SYNC_DOCS:
+        if name in docs_payload:
+            docs_payload[name] = docs_payload[name].rstrip() + MVR_QUARANTINE_REPAIR_SYNC_NOTE
     for name, text in docs_payload.items():
         _write_text(docs_dir / name, text)
 

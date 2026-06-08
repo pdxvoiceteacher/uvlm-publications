@@ -143,6 +143,16 @@ from tools.build_public_repro_dashboard import (
     MVR_REAL_INPUT_PILOT_PROTOTYPE_REPRO_FRAGMENTS,
     MVR_REAL_INPUT_PILOT_PROTOTYPE_SCHEMA_REFERENCES,
     MVR_REAL_INPUT_PILOT_PROTOTYPE_SOURCE_SELECTION_TERMS,
+    MVR_QUARANTINE_REPAIR_ARTIFACTS,
+    MVR_QUARANTINE_REPAIR_BLOCKED_CLAIMS,
+    MVR_QUARANTINE_REPAIR_CLAIM_ALLOWED,
+    MVR_QUARANTINE_REPAIR_DASHBOARD_SUMMARY,
+    MVR_QUARANTINE_REPAIR_DETECTOR_TERMS,
+    MVR_QUARANTINE_REPAIR_DOCTRINE_LANGUAGE,
+    MVR_QUARANTINE_REPAIR_FAILURE_CLASSES,
+    MVR_QUARANTINE_REPAIR_PRIOR_PHASE_RELATION,
+    MVR_QUARANTINE_REPAIR_REPRO_FRAGMENTS,
+    MVR_QUARANTINE_REPAIR_SMOKE_OUTCOMES,
     VALIDATION_TIERING_PROVENANCE_ACCEPTANCE_TERMS,
     VALIDATION_TIERING_PROVENANCE_ARTIFACTS,
     VALIDATION_TIERING_PROVENANCE_BLOCKED_CLAIMS,
@@ -460,6 +470,7 @@ REQUIRED_PHASES = {
     "MVR-LOCAL-PROTOTYPE-READABILITY-REVISION-00",
     "MVR-LOCAL-REAL-INPUT-PILOT-DESIGN-00",
     "MVR-LOCAL-REAL-INPUT-PILOT-PROTOTYPE-00",
+    "MVR-LOCAL-REAL-INPUT-PILOT-QUARANTINE-DETECTION-REPAIR-00",
 }
 
 REQUIRED_COMMAND_FRAGMENTS = (
@@ -6354,6 +6365,82 @@ def test_mvr_local_real_input_pilot_prototype_indexes_dashboard_and_docs(tmp_pat
     assert status["mvr_local_real_input_pilot_prototype_real_user_files_processed"] is False
     assert status["mvr_local_real_input_pilot_prototype_pasted_excerpt_real_user_files_processed"] is True
 
+
+
+
+def test_mvr_quarantine_detection_repair_indexes_dashboard_and_docs(tmp_path):
+    out_dir, docs_dir = run_builder(tmp_path)
+    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text(encoding="utf-8"))
+    artifact_index = json.loads((out_dir / "artifact_index.json").read_text(encoding="utf-8"))
+    repro_index = json.loads((out_dir / "reproducibility_index.json").read_text(encoding="utf-8"))
+    claim_boundaries = json.loads((out_dir / "claim_boundary_index.json").read_text(encoding="utf-8"))
+    status = json.loads((out_dir / "status.json").read_text(encoding="utf-8"))
+    page = (docs_dir / "mvr-local-real-input-pilot-quarantine-detection-repair.md").read_text(encoding="utf-8")
+
+    phase = next(entry for entry in dashboard["accepted_phases"] if entry["phase_id"] == "MVR-LOCAL-REAL-INPUT-PILOT-QUARANTINE-DETECTION-REPAIR-00")
+    summary = phase["dashboard_summary"]
+    assert summary == MVR_QUARANTINE_REPAIR_DASHBOARD_SUMMARY
+    assert summary["repair_status"] == "completed"
+    assert summary["repair_mode"] == "instruction_like_quarantine_detection_repair"
+    assert summary["instruction_like_evidence_count"] == 1
+    assert summary["instruction_like_quarantined_items_count"] == 1
+    assert summary["harmless_instruction_like_evidence_count"] == 0
+    assert summary["harmless_quarantined_items_count"] == 0
+    assert summary["no_detection_receipt_wording_conditional"] is True
+    assert summary["contradictory_quarantine_wording_repaired"] is True
+
+    for field in (
+        "provider_runtime_performed", "network_call_performed", "product_release_performed",
+        "product_readiness_claimed", "final_answer_authority_granted", "accepted_evidence_authority_granted",
+        "truth_certification_emitted", "memory_write_performed", "atlas_memory_admission_performed",
+        "trace_export_performed", "pmr_federation_performed",
+    ):
+        assert summary[field] is False
+
+    assert artifact_index["phases"]["MVR-LOCAL-REAL-INPUT-PILOT-QUARANTINE-DETECTION-REPAIR-00"] == MVR_QUARANTINE_REPAIR_ARTIFACTS
+    for artifact in MVR_QUARANTINE_REPAIR_ARTIFACTS:
+        assert artifact in page
+
+    repro_text = json.dumps(repro_index, ensure_ascii=False)
+    for fragment in MVR_QUARANTINE_REPAIR_REPRO_FRAGMENTS:
+        assert fragment in repro_text
+
+    for required in (
+        *MVR_QUARANTINE_REPAIR_DETECTOR_TERMS,
+        *MVR_QUARANTINE_REPAIR_DOCTRINE_LANGUAGE,
+        *MVR_QUARANTINE_REPAIR_SMOKE_OUTCOMES,
+        *MVR_QUARANTINE_REPAIR_PRIOR_PHASE_RELATION,
+        *MVR_QUARANTINE_REPAIR_FAILURE_CLASSES,
+        MVR_QUARANTINE_REPAIR_CLAIM_ALLOWED,
+        "Publication sync grants no runtime authority.",
+    ):
+        assert required in page
+
+    boundaries = "\n".join(claim_boundaries["boundaries"])
+    for blocked in MVR_QUARANTINE_REPAIR_BLOCKED_CLAIMS:
+        assert blocked in boundaries
+
+    assert status["mvr_quarantine_detection_repair_00_indexed"] is True
+    assert status["mvr_quarantine_detection_repair_status"] == "completed"
+    assert status["mvr_quarantine_detection_repair_no_detection_receipt_wording_conditional"] is True
+    assert status["mvr_quarantine_detection_repair_contradictory_wording_repaired"] is True
+    assert status["not_mvr_quarantine_detection_repair_file_access_broadened"] is True
+    assert status["not_mvr_quarantine_detection_repair_runtime_authority"] is True
+
+
+def test_validator_required_phases_include_mvr_quarantine_detection_repair():
+    assert "MVR-LOCAL-REAL-INPUT-PILOT-QUARANTINE-DETECTION-REPAIR-00" in VALIDATOR_REQUIRED_PHASES
+
+
+def test_validator_fails_if_mvr_quarantine_detection_repair_makes_forbidden_claims(tmp_path):
+    for claim in MVR_QUARANTINE_REPAIR_BLOCKED_CLAIMS:
+        out_dir, docs_dir = run_builder(tmp_path / claim.replace(" ", "_").replace("/", "_"))
+        page = docs_dir / "mvr-local-real-input-pilot-quarantine-detection-repair.md"
+        page.write_text(page.read_text(encoding="utf-8") + f"\nQuarantine repair claims {claim}.\n", encoding="utf-8")
+        result = validate_dashboard(out_dir / "experiment_suite_dashboard.json", docs_dir)
+        assert result["passed"] is False, claim
+        forbidden_found = [found.lower() for found in result["forbidden_claims_found"]]
+        assert claim.lower() in forbidden_found or f"claims {claim.lower()}" in forbidden_found, result
 
 def test_validator_required_phases_include_mvr_local_real_input_pilot_prototype():
     assert "MVR-LOCAL-REAL-INPUT-PILOT-PROTOTYPE-00" in VALIDATOR_REQUIRED_PHASES

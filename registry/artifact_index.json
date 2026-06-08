@@ -1241,6 +1241,18 @@
       "export_bundle_manifest.json",
       "export_bundle_parity_report.json"
     ],
+    "MVR-LOCAL-REAL-INPUT-PILOT-QUARANTINE-DETECTION-REPAIR-00": [
+      "harmless_mvr_real_input_source_instruction_like.md",
+      "harmless_mvr_real_input_source_no_instruction.md",
+      "mvr_local_real_input_source_manifest.json",
+      "mvr_local_real_input_quarantine_report.json",
+      "minimal_viable_receipt_human_readable.md",
+      "mvr_local_real_input_pilot_receipt.json",
+      "artifact_inventory.json",
+      "run_artifact_manifest.json",
+      "export_bundle_manifest.json",
+      "export_bundle_parity_report.json"
+    ],
     "VALIDATION-TIERING-PROVENANCE-00": [
       "config/validation/validation_tier_policy.v1.json",
       "validation_tier_receipt.json",
