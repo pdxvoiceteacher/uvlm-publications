@@ -9859,6 +9859,286 @@ MVR_READABILITY_REVISION_PHASE = {
 }
 
 
+MVR_REAL_INPUT_PILOT_DESIGN_COMMAND = "python -m pytest -q tests/test_mvr_local_real_input_pilot_design.py tests/test_experiment_registry.py"
+MVR_REAL_INPUT_PILOT_DESIGN_REPRO_FRAGMENTS = [
+    "test_mvr_local_real_input_pilot_design.py",
+    "test_experiment_registry.py",
+]
+MVR_REAL_INPUT_PILOT_DESIGN_ARTIFACTS = [
+    "docs/MVR_LOCAL_REAL_INPUT_PILOT_DESIGN.md",
+    "config/receipt/mvr_local_real_input_pilot_policy.v1.json",
+    "schema/bridge/mvr_local_real_input_source_manifest.schema.json",
+    "schema/bridge/mvr_local_real_input_consent_scope.schema.json",
+    "schema/bridge/mvr_local_real_input_quarantine_report.schema.json",
+    "schema/bridge/mvr_local_real_input_pilot_policy_packet.schema.json",
+    "schema/bridge/mvr_local_real_input_non_authority_boundary.schema.json",
+]
+MVR_REAL_INPUT_PILOT_DESIGN_DOCTRINE_LANGUAGE = [
+    "MVR Local Real Input Pilot Design",
+    "Real local input can enter only by explicit local source selection.",
+    "Real input pilot design is not real input processing.",
+    "Real input pilot design is not product readiness.",
+    "Real input pilot design is not product release.",
+    "A real-input pilot must be local-only by default.",
+    "A real-input pilot must be source-bounded.",
+    "A real-input pilot must be consent-bounded.",
+    "A real-input pilot must preserve source expansion.",
+    "A real-input pilot must quarantine instruction-like evidence.",
+    "A real-input pilot must expose unsupported claims.",
+    "A real-input pilot must emit a Minimal Viable Receipt before any claim of readiness.",
+    "Local source selection is not accepted-evidence authority.",
+    "Local source processing is not memory write.",
+    "Human review remains required.",
+    "MVR-LOCAL-REAL-INPUT-PILOT-DESIGN-00 does not process real files.",
+    "MVR-LOCAL-REAL-INPUT-PILOT-DESIGN-00 does not emit runtime real-input artifacts.",
+    "MVR-LOCAL-REAL-INPUT-PILOT-DESIGN-00 does not perform provider calls.",
+    "MVR-LOCAL-REAL-INPUT-PILOT-DESIGN-00 does not perform network calls.",
+    "MVR-LOCAL-REAL-INPUT-PILOT-DESIGN-00 does not write memory.",
+    "MVR-LOCAL-REAL-INPUT-PILOT-DESIGN-00 does not admit Atlas memory.",
+    "MVR-LOCAL-REAL-INPUT-PILOT-DESIGN-00 does not claim product readiness.",
+    "MVR-LOCAL-REAL-INPUT-PILOT-DESIGN-00 does not release product.",
+]
+MVR_REAL_INPUT_PILOT_DESIGN_ALLOWED_INPUT_CLASSES = [
+    "local_text_file",
+    "local_markdown_file",
+    "local_json_file",
+    "local_csv_file",
+    "local_plaintext_excerpt",
+    "local_user_pasted_excerpt",
+    "local_redacted_document_excerpt",
+]
+MVR_REAL_INPUT_PILOT_DESIGN_BLOCKED_INPUT_CLASSES = [
+    "remote_url_fetch",
+    "cloud_connector_file",
+    "email_inbox_scan",
+    "calendar_scan",
+    "browser_history_scan",
+    "whole_disk_scan",
+    "hidden_directory_scan",
+    "credential_file",
+    "secrets_file",
+    "private_key_file",
+    "raw_chat_history_bulk_import",
+    "personal_profile_bulk_import",
+    "unredacted_sensitive_identity_document",
+    "medical_record",
+    "legal_record",
+    "financial_account_record",
+    "child_data_record",
+    "biometric_data_record",
+]
+MVR_REAL_INPUT_PILOT_DESIGN_SOURCE_RULES = [
+    "explicit_user_selection_required",
+    "local_path_allowlist_required",
+    "recursive_directory_scan_allowed = false",
+    "hidden_file_scan_allowed = false",
+    "max_source_file_count_default = 5",
+    "max_source_bytes_default = 250000",
+    "source_hashing_required",
+    "source_manifest_required",
+    "source_expansion_required_for_decisions",
+    "instruction_like_evidence_quarantine_required",
+    "unsupported_claim_visibility_required",
+    "human_review_required",
+]
+MVR_REAL_INPUT_PILOT_DESIGN_CONSENT_OBSERVATION_TERMS = [
+    "consent_scope_required",
+    "consent_is_local_to_pilot_run",
+    "consent_is_not_memory_write",
+    "consent_is_not_trace_export_authorization",
+    "consent_is_not_pmr_federation_authorization",
+    "consent_is_not_product_release",
+    "revocation_supported",
+    "retention_review_required",
+    "observation_contract_posture_required",
+    "observation_contract_policy_simulation_ref_required",
+    "tac_aperture_posture_required",
+    "default_tac_mode = pulse",
+    "raw_trace_retention_allowed_default = false",
+    "trace_export_allowed_default = false",
+    "pmr_federation_allowed_default = false",
+    "no_silent_mode_shift_required",
+    "notice_and_consent_boundaries_visible",
+]
+MVR_REAL_INPUT_PILOT_DESIGN_OUTPUT_REQUIREMENT_TERMS = [
+    "minimal_viable_receipt_required",
+    "human_readable_receipt_required",
+    "machine_readable_receipt_required",
+    "section_index_required",
+    "readability_profile_required",
+    "contestability_profile_required",
+    "cost_burden_profile_required",
+    "non_authority_boundary_required",
+    "local_real_input_source_manifest_required",
+    "quarantine_report_required",
+    "pilot_receipt_required",
+]
+MVR_REAL_INPUT_PILOT_DESIGN_PRIOR_PHASE_RELATION = [
+    "MINIMAL-VIABLE-RECEIPT-DESIGN-00 defines the one-transaction/many-sections receipt standard.",
+    "MINIMAL-VIABLE-RECEIPT-LOCAL-PROTOTYPE-00 emits the local fixture-backed readable receipt.",
+    "MVR-LOCAL-PROTOTYPE-READABILITY-REVIEW-SEED-00 evaluates that receipt with deterministic local fixture responses.",
+    "MVR-LOCAL-PROTOTYPE-READABILITY-REVISION-00 applies deterministic local readability revisions.",
+    "MVR-LOCAL-REAL-INPUT-PILOT-DESIGN-00 defines boundaries for a future real-local-input pilot.",
+    "TRIADIC-OBSERVATION-CONTRACT-DESIGN-00 defines governed attention.",
+    "OBSERVATION-CONTRACT-POLICY-SIMULATION-00 rehearses notice, consent, recovery, source-expansion, pathway-prior, retention, trace-export, and PMR-federation policy outcomes.",
+    "TAC phases define aperture posture and review visibility.",
+    "COHERENCE-EVENT-SIGNATURES-DESIGN-00 defines event signatures.",
+    "CES-PMR-INDEXING-DESIGN-00 defines CES as a compact PMR index, not source replacement.",
+    "VALIDATION-TIERING-PROVENANCE-00 records validation confidence scope.",
+]
+MVR_REAL_INPUT_PILOT_DESIGN_BLOCKED_CLAIMS = [
+    "real input pilot design processes real files",
+    "real input pilot design is product readiness",
+    "real input pilot design is product release",
+    "local source selection grants accepted-evidence authority",
+    "local source processing writes memory",
+    "local source processing admits Atlas memory",
+    "local source processing authorizes final answers",
+    "local source processing certifies truth",
+    "consent authorizes trace export",
+    "consent authorizes PMR federation",
+    "consent authorizes memory write",
+    "local pilot can scan directories recursively",
+    "local pilot can read hidden files",
+    "local pilot can process credentials",
+    "local pilot can process private keys",
+    "local pilot can process medical records by default",
+    "local pilot can process legal records by default",
+    "local pilot can process financial records by default",
+    "local pilot can process child data by default",
+    "local pilot can process biometric data by default",
+    "unsupported claims can be hidden",
+    "instruction-like evidence can be trusted as evidence",
+    "source expansion can be skipped",
+    "real input pilot is a user study",
+    "real input pilot validates market demand",
+    "real input pilot proves human benefit",
+    "real input pilot trains the model",
+]
+MVR_REAL_INPUT_PILOT_DESIGN_CLAIM_ALLOWED = "MVR-LOCAL-REAL-INPUT-PILOT-DESIGN-00 defines design-only boundaries for a future local real-input Minimal Viable Receipt pilot in which explicitly selected local source material may later be processed under local-only, source-bounded, consent-bounded, quarantine-aware, receipt-required, human-review-required, non-authoritative conditions without processing real files in this phase, claiming product readiness, releasing product, granting accepted-evidence or final-answer authority, certifying truth, writing memory, admitting Atlas memory, exporting traces, federating PMR, training models, or skipping review."
+MVR_REAL_INPUT_PILOT_DESIGN_FAILURE_CLASSES = [
+    "real_input_design_mistaken_for_real_input_processing",
+    "local_source_selection_mistaken_for_accepted_evidence",
+    "consent_mistaken_for_memory_write",
+    "consent_mistaken_for_trace_export_authorization",
+    "consent_mistaken_for_pmr_federation_authorization",
+    "local_file_access_mistaken_for_directory_scan",
+    "source_manifest_missing",
+    "source_hash_missing",
+    "instruction_like_evidence_not_quarantined",
+    "unsupported_claims_hidden",
+    "source_expansion_missing",
+    "observation_contract_posture_missing",
+    "tac_aperture_posture_missing",
+    "no_silent_mode_shift_boundary_missing",
+    "real_input_receipt_missing",
+    "contestability_missing",
+    "recovery_path_missing",
+    "non_authority_boundaries_missing",
+    "product_readiness_claimed_from_local_pilot",
+    "real_input_pilot_mistaken_for_user_study",
+]
+MVR_REAL_INPUT_PILOT_DESIGN_DASHBOARD_SUMMARY = {
+    "policy_status": "active_design_only",
+    "pilot_mode": "design_only_local_real_input_boundary",
+    "local_real_input_pilot_definition": "explicit_local_source_selection_for_mvr_receipt_generation",
+    "runtime_behavior_changed": False,
+    "real_input_processing_enabled": False,
+    "real_input_runtime_artifacts_emitted": False,
+    "real_user_files_processed": False,
+    "provider_runtime_performed": False,
+    "network_call_performed": False,
+    "product_release_performed": False,
+    "product_readiness_claimed": False,
+    "real_user_study_performed": False,
+    "human_subject_study_performed": False,
+    "user_validation_performed": False,
+    "market_validation_emitted": False,
+    "human_benefit_proof_emitted": False,
+    "final_answer_authority_granted": False,
+    "accepted_evidence_authority_granted": False,
+    "truth_certification_emitted": False,
+    "compliance_certification_emitted": False,
+    "memory_write_performed": False,
+    "atlas_memory_admission_performed": False,
+    "trace_export_performed": False,
+    "pmr_federation_performed": False,
+    "model_training_performed": False,
+    "review_skip_authorized": False,
+    "explicit_user_selection_required": True,
+    "local_path_allowlist_required": True,
+    "recursive_directory_scan_allowed": False,
+    "hidden_file_scan_allowed": False,
+    "max_source_file_count_default": 5,
+    "max_source_bytes_default": 250000,
+    "source_hashing_required": True,
+    "source_manifest_required": True,
+    "source_expansion_required_for_decisions": True,
+    "instruction_like_evidence_quarantine_required": True,
+    "unsupported_claim_visibility_required": True,
+    "human_review_required": True,
+    "consent_scope_required": True,
+    "consent_is_local_to_pilot_run": True,
+    "consent_is_not_memory_write": True,
+    "consent_is_not_trace_export_authorization": True,
+    "consent_is_not_pmr_federation_authorization": True,
+    "consent_is_not_product_release": True,
+    "revocation_supported": True,
+    "retention_review_required": True,
+    "observation_contract_posture_required": True,
+    "observation_contract_policy_simulation_ref_required": True,
+    "tac_aperture_posture_required": True,
+    "default_tac_mode": "pulse",
+    "raw_trace_retention_allowed_default": False,
+    "trace_export_allowed_default": False,
+    "pmr_federation_allowed_default": False,
+    "no_silent_mode_shift_required": True,
+    "notice_and_consent_boundaries_visible": True,
+    "minimal_viable_receipt_required": True,
+    "human_readable_receipt_required": True,
+    "machine_readable_receipt_required": True,
+    "section_index_required": True,
+    "readability_profile_required": True,
+    "contestability_profile_required": True,
+    "cost_burden_profile_required": True,
+    "non_authority_boundary_required": True,
+    "local_real_input_source_manifest_required": True,
+    "quarantine_report_required": True,
+    "pilot_receipt_required": True,
+    "pilot_is_not_runtime_processing": True,
+    "pilot_is_not_product_release": True,
+    "pilot_is_not_product_readiness": True,
+    "pilot_is_not_user_validation": True,
+    "pilot_is_not_human_subject_study": True,
+    "pilot_is_not_market_validation": True,
+    "pilot_is_not_human_benefit_proof": True,
+    "pilot_is_not_truth_certification": True,
+    "pilot_is_not_final_answer_authority": True,
+    "pilot_is_not_accepted_evidence_authority": True,
+    "pilot_is_not_memory_write": True,
+    "pilot_is_not_atlas_memory_admission": True,
+    "pilot_is_not_trace_export_authorization": True,
+    "pilot_is_not_pmr_federation_authorization": True,
+    "pilot_is_not_model_training": True,
+    "pilot_is_not_review_skip": True,
+    "pilot_requires_human_review": True,
+}
+MVR_REAL_INPUT_PILOT_DESIGN_PHASE = {
+    "phase_id": "MVR-LOCAL-REAL-INPUT-PILOT-DESIGN-00",
+    "repo": "pdxvoiceteacher/CoherenceLattice",
+    "status": "accepted_local_validation",
+    "evidence_type": "design_only_local_real_input_boundary_publication_sync",
+    "product_posture": "design_only_local_real_input_pilot_boundary_without_real_file_processing_or_runtime_authority",
+    "primary_artifacts": MVR_REAL_INPUT_PILOT_DESIGN_ARTIFACTS,
+    "dashboard_summary": MVR_REAL_INPUT_PILOT_DESIGN_DASHBOARD_SUMMARY,
+    "reproduction_command_summary": MVR_REAL_INPUT_PILOT_DESIGN_COMMAND,
+    "claim_allowed": MVR_REAL_INPUT_PILOT_DESIGN_CLAIM_ALLOWED,
+    "claims_blocked": MVR_REAL_INPUT_PILOT_DESIGN_BLOCKED_CLAIMS,
+    "reviewer_caution": "MVR-LOCAL-REAL-INPUT-PILOT-DESIGN-00 is design-only boundary synchronization for a future local real-input pilot; it processes no real files, emits no runtime real-input artifacts, performs no provider or network calls, writes no memory, admits no Atlas memory, exports no traces, federates no PMR, releases no product, claims no product readiness, performs no user study or validation, trains no model, and skips no review.",
+    "publication_status": "dashboard_indexed",
+}
+
+
 VALIDATION_TIERING_PROVENANCE_COMMAND = "python -c \"from pathlib import Path; from coherence.validation.validation_receipt import build_validation_tier_receipt; bridge=Path(r'C:\\UVLM\\run_artifacts\\validation_tiering\\bridge'); policy_ref='validation_tier_policy.v1.json'; build_validation_tier_receipt(bridge, source_phase='AI-RECEIPT-ARCHITECTURE-00', validation_tier='deep', validation_scope='full_multi_module_suite', validation_intent='major_sync_or_handoff_grade_validation', commands_run=[{'command':'python -m pytest -q <full_multi_module_suite>', 'result':'passed', 'duration_seconds':32131.86}], artifact_chain_name='ai_receipt_architecture_product_stack', expected_artifacts=['ai_receipt_architecture_packet.json','ai_receipt_event_chain.json','ai_receipt_architecture.md','ai_receipt_architecture_receipt.json'], observed_artifacts=['ai_receipt_architecture_packet.json','ai_receipt_event_chain.json','ai_receipt_architecture.md','ai_receipt_architecture_receipt.json'], validation_result='passed')\""
 VALIDATION_TIERING_PROVENANCE_ARTIFACTS = [
     "config/validation/validation_tier_policy.v1.json",
@@ -12583,6 +12863,7 @@ MINIMAL_VIABLE_RECEIPT_DESIGN_PHASE,
 MINIMAL_VIABLE_RECEIPT_LOCAL_PROTOTYPE_PHASE,
 MVR_READABILITY_REVIEW_SEED_PHASE,
 MVR_READABILITY_REVISION_PHASE,
+MVR_REAL_INPUT_PILOT_DESIGN_PHASE,
 VALIDATION_TIERING_PROVENANCE_PHASE,
 TELEMETRY_APERTURE_DESIGN_PHASE,
 TAC_POLICY_SIMULATION_PHASE,
@@ -14773,6 +15054,19 @@ BOUNDARIES.extend(
         *MVR_READABILITY_REVISION_FAILURE_CLASSES,
         "Blocked overclaim examples for MVR Local Prototype Readability Revision publication boundaries.",
         *MVR_READABILITY_REVISION_BLOCKED_CLAIMS,
+        MVR_REAL_INPUT_PILOT_DESIGN_CLAIM_ALLOWED,
+        *MVR_REAL_INPUT_PILOT_DESIGN_ARTIFACTS,
+        *MVR_REAL_INPUT_PILOT_DESIGN_REPRO_FRAGMENTS,
+        *MVR_REAL_INPUT_PILOT_DESIGN_DOCTRINE_LANGUAGE,
+        *MVR_REAL_INPUT_PILOT_DESIGN_ALLOWED_INPUT_CLASSES,
+        *MVR_REAL_INPUT_PILOT_DESIGN_BLOCKED_INPUT_CLASSES,
+        *MVR_REAL_INPUT_PILOT_DESIGN_SOURCE_RULES,
+        *MVR_REAL_INPUT_PILOT_DESIGN_CONSENT_OBSERVATION_TERMS,
+        *MVR_REAL_INPUT_PILOT_DESIGN_OUTPUT_REQUIREMENT_TERMS,
+        *MVR_REAL_INPUT_PILOT_DESIGN_PRIOR_PHASE_RELATION,
+        *MVR_REAL_INPUT_PILOT_DESIGN_FAILURE_CLASSES,
+        "Blocked overclaim examples for MVR Local Real Input Pilot Design publication boundaries.",
+        *MVR_REAL_INPUT_PILOT_DESIGN_BLOCKED_CLAIMS,
         VALIDATION_TIERING_PROVENANCE_CLAIM_ALLOWED,
         *VALIDATION_TIERING_PROVENANCE_ARTIFACTS,
         *VALIDATION_TIERING_PROVENANCE_TIER_TERMS,
@@ -15645,6 +15939,15 @@ def dashboard_payload() -> dict[str, Any]:
         "mvr_local_prototype_readability_revision_00_indexed": True,
         "mvr_local_prototype_readability_revision_status": "completed",
         "mvr_readability_revision_gate_passed": False,
+        "mvr_local_real_input_pilot_design_00_indexed": True,
+        "mvr_local_real_input_pilot_design_status": "active_design_only",
+        "mvr_local_real_input_pilot_runtime_behavior_changed": False,
+        "mvr_local_real_input_processing_enabled": False,
+        "mvr_local_real_input_real_user_files_processed": False,
+        "not_mvr_local_real_input_pilot_product_readiness": True,
+        "not_mvr_local_real_input_pilot_product_release": True,
+        "not_mvr_local_real_input_pilot_user_validation": True,
+        "not_mvr_local_real_input_pilot_runtime_authority": True,
         "not_mvr_readability_revision_user_validation": True,
         "not_mvr_readability_revision_product_readiness": True,
         "not_mvr_readability_revision_runtime_authority": True,
@@ -15751,6 +16054,7 @@ def reproducibility_index() -> dict[str, Any]:
                 {"name": "MINIMAL-VIABLE-RECEIPT-LOCAL-PROTOTYPE-00 Python entrypoint", "command": MINIMAL_VIABLE_RECEIPT_LOCAL_PROTOTYPE_COMMAND},
                 {"name": "MVR-LOCAL-PROTOTYPE-READABILITY-REVIEW-SEED-00 Python entrypoint", "command": MVR_READABILITY_REVIEW_SEED_COMMAND},
                 {"name": "MVR-LOCAL-PROTOTYPE-READABILITY-REVISION-00 Python entrypoint", "command": MVR_READABILITY_REVISION_COMMAND},
+                {"name": "MVR-LOCAL-REAL-INPUT-PILOT-DESIGN-00 design validation", "command": MVR_REAL_INPUT_PILOT_DESIGN_COMMAND},
                 {"name": "Validation Tiering Provenance Python entrypoint", "command": VALIDATION_TIERING_PROVENANCE_COMMAND},
                 {"name": "TELEMETRY-APERTURE-DESIGN-00 config/schema inspection", "command": TELEMETRY_APERTURE_DESIGN_COMMAND},
                 {"name": "TAC-POLICY-SIMULATION-00 Python entrypoint", "command": TAC_POLICY_SIMULATION_COMMAND},
@@ -16672,6 +16976,15 @@ def status_payload() -> dict[str, Any]:
         "mvr_local_prototype_readability_revision_00_indexed": True,
         "mvr_local_prototype_readability_revision_status": "completed",
         "mvr_readability_revision_gate_passed": False,
+        "mvr_local_real_input_pilot_design_00_indexed": True,
+        "mvr_local_real_input_pilot_design_status": "active_design_only",
+        "mvr_local_real_input_pilot_runtime_behavior_changed": False,
+        "mvr_local_real_input_processing_enabled": False,
+        "mvr_local_real_input_real_user_files_processed": False,
+        "not_mvr_local_real_input_pilot_product_readiness": True,
+        "not_mvr_local_real_input_pilot_product_release": True,
+        "not_mvr_local_real_input_pilot_user_validation": True,
+        "not_mvr_local_real_input_pilot_runtime_authority": True,
         "not_mvr_readability_revision_user_validation": True,
         "not_mvr_readability_revision_product_readiness": True,
         "not_mvr_readability_revision_runtime_authority": True,
@@ -22068,6 +22381,109 @@ MVR-LOCAL-PROTOTYPE-READABILITY-REVISION-00 synchronizes the locally validated C
 Publication sync grants no runtime authority. It performs no provider runtime, network runtime, memory write, Atlas memory admission, trace export, PMR federation, product release, product-readiness claim, final-answer authorization, accepted-evidence grant, truth certification, model training, or review skipping.
 """
 
+
+MVR_REAL_INPUT_PILOT_DESIGN_SYNC_DOCS = {
+    "index.md",
+    "minimal-viable-receipt-design.md",
+    "minimal-viable-receipt-local-prototype.md",
+    "mvr-local-prototype-readability-review-seed.md",
+    "mvr-local-prototype-readability-revision.md",
+    "ai-receipt-architecture.md",
+    "triadic-observation-contract.md",
+    "observation-contract-policy-simulation.md",
+    "tac-ai-receipt-event-link.md",
+    "coherence-event-signatures.md",
+    "ces-pmr-indexing-design.md",
+    "validation-tiering-provenance.md",
+    "claim-boundaries.md",
+}
+MVR_REAL_INPUT_PILOT_DESIGN_SYNC_NOTE = f"""
+
+## MVR Local Real Input Pilot Design publication sync
+
+MVR-LOCAL-REAL-INPUT-PILOT-DESIGN-00 defines design-only boundaries for a future local real-input Minimal Viable Receipt pilot. MVR Local Real Input Pilot Design is publication/dashboard synchronization only. Real local input can enter only by explicit local source selection. Real input pilot design is not real input processing. Real input pilot design is not product readiness. Real input pilot design is not product release. A real-input pilot must be local-only by default, source-bounded, consent-bounded, quarantine-aware, receipt-required, and human-review-required. Local source selection is not accepted-evidence authority. Local source processing is not memory write. Human review remains required.
+
+MVR-LOCAL-REAL-INPUT-PILOT-DESIGN-00 does not process real files. MVR-LOCAL-REAL-INPUT-PILOT-DESIGN-00 does not emit runtime real-input artifacts. MVR-LOCAL-REAL-INPUT-PILOT-DESIGN-00 does not perform provider calls. MVR-LOCAL-REAL-INPUT-PILOT-DESIGN-00 does not perform network calls. MVR-LOCAL-REAL-INPUT-PILOT-DESIGN-00 does not write memory. MVR-LOCAL-REAL-INPUT-PILOT-DESIGN-00 does not admit Atlas memory. MVR-LOCAL-REAL-INPUT-PILOT-DESIGN-00 does not claim product readiness. MVR-LOCAL-REAL-INPUT-PILOT-DESIGN-00 does not release product. Publication sync grants no runtime authority.
+
+Artifacts include docs/MVR_LOCAL_REAL_INPUT_PILOT_DESIGN.md, config/receipt/mvr_local_real_input_pilot_policy.v1.json, schema/bridge/mvr_local_real_input_source_manifest.schema.json, schema/bridge/mvr_local_real_input_consent_scope.schema.json, schema/bridge/mvr_local_real_input_quarantine_report.schema.json, schema/bridge/mvr_local_real_input_pilot_policy_packet.schema.json, and schema/bridge/mvr_local_real_input_non_authority_boundary.schema.json.
+
+Allowed input classes: local_text_file, local_markdown_file, local_json_file, local_csv_file, local_plaintext_excerpt, local_user_pasted_excerpt, local_redacted_document_excerpt. Initially blocked input classes: remote_url_fetch, cloud_connector_file, email_inbox_scan, calendar_scan, browser_history_scan, whole_disk_scan, hidden_directory_scan, credential_file, secrets_file, private_key_file, raw_chat_history_bulk_import, personal_profile_bulk_import, unredacted_sensitive_identity_document, medical_record, legal_record, financial_account_record, child_data_record, biometric_data_record.
+
+Pilot source rules: explicit_user_selection_required, local_path_allowlist_required, recursive_directory_scan_allowed = false, hidden_file_scan_allowed = false, max_source_file_count_default = 5, max_source_bytes_default = 250000, source_hashing_required, source_manifest_required, source_expansion_required_for_decisions, instruction_like_evidence_quarantine_required, unsupported_claim_visibility_required, human_review_required.
+
+Consent and observation terms: consent_scope_required, consent_is_local_to_pilot_run, consent_is_not_memory_write, consent_is_not_trace_export_authorization, consent_is_not_pmr_federation_authorization, consent_is_not_product_release, revocation_supported, retention_review_required, observation_contract_posture_required, observation_contract_policy_simulation_ref_required, tac_aperture_posture_required, default_tac_mode = pulse, raw_trace_retention_allowed_default = false, trace_export_allowed_default = false, pmr_federation_allowed_default = false, no_silent_mode_shift_required, notice_and_consent_boundaries_visible.
+
+Output requirements: minimal_viable_receipt_required, human_readable_receipt_required, machine_readable_receipt_required, section_index_required, readability_profile_required, contestability_profile_required, cost_burden_profile_required, non_authority_boundary_required, local_real_input_source_manifest_required, quarantine_report_required, pilot_receipt_required.
+
+Relation to prior phases: MINIMAL-VIABLE-RECEIPT-DESIGN-00 defines the one-transaction/many-sections receipt standard. MINIMAL-VIABLE-RECEIPT-LOCAL-PROTOTYPE-00 emits the local fixture-backed readable receipt. MVR-LOCAL-PROTOTYPE-READABILITY-REVIEW-SEED-00 evaluates that receipt with deterministic local fixture responses. MVR-LOCAL-PROTOTYPE-READABILITY-REVISION-00 applies deterministic local readability revisions. MVR-LOCAL-REAL-INPUT-PILOT-DESIGN-00 defines boundaries for a future real-local-input pilot. TRIADIC-OBSERVATION-CONTRACT-DESIGN-00 defines governed attention. OBSERVATION-CONTRACT-POLICY-SIMULATION-00 rehearses notice, consent, recovery, source-expansion, pathway-prior, retention, trace-export, and PMR-federation policy outcomes. TAC phases define aperture posture and review visibility. COHERENCE-EVENT-SIGNATURES-DESIGN-00 defines event signatures. CES-PMR-INDEXING-DESIGN-00 defines CES as a compact PMR index, not source replacement. VALIDATION-TIERING-PROVENANCE-00 records validation confidence scope.
+
+See [MVR Local Real Input Pilot Design](mvr-local-real-input-pilot-design.md).
+"""
+
+def mvr_local_real_input_pilot_design_doc() -> str:
+    summary = "\n".join(f"- {key} = {str(value).lower() if isinstance(value, bool) else value}" for key, value in MVR_REAL_INPUT_PILOT_DESIGN_DASHBOARD_SUMMARY.items())
+    return f"""# MVR Local Real Input Pilot Design
+
+MVR-LOCAL-REAL-INPUT-PILOT-DESIGN-00 synchronizes the locally validated CoherenceLattice MVR Local Real Input Pilot Design into publication dashboards. This is publication/dashboard synchronization only. It defines boundaries for a future local real-input Minimal Viable Receipt pilot and grants no runtime authority.
+
+## Bounded allowed claim
+
+{MVR_REAL_INPUT_PILOT_DESIGN_CLAIM_ALLOWED}
+
+## Doctrine language
+
+{_bullets(MVR_REAL_INPUT_PILOT_DESIGN_DOCTRINE_LANGUAGE)}
+
+## Dashboard summary
+
+{summary}
+
+## Allowed input classes
+
+{_bullets(MVR_REAL_INPUT_PILOT_DESIGN_ALLOWED_INPUT_CLASSES)}
+
+## Initially blocked input classes
+
+{_bullets(MVR_REAL_INPUT_PILOT_DESIGN_BLOCKED_INPUT_CLASSES)}
+
+## Pilot source rules
+
+{_bullets(MVR_REAL_INPUT_PILOT_DESIGN_SOURCE_RULES)}
+
+## Consent and observation terms
+
+{_bullets(MVR_REAL_INPUT_PILOT_DESIGN_CONSENT_OBSERVATION_TERMS)}
+
+## Output requirement terms
+
+{_bullets(MVR_REAL_INPUT_PILOT_DESIGN_OUTPUT_REQUIREMENT_TERMS)}
+
+## Artifact references
+
+{_bullets(MVR_REAL_INPUT_PILOT_DESIGN_ARTIFACTS)}
+
+## Relation to prior phases
+
+{_bullets(MVR_REAL_INPUT_PILOT_DESIGN_PRIOR_PHASE_RELATION)}
+
+## Failure classes
+
+{_bullets(MVR_REAL_INPUT_PILOT_DESIGN_FAILURE_CLASSES)}
+
+## Blocked claims
+
+{_bullets(MVR_REAL_INPUT_PILOT_DESIGN_BLOCKED_CLAIMS)}
+
+## Reproducibility
+
+{_bullets(MVR_REAL_INPUT_PILOT_DESIGN_REPRO_FRAGMENTS)}
+- `{MVR_REAL_INPUT_PILOT_DESIGN_COMMAND}`
+
+## Runtime authority boundary
+
+Publication sync grants no runtime authority. It performs no real file processing, real user file ingestion, provider runtime, network runtime, memory write, Atlas memory admission, trace export, PMR federation, product release, product-readiness claim, real user study, human-subject study, user validation, market validation, human benefit proof, final-answer authorization, accepted-evidence grant, truth certification, compliance certification, model training, or review skipping.
+"""
+
 def build(out_dir: Path, docs_dir: Path) -> None:
     _write_json(out_dir / "experiment_suite_dashboard.json", dashboard_payload())
     _write_json(out_dir / "accepted_phase_matrix.json", accepted_phase_matrix())
@@ -22080,6 +22496,7 @@ def build(out_dir: Path, docs_dir: Path) -> None:
     docs_payload["minimal-viable-receipt-local-prototype.md"] = minimal_viable_receipt_local_prototype_doc()
     docs_payload["mvr-local-prototype-readability-review-seed.md"] = mvr_local_prototype_readability_review_seed_doc()
     docs_payload["mvr-local-prototype-readability-revision.md"] = mvr_local_prototype_readability_revision_doc()
+    docs_payload["mvr-local-real-input-pilot-design.md"] = mvr_local_real_input_pilot_design_doc()
     for name in MINIMAL_VIABLE_RECEIPT_DESIGN_SYNC_DOCS:
         if name in docs_payload:
             docs_payload[name] = docs_payload[name].rstrip() + MINIMAL_VIABLE_RECEIPT_DESIGN_SYNC_NOTE
@@ -22098,6 +22515,9 @@ def build(out_dir: Path, docs_dir: Path) -> None:
     for name in MVR_READABILITY_REVISION_SYNC_DOCS:
         if name in docs_payload:
             docs_payload[name] = docs_payload[name].rstrip() + MVR_READABILITY_REVISION_SYNC_NOTE
+    for name in MVR_REAL_INPUT_PILOT_DESIGN_SYNC_DOCS:
+        if name in docs_payload:
+            docs_payload[name] = docs_payload[name].rstrip() + MVR_REAL_INPUT_PILOT_DESIGN_SYNC_NOTE
     for name, text in docs_payload.items():
         _write_text(docs_dir / name, text)
 

@@ -1211,6 +1211,15 @@
       "export_bundle_manifest.json",
       "export_bundle_parity_report.json"
     ],
+    "MVR-LOCAL-REAL-INPUT-PILOT-DESIGN-00": [
+      "docs/MVR_LOCAL_REAL_INPUT_PILOT_DESIGN.md",
+      "config/receipt/mvr_local_real_input_pilot_policy.v1.json",
+      "schema/bridge/mvr_local_real_input_source_manifest.schema.json",
+      "schema/bridge/mvr_local_real_input_consent_scope.schema.json",
+      "schema/bridge/mvr_local_real_input_quarantine_report.schema.json",
+      "schema/bridge/mvr_local_real_input_pilot_policy_packet.schema.json",
+      "schema/bridge/mvr_local_real_input_non_authority_boundary.schema.json"
+    ],
     "VALIDATION-TIERING-PROVENANCE-00": [
       "config/validation/validation_tier_policy.v1.json",
       "validation_tier_receipt.json",
