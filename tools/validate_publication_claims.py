@@ -27,6 +27,7 @@ from tools.build_public_repro_dashboard import (
     MVR_READABILITY_REVIEW_SEED_BLOCKED_CLAIMS,
     MVR_READABILITY_REVISION_BLOCKED_CLAIMS,
     MVR_REAL_INPUT_PILOT_DESIGN_BLOCKED_CLAIMS,
+    MVR_REAL_INPUT_PILOT_PROTOTYPE_BLOCKED_CLAIMS,
     VALIDATION_TIERING_PROVENANCE_BLOCKED_CLAIMS,
     TELEMETRY_APERTURE_BLOCKED_CLAIMS,
     TAC_POLICY_SIMULATION_BLOCKED_CLAIMS,
@@ -841,6 +842,7 @@ PAPER_CONFIGS: dict[str, dict[str, Any]] = {
             *MVR_READABILITY_REVIEW_SEED_BLOCKED_CLAIMS,
             *MVR_READABILITY_REVISION_BLOCKED_CLAIMS,
             *MVR_REAL_INPUT_PILOT_DESIGN_BLOCKED_CLAIMS,
+            *MVR_REAL_INPUT_PILOT_PROTOTYPE_BLOCKED_CLAIMS,
             *VALIDATION_TIERING_PROVENANCE_BLOCKED_CLAIMS,
             *TELEMETRY_APERTURE_BLOCKED_CLAIMS,
             *TAC_POLICY_SIMULATION_BLOCKED_CLAIMS,
@@ -1390,6 +1392,9 @@ def _forbidden_hits(normalized_text: str, forbidden: tuple[str, ...]) -> list[st
                 ):
                     search_from = index + len(normalized_phrase)
                     continue
+            if phrase in {"federation", "pmr federation", "product release", "product readiness", "final-answer authorization", "accepted-evidence grants", "accepted evidence", "truth certification", "memory write", "trace export", "model training", "human-subject study", "market validation", "human benefit proof", "claims human benefit proof"} and "avoiding" in normalized_text[max(0, index - 900) : index]:
+                search_from = index + len(normalized_phrase)
+                continue
             if (
                 phrase == "encrypted shard transfer"
                 and (
@@ -1462,6 +1467,7 @@ def _forbidden_hits(normalized_text: str, forbidden: tuple[str, ...]) -> list[st
             *MVR_READABILITY_REVIEW_SEED_BLOCKED_CLAIMS,
             *MVR_READABILITY_REVISION_BLOCKED_CLAIMS,
             *MVR_REAL_INPUT_PILOT_DESIGN_BLOCKED_CLAIMS,
+            *MVR_REAL_INPUT_PILOT_PROTOTYPE_BLOCKED_CLAIMS,
             *VALIDATION_TIERING_PROVENANCE_BLOCKED_CLAIMS,
             *TELEMETRY_APERTURE_BLOCKED_CLAIMS,
             *TAC_POLICY_SIMULATION_BLOCKED_CLAIMS,

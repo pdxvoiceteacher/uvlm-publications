@@ -2699,6 +2699,138 @@
 - real input pilot validates market demand
 - real input pilot proves human benefit
 - real input pilot trains the model
+- MVR-LOCAL-REAL-INPUT-PILOT-PROTOTYPE-00 emits local real-input pilot prototype artifacts for explicitly selected local sources and explicit pasted excerpts, producing source manifest, consent scope, quarantine report, policy packet, non-authority boundary, Minimal Viable Receipt packet, human-readable receipt, PMR/inventory/parity visibility, and pilot receipt while avoiding directory scans, hidden-file reads, URL fetches, provider calls, network calls, product release, product-readiness claims, final-answer authorization, accepted-evidence grants, truth certification, memory write, Atlas admission, trace export, PMR federation, model training, review skipping, user validation, human-subject study, market validation, or human benefit proof.
+- mvr_local_real_input_source_manifest.json
+- mvr_local_real_input_consent_scope.json
+- mvr_local_real_input_quarantine_report.json
+- mvr_local_real_input_pilot_policy_packet.json
+- mvr_local_real_input_non_authority_boundary.json
+- minimal_viable_receipt_packet.json
+- minimal_viable_receipt_checklist.json
+- minimal_viable_receipt_section_index.json
+- receipt_readability_profile.json
+- receipt_contestability_profile.json
+- receipt_cost_burden_profile.json
+- minimal_viable_receipt_non_authority_boundary.json
+- minimal_viable_receipt_human_readable.md
+- mvr_local_real_input_pilot_receipt.json
+- pmr_local_runtime_artifact_index.json
+- artifact_inventory.json
+- run_artifact_manifest.json
+- export_bundle_manifest.json
+- export_bundle_parity_report.json
+- schema/bridge/mvr_local_real_input_source_manifest.schema.json
+- schema/bridge/mvr_local_real_input_consent_scope.schema.json
+- schema/bridge/mvr_local_real_input_quarantine_report.schema.json
+- schema/bridge/mvr_local_real_input_pilot_policy_packet.schema.json
+- schema/bridge/mvr_local_real_input_non_authority_boundary.schema.json
+- schema/bridge/mvr_local_real_input_pilot_receipt.schema.json
+- schema/bridge/minimal_viable_receipt_packet.schema.json
+- schema/bridge/minimal_viable_receipt_checklist.schema.json
+- schema/bridge/minimal_viable_receipt_section_index.schema.json
+- schema/bridge/receipt_readability_profile.schema.json
+- schema/bridge/receipt_contestability_profile.schema.json
+- schema/bridge/receipt_cost_burden_profile.schema.json
+- schema/bridge/minimal_viable_receipt_non_authority_boundary.schema.json
+- build_mvr_local_real_input_pilot_prototype
+- MVR Local Real Input Pilot Prototype
+- Real local input can enter only by explicit local source selection.
+- The prototype processes only explicit local sources or explicit pasted excerpts.
+- The prototype never scans directories.
+- The prototype never auto-discovers files.
+- The prototype never reads hidden files.
+- The prototype never fetches URLs.
+- The prototype never calls provider APIs.
+- The prototype never performs network calls.
+- Local source selection is not accepted-evidence authority.
+- Local source processing is not memory write.
+- Consent is local to this pilot run.
+- Consent is not trace export authorization.
+- Consent is not PMR federation authorization.
+- Instruction-like evidence was quarantined.
+- Unsupported claims require review.
+- This receipt is not proof of truth.
+- This receipt is not product release.
+- This receipt is not product readiness.
+- This receipt does not authorize final answers.
+- This receipt does not grant accepted-evidence authority.
+- Human review remains required.
+- Default smoke uses generated explicit local test sources and does not process real user files.
+- Explicit pasted excerpt smoke processes only the supplied excerpt and remains local-only.
+- generated_explicit_local_test_sources
+- explicit_pasted_excerpts
+- local_user_pasted_excerpt
+- explicit_user_selected
+- accepted_for_processing
+- source_is_not_accepted_evidence
+- source_sha256
+- recursive_directory_scan_allowed = false
+- hidden_file_scan_allowed = false
+- consent_status = active_for_local_pilot
+- consent_scope = local_pilot_run_only
+- consent_is_local_to_pilot_run = true
+- consent_is_not_memory_write = true
+- consent_is_not_trace_export_authorization = true
+- consent_is_not_pmr_federation_authorization = true
+- consent_is_not_product_release = true
+- quarantine_status = completed
+- instruction_like_evidence_detected
+- quarantined_evidence_is_not_accepted_evidence = true
+- MVR-LOCAL-REAL-INPUT-PILOT-DESIGN-00 defines boundaries for a future real-local-input pilot.
+- MVR-LOCAL-REAL-INPUT-PILOT-PROTOTYPE-00 emits the first bounded local real-input pilot prototype.
+- MINIMAL-VIABLE-RECEIPT-DESIGN-00 defines the one-transaction/many-sections receipt standard.
+- MINIMAL-VIABLE-RECEIPT-LOCAL-PROTOTYPE-00 emits the local fixture-backed readable receipt.
+- MVR-LOCAL-PROTOTYPE-READABILITY-REVISION-00 applies deterministic local readability revisions.
+- TRIADIC-OBSERVATION-CONTRACT-DESIGN-00 defines governed attention.
+- OBSERVATION-CONTRACT-POLICY-SIMULATION-00 rehearses notice, consent, recovery, source-expansion, pathway-prior, retention, trace-export, and PMR-federation policy outcomes.
+- TAC phases define aperture posture and review visibility.
+- COHERENCE-EVENT-SIGNATURES-DESIGN-00 defines event signatures.
+- CES-PMR-INDEXING-DESIGN-00 defines CES as a compact PMR index, not source replacement.
+- VALIDATION-TIERING-PROVENANCE-00 records validation confidence scope.
+- local_real_input_pilot_mistaken_for_product_release
+- local_real_input_pilot_mistaken_for_product_readiness
+- local_real_input_pilot_mistaken_for_user_study
+- local_source_selection_mistaken_for_accepted_evidence
+- source_manifest_mistaken_for_accepted_evidence
+- quarantined_evidence_mistaken_for_accepted_evidence
+- consent_mistaken_for_trace_export_authorization
+- consent_mistaken_for_pmr_federation_authorization
+- consent_mistaken_for_memory_write
+- pasted_excerpt_mistaken_for_provider_runtime
+- local_pilot_mistaken_for_directory_scan
+- unsupported_claims_hidden
+- source_expansion_missing
+- human_review_requirement_hidden
+- non_authority_boundaries_missing
+- Blocked overclaim examples for MVR Local Real Input Pilot Prototype publication boundaries.
+- MVR real-input pilot prototype is product release
+- MVR real-input pilot prototype proves product readiness
+- MVR real-input pilot prototype is a user study
+- MVR real-input pilot prototype validates market demand
+- MVR real-input pilot prototype proves human benefit
+- MVR real-input pilot prototype certifies truth
+- MVR real-input pilot prototype authorizes final answers
+- MVR real-input pilot prototype grants accepted-evidence authority
+- MVR real-input pilot prototype writes memory
+- MVR real-input pilot prototype admits Atlas memory
+- MVR real-input pilot prototype exports traces
+- MVR real-input pilot prototype federates PMR
+- MVR real-input pilot prototype trains the model
+- MVR real-input pilot prototype skips review
+- local source selection is accepted evidence
+- local source processing writes memory
+- consent authorizes trace export
+- consent authorizes PMR federation
+- consent authorizes memory write
+- source manifest is accepted evidence
+- quarantined evidence is accepted evidence
+- pasted excerpt smoke is provider runtime
+- local pilot can scan directories recursively
+- local pilot can read hidden files
+- local pilot can fetch URLs
+- local pilot can call provider APIs
+- unsupported claims can be hidden
+- source expansion can be skipped
 - VALIDATION-TIERING-PROVENANCE-00 documents smoke, acceptance, and deep validation tiers and emits validation receipts that record tier, scope, commands, artifact chain, duration, sufficient-for decisions, and not-sufficient-for boundaries without certifying truth, releasing product, proving science, validating market or human benefit, deploying runtime, writing memory, or admitting Atlas memory.
 - config/validation/validation_tier_policy.v1.json
 - validation_tier_receipt.json
@@ -3968,3 +4100,17 @@ Output requirements: minimal_viable_receipt_required, human_readable_receipt_req
 Relation to prior phases: MINIMAL-VIABLE-RECEIPT-DESIGN-00 defines the one-transaction/many-sections receipt standard. MINIMAL-VIABLE-RECEIPT-LOCAL-PROTOTYPE-00 emits the local fixture-backed readable receipt. MVR-LOCAL-PROTOTYPE-READABILITY-REVIEW-SEED-00 evaluates that receipt with deterministic local fixture responses. MVR-LOCAL-PROTOTYPE-READABILITY-REVISION-00 applies deterministic local readability revisions. MVR-LOCAL-REAL-INPUT-PILOT-DESIGN-00 defines boundaries for a future real-local-input pilot. TRIADIC-OBSERVATION-CONTRACT-DESIGN-00 defines governed attention. OBSERVATION-CONTRACT-POLICY-SIMULATION-00 rehearses notice, consent, recovery, source-expansion, pathway-prior, retention, trace-export, and PMR-federation policy outcomes. TAC phases define aperture posture and review visibility. COHERENCE-EVENT-SIGNATURES-DESIGN-00 defines event signatures. CES-PMR-INDEXING-DESIGN-00 defines CES as a compact PMR index, not source replacement. VALIDATION-TIERING-PROVENANCE-00 records validation confidence scope.
 
 See [MVR Local Real Input Pilot Design](mvr-local-real-input-pilot-design.md).
+
+## MVR Local Real Input Pilot Prototype publication sync
+
+MVR-LOCAL-REAL-INPUT-PILOT-PROTOTYPE-00 emits the first bounded local real-input pilot prototype. Real local input can enter only by explicit local source selection or explicit pasted excerpts. The prototype processes only explicit local sources or explicit pasted excerpts; it never scans directories, never auto-discovers files, never reads hidden files, never fetches URLs, never calls provider APIs, and never performs network calls. Local source selection is not accepted-evidence authority. Local source processing is not memory write. Consent is local to this pilot run and is not trace export authorization or PMR federation authorization. Publication sync grants no runtime authority.
+
+Default smoke uses generated_explicit_local_test_sources with selected_source_count = 2, recursive_directory_scan_allowed = false, hidden_file_scan_allowed = false, real_user_files_processed = false, local_fixture_mode = true, instruction_like_evidence_count = 1, real_input_processing_enabled = true, real_input_runtime_artifacts_emitted = true, and pilot_receipt_status = completed. Explicit pasted excerpt smoke uses explicit_pasted_excerpts with pasted_excerpt_selected_source_count = 1, pasted_excerpt_source_class = local_user_pasted_excerpt, pasted_excerpt_real_user_files_processed = true, and pasted_excerpt_local_fixture_mode = false.
+
+Artifacts include mvr_local_real_input_source_manifest.json, mvr_local_real_input_consent_scope.json, mvr_local_real_input_quarantine_report.json, mvr_local_real_input_pilot_policy_packet.json, mvr_local_real_input_non_authority_boundary.json, minimal_viable_receipt_packet.json, minimal_viable_receipt_checklist.json, minimal_viable_receipt_section_index.json, receipt_readability_profile.json, receipt_contestability_profile.json, receipt_cost_burden_profile.json, minimal_viable_receipt_non_authority_boundary.json, minimal_viable_receipt_human_readable.md, mvr_local_real_input_pilot_receipt.json, pmr_local_runtime_artifact_index.json, artifact_inventory.json, run_artifact_manifest.json, export_bundle_manifest.json, and export_bundle_parity_report.json. Schemas include schema/bridge/mvr_local_real_input_source_manifest.schema.json, schema/bridge/mvr_local_real_input_consent_scope.schema.json, schema/bridge/mvr_local_real_input_quarantine_report.schema.json, schema/bridge/mvr_local_real_input_pilot_policy_packet.schema.json, schema/bridge/mvr_local_real_input_non_authority_boundary.schema.json, schema/bridge/mvr_local_real_input_pilot_receipt.schema.json, schema/bridge/minimal_viable_receipt_packet.schema.json, schema/bridge/minimal_viable_receipt_checklist.schema.json, schema/bridge/minimal_viable_receipt_section_index.schema.json, schema/bridge/receipt_readability_profile.schema.json, schema/bridge/receipt_contestability_profile.schema.json, schema/bridge/receipt_cost_burden_profile.schema.json, and schema/bridge/minimal_viable_receipt_non_authority_boundary.schema.json. Reproduction references build_mvr_local_real_input_pilot_prototype.
+
+Source-selection terms: generated_explicit_local_test_sources, explicit_pasted_excerpts, local_user_pasted_excerpt, explicit_user_selected, accepted_for_processing, source_is_not_accepted_evidence, source_sha256, recursive_directory_scan_allowed = false, hidden_file_scan_allowed = false. Consent and quarantine terms: consent_status = active_for_local_pilot, consent_scope = local_pilot_run_only, consent_is_local_to_pilot_run = true, consent_is_not_memory_write = true, consent_is_not_trace_export_authorization = true, consent_is_not_pmr_federation_authorization = true, consent_is_not_product_release = true, quarantine_status = completed, instruction_like_evidence_detected, quarantined_evidence_is_not_accepted_evidence = true.
+
+Relation to prior phases: MVR-LOCAL-REAL-INPUT-PILOT-DESIGN-00 defines boundaries for a future real-local-input pilot. MVR-LOCAL-REAL-INPUT-PILOT-PROTOTYPE-00 emits the first bounded local real-input pilot prototype. MINIMAL-VIABLE-RECEIPT-DESIGN-00 defines the one-transaction/many-sections receipt standard. MINIMAL-VIABLE-RECEIPT-LOCAL-PROTOTYPE-00 emits the local fixture-backed readable receipt. MVR-LOCAL-PROTOTYPE-READABILITY-REVISION-00 applies deterministic local readability revisions. TRIADIC-OBSERVATION-CONTRACT-DESIGN-00 defines governed attention. OBSERVATION-CONTRACT-POLICY-SIMULATION-00 rehearses notice, consent, recovery, source-expansion, pathway-prior, retention, trace-export, and PMR-federation policy outcomes. TAC phases define aperture posture and review visibility. COHERENCE-EVENT-SIGNATURES-DESIGN-00 defines event signatures. CES-PMR-INDEXING-DESIGN-00 defines CES as a compact PMR index, not source replacement. VALIDATION-TIERING-PROVENANCE-00 records validation confidence scope.
+
+See [MVR Local Real Input Pilot Prototype](mvr-local-real-input-pilot-prototype.md).
