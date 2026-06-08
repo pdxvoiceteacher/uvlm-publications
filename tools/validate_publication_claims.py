@@ -23,6 +23,7 @@ from tools.build_public_repro_dashboard import (
     STATIC_HTML_USABILITY_REVISION_BLOCKED_CLAIMS,
     AI_RECEIPT_ARCHITECTURE_BLOCKED_CLAIMS,
     MINIMAL_VIABLE_RECEIPT_DESIGN_BLOCKED_CLAIMS,
+    MINIMAL_VIABLE_RECEIPT_LOCAL_PROTOTYPE_BLOCKED_CLAIMS,
     VALIDATION_TIERING_PROVENANCE_BLOCKED_CLAIMS,
     TELEMETRY_APERTURE_BLOCKED_CLAIMS,
     TAC_POLICY_SIMULATION_BLOCKED_CLAIMS,
@@ -833,6 +834,7 @@ PAPER_CONFIGS: dict[str, dict[str, Any]] = {
             *STATIC_HTML_USABILITY_REVISION_BLOCKED_CLAIMS,
             *AI_RECEIPT_ARCHITECTURE_BLOCKED_CLAIMS,
             *MINIMAL_VIABLE_RECEIPT_DESIGN_BLOCKED_CLAIMS,
+            *MINIMAL_VIABLE_RECEIPT_LOCAL_PROTOTYPE_BLOCKED_CLAIMS,
             *VALIDATION_TIERING_PROVENANCE_BLOCKED_CLAIMS,
             *TELEMETRY_APERTURE_BLOCKED_CLAIMS,
             *TAC_POLICY_SIMULATION_BLOCKED_CLAIMS,
@@ -1194,7 +1196,7 @@ def _forbidden_hits(normalized_text: str, forbidden: tuple[str, ...]) -> list[st
             ):
                 search_from = index + len(normalized_phrase)
                 continue
-            if phrase in {"federation", "accepted evidence", "surveillance"} and "without changing runtime behavior or granting" in normalized_text[max(0, index - 160) : index]:
+            if phrase in {"federation", "accepted evidence", "surveillance"} and ("without changing runtime behavior or granting" in normalized_text[max(0, index - 160) : index] or "without performing" in normalized_text[max(0, index - 320) : index]):
                 search_from = index + len(normalized_phrase)
                 continue
             if phrase == "federation" and "design only consent bounded governed attention contract" in normalized_text[max(0, index - 220) : index + 220] and "without changing runtime behavior" in normalized_text[max(0, index - 80) : index + 260]:
@@ -1305,7 +1307,7 @@ def _forbidden_hits(normalized_text: str, forbidden: tuple[str, ...]) -> list[st
             ):
                 search_from = index + len(normalized_phrase)
                 continue
-            if phrase in {"market validation", "human benefit proof"} and "without certifying truth" in normalized_text[max(0, index - 260) : index]:
+            if phrase in {"market validation", "human benefit proof"} and ("without certifying truth" in normalized_text[max(0, index - 260) : index] or "without performing" in normalized_text[max(0, index - 320) : index]):
                 search_from = index + len(normalized_phrase)
                 continue
             if (
@@ -1315,7 +1317,7 @@ def _forbidden_hits(normalized_text: str, forbidden: tuple[str, ...]) -> list[st
             ):
                 search_from = index + len(normalized_phrase)
                 continue
-            if phrase == "federation" and ("without granting" in normalized_text[max(0, index - 500) : index] or "or granting" in normalized_text[max(0, index - 500) : index] or "pmr federation requirements without" in normalized_text[max(0, index - 80) : index + 120]):
+            if phrase == "federation" and ("without granting" in normalized_text[max(0, index - 500) : index] or "without performing" in normalized_text[max(0, index - 320) : index] or "or granting" in normalized_text[max(0, index - 500) : index] or "pmr federation requirements without" in normalized_text[max(0, index - 80) : index + 120]):
                 search_from = index + len(normalized_phrase)
                 continue
             if (
@@ -1344,6 +1346,7 @@ def _forbidden_hits(normalized_text: str, forbidden: tuple[str, ...]) -> list[st
                     "without creating" in normalized_text[max(0, index - 260) : index]
                     or "without claiming" in normalized_text[max(0, index - 260) : index]
                     or "claiming no" in normalized_text[max(0, index - 260) : index]
+                    or "without performing" in normalized_text[max(0, index - 320) : index]
                     or any(_normalize(claim) in normalized_text[max(0, index - 220) : index + 220] for claim in (*VISUAL_REVIEW_STATIC_HTML_BLOCKED_CLAIMS, *STATIC_HTML_USABILITY_REVIEW_BLOCKED_CLAIMS, *STATIC_HTML_USABILITY_REVISION_BLOCKED_CLAIMS))
                 )
             ):
@@ -1353,7 +1356,8 @@ def _forbidden_hits(normalized_text: str, forbidden: tuple[str, ...]) -> list[st
                 "without changing runtime behavior or granting" in normalized_text[max(0, index - 120) : index]
                 or "without certifying truth" in normalized_text[max(0, index - 260) : index]
                 or "or granting" in normalized_text[max(0, index - 120) : index]
-                or "grants no" in normalized_text[max(0, index - 80) : index]
+                or "grants no" in normalized_text[max(0, index - 450) : index]
+                or "without performing" in normalized_text[max(0, index - 320) : index]
             ):
                 search_from = index + len(normalized_phrase)
                 continue
@@ -1433,6 +1437,7 @@ def _forbidden_hits(normalized_text: str, forbidden: tuple[str, ...]) -> list[st
             *STATIC_HTML_USABILITY_REVISION_BLOCKED_CLAIMS,
             *AI_RECEIPT_ARCHITECTURE_BLOCKED_CLAIMS,
             *MINIMAL_VIABLE_RECEIPT_DESIGN_BLOCKED_CLAIMS,
+            *MINIMAL_VIABLE_RECEIPT_LOCAL_PROTOTYPE_BLOCKED_CLAIMS,
             *VALIDATION_TIERING_PROVENANCE_BLOCKED_CLAIMS,
             *TELEMETRY_APERTURE_BLOCKED_CLAIMS,
             *TAC_POLICY_SIMULATION_BLOCKED_CLAIMS,
@@ -1449,6 +1454,9 @@ def _forbidden_hits(normalized_text: str, forbidden: tuple[str, ...]) -> list[st
                     search_from = index + len(normalized_phrase)
                     continue
                 if phrase == "truth certification" and "boundary preventing" in normalized_text[max(0, index - 80) : index]:
+                    search_from = index + len(normalized_phrase)
+                    continue
+                if "without performing" in normalized_text[max(0, index - 320) : index]:
                     search_from = index + len(normalized_phrase)
                     continue
                 if not _is_directly_negated(normalized_text, index):

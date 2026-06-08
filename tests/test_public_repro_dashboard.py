@@ -83,6 +83,20 @@ from tools.build_public_repro_dashboard import (
     MINIMAL_VIABLE_RECEIPT_DESIGN_PRODUCT_EVENT_COMPONENTS,
     MINIMAL_VIABLE_RECEIPT_DESIGN_RECEIPT_SECTIONS,
     MINIMAL_VIABLE_RECEIPT_DESIGN_USER_QUESTIONS,
+    MINIMAL_VIABLE_RECEIPT_LOCAL_PROTOTYPE_ARTIFACTS,
+    MINIMAL_VIABLE_RECEIPT_LOCAL_PROTOTYPE_BLOCKED_CLAIMS,
+    MINIMAL_VIABLE_RECEIPT_LOCAL_PROTOTYPE_CHECKLIST_ITEMS,
+    MINIMAL_VIABLE_RECEIPT_LOCAL_PROTOTYPE_CLAIM_ALLOWED,
+    MINIMAL_VIABLE_RECEIPT_LOCAL_PROTOTYPE_CONTESTABILITY_OPTIONS,
+    MINIMAL_VIABLE_RECEIPT_LOCAL_PROTOTYPE_COST_BURDEN_DIMENSIONS,
+    MINIMAL_VIABLE_RECEIPT_LOCAL_PROTOTYPE_DASHBOARD_SUMMARY,
+    MINIMAL_VIABLE_RECEIPT_LOCAL_PROTOTYPE_DOCTRINE_LANGUAGE,
+    MINIMAL_VIABLE_RECEIPT_LOCAL_PROTOTYPE_FAILURE_CLASSES,
+    MINIMAL_VIABLE_RECEIPT_LOCAL_PROTOTYPE_FIXTURE_TERMS,
+    MINIMAL_VIABLE_RECEIPT_LOCAL_PROTOTYPE_PRIOR_PHASE_RELATION,
+    MINIMAL_VIABLE_RECEIPT_LOCAL_PROTOTYPE_RECEIPT_SECTIONS,
+    MINIMAL_VIABLE_RECEIPT_LOCAL_PROTOTYPE_REPRO_FRAGMENTS,
+    MINIMAL_VIABLE_RECEIPT_LOCAL_PROTOTYPE_USER_QUESTIONS,
     VALIDATION_TIERING_PROVENANCE_ACCEPTANCE_TERMS,
     VALIDATION_TIERING_PROVENANCE_ARTIFACTS,
     VALIDATION_TIERING_PROVENANCE_BLOCKED_CLAIMS,
@@ -395,6 +409,7 @@ REQUIRED_PHASES = {
     "PERTURBATION-TRUNK-MAPPING-00",
     "PERTURBATION-RESIDUAL-NOVELTY-MAP-00",
     "PERTURBATION-STRUCTURE-AFFORDANCE-CARD-00",
+    "MINIMAL-VIABLE-RECEIPT-LOCAL-PROTOTYPE-00",
 }
 
 REQUIRED_COMMAND_FRAGMENTS = (
@@ -5860,3 +5875,99 @@ def test_minimal_viable_receipt_design_indexes_and_docs_are_generated(tmp_path):
     for blocked in MINIMAL_VIABLE_RECEIPT_DESIGN_BLOCKED_CLAIMS:
         assert blocked in boundaries
     assert "minimal-viable-receipt-design.md" in index
+
+
+
+def test_minimal_viable_receipt_local_prototype_indexes_and_docs_are_generated(tmp_path):
+    out_dir, docs_dir = run_builder(tmp_path)
+    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text(encoding="utf-8"))
+    artifact_index = json.loads((out_dir / "artifact_index.json").read_text(encoding="utf-8"))
+    repro_index = json.loads((out_dir / "reproducibility_index.json").read_text(encoding="utf-8"))
+    claim_boundaries = json.loads((out_dir / "claim_boundary_index.json").read_text(encoding="utf-8"))
+    status = json.loads((out_dir / "status.json").read_text(encoding="utf-8"))
+    page = (docs_dir / "minimal-viable-receipt-local-prototype.md").read_text(encoding="utf-8")
+    index = (docs_dir / "index.md").read_text(encoding="utf-8")
+
+    phase = next(entry for entry in dashboard["accepted_phases"] if entry["phase_id"] == "MINIMAL-VIABLE-RECEIPT-LOCAL-PROTOTYPE-00")
+    summary = phase["dashboard_summary"]
+    assert summary == MINIMAL_VIABLE_RECEIPT_LOCAL_PROTOTYPE_DASHBOARD_SUMMARY
+    assert summary["receipt_status"] == "completed"
+    assert summary["prototype_mode"] == "local_fixture_receipt_prototype"
+    assert summary["fixture_id"] == "local_governed_review_event_fixture_v0"
+    assert summary["product_object_name"] == "Minimal Viable Receipt Transaction"
+    assert summary["internal_system_object"] == "Governed Receipt Transaction"
+    assert summary["avoided_public_object"] == "Triadic Cognition Transaction"
+    assert summary["checklist_status"] == "completed"
+    assert summary["checklist_missing_items"] == 0
+    assert summary["readability_status"] == "readable_fixture"
+    assert summary["contestability_status"] == "visible"
+    assert summary["cost_burden_status"] == "local_fixture_proxy"
+
+    false_fields = (
+        "runtime_behavior_changed", "provider_runtime_performed", "network_call_performed",
+        "product_release_performed", "product_readiness_claimed", "final_answer_authority_granted",
+        "accepted_evidence_authority_granted", "truth_certification_emitted",
+        "compliance_certification_emitted", "memory_write_performed", "atlas_memory_admission_performed",
+        "trace_export_performed", "pmr_federation_performed", "model_training_performed", "review_skip_authorized",
+    )
+    for field in false_fields:
+        assert summary[field] is False
+
+    true_fields = (
+        "receipt_is_not_truth_certification", "receipt_is_not_final_answer_authority",
+        "receipt_is_not_accepted_evidence_authority", "receipt_is_not_product_release",
+        "receipt_is_not_product_readiness_claim", "receipt_is_not_compliance_certification",
+        "receipt_is_not_human_benefit_proof", "receipt_is_not_market_validation", "receipt_is_not_memory_write",
+        "receipt_is_not_atlas_memory_admission", "receipt_is_not_model_training", "receipt_is_not_review_skip",
+        "receipt_requires_human_review", "local_fixture_mode", "human_review_required",
+    )
+    for field in true_fields:
+        assert summary[field] is True
+
+    assert "MINIMAL-VIABLE-RECEIPT-LOCAL-PROTOTYPE-00" in artifact_index["phases"]
+    for artifact in MINIMAL_VIABLE_RECEIPT_LOCAL_PROTOTYPE_ARTIFACTS:
+        assert artifact in artifact_index["phases"]["MINIMAL-VIABLE-RECEIPT-LOCAL-PROTOTYPE-00"]
+        assert artifact in page
+
+    repro_text = json.dumps(repro_index, ensure_ascii=False)
+    for fragment in MINIMAL_VIABLE_RECEIPT_LOCAL_PROTOTYPE_REPRO_FRAGMENTS:
+        assert fragment in repro_text
+
+    for required in (
+        *MINIMAL_VIABLE_RECEIPT_LOCAL_PROTOTYPE_DOCTRINE_LANGUAGE,
+        *MINIMAL_VIABLE_RECEIPT_LOCAL_PROTOTYPE_FIXTURE_TERMS,
+        *MINIMAL_VIABLE_RECEIPT_LOCAL_PROTOTYPE_RECEIPT_SECTIONS,
+        *MINIMAL_VIABLE_RECEIPT_LOCAL_PROTOTYPE_USER_QUESTIONS,
+        *MINIMAL_VIABLE_RECEIPT_LOCAL_PROTOTYPE_CHECKLIST_ITEMS,
+        *MINIMAL_VIABLE_RECEIPT_LOCAL_PROTOTYPE_CONTESTABILITY_OPTIONS,
+        *MINIMAL_VIABLE_RECEIPT_LOCAL_PROTOTYPE_COST_BURDEN_DIMENSIONS,
+        *MINIMAL_VIABLE_RECEIPT_LOCAL_PROTOTYPE_PRIOR_PHASE_RELATION,
+        *MINIMAL_VIABLE_RECEIPT_LOCAL_PROTOTYPE_FAILURE_CLASSES,
+        MINIMAL_VIABLE_RECEIPT_LOCAL_PROTOTYPE_CLAIM_ALLOWED,
+        "Publication sync grants no runtime authority.",
+    ):
+        assert required in page
+
+    boundaries = "\n".join(claim_boundaries["boundaries"])
+    for blocked in MINIMAL_VIABLE_RECEIPT_LOCAL_PROTOTYPE_BLOCKED_CLAIMS:
+        assert blocked in boundaries
+    assert "minimal-viable-receipt-local-prototype.md" in index
+    assert status["minimal_viable_receipt_local_prototype_00_indexed"] is True
+    assert status["minimal_viable_receipt_local_prototype_status"] == "completed"
+    assert status["minimal_viable_receipt_local_prototype_mode"] == "local_fixture_receipt_prototype"
+    assert status["minimal_viable_receipt_local_prototype_runtime_behavior_changed"] is False
+
+
+def test_validator_required_phases_include_minimal_viable_receipt_local_prototype():
+    assert "MINIMAL-VIABLE-RECEIPT-LOCAL-PROTOTYPE-00" in VALIDATOR_REQUIRED_PHASES
+
+
+def test_validator_fails_if_minimal_viable_receipt_local_prototype_makes_forbidden_claims(tmp_path):
+    for claim in MINIMAL_VIABLE_RECEIPT_LOCAL_PROTOTYPE_BLOCKED_CLAIMS:
+        out_dir, docs_dir = run_builder(tmp_path / claim.replace(" ", "_"))
+        page = docs_dir / "minimal-viable-receipt-local-prototype.md"
+        page.write_text(page.read_text(encoding="utf-8") + f"\nMinimal Viable Receipt local prototype claims {claim}.\n", encoding="utf-8")
+        result = validate_dashboard(out_dir / "experiment_suite_dashboard.json", docs_dir)
+        assert result["passed"] is False, claim
+        forbidden_found = [found.lower() for found in result["forbidden_claims_found"]]
+        assert claim.lower() in forbidden_found or f"claims {claim.lower()}" in forbidden_found, result

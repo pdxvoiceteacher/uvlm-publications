@@ -1161,6 +1161,25 @@
       "schema/bridge/receipt_cost_burden_profile.schema.json",
       "schema/bridge/minimal_viable_receipt_non_authority_boundary.schema.json"
     ],
+    "MINIMAL-VIABLE-RECEIPT-LOCAL-PROTOTYPE-00": [
+      "minimal_viable_receipt_packet.json",
+      "minimal_viable_receipt_checklist.json",
+      "minimal_viable_receipt_section_index.json",
+      "receipt_readability_profile.json",
+      "receipt_contestability_profile.json",
+      "receipt_cost_burden_profile.json",
+      "minimal_viable_receipt_non_authority_boundary.json",
+      "minimal_viable_receipt_human_readable.md",
+      "minimal_viable_receipt_local_prototype_receipt.json",
+      "mvr_local_source_primary.md",
+      "mvr_local_source_secondary.md",
+      "mvr_instruction_like_evidence_quarantined.md",
+      "pmr_local_runtime_artifact_index.json",
+      "artifact_inventory.json",
+      "run_artifact_manifest.json",
+      "export_bundle_manifest.json",
+      "export_bundle_parity_report.json"
+    ],
     "VALIDATION-TIERING-PROVENANCE-00": [
       "config/validation/validation_tier_policy.v1.json",
       "validation_tier_receipt.json",

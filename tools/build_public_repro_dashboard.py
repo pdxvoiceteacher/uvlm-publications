@@ -9298,6 +9298,187 @@ MINIMAL_VIABLE_RECEIPT_DESIGN_PHASE = {
     "publication_status": "dashboard_indexed",
     "repair_note": "MINIMAL-VIABLE-RECEIPT-DESIGN-ENV-ISOLATION-REPAIR-00 made the design-only forbidden-artifact test inspect tracked/source-controlled files rather than untracked local bridge debris; this repair does not change MVR doctrine, emit runtime artifacts, or grant product, memory, final-answer, accepted-evidence, or truth authority.",
 }
+
+MINIMAL_VIABLE_RECEIPT_LOCAL_PROTOTYPE_COMMAND = "python -c \"from pathlib import Path; from coherence.product.minimal_viable_receipt import build_minimal_viable_receipt_local_prototype; bridge=Path(r'C:\\UVLM\\run_artifacts\\minimal_viable_receipt_local_prototype\\bridge'); build_minimal_viable_receipt_local_prototype(bridge)\""
+MINIMAL_VIABLE_RECEIPT_LOCAL_PROTOTYPE_REPRO_FRAGMENTS = ["build_minimal_viable_receipt_local_prototype"]
+MINIMAL_VIABLE_RECEIPT_LOCAL_PROTOTYPE_ARTIFACTS = [
+    "minimal_viable_receipt_packet.json",
+    "minimal_viable_receipt_checklist.json",
+    "minimal_viable_receipt_section_index.json",
+    "receipt_readability_profile.json",
+    "receipt_contestability_profile.json",
+    "receipt_cost_burden_profile.json",
+    "minimal_viable_receipt_non_authority_boundary.json",
+    "minimal_viable_receipt_human_readable.md",
+    "minimal_viable_receipt_local_prototype_receipt.json",
+    "mvr_local_source_primary.md",
+    "mvr_local_source_secondary.md",
+    "mvr_instruction_like_evidence_quarantined.md",
+    "pmr_local_runtime_artifact_index.json",
+    "artifact_inventory.json",
+    "run_artifact_manifest.json",
+    "export_bundle_manifest.json",
+    "export_bundle_parity_report.json",
+]
+MINIMAL_VIABLE_RECEIPT_LOCAL_PROTOTYPE_DOCTRINE_LANGUAGE = [
+    "Minimal Viable Receipt Local Prototype",
+    "Minimal Viable Receipt Transaction",
+    "Governed Receipt Transaction",
+    "Triadic Cognition Transaction is avoided as a public product object.",
+    "Local fixture prototype",
+    "One working receipt before more ontology.",
+    "One transaction, many governed receipt sections.",
+    "This receipt is not proof of truth.",
+    "This receipt is proof of process.",
+    "This receipt is not product release.",
+    "This receipt is not a product-readiness claim.",
+    "This receipt does not authorize final answers.",
+    "This receipt does not grant accepted-evidence authority.",
+    "This receipt does not write memory.",
+    "This receipt does not admit Atlas memory.",
+    "Human review remains required.",
+    "The local prototype emits a readable fixture-backed receipt.",
+    "The local prototype is not a live product runtime.",
+    "The local prototype uses local fixture evidence only.",
+    "The local fixture files are not accepted evidence.",
+    "The local prototype does not perform provider calls.",
+    "The local prototype does not perform network calls.",
+    "The local prototype does not export traces.",
+    "The local prototype does not federate PMR.",
+    "The local prototype does not write memory.",
+    "The local prototype does not admit Atlas memory.",
+]
+MINIMAL_VIABLE_RECEIPT_LOCAL_PROTOTYPE_FIXTURE_TERMS = [
+    "local_governed_review_event_fixture_v0",
+    "Review a local source excerpt and produce a claim-support receipt.",
+    "source_count = 2",
+    "supported_claim_count = 2",
+    "unsupported_claim_count = 1",
+    "quarantined_evidence_count = 1",
+    "mvr_local_source_primary.md",
+    "mvr_local_source_secondary.md",
+    "mvr_instruction_like_evidence_quarantined.md",
+]
+MINIMAL_VIABLE_RECEIPT_LOCAL_PROTOTYPE_RECEIPT_SECTIONS = [
+    "what_was_asked", "what_evidence_was_used", "what_evidence_was_rejected_or_quarantined",
+    "what_the_ai_claimed", "which_claims_are_supported", "which_claims_are_unsupported",
+    "what_controls_were_applied", "what_observation_contract_required", "what_required_notice_or_consent",
+    "what_tac_aperture_posture_applied", "what_ces_pmr_replay_posture_exists", "what_sophia_routed_or_flagged",
+    "what_validation_covered", "what_was_retained_or_not_retained", "what_it_cost_or_burdened",
+    "what_the_user_can_challenge_repair_revoke_or_export", "what_is_explicitly_not_authorized",
+]
+MINIMAL_VIABLE_RECEIPT_LOCAL_PROTOTYPE_USER_QUESTIONS = [
+    "What was asked?", "What evidence was used?", "What did the AI claim?",
+    "Which claims are supported?", "Which claims are unsupported?", "Which controls were applied?",
+    "What did the Observation Contract require?", "What required notice or consent?", "What did Sophia route or flag?",
+    "What telemetry or replay posture exists?", "What was retained or not retained?", "What did validation cover?",
+    "What did it cost or burden?", "What can the user challenge, repair, revoke, or export?", "What is explicitly not authorized?",
+]
+MINIMAL_VIABLE_RECEIPT_LOCAL_PROTOTYPE_CHECKLIST_ITEMS = [
+    "request_is_canonicalized", "evidence_sources_are_listed", "instruction_like_evidence_is_quarantined",
+    "unsupported_claims_are_visible", "controls_are_declared", "metric_semantics_are_profile_scoped",
+    "observation_contract_posture_is_visible", "observation_contract_simulation_is_referenced",
+    "notice_and_consent_requirements_are_visible", "recovery_options_are_visible", "tac_aperture_posture_is_visible",
+    "ces_or_event_signature_policy_is_referenced", "ces_pmr_indexing_boundary_is_visible", "pmr_retention_status_is_visible",
+    "ai_receipt_chain_is_referenced", "validation_tier_is_recorded", "sophia_reality_is_recorded",
+    "language_audit_status_is_recorded", "human_review_requirement_is_visible", "contestability_options_are_visible",
+    "cost_burden_profile_is_visible", "non_authority_boundaries_are_visible",
+]
+MINIMAL_VIABLE_RECEIPT_LOCAL_PROTOTYPE_CONTESTABILITY_OPTIONS = [
+    "inspect_sources", "challenge_claim", "request_source_expansion", "request_human_review", "request_correction",
+    "request_replay", "request_memory_downgrade", "request_retention_review", "request_quarantine",
+    "revoke_consent_where_applicable", "request_export_when_authorized", "request_recovery_path",
+]
+MINIMAL_VIABLE_RECEIPT_LOCAL_PROTOTYPE_COST_BURDEN_DIMENSIONS = [
+    "compute_cost_proxy", "local_storage_cost_proxy", "human_review_time_proxy", "privacy_exposure_proxy",
+    "observation_burden_proxy", "tac_aperture_burden_proxy", "pmr_retention_burden_proxy",
+    "correction_burden_proxy", "audit_burden_proxy", "user_confusion_burden_proxy",
+]
+MINIMAL_VIABLE_RECEIPT_LOCAL_PROTOTYPE_PRIOR_PHASE_RELATION = [
+    "MINIMAL-VIABLE-RECEIPT-DESIGN-00 defines the one-transaction/many-sections receipt standard.",
+    "MINIMAL-VIABLE-RECEIPT-LOCAL-PROTOTYPE-00 emits the first local fixture-backed readable receipt.",
+    "AI-RECEIPT-ARCHITECTURE-00 defines the receipt architecture.",
+    "TRIADIC-OBSERVATION-CONTRACT-DESIGN-00 defines governed attention.",
+    "OBSERVATION-CONTRACT-POLICY-SIMULATION-00 rehearses notice, consent, recovery, source-expansion, pathway-prior, retention, trace-export, and PMR-federation policy outcomes.",
+    "TAC phases define aperture posture and review visibility.",
+    "COHERENCE-EVENT-SIGNATURES-DESIGN-00 defines event signatures.",
+    "CES-PMR-INDEXING-DESIGN-00 defines CES as a compact PMR index, not source replacement.",
+    "PMR-PATHWAY-PRIORS-DESIGN-DOCTRINE-00 prevents route-prior authority drift.",
+    "SOPHIA-EXECUTIVE-AUDIT-REALITY-CHECK-00 records whether external Sophia actually ran.",
+    "VALIDATION-TIERING-PROVENANCE-00 records validation confidence scope.",
+    "MET-SEM-00 keeps metric labels profile-scoped.",
+]
+MINIMAL_VIABLE_RECEIPT_LOCAL_PROTOTYPE_BLOCKED_CLAIMS = [
+    "Minimal Viable Receipt local prototype proves truth",
+    "Minimal Viable Receipt local prototype is product release",
+    "Minimal Viable Receipt local prototype proves product readiness",
+    "Minimal Viable Receipt local prototype certifies compliance",
+    "Minimal Viable Receipt local prototype authorizes final answers",
+    "Minimal Viable Receipt local prototype grants accepted-evidence authority",
+    "Minimal Viable Receipt local prototype writes memory",
+    "Minimal Viable Receipt local prototype admits Atlas memory",
+    "Minimal Viable Receipt local prototype trains the model",
+    "Minimal Viable Receipt local prototype skips human review",
+    "Minimal Viable Receipt local prototype proves human benefit",
+    "Minimal Viable Receipt local prototype is market validation",
+    "local fixture receipt means answer correctness",
+    "local fixture receipt is accepted evidence",
+    "local fixture receipt is live product runtime",
+    "readable fixture means product is ready",
+    "checklist completeness means answer correctness",
+    "cost burden score is truth weight",
+    "contestability option guarantees reversal",
+    "recovery option performs memory write",
+    "source expansion can be skipped",
+    "unsupported claims can be hidden",
+    "one local prototype means product is ready",
+    "Triadic Cognition Transaction certifies cognition",
+]
+MINIMAL_VIABLE_RECEIPT_LOCAL_PROTOTYPE_CLAIM_ALLOWED = "MINIMAL-VIABLE-RECEIPT-LOCAL-PROTOTYPE-00 emits a local fixture-backed Minimal Viable Receipt Transaction prototype with machine-readable and human-readable receipt artifacts, making request, local fixture evidence, controls, output, claim support, unsupported claims, Observation Contract posture, TAC posture, CES/PMR replayability, Sophia reality, validation tier, cost/burden, contestability, recovery options, human review requirements, and non-authority boundaries visible without performing provider calls, network calls, product release, product-readiness claims, final-answer authorization, accepted-evidence grants, truth certification, memory write, Atlas admission, trace export, PMR federation, model training, review skipping, human benefit proof, or market validation."
+MINIMAL_VIABLE_RECEIPT_LOCAL_PROTOTYPE_FAILURE_CLASSES = [
+    "local_fixture_receipt_mistaken_for_truth", "local_fixture_receipt_mistaken_for_product_release",
+    "local_fixture_receipt_mistaken_for_product_readiness", "local_fixture_receipt_mistaken_for_accepted_evidence",
+    "local_fixture_receipt_mistaken_for_live_product_runtime", "triadic_cognition_transaction_mistaken_for_cognition_claim",
+    "receipt_readability_mistaken_for_visual_polish", "receipt_that_only_impresses_architects", "unsupported_claims_hidden",
+    "source_expansion_missing", "grounding_quarantine_missing", "contestability_missing", "recovery_path_missing",
+    "cost_burden_hidden", "observation_contract_posture_hidden", "observation_contract_simulation_missing",
+    "tac_posture_hidden", "ces_pmr_linkage_missing", "validation_tier_missing", "sophia_reality_missing",
+    "metric_semantics_overclaimed", "non_authority_boundaries_missing",
+]
+MINIMAL_VIABLE_RECEIPT_LOCAL_PROTOTYPE_DASHBOARD_SUMMARY = {
+    "receipt_status": "completed", "prototype_mode": "local_fixture_receipt_prototype",
+    "fixture_id": "local_governed_review_event_fixture_v0",
+    "product_object_name": "Minimal Viable Receipt Transaction", "internal_system_object": "Governed Receipt Transaction",
+    "avoided_public_object": "Triadic Cognition Transaction", "checklist_status": "completed", "checklist_missing_items": 0,
+    "readability_status": "readable_fixture", "contestability_status": "visible", "cost_burden_status": "local_fixture_proxy",
+    "local_fixture_mode": True, "human_review_required": True, "runtime_behavior_changed": False,
+    "provider_runtime_performed": False, "network_call_performed": False, "product_release_performed": False,
+    "product_readiness_claimed": False, "final_answer_authority_granted": False,
+    "accepted_evidence_authority_granted": False, "truth_certification_emitted": False,
+    "compliance_certification_emitted": False, "memory_write_performed": False, "atlas_memory_admission_performed": False,
+    "trace_export_performed": False, "pmr_federation_performed": False, "model_training_performed": False,
+    "review_skip_authorized": False, "receipt_is_not_truth_certification": True,
+    "receipt_is_not_final_answer_authority": True, "receipt_is_not_accepted_evidence_authority": True,
+    "receipt_is_not_product_release": True, "receipt_is_not_product_readiness_claim": True,
+    "receipt_is_not_compliance_certification": True, "receipt_is_not_human_benefit_proof": True,
+    "receipt_is_not_market_validation": True, "receipt_is_not_memory_write": True,
+    "receipt_is_not_atlas_memory_admission": True, "receipt_is_not_model_training": True,
+    "receipt_is_not_review_skip": True, "receipt_requires_human_review": True,
+}
+MINIMAL_VIABLE_RECEIPT_LOCAL_PROTOTYPE_PHASE = {
+    "phase_id": "MINIMAL-VIABLE-RECEIPT-LOCAL-PROTOTYPE-00",
+    "repo": "pdxvoiceteacher/CoherenceLattice",
+    "status": "accepted_local_validation",
+    "evidence_type": "local_fixture_receipt_prototype_publication_sync",
+    "product_posture": "local_fixture_only_readable_receipt_prototype_without_product_or_runtime_authority",
+    "primary_artifacts": MINIMAL_VIABLE_RECEIPT_LOCAL_PROTOTYPE_ARTIFACTS,
+    "dashboard_summary": MINIMAL_VIABLE_RECEIPT_LOCAL_PROTOTYPE_DASHBOARD_SUMMARY,
+    "reproduction_command_summary": MINIMAL_VIABLE_RECEIPT_LOCAL_PROTOTYPE_COMMAND,
+    "claim_allowed": MINIMAL_VIABLE_RECEIPT_LOCAL_PROTOTYPE_CLAIM_ALLOWED,
+    "claims_blocked": MINIMAL_VIABLE_RECEIPT_LOCAL_PROTOTYPE_BLOCKED_CLAIMS,
+    "reviewer_caution": "MINIMAL-VIABLE-RECEIPT-LOCAL-PROTOTYPE-00 is a local fixture-backed readable receipt prototype only; it performs no provider calls, network calls, product release, product-readiness claim, final-answer authorization, accepted-evidence grant, truth certification, memory write, Atlas admission, trace export, PMR federation, model training, review skipping, human benefit proof, or market validation.",
+    "publication_status": "dashboard_indexed",
+}
 VALIDATION_TIERING_PROVENANCE_COMMAND = "python -c \"from pathlib import Path; from coherence.validation.validation_receipt import build_validation_tier_receipt; bridge=Path(r'C:\\UVLM\\run_artifacts\\validation_tiering\\bridge'); policy_ref='validation_tier_policy.v1.json'; build_validation_tier_receipt(bridge, source_phase='AI-RECEIPT-ARCHITECTURE-00', validation_tier='deep', validation_scope='full_multi_module_suite', validation_intent='major_sync_or_handoff_grade_validation', commands_run=[{'command':'python -m pytest -q <full_multi_module_suite>', 'result':'passed', 'duration_seconds':32131.86}], artifact_chain_name='ai_receipt_architecture_product_stack', expected_artifacts=['ai_receipt_architecture_packet.json','ai_receipt_event_chain.json','ai_receipt_architecture.md','ai_receipt_architecture_receipt.json'], observed_artifacts=['ai_receipt_architecture_packet.json','ai_receipt_event_chain.json','ai_receipt_architecture.md','ai_receipt_architecture_receipt.json'], validation_result='passed')\""
 VALIDATION_TIERING_PROVENANCE_ARTIFACTS = [
     "config/validation/validation_tier_policy.v1.json",
@@ -12019,6 +12200,7 @@ STATIC_HTML_USABILITY_REVIEW_PHASE,
 STATIC_HTML_USABILITY_REVISION_PHASE,
 AI_RECEIPT_ARCHITECTURE_PHASE,
 MINIMAL_VIABLE_RECEIPT_DESIGN_PHASE,
+MINIMAL_VIABLE_RECEIPT_LOCAL_PROTOTYPE_PHASE,
 VALIDATION_TIERING_PROVENANCE_PHASE,
 TELEMETRY_APERTURE_DESIGN_PHASE,
 TAC_POLICY_SIMULATION_PHASE,
@@ -14172,6 +14354,20 @@ BOUNDARIES.extend(
         "This repair does not grant product, memory, final-answer, accepted-evidence, or truth authority.",
         "Blocked overclaim examples for Minimal Viable Receipt Design publication boundaries.",
         *MINIMAL_VIABLE_RECEIPT_DESIGN_BLOCKED_CLAIMS,
+        MINIMAL_VIABLE_RECEIPT_LOCAL_PROTOTYPE_CLAIM_ALLOWED,
+        *MINIMAL_VIABLE_RECEIPT_LOCAL_PROTOTYPE_ARTIFACTS,
+        *MINIMAL_VIABLE_RECEIPT_LOCAL_PROTOTYPE_REPRO_FRAGMENTS,
+        *MINIMAL_VIABLE_RECEIPT_LOCAL_PROTOTYPE_DOCTRINE_LANGUAGE,
+        *MINIMAL_VIABLE_RECEIPT_LOCAL_PROTOTYPE_FIXTURE_TERMS,
+        *MINIMAL_VIABLE_RECEIPT_LOCAL_PROTOTYPE_RECEIPT_SECTIONS,
+        *MINIMAL_VIABLE_RECEIPT_LOCAL_PROTOTYPE_USER_QUESTIONS,
+        *MINIMAL_VIABLE_RECEIPT_LOCAL_PROTOTYPE_CHECKLIST_ITEMS,
+        *MINIMAL_VIABLE_RECEIPT_LOCAL_PROTOTYPE_CONTESTABILITY_OPTIONS,
+        *MINIMAL_VIABLE_RECEIPT_LOCAL_PROTOTYPE_COST_BURDEN_DIMENSIONS,
+        *MINIMAL_VIABLE_RECEIPT_LOCAL_PROTOTYPE_PRIOR_PHASE_RELATION,
+        *MINIMAL_VIABLE_RECEIPT_LOCAL_PROTOTYPE_FAILURE_CLASSES,
+        "Blocked overclaim examples for Minimal Viable Receipt Local Prototype publication boundaries.",
+        *MINIMAL_VIABLE_RECEIPT_LOCAL_PROTOTYPE_BLOCKED_CLAIMS,
         VALIDATION_TIERING_PROVENANCE_CLAIM_ALLOWED,
         *VALIDATION_TIERING_PROVENANCE_ARTIFACTS,
         *VALIDATION_TIERING_PROVENANCE_TIER_TERMS,
@@ -15018,6 +15214,17 @@ def dashboard_payload() -> dict[str, Any]:
         "observation_contract_policy_simulation_pmr_federation_performed": False,
         "observation_contract_policy_simulation_product_release_performed": False,
         "observation_contract_policy_simulation_truth_certification_emitted": False,
+        "minimal_viable_receipt_local_prototype_00_indexed": True,
+        "minimal_viable_receipt_local_prototype_status": "completed",
+        "minimal_viable_receipt_local_prototype_mode": "local_fixture_receipt_prototype",
+        "minimal_viable_receipt_local_prototype_runtime_behavior_changed": False,
+        "minimal_viable_receipt_local_prototype_provider_runtime_performed": False,
+        "minimal_viable_receipt_local_prototype_network_call_performed": False,
+        "minimal_viable_receipt_local_prototype_product_release_performed": False,
+        "minimal_viable_receipt_local_prototype_memory_write_performed": False,
+        "minimal_viable_receipt_local_prototype_atlas_memory_admission_performed": False,
+        "minimal_viable_receipt_local_prototype_trace_export_performed": False,
+        "minimal_viable_receipt_local_prototype_pmr_federation_performed": False,
         "observation_contract_policy_simulation_requires_human_review": True,
         "not_validation_tiering_product_release": True,
         "not_validation_tiering_truth_certification": True,
@@ -15105,6 +15312,7 @@ def reproducibility_index() -> dict[str, Any]:
                 {"name": "Static HTML Usability Revision Python entrypoint", "command": STATIC_HTML_USABILITY_REVISION_COMMAND},
                 {"name": "AI Receipt Architecture Python entrypoint", "command": AI_RECEIPT_ARCHITECTURE_COMMAND},
                 {"name": "MINIMAL-VIABLE-RECEIPT-DESIGN-00 design validation", "command": MINIMAL_VIABLE_RECEIPT_DESIGN_COMMAND},
+                {"name": "MINIMAL-VIABLE-RECEIPT-LOCAL-PROTOTYPE-00 Python entrypoint", "command": MINIMAL_VIABLE_RECEIPT_LOCAL_PROTOTYPE_COMMAND},
                 {"name": "Validation Tiering Provenance Python entrypoint", "command": VALIDATION_TIERING_PROVENANCE_COMMAND},
                 {"name": "TELEMETRY-APERTURE-DESIGN-00 config/schema inspection", "command": TELEMETRY_APERTURE_DESIGN_COMMAND},
                 {"name": "TAC-POLICY-SIMULATION-00 Python entrypoint", "command": TAC_POLICY_SIMULATION_COMMAND},
@@ -16019,6 +16227,17 @@ def status_payload() -> dict[str, Any]:
         "observation_contract_policy_simulation_pmr_federation_performed": False,
         "observation_contract_policy_simulation_product_release_performed": False,
         "observation_contract_policy_simulation_truth_certification_emitted": False,
+        "minimal_viable_receipt_local_prototype_00_indexed": True,
+        "minimal_viable_receipt_local_prototype_status": "completed",
+        "minimal_viable_receipt_local_prototype_mode": "local_fixture_receipt_prototype",
+        "minimal_viable_receipt_local_prototype_runtime_behavior_changed": False,
+        "minimal_viable_receipt_local_prototype_provider_runtime_performed": False,
+        "minimal_viable_receipt_local_prototype_network_call_performed": False,
+        "minimal_viable_receipt_local_prototype_product_release_performed": False,
+        "minimal_viable_receipt_local_prototype_memory_write_performed": False,
+        "minimal_viable_receipt_local_prototype_atlas_memory_admission_performed": False,
+        "minimal_viable_receipt_local_prototype_trace_export_performed": False,
+        "minimal_viable_receipt_local_prototype_pmr_federation_performed": False,
         "observation_contract_policy_simulation_requires_human_review": True,
         "not_validation_tiering_product_release": True,
         "not_validation_tiering_truth_certification": True,
@@ -20997,9 +21216,112 @@ MINIMAL_VIABLE_RECEIPT_DESIGN_SYNC_DOCS = {
 }
 
 
+MINIMAL_VIABLE_RECEIPT_LOCAL_PROTOTYPE_SYNC_DOCS = {
+    "minimal-viable-receipt-design.md", "ai-receipt-architecture.md", "triadic-observation-contract.md",
+    "observation-contract-policy-simulation.md", "telemetry-aperture-controller.md", "tac-policy-simulation.md",
+    "tac-local-review-integration.md", "tac-ai-receipt-event-link.md", "coherence-event-signatures.md",
+    "ces-pmr-indexing-design.md", "pmr-pathway-priors-design-doctrine.md", "validation-tiering-provenance.md",
+    "metric-semantic-contract.md", "claim-boundaries.md", "index.md",
+}
+MINIMAL_VIABLE_RECEIPT_LOCAL_PROTOTYPE_SYNC_NOTE = """
+
+## Minimal Viable Receipt Local Prototype publication sync
+
+MINIMAL-VIABLE-RECEIPT-LOCAL-PROTOTYPE-00 emits the first local fixture-backed readable receipt. This publication sync grants no runtime authority. See [Minimal Viable Receipt Local Prototype](minimal-viable-receipt-local-prototype.md).
+
+Minimal Viable Receipt Transaction is the public product object name. Governed Receipt Transaction is the internal system object. Triadic Cognition Transaction is avoided as a public product object.
+
+Local fixture prototype: local_governed_review_event_fixture_v0. Review a local source excerpt and produce a claim-support receipt. source_count = 2. supported_claim_count = 2. unsupported_claim_count = 1. quarantined_evidence_count = 1. The local fixture files are not accepted evidence. Human review remains required.
+
+The local prototype emits a readable fixture-backed receipt, uses local fixture evidence only, and is not a live product runtime. The local prototype does not perform provider calls, network calls, trace export, PMR federation, memory write, or Atlas memory admission.
+"""
+
+
 def _bullets(items: list[str]) -> str:
     return "\n".join(f"- {item}" for item in items)
 
+
+def minimal_viable_receipt_local_prototype_doc() -> str:
+    artifacts = "\n".join(f"- {artifact}" for artifact in MINIMAL_VIABLE_RECEIPT_LOCAL_PROTOTYPE_ARTIFACTS)
+    doctrine = "\n".join(f"- {phrase}" for phrase in MINIMAL_VIABLE_RECEIPT_LOCAL_PROTOTYPE_DOCTRINE_LANGUAGE)
+    fixture_terms = "\n".join(f"- {term}" for term in MINIMAL_VIABLE_RECEIPT_LOCAL_PROTOTYPE_FIXTURE_TERMS)
+    sections = "\n".join(f"- {section}" for section in MINIMAL_VIABLE_RECEIPT_LOCAL_PROTOTYPE_RECEIPT_SECTIONS)
+    questions = "\n".join(f"- {question}" for question in MINIMAL_VIABLE_RECEIPT_LOCAL_PROTOTYPE_USER_QUESTIONS)
+    checklist = "\n".join(f"- {item}" for item in MINIMAL_VIABLE_RECEIPT_LOCAL_PROTOTYPE_CHECKLIST_ITEMS)
+    contestability = "\n".join(f"- {option}" for option in MINIMAL_VIABLE_RECEIPT_LOCAL_PROTOTYPE_CONTESTABILITY_OPTIONS)
+    costs = "\n".join(f"- {dimension}" for dimension in MINIMAL_VIABLE_RECEIPT_LOCAL_PROTOTYPE_COST_BURDEN_DIMENSIONS)
+    relations = "\n".join(f"- {relation}" for relation in MINIMAL_VIABLE_RECEIPT_LOCAL_PROTOTYPE_PRIOR_PHASE_RELATION)
+    failures = "\n".join(f"- {failure}" for failure in MINIMAL_VIABLE_RECEIPT_LOCAL_PROTOTYPE_FAILURE_CLASSES)
+    blocked = "\n".join(f"- {claim}" for claim in MINIMAL_VIABLE_RECEIPT_LOCAL_PROTOTYPE_BLOCKED_CLAIMS)
+    summary = "\n".join(
+        f"- {key} = {str(value).lower() if isinstance(value, bool) else value}"
+        for key, value in MINIMAL_VIABLE_RECEIPT_LOCAL_PROTOTYPE_DASHBOARD_SUMMARY.items()
+    )
+    return f"""# Minimal Viable Receipt Local Prototype
+
+MINIMAL-VIABLE-RECEIPT-LOCAL-PROTOTYPE-00 synchronizes the locally validated CoherenceLattice Minimal Viable Receipt Local Prototype into publication dashboards. This is publication/dashboard synchronization only. It grants no product release, product readiness, live provider runtime, network runtime, trace export, PMR federation, memory write, Atlas memory admission, deployment, final-answer authority, accepted-evidence authority, truth certification, compliance certification, human benefit proof, market validation, model training, review skipping, consciousness proof, Omega detection, or universal ontology proof.
+
+## Allowed claim
+
+{MINIMAL_VIABLE_RECEIPT_LOCAL_PROTOTYPE_CLAIM_ALLOWED}
+
+## Dashboard summary
+
+{summary}
+
+## Reproducibility
+
+- {MINIMAL_VIABLE_RECEIPT_LOCAL_PROTOTYPE_REPRO_FRAGMENTS[0]}
+- `{MINIMAL_VIABLE_RECEIPT_LOCAL_PROTOTYPE_COMMAND}`
+
+## Artifacts
+
+{artifacts}
+
+## Doctrine language
+
+{doctrine}
+
+## Local fixture terms
+
+{fixture_terms}
+
+## Receipt section IDs
+
+{sections}
+
+## User-readable questions
+
+{questions}
+
+## Checklist items
+
+{checklist}
+
+## Contestability options
+
+{contestability}
+
+## Cost and burden dimensions
+
+{costs}
+
+## Relation to prior phases
+
+{relations}
+
+## Failure classes
+
+{failures}
+
+## Blocked claims
+
+{blocked}
+
+## Boundary
+
+Publication sync grants no runtime authority. The local prototype is fixture-backed, readable, local-only, non-product, and non-authoritative. Local fixture evidence is not accepted evidence. This receipt is not proof of truth. This receipt is proof of process. This receipt is not product release. This receipt is not a product-readiness claim. This receipt does not authorize final answers. This receipt does not grant accepted-evidence authority. This receipt does not write memory. This receipt does not admit Atlas memory. Human review remains required.
+"""
 
 def minimal_viable_receipt_design_doc() -> str:
     dashboard_lines = "\n".join(
@@ -21135,9 +21457,13 @@ def build(out_dir: Path, docs_dir: Path) -> None:
     _write_json(out_dir / "status.json", status_payload())
     docs_payload = docs()
     docs_payload["minimal-viable-receipt-design.md"] = minimal_viable_receipt_design_doc()
+    docs_payload["minimal-viable-receipt-local-prototype.md"] = minimal_viable_receipt_local_prototype_doc()
     for name in MINIMAL_VIABLE_RECEIPT_DESIGN_SYNC_DOCS:
         if name in docs_payload:
             docs_payload[name] = docs_payload[name].rstrip() + MINIMAL_VIABLE_RECEIPT_DESIGN_SYNC_NOTE
+    for name in MINIMAL_VIABLE_RECEIPT_LOCAL_PROTOTYPE_SYNC_DOCS:
+        if name in docs_payload:
+            docs_payload[name] = docs_payload[name].rstrip() + MINIMAL_VIABLE_RECEIPT_LOCAL_PROTOTYPE_SYNC_NOTE
     for name in TRIADIC_OBSERVATION_CONTRACT_SYNC_DOCS:
         if name in docs_payload:
             docs_payload[name] = docs_payload[name].rstrip() + TRIADIC_OBSERVATION_CONTRACT_SYNC_NOTE
