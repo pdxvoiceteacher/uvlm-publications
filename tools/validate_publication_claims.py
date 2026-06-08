@@ -22,6 +22,9 @@ from tools.build_public_repro_dashboard import (
     STATIC_HTML_USABILITY_REVIEW_BLOCKED_CLAIMS,
     STATIC_HTML_USABILITY_REVISION_BLOCKED_CLAIMS,
     AI_RECEIPT_ARCHITECTURE_BLOCKED_CLAIMS,
+    MINIMAL_VIABLE_RECEIPT_DESIGN_BLOCKED_CLAIMS,
+    MINIMAL_VIABLE_RECEIPT_LOCAL_PROTOTYPE_BLOCKED_CLAIMS,
+    MINIMAL_VIABLE_RECEIPT_LOCAL_PROTOTYPE_CLAIM_ALLOWED,
     VALIDATION_TIERING_PROVENANCE_BLOCKED_CLAIMS,
     TELEMETRY_APERTURE_BLOCKED_CLAIMS,
     TAC_POLICY_SIMULATION_BLOCKED_CLAIMS,
@@ -778,6 +781,29 @@ PAPER_CONFIGS: dict[str, dict[str, Any]] = {
             "Human Review UX is audit opinion",
             "Human Review UX is professional attestation",
             "Human Review UX approves product release",
+            "Minimal Viable Receipt proves truth",
+            "Minimal Viable Receipt is product release",
+            "Minimal Viable Receipt proves product readiness",
+            "Minimal Viable Receipt certifies compliance",
+            "Minimal Viable Receipt authorizes final answers",
+            "Minimal Viable Receipt grants accepted-evidence authority",
+            "Minimal Viable Receipt writes memory",
+            "Minimal Viable Receipt admits Atlas memory",
+            "Minimal Viable Receipt trains the model",
+            "Minimal Viable Receipt skips human review",
+            "Minimal Viable Receipt proves human benefit",
+            "Minimal Viable Receipt is market validation",
+            "receipt completeness means answer correctness",
+            "cost burden score is truth weight",
+            "contestability option guarantees reversal",
+            "recovery option performs memory write",
+            "source expansion can be skipped",
+            "unsupported claims can be hidden",
+            "one receipt means product is ready",
+            "readable receipt means product is ready",
+            "Triadic Cognition Transaction certifies cognition",
+            "receipt readability is just visual polish",
+
             "Human Review UX approves provider runtime",
             "Human Review UX approves memory write",
             "Human Review UX approves Atlas memory admission",
@@ -808,6 +834,8 @@ PAPER_CONFIGS: dict[str, dict[str, Any]] = {
             *STATIC_HTML_USABILITY_REVIEW_BLOCKED_CLAIMS,
             *STATIC_HTML_USABILITY_REVISION_BLOCKED_CLAIMS,
             *AI_RECEIPT_ARCHITECTURE_BLOCKED_CLAIMS,
+            *MINIMAL_VIABLE_RECEIPT_DESIGN_BLOCKED_CLAIMS,
+            *MINIMAL_VIABLE_RECEIPT_LOCAL_PROTOTYPE_BLOCKED_CLAIMS,
             *VALIDATION_TIERING_PROVENANCE_BLOCKED_CLAIMS,
             *TELEMETRY_APERTURE_BLOCKED_CLAIMS,
             *TAC_POLICY_SIMULATION_BLOCKED_CLAIMS,
@@ -1160,6 +1188,11 @@ def _forbidden_hits(normalized_text: str, forbidden: tuple[str, ...]) -> list[st
             index = normalized_text.find(normalized_phrase, search_from)
             if index == -1:
                 break
+            allowed_local_prototype_claim = _normalize(MINIMAL_VIABLE_RECEIPT_LOCAL_PROTOTYPE_CLAIM_ALLOWED)
+            allowed_index = normalized_text.rfind(allowed_local_prototype_claim, 0, index + len(allowed_local_prototype_claim))
+            if allowed_index != -1 and index < allowed_index + len(allowed_local_prototype_claim):
+                search_from = index + len(normalized_phrase)
+                continue
             if "ces pmr indexing is proposed" in normalized_text and phrase in {"federation", "accepted evidence", "accepted-evidence authority", "product release", "truth certification", "trace export", "model training", "review skipping"}:
                 search_from = index + len(normalized_phrase)
                 continue
@@ -1407,6 +1440,7 @@ def _forbidden_hits(normalized_text: str, forbidden: tuple[str, ...]) -> list[st
             *STATIC_HTML_USABILITY_REVIEW_BLOCKED_CLAIMS,
             *STATIC_HTML_USABILITY_REVISION_BLOCKED_CLAIMS,
             *AI_RECEIPT_ARCHITECTURE_BLOCKED_CLAIMS,
+            *MINIMAL_VIABLE_RECEIPT_DESIGN_BLOCKED_CLAIMS,
             *VALIDATION_TIERING_PROVENANCE_BLOCKED_CLAIMS,
             *TELEMETRY_APERTURE_BLOCKED_CLAIMS,
             *TAC_POLICY_SIMULATION_BLOCKED_CLAIMS,

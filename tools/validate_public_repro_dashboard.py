@@ -78,6 +78,27 @@ from tools.build_public_repro_dashboard import (
     AI_RECEIPT_ARCHITECTURE_PRODUCT_FRAMING,
     AI_RECEIPT_ARCHITECTURE_REPRO_FRAGMENTS,
     AI_RECEIPT_ARCHITECTURE_REQUIRED_DOC_PHRASES,
+    MINIMAL_VIABLE_RECEIPT_DESIGN_ARTIFACTS,
+    MINIMAL_VIABLE_RECEIPT_DESIGN_BLOCKED_CLAIMS,
+    MINIMAL_VIABLE_RECEIPT_DESIGN_CLAIM_ALLOWED,
+    MINIMAL_VIABLE_RECEIPT_DESIGN_CONTESTABILITY_OPTIONS,
+    MINIMAL_VIABLE_RECEIPT_DESIGN_COST_BURDEN_DIMENSIONS,
+    MINIMAL_VIABLE_RECEIPT_DESIGN_DASHBOARD_SUMMARY,
+    MINIMAL_VIABLE_RECEIPT_DESIGN_DOCTRINE_LANGUAGE,
+    MINIMAL_VIABLE_RECEIPT_DESIGN_FAILURE_CLASSES,
+    MINIMAL_VIABLE_RECEIPT_DESIGN_PRIOR_PHASE_RELATION,
+    MINIMAL_VIABLE_RECEIPT_DESIGN_PRODUCT_EVENT_COMPONENTS,
+    MINIMAL_VIABLE_RECEIPT_DESIGN_RECEIPT_SECTIONS,
+    MINIMAL_VIABLE_RECEIPT_DESIGN_USER_QUESTIONS,
+    MINIMAL_VIABLE_RECEIPT_LOCAL_PROTOTYPE_ARTIFACTS,
+    MINIMAL_VIABLE_RECEIPT_LOCAL_PROTOTYPE_BLOCKED_CLAIMS,
+    MINIMAL_VIABLE_RECEIPT_LOCAL_PROTOTYPE_CHECKLIST_ITEMS,
+    MINIMAL_VIABLE_RECEIPT_LOCAL_PROTOTYPE_CLAIM_ALLOWED,
+    MINIMAL_VIABLE_RECEIPT_LOCAL_PROTOTYPE_DASHBOARD_SUMMARY,
+    MINIMAL_VIABLE_RECEIPT_LOCAL_PROTOTYPE_DOCTRINE_LANGUAGE,
+    MINIMAL_VIABLE_RECEIPT_LOCAL_PROTOTYPE_FAILURE_CLASSES,
+    MINIMAL_VIABLE_RECEIPT_LOCAL_PROTOTYPE_FIXTURE_TERMS,
+    MINIMAL_VIABLE_RECEIPT_LOCAL_PROTOTYPE_PRIOR_PHASE_RELATION,
     VALIDATION_TIERING_PROVENANCE_ACCEPTANCE_TERMS,
     VALIDATION_TIERING_PROVENANCE_ARTIFACTS,
     VALIDATION_TIERING_PROVENANCE_BLOCKED_CLAIMS,
@@ -429,6 +450,8 @@ REQUIRED_BOUNDARY_PHRASES = (
     *STATIC_HTML_USABILITY_REVISION_REPRO_FRAGMENTS,
     *STATIC_HTML_USABILITY_REVISION_BLOCKED_CLAIMS,
     "AI-RECEIPT-ARCHITECTURE-00",
+    "MINIMAL-VIABLE-RECEIPT-DESIGN-00",
+    "MINIMAL-VIABLE-RECEIPT-LOCAL-PROTOTYPE-00",
     "ai_receipt_architecture",
     "A watermark says AI was here. A receipt says what happened.",
     AI_RECEIPT_ARCHITECTURE_CLAIM_ALLOWED,
@@ -439,6 +462,26 @@ REQUIRED_BOUNDARY_PHRASES = (
     *AI_RECEIPT_ARCHITECTURE_PRODUCT_FRAMING,
     *AI_RECEIPT_ARCHITECTURE_REPRO_FRAGMENTS,
     *AI_RECEIPT_ARCHITECTURE_BLOCKED_CLAIMS,
+    MINIMAL_VIABLE_RECEIPT_DESIGN_CLAIM_ALLOWED,
+    *MINIMAL_VIABLE_RECEIPT_DESIGN_ARTIFACTS,
+    *MINIMAL_VIABLE_RECEIPT_DESIGN_DOCTRINE_LANGUAGE,
+    *MINIMAL_VIABLE_RECEIPT_DESIGN_PRODUCT_EVENT_COMPONENTS,
+    *MINIMAL_VIABLE_RECEIPT_DESIGN_RECEIPT_SECTIONS,
+    *MINIMAL_VIABLE_RECEIPT_DESIGN_USER_QUESTIONS,
+    *MINIMAL_VIABLE_RECEIPT_DESIGN_CONTESTABILITY_OPTIONS,
+    *MINIMAL_VIABLE_RECEIPT_DESIGN_COST_BURDEN_DIMENSIONS,
+    *MINIMAL_VIABLE_RECEIPT_DESIGN_PRIOR_PHASE_RELATION,
+    *MINIMAL_VIABLE_RECEIPT_DESIGN_FAILURE_CLASSES,
+    *MINIMAL_VIABLE_RECEIPT_DESIGN_BLOCKED_CLAIMS,
+    MINIMAL_VIABLE_RECEIPT_LOCAL_PROTOTYPE_CLAIM_ALLOWED,
+    *MINIMAL_VIABLE_RECEIPT_LOCAL_PROTOTYPE_ARTIFACTS,
+    *MINIMAL_VIABLE_RECEIPT_LOCAL_PROTOTYPE_DOCTRINE_LANGUAGE,
+    *MINIMAL_VIABLE_RECEIPT_LOCAL_PROTOTYPE_FIXTURE_TERMS,
+    *MINIMAL_VIABLE_RECEIPT_LOCAL_PROTOTYPE_CHECKLIST_ITEMS,
+    *MINIMAL_VIABLE_RECEIPT_LOCAL_PROTOTYPE_PRIOR_PHASE_RELATION,
+    *MINIMAL_VIABLE_RECEIPT_LOCAL_PROTOTYPE_FAILURE_CLASSES,
+    *MINIMAL_VIABLE_RECEIPT_LOCAL_PROTOTYPE_BLOCKED_CLAIMS,
+    "build_minimal_viable_receipt_local_prototype",
     "VALIDATION-TIERING-PROVENANCE-00",
     "policy_status",
     "validation_tier = deep",
@@ -1532,7 +1575,7 @@ def _is_blocked_overclaim_example_context(text: str, index: int) -> bool:
     if "claims " in immediate:
         return False
     window = text[max(0, index - 4000) : index]
-    return "overclaim examples" in window or "blocked ai receipt overclaim examples" in window or "validation tiering provenance publication boundaries" in window or "telemetry aperture controller publication boundaries" in window or "tac policy simulation publication boundaries" in window or "tac local review integration publication boundaries" in window or "claims_blocked" in window or "ces pmr indexing design publication boundaries" in window or "observation contract policy simulation publication boundaries" in window
+    return "overclaim examples" in window or "blocked ai receipt overclaim examples" in window or "minimal viable receipt local prototype publication boundaries" in window or "minimal viable receipt design publication boundaries" in window or "validation tiering provenance publication boundaries" in window or "telemetry aperture controller publication boundaries" in window or "tac policy simulation publication boundaries" in window or "tac local review integration publication boundaries" in window or "claims_blocked" in window or "ces pmr indexing design publication boundaries" in window or "observation contract policy simulation publication boundaries" in window
 
 
 def _forbidden_hits(text: str) -> list[str]:
@@ -1550,6 +1593,19 @@ def _forbidden_hits(text: str) -> list[str]:
             if phrase == "universal portability proof" and "is universal portability proof" in text[max(0, index - 40) : index + len(normalized_phrase)]:
                 hits.append(phrase)
                 break
+            if (
+                phrase in {"market validation", "human benefit proof", "compliance certification", "omega detection", "product release", "product readiness", "provider runtime", "network runtime", "trace export", "memory write", "atlas memory admission", "federation", "model training", "review skipping", "final answer authority", "accepted evidence", "accepted-evidence authority", "truth certification"}
+                and "minimal viable receipt local prototype" in text[max(0, index - 900) : index + 900]
+                and (
+                    "not " in text[max(0, index - 260) : index + 80]
+                    or "without " in text[max(0, index - 260) : index]
+                    or "does not" in text[max(0, index - 260) : index]
+                    or "grants no" in text[max(0, index - 260) : index]
+                    or "publication sync grants no runtime authority" in text[max(0, index - 900) : index + 900]
+                )
+            ):
+                start = index + len(normalized_phrase)
+                continue
             if (
                 "ces pmr indexing is proposed" in text[max(0, index - 700) : index + 700]
                 or "ces pmr indexing design 00" in text[max(0, index - 700) : index + 700]
@@ -1580,6 +1636,22 @@ def _forbidden_hits(text: str) -> list[str]:
                 start = index + len(normalized_phrase)
                 continue
             if phrase == "consent execution" and ("not consent execution" in text[max(0, index - 80) : index + 80] or "is not consent execution" in text[max(0, index - 80) : index + 80]):
+                start = index + len(normalized_phrase)
+                continue
+            if (
+                phrase in {"market validation", "human benefit proof", "omega detection", "compliance certification"}
+                and (
+                    "without performing provider calls" in text[max(0, index - 900) : index]
+                    or "not product release, not truth certification" in text[max(0, index - 400) : index]
+                    or "truth certification final answer authority product release model superiority proof" in text[max(0, index - 220) : index + 220]
+                    or "omega detection product release provider runtime population calibration" in text[max(0, index - 220) : index + 220]
+                    or
+                    f"not {normalized_phrase}" in text[max(0, index - 120) : index + 120]
+                    or f"not_{normalized_phrase.replace(' ', '_')}" in text[max(0, index - 120) : index + 120]
+                    or f"does not {normalized_phrase}" in text[max(0, index - 160) : index + 80]
+                    or f"proves {normalized_phrase}" in text[max(0, index - 80) : index + 80] and _is_blocked_overclaim_example_context(text, index)
+                )
+            ):
                 start = index + len(normalized_phrase)
                 continue
             if _is_blocked_overclaim_example_context(text, index):

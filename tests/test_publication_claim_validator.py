@@ -23,6 +23,10 @@ from tools.build_public_repro_dashboard import (
     STATIC_HTML_USABILITY_REVISION_CLAIM_ALLOWED,
     AI_RECEIPT_ARCHITECTURE_BLOCKED_CLAIMS,
     AI_RECEIPT_ARCHITECTURE_CLAIM_ALLOWED,
+    MINIMAL_VIABLE_RECEIPT_DESIGN_BLOCKED_CLAIMS,
+    MINIMAL_VIABLE_RECEIPT_DESIGN_CLAIM_ALLOWED,
+    MINIMAL_VIABLE_RECEIPT_LOCAL_PROTOTYPE_BLOCKED_CLAIMS,
+    MINIMAL_VIABLE_RECEIPT_LOCAL_PROTOTYPE_CLAIM_ALLOWED,
     VALIDATION_TIERING_PROVENANCE_BLOCKED_CLAIMS,
     VALIDATION_TIERING_PROVENANCE_CLAIM_ALLOWED,
     TELEMETRY_APERTURE_BLOCKED_CLAIMS,
@@ -44,7 +48,7 @@ from tools.build_public_repro_dashboard import (
     OBSERVATION_CONTRACT_POLICY_SIMULATION_BLOCKED_CLAIMS,
     OBSERVATION_CONTRACT_POLICY_SIMULATION_CLAIM_ALLOWED,
 )
-from tools.validate_publication_claims import validate_publication_claims
+from tools.validate_publication_claims import PAPER_CONFIGS, validate_publication_claims
 
 ROOT = Path("papers/governed_artifact_cognition")
 VALIDATOR = Path("tools/validate_publication_claims.py")
@@ -126,13 +130,7 @@ def test_claim_validator_rejects_unnegated_forbidden_overclaim(tmp_path):
             {
                 "paper_id": "PUB-GOV-ARTIFACT-COG-01",
                 "repo": "pdxvoiceteacher/uvlm-publications",
-                "status": "drafted",
-                "claim_level": "internal_preprint_draft",
-                "requires_external_peer_review": True,
-                "not_truth_certification": True,
-                "not_deployment_authority": True,
-                "not_final_answer_release": True,
-                "not_ai_consciousness_claim": True,
+                **PAPER_CONFIGS["PUB-GOV-ARTIFACT-COG-01"]["status_required"],
             }
         ),
         encoding="utf-8",
@@ -147,21 +145,10 @@ def test_claim_validator_rejects_unnegated_forbidden_overclaim(tmp_path):
 def test_claim_validator_rejects_invalid_status_json(tmp_path):
     paper_root = tmp_path / "paper"
     paper_root.mkdir()
-    valid_text = (
-        "not truth certification\n"
-        "not deployment authority\n"
-        "not final answer release\n"
-        "local fixture only\n"
-        "requires external peer review\n"
-        "not AI consciousness\n"
-        "not recursive Sonya federation\n"
-        "not retrosynthesis runtime\n"
-        "not Omega detection\n"
-        "not live Atlas memory writes\n"
-        "not live Sophia calls\n"
-    )
+    valid_text = "\n".join(PAPER_CONFIGS["PUB-GOV-ARTIFACT-COG-01"]["required_phrases"]) + "\n"
     for name in (
         "PUB_GOV_ARTIFACT_COG_01.md",
+        "abstract.md",
         "reproducibility_appendix.md",
         "claim_boundary_table.md",
         "artifact_table.md",
@@ -5105,4 +5092,128 @@ def test_claim_validator_allows_observation_contract_policy_simulation_bounded_c
     paper_root = tmp_path / "paper"
     _write_minimal_publication_claim_fixture(paper_root, OBSERVATION_CONTRACT_POLICY_SIMULATION_CLAIM_ALLOWED)
     result = validate_publication_claims(paper_root / "PUB_GOV_ARTIFACT_COG_01.md")
+    assert result["forbidden_overclaims_found"] == []
+
+
+
+def test_claim_validator_rejects_minimal_viable_receipt_overclaims(tmp_path):
+    paper_root = tmp_path / "paper"
+    paper_root.mkdir(parents=True)
+    valid_text = "\n".join(PAPER_CONFIGS["PUB-GOV-ARTIFACT-COG-01"]["required_phrases"]) + "\n"
+    for name in (
+        "abstract.md",
+        "reproducibility_appendix.md",
+        "claim_boundary_table.md",
+        "artifact_table.md",
+        "reviewer_quickstart.md",
+    ):
+        (paper_root / name).write_text(valid_text, encoding="utf-8")
+    (paper_root / "status.json").write_text(
+        json.dumps(
+            {
+                "paper_id": "PUB-GOV-ARTIFACT-COG-01",
+                "repo": "pdxvoiceteacher/uvlm-publications",
+                **PAPER_CONFIGS["PUB-GOV-ARTIFACT-COG-01"]["status_required"],
+            }
+        ),
+        encoding="utf-8",
+    )
+
+    blocked_claims = tuple(MINIMAL_VIABLE_RECEIPT_DESIGN_BLOCKED_CLAIMS)
+    for claim in blocked_claims:
+        (paper_root / "PUB_GOV_ARTIFACT_COG_01.md").write_text(valid_text + claim, encoding="utf-8")
+        result = validate_publication_claims(paper_root / "PUB_GOV_ARTIFACT_COG_01.md")
+        assert result["passed"] is False, claim
+        assert any(claim.lower() == found.lower() for found in result["forbidden_overclaims_found"]), result
+
+
+def test_claim_validator_allows_bounded_minimal_viable_receipt_claim(tmp_path):
+    paper_root = tmp_path / "paper"
+    paper_root.mkdir(parents=True)
+    allowed_claim = MINIMAL_VIABLE_RECEIPT_DESIGN_CLAIM_ALLOWED
+    valid_text = allowed_claim + "\n" + "\n".join(PAPER_CONFIGS["PUB-GOV-ARTIFACT-COG-01"]["required_phrases"]) + "\n"
+    for name in (
+        "PUB_GOV_ARTIFACT_COG_01.md",
+        "abstract.md",
+        "reproducibility_appendix.md",
+        "claim_boundary_table.md",
+        "artifact_table.md",
+        "reviewer_quickstart.md",
+    ):
+        (paper_root / name).write_text(valid_text, encoding="utf-8")
+    (paper_root / "status.json").write_text(
+        json.dumps(
+            {
+                "paper_id": "PUB-GOV-ARTIFACT-COG-01",
+                "repo": "pdxvoiceteacher/uvlm-publications",
+                **PAPER_CONFIGS["PUB-GOV-ARTIFACT-COG-01"]["status_required"],
+            }
+        ),
+        encoding="utf-8",
+    )
+
+    result = validate_publication_claims(paper_root / "PUB_GOV_ARTIFACT_COG_01.md")
+
+    assert result["passed"] is True
+    assert result["forbidden_overclaims_found"] == []
+
+
+
+def test_claim_validator_rejects_minimal_viable_receipt_local_prototype_overclaims(tmp_path):
+    paper_root = tmp_path / "paper"
+    paper_root.mkdir(parents=True)
+    valid_text = "\n".join(PAPER_CONFIGS["PUB-GOV-ARTIFACT-COG-01"]["required_phrases"]) + "\n"
+    for name in (
+        "abstract.md",
+        "reproducibility_appendix.md",
+        "claim_boundary_table.md",
+        "artifact_table.md",
+        "reviewer_quickstart.md",
+    ):
+        (paper_root / name).write_text(valid_text, encoding="utf-8")
+    (paper_root / "status.json").write_text(
+        json.dumps(
+            {
+                "paper_id": "PUB-GOV-ARTIFACT-COG-01",
+                "repo": "pdxvoiceteacher/uvlm-publications",
+                **PAPER_CONFIGS["PUB-GOV-ARTIFACT-COG-01"]["status_required"],
+            }
+        ),
+        encoding="utf-8",
+    )
+
+    for claim in MINIMAL_VIABLE_RECEIPT_LOCAL_PROTOTYPE_BLOCKED_CLAIMS:
+        (paper_root / "PUB_GOV_ARTIFACT_COG_01.md").write_text(valid_text + claim, encoding="utf-8")
+        result = validate_publication_claims(paper_root / "PUB_GOV_ARTIFACT_COG_01.md")
+        assert result["passed"] is False, claim
+        assert any(claim.lower() == found.lower() for found in result["forbidden_overclaims_found"]), result
+
+
+def test_claim_validator_allows_bounded_minimal_viable_receipt_local_prototype_claim(tmp_path):
+    paper_root = tmp_path / "paper"
+    paper_root.mkdir(parents=True)
+    valid_text = MINIMAL_VIABLE_RECEIPT_LOCAL_PROTOTYPE_CLAIM_ALLOWED + "\n" + "\n".join(PAPER_CONFIGS["PUB-GOV-ARTIFACT-COG-01"]["required_phrases"]) + "\n"
+    for name in (
+        "PUB_GOV_ARTIFACT_COG_01.md",
+        "abstract.md",
+        "reproducibility_appendix.md",
+        "claim_boundary_table.md",
+        "artifact_table.md",
+        "reviewer_quickstart.md",
+    ):
+        (paper_root / name).write_text(valid_text, encoding="utf-8")
+    (paper_root / "status.json").write_text(
+        json.dumps(
+            {
+                "paper_id": "PUB-GOV-ARTIFACT-COG-01",
+                "repo": "pdxvoiceteacher/uvlm-publications",
+                **PAPER_CONFIGS["PUB-GOV-ARTIFACT-COG-01"]["status_required"],
+            }
+        ),
+        encoding="utf-8",
+    )
+
+    result = validate_publication_claims(paper_root / "PUB_GOV_ARTIFACT_COG_01.md")
+
+    assert result["passed"] is True
     assert result["forbidden_overclaims_found"] == []
