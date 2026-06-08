@@ -9674,6 +9674,191 @@ MVR_READABILITY_REVIEW_SEED_PHASE = {
     "publication_status": "dashboard_indexed",
 }
 
+MVR_READABILITY_REVISION_COMMAND = "python -c \"from pathlib import Path; from coherence.product.minimal_viable_receipt_readability_revision import build_mvr_local_prototype_readability_revision; bridge=Path(r'C:\\UVLM\\run_artifacts\\mvr_readability_revision\\bridge'); build_mvr_local_prototype_readability_revision(bridge)\""
+MVR_READABILITY_REVISION_REPRO_FRAGMENTS = ["build_mvr_local_prototype_readability_revision"]
+MVR_READABILITY_REVISION_ARTIFACTS = [
+    "minimal_viable_receipt_human_readable.md",
+    "minimal_viable_receipt_human_readable_revised.md",
+    "minimal_viable_receipt_packet.json",
+    "mvr_readability_review_packet.json",
+    "mvr_readability_revision_suggestions.json",
+    "mvr_readability_review_receipt.json",
+    "mvr_readability_revision_packet.json",
+    "mvr_readability_revision_receipt.json",
+    "pmr_local_runtime_artifact_index.json",
+    "artifact_inventory.json",
+    "run_artifact_manifest.json",
+    "export_bundle_manifest.json",
+    "export_bundle_parity_report.json",
+]
+MVR_READABILITY_REVISION_SCHEMA_REFERENCES = [
+    "schema/bridge/mvr_readability_revision_packet.schema.json",
+    "schema/bridge/mvr_readability_revision_receipt.schema.json",
+    "schema/bridge/mvr_readability_questionnaire.schema.json",
+    "schema/bridge/mvr_readability_response_fixture.schema.json",
+    "schema/bridge/mvr_readability_review_packet.schema.json",
+    "schema/bridge/mvr_readability_revision_suggestions.schema.json",
+    "schema/bridge/mvr_readability_review_receipt.schema.json",
+]
+MVR_READABILITY_REVISION_APPLIED_REVISION_IDS = [
+    "add_plain_language_glossary_for_architecture_terms",
+    "clarify_ces_pmr_replay_posture",
+    "clarify_observation_contract_notice_vs_consent",
+    "make_unsupported_claims_more_visually_prominent",
+    "clarify_local_fixture_evidence_is_not_accepted_evidence",
+    "add_top_level_non_authority_summary",
+]
+MVR_READABILITY_REVISION_REVISED_RECEIPT_LANGUAGE = [
+    "Plain-language glossary",
+    "CES / PMR replay posture, in plain language",
+    "Observation Contract notice and consent, in plain language",
+    "Unsupported claims require review",
+    "Local fixture evidence is not accepted evidence",
+    "Top-level non-authority summary",
+    "This revised receipt is not product readiness.",
+    "This revised receipt is not user validation.",
+    "This revised receipt is not truth certification.",
+    "Readability gate is not passed in this phase.",
+    "Human review remains required.",
+]
+MVR_READABILITY_REVISION_DOCTRINE_LANGUAGE = [
+    "MVR Local Prototype Readability Revision",
+    "Deterministic local readability revision",
+    "Suggested revisions are applied deterministically, not validated by users.",
+    "Readability revision is not product readiness.",
+    "Readability revision is not user validation.",
+    "Readability revision is not market validation.",
+    "Readability revision is not human benefit proof.",
+    "Readability revision does not certify truth.",
+    "The receipt remains local fixture-backed and non-authoritative.",
+    "Original human-readable receipt is preserved.",
+    "Revised human-readable receipt is emitted.",
+    "Readability gate remains unpassed.",
+    "Human review remains required.",
+    "No real user study was performed.",
+    "No human-subject study was performed.",
+    "No user validation was performed.",
+    "No product readiness was claimed.",
+    "No product release was performed.",
+    "No memory write was performed.",
+    "No Atlas memory admission was performed.",
+    "No trace export was performed.",
+    "No PMR federation was performed.",
+]
+MVR_READABILITY_REVISION_PRIOR_PHASE_RELATION = [
+    "MINIMAL-VIABLE-RECEIPT-DESIGN-00 defines the one-transaction/many-sections receipt standard.",
+    "MINIMAL-VIABLE-RECEIPT-LOCAL-PROTOTYPE-00 emits the local fixture-backed readable receipt.",
+    "MVR-LOCAL-PROTOTYPE-READABILITY-REVIEW-SEED-00 evaluates that receipt with deterministic local fixture responses.",
+    "MVR-LOCAL-PROTOTYPE-READABILITY-REVISION-00 applies deterministic local readability revisions.",
+    "AI-RECEIPT-ARCHITECTURE-00 defines the receipt architecture.",
+    "TRIADIC-OBSERVATION-CONTRACT-DESIGN-00 defines governed attention.",
+    "OBSERVATION-CONTRACT-POLICY-SIMULATION-00 rehearses notice, consent, recovery, source-expansion, pathway-prior, retention, trace-export, and PMR-federation policy outcomes.",
+    "TAC phases define aperture posture and review visibility.",
+    "COHERENCE-EVENT-SIGNATURES-DESIGN-00 defines event signatures.",
+    "CES-PMR-INDEXING-DESIGN-00 defines CES as a compact PMR index, not source replacement.",
+    "SOPHIA-EXECUTIVE-AUDIT-REALITY-CHECK-00 records whether external Sophia actually ran.",
+    "VALIDATION-TIERING-PROVENANCE-00 records validation confidence scope.",
+    "MET-SEM-00 keeps metric labels profile-scoped.",
+]
+MVR_READABILITY_REVISION_BLOCKED_CLAIMS = [
+    "MVR readability revision is a real user study",
+    "MVR readability revision is a human-subject study",
+    "MVR readability revision is user validation",
+    "MVR readability revision proves product readiness",
+    "MVR readability revision is product release",
+    "MVR readability revision is market validation",
+    "MVR readability revision proves human benefit",
+    "MVR readability revision certifies truth",
+    "MVR readability revision authorizes final answers",
+    "MVR readability revision grants accepted-evidence authority",
+    "MVR readability revision writes memory",
+    "MVR readability revision admits Atlas memory",
+    "MVR readability revision exports traces",
+    "MVR readability revision federates PMR",
+    "MVR readability revision trains the model",
+    "MVR readability revision skips human review",
+    "readability gate passed",
+    "revised receipt means real usability",
+    "revised receipt means product readiness",
+    "revision applied means user validation",
+    "clear_count means product readiness",
+    "local fixture evidence is accepted evidence",
+    "readable fixture means product is ready",
+    "checklist completeness means answer correctness",
+    "contestability option guarantees reversal",
+    "recovery option performs memory write",
+    "source expansion can be skipped",
+    "unsupported claims can be hidden",
+]
+MVR_READABILITY_REVISION_CLAIM_ALLOWED = "MVR-LOCAL-PROTOTYPE-READABILITY-REVISION-00 applies deterministic local readability revisions to the fixture-backed Minimal Viable Receipt human-readable prototype, preserving the original receipt, emitting a revised receipt and revision receipts, and keeping the readability gate unpassed without performing a real user study, human-subject study, user validation, product-readiness claim, product release, market validation, human benefit proof, truth certification, final-answer authorization, accepted-evidence grant, memory write, Atlas admission, trace export, PMR federation, model training, or review skipping."
+MVR_READABILITY_REVISION_FAILURE_CLASSES = [
+    "readability_revision_mistaken_for_user_validation",
+    "readability_revision_mistaken_for_human_subject_study",
+    "readability_revision_mistaken_for_product_readiness",
+    "readability_revision_mistaken_for_market_validation",
+    "revised_receipt_mistaken_for_real_usability",
+    "readability_gate_revision_mistaken_for_gate_pass",
+    "applied_revision_mistaken_for_user_validated_fix",
+    "local_fixture_evidence_mistaken_for_accepted_evidence",
+    "receipt_readability_mistaken_for_visual_polish",
+    "receipt_that_only_impresses_architects",
+    "unsupported_claims_hidden",
+    "source_expansion_missing",
+    "contestability_missing",
+    "recovery_path_missing",
+    "non_authority_boundaries_missing",
+]
+MVR_READABILITY_REVISION_DASHBOARD_SUMMARY = {
+    "revision_status": "completed",
+    "revision_mode": "deterministic_local_readability_revision",
+    "original_receipt_ref": "minimal_viable_receipt_human_readable.md",
+    "revised_receipt_ref": "minimal_viable_receipt_human_readable_revised.md",
+    "applied_revision_count": 6,
+    "original_receipt_preserved": True,
+    "revised_receipt_emitted": True,
+    "readability_gate_status": "revision_applied_not_validated",
+    "readability_gate_passed": False,
+    "real_user_study_performed": False,
+    "human_subject_study_performed": False,
+    "user_validation_performed": False,
+    "product_readiness_claimed": False,
+    "product_release_performed": False,
+    "market_validation_emitted": False,
+    "human_benefit_proof_emitted": False,
+    "truth_certification_emitted": False,
+    "final_answer_authority_granted": False,
+    "accepted_evidence_authority_granted": False,
+    "memory_write_performed": False,
+    "atlas_memory_admission_performed": False,
+    "trace_export_performed": False,
+    "pmr_federation_performed": False,
+    "provider_runtime_performed": False,
+    "network_call_performed": False,
+    "revision_is_not_product_readiness": True,
+    "revision_is_not_user_validation": True,
+    "revision_is_not_truth_certification": True,
+    "revision_requires_human_review": True,
+    "receipt_is_not_product_readiness": True,
+    "receipt_is_not_user_validation": True,
+    "receipt_requires_human_review": True,
+}
+MVR_READABILITY_REVISION_PHASE = {
+    "phase_id": "MVR-LOCAL-PROTOTYPE-READABILITY-REVISION-00",
+    "repo": "pdxvoiceteacher/CoherenceLattice",
+    "status": "accepted_local_validation",
+    "evidence_type": "local_fixture_readability_revision_publication_sync",
+    "product_posture": "deterministic_local_readability_revision_without_user_validation_or_runtime_authority",
+    "primary_artifacts": MVR_READABILITY_REVISION_ARTIFACTS,
+    "schema_references": MVR_READABILITY_REVISION_SCHEMA_REFERENCES,
+    "dashboard_summary": MVR_READABILITY_REVISION_DASHBOARD_SUMMARY,
+    "reproduction_command_summary": MVR_READABILITY_REVISION_COMMAND,
+    "claim_allowed": MVR_READABILITY_REVISION_CLAIM_ALLOWED,
+    "claims_blocked": MVR_READABILITY_REVISION_BLOCKED_CLAIMS,
+    "reviewer_caution": "MVR-LOCAL-PROTOTYPE-READABILITY-REVISION-00 applies deterministic local readability revisions only; it is not a real user study, human-subject study, user validation, product readiness, product release, market validation, human benefit proof, truth certification, final-answer authority, accepted-evidence authority, memory write, Atlas admission, trace export, PMR federation, model training, review skip, provider runtime, or network runtime.",
+    "publication_status": "dashboard_indexed",
+}
+
+
 VALIDATION_TIERING_PROVENANCE_COMMAND = "python -c \"from pathlib import Path; from coherence.validation.validation_receipt import build_validation_tier_receipt; bridge=Path(r'C:\\UVLM\\run_artifacts\\validation_tiering\\bridge'); policy_ref='validation_tier_policy.v1.json'; build_validation_tier_receipt(bridge, source_phase='AI-RECEIPT-ARCHITECTURE-00', validation_tier='deep', validation_scope='full_multi_module_suite', validation_intent='major_sync_or_handoff_grade_validation', commands_run=[{'command':'python -m pytest -q <full_multi_module_suite>', 'result':'passed', 'duration_seconds':32131.86}], artifact_chain_name='ai_receipt_architecture_product_stack', expected_artifacts=['ai_receipt_architecture_packet.json','ai_receipt_event_chain.json','ai_receipt_architecture.md','ai_receipt_architecture_receipt.json'], observed_artifacts=['ai_receipt_architecture_packet.json','ai_receipt_event_chain.json','ai_receipt_architecture.md','ai_receipt_architecture_receipt.json'], validation_result='passed')\""
 VALIDATION_TIERING_PROVENANCE_ARTIFACTS = [
     "config/validation/validation_tier_policy.v1.json",
@@ -12397,6 +12582,7 @@ AI_RECEIPT_ARCHITECTURE_PHASE,
 MINIMAL_VIABLE_RECEIPT_DESIGN_PHASE,
 MINIMAL_VIABLE_RECEIPT_LOCAL_PROTOTYPE_PHASE,
 MVR_READABILITY_REVIEW_SEED_PHASE,
+MVR_READABILITY_REVISION_PHASE,
 VALIDATION_TIERING_PROVENANCE_PHASE,
 TELEMETRY_APERTURE_DESIGN_PHASE,
 TAC_POLICY_SIMULATION_PHASE,
@@ -14576,6 +14762,17 @@ BOUNDARIES.extend(
         *MVR_READABILITY_REVIEW_SEED_FAILURE_CLASSES,
         "Blocked overclaim examples for MVR Local Prototype Readability Review Seed publication boundaries.",
         *MVR_READABILITY_REVIEW_SEED_BLOCKED_CLAIMS,
+        MVR_READABILITY_REVISION_CLAIM_ALLOWED,
+        *MVR_READABILITY_REVISION_ARTIFACTS,
+        *MVR_READABILITY_REVISION_SCHEMA_REFERENCES,
+        *MVR_READABILITY_REVISION_REPRO_FRAGMENTS,
+        *MVR_READABILITY_REVISION_DOCTRINE_LANGUAGE,
+        *MVR_READABILITY_REVISION_APPLIED_REVISION_IDS,
+        *MVR_READABILITY_REVISION_REVISED_RECEIPT_LANGUAGE,
+        *MVR_READABILITY_REVISION_PRIOR_PHASE_RELATION,
+        *MVR_READABILITY_REVISION_FAILURE_CLASSES,
+        "Blocked overclaim examples for MVR Local Prototype Readability Revision publication boundaries.",
+        *MVR_READABILITY_REVISION_BLOCKED_CLAIMS,
         VALIDATION_TIERING_PROVENANCE_CLAIM_ALLOWED,
         *VALIDATION_TIERING_PROVENANCE_ARTIFACTS,
         *VALIDATION_TIERING_PROVENANCE_TIER_TERMS,
@@ -15445,6 +15642,12 @@ def dashboard_payload() -> dict[str, Any]:
         "mvr_local_prototype_readability_review_seed_00_indexed": True,
         "mvr_local_prototype_readability_review_seed_status": "completed",
         "mvr_readability_gate_passed": False,
+        "mvr_local_prototype_readability_revision_00_indexed": True,
+        "mvr_local_prototype_readability_revision_status": "completed",
+        "mvr_readability_revision_gate_passed": False,
+        "not_mvr_readability_revision_user_validation": True,
+        "not_mvr_readability_revision_product_readiness": True,
+        "not_mvr_readability_revision_runtime_authority": True,
         "not_mvr_readability_review_seed_user_validation": True,
         "not_mvr_readability_review_seed_product_readiness": True,
         "not_mvr_readability_review_seed_runtime_authority": True,
@@ -15547,6 +15750,7 @@ def reproducibility_index() -> dict[str, Any]:
                 {"name": "MINIMAL-VIABLE-RECEIPT-DESIGN-00 design validation", "command": MINIMAL_VIABLE_RECEIPT_DESIGN_COMMAND},
                 {"name": "MINIMAL-VIABLE-RECEIPT-LOCAL-PROTOTYPE-00 Python entrypoint", "command": MINIMAL_VIABLE_RECEIPT_LOCAL_PROTOTYPE_COMMAND},
                 {"name": "MVR-LOCAL-PROTOTYPE-READABILITY-REVIEW-SEED-00 Python entrypoint", "command": MVR_READABILITY_REVIEW_SEED_COMMAND},
+                {"name": "MVR-LOCAL-PROTOTYPE-READABILITY-REVISION-00 Python entrypoint", "command": MVR_READABILITY_REVISION_COMMAND},
                 {"name": "Validation Tiering Provenance Python entrypoint", "command": VALIDATION_TIERING_PROVENANCE_COMMAND},
                 {"name": "TELEMETRY-APERTURE-DESIGN-00 config/schema inspection", "command": TELEMETRY_APERTURE_DESIGN_COMMAND},
                 {"name": "TAC-POLICY-SIMULATION-00 Python entrypoint", "command": TAC_POLICY_SIMULATION_COMMAND},
@@ -16465,6 +16669,12 @@ def status_payload() -> dict[str, Any]:
         "mvr_local_prototype_readability_review_seed_00_indexed": True,
         "mvr_local_prototype_readability_review_seed_status": "completed",
         "mvr_readability_gate_passed": False,
+        "mvr_local_prototype_readability_revision_00_indexed": True,
+        "mvr_local_prototype_readability_revision_status": "completed",
+        "mvr_readability_revision_gate_passed": False,
+        "not_mvr_readability_revision_user_validation": True,
+        "not_mvr_readability_revision_product_readiness": True,
+        "not_mvr_readability_revision_runtime_authority": True,
         "not_mvr_readability_review_seed_user_validation": True,
         "not_mvr_readability_review_seed_product_readiness": True,
         "not_mvr_readability_review_seed_runtime_authority": True,
@@ -21771,6 +21981,93 @@ MVR-LOCAL-PROTOTYPE-READABILITY-REVIEW-SEED-00 synchronizes the locally validate
 Publication sync grants no runtime authority. It performs no provider runtime, network runtime, memory write, Atlas memory admission, trace export, PMR federation, product release, product-readiness claim, final-answer authorization, accepted-evidence grant, truth certification, model training, or review skipping.
 """
 
+
+MVR_READABILITY_REVISION_SYNC_DOCS = {
+    "index.md",
+    "minimal-viable-receipt-design.md",
+    "minimal-viable-receipt-local-prototype.md",
+    "mvr-local-prototype-readability-review-seed.md",
+    "ai-receipt-architecture.md",
+    "triadic-observation-contract.md",
+    "observation-contract-policy-simulation.md",
+    "coherence-event-signatures.md",
+    "ces-pmr-indexing-design.md",
+    "validation-tiering-provenance.md",
+    "claim-boundaries.md",
+}
+MVR_READABILITY_REVISION_SYNC_NOTE = f"""
+
+## MVR Local Prototype Readability Revision publication sync
+
+MVR-LOCAL-PROTOTYPE-READABILITY-REVISION-00 applies deterministic local readability revisions to the MINIMAL-VIABLE-RECEIPT-LOCAL-PROTOTYPE-00 fixture-backed readable receipt after MVR-LOCAL-PROTOTYPE-READABILITY-REVIEW-SEED-00 evaluates that receipt with deterministic local fixture responses. MVR Local Prototype Readability Revision is a Deterministic local readability revision. Suggested revisions are applied deterministically, not validated by users. Readability revision is not product readiness. Readability revision is not user validation. Readability revision is not market validation. Readability revision is not human benefit proof. Readability revision does not certify truth. The receipt remains local fixture-backed and non-authoritative. Original human-readable receipt is preserved. Revised human-readable receipt is emitted. Readability gate remains unpassed. Human review remains required.
+
+No real user study was performed. No human-subject study was performed. No user validation was performed. No product readiness was claimed. No product release was performed. No memory write was performed. No Atlas memory admission was performed. No trace export was performed. No PMR federation was performed. This publication sync grants no runtime authority.
+
+Artifacts include minimal_viable_receipt_human_readable.md, minimal_viable_receipt_human_readable_revised.md, minimal_viable_receipt_packet.json, mvr_readability_review_packet.json, mvr_readability_revision_suggestions.json, mvr_readability_review_receipt.json, mvr_readability_revision_packet.json, mvr_readability_revision_receipt.json, pmr_local_runtime_artifact_index.json, artifact_inventory.json, run_artifact_manifest.json, export_bundle_manifest.json, and export_bundle_parity_report.json. Schemas include schema/bridge/mvr_readability_revision_packet.schema.json, schema/bridge/mvr_readability_revision_receipt.schema.json, schema/bridge/mvr_readability_questionnaire.schema.json, schema/bridge/mvr_readability_response_fixture.schema.json, schema/bridge/mvr_readability_review_packet.schema.json, schema/bridge/mvr_readability_revision_suggestions.schema.json, and schema/bridge/mvr_readability_review_receipt.schema.json. Reproduction references build_mvr_local_prototype_readability_revision.
+
+The revision applies add_plain_language_glossary_for_architecture_terms, clarify_ces_pmr_replay_posture, clarify_observation_contract_notice_vs_consent, make_unsupported_claims_more_visually_prominent, clarify_local_fixture_evidence_is_not_accepted_evidence, and add_top_level_non_authority_summary. Revised receipt language includes Plain-language glossary; CES / PMR replay posture, in plain language; Observation Contract notice and consent, in plain language; Unsupported claims require review; Local fixture evidence is not accepted evidence; Top-level non-authority summary; This revised receipt is not product readiness.; This revised receipt is not user validation.; This revised receipt is not truth certification.; Readability gate is not passed in this phase.; Human review remains required.
+
+Relation to prior phases: MINIMAL-VIABLE-RECEIPT-DESIGN-00 defines the one-transaction/many-sections receipt standard. MINIMAL-VIABLE-RECEIPT-LOCAL-PROTOTYPE-00 emits the local fixture-backed readable receipt. MVR-LOCAL-PROTOTYPE-READABILITY-REVIEW-SEED-00 evaluates that receipt with deterministic local fixture responses. MVR-LOCAL-PROTOTYPE-READABILITY-REVISION-00 applies deterministic local readability revisions. AI-RECEIPT-ARCHITECTURE-00 defines the receipt architecture. TRIADIC-OBSERVATION-CONTRACT-DESIGN-00 defines governed attention. OBSERVATION-CONTRACT-POLICY-SIMULATION-00 rehearses notice, consent, recovery, source-expansion, pathway-prior, retention, trace-export, and PMR-federation policy outcomes. TAC phases define aperture posture and review visibility. COHERENCE-EVENT-SIGNATURES-DESIGN-00 defines event signatures. CES-PMR-INDEXING-DESIGN-00 defines CES as a compact PMR index, not source replacement. SOPHIA-EXECUTIVE-AUDIT-REALITY-CHECK-00 records whether external Sophia actually ran. VALIDATION-TIERING-PROVENANCE-00 records validation confidence scope. MET-SEM-00 keeps metric labels profile-scoped.
+
+See [MVR Local Prototype Readability Revision](mvr-local-prototype-readability-revision.md).
+"""
+
+def mvr_local_prototype_readability_revision_doc() -> str:
+    summary = "\n".join(f"- {key} = {str(value).lower() if isinstance(value, bool) else value}" for key, value in MVR_READABILITY_REVISION_DASHBOARD_SUMMARY.items())
+    return f"""# MVR Local Prototype Readability Revision
+
+MVR-LOCAL-PROTOTYPE-READABILITY-REVISION-00 synchronizes the locally validated CoherenceLattice MVR Local Prototype Readability Revision into publication dashboards. This is publication/dashboard synchronization only. It applies deterministic local readability revisions to the fixture-backed Minimal Viable Receipt human-readable prototype and grants no runtime authority.
+
+## Bounded allowed claim
+
+{MVR_READABILITY_REVISION_CLAIM_ALLOWED}
+
+## Doctrine language
+
+{_bullets(MVR_READABILITY_REVISION_DOCTRINE_LANGUAGE)}
+
+## Dashboard summary
+
+{summary}
+
+## Applied revision IDs
+
+{_bullets(MVR_READABILITY_REVISION_APPLIED_REVISION_IDS)}
+
+## Revised receipt language
+
+{_bullets(MVR_READABILITY_REVISION_REVISED_RECEIPT_LANGUAGE)}
+
+## Artifact references
+
+{_bullets(MVR_READABILITY_REVISION_ARTIFACTS)}
+
+## Schema references
+
+{_bullets(MVR_READABILITY_REVISION_SCHEMA_REFERENCES)}
+
+## Relation to prior phases
+
+{_bullets(MVR_READABILITY_REVISION_PRIOR_PHASE_RELATION)}
+
+## Failure classes
+
+{_bullets(MVR_READABILITY_REVISION_FAILURE_CLASSES)}
+
+## Blocked claims
+
+{_bullets(MVR_READABILITY_REVISION_BLOCKED_CLAIMS)}
+
+## Reproducibility
+
+- {MVR_READABILITY_REVISION_REPRO_FRAGMENTS[0]}
+- `{MVR_READABILITY_REVISION_COMMAND}`
+
+## Runtime authority boundary
+
+Publication sync grants no runtime authority. It performs no provider runtime, network runtime, memory write, Atlas memory admission, trace export, PMR federation, product release, product-readiness claim, final-answer authorization, accepted-evidence grant, truth certification, model training, or review skipping.
+"""
+
 def build(out_dir: Path, docs_dir: Path) -> None:
     _write_json(out_dir / "experiment_suite_dashboard.json", dashboard_payload())
     _write_json(out_dir / "accepted_phase_matrix.json", accepted_phase_matrix())
@@ -21782,6 +22079,7 @@ def build(out_dir: Path, docs_dir: Path) -> None:
     docs_payload["minimal-viable-receipt-design.md"] = minimal_viable_receipt_design_doc()
     docs_payload["minimal-viable-receipt-local-prototype.md"] = minimal_viable_receipt_local_prototype_doc()
     docs_payload["mvr-local-prototype-readability-review-seed.md"] = mvr_local_prototype_readability_review_seed_doc()
+    docs_payload["mvr-local-prototype-readability-revision.md"] = mvr_local_prototype_readability_revision_doc()
     for name in MINIMAL_VIABLE_RECEIPT_DESIGN_SYNC_DOCS:
         if name in docs_payload:
             docs_payload[name] = docs_payload[name].rstrip() + MINIMAL_VIABLE_RECEIPT_DESIGN_SYNC_NOTE
@@ -21797,6 +22095,9 @@ def build(out_dir: Path, docs_dir: Path) -> None:
     for name in MVR_READABILITY_REVIEW_SEED_SYNC_DOCS:
         if name in docs_payload:
             docs_payload[name] = docs_payload[name].rstrip() + MVR_READABILITY_REVIEW_SEED_SYNC_NOTE
+    for name in MVR_READABILITY_REVISION_SYNC_DOCS:
+        if name in docs_payload:
+            docs_payload[name] = docs_payload[name].rstrip() + MVR_READABILITY_REVISION_SYNC_NOTE
     for name, text in docs_payload.items():
         _write_text(docs_dir / name, text)
 

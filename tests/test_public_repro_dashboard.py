@@ -108,6 +108,17 @@ from tools.build_public_repro_dashboard import (
     MVR_READABILITY_REVIEW_SEED_RATING_TERMS,
     MVR_READABILITY_REVIEW_SEED_REPRO_FRAGMENTS,
     MVR_READABILITY_REVIEW_SEED_REVISION_SUGGESTION_IDS,
+    MVR_READABILITY_REVISION_APPLIED_REVISION_IDS,
+    MVR_READABILITY_REVISION_ARTIFACTS,
+    MVR_READABILITY_REVISION_BLOCKED_CLAIMS,
+    MVR_READABILITY_REVISION_CLAIM_ALLOWED,
+    MVR_READABILITY_REVISION_DASHBOARD_SUMMARY,
+    MVR_READABILITY_REVISION_DOCTRINE_LANGUAGE,
+    MVR_READABILITY_REVISION_FAILURE_CLASSES,
+    MVR_READABILITY_REVISION_PRIOR_PHASE_RELATION,
+    MVR_READABILITY_REVISION_REPRO_FRAGMENTS,
+    MVR_READABILITY_REVISION_REVISED_RECEIPT_LANGUAGE,
+    MVR_READABILITY_REVISION_SCHEMA_REFERENCES,
     VALIDATION_TIERING_PROVENANCE_ACCEPTANCE_TERMS,
     VALIDATION_TIERING_PROVENANCE_ARTIFACTS,
     VALIDATION_TIERING_PROVENANCE_BLOCKED_CLAIMS,
@@ -422,6 +433,7 @@ REQUIRED_PHASES = {
     "PERTURBATION-STRUCTURE-AFFORDANCE-CARD-00",
     "MINIMAL-VIABLE-RECEIPT-LOCAL-PROTOTYPE-00",
     "MVR-LOCAL-PROTOTYPE-READABILITY-REVIEW-SEED-00",
+    "MVR-LOCAL-PROTOTYPE-READABILITY-REVISION-00",
 }
 
 REQUIRED_COMMAND_FRAGMENTS = (
@@ -6058,6 +6070,97 @@ def test_mvr_readability_review_seed_indexes_dashboard_and_docs(tmp_path):
     assert status["not_mvr_readability_review_seed_product_readiness"] is True
     assert status["not_mvr_readability_review_seed_runtime_authority"] is True
 
+
+
+
+def test_mvr_readability_revision_indexes_dashboard_and_docs(tmp_path):
+    out_dir, docs_dir = run_builder(tmp_path)
+    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text(encoding="utf-8"))
+    artifact_index = json.loads((out_dir / "artifact_index.json").read_text(encoding="utf-8"))
+    repro_index = json.loads((out_dir / "reproducibility_index.json").read_text(encoding="utf-8"))
+    claim_boundaries = json.loads((out_dir / "claim_boundary_index.json").read_text(encoding="utf-8"))
+    status = json.loads((out_dir / "status.json").read_text(encoding="utf-8"))
+    page_path = docs_dir / "mvr-local-prototype-readability-revision.md"
+    page = page_path.read_text(encoding="utf-8")
+
+    phase = next(entry for entry in dashboard["accepted_phases"] if entry["phase_id"] == "MVR-LOCAL-PROTOTYPE-READABILITY-REVISION-00")
+    summary = phase["dashboard_summary"]
+    assert summary == MVR_READABILITY_REVISION_DASHBOARD_SUMMARY
+    assert summary["revision_status"] == "completed"
+    assert summary["revision_mode"] == "deterministic_local_readability_revision"
+    assert summary["original_receipt_ref"] == "minimal_viable_receipt_human_readable.md"
+    assert summary["revised_receipt_ref"] == "minimal_viable_receipt_human_readable_revised.md"
+    assert summary["applied_revision_count"] == 6
+    assert summary["original_receipt_preserved"] is True
+    assert summary["revised_receipt_emitted"] is True
+    assert summary["readability_gate_status"] == "revision_applied_not_validated"
+    assert summary["readability_gate_passed"] is False
+
+    false_fields = (
+        "real_user_study_performed", "human_subject_study_performed", "user_validation_performed",
+        "product_readiness_claimed", "product_release_performed", "market_validation_emitted",
+        "human_benefit_proof_emitted", "truth_certification_emitted", "memory_write_performed",
+        "atlas_memory_admission_performed", "trace_export_performed", "pmr_federation_performed",
+        "provider_runtime_performed", "network_call_performed", "final_answer_authority_granted",
+        "accepted_evidence_authority_granted",
+    )
+    for field in false_fields:
+        assert summary[field] is False
+
+    true_fields = (
+        "revision_is_not_product_readiness", "revision_is_not_user_validation",
+        "revision_is_not_truth_certification", "revision_requires_human_review",
+        "receipt_is_not_product_readiness", "receipt_is_not_user_validation", "receipt_requires_human_review",
+    )
+    for field in true_fields:
+        assert summary[field] is True
+
+    assert artifact_index["phases"]["MVR-LOCAL-PROTOTYPE-READABILITY-REVISION-00"] == MVR_READABILITY_REVISION_ARTIFACTS
+    for artifact in MVR_READABILITY_REVISION_ARTIFACTS:
+        assert artifact in page
+    for schema in MVR_READABILITY_REVISION_SCHEMA_REFERENCES:
+        assert schema in page
+
+    repro_text = json.dumps(repro_index, ensure_ascii=False)
+    for fragment in MVR_READABILITY_REVISION_REPRO_FRAGMENTS:
+        assert fragment in repro_text
+
+    for required in (
+        *MVR_READABILITY_REVISION_APPLIED_REVISION_IDS,
+        *MVR_READABILITY_REVISION_REVISED_RECEIPT_LANGUAGE,
+        *MVR_READABILITY_REVISION_DOCTRINE_LANGUAGE,
+        *MVR_READABILITY_REVISION_PRIOR_PHASE_RELATION,
+        *MVR_READABILITY_REVISION_FAILURE_CLASSES,
+        MVR_READABILITY_REVISION_CLAIM_ALLOWED,
+        "Publication sync grants no runtime authority.",
+    ):
+        assert required in page
+
+    boundaries = "\n".join(claim_boundaries["boundaries"])
+    for blocked in MVR_READABILITY_REVISION_BLOCKED_CLAIMS:
+        assert blocked in boundaries
+
+    assert status["mvr_local_prototype_readability_revision_00_indexed"] is True
+    assert status["mvr_local_prototype_readability_revision_status"] == "completed"
+    assert status["mvr_readability_revision_gate_passed"] is False
+    assert status["not_mvr_readability_revision_user_validation"] is True
+    assert status["not_mvr_readability_revision_product_readiness"] is True
+    assert status["not_mvr_readability_revision_runtime_authority"] is True
+
+
+def test_validator_required_phases_include_mvr_readability_revision():
+    assert "MVR-LOCAL-PROTOTYPE-READABILITY-REVISION-00" in VALIDATOR_REQUIRED_PHASES
+
+
+def test_validator_fails_if_mvr_readability_revision_makes_forbidden_claims(tmp_path):
+    for claim in MVR_READABILITY_REVISION_BLOCKED_CLAIMS:
+        out_dir, docs_dir = run_builder(tmp_path / claim.replace(" ", "_").replace("/", "_"))
+        page = docs_dir / "mvr-local-prototype-readability-revision.md"
+        page.write_text(page.read_text(encoding="utf-8") + f"\nMVR readability revision claims {claim}.\n", encoding="utf-8")
+        result = validate_dashboard(out_dir / "experiment_suite_dashboard.json", docs_dir)
+        assert result["passed"] is False, claim
+        forbidden_found = [found.lower() for found in result["forbidden_claims_found"]]
+        assert claim.lower() in forbidden_found or f"claims {claim.lower()}" in forbidden_found, result
 
 def test_validator_required_phases_include_mvr_readability_review_seed():
     assert "MVR-LOCAL-PROTOTYPE-READABILITY-REVIEW-SEED-00" in VALIDATOR_REQUIRED_PHASES
