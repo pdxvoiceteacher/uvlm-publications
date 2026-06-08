@@ -9674,6 +9674,857 @@ MVR_READABILITY_REVIEW_SEED_PHASE = {
     "publication_status": "dashboard_indexed",
 }
 
+MVR_READABILITY_REVISION_COMMAND = "python -c \"from pathlib import Path; from coherence.product.minimal_viable_receipt_readability_revision import build_mvr_local_prototype_readability_revision; bridge=Path(r'C:\\UVLM\\run_artifacts\\mvr_readability_revision\\bridge'); build_mvr_local_prototype_readability_revision(bridge)\""
+MVR_READABILITY_REVISION_REPRO_FRAGMENTS = ["build_mvr_local_prototype_readability_revision"]
+MVR_READABILITY_REVISION_ARTIFACTS = [
+    "minimal_viable_receipt_human_readable.md",
+    "minimal_viable_receipt_human_readable_revised.md",
+    "minimal_viable_receipt_packet.json",
+    "mvr_readability_review_packet.json",
+    "mvr_readability_revision_suggestions.json",
+    "mvr_readability_review_receipt.json",
+    "mvr_readability_revision_packet.json",
+    "mvr_readability_revision_receipt.json",
+    "pmr_local_runtime_artifact_index.json",
+    "artifact_inventory.json",
+    "run_artifact_manifest.json",
+    "export_bundle_manifest.json",
+    "export_bundle_parity_report.json",
+]
+MVR_READABILITY_REVISION_SCHEMA_REFERENCES = [
+    "schema/bridge/mvr_readability_revision_packet.schema.json",
+    "schema/bridge/mvr_readability_revision_receipt.schema.json",
+    "schema/bridge/mvr_readability_questionnaire.schema.json",
+    "schema/bridge/mvr_readability_response_fixture.schema.json",
+    "schema/bridge/mvr_readability_review_packet.schema.json",
+    "schema/bridge/mvr_readability_revision_suggestions.schema.json",
+    "schema/bridge/mvr_readability_review_receipt.schema.json",
+]
+MVR_READABILITY_REVISION_APPLIED_REVISION_IDS = [
+    "add_plain_language_glossary_for_architecture_terms",
+    "clarify_ces_pmr_replay_posture",
+    "clarify_observation_contract_notice_vs_consent",
+    "make_unsupported_claims_more_visually_prominent",
+    "clarify_local_fixture_evidence_is_not_accepted_evidence",
+    "add_top_level_non_authority_summary",
+]
+MVR_READABILITY_REVISION_REVISED_RECEIPT_LANGUAGE = [
+    "Plain-language glossary",
+    "CES / PMR replay posture, in plain language",
+    "Observation Contract notice and consent, in plain language",
+    "Unsupported claims require review",
+    "Local fixture evidence is not accepted evidence",
+    "Top-level non-authority summary",
+    "This revised receipt is not product readiness.",
+    "This revised receipt is not user validation.",
+    "This revised receipt is not truth certification.",
+    "Readability gate is not passed in this phase.",
+    "Human review remains required.",
+]
+MVR_READABILITY_REVISION_DOCTRINE_LANGUAGE = [
+    "MVR Local Prototype Readability Revision",
+    "Deterministic local readability revision",
+    "Suggested revisions are applied deterministically, not validated by users.",
+    "Readability revision is not product readiness.",
+    "Readability revision is not user validation.",
+    "Readability revision is not market validation.",
+    "Readability revision is not human benefit proof.",
+    "Readability revision does not certify truth.",
+    "The receipt remains local fixture-backed and non-authoritative.",
+    "Original human-readable receipt is preserved.",
+    "Revised human-readable receipt is emitted.",
+    "Readability gate remains unpassed.",
+    "Human review remains required.",
+    "No real user study was performed.",
+    "No human-subject study was performed.",
+    "No user validation was performed.",
+    "No product readiness was claimed.",
+    "No product release was performed.",
+    "No memory write was performed.",
+    "No Atlas memory admission was performed.",
+    "No trace export was performed.",
+    "No PMR federation was performed.",
+]
+MVR_READABILITY_REVISION_PRIOR_PHASE_RELATION = [
+    "MINIMAL-VIABLE-RECEIPT-DESIGN-00 defines the one-transaction/many-sections receipt standard.",
+    "MINIMAL-VIABLE-RECEIPT-LOCAL-PROTOTYPE-00 emits the local fixture-backed readable receipt.",
+    "MVR-LOCAL-PROTOTYPE-READABILITY-REVIEW-SEED-00 evaluates that receipt with deterministic local fixture responses.",
+    "MVR-LOCAL-PROTOTYPE-READABILITY-REVISION-00 applies deterministic local readability revisions.",
+    "AI-RECEIPT-ARCHITECTURE-00 defines the receipt architecture.",
+    "TRIADIC-OBSERVATION-CONTRACT-DESIGN-00 defines governed attention.",
+    "OBSERVATION-CONTRACT-POLICY-SIMULATION-00 rehearses notice, consent, recovery, source-expansion, pathway-prior, retention, trace-export, and PMR-federation policy outcomes.",
+    "TAC phases define aperture posture and review visibility.",
+    "COHERENCE-EVENT-SIGNATURES-DESIGN-00 defines event signatures.",
+    "CES-PMR-INDEXING-DESIGN-00 defines CES as a compact PMR index, not source replacement.",
+    "SOPHIA-EXECUTIVE-AUDIT-REALITY-CHECK-00 records whether external Sophia actually ran.",
+    "VALIDATION-TIERING-PROVENANCE-00 records validation confidence scope.",
+    "MET-SEM-00 keeps metric labels profile-scoped.",
+]
+MVR_READABILITY_REVISION_BLOCKED_CLAIMS = [
+    "MVR readability revision is a real user study",
+    "MVR readability revision is a human-subject study",
+    "MVR readability revision is user validation",
+    "MVR readability revision proves product readiness",
+    "MVR readability revision is product release",
+    "MVR readability revision is market validation",
+    "MVR readability revision proves human benefit",
+    "MVR readability revision certifies truth",
+    "MVR readability revision authorizes final answers",
+    "MVR readability revision grants accepted-evidence authority",
+    "MVR readability revision writes memory",
+    "MVR readability revision admits Atlas memory",
+    "MVR readability revision exports traces",
+    "MVR readability revision federates PMR",
+    "MVR readability revision trains the model",
+    "MVR readability revision skips human review",
+    "readability gate passed",
+    "revised receipt means real usability",
+    "revised receipt means product readiness",
+    "revision applied means user validation",
+    "clear_count means product readiness",
+    "local fixture evidence is accepted evidence",
+    "readable fixture means product is ready",
+    "checklist completeness means answer correctness",
+    "contestability option guarantees reversal",
+    "recovery option performs memory write",
+    "source expansion can be skipped",
+    "unsupported claims can be hidden",
+]
+MVR_READABILITY_REVISION_CLAIM_ALLOWED = "MVR-LOCAL-PROTOTYPE-READABILITY-REVISION-00 applies deterministic local readability revisions to the fixture-backed Minimal Viable Receipt human-readable prototype, preserving the original receipt, emitting a revised receipt and revision receipts, and keeping the readability gate unpassed without performing a real user study, human-subject study, user validation, product-readiness claim, product release, market validation, human benefit proof, truth certification, final-answer authorization, accepted-evidence grant, memory write, Atlas admission, trace export, PMR federation, model training, or review skipping."
+MVR_READABILITY_REVISION_FAILURE_CLASSES = [
+    "readability_revision_mistaken_for_user_validation",
+    "readability_revision_mistaken_for_human_subject_study",
+    "readability_revision_mistaken_for_product_readiness",
+    "readability_revision_mistaken_for_market_validation",
+    "revised_receipt_mistaken_for_real_usability",
+    "readability_gate_revision_mistaken_for_gate_pass",
+    "applied_revision_mistaken_for_user_validated_fix",
+    "local_fixture_evidence_mistaken_for_accepted_evidence",
+    "receipt_readability_mistaken_for_visual_polish",
+    "receipt_that_only_impresses_architects",
+    "unsupported_claims_hidden",
+    "source_expansion_missing",
+    "contestability_missing",
+    "recovery_path_missing",
+    "non_authority_boundaries_missing",
+]
+MVR_READABILITY_REVISION_DASHBOARD_SUMMARY = {
+    "revision_status": "completed",
+    "revision_mode": "deterministic_local_readability_revision",
+    "original_receipt_ref": "minimal_viable_receipt_human_readable.md",
+    "revised_receipt_ref": "minimal_viable_receipt_human_readable_revised.md",
+    "applied_revision_count": 6,
+    "original_receipt_preserved": True,
+    "revised_receipt_emitted": True,
+    "readability_gate_status": "revision_applied_not_validated",
+    "readability_gate_passed": False,
+    "real_user_study_performed": False,
+    "human_subject_study_performed": False,
+    "user_validation_performed": False,
+    "product_readiness_claimed": False,
+    "product_release_performed": False,
+    "market_validation_emitted": False,
+    "human_benefit_proof_emitted": False,
+    "truth_certification_emitted": False,
+    "final_answer_authority_granted": False,
+    "accepted_evidence_authority_granted": False,
+    "memory_write_performed": False,
+    "atlas_memory_admission_performed": False,
+    "trace_export_performed": False,
+    "pmr_federation_performed": False,
+    "provider_runtime_performed": False,
+    "network_call_performed": False,
+    "revision_is_not_product_readiness": True,
+    "revision_is_not_user_validation": True,
+    "revision_is_not_truth_certification": True,
+    "revision_requires_human_review": True,
+    "receipt_is_not_product_readiness": True,
+    "receipt_is_not_user_validation": True,
+    "receipt_requires_human_review": True,
+}
+MVR_READABILITY_REVISION_PHASE = {
+    "phase_id": "MVR-LOCAL-PROTOTYPE-READABILITY-REVISION-00",
+    "repo": "pdxvoiceteacher/CoherenceLattice",
+    "status": "accepted_local_validation",
+    "evidence_type": "local_fixture_readability_revision_publication_sync",
+    "product_posture": "deterministic_local_readability_revision_without_user_validation_or_runtime_authority",
+    "primary_artifacts": MVR_READABILITY_REVISION_ARTIFACTS,
+    "schema_references": MVR_READABILITY_REVISION_SCHEMA_REFERENCES,
+    "dashboard_summary": MVR_READABILITY_REVISION_DASHBOARD_SUMMARY,
+    "reproduction_command_summary": MVR_READABILITY_REVISION_COMMAND,
+    "claim_allowed": MVR_READABILITY_REVISION_CLAIM_ALLOWED,
+    "claims_blocked": MVR_READABILITY_REVISION_BLOCKED_CLAIMS,
+    "reviewer_caution": "MVR-LOCAL-PROTOTYPE-READABILITY-REVISION-00 applies deterministic local readability revisions only; it is not a real user study, human-subject study, user validation, product readiness, product release, market validation, human benefit proof, truth certification, final-answer authority, accepted-evidence authority, memory write, Atlas admission, trace export, PMR federation, model training, review skip, provider runtime, or network runtime.",
+    "publication_status": "dashboard_indexed",
+}
+
+
+MVR_REAL_INPUT_PILOT_DESIGN_COMMAND = "python -m pytest -q tests/test_mvr_local_real_input_pilot_design.py tests/test_experiment_registry.py"
+MVR_REAL_INPUT_PILOT_DESIGN_REPRO_FRAGMENTS = [
+    "test_mvr_local_real_input_pilot_design.py",
+    "test_experiment_registry.py",
+]
+MVR_REAL_INPUT_PILOT_DESIGN_ARTIFACTS = [
+    "docs/MVR_LOCAL_REAL_INPUT_PILOT_DESIGN.md",
+    "config/receipt/mvr_local_real_input_pilot_policy.v1.json",
+    "schema/bridge/mvr_local_real_input_source_manifest.schema.json",
+    "schema/bridge/mvr_local_real_input_consent_scope.schema.json",
+    "schema/bridge/mvr_local_real_input_quarantine_report.schema.json",
+    "schema/bridge/mvr_local_real_input_pilot_policy_packet.schema.json",
+    "schema/bridge/mvr_local_real_input_non_authority_boundary.schema.json",
+]
+MVR_REAL_INPUT_PILOT_DESIGN_DOCTRINE_LANGUAGE = [
+    "MVR Local Real Input Pilot Design",
+    "Real local input can enter only by explicit local source selection.",
+    "Real input pilot design is not real input processing.",
+    "Real input pilot design is not product readiness.",
+    "Real input pilot design is not product release.",
+    "A real-input pilot must be local-only by default.",
+    "A real-input pilot must be source-bounded.",
+    "A real-input pilot must be consent-bounded.",
+    "A real-input pilot must preserve source expansion.",
+    "A real-input pilot must quarantine instruction-like evidence.",
+    "A real-input pilot must expose unsupported claims.",
+    "A real-input pilot must emit a Minimal Viable Receipt before any claim of readiness.",
+    "Local source selection is not accepted-evidence authority.",
+    "Local source processing is not memory write.",
+    "Human review remains required.",
+    "MVR-LOCAL-REAL-INPUT-PILOT-DESIGN-00 does not process real files.",
+    "MVR-LOCAL-REAL-INPUT-PILOT-DESIGN-00 does not emit runtime real-input artifacts.",
+    "MVR-LOCAL-REAL-INPUT-PILOT-DESIGN-00 does not perform provider calls.",
+    "MVR-LOCAL-REAL-INPUT-PILOT-DESIGN-00 does not perform network calls.",
+    "MVR-LOCAL-REAL-INPUT-PILOT-DESIGN-00 does not write memory.",
+    "MVR-LOCAL-REAL-INPUT-PILOT-DESIGN-00 does not admit Atlas memory.",
+    "MVR-LOCAL-REAL-INPUT-PILOT-DESIGN-00 does not claim product readiness.",
+    "MVR-LOCAL-REAL-INPUT-PILOT-DESIGN-00 does not release product.",
+]
+MVR_REAL_INPUT_PILOT_DESIGN_ALLOWED_INPUT_CLASSES = [
+    "local_text_file",
+    "local_markdown_file",
+    "local_json_file",
+    "local_csv_file",
+    "local_plaintext_excerpt",
+    "local_user_pasted_excerpt",
+    "local_redacted_document_excerpt",
+]
+MVR_REAL_INPUT_PILOT_DESIGN_BLOCKED_INPUT_CLASSES = [
+    "remote_url_fetch",
+    "cloud_connector_file",
+    "email_inbox_scan",
+    "calendar_scan",
+    "browser_history_scan",
+    "whole_disk_scan",
+    "hidden_directory_scan",
+    "credential_file",
+    "secrets_file",
+    "private_key_file",
+    "raw_chat_history_bulk_import",
+    "personal_profile_bulk_import",
+    "unredacted_sensitive_identity_document",
+    "medical_record",
+    "legal_record",
+    "financial_account_record",
+    "child_data_record",
+    "biometric_data_record",
+]
+MVR_REAL_INPUT_PILOT_DESIGN_SOURCE_RULES = [
+    "explicit_user_selection_required",
+    "local_path_allowlist_required",
+    "recursive_directory_scan_allowed = false",
+    "hidden_file_scan_allowed = false",
+    "max_source_file_count_default = 5",
+    "max_source_bytes_default = 250000",
+    "source_hashing_required",
+    "source_manifest_required",
+    "source_expansion_required_for_decisions",
+    "instruction_like_evidence_quarantine_required",
+    "unsupported_claim_visibility_required",
+    "human_review_required",
+]
+MVR_REAL_INPUT_PILOT_DESIGN_CONSENT_OBSERVATION_TERMS = [
+    "consent_scope_required",
+    "consent_is_local_to_pilot_run",
+    "consent_is_not_memory_write",
+    "consent_is_not_trace_export_authorization",
+    "consent_is_not_pmr_federation_authorization",
+    "consent_is_not_product_release",
+    "revocation_supported",
+    "retention_review_required",
+    "observation_contract_posture_required",
+    "observation_contract_policy_simulation_ref_required",
+    "tac_aperture_posture_required",
+    "default_tac_mode = pulse",
+    "raw_trace_retention_allowed_default = false",
+    "trace_export_allowed_default = false",
+    "pmr_federation_allowed_default = false",
+    "no_silent_mode_shift_required",
+    "notice_and_consent_boundaries_visible",
+]
+MVR_REAL_INPUT_PILOT_DESIGN_OUTPUT_REQUIREMENT_TERMS = [
+    "minimal_viable_receipt_required",
+    "human_readable_receipt_required",
+    "machine_readable_receipt_required",
+    "section_index_required",
+    "readability_profile_required",
+    "contestability_profile_required",
+    "cost_burden_profile_required",
+    "non_authority_boundary_required",
+    "local_real_input_source_manifest_required",
+    "quarantine_report_required",
+    "pilot_receipt_required",
+]
+MVR_REAL_INPUT_PILOT_DESIGN_PRIOR_PHASE_RELATION = [
+    "MINIMAL-VIABLE-RECEIPT-DESIGN-00 defines the one-transaction/many-sections receipt standard.",
+    "MINIMAL-VIABLE-RECEIPT-LOCAL-PROTOTYPE-00 emits the local fixture-backed readable receipt.",
+    "MVR-LOCAL-PROTOTYPE-READABILITY-REVIEW-SEED-00 evaluates that receipt with deterministic local fixture responses.",
+    "MVR-LOCAL-PROTOTYPE-READABILITY-REVISION-00 applies deterministic local readability revisions.",
+    "MVR-LOCAL-REAL-INPUT-PILOT-DESIGN-00 defines boundaries for a future real-local-input pilot.",
+    "TRIADIC-OBSERVATION-CONTRACT-DESIGN-00 defines governed attention.",
+    "OBSERVATION-CONTRACT-POLICY-SIMULATION-00 rehearses notice, consent, recovery, source-expansion, pathway-prior, retention, trace-export, and PMR-federation policy outcomes.",
+    "TAC phases define aperture posture and review visibility.",
+    "COHERENCE-EVENT-SIGNATURES-DESIGN-00 defines event signatures.",
+    "CES-PMR-INDEXING-DESIGN-00 defines CES as a compact PMR index, not source replacement.",
+    "VALIDATION-TIERING-PROVENANCE-00 records validation confidence scope.",
+]
+MVR_REAL_INPUT_PILOT_DESIGN_BLOCKED_CLAIMS = [
+    "real input pilot design processes real files",
+    "real input pilot design is product readiness",
+    "real input pilot design is product release",
+    "local source selection grants accepted-evidence authority",
+    "local source processing writes memory",
+    "local source processing admits Atlas memory",
+    "local source processing authorizes final answers",
+    "local source processing certifies truth",
+    "consent authorizes trace export",
+    "consent authorizes PMR federation",
+    "consent authorizes memory write",
+    "local pilot can scan directories recursively",
+    "local pilot can read hidden files",
+    "local pilot can process credentials",
+    "local pilot can process private keys",
+    "local pilot can process medical records by default",
+    "local pilot can process legal records by default",
+    "local pilot can process financial records by default",
+    "local pilot can process child data by default",
+    "local pilot can process biometric data by default",
+    "unsupported claims can be hidden",
+    "instruction-like evidence can be trusted as evidence",
+    "source expansion can be skipped",
+    "real input pilot is a user study",
+    "real input pilot validates market demand",
+    "real input pilot proves human benefit",
+    "real input pilot trains the model",
+]
+MVR_REAL_INPUT_PILOT_DESIGN_CLAIM_ALLOWED = "MVR-LOCAL-REAL-INPUT-PILOT-DESIGN-00 defines design-only boundaries for a future local real-input Minimal Viable Receipt pilot in which explicitly selected local source material may later be processed under local-only, source-bounded, consent-bounded, quarantine-aware, receipt-required, human-review-required, non-authoritative conditions without processing real files in this phase, claiming product readiness, releasing product, granting accepted-evidence or final-answer authority, certifying truth, writing memory, admitting Atlas memory, exporting traces, federating PMR, training models, or skipping review."
+MVR_REAL_INPUT_PILOT_DESIGN_FAILURE_CLASSES = [
+    "real_input_design_mistaken_for_real_input_processing",
+    "local_source_selection_mistaken_for_accepted_evidence",
+    "consent_mistaken_for_memory_write",
+    "consent_mistaken_for_trace_export_authorization",
+    "consent_mistaken_for_pmr_federation_authorization",
+    "local_file_access_mistaken_for_directory_scan",
+    "source_manifest_missing",
+    "source_hash_missing",
+    "instruction_like_evidence_not_quarantined",
+    "unsupported_claims_hidden",
+    "source_expansion_missing",
+    "observation_contract_posture_missing",
+    "tac_aperture_posture_missing",
+    "no_silent_mode_shift_boundary_missing",
+    "real_input_receipt_missing",
+    "contestability_missing",
+    "recovery_path_missing",
+    "non_authority_boundaries_missing",
+    "product_readiness_claimed_from_local_pilot",
+    "real_input_pilot_mistaken_for_user_study",
+]
+MVR_REAL_INPUT_PILOT_DESIGN_DASHBOARD_SUMMARY = {
+    "policy_status": "active_design_only",
+    "pilot_mode": "design_only_local_real_input_boundary",
+    "local_real_input_pilot_definition": "explicit_local_source_selection_for_mvr_receipt_generation",
+    "runtime_behavior_changed": False,
+    "real_input_processing_enabled": False,
+    "real_input_runtime_artifacts_emitted": False,
+    "real_user_files_processed": False,
+    "provider_runtime_performed": False,
+    "network_call_performed": False,
+    "product_release_performed": False,
+    "product_readiness_claimed": False,
+    "real_user_study_performed": False,
+    "human_subject_study_performed": False,
+    "user_validation_performed": False,
+    "market_validation_emitted": False,
+    "human_benefit_proof_emitted": False,
+    "final_answer_authority_granted": False,
+    "accepted_evidence_authority_granted": False,
+    "truth_certification_emitted": False,
+    "compliance_certification_emitted": False,
+    "memory_write_performed": False,
+    "atlas_memory_admission_performed": False,
+    "trace_export_performed": False,
+    "pmr_federation_performed": False,
+    "model_training_performed": False,
+    "review_skip_authorized": False,
+    "explicit_user_selection_required": True,
+    "local_path_allowlist_required": True,
+    "recursive_directory_scan_allowed": False,
+    "hidden_file_scan_allowed": False,
+    "max_source_file_count_default": 5,
+    "max_source_bytes_default": 250000,
+    "source_hashing_required": True,
+    "source_manifest_required": True,
+    "source_expansion_required_for_decisions": True,
+    "instruction_like_evidence_quarantine_required": True,
+    "unsupported_claim_visibility_required": True,
+    "human_review_required": True,
+    "consent_scope_required": True,
+    "consent_is_local_to_pilot_run": True,
+    "consent_is_not_memory_write": True,
+    "consent_is_not_trace_export_authorization": True,
+    "consent_is_not_pmr_federation_authorization": True,
+    "consent_is_not_product_release": True,
+    "revocation_supported": True,
+    "retention_review_required": True,
+    "observation_contract_posture_required": True,
+    "observation_contract_policy_simulation_ref_required": True,
+    "tac_aperture_posture_required": True,
+    "default_tac_mode": "pulse",
+    "raw_trace_retention_allowed_default": False,
+    "trace_export_allowed_default": False,
+    "pmr_federation_allowed_default": False,
+    "no_silent_mode_shift_required": True,
+    "notice_and_consent_boundaries_visible": True,
+    "minimal_viable_receipt_required": True,
+    "human_readable_receipt_required": True,
+    "machine_readable_receipt_required": True,
+    "section_index_required": True,
+    "readability_profile_required": True,
+    "contestability_profile_required": True,
+    "cost_burden_profile_required": True,
+    "non_authority_boundary_required": True,
+    "local_real_input_source_manifest_required": True,
+    "quarantine_report_required": True,
+    "pilot_receipt_required": True,
+    "pilot_is_not_runtime_processing": True,
+    "pilot_is_not_product_release": True,
+    "pilot_is_not_product_readiness": True,
+    "pilot_is_not_user_validation": True,
+    "pilot_is_not_human_subject_study": True,
+    "pilot_is_not_market_validation": True,
+    "pilot_is_not_human_benefit_proof": True,
+    "pilot_is_not_truth_certification": True,
+    "pilot_is_not_final_answer_authority": True,
+    "pilot_is_not_accepted_evidence_authority": True,
+    "pilot_is_not_memory_write": True,
+    "pilot_is_not_atlas_memory_admission": True,
+    "pilot_is_not_trace_export_authorization": True,
+    "pilot_is_not_pmr_federation_authorization": True,
+    "pilot_is_not_model_training": True,
+    "pilot_is_not_review_skip": True,
+    "pilot_requires_human_review": True,
+}
+MVR_REAL_INPUT_PILOT_DESIGN_PHASE = {
+    "phase_id": "MVR-LOCAL-REAL-INPUT-PILOT-DESIGN-00",
+    "repo": "pdxvoiceteacher/CoherenceLattice",
+    "status": "accepted_local_validation",
+    "evidence_type": "design_only_local_real_input_boundary_publication_sync",
+    "product_posture": "design_only_local_real_input_pilot_boundary_without_real_file_processing_or_runtime_authority",
+    "primary_artifacts": MVR_REAL_INPUT_PILOT_DESIGN_ARTIFACTS,
+    "dashboard_summary": MVR_REAL_INPUT_PILOT_DESIGN_DASHBOARD_SUMMARY,
+    "reproduction_command_summary": MVR_REAL_INPUT_PILOT_DESIGN_COMMAND,
+    "claim_allowed": MVR_REAL_INPUT_PILOT_DESIGN_CLAIM_ALLOWED,
+    "claims_blocked": MVR_REAL_INPUT_PILOT_DESIGN_BLOCKED_CLAIMS,
+    "reviewer_caution": "MVR-LOCAL-REAL-INPUT-PILOT-DESIGN-00 is design-only boundary synchronization for a future local real-input pilot; it processes no real files, emits no runtime real-input artifacts, performs no provider or network calls, writes no memory, admits no Atlas memory, exports no traces, federates no PMR, releases no product, claims no product readiness, performs no user study or validation, trains no model, and skips no review.",
+    "publication_status": "dashboard_indexed",
+}
+
+
+MVR_REAL_INPUT_PILOT_PROTOTYPE_COMMAND = "python -c \"from pathlib import Path; from coherence.product.mvr_local_real_input_pilot import build_mvr_local_real_input_pilot_prototype; bridge=Path(r'C:\\UVLM\\run_artifacts\\mvr_local_real_input_pilot\\bridge'); build_mvr_local_real_input_pilot_prototype(bridge)\""
+MVR_REAL_INPUT_PILOT_PROTOTYPE_REPRO_FRAGMENTS = ["build_mvr_local_real_input_pilot_prototype"]
+MVR_REAL_INPUT_PILOT_PROTOTYPE_ARTIFACTS = [
+    "mvr_local_real_input_source_manifest.json",
+    "mvr_local_real_input_consent_scope.json",
+    "mvr_local_real_input_quarantine_report.json",
+    "mvr_local_real_input_pilot_policy_packet.json",
+    "mvr_local_real_input_non_authority_boundary.json",
+    "minimal_viable_receipt_packet.json",
+    "minimal_viable_receipt_checklist.json",
+    "minimal_viable_receipt_section_index.json",
+    "receipt_readability_profile.json",
+    "receipt_contestability_profile.json",
+    "receipt_cost_burden_profile.json",
+    "minimal_viable_receipt_non_authority_boundary.json",
+    "minimal_viable_receipt_human_readable.md",
+    "mvr_local_real_input_pilot_receipt.json",
+    "pmr_local_runtime_artifact_index.json",
+    "artifact_inventory.json",
+    "run_artifact_manifest.json",
+    "export_bundle_manifest.json",
+    "export_bundle_parity_report.json",
+]
+MVR_REAL_INPUT_PILOT_PROTOTYPE_SCHEMA_REFERENCES = [
+    "schema/bridge/mvr_local_real_input_source_manifest.schema.json",
+    "schema/bridge/mvr_local_real_input_consent_scope.schema.json",
+    "schema/bridge/mvr_local_real_input_quarantine_report.schema.json",
+    "schema/bridge/mvr_local_real_input_pilot_policy_packet.schema.json",
+    "schema/bridge/mvr_local_real_input_non_authority_boundary.schema.json",
+    "schema/bridge/mvr_local_real_input_pilot_receipt.schema.json",
+    "schema/bridge/minimal_viable_receipt_packet.schema.json",
+    "schema/bridge/minimal_viable_receipt_checklist.schema.json",
+    "schema/bridge/minimal_viable_receipt_section_index.schema.json",
+    "schema/bridge/receipt_readability_profile.schema.json",
+    "schema/bridge/receipt_contestability_profile.schema.json",
+    "schema/bridge/receipt_cost_burden_profile.schema.json",
+    "schema/bridge/minimal_viable_receipt_non_authority_boundary.schema.json",
+]
+MVR_REAL_INPUT_PILOT_PROTOTYPE_DOCTRINE_LANGUAGE = [
+    "MVR Local Real Input Pilot Prototype",
+    "Real local input can enter only by explicit local source selection.",
+    "The prototype processes only explicit local sources or explicit pasted excerpts.",
+    "The prototype never scans directories.",
+    "The prototype never auto-discovers files.",
+    "The prototype never reads hidden files.",
+    "The prototype never fetches URLs.",
+    "The prototype never calls provider APIs.",
+    "The prototype never performs network calls.",
+    "Local source selection is not accepted-evidence authority.",
+    "Local source processing is not memory write.",
+    "Consent is local to this pilot run.",
+    "Consent is not trace export authorization.",
+    "Consent is not PMR federation authorization.",
+    "Instruction-like evidence was quarantined.",
+    "Unsupported claims require review.",
+    "This receipt is not proof of truth.",
+    "This receipt is not product release.",
+    "This receipt is not product readiness.",
+    "This receipt does not authorize final answers.",
+    "This receipt does not grant accepted-evidence authority.",
+    "Human review remains required.",
+    "Default smoke uses generated explicit local test sources and does not process real user files.",
+    "Explicit pasted excerpt smoke processes only the supplied excerpt and remains local-only.",
+]
+MVR_REAL_INPUT_PILOT_PROTOTYPE_SOURCE_SELECTION_TERMS = [
+    "generated_explicit_local_test_sources",
+    "explicit_pasted_excerpts",
+    "local_user_pasted_excerpt",
+    "explicit_user_selected",
+    "accepted_for_processing",
+    "source_is_not_accepted_evidence",
+    "source_sha256",
+    "recursive_directory_scan_allowed = false",
+    "hidden_file_scan_allowed = false",
+]
+MVR_REAL_INPUT_PILOT_PROTOTYPE_CONSENT_QUARANTINE_TERMS = [
+    "consent_status = active_for_local_pilot",
+    "consent_scope = local_pilot_run_only",
+    "consent_is_local_to_pilot_run = true",
+    "consent_is_not_memory_write = true",
+    "consent_is_not_trace_export_authorization = true",
+    "consent_is_not_pmr_federation_authorization = true",
+    "consent_is_not_product_release = true",
+    "quarantine_status = completed",
+    "instruction_like_evidence_detected",
+    "quarantined_evidence_is_not_accepted_evidence = true",
+]
+MVR_REAL_INPUT_PILOT_PROTOTYPE_PRIOR_PHASE_RELATION = [
+    "MVR-LOCAL-REAL-INPUT-PILOT-DESIGN-00 defines boundaries for a future real-local-input pilot.",
+    "MVR-LOCAL-REAL-INPUT-PILOT-PROTOTYPE-00 emits the first bounded local real-input pilot prototype.",
+    "MINIMAL-VIABLE-RECEIPT-DESIGN-00 defines the one-transaction/many-sections receipt standard.",
+    "MINIMAL-VIABLE-RECEIPT-LOCAL-PROTOTYPE-00 emits the local fixture-backed readable receipt.",
+    "MVR-LOCAL-PROTOTYPE-READABILITY-REVISION-00 applies deterministic local readability revisions.",
+    "TRIADIC-OBSERVATION-CONTRACT-DESIGN-00 defines governed attention.",
+    "OBSERVATION-CONTRACT-POLICY-SIMULATION-00 rehearses notice, consent, recovery, source-expansion, pathway-prior, retention, trace-export, and PMR-federation policy outcomes.",
+    "TAC phases define aperture posture and review visibility.",
+    "COHERENCE-EVENT-SIGNATURES-DESIGN-00 defines event signatures.",
+    "CES-PMR-INDEXING-DESIGN-00 defines CES as a compact PMR index, not source replacement.",
+    "VALIDATION-TIERING-PROVENANCE-00 records validation confidence scope.",
+]
+MVR_REAL_INPUT_PILOT_PROTOTYPE_BLOCKED_CLAIMS = [
+    "MVR real-input pilot prototype is product release",
+    "MVR real-input pilot prototype proves product readiness",
+    "MVR real-input pilot prototype is a user study",
+    "MVR real-input pilot prototype validates market demand",
+    "MVR real-input pilot prototype proves human benefit",
+    "MVR real-input pilot prototype certifies truth",
+    "MVR real-input pilot prototype authorizes final answers",
+    "MVR real-input pilot prototype grants accepted-evidence authority",
+    "MVR real-input pilot prototype writes memory",
+    "MVR real-input pilot prototype admits Atlas memory",
+    "MVR real-input pilot prototype exports traces",
+    "MVR real-input pilot prototype federates PMR",
+    "MVR real-input pilot prototype trains the model",
+    "MVR real-input pilot prototype skips review",
+    "local source selection is accepted evidence",
+    "local source processing writes memory",
+    "consent authorizes trace export",
+    "consent authorizes PMR federation",
+    "consent authorizes memory write",
+    "source manifest is accepted evidence",
+    "quarantined evidence is accepted evidence",
+    "pasted excerpt smoke is provider runtime",
+    "local pilot can scan directories recursively",
+    "local pilot can read hidden files",
+    "local pilot can fetch URLs",
+    "local pilot can call provider APIs",
+    "unsupported claims can be hidden",
+    "source expansion can be skipped",
+]
+MVR_REAL_INPUT_PILOT_PROTOTYPE_CLAIM_ALLOWED = "MVR-LOCAL-REAL-INPUT-PILOT-PROTOTYPE-00 emits local real-input pilot prototype artifacts for explicitly selected local sources and explicit pasted excerpts, producing source manifest, consent scope, quarantine report, policy packet, non-authority boundary, Minimal Viable Receipt packet, human-readable receipt, PMR/inventory/parity visibility, and pilot receipt while avoiding directory scans, hidden-file reads, URL fetches, provider calls, network calls, product release, product-readiness claims, final-answer authorization, accepted-evidence grants, truth certification, memory write, Atlas admission, trace export, PMR federation, model training, review skipping, user validation, human-subject study, market validation, or human benefit proof."
+MVR_REAL_INPUT_PILOT_PROTOTYPE_FAILURE_CLASSES = [
+    "local_real_input_pilot_mistaken_for_product_release",
+    "local_real_input_pilot_mistaken_for_product_readiness",
+    "local_real_input_pilot_mistaken_for_user_study",
+    "local_source_selection_mistaken_for_accepted_evidence",
+    "source_manifest_mistaken_for_accepted_evidence",
+    "quarantined_evidence_mistaken_for_accepted_evidence",
+    "consent_mistaken_for_trace_export_authorization",
+    "consent_mistaken_for_pmr_federation_authorization",
+    "consent_mistaken_for_memory_write",
+    "pasted_excerpt_mistaken_for_provider_runtime",
+    "local_pilot_mistaken_for_directory_scan",
+    "unsupported_claims_hidden",
+    "source_expansion_missing",
+    "human_review_requirement_hidden",
+    "non_authority_boundaries_missing",
+]
+MVR_REAL_INPUT_PILOT_PROTOTYPE_DASHBOARD_SUMMARY = {
+    "manifest_status": "completed",
+    "source_mode": "generated_explicit_local_test_sources",
+    "pasted_excerpt_source_mode": "explicit_pasted_excerpts",
+    "selected_source_count": 2,
+    "pasted_excerpt_selected_source_count": 1,
+    "pasted_excerpt_source_class": "local_user_pasted_excerpt",
+    "recursive_directory_scan_allowed": False,
+    "hidden_file_scan_allowed": False,
+    "receipt_status": "completed",
+    "prototype_mode": "local_real_input_pilot_prototype",
+    "real_input_pilot_mode": True,
+    "real_user_files_processed": False,
+    "pasted_excerpt_real_user_files_processed": True,
+    "local_fixture_mode": True,
+    "pasted_excerpt_local_fixture_mode": False,
+    "instruction_like_evidence_count": 1,
+    "real_input_processing_enabled": True,
+    "real_input_runtime_artifacts_emitted": True,
+    "source_manifest_is_not_accepted_evidence": True,
+    "consent_is_local_to_pilot_run": True,
+    "consent_is_not_memory_write": True,
+    "consent_is_not_trace_export_authorization": True,
+    "consent_is_not_pmr_federation_authorization": True,
+    "consent_is_not_product_release": True,
+    "quarantined_evidence_is_not_accepted_evidence": True,
+    "pilot_requires_human_review": True,
+    "provider_runtime_performed": False,
+    "network_call_performed": False,
+    "product_release_performed": False,
+    "product_readiness_claimed": False,
+    "final_answer_authority_granted": False,
+    "accepted_evidence_authority_granted": False,
+    "truth_certification_emitted": False,
+    "compliance_certification_emitted": False,
+    "memory_write_performed": False,
+    "atlas_memory_admission_performed": False,
+    "trace_export_performed": False,
+    "pmr_federation_performed": False,
+    "model_training_performed": False,
+    "review_skip_authorized": False,
+    "pilot_receipt_status": "completed",
+}
+MVR_REAL_INPUT_PILOT_PROTOTYPE_PHASE = {
+    "phase_id": "MVR-LOCAL-REAL-INPUT-PILOT-PROTOTYPE-00",
+    "repo": "pdxvoiceteacher/CoherenceLattice",
+    "status": "accepted_local_validation",
+    "evidence_type": "local_real_input_pilot_prototype_publication_sync",
+    "product_posture": "bounded_local_real_input_pilot_prototype_without_product_or_runtime_authority",
+    "primary_artifacts": MVR_REAL_INPUT_PILOT_PROTOTYPE_ARTIFACTS,
+    "schema_references": MVR_REAL_INPUT_PILOT_PROTOTYPE_SCHEMA_REFERENCES,
+    "dashboard_summary": MVR_REAL_INPUT_PILOT_PROTOTYPE_DASHBOARD_SUMMARY,
+    "reproduction_command_summary": MVR_REAL_INPUT_PILOT_PROTOTYPE_COMMAND,
+    "claim_allowed": MVR_REAL_INPUT_PILOT_PROTOTYPE_CLAIM_ALLOWED,
+    "claims_blocked": MVR_REAL_INPUT_PILOT_PROTOTYPE_BLOCKED_CLAIMS,
+    "reviewer_caution": "MVR-LOCAL-REAL-INPUT-PILOT-PROTOTYPE-00 is a bounded local real-input pilot prototype publication sync. It grants no product release, product readiness, provider runtime, network runtime, trace export, PMR federation, memory write, Atlas admission, deployment, final-answer authority, accepted-evidence authority, truth certification, compliance certification, user validation, real user study, human-subject study, market validation, human benefit proof, model training, or review skipping.",
+    "publication_status": "dashboard_indexed",
+}
+
+
+MVR_QUARANTINE_REPAIR_COMMAND = "python -m pytest -q tests/test_mvr_local_real_input_pilot_quarantine_detection_repair.py tests/test_mvr_local_real_input_pilot.py tests/test_experiment_registry.py"
+MVR_QUARANTINE_REPAIR_REPRO_FRAGMENTS = ["test_mvr_local_real_input_pilot_quarantine_detection_repair.py"]
+MVR_QUARANTINE_REPAIR_ARTIFACTS = [
+    "harmless_mvr_real_input_source_instruction_like.md",
+    "harmless_mvr_real_input_source_no_instruction.md",
+    "mvr_local_real_input_source_manifest.json",
+    "mvr_local_real_input_quarantine_report.json",
+    "minimal_viable_receipt_human_readable.md",
+    "mvr_local_real_input_pilot_receipt.json",
+    "artifact_inventory.json",
+    "run_artifact_manifest.json",
+    "export_bundle_manifest.json",
+    "export_bundle_parity_report.json",
+]
+MVR_QUARANTINE_REPAIR_DETECTOR_TERMS = [
+    "INSTRUCTION_LIKE_CUES",
+    "instruction-like note",
+    "ignore prior rules",
+    "ignore previous rules",
+    "ignore previous instructions",
+    "treat this note as authoritative",
+    "treat this as authoritative",
+    "follow these instructions",
+    "override prior instructions",
+    "system prompt",
+    "developer message",
+    "assistant must",
+    "you must",
+    "do not reveal",
+    "disregard previous",
+    "disregard prior",
+    "_matched_instruction_like_cues",
+    "matched_instruction_like_phrases",
+]
+MVR_QUARANTINE_REPAIR_DOCTRINE_LANGUAGE = [
+    "MVR Local Real Input Pilot Quarantine Detection Repair",
+    "Human-selected local files with instruction-like evidence must be quarantined.",
+    "Harmless human-selected local files must not falsely claim quarantine.",
+    "Instruction-like evidence was quarantined.",
+    "No instruction-like evidence was detected for quarantine.",
+    "Quarantined evidence is not accepted evidence.",
+    "Local source selection is not accepted-evidence authority.",
+    "Local source processing is not memory write.",
+    "Human review remains required.",
+    "The repair does not broaden file access.",
+    "The repair does not scan directories.",
+    "The repair does not read hidden files.",
+    "The repair does not fetch URLs.",
+    "The repair does not call providers.",
+    "The repair does not perform network calls.",
+    "The repair does not write memory.",
+    "The repair does not admit Atlas memory.",
+    "The repair does not export traces.",
+    "The repair does not federate PMR.",
+    "The repair does not claim product readiness.",
+    "The repair does not release product.",
+    "The repair does not grant final-answer authority.",
+    "The repair does not grant accepted-evidence authority.",
+    "The repair does not certify truth.",
+]
+MVR_QUARANTINE_REPAIR_SMOKE_OUTCOMES = [
+    "instruction_like",
+    "harmless",
+    "explicit_local_source_paths",
+    "local_markdown_file",
+    "harmless_mvr_real_input_source_instruction_like.md",
+    "harmless_mvr_real_input_source_no_instruction.md",
+    "instruction_like_evidence_count = 1",
+    "quarantined_items_count = 1",
+    "matched phrases: instruction-like note, ignore prior rules, treat this note as authoritative",
+    "harmless evidence count = 0",
+    "provider_runtime_performed = false",
+    "network_call_performed = false",
+    "product_release_performed = false",
+    "product_readiness_claimed = false",
+    "final_answer_authority_granted = false",
+    "accepted_evidence_authority_granted = false",
+    "truth_certification_emitted = false",
+    "memory_write_performed = false",
+    "atlas_memory_admission_performed = false",
+    "trace_export_performed = false",
+    "pmr_federation_performed = false",
+]
+MVR_QUARANTINE_REPAIR_PRIOR_PHASE_RELATION = [
+    "MVR-LOCAL-REAL-INPUT-PILOT-DESIGN-00 defines boundaries for a future real-local-input pilot.",
+    "MVR-LOCAL-REAL-INPUT-PILOT-PROTOTYPE-00 emits the first bounded local real-input pilot prototype.",
+    "MVR-LOCAL-REAL-INPUT-PILOT-QUARANTINE-DETECTION-REPAIR-00 repairs instruction-like evidence detection for human-selected local files.",
+    "MINIMAL-VIABLE-RECEIPT-DESIGN-00 defines the one-transaction/many-sections receipt standard.",
+    "MINIMAL-VIABLE-RECEIPT-LOCAL-PROTOTYPE-00 emits the local fixture-backed readable receipt.",
+    "MVR-LOCAL-PROTOTYPE-READABILITY-REVISION-00 applies deterministic local readability revisions.",
+    "TRIADIC-OBSERVATION-CONTRACT-DESIGN-00 defines governed attention.",
+    "OBSERVATION-CONTRACT-POLICY-SIMULATION-00 rehearses notice, consent, recovery, source-expansion, pathway-prior, retention, trace-export, and PMR-federation policy outcomes.",
+    "TAC phases define aperture posture and review visibility.",
+    "COHERENCE-EVENT-SIGNATURES-DESIGN-00 defines event signatures.",
+    "CES-PMR-INDEXING-DESIGN-00 defines CES as a compact PMR index, not source replacement.",
+    "VALIDATION-TIERING-PROVENANCE-00 records validation confidence scope.",
+]
+MVR_QUARANTINE_REPAIR_BLOCKED_CLAIMS = [
+    "quarantine repair broadens file access",
+    "quarantine repair scans directories",
+    "quarantine repair reads hidden files",
+    "quarantine repair fetches URLs",
+    "quarantine repair calls provider APIs",
+    "quarantine repair performs network calls",
+    "quarantine repair writes memory",
+    "quarantine repair admits Atlas memory",
+    "quarantine repair exports traces",
+    "quarantine repair federates PMR",
+    "quarantine repair releases product",
+    "quarantine repair proves product readiness",
+    "quarantine repair certifies truth",
+    "quarantine repair grants final-answer authority",
+    "quarantine repair grants accepted-evidence authority",
+    "local source selection is accepted evidence",
+    "quarantined evidence is accepted evidence",
+    "instruction-like evidence can be trusted as evidence",
+    "no-detection means receipt is product ready",
+    "no-detection means source is accepted evidence",
+    "quarantine count means truth score",
+]
+MVR_QUARANTINE_REPAIR_CLAIM_ALLOWED = "MVR-LOCAL-REAL-INPUT-PILOT-QUARANTINE-DETECTION-REPAIR-00 repairs instruction-like evidence detection for human-selected local real-input pilot files, ensuring instruction-like cues such as \"instruction-like note\", \"ignore prior rules\", and \"treat this note as authoritative\" are quarantined while harmless files do not falsely claim quarantine, without broadening file access, scanning directories, reading hidden files, fetching URLs, calling providers, performing network calls, writing memory, admitting Atlas memory, exporting traces, federating PMR, releasing product, claiming product readiness, granting final-answer or accepted-evidence authority, or certifying truth."
+MVR_QUARANTINE_REPAIR_FAILURE_CLASSES = [
+    "instruction_like_evidence_not_quarantined",
+    "harmless_file_falsely_claimed_quarantine",
+    "quarantine_wording_contradicts_count",
+    "matched_instruction_cues_missing",
+    "quarantined_evidence_mistaken_for_accepted_evidence",
+    "local_source_selection_mistaken_for_accepted_evidence",
+    "quarantine_repair_mistaken_for_broader_file_access",
+    "quarantine_repair_mistaken_for_product_readiness",
+    "quarantine_count_mistaken_for_truth_score",
+    "no_detection_mistaken_for_accepted_evidence",
+    "human_review_requirement_hidden",
+]
+MVR_QUARANTINE_REPAIR_DASHBOARD_SUMMARY = {
+    "repair_status": "completed",
+    "repair_mode": "instruction_like_quarantine_detection_repair",
+    "source_mode": "explicit_local_source_paths",
+    "instruction_like_case_source_class": "local_markdown_file",
+    "instruction_like_real_user_files_processed": True,
+    "instruction_like_local_fixture_mode": False,
+    "instruction_like_evidence_count": 1,
+    "instruction_like_quarantined_items_count": 1,
+    "harmless_case_source_class": "local_markdown_file",
+    "harmless_real_user_files_processed": True,
+    "harmless_local_fixture_mode": False,
+    "harmless_instruction_like_evidence_count": 0,
+    "harmless_quarantined_items_count": 0,
+    "no_detection_receipt_wording_conditional": True,
+    "contradictory_quarantine_wording_repaired": True,
+    "provider_runtime_performed": False,
+    "network_call_performed": False,
+    "product_release_performed": False,
+    "product_readiness_claimed": False,
+    "final_answer_authority_granted": False,
+    "accepted_evidence_authority_granted": False,
+    "truth_certification_emitted": False,
+    "memory_write_performed": False,
+    "atlas_memory_admission_performed": False,
+    "trace_export_performed": False,
+    "pmr_federation_performed": False,
+}
+MVR_QUARANTINE_REPAIR_PHASE = {
+    "phase_id": "MVR-LOCAL-REAL-INPUT-PILOT-QUARANTINE-DETECTION-REPAIR-00",
+    "repo": "pdxvoiceteacher/CoherenceLattice",
+    "status": "accepted_local_validation",
+    "evidence_type": "local_real_input_pilot_quarantine_detection_repair_publication_sync",
+    "product_posture": "repair_only_instruction_like_quarantine_detection_without_file_access_or_runtime_authority",
+    "primary_artifacts": MVR_QUARANTINE_REPAIR_ARTIFACTS,
+    "dashboard_summary": MVR_QUARANTINE_REPAIR_DASHBOARD_SUMMARY,
+    "reproduction_command_summary": MVR_QUARANTINE_REPAIR_COMMAND,
+    "claim_allowed": MVR_QUARANTINE_REPAIR_CLAIM_ALLOWED,
+    "claims_blocked": MVR_QUARANTINE_REPAIR_BLOCKED_CLAIMS,
+    "reviewer_caution": "MVR-LOCAL-REAL-INPUT-PILOT-QUARANTINE-DETECTION-REPAIR-00 repairs instruction-like evidence detection and no-detection wording only; it broadens no file access, scans no directories, reads no hidden files, fetches no URLs, calls no providers, performs no network calls, writes no memory, admits no Atlas memory, exports no traces, federates no PMR, releases no product, claims no product readiness, grants no final-answer or accepted-evidence authority, and certifies no truth.",
+    "publication_status": "dashboard_indexed",
+}
+
+
 VALIDATION_TIERING_PROVENANCE_COMMAND = "python -c \"from pathlib import Path; from coherence.validation.validation_receipt import build_validation_tier_receipt; bridge=Path(r'C:\\UVLM\\run_artifacts\\validation_tiering\\bridge'); policy_ref='validation_tier_policy.v1.json'; build_validation_tier_receipt(bridge, source_phase='AI-RECEIPT-ARCHITECTURE-00', validation_tier='deep', validation_scope='full_multi_module_suite', validation_intent='major_sync_or_handoff_grade_validation', commands_run=[{'command':'python -m pytest -q <full_multi_module_suite>', 'result':'passed', 'duration_seconds':32131.86}], artifact_chain_name='ai_receipt_architecture_product_stack', expected_artifacts=['ai_receipt_architecture_packet.json','ai_receipt_event_chain.json','ai_receipt_architecture.md','ai_receipt_architecture_receipt.json'], observed_artifacts=['ai_receipt_architecture_packet.json','ai_receipt_event_chain.json','ai_receipt_architecture.md','ai_receipt_architecture_receipt.json'], validation_result='passed')\""
 VALIDATION_TIERING_PROVENANCE_ARTIFACTS = [
     "config/validation/validation_tier_policy.v1.json",
@@ -12397,6 +13248,10 @@ AI_RECEIPT_ARCHITECTURE_PHASE,
 MINIMAL_VIABLE_RECEIPT_DESIGN_PHASE,
 MINIMAL_VIABLE_RECEIPT_LOCAL_PROTOTYPE_PHASE,
 MVR_READABILITY_REVIEW_SEED_PHASE,
+MVR_READABILITY_REVISION_PHASE,
+MVR_REAL_INPUT_PILOT_DESIGN_PHASE,
+MVR_REAL_INPUT_PILOT_PROTOTYPE_PHASE,
+MVR_QUARANTINE_REPAIR_PHASE,
 VALIDATION_TIERING_PROVENANCE_PHASE,
 TELEMETRY_APERTURE_DESIGN_PHASE,
 TAC_POLICY_SIMULATION_PHASE,
@@ -14576,6 +15431,51 @@ BOUNDARIES.extend(
         *MVR_READABILITY_REVIEW_SEED_FAILURE_CLASSES,
         "Blocked overclaim examples for MVR Local Prototype Readability Review Seed publication boundaries.",
         *MVR_READABILITY_REVIEW_SEED_BLOCKED_CLAIMS,
+        MVR_READABILITY_REVISION_CLAIM_ALLOWED,
+        *MVR_READABILITY_REVISION_ARTIFACTS,
+        *MVR_READABILITY_REVISION_SCHEMA_REFERENCES,
+        *MVR_READABILITY_REVISION_REPRO_FRAGMENTS,
+        *MVR_READABILITY_REVISION_DOCTRINE_LANGUAGE,
+        *MVR_READABILITY_REVISION_APPLIED_REVISION_IDS,
+        *MVR_READABILITY_REVISION_REVISED_RECEIPT_LANGUAGE,
+        *MVR_READABILITY_REVISION_PRIOR_PHASE_RELATION,
+        *MVR_READABILITY_REVISION_FAILURE_CLASSES,
+        "Blocked overclaim examples for MVR Local Prototype Readability Revision publication boundaries.",
+        *MVR_READABILITY_REVISION_BLOCKED_CLAIMS,
+        MVR_REAL_INPUT_PILOT_DESIGN_CLAIM_ALLOWED,
+        *MVR_REAL_INPUT_PILOT_DESIGN_ARTIFACTS,
+        *MVR_REAL_INPUT_PILOT_DESIGN_REPRO_FRAGMENTS,
+        *MVR_REAL_INPUT_PILOT_DESIGN_DOCTRINE_LANGUAGE,
+        *MVR_REAL_INPUT_PILOT_DESIGN_ALLOWED_INPUT_CLASSES,
+        *MVR_REAL_INPUT_PILOT_DESIGN_BLOCKED_INPUT_CLASSES,
+        *MVR_REAL_INPUT_PILOT_DESIGN_SOURCE_RULES,
+        *MVR_REAL_INPUT_PILOT_DESIGN_CONSENT_OBSERVATION_TERMS,
+        *MVR_REAL_INPUT_PILOT_DESIGN_OUTPUT_REQUIREMENT_TERMS,
+        *MVR_REAL_INPUT_PILOT_DESIGN_PRIOR_PHASE_RELATION,
+        *MVR_REAL_INPUT_PILOT_DESIGN_FAILURE_CLASSES,
+        "Blocked overclaim examples for MVR Local Real Input Pilot Design publication boundaries.",
+        *MVR_REAL_INPUT_PILOT_DESIGN_BLOCKED_CLAIMS,
+        MVR_REAL_INPUT_PILOT_PROTOTYPE_CLAIM_ALLOWED,
+        *MVR_REAL_INPUT_PILOT_PROTOTYPE_ARTIFACTS,
+        *MVR_REAL_INPUT_PILOT_PROTOTYPE_SCHEMA_REFERENCES,
+        *MVR_REAL_INPUT_PILOT_PROTOTYPE_REPRO_FRAGMENTS,
+        *MVR_REAL_INPUT_PILOT_PROTOTYPE_DOCTRINE_LANGUAGE,
+        *MVR_REAL_INPUT_PILOT_PROTOTYPE_SOURCE_SELECTION_TERMS,
+        *MVR_REAL_INPUT_PILOT_PROTOTYPE_CONSENT_QUARANTINE_TERMS,
+        *MVR_REAL_INPUT_PILOT_PROTOTYPE_PRIOR_PHASE_RELATION,
+        *MVR_REAL_INPUT_PILOT_PROTOTYPE_FAILURE_CLASSES,
+        "Blocked overclaim examples for MVR Local Real Input Pilot Prototype publication boundaries.",
+        *MVR_REAL_INPUT_PILOT_PROTOTYPE_BLOCKED_CLAIMS,
+        MVR_QUARANTINE_REPAIR_CLAIM_ALLOWED,
+        *MVR_QUARANTINE_REPAIR_ARTIFACTS,
+        *MVR_QUARANTINE_REPAIR_REPRO_FRAGMENTS,
+        *MVR_QUARANTINE_REPAIR_DETECTOR_TERMS,
+        *MVR_QUARANTINE_REPAIR_DOCTRINE_LANGUAGE,
+        *MVR_QUARANTINE_REPAIR_SMOKE_OUTCOMES,
+        *MVR_QUARANTINE_REPAIR_PRIOR_PHASE_RELATION,
+        *MVR_QUARANTINE_REPAIR_FAILURE_CLASSES,
+        "Blocked overclaim examples for MVR Local Real Input Pilot Quarantine Detection Repair publication boundaries.",
+        *MVR_QUARANTINE_REPAIR_BLOCKED_CLAIMS,
         VALIDATION_TIERING_PROVENANCE_CLAIM_ALLOWED,
         *VALIDATION_TIERING_PROVENANCE_ARTIFACTS,
         *VALIDATION_TIERING_PROVENANCE_TIER_TERMS,
@@ -15445,6 +16345,33 @@ def dashboard_payload() -> dict[str, Any]:
         "mvr_local_prototype_readability_review_seed_00_indexed": True,
         "mvr_local_prototype_readability_review_seed_status": "completed",
         "mvr_readability_gate_passed": False,
+        "mvr_local_prototype_readability_revision_00_indexed": True,
+        "mvr_local_prototype_readability_revision_status": "completed",
+        "mvr_readability_revision_gate_passed": False,
+        "mvr_local_real_input_pilot_design_00_indexed": True,
+        "mvr_local_real_input_pilot_design_status": "active_design_only",
+        "mvr_local_real_input_pilot_runtime_behavior_changed": False,
+        "mvr_local_real_input_processing_enabled": False,
+        "mvr_local_real_input_real_user_files_processed": False,
+        "mvr_local_real_input_pilot_prototype_00_indexed": True,
+        "mvr_local_real_input_pilot_prototype_status": "completed",
+        "mvr_local_real_input_pilot_prototype_real_input_processing_enabled": True,
+        "mvr_local_real_input_pilot_prototype_real_input_runtime_artifacts_emitted": True,
+        "mvr_local_real_input_pilot_prototype_real_user_files_processed": False,
+        "mvr_local_real_input_pilot_prototype_pasted_excerpt_real_user_files_processed": True,
+        "mvr_quarantine_detection_repair_00_indexed": True,
+        "mvr_quarantine_detection_repair_status": "completed",
+        "mvr_quarantine_detection_repair_no_detection_receipt_wording_conditional": True,
+        "mvr_quarantine_detection_repair_contradictory_wording_repaired": True,
+        "not_mvr_quarantine_detection_repair_file_access_broadened": True,
+        "not_mvr_quarantine_detection_repair_runtime_authority": True,
+        "not_mvr_local_real_input_pilot_product_readiness": True,
+        "not_mvr_local_real_input_pilot_product_release": True,
+        "not_mvr_local_real_input_pilot_user_validation": True,
+        "not_mvr_local_real_input_pilot_runtime_authority": True,
+        "not_mvr_readability_revision_user_validation": True,
+        "not_mvr_readability_revision_product_readiness": True,
+        "not_mvr_readability_revision_runtime_authority": True,
         "not_mvr_readability_review_seed_user_validation": True,
         "not_mvr_readability_review_seed_product_readiness": True,
         "not_mvr_readability_review_seed_runtime_authority": True,
@@ -15547,6 +16474,10 @@ def reproducibility_index() -> dict[str, Any]:
                 {"name": "MINIMAL-VIABLE-RECEIPT-DESIGN-00 design validation", "command": MINIMAL_VIABLE_RECEIPT_DESIGN_COMMAND},
                 {"name": "MINIMAL-VIABLE-RECEIPT-LOCAL-PROTOTYPE-00 Python entrypoint", "command": MINIMAL_VIABLE_RECEIPT_LOCAL_PROTOTYPE_COMMAND},
                 {"name": "MVR-LOCAL-PROTOTYPE-READABILITY-REVIEW-SEED-00 Python entrypoint", "command": MVR_READABILITY_REVIEW_SEED_COMMAND},
+                {"name": "MVR-LOCAL-PROTOTYPE-READABILITY-REVISION-00 Python entrypoint", "command": MVR_READABILITY_REVISION_COMMAND},
+                {"name": "MVR-LOCAL-REAL-INPUT-PILOT-DESIGN-00 design validation", "command": MVR_REAL_INPUT_PILOT_DESIGN_COMMAND},
+                {"name": "MVR-LOCAL-REAL-INPUT-PILOT-PROTOTYPE-00 Python entrypoint", "command": MVR_REAL_INPUT_PILOT_PROTOTYPE_COMMAND},
+                {"name": "MVR-LOCAL-REAL-INPUT-PILOT-QUARANTINE-DETECTION-REPAIR-00 repair validation", "command": MVR_QUARANTINE_REPAIR_COMMAND},
                 {"name": "Validation Tiering Provenance Python entrypoint", "command": VALIDATION_TIERING_PROVENANCE_COMMAND},
                 {"name": "TELEMETRY-APERTURE-DESIGN-00 config/schema inspection", "command": TELEMETRY_APERTURE_DESIGN_COMMAND},
                 {"name": "TAC-POLICY-SIMULATION-00 Python entrypoint", "command": TAC_POLICY_SIMULATION_COMMAND},
@@ -16465,6 +17396,33 @@ def status_payload() -> dict[str, Any]:
         "mvr_local_prototype_readability_review_seed_00_indexed": True,
         "mvr_local_prototype_readability_review_seed_status": "completed",
         "mvr_readability_gate_passed": False,
+        "mvr_local_prototype_readability_revision_00_indexed": True,
+        "mvr_local_prototype_readability_revision_status": "completed",
+        "mvr_readability_revision_gate_passed": False,
+        "mvr_local_real_input_pilot_design_00_indexed": True,
+        "mvr_local_real_input_pilot_design_status": "active_design_only",
+        "mvr_local_real_input_pilot_runtime_behavior_changed": False,
+        "mvr_local_real_input_processing_enabled": False,
+        "mvr_local_real_input_real_user_files_processed": False,
+        "mvr_local_real_input_pilot_prototype_00_indexed": True,
+        "mvr_local_real_input_pilot_prototype_status": "completed",
+        "mvr_local_real_input_pilot_prototype_real_input_processing_enabled": True,
+        "mvr_local_real_input_pilot_prototype_real_input_runtime_artifacts_emitted": True,
+        "mvr_local_real_input_pilot_prototype_real_user_files_processed": False,
+        "mvr_local_real_input_pilot_prototype_pasted_excerpt_real_user_files_processed": True,
+        "mvr_quarantine_detection_repair_00_indexed": True,
+        "mvr_quarantine_detection_repair_status": "completed",
+        "mvr_quarantine_detection_repair_no_detection_receipt_wording_conditional": True,
+        "mvr_quarantine_detection_repair_contradictory_wording_repaired": True,
+        "not_mvr_quarantine_detection_repair_file_access_broadened": True,
+        "not_mvr_quarantine_detection_repair_runtime_authority": True,
+        "not_mvr_local_real_input_pilot_product_readiness": True,
+        "not_mvr_local_real_input_pilot_product_release": True,
+        "not_mvr_local_real_input_pilot_user_validation": True,
+        "not_mvr_local_real_input_pilot_runtime_authority": True,
+        "not_mvr_readability_revision_user_validation": True,
+        "not_mvr_readability_revision_product_readiness": True,
+        "not_mvr_readability_revision_runtime_authority": True,
         "not_mvr_readability_review_seed_user_validation": True,
         "not_mvr_readability_review_seed_product_readiness": True,
         "not_mvr_readability_review_seed_runtime_authority": True,
@@ -21771,6 +22729,372 @@ MVR-LOCAL-PROTOTYPE-READABILITY-REVIEW-SEED-00 synchronizes the locally validate
 Publication sync grants no runtime authority. It performs no provider runtime, network runtime, memory write, Atlas memory admission, trace export, PMR federation, product release, product-readiness claim, final-answer authorization, accepted-evidence grant, truth certification, model training, or review skipping.
 """
 
+
+MVR_READABILITY_REVISION_SYNC_DOCS = {
+    "index.md",
+    "minimal-viable-receipt-design.md",
+    "minimal-viable-receipt-local-prototype.md",
+    "mvr-local-prototype-readability-review-seed.md",
+    "ai-receipt-architecture.md",
+    "triadic-observation-contract.md",
+    "observation-contract-policy-simulation.md",
+    "coherence-event-signatures.md",
+    "ces-pmr-indexing-design.md",
+    "validation-tiering-provenance.md",
+    "claim-boundaries.md",
+}
+MVR_READABILITY_REVISION_SYNC_NOTE = f"""
+
+## MVR Local Prototype Readability Revision publication sync
+
+MVR-LOCAL-PROTOTYPE-READABILITY-REVISION-00 applies deterministic local readability revisions to the MINIMAL-VIABLE-RECEIPT-LOCAL-PROTOTYPE-00 fixture-backed readable receipt after MVR-LOCAL-PROTOTYPE-READABILITY-REVIEW-SEED-00 evaluates that receipt with deterministic local fixture responses. MVR Local Prototype Readability Revision is a Deterministic local readability revision. Suggested revisions are applied deterministically, not validated by users. Readability revision is not product readiness. Readability revision is not user validation. Readability revision is not market validation. Readability revision is not human benefit proof. Readability revision does not certify truth. The receipt remains local fixture-backed and non-authoritative. Original human-readable receipt is preserved. Revised human-readable receipt is emitted. Readability gate remains unpassed. Human review remains required.
+
+No real user study was performed. No human-subject study was performed. No user validation was performed. No product readiness was claimed. No product release was performed. No memory write was performed. No Atlas memory admission was performed. No trace export was performed. No PMR federation was performed. This publication sync grants no runtime authority.
+
+Artifacts include minimal_viable_receipt_human_readable.md, minimal_viable_receipt_human_readable_revised.md, minimal_viable_receipt_packet.json, mvr_readability_review_packet.json, mvr_readability_revision_suggestions.json, mvr_readability_review_receipt.json, mvr_readability_revision_packet.json, mvr_readability_revision_receipt.json, pmr_local_runtime_artifact_index.json, artifact_inventory.json, run_artifact_manifest.json, export_bundle_manifest.json, and export_bundle_parity_report.json. Schemas include schema/bridge/mvr_readability_revision_packet.schema.json, schema/bridge/mvr_readability_revision_receipt.schema.json, schema/bridge/mvr_readability_questionnaire.schema.json, schema/bridge/mvr_readability_response_fixture.schema.json, schema/bridge/mvr_readability_review_packet.schema.json, schema/bridge/mvr_readability_revision_suggestions.schema.json, and schema/bridge/mvr_readability_review_receipt.schema.json. Reproduction references build_mvr_local_prototype_readability_revision.
+
+The revision applies add_plain_language_glossary_for_architecture_terms, clarify_ces_pmr_replay_posture, clarify_observation_contract_notice_vs_consent, make_unsupported_claims_more_visually_prominent, clarify_local_fixture_evidence_is_not_accepted_evidence, and add_top_level_non_authority_summary. Revised receipt language includes Plain-language glossary; CES / PMR replay posture, in plain language; Observation Contract notice and consent, in plain language; Unsupported claims require review; Local fixture evidence is not accepted evidence; Top-level non-authority summary; This revised receipt is not product readiness.; This revised receipt is not user validation.; This revised receipt is not truth certification.; Readability gate is not passed in this phase.; Human review remains required.
+
+Relation to prior phases: MINIMAL-VIABLE-RECEIPT-DESIGN-00 defines the one-transaction/many-sections receipt standard. MINIMAL-VIABLE-RECEIPT-LOCAL-PROTOTYPE-00 emits the local fixture-backed readable receipt. MVR-LOCAL-PROTOTYPE-READABILITY-REVIEW-SEED-00 evaluates that receipt with deterministic local fixture responses. MVR-LOCAL-PROTOTYPE-READABILITY-REVISION-00 applies deterministic local readability revisions. AI-RECEIPT-ARCHITECTURE-00 defines the receipt architecture. TRIADIC-OBSERVATION-CONTRACT-DESIGN-00 defines governed attention. OBSERVATION-CONTRACT-POLICY-SIMULATION-00 rehearses notice, consent, recovery, source-expansion, pathway-prior, retention, trace-export, and PMR-federation policy outcomes. TAC phases define aperture posture and review visibility. COHERENCE-EVENT-SIGNATURES-DESIGN-00 defines event signatures. CES-PMR-INDEXING-DESIGN-00 defines CES as a compact PMR index, not source replacement. SOPHIA-EXECUTIVE-AUDIT-REALITY-CHECK-00 records whether external Sophia actually ran. VALIDATION-TIERING-PROVENANCE-00 records validation confidence scope. MET-SEM-00 keeps metric labels profile-scoped.
+
+See [MVR Local Prototype Readability Revision](mvr-local-prototype-readability-revision.md).
+"""
+
+def mvr_local_prototype_readability_revision_doc() -> str:
+    summary = "\n".join(f"- {key} = {str(value).lower() if isinstance(value, bool) else value}" for key, value in MVR_READABILITY_REVISION_DASHBOARD_SUMMARY.items())
+    return f"""# MVR Local Prototype Readability Revision
+
+MVR-LOCAL-PROTOTYPE-READABILITY-REVISION-00 synchronizes the locally validated CoherenceLattice MVR Local Prototype Readability Revision into publication dashboards. This is publication/dashboard synchronization only. It applies deterministic local readability revisions to the fixture-backed Minimal Viable Receipt human-readable prototype and grants no runtime authority.
+
+## Bounded allowed claim
+
+{MVR_READABILITY_REVISION_CLAIM_ALLOWED}
+
+## Doctrine language
+
+{_bullets(MVR_READABILITY_REVISION_DOCTRINE_LANGUAGE)}
+
+## Dashboard summary
+
+{summary}
+
+## Applied revision IDs
+
+{_bullets(MVR_READABILITY_REVISION_APPLIED_REVISION_IDS)}
+
+## Revised receipt language
+
+{_bullets(MVR_READABILITY_REVISION_REVISED_RECEIPT_LANGUAGE)}
+
+## Artifact references
+
+{_bullets(MVR_READABILITY_REVISION_ARTIFACTS)}
+
+## Schema references
+
+{_bullets(MVR_READABILITY_REVISION_SCHEMA_REFERENCES)}
+
+## Relation to prior phases
+
+{_bullets(MVR_READABILITY_REVISION_PRIOR_PHASE_RELATION)}
+
+## Failure classes
+
+{_bullets(MVR_READABILITY_REVISION_FAILURE_CLASSES)}
+
+## Blocked claims
+
+{_bullets(MVR_READABILITY_REVISION_BLOCKED_CLAIMS)}
+
+## Reproducibility
+
+- {MVR_READABILITY_REVISION_REPRO_FRAGMENTS[0]}
+- `{MVR_READABILITY_REVISION_COMMAND}`
+
+## Runtime authority boundary
+
+Publication sync grants no runtime authority. It performs no provider runtime, network runtime, memory write, Atlas memory admission, trace export, PMR federation, product release, product-readiness claim, final-answer authorization, accepted-evidence grant, truth certification, model training, or review skipping.
+"""
+
+
+MVR_REAL_INPUT_PILOT_DESIGN_SYNC_DOCS = {
+    "index.md",
+    "minimal-viable-receipt-design.md",
+    "minimal-viable-receipt-local-prototype.md",
+    "mvr-local-prototype-readability-review-seed.md",
+    "mvr-local-prototype-readability-revision.md",
+    "ai-receipt-architecture.md",
+    "triadic-observation-contract.md",
+    "observation-contract-policy-simulation.md",
+    "tac-ai-receipt-event-link.md",
+    "coherence-event-signatures.md",
+    "ces-pmr-indexing-design.md",
+    "validation-tiering-provenance.md",
+    "claim-boundaries.md",
+}
+MVR_REAL_INPUT_PILOT_DESIGN_SYNC_NOTE = f"""
+
+## MVR Local Real Input Pilot Design publication sync
+
+MVR-LOCAL-REAL-INPUT-PILOT-DESIGN-00 defines design-only boundaries for a future local real-input Minimal Viable Receipt pilot. MVR Local Real Input Pilot Design is publication/dashboard synchronization only. Real local input can enter only by explicit local source selection. Real input pilot design is not real input processing. Real input pilot design is not product readiness. Real input pilot design is not product release. A real-input pilot must be local-only by default, source-bounded, consent-bounded, quarantine-aware, receipt-required, and human-review-required. Local source selection is not accepted-evidence authority. Local source processing is not memory write. Human review remains required.
+
+MVR-LOCAL-REAL-INPUT-PILOT-DESIGN-00 does not process real files. MVR-LOCAL-REAL-INPUT-PILOT-DESIGN-00 does not emit runtime real-input artifacts. MVR-LOCAL-REAL-INPUT-PILOT-DESIGN-00 does not perform provider calls. MVR-LOCAL-REAL-INPUT-PILOT-DESIGN-00 does not perform network calls. MVR-LOCAL-REAL-INPUT-PILOT-DESIGN-00 does not write memory. MVR-LOCAL-REAL-INPUT-PILOT-DESIGN-00 does not admit Atlas memory. MVR-LOCAL-REAL-INPUT-PILOT-DESIGN-00 does not claim product readiness. MVR-LOCAL-REAL-INPUT-PILOT-DESIGN-00 does not release product. Publication sync grants no runtime authority.
+
+Artifacts include docs/MVR_LOCAL_REAL_INPUT_PILOT_DESIGN.md, config/receipt/mvr_local_real_input_pilot_policy.v1.json, schema/bridge/mvr_local_real_input_source_manifest.schema.json, schema/bridge/mvr_local_real_input_consent_scope.schema.json, schema/bridge/mvr_local_real_input_quarantine_report.schema.json, schema/bridge/mvr_local_real_input_pilot_policy_packet.schema.json, and schema/bridge/mvr_local_real_input_non_authority_boundary.schema.json.
+
+Allowed input classes: local_text_file, local_markdown_file, local_json_file, local_csv_file, local_plaintext_excerpt, local_user_pasted_excerpt, local_redacted_document_excerpt. Initially blocked input classes: remote_url_fetch, cloud_connector_file, email_inbox_scan, calendar_scan, browser_history_scan, whole_disk_scan, hidden_directory_scan, credential_file, secrets_file, private_key_file, raw_chat_history_bulk_import, personal_profile_bulk_import, unredacted_sensitive_identity_document, medical_record, legal_record, financial_account_record, child_data_record, biometric_data_record.
+
+Pilot source rules: explicit_user_selection_required, local_path_allowlist_required, recursive_directory_scan_allowed = false, hidden_file_scan_allowed = false, max_source_file_count_default = 5, max_source_bytes_default = 250000, source_hashing_required, source_manifest_required, source_expansion_required_for_decisions, instruction_like_evidence_quarantine_required, unsupported_claim_visibility_required, human_review_required.
+
+Consent and observation terms: consent_scope_required, consent_is_local_to_pilot_run, consent_is_not_memory_write, consent_is_not_trace_export_authorization, consent_is_not_pmr_federation_authorization, consent_is_not_product_release, revocation_supported, retention_review_required, observation_contract_posture_required, observation_contract_policy_simulation_ref_required, tac_aperture_posture_required, default_tac_mode = pulse, raw_trace_retention_allowed_default = false, trace_export_allowed_default = false, pmr_federation_allowed_default = false, no_silent_mode_shift_required, notice_and_consent_boundaries_visible.
+
+Output requirements: minimal_viable_receipt_required, human_readable_receipt_required, machine_readable_receipt_required, section_index_required, readability_profile_required, contestability_profile_required, cost_burden_profile_required, non_authority_boundary_required, local_real_input_source_manifest_required, quarantine_report_required, pilot_receipt_required.
+
+Relation to prior phases: MINIMAL-VIABLE-RECEIPT-DESIGN-00 defines the one-transaction/many-sections receipt standard. MINIMAL-VIABLE-RECEIPT-LOCAL-PROTOTYPE-00 emits the local fixture-backed readable receipt. MVR-LOCAL-PROTOTYPE-READABILITY-REVIEW-SEED-00 evaluates that receipt with deterministic local fixture responses. MVR-LOCAL-PROTOTYPE-READABILITY-REVISION-00 applies deterministic local readability revisions. MVR-LOCAL-REAL-INPUT-PILOT-DESIGN-00 defines boundaries for a future real-local-input pilot. TRIADIC-OBSERVATION-CONTRACT-DESIGN-00 defines governed attention. OBSERVATION-CONTRACT-POLICY-SIMULATION-00 rehearses notice, consent, recovery, source-expansion, pathway-prior, retention, trace-export, and PMR-federation policy outcomes. TAC phases define aperture posture and review visibility. COHERENCE-EVENT-SIGNATURES-DESIGN-00 defines event signatures. CES-PMR-INDEXING-DESIGN-00 defines CES as a compact PMR index, not source replacement. VALIDATION-TIERING-PROVENANCE-00 records validation confidence scope.
+
+See [MVR Local Real Input Pilot Design](mvr-local-real-input-pilot-design.md).
+"""
+
+def mvr_local_real_input_pilot_design_doc() -> str:
+    summary = "\n".join(f"- {key} = {str(value).lower() if isinstance(value, bool) else value}" for key, value in MVR_REAL_INPUT_PILOT_DESIGN_DASHBOARD_SUMMARY.items())
+    return f"""# MVR Local Real Input Pilot Design
+
+MVR-LOCAL-REAL-INPUT-PILOT-DESIGN-00 synchronizes the locally validated CoherenceLattice MVR Local Real Input Pilot Design into publication dashboards. This is publication/dashboard synchronization only. It defines boundaries for a future local real-input Minimal Viable Receipt pilot and grants no runtime authority.
+
+## Bounded allowed claim
+
+{MVR_REAL_INPUT_PILOT_DESIGN_CLAIM_ALLOWED}
+
+## Doctrine language
+
+{_bullets(MVR_REAL_INPUT_PILOT_DESIGN_DOCTRINE_LANGUAGE)}
+
+## Dashboard summary
+
+{summary}
+
+## Allowed input classes
+
+{_bullets(MVR_REAL_INPUT_PILOT_DESIGN_ALLOWED_INPUT_CLASSES)}
+
+## Initially blocked input classes
+
+{_bullets(MVR_REAL_INPUT_PILOT_DESIGN_BLOCKED_INPUT_CLASSES)}
+
+## Pilot source rules
+
+{_bullets(MVR_REAL_INPUT_PILOT_DESIGN_SOURCE_RULES)}
+
+## Consent and observation terms
+
+{_bullets(MVR_REAL_INPUT_PILOT_DESIGN_CONSENT_OBSERVATION_TERMS)}
+
+## Output requirement terms
+
+{_bullets(MVR_REAL_INPUT_PILOT_DESIGN_OUTPUT_REQUIREMENT_TERMS)}
+
+## Artifact references
+
+{_bullets(MVR_REAL_INPUT_PILOT_DESIGN_ARTIFACTS)}
+
+## Relation to prior phases
+
+{_bullets(MVR_REAL_INPUT_PILOT_DESIGN_PRIOR_PHASE_RELATION)}
+
+## Failure classes
+
+{_bullets(MVR_REAL_INPUT_PILOT_DESIGN_FAILURE_CLASSES)}
+
+## Blocked claims
+
+{_bullets(MVR_REAL_INPUT_PILOT_DESIGN_BLOCKED_CLAIMS)}
+
+## Reproducibility
+
+{_bullets(MVR_REAL_INPUT_PILOT_DESIGN_REPRO_FRAGMENTS)}
+- `{MVR_REAL_INPUT_PILOT_DESIGN_COMMAND}`
+
+## Runtime authority boundary
+
+Publication sync grants no runtime authority. It performs no real file processing, real user file ingestion, provider runtime, network runtime, memory write, Atlas memory admission, trace export, PMR federation, product release, product-readiness claim, real user study, human-subject study, user validation, market validation, human benefit proof, final-answer authorization, accepted-evidence grant, truth certification, compliance certification, model training, or review skipping.
+"""
+
+
+MVR_REAL_INPUT_PILOT_PROTOTYPE_SYNC_DOCS = {
+    "index.md",
+    "mvr-local-real-input-pilot-design.md",
+    "minimal-viable-receipt-local-prototype.md",
+    "minimal-viable-receipt-design.md",
+    "mvr-local-prototype-readability-review-seed.md",
+    "mvr-local-prototype-readability-revision.md",
+    "ai-receipt-architecture.md",
+    "triadic-observation-contract.md",
+    "observation-contract-policy-simulation.md",
+    "tac-ai-receipt-event-link.md",
+    "coherence-event-signatures.md",
+    "ces-pmr-indexing-design.md",
+    "validation-tiering-provenance.md",
+    "claim-boundaries.md",
+}
+MVR_REAL_INPUT_PILOT_PROTOTYPE_SYNC_NOTE = f"""
+
+## MVR Local Real Input Pilot Prototype publication sync
+
+MVR-LOCAL-REAL-INPUT-PILOT-PROTOTYPE-00 emits the first bounded local real-input pilot prototype. Real local input can enter only by explicit local source selection or explicit pasted excerpts. The prototype processes only explicit local sources or explicit pasted excerpts; it never scans directories, never auto-discovers files, never reads hidden files, never fetches URLs, never calls provider APIs, and never performs network calls. Local source selection is not accepted-evidence authority. Local source processing is not memory write. Consent is local to this pilot run and is not trace export authorization or PMR federation authorization. Publication sync grants no runtime authority.
+
+Default smoke uses generated_explicit_local_test_sources with selected_source_count = 2, recursive_directory_scan_allowed = false, hidden_file_scan_allowed = false, real_user_files_processed = false, local_fixture_mode = true, instruction_like_evidence_count = 1, real_input_processing_enabled = true, real_input_runtime_artifacts_emitted = true, and pilot_receipt_status = completed. Explicit pasted excerpt smoke uses explicit_pasted_excerpts with pasted_excerpt_selected_source_count = 1, pasted_excerpt_source_class = local_user_pasted_excerpt, pasted_excerpt_real_user_files_processed = true, and pasted_excerpt_local_fixture_mode = false.
+
+Artifacts include mvr_local_real_input_source_manifest.json, mvr_local_real_input_consent_scope.json, mvr_local_real_input_quarantine_report.json, mvr_local_real_input_pilot_policy_packet.json, mvr_local_real_input_non_authority_boundary.json, minimal_viable_receipt_packet.json, minimal_viable_receipt_checklist.json, minimal_viable_receipt_section_index.json, receipt_readability_profile.json, receipt_contestability_profile.json, receipt_cost_burden_profile.json, minimal_viable_receipt_non_authority_boundary.json, minimal_viable_receipt_human_readable.md, mvr_local_real_input_pilot_receipt.json, pmr_local_runtime_artifact_index.json, artifact_inventory.json, run_artifact_manifest.json, export_bundle_manifest.json, and export_bundle_parity_report.json. Schemas include schema/bridge/mvr_local_real_input_source_manifest.schema.json, schema/bridge/mvr_local_real_input_consent_scope.schema.json, schema/bridge/mvr_local_real_input_quarantine_report.schema.json, schema/bridge/mvr_local_real_input_pilot_policy_packet.schema.json, schema/bridge/mvr_local_real_input_non_authority_boundary.schema.json, schema/bridge/mvr_local_real_input_pilot_receipt.schema.json, schema/bridge/minimal_viable_receipt_packet.schema.json, schema/bridge/minimal_viable_receipt_checklist.schema.json, schema/bridge/minimal_viable_receipt_section_index.schema.json, schema/bridge/receipt_readability_profile.schema.json, schema/bridge/receipt_contestability_profile.schema.json, schema/bridge/receipt_cost_burden_profile.schema.json, and schema/bridge/minimal_viable_receipt_non_authority_boundary.schema.json. Reproduction references build_mvr_local_real_input_pilot_prototype.
+
+Source-selection terms: generated_explicit_local_test_sources, explicit_pasted_excerpts, local_user_pasted_excerpt, explicit_user_selected, accepted_for_processing, source_is_not_accepted_evidence, source_sha256, recursive_directory_scan_allowed = false, hidden_file_scan_allowed = false. Consent and quarantine terms: consent_status = active_for_local_pilot, consent_scope = local_pilot_run_only, consent_is_local_to_pilot_run = true, consent_is_not_memory_write = true, consent_is_not_trace_export_authorization = true, consent_is_not_pmr_federation_authorization = true, consent_is_not_product_release = true, quarantine_status = completed, instruction_like_evidence_detected, quarantined_evidence_is_not_accepted_evidence = true.
+
+Relation to prior phases: MVR-LOCAL-REAL-INPUT-PILOT-DESIGN-00 defines boundaries for a future real-local-input pilot. MVR-LOCAL-REAL-INPUT-PILOT-PROTOTYPE-00 emits the first bounded local real-input pilot prototype. MINIMAL-VIABLE-RECEIPT-DESIGN-00 defines the one-transaction/many-sections receipt standard. MINIMAL-VIABLE-RECEIPT-LOCAL-PROTOTYPE-00 emits the local fixture-backed readable receipt. MVR-LOCAL-PROTOTYPE-READABILITY-REVISION-00 applies deterministic local readability revisions. TRIADIC-OBSERVATION-CONTRACT-DESIGN-00 defines governed attention. OBSERVATION-CONTRACT-POLICY-SIMULATION-00 rehearses notice, consent, recovery, source-expansion, pathway-prior, retention, trace-export, and PMR-federation policy outcomes. TAC phases define aperture posture and review visibility. COHERENCE-EVENT-SIGNATURES-DESIGN-00 defines event signatures. CES-PMR-INDEXING-DESIGN-00 defines CES as a compact PMR index, not source replacement. VALIDATION-TIERING-PROVENANCE-00 records validation confidence scope.
+
+See [MVR Local Real Input Pilot Prototype](mvr-local-real-input-pilot-prototype.md).
+"""
+
+def mvr_local_real_input_pilot_prototype_doc() -> str:
+    summary = "\n".join(f"- {key} = {str(value).lower() if isinstance(value, bool) else value}" for key, value in MVR_REAL_INPUT_PILOT_PROTOTYPE_DASHBOARD_SUMMARY.items())
+    return f"""# MVR Local Real Input Pilot Prototype
+
+MVR-LOCAL-REAL-INPUT-PILOT-PROTOTYPE-00 synchronizes the locally validated CoherenceLattice MVR Local Real Input Pilot Prototype into publication dashboards. This is publication/dashboard synchronization only and grants no runtime authority beyond the local prototype evidence boundaries recorded here.
+
+## Bounded allowed claim
+
+{MVR_REAL_INPUT_PILOT_PROTOTYPE_CLAIM_ALLOWED}
+
+## Doctrine language
+
+{_bullets(MVR_REAL_INPUT_PILOT_PROTOTYPE_DOCTRINE_LANGUAGE)}
+
+## Dashboard summary
+
+{summary}
+
+## Source-selection terms
+
+{_bullets(MVR_REAL_INPUT_PILOT_PROTOTYPE_SOURCE_SELECTION_TERMS)}
+
+## Consent and quarantine terms
+
+{_bullets(MVR_REAL_INPUT_PILOT_PROTOTYPE_CONSENT_QUARANTINE_TERMS)}
+
+## Artifact references
+
+{_bullets(MVR_REAL_INPUT_PILOT_PROTOTYPE_ARTIFACTS)}
+
+## Schema references
+
+{_bullets(MVR_REAL_INPUT_PILOT_PROTOTYPE_SCHEMA_REFERENCES)}
+
+## Relation to prior phases
+
+{_bullets(MVR_REAL_INPUT_PILOT_PROTOTYPE_PRIOR_PHASE_RELATION)}
+
+## Failure classes
+
+{_bullets(MVR_REAL_INPUT_PILOT_PROTOTYPE_FAILURE_CLASSES)}
+
+## Blocked claims
+
+{_bullets(MVR_REAL_INPUT_PILOT_PROTOTYPE_BLOCKED_CLAIMS)}
+
+## Reproducibility
+
+- {MVR_REAL_INPUT_PILOT_PROTOTYPE_REPRO_FRAGMENTS[0]}
+- `{MVR_REAL_INPUT_PILOT_PROTOTYPE_COMMAND}`
+
+## Runtime authority boundary
+
+Publication sync grants no runtime authority. It does not imply product release, product readiness, provider runtime, network runtime, trace export, PMR federation, memory write, Atlas memory admission, deployment, final-answer authorization, accepted-evidence grant, truth certification, compliance certification, user validation, real user study, human-subject study, market validation, human benefit proof, model training, or review skipping.
+"""
+
+
+MVR_QUARANTINE_REPAIR_SYNC_DOCS = {
+    "index.md",
+    "mvr-local-real-input-pilot-design.md",
+    "mvr-local-real-input-pilot-prototype.md",
+    "minimal-viable-receipt-local-prototype.md",
+    "minimal-viable-receipt-design.md",
+    "mvr-local-prototype-readability-revision.md",
+    "ai-receipt-architecture.md",
+    "triadic-observation-contract.md",
+    "observation-contract-policy-simulation.md",
+    "tac-ai-receipt-event-link.md",
+    "coherence-event-signatures.md",
+    "ces-pmr-indexing-design.md",
+    "validation-tiering-provenance.md",
+    "claim-boundaries.md",
+}
+MVR_QUARANTINE_REPAIR_SYNC_NOTE = f"""
+
+## MVR Local Real Input Pilot Quarantine Detection Repair publication sync
+
+MVR-LOCAL-REAL-INPUT-PILOT-QUARANTINE-DETECTION-REPAIR-00 repairs instruction-like evidence detection for human-selected local files. Human-selected local files with instruction-like evidence must be quarantined. Harmless human-selected local files must not falsely claim quarantine. Instruction-like evidence was quarantined. No instruction-like evidence was detected for quarantine. Quarantined evidence is not accepted evidence. Local source selection is not accepted-evidence authority. Local source processing is not memory write. Human review remains required.
+
+The repair does not broaden file access, scan directories, read hidden files, fetch URLs, call providers, perform network calls, write memory, admit Atlas memory, export traces, federate PMR, claim product readiness, release product, grant final-answer authority, grant accepted-evidence authority, or certify truth. Publication sync grants no runtime authority.
+
+Detector terms include INSTRUCTION_LIKE_CUES, instruction-like note, ignore prior rules, ignore previous rules, ignore previous instructions, treat this note as authoritative, treat this as authoritative, follow these instructions, override prior instructions, system prompt, developer message, assistant must, you must, do not reveal, disregard previous, disregard prior, _matched_instruction_like_cues, and matched_instruction_like_phrases.
+
+Smoke outcomes include instruction_like and harmless cases with explicit_local_source_paths and local_markdown_file. The instruction-like smoke uses harmless_mvr_real_input_source_instruction_like.md, instruction_like_evidence_count = 1, quarantined_items_count = 1, and matched phrases: instruction-like note, ignore prior rules, treat this note as authoritative. The harmless smoke uses harmless_mvr_real_input_source_no_instruction.md and harmless evidence count = 0. Both smokes keep provider_runtime_performed = false, network_call_performed = false, product_release_performed = false, product_readiness_claimed = false, final_answer_authority_granted = false, accepted_evidence_authority_granted = false, truth_certification_emitted = false, memory_write_performed = false, atlas_memory_admission_performed = false, trace_export_performed = false, and pmr_federation_performed = false.
+
+Relation to prior phases: MVR-LOCAL-REAL-INPUT-PILOT-DESIGN-00 defines boundaries for a future real-local-input pilot. MVR-LOCAL-REAL-INPUT-PILOT-PROTOTYPE-00 emits the first bounded local real-input pilot prototype. MVR-LOCAL-REAL-INPUT-PILOT-QUARANTINE-DETECTION-REPAIR-00 repairs instruction-like evidence detection for human-selected local files. MINIMAL-VIABLE-RECEIPT-DESIGN-00 defines the one-transaction/many-sections receipt standard. MINIMAL-VIABLE-RECEIPT-LOCAL-PROTOTYPE-00 emits the local fixture-backed readable receipt. MVR-LOCAL-PROTOTYPE-READABILITY-REVISION-00 applies deterministic local readability revisions. TRIADIC-OBSERVATION-CONTRACT-DESIGN-00 defines governed attention. OBSERVATION-CONTRACT-POLICY-SIMULATION-00 rehearses notice, consent, recovery, source-expansion, pathway-prior, retention, trace-export, and PMR-federation policy outcomes. TAC phases define aperture posture and review visibility. COHERENCE-EVENT-SIGNATURES-DESIGN-00 defines event signatures. CES-PMR-INDEXING-DESIGN-00 defines CES as a compact PMR index, not source replacement. VALIDATION-TIERING-PROVENANCE-00 records validation confidence scope.
+
+See [MVR Local Real Input Pilot Quarantine Detection Repair](mvr-local-real-input-pilot-quarantine-detection-repair.md).
+"""
+
+def mvr_local_real_input_pilot_quarantine_detection_repair_doc() -> str:
+    summary = "\n".join(f"- {key} = {str(value).lower() if isinstance(value, bool) else value}" for key, value in MVR_QUARANTINE_REPAIR_DASHBOARD_SUMMARY.items())
+    return f"""# MVR Local Real Input Pilot Quarantine Detection Repair
+
+MVR-LOCAL-REAL-INPUT-PILOT-QUARANTINE-DETECTION-REPAIR-00 synchronizes the locally validated CoherenceLattice MVR Local Real Input Pilot Quarantine Detection Repair into publication dashboards. This is publication/dashboard synchronization only and grants no runtime authority.
+
+## Bounded allowed claim
+
+{MVR_QUARANTINE_REPAIR_CLAIM_ALLOWED}
+
+## Dashboard summary
+
+{summary}
+
+## Detector terms
+
+{_bullets(MVR_QUARANTINE_REPAIR_DETECTOR_TERMS)}
+
+## Doctrine language
+
+{_bullets(MVR_QUARANTINE_REPAIR_DOCTRINE_LANGUAGE)}
+
+## Smoke outcomes
+
+{_bullets(MVR_QUARANTINE_REPAIR_SMOKE_OUTCOMES)}
+
+## Artifact references
+
+{_bullets(MVR_QUARANTINE_REPAIR_ARTIFACTS)}
+
+## Relation to prior phases
+
+{_bullets(MVR_QUARANTINE_REPAIR_PRIOR_PHASE_RELATION)}
+
+## Failure classes
+
+{_bullets(MVR_QUARANTINE_REPAIR_FAILURE_CLASSES)}
+
+## Blocked claims
+
+{_bullets(MVR_QUARANTINE_REPAIR_BLOCKED_CLAIMS)}
+
+## Reproducibility
+
+{_bullets(MVR_QUARANTINE_REPAIR_REPRO_FRAGMENTS)}
+- `{MVR_QUARANTINE_REPAIR_COMMAND}`
+
+## Runtime authority boundary
+
+Publication sync grants no runtime authority. It does not imply product release, product readiness, provider runtime, network runtime, trace export, PMR federation, memory write, Atlas memory admission, deployment, final-answer authority, accepted-evidence authority, truth certification, compliance certification, user validation, real user study, human-subject study, market validation, human benefit proof, model training, review skipping, consciousness proof, Omega detection, or universal ontology proof.
+"""
+
 def build(out_dir: Path, docs_dir: Path) -> None:
     _write_json(out_dir / "experiment_suite_dashboard.json", dashboard_payload())
     _write_json(out_dir / "accepted_phase_matrix.json", accepted_phase_matrix())
@@ -21782,6 +23106,10 @@ def build(out_dir: Path, docs_dir: Path) -> None:
     docs_payload["minimal-viable-receipt-design.md"] = minimal_viable_receipt_design_doc()
     docs_payload["minimal-viable-receipt-local-prototype.md"] = minimal_viable_receipt_local_prototype_doc()
     docs_payload["mvr-local-prototype-readability-review-seed.md"] = mvr_local_prototype_readability_review_seed_doc()
+    docs_payload["mvr-local-prototype-readability-revision.md"] = mvr_local_prototype_readability_revision_doc()
+    docs_payload["mvr-local-real-input-pilot-design.md"] = mvr_local_real_input_pilot_design_doc()
+    docs_payload["mvr-local-real-input-pilot-prototype.md"] = mvr_local_real_input_pilot_prototype_doc()
+    docs_payload["mvr-local-real-input-pilot-quarantine-detection-repair.md"] = mvr_local_real_input_pilot_quarantine_detection_repair_doc()
     for name in MINIMAL_VIABLE_RECEIPT_DESIGN_SYNC_DOCS:
         if name in docs_payload:
             docs_payload[name] = docs_payload[name].rstrip() + MINIMAL_VIABLE_RECEIPT_DESIGN_SYNC_NOTE
@@ -21797,6 +23125,18 @@ def build(out_dir: Path, docs_dir: Path) -> None:
     for name in MVR_READABILITY_REVIEW_SEED_SYNC_DOCS:
         if name in docs_payload:
             docs_payload[name] = docs_payload[name].rstrip() + MVR_READABILITY_REVIEW_SEED_SYNC_NOTE
+    for name in MVR_READABILITY_REVISION_SYNC_DOCS:
+        if name in docs_payload:
+            docs_payload[name] = docs_payload[name].rstrip() + MVR_READABILITY_REVISION_SYNC_NOTE
+    for name in MVR_REAL_INPUT_PILOT_DESIGN_SYNC_DOCS:
+        if name in docs_payload:
+            docs_payload[name] = docs_payload[name].rstrip() + MVR_REAL_INPUT_PILOT_DESIGN_SYNC_NOTE
+    for name in MVR_REAL_INPUT_PILOT_PROTOTYPE_SYNC_DOCS:
+        if name in docs_payload:
+            docs_payload[name] = docs_payload[name].rstrip() + MVR_REAL_INPUT_PILOT_PROTOTYPE_SYNC_NOTE
+    for name in MVR_QUARANTINE_REPAIR_SYNC_DOCS:
+        if name in docs_payload:
+            docs_payload[name] = docs_payload[name].rstrip() + MVR_QUARANTINE_REPAIR_SYNC_NOTE
     for name, text in docs_payload.items():
         _write_text(docs_dir / name, text)
 

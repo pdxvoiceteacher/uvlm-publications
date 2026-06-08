@@ -108,6 +108,51 @@ from tools.build_public_repro_dashboard import (
     MVR_READABILITY_REVIEW_SEED_RATING_TERMS,
     MVR_READABILITY_REVIEW_SEED_REPRO_FRAGMENTS,
     MVR_READABILITY_REVIEW_SEED_REVISION_SUGGESTION_IDS,
+    MVR_READABILITY_REVISION_APPLIED_REVISION_IDS,
+    MVR_READABILITY_REVISION_ARTIFACTS,
+    MVR_READABILITY_REVISION_BLOCKED_CLAIMS,
+    MVR_READABILITY_REVISION_CLAIM_ALLOWED,
+    MVR_READABILITY_REVISION_DASHBOARD_SUMMARY,
+    MVR_READABILITY_REVISION_DOCTRINE_LANGUAGE,
+    MVR_READABILITY_REVISION_FAILURE_CLASSES,
+    MVR_READABILITY_REVISION_PRIOR_PHASE_RELATION,
+    MVR_READABILITY_REVISION_REPRO_FRAGMENTS,
+    MVR_READABILITY_REVISION_REVISED_RECEIPT_LANGUAGE,
+    MVR_READABILITY_REVISION_SCHEMA_REFERENCES,
+    MVR_REAL_INPUT_PILOT_DESIGN_ALLOWED_INPUT_CLASSES,
+    MVR_REAL_INPUT_PILOT_DESIGN_ARTIFACTS,
+    MVR_REAL_INPUT_PILOT_DESIGN_BLOCKED_CLAIMS,
+    MVR_REAL_INPUT_PILOT_DESIGN_BLOCKED_INPUT_CLASSES,
+    MVR_REAL_INPUT_PILOT_DESIGN_CLAIM_ALLOWED,
+    MVR_REAL_INPUT_PILOT_DESIGN_CONSENT_OBSERVATION_TERMS,
+    MVR_REAL_INPUT_PILOT_DESIGN_DASHBOARD_SUMMARY,
+    MVR_REAL_INPUT_PILOT_DESIGN_DOCTRINE_LANGUAGE,
+    MVR_REAL_INPUT_PILOT_DESIGN_FAILURE_CLASSES,
+    MVR_REAL_INPUT_PILOT_DESIGN_OUTPUT_REQUIREMENT_TERMS,
+    MVR_REAL_INPUT_PILOT_DESIGN_PRIOR_PHASE_RELATION,
+    MVR_REAL_INPUT_PILOT_DESIGN_REPRO_FRAGMENTS,
+    MVR_REAL_INPUT_PILOT_DESIGN_SOURCE_RULES,
+    MVR_REAL_INPUT_PILOT_PROTOTYPE_ARTIFACTS,
+    MVR_REAL_INPUT_PILOT_PROTOTYPE_BLOCKED_CLAIMS,
+    MVR_REAL_INPUT_PILOT_PROTOTYPE_CLAIM_ALLOWED,
+    MVR_REAL_INPUT_PILOT_PROTOTYPE_CONSENT_QUARANTINE_TERMS,
+    MVR_REAL_INPUT_PILOT_PROTOTYPE_DASHBOARD_SUMMARY,
+    MVR_REAL_INPUT_PILOT_PROTOTYPE_DOCTRINE_LANGUAGE,
+    MVR_REAL_INPUT_PILOT_PROTOTYPE_FAILURE_CLASSES,
+    MVR_REAL_INPUT_PILOT_PROTOTYPE_PRIOR_PHASE_RELATION,
+    MVR_REAL_INPUT_PILOT_PROTOTYPE_REPRO_FRAGMENTS,
+    MVR_REAL_INPUT_PILOT_PROTOTYPE_SCHEMA_REFERENCES,
+    MVR_REAL_INPUT_PILOT_PROTOTYPE_SOURCE_SELECTION_TERMS,
+    MVR_QUARANTINE_REPAIR_ARTIFACTS,
+    MVR_QUARANTINE_REPAIR_BLOCKED_CLAIMS,
+    MVR_QUARANTINE_REPAIR_CLAIM_ALLOWED,
+    MVR_QUARANTINE_REPAIR_DASHBOARD_SUMMARY,
+    MVR_QUARANTINE_REPAIR_DETECTOR_TERMS,
+    MVR_QUARANTINE_REPAIR_DOCTRINE_LANGUAGE,
+    MVR_QUARANTINE_REPAIR_FAILURE_CLASSES,
+    MVR_QUARANTINE_REPAIR_PRIOR_PHASE_RELATION,
+    MVR_QUARANTINE_REPAIR_REPRO_FRAGMENTS,
+    MVR_QUARANTINE_REPAIR_SMOKE_OUTCOMES,
     VALIDATION_TIERING_PROVENANCE_ACCEPTANCE_TERMS,
     VALIDATION_TIERING_PROVENANCE_ARTIFACTS,
     VALIDATION_TIERING_PROVENANCE_BLOCKED_CLAIMS,
@@ -422,6 +467,10 @@ REQUIRED_PHASES = {
     "PERTURBATION-STRUCTURE-AFFORDANCE-CARD-00",
     "MINIMAL-VIABLE-RECEIPT-LOCAL-PROTOTYPE-00",
     "MVR-LOCAL-PROTOTYPE-READABILITY-REVIEW-SEED-00",
+    "MVR-LOCAL-PROTOTYPE-READABILITY-REVISION-00",
+    "MVR-LOCAL-REAL-INPUT-PILOT-DESIGN-00",
+    "MVR-LOCAL-REAL-INPUT-PILOT-PROTOTYPE-00",
+    "MVR-LOCAL-REAL-INPUT-PILOT-QUARANTINE-DETECTION-REPAIR-00",
 }
 
 REQUIRED_COMMAND_FRAGMENTS = (
@@ -6058,6 +6107,382 @@ def test_mvr_readability_review_seed_indexes_dashboard_and_docs(tmp_path):
     assert status["not_mvr_readability_review_seed_product_readiness"] is True
     assert status["not_mvr_readability_review_seed_runtime_authority"] is True
 
+
+
+
+def test_mvr_readability_revision_indexes_dashboard_and_docs(tmp_path):
+    out_dir, docs_dir = run_builder(tmp_path)
+    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text(encoding="utf-8"))
+    artifact_index = json.loads((out_dir / "artifact_index.json").read_text(encoding="utf-8"))
+    repro_index = json.loads((out_dir / "reproducibility_index.json").read_text(encoding="utf-8"))
+    claim_boundaries = json.loads((out_dir / "claim_boundary_index.json").read_text(encoding="utf-8"))
+    status = json.loads((out_dir / "status.json").read_text(encoding="utf-8"))
+    page_path = docs_dir / "mvr-local-prototype-readability-revision.md"
+    page = page_path.read_text(encoding="utf-8")
+
+    phase = next(entry for entry in dashboard["accepted_phases"] if entry["phase_id"] == "MVR-LOCAL-PROTOTYPE-READABILITY-REVISION-00")
+    summary = phase["dashboard_summary"]
+    assert summary == MVR_READABILITY_REVISION_DASHBOARD_SUMMARY
+    assert summary["revision_status"] == "completed"
+    assert summary["revision_mode"] == "deterministic_local_readability_revision"
+    assert summary["original_receipt_ref"] == "minimal_viable_receipt_human_readable.md"
+    assert summary["revised_receipt_ref"] == "minimal_viable_receipt_human_readable_revised.md"
+    assert summary["applied_revision_count"] == 6
+    assert summary["original_receipt_preserved"] is True
+    assert summary["revised_receipt_emitted"] is True
+    assert summary["readability_gate_status"] == "revision_applied_not_validated"
+    assert summary["readability_gate_passed"] is False
+
+    false_fields = (
+        "real_user_study_performed", "human_subject_study_performed", "user_validation_performed",
+        "product_readiness_claimed", "product_release_performed", "market_validation_emitted",
+        "human_benefit_proof_emitted", "truth_certification_emitted", "memory_write_performed",
+        "atlas_memory_admission_performed", "trace_export_performed", "pmr_federation_performed",
+        "provider_runtime_performed", "network_call_performed", "final_answer_authority_granted",
+        "accepted_evidence_authority_granted",
+    )
+    for field in false_fields:
+        assert summary[field] is False
+
+    true_fields = (
+        "revision_is_not_product_readiness", "revision_is_not_user_validation",
+        "revision_is_not_truth_certification", "revision_requires_human_review",
+        "receipt_is_not_product_readiness", "receipt_is_not_user_validation", "receipt_requires_human_review",
+    )
+    for field in true_fields:
+        assert summary[field] is True
+
+    assert artifact_index["phases"]["MVR-LOCAL-PROTOTYPE-READABILITY-REVISION-00"] == MVR_READABILITY_REVISION_ARTIFACTS
+    for artifact in MVR_READABILITY_REVISION_ARTIFACTS:
+        assert artifact in page
+    for schema in MVR_READABILITY_REVISION_SCHEMA_REFERENCES:
+        assert schema in page
+
+    repro_text = json.dumps(repro_index, ensure_ascii=False)
+    for fragment in MVR_READABILITY_REVISION_REPRO_FRAGMENTS:
+        assert fragment in repro_text
+
+    for required in (
+        *MVR_READABILITY_REVISION_APPLIED_REVISION_IDS,
+        *MVR_READABILITY_REVISION_REVISED_RECEIPT_LANGUAGE,
+        *MVR_READABILITY_REVISION_DOCTRINE_LANGUAGE,
+        *MVR_READABILITY_REVISION_PRIOR_PHASE_RELATION,
+        *MVR_READABILITY_REVISION_FAILURE_CLASSES,
+        MVR_READABILITY_REVISION_CLAIM_ALLOWED,
+        "Publication sync grants no runtime authority.",
+    ):
+        assert required in page
+
+    boundaries = "\n".join(claim_boundaries["boundaries"])
+    for blocked in MVR_READABILITY_REVISION_BLOCKED_CLAIMS:
+        assert blocked in boundaries
+
+    assert status["mvr_local_prototype_readability_revision_00_indexed"] is True
+    assert status["mvr_local_prototype_readability_revision_status"] == "completed"
+    assert status["mvr_readability_revision_gate_passed"] is False
+    assert status["not_mvr_readability_revision_user_validation"] is True
+    assert status["not_mvr_readability_revision_product_readiness"] is True
+    assert status["not_mvr_readability_revision_runtime_authority"] is True
+
+
+
+
+def test_mvr_local_real_input_pilot_design_indexes_dashboard_and_docs(tmp_path):
+    out_dir, docs_dir = run_builder(tmp_path)
+    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text(encoding="utf-8"))
+    artifact_index = json.loads((out_dir / "artifact_index.json").read_text(encoding="utf-8"))
+    repro_index = json.loads((out_dir / "reproducibility_index.json").read_text(encoding="utf-8"))
+    claim_boundaries = json.loads((out_dir / "claim_boundary_index.json").read_text(encoding="utf-8"))
+    status = json.loads((out_dir / "status.json").read_text(encoding="utf-8"))
+    page_path = docs_dir / "mvr-local-real-input-pilot-design.md"
+    page = page_path.read_text(encoding="utf-8")
+
+    phase = next(entry for entry in dashboard["accepted_phases"] if entry["phase_id"] == "MVR-LOCAL-REAL-INPUT-PILOT-DESIGN-00")
+    summary = phase["dashboard_summary"]
+    assert summary == MVR_REAL_INPUT_PILOT_DESIGN_DASHBOARD_SUMMARY
+    assert summary["policy_status"] == "active_design_only"
+    assert summary["pilot_mode"] == "design_only_local_real_input_boundary"
+    assert summary["local_real_input_pilot_definition"] == "explicit_local_source_selection_for_mvr_receipt_generation"
+
+    false_fields = (
+        "runtime_behavior_changed", "real_input_processing_enabled", "real_input_runtime_artifacts_emitted",
+        "real_user_files_processed", "provider_runtime_performed", "network_call_performed",
+        "product_release_performed", "product_readiness_claimed", "real_user_study_performed",
+        "human_subject_study_performed", "user_validation_performed", "market_validation_emitted",
+        "human_benefit_proof_emitted", "final_answer_authority_granted", "accepted_evidence_authority_granted",
+        "truth_certification_emitted", "compliance_certification_emitted", "memory_write_performed",
+        "atlas_memory_admission_performed", "trace_export_performed", "pmr_federation_performed",
+        "model_training_performed", "review_skip_authorized", "recursive_directory_scan_allowed",
+        "hidden_file_scan_allowed", "raw_trace_retention_allowed_default", "trace_export_allowed_default",
+        "pmr_federation_allowed_default",
+    )
+    for field in false_fields:
+        assert summary[field] is False
+
+    true_fields = (
+        "explicit_user_selection_required", "local_path_allowlist_required", "source_hashing_required",
+        "source_manifest_required", "source_expansion_required_for_decisions",
+        "instruction_like_evidence_quarantine_required", "unsupported_claim_visibility_required",
+        "human_review_required", "consent_scope_required", "consent_is_local_to_pilot_run",
+        "consent_is_not_memory_write", "consent_is_not_trace_export_authorization",
+        "consent_is_not_pmr_federation_authorization", "consent_is_not_product_release",
+        "revocation_supported", "retention_review_required", "observation_contract_posture_required",
+        "observation_contract_policy_simulation_ref_required", "tac_aperture_posture_required",
+        "no_silent_mode_shift_required", "notice_and_consent_boundaries_visible",
+        "minimal_viable_receipt_required", "human_readable_receipt_required", "machine_readable_receipt_required",
+        "section_index_required", "readability_profile_required", "contestability_profile_required",
+        "cost_burden_profile_required", "non_authority_boundary_required",
+        "local_real_input_source_manifest_required", "quarantine_report_required", "pilot_receipt_required",
+        "pilot_is_not_runtime_processing", "pilot_is_not_product_release", "pilot_is_not_product_readiness",
+        "pilot_is_not_user_validation", "pilot_is_not_human_subject_study", "pilot_is_not_market_validation",
+        "pilot_is_not_human_benefit_proof", "pilot_is_not_truth_certification",
+        "pilot_is_not_final_answer_authority", "pilot_is_not_accepted_evidence_authority",
+        "pilot_is_not_memory_write", "pilot_is_not_atlas_memory_admission",
+        "pilot_is_not_trace_export_authorization", "pilot_is_not_pmr_federation_authorization",
+        "pilot_is_not_model_training", "pilot_is_not_review_skip", "pilot_requires_human_review",
+    )
+    for field in true_fields:
+        assert summary[field] is True
+    assert summary["max_source_file_count_default"] == 5
+    assert summary["max_source_bytes_default"] == 250000
+    assert summary["default_tac_mode"] == "pulse"
+
+    assert artifact_index["phases"]["MVR-LOCAL-REAL-INPUT-PILOT-DESIGN-00"] == MVR_REAL_INPUT_PILOT_DESIGN_ARTIFACTS
+    for artifact in MVR_REAL_INPUT_PILOT_DESIGN_ARTIFACTS:
+        assert artifact in page
+
+    repro_text = json.dumps(repro_index, ensure_ascii=False)
+    for fragment in MVR_REAL_INPUT_PILOT_DESIGN_REPRO_FRAGMENTS:
+        assert fragment in repro_text
+
+    for required in (
+        *MVR_REAL_INPUT_PILOT_DESIGN_DOCTRINE_LANGUAGE,
+        *MVR_REAL_INPUT_PILOT_DESIGN_ALLOWED_INPUT_CLASSES,
+        *MVR_REAL_INPUT_PILOT_DESIGN_BLOCKED_INPUT_CLASSES,
+        *MVR_REAL_INPUT_PILOT_DESIGN_SOURCE_RULES,
+        *MVR_REAL_INPUT_PILOT_DESIGN_CONSENT_OBSERVATION_TERMS,
+        *MVR_REAL_INPUT_PILOT_DESIGN_OUTPUT_REQUIREMENT_TERMS,
+        *MVR_REAL_INPUT_PILOT_DESIGN_PRIOR_PHASE_RELATION,
+        *MVR_REAL_INPUT_PILOT_DESIGN_FAILURE_CLASSES,
+        MVR_REAL_INPUT_PILOT_DESIGN_CLAIM_ALLOWED,
+        "Publication sync grants no runtime authority.",
+    ):
+        assert required in page
+
+    boundaries = "\n".join(claim_boundaries["boundaries"])
+    for blocked in MVR_REAL_INPUT_PILOT_DESIGN_BLOCKED_CLAIMS:
+        assert blocked in boundaries
+
+    assert status["mvr_local_real_input_pilot_design_00_indexed"] is True
+    assert status["mvr_local_real_input_pilot_design_status"] == "active_design_only"
+    assert status["mvr_local_real_input_pilot_runtime_behavior_changed"] is False
+    assert status["mvr_local_real_input_processing_enabled"] is False
+    assert status["mvr_local_real_input_real_user_files_processed"] is False
+    assert status["not_mvr_local_real_input_pilot_product_readiness"] is True
+    assert status["not_mvr_local_real_input_pilot_product_release"] is True
+    assert status["not_mvr_local_real_input_pilot_user_validation"] is True
+    assert status["not_mvr_local_real_input_pilot_runtime_authority"] is True
+
+
+
+
+def test_mvr_local_real_input_pilot_prototype_indexes_dashboard_and_docs(tmp_path):
+    out_dir, docs_dir = run_builder(tmp_path)
+    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text(encoding="utf-8"))
+    artifact_index = json.loads((out_dir / "artifact_index.json").read_text(encoding="utf-8"))
+    repro_index = json.loads((out_dir / "reproducibility_index.json").read_text(encoding="utf-8"))
+    claim_boundaries = json.loads((out_dir / "claim_boundary_index.json").read_text(encoding="utf-8"))
+    status = json.loads((out_dir / "status.json").read_text(encoding="utf-8"))
+    page = (docs_dir / "mvr-local-real-input-pilot-prototype.md").read_text(encoding="utf-8")
+
+    phase = next(entry for entry in dashboard["accepted_phases"] if entry["phase_id"] == "MVR-LOCAL-REAL-INPUT-PILOT-PROTOTYPE-00")
+    summary = phase["dashboard_summary"]
+    assert summary == MVR_REAL_INPUT_PILOT_PROTOTYPE_DASHBOARD_SUMMARY
+    assert summary["manifest_status"] == "completed"
+    assert summary["source_mode"] == "generated_explicit_local_test_sources"
+    assert summary["pasted_excerpt_source_mode"] == "explicit_pasted_excerpts"
+    assert summary["selected_source_count"] == 2
+    assert summary["pasted_excerpt_selected_source_count"] == 1
+    assert summary["pasted_excerpt_source_class"] == "local_user_pasted_excerpt"
+    assert summary["receipt_status"] == "completed"
+    assert summary["prototype_mode"] == "local_real_input_pilot_prototype"
+    assert summary["real_input_pilot_mode"] is True
+    assert summary["real_user_files_processed"] is False
+    assert summary["pasted_excerpt_real_user_files_processed"] is True
+    assert summary["local_fixture_mode"] is True
+    assert summary["pasted_excerpt_local_fixture_mode"] is False
+    assert summary["instruction_like_evidence_count"] == 1
+    assert summary["real_input_processing_enabled"] is True
+    assert summary["real_input_runtime_artifacts_emitted"] is True
+    assert summary["pilot_receipt_status"] == "completed"
+
+    false_fields = (
+        "recursive_directory_scan_allowed", "hidden_file_scan_allowed", "provider_runtime_performed",
+        "network_call_performed", "product_release_performed", "product_readiness_claimed",
+        "final_answer_authority_granted", "accepted_evidence_authority_granted", "truth_certification_emitted",
+        "compliance_certification_emitted", "memory_write_performed", "atlas_memory_admission_performed",
+        "trace_export_performed", "pmr_federation_performed", "model_training_performed", "review_skip_authorized",
+    )
+    for field in false_fields:
+        assert summary[field] is False
+    for field in (
+        "source_manifest_is_not_accepted_evidence", "consent_is_local_to_pilot_run",
+        "consent_is_not_memory_write", "consent_is_not_trace_export_authorization",
+        "consent_is_not_pmr_federation_authorization", "consent_is_not_product_release",
+        "quarantined_evidence_is_not_accepted_evidence", "pilot_requires_human_review",
+    ):
+        assert summary[field] is True
+
+    assert artifact_index["phases"]["MVR-LOCAL-REAL-INPUT-PILOT-PROTOTYPE-00"] == MVR_REAL_INPUT_PILOT_PROTOTYPE_ARTIFACTS
+    for artifact in MVR_REAL_INPUT_PILOT_PROTOTYPE_ARTIFACTS:
+        assert artifact in page
+    for schema in MVR_REAL_INPUT_PILOT_PROTOTYPE_SCHEMA_REFERENCES:
+        assert schema in page
+
+    repro_text = json.dumps(repro_index, ensure_ascii=False)
+    for fragment in MVR_REAL_INPUT_PILOT_PROTOTYPE_REPRO_FRAGMENTS:
+        assert fragment in repro_text
+
+    for required in (
+        *MVR_REAL_INPUT_PILOT_PROTOTYPE_DOCTRINE_LANGUAGE,
+        *MVR_REAL_INPUT_PILOT_PROTOTYPE_SOURCE_SELECTION_TERMS,
+        *MVR_REAL_INPUT_PILOT_PROTOTYPE_CONSENT_QUARANTINE_TERMS,
+        *MVR_REAL_INPUT_PILOT_PROTOTYPE_PRIOR_PHASE_RELATION,
+        *MVR_REAL_INPUT_PILOT_PROTOTYPE_FAILURE_CLASSES,
+        MVR_REAL_INPUT_PILOT_PROTOTYPE_CLAIM_ALLOWED,
+        "Publication sync grants no runtime authority.",
+    ):
+        assert required in page
+
+    boundaries = "\n".join(claim_boundaries["boundaries"])
+    for blocked in MVR_REAL_INPUT_PILOT_PROTOTYPE_BLOCKED_CLAIMS:
+        assert blocked in boundaries
+
+    assert status["mvr_local_real_input_pilot_prototype_00_indexed"] is True
+    assert status["mvr_local_real_input_pilot_prototype_status"] == "completed"
+    assert status["mvr_local_real_input_pilot_prototype_real_input_processing_enabled"] is True
+    assert status["mvr_local_real_input_pilot_prototype_real_input_runtime_artifacts_emitted"] is True
+    assert status["mvr_local_real_input_pilot_prototype_real_user_files_processed"] is False
+    assert status["mvr_local_real_input_pilot_prototype_pasted_excerpt_real_user_files_processed"] is True
+
+
+
+
+def test_mvr_quarantine_detection_repair_indexes_dashboard_and_docs(tmp_path):
+    out_dir, docs_dir = run_builder(tmp_path)
+    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text(encoding="utf-8"))
+    artifact_index = json.loads((out_dir / "artifact_index.json").read_text(encoding="utf-8"))
+    repro_index = json.loads((out_dir / "reproducibility_index.json").read_text(encoding="utf-8"))
+    claim_boundaries = json.loads((out_dir / "claim_boundary_index.json").read_text(encoding="utf-8"))
+    status = json.loads((out_dir / "status.json").read_text(encoding="utf-8"))
+    page = (docs_dir / "mvr-local-real-input-pilot-quarantine-detection-repair.md").read_text(encoding="utf-8")
+
+    phase = next(entry for entry in dashboard["accepted_phases"] if entry["phase_id"] == "MVR-LOCAL-REAL-INPUT-PILOT-QUARANTINE-DETECTION-REPAIR-00")
+    summary = phase["dashboard_summary"]
+    assert summary == MVR_QUARANTINE_REPAIR_DASHBOARD_SUMMARY
+    assert summary["repair_status"] == "completed"
+    assert summary["repair_mode"] == "instruction_like_quarantine_detection_repair"
+    assert summary["instruction_like_evidence_count"] == 1
+    assert summary["instruction_like_quarantined_items_count"] == 1
+    assert summary["harmless_instruction_like_evidence_count"] == 0
+    assert summary["harmless_quarantined_items_count"] == 0
+    assert summary["no_detection_receipt_wording_conditional"] is True
+    assert summary["contradictory_quarantine_wording_repaired"] is True
+
+    for field in (
+        "provider_runtime_performed", "network_call_performed", "product_release_performed",
+        "product_readiness_claimed", "final_answer_authority_granted", "accepted_evidence_authority_granted",
+        "truth_certification_emitted", "memory_write_performed", "atlas_memory_admission_performed",
+        "trace_export_performed", "pmr_federation_performed",
+    ):
+        assert summary[field] is False
+
+    assert artifact_index["phases"]["MVR-LOCAL-REAL-INPUT-PILOT-QUARANTINE-DETECTION-REPAIR-00"] == MVR_QUARANTINE_REPAIR_ARTIFACTS
+    for artifact in MVR_QUARANTINE_REPAIR_ARTIFACTS:
+        assert artifact in page
+
+    repro_text = json.dumps(repro_index, ensure_ascii=False)
+    for fragment in MVR_QUARANTINE_REPAIR_REPRO_FRAGMENTS:
+        assert fragment in repro_text
+
+    for required in (
+        *MVR_QUARANTINE_REPAIR_DETECTOR_TERMS,
+        *MVR_QUARANTINE_REPAIR_DOCTRINE_LANGUAGE,
+        *MVR_QUARANTINE_REPAIR_SMOKE_OUTCOMES,
+        *MVR_QUARANTINE_REPAIR_PRIOR_PHASE_RELATION,
+        *MVR_QUARANTINE_REPAIR_FAILURE_CLASSES,
+        MVR_QUARANTINE_REPAIR_CLAIM_ALLOWED,
+        "Publication sync grants no runtime authority.",
+    ):
+        assert required in page
+
+    boundaries = "\n".join(claim_boundaries["boundaries"])
+    for blocked in MVR_QUARANTINE_REPAIR_BLOCKED_CLAIMS:
+        assert blocked in boundaries
+
+    assert status["mvr_quarantine_detection_repair_00_indexed"] is True
+    assert status["mvr_quarantine_detection_repair_status"] == "completed"
+    assert status["mvr_quarantine_detection_repair_no_detection_receipt_wording_conditional"] is True
+    assert status["mvr_quarantine_detection_repair_contradictory_wording_repaired"] is True
+    assert status["not_mvr_quarantine_detection_repair_file_access_broadened"] is True
+    assert status["not_mvr_quarantine_detection_repair_runtime_authority"] is True
+
+
+def test_validator_required_phases_include_mvr_quarantine_detection_repair():
+    assert "MVR-LOCAL-REAL-INPUT-PILOT-QUARANTINE-DETECTION-REPAIR-00" in VALIDATOR_REQUIRED_PHASES
+
+
+def test_validator_fails_if_mvr_quarantine_detection_repair_makes_forbidden_claims(tmp_path):
+    for claim in MVR_QUARANTINE_REPAIR_BLOCKED_CLAIMS:
+        out_dir, docs_dir = run_builder(tmp_path / claim.replace(" ", "_").replace("/", "_"))
+        page = docs_dir / "mvr-local-real-input-pilot-quarantine-detection-repair.md"
+        page.write_text(page.read_text(encoding="utf-8") + f"\nQuarantine repair claims {claim}.\n", encoding="utf-8")
+        result = validate_dashboard(out_dir / "experiment_suite_dashboard.json", docs_dir)
+        assert result["passed"] is False, claim
+        forbidden_found = [found.lower() for found in result["forbidden_claims_found"]]
+        assert claim.lower() in forbidden_found or f"claims {claim.lower()}" in forbidden_found, result
+
+def test_validator_required_phases_include_mvr_local_real_input_pilot_prototype():
+    assert "MVR-LOCAL-REAL-INPUT-PILOT-PROTOTYPE-00" in VALIDATOR_REQUIRED_PHASES
+
+
+def test_validator_fails_if_mvr_local_real_input_pilot_prototype_makes_forbidden_claims(tmp_path):
+    for claim in MVR_REAL_INPUT_PILOT_PROTOTYPE_BLOCKED_CLAIMS:
+        out_dir, docs_dir = run_builder(tmp_path / claim.replace(" ", "_").replace("/", "_"))
+        page = docs_dir / "mvr-local-real-input-pilot-prototype.md"
+        page.write_text(page.read_text(encoding="utf-8") + f"\nMVR real-input pilot prototype claims {claim}.\n", encoding="utf-8")
+        result = validate_dashboard(out_dir / "experiment_suite_dashboard.json", docs_dir)
+        assert result["passed"] is False, claim
+        forbidden_found = [found.lower() for found in result["forbidden_claims_found"]]
+        assert claim.lower() in forbidden_found or f"claims {claim.lower()}" in forbidden_found, result
+
+def test_validator_required_phases_include_mvr_local_real_input_pilot_design():
+    assert "MVR-LOCAL-REAL-INPUT-PILOT-DESIGN-00" in VALIDATOR_REQUIRED_PHASES
+
+
+def test_validator_fails_if_mvr_local_real_input_pilot_design_makes_forbidden_claims(tmp_path):
+    for claim in MVR_REAL_INPUT_PILOT_DESIGN_BLOCKED_CLAIMS:
+        out_dir, docs_dir = run_builder(tmp_path / claim.replace(" ", "_").replace("/", "_"))
+        page = docs_dir / "mvr-local-real-input-pilot-design.md"
+        page.write_text(page.read_text(encoding="utf-8") + f"\nReal input pilot claims {claim}.\n", encoding="utf-8")
+        result = validate_dashboard(out_dir / "experiment_suite_dashboard.json", docs_dir)
+        assert result["passed"] is False, claim
+        forbidden_found = [found.lower() for found in result["forbidden_claims_found"]]
+        assert claim.lower() in forbidden_found or f"claims {claim.lower()}" in forbidden_found, result
+
+def test_validator_required_phases_include_mvr_readability_revision():
+    assert "MVR-LOCAL-PROTOTYPE-READABILITY-REVISION-00" in VALIDATOR_REQUIRED_PHASES
+
+
+def test_validator_fails_if_mvr_readability_revision_makes_forbidden_claims(tmp_path):
+    for claim in MVR_READABILITY_REVISION_BLOCKED_CLAIMS:
+        out_dir, docs_dir = run_builder(tmp_path / claim.replace(" ", "_").replace("/", "_"))
+        page = docs_dir / "mvr-local-prototype-readability-revision.md"
+        page.write_text(page.read_text(encoding="utf-8") + f"\nMVR readability revision claims {claim}.\n", encoding="utf-8")
+        result = validate_dashboard(out_dir / "experiment_suite_dashboard.json", docs_dir)
+        assert result["passed"] is False, claim
+        forbidden_found = [found.lower() for found in result["forbidden_claims_found"]]
+        assert claim.lower() in forbidden_found or f"claims {claim.lower()}" in forbidden_found, result
 
 def test_validator_required_phases_include_mvr_readability_review_seed():
     assert "MVR-LOCAL-PROTOTYPE-READABILITY-REVIEW-SEED-00" in VALIDATOR_REQUIRED_PHASES
