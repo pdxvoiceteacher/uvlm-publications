@@ -164,6 +164,23 @@ from tools.build_public_repro_dashboard import (
     MVR_HUMAN_SELECTED_FILE_SMOKE_REPRO_FRAGMENTS,
     MVR_HUMAN_SELECTED_FILE_SMOKE_SCHEMA_REFERENCES,
     MVR_HUMAN_SELECTED_FILE_SMOKE_SOURCE_SELECTION_TERMS,
+    COMPLIANCE_DESIGN_BLOCKED_CLAIMS,
+    COMPLIANCE_EU_AI_ACT_SUPPORT_TERMS,
+    COMPLIANCE_FRAMEWORK_PROFILE_TERMS,
+    COMPLIANCE_GENERIC_EVIDENCE_MAPPING_TERMS,
+    COMPLIANCE_HUMAN_SIGNOFF_ROLE_TERMS,
+    COMPLIANCE_REPORT_AUDIENCE_TERMS,
+    COMPLIANCE_REPORT_CLAIM_ALLOWED,
+    COMPLIANCE_REPORT_DASHBOARD_SUMMARY,
+    COMPLIANCE_REPORT_DESIGN_ARTIFACTS,
+    COMPLIANCE_REPORT_DESIGN_REPRO_FRAGMENTS,
+    COMPLIANCE_REPORT_DOCTRINE_LANGUAGE,
+    COMPLIANCE_REPORT_SECTION_TERMS,
+    COMPLIANCE_TOOLSET_CLAIM_ALLOWED,
+    COMPLIANCE_TOOLSET_DASHBOARD_SUMMARY,
+    COMPLIANCE_TOOLSET_DESIGN_ARTIFACTS,
+    COMPLIANCE_TOOLSET_DESIGN_REPRO_FRAGMENTS,
+    COMPLIANCE_TOOLSET_DOCTRINE_LANGUAGE,
     VALIDATION_TIERING_PROVENANCE_ACCEPTANCE_TERMS,
     VALIDATION_TIERING_PROVENANCE_ARTIFACTS,
     VALIDATION_TIERING_PROVENANCE_BLOCKED_CLAIMS,
@@ -483,6 +500,8 @@ REQUIRED_PHASES = {
     "MVR-LOCAL-REAL-INPUT-PILOT-PROTOTYPE-00",
     "MVR-LOCAL-REAL-INPUT-PILOT-QUARANTINE-DETECTION-REPAIR-00",
     "MVR-LOCAL-REAL-INPUT-PILOT-HUMAN-SELECTED-FILE-SMOKE-00",
+    "COMPLIANCE-READY-MVR-REPORT-DESIGN-00",
+    "COMPLIANCE-EVIDENCE-TOOLSET-LIBRARY-DESIGN-00",
 }
 
 REQUIRED_COMMAND_FRAGMENTS = (
@@ -6381,6 +6400,125 @@ def test_mvr_local_real_input_pilot_prototype_indexes_dashboard_and_docs(tmp_pat
 
 
 
+
+
+
+def test_compliance_report_and_toolset_designs_index_dashboard_and_docs(tmp_path):
+    out_dir, docs_dir = run_builder(tmp_path)
+    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text(encoding="utf-8"))
+    artifact_index = json.loads((out_dir / "artifact_index.json").read_text(encoding="utf-8"))
+    repro_index = json.loads((out_dir / "reproducibility_index.json").read_text(encoding="utf-8"))
+    claim_boundaries = json.loads((out_dir / "claim_boundary_index.json").read_text(encoding="utf-8"))
+    status = json.loads((out_dir / "status.json").read_text(encoding="utf-8"))
+    report_page = (docs_dir / "compliance-ready-mvr-report-design.md").read_text(encoding="utf-8")
+    toolset_page = (docs_dir / "compliance-evidence-toolset-library-design.md").read_text(encoding="utf-8")
+
+    report_phase = next(entry for entry in dashboard["accepted_phases"] if entry["phase_id"] == "COMPLIANCE-READY-MVR-REPORT-DESIGN-00")
+    toolset_phase = next(entry for entry in dashboard["accepted_phases"] if entry["phase_id"] == "COMPLIANCE-EVIDENCE-TOOLSET-LIBRARY-DESIGN-00")
+    report_summary = report_phase["dashboard_summary"]
+    toolset_summary = toolset_phase["dashboard_summary"]
+    assert report_summary == COMPLIANCE_REPORT_DASHBOARD_SUMMARY
+    assert toolset_summary == COMPLIANCE_TOOLSET_DASHBOARD_SUMMARY
+    assert report_summary["policy_status"] == "active_design_only"
+    assert report_summary["report_generation_enabled"] is False
+    assert report_summary["compliance_certification_emitted"] is False
+    assert report_summary["audit_pass_claimed"] is False
+    assert report_summary["attestation_success_claimed"] is False
+    assert toolset_summary["day_one_profile"] == "eu_ai_act_evidence_support"
+    assert toolset_summary["evidence_pack_generation_enabled"] is False
+    assert toolset_summary["legal_advice_emitted"] is False
+
+    for summary in (report_summary, toolset_summary):
+        for field in (
+            "compliance_certification_emitted", "audit_pass_claimed", "attestation_success_claimed",
+            "product_readiness_claimed", "product_release_performed", "provider_runtime_performed",
+            "network_call_performed", "real_input_processing_performed", "memory_write_performed",
+            "atlas_memory_admission_performed", "trace_export_performed", "pmr_federation_performed",
+            "final_answer_authority_granted", "accepted_evidence_authority_granted", "truth_certification_emitted",
+        ):
+            assert summary[field] is False
+
+    for field in (
+        "report_is_not_compliance_certification", "report_is_not_audit_pass",
+        "report_is_not_attestation_success", "report_is_not_truth_certification",
+        "report_is_not_final_answer_authority", "report_is_not_accepted_evidence_authority",
+        "report_is_not_product_release", "report_is_not_product_readiness",
+        "report_is_not_memory_write", "report_is_not_atlas_memory_admission", "report_requires_human_review",
+    ):
+        assert report_summary[field] is True
+    for field in (
+        "toolset_is_not_compliance_certification", "toolset_is_not_legal_advice", "toolset_is_not_audit_pass",
+        "toolset_is_not_attestation_success", "toolset_is_not_product_readiness", "toolset_is_not_product_release",
+        "toolset_is_not_truth_certification", "toolset_is_not_final_answer_authority",
+        "toolset_is_not_accepted_evidence_authority", "toolset_is_not_memory_write",
+        "toolset_is_not_atlas_memory_admission", "toolset_requires_human_review",
+        "toolset_requires_authorized_professional_signoff",
+    ):
+        assert toolset_summary[field] is True
+
+    assert artifact_index["phases"]["COMPLIANCE-READY-MVR-REPORT-DESIGN-00"] == COMPLIANCE_REPORT_DESIGN_ARTIFACTS
+    assert artifact_index["phases"]["COMPLIANCE-EVIDENCE-TOOLSET-LIBRARY-DESIGN-00"] == COMPLIANCE_TOOLSET_DESIGN_ARTIFACTS
+    for artifact in COMPLIANCE_REPORT_DESIGN_ARTIFACTS:
+        assert artifact in report_page
+    for artifact in COMPLIANCE_TOOLSET_DESIGN_ARTIFACTS:
+        assert artifact in toolset_page
+
+    repro_text = json.dumps(repro_index, ensure_ascii=False)
+    for fragment in (*COMPLIANCE_REPORT_DESIGN_REPRO_FRAGMENTS, *COMPLIANCE_TOOLSET_DESIGN_REPRO_FRAGMENTS):
+        assert fragment in repro_text
+
+    for required in (
+        *COMPLIANCE_REPORT_DOCTRINE_LANGUAGE,
+        *COMPLIANCE_REPORT_AUDIENCE_TERMS,
+        *COMPLIANCE_REPORT_SECTION_TERMS,
+        COMPLIANCE_REPORT_CLAIM_ALLOWED,
+        "Publication sync grants no runtime authority.",
+    ):
+        assert required in report_page
+    for required in (
+        *COMPLIANCE_TOOLSET_DOCTRINE_LANGUAGE,
+        *COMPLIANCE_FRAMEWORK_PROFILE_TERMS,
+        *COMPLIANCE_EU_AI_ACT_SUPPORT_TERMS,
+        *COMPLIANCE_GENERIC_EVIDENCE_MAPPING_TERMS,
+        *COMPLIANCE_HUMAN_SIGNOFF_ROLE_TERMS,
+        COMPLIANCE_TOOLSET_CLAIM_ALLOWED,
+        "Publication sync grants no runtime authority.",
+    ):
+        assert required in toolset_page
+
+    boundaries = "\n".join(claim_boundaries["boundaries"])
+    for blocked in COMPLIANCE_DESIGN_BLOCKED_CLAIMS:
+        assert blocked in boundaries
+
+    assert status["compliance_ready_mvr_report_design_00_indexed"] is True
+    assert status["compliance_ready_mvr_report_policy_status"] == "active_design_only"
+    assert status["compliance_ready_mvr_report_generation_enabled"] is False
+    assert status["not_compliance_ready_mvr_report_certification"] is True
+    assert status["not_compliance_ready_mvr_report_runtime_authority"] is True
+    assert status["compliance_evidence_toolset_library_design_00_indexed"] is True
+    assert status["compliance_evidence_toolset_policy_status"] == "active_design_only"
+    assert status["compliance_evidence_toolset_library_status"] == "active_design_only"
+    assert status["compliance_evidence_toolset_day_one_profile"] == "eu_ai_act_evidence_support"
+    assert status["compliance_evidence_toolset_evidence_pack_generation_enabled"] is False
+    assert status["not_compliance_evidence_toolset_certification"] is True
+    assert status["not_compliance_evidence_toolset_legal_advice"] is True
+    assert status["not_compliance_evidence_toolset_runtime_authority"] is True
+
+
+def test_validator_required_phases_include_compliance_designs():
+    assert "COMPLIANCE-READY-MVR-REPORT-DESIGN-00" in VALIDATOR_REQUIRED_PHASES
+    assert "COMPLIANCE-EVIDENCE-TOOLSET-LIBRARY-DESIGN-00" in VALIDATOR_REQUIRED_PHASES
+
+
+def test_validator_fails_if_compliance_designs_make_forbidden_claims(tmp_path):
+    for claim in COMPLIANCE_DESIGN_BLOCKED_CLAIMS:
+        out_dir, docs_dir = run_builder(tmp_path / claim.replace(" ", "_").replace("/", "_"))
+        page = docs_dir / "compliance-ready-mvr-report-design.md"
+        page.write_text(page.read_text(encoding="utf-8") + f"\nCompliance design claims {claim}.\n", encoding="utf-8")
+        result = validate_dashboard(out_dir / "experiment_suite_dashboard.json", docs_dir)
+        assert result["passed"] is False, claim
+        forbidden_found = [found.lower() for found in result["forbidden_claims_found"]]
+        assert claim.lower() in forbidden_found or f"claims {claim.lower()}" in forbidden_found, result
 
 def test_mvr_human_selected_file_smoke_indexes_dashboard_and_docs(tmp_path):
     out_dir, docs_dir = run_builder(tmp_path)

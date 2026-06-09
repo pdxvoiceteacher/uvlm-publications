@@ -1270,6 +1270,25 @@
       "export_bundle_manifest.json",
       "export_bundle_parity_report.json"
     ],
+    "COMPLIANCE-READY-MVR-REPORT-DESIGN-00": [
+      "docs/COMPLIANCE_READY_MVR_REPORT_DESIGN.md",
+      "config/receipt/compliance_ready_mvr_report_policy.v1.json",
+      "schema/bridge/compliance_ready_mvr_report_packet.schema.json",
+      "schema/bridge/compliance_ready_mvr_report_section_index.schema.json",
+      "schema/bridge/compliance_ready_mvr_control_mapping.schema.json",
+      "schema/bridge/compliance_ready_mvr_plain_language_glossary.schema.json",
+      "schema/bridge/compliance_ready_mvr_non_authority_boundary.schema.json"
+    ],
+    "COMPLIANCE-EVIDENCE-TOOLSET-LIBRARY-DESIGN-00": [
+      "docs/COMPLIANCE_EVIDENCE_TOOLSET_LIBRARY.md",
+      "config/compliance/compliance_evidence_toolset_library.v1.json",
+      "schema/bridge/compliance_evidence_toolset_library_packet.schema.json",
+      "schema/bridge/compliance_framework_profile.schema.json",
+      "schema/bridge/compliance_evidence_mapping.schema.json",
+      "schema/bridge/compliance_gap_register.schema.json",
+      "schema/bridge/compliance_human_signoff_packet.schema.json",
+      "schema/bridge/compliance_evidence_non_authority_boundary.schema.json"
+    ],
     "VALIDATION-TIERING-PROVENANCE-00": [
       "config/validation/validation_tier_policy.v1.json",
       "validation_tier_receipt.json",

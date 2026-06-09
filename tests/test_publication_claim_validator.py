@@ -32,6 +32,7 @@ from tools.build_public_repro_dashboard import (
     MVR_REAL_INPUT_PILOT_PROTOTYPE_BLOCKED_CLAIMS,
     MVR_QUARANTINE_REPAIR_BLOCKED_CLAIMS,
     MVR_HUMAN_SELECTED_FILE_SMOKE_BLOCKED_CLAIMS,
+    COMPLIANCE_DESIGN_BLOCKED_CLAIMS,
     MINIMAL_VIABLE_RECEIPT_LOCAL_PROTOTYPE_CLAIM_ALLOWED,
     MVR_READABILITY_REVIEW_SEED_CLAIM_ALLOWED,
     MVR_READABILITY_REVISION_CLAIM_ALLOWED,
@@ -39,6 +40,8 @@ from tools.build_public_repro_dashboard import (
     MVR_REAL_INPUT_PILOT_PROTOTYPE_CLAIM_ALLOWED,
     MVR_QUARANTINE_REPAIR_CLAIM_ALLOWED,
     MVR_HUMAN_SELECTED_FILE_SMOKE_CLAIM_ALLOWED,
+    COMPLIANCE_REPORT_CLAIM_ALLOWED,
+    COMPLIANCE_TOOLSET_CLAIM_ALLOWED,
     VALIDATION_TIERING_PROVENANCE_BLOCKED_CLAIMS,
     VALIDATION_TIERING_PROVENANCE_CLAIM_ALLOWED,
     TELEMETRY_APERTURE_BLOCKED_CLAIMS,
@@ -5293,6 +5296,29 @@ def test_publication_claim_validator_allows_bounded_mvr_local_real_input_pilot_p
 
 
 
+
+
+
+def test_publication_claim_validator_rejects_compliance_design_overclaims(tmp_path):
+    for claim in COMPLIANCE_DESIGN_BLOCKED_CLAIMS:
+        paper_root = tmp_path / claim.replace(" ", "_").replace("/", "_")
+        _write_minimal_publication_claim_fixture(paper_root, f"Compliance design claims {claim}.")
+        result = validate_publication_claims(paper_root / "PUB_GOV_ARTIFACT_COG_01.md")
+        assert result["forbidden_overclaims_found"], claim
+
+
+def test_publication_claim_validator_allows_bounded_compliance_report_claim(tmp_path):
+    paper_root = tmp_path / "paper"
+    _write_minimal_publication_claim_fixture(paper_root, COMPLIANCE_REPORT_CLAIM_ALLOWED)
+    result = validate_publication_claims(paper_root / "PUB_GOV_ARTIFACT_COG_01.md")
+    assert result["forbidden_overclaims_found"] == []
+
+
+def test_publication_claim_validator_allows_bounded_compliance_toolset_claim(tmp_path):
+    paper_root = tmp_path / "paper"
+    _write_minimal_publication_claim_fixture(paper_root, COMPLIANCE_TOOLSET_CLAIM_ALLOWED)
+    result = validate_publication_claims(paper_root / "PUB_GOV_ARTIFACT_COG_01.md")
+    assert result["forbidden_overclaims_found"] == []
 
 def test_publication_claim_validator_rejects_mvr_human_selected_file_smoke_overclaims(tmp_path):
     for claim in MVR_HUMAN_SELECTED_FILE_SMOKE_BLOCKED_CLAIMS:
