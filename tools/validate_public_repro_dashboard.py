@@ -106,6 +106,11 @@ from tools.build_public_repro_dashboard import (
     MINIMAL_VIABLE_RECEIPT_LOCAL_PROTOTYPE_USER_QUESTIONS,
     MVR_READABILITY_REVIEW_SEED_ARTIFACTS,
     MVR_READABILITY_REVIEW_SEED_BLOCKED_CLAIMS,
+    MVR_READABILITY_REVISION_BLOCKED_CLAIMS,
+    MVR_REAL_INPUT_PILOT_DESIGN_BLOCKED_CLAIMS,
+    MVR_REAL_INPUT_PILOT_PROTOTYPE_BLOCKED_CLAIMS,
+    MVR_QUARANTINE_REPAIR_BLOCKED_CLAIMS,
+    MVR_HUMAN_SELECTED_FILE_SMOKE_BLOCKED_CLAIMS,
     MVR_READABILITY_REVIEW_SEED_CLAIM_ALLOWED,
     MVR_READABILITY_REVIEW_SEED_DASHBOARD_SUMMARY,
     MVR_READABILITY_REVIEW_SEED_DOCTRINE_LANGUAGE,
@@ -329,6 +334,11 @@ REQUIRED_PHASES = {
     "PERTURBATION-STRUCTURE-AFFORDANCE-CARD-00",
     "MINIMAL-VIABLE-RECEIPT-LOCAL-PROTOTYPE-00",
     "MVR-LOCAL-PROTOTYPE-READABILITY-REVIEW-SEED-00",
+    "MVR-LOCAL-PROTOTYPE-READABILITY-REVISION-00",
+    "MVR-LOCAL-REAL-INPUT-PILOT-DESIGN-00",
+    "MVR-LOCAL-REAL-INPUT-PILOT-PROTOTYPE-00",
+    "MVR-LOCAL-REAL-INPUT-PILOT-QUARANTINE-DETECTION-REPAIR-00",
+    "MVR-LOCAL-REAL-INPUT-PILOT-HUMAN-SELECTED-FILE-SMOKE-00",
 }
 REQUIRED_BOUNDARY_PHRASES = (
     "not truth certification",
@@ -1277,6 +1287,11 @@ FORBIDDEN_PHRASES = (
     "network authorization",
     *[f"claims {claim}" for claim in MINIMAL_VIABLE_RECEIPT_LOCAL_PROTOTYPE_BLOCKED_CLAIMS],
     *[f"claims {claim}" for claim in MVR_READABILITY_REVIEW_SEED_BLOCKED_CLAIMS],
+    *[f"claims {claim}" for claim in MVR_READABILITY_REVISION_BLOCKED_CLAIMS],
+    *[f"claims {claim}" for claim in MVR_REAL_INPUT_PILOT_DESIGN_BLOCKED_CLAIMS],
+    *[f"claims {claim}" for claim in MVR_REAL_INPUT_PILOT_PROTOTYPE_BLOCKED_CLAIMS],
+    *[f"claims {claim}" for claim in MVR_QUARANTINE_REPAIR_BLOCKED_CLAIMS],
+    *[f"claims {claim}" for claim in MVR_HUMAN_SELECTED_FILE_SMOKE_BLOCKED_CLAIMS],
     "network authorized",
     "remote provider called",
     "remote provider calls",
@@ -1601,12 +1616,63 @@ def _forbidden_hits(text: str) -> list[str]:
             if "claims_blocked" in text[max(0, index - 220) : index] and "not " + normalized_phrase in text[max(0, index - 32) : index + len(normalized_phrase) + 4]:
                 start = index + len(normalized_phrase)
                 continue
-            if phrase.lower().startswith("claims minimal viable receipt local prototype") and ("blocked claims" in claims_window or "claims_blocked" in text[max(0, index - 96) : index]):
+            if phrase.lower().startswith("claims minimal viable receipt local prototype") and "claims_blocked" in text[max(0, index - 96) : index]:
                 start = index + len(normalized_phrase)
                 continue
-            if phrase.lower().startswith("claims mvr readability review seed") and ("blocked claims" in claims_window or "claims_blocked" in text[max(0, index - 96) : index]):
+            if phrase.lower().startswith("claims mvr readability review seed") and "claims_blocked" in text[max(0, index - 96) : index]:
                 start = index + len(normalized_phrase)
                 continue
+            if phrase.lower().startswith("claims mvr readability revision") and "claims_blocked" in text[max(0, index - 96) : index]:
+                start = index + len(normalized_phrase)
+                continue
+            if phrase.lower().startswith("claims real input pilot") and "claims_blocked" in text[max(0, index - 96) : index]:
+                start = index + len(normalized_phrase)
+                continue
+            if phrase.lower().startswith("claims mvr real-input pilot prototype") and "claims_blocked" in text[max(0, index - 96) : index]:
+                start = index + len(normalized_phrase)
+                continue
+            if phrase.lower().startswith("claims quarantine repair") and "claims_blocked" in text[max(0, index - 96) : index]:
+                start = index + len(normalized_phrase)
+                continue
+            if phrase.lower().startswith("claims human-selected file smoke") and "claims_blocked" in text[max(0, index - 96) : index]:
+                start = index + len(normalized_phrase)
+                continue
+            if phrase.lower().startswith("claims smoke can") and "claims_blocked" in text[max(0, index - 96) : index]:
+                start = index + len(normalized_phrase)
+                continue
+            if phrase.lower().startswith("claims no-detection") and "claims_blocked" in text[max(0, index - 96) : index]:
+                start = index + len(normalized_phrase)
+                continue
+            if phrase.lower().startswith("claims quarantine count") and "claims_blocked" in text[max(0, index - 96) : index]:
+                start = index + len(normalized_phrase)
+                continue
+            if phrase.lower().startswith("claims source manifest") and "claims_blocked" in text[max(0, index - 96) : index]:
+                start = index + len(normalized_phrase)
+                continue
+            if phrase.lower().startswith("claims quarantined evidence") and "claims_blocked" in text[max(0, index - 96) : index]:
+                start = index + len(normalized_phrase)
+                continue
+            if phrase.lower().startswith("claims pasted excerpt") and "claims_blocked" in text[max(0, index - 96) : index]:
+                start = index + len(normalized_phrase)
+                continue
+            if phrase.lower().startswith("claims local source") and "claims_blocked" in text[max(0, index - 96) : index]:
+                start = index + len(normalized_phrase)
+                continue
+            if phrase.lower().startswith("claims consent authorizes") and "claims_blocked" in text[max(0, index - 96) : index]:
+                start = index + len(normalized_phrase)
+                continue
+            if phrase.lower().startswith("claims local pilot") and "claims_blocked" in text[max(0, index - 96) : index]:
+                start = index + len(normalized_phrase)
+                continue
+            if phrase.lower().startswith("claims instruction-like evidence") and "claims_blocked" in text[max(0, index - 96) : index]:
+                start = index + len(normalized_phrase)
+                continue
+            if text[max(0, index - 8) : index].endswith("blocked ") and phrase.lower().startswith("claims "):
+                start = index + len(normalized_phrase)
+                continue
+            if phrase.lower().startswith("claims "):
+                hits.append(phrase)
+                break
             if f"claims {normalized_phrase}" in claims_window and "blocked claims" not in claims_window:
                 hits.append(phrase)
                 break
@@ -1624,6 +1690,34 @@ def _forbidden_hits(text: str) -> list[str]:
                 "claims_blocked" in text[max(0, index - 3000) : index]
                 or "blocked claims" in text[max(0, index - 96) : index]
                 or "mvr local prototype readability review seed publication boundaries" in text[max(0, index - 1800) : index]
+            ):
+                start = index + len(normalized_phrase)
+                continue
+            if phrase in MVR_READABILITY_REVISION_BLOCKED_CLAIMS and (
+                "claims_blocked" in text[max(0, index - 3000) : index]
+                or "blocked claims" in text[max(0, index - 96) : index]
+                or "mvr local prototype readability revision publication boundaries" in text[max(0, index - 1800) : index]
+            ):
+                start = index + len(normalized_phrase)
+                continue
+            if phrase in MVR_REAL_INPUT_PILOT_DESIGN_BLOCKED_CLAIMS and (
+                "claims_blocked" in text[max(0, index - 3000) : index]
+                or "blocked claims" in text[max(0, index - 96) : index]
+                or "mvr local real input pilot design publication boundaries" in text[max(0, index - 1800) : index]
+            ):
+                start = index + len(normalized_phrase)
+                continue
+            if phrase in MVR_REAL_INPUT_PILOT_PROTOTYPE_BLOCKED_CLAIMS and (
+                "claims_blocked" in text[max(0, index - 3000) : index]
+                or "blocked claims" in text[max(0, index - 96) : index]
+                or "mvr local real input pilot prototype publication boundaries" in text[max(0, index - 1800) : index]
+            ):
+                start = index + len(normalized_phrase)
+                continue
+            if phrase in MVR_QUARANTINE_REPAIR_BLOCKED_CLAIMS and (
+                "claims_blocked" in text[max(0, index - 3000) : index]
+                or "blocked claims" in text[max(0, index - 96) : index]
+                or "mvr local real input pilot quarantine detection repair publication boundaries" in text[max(0, index - 1800) : index]
             ):
                 start = index + len(normalized_phrase)
                 continue
@@ -1990,7 +2084,13 @@ def _forbidden_hits(text: str) -> list[str]:
             ):
                 start = index + len(normalized_phrase)
                 continue
-            if phrase == "product release" and "does not authorize" in text[max(0, index - 180) : index]:
+            if phrase == "product release" and (
+                "does not authorize" in text[max(0, index - 180) : index]
+                or "does not imply" in text[max(0, index - 180) : index]
+                or "avoiding" in text[max(0, index - 800) : index]
+                or "blocked overclaim" in text[max(0, index - 900) : index]
+                or "blocked claims" in text[max(0, index - 900) : index]
+            ):
                 start = index + len(normalized_phrase)
                 continue
             if (
