@@ -153,6 +153,17 @@ from tools.build_public_repro_dashboard import (
     MVR_QUARANTINE_REPAIR_PRIOR_PHASE_RELATION,
     MVR_QUARANTINE_REPAIR_REPRO_FRAGMENTS,
     MVR_QUARANTINE_REPAIR_SMOKE_OUTCOMES,
+    MVR_HUMAN_SELECTED_FILE_SMOKE_ARTIFACTS,
+    MVR_HUMAN_SELECTED_FILE_SMOKE_BLOCKED_CLAIMS,
+    MVR_HUMAN_SELECTED_FILE_SMOKE_CLAIM_ALLOWED,
+    MVR_HUMAN_SELECTED_FILE_SMOKE_DASHBOARD_SUMMARY,
+    MVR_HUMAN_SELECTED_FILE_SMOKE_DOCTRINE_LANGUAGE,
+    MVR_HUMAN_SELECTED_FILE_SMOKE_FAILURE_CLASSES,
+    MVR_HUMAN_SELECTED_FILE_SMOKE_PRIOR_PHASE_RELATION,
+    MVR_HUMAN_SELECTED_FILE_SMOKE_QUARANTINE_TERMS,
+    MVR_HUMAN_SELECTED_FILE_SMOKE_REPRO_FRAGMENTS,
+    MVR_HUMAN_SELECTED_FILE_SMOKE_SCHEMA_REFERENCES,
+    MVR_HUMAN_SELECTED_FILE_SMOKE_SOURCE_SELECTION_TERMS,
     VALIDATION_TIERING_PROVENANCE_ACCEPTANCE_TERMS,
     VALIDATION_TIERING_PROVENANCE_ARTIFACTS,
     VALIDATION_TIERING_PROVENANCE_BLOCKED_CLAIMS,
@@ -471,6 +482,7 @@ REQUIRED_PHASES = {
     "MVR-LOCAL-REAL-INPUT-PILOT-DESIGN-00",
     "MVR-LOCAL-REAL-INPUT-PILOT-PROTOTYPE-00",
     "MVR-LOCAL-REAL-INPUT-PILOT-QUARANTINE-DETECTION-REPAIR-00",
+    "MVR-LOCAL-REAL-INPUT-PILOT-HUMAN-SELECTED-FILE-SMOKE-00",
 }
 
 REQUIRED_COMMAND_FRAGMENTS = (
@@ -6367,6 +6379,103 @@ def test_mvr_local_real_input_pilot_prototype_indexes_dashboard_and_docs(tmp_pat
 
 
 
+
+
+
+def test_mvr_human_selected_file_smoke_indexes_dashboard_and_docs(tmp_path):
+    out_dir, docs_dir = run_builder(tmp_path)
+    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text(encoding="utf-8"))
+    artifact_index = json.loads((out_dir / "artifact_index.json").read_text(encoding="utf-8"))
+    repro_index = json.loads((out_dir / "reproducibility_index.json").read_text(encoding="utf-8"))
+    claim_boundaries = json.loads((out_dir / "claim_boundary_index.json").read_text(encoding="utf-8"))
+    status = json.loads((out_dir / "status.json").read_text(encoding="utf-8"))
+    page = (docs_dir / "mvr-local-real-input-pilot-human-selected-file-smoke.md").read_text(encoding="utf-8")
+
+    phase = next(entry for entry in dashboard["accepted_phases"] if entry["phase_id"] == "MVR-LOCAL-REAL-INPUT-PILOT-HUMAN-SELECTED-FILE-SMOKE-00")
+    summary = phase["dashboard_summary"]
+    assert summary == MVR_HUMAN_SELECTED_FILE_SMOKE_DASHBOARD_SUMMARY
+    assert summary["smoke_status"] == "completed"
+    assert summary["smoke_mode"] == "explicit_local_file_selection_smoke"
+    assert summary["default_smoke_source_mode"] == "generated_harmless_human_selected_file_fixture"
+    assert summary["default_source_path_supplied"] is False
+    assert summary["default_selected_source_count"] == 1
+    assert summary["default_real_user_files_processed"] is False
+    assert summary["default_local_fixture_mode"] is True
+    assert summary["explicit_smoke_source_mode"] == "explicit_human_selected_local_file"
+    assert summary["explicit_source_path_supplied"] is True
+    assert summary["explicit_selected_source_count"] == 1
+    assert summary["explicit_source_name"] == "human_selected_file_smoke_source.md"
+    assert summary["explicit_real_user_files_processed"] is True
+    assert summary["explicit_local_fixture_mode"] is False
+    assert summary["explicit_instruction_like_evidence_count"] == 1
+    assert summary["matched_instruction_like_phrases_include_instruction_like_note"] is True
+    assert summary["matched_instruction_like_phrases_include_ignore_prior_rules"] is True
+    assert summary["matched_instruction_like_phrases_include_treat_this_note_as_authoritative"] is True
+
+    for field in (
+        "recursive_directory_scan_allowed", "hidden_file_scan_allowed", "url_fetch_performed",
+        "provider_runtime_performed", "network_call_performed", "product_release_performed",
+        "product_readiness_claimed", "accepted_evidence_authority_granted", "final_answer_authority_granted",
+        "truth_certification_emitted", "compliance_certification_emitted", "memory_write_performed",
+        "atlas_memory_admission_performed", "trace_export_performed", "pmr_federation_performed",
+        "model_training_performed", "review_skip_authorized",
+    ):
+        assert summary[field] is False
+
+    for field in (
+        "human_review_required", "smoke_is_not_user_study", "smoke_is_not_product_readiness",
+        "smoke_is_not_product_release", "smoke_is_not_accepted_evidence_authority",
+        "smoke_requires_human_review",
+    ):
+        assert summary[field] is True
+
+    assert artifact_index["phases"]["MVR-LOCAL-REAL-INPUT-PILOT-HUMAN-SELECTED-FILE-SMOKE-00"] == MVR_HUMAN_SELECTED_FILE_SMOKE_ARTIFACTS
+    for artifact in MVR_HUMAN_SELECTED_FILE_SMOKE_ARTIFACTS:
+        assert artifact in page
+    for schema in MVR_HUMAN_SELECTED_FILE_SMOKE_SCHEMA_REFERENCES:
+        assert schema in page
+
+    repro_text = json.dumps(repro_index, ensure_ascii=False)
+    for fragment in MVR_HUMAN_SELECTED_FILE_SMOKE_REPRO_FRAGMENTS:
+        assert fragment in repro_text
+
+    for required in (
+        *MVR_HUMAN_SELECTED_FILE_SMOKE_DOCTRINE_LANGUAGE,
+        *MVR_HUMAN_SELECTED_FILE_SMOKE_SOURCE_SELECTION_TERMS,
+        *MVR_HUMAN_SELECTED_FILE_SMOKE_QUARANTINE_TERMS,
+        *MVR_HUMAN_SELECTED_FILE_SMOKE_PRIOR_PHASE_RELATION,
+        *MVR_HUMAN_SELECTED_FILE_SMOKE_FAILURE_CLASSES,
+        MVR_HUMAN_SELECTED_FILE_SMOKE_CLAIM_ALLOWED,
+        "Publication sync grants no runtime authority.",
+    ):
+        assert required in page
+
+    boundaries = "\n".join(claim_boundaries["boundaries"])
+    for blocked in MVR_HUMAN_SELECTED_FILE_SMOKE_BLOCKED_CLAIMS:
+        assert blocked in boundaries
+
+    assert status["mvr_human_selected_file_smoke_00_indexed"] is True
+    assert status["mvr_human_selected_file_smoke_status"] == "completed"
+    assert status["mvr_human_selected_file_smoke_default_real_user_files_processed"] is False
+    assert status["mvr_human_selected_file_smoke_explicit_real_user_files_processed"] is True
+    assert status["not_mvr_human_selected_file_smoke_runtime_authority"] is True
+    assert status["not_mvr_human_selected_file_smoke_product_readiness"] is True
+    assert status["not_mvr_human_selected_file_smoke_accepted_evidence_authority"] is True
+
+
+def test_validator_required_phases_include_mvr_human_selected_file_smoke():
+    assert "MVR-LOCAL-REAL-INPUT-PILOT-HUMAN-SELECTED-FILE-SMOKE-00" in VALIDATOR_REQUIRED_PHASES
+
+
+def test_validator_fails_if_mvr_human_selected_file_smoke_makes_forbidden_claims(tmp_path):
+    for claim in MVR_HUMAN_SELECTED_FILE_SMOKE_BLOCKED_CLAIMS:
+        out_dir, docs_dir = run_builder(tmp_path / claim.replace(" ", "_").replace("/", "_"))
+        page = docs_dir / "mvr-local-real-input-pilot-human-selected-file-smoke.md"
+        page.write_text(page.read_text(encoding="utf-8") + f"\nHuman-selected file smoke claims {claim}.\n", encoding="utf-8")
+        result = validate_dashboard(out_dir / "experiment_suite_dashboard.json", docs_dir)
+        assert result["passed"] is False, claim
+        forbidden_found = [found.lower() for found in result["forbidden_claims_found"]]
+        assert claim.lower() in forbidden_found or f"claims {claim.lower()}" in forbidden_found, result
 
 def test_mvr_quarantine_detection_repair_indexes_dashboard_and_docs(tmp_path):
     out_dir, docs_dir = run_builder(tmp_path)

@@ -10525,6 +10525,197 @@ MVR_QUARANTINE_REPAIR_PHASE = {
 }
 
 
+MVR_HUMAN_SELECTED_FILE_SMOKE_COMMAND = "python -c \"from pathlib import Path; from coherence.product.mvr_local_real_input_pilot_smoke import build_mvr_local_real_input_pilot_human_selected_file_smoke; bridge=Path(r'C:\\UVLM\\run_artifacts\\mvr_human_selected_file_smoke\\bridge'); build_mvr_local_real_input_pilot_human_selected_file_smoke(bridge)\""
+MVR_HUMAN_SELECTED_FILE_SMOKE_REPRO_FRAGMENTS = ["build_mvr_local_real_input_pilot_human_selected_file_smoke"]
+MVR_HUMAN_SELECTED_FILE_SMOKE_ARTIFACTS = [
+    "mvr_local_real_input_human_selected_file_smoke_packet.json",
+    "mvr_local_real_input_human_selected_file_smoke_receipt.json",
+    "mvr_local_real_input_source_manifest.json",
+    "mvr_local_real_input_consent_scope.json",
+    "mvr_local_real_input_quarantine_report.json",
+    "mvr_local_real_input_pilot_policy_packet.json",
+    "mvr_local_real_input_non_authority_boundary.json",
+    "minimal_viable_receipt_packet.json",
+    "minimal_viable_receipt_human_readable.md",
+    "mvr_local_real_input_pilot_receipt.json",
+    "pmr_local_runtime_artifact_index.json",
+    "artifact_inventory.json",
+    "run_artifact_manifest.json",
+    "export_bundle_manifest.json",
+    "export_bundle_parity_report.json",
+]
+MVR_HUMAN_SELECTED_FILE_SMOKE_SCHEMA_REFERENCES = [
+    "schema/bridge/mvr_local_real_input_human_selected_file_smoke_packet.schema.json",
+    "schema/bridge/mvr_local_real_input_human_selected_file_smoke_receipt.schema.json",
+    "schema/bridge/mvr_local_real_input_source_manifest.schema.json",
+    "schema/bridge/mvr_local_real_input_consent_scope.schema.json",
+    "schema/bridge/mvr_local_real_input_quarantine_report.schema.json",
+    "schema/bridge/mvr_local_real_input_pilot_policy_packet.schema.json",
+    "schema/bridge/mvr_local_real_input_non_authority_boundary.schema.json",
+]
+MVR_HUMAN_SELECTED_FILE_SMOKE_DOCTRINE_LANGUAGE = [
+    "MVR Local Real Input Pilot Human-Selected File Smoke",
+    "Human-selected file smoke uses explicit local source selection.",
+    "Human-selected file smoke is not product readiness.",
+    "Human-selected file smoke is not product release.",
+    "Human-selected file smoke is not a user study.",
+    "Human-selected file smoke is not accepted-evidence authority.",
+    "Local source selection is not accepted-evidence authority.",
+    "Local source processing is not memory write.",
+    "Consent is local to this pilot run.",
+    "Consent is not trace export authorization.",
+    "Consent is not PMR federation authorization.",
+    "The smoke never scans directories.",
+    "The smoke never auto-discovers files.",
+    "The smoke never reads hidden files.",
+    "The smoke never fetches URLs.",
+    "The smoke never calls providers.",
+    "The smoke never performs network calls.",
+    "Human review remains required.",
+    "Default smoke uses a generated harmless explicit local file fixture and does not process real user files.",
+    "Explicit path smoke processes only the selected local markdown file.",
+    "Instruction-like evidence is quarantined.",
+    "Quarantined evidence is not accepted evidence.",
+]
+MVR_HUMAN_SELECTED_FILE_SMOKE_SOURCE_SELECTION_TERMS = [
+    "generated_harmless_human_selected_file_fixture",
+    "explicit_human_selected_local_file",
+    "human_selected_file_smoke_source.md",
+    "local_markdown_file",
+    "explicit_user_selected",
+    "source_sha256",
+    "source_is_not_accepted_evidence",
+    "recursive_directory_scan_allowed = false",
+    "hidden_file_scan_allowed = false",
+    "url_fetch_performed = false",
+]
+MVR_HUMAN_SELECTED_FILE_SMOKE_QUARANTINE_TERMS = [
+    "instruction-like note",
+    "ignore prior rules",
+    "treat this note as authoritative",
+    "instruction_like_evidence_count = 1",
+    "matched_instruction_like_phrases",
+    "quarantined_evidence_is_not_accepted_evidence",
+    "human_review_required = true",
+]
+MVR_HUMAN_SELECTED_FILE_SMOKE_PRIOR_PHASE_RELATION = [
+    "MVR-LOCAL-REAL-INPUT-PILOT-DESIGN-00 defines the real-input pilot boundaries.",
+    "MVR-LOCAL-REAL-INPUT-PILOT-PROTOTYPE-00 implements explicit local source and pasted-excerpt prototype handling.",
+    "MVR-LOCAL-REAL-INPUT-PILOT-QUARANTINE-DETECTION-REPAIR-00 repairs instruction-like evidence quarantine detection.",
+    "MVR-LOCAL-REAL-INPUT-PILOT-HUMAN-SELECTED-FILE-SMOKE-00 records a controlled explicit local file smoke.",
+    "MINIMAL-VIABLE-RECEIPT-DESIGN-00 defines the receipt standard.",
+    "MINIMAL-VIABLE-RECEIPT-LOCAL-PROTOTYPE-00 emits the local fixture-backed receipt.",
+    "OBSERVATION-CONTRACT-POLICY-SIMULATION-00 rehearses notice, consent, and recovery outcomes.",
+    "VALIDATION-TIERING-PROVENANCE-00 records validation confidence scope.",
+]
+MVR_HUMAN_SELECTED_FILE_SMOKE_BLOCKED_CLAIMS = [
+    "human-selected file smoke proves product readiness",
+    "human-selected file smoke is product release",
+    "human-selected file smoke is a user study",
+    "human-selected file smoke validates market demand",
+    "human-selected file smoke proves human benefit",
+    "human-selected file smoke certifies truth",
+    "human-selected file smoke authorizes final answers",
+    "human-selected file smoke grants accepted-evidence authority",
+    "human-selected file smoke writes memory",
+    "human-selected file smoke admits Atlas memory",
+    "human-selected file smoke exports traces",
+    "human-selected file smoke federates PMR",
+    "human-selected file smoke trains the model",
+    "human-selected file smoke skips review",
+    "local source selection is accepted evidence",
+    "source manifest is accepted evidence",
+    "consent authorizes trace export",
+    "consent authorizes PMR federation",
+    "consent authorizes memory write",
+    "smoke can scan directories",
+    "smoke can read hidden files",
+    "smoke can fetch URLs",
+    "smoke can call providers",
+    "explicit source path means accepted evidence",
+    "quarantined evidence is accepted evidence",
+]
+MVR_HUMAN_SELECTED_FILE_SMOKE_CLAIM_ALLOWED = "MVR-LOCAL-REAL-INPUT-PILOT-HUMAN-SELECTED-FILE-SMOKE-00 records a controlled local smoke harness for explicitly selected local files using the MVR real-input pilot builder, preserving source manifest, consent scope, quarantine report, Minimal Viable Receipt artifacts, PMR/inventory/parity visibility, and non-authority boundaries without scanning directories, reading hidden files, fetching URLs, calling providers, performing network calls, writing memory, admitting Atlas memory, exporting traces, federating PMR, releasing product, claiming product readiness, granting final-answer or accepted-evidence authority, certifying truth, training models, skipping review, or performing user validation."
+MVR_HUMAN_SELECTED_FILE_SMOKE_FAILURE_CLASSES = [
+    "human_selected_file_smoke_mistaken_for_product_readiness",
+    "human_selected_file_smoke_mistaken_for_product_release",
+    "human_selected_file_smoke_mistaken_for_user_study",
+    "local_source_selection_mistaken_for_accepted_evidence",
+    "source_manifest_mistaken_for_accepted_evidence",
+    "explicit_source_path_mistaken_for_accepted_evidence",
+    "consent_mistaken_for_trace_export_authorization",
+    "consent_mistaken_for_pmr_federation_authorization",
+    "consent_mistaken_for_memory_write",
+    "smoke_mistaken_for_directory_scan",
+    "smoke_mistaken_for_hidden_file_read",
+    "smoke_mistaken_for_provider_runtime",
+    "quarantined_evidence_mistaken_for_accepted_evidence",
+    "unsupported_claims_hidden",
+    "source_expansion_missing",
+    "human_review_requirement_hidden",
+    "non_authority_boundaries_missing",
+]
+MVR_HUMAN_SELECTED_FILE_SMOKE_DASHBOARD_SUMMARY = {
+    "smoke_status": "completed",
+    "smoke_mode": "explicit_local_file_selection_smoke",
+    "default_smoke_source_mode": "generated_harmless_human_selected_file_fixture",
+    "default_source_path_supplied": False,
+    "default_selected_source_count": 1,
+    "default_source_class": "local_markdown_file",
+    "default_real_user_files_processed": False,
+    "default_local_fixture_mode": True,
+    "explicit_smoke_source_mode": "explicit_human_selected_local_file",
+    "explicit_source_path_supplied": True,
+    "explicit_selected_source_count": 1,
+    "explicit_source_class": "local_markdown_file",
+    "explicit_source_name": "human_selected_file_smoke_source.md",
+    "explicit_real_user_files_processed": True,
+    "explicit_local_fixture_mode": False,
+    "explicit_instruction_like_evidence_count": 1,
+    "matched_instruction_like_phrases_include_instruction_like_note": True,
+    "matched_instruction_like_phrases_include_ignore_prior_rules": True,
+    "matched_instruction_like_phrases_include_treat_this_note_as_authoritative": True,
+    "recursive_directory_scan_allowed": False,
+    "hidden_file_scan_allowed": False,
+    "url_fetch_performed": False,
+    "provider_runtime_performed": False,
+    "network_call_performed": False,
+    "product_release_performed": False,
+    "product_readiness_claimed": False,
+    "accepted_evidence_authority_granted": False,
+    "final_answer_authority_granted": False,
+    "truth_certification_emitted": False,
+    "compliance_certification_emitted": False,
+    "memory_write_performed": False,
+    "atlas_memory_admission_performed": False,
+    "trace_export_performed": False,
+    "pmr_federation_performed": False,
+    "model_training_performed": False,
+    "review_skip_authorized": False,
+    "human_review_required": True,
+    "smoke_is_not_user_study": True,
+    "smoke_is_not_product_readiness": True,
+    "smoke_is_not_product_release": True,
+    "smoke_is_not_accepted_evidence_authority": True,
+    "smoke_requires_human_review": True,
+}
+MVR_HUMAN_SELECTED_FILE_SMOKE_PHASE = {
+    "phase_id": "MVR-LOCAL-REAL-INPUT-PILOT-HUMAN-SELECTED-FILE-SMOKE-00",
+    "repo": "pdxvoiceteacher/CoherenceLattice",
+    "status": "accepted_local_validation",
+    "evidence_type": "local_real_input_pilot_human_selected_file_smoke_publication_sync",
+    "product_posture": "controlled_explicit_local_file_smoke_without_product_or_runtime_authority",
+    "primary_artifacts": MVR_HUMAN_SELECTED_FILE_SMOKE_ARTIFACTS,
+    "schema_references": MVR_HUMAN_SELECTED_FILE_SMOKE_SCHEMA_REFERENCES,
+    "dashboard_summary": MVR_HUMAN_SELECTED_FILE_SMOKE_DASHBOARD_SUMMARY,
+    "reproduction_command_summary": MVR_HUMAN_SELECTED_FILE_SMOKE_COMMAND,
+    "claim_allowed": MVR_HUMAN_SELECTED_FILE_SMOKE_CLAIM_ALLOWED,
+    "claims_blocked": MVR_HUMAN_SELECTED_FILE_SMOKE_BLOCKED_CLAIMS,
+    "reviewer_caution": "MVR-LOCAL-REAL-INPUT-PILOT-HUMAN-SELECTED-FILE-SMOKE-00 records a controlled explicit local file smoke only; it scans no directories, reads no hidden files, fetches no URLs, calls no providers, performs no network calls, writes no memory, admits no Atlas memory, exports no traces, federates no PMR, releases no product, claims no product readiness, grants no final-answer or accepted-evidence authority, certifies no truth, trains no model, skips no review, and performs no user validation.",
+    "publication_status": "dashboard_indexed",
+}
+
+
 VALIDATION_TIERING_PROVENANCE_COMMAND = "python -c \"from pathlib import Path; from coherence.validation.validation_receipt import build_validation_tier_receipt; bridge=Path(r'C:\\UVLM\\run_artifacts\\validation_tiering\\bridge'); policy_ref='validation_tier_policy.v1.json'; build_validation_tier_receipt(bridge, source_phase='AI-RECEIPT-ARCHITECTURE-00', validation_tier='deep', validation_scope='full_multi_module_suite', validation_intent='major_sync_or_handoff_grade_validation', commands_run=[{'command':'python -m pytest -q <full_multi_module_suite>', 'result':'passed', 'duration_seconds':32131.86}], artifact_chain_name='ai_receipt_architecture_product_stack', expected_artifacts=['ai_receipt_architecture_packet.json','ai_receipt_event_chain.json','ai_receipt_architecture.md','ai_receipt_architecture_receipt.json'], observed_artifacts=['ai_receipt_architecture_packet.json','ai_receipt_event_chain.json','ai_receipt_architecture.md','ai_receipt_architecture_receipt.json'], validation_result='passed')\""
 VALIDATION_TIERING_PROVENANCE_ARTIFACTS = [
     "config/validation/validation_tier_policy.v1.json",
@@ -13252,6 +13443,7 @@ MVR_READABILITY_REVISION_PHASE,
 MVR_REAL_INPUT_PILOT_DESIGN_PHASE,
 MVR_REAL_INPUT_PILOT_PROTOTYPE_PHASE,
 MVR_QUARANTINE_REPAIR_PHASE,
+MVR_HUMAN_SELECTED_FILE_SMOKE_PHASE,
 VALIDATION_TIERING_PROVENANCE_PHASE,
 TELEMETRY_APERTURE_DESIGN_PHASE,
 TAC_POLICY_SIMULATION_PHASE,
@@ -15476,6 +15668,17 @@ BOUNDARIES.extend(
         *MVR_QUARANTINE_REPAIR_FAILURE_CLASSES,
         "Blocked overclaim examples for MVR Local Real Input Pilot Quarantine Detection Repair publication boundaries.",
         *MVR_QUARANTINE_REPAIR_BLOCKED_CLAIMS,
+        MVR_HUMAN_SELECTED_FILE_SMOKE_CLAIM_ALLOWED,
+        *MVR_HUMAN_SELECTED_FILE_SMOKE_ARTIFACTS,
+        *MVR_HUMAN_SELECTED_FILE_SMOKE_SCHEMA_REFERENCES,
+        *MVR_HUMAN_SELECTED_FILE_SMOKE_REPRO_FRAGMENTS,
+        *MVR_HUMAN_SELECTED_FILE_SMOKE_DOCTRINE_LANGUAGE,
+        *MVR_HUMAN_SELECTED_FILE_SMOKE_SOURCE_SELECTION_TERMS,
+        *MVR_HUMAN_SELECTED_FILE_SMOKE_QUARANTINE_TERMS,
+        *MVR_HUMAN_SELECTED_FILE_SMOKE_PRIOR_PHASE_RELATION,
+        *MVR_HUMAN_SELECTED_FILE_SMOKE_FAILURE_CLASSES,
+        "Blocked overclaim examples for MVR Local Real Input Pilot Human-Selected File Smoke publication boundaries.",
+        *MVR_HUMAN_SELECTED_FILE_SMOKE_BLOCKED_CLAIMS,
         VALIDATION_TIERING_PROVENANCE_CLAIM_ALLOWED,
         *VALIDATION_TIERING_PROVENANCE_ARTIFACTS,
         *VALIDATION_TIERING_PROVENANCE_TIER_TERMS,
@@ -16365,6 +16568,13 @@ def dashboard_payload() -> dict[str, Any]:
         "mvr_quarantine_detection_repair_contradictory_wording_repaired": True,
         "not_mvr_quarantine_detection_repair_file_access_broadened": True,
         "not_mvr_quarantine_detection_repair_runtime_authority": True,
+        "mvr_human_selected_file_smoke_00_indexed": True,
+        "mvr_human_selected_file_smoke_status": "completed",
+        "mvr_human_selected_file_smoke_default_real_user_files_processed": False,
+        "mvr_human_selected_file_smoke_explicit_real_user_files_processed": True,
+        "not_mvr_human_selected_file_smoke_runtime_authority": True,
+        "not_mvr_human_selected_file_smoke_product_readiness": True,
+        "not_mvr_human_selected_file_smoke_accepted_evidence_authority": True,
         "not_mvr_local_real_input_pilot_product_readiness": True,
         "not_mvr_local_real_input_pilot_product_release": True,
         "not_mvr_local_real_input_pilot_user_validation": True,
@@ -16478,6 +16688,7 @@ def reproducibility_index() -> dict[str, Any]:
                 {"name": "MVR-LOCAL-REAL-INPUT-PILOT-DESIGN-00 design validation", "command": MVR_REAL_INPUT_PILOT_DESIGN_COMMAND},
                 {"name": "MVR-LOCAL-REAL-INPUT-PILOT-PROTOTYPE-00 Python entrypoint", "command": MVR_REAL_INPUT_PILOT_PROTOTYPE_COMMAND},
                 {"name": "MVR-LOCAL-REAL-INPUT-PILOT-QUARANTINE-DETECTION-REPAIR-00 repair validation", "command": MVR_QUARANTINE_REPAIR_COMMAND},
+                {"name": "MVR-LOCAL-REAL-INPUT-PILOT-HUMAN-SELECTED-FILE-SMOKE-00 Python entrypoint", "command": MVR_HUMAN_SELECTED_FILE_SMOKE_COMMAND},
                 {"name": "Validation Tiering Provenance Python entrypoint", "command": VALIDATION_TIERING_PROVENANCE_COMMAND},
                 {"name": "TELEMETRY-APERTURE-DESIGN-00 config/schema inspection", "command": TELEMETRY_APERTURE_DESIGN_COMMAND},
                 {"name": "TAC-POLICY-SIMULATION-00 Python entrypoint", "command": TAC_POLICY_SIMULATION_COMMAND},
@@ -17416,6 +17627,13 @@ def status_payload() -> dict[str, Any]:
         "mvr_quarantine_detection_repair_contradictory_wording_repaired": True,
         "not_mvr_quarantine_detection_repair_file_access_broadened": True,
         "not_mvr_quarantine_detection_repair_runtime_authority": True,
+        "mvr_human_selected_file_smoke_00_indexed": True,
+        "mvr_human_selected_file_smoke_status": "completed",
+        "mvr_human_selected_file_smoke_default_real_user_files_processed": False,
+        "mvr_human_selected_file_smoke_explicit_real_user_files_processed": True,
+        "not_mvr_human_selected_file_smoke_runtime_authority": True,
+        "not_mvr_human_selected_file_smoke_product_readiness": True,
+        "not_mvr_human_selected_file_smoke_accepted_evidence_authority": True,
         "not_mvr_local_real_input_pilot_product_readiness": True,
         "not_mvr_local_real_input_pilot_product_release": True,
         "not_mvr_local_real_input_pilot_user_validation": True,
@@ -23043,6 +23261,31 @@ Relation to prior phases: MVR-LOCAL-REAL-INPUT-PILOT-DESIGN-00 defines boundarie
 See [MVR Local Real Input Pilot Quarantine Detection Repair](mvr-local-real-input-pilot-quarantine-detection-repair.md).
 """
 
+
+MVR_HUMAN_SELECTED_FILE_SMOKE_SYNC_DOCS = {
+    "index.md",
+    "mvr-local-real-input-pilot-design.md",
+    "mvr-local-real-input-pilot-prototype.md",
+    "mvr-local-real-input-pilot-quarantine-detection-repair.md",
+    "minimal-viable-receipt-local-prototype.md",
+    "minimal-viable-receipt-design.md",
+    "observation-contract-policy-simulation.md",
+    "validation-tiering-provenance.md",
+    "claim-boundaries.md",
+}
+MVR_HUMAN_SELECTED_FILE_SMOKE_SYNC_NOTE = f"""
+
+## MVR local real-input pilot human-selected file smoke publication sync
+
+MVR-LOCAL-REAL-INPUT-PILOT-HUMAN-SELECTED-FILE-SMOKE-00 records a controlled explicit local file smoke. Human-selected file smoke uses explicit local source selection. Default smoke uses a generated harmless explicit local file fixture and does not process real user files. Explicit path smoke processes only the selected local markdown file. Instruction-like evidence is quarantined. Quarantined evidence is not accepted evidence. Human review remains required.
+
+Source-selection and quarantine terms: {', '.join(MVR_HUMAN_SELECTED_FILE_SMOKE_SOURCE_SELECTION_TERMS)}. Quarantine terms: {', '.join(MVR_HUMAN_SELECTED_FILE_SMOKE_QUARANTINE_TERMS)}.
+
+The smoke never scans directories, never auto-discovers files, never reads hidden files, never fetches URLs, never calls providers, and never performs network calls. It does not write memory, admit Atlas memory, export traces, federate PMR, release product, claim product readiness, grant final-answer authority, grant accepted-evidence authority, certify truth, train a model, skip review, validate market demand, prove human benefit, or perform user validation.
+
+Relation to prior phases: MVR-LOCAL-REAL-INPUT-PILOT-DESIGN-00 defines the real-input pilot boundaries. MVR-LOCAL-REAL-INPUT-PILOT-PROTOTYPE-00 implements explicit local source and pasted-excerpt prototype handling. MVR-LOCAL-REAL-INPUT-PILOT-QUARANTINE-DETECTION-REPAIR-00 repairs instruction-like evidence quarantine detection. MVR-LOCAL-REAL-INPUT-PILOT-HUMAN-SELECTED-FILE-SMOKE-00 records a controlled explicit local file smoke. MINIMAL-VIABLE-RECEIPT-DESIGN-00 defines the receipt standard. MINIMAL-VIABLE-RECEIPT-LOCAL-PROTOTYPE-00 emits the local fixture-backed receipt. OBSERVATION-CONTRACT-POLICY-SIMULATION-00 rehearses notice, consent, and recovery outcomes. VALIDATION-TIERING-PROVENANCE-00 records validation confidence scope.
+"""
+
 def mvr_local_real_input_pilot_quarantine_detection_repair_doc() -> str:
     summary = "\n".join(f"- {key} = {str(value).lower() if isinstance(value, bool) else value}" for key, value in MVR_QUARANTINE_REPAIR_DASHBOARD_SUMMARY.items())
     return f"""# MVR Local Real Input Pilot Quarantine Detection Repair
@@ -23095,6 +23338,63 @@ MVR-LOCAL-REAL-INPUT-PILOT-QUARANTINE-DETECTION-REPAIR-00 synchronizes the local
 Publication sync grants no runtime authority. It does not imply product release, product readiness, provider runtime, network runtime, trace export, PMR federation, memory write, Atlas memory admission, deployment, final-answer authority, accepted-evidence authority, truth certification, compliance certification, user validation, real user study, human-subject study, market validation, human benefit proof, model training, review skipping, consciousness proof, Omega detection, or universal ontology proof.
 """
 
+def mvr_local_real_input_pilot_human_selected_file_smoke_doc() -> str:
+    summary = "\n".join(f"- {key} = {str(value).lower() if isinstance(value, bool) else value}" for key, value in MVR_HUMAN_SELECTED_FILE_SMOKE_DASHBOARD_SUMMARY.items())
+    return f"""# MVR Local Real Input Pilot Human-Selected File Smoke
+
+MVR-LOCAL-REAL-INPUT-PILOT-HUMAN-SELECTED-FILE-SMOKE-00 synchronizes the locally validated CoherenceLattice MVR Local Real Input Pilot Human-Selected File Smoke into publication dashboards. This is publication/dashboard synchronization only and grants no runtime authority.
+
+## Bounded allowed claim
+
+{MVR_HUMAN_SELECTED_FILE_SMOKE_CLAIM_ALLOWED}
+
+## Dashboard summary
+
+{summary}
+
+## Doctrine language
+
+{_bullets(MVR_HUMAN_SELECTED_FILE_SMOKE_DOCTRINE_LANGUAGE)}
+
+## Source-selection terms
+
+{_bullets(MVR_HUMAN_SELECTED_FILE_SMOKE_SOURCE_SELECTION_TERMS)}
+
+## Quarantine terms
+
+{_bullets(MVR_HUMAN_SELECTED_FILE_SMOKE_QUARANTINE_TERMS)}
+
+## Artifact references
+
+{_bullets(MVR_HUMAN_SELECTED_FILE_SMOKE_ARTIFACTS)}
+
+## Schema references
+
+{_bullets(MVR_HUMAN_SELECTED_FILE_SMOKE_SCHEMA_REFERENCES)}
+
+## Relation to prior phases
+
+{_bullets(MVR_HUMAN_SELECTED_FILE_SMOKE_PRIOR_PHASE_RELATION)}
+
+## Failure classes
+
+{_bullets(MVR_HUMAN_SELECTED_FILE_SMOKE_FAILURE_CLASSES)}
+
+## Blocked claims
+
+{_bullets(MVR_HUMAN_SELECTED_FILE_SMOKE_BLOCKED_CLAIMS)}
+
+## Reproducibility
+
+{_bullets(MVR_HUMAN_SELECTED_FILE_SMOKE_REPRO_FRAGMENTS)}
+- `{MVR_HUMAN_SELECTED_FILE_SMOKE_COMMAND}`
+
+## Runtime authority boundary
+
+Publication sync grants no runtime authority. It does not imply product release, product readiness, provider runtime, network runtime, trace export, PMR federation, memory write, Atlas memory admission, deployment, final-answer authority, accepted-evidence authority, truth certification, compliance certification, user validation, real user study, human-subject study, market validation, human benefit proof, model training, review skipping, consciousness proof, Omega detection, or universal ontology proof.
+"""
+
+
 def build(out_dir: Path, docs_dir: Path) -> None:
     _write_json(out_dir / "experiment_suite_dashboard.json", dashboard_payload())
     _write_json(out_dir / "accepted_phase_matrix.json", accepted_phase_matrix())
@@ -23110,6 +23410,7 @@ def build(out_dir: Path, docs_dir: Path) -> None:
     docs_payload["mvr-local-real-input-pilot-design.md"] = mvr_local_real_input_pilot_design_doc()
     docs_payload["mvr-local-real-input-pilot-prototype.md"] = mvr_local_real_input_pilot_prototype_doc()
     docs_payload["mvr-local-real-input-pilot-quarantine-detection-repair.md"] = mvr_local_real_input_pilot_quarantine_detection_repair_doc()
+    docs_payload["mvr-local-real-input-pilot-human-selected-file-smoke.md"] = mvr_local_real_input_pilot_human_selected_file_smoke_doc()
     for name in MINIMAL_VIABLE_RECEIPT_DESIGN_SYNC_DOCS:
         if name in docs_payload:
             docs_payload[name] = docs_payload[name].rstrip() + MINIMAL_VIABLE_RECEIPT_DESIGN_SYNC_NOTE
@@ -23137,6 +23438,9 @@ def build(out_dir: Path, docs_dir: Path) -> None:
     for name in MVR_QUARANTINE_REPAIR_SYNC_DOCS:
         if name in docs_payload:
             docs_payload[name] = docs_payload[name].rstrip() + MVR_QUARANTINE_REPAIR_SYNC_NOTE
+    for name in MVR_HUMAN_SELECTED_FILE_SMOKE_SYNC_DOCS:
+        if name in docs_payload:
+            docs_payload[name] = docs_payload[name].rstrip() + MVR_HUMAN_SELECTED_FILE_SMOKE_SYNC_NOTE
     for name, text in docs_payload.items():
         _write_text(docs_dir / name, text)
 

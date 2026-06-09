@@ -219,6 +219,10 @@
         "command": "python -m pytest -q tests/test_mvr_local_real_input_pilot_quarantine_detection_repair.py tests/test_mvr_local_real_input_pilot.py tests/test_experiment_registry.py"
       },
       {
+        "name": "MVR-LOCAL-REAL-INPUT-PILOT-HUMAN-SELECTED-FILE-SMOKE-00 Python entrypoint",
+        "command": "python -c \"from pathlib import Path; from coherence.product.mvr_local_real_input_pilot_smoke import build_mvr_local_real_input_pilot_human_selected_file_smoke; bridge=Path(r'C:\\UVLM\\run_artifacts\\mvr_human_selected_file_smoke\\bridge'); build_mvr_local_real_input_pilot_human_selected_file_smoke(bridge)\""
+      },
+      {
         "name": "Validation Tiering Provenance Python entrypoint",
         "command": "python -c \"from pathlib import Path; from coherence.validation.validation_receipt import build_validation_tier_receipt; bridge=Path(r'C:\\UVLM\\run_artifacts\\validation_tiering\\bridge'); policy_ref='validation_tier_policy.v1.json'; build_validation_tier_receipt(bridge, source_phase='AI-RECEIPT-ARCHITECTURE-00', validation_tier='deep', validation_scope='full_multi_module_suite', validation_intent='major_sync_or_handoff_grade_validation', commands_run=[{'command':'python -m pytest -q <full_multi_module_suite>', 'result':'passed', 'duration_seconds':32131.86}], artifact_chain_name='ai_receipt_architecture_product_stack', expected_artifacts=['ai_receipt_architecture_packet.json','ai_receipt_event_chain.json','ai_receipt_architecture.md','ai_receipt_architecture_receipt.json'], observed_artifacts=['ai_receipt_architecture_packet.json','ai_receipt_event_chain.json','ai_receipt_architecture.md','ai_receipt_architecture_receipt.json'], validation_result='passed')\""
       },

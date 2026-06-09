@@ -2951,6 +2951,120 @@
 - no-detection means receipt is product ready
 - no-detection means source is accepted evidence
 - quarantine count means truth score
+- MVR-LOCAL-REAL-INPUT-PILOT-HUMAN-SELECTED-FILE-SMOKE-00 records a controlled local smoke harness for explicitly selected local files using the MVR real-input pilot builder, preserving source manifest, consent scope, quarantine report, Minimal Viable Receipt artifacts, PMR/inventory/parity visibility, and non-authority boundaries without scanning directories, reading hidden files, fetching URLs, calling providers, performing network calls, writing memory, admitting Atlas memory, exporting traces, federating PMR, releasing product, claiming product readiness, granting final-answer or accepted-evidence authority, certifying truth, training models, skipping review, or performing user validation.
+- mvr_local_real_input_human_selected_file_smoke_packet.json
+- mvr_local_real_input_human_selected_file_smoke_receipt.json
+- mvr_local_real_input_source_manifest.json
+- mvr_local_real_input_consent_scope.json
+- mvr_local_real_input_quarantine_report.json
+- mvr_local_real_input_pilot_policy_packet.json
+- mvr_local_real_input_non_authority_boundary.json
+- minimal_viable_receipt_packet.json
+- minimal_viable_receipt_human_readable.md
+- mvr_local_real_input_pilot_receipt.json
+- pmr_local_runtime_artifact_index.json
+- artifact_inventory.json
+- run_artifact_manifest.json
+- export_bundle_manifest.json
+- export_bundle_parity_report.json
+- schema/bridge/mvr_local_real_input_human_selected_file_smoke_packet.schema.json
+- schema/bridge/mvr_local_real_input_human_selected_file_smoke_receipt.schema.json
+- schema/bridge/mvr_local_real_input_source_manifest.schema.json
+- schema/bridge/mvr_local_real_input_consent_scope.schema.json
+- schema/bridge/mvr_local_real_input_quarantine_report.schema.json
+- schema/bridge/mvr_local_real_input_pilot_policy_packet.schema.json
+- schema/bridge/mvr_local_real_input_non_authority_boundary.schema.json
+- build_mvr_local_real_input_pilot_human_selected_file_smoke
+- MVR Local Real Input Pilot Human-Selected File Smoke
+- Human-selected file smoke uses explicit local source selection.
+- Human-selected file smoke is not product readiness.
+- Human-selected file smoke is not product release.
+- Human-selected file smoke is not a user study.
+- Human-selected file smoke is not accepted-evidence authority.
+- Local source selection is not accepted-evidence authority.
+- Local source processing is not memory write.
+- Consent is local to this pilot run.
+- Consent is not trace export authorization.
+- Consent is not PMR federation authorization.
+- The smoke never scans directories.
+- The smoke never auto-discovers files.
+- The smoke never reads hidden files.
+- The smoke never fetches URLs.
+- The smoke never calls providers.
+- The smoke never performs network calls.
+- Human review remains required.
+- Default smoke uses a generated harmless explicit local file fixture and does not process real user files.
+- Explicit path smoke processes only the selected local markdown file.
+- Instruction-like evidence is quarantined.
+- Quarantined evidence is not accepted evidence.
+- generated_harmless_human_selected_file_fixture
+- explicit_human_selected_local_file
+- human_selected_file_smoke_source.md
+- local_markdown_file
+- explicit_user_selected
+- source_sha256
+- source_is_not_accepted_evidence
+- recursive_directory_scan_allowed = false
+- hidden_file_scan_allowed = false
+- url_fetch_performed = false
+- instruction-like note
+- ignore prior rules
+- treat this note as authoritative
+- instruction_like_evidence_count = 1
+- matched_instruction_like_phrases
+- quarantined_evidence_is_not_accepted_evidence
+- human_review_required = true
+- MVR-LOCAL-REAL-INPUT-PILOT-DESIGN-00 defines the real-input pilot boundaries.
+- MVR-LOCAL-REAL-INPUT-PILOT-PROTOTYPE-00 implements explicit local source and pasted-excerpt prototype handling.
+- MVR-LOCAL-REAL-INPUT-PILOT-QUARANTINE-DETECTION-REPAIR-00 repairs instruction-like evidence quarantine detection.
+- MVR-LOCAL-REAL-INPUT-PILOT-HUMAN-SELECTED-FILE-SMOKE-00 records a controlled explicit local file smoke.
+- MINIMAL-VIABLE-RECEIPT-DESIGN-00 defines the receipt standard.
+- MINIMAL-VIABLE-RECEIPT-LOCAL-PROTOTYPE-00 emits the local fixture-backed receipt.
+- OBSERVATION-CONTRACT-POLICY-SIMULATION-00 rehearses notice, consent, and recovery outcomes.
+- VALIDATION-TIERING-PROVENANCE-00 records validation confidence scope.
+- human_selected_file_smoke_mistaken_for_product_readiness
+- human_selected_file_smoke_mistaken_for_product_release
+- human_selected_file_smoke_mistaken_for_user_study
+- local_source_selection_mistaken_for_accepted_evidence
+- source_manifest_mistaken_for_accepted_evidence
+- explicit_source_path_mistaken_for_accepted_evidence
+- consent_mistaken_for_trace_export_authorization
+- consent_mistaken_for_pmr_federation_authorization
+- consent_mistaken_for_memory_write
+- smoke_mistaken_for_directory_scan
+- smoke_mistaken_for_hidden_file_read
+- smoke_mistaken_for_provider_runtime
+- quarantined_evidence_mistaken_for_accepted_evidence
+- unsupported_claims_hidden
+- source_expansion_missing
+- human_review_requirement_hidden
+- non_authority_boundaries_missing
+- Blocked overclaim examples for MVR Local Real Input Pilot Human-Selected File Smoke publication boundaries.
+- human-selected file smoke proves product readiness
+- human-selected file smoke is product release
+- human-selected file smoke is a user study
+- human-selected file smoke validates market demand
+- human-selected file smoke proves human benefit
+- human-selected file smoke certifies truth
+- human-selected file smoke authorizes final answers
+- human-selected file smoke grants accepted-evidence authority
+- human-selected file smoke writes memory
+- human-selected file smoke admits Atlas memory
+- human-selected file smoke exports traces
+- human-selected file smoke federates PMR
+- human-selected file smoke trains the model
+- human-selected file smoke skips review
+- local source selection is accepted evidence
+- source manifest is accepted evidence
+- consent authorizes trace export
+- consent authorizes PMR federation
+- consent authorizes memory write
+- smoke can scan directories
+- smoke can read hidden files
+- smoke can fetch URLs
+- smoke can call providers
+- explicit source path means accepted evidence
+- quarantined evidence is accepted evidence
 - VALIDATION-TIERING-PROVENANCE-00 documents smoke, acceptance, and deep validation tiers and emits validation receipts that record tier, scope, commands, artifact chain, duration, sufficient-for decisions, and not-sufficient-for boundaries without certifying truth, releasing product, proving science, validating market or human benefit, deploying runtime, writing memory, or admitting Atlas memory.
 - config/validation/validation_tier_policy.v1.json
 - validation_tier_receipt.json
@@ -4248,3 +4362,13 @@ Smoke outcomes include instruction_like and harmless cases with explicit_local_s
 Relation to prior phases: MVR-LOCAL-REAL-INPUT-PILOT-DESIGN-00 defines boundaries for a future real-local-input pilot. MVR-LOCAL-REAL-INPUT-PILOT-PROTOTYPE-00 emits the first bounded local real-input pilot prototype. MVR-LOCAL-REAL-INPUT-PILOT-QUARANTINE-DETECTION-REPAIR-00 repairs instruction-like evidence detection for human-selected local files. MINIMAL-VIABLE-RECEIPT-DESIGN-00 defines the one-transaction/many-sections receipt standard. MINIMAL-VIABLE-RECEIPT-LOCAL-PROTOTYPE-00 emits the local fixture-backed readable receipt. MVR-LOCAL-PROTOTYPE-READABILITY-REVISION-00 applies deterministic local readability revisions. TRIADIC-OBSERVATION-CONTRACT-DESIGN-00 defines governed attention. OBSERVATION-CONTRACT-POLICY-SIMULATION-00 rehearses notice, consent, recovery, source-expansion, pathway-prior, retention, trace-export, and PMR-federation policy outcomes. TAC phases define aperture posture and review visibility. COHERENCE-EVENT-SIGNATURES-DESIGN-00 defines event signatures. CES-PMR-INDEXING-DESIGN-00 defines CES as a compact PMR index, not source replacement. VALIDATION-TIERING-PROVENANCE-00 records validation confidence scope.
 
 See [MVR Local Real Input Pilot Quarantine Detection Repair](mvr-local-real-input-pilot-quarantine-detection-repair.md).
+
+## MVR local real-input pilot human-selected file smoke publication sync
+
+MVR-LOCAL-REAL-INPUT-PILOT-HUMAN-SELECTED-FILE-SMOKE-00 records a controlled explicit local file smoke. Human-selected file smoke uses explicit local source selection. Default smoke uses a generated harmless explicit local file fixture and does not process real user files. Explicit path smoke processes only the selected local markdown file. Instruction-like evidence is quarantined. Quarantined evidence is not accepted evidence. Human review remains required.
+
+Source-selection and quarantine terms: generated_harmless_human_selected_file_fixture, explicit_human_selected_local_file, human_selected_file_smoke_source.md, local_markdown_file, explicit_user_selected, source_sha256, source_is_not_accepted_evidence, recursive_directory_scan_allowed = false, hidden_file_scan_allowed = false, url_fetch_performed = false. Quarantine terms: instruction-like note, ignore prior rules, treat this note as authoritative, instruction_like_evidence_count = 1, matched_instruction_like_phrases, quarantined_evidence_is_not_accepted_evidence, human_review_required = true.
+
+The smoke never scans directories, never auto-discovers files, never reads hidden files, never fetches URLs, never calls providers, and never performs network calls. It does not write memory, admit Atlas memory, export traces, federate PMR, release product, claim product readiness, grant final-answer authority, grant accepted-evidence authority, certify truth, train a model, skip review, validate market demand, prove human benefit, or perform user validation.
+
+Relation to prior phases: MVR-LOCAL-REAL-INPUT-PILOT-DESIGN-00 defines the real-input pilot boundaries. MVR-LOCAL-REAL-INPUT-PILOT-PROTOTYPE-00 implements explicit local source and pasted-excerpt prototype handling. MVR-LOCAL-REAL-INPUT-PILOT-QUARANTINE-DETECTION-REPAIR-00 repairs instruction-like evidence quarantine detection. MVR-LOCAL-REAL-INPUT-PILOT-HUMAN-SELECTED-FILE-SMOKE-00 records a controlled explicit local file smoke. MINIMAL-VIABLE-RECEIPT-DESIGN-00 defines the receipt standard. MINIMAL-VIABLE-RECEIPT-LOCAL-PROTOTYPE-00 emits the local fixture-backed receipt. OBSERVATION-CONTRACT-POLICY-SIMULATION-00 rehearses notice, consent, and recovery outcomes. VALIDATION-TIERING-PROVENANCE-00 records validation confidence scope.

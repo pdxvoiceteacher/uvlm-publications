@@ -110,6 +110,7 @@ from tools.build_public_repro_dashboard import (
     MVR_REAL_INPUT_PILOT_DESIGN_BLOCKED_CLAIMS,
     MVR_REAL_INPUT_PILOT_PROTOTYPE_BLOCKED_CLAIMS,
     MVR_QUARANTINE_REPAIR_BLOCKED_CLAIMS,
+    MVR_HUMAN_SELECTED_FILE_SMOKE_BLOCKED_CLAIMS,
     MVR_READABILITY_REVIEW_SEED_CLAIM_ALLOWED,
     MVR_READABILITY_REVIEW_SEED_DASHBOARD_SUMMARY,
     MVR_READABILITY_REVIEW_SEED_DOCTRINE_LANGUAGE,
@@ -337,6 +338,7 @@ REQUIRED_PHASES = {
     "MVR-LOCAL-REAL-INPUT-PILOT-DESIGN-00",
     "MVR-LOCAL-REAL-INPUT-PILOT-PROTOTYPE-00",
     "MVR-LOCAL-REAL-INPUT-PILOT-QUARANTINE-DETECTION-REPAIR-00",
+    "MVR-LOCAL-REAL-INPUT-PILOT-HUMAN-SELECTED-FILE-SMOKE-00",
 }
 REQUIRED_BOUNDARY_PHRASES = (
     "not truth certification",
@@ -1289,6 +1291,7 @@ FORBIDDEN_PHRASES = (
     *[f"claims {claim}" for claim in MVR_REAL_INPUT_PILOT_DESIGN_BLOCKED_CLAIMS],
     *[f"claims {claim}" for claim in MVR_REAL_INPUT_PILOT_PROTOTYPE_BLOCKED_CLAIMS],
     *[f"claims {claim}" for claim in MVR_QUARANTINE_REPAIR_BLOCKED_CLAIMS],
+    *[f"claims {claim}" for claim in MVR_HUMAN_SELECTED_FILE_SMOKE_BLOCKED_CLAIMS],
     "network authorized",
     "remote provider called",
     "remote provider calls",
@@ -1629,6 +1632,12 @@ def _forbidden_hits(text: str) -> list[str]:
                 start = index + len(normalized_phrase)
                 continue
             if phrase.lower().startswith("claims quarantine repair") and "claims_blocked" in text[max(0, index - 96) : index]:
+                start = index + len(normalized_phrase)
+                continue
+            if phrase.lower().startswith("claims human-selected file smoke") and "claims_blocked" in text[max(0, index - 96) : index]:
+                start = index + len(normalized_phrase)
+                continue
+            if phrase.lower().startswith("claims smoke can") and "claims_blocked" in text[max(0, index - 96) : index]:
                 start = index + len(normalized_phrase)
                 continue
             if phrase.lower().startswith("claims no-detection") and "claims_blocked" in text[max(0, index - 96) : index]:
