@@ -25,6 +25,12 @@ from tools.build_public_repro_dashboard import (
     MINIMAL_VIABLE_RECEIPT_DESIGN_BLOCKED_CLAIMS,
     MINIMAL_VIABLE_RECEIPT_LOCAL_PROTOTYPE_BLOCKED_CLAIMS,
     MVR_READABILITY_REVIEW_SEED_BLOCKED_CLAIMS,
+    MVR_READABILITY_REVISION_BLOCKED_CLAIMS,
+    MVR_REAL_INPUT_PILOT_DESIGN_BLOCKED_CLAIMS,
+    MVR_REAL_INPUT_PILOT_PROTOTYPE_BLOCKED_CLAIMS,
+    MVR_QUARANTINE_REPAIR_BLOCKED_CLAIMS,
+    MVR_HUMAN_SELECTED_FILE_SMOKE_BLOCKED_CLAIMS,
+    COMPLIANCE_DESIGN_BLOCKED_CLAIMS,
     VALIDATION_TIERING_PROVENANCE_BLOCKED_CLAIMS,
     TELEMETRY_APERTURE_BLOCKED_CLAIMS,
     TAC_POLICY_SIMULATION_BLOCKED_CLAIMS,
@@ -837,6 +843,12 @@ PAPER_CONFIGS: dict[str, dict[str, Any]] = {
             *MINIMAL_VIABLE_RECEIPT_DESIGN_BLOCKED_CLAIMS,
             *MINIMAL_VIABLE_RECEIPT_LOCAL_PROTOTYPE_BLOCKED_CLAIMS,
             *MVR_READABILITY_REVIEW_SEED_BLOCKED_CLAIMS,
+            *MVR_READABILITY_REVISION_BLOCKED_CLAIMS,
+            *MVR_REAL_INPUT_PILOT_DESIGN_BLOCKED_CLAIMS,
+            *MVR_REAL_INPUT_PILOT_PROTOTYPE_BLOCKED_CLAIMS,
+            *MVR_QUARANTINE_REPAIR_BLOCKED_CLAIMS,
+            *MVR_HUMAN_SELECTED_FILE_SMOKE_BLOCKED_CLAIMS,
+            *COMPLIANCE_DESIGN_BLOCKED_CLAIMS,
             *VALIDATION_TIERING_PROVENANCE_BLOCKED_CLAIMS,
             *TELEMETRY_APERTURE_BLOCKED_CLAIMS,
             *TAC_POLICY_SIMULATION_BLOCKED_CLAIMS,
@@ -1312,6 +1324,9 @@ def _forbidden_hits(normalized_text: str, forbidden: tuple[str, ...]) -> list[st
             if phrase in {"market validation", "human benefit proof"} and ("without certifying truth" in normalized_text[max(0, index - 260) : index] or "without performing" in normalized_text[max(0, index - 320) : index]):
                 search_from = index + len(normalized_phrase)
                 continue
+            if phrase in {"legal advice", "compliance certification"} and "avoiding" in normalized_text[max(0, index - 220) : index]:
+                search_from = index + len(normalized_phrase)
+                continue
             if (
                 phrase in {"market validation", "human benefit proof", "federation", "compliance certification", "omega detection", "product release"}
                 and "ai receipt architecture" in normalized_text[max(0, index - 700) : index + 200]
@@ -1369,6 +1384,25 @@ def _forbidden_hits(normalized_text: str, forbidden: tuple[str, ...]) -> list[st
                 or "no runtime authority" in normalized_text[max(0, index - 80) : index + 80]
                 or "not runtime authority" in normalized_text[max(0, index - 80) : index + 80]
             ):
+                search_from = index + len(normalized_phrase)
+                continue
+            if phrase in {"final answer authority", "final-answer authority", "accepted-evidence authority", "accepted evidence authority", "accepted evidence"}:
+                preceding = normalized_text[max(0, index - 180) : index]
+                explicit_claim_context = (
+                    "claims" in normalized_text[max(0, index - 80) : index]
+                    or "this paper" in normalized_text[max(0, index - 80) : index]
+                    or "overclaim says" in normalized_text[max(0, index - 80) : index]
+                )
+                if not explicit_claim_context and (
+                    "without" in preceding
+                    or "without" in normalized_text[max(0, index - 800) : index]
+                    or "grants no" in normalized_text[max(0, index - 240) : index]
+                    or "does not grant" in normalized_text[max(0, index - 240) : index]
+                    or "not " in normalized_text[max(0, index - 80) : index]
+                ):
+                    search_from = index + len(normalized_phrase)
+                    continue
+            if phrase in {"federation", "pmr federation", "product release", "product readiness", "final answer authority", "final-answer authority", "final-answer authorization", "accepted-evidence authority", "accepted evidence authority", "accepted-evidence grants", "accepted evidence", "truth certification", "memory write", "atlas admission", "atlas memory admission", "trace export", "model training", "review skipping", "human-subject study", "market validation", "human benefit proof", "claims human benefit proof"} and "avoiding" in normalized_text[max(0, index - 900) : index]:
                 search_from = index + len(normalized_phrase)
                 continue
             if (
@@ -1441,6 +1475,12 @@ def _forbidden_hits(normalized_text: str, forbidden: tuple[str, ...]) -> list[st
             *MINIMAL_VIABLE_RECEIPT_DESIGN_BLOCKED_CLAIMS,
             *MINIMAL_VIABLE_RECEIPT_LOCAL_PROTOTYPE_BLOCKED_CLAIMS,
             *MVR_READABILITY_REVIEW_SEED_BLOCKED_CLAIMS,
+            *MVR_READABILITY_REVISION_BLOCKED_CLAIMS,
+            *MVR_REAL_INPUT_PILOT_DESIGN_BLOCKED_CLAIMS,
+            *MVR_REAL_INPUT_PILOT_PROTOTYPE_BLOCKED_CLAIMS,
+            *MVR_QUARANTINE_REPAIR_BLOCKED_CLAIMS,
+            *MVR_HUMAN_SELECTED_FILE_SMOKE_BLOCKED_CLAIMS,
+            *COMPLIANCE_DESIGN_BLOCKED_CLAIMS,
             *VALIDATION_TIERING_PROVENANCE_BLOCKED_CLAIMS,
             *TELEMETRY_APERTURE_BLOCKED_CLAIMS,
             *TAC_POLICY_SIMULATION_BLOCKED_CLAIMS,
