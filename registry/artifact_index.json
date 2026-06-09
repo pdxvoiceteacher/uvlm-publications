@@ -1289,6 +1289,42 @@
       "schema/bridge/compliance_human_signoff_packet.schema.json",
       "schema/bridge/compliance_evidence_non_authority_boundary.schema.json"
     ],
+    "WAVE-ROSETTA-CANONICAL-PROXY-BRIDGE-00": [
+      "docs/WAVE_ROSETTA_CANONICAL_PROXY_BRIDGE.md",
+      "python/src/coherence/local_review/canonical_proxy_bridge.py",
+      "config/metrics/canonical_proxy_bridge_weight_profile.v1.json",
+      "schema/bridge/wave_rosetta_canonical_proxy_bridge_packet.schema.json",
+      "schema/bridge/waveform_feature_vector_packet.schema.json",
+      "schema/bridge/canonical_proxy_bridge_matrix.schema.json",
+      "schema/bridge/canonical_proxy_bridge_uncertainty_packet.schema.json",
+      "schema/bridge/canonical_proxy_bridge_weight_profile.schema.json",
+      "schema/bridge/canonical_proxy_bridge_input_ledger.schema.json",
+      "schema/bridge/canonical_proxy_bridge_review_packet.schema.json",
+      "wave_rosetta_canonical_proxy_bridge_packet.json",
+      "waveform_feature_vector_packet.json",
+      "canonical_proxy_bridge_matrix.json",
+      "canonical_proxy_bridge_uncertainty_packet.json",
+      "canonical_proxy_bridge_weight_profile.json",
+      "canonical_proxy_bridge_input_ledger.json",
+      "canonical_proxy_bridge_summary.md",
+      "canonical_proxy_bridge_review_packet.json"
+    ],
+    "EU-AI-ACT-MVR-EVIDENCE-MAPPING-DESIGN-00": [
+      "docs/EU_AI_ACT_MVR_EVIDENCE_MAPPING_DESIGN.md",
+      "config/compliance/eu_ai_act_mvr_evidence_mapping.v1.json",
+      "schema/bridge/eu_ai_act_mvr_evidence_map.schema.json",
+      "schema/bridge/eu_ai_act_mvr_gap_register.schema.json",
+      "schema/bridge/eu_ai_act_mvr_human_review_packet.schema.json",
+      "schema/bridge/eu_ai_act_mvr_non_authority_boundary.schema.json"
+    ],
+    "WAVE-ROSETTA-CANONICAL-PROXY-BRIDGE-PROVENANCE-00": [
+      "docs/WAVE_ROSETTA_CANONICAL_PROXY_BRIDGE_PROVENANCE.md",
+      "config/metrics/canonical_proxy_bridge_provenance.v1.json",
+      "schema/bridge/canonical_proxy_bridge_provenance_packet.schema.json",
+      "schema/bridge/canonical_proxy_bridge_formula_ledger.schema.json",
+      "schema/bridge/canonical_proxy_bridge_report_lineage.schema.json",
+      "schema/bridge/canonical_proxy_bridge_calibration_gap_register.schema.json"
+    ],
     "VALIDATION-TIERING-PROVENANCE-00": [
       "config/validation/validation_tier_policy.v1.json",
       "validation_tier_receipt.json",

@@ -181,6 +181,27 @@ from tools.build_public_repro_dashboard import (
     COMPLIANCE_TOOLSET_DESIGN_ARTIFACTS,
     COMPLIANCE_TOOLSET_DESIGN_REPRO_FRAGMENTS,
     COMPLIANCE_TOOLSET_DOCTRINE_LANGUAGE,
+    EU_AI_ACT_EVIDENCE_CATEGORIES,
+    EU_AI_ACT_GAP_TERMS,
+    EU_AI_ACT_MVR_MAPPING_ARTIFACTS,
+    EU_AI_ACT_MVR_MAPPING_CLAIM_ALLOWED,
+    EU_AI_ACT_MVR_MAPPING_DASHBOARD_SUMMARY,
+    EU_AI_ACT_MVR_MAPPING_DOCTRINE_LANGUAGE,
+    WAVE_BRIDGE_ARTIFACTS,
+    WAVE_BRIDGE_CLAIM_ALLOWED,
+    WAVE_BRIDGE_DASHBOARD_SUMMARY,
+    WAVE_BRIDGE_DOCTRINE_LANGUAGE,
+    WAVE_BRIDGE_ESTIMATE_TERMS,
+    WAVE_BRIDGE_REPRO_FRAGMENTS,
+    WAVE_CALIBRATION_GAPS,
+    WAVE_EU_PROVENANCE_BLOCKED_CLAIMS,
+    WAVE_FORMULA_LINEAGE,
+    WAVE_PROVENANCE_ARTIFACTS,
+    WAVE_PROVENANCE_CLAIM_ALLOWED,
+    WAVE_PROVENANCE_DASHBOARD_SUMMARY,
+    WAVE_PROVENANCE_DOCTRINE_LANGUAGE,
+    WAVE_PROVENANCE_REPORT_LINEAGE,
+    WAVE_VECTOR_TERMS,
     VALIDATION_TIERING_PROVENANCE_ACCEPTANCE_TERMS,
     VALIDATION_TIERING_PROVENANCE_ARTIFACTS,
     VALIDATION_TIERING_PROVENANCE_BLOCKED_CLAIMS,
@@ -502,6 +523,9 @@ REQUIRED_PHASES = {
     "MVR-LOCAL-REAL-INPUT-PILOT-HUMAN-SELECTED-FILE-SMOKE-00",
     "COMPLIANCE-READY-MVR-REPORT-DESIGN-00",
     "COMPLIANCE-EVIDENCE-TOOLSET-LIBRARY-DESIGN-00",
+    "WAVE-ROSETTA-CANONICAL-PROXY-BRIDGE-00",
+    "EU-AI-ACT-MVR-EVIDENCE-MAPPING-DESIGN-00",
+    "WAVE-ROSETTA-CANONICAL-PROXY-BRIDGE-PROVENANCE-00",
 }
 
 REQUIRED_COMMAND_FRAGMENTS = (
@@ -6402,6 +6426,127 @@ def test_mvr_local_real_input_pilot_prototype_indexes_dashboard_and_docs(tmp_pat
 
 
 
+
+
+
+def test_wave_eu_and_provenance_designs_index_dashboard_and_docs(tmp_path):
+    out_dir, docs_dir = run_builder(tmp_path)
+    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text(encoding="utf-8"))
+    artifact_index = json.loads((out_dir / "artifact_index.json").read_text(encoding="utf-8"))
+    repro_index = json.loads((out_dir / "reproducibility_index.json").read_text(encoding="utf-8"))
+    claim_boundaries = json.loads((out_dir / "claim_boundary_index.json").read_text(encoding="utf-8"))
+    status = json.loads((out_dir / "status.json").read_text(encoding="utf-8"))
+    bridge_page = (docs_dir / "wave-rosetta-canonical-proxy-bridge.md").read_text(encoding="utf-8")
+    eu_page = (docs_dir / "eu-ai-act-mvr-evidence-mapping-design.md").read_text(encoding="utf-8")
+    provenance_page = (docs_dir / "wave-rosetta-canonical-proxy-bridge-provenance.md").read_text(encoding="utf-8")
+
+    bridge_phase = next(entry for entry in dashboard["accepted_phases"] if entry["phase_id"] == "WAVE-ROSETTA-CANONICAL-PROXY-BRIDGE-00")
+    eu_phase = next(entry for entry in dashboard["accepted_phases"] if entry["phase_id"] == "EU-AI-ACT-MVR-EVIDENCE-MAPPING-DESIGN-00")
+    provenance_phase = next(entry for entry in dashboard["accepted_phases"] if entry["phase_id"] == "WAVE-ROSETTA-CANONICAL-PROXY-BRIDGE-PROVENANCE-00")
+    bridge_summary = bridge_phase["dashboard_summary"]
+    eu_summary = eu_phase["dashboard_summary"]
+    provenance_summary = provenance_phase["dashboard_summary"]
+    assert bridge_summary == WAVE_BRIDGE_DASHBOARD_SUMMARY
+    assert eu_summary == EU_AI_ACT_MVR_MAPPING_DASHBOARD_SUMMARY
+    assert provenance_summary == WAVE_PROVENANCE_DASHBOARD_SUMMARY
+    assert bridge_summary["bridge_status"] == "completed"
+    assert bridge_summary["bridge_mode"] == "canonical_proxy_bridge_estimate"
+    assert bridge_summary["E_bridge"] == 0.661
+    assert bridge_summary["T_bridge"] == 0.705
+    assert bridge_summary["Ψ_structural_bridge"] == 0.6303
+    assert bridge_summary["Ψ_constructive_bridge"] == 0.452729
+    assert bridge_summary["Ψ_cancellation_bridge"] == 0.214302
+    assert bridge_summary["combined_uncertainty"] == 0.34625
+    for field in (
+        "bridge_is_not_canonical_measurement", "bridge_is_not_truth_certification",
+        "bridge_is_not_universal_ontology_proof", "bridge_is_not_consciousness_proof",
+        "bridge_is_not_product_release", "bridge_is_not_product_readiness",
+        "bridge_is_not_final_answer_authority", "bridge_is_not_accepted_evidence_authority",
+        "bridge_is_not_memory_write", "bridge_is_not_atlas_memory_admission",
+        "bridge_requires_population_calibration", "bridge_requires_domain_validation", "bridge_requires_human_review",
+    ):
+        assert bridge_summary[field] is True
+
+    assert eu_summary["policy_status"] == "active_design_only"
+    assert eu_summary["mapping_status"] == "active_design_only"
+    assert eu_summary["profile_id"] == "eu_ai_act_evidence_support"
+    assert eu_summary["evidence_map_generation_enabled"] is False
+    for field in (
+        "eu_ai_act_compliance_certification_emitted", "legal_advice_emitted", "audit_pass_claimed",
+        "attestation_success_claimed", "product_readiness_claimed", "product_release_performed",
+        "provider_runtime_performed", "network_call_performed", "real_input_processing_performed",
+        "memory_write_performed", "atlas_memory_admission_performed", "trace_export_performed",
+        "pmr_federation_performed", "final_answer_authority_granted", "accepted_evidence_authority_granted",
+        "truth_certification_emitted", "model_training_performed", "review_skip_authorized",
+    ):
+        assert eu_summary[field] is False
+
+    assert provenance_summary["provenance_status"] == "active_documentation_only"
+    assert provenance_summary["target_phase"] == "WAVE-ROSETTA-CANONICAL-PROXY-BRIDGE-00"
+    assert provenance_summary["target_weight_profile_version"] == "v1.0.0"
+    for field in (
+        "runtime_behavior_changed", "bridge_weight_changed", "bridge_formula_changed",
+        "canonical_measurement_claimed", "guft_proof_claimed", "universal_ontology_proof_claimed",
+        "consciousness_proof_claimed", "truth_certification_emitted", "final_answer_authority_granted",
+        "accepted_evidence_authority_granted", "compliance_certification_emitted", "product_release_performed",
+        "product_readiness_claimed", "provider_runtime_performed", "network_call_performed", "memory_write_performed",
+        "atlas_memory_admission_performed", "trace_export_performed", "pmr_federation_performed",
+    ):
+        assert provenance_summary[field] is False
+
+    assert artifact_index["phases"]["WAVE-ROSETTA-CANONICAL-PROXY-BRIDGE-00"] == WAVE_BRIDGE_ARTIFACTS
+    assert artifact_index["phases"]["EU-AI-ACT-MVR-EVIDENCE-MAPPING-DESIGN-00"] == EU_AI_ACT_MVR_MAPPING_ARTIFACTS
+    assert artifact_index["phases"]["WAVE-ROSETTA-CANONICAL-PROXY-BRIDGE-PROVENANCE-00"] == WAVE_PROVENANCE_ARTIFACTS
+    for artifact in WAVE_BRIDGE_ARTIFACTS:
+        assert artifact in bridge_page
+    for artifact in EU_AI_ACT_MVR_MAPPING_ARTIFACTS:
+        assert artifact in eu_page
+    for artifact in WAVE_PROVENANCE_ARTIFACTS:
+        assert artifact in provenance_page
+
+    repro_text = json.dumps(repro_index, ensure_ascii=False)
+    for fragment in WAVE_BRIDGE_REPRO_FRAGMENTS:
+        assert fragment in repro_text
+
+    for required in (*WAVE_BRIDGE_DOCTRINE_LANGUAGE, *WAVE_VECTOR_TERMS, *WAVE_BRIDGE_ESTIMATE_TERMS, WAVE_BRIDGE_CLAIM_ALLOWED, "Publication sync grants no runtime authority."):
+        assert required in bridge_page
+    for required in (*EU_AI_ACT_MVR_MAPPING_DOCTRINE_LANGUAGE, *EU_AI_ACT_EVIDENCE_CATEGORIES, *EU_AI_ACT_GAP_TERMS, EU_AI_ACT_MVR_MAPPING_CLAIM_ALLOWED, "Publication sync grants no runtime authority."):
+        assert required in eu_page
+    for required in (*WAVE_PROVENANCE_DOCTRINE_LANGUAGE, *WAVE_VECTOR_TERMS, *WAVE_BRIDGE_ESTIMATE_TERMS, *WAVE_PROVENANCE_REPORT_LINEAGE, *WAVE_FORMULA_LINEAGE, *WAVE_CALIBRATION_GAPS, WAVE_PROVENANCE_CLAIM_ALLOWED, "Publication sync grants no runtime authority."):
+        assert required in provenance_page
+
+    boundaries = "\n".join(claim_boundaries["boundaries"])
+    for blocked in WAVE_EU_PROVENANCE_BLOCKED_CLAIMS:
+        assert blocked in boundaries
+
+    assert status["wave_rosetta_canonical_proxy_bridge_00_indexed"] is True
+    assert status["wave_rosetta_canonical_proxy_bridge_status"] == "completed"
+    assert status["wave_rosetta_canonical_proxy_bridge_is_not_canonical_measurement"] is True
+    assert status["eu_ai_act_mvr_evidence_mapping_design_00_indexed"] is True
+    assert status["eu_ai_act_mvr_evidence_mapping_status"] == "active_design_only"
+    assert status["eu_ai_act_mvr_evidence_map_generation_enabled"] is False
+    assert status["wave_rosetta_canonical_proxy_bridge_provenance_00_indexed"] is True
+    assert status["wave_rosetta_canonical_proxy_bridge_provenance_status"] == "active_documentation_only"
+    assert status["wave_rosetta_canonical_proxy_bridge_provenance_runtime_behavior_changed"] is False
+    assert status["not_wave_eu_provenance_runtime_authority"] is True
+    assert status["not_wave_eu_provenance_truth_or_compliance_certification"] is True
+
+
+def test_validator_required_phases_include_wave_eu_provenance_designs():
+    assert "WAVE-ROSETTA-CANONICAL-PROXY-BRIDGE-00" in VALIDATOR_REQUIRED_PHASES
+    assert "EU-AI-ACT-MVR-EVIDENCE-MAPPING-DESIGN-00" in VALIDATOR_REQUIRED_PHASES
+    assert "WAVE-ROSETTA-CANONICAL-PROXY-BRIDGE-PROVENANCE-00" in VALIDATOR_REQUIRED_PHASES
+
+
+def test_validator_fails_if_wave_eu_provenance_designs_make_forbidden_claims(tmp_path):
+    for claim in WAVE_EU_PROVENANCE_BLOCKED_CLAIMS:
+        out_dir, docs_dir = run_builder(tmp_path / claim.replace(" ", "_").replace("/", "_"))
+        page = docs_dir / "wave-rosetta-canonical-proxy-bridge.md"
+        page.write_text(page.read_text(encoding="utf-8") + f"\nWAVE bridge claims {claim}.\n", encoding="utf-8")
+        result = validate_dashboard(out_dir / "experiment_suite_dashboard.json", docs_dir)
+        assert result["passed"] is False, claim
+        forbidden_found = [found.lower() for found in result["forbidden_claims_found"]]
+        assert claim.lower() in forbidden_found or f"claims {claim.lower()}" in forbidden_found, result
 
 def test_compliance_report_and_toolset_designs_index_dashboard_and_docs(tmp_path):
     out_dir, docs_dir = run_builder(tmp_path)

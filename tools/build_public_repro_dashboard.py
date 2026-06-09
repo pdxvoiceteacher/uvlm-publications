@@ -10991,6 +10991,329 @@ COMPLIANCE_TOOLSET_PHASE = {
 }
 
 
+WAVE_BRIDGE_COMMAND = "python -c \"from pathlib import Path; from coherence.local_review.canonical_proxy_bridge import build_wave_rosetta_canonical_proxy_bridge; bridge=Path(r'C:\\UVLM\\run_artifacts\\wave_rosetta_canonical_proxy_bridge\\bridge'); build_wave_rosetta_canonical_proxy_bridge(bridge)\""
+WAVE_BRIDGE_REPRO_FRAGMENTS = ["build_wave_rosetta_canonical_proxy_bridge"]
+WAVE_BRIDGE_ARTIFACTS = [
+    "docs/WAVE_ROSETTA_CANONICAL_PROXY_BRIDGE.md",
+    "python/src/coherence/local_review/canonical_proxy_bridge.py",
+    "config/metrics/canonical_proxy_bridge_weight_profile.v1.json",
+    "schema/bridge/wave_rosetta_canonical_proxy_bridge_packet.schema.json",
+    "schema/bridge/waveform_feature_vector_packet.schema.json",
+    "schema/bridge/canonical_proxy_bridge_matrix.schema.json",
+    "schema/bridge/canonical_proxy_bridge_uncertainty_packet.schema.json",
+    "schema/bridge/canonical_proxy_bridge_weight_profile.schema.json",
+    "schema/bridge/canonical_proxy_bridge_input_ledger.schema.json",
+    "schema/bridge/canonical_proxy_bridge_review_packet.schema.json",
+    "wave_rosetta_canonical_proxy_bridge_packet.json",
+    "waveform_feature_vector_packet.json",
+    "canonical_proxy_bridge_matrix.json",
+    "canonical_proxy_bridge_uncertainty_packet.json",
+    "canonical_proxy_bridge_weight_profile.json",
+    "canonical_proxy_bridge_input_ledger.json",
+    "canonical_proxy_bridge_summary.md",
+    "canonical_proxy_bridge_review_packet.json",
+]
+EU_AI_ACT_MVR_MAPPING_ARTIFACTS = [
+    "docs/EU_AI_ACT_MVR_EVIDENCE_MAPPING_DESIGN.md",
+    "config/compliance/eu_ai_act_mvr_evidence_mapping.v1.json",
+    "schema/bridge/eu_ai_act_mvr_evidence_map.schema.json",
+    "schema/bridge/eu_ai_act_mvr_gap_register.schema.json",
+    "schema/bridge/eu_ai_act_mvr_human_review_packet.schema.json",
+    "schema/bridge/eu_ai_act_mvr_non_authority_boundary.schema.json",
+]
+WAVE_PROVENANCE_ARTIFACTS = [
+    "docs/WAVE_ROSETTA_CANONICAL_PROXY_BRIDGE_PROVENANCE.md",
+    "config/metrics/canonical_proxy_bridge_provenance.v1.json",
+    "schema/bridge/canonical_proxy_bridge_provenance_packet.schema.json",
+    "schema/bridge/canonical_proxy_bridge_formula_ledger.schema.json",
+    "schema/bridge/canonical_proxy_bridge_report_lineage.schema.json",
+    "schema/bridge/canonical_proxy_bridge_calibration_gap_register.schema.json",
+]
+WAVE_BRIDGE_DOCTRINE_LANGUAGE = [
+    "WAVE Rosetta Canonical-Proxy Bridge",
+    "WAVE Rosetta bridges runtime proxies to canonical meanings by calibration, not identity.",
+    "Runtime proxy values are not canonical GUFT measurements.",
+    "Bridge estimates are not proof.",
+    "Analogy is not identity.",
+    "High coherence does not necessarily mean constructive output.",
+    "Coherent cancellation must remain visible.",
+    "WAVE symmetry is pattern support, not ethical proof.",
+    "Bridge weights must be versioned.",
+    "Bridge inputs must be logged.",
+    "Bridge uncertainty must be explicit.",
+    "Population calibration is required.",
+    "Domain validation is required.",
+    "Human review remains required.",
+    "This bridge does not prove GUFT.",
+    "This bridge does not certify truth.",
+    "This bridge does not prove consciousness.",
+    "This bridge does not prove universal ontology.",
+    "This bridge does not release product.",
+    "This bridge does not claim product readiness.",
+]
+WAVE_PROVENANCE_DOCTRINE_LANGUAGE = [
+    "WAVE Rosetta Canonical-Proxy Bridge Provenance",
+    "This document preserves report lineage, conversion calculations, implemented v1 formulas, and calibration gaps.",
+    "The bridge is calibration, not identity.",
+    "The bridge estimate is not canonical measurement.",
+    "Scientific support is not proof.",
+    "GUFT support is not GUFT proof.",
+    "Runtime proxies are not canonical GUFT measurements.",
+    "High coherence can cancel output.",
+    "WAVE symmetry is pattern support, not ethical proof.",
+    "The normalized reliability-weighted formula is a future calibration candidate.",
+    "The implemented v1 formulas are deterministic scaffold formulas.",
+    "Bridge weights are versioned.",
+    "Bridge inputs must be logged.",
+    "Bridge uncertainty must be explicit.",
+    "Population calibration remains required.",
+    "Domain validation remains required.",
+    "Human review remains required.",
+    "WAVE-ROSETTA-CANONICAL-PROXY-BRIDGE-PROVENANCE-00 does not change bridge runtime behavior.",
+    "WAVE-ROSETTA-CANONICAL-PROXY-BRIDGE-PROVENANCE-00 does not change bridge formulas.",
+    "WAVE-ROSETTA-CANONICAL-PROXY-BRIDGE-PROVENANCE-00 does not change bridge weights.",
+    "WAVE-ROSETTA-CANONICAL-PROXY-BRIDGE-PROVENANCE-00 does not prove GUFT.",
+    "WAVE-ROSETTA-CANONICAL-PROXY-BRIDGE-PROVENANCE-00 does not certify truth.",
+]
+EU_AI_ACT_MVR_MAPPING_DOCTRINE_LANGUAGE = [
+    "EU AI Act MVR Evidence Mapping Design",
+    "EU AI Act support means evidence mapping, not EU AI Act compliance certification.",
+    "UVLM produces EU AI Act review-support evidence, not legal conclusions.",
+    "Qualified humans must decide whether evidence supports compliance claims.",
+    "The evidence map must be stupidly user friendly.",
+    "Missing evidence must be visible as a gap, not hidden.",
+    "Source manifest is not accepted evidence.",
+    "Traceability is not truth.",
+    "Control mapping is not control effectiveness.",
+    "Human review remains required.",
+    "Authorized professional signoff remains required.",
+    "EU-AI-ACT-MVR-EVIDENCE-MAPPING-DESIGN-00 does not generate runtime evidence maps.",
+    "EU-AI-ACT-MVR-EVIDENCE-MAPPING-DESIGN-00 does not certify EU AI Act compliance.",
+    "EU-AI-ACT-MVR-EVIDENCE-MAPPING-DESIGN-00 does not provide legal advice.",
+    "EU-AI-ACT-MVR-EVIDENCE-MAPPING-DESIGN-00 does not pass audits.",
+    "EU-AI-ACT-MVR-EVIDENCE-MAPPING-DESIGN-00 does not guarantee attestation success.",
+    "EU-AI-ACT-MVR-EVIDENCE-MAPPING-DESIGN-00 does not claim product readiness.",
+    "EU-AI-ACT-MVR-EVIDENCE-MAPPING-DESIGN-00 does not release product.",
+]
+WAVE_VECTOR_TERMS = [
+    "E_review", "T_review", "Ψ_review", "ΔS_review", "Λ_boundary", "Eₛ_review", "TAF_review_runtime_v0",
+    "phase_alignment", "amplitude_balance", "detuning", "jitter", "signal_to_noise", "spectral_entropy", "residual_energy",
+    "cancellation_index", "observability_index", "constructive_output_index", "provenance_support", "governance_route_support",
+    "materiality_level", "consent_scope_support", "human_review_status", "contestability_support", "affected_party_coverage",
+    "burden_distribution_visibility", "UCC_control_status", "Sophia_decision_support", "runtime_proxy_reliability",
+    "wave_analogue_reliability", "governance_lineage_reliability", "calibration_reliability",
+]
+WAVE_BRIDGE_ESTIMATE_TERMS = [
+    "E_bridge", "T_bridge", "Ψ_structural_bridge", "Ψ_constructive_bridge", "Ψ_cancellation_bridge", "ΔS_bridge",
+    "Λ_boundary_bridge", "Λ_phase_candidate", "Λ_critical_candidate", "Eₛ_bridge", "TAF_bridge",
+    "epistemic_uncertainty", "transfer_uncertainty", "combined_uncertainty",
+]
+WAVE_PROVENANCE_REPORT_LINEAGE = [
+    "GUFT discussion with Thomas and Apprentice 6_8_2026_842AM.docx",
+    "GUFT METRICS BRIDGE DISCUSSION 6_9_2026_1022AM.docx",
+    "wave_rosetta_canonical_proxy_bridge_scientific_review_20260609.md",
+    "2f49da190fcf5e3a04330f53bd9e6d30228c0a999cdabf8be2e94e957e6dfb09",
+    "9eaba6d5a49de7d09542b3e879cbb9eb936181a37e660b3434a5e31e110ccfe6",
+    "21045f07f5e2122db9714741a418f582cb87b6d004f6c66f4a63d4b6b7e77fd6",
+]
+WAVE_FORMULA_LINEAGE = [
+    "M_bridge_i = clamp", "B_i = clamp", "BridgeConfidence_i", "E_bridge = clamp", "T_bridge = clamp",
+    "Ψ_structural_bridge = clamp", "Ψ_constructive_bridge = clamp", "Ψ_cancellation_bridge = clamp", "ΔS_bridge = clamp",
+    "Λ_boundary_bridge = clamp", "Λ_phase_candidate = clamp", "Λ_critical_candidate = clamp", "Eₛ_bridge = clamp",
+    "TAF_bridge = clamp", "epistemic_uncertainty = clamp", "transfer_uncertainty = clamp", "combined_uncertainty = clamp",
+]
+WAVE_CALIBRATION_GAPS = [
+    "normalized_reliability_weighted_formula_not_yet_implemented",
+    "bridge_confidence_packet_not_yet_implemented",
+    "calibration_registry_not_yet_implemented",
+    "negative_control_report_not_yet_implemented",
+    "population_calibration_not_complete",
+    "domain_validation_not_complete",
+    "counterexample_pressure_not_yet_measured",
+    "semantic_coverage_kappa_not_yet_measured",
+    "domain_transfer_confidence_not_yet_measured",
+    "empirical_weight_fit_not_yet_performed",
+    "current_weight_profile_is_design_scaffold",
+]
+EU_AI_ACT_EVIDENCE_CATEGORIES = [
+    "risk_classification_support", "intended_use_description", "source_data_governance_evidence", "technical_documentation_support",
+    "record_keeping_logging_support", "transparency_deployer_information_support", "human_oversight_support",
+    "accuracy_robustness_cybersecurity_posture", "post_market_monitoring_or_incident_review_posture",
+    "fundamental_rights_or_data_equity_review_support", "non_authority_boundary",
+]
+EU_AI_ACT_GAP_TERMS = [
+    "missing_risk_classification", "missing_intended_use_owner", "missing_human_signoff", "missing_control_effectiveness_test",
+    "missing_representative_data_assessment", "missing_security_review", "missing_fundamental_rights_assessment",
+    "missing_post_market_monitoring_plan", "missing_incident_response_owner", "missing_legal_review",
+]
+WAVE_EU_PROVENANCE_BLOCKED_CLAIMS = [
+    "runtime proxies are canonical GUFT measurements",
+    "WAVE Rosetta proves GUFT",
+    "WAVE Rosetta proves universal ontology",
+    "WAVE Rosetta proves consciousness",
+    "bridge estimate is truth certification",
+    "bridge estimate grants final-answer authority",
+    "bridge estimate grants accepted-evidence authority",
+    "high Ψ means constructive output",
+    "waveform symmetry proves ethical symmetry",
+    "low TAF means hidden uncertainty is acceptable",
+    "calibration bridge releases product",
+    "calibration bridge proves product readiness",
+    "bridge weights need not be versioned",
+    "bridge estimates need no uncertainty packet",
+    "population calibration is complete",
+    "domain validation is complete",
+    "provenance ledger proves GUFT",
+    "provenance ledger proves universal ontology",
+    "provenance ledger proves consciousness",
+    "provenance ledger certifies truth",
+    "provenance ledger changes bridge weights",
+    "provenance ledger changes bridge formulas",
+    "implemented v1 formulas are final calibration",
+    "normalized reliability-weighted formula is already implemented",
+    "BridgeConfidence packet is already implemented",
+    "negative controls are already implemented",
+    "source reports are accepted evidence",
+    "report lineage is truth certification",
+    "UVLM certifies EU AI Act compliance",
+    "EU AI Act evidence map is EU AI Act compliance certification",
+    "EU AI Act evidence map provides legal advice",
+    "EU AI Act evidence map passes audit",
+    "EU AI Act evidence map guarantees attestation success",
+    "EU AI Act evidence map proves product readiness",
+    "EU AI Act evidence map is product release",
+    "EU AI Act evidence map certifies truth",
+    "EU AI Act evidence map authorizes final answers",
+    "EU AI Act evidence map grants accepted-evidence authority",
+    "EU AI Act evidence map writes memory",
+    "EU AI Act evidence map admits Atlas memory",
+    "EU AI Act evidence map exports traces",
+    "EU AI Act evidence map federates PMR",
+    "source manifest is accepted evidence",
+    "traceability means truth",
+    "control mapping means control effectiveness",
+    "visible gap means compliance failure",
+    "no visible gap means compliance success",
+    "human review role means human signoff occurred",
+]
+WAVE_BRIDGE_CLAIM_ALLOWED = "WAVE-ROSETTA-CANONICAL-PROXY-BRIDGE-00 emits bounded canonical-proxy bridge estimates that relate LOCAL-REVIEW-RUNTIME-V0 metric proxies to canonical GUFT / ΔSyn semantic targets through WAVE Rosetta structural features, governance/provenance support, reliability factors, and uncertainty penalties while preserving that the bridge is calibration, not identity; bridge estimate, not canonical measurement; scientific support, not proof; and while requiring population calibration, domain validation, uncertainty reporting, and human review."
+WAVE_PROVENANCE_CLAIM_ALLOWED = "WAVE-ROSETTA-CANONICAL-PROXY-BRIDGE-PROVENANCE-00 preserves report lineage, source report hashes, report-derived bridge formulas, implemented v1 bridge calculations, vector values, weight profiles, uncertainty formulas, calibration gaps, and non-authority boundaries for WAVE-ROSETTA-CANONICAL-PROXY-BRIDGE-00 without changing runtime behavior, bridge formulas, bridge weights, or claiming canonical measurement, GUFT proof, universal ontology proof, consciousness proof, truth certification, product readiness, product release, final-answer authority, accepted-evidence authority, memory write, Atlas admission, trace export, PMR federation, compliance certification, model training, or review skipping."
+EU_AI_ACT_MVR_MAPPING_CLAIM_ALLOWED = "EU-AI-ACT-MVR-EVIDENCE-MAPPING-DESIGN-00 defines a design-only EU AI Act evidence-support mapping for Minimal Viable Receipt artifacts, mapping source manifests, consent scope, observation scope, quarantine reports, unsupported claims, controls, human review status, validation tier, retention boundaries, contestability, recovery options, non-authority boundaries, audit artifacts, and open gaps into EU AI Act review-support categories without generating runtime evidence maps, certifying EU AI Act compliance, providing legal advice, passing audits, guaranteeing attestation success, claiming product readiness, releasing product, certifying truth, granting final-answer or accepted-evidence authority, writing memory, admitting Atlas memory, exporting traces, federating PMR, training models, or skipping review."
+WAVE_BRIDGE_DASHBOARD_SUMMARY = {
+    "bridge_status": "completed",
+    "bridge_mode": "canonical_proxy_bridge_estimate",
+    "E_bridge": 0.661,
+    "T_bridge": 0.705,
+    "Ψ_structural_bridge": 0.6303,
+    "Ψ_constructive_bridge": 0.452729,
+    "Ψ_cancellation_bridge": 0.214302,
+    "combined_uncertainty": 0.34625,
+    "bridge_is_not_canonical_measurement": True,
+    "bridge_is_not_truth_certification": True,
+    "bridge_is_not_universal_ontology_proof": True,
+    "bridge_is_not_consciousness_proof": True,
+    "bridge_is_not_product_release": True,
+    "bridge_is_not_product_readiness": True,
+    "bridge_is_not_final_answer_authority": True,
+    "bridge_is_not_accepted_evidence_authority": True,
+    "bridge_is_not_memory_write": True,
+    "bridge_is_not_atlas_memory_admission": True,
+    "bridge_requires_population_calibration": True,
+    "bridge_requires_domain_validation": True,
+    "bridge_requires_human_review": True,
+}
+EU_AI_ACT_MVR_MAPPING_DASHBOARD_SUMMARY = {
+    "policy_status": "active_design_only",
+    "mapping_status": "active_design_only",
+    "profile_id": "eu_ai_act_evidence_support",
+    "evidence_map_generation_enabled": False,
+    "eu_ai_act_compliance_certification_emitted": False,
+    "legal_advice_emitted": False,
+    "audit_pass_claimed": False,
+    "attestation_success_claimed": False,
+    "product_readiness_claimed": False,
+    "product_release_performed": False,
+    "provider_runtime_performed": False,
+    "network_call_performed": False,
+    "real_input_processing_performed": False,
+    "memory_write_performed": False,
+    "atlas_memory_admission_performed": False,
+    "trace_export_performed": False,
+    "pmr_federation_performed": False,
+    "final_answer_authority_granted": False,
+    "accepted_evidence_authority_granted": False,
+    "truth_certification_emitted": False,
+    "model_training_performed": False,
+    "review_skip_authorized": False,
+}
+WAVE_PROVENANCE_DASHBOARD_SUMMARY = {
+    "provenance_status": "active_documentation_only",
+    "target_phase": "WAVE-ROSETTA-CANONICAL-PROXY-BRIDGE-00",
+    "target_weight_profile_version": "v1.0.0",
+    "runtime_behavior_changed": False,
+    "bridge_weight_changed": False,
+    "bridge_formula_changed": False,
+    "canonical_measurement_claimed": False,
+    "guft_proof_claimed": False,
+    "universal_ontology_proof_claimed": False,
+    "consciousness_proof_claimed": False,
+    "truth_certification_emitted": False,
+    "final_answer_authority_granted": False,
+    "accepted_evidence_authority_granted": False,
+    "compliance_certification_emitted": False,
+    "product_release_performed": False,
+    "product_readiness_claimed": False,
+    "provider_runtime_performed": False,
+    "network_call_performed": False,
+    "memory_write_performed": False,
+    "atlas_memory_admission_performed": False,
+    "trace_export_performed": False,
+    "pmr_federation_performed": False,
+}
+WAVE_BRIDGE_PHASE = {
+    "phase_id": "WAVE-ROSETTA-CANONICAL-PROXY-BRIDGE-00",
+    "repo": "pdxvoiceteacher/CoherenceLattice",
+    "status": "accepted_local_validation",
+    "evidence_type": "wave_rosetta_canonical_proxy_bridge_publication_sync",
+    "product_posture": "canonical_proxy_bridge_estimate_without_canonical_measurement_or_proof_authority",
+    "primary_artifacts": WAVE_BRIDGE_ARTIFACTS,
+    "dashboard_summary": WAVE_BRIDGE_DASHBOARD_SUMMARY,
+    "reproduction_command_summary": WAVE_BRIDGE_COMMAND,
+    "claim_allowed": WAVE_BRIDGE_CLAIM_ALLOWED,
+    "claims_blocked": WAVE_EU_PROVENANCE_BLOCKED_CLAIMS,
+    "reviewer_caution": "WAVE-ROSETTA-CANONICAL-PROXY-BRIDGE-00 emits estimate/calibration artifacts only. It is not canonical GUFT measurement, GUFT proof, universal ontology proof, consciousness proof, truth certification, product readiness, product release, final-answer authority, accepted-evidence authority, memory write, Atlas admission, trace export, PMR federation, model training, or review skipping.",
+    "publication_status": "dashboard_indexed",
+}
+EU_AI_ACT_MVR_MAPPING_PHASE = {
+    "phase_id": "EU-AI-ACT-MVR-EVIDENCE-MAPPING-DESIGN-00",
+    "repo": "pdxvoiceteacher/CoherenceLattice",
+    "status": "accepted_local_validation",
+    "evidence_type": "eu_ai_act_mvr_evidence_mapping_design_publication_sync",
+    "product_posture": "design_only_eu_ai_act_evidence_support_without_certification_or_legal_advice",
+    "primary_artifacts": EU_AI_ACT_MVR_MAPPING_ARTIFACTS,
+    "dashboard_summary": EU_AI_ACT_MVR_MAPPING_DASHBOARD_SUMMARY,
+    "reproduction_command_summary": COMPLIANCE_TOOLSET_DESIGN_COMMAND,
+    "claim_allowed": EU_AI_ACT_MVR_MAPPING_CLAIM_ALLOWED,
+    "claims_blocked": WAVE_EU_PROVENANCE_BLOCKED_CLAIMS,
+    "reviewer_caution": "EU-AI-ACT-MVR-EVIDENCE-MAPPING-DESIGN-00 is design-only evidence support. It generates no runtime evidence maps, certifies no EU AI Act compliance, provides no legal advice, passes no audit, guarantees no attestation success, claims no product readiness, releases no product, certifies no truth, grants no final-answer or accepted-evidence authority, writes no memory, admits no Atlas memory, exports no traces, federates no PMR, trains no model, and skips no review.",
+    "publication_status": "dashboard_indexed",
+}
+WAVE_PROVENANCE_PHASE = {
+    "phase_id": "WAVE-ROSETTA-CANONICAL-PROXY-BRIDGE-PROVENANCE-00",
+    "repo": "pdxvoiceteacher/CoherenceLattice",
+    "status": "accepted_local_validation",
+    "evidence_type": "wave_rosetta_canonical_proxy_bridge_provenance_publication_sync",
+    "product_posture": "documentation_only_bridge_provenance_without_formula_weight_or_runtime_change",
+    "primary_artifacts": WAVE_PROVENANCE_ARTIFACTS,
+    "dashboard_summary": WAVE_PROVENANCE_DASHBOARD_SUMMARY,
+    "reproduction_command_summary": COMPLIANCE_REPORT_DESIGN_COMMAND,
+    "claim_allowed": WAVE_PROVENANCE_CLAIM_ALLOWED,
+    "claims_blocked": WAVE_EU_PROVENANCE_BLOCKED_CLAIMS,
+    "reviewer_caution": "WAVE-ROSETTA-CANONICAL-PROXY-BRIDGE-PROVENANCE-00 preserves lineage and calibration gaps only. It changes no runtime behavior, bridge formulas, or bridge weights and grants no proof, certification, authority, memory, export, federation, product, model-training, or review-skipping status.",
+    "publication_status": "dashboard_indexed",
+}
+
+
 VALIDATION_TIERING_PROVENANCE_COMMAND = "python -c \"from pathlib import Path; from coherence.validation.validation_receipt import build_validation_tier_receipt; bridge=Path(r'C:\\UVLM\\run_artifacts\\validation_tiering\\bridge'); policy_ref='validation_tier_policy.v1.json'; build_validation_tier_receipt(bridge, source_phase='AI-RECEIPT-ARCHITECTURE-00', validation_tier='deep', validation_scope='full_multi_module_suite', validation_intent='major_sync_or_handoff_grade_validation', commands_run=[{'command':'python -m pytest -q <full_multi_module_suite>', 'result':'passed', 'duration_seconds':32131.86}], artifact_chain_name='ai_receipt_architecture_product_stack', expected_artifacts=['ai_receipt_architecture_packet.json','ai_receipt_event_chain.json','ai_receipt_architecture.md','ai_receipt_architecture_receipt.json'], observed_artifacts=['ai_receipt_architecture_packet.json','ai_receipt_event_chain.json','ai_receipt_architecture.md','ai_receipt_architecture_receipt.json'], validation_result='passed')\""
 VALIDATION_TIERING_PROVENANCE_ARTIFACTS = [
     "config/validation/validation_tier_policy.v1.json",
@@ -13721,6 +14044,9 @@ MVR_QUARANTINE_REPAIR_PHASE,
 MVR_HUMAN_SELECTED_FILE_SMOKE_PHASE,
 COMPLIANCE_REPORT_PHASE,
 COMPLIANCE_TOOLSET_PHASE,
+WAVE_BRIDGE_PHASE,
+EU_AI_ACT_MVR_MAPPING_PHASE,
+WAVE_PROVENANCE_PHASE,
 VALIDATION_TIERING_PROVENANCE_PHASE,
 TELEMETRY_APERTURE_DESIGN_PHASE,
 TAC_POLICY_SIMULATION_PHASE,
@@ -15972,6 +16298,25 @@ BOUNDARIES.extend(
         *COMPLIANCE_TOOLSET_DESIGN_REPRO_FRAGMENTS,
         "Blocked overclaim examples for compliance-ready MVR report and compliance evidence toolset publication boundaries.",
         *COMPLIANCE_DESIGN_BLOCKED_CLAIMS,
+        WAVE_BRIDGE_CLAIM_ALLOWED,
+        WAVE_PROVENANCE_CLAIM_ALLOWED,
+        EU_AI_ACT_MVR_MAPPING_CLAIM_ALLOWED,
+        *WAVE_BRIDGE_ARTIFACTS,
+        *EU_AI_ACT_MVR_MAPPING_ARTIFACTS,
+        *WAVE_PROVENANCE_ARTIFACTS,
+        *WAVE_BRIDGE_REPRO_FRAGMENTS,
+        *WAVE_BRIDGE_DOCTRINE_LANGUAGE,
+        *WAVE_PROVENANCE_DOCTRINE_LANGUAGE,
+        *EU_AI_ACT_MVR_MAPPING_DOCTRINE_LANGUAGE,
+        *WAVE_VECTOR_TERMS,
+        *WAVE_BRIDGE_ESTIMATE_TERMS,
+        *WAVE_PROVENANCE_REPORT_LINEAGE,
+        *WAVE_FORMULA_LINEAGE,
+        *WAVE_CALIBRATION_GAPS,
+        *EU_AI_ACT_EVIDENCE_CATEGORIES,
+        *EU_AI_ACT_GAP_TERMS,
+        "Blocked overclaim examples for WAVE bridge, EU AI Act mapping, and WAVE provenance publication boundaries.",
+        *WAVE_EU_PROVENANCE_BLOCKED_CLAIMS,
         VALIDATION_TIERING_PROVENANCE_CLAIM_ALLOWED,
         *VALIDATION_TIERING_PROVENANCE_ARTIFACTS,
         *VALIDATION_TIERING_PROVENANCE_TIER_TERMS,
@@ -16881,6 +17226,17 @@ def dashboard_payload() -> dict[str, Any]:
         "not_compliance_evidence_toolset_certification": True,
         "not_compliance_evidence_toolset_legal_advice": True,
         "not_compliance_evidence_toolset_runtime_authority": True,
+        "wave_rosetta_canonical_proxy_bridge_00_indexed": True,
+        "wave_rosetta_canonical_proxy_bridge_status": "completed",
+        "wave_rosetta_canonical_proxy_bridge_is_not_canonical_measurement": True,
+        "eu_ai_act_mvr_evidence_mapping_design_00_indexed": True,
+        "eu_ai_act_mvr_evidence_mapping_status": "active_design_only",
+        "eu_ai_act_mvr_evidence_map_generation_enabled": False,
+        "wave_rosetta_canonical_proxy_bridge_provenance_00_indexed": True,
+        "wave_rosetta_canonical_proxy_bridge_provenance_status": "active_documentation_only",
+        "wave_rosetta_canonical_proxy_bridge_provenance_runtime_behavior_changed": False,
+        "not_wave_eu_provenance_runtime_authority": True,
+        "not_wave_eu_provenance_truth_or_compliance_certification": True,
         "not_mvr_local_real_input_pilot_product_readiness": True,
         "not_mvr_local_real_input_pilot_product_release": True,
         "not_mvr_local_real_input_pilot_user_validation": True,
@@ -16997,6 +17353,9 @@ def reproducibility_index() -> dict[str, Any]:
                 {"name": "MVR-LOCAL-REAL-INPUT-PILOT-HUMAN-SELECTED-FILE-SMOKE-00 Python entrypoint", "command": MVR_HUMAN_SELECTED_FILE_SMOKE_COMMAND},
                 {"name": "COMPLIANCE-READY-MVR-REPORT-DESIGN-00 design validation", "command": COMPLIANCE_REPORT_DESIGN_COMMAND},
                 {"name": "COMPLIANCE-EVIDENCE-TOOLSET-LIBRARY-DESIGN-00 design validation", "command": COMPLIANCE_TOOLSET_DESIGN_COMMAND},
+                {"name": "WAVE-ROSETTA-CANONICAL-PROXY-BRIDGE-00 Python entrypoint", "command": WAVE_BRIDGE_COMMAND},
+                {"name": "EU-AI-ACT-MVR-EVIDENCE-MAPPING-DESIGN-00 design validation", "command": COMPLIANCE_TOOLSET_DESIGN_COMMAND},
+                {"name": "WAVE-ROSETTA-CANONICAL-PROXY-BRIDGE-PROVENANCE-00 provenance validation", "command": COMPLIANCE_REPORT_DESIGN_COMMAND},
                 {"name": "Validation Tiering Provenance Python entrypoint", "command": VALIDATION_TIERING_PROVENANCE_COMMAND},
                 {"name": "TELEMETRY-APERTURE-DESIGN-00 config/schema inspection", "command": TELEMETRY_APERTURE_DESIGN_COMMAND},
                 {"name": "TAC-POLICY-SIMULATION-00 Python entrypoint", "command": TAC_POLICY_SIMULATION_COMMAND},
@@ -17955,6 +18314,17 @@ def status_payload() -> dict[str, Any]:
         "not_compliance_evidence_toolset_certification": True,
         "not_compliance_evidence_toolset_legal_advice": True,
         "not_compliance_evidence_toolset_runtime_authority": True,
+        "wave_rosetta_canonical_proxy_bridge_00_indexed": True,
+        "wave_rosetta_canonical_proxy_bridge_status": "completed",
+        "wave_rosetta_canonical_proxy_bridge_is_not_canonical_measurement": True,
+        "eu_ai_act_mvr_evidence_mapping_design_00_indexed": True,
+        "eu_ai_act_mvr_evidence_mapping_status": "active_design_only",
+        "eu_ai_act_mvr_evidence_map_generation_enabled": False,
+        "wave_rosetta_canonical_proxy_bridge_provenance_00_indexed": True,
+        "wave_rosetta_canonical_proxy_bridge_provenance_status": "active_documentation_only",
+        "wave_rosetta_canonical_proxy_bridge_provenance_runtime_behavior_changed": False,
+        "not_wave_eu_provenance_runtime_authority": True,
+        "not_wave_eu_provenance_truth_or_compliance_certification": True,
         "not_mvr_local_real_input_pilot_product_readiness": True,
         "not_mvr_local_real_input_pilot_product_release": True,
         "not_mvr_local_real_input_pilot_user_validation": True,
@@ -23854,6 +24224,180 @@ Publication sync grants no runtime authority. It does not imply report generatio
 """
 
 
+WAVE_EU_PROVENANCE_SYNC_DOCS = {
+    "index.md",
+    "metric-semantic-contract.md",
+    "compliance-evidence-toolset-library-design.md",
+    "compliance-ready-mvr-report-design.md",
+    "minimal-viable-receipt-design.md",
+    "mvr-local-real-input-pilot-prototype.md",
+    "mvr-local-real-input-pilot-human-selected-file-smoke.md",
+    "validation-tiering-provenance.md",
+    "claim-boundaries.md",
+}
+WAVE_EU_PROVENANCE_SYNC_NOTE = f"""
+
+## WAVE Rosetta bridge, EU AI Act mapping, and WAVE provenance publication sync
+
+WAVE-ROSETTA-CANONICAL-PROXY-BRIDGE-00 is a bounded canonical-proxy bridge estimate only. WAVE-ROSETTA-CANONICAL-PROXY-BRIDGE-PROVENANCE-00 preserves report lineage, formulas, vector values, weight profiles, uncertainty formulas, and calibration gaps without changing runtime behavior, bridge formulas, or bridge weights. EU-AI-ACT-MVR-EVIDENCE-MAPPING-DESIGN-00 is design-only EU AI Act evidence support, not EU AI Act compliance certification or legal advice.
+
+WAVE bridge doctrine: {'; '.join(WAVE_BRIDGE_DOCTRINE_LANGUAGE)}
+
+WAVE provenance doctrine: {'; '.join(WAVE_PROVENANCE_DOCTRINE_LANGUAGE)}
+
+EU AI Act mapping doctrine: {'; '.join(EU_AI_ACT_MVR_MAPPING_DOCTRINE_LANGUAGE)}
+
+WAVE vector terms: {', '.join(WAVE_VECTOR_TERMS)}. Bridge estimate terms: {', '.join(WAVE_BRIDGE_ESTIMATE_TERMS)}. Provenance report lineage: {', '.join(WAVE_PROVENANCE_REPORT_LINEAGE)}. Formula lineage: {', '.join(WAVE_FORMULA_LINEAGE)}. Calibration gaps: {', '.join(WAVE_CALIBRATION_GAPS)}. EU AI Act evidence categories: {', '.join(EU_AI_ACT_EVIDENCE_CATEGORIES)}. EU AI Act gap terms: {', '.join(EU_AI_ACT_GAP_TERMS)}.
+
+Publication sync grants no runtime authority. It does not imply canonical GUFT measurement, GUFT proof, universal ontology proof, consciousness proof, truth certification, EU AI Act compliance certification, legal advice, audit pass, attestation success, product readiness, product release, final-answer authority, accepted-evidence authority, provider runtime, network runtime, real-input processing, memory write, Atlas memory admission, trace export, PMR federation, model training, review skipping, market validation, or human benefit proof.
+"""
+
+
+def wave_rosetta_canonical_proxy_bridge_doc() -> str:
+    summary = "\n".join(f"- {key} = {str(value).lower() if isinstance(value, bool) else value}" for key, value in WAVE_BRIDGE_DASHBOARD_SUMMARY.items())
+    return f"""# WAVE Rosetta Canonical-Proxy Bridge
+
+WAVE-ROSETTA-CANONICAL-PROXY-BRIDGE-00 synchronizes the locally validated WAVE Rosetta canonical-proxy bridge into publication dashboards. This is publication/dashboard synchronization only and grants no runtime authority.
+
+## Bounded allowed claim
+
+{WAVE_BRIDGE_CLAIM_ALLOWED}
+
+## Dashboard summary
+
+{summary}
+
+## Doctrine language
+
+{_bullets(WAVE_BRIDGE_DOCTRINE_LANGUAGE)}
+
+## WAVE vector terms
+
+{_bullets(WAVE_VECTOR_TERMS)}
+
+## Bridge estimate terms
+
+{_bullets(WAVE_BRIDGE_ESTIMATE_TERMS)}
+
+## Artifact references
+
+{_bullets(WAVE_BRIDGE_ARTIFACTS)}
+
+## Blocked claims
+
+{_bullets(WAVE_EU_PROVENANCE_BLOCKED_CLAIMS)}
+
+## Reproducibility
+
+{_bullets(WAVE_BRIDGE_REPRO_FRAGMENTS)}
+- `{WAVE_BRIDGE_COMMAND}`
+
+## Runtime authority boundary
+
+Publication sync grants no runtime authority. It does not imply canonical GUFT measurement, GUFT proof, universal ontology proof, consciousness proof, truth certification, EU AI Act compliance certification, legal advice, audit pass, attestation success, product readiness, product release, final-answer authority, accepted-evidence authority, provider runtime, network runtime, real-input processing, memory write, Atlas memory admission, trace export, PMR federation, model training, review skipping, market validation, or human benefit proof.
+"""
+
+
+def eu_ai_act_mvr_evidence_mapping_design_doc() -> str:
+    summary = "\n".join(f"- {key} = {str(value).lower() if isinstance(value, bool) else value}" for key, value in EU_AI_ACT_MVR_MAPPING_DASHBOARD_SUMMARY.items())
+    return f"""# EU AI Act MVR Evidence Mapping Design
+
+EU-AI-ACT-MVR-EVIDENCE-MAPPING-DESIGN-00 synchronizes the design-only EU AI Act MVR evidence mapping into publication dashboards. This is publication/dashboard synchronization only and grants no runtime authority.
+
+## Bounded allowed claim
+
+{EU_AI_ACT_MVR_MAPPING_CLAIM_ALLOWED}
+
+## Dashboard summary
+
+{summary}
+
+## Doctrine language
+
+{_bullets(EU_AI_ACT_MVR_MAPPING_DOCTRINE_LANGUAGE)}
+
+## EU AI Act evidence categories
+
+{_bullets(EU_AI_ACT_EVIDENCE_CATEGORIES)}
+
+## EU AI Act gap terms
+
+{_bullets(EU_AI_ACT_GAP_TERMS)}
+
+## Artifact references
+
+{_bullets(EU_AI_ACT_MVR_MAPPING_ARTIFACTS)}
+
+## Blocked claims
+
+{_bullets(WAVE_EU_PROVENANCE_BLOCKED_CLAIMS)}
+
+## Reproducibility
+
+- `{COMPLIANCE_TOOLSET_DESIGN_COMMAND}`
+
+## Runtime authority boundary
+
+Publication sync grants no runtime authority. It does not imply canonical GUFT measurement, GUFT proof, universal ontology proof, consciousness proof, truth certification, EU AI Act compliance certification, legal advice, audit pass, attestation success, product readiness, product release, final-answer authority, accepted-evidence authority, provider runtime, network runtime, real-input processing, memory write, Atlas memory admission, trace export, PMR federation, model training, review skipping, market validation, or human benefit proof.
+"""
+
+
+def wave_rosetta_canonical_proxy_bridge_provenance_doc() -> str:
+    summary = "\n".join(f"- {key} = {str(value).lower() if isinstance(value, bool) else value}" for key, value in WAVE_PROVENANCE_DASHBOARD_SUMMARY.items())
+    return f"""# WAVE Rosetta Canonical-Proxy Bridge Provenance
+
+WAVE-ROSETTA-CANONICAL-PROXY-BRIDGE-PROVENANCE-00 synchronizes WAVE bridge provenance documentation into publication dashboards. This is publication/dashboard synchronization only and grants no runtime authority.
+
+## Bounded allowed claim
+
+{WAVE_PROVENANCE_CLAIM_ALLOWED}
+
+## Dashboard summary
+
+{summary}
+
+## Doctrine language
+
+{_bullets(WAVE_PROVENANCE_DOCTRINE_LANGUAGE)}
+
+## WAVE vector terms
+
+{_bullets(WAVE_VECTOR_TERMS)}
+
+## Bridge estimate terms
+
+{_bullets(WAVE_BRIDGE_ESTIMATE_TERMS)}
+
+## Provenance report lineage
+
+{_bullets(WAVE_PROVENANCE_REPORT_LINEAGE)}
+
+## Formula lineage
+
+{_bullets(WAVE_FORMULA_LINEAGE)}
+
+## Calibration gaps
+
+{_bullets(WAVE_CALIBRATION_GAPS)}
+
+## Artifact references
+
+{_bullets(WAVE_PROVENANCE_ARTIFACTS)}
+
+## Blocked claims
+
+{_bullets(WAVE_EU_PROVENANCE_BLOCKED_CLAIMS)}
+
+## Reproducibility
+
+- `{COMPLIANCE_REPORT_DESIGN_COMMAND}`
+
+## Runtime authority boundary
+
+Publication sync grants no runtime authority. It does not imply canonical GUFT measurement, GUFT proof, universal ontology proof, consciousness proof, truth certification, EU AI Act compliance certification, legal advice, audit pass, attestation success, product readiness, product release, final-answer authority, accepted-evidence authority, provider runtime, network runtime, real-input processing, memory write, Atlas memory admission, trace export, PMR federation, model training, review skipping, market validation, or human benefit proof.
+"""
+
+
 def build(out_dir: Path, docs_dir: Path) -> None:
     _write_json(out_dir / "experiment_suite_dashboard.json", dashboard_payload())
     _write_json(out_dir / "accepted_phase_matrix.json", accepted_phase_matrix())
@@ -23872,6 +24416,9 @@ def build(out_dir: Path, docs_dir: Path) -> None:
     docs_payload["mvr-local-real-input-pilot-human-selected-file-smoke.md"] = mvr_local_real_input_pilot_human_selected_file_smoke_doc()
     docs_payload["compliance-ready-mvr-report-design.md"] = compliance_ready_mvr_report_design_doc()
     docs_payload["compliance-evidence-toolset-library-design.md"] = compliance_evidence_toolset_library_design_doc()
+    docs_payload["wave-rosetta-canonical-proxy-bridge.md"] = wave_rosetta_canonical_proxy_bridge_doc()
+    docs_payload["eu-ai-act-mvr-evidence-mapping-design.md"] = eu_ai_act_mvr_evidence_mapping_design_doc()
+    docs_payload["wave-rosetta-canonical-proxy-bridge-provenance.md"] = wave_rosetta_canonical_proxy_bridge_provenance_doc()
     for name in MINIMAL_VIABLE_RECEIPT_DESIGN_SYNC_DOCS:
         if name in docs_payload:
             docs_payload[name] = docs_payload[name].rstrip() + MINIMAL_VIABLE_RECEIPT_DESIGN_SYNC_NOTE
@@ -23905,6 +24452,9 @@ def build(out_dir: Path, docs_dir: Path) -> None:
     for name in COMPLIANCE_DESIGN_SYNC_DOCS:
         if name in docs_payload:
             docs_payload[name] = docs_payload[name].rstrip() + COMPLIANCE_DESIGN_SYNC_NOTE
+    for name in WAVE_EU_PROVENANCE_SYNC_DOCS:
+        if name in docs_payload:
+            docs_payload[name] = docs_payload[name].rstrip() + WAVE_EU_PROVENANCE_SYNC_NOTE
     for name, text in docs_payload.items():
         _write_text(docs_dir / name, text)
 
