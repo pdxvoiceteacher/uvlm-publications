@@ -31,6 +31,12 @@ SOURCE-CORPUS-PROVENANCE-HASH-FILL-00 fills pending EU AI Act source-report hash
 ## Doctrine language
 
 - Source Corpus Provenance Archive
+- June 2026 Source Corpus Batch Manifest
+- This batch preserves source identity and provenance, not accepted evidence.
+- Raw private files are not committed.
+- Duplicate filenames are deduplicated by SHA-256.
+- Filename aliases are preserved.
+- Public release approval is false by default.
 - Repos are governed provenance libraries, not document dumps.
 - Raw source reports may be omitted from public repos when privacy, sensitivity, size, or licensing requires hash-only reference.
 - DOCX originals should have Markdown derivatives when committed.
@@ -40,22 +46,38 @@ SOURCE-CORPUS-PROVENANCE-HASH-FILL-00 fills pending EU AI Act source-report hash
 - Source reports are not accepted evidence by themselves.
 - Source reports are not theorem proof.
 - Source reports are not product release.
+- Source reports are not product readiness.
 - Source reports are not compliance certification.
+- Source reports are not legal advice.
+- Source reports are not current canonical repo state.
 - Summaries are not sources.
 - Human review remains required.
 - Hashes preserve identity; hashes do not certify truth.
 - Visibility and sensitivity must be explicit.
 - Public release approval must be explicit.
+- Canonical repo state supersedes source reports.
+- Large or sensitive reports remain hash-only references unless explicitly approved.
+- SOURCE-CORPUS-BATCH-MANIFEST-2026-06-10-00 does not commit raw private reports.
+- SOURCE-CORPUS-BATCH-MANIFEST-2026-06-10-00 does not add extracted text.
+- SOURCE-CORPUS-BATCH-MANIFEST-2026-06-10-00 does not add normalized derivatives.
 
 ## Manifest terms
 
 - active_governed_provenance_manifest
+- source_corpus_batch_20260610
+- active_hash_only_provenance_manifest
+- one_canonical_row_per_unique_sha256
+- raw_sha256
 - hash_only_public_reference
 - canonical_repo_state_supersedes_report
 - source_is_not_accepted_evidence
 - source_is_not_theorem_proof
 - source_is_not_product_release
+- source_is_not_product_readiness
 - source_is_not_compliance_certification
+- source_is_not_legal_advice
+- source_is_not_memory_write
+- source_is_not_atlas_memory_admission
 - summary_is_not_source
 - human_review_required
 - public_release_approved = false
@@ -125,6 +147,23 @@ SOURCE-CORPUS-PROVENANCE-HASH-FILL-00 fills pending EU AI Act source-report hash
 - GitHub repo is a backup store
 - source corpus archive writes memory
 - source corpus archive admits Atlas memory
+- source corpus batch proves GUFT
+- source corpus batch proves compliance
+- source corpus batch certifies truth
+- source corpus batch grants accepted-evidence authority
+- source corpus batch is canonical repo state
+- source corpus batch authorizes product release
+- source corpus batch certifies product readiness
+- source corpus batch writes memory
+- source corpus batch admits Atlas memory
+- filename aliases are separate sources
+- raw private reports are public by default
+- deduplication means source equivalence beyond byte identity
+- source reports are theorem proof
+- source reports are compliance certification
+- source reports are product release
+- source reports are product readiness
+- source reports are current canonical repo state
 
 ## Reproducibility
 

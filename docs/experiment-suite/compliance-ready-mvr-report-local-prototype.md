@@ -147,6 +147,23 @@ COMPLIANCE-READY-MVR-REPORT-LOCAL-PROTOTYPE-00 emits a local compliance-ready Mi
 - GitHub repo is a backup store
 - source corpus archive writes memory
 - source corpus archive admits Atlas memory
+- source corpus batch proves GUFT
+- source corpus batch proves compliance
+- source corpus batch certifies truth
+- source corpus batch grants accepted-evidence authority
+- source corpus batch is canonical repo state
+- source corpus batch authorizes product release
+- source corpus batch certifies product readiness
+- source corpus batch writes memory
+- source corpus batch admits Atlas memory
+- filename aliases are separate sources
+- raw private reports are public by default
+- deduplication means source equivalence beyond byte identity
+- source reports are theorem proof
+- source reports are compliance certification
+- source reports are product release
+- source reports are product readiness
+- source reports are current canonical repo state
 
 ## Reproducibility
 

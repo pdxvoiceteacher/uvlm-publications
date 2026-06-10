@@ -11497,6 +11497,46 @@ SOURCE_CORPUS_PROVENANCE_ARTIFACTS = [
     "docs/provenance/source_reports/2026-06/normalized/.gitkeep",
     "docs/provenance/source_reports/2026-06/summaries/.gitkeep",
 ]
+SOURCE_CORPUS_BATCH_MANIFEST_COMMAND = "python -m pytest -q python/tests/provenance/test_source_corpus_batch_manifest_20260610.py tests/test_source_corpus_provenance_archive.py tests/test_experiment_registry.py"
+SOURCE_CORPUS_BATCH_MANIFEST_REPRO_FRAGMENTS = [
+    "test_source_corpus_batch_manifest_20260610.py",
+    "test_source_corpus_provenance_archive.py",
+    "test_experiment_registry.py",
+]
+SOURCE_CORPUS_BATCH_MANIFEST_ARTIFACTS = [
+    "docs/provenance/source_reports/2026-06/batch_manifest_20260610.json",
+    "docs/provenance/source_reports/2026-06/batch_sha256sums_20260610.txt",
+    "docs/provenance/source_reports/2026-06/batch_aliases_20260610.json",
+    "docs/provenance/source_reports/2026-06/batch_summary_20260610.md",
+    "schema/bridge/source_corpus_batch_manifest.schema.json",
+    "python/tests/provenance/test_source_corpus_batch_manifest_20260610.py",
+]
+SOURCE_CORPUS_BATCH_DASHBOARD_SUMMARY = {
+    "batch_status": "active_hash_only_provenance_manifest",
+    "batch_id": "source_corpus_batch_20260610",
+    "canonical_row_count": 22,
+    "unique_sha256_count": 22,
+    "deduplication_key": "raw_sha256",
+    "canonical_row_policy": "one_canonical_row_per_unique_sha256",
+    "alias_pairs_preserved": True,
+    "raw_files_committed": False,
+    "normalized_derivatives_added": False,
+    "extracted_text_added": False,
+    "all_rows_visibility": "hash_only_public_reference",
+    "all_rows_public_release_approved": False,
+    "all_rows_preserve_non_authority_boundaries": True,
+    "no_raw_docx_txt_pdf_zip_files_committed": True,
+    "source_corpus_batch_is_not_accepted_evidence": True,
+    "source_corpus_batch_is_not_theorem_proof": True,
+    "source_corpus_batch_is_not_compliance_certification": True,
+    "source_corpus_batch_is_not_product_release": True,
+    "source_corpus_batch_is_not_product_readiness": True,
+    "source_corpus_batch_is_not_memory_write": True,
+    "source_corpus_batch_is_not_atlas_memory_admission": True,
+    "source_corpus_batch_is_not_canonical_repo_state": True,
+    "hashes_do_not_certify_truth": True,
+    "human_review_required": True,
+}
 SOURCE_CORPUS_CONCRETE_HASHES = [
     "2f49da190fcf5e3a04330f53bd9e6d30228c0a999cdabf8be2e94e957e6dfb09",
     "9eaba6d5a49de7d09542b3e879cbb9eb936181a37e660b3434a5e31e110ccfe6",
@@ -11510,6 +11550,72 @@ SOURCE_CORPUS_REPORT_FILENAMES = [
     "wave_rosetta_canonical_proxy_bridge_scientific_review_20260609.md",
     "EU AI Act Reporting Formats and Short-Term Product Strategy for UVLM Triadic Brain.docx",
     "EU AI Act Aligned Reporting Architecture for Triadic Brain Product Lines.docx",
+]
+SOURCE_CORPUS_BATCH_REPORT_FILENAMES = [
+    "Telemetry Project Deep Dive.docx",
+    "CoherenceLattice Change Management and Gnosis Synthesis Report.docx",
+    "Telemetry Integration into the CoherenceLattice Pipeline.docx",
+    "Multi-Axial Coherence Analysis for Exogenic Off-Loading in Complex Systems.docx",
+    "Quantum Gravity from Causal Memory.docx",
+    "Universal Control Codex (UCC) Supplement.docx",
+    "The Coherence Lattice GUFT meets GUPT.docx",
+    "The Grand Unified Field Theory of Coherence (GUFT) V69.me.docx",
+    "TCHES v1.4.docx",
+    "Appendix TAF – Operationalize it, because Ultra Verba, Lux Mentis.docx",
+    "Echo Primer.pdf",
+    "PMR - Internal Technical Memo.docx",
+    "THE COHERENCE OF SIGNAL.docx",
+    "Preventing Hyperreal design drift.docx",
+    "Triadic Brain Developer Guidance for Canonical Ingress, Grounding Bundles, and Phaselock Governance.docx",
+    "Triadic Brain Maths Glossary.docx",
+    "Thought-Exchange Layer (TEL) Graph MVP Design and Integration.docx",
+    "Final TEL Event Stack Validation in CoherenceLattice.docx",
+    "free will.zip",
+    "governed_tches_success_20260420_135304.zip",
+    "governed_tches_after_dq08_inventory_capture_20260501_161304.zip",
+    "mvr_tches_v1_4_human_selected_file_smoke.zip",
+]
+SOURCE_CORPUS_BATCH_CONCRETE_HASHES = [
+    "0d9bedc988ae3bd6c8c5291594e98cdf55f2483e61d365ae9976785e412f2656",
+    "f1206c5f86d83c6ac900d8880b5dcffa5433ce626a1ddfef8480a060ee3f4fa4",
+    "09268960029318fbd9c724094a6a82bf49e095576e1a5bc644a1e9215fad977a",
+    "7bf6c9637ecbb6afd1cef14a0ee39f5904ddb2493277902334456d05cc0a5104",
+    "23acd312e50e43b7c98702e87ce4bb324fd259502f6fc7cd937690c676feae4d",
+    "d48b4984c0061495a89c9cdaba12cd26816ce504c22f765ee1fd6cadc87f2f3d",
+    "bcf6941fe619fa40a9475327e977fce7c8af2c44b94d5ae5fd8665eb65a2976c",
+    "87584b4c97581a8657978c63bf4ba135cd707f2a1c21deccb513ffa881212503",
+    "d5feb2658f74bedbb56782c66ba473ef29e0ae02ca3ea091356c8cea30aba74d",
+    "aff0180dd1a61784bb5b6b173ebf6b66a6cb2f497bbb08aedb9fe4dc149ef583",
+    "0bb03eeb493da65f0625e5028d708873016c359d184bc0f1fecac5715d63b953",
+    "dc628557c0e729ff8fe5127d1eb129046a12186fff33b9dae65ad58f2e4e0ceb",
+    "5b028820fd50bd93a7f5ad1ec54955f08c0accd039a482e999fdc04efaccf6c2",
+    "a241521288f7c792b76f22b9ec82d19027be9f1032402ae0d87288cacdcb9258",
+    "fe5cd0189f64df015239453430a085a156580ecaab5856cc784498a25d62a38b",
+    "27941c74013b578c216e4569a066a8988860a9c8b01fa544cd6fe25a642a8f35",
+    "3608c158b6affd4f63d04e91d5eae65bb045afb864549d3b84ad9bc664d87c40",
+    "1904b3e786b4c0314b681d8c52ddef39ef02d3e4b2bbe2a2493b3072b84d997f",
+    "17bcca653cbe300c656d796f42f6a077b1bf58f3e3a6655133524cbe56386fdd",
+    "00683d8c93d5daabefa9ea6e5819c53f76e9155fd42a4b4dad036188843ee3d1",
+    "db97a6325de67c673baae100327773d6d5f0a0a14431ada361b1551d647fef3d",
+    "6046cabc13041f664cb67caf96cf5d43eb41fcc03df59248d0b3e6842552d7ca",
+]
+SOURCE_CORPUS_BATCH_ALIAS_TERMS = [
+    "Telemetry%20Project%20Deep%20Dive.docx",
+    "Telemetry%20Integration%20into%20the%20CoherenceLattice%20Pipeline.docx",
+    "Universal%20Control%20Codex%20%28UCC%29%20Supplement.docx",
+    "Multi%E2%80%91Axial%20Coherence%20Analysis%20for%20Exogenic%20Off%E2%80%91Loading%20in%20Complex%20Systems.docx",
+    "filename_aliases",
+    "deduplicated by SHA-256",
+    "filename aliases are not separate sources",
+    "deduplication means byte-identity only",
+]
+SOURCE_CORPUS_BATCH_PRIOR_PHASE_RELATION = [
+    "SOURCE-CORPUS-PROVENANCE-ARCHIVE-00 defines the governed source-report archive pattern.",
+    "SOURCE-CORPUS-PROVENANCE-HASH-FILL-00 fills pending EU AI Act source-report hashes.",
+    "SOURCE-CORPUS-BATCH-MANIFEST-2026-06-10-00 adds the June 2026 hash-only batch manifest.",
+    "WAVE-ROSETTA-CANONICAL-PROXY-BRIDGE-PROVENANCE-00 uses source report hashes for scientific provenance.",
+    "COMPLIANCE-READY-MVR-REPORT-LOCAL-PROTOTYPE-00 uses compliance report provenance for report design context.",
+    "VALIDATION-TIERING-PROVENANCE-00 records validation confidence scope.",
 ]
 COMPLIANCE_READY_MVR_REPORT_LOCAL_PROTOTYPE_DOCTRINE_LANGUAGE = [
     "Compliance-Ready MVR Report Local Prototype",
@@ -11563,6 +11669,12 @@ COMPLIANCE_READY_MVR_REPORT_LOCAL_PROTOTYPE_GLOSSARY_TERMS = [
 ]
 SOURCE_CORPUS_PROVENANCE_DOCTRINE_LANGUAGE = [
     "Source Corpus Provenance Archive",
+    "June 2026 Source Corpus Batch Manifest",
+    "This batch preserves source identity and provenance, not accepted evidence.",
+    "Raw private files are not committed.",
+    "Duplicate filenames are deduplicated by SHA-256.",
+    "Filename aliases are preserved.",
+    "Public release approval is false by default.",
     "Repos are governed provenance libraries, not document dumps.",
     "Raw source reports may be omitted from public repos when privacy, sensitivity, size, or licensing requires hash-only reference.",
     "DOCX originals should have Markdown derivatives when committed.",
@@ -11572,21 +11684,37 @@ SOURCE_CORPUS_PROVENANCE_DOCTRINE_LANGUAGE = [
     "Source reports are not accepted evidence by themselves.",
     "Source reports are not theorem proof.",
     "Source reports are not product release.",
+    "Source reports are not product readiness.",
     "Source reports are not compliance certification.",
+    "Source reports are not legal advice.",
+    "Source reports are not current canonical repo state.",
     "Summaries are not sources.",
     "Human review remains required.",
     "Hashes preserve identity; hashes do not certify truth.",
     "Visibility and sensitivity must be explicit.",
     "Public release approval must be explicit.",
+    "Canonical repo state supersedes source reports.",
+    "Large or sensitive reports remain hash-only references unless explicitly approved.",
+    "SOURCE-CORPUS-BATCH-MANIFEST-2026-06-10-00 does not commit raw private reports.",
+    "SOURCE-CORPUS-BATCH-MANIFEST-2026-06-10-00 does not add extracted text.",
+    "SOURCE-CORPUS-BATCH-MANIFEST-2026-06-10-00 does not add normalized derivatives.",
 ]
 SOURCE_CORPUS_MANIFEST_TERMS = [
     "active_governed_provenance_manifest",
+    "source_corpus_batch_20260610",
+    "active_hash_only_provenance_manifest",
+    "one_canonical_row_per_unique_sha256",
+    "raw_sha256",
     "hash_only_public_reference",
     "canonical_repo_state_supersedes_report",
     "source_is_not_accepted_evidence",
     "source_is_not_theorem_proof",
     "source_is_not_product_release",
+    "source_is_not_product_readiness",
     "source_is_not_compliance_certification",
+    "source_is_not_legal_advice",
+    "source_is_not_memory_write",
+    "source_is_not_atlas_memory_admission",
     "summary_is_not_source",
     "human_review_required",
     "public_release_approved = false",
@@ -11627,10 +11755,28 @@ COMPLIANCE_REPORT_SOURCE_CORPUS_BLOCKED_CLAIMS = [
     "GitHub repo is a backup store",
     "source corpus archive writes memory",
     "source corpus archive admits Atlas memory",
+    "source corpus batch proves GUFT",
+    "source corpus batch proves compliance",
+    "source corpus batch certifies truth",
+    "source corpus batch grants accepted-evidence authority",
+    "source corpus batch is canonical repo state",
+    "source corpus batch authorizes product release",
+    "source corpus batch certifies product readiness",
+    "source corpus batch writes memory",
+    "source corpus batch admits Atlas memory",
+    "filename aliases are separate sources",
+    "raw private reports are public by default",
+    "deduplication means source equivalence beyond byte identity",
+    "source reports are theorem proof",
+    "source reports are compliance certification",
+    "source reports are product release",
+    "source reports are product readiness",
+    "source reports are current canonical repo state",
 ]
 COMPLIANCE_READY_MVR_REPORT_LOCAL_PROTOTYPE_CLAIM_ALLOWED = "COMPLIANCE-READY-MVR-REPORT-LOCAL-PROTOTYPE-00 emits a local compliance-ready Minimal Viable Receipt report prototype that summarizes MVR and EU AI Act evidence-map artifacts into a stupidly user-friendly compliance-facing report with executive status, evidence map summary, gap register summary, human oversight and signoff status, controls and traceability, data governance, retention boundaries, contestability, validation scope, metric proxy annex, non-authority statement, audit artifact index, and open questions while requiring human review and authorized professional signoff and avoiding compliance certification, legal advice, audit-pass claims, attestation-success claims, product-readiness claims, product release, truth certification, final-answer authority, accepted-evidence authority, memory write, Atlas admission, trace export, PMR federation, model training, or review skipping."
 SOURCE_CORPUS_PROVENANCE_ARCHIVE_CLAIM_ALLOWED = "SOURCE-CORPUS-PROVENANCE-ARCHIVE-00 defines a governed source-report archive pattern with manifest schema, source metadata, hashes, visibility and sensitivity flags, normalized derivative guidance, and non-authority boundaries so future developers can trace design and scientific provenance without treating source reports as accepted evidence, theorem proof, compliance certification, product release, product readiness, memory write, Atlas admission, or current canonical repo state."
 SOURCE_CORPUS_PROVENANCE_HASH_FILL_CLAIM_ALLOWED = "SOURCE-CORPUS-PROVENANCE-HASH-FILL-00 fills pending EU AI Act source-report hashes in the governed source-corpus manifest and sha256sums file while preserving hash-only public references, public_release_approved=false, no raw private DOCX import, and all non-authority boundaries."
+SOURCE_CORPUS_BATCH_MANIFEST_CLAIM_ALLOWED = "SOURCE-CORPUS-BATCH-MANIFEST-2026-06-10-00 adds a governed, hash-only source-corpus batch manifest for June 2026 uploaded reports, deduplicating filename aliases by SHA-256 and preserving source identity, file size, source type, visibility, public-release status, and non-authority boundaries without committing raw private files or treating source reports as accepted evidence, theorem proof, compliance certification, product release, product readiness, memory write, Atlas admission, or canonical repo state."
 COMPLIANCE_READY_MVR_REPORT_LOCAL_PROTOTYPE_DASHBOARD_SUMMARY = {
     "report_status": "completed",
     "report_mode": "local_compliance_ready_mvr_report_prototype",
@@ -11740,6 +11886,20 @@ SOURCE_CORPUS_PROVENANCE_HASH_FILL_PHASE = {
     "claim_allowed": SOURCE_CORPUS_PROVENANCE_HASH_FILL_CLAIM_ALLOWED,
     "claims_blocked": COMPLIANCE_REPORT_SOURCE_CORPUS_BLOCKED_CLAIMS,
     "reviewer_caution": "SOURCE-CORPUS-PROVENANCE-HASH-FILL-00 fills pending EU AI Act source-report hashes only. It preserves hash-only public references, public_release_approved=false, no raw private DOCX import, and non-authority boundaries; it is not evidence authority, truth certification, compliance certification, product authority, memory write, Atlas admission, trace export, or PMR federation.",
+    "publication_status": "dashboard_indexed",
+}
+SOURCE_CORPUS_BATCH_MANIFEST_PHASE = {
+    "phase_id": "SOURCE-CORPUS-BATCH-MANIFEST-2026-06-10-00",
+    "repo": "pdxvoiceteacher/CoherenceLattice",
+    "status": "accepted_local_validation",
+    "evidence_type": "source_corpus_batch_manifest_publication_sync",
+    "product_posture": "hash_only_source_corpus_batch_manifest_without_raw_private_files_or_evidence_authority",
+    "primary_artifacts": SOURCE_CORPUS_BATCH_MANIFEST_ARTIFACTS,
+    "dashboard_summary": SOURCE_CORPUS_BATCH_DASHBOARD_SUMMARY,
+    "reproduction_command_summary": SOURCE_CORPUS_BATCH_MANIFEST_COMMAND,
+    "claim_allowed": SOURCE_CORPUS_BATCH_MANIFEST_CLAIM_ALLOWED,
+    "claims_blocked": COMPLIANCE_REPORT_SOURCE_CORPUS_BLOCKED_CLAIMS,
+    "reviewer_caution": "SOURCE-CORPUS-BATCH-MANIFEST-2026-06-10-00 is a hash-only source-corpus batch manifest. It commits no raw private reports, extracted text, or normalized derivatives; it is not accepted evidence, theorem proof, GUFT proof, compliance certification, product release, product readiness, memory write, Atlas admission, truth certification, or current canonical repo state.",
     "publication_status": "dashboard_indexed",
 }
 
@@ -14495,6 +14655,7 @@ EU_AI_ACT_MVR_EVIDENCE_MAP_LOCAL_PROTOTYPE_PHASE,
 COMPLIANCE_READY_MVR_REPORT_LOCAL_PROTOTYPE_PHASE,
 SOURCE_CORPUS_PROVENANCE_ARCHIVE_PHASE,
 SOURCE_CORPUS_PROVENANCE_HASH_FILL_PHASE,
+SOURCE_CORPUS_BATCH_MANIFEST_PHASE,
 WAVE_PROVENANCE_PHASE,
 VALIDATION_TIERING_PROVENANCE_PHASE,
 TELEMETRY_APERTURE_DESIGN_PHASE,
@@ -17724,10 +17885,18 @@ def dashboard_payload() -> dict[str, Any]:
         "not_compliance_ready_mvr_report_local_prototype_runtime_authority": True,
         "source_corpus_provenance_archive_00_indexed": True,
         "source_corpus_provenance_hash_fill_00_indexed": True,
+        "source_corpus_batch_manifest_2026_06_10_00_indexed": True,
         "source_corpus_manifest_status": "active_governed_provenance_manifest",
+        "source_corpus_batch_status": "active_hash_only_provenance_manifest",
+        "source_corpus_batch_id": "source_corpus_batch_20260610",
         "source_corpus_source_count": 5,
+        "source_corpus_batch_canonical_row_count": 22,
+        "source_corpus_batch_unique_sha256_count": 22,
         "source_corpus_pending_hash_placeholders_remaining": 0,
         "source_corpus_raw_private_reports_bulk_imported": False,
+        "source_corpus_batch_raw_files_committed": False,
+        "source_corpus_batch_normalized_derivatives_added": False,
+        "source_corpus_batch_extracted_text_added": False,
         "not_source_corpus_accepted_evidence": True,
         "not_source_corpus_canonical_repo_state": True,
         "not_source_corpus_runtime_authority": True,
@@ -17858,6 +18027,7 @@ def reproducibility_index() -> dict[str, Any]:
                 {"name": "COMPLIANCE-READY-MVR-REPORT-LOCAL-PROTOTYPE-00 Python entrypoint", "command": COMPLIANCE_READY_MVR_REPORT_LOCAL_PROTOTYPE_COMMAND},
                 {"name": "SOURCE-CORPUS-PROVENANCE-ARCHIVE-00 provenance validation", "command": SOURCE_CORPUS_PROVENANCE_COMMAND},
                 {"name": "SOURCE-CORPUS-PROVENANCE-HASH-FILL-00 hash-fill validation", "command": SOURCE_CORPUS_HASH_FILL_COMMAND},
+                {"name": "SOURCE-CORPUS-BATCH-MANIFEST-2026-06-10-00 batch manifest validation", "command": SOURCE_CORPUS_BATCH_MANIFEST_COMMAND},
                 {"name": "WAVE-ROSETTA-CANONICAL-PROXY-BRIDGE-PROVENANCE-00 provenance validation", "command": COMPLIANCE_REPORT_DESIGN_COMMAND},
                 {"name": "Validation Tiering Provenance Python entrypoint", "command": VALIDATION_TIERING_PROVENANCE_COMMAND},
                 {"name": "TELEMETRY-APERTURE-DESIGN-00 config/schema inspection", "command": TELEMETRY_APERTURE_DESIGN_COMMAND},
@@ -18840,10 +19010,18 @@ def status_payload() -> dict[str, Any]:
         "not_compliance_ready_mvr_report_local_prototype_runtime_authority": True,
         "source_corpus_provenance_archive_00_indexed": True,
         "source_corpus_provenance_hash_fill_00_indexed": True,
+        "source_corpus_batch_manifest_2026_06_10_00_indexed": True,
         "source_corpus_manifest_status": "active_governed_provenance_manifest",
+        "source_corpus_batch_status": "active_hash_only_provenance_manifest",
+        "source_corpus_batch_id": "source_corpus_batch_20260610",
         "source_corpus_source_count": 5,
+        "source_corpus_batch_canonical_row_count": 22,
+        "source_corpus_batch_unique_sha256_count": 22,
         "source_corpus_pending_hash_placeholders_remaining": 0,
         "source_corpus_raw_private_reports_bulk_imported": False,
+        "source_corpus_batch_raw_files_committed": False,
+        "source_corpus_batch_normalized_derivatives_added": False,
+        "source_corpus_batch_extracted_text_added": False,
         "not_source_corpus_accepted_evidence": True,
         "not_source_corpus_canonical_repo_state": True,
         "not_source_corpus_runtime_authority": True,
@@ -24965,7 +25143,7 @@ COMPLIANCE_REPORT_SOURCE_CORPUS_SYNC_NOTE = f"""
 
 ## Compliance-ready MVR report local prototype and source-corpus provenance publication sync
 
-COMPLIANCE-READY-MVR-REPORT-LOCAL-PROTOTYPE-00 emits a local compliance-ready MVR report prototype for review support only. SOURCE-CORPUS-PROVENANCE-ARCHIVE-00 defines the governed source-report archive pattern, and SOURCE-CORPUS-PROVENANCE-HASH-FILL-00 fills pending EU AI Act source-report hashes while preserving hash-only public references and no raw private DOCX import.
+COMPLIANCE-READY-MVR-REPORT-LOCAL-PROTOTYPE-00 emits a local compliance-ready MVR report prototype for review support only. SOURCE-CORPUS-PROVENANCE-ARCHIVE-00 defines the governed source-report archive pattern, SOURCE-CORPUS-PROVENANCE-HASH-FILL-00 fills pending EU AI Act source-report hashes, and SOURCE-CORPUS-BATCH-MANIFEST-2026-06-10-00 adds the June 2026 hash-only batch manifest while preserving hash-only public references and no raw private file import.
 
 Compliance report doctrine: {'; '.join(COMPLIANCE_READY_MVR_REPORT_LOCAL_PROTOTYPE_DOCTRINE_LANGUAGE)}
 
@@ -25126,6 +25304,62 @@ SOURCE-CORPUS-PROVENANCE-HASH-FILL-00 synchronizes the source-corpus hash-fill p
 Publication sync grants no runtime authority. It does not imply compliance certification, legal advice, audit pass, attestation success, product readiness, product release, truth certification, final-answer authority, accepted-evidence authority, memory write, Atlas memory admission, trace export, PMR federation, provider runtime, network runtime, model training, review skipping, user validation, human-subject study, market validation, human benefit proof, theorem proof, GUFT proof, consciousness proof, or universal ontology proof.
 """
 
+def source_corpus_batch_manifest_doc() -> str:
+    summary = "\n".join(f"- {key} = {str(value).lower() if isinstance(value, bool) else value}" for key, value in SOURCE_CORPUS_BATCH_DASHBOARD_SUMMARY.items())
+    return f"""# June 2026 Source Corpus Batch Manifest
+
+SOURCE-CORPUS-BATCH-MANIFEST-2026-06-10-00 synchronizes the June 2026 source-corpus batch manifest into publication dashboards. This is publication/dashboard synchronization only and grants no runtime authority.
+
+## Bounded allowed claim
+
+{SOURCE_CORPUS_BATCH_MANIFEST_CLAIM_ALLOWED}
+
+## Dashboard summary
+
+{summary}
+
+## Doctrine language
+
+{_bullets(SOURCE_CORPUS_PROVENANCE_DOCTRINE_LANGUAGE)}
+
+## Manifest terms
+
+{_bullets(SOURCE_CORPUS_MANIFEST_TERMS)}
+
+## High-priority source report filenames
+
+{_bullets(SOURCE_CORPUS_BATCH_REPORT_FILENAMES)}
+
+## Concrete source hashes
+
+{_bullets(SOURCE_CORPUS_BATCH_CONCRETE_HASHES)}
+
+## Alias and deduplication terms
+
+{_bullets(SOURCE_CORPUS_BATCH_ALIAS_TERMS)}
+
+## Artifact references
+
+{_bullets(SOURCE_CORPUS_BATCH_MANIFEST_ARTIFACTS)}
+
+## Relation to prior phases
+
+{_bullets(SOURCE_CORPUS_BATCH_PRIOR_PHASE_RELATION)}
+
+## Blocked claims
+
+{_bullets(COMPLIANCE_REPORT_SOURCE_CORPUS_BLOCKED_CLAIMS)}
+
+## Reproducibility
+
+{_bullets(SOURCE_CORPUS_BATCH_MANIFEST_REPRO_FRAGMENTS)}
+- `{SOURCE_CORPUS_BATCH_MANIFEST_COMMAND}`
+
+## Runtime authority boundary
+
+Publication sync grants no runtime authority. It does not imply raw private report import, accepted-evidence authority, theorem proof, GUFT proof, compliance certification, legal advice, audit pass, attestation success, product readiness, product release, truth certification, final-answer authority, memory write, Atlas memory admission, trace export, PMR federation, model training, review skipping, consciousness proof, or universal ontology proof.
+"""
+
 def wave_rosetta_canonical_proxy_bridge_provenance_doc() -> str:
     summary = "\n".join(f"- {key} = {str(value).lower() if isinstance(value, bool) else value}" for key, value in WAVE_PROVENANCE_DASHBOARD_SUMMARY.items())
     return f"""# WAVE Rosetta Canonical-Proxy Bridge Provenance
@@ -25203,6 +25437,7 @@ def build(out_dir: Path, docs_dir: Path) -> None:
     docs_payload["compliance-ready-mvr-report-local-prototype.md"] = compliance_ready_mvr_report_local_prototype_doc()
     docs_payload["source-corpus-provenance-archive.md"] = source_corpus_provenance_archive_doc()
     docs_payload["source-corpus-provenance-hash-fill.md"] = source_corpus_provenance_hash_fill_doc()
+    docs_payload["source-corpus-batch-manifest-2026-06-10.md"] = source_corpus_batch_manifest_doc()
     docs_payload["wave-rosetta-canonical-proxy-bridge.md"] = wave_rosetta_canonical_proxy_bridge_doc()
     docs_payload["eu-ai-act-mvr-evidence-mapping-design.md"] = eu_ai_act_mvr_evidence_mapping_design_doc()
     docs_payload["eu-ai-act-mvr-evidence-map-local-prototype.md"] = eu_ai_act_mvr_evidence_map_local_prototype_doc()

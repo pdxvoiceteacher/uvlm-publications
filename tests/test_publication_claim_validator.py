@@ -52,6 +52,7 @@ from tools.build_public_repro_dashboard import (
     COMPLIANCE_READY_MVR_REPORT_LOCAL_PROTOTYPE_CLAIM_ALLOWED,
     SOURCE_CORPUS_PROVENANCE_ARCHIVE_CLAIM_ALLOWED,
     SOURCE_CORPUS_PROVENANCE_HASH_FILL_CLAIM_ALLOWED,
+    SOURCE_CORPUS_BATCH_MANIFEST_CLAIM_ALLOWED,
     VALIDATION_TIERING_PROVENANCE_BLOCKED_CLAIMS,
     VALIDATION_TIERING_PROVENANCE_CLAIM_ALLOWED,
     TELEMETRY_APERTURE_BLOCKED_CLAIMS,
@@ -5431,5 +5432,20 @@ def test_publication_claim_validator_allows_bounded_source_corpus_claim(tmp_path
 def test_publication_claim_validator_allows_bounded_source_corpus_hash_fill_claim(tmp_path):
     paper_root = tmp_path / "paper"
     _write_minimal_publication_claim_fixture(paper_root, SOURCE_CORPUS_PROVENANCE_HASH_FILL_CLAIM_ALLOWED)
+    result = validate_publication_claims(paper_root / "PUB_GOV_ARTIFACT_COG_01.md")
+    assert result["forbidden_overclaims_found"] == []
+
+
+def test_publication_claim_validator_rejects_source_corpus_batch_overclaims(tmp_path):
+    for claim in COMPLIANCE_REPORT_SOURCE_CORPUS_BLOCKED_CLAIMS:
+        paper_root = tmp_path / claim.replace(" ", "_").replace("/", "_")
+        _write_minimal_publication_claim_fixture(paper_root, f"Source corpus batch sync claims {claim}.")
+        result = validate_publication_claims(paper_root / "PUB_GOV_ARTIFACT_COG_01.md")
+        assert result["forbidden_overclaims_found"], claim
+
+
+def test_publication_claim_validator_allows_bounded_source_corpus_batch_claim(tmp_path):
+    paper_root = tmp_path / "paper"
+    _write_minimal_publication_claim_fixture(paper_root, SOURCE_CORPUS_BATCH_MANIFEST_CLAIM_ALLOWED)
     result = validate_publication_claims(paper_root / "PUB_GOV_ARTIFACT_COG_01.md")
     assert result["forbidden_overclaims_found"] == []

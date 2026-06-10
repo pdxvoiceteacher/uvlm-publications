@@ -47,6 +47,11 @@ from tools.build_public_repro_dashboard import (
 )
 
 
+# The June 2026 source-corpus batch manifest shares the source-corpus
+# non-authority boundary vocabulary with the compliance report source corpus sync.
+SOURCE_CORPUS_BATCH_MANIFEST_BLOCKED_CLAIMS = COMPLIANCE_REPORT_SOURCE_CORPUS_BLOCKED_CLAIMS
+
+
 PAPER_CONFIGS: dict[str, dict[str, Any]] = {
     "PUB-GOV-ARTIFACT-COG-01": {
         "paper_file": "PUB_GOV_ARTIFACT_COG_01.md",
@@ -854,7 +859,7 @@ PAPER_CONFIGS: dict[str, dict[str, Any]] = {
             *COMPLIANCE_DESIGN_BLOCKED_CLAIMS,
             *WAVE_EU_PROVENANCE_BLOCKED_CLAIMS,
             *EU_AI_ACT_MVR_EVIDENCE_MAP_LOCAL_PROTOTYPE_BLOCKED_CLAIMS,
-            *COMPLIANCE_REPORT_SOURCE_CORPUS_BLOCKED_CLAIMS,
+            *SOURCE_CORPUS_BATCH_MANIFEST_BLOCKED_CLAIMS,
             *VALIDATION_TIERING_PROVENANCE_BLOCKED_CLAIMS,
             *TELEMETRY_APERTURE_BLOCKED_CLAIMS,
             *TAC_POLICY_SIMULATION_BLOCKED_CLAIMS,
@@ -1492,7 +1497,7 @@ def _forbidden_hits(normalized_text: str, forbidden: tuple[str, ...]) -> list[st
             *COMPLIANCE_DESIGN_BLOCKED_CLAIMS,
             *WAVE_EU_PROVENANCE_BLOCKED_CLAIMS,
             *EU_AI_ACT_MVR_EVIDENCE_MAP_LOCAL_PROTOTYPE_BLOCKED_CLAIMS,
-            *COMPLIANCE_REPORT_SOURCE_CORPUS_BLOCKED_CLAIMS,
+            *SOURCE_CORPUS_BATCH_MANIFEST_BLOCKED_CLAIMS,
             *VALIDATION_TIERING_PROVENANCE_BLOCKED_CLAIMS,
             *TELEMETRY_APERTURE_BLOCKED_CLAIMS,
             *TAC_POLICY_SIMULATION_BLOCKED_CLAIMS,
