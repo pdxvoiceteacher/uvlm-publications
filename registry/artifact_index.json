@@ -1375,6 +1375,14 @@
       "docs/provenance/source_reports/2026-06/normalized/.gitkeep",
       "docs/provenance/source_reports/2026-06/summaries/.gitkeep"
     ],
+    "SOURCE-CORPUS-BATCH-MANIFEST-2026-06-10-00": [
+      "docs/provenance/source_reports/2026-06/batch_manifest_20260610.json",
+      "docs/provenance/source_reports/2026-06/batch_sha256sums_20260610.txt",
+      "docs/provenance/source_reports/2026-06/batch_aliases_20260610.json",
+      "docs/provenance/source_reports/2026-06/batch_summary_20260610.md",
+      "schema/bridge/source_corpus_batch_manifest.schema.json",
+      "python/tests/provenance/test_source_corpus_batch_manifest_20260610.py"
+    ],
     "WAVE-ROSETTA-CANONICAL-PROXY-BRIDGE-PROVENANCE-00": [
       "docs/WAVE_ROSETTA_CANONICAL_PROXY_BRIDGE_PROVENANCE.md",
       "config/metrics/canonical_proxy_bridge_provenance.v1.json",

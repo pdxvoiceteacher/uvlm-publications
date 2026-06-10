@@ -216,6 +216,17 @@ from tools.build_public_repro_dashboard import (
     SOURCE_CORPUS_PROVENANCE_HASH_FILL_CLAIM_ALLOWED,
     SOURCE_CORPUS_PROVENANCE_REPRO_FRAGMENTS,
     SOURCE_CORPUS_REPORT_FILENAMES,
+    SOURCE_CORPUS_BATCH_MANIFEST_20260610_ALIAS_TERMS,
+    SOURCE_CORPUS_BATCH_MANIFEST_20260610_ARTIFACTS,
+    SOURCE_CORPUS_BATCH_MANIFEST_20260610_BLOCKED_CLAIMS,
+    SOURCE_CORPUS_BATCH_MANIFEST_20260610_CLAIM_ALLOWED,
+    SOURCE_CORPUS_BATCH_MANIFEST_20260610_DASHBOARD_SUMMARY,
+    SOURCE_CORPUS_BATCH_MANIFEST_20260610_DOCTRINE_LANGUAGE,
+    SOURCE_CORPUS_BATCH_MANIFEST_20260610_FILENAMES,
+    SOURCE_CORPUS_BATCH_MANIFEST_20260610_HASHES,
+    SOURCE_CORPUS_BATCH_MANIFEST_20260610_MANIFEST_TERMS,
+    SOURCE_CORPUS_BATCH_MANIFEST_20260610_PRIOR_PHASE_RELATION,
+    SOURCE_CORPUS_BATCH_MANIFEST_20260610_REPRO_FRAGMENTS,
     WAVE_BRIDGE_ARTIFACTS,
     WAVE_BRIDGE_CLAIM_ALLOWED,
     WAVE_BRIDGE_DASHBOARD_SUMMARY,
@@ -558,6 +569,7 @@ REQUIRED_PHASES = {
     "COMPLIANCE-READY-MVR-REPORT-LOCAL-PROTOTYPE-00",
     "SOURCE-CORPUS-PROVENANCE-ARCHIVE-00",
     "SOURCE-CORPUS-PROVENANCE-HASH-FILL-00",
+    "SOURCE-CORPUS-BATCH-MANIFEST-2026-06-10-00",
     "WAVE-ROSETTA-CANONICAL-PROXY-BRIDGE-PROVENANCE-00",
 }
 
@@ -7129,6 +7141,87 @@ def test_validator_fails_if_compliance_report_source_corpus_syncs_make_forbidden
         out_dir, docs_dir = run_builder(tmp_path / claim.replace(" ", "_").replace("/", "_"))
         page = docs_dir / "compliance-ready-mvr-report-local-prototype.md"
         page.write_text(page.read_text(encoding="utf-8") + f"\nCompliance source sync claims {claim}.\n", encoding="utf-8")
+        result = validate_dashboard(out_dir / "experiment_suite_dashboard.json", docs_dir)
+        assert result["passed"] is False, claim
+        forbidden_found = [found.lower() for found in result["forbidden_claims_found"]]
+        assert claim.lower() in forbidden_found or f"claims {claim.lower()}" in forbidden_found, result
+
+
+
+def test_source_corpus_batch_manifest_20260610_indexes_dashboard_docs_and_boundaries(tmp_path):
+    out_dir, docs_dir = run_builder(tmp_path)
+    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text(encoding="utf-8"))
+    artifact_index = json.loads((out_dir / "artifact_index.json").read_text(encoding="utf-8"))
+    repro_index = json.loads((out_dir / "reproducibility_index.json").read_text(encoding="utf-8"))
+    claim_boundaries = json.loads((out_dir / "claim_boundary_index.json").read_text(encoding="utf-8"))
+    status = json.loads((out_dir / "status.json").read_text(encoding="utf-8"))
+    page = (docs_dir / "source-corpus-batch-manifest-2026-06-10.md").read_text(encoding="utf-8")
+
+    phase = next(entry for entry in dashboard["accepted_phases"] if entry["phase_id"] == "SOURCE-CORPUS-BATCH-MANIFEST-2026-06-10-00")
+    summary = phase["dashboard_summary"]
+    assert summary == SOURCE_CORPUS_BATCH_MANIFEST_20260610_DASHBOARD_SUMMARY
+    assert summary["batch_status"] == "active_hash_only_provenance_manifest"
+    assert summary["batch_id"] == "source_corpus_batch_20260610"
+    assert summary["canonical_row_count"] == 22
+    assert summary["unique_sha256_count"] == 22
+    assert summary["alias_pairs_preserved"] is True
+    assert summary["raw_files_committed"] is False
+    assert summary["normalized_derivatives_added"] is False
+    assert summary["extracted_text_added"] is False
+    assert summary["all_rows_visibility"] == "hash_only_public_reference"
+    assert summary["all_rows_public_release_approved"] is False
+    assert summary["all_rows_preserve_non_authority_boundaries"] is True
+    assert summary["no_raw_docx_txt_pdf_zip_files_committed"] is True
+    assert summary["source_corpus_batch_is_not_accepted_evidence"] is True
+    assert summary["source_corpus_batch_is_not_canonical_repo_state"] is True
+
+    assert artifact_index["phases"]["SOURCE-CORPUS-BATCH-MANIFEST-2026-06-10-00"] == SOURCE_CORPUS_BATCH_MANIFEST_20260610_ARTIFACTS
+    artifact_text = json.dumps(artifact_index, ensure_ascii=False)
+    for artifact in SOURCE_CORPUS_BATCH_MANIFEST_20260610_ARTIFACTS:
+        assert artifact in artifact_text
+    repro_text = json.dumps(repro_index, ensure_ascii=False)
+    for fragment in SOURCE_CORPUS_BATCH_MANIFEST_20260610_REPRO_FRAGMENTS:
+        assert fragment in repro_text
+    for required in (
+        *SOURCE_CORPUS_BATCH_MANIFEST_20260610_DOCTRINE_LANGUAGE,
+        *SOURCE_CORPUS_BATCH_MANIFEST_20260610_FILENAMES,
+        *SOURCE_CORPUS_BATCH_MANIFEST_20260610_HASHES,
+        *SOURCE_CORPUS_BATCH_MANIFEST_20260610_ALIAS_TERMS,
+        *SOURCE_CORPUS_BATCH_MANIFEST_20260610_MANIFEST_TERMS,
+        *SOURCE_CORPUS_BATCH_MANIFEST_20260610_PRIOR_PHASE_RELATION,
+        SOURCE_CORPUS_BATCH_MANIFEST_20260610_CLAIM_ALLOWED,
+        "Publication sync grants no runtime authority.",
+    ):
+        assert required in page
+    boundaries = "\n".join(claim_boundaries["boundaries"])
+    for blocked in SOURCE_CORPUS_BATCH_MANIFEST_20260610_BLOCKED_CLAIMS:
+        assert blocked in boundaries
+    assert status["source_corpus_batch_manifest_2026_06_10_00_indexed"] is True
+    assert status["source_corpus_batch_status"] == "active_hash_only_provenance_manifest"
+    assert status["source_corpus_batch_id"] == "source_corpus_batch_20260610"
+    assert status["source_corpus_batch_canonical_row_count"] == 22
+    assert status["source_corpus_batch_unique_sha256_count"] == 22
+    assert status["source_corpus_batch_alias_pairs_preserved"] is True
+    assert status["source_corpus_batch_raw_files_committed"] is False
+    assert status["source_corpus_batch_normalized_derivatives_added"] is False
+    assert status["source_corpus_batch_extracted_text_added"] is False
+    assert status["source_corpus_batch_all_rows_visibility"] == "hash_only_public_reference"
+    assert status["source_corpus_batch_all_rows_public_release_approved"] is False
+    assert status["source_corpus_batch_all_rows_preserve_non_authority_boundaries"] is True
+    assert status["source_corpus_batch_no_raw_private_files_committed"] is True
+    assert status["not_source_corpus_batch_accepted_evidence"] is True
+    assert status["not_source_corpus_batch_canonical_repo_state"] is True
+
+
+def test_validator_required_phases_include_source_corpus_batch_manifest_20260610():
+    assert "SOURCE-CORPUS-BATCH-MANIFEST-2026-06-10-00" in VALIDATOR_REQUIRED_PHASES
+
+
+def test_validator_fails_if_source_corpus_batch_manifest_makes_forbidden_claims(tmp_path):
+    for claim in SOURCE_CORPUS_BATCH_MANIFEST_20260610_BLOCKED_CLAIMS:
+        out_dir, docs_dir = run_builder(tmp_path / claim.replace(" ", "_").replace("/", "_"))
+        page = docs_dir / "source-corpus-batch-manifest-2026-06-10.md"
+        page.write_text(page.read_text(encoding="utf-8") + f"\nSource corpus batch claims {claim}.\n", encoding="utf-8")
         result = validate_dashboard(out_dir / "experiment_suite_dashboard.json", docs_dir)
         assert result["passed"] is False, claim
         forbidden_found = [found.lower() for found in result["forbidden_claims_found"]]

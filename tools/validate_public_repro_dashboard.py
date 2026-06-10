@@ -115,6 +115,7 @@ from tools.build_public_repro_dashboard import (
     WAVE_EU_PROVENANCE_BLOCKED_CLAIMS,
     EU_AI_ACT_MVR_EVIDENCE_MAP_LOCAL_PROTOTYPE_BLOCKED_CLAIMS,
     COMPLIANCE_REPORT_SOURCE_CORPUS_BLOCKED_CLAIMS,
+    SOURCE_CORPUS_BATCH_MANIFEST_20260610_BLOCKED_CLAIMS,
     MVR_READABILITY_REVIEW_SEED_CLAIM_ALLOWED,
     MVR_READABILITY_REVIEW_SEED_DASHBOARD_SUMMARY,
     MVR_READABILITY_REVIEW_SEED_DOCTRINE_LANGUAGE,
@@ -351,6 +352,7 @@ REQUIRED_PHASES = {
     "COMPLIANCE-READY-MVR-REPORT-LOCAL-PROTOTYPE-00",
     "SOURCE-CORPUS-PROVENANCE-ARCHIVE-00",
     "SOURCE-CORPUS-PROVENANCE-HASH-FILL-00",
+    "SOURCE-CORPUS-BATCH-MANIFEST-2026-06-10-00",
     "WAVE-ROSETTA-CANONICAL-PROXY-BRIDGE-PROVENANCE-00",
 }
 REQUIRED_BOUNDARY_PHRASES = (
@@ -1309,6 +1311,7 @@ FORBIDDEN_PHRASES = (
     *[f"claims {claim}" for claim in WAVE_EU_PROVENANCE_BLOCKED_CLAIMS],
     *[f"claims {claim}" for claim in EU_AI_ACT_MVR_EVIDENCE_MAP_LOCAL_PROTOTYPE_BLOCKED_CLAIMS],
     *[f"claims {claim}" for claim in COMPLIANCE_REPORT_SOURCE_CORPUS_BLOCKED_CLAIMS],
+    *[f"claims {claim}" for claim in SOURCE_CORPUS_BATCH_MANIFEST_20260610_BLOCKED_CLAIMS],
     "network authorized",
     "remote provider called",
     "remote provider calls",
@@ -1825,6 +1828,13 @@ def _forbidden_hits(text: str) -> list[str]:
                 "claims_blocked" in text[max(0, index - 3000) : index]
                 or "blocked claims" in text[max(0, index - 96) : index]
                 or "compliance-ready report local prototype and source-corpus provenance publication boundaries" in text[max(0, index - 2600) : index]
+            ):
+                start = index + len(normalized_phrase)
+                continue
+            if phrase in SOURCE_CORPUS_BATCH_MANIFEST_20260610_BLOCKED_CLAIMS and (
+                "claims_blocked" in text[max(0, index - 3000) : index]
+                or "blocked claims" in text[max(0, index - 96) : index]
+                or "june 2026 source-corpus batch manifest publication boundaries" in text[max(0, index - 2400) : index]
             ):
                 start = index + len(normalized_phrase)
                 continue
