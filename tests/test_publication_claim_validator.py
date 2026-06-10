@@ -27,8 +27,33 @@ from tools.build_public_repro_dashboard import (
     MINIMAL_VIABLE_RECEIPT_DESIGN_CLAIM_ALLOWED,
     MINIMAL_VIABLE_RECEIPT_LOCAL_PROTOTYPE_BLOCKED_CLAIMS,
     MVR_READABILITY_REVIEW_SEED_BLOCKED_CLAIMS,
+    MVR_READABILITY_REVISION_BLOCKED_CLAIMS,
+    MVR_REAL_INPUT_PILOT_DESIGN_BLOCKED_CLAIMS,
+    MVR_REAL_INPUT_PILOT_PROTOTYPE_BLOCKED_CLAIMS,
+    MVR_QUARANTINE_REPAIR_BLOCKED_CLAIMS,
+    MVR_HUMAN_SELECTED_FILE_SMOKE_BLOCKED_CLAIMS,
+    COMPLIANCE_DESIGN_BLOCKED_CLAIMS,
+    WAVE_EU_PROVENANCE_BLOCKED_CLAIMS,
+    EU_AI_ACT_MVR_EVIDENCE_MAP_LOCAL_PROTOTYPE_BLOCKED_CLAIMS,
+    COMPLIANCE_REPORT_SOURCE_CORPUS_BLOCKED_CLAIMS,
+    SOURCE_CORPUS_BATCH_MANIFEST_20260610_BLOCKED_CLAIMS,
     MINIMAL_VIABLE_RECEIPT_LOCAL_PROTOTYPE_CLAIM_ALLOWED,
     MVR_READABILITY_REVIEW_SEED_CLAIM_ALLOWED,
+    MVR_READABILITY_REVISION_CLAIM_ALLOWED,
+    MVR_REAL_INPUT_PILOT_DESIGN_CLAIM_ALLOWED,
+    MVR_REAL_INPUT_PILOT_PROTOTYPE_CLAIM_ALLOWED,
+    MVR_QUARANTINE_REPAIR_CLAIM_ALLOWED,
+    MVR_HUMAN_SELECTED_FILE_SMOKE_CLAIM_ALLOWED,
+    COMPLIANCE_REPORT_CLAIM_ALLOWED,
+    COMPLIANCE_TOOLSET_CLAIM_ALLOWED,
+    WAVE_BRIDGE_CLAIM_ALLOWED,
+    WAVE_PROVENANCE_CLAIM_ALLOWED,
+    EU_AI_ACT_MVR_MAPPING_CLAIM_ALLOWED,
+    EU_AI_ACT_MVR_EVIDENCE_MAP_LOCAL_PROTOTYPE_CLAIM_ALLOWED,
+    COMPLIANCE_READY_MVR_REPORT_LOCAL_PROTOTYPE_CLAIM_ALLOWED,
+    SOURCE_CORPUS_PROVENANCE_ARCHIVE_CLAIM_ALLOWED,
+    SOURCE_CORPUS_PROVENANCE_HASH_FILL_CLAIM_ALLOWED,
+    SOURCE_CORPUS_BATCH_MANIFEST_20260610_CLAIM_ALLOWED,
     VALIDATION_TIERING_PROVENANCE_BLOCKED_CLAIMS,
     VALIDATION_TIERING_PROVENANCE_CLAIM_ALLOWED,
     TELEMETRY_APERTURE_BLOCKED_CLAIMS,
@@ -5233,5 +5258,196 @@ def test_publication_claim_validator_rejects_mvr_readability_review_seed_overcla
 def test_publication_claim_validator_allows_bounded_mvr_readability_review_seed_claim(tmp_path):
     paper_root = tmp_path / "paper"
     _write_minimal_publication_claim_fixture(paper_root, MVR_READABILITY_REVIEW_SEED_CLAIM_ALLOWED)
+    result = validate_publication_claims(paper_root / "PUB_GOV_ARTIFACT_COG_01.md")
+    assert result["forbidden_overclaims_found"] == []
+
+
+def test_publication_claim_validator_rejects_mvr_readability_revision_overclaims(tmp_path):
+    for claim in MVR_READABILITY_REVISION_BLOCKED_CLAIMS:
+        paper_root = tmp_path / claim.replace(" ", "_").replace("/", "_")
+        _write_minimal_publication_claim_fixture(paper_root, f"MVR readability revision claims {claim}.")
+        result = validate_publication_claims(paper_root / "PUB_GOV_ARTIFACT_COG_01.md")
+        assert result["forbidden_overclaims_found"], claim
+
+
+def test_publication_claim_validator_allows_bounded_mvr_readability_revision_claim(tmp_path):
+    paper_root = tmp_path / "paper"
+    _write_minimal_publication_claim_fixture(paper_root, MVR_READABILITY_REVISION_CLAIM_ALLOWED)
+    result = validate_publication_claims(paper_root / "PUB_GOV_ARTIFACT_COG_01.md")
+    assert result["forbidden_overclaims_found"] == []
+
+
+def test_publication_claim_validator_rejects_mvr_local_real_input_pilot_design_overclaims(tmp_path):
+    for claim in MVR_REAL_INPUT_PILOT_DESIGN_BLOCKED_CLAIMS:
+        paper_root = tmp_path / claim.replace(" ", "_").replace("/", "_")
+        _write_minimal_publication_claim_fixture(paper_root, f"Real input pilot claims {claim}.")
+        result = validate_publication_claims(paper_root / "PUB_GOV_ARTIFACT_COG_01.md")
+        assert result["forbidden_overclaims_found"], claim
+
+
+def test_publication_claim_validator_allows_bounded_mvr_local_real_input_pilot_design_claim(tmp_path):
+    paper_root = tmp_path / "paper"
+    _write_minimal_publication_claim_fixture(paper_root, MVR_REAL_INPUT_PILOT_DESIGN_CLAIM_ALLOWED)
+    result = validate_publication_claims(paper_root / "PUB_GOV_ARTIFACT_COG_01.md")
+    assert result["forbidden_overclaims_found"] == []
+
+
+def test_publication_claim_validator_rejects_mvr_local_real_input_pilot_prototype_overclaims(tmp_path):
+    for claim in MVR_REAL_INPUT_PILOT_PROTOTYPE_BLOCKED_CLAIMS:
+        paper_root = tmp_path / claim.replace(" ", "_").replace("/", "_")
+        _write_minimal_publication_claim_fixture(paper_root, f"MVR real-input pilot prototype claims {claim}.")
+        result = validate_publication_claims(paper_root / "PUB_GOV_ARTIFACT_COG_01.md")
+        assert result["forbidden_overclaims_found"], claim
+
+
+def test_publication_claim_validator_allows_bounded_mvr_local_real_input_pilot_prototype_claim(tmp_path):
+    paper_root = tmp_path / "paper"
+    _write_minimal_publication_claim_fixture(paper_root, MVR_REAL_INPUT_PILOT_PROTOTYPE_CLAIM_ALLOWED)
+    result = validate_publication_claims(paper_root / "PUB_GOV_ARTIFACT_COG_01.md")
+    assert result["forbidden_overclaims_found"] == []
+
+
+
+
+
+
+
+
+def test_publication_claim_validator_rejects_wave_eu_provenance_overclaims(tmp_path):
+    for claim in WAVE_EU_PROVENANCE_BLOCKED_CLAIMS:
+        paper_root = tmp_path / claim.replace(" ", "_").replace("/", "_")
+        _write_minimal_publication_claim_fixture(paper_root, f"WAVE bridge claims {claim}.")
+        result = validate_publication_claims(paper_root / "PUB_GOV_ARTIFACT_COG_01.md")
+        assert result["forbidden_overclaims_found"], claim
+
+
+def test_publication_claim_validator_allows_bounded_wave_bridge_claim(tmp_path):
+    paper_root = tmp_path / "paper"
+    _write_minimal_publication_claim_fixture(paper_root, WAVE_BRIDGE_CLAIM_ALLOWED)
+    result = validate_publication_claims(paper_root / "PUB_GOV_ARTIFACT_COG_01.md")
+    assert result["forbidden_overclaims_found"] == []
+
+
+def test_publication_claim_validator_allows_bounded_wave_provenance_claim(tmp_path):
+    paper_root = tmp_path / "paper"
+    _write_minimal_publication_claim_fixture(paper_root, WAVE_PROVENANCE_CLAIM_ALLOWED)
+    result = validate_publication_claims(paper_root / "PUB_GOV_ARTIFACT_COG_01.md")
+    assert result["forbidden_overclaims_found"] == []
+
+
+def test_publication_claim_validator_allows_bounded_eu_ai_act_mapping_claim(tmp_path):
+    paper_root = tmp_path / "paper"
+    _write_minimal_publication_claim_fixture(paper_root, EU_AI_ACT_MVR_MAPPING_CLAIM_ALLOWED)
+    result = validate_publication_claims(paper_root / "PUB_GOV_ARTIFACT_COG_01.md")
+    assert result["forbidden_overclaims_found"] == []
+
+def test_publication_claim_validator_rejects_compliance_design_overclaims(tmp_path):
+    for claim in COMPLIANCE_DESIGN_BLOCKED_CLAIMS:
+        paper_root = tmp_path / claim.replace(" ", "_").replace("/", "_")
+        _write_minimal_publication_claim_fixture(paper_root, f"Compliance design claims {claim}.")
+        result = validate_publication_claims(paper_root / "PUB_GOV_ARTIFACT_COG_01.md")
+        assert result["forbidden_overclaims_found"], claim
+
+
+def test_publication_claim_validator_allows_bounded_compliance_report_claim(tmp_path):
+    paper_root = tmp_path / "paper"
+    _write_minimal_publication_claim_fixture(paper_root, COMPLIANCE_REPORT_CLAIM_ALLOWED)
+    result = validate_publication_claims(paper_root / "PUB_GOV_ARTIFACT_COG_01.md")
+    assert result["forbidden_overclaims_found"] == []
+
+
+def test_publication_claim_validator_allows_bounded_compliance_toolset_claim(tmp_path):
+    paper_root = tmp_path / "paper"
+    _write_minimal_publication_claim_fixture(paper_root, COMPLIANCE_TOOLSET_CLAIM_ALLOWED)
+    result = validate_publication_claims(paper_root / "PUB_GOV_ARTIFACT_COG_01.md")
+    assert result["forbidden_overclaims_found"] == []
+
+def test_publication_claim_validator_rejects_mvr_human_selected_file_smoke_overclaims(tmp_path):
+    for claim in MVR_HUMAN_SELECTED_FILE_SMOKE_BLOCKED_CLAIMS:
+        paper_root = tmp_path / claim.replace(" ", "_").replace("/", "_")
+        _write_minimal_publication_claim_fixture(paper_root, f"Human-selected file smoke claims {claim}.")
+        result = validate_publication_claims(paper_root / "PUB_GOV_ARTIFACT_COG_01.md")
+        assert result["forbidden_overclaims_found"], claim
+
+
+def test_publication_claim_validator_allows_bounded_mvr_human_selected_file_smoke_claim(tmp_path):
+    paper_root = tmp_path / "paper"
+    _write_minimal_publication_claim_fixture(paper_root, MVR_HUMAN_SELECTED_FILE_SMOKE_CLAIM_ALLOWED)
+    result = validate_publication_claims(paper_root / "PUB_GOV_ARTIFACT_COG_01.md")
+    assert result["forbidden_overclaims_found"] == []
+
+def test_publication_claim_validator_rejects_mvr_quarantine_detection_repair_overclaims(tmp_path):
+    for claim in MVR_QUARANTINE_REPAIR_BLOCKED_CLAIMS:
+        paper_root = tmp_path / claim.replace(" ", "_").replace("/", "_")
+        _write_minimal_publication_claim_fixture(paper_root, f"Quarantine repair claims {claim}.")
+        result = validate_publication_claims(paper_root / "PUB_GOV_ARTIFACT_COG_01.md")
+        assert result["forbidden_overclaims_found"], claim
+
+
+def test_publication_claim_validator_allows_bounded_mvr_quarantine_detection_repair_claim(tmp_path):
+    paper_root = tmp_path / "paper"
+    _write_minimal_publication_claim_fixture(paper_root, MVR_QUARANTINE_REPAIR_CLAIM_ALLOWED)
+    result = validate_publication_claims(paper_root / "PUB_GOV_ARTIFACT_COG_01.md")
+    assert result["forbidden_overclaims_found"] == []
+
+
+
+def test_publication_claim_validator_rejects_eu_ai_act_mvr_evidence_map_local_prototype_overclaims(tmp_path):
+    for claim in EU_AI_ACT_MVR_EVIDENCE_MAP_LOCAL_PROTOTYPE_BLOCKED_CLAIMS:
+        paper_root = tmp_path / claim.replace(" ", "_").replace("/", "_")
+        _write_minimal_publication_claim_fixture(paper_root, f"EU AI Act evidence map local prototype claims {claim}.")
+        result = validate_publication_claims(paper_root / "PUB_GOV_ARTIFACT_COG_01.md")
+        assert result["forbidden_overclaims_found"], claim
+
+
+def test_publication_claim_validator_allows_bounded_eu_ai_act_mvr_evidence_map_local_prototype_claim(tmp_path):
+    paper_root = tmp_path / "paper"
+    _write_minimal_publication_claim_fixture(paper_root, EU_AI_ACT_MVR_EVIDENCE_MAP_LOCAL_PROTOTYPE_CLAIM_ALLOWED)
+    result = validate_publication_claims(paper_root / "PUB_GOV_ARTIFACT_COG_01.md")
+    assert result["forbidden_overclaims_found"] == []
+
+
+
+def test_publication_claim_validator_rejects_compliance_report_source_corpus_overclaims(tmp_path):
+    for claim in COMPLIANCE_REPORT_SOURCE_CORPUS_BLOCKED_CLAIMS:
+        paper_root = tmp_path / claim.replace(" ", "_").replace("/", "_")
+        _write_minimal_publication_claim_fixture(paper_root, f"Compliance source sync claims {claim}.")
+        result = validate_publication_claims(paper_root / "PUB_GOV_ARTIFACT_COG_01.md")
+        assert result["forbidden_overclaims_found"], claim
+
+
+def test_publication_claim_validator_allows_bounded_compliance_report_local_prototype_claim(tmp_path):
+    paper_root = tmp_path / "paper"
+    _write_minimal_publication_claim_fixture(paper_root, COMPLIANCE_READY_MVR_REPORT_LOCAL_PROTOTYPE_CLAIM_ALLOWED)
+    result = validate_publication_claims(paper_root / "PUB_GOV_ARTIFACT_COG_01.md")
+    assert result["forbidden_overclaims_found"] == []
+
+
+def test_publication_claim_validator_allows_bounded_source_corpus_claim(tmp_path):
+    paper_root = tmp_path / "paper"
+    _write_minimal_publication_claim_fixture(paper_root, SOURCE_CORPUS_PROVENANCE_ARCHIVE_CLAIM_ALLOWED)
+    result = validate_publication_claims(paper_root / "PUB_GOV_ARTIFACT_COG_01.md")
+    assert result["forbidden_overclaims_found"] == []
+
+
+def test_publication_claim_validator_allows_bounded_source_corpus_hash_fill_claim(tmp_path):
+    paper_root = tmp_path / "paper"
+    _write_minimal_publication_claim_fixture(paper_root, SOURCE_CORPUS_PROVENANCE_HASH_FILL_CLAIM_ALLOWED)
+    result = validate_publication_claims(paper_root / "PUB_GOV_ARTIFACT_COG_01.md")
+    assert result["forbidden_overclaims_found"] == []
+
+
+
+def test_publication_claim_validator_rejects_source_corpus_batch_manifest_overclaims(tmp_path):
+    for claim in SOURCE_CORPUS_BATCH_MANIFEST_20260610_BLOCKED_CLAIMS:
+        paper_root = tmp_path / claim.replace(" ", "_").replace("/", "_")
+        _write_minimal_publication_claim_fixture(paper_root, f"Source corpus batch claims {claim}.")
+        result = validate_publication_claims(paper_root / "PUB_GOV_ARTIFACT_COG_01.md")
+        assert result["forbidden_overclaims_found"], claim
+
+
+def test_publication_claim_validator_allows_bounded_source_corpus_batch_manifest_claim(tmp_path):
+    paper_root = tmp_path / "paper"
+    _write_minimal_publication_claim_fixture(paper_root, SOURCE_CORPUS_BATCH_MANIFEST_20260610_CLAIM_ALLOWED)
     result = validate_publication_claims(paper_root / "PUB_GOV_ARTIFACT_COG_01.md")
     assert result["forbidden_overclaims_found"] == []
