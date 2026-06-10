@@ -108,6 +108,129 @@ from tools.build_public_repro_dashboard import (
     MVR_READABILITY_REVIEW_SEED_RATING_TERMS,
     MVR_READABILITY_REVIEW_SEED_REPRO_FRAGMENTS,
     MVR_READABILITY_REVIEW_SEED_REVISION_SUGGESTION_IDS,
+    MVR_READABILITY_REVISION_APPLIED_REVISION_IDS,
+    MVR_READABILITY_REVISION_ARTIFACTS,
+    MVR_READABILITY_REVISION_BLOCKED_CLAIMS,
+    MVR_READABILITY_REVISION_CLAIM_ALLOWED,
+    MVR_READABILITY_REVISION_DASHBOARD_SUMMARY,
+    MVR_READABILITY_REVISION_DOCTRINE_LANGUAGE,
+    MVR_READABILITY_REVISION_FAILURE_CLASSES,
+    MVR_READABILITY_REVISION_PRIOR_PHASE_RELATION,
+    MVR_READABILITY_REVISION_REPRO_FRAGMENTS,
+    MVR_READABILITY_REVISION_REVISED_RECEIPT_LANGUAGE,
+    MVR_READABILITY_REVISION_SCHEMA_REFERENCES,
+    MVR_REAL_INPUT_PILOT_DESIGN_ALLOWED_INPUT_CLASSES,
+    MVR_REAL_INPUT_PILOT_DESIGN_ARTIFACTS,
+    MVR_REAL_INPUT_PILOT_DESIGN_BLOCKED_CLAIMS,
+    MVR_REAL_INPUT_PILOT_DESIGN_BLOCKED_INPUT_CLASSES,
+    MVR_REAL_INPUT_PILOT_DESIGN_CLAIM_ALLOWED,
+    MVR_REAL_INPUT_PILOT_DESIGN_CONSENT_OBSERVATION_TERMS,
+    MVR_REAL_INPUT_PILOT_DESIGN_DASHBOARD_SUMMARY,
+    MVR_REAL_INPUT_PILOT_DESIGN_DOCTRINE_LANGUAGE,
+    MVR_REAL_INPUT_PILOT_DESIGN_FAILURE_CLASSES,
+    MVR_REAL_INPUT_PILOT_DESIGN_OUTPUT_REQUIREMENT_TERMS,
+    MVR_REAL_INPUT_PILOT_DESIGN_PRIOR_PHASE_RELATION,
+    MVR_REAL_INPUT_PILOT_DESIGN_REPRO_FRAGMENTS,
+    MVR_REAL_INPUT_PILOT_DESIGN_SOURCE_RULES,
+    MVR_REAL_INPUT_PILOT_PROTOTYPE_ARTIFACTS,
+    MVR_REAL_INPUT_PILOT_PROTOTYPE_BLOCKED_CLAIMS,
+    MVR_REAL_INPUT_PILOT_PROTOTYPE_CLAIM_ALLOWED,
+    MVR_REAL_INPUT_PILOT_PROTOTYPE_CONSENT_QUARANTINE_TERMS,
+    MVR_REAL_INPUT_PILOT_PROTOTYPE_DASHBOARD_SUMMARY,
+    MVR_REAL_INPUT_PILOT_PROTOTYPE_DOCTRINE_LANGUAGE,
+    MVR_REAL_INPUT_PILOT_PROTOTYPE_FAILURE_CLASSES,
+    MVR_REAL_INPUT_PILOT_PROTOTYPE_PRIOR_PHASE_RELATION,
+    MVR_REAL_INPUT_PILOT_PROTOTYPE_REPRO_FRAGMENTS,
+    MVR_REAL_INPUT_PILOT_PROTOTYPE_SCHEMA_REFERENCES,
+    MVR_REAL_INPUT_PILOT_PROTOTYPE_SOURCE_SELECTION_TERMS,
+    MVR_QUARANTINE_REPAIR_ARTIFACTS,
+    MVR_QUARANTINE_REPAIR_BLOCKED_CLAIMS,
+    MVR_QUARANTINE_REPAIR_CLAIM_ALLOWED,
+    MVR_QUARANTINE_REPAIR_DASHBOARD_SUMMARY,
+    MVR_QUARANTINE_REPAIR_DETECTOR_TERMS,
+    MVR_QUARANTINE_REPAIR_DOCTRINE_LANGUAGE,
+    MVR_QUARANTINE_REPAIR_FAILURE_CLASSES,
+    MVR_QUARANTINE_REPAIR_PRIOR_PHASE_RELATION,
+    MVR_QUARANTINE_REPAIR_REPRO_FRAGMENTS,
+    MVR_QUARANTINE_REPAIR_SMOKE_OUTCOMES,
+    MVR_HUMAN_SELECTED_FILE_SMOKE_ARTIFACTS,
+    MVR_HUMAN_SELECTED_FILE_SMOKE_BLOCKED_CLAIMS,
+    MVR_HUMAN_SELECTED_FILE_SMOKE_CLAIM_ALLOWED,
+    MVR_HUMAN_SELECTED_FILE_SMOKE_DASHBOARD_SUMMARY,
+    MVR_HUMAN_SELECTED_FILE_SMOKE_DOCTRINE_LANGUAGE,
+    MVR_HUMAN_SELECTED_FILE_SMOKE_FAILURE_CLASSES,
+    MVR_HUMAN_SELECTED_FILE_SMOKE_PRIOR_PHASE_RELATION,
+    MVR_HUMAN_SELECTED_FILE_SMOKE_QUARANTINE_TERMS,
+    MVR_HUMAN_SELECTED_FILE_SMOKE_REPRO_FRAGMENTS,
+    MVR_HUMAN_SELECTED_FILE_SMOKE_SCHEMA_REFERENCES,
+    MVR_HUMAN_SELECTED_FILE_SMOKE_SOURCE_SELECTION_TERMS,
+    COMPLIANCE_DESIGN_BLOCKED_CLAIMS,
+    COMPLIANCE_EU_AI_ACT_SUPPORT_TERMS,
+    COMPLIANCE_FRAMEWORK_PROFILE_TERMS,
+    COMPLIANCE_GENERIC_EVIDENCE_MAPPING_TERMS,
+    COMPLIANCE_HUMAN_SIGNOFF_ROLE_TERMS,
+    COMPLIANCE_REPORT_AUDIENCE_TERMS,
+    COMPLIANCE_REPORT_CLAIM_ALLOWED,
+    COMPLIANCE_REPORT_DASHBOARD_SUMMARY,
+    COMPLIANCE_REPORT_DESIGN_ARTIFACTS,
+    COMPLIANCE_REPORT_DESIGN_REPRO_FRAGMENTS,
+    COMPLIANCE_REPORT_DOCTRINE_LANGUAGE,
+    COMPLIANCE_REPORT_SECTION_TERMS,
+    COMPLIANCE_TOOLSET_CLAIM_ALLOWED,
+    COMPLIANCE_TOOLSET_DASHBOARD_SUMMARY,
+    COMPLIANCE_TOOLSET_DESIGN_ARTIFACTS,
+    COMPLIANCE_TOOLSET_DESIGN_REPRO_FRAGMENTS,
+    COMPLIANCE_TOOLSET_DOCTRINE_LANGUAGE,
+    EU_AI_ACT_EVIDENCE_CATEGORIES,
+    EU_AI_ACT_GAP_TERMS,
+    EU_AI_ACT_MVR_MAPPING_ARTIFACTS,
+    EU_AI_ACT_MVR_MAPPING_CLAIM_ALLOWED,
+    EU_AI_ACT_MVR_MAPPING_DASHBOARD_SUMMARY,
+    EU_AI_ACT_MVR_MAPPING_DOCTRINE_LANGUAGE,
+    EU_AI_ACT_MVR_EVIDENCE_MAP_LOCAL_PROTOTYPE_ARTIFACTS,
+    EU_AI_ACT_MVR_EVIDENCE_MAP_LOCAL_PROTOTYPE_ARTIFACT_MAPPING_TERMS,
+    EU_AI_ACT_MVR_EVIDENCE_MAP_LOCAL_PROTOTYPE_BLOCKED_CLAIMS,
+    EU_AI_ACT_MVR_EVIDENCE_MAP_LOCAL_PROTOTYPE_CLAIM_ALLOWED,
+    EU_AI_ACT_MVR_EVIDENCE_MAP_LOCAL_PROTOTYPE_DASHBOARD_SUMMARY,
+    EU_AI_ACT_MVR_EVIDENCE_MAP_LOCAL_PROTOTYPE_DOCTRINE_LANGUAGE,
+    EU_AI_ACT_MVR_EVIDENCE_MAP_LOCAL_PROTOTYPE_GAP_TERMS,
+    EU_AI_ACT_MVR_EVIDENCE_MAP_LOCAL_PROTOTYPE_PRIOR_PHASE_RELATION,
+    EU_AI_ACT_MVR_EVIDENCE_MAP_LOCAL_PROTOTYPE_REPRO_FRAGMENTS,
+    EU_AI_ACT_MVR_EVIDENCE_MAP_LOCAL_PROTOTYPE_SIGNOFF_TERMS,
+    COMPLIANCE_READY_MVR_REPORT_LOCAL_PROTOTYPE_ARTIFACTS,
+    COMPLIANCE_READY_MVR_REPORT_LOCAL_PROTOTYPE_CLAIM_ALLOWED,
+    COMPLIANCE_READY_MVR_REPORT_LOCAL_PROTOTYPE_DASHBOARD_SUMMARY,
+    COMPLIANCE_READY_MVR_REPORT_LOCAL_PROTOTYPE_DOCTRINE_LANGUAGE,
+    COMPLIANCE_READY_MVR_REPORT_LOCAL_PROTOTYPE_GLOSSARY_TERMS,
+    COMPLIANCE_READY_MVR_REPORT_LOCAL_PROTOTYPE_REPRO_FRAGMENTS,
+    COMPLIANCE_READY_MVR_REPORT_LOCAL_PROTOTYPE_SECTION_TERMS,
+    COMPLIANCE_REPORT_SOURCE_CORPUS_BLOCKED_CLAIMS,
+    SOURCE_CORPUS_CONCRETE_HASHES,
+    SOURCE_CORPUS_HASH_FILL_DASHBOARD_SUMMARY,
+    SOURCE_CORPUS_HASH_FILL_REPRO_FRAGMENTS,
+    SOURCE_CORPUS_MANIFEST_TERMS,
+    SOURCE_CORPUS_PROVENANCE_ARCHIVE_CLAIM_ALLOWED,
+    SOURCE_CORPUS_PROVENANCE_ARTIFACTS,
+    SOURCE_CORPUS_PROVENANCE_DASHBOARD_SUMMARY,
+    SOURCE_CORPUS_PROVENANCE_DOCTRINE_LANGUAGE,
+    SOURCE_CORPUS_PROVENANCE_HASH_FILL_CLAIM_ALLOWED,
+    SOURCE_CORPUS_PROVENANCE_REPRO_FRAGMENTS,
+    SOURCE_CORPUS_REPORT_FILENAMES,
+    WAVE_BRIDGE_ARTIFACTS,
+    WAVE_BRIDGE_CLAIM_ALLOWED,
+    WAVE_BRIDGE_DASHBOARD_SUMMARY,
+    WAVE_BRIDGE_DOCTRINE_LANGUAGE,
+    WAVE_BRIDGE_ESTIMATE_TERMS,
+    WAVE_BRIDGE_REPRO_FRAGMENTS,
+    WAVE_CALIBRATION_GAPS,
+    WAVE_EU_PROVENANCE_BLOCKED_CLAIMS,
+    WAVE_FORMULA_LINEAGE,
+    WAVE_PROVENANCE_ARTIFACTS,
+    WAVE_PROVENANCE_CLAIM_ALLOWED,
+    WAVE_PROVENANCE_DASHBOARD_SUMMARY,
+    WAVE_PROVENANCE_DOCTRINE_LANGUAGE,
+    WAVE_PROVENANCE_REPORT_LINEAGE,
+    WAVE_VECTOR_TERMS,
     VALIDATION_TIERING_PROVENANCE_ACCEPTANCE_TERMS,
     VALIDATION_TIERING_PROVENANCE_ARTIFACTS,
     VALIDATION_TIERING_PROVENANCE_BLOCKED_CLAIMS,
@@ -422,6 +545,20 @@ REQUIRED_PHASES = {
     "PERTURBATION-STRUCTURE-AFFORDANCE-CARD-00",
     "MINIMAL-VIABLE-RECEIPT-LOCAL-PROTOTYPE-00",
     "MVR-LOCAL-PROTOTYPE-READABILITY-REVIEW-SEED-00",
+    "MVR-LOCAL-PROTOTYPE-READABILITY-REVISION-00",
+    "MVR-LOCAL-REAL-INPUT-PILOT-DESIGN-00",
+    "MVR-LOCAL-REAL-INPUT-PILOT-PROTOTYPE-00",
+    "MVR-LOCAL-REAL-INPUT-PILOT-QUARANTINE-DETECTION-REPAIR-00",
+    "MVR-LOCAL-REAL-INPUT-PILOT-HUMAN-SELECTED-FILE-SMOKE-00",
+    "COMPLIANCE-READY-MVR-REPORT-DESIGN-00",
+    "COMPLIANCE-EVIDENCE-TOOLSET-LIBRARY-DESIGN-00",
+    "WAVE-ROSETTA-CANONICAL-PROXY-BRIDGE-00",
+    "EU-AI-ACT-MVR-EVIDENCE-MAPPING-DESIGN-00",
+    "EU-AI-ACT-MVR-EVIDENCE-MAP-LOCAL-PROTOTYPE-00",
+    "COMPLIANCE-READY-MVR-REPORT-LOCAL-PROTOTYPE-00",
+    "SOURCE-CORPUS-PROVENANCE-ARCHIVE-00",
+    "SOURCE-CORPUS-PROVENANCE-HASH-FILL-00",
+    "WAVE-ROSETTA-CANONICAL-PROXY-BRIDGE-PROVENANCE-00",
 }
 
 REQUIRED_COMMAND_FRAGMENTS = (
@@ -6059,6 +6196,719 @@ def test_mvr_readability_review_seed_indexes_dashboard_and_docs(tmp_path):
     assert status["not_mvr_readability_review_seed_runtime_authority"] is True
 
 
+
+
+def test_mvr_readability_revision_indexes_dashboard_and_docs(tmp_path):
+    out_dir, docs_dir = run_builder(tmp_path)
+    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text(encoding="utf-8"))
+    artifact_index = json.loads((out_dir / "artifact_index.json").read_text(encoding="utf-8"))
+    repro_index = json.loads((out_dir / "reproducibility_index.json").read_text(encoding="utf-8"))
+    claim_boundaries = json.loads((out_dir / "claim_boundary_index.json").read_text(encoding="utf-8"))
+    status = json.loads((out_dir / "status.json").read_text(encoding="utf-8"))
+    page_path = docs_dir / "mvr-local-prototype-readability-revision.md"
+    page = page_path.read_text(encoding="utf-8")
+
+    phase = next(entry for entry in dashboard["accepted_phases"] if entry["phase_id"] == "MVR-LOCAL-PROTOTYPE-READABILITY-REVISION-00")
+    summary = phase["dashboard_summary"]
+    assert summary == MVR_READABILITY_REVISION_DASHBOARD_SUMMARY
+    assert summary["revision_status"] == "completed"
+    assert summary["revision_mode"] == "deterministic_local_readability_revision"
+    assert summary["original_receipt_ref"] == "minimal_viable_receipt_human_readable.md"
+    assert summary["revised_receipt_ref"] == "minimal_viable_receipt_human_readable_revised.md"
+    assert summary["applied_revision_count"] == 6
+    assert summary["original_receipt_preserved"] is True
+    assert summary["revised_receipt_emitted"] is True
+    assert summary["readability_gate_status"] == "revision_applied_not_validated"
+    assert summary["readability_gate_passed"] is False
+
+    false_fields = (
+        "real_user_study_performed", "human_subject_study_performed", "user_validation_performed",
+        "product_readiness_claimed", "product_release_performed", "market_validation_emitted",
+        "human_benefit_proof_emitted", "truth_certification_emitted", "memory_write_performed",
+        "atlas_memory_admission_performed", "trace_export_performed", "pmr_federation_performed",
+        "provider_runtime_performed", "network_call_performed", "final_answer_authority_granted",
+        "accepted_evidence_authority_granted",
+    )
+    for field in false_fields:
+        assert summary[field] is False
+
+    true_fields = (
+        "revision_is_not_product_readiness", "revision_is_not_user_validation",
+        "revision_is_not_truth_certification", "revision_requires_human_review",
+        "receipt_is_not_product_readiness", "receipt_is_not_user_validation", "receipt_requires_human_review",
+    )
+    for field in true_fields:
+        assert summary[field] is True
+
+    assert artifact_index["phases"]["MVR-LOCAL-PROTOTYPE-READABILITY-REVISION-00"] == MVR_READABILITY_REVISION_ARTIFACTS
+    for artifact in MVR_READABILITY_REVISION_ARTIFACTS:
+        assert artifact in page
+    for schema in MVR_READABILITY_REVISION_SCHEMA_REFERENCES:
+        assert schema in page
+
+    repro_text = json.dumps(repro_index, ensure_ascii=False)
+    for fragment in MVR_READABILITY_REVISION_REPRO_FRAGMENTS:
+        assert fragment in repro_text
+
+    for required in (
+        *MVR_READABILITY_REVISION_APPLIED_REVISION_IDS,
+        *MVR_READABILITY_REVISION_REVISED_RECEIPT_LANGUAGE,
+        *MVR_READABILITY_REVISION_DOCTRINE_LANGUAGE,
+        *MVR_READABILITY_REVISION_PRIOR_PHASE_RELATION,
+        *MVR_READABILITY_REVISION_FAILURE_CLASSES,
+        MVR_READABILITY_REVISION_CLAIM_ALLOWED,
+        "Publication sync grants no runtime authority.",
+    ):
+        assert required in page
+
+    boundaries = "\n".join(claim_boundaries["boundaries"])
+    for blocked in MVR_READABILITY_REVISION_BLOCKED_CLAIMS:
+        assert blocked in boundaries
+
+    assert status["mvr_local_prototype_readability_revision_00_indexed"] is True
+    assert status["mvr_local_prototype_readability_revision_status"] == "completed"
+    assert status["mvr_readability_revision_gate_passed"] is False
+    assert status["not_mvr_readability_revision_user_validation"] is True
+    assert status["not_mvr_readability_revision_product_readiness"] is True
+    assert status["not_mvr_readability_revision_runtime_authority"] is True
+
+
+
+
+def test_mvr_local_real_input_pilot_design_indexes_dashboard_and_docs(tmp_path):
+    out_dir, docs_dir = run_builder(tmp_path)
+    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text(encoding="utf-8"))
+    artifact_index = json.loads((out_dir / "artifact_index.json").read_text(encoding="utf-8"))
+    repro_index = json.loads((out_dir / "reproducibility_index.json").read_text(encoding="utf-8"))
+    claim_boundaries = json.loads((out_dir / "claim_boundary_index.json").read_text(encoding="utf-8"))
+    status = json.loads((out_dir / "status.json").read_text(encoding="utf-8"))
+    page_path = docs_dir / "mvr-local-real-input-pilot-design.md"
+    page = page_path.read_text(encoding="utf-8")
+
+    phase = next(entry for entry in dashboard["accepted_phases"] if entry["phase_id"] == "MVR-LOCAL-REAL-INPUT-PILOT-DESIGN-00")
+    summary = phase["dashboard_summary"]
+    assert summary == MVR_REAL_INPUT_PILOT_DESIGN_DASHBOARD_SUMMARY
+    assert summary["policy_status"] == "active_design_only"
+    assert summary["pilot_mode"] == "design_only_local_real_input_boundary"
+    assert summary["local_real_input_pilot_definition"] == "explicit_local_source_selection_for_mvr_receipt_generation"
+
+    false_fields = (
+        "runtime_behavior_changed", "real_input_processing_enabled", "real_input_runtime_artifacts_emitted",
+        "real_user_files_processed", "provider_runtime_performed", "network_call_performed",
+        "product_release_performed", "product_readiness_claimed", "real_user_study_performed",
+        "human_subject_study_performed", "user_validation_performed", "market_validation_emitted",
+        "human_benefit_proof_emitted", "final_answer_authority_granted", "accepted_evidence_authority_granted",
+        "truth_certification_emitted", "compliance_certification_emitted", "memory_write_performed",
+        "atlas_memory_admission_performed", "trace_export_performed", "pmr_federation_performed",
+        "model_training_performed", "review_skip_authorized", "recursive_directory_scan_allowed",
+        "hidden_file_scan_allowed", "raw_trace_retention_allowed_default", "trace_export_allowed_default",
+        "pmr_federation_allowed_default",
+    )
+    for field in false_fields:
+        assert summary[field] is False
+
+    true_fields = (
+        "explicit_user_selection_required", "local_path_allowlist_required", "source_hashing_required",
+        "source_manifest_required", "source_expansion_required_for_decisions",
+        "instruction_like_evidence_quarantine_required", "unsupported_claim_visibility_required",
+        "human_review_required", "consent_scope_required", "consent_is_local_to_pilot_run",
+        "consent_is_not_memory_write", "consent_is_not_trace_export_authorization",
+        "consent_is_not_pmr_federation_authorization", "consent_is_not_product_release",
+        "revocation_supported", "retention_review_required", "observation_contract_posture_required",
+        "observation_contract_policy_simulation_ref_required", "tac_aperture_posture_required",
+        "no_silent_mode_shift_required", "notice_and_consent_boundaries_visible",
+        "minimal_viable_receipt_required", "human_readable_receipt_required", "machine_readable_receipt_required",
+        "section_index_required", "readability_profile_required", "contestability_profile_required",
+        "cost_burden_profile_required", "non_authority_boundary_required",
+        "local_real_input_source_manifest_required", "quarantine_report_required", "pilot_receipt_required",
+        "pilot_is_not_runtime_processing", "pilot_is_not_product_release", "pilot_is_not_product_readiness",
+        "pilot_is_not_user_validation", "pilot_is_not_human_subject_study", "pilot_is_not_market_validation",
+        "pilot_is_not_human_benefit_proof", "pilot_is_not_truth_certification",
+        "pilot_is_not_final_answer_authority", "pilot_is_not_accepted_evidence_authority",
+        "pilot_is_not_memory_write", "pilot_is_not_atlas_memory_admission",
+        "pilot_is_not_trace_export_authorization", "pilot_is_not_pmr_federation_authorization",
+        "pilot_is_not_model_training", "pilot_is_not_review_skip", "pilot_requires_human_review",
+    )
+    for field in true_fields:
+        assert summary[field] is True
+    assert summary["max_source_file_count_default"] == 5
+    assert summary["max_source_bytes_default"] == 250000
+    assert summary["default_tac_mode"] == "pulse"
+
+    assert artifact_index["phases"]["MVR-LOCAL-REAL-INPUT-PILOT-DESIGN-00"] == MVR_REAL_INPUT_PILOT_DESIGN_ARTIFACTS
+    for artifact in MVR_REAL_INPUT_PILOT_DESIGN_ARTIFACTS:
+        assert artifact in page
+
+    repro_text = json.dumps(repro_index, ensure_ascii=False)
+    for fragment in MVR_REAL_INPUT_PILOT_DESIGN_REPRO_FRAGMENTS:
+        assert fragment in repro_text
+
+    for required in (
+        *MVR_REAL_INPUT_PILOT_DESIGN_DOCTRINE_LANGUAGE,
+        *MVR_REAL_INPUT_PILOT_DESIGN_ALLOWED_INPUT_CLASSES,
+        *MVR_REAL_INPUT_PILOT_DESIGN_BLOCKED_INPUT_CLASSES,
+        *MVR_REAL_INPUT_PILOT_DESIGN_SOURCE_RULES,
+        *MVR_REAL_INPUT_PILOT_DESIGN_CONSENT_OBSERVATION_TERMS,
+        *MVR_REAL_INPUT_PILOT_DESIGN_OUTPUT_REQUIREMENT_TERMS,
+        *MVR_REAL_INPUT_PILOT_DESIGN_PRIOR_PHASE_RELATION,
+        *MVR_REAL_INPUT_PILOT_DESIGN_FAILURE_CLASSES,
+        MVR_REAL_INPUT_PILOT_DESIGN_CLAIM_ALLOWED,
+        "Publication sync grants no runtime authority.",
+    ):
+        assert required in page
+
+    boundaries = "\n".join(claim_boundaries["boundaries"])
+    for blocked in MVR_REAL_INPUT_PILOT_DESIGN_BLOCKED_CLAIMS:
+        assert blocked in boundaries
+
+    assert status["mvr_local_real_input_pilot_design_00_indexed"] is True
+    assert status["mvr_local_real_input_pilot_design_status"] == "active_design_only"
+    assert status["mvr_local_real_input_pilot_runtime_behavior_changed"] is False
+    assert status["mvr_local_real_input_processing_enabled"] is False
+    assert status["mvr_local_real_input_real_user_files_processed"] is False
+    assert status["not_mvr_local_real_input_pilot_product_readiness"] is True
+    assert status["not_mvr_local_real_input_pilot_product_release"] is True
+    assert status["not_mvr_local_real_input_pilot_user_validation"] is True
+    assert status["not_mvr_local_real_input_pilot_runtime_authority"] is True
+
+
+
+
+def test_mvr_local_real_input_pilot_prototype_indexes_dashboard_and_docs(tmp_path):
+    out_dir, docs_dir = run_builder(tmp_path)
+    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text(encoding="utf-8"))
+    artifact_index = json.loads((out_dir / "artifact_index.json").read_text(encoding="utf-8"))
+    repro_index = json.loads((out_dir / "reproducibility_index.json").read_text(encoding="utf-8"))
+    claim_boundaries = json.loads((out_dir / "claim_boundary_index.json").read_text(encoding="utf-8"))
+    status = json.loads((out_dir / "status.json").read_text(encoding="utf-8"))
+    page = (docs_dir / "mvr-local-real-input-pilot-prototype.md").read_text(encoding="utf-8")
+
+    phase = next(entry for entry in dashboard["accepted_phases"] if entry["phase_id"] == "MVR-LOCAL-REAL-INPUT-PILOT-PROTOTYPE-00")
+    summary = phase["dashboard_summary"]
+    assert summary == MVR_REAL_INPUT_PILOT_PROTOTYPE_DASHBOARD_SUMMARY
+    assert summary["manifest_status"] == "completed"
+    assert summary["source_mode"] == "generated_explicit_local_test_sources"
+    assert summary["pasted_excerpt_source_mode"] == "explicit_pasted_excerpts"
+    assert summary["selected_source_count"] == 2
+    assert summary["pasted_excerpt_selected_source_count"] == 1
+    assert summary["pasted_excerpt_source_class"] == "local_user_pasted_excerpt"
+    assert summary["receipt_status"] == "completed"
+    assert summary["prototype_mode"] == "local_real_input_pilot_prototype"
+    assert summary["real_input_pilot_mode"] is True
+    assert summary["real_user_files_processed"] is False
+    assert summary["pasted_excerpt_real_user_files_processed"] is True
+    assert summary["local_fixture_mode"] is True
+    assert summary["pasted_excerpt_local_fixture_mode"] is False
+    assert summary["instruction_like_evidence_count"] == 1
+    assert summary["real_input_processing_enabled"] is True
+    assert summary["real_input_runtime_artifacts_emitted"] is True
+    assert summary["pilot_receipt_status"] == "completed"
+
+    false_fields = (
+        "recursive_directory_scan_allowed", "hidden_file_scan_allowed", "provider_runtime_performed",
+        "network_call_performed", "product_release_performed", "product_readiness_claimed",
+        "final_answer_authority_granted", "accepted_evidence_authority_granted", "truth_certification_emitted",
+        "compliance_certification_emitted", "memory_write_performed", "atlas_memory_admission_performed",
+        "trace_export_performed", "pmr_federation_performed", "model_training_performed", "review_skip_authorized",
+    )
+    for field in false_fields:
+        assert summary[field] is False
+    for field in (
+        "source_manifest_is_not_accepted_evidence", "consent_is_local_to_pilot_run",
+        "consent_is_not_memory_write", "consent_is_not_trace_export_authorization",
+        "consent_is_not_pmr_federation_authorization", "consent_is_not_product_release",
+        "quarantined_evidence_is_not_accepted_evidence", "pilot_requires_human_review",
+    ):
+        assert summary[field] is True
+
+    assert artifact_index["phases"]["MVR-LOCAL-REAL-INPUT-PILOT-PROTOTYPE-00"] == MVR_REAL_INPUT_PILOT_PROTOTYPE_ARTIFACTS
+    for artifact in MVR_REAL_INPUT_PILOT_PROTOTYPE_ARTIFACTS:
+        assert artifact in page
+    for schema in MVR_REAL_INPUT_PILOT_PROTOTYPE_SCHEMA_REFERENCES:
+        assert schema in page
+
+    repro_text = json.dumps(repro_index, ensure_ascii=False)
+    for fragment in MVR_REAL_INPUT_PILOT_PROTOTYPE_REPRO_FRAGMENTS:
+        assert fragment in repro_text
+
+    for required in (
+        *MVR_REAL_INPUT_PILOT_PROTOTYPE_DOCTRINE_LANGUAGE,
+        *MVR_REAL_INPUT_PILOT_PROTOTYPE_SOURCE_SELECTION_TERMS,
+        *MVR_REAL_INPUT_PILOT_PROTOTYPE_CONSENT_QUARANTINE_TERMS,
+        *MVR_REAL_INPUT_PILOT_PROTOTYPE_PRIOR_PHASE_RELATION,
+        *MVR_REAL_INPUT_PILOT_PROTOTYPE_FAILURE_CLASSES,
+        MVR_REAL_INPUT_PILOT_PROTOTYPE_CLAIM_ALLOWED,
+        "Publication sync grants no runtime authority.",
+    ):
+        assert required in page
+
+    boundaries = "\n".join(claim_boundaries["boundaries"])
+    for blocked in MVR_REAL_INPUT_PILOT_PROTOTYPE_BLOCKED_CLAIMS:
+        assert blocked in boundaries
+
+    assert status["mvr_local_real_input_pilot_prototype_00_indexed"] is True
+    assert status["mvr_local_real_input_pilot_prototype_status"] == "completed"
+    assert status["mvr_local_real_input_pilot_prototype_real_input_processing_enabled"] is True
+    assert status["mvr_local_real_input_pilot_prototype_real_input_runtime_artifacts_emitted"] is True
+    assert status["mvr_local_real_input_pilot_prototype_real_user_files_processed"] is False
+    assert status["mvr_local_real_input_pilot_prototype_pasted_excerpt_real_user_files_processed"] is True
+
+
+
+
+
+
+
+
+
+
+def test_wave_eu_and_provenance_designs_index_dashboard_and_docs(tmp_path):
+    out_dir, docs_dir = run_builder(tmp_path)
+    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text(encoding="utf-8"))
+    artifact_index = json.loads((out_dir / "artifact_index.json").read_text(encoding="utf-8"))
+    repro_index = json.loads((out_dir / "reproducibility_index.json").read_text(encoding="utf-8"))
+    claim_boundaries = json.loads((out_dir / "claim_boundary_index.json").read_text(encoding="utf-8"))
+    status = json.loads((out_dir / "status.json").read_text(encoding="utf-8"))
+    bridge_page = (docs_dir / "wave-rosetta-canonical-proxy-bridge.md").read_text(encoding="utf-8")
+    eu_page = (docs_dir / "eu-ai-act-mvr-evidence-mapping-design.md").read_text(encoding="utf-8")
+    provenance_page = (docs_dir / "wave-rosetta-canonical-proxy-bridge-provenance.md").read_text(encoding="utf-8")
+
+    bridge_phase = next(entry for entry in dashboard["accepted_phases"] if entry["phase_id"] == "WAVE-ROSETTA-CANONICAL-PROXY-BRIDGE-00")
+    eu_phase = next(entry for entry in dashboard["accepted_phases"] if entry["phase_id"] == "EU-AI-ACT-MVR-EVIDENCE-MAPPING-DESIGN-00")
+    provenance_phase = next(entry for entry in dashboard["accepted_phases"] if entry["phase_id"] == "WAVE-ROSETTA-CANONICAL-PROXY-BRIDGE-PROVENANCE-00")
+    bridge_summary = bridge_phase["dashboard_summary"]
+    eu_summary = eu_phase["dashboard_summary"]
+    provenance_summary = provenance_phase["dashboard_summary"]
+    assert bridge_summary == WAVE_BRIDGE_DASHBOARD_SUMMARY
+    assert eu_summary == EU_AI_ACT_MVR_MAPPING_DASHBOARD_SUMMARY
+    assert provenance_summary == WAVE_PROVENANCE_DASHBOARD_SUMMARY
+    assert bridge_summary["bridge_status"] == "completed"
+    assert bridge_summary["bridge_mode"] == "canonical_proxy_bridge_estimate"
+    assert bridge_summary["E_bridge"] == 0.661
+    assert bridge_summary["T_bridge"] == 0.705
+    assert bridge_summary["Ψ_structural_bridge"] == 0.6303
+    assert bridge_summary["Ψ_constructive_bridge"] == 0.452729
+    assert bridge_summary["Ψ_cancellation_bridge"] == 0.214302
+    assert bridge_summary["combined_uncertainty"] == 0.34625
+    for field in (
+        "bridge_is_not_canonical_measurement", "bridge_is_not_truth_certification",
+        "bridge_is_not_universal_ontology_proof", "bridge_is_not_consciousness_proof",
+        "bridge_is_not_product_release", "bridge_is_not_product_readiness",
+        "bridge_is_not_final_answer_authority", "bridge_is_not_accepted_evidence_authority",
+        "bridge_is_not_memory_write", "bridge_is_not_atlas_memory_admission",
+        "bridge_requires_population_calibration", "bridge_requires_domain_validation", "bridge_requires_human_review",
+    ):
+        assert bridge_summary[field] is True
+
+    assert eu_summary["policy_status"] == "active_design_only"
+    assert eu_summary["mapping_status"] == "active_design_only"
+    assert eu_summary["profile_id"] == "eu_ai_act_evidence_support"
+    assert eu_summary["evidence_map_generation_enabled"] is False
+    for field in (
+        "eu_ai_act_compliance_certification_emitted", "legal_advice_emitted", "audit_pass_claimed",
+        "attestation_success_claimed", "product_readiness_claimed", "product_release_performed",
+        "provider_runtime_performed", "network_call_performed", "real_input_processing_performed",
+        "memory_write_performed", "atlas_memory_admission_performed", "trace_export_performed",
+        "pmr_federation_performed", "final_answer_authority_granted", "accepted_evidence_authority_granted",
+        "truth_certification_emitted", "model_training_performed", "review_skip_authorized",
+    ):
+        assert eu_summary[field] is False
+
+    assert provenance_summary["provenance_status"] == "active_documentation_only"
+    assert provenance_summary["target_phase"] == "WAVE-ROSETTA-CANONICAL-PROXY-BRIDGE-00"
+    assert provenance_summary["target_weight_profile_version"] == "v1.0.0"
+    for field in (
+        "runtime_behavior_changed", "bridge_weight_changed", "bridge_formula_changed",
+        "canonical_measurement_claimed", "guft_proof_claimed", "universal_ontology_proof_claimed",
+        "consciousness_proof_claimed", "truth_certification_emitted", "final_answer_authority_granted",
+        "accepted_evidence_authority_granted", "compliance_certification_emitted", "product_release_performed",
+        "product_readiness_claimed", "provider_runtime_performed", "network_call_performed", "memory_write_performed",
+        "atlas_memory_admission_performed", "trace_export_performed", "pmr_federation_performed",
+    ):
+        assert provenance_summary[field] is False
+
+    assert artifact_index["phases"]["WAVE-ROSETTA-CANONICAL-PROXY-BRIDGE-00"] == WAVE_BRIDGE_ARTIFACTS
+    assert artifact_index["phases"]["EU-AI-ACT-MVR-EVIDENCE-MAPPING-DESIGN-00"] == EU_AI_ACT_MVR_MAPPING_ARTIFACTS
+    assert artifact_index["phases"]["WAVE-ROSETTA-CANONICAL-PROXY-BRIDGE-PROVENANCE-00"] == WAVE_PROVENANCE_ARTIFACTS
+    for artifact in WAVE_BRIDGE_ARTIFACTS:
+        assert artifact in bridge_page
+    for artifact in EU_AI_ACT_MVR_MAPPING_ARTIFACTS:
+        assert artifact in eu_page
+    for artifact in WAVE_PROVENANCE_ARTIFACTS:
+        assert artifact in provenance_page
+
+    repro_text = json.dumps(repro_index, ensure_ascii=False)
+    for fragment in WAVE_BRIDGE_REPRO_FRAGMENTS:
+        assert fragment in repro_text
+
+    for required in (*WAVE_BRIDGE_DOCTRINE_LANGUAGE, *WAVE_VECTOR_TERMS, *WAVE_BRIDGE_ESTIMATE_TERMS, WAVE_BRIDGE_CLAIM_ALLOWED, "Publication sync grants no runtime authority."):
+        assert required in bridge_page
+    for required in (*EU_AI_ACT_MVR_MAPPING_DOCTRINE_LANGUAGE, *EU_AI_ACT_EVIDENCE_CATEGORIES, *EU_AI_ACT_GAP_TERMS, EU_AI_ACT_MVR_MAPPING_CLAIM_ALLOWED, "Publication sync grants no runtime authority."):
+        assert required in eu_page
+    for required in (*WAVE_PROVENANCE_DOCTRINE_LANGUAGE, *WAVE_VECTOR_TERMS, *WAVE_BRIDGE_ESTIMATE_TERMS, *WAVE_PROVENANCE_REPORT_LINEAGE, *WAVE_FORMULA_LINEAGE, *WAVE_CALIBRATION_GAPS, WAVE_PROVENANCE_CLAIM_ALLOWED, "Publication sync grants no runtime authority."):
+        assert required in provenance_page
+
+    boundaries = "\n".join(claim_boundaries["boundaries"])
+    for blocked in WAVE_EU_PROVENANCE_BLOCKED_CLAIMS:
+        assert blocked in boundaries
+
+    assert status["wave_rosetta_canonical_proxy_bridge_00_indexed"] is True
+    assert status["wave_rosetta_canonical_proxy_bridge_status"] == "completed"
+    assert status["wave_rosetta_canonical_proxy_bridge_is_not_canonical_measurement"] is True
+    assert status["eu_ai_act_mvr_evidence_mapping_design_00_indexed"] is True
+    assert status["eu_ai_act_mvr_evidence_mapping_status"] == "active_design_only"
+    assert status["eu_ai_act_mvr_evidence_map_generation_enabled"] is False
+    assert status["wave_rosetta_canonical_proxy_bridge_provenance_00_indexed"] is True
+    assert status["wave_rosetta_canonical_proxy_bridge_provenance_status"] == "active_documentation_only"
+    assert status["wave_rosetta_canonical_proxy_bridge_provenance_runtime_behavior_changed"] is False
+    assert status["not_wave_eu_provenance_runtime_authority"] is True
+    assert status["not_wave_eu_provenance_truth_or_compliance_certification"] is True
+
+
+def test_validator_required_phases_include_wave_eu_provenance_designs():
+    assert "WAVE-ROSETTA-CANONICAL-PROXY-BRIDGE-00" in VALIDATOR_REQUIRED_PHASES
+    assert "EU-AI-ACT-MVR-EVIDENCE-MAPPING-DESIGN-00" in VALIDATOR_REQUIRED_PHASES
+    assert "WAVE-ROSETTA-CANONICAL-PROXY-BRIDGE-PROVENANCE-00" in VALIDATOR_REQUIRED_PHASES
+
+
+def test_validator_fails_if_wave_eu_provenance_designs_make_forbidden_claims(tmp_path):
+    for claim in WAVE_EU_PROVENANCE_BLOCKED_CLAIMS:
+        out_dir, docs_dir = run_builder(tmp_path / claim.replace(" ", "_").replace("/", "_"))
+        page = docs_dir / "wave-rosetta-canonical-proxy-bridge.md"
+        page.write_text(page.read_text(encoding="utf-8") + f"\nWAVE bridge claims {claim}.\n", encoding="utf-8")
+        result = validate_dashboard(out_dir / "experiment_suite_dashboard.json", docs_dir)
+        assert result["passed"] is False, claim
+        forbidden_found = [found.lower() for found in result["forbidden_claims_found"]]
+        assert claim.lower() in forbidden_found or f"claims {claim.lower()}" in forbidden_found, result
+
+def test_compliance_report_and_toolset_designs_index_dashboard_and_docs(tmp_path):
+    out_dir, docs_dir = run_builder(tmp_path)
+    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text(encoding="utf-8"))
+    artifact_index = json.loads((out_dir / "artifact_index.json").read_text(encoding="utf-8"))
+    repro_index = json.loads((out_dir / "reproducibility_index.json").read_text(encoding="utf-8"))
+    claim_boundaries = json.loads((out_dir / "claim_boundary_index.json").read_text(encoding="utf-8"))
+    status = json.loads((out_dir / "status.json").read_text(encoding="utf-8"))
+    report_page = (docs_dir / "compliance-ready-mvr-report-design.md").read_text(encoding="utf-8")
+    toolset_page = (docs_dir / "compliance-evidence-toolset-library-design.md").read_text(encoding="utf-8")
+
+    report_phase = next(entry for entry in dashboard["accepted_phases"] if entry["phase_id"] == "COMPLIANCE-READY-MVR-REPORT-DESIGN-00")
+    toolset_phase = next(entry for entry in dashboard["accepted_phases"] if entry["phase_id"] == "COMPLIANCE-EVIDENCE-TOOLSET-LIBRARY-DESIGN-00")
+    report_summary = report_phase["dashboard_summary"]
+    toolset_summary = toolset_phase["dashboard_summary"]
+    assert report_summary == COMPLIANCE_REPORT_DASHBOARD_SUMMARY
+    assert toolset_summary == COMPLIANCE_TOOLSET_DASHBOARD_SUMMARY
+    assert report_summary["policy_status"] == "active_design_only"
+    assert report_summary["report_generation_enabled"] is False
+    assert report_summary["compliance_certification_emitted"] is False
+    assert report_summary["audit_pass_claimed"] is False
+    assert report_summary["attestation_success_claimed"] is False
+    assert toolset_summary["day_one_profile"] == "eu_ai_act_evidence_support"
+    assert toolset_summary["evidence_pack_generation_enabled"] is False
+    assert toolset_summary["legal_advice_emitted"] is False
+
+    for summary in (report_summary, toolset_summary):
+        for field in (
+            "compliance_certification_emitted", "audit_pass_claimed", "attestation_success_claimed",
+            "product_readiness_claimed", "product_release_performed", "provider_runtime_performed",
+            "network_call_performed", "real_input_processing_performed", "memory_write_performed",
+            "atlas_memory_admission_performed", "trace_export_performed", "pmr_federation_performed",
+            "final_answer_authority_granted", "accepted_evidence_authority_granted", "truth_certification_emitted",
+        ):
+            assert summary[field] is False
+
+    for field in (
+        "report_is_not_compliance_certification", "report_is_not_audit_pass",
+        "report_is_not_attestation_success", "report_is_not_truth_certification",
+        "report_is_not_final_answer_authority", "report_is_not_accepted_evidence_authority",
+        "report_is_not_product_release", "report_is_not_product_readiness",
+        "report_is_not_memory_write", "report_is_not_atlas_memory_admission", "report_requires_human_review",
+    ):
+        assert report_summary[field] is True
+    for field in (
+        "toolset_is_not_compliance_certification", "toolset_is_not_legal_advice", "toolset_is_not_audit_pass",
+        "toolset_is_not_attestation_success", "toolset_is_not_product_readiness", "toolset_is_not_product_release",
+        "toolset_is_not_truth_certification", "toolset_is_not_final_answer_authority",
+        "toolset_is_not_accepted_evidence_authority", "toolset_is_not_memory_write",
+        "toolset_is_not_atlas_memory_admission", "toolset_requires_human_review",
+        "toolset_requires_authorized_professional_signoff",
+    ):
+        assert toolset_summary[field] is True
+
+    assert artifact_index["phases"]["COMPLIANCE-READY-MVR-REPORT-DESIGN-00"] == COMPLIANCE_REPORT_DESIGN_ARTIFACTS
+    assert artifact_index["phases"]["COMPLIANCE-EVIDENCE-TOOLSET-LIBRARY-DESIGN-00"] == COMPLIANCE_TOOLSET_DESIGN_ARTIFACTS
+    for artifact in COMPLIANCE_REPORT_DESIGN_ARTIFACTS:
+        assert artifact in report_page
+    for artifact in COMPLIANCE_TOOLSET_DESIGN_ARTIFACTS:
+        assert artifact in toolset_page
+
+    repro_text = json.dumps(repro_index, ensure_ascii=False)
+    for fragment in (*COMPLIANCE_REPORT_DESIGN_REPRO_FRAGMENTS, *COMPLIANCE_TOOLSET_DESIGN_REPRO_FRAGMENTS):
+        assert fragment in repro_text
+
+    for required in (
+        *COMPLIANCE_REPORT_DOCTRINE_LANGUAGE,
+        *COMPLIANCE_REPORT_AUDIENCE_TERMS,
+        *COMPLIANCE_REPORT_SECTION_TERMS,
+        COMPLIANCE_REPORT_CLAIM_ALLOWED,
+        "Publication sync grants no runtime authority.",
+    ):
+        assert required in report_page
+    for required in (
+        *COMPLIANCE_TOOLSET_DOCTRINE_LANGUAGE,
+        *COMPLIANCE_FRAMEWORK_PROFILE_TERMS,
+        *COMPLIANCE_EU_AI_ACT_SUPPORT_TERMS,
+        *COMPLIANCE_GENERIC_EVIDENCE_MAPPING_TERMS,
+        *COMPLIANCE_HUMAN_SIGNOFF_ROLE_TERMS,
+        COMPLIANCE_TOOLSET_CLAIM_ALLOWED,
+        "Publication sync grants no runtime authority.",
+    ):
+        assert required in toolset_page
+
+    boundaries = "\n".join(claim_boundaries["boundaries"])
+    for blocked in COMPLIANCE_DESIGN_BLOCKED_CLAIMS:
+        assert blocked in boundaries
+
+    assert status["compliance_ready_mvr_report_design_00_indexed"] is True
+    assert status["compliance_ready_mvr_report_policy_status"] == "active_design_only"
+    assert status["compliance_ready_mvr_report_generation_enabled"] is False
+    assert status["not_compliance_ready_mvr_report_certification"] is True
+    assert status["not_compliance_ready_mvr_report_runtime_authority"] is True
+    assert status["compliance_evidence_toolset_library_design_00_indexed"] is True
+    assert status["compliance_evidence_toolset_policy_status"] == "active_design_only"
+    assert status["compliance_evidence_toolset_library_status"] == "active_design_only"
+    assert status["compliance_evidence_toolset_day_one_profile"] == "eu_ai_act_evidence_support"
+    assert status["compliance_evidence_toolset_evidence_pack_generation_enabled"] is False
+    assert status["not_compliance_evidence_toolset_certification"] is True
+    assert status["not_compliance_evidence_toolset_legal_advice"] is True
+    assert status["not_compliance_evidence_toolset_runtime_authority"] is True
+
+
+def test_validator_required_phases_include_compliance_designs():
+    assert "COMPLIANCE-READY-MVR-REPORT-DESIGN-00" in VALIDATOR_REQUIRED_PHASES
+    assert "COMPLIANCE-EVIDENCE-TOOLSET-LIBRARY-DESIGN-00" in VALIDATOR_REQUIRED_PHASES
+
+
+def test_validator_fails_if_compliance_designs_make_forbidden_claims(tmp_path):
+    for claim in COMPLIANCE_DESIGN_BLOCKED_CLAIMS:
+        out_dir, docs_dir = run_builder(tmp_path / claim.replace(" ", "_").replace("/", "_"))
+        page = docs_dir / "compliance-ready-mvr-report-design.md"
+        page.write_text(page.read_text(encoding="utf-8") + f"\nCompliance design claims {claim}.\n", encoding="utf-8")
+        result = validate_dashboard(out_dir / "experiment_suite_dashboard.json", docs_dir)
+        assert result["passed"] is False, claim
+        forbidden_found = [found.lower() for found in result["forbidden_claims_found"]]
+        assert claim.lower() in forbidden_found or f"claims {claim.lower()}" in forbidden_found, result
+
+def test_mvr_human_selected_file_smoke_indexes_dashboard_and_docs(tmp_path):
+    out_dir, docs_dir = run_builder(tmp_path)
+    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text(encoding="utf-8"))
+    artifact_index = json.loads((out_dir / "artifact_index.json").read_text(encoding="utf-8"))
+    repro_index = json.loads((out_dir / "reproducibility_index.json").read_text(encoding="utf-8"))
+    claim_boundaries = json.loads((out_dir / "claim_boundary_index.json").read_text(encoding="utf-8"))
+    status = json.loads((out_dir / "status.json").read_text(encoding="utf-8"))
+    page = (docs_dir / "mvr-local-real-input-pilot-human-selected-file-smoke.md").read_text(encoding="utf-8")
+
+    phase = next(entry for entry in dashboard["accepted_phases"] if entry["phase_id"] == "MVR-LOCAL-REAL-INPUT-PILOT-HUMAN-SELECTED-FILE-SMOKE-00")
+    summary = phase["dashboard_summary"]
+    assert summary == MVR_HUMAN_SELECTED_FILE_SMOKE_DASHBOARD_SUMMARY
+    assert summary["smoke_status"] == "completed"
+    assert summary["smoke_mode"] == "explicit_local_file_selection_smoke"
+    assert summary["default_smoke_source_mode"] == "generated_harmless_human_selected_file_fixture"
+    assert summary["default_source_path_supplied"] is False
+    assert summary["default_selected_source_count"] == 1
+    assert summary["default_real_user_files_processed"] is False
+    assert summary["default_local_fixture_mode"] is True
+    assert summary["explicit_smoke_source_mode"] == "explicit_human_selected_local_file"
+    assert summary["explicit_source_path_supplied"] is True
+    assert summary["explicit_selected_source_count"] == 1
+    assert summary["explicit_source_name"] == "human_selected_file_smoke_source.md"
+    assert summary["explicit_real_user_files_processed"] is True
+    assert summary["explicit_local_fixture_mode"] is False
+    assert summary["explicit_instruction_like_evidence_count"] == 1
+    assert summary["matched_instruction_like_phrases_include_instruction_like_note"] is True
+    assert summary["matched_instruction_like_phrases_include_ignore_prior_rules"] is True
+    assert summary["matched_instruction_like_phrases_include_treat_this_note_as_authoritative"] is True
+
+    for field in (
+        "recursive_directory_scan_allowed", "hidden_file_scan_allowed", "url_fetch_performed",
+        "provider_runtime_performed", "network_call_performed", "product_release_performed",
+        "product_readiness_claimed", "accepted_evidence_authority_granted", "final_answer_authority_granted",
+        "truth_certification_emitted", "compliance_certification_emitted", "memory_write_performed",
+        "atlas_memory_admission_performed", "trace_export_performed", "pmr_federation_performed",
+        "model_training_performed", "review_skip_authorized",
+    ):
+        assert summary[field] is False
+
+    for field in (
+        "human_review_required", "smoke_is_not_user_study", "smoke_is_not_product_readiness",
+        "smoke_is_not_product_release", "smoke_is_not_accepted_evidence_authority",
+        "smoke_requires_human_review",
+    ):
+        assert summary[field] is True
+
+    assert artifact_index["phases"]["MVR-LOCAL-REAL-INPUT-PILOT-HUMAN-SELECTED-FILE-SMOKE-00"] == MVR_HUMAN_SELECTED_FILE_SMOKE_ARTIFACTS
+    for artifact in MVR_HUMAN_SELECTED_FILE_SMOKE_ARTIFACTS:
+        assert artifact in page
+    for schema in MVR_HUMAN_SELECTED_FILE_SMOKE_SCHEMA_REFERENCES:
+        assert schema in page
+
+    repro_text = json.dumps(repro_index, ensure_ascii=False)
+    for fragment in MVR_HUMAN_SELECTED_FILE_SMOKE_REPRO_FRAGMENTS:
+        assert fragment in repro_text
+
+    for required in (
+        *MVR_HUMAN_SELECTED_FILE_SMOKE_DOCTRINE_LANGUAGE,
+        *MVR_HUMAN_SELECTED_FILE_SMOKE_SOURCE_SELECTION_TERMS,
+        *MVR_HUMAN_SELECTED_FILE_SMOKE_QUARANTINE_TERMS,
+        *MVR_HUMAN_SELECTED_FILE_SMOKE_PRIOR_PHASE_RELATION,
+        *MVR_HUMAN_SELECTED_FILE_SMOKE_FAILURE_CLASSES,
+        MVR_HUMAN_SELECTED_FILE_SMOKE_CLAIM_ALLOWED,
+        "Publication sync grants no runtime authority.",
+    ):
+        assert required in page
+
+    boundaries = "\n".join(claim_boundaries["boundaries"])
+    for blocked in MVR_HUMAN_SELECTED_FILE_SMOKE_BLOCKED_CLAIMS:
+        assert blocked in boundaries
+
+    assert status["mvr_human_selected_file_smoke_00_indexed"] is True
+    assert status["mvr_human_selected_file_smoke_status"] == "completed"
+    assert status["mvr_human_selected_file_smoke_default_real_user_files_processed"] is False
+    assert status["mvr_human_selected_file_smoke_explicit_real_user_files_processed"] is True
+    assert status["not_mvr_human_selected_file_smoke_runtime_authority"] is True
+    assert status["not_mvr_human_selected_file_smoke_product_readiness"] is True
+    assert status["not_mvr_human_selected_file_smoke_accepted_evidence_authority"] is True
+
+
+def test_validator_required_phases_include_mvr_human_selected_file_smoke():
+    assert "MVR-LOCAL-REAL-INPUT-PILOT-HUMAN-SELECTED-FILE-SMOKE-00" in VALIDATOR_REQUIRED_PHASES
+
+
+def test_validator_fails_if_mvr_human_selected_file_smoke_makes_forbidden_claims(tmp_path):
+    for claim in MVR_HUMAN_SELECTED_FILE_SMOKE_BLOCKED_CLAIMS:
+        out_dir, docs_dir = run_builder(tmp_path / claim.replace(" ", "_").replace("/", "_"))
+        page = docs_dir / "mvr-local-real-input-pilot-human-selected-file-smoke.md"
+        page.write_text(page.read_text(encoding="utf-8") + f"\nHuman-selected file smoke claims {claim}.\n", encoding="utf-8")
+        result = validate_dashboard(out_dir / "experiment_suite_dashboard.json", docs_dir)
+        assert result["passed"] is False, claim
+        forbidden_found = [found.lower() for found in result["forbidden_claims_found"]]
+        assert claim.lower() in forbidden_found or f"claims {claim.lower()}" in forbidden_found, result
+
+def test_mvr_quarantine_detection_repair_indexes_dashboard_and_docs(tmp_path):
+    out_dir, docs_dir = run_builder(tmp_path)
+    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text(encoding="utf-8"))
+    artifact_index = json.loads((out_dir / "artifact_index.json").read_text(encoding="utf-8"))
+    repro_index = json.loads((out_dir / "reproducibility_index.json").read_text(encoding="utf-8"))
+    claim_boundaries = json.loads((out_dir / "claim_boundary_index.json").read_text(encoding="utf-8"))
+    status = json.loads((out_dir / "status.json").read_text(encoding="utf-8"))
+    page = (docs_dir / "mvr-local-real-input-pilot-quarantine-detection-repair.md").read_text(encoding="utf-8")
+
+    phase = next(entry for entry in dashboard["accepted_phases"] if entry["phase_id"] == "MVR-LOCAL-REAL-INPUT-PILOT-QUARANTINE-DETECTION-REPAIR-00")
+    summary = phase["dashboard_summary"]
+    assert summary == MVR_QUARANTINE_REPAIR_DASHBOARD_SUMMARY
+    assert summary["repair_status"] == "completed"
+    assert summary["repair_mode"] == "instruction_like_quarantine_detection_repair"
+    assert summary["instruction_like_evidence_count"] == 1
+    assert summary["instruction_like_quarantined_items_count"] == 1
+    assert summary["harmless_instruction_like_evidence_count"] == 0
+    assert summary["harmless_quarantined_items_count"] == 0
+    assert summary["no_detection_receipt_wording_conditional"] is True
+    assert summary["contradictory_quarantine_wording_repaired"] is True
+
+    for field in (
+        "provider_runtime_performed", "network_call_performed", "product_release_performed",
+        "product_readiness_claimed", "final_answer_authority_granted", "accepted_evidence_authority_granted",
+        "truth_certification_emitted", "memory_write_performed", "atlas_memory_admission_performed",
+        "trace_export_performed", "pmr_federation_performed",
+    ):
+        assert summary[field] is False
+
+    assert artifact_index["phases"]["MVR-LOCAL-REAL-INPUT-PILOT-QUARANTINE-DETECTION-REPAIR-00"] == MVR_QUARANTINE_REPAIR_ARTIFACTS
+    for artifact in MVR_QUARANTINE_REPAIR_ARTIFACTS:
+        assert artifact in page
+
+    repro_text = json.dumps(repro_index, ensure_ascii=False)
+    for fragment in MVR_QUARANTINE_REPAIR_REPRO_FRAGMENTS:
+        assert fragment in repro_text
+
+    for required in (
+        *MVR_QUARANTINE_REPAIR_DETECTOR_TERMS,
+        *MVR_QUARANTINE_REPAIR_DOCTRINE_LANGUAGE,
+        *MVR_QUARANTINE_REPAIR_SMOKE_OUTCOMES,
+        *MVR_QUARANTINE_REPAIR_PRIOR_PHASE_RELATION,
+        *MVR_QUARANTINE_REPAIR_FAILURE_CLASSES,
+        MVR_QUARANTINE_REPAIR_CLAIM_ALLOWED,
+        "Publication sync grants no runtime authority.",
+    ):
+        assert required in page
+
+    boundaries = "\n".join(claim_boundaries["boundaries"])
+    for blocked in MVR_QUARANTINE_REPAIR_BLOCKED_CLAIMS:
+        assert blocked in boundaries
+
+    assert status["mvr_quarantine_detection_repair_00_indexed"] is True
+    assert status["mvr_quarantine_detection_repair_status"] == "completed"
+    assert status["mvr_quarantine_detection_repair_no_detection_receipt_wording_conditional"] is True
+    assert status["mvr_quarantine_detection_repair_contradictory_wording_repaired"] is True
+    assert status["not_mvr_quarantine_detection_repair_file_access_broadened"] is True
+    assert status["not_mvr_quarantine_detection_repair_runtime_authority"] is True
+
+
+def test_validator_required_phases_include_mvr_quarantine_detection_repair():
+    assert "MVR-LOCAL-REAL-INPUT-PILOT-QUARANTINE-DETECTION-REPAIR-00" in VALIDATOR_REQUIRED_PHASES
+
+
+def test_validator_fails_if_mvr_quarantine_detection_repair_makes_forbidden_claims(tmp_path):
+    for claim in MVR_QUARANTINE_REPAIR_BLOCKED_CLAIMS:
+        out_dir, docs_dir = run_builder(tmp_path / claim.replace(" ", "_").replace("/", "_"))
+        page = docs_dir / "mvr-local-real-input-pilot-quarantine-detection-repair.md"
+        page.write_text(page.read_text(encoding="utf-8") + f"\nQuarantine repair claims {claim}.\n", encoding="utf-8")
+        result = validate_dashboard(out_dir / "experiment_suite_dashboard.json", docs_dir)
+        assert result["passed"] is False, claim
+        forbidden_found = [found.lower() for found in result["forbidden_claims_found"]]
+        assert claim.lower() in forbidden_found or f"claims {claim.lower()}" in forbidden_found, result
+
+def test_validator_required_phases_include_mvr_local_real_input_pilot_prototype():
+    assert "MVR-LOCAL-REAL-INPUT-PILOT-PROTOTYPE-00" in VALIDATOR_REQUIRED_PHASES
+
+
+def test_validator_fails_if_mvr_local_real_input_pilot_prototype_makes_forbidden_claims(tmp_path):
+    for claim in MVR_REAL_INPUT_PILOT_PROTOTYPE_BLOCKED_CLAIMS:
+        out_dir, docs_dir = run_builder(tmp_path / claim.replace(" ", "_").replace("/", "_"))
+        page = docs_dir / "mvr-local-real-input-pilot-prototype.md"
+        page.write_text(page.read_text(encoding="utf-8") + f"\nMVR real-input pilot prototype claims {claim}.\n", encoding="utf-8")
+        result = validate_dashboard(out_dir / "experiment_suite_dashboard.json", docs_dir)
+        assert result["passed"] is False, claim
+        forbidden_found = [found.lower() for found in result["forbidden_claims_found"]]
+        assert claim.lower() in forbidden_found or f"claims {claim.lower()}" in forbidden_found, result
+
+def test_validator_required_phases_include_mvr_local_real_input_pilot_design():
+    assert "MVR-LOCAL-REAL-INPUT-PILOT-DESIGN-00" in VALIDATOR_REQUIRED_PHASES
+
+
+def test_validator_fails_if_mvr_local_real_input_pilot_design_makes_forbidden_claims(tmp_path):
+    for claim in MVR_REAL_INPUT_PILOT_DESIGN_BLOCKED_CLAIMS:
+        out_dir, docs_dir = run_builder(tmp_path / claim.replace(" ", "_").replace("/", "_"))
+        page = docs_dir / "mvr-local-real-input-pilot-design.md"
+        page.write_text(page.read_text(encoding="utf-8") + f"\nReal input pilot claims {claim}.\n", encoding="utf-8")
+        result = validate_dashboard(out_dir / "experiment_suite_dashboard.json", docs_dir)
+        assert result["passed"] is False, claim
+        forbidden_found = [found.lower() for found in result["forbidden_claims_found"]]
+        assert claim.lower() in forbidden_found or f"claims {claim.lower()}" in forbidden_found, result
+
+def test_validator_required_phases_include_mvr_readability_revision():
+    assert "MVR-LOCAL-PROTOTYPE-READABILITY-REVISION-00" in VALIDATOR_REQUIRED_PHASES
+
+
+def test_validator_fails_if_mvr_readability_revision_makes_forbidden_claims(tmp_path):
+    for claim in MVR_READABILITY_REVISION_BLOCKED_CLAIMS:
+        out_dir, docs_dir = run_builder(tmp_path / claim.replace(" ", "_").replace("/", "_"))
+        page = docs_dir / "mvr-local-prototype-readability-revision.md"
+        page.write_text(page.read_text(encoding="utf-8") + f"\nMVR readability revision claims {claim}.\n", encoding="utf-8")
+        result = validate_dashboard(out_dir / "experiment_suite_dashboard.json", docs_dir)
+        assert result["passed"] is False, claim
+        forbidden_found = [found.lower() for found in result["forbidden_claims_found"]]
+        assert claim.lower() in forbidden_found or f"claims {claim.lower()}" in forbidden_found, result
+
 def test_validator_required_phases_include_mvr_readability_review_seed():
     assert "MVR-LOCAL-PROTOTYPE-READABILITY-REVIEW-SEED-00" in VALIDATOR_REQUIRED_PHASES
 
@@ -6068,6 +6918,217 @@ def test_validator_fails_if_mvr_readability_review_seed_makes_forbidden_claims(t
         out_dir, docs_dir = run_builder(tmp_path / claim.replace(" ", "_").replace("/", "_"))
         page = docs_dir / "mvr-local-prototype-readability-review-seed.md"
         page.write_text(page.read_text(encoding="utf-8") + f"\nMVR readability review seed claims {claim}.\n", encoding="utf-8")
+        result = validate_dashboard(out_dir / "experiment_suite_dashboard.json", docs_dir)
+        assert result["passed"] is False, claim
+        forbidden_found = [found.lower() for found in result["forbidden_claims_found"]]
+        assert claim.lower() in forbidden_found or f"claims {claim.lower()}" in forbidden_found, result
+
+
+
+def test_eu_ai_act_mvr_evidence_map_local_prototype_indexes_dashboard_docs_and_boundaries(tmp_path):
+    out_dir, docs_dir = run_builder(tmp_path)
+    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text(encoding="utf-8"))
+    artifact_index = json.loads((out_dir / "artifact_index.json").read_text(encoding="utf-8"))
+    repro_index = json.loads((out_dir / "reproducibility_index.json").read_text(encoding="utf-8"))
+    claim_boundaries = json.loads((out_dir / "claim_boundary_index.json").read_text(encoding="utf-8"))
+    status = json.loads((out_dir / "status.json").read_text(encoding="utf-8"))
+    page = (docs_dir / "eu-ai-act-mvr-evidence-map-local-prototype.md").read_text(encoding="utf-8")
+
+    phase = next(entry for entry in dashboard["accepted_phases"] if entry["phase_id"] == "EU-AI-ACT-MVR-EVIDENCE-MAP-LOCAL-PROTOTYPE-00")
+    summary = phase["dashboard_summary"]
+    assert summary == EU_AI_ACT_MVR_EVIDENCE_MAP_LOCAL_PROTOTYPE_DASHBOARD_SUMMARY
+    assert summary["evidence_map_status"] == "completed"
+    assert summary["mapping_category_count"] == 11
+    assert summary["evidence_row_count"] == 11
+    assert summary["open_gap_count"] == 10
+    assert summary["gap_count"] == 10
+    assert summary["review_status"] == "human_review_required"
+    assert summary["authorized_professional_signoff_required"] is True
+    assert summary["signoff_performed"] is False
+    assert summary["legal_review_performed"] is False
+    for field in (
+        "compliance_certification_emitted",
+        "legal_advice_emitted",
+        "audit_pass_claimed",
+        "attestation_success_claimed",
+        "product_readiness_claimed",
+        "product_release_performed",
+        "final_answer_authority_granted",
+        "accepted_evidence_authority_granted",
+        "truth_certification_emitted",
+        "memory_write_performed",
+        "atlas_memory_admission_performed",
+        "trace_export_performed",
+        "pmr_federation_performed",
+    ):
+        assert summary[field] is False
+    for field in (
+        "evidence_map_is_not_eu_ai_act_compliance_certification",
+        "evidence_map_is_not_legal_advice",
+        "evidence_map_is_not_audit_pass",
+        "evidence_map_is_not_attestation_success",
+        "evidence_map_is_not_product_readiness",
+        "evidence_map_is_not_product_release",
+        "evidence_map_is_not_truth_certification",
+        "evidence_map_is_not_final_answer_authority",
+        "evidence_map_is_not_accepted_evidence_authority",
+        "evidence_map_is_not_memory_write",
+        "evidence_map_is_not_atlas_memory_admission",
+    ):
+        assert summary[field] is True
+
+    assert artifact_index["phases"]["EU-AI-ACT-MVR-EVIDENCE-MAP-LOCAL-PROTOTYPE-00"] == EU_AI_ACT_MVR_EVIDENCE_MAP_LOCAL_PROTOTYPE_ARTIFACTS
+    artifact_text = json.dumps(artifact_index, ensure_ascii=False)
+    for artifact in EU_AI_ACT_MVR_EVIDENCE_MAP_LOCAL_PROTOTYPE_ARTIFACTS:
+        assert artifact in artifact_text
+    repro_text = json.dumps(repro_index, ensure_ascii=False)
+    for fragment in EU_AI_ACT_MVR_EVIDENCE_MAP_LOCAL_PROTOTYPE_REPRO_FRAGMENTS:
+        assert fragment in repro_text
+    for required in (
+        *EU_AI_ACT_MVR_EVIDENCE_MAP_LOCAL_PROTOTYPE_DOCTRINE_LANGUAGE,
+        *EU_AI_ACT_EVIDENCE_CATEGORIES,
+        *EU_AI_ACT_MVR_EVIDENCE_MAP_LOCAL_PROTOTYPE_ARTIFACT_MAPPING_TERMS,
+        *EU_AI_ACT_MVR_EVIDENCE_MAP_LOCAL_PROTOTYPE_GAP_TERMS,
+        *EU_AI_ACT_MVR_EVIDENCE_MAP_LOCAL_PROTOTYPE_SIGNOFF_TERMS,
+        *EU_AI_ACT_MVR_EVIDENCE_MAP_LOCAL_PROTOTYPE_PRIOR_PHASE_RELATION,
+        EU_AI_ACT_MVR_EVIDENCE_MAP_LOCAL_PROTOTYPE_CLAIM_ALLOWED,
+        "Publication sync grants no runtime authority.",
+    ):
+        assert required in page
+    boundaries = "\n".join(claim_boundaries["boundaries"])
+    for blocked in EU_AI_ACT_MVR_EVIDENCE_MAP_LOCAL_PROTOTYPE_BLOCKED_CLAIMS:
+        assert blocked in boundaries
+    assert status["eu_ai_act_mvr_evidence_map_local_prototype_00_indexed"] is True
+    assert status["eu_ai_act_mvr_evidence_map_local_prototype_status"] == "completed"
+    assert status["eu_ai_act_mvr_evidence_map_local_prototype_profile_id"] == "eu_ai_act_evidence_support"
+    assert status["eu_ai_act_mvr_evidence_map_local_prototype_open_gap_count"] == 10
+    assert status["eu_ai_act_mvr_evidence_map_local_prototype_signoff_performed"] is False
+    assert status["eu_ai_act_mvr_evidence_map_local_prototype_legal_review_performed"] is False
+    assert status["not_eu_ai_act_mvr_evidence_map_local_prototype_compliance_certification"] is True
+    assert status["not_eu_ai_act_mvr_evidence_map_local_prototype_runtime_authority"] is True
+
+
+def test_validator_required_phases_include_eu_ai_act_mvr_evidence_map_local_prototype():
+    assert "EU-AI-ACT-MVR-EVIDENCE-MAP-LOCAL-PROTOTYPE-00" in VALIDATOR_REQUIRED_PHASES
+
+
+def test_validator_fails_if_eu_ai_act_mvr_evidence_map_local_prototype_makes_forbidden_claims(tmp_path):
+    for claim in EU_AI_ACT_MVR_EVIDENCE_MAP_LOCAL_PROTOTYPE_BLOCKED_CLAIMS:
+        out_dir, docs_dir = run_builder(tmp_path / claim.replace(" ", "_").replace("/", "_"))
+        page = docs_dir / "eu-ai-act-mvr-evidence-map-local-prototype.md"
+        page.write_text(page.read_text(encoding="utf-8") + f"\nEU AI Act evidence map local prototype claims {claim}.\n", encoding="utf-8")
+        result = validate_dashboard(out_dir / "experiment_suite_dashboard.json", docs_dir)
+        assert result["passed"] is False, claim
+        forbidden_found = [found.lower() for found in result["forbidden_claims_found"]]
+        assert claim.lower() in forbidden_found or f"claims {claim.lower()}" in forbidden_found, result
+
+
+
+def test_compliance_report_local_prototype_and_source_corpus_index_dashboard_docs_and_boundaries(tmp_path):
+    out_dir, docs_dir = run_builder(tmp_path)
+    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text(encoding="utf-8"))
+    artifact_index = json.loads((out_dir / "artifact_index.json").read_text(encoding="utf-8"))
+    repro_index = json.loads((out_dir / "reproducibility_index.json").read_text(encoding="utf-8"))
+    claim_boundaries = json.loads((out_dir / "claim_boundary_index.json").read_text(encoding="utf-8"))
+    status = json.loads((out_dir / "status.json").read_text(encoding="utf-8"))
+    report_page = (docs_dir / "compliance-ready-mvr-report-local-prototype.md").read_text(encoding="utf-8")
+    archive_page = (docs_dir / "source-corpus-provenance-archive.md").read_text(encoding="utf-8")
+    hash_fill_page = (docs_dir / "source-corpus-provenance-hash-fill.md").read_text(encoding="utf-8")
+
+    phases = {entry["phase_id"]: entry for entry in dashboard["accepted_phases"]}
+    report_summary = phases["COMPLIANCE-READY-MVR-REPORT-LOCAL-PROTOTYPE-00"]["dashboard_summary"]
+    archive_summary = phases["SOURCE-CORPUS-PROVENANCE-ARCHIVE-00"]["dashboard_summary"]
+    hash_fill_summary = phases["SOURCE-CORPUS-PROVENANCE-HASH-FILL-00"]["dashboard_summary"]
+    assert report_summary == COMPLIANCE_READY_MVR_REPORT_LOCAL_PROTOTYPE_DASHBOARD_SUMMARY
+    assert archive_summary == SOURCE_CORPUS_PROVENANCE_DASHBOARD_SUMMARY
+    assert hash_fill_summary == SOURCE_CORPUS_HASH_FILL_DASHBOARD_SUMMARY
+    assert report_summary["report_status"] == "completed"
+    assert report_summary["open_gap_count"] == 10
+    assert report_summary["control_mapping_rows"] == 14
+    assert report_summary["glossary_entries"] == 14
+    for field in (
+        "compliance_certification_emitted",
+        "legal_advice_emitted",
+        "audit_pass_claimed",
+        "attestation_success_claimed",
+        "product_readiness_claimed",
+        "product_release_performed",
+        "final_answer_authority_granted",
+        "accepted_evidence_authority_granted",
+        "truth_certification_emitted",
+        "memory_write_performed",
+        "atlas_memory_admission_performed",
+        "trace_export_performed",
+        "pmr_federation_performed",
+    ):
+        assert report_summary[field] is False
+    assert archive_summary["manifest_status"] == "active_governed_provenance_manifest"
+    assert archive_summary["source_count"] == 5
+    assert archive_summary["pending_hash_placeholders_remaining"] == 0
+    assert archive_summary["raw_private_reports_bulk_imported"] is False
+    assert hash_fill_summary["pending_hash_placeholders_remaining"] == 0
+    assert hash_fill_summary["raw_private_reports_bulk_imported"] is False
+
+    assert artifact_index["phases"]["COMPLIANCE-READY-MVR-REPORT-LOCAL-PROTOTYPE-00"] == COMPLIANCE_READY_MVR_REPORT_LOCAL_PROTOTYPE_ARTIFACTS
+    assert artifact_index["phases"]["SOURCE-CORPUS-PROVENANCE-ARCHIVE-00"] == SOURCE_CORPUS_PROVENANCE_ARTIFACTS
+    assert artifact_index["phases"]["SOURCE-CORPUS-PROVENANCE-HASH-FILL-00"] == SOURCE_CORPUS_PROVENANCE_ARTIFACTS
+    artifact_text = json.dumps(artifact_index, ensure_ascii=False)
+    for artifact in (*COMPLIANCE_READY_MVR_REPORT_LOCAL_PROTOTYPE_ARTIFACTS, *SOURCE_CORPUS_PROVENANCE_ARTIFACTS):
+        assert artifact in artifact_text
+    repro_text = json.dumps(repro_index, ensure_ascii=False)
+    for fragment in (*COMPLIANCE_READY_MVR_REPORT_LOCAL_PROTOTYPE_REPRO_FRAGMENTS, *SOURCE_CORPUS_PROVENANCE_REPRO_FRAGMENTS, *SOURCE_CORPUS_HASH_FILL_REPRO_FRAGMENTS):
+        assert fragment in repro_text
+    for required in (
+        *COMPLIANCE_READY_MVR_REPORT_LOCAL_PROTOTYPE_DOCTRINE_LANGUAGE,
+        *COMPLIANCE_READY_MVR_REPORT_LOCAL_PROTOTYPE_SECTION_TERMS,
+        *COMPLIANCE_READY_MVR_REPORT_LOCAL_PROTOTYPE_GLOSSARY_TERMS,
+        COMPLIANCE_READY_MVR_REPORT_LOCAL_PROTOTYPE_CLAIM_ALLOWED,
+        "Publication sync grants no runtime authority.",
+    ):
+        assert required in report_page
+    for page in (archive_page, hash_fill_page):
+        for required in (
+            *SOURCE_CORPUS_PROVENANCE_DOCTRINE_LANGUAGE,
+            *SOURCE_CORPUS_MANIFEST_TERMS,
+            *SOURCE_CORPUS_CONCRETE_HASHES,
+            *SOURCE_CORPUS_REPORT_FILENAMES,
+            "Publication sync grants no runtime authority.",
+        ):
+            assert required in page
+    assert SOURCE_CORPUS_PROVENANCE_ARCHIVE_CLAIM_ALLOWED in archive_page
+    assert SOURCE_CORPUS_PROVENANCE_HASH_FILL_CLAIM_ALLOWED in hash_fill_page
+    boundaries = "\n".join(claim_boundaries["boundaries"])
+    for blocked in COMPLIANCE_REPORT_SOURCE_CORPUS_BLOCKED_CLAIMS:
+        assert blocked in boundaries
+    assert status["compliance_ready_mvr_report_local_prototype_00_indexed"] is True
+    assert status["compliance_ready_mvr_report_local_prototype_status"] == "completed"
+    assert status["compliance_ready_mvr_report_local_prototype_open_gap_count"] == 10
+    assert status["compliance_ready_mvr_report_local_prototype_control_mapping_rows"] == 14
+    assert status["compliance_ready_mvr_report_local_prototype_glossary_entries"] == 14
+    assert status["not_compliance_ready_mvr_report_local_prototype_certification"] is True
+    assert status["not_compliance_ready_mvr_report_local_prototype_runtime_authority"] is True
+    assert status["source_corpus_provenance_archive_00_indexed"] is True
+    assert status["source_corpus_provenance_hash_fill_00_indexed"] is True
+    assert status["source_corpus_manifest_status"] == "active_governed_provenance_manifest"
+    assert status["source_corpus_source_count"] == 5
+    assert status["source_corpus_pending_hash_placeholders_remaining"] == 0
+    assert status["source_corpus_raw_private_reports_bulk_imported"] is False
+    assert status["not_source_corpus_accepted_evidence"] is True
+    assert status["not_source_corpus_canonical_repo_state"] is True
+    assert status["not_source_corpus_runtime_authority"] is True
+
+
+def test_validator_required_phases_include_compliance_report_source_corpus_syncs():
+    assert "COMPLIANCE-READY-MVR-REPORT-LOCAL-PROTOTYPE-00" in VALIDATOR_REQUIRED_PHASES
+    assert "SOURCE-CORPUS-PROVENANCE-ARCHIVE-00" in VALIDATOR_REQUIRED_PHASES
+    assert "SOURCE-CORPUS-PROVENANCE-HASH-FILL-00" in VALIDATOR_REQUIRED_PHASES
+
+
+def test_validator_fails_if_compliance_report_source_corpus_syncs_make_forbidden_claims(tmp_path):
+    for claim in COMPLIANCE_REPORT_SOURCE_CORPUS_BLOCKED_CLAIMS:
+        out_dir, docs_dir = run_builder(tmp_path / claim.replace(" ", "_").replace("/", "_"))
+        page = docs_dir / "compliance-ready-mvr-report-local-prototype.md"
+        page.write_text(page.read_text(encoding="utf-8") + f"\nCompliance source sync claims {claim}.\n", encoding="utf-8")
         result = validate_dashboard(out_dir / "experiment_suite_dashboard.json", docs_dir)
         assert result["passed"] is False, claim
         forbidden_found = [found.lower() for found in result["forbidden_claims_found"]]
