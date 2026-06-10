@@ -9674,6 +9674,2274 @@ MVR_READABILITY_REVIEW_SEED_PHASE = {
     "publication_status": "dashboard_indexed",
 }
 
+MVR_READABILITY_REVISION_COMMAND = "python -c \"from pathlib import Path; from coherence.product.minimal_viable_receipt_readability_revision import build_mvr_local_prototype_readability_revision; bridge=Path(r'C:\\UVLM\\run_artifacts\\mvr_readability_revision\\bridge'); build_mvr_local_prototype_readability_revision(bridge)\""
+MVR_READABILITY_REVISION_REPRO_FRAGMENTS = ["build_mvr_local_prototype_readability_revision"]
+MVR_READABILITY_REVISION_ARTIFACTS = [
+    "minimal_viable_receipt_human_readable.md",
+    "minimal_viable_receipt_human_readable_revised.md",
+    "minimal_viable_receipt_packet.json",
+    "mvr_readability_review_packet.json",
+    "mvr_readability_revision_suggestions.json",
+    "mvr_readability_review_receipt.json",
+    "mvr_readability_revision_packet.json",
+    "mvr_readability_revision_receipt.json",
+    "pmr_local_runtime_artifact_index.json",
+    "artifact_inventory.json",
+    "run_artifact_manifest.json",
+    "export_bundle_manifest.json",
+    "export_bundle_parity_report.json",
+]
+MVR_READABILITY_REVISION_SCHEMA_REFERENCES = [
+    "schema/bridge/mvr_readability_revision_packet.schema.json",
+    "schema/bridge/mvr_readability_revision_receipt.schema.json",
+    "schema/bridge/mvr_readability_questionnaire.schema.json",
+    "schema/bridge/mvr_readability_response_fixture.schema.json",
+    "schema/bridge/mvr_readability_review_packet.schema.json",
+    "schema/bridge/mvr_readability_revision_suggestions.schema.json",
+    "schema/bridge/mvr_readability_review_receipt.schema.json",
+]
+MVR_READABILITY_REVISION_APPLIED_REVISION_IDS = [
+    "add_plain_language_glossary_for_architecture_terms",
+    "clarify_ces_pmr_replay_posture",
+    "clarify_observation_contract_notice_vs_consent",
+    "make_unsupported_claims_more_visually_prominent",
+    "clarify_local_fixture_evidence_is_not_accepted_evidence",
+    "add_top_level_non_authority_summary",
+]
+MVR_READABILITY_REVISION_REVISED_RECEIPT_LANGUAGE = [
+    "Plain-language glossary",
+    "CES / PMR replay posture, in plain language",
+    "Observation Contract notice and consent, in plain language",
+    "Unsupported claims require review",
+    "Local fixture evidence is not accepted evidence",
+    "Top-level non-authority summary",
+    "This revised receipt is not product readiness.",
+    "This revised receipt is not user validation.",
+    "This revised receipt is not truth certification.",
+    "Readability gate is not passed in this phase.",
+    "Human review remains required.",
+]
+MVR_READABILITY_REVISION_DOCTRINE_LANGUAGE = [
+    "MVR Local Prototype Readability Revision",
+    "Deterministic local readability revision",
+    "Suggested revisions are applied deterministically, not validated by users.",
+    "Readability revision is not product readiness.",
+    "Readability revision is not user validation.",
+    "Readability revision is not market validation.",
+    "Readability revision is not human benefit proof.",
+    "Readability revision does not certify truth.",
+    "The receipt remains local fixture-backed and non-authoritative.",
+    "Original human-readable receipt is preserved.",
+    "Revised human-readable receipt is emitted.",
+    "Readability gate remains unpassed.",
+    "Human review remains required.",
+    "No real user study was performed.",
+    "No human-subject study was performed.",
+    "No user validation was performed.",
+    "No product readiness was claimed.",
+    "No product release was performed.",
+    "No memory write was performed.",
+    "No Atlas memory admission was performed.",
+    "No trace export was performed.",
+    "No PMR federation was performed.",
+]
+MVR_READABILITY_REVISION_PRIOR_PHASE_RELATION = [
+    "MINIMAL-VIABLE-RECEIPT-DESIGN-00 defines the one-transaction/many-sections receipt standard.",
+    "MINIMAL-VIABLE-RECEIPT-LOCAL-PROTOTYPE-00 emits the local fixture-backed readable receipt.",
+    "MVR-LOCAL-PROTOTYPE-READABILITY-REVIEW-SEED-00 evaluates that receipt with deterministic local fixture responses.",
+    "MVR-LOCAL-PROTOTYPE-READABILITY-REVISION-00 applies deterministic local readability revisions.",
+    "AI-RECEIPT-ARCHITECTURE-00 defines the receipt architecture.",
+    "TRIADIC-OBSERVATION-CONTRACT-DESIGN-00 defines governed attention.",
+    "OBSERVATION-CONTRACT-POLICY-SIMULATION-00 rehearses notice, consent, recovery, source-expansion, pathway-prior, retention, trace-export, and PMR-federation policy outcomes.",
+    "TAC phases define aperture posture and review visibility.",
+    "COHERENCE-EVENT-SIGNATURES-DESIGN-00 defines event signatures.",
+    "CES-PMR-INDEXING-DESIGN-00 defines CES as a compact PMR index, not source replacement.",
+    "SOPHIA-EXECUTIVE-AUDIT-REALITY-CHECK-00 records whether external Sophia actually ran.",
+    "VALIDATION-TIERING-PROVENANCE-00 records validation confidence scope.",
+    "MET-SEM-00 keeps metric labels profile-scoped.",
+]
+MVR_READABILITY_REVISION_BLOCKED_CLAIMS = [
+    "MVR readability revision is a real user study",
+    "MVR readability revision is a human-subject study",
+    "MVR readability revision is user validation",
+    "MVR readability revision proves product readiness",
+    "MVR readability revision is product release",
+    "MVR readability revision is market validation",
+    "MVR readability revision proves human benefit",
+    "MVR readability revision certifies truth",
+    "MVR readability revision authorizes final answers",
+    "MVR readability revision grants accepted-evidence authority",
+    "MVR readability revision writes memory",
+    "MVR readability revision admits Atlas memory",
+    "MVR readability revision exports traces",
+    "MVR readability revision federates PMR",
+    "MVR readability revision trains the model",
+    "MVR readability revision skips human review",
+    "readability gate passed",
+    "revised receipt means real usability",
+    "revised receipt means product readiness",
+    "revision applied means user validation",
+    "clear_count means product readiness",
+    "local fixture evidence is accepted evidence",
+    "readable fixture means product is ready",
+    "checklist completeness means answer correctness",
+    "contestability option guarantees reversal",
+    "recovery option performs memory write",
+    "source expansion can be skipped",
+    "unsupported claims can be hidden",
+]
+MVR_READABILITY_REVISION_CLAIM_ALLOWED = "MVR-LOCAL-PROTOTYPE-READABILITY-REVISION-00 applies deterministic local readability revisions to the fixture-backed Minimal Viable Receipt human-readable prototype, preserving the original receipt, emitting a revised receipt and revision receipts, and keeping the readability gate unpassed without performing a real user study, human-subject study, user validation, product-readiness claim, product release, market validation, human benefit proof, truth certification, final-answer authorization, accepted-evidence grant, memory write, Atlas admission, trace export, PMR federation, model training, or review skipping."
+MVR_READABILITY_REVISION_FAILURE_CLASSES = [
+    "readability_revision_mistaken_for_user_validation",
+    "readability_revision_mistaken_for_human_subject_study",
+    "readability_revision_mistaken_for_product_readiness",
+    "readability_revision_mistaken_for_market_validation",
+    "revised_receipt_mistaken_for_real_usability",
+    "readability_gate_revision_mistaken_for_gate_pass",
+    "applied_revision_mistaken_for_user_validated_fix",
+    "local_fixture_evidence_mistaken_for_accepted_evidence",
+    "receipt_readability_mistaken_for_visual_polish",
+    "receipt_that_only_impresses_architects",
+    "unsupported_claims_hidden",
+    "source_expansion_missing",
+    "contestability_missing",
+    "recovery_path_missing",
+    "non_authority_boundaries_missing",
+]
+MVR_READABILITY_REVISION_DASHBOARD_SUMMARY = {
+    "revision_status": "completed",
+    "revision_mode": "deterministic_local_readability_revision",
+    "original_receipt_ref": "minimal_viable_receipt_human_readable.md",
+    "revised_receipt_ref": "minimal_viable_receipt_human_readable_revised.md",
+    "applied_revision_count": 6,
+    "original_receipt_preserved": True,
+    "revised_receipt_emitted": True,
+    "readability_gate_status": "revision_applied_not_validated",
+    "readability_gate_passed": False,
+    "real_user_study_performed": False,
+    "human_subject_study_performed": False,
+    "user_validation_performed": False,
+    "product_readiness_claimed": False,
+    "product_release_performed": False,
+    "market_validation_emitted": False,
+    "human_benefit_proof_emitted": False,
+    "truth_certification_emitted": False,
+    "final_answer_authority_granted": False,
+    "accepted_evidence_authority_granted": False,
+    "memory_write_performed": False,
+    "atlas_memory_admission_performed": False,
+    "trace_export_performed": False,
+    "pmr_federation_performed": False,
+    "provider_runtime_performed": False,
+    "network_call_performed": False,
+    "revision_is_not_product_readiness": True,
+    "revision_is_not_user_validation": True,
+    "revision_is_not_truth_certification": True,
+    "revision_requires_human_review": True,
+    "receipt_is_not_product_readiness": True,
+    "receipt_is_not_user_validation": True,
+    "receipt_requires_human_review": True,
+}
+MVR_READABILITY_REVISION_PHASE = {
+    "phase_id": "MVR-LOCAL-PROTOTYPE-READABILITY-REVISION-00",
+    "repo": "pdxvoiceteacher/CoherenceLattice",
+    "status": "accepted_local_validation",
+    "evidence_type": "local_fixture_readability_revision_publication_sync",
+    "product_posture": "deterministic_local_readability_revision_without_user_validation_or_runtime_authority",
+    "primary_artifacts": MVR_READABILITY_REVISION_ARTIFACTS,
+    "schema_references": MVR_READABILITY_REVISION_SCHEMA_REFERENCES,
+    "dashboard_summary": MVR_READABILITY_REVISION_DASHBOARD_SUMMARY,
+    "reproduction_command_summary": MVR_READABILITY_REVISION_COMMAND,
+    "claim_allowed": MVR_READABILITY_REVISION_CLAIM_ALLOWED,
+    "claims_blocked": MVR_READABILITY_REVISION_BLOCKED_CLAIMS,
+    "reviewer_caution": "MVR-LOCAL-PROTOTYPE-READABILITY-REVISION-00 applies deterministic local readability revisions only; it is not a real user study, human-subject study, user validation, product readiness, product release, market validation, human benefit proof, truth certification, final-answer authority, accepted-evidence authority, memory write, Atlas admission, trace export, PMR federation, model training, review skip, provider runtime, or network runtime.",
+    "publication_status": "dashboard_indexed",
+}
+
+
+MVR_REAL_INPUT_PILOT_DESIGN_COMMAND = "python -m pytest -q tests/test_mvr_local_real_input_pilot_design.py tests/test_experiment_registry.py"
+MVR_REAL_INPUT_PILOT_DESIGN_REPRO_FRAGMENTS = [
+    "test_mvr_local_real_input_pilot_design.py",
+    "test_experiment_registry.py",
+]
+MVR_REAL_INPUT_PILOT_DESIGN_ARTIFACTS = [
+    "docs/MVR_LOCAL_REAL_INPUT_PILOT_DESIGN.md",
+    "config/receipt/mvr_local_real_input_pilot_policy.v1.json",
+    "schema/bridge/mvr_local_real_input_source_manifest.schema.json",
+    "schema/bridge/mvr_local_real_input_consent_scope.schema.json",
+    "schema/bridge/mvr_local_real_input_quarantine_report.schema.json",
+    "schema/bridge/mvr_local_real_input_pilot_policy_packet.schema.json",
+    "schema/bridge/mvr_local_real_input_non_authority_boundary.schema.json",
+]
+MVR_REAL_INPUT_PILOT_DESIGN_DOCTRINE_LANGUAGE = [
+    "MVR Local Real Input Pilot Design",
+    "Real local input can enter only by explicit local source selection.",
+    "Real input pilot design is not real input processing.",
+    "Real input pilot design is not product readiness.",
+    "Real input pilot design is not product release.",
+    "A real-input pilot must be local-only by default.",
+    "A real-input pilot must be source-bounded.",
+    "A real-input pilot must be consent-bounded.",
+    "A real-input pilot must preserve source expansion.",
+    "A real-input pilot must quarantine instruction-like evidence.",
+    "A real-input pilot must expose unsupported claims.",
+    "A real-input pilot must emit a Minimal Viable Receipt before any claim of readiness.",
+    "Local source selection is not accepted-evidence authority.",
+    "Local source processing is not memory write.",
+    "Human review remains required.",
+    "MVR-LOCAL-REAL-INPUT-PILOT-DESIGN-00 does not process real files.",
+    "MVR-LOCAL-REAL-INPUT-PILOT-DESIGN-00 does not emit runtime real-input artifacts.",
+    "MVR-LOCAL-REAL-INPUT-PILOT-DESIGN-00 does not perform provider calls.",
+    "MVR-LOCAL-REAL-INPUT-PILOT-DESIGN-00 does not perform network calls.",
+    "MVR-LOCAL-REAL-INPUT-PILOT-DESIGN-00 does not write memory.",
+    "MVR-LOCAL-REAL-INPUT-PILOT-DESIGN-00 does not admit Atlas memory.",
+    "MVR-LOCAL-REAL-INPUT-PILOT-DESIGN-00 does not claim product readiness.",
+    "MVR-LOCAL-REAL-INPUT-PILOT-DESIGN-00 does not release product.",
+]
+MVR_REAL_INPUT_PILOT_DESIGN_ALLOWED_INPUT_CLASSES = [
+    "local_text_file",
+    "local_markdown_file",
+    "local_json_file",
+    "local_csv_file",
+    "local_plaintext_excerpt",
+    "local_user_pasted_excerpt",
+    "local_redacted_document_excerpt",
+]
+MVR_REAL_INPUT_PILOT_DESIGN_BLOCKED_INPUT_CLASSES = [
+    "remote_url_fetch",
+    "cloud_connector_file",
+    "email_inbox_scan",
+    "calendar_scan",
+    "browser_history_scan",
+    "whole_disk_scan",
+    "hidden_directory_scan",
+    "credential_file",
+    "secrets_file",
+    "private_key_file",
+    "raw_chat_history_bulk_import",
+    "personal_profile_bulk_import",
+    "unredacted_sensitive_identity_document",
+    "medical_record",
+    "legal_record",
+    "financial_account_record",
+    "child_data_record",
+    "biometric_data_record",
+]
+MVR_REAL_INPUT_PILOT_DESIGN_SOURCE_RULES = [
+    "explicit_user_selection_required",
+    "local_path_allowlist_required",
+    "recursive_directory_scan_allowed = false",
+    "hidden_file_scan_allowed = false",
+    "max_source_file_count_default = 5",
+    "max_source_bytes_default = 250000",
+    "source_hashing_required",
+    "source_manifest_required",
+    "source_expansion_required_for_decisions",
+    "instruction_like_evidence_quarantine_required",
+    "unsupported_claim_visibility_required",
+    "human_review_required",
+]
+MVR_REAL_INPUT_PILOT_DESIGN_CONSENT_OBSERVATION_TERMS = [
+    "consent_scope_required",
+    "consent_is_local_to_pilot_run",
+    "consent_is_not_memory_write",
+    "consent_is_not_trace_export_authorization",
+    "consent_is_not_pmr_federation_authorization",
+    "consent_is_not_product_release",
+    "revocation_supported",
+    "retention_review_required",
+    "observation_contract_posture_required",
+    "observation_contract_policy_simulation_ref_required",
+    "tac_aperture_posture_required",
+    "default_tac_mode = pulse",
+    "raw_trace_retention_allowed_default = false",
+    "trace_export_allowed_default = false",
+    "pmr_federation_allowed_default = false",
+    "no_silent_mode_shift_required",
+    "notice_and_consent_boundaries_visible",
+]
+MVR_REAL_INPUT_PILOT_DESIGN_OUTPUT_REQUIREMENT_TERMS = [
+    "minimal_viable_receipt_required",
+    "human_readable_receipt_required",
+    "machine_readable_receipt_required",
+    "section_index_required",
+    "readability_profile_required",
+    "contestability_profile_required",
+    "cost_burden_profile_required",
+    "non_authority_boundary_required",
+    "local_real_input_source_manifest_required",
+    "quarantine_report_required",
+    "pilot_receipt_required",
+]
+MVR_REAL_INPUT_PILOT_DESIGN_PRIOR_PHASE_RELATION = [
+    "MINIMAL-VIABLE-RECEIPT-DESIGN-00 defines the one-transaction/many-sections receipt standard.",
+    "MINIMAL-VIABLE-RECEIPT-LOCAL-PROTOTYPE-00 emits the local fixture-backed readable receipt.",
+    "MVR-LOCAL-PROTOTYPE-READABILITY-REVIEW-SEED-00 evaluates that receipt with deterministic local fixture responses.",
+    "MVR-LOCAL-PROTOTYPE-READABILITY-REVISION-00 applies deterministic local readability revisions.",
+    "MVR-LOCAL-REAL-INPUT-PILOT-DESIGN-00 defines boundaries for a future real-local-input pilot.",
+    "TRIADIC-OBSERVATION-CONTRACT-DESIGN-00 defines governed attention.",
+    "OBSERVATION-CONTRACT-POLICY-SIMULATION-00 rehearses notice, consent, recovery, source-expansion, pathway-prior, retention, trace-export, and PMR-federation policy outcomes.",
+    "TAC phases define aperture posture and review visibility.",
+    "COHERENCE-EVENT-SIGNATURES-DESIGN-00 defines event signatures.",
+    "CES-PMR-INDEXING-DESIGN-00 defines CES as a compact PMR index, not source replacement.",
+    "VALIDATION-TIERING-PROVENANCE-00 records validation confidence scope.",
+]
+MVR_REAL_INPUT_PILOT_DESIGN_BLOCKED_CLAIMS = [
+    "real input pilot design processes real files",
+    "real input pilot design is product readiness",
+    "real input pilot design is product release",
+    "local source selection grants accepted-evidence authority",
+    "local source processing writes memory",
+    "local source processing admits Atlas memory",
+    "local source processing authorizes final answers",
+    "local source processing certifies truth",
+    "consent authorizes trace export",
+    "consent authorizes PMR federation",
+    "consent authorizes memory write",
+    "local pilot can scan directories recursively",
+    "local pilot can read hidden files",
+    "local pilot can process credentials",
+    "local pilot can process private keys",
+    "local pilot can process medical records by default",
+    "local pilot can process legal records by default",
+    "local pilot can process financial records by default",
+    "local pilot can process child data by default",
+    "local pilot can process biometric data by default",
+    "unsupported claims can be hidden",
+    "instruction-like evidence can be trusted as evidence",
+    "source expansion can be skipped",
+    "real input pilot is a user study",
+    "real input pilot validates market demand",
+    "real input pilot proves human benefit",
+    "real input pilot trains the model",
+]
+MVR_REAL_INPUT_PILOT_DESIGN_CLAIM_ALLOWED = "MVR-LOCAL-REAL-INPUT-PILOT-DESIGN-00 defines design-only boundaries for a future local real-input Minimal Viable Receipt pilot in which explicitly selected local source material may later be processed under local-only, source-bounded, consent-bounded, quarantine-aware, receipt-required, human-review-required, non-authoritative conditions without processing real files in this phase, claiming product readiness, releasing product, granting accepted-evidence or final-answer authority, certifying truth, writing memory, admitting Atlas memory, exporting traces, federating PMR, training models, or skipping review."
+MVR_REAL_INPUT_PILOT_DESIGN_FAILURE_CLASSES = [
+    "real_input_design_mistaken_for_real_input_processing",
+    "local_source_selection_mistaken_for_accepted_evidence",
+    "consent_mistaken_for_memory_write",
+    "consent_mistaken_for_trace_export_authorization",
+    "consent_mistaken_for_pmr_federation_authorization",
+    "local_file_access_mistaken_for_directory_scan",
+    "source_manifest_missing",
+    "source_hash_missing",
+    "instruction_like_evidence_not_quarantined",
+    "unsupported_claims_hidden",
+    "source_expansion_missing",
+    "observation_contract_posture_missing",
+    "tac_aperture_posture_missing",
+    "no_silent_mode_shift_boundary_missing",
+    "real_input_receipt_missing",
+    "contestability_missing",
+    "recovery_path_missing",
+    "non_authority_boundaries_missing",
+    "product_readiness_claimed_from_local_pilot",
+    "real_input_pilot_mistaken_for_user_study",
+]
+MVR_REAL_INPUT_PILOT_DESIGN_DASHBOARD_SUMMARY = {
+    "policy_status": "active_design_only",
+    "pilot_mode": "design_only_local_real_input_boundary",
+    "local_real_input_pilot_definition": "explicit_local_source_selection_for_mvr_receipt_generation",
+    "runtime_behavior_changed": False,
+    "real_input_processing_enabled": False,
+    "real_input_runtime_artifacts_emitted": False,
+    "real_user_files_processed": False,
+    "provider_runtime_performed": False,
+    "network_call_performed": False,
+    "product_release_performed": False,
+    "product_readiness_claimed": False,
+    "real_user_study_performed": False,
+    "human_subject_study_performed": False,
+    "user_validation_performed": False,
+    "market_validation_emitted": False,
+    "human_benefit_proof_emitted": False,
+    "final_answer_authority_granted": False,
+    "accepted_evidence_authority_granted": False,
+    "truth_certification_emitted": False,
+    "compliance_certification_emitted": False,
+    "memory_write_performed": False,
+    "atlas_memory_admission_performed": False,
+    "trace_export_performed": False,
+    "pmr_federation_performed": False,
+    "model_training_performed": False,
+    "review_skip_authorized": False,
+    "explicit_user_selection_required": True,
+    "local_path_allowlist_required": True,
+    "recursive_directory_scan_allowed": False,
+    "hidden_file_scan_allowed": False,
+    "max_source_file_count_default": 5,
+    "max_source_bytes_default": 250000,
+    "source_hashing_required": True,
+    "source_manifest_required": True,
+    "source_expansion_required_for_decisions": True,
+    "instruction_like_evidence_quarantine_required": True,
+    "unsupported_claim_visibility_required": True,
+    "human_review_required": True,
+    "consent_scope_required": True,
+    "consent_is_local_to_pilot_run": True,
+    "consent_is_not_memory_write": True,
+    "consent_is_not_trace_export_authorization": True,
+    "consent_is_not_pmr_federation_authorization": True,
+    "consent_is_not_product_release": True,
+    "revocation_supported": True,
+    "retention_review_required": True,
+    "observation_contract_posture_required": True,
+    "observation_contract_policy_simulation_ref_required": True,
+    "tac_aperture_posture_required": True,
+    "default_tac_mode": "pulse",
+    "raw_trace_retention_allowed_default": False,
+    "trace_export_allowed_default": False,
+    "pmr_federation_allowed_default": False,
+    "no_silent_mode_shift_required": True,
+    "notice_and_consent_boundaries_visible": True,
+    "minimal_viable_receipt_required": True,
+    "human_readable_receipt_required": True,
+    "machine_readable_receipt_required": True,
+    "section_index_required": True,
+    "readability_profile_required": True,
+    "contestability_profile_required": True,
+    "cost_burden_profile_required": True,
+    "non_authority_boundary_required": True,
+    "local_real_input_source_manifest_required": True,
+    "quarantine_report_required": True,
+    "pilot_receipt_required": True,
+    "pilot_is_not_runtime_processing": True,
+    "pilot_is_not_product_release": True,
+    "pilot_is_not_product_readiness": True,
+    "pilot_is_not_user_validation": True,
+    "pilot_is_not_human_subject_study": True,
+    "pilot_is_not_market_validation": True,
+    "pilot_is_not_human_benefit_proof": True,
+    "pilot_is_not_truth_certification": True,
+    "pilot_is_not_final_answer_authority": True,
+    "pilot_is_not_accepted_evidence_authority": True,
+    "pilot_is_not_memory_write": True,
+    "pilot_is_not_atlas_memory_admission": True,
+    "pilot_is_not_trace_export_authorization": True,
+    "pilot_is_not_pmr_federation_authorization": True,
+    "pilot_is_not_model_training": True,
+    "pilot_is_not_review_skip": True,
+    "pilot_requires_human_review": True,
+}
+MVR_REAL_INPUT_PILOT_DESIGN_PHASE = {
+    "phase_id": "MVR-LOCAL-REAL-INPUT-PILOT-DESIGN-00",
+    "repo": "pdxvoiceteacher/CoherenceLattice",
+    "status": "accepted_local_validation",
+    "evidence_type": "design_only_local_real_input_boundary_publication_sync",
+    "product_posture": "design_only_local_real_input_pilot_boundary_without_real_file_processing_or_runtime_authority",
+    "primary_artifacts": MVR_REAL_INPUT_PILOT_DESIGN_ARTIFACTS,
+    "dashboard_summary": MVR_REAL_INPUT_PILOT_DESIGN_DASHBOARD_SUMMARY,
+    "reproduction_command_summary": MVR_REAL_INPUT_PILOT_DESIGN_COMMAND,
+    "claim_allowed": MVR_REAL_INPUT_PILOT_DESIGN_CLAIM_ALLOWED,
+    "claims_blocked": MVR_REAL_INPUT_PILOT_DESIGN_BLOCKED_CLAIMS,
+    "reviewer_caution": "MVR-LOCAL-REAL-INPUT-PILOT-DESIGN-00 is design-only boundary synchronization for a future local real-input pilot; it processes no real files, emits no runtime real-input artifacts, performs no provider or network calls, writes no memory, admits no Atlas memory, exports no traces, federates no PMR, releases no product, claims no product readiness, performs no user study or validation, trains no model, and skips no review.",
+    "publication_status": "dashboard_indexed",
+}
+
+
+MVR_REAL_INPUT_PILOT_PROTOTYPE_COMMAND = "python -c \"from pathlib import Path; from coherence.product.mvr_local_real_input_pilot import build_mvr_local_real_input_pilot_prototype; bridge=Path(r'C:\\UVLM\\run_artifacts\\mvr_local_real_input_pilot\\bridge'); build_mvr_local_real_input_pilot_prototype(bridge)\""
+MVR_REAL_INPUT_PILOT_PROTOTYPE_REPRO_FRAGMENTS = ["build_mvr_local_real_input_pilot_prototype"]
+MVR_REAL_INPUT_PILOT_PROTOTYPE_ARTIFACTS = [
+    "mvr_local_real_input_source_manifest.json",
+    "mvr_local_real_input_consent_scope.json",
+    "mvr_local_real_input_quarantine_report.json",
+    "mvr_local_real_input_pilot_policy_packet.json",
+    "mvr_local_real_input_non_authority_boundary.json",
+    "minimal_viable_receipt_packet.json",
+    "minimal_viable_receipt_checklist.json",
+    "minimal_viable_receipt_section_index.json",
+    "receipt_readability_profile.json",
+    "receipt_contestability_profile.json",
+    "receipt_cost_burden_profile.json",
+    "minimal_viable_receipt_non_authority_boundary.json",
+    "minimal_viable_receipt_human_readable.md",
+    "mvr_local_real_input_pilot_receipt.json",
+    "pmr_local_runtime_artifact_index.json",
+    "artifact_inventory.json",
+    "run_artifact_manifest.json",
+    "export_bundle_manifest.json",
+    "export_bundle_parity_report.json",
+]
+MVR_REAL_INPUT_PILOT_PROTOTYPE_SCHEMA_REFERENCES = [
+    "schema/bridge/mvr_local_real_input_source_manifest.schema.json",
+    "schema/bridge/mvr_local_real_input_consent_scope.schema.json",
+    "schema/bridge/mvr_local_real_input_quarantine_report.schema.json",
+    "schema/bridge/mvr_local_real_input_pilot_policy_packet.schema.json",
+    "schema/bridge/mvr_local_real_input_non_authority_boundary.schema.json",
+    "schema/bridge/mvr_local_real_input_pilot_receipt.schema.json",
+    "schema/bridge/minimal_viable_receipt_packet.schema.json",
+    "schema/bridge/minimal_viable_receipt_checklist.schema.json",
+    "schema/bridge/minimal_viable_receipt_section_index.schema.json",
+    "schema/bridge/receipt_readability_profile.schema.json",
+    "schema/bridge/receipt_contestability_profile.schema.json",
+    "schema/bridge/receipt_cost_burden_profile.schema.json",
+    "schema/bridge/minimal_viable_receipt_non_authority_boundary.schema.json",
+]
+MVR_REAL_INPUT_PILOT_PROTOTYPE_DOCTRINE_LANGUAGE = [
+    "MVR Local Real Input Pilot Prototype",
+    "Real local input can enter only by explicit local source selection.",
+    "The prototype processes only explicit local sources or explicit pasted excerpts.",
+    "The prototype never scans directories.",
+    "The prototype never auto-discovers files.",
+    "The prototype never reads hidden files.",
+    "The prototype never fetches URLs.",
+    "The prototype never calls provider APIs.",
+    "The prototype never performs network calls.",
+    "Local source selection is not accepted-evidence authority.",
+    "Local source processing is not memory write.",
+    "Consent is local to this pilot run.",
+    "Consent is not trace export authorization.",
+    "Consent is not PMR federation authorization.",
+    "Instruction-like evidence was quarantined.",
+    "Unsupported claims require review.",
+    "This receipt is not proof of truth.",
+    "This receipt is not product release.",
+    "This receipt is not product readiness.",
+    "This receipt does not authorize final answers.",
+    "This receipt does not grant accepted-evidence authority.",
+    "Human review remains required.",
+    "Default smoke uses generated explicit local test sources and does not process real user files.",
+    "Explicit pasted excerpt smoke processes only the supplied excerpt and remains local-only.",
+]
+MVR_REAL_INPUT_PILOT_PROTOTYPE_SOURCE_SELECTION_TERMS = [
+    "generated_explicit_local_test_sources",
+    "explicit_pasted_excerpts",
+    "local_user_pasted_excerpt",
+    "explicit_user_selected",
+    "accepted_for_processing",
+    "source_is_not_accepted_evidence",
+    "source_sha256",
+    "recursive_directory_scan_allowed = false",
+    "hidden_file_scan_allowed = false",
+]
+MVR_REAL_INPUT_PILOT_PROTOTYPE_CONSENT_QUARANTINE_TERMS = [
+    "consent_status = active_for_local_pilot",
+    "consent_scope = local_pilot_run_only",
+    "consent_is_local_to_pilot_run = true",
+    "consent_is_not_memory_write = true",
+    "consent_is_not_trace_export_authorization = true",
+    "consent_is_not_pmr_federation_authorization = true",
+    "consent_is_not_product_release = true",
+    "quarantine_status = completed",
+    "instruction_like_evidence_detected",
+    "quarantined_evidence_is_not_accepted_evidence = true",
+]
+MVR_REAL_INPUT_PILOT_PROTOTYPE_PRIOR_PHASE_RELATION = [
+    "MVR-LOCAL-REAL-INPUT-PILOT-DESIGN-00 defines boundaries for a future real-local-input pilot.",
+    "MVR-LOCAL-REAL-INPUT-PILOT-PROTOTYPE-00 emits the first bounded local real-input pilot prototype.",
+    "MINIMAL-VIABLE-RECEIPT-DESIGN-00 defines the one-transaction/many-sections receipt standard.",
+    "MINIMAL-VIABLE-RECEIPT-LOCAL-PROTOTYPE-00 emits the local fixture-backed readable receipt.",
+    "MVR-LOCAL-PROTOTYPE-READABILITY-REVISION-00 applies deterministic local readability revisions.",
+    "TRIADIC-OBSERVATION-CONTRACT-DESIGN-00 defines governed attention.",
+    "OBSERVATION-CONTRACT-POLICY-SIMULATION-00 rehearses notice, consent, recovery, source-expansion, pathway-prior, retention, trace-export, and PMR-federation policy outcomes.",
+    "TAC phases define aperture posture and review visibility.",
+    "COHERENCE-EVENT-SIGNATURES-DESIGN-00 defines event signatures.",
+    "CES-PMR-INDEXING-DESIGN-00 defines CES as a compact PMR index, not source replacement.",
+    "VALIDATION-TIERING-PROVENANCE-00 records validation confidence scope.",
+]
+MVR_REAL_INPUT_PILOT_PROTOTYPE_BLOCKED_CLAIMS = [
+    "MVR real-input pilot prototype is product release",
+    "MVR real-input pilot prototype proves product readiness",
+    "MVR real-input pilot prototype is a user study",
+    "MVR real-input pilot prototype validates market demand",
+    "MVR real-input pilot prototype proves human benefit",
+    "MVR real-input pilot prototype certifies truth",
+    "MVR real-input pilot prototype authorizes final answers",
+    "MVR real-input pilot prototype grants accepted-evidence authority",
+    "MVR real-input pilot prototype writes memory",
+    "MVR real-input pilot prototype admits Atlas memory",
+    "MVR real-input pilot prototype exports traces",
+    "MVR real-input pilot prototype federates PMR",
+    "MVR real-input pilot prototype trains the model",
+    "MVR real-input pilot prototype skips review",
+    "local source selection is accepted evidence",
+    "local source processing writes memory",
+    "consent authorizes trace export",
+    "consent authorizes PMR federation",
+    "consent authorizes memory write",
+    "source manifest is accepted evidence",
+    "quarantined evidence is accepted evidence",
+    "pasted excerpt smoke is provider runtime",
+    "local pilot can scan directories recursively",
+    "local pilot can read hidden files",
+    "local pilot can fetch URLs",
+    "local pilot can call provider APIs",
+    "unsupported claims can be hidden",
+    "source expansion can be skipped",
+]
+MVR_REAL_INPUT_PILOT_PROTOTYPE_CLAIM_ALLOWED = "MVR-LOCAL-REAL-INPUT-PILOT-PROTOTYPE-00 emits local real-input pilot prototype artifacts for explicitly selected local sources and explicit pasted excerpts, producing source manifest, consent scope, quarantine report, policy packet, non-authority boundary, Minimal Viable Receipt packet, human-readable receipt, PMR/inventory/parity visibility, and pilot receipt while avoiding directory scans, hidden-file reads, URL fetches, provider calls, network calls, product release, product-readiness claims, final-answer authorization, accepted-evidence grants, truth certification, memory write, Atlas admission, trace export, PMR federation, model training, review skipping, user validation, human-subject study, market validation, or human benefit proof."
+MVR_REAL_INPUT_PILOT_PROTOTYPE_FAILURE_CLASSES = [
+    "local_real_input_pilot_mistaken_for_product_release",
+    "local_real_input_pilot_mistaken_for_product_readiness",
+    "local_real_input_pilot_mistaken_for_user_study",
+    "local_source_selection_mistaken_for_accepted_evidence",
+    "source_manifest_mistaken_for_accepted_evidence",
+    "quarantined_evidence_mistaken_for_accepted_evidence",
+    "consent_mistaken_for_trace_export_authorization",
+    "consent_mistaken_for_pmr_federation_authorization",
+    "consent_mistaken_for_memory_write",
+    "pasted_excerpt_mistaken_for_provider_runtime",
+    "local_pilot_mistaken_for_directory_scan",
+    "unsupported_claims_hidden",
+    "source_expansion_missing",
+    "human_review_requirement_hidden",
+    "non_authority_boundaries_missing",
+]
+MVR_REAL_INPUT_PILOT_PROTOTYPE_DASHBOARD_SUMMARY = {
+    "manifest_status": "completed",
+    "source_mode": "generated_explicit_local_test_sources",
+    "pasted_excerpt_source_mode": "explicit_pasted_excerpts",
+    "selected_source_count": 2,
+    "pasted_excerpt_selected_source_count": 1,
+    "pasted_excerpt_source_class": "local_user_pasted_excerpt",
+    "recursive_directory_scan_allowed": False,
+    "hidden_file_scan_allowed": False,
+    "receipt_status": "completed",
+    "prototype_mode": "local_real_input_pilot_prototype",
+    "real_input_pilot_mode": True,
+    "real_user_files_processed": False,
+    "pasted_excerpt_real_user_files_processed": True,
+    "local_fixture_mode": True,
+    "pasted_excerpt_local_fixture_mode": False,
+    "instruction_like_evidence_count": 1,
+    "real_input_processing_enabled": True,
+    "real_input_runtime_artifacts_emitted": True,
+    "source_manifest_is_not_accepted_evidence": True,
+    "consent_is_local_to_pilot_run": True,
+    "consent_is_not_memory_write": True,
+    "consent_is_not_trace_export_authorization": True,
+    "consent_is_not_pmr_federation_authorization": True,
+    "consent_is_not_product_release": True,
+    "quarantined_evidence_is_not_accepted_evidence": True,
+    "pilot_requires_human_review": True,
+    "provider_runtime_performed": False,
+    "network_call_performed": False,
+    "product_release_performed": False,
+    "product_readiness_claimed": False,
+    "final_answer_authority_granted": False,
+    "accepted_evidence_authority_granted": False,
+    "truth_certification_emitted": False,
+    "compliance_certification_emitted": False,
+    "memory_write_performed": False,
+    "atlas_memory_admission_performed": False,
+    "trace_export_performed": False,
+    "pmr_federation_performed": False,
+    "model_training_performed": False,
+    "review_skip_authorized": False,
+    "pilot_receipt_status": "completed",
+}
+MVR_REAL_INPUT_PILOT_PROTOTYPE_PHASE = {
+    "phase_id": "MVR-LOCAL-REAL-INPUT-PILOT-PROTOTYPE-00",
+    "repo": "pdxvoiceteacher/CoherenceLattice",
+    "status": "accepted_local_validation",
+    "evidence_type": "local_real_input_pilot_prototype_publication_sync",
+    "product_posture": "bounded_local_real_input_pilot_prototype_without_product_or_runtime_authority",
+    "primary_artifacts": MVR_REAL_INPUT_PILOT_PROTOTYPE_ARTIFACTS,
+    "schema_references": MVR_REAL_INPUT_PILOT_PROTOTYPE_SCHEMA_REFERENCES,
+    "dashboard_summary": MVR_REAL_INPUT_PILOT_PROTOTYPE_DASHBOARD_SUMMARY,
+    "reproduction_command_summary": MVR_REAL_INPUT_PILOT_PROTOTYPE_COMMAND,
+    "claim_allowed": MVR_REAL_INPUT_PILOT_PROTOTYPE_CLAIM_ALLOWED,
+    "claims_blocked": MVR_REAL_INPUT_PILOT_PROTOTYPE_BLOCKED_CLAIMS,
+    "reviewer_caution": "MVR-LOCAL-REAL-INPUT-PILOT-PROTOTYPE-00 is a bounded local real-input pilot prototype publication sync. It grants no product release, product readiness, provider runtime, network runtime, trace export, PMR federation, memory write, Atlas admission, deployment, final-answer authority, accepted-evidence authority, truth certification, compliance certification, user validation, real user study, human-subject study, market validation, human benefit proof, model training, or review skipping.",
+    "publication_status": "dashboard_indexed",
+}
+
+
+MVR_QUARANTINE_REPAIR_COMMAND = "python -m pytest -q tests/test_mvr_local_real_input_pilot_quarantine_detection_repair.py tests/test_mvr_local_real_input_pilot.py tests/test_experiment_registry.py"
+MVR_QUARANTINE_REPAIR_REPRO_FRAGMENTS = ["test_mvr_local_real_input_pilot_quarantine_detection_repair.py"]
+MVR_QUARANTINE_REPAIR_ARTIFACTS = [
+    "harmless_mvr_real_input_source_instruction_like.md",
+    "harmless_mvr_real_input_source_no_instruction.md",
+    "mvr_local_real_input_source_manifest.json",
+    "mvr_local_real_input_quarantine_report.json",
+    "minimal_viable_receipt_human_readable.md",
+    "mvr_local_real_input_pilot_receipt.json",
+    "artifact_inventory.json",
+    "run_artifact_manifest.json",
+    "export_bundle_manifest.json",
+    "export_bundle_parity_report.json",
+]
+MVR_QUARANTINE_REPAIR_DETECTOR_TERMS = [
+    "INSTRUCTION_LIKE_CUES",
+    "instruction-like note",
+    "ignore prior rules",
+    "ignore previous rules",
+    "ignore previous instructions",
+    "treat this note as authoritative",
+    "treat this as authoritative",
+    "follow these instructions",
+    "override prior instructions",
+    "system prompt",
+    "developer message",
+    "assistant must",
+    "you must",
+    "do not reveal",
+    "disregard previous",
+    "disregard prior",
+    "_matched_instruction_like_cues",
+    "matched_instruction_like_phrases",
+]
+MVR_QUARANTINE_REPAIR_DOCTRINE_LANGUAGE = [
+    "MVR Local Real Input Pilot Quarantine Detection Repair",
+    "Human-selected local files with instruction-like evidence must be quarantined.",
+    "Harmless human-selected local files must not falsely claim quarantine.",
+    "Instruction-like evidence was quarantined.",
+    "No instruction-like evidence was detected for quarantine.",
+    "Quarantined evidence is not accepted evidence.",
+    "Local source selection is not accepted-evidence authority.",
+    "Local source processing is not memory write.",
+    "Human review remains required.",
+    "The repair does not broaden file access.",
+    "The repair does not scan directories.",
+    "The repair does not read hidden files.",
+    "The repair does not fetch URLs.",
+    "The repair does not call providers.",
+    "The repair does not perform network calls.",
+    "The repair does not write memory.",
+    "The repair does not admit Atlas memory.",
+    "The repair does not export traces.",
+    "The repair does not federate PMR.",
+    "The repair does not claim product readiness.",
+    "The repair does not release product.",
+    "The repair does not grant final-answer authority.",
+    "The repair does not grant accepted-evidence authority.",
+    "The repair does not certify truth.",
+]
+MVR_QUARANTINE_REPAIR_SMOKE_OUTCOMES = [
+    "instruction_like",
+    "harmless",
+    "explicit_local_source_paths",
+    "local_markdown_file",
+    "harmless_mvr_real_input_source_instruction_like.md",
+    "harmless_mvr_real_input_source_no_instruction.md",
+    "instruction_like_evidence_count = 1",
+    "quarantined_items_count = 1",
+    "matched phrases: instruction-like note, ignore prior rules, treat this note as authoritative",
+    "harmless evidence count = 0",
+    "provider_runtime_performed = false",
+    "network_call_performed = false",
+    "product_release_performed = false",
+    "product_readiness_claimed = false",
+    "final_answer_authority_granted = false",
+    "accepted_evidence_authority_granted = false",
+    "truth_certification_emitted = false",
+    "memory_write_performed = false",
+    "atlas_memory_admission_performed = false",
+    "trace_export_performed = false",
+    "pmr_federation_performed = false",
+]
+MVR_QUARANTINE_REPAIR_PRIOR_PHASE_RELATION = [
+    "MVR-LOCAL-REAL-INPUT-PILOT-DESIGN-00 defines boundaries for a future real-local-input pilot.",
+    "MVR-LOCAL-REAL-INPUT-PILOT-PROTOTYPE-00 emits the first bounded local real-input pilot prototype.",
+    "MVR-LOCAL-REAL-INPUT-PILOT-QUARANTINE-DETECTION-REPAIR-00 repairs instruction-like evidence detection for human-selected local files.",
+    "MINIMAL-VIABLE-RECEIPT-DESIGN-00 defines the one-transaction/many-sections receipt standard.",
+    "MINIMAL-VIABLE-RECEIPT-LOCAL-PROTOTYPE-00 emits the local fixture-backed readable receipt.",
+    "MVR-LOCAL-PROTOTYPE-READABILITY-REVISION-00 applies deterministic local readability revisions.",
+    "TRIADIC-OBSERVATION-CONTRACT-DESIGN-00 defines governed attention.",
+    "OBSERVATION-CONTRACT-POLICY-SIMULATION-00 rehearses notice, consent, recovery, source-expansion, pathway-prior, retention, trace-export, and PMR-federation policy outcomes.",
+    "TAC phases define aperture posture and review visibility.",
+    "COHERENCE-EVENT-SIGNATURES-DESIGN-00 defines event signatures.",
+    "CES-PMR-INDEXING-DESIGN-00 defines CES as a compact PMR index, not source replacement.",
+    "VALIDATION-TIERING-PROVENANCE-00 records validation confidence scope.",
+]
+MVR_QUARANTINE_REPAIR_BLOCKED_CLAIMS = [
+    "quarantine repair broadens file access",
+    "quarantine repair scans directories",
+    "quarantine repair reads hidden files",
+    "quarantine repair fetches URLs",
+    "quarantine repair calls provider APIs",
+    "quarantine repair performs network calls",
+    "quarantine repair writes memory",
+    "quarantine repair admits Atlas memory",
+    "quarantine repair exports traces",
+    "quarantine repair federates PMR",
+    "quarantine repair releases product",
+    "quarantine repair proves product readiness",
+    "quarantine repair certifies truth",
+    "quarantine repair grants final-answer authority",
+    "quarantine repair grants accepted-evidence authority",
+    "local source selection is accepted evidence",
+    "quarantined evidence is accepted evidence",
+    "instruction-like evidence can be trusted as evidence",
+    "no-detection means receipt is product ready",
+    "no-detection means source is accepted evidence",
+    "quarantine count means truth score",
+]
+MVR_QUARANTINE_REPAIR_CLAIM_ALLOWED = "MVR-LOCAL-REAL-INPUT-PILOT-QUARANTINE-DETECTION-REPAIR-00 repairs instruction-like evidence detection for human-selected local real-input pilot files, ensuring instruction-like cues such as \"instruction-like note\", \"ignore prior rules\", and \"treat this note as authoritative\" are quarantined while harmless files do not falsely claim quarantine, without broadening file access, scanning directories, reading hidden files, fetching URLs, calling providers, performing network calls, writing memory, admitting Atlas memory, exporting traces, federating PMR, releasing product, claiming product readiness, granting final-answer or accepted-evidence authority, or certifying truth."
+MVR_QUARANTINE_REPAIR_FAILURE_CLASSES = [
+    "instruction_like_evidence_not_quarantined",
+    "harmless_file_falsely_claimed_quarantine",
+    "quarantine_wording_contradicts_count",
+    "matched_instruction_cues_missing",
+    "quarantined_evidence_mistaken_for_accepted_evidence",
+    "local_source_selection_mistaken_for_accepted_evidence",
+    "quarantine_repair_mistaken_for_broader_file_access",
+    "quarantine_repair_mistaken_for_product_readiness",
+    "quarantine_count_mistaken_for_truth_score",
+    "no_detection_mistaken_for_accepted_evidence",
+    "human_review_requirement_hidden",
+]
+MVR_QUARANTINE_REPAIR_DASHBOARD_SUMMARY = {
+    "repair_status": "completed",
+    "repair_mode": "instruction_like_quarantine_detection_repair",
+    "source_mode": "explicit_local_source_paths",
+    "instruction_like_case_source_class": "local_markdown_file",
+    "instruction_like_real_user_files_processed": True,
+    "instruction_like_local_fixture_mode": False,
+    "instruction_like_evidence_count": 1,
+    "instruction_like_quarantined_items_count": 1,
+    "harmless_case_source_class": "local_markdown_file",
+    "harmless_real_user_files_processed": True,
+    "harmless_local_fixture_mode": False,
+    "harmless_instruction_like_evidence_count": 0,
+    "harmless_quarantined_items_count": 0,
+    "no_detection_receipt_wording_conditional": True,
+    "contradictory_quarantine_wording_repaired": True,
+    "provider_runtime_performed": False,
+    "network_call_performed": False,
+    "product_release_performed": False,
+    "product_readiness_claimed": False,
+    "final_answer_authority_granted": False,
+    "accepted_evidence_authority_granted": False,
+    "truth_certification_emitted": False,
+    "memory_write_performed": False,
+    "atlas_memory_admission_performed": False,
+    "trace_export_performed": False,
+    "pmr_federation_performed": False,
+}
+MVR_QUARANTINE_REPAIR_PHASE = {
+    "phase_id": "MVR-LOCAL-REAL-INPUT-PILOT-QUARANTINE-DETECTION-REPAIR-00",
+    "repo": "pdxvoiceteacher/CoherenceLattice",
+    "status": "accepted_local_validation",
+    "evidence_type": "local_real_input_pilot_quarantine_detection_repair_publication_sync",
+    "product_posture": "repair_only_instruction_like_quarantine_detection_without_file_access_or_runtime_authority",
+    "primary_artifacts": MVR_QUARANTINE_REPAIR_ARTIFACTS,
+    "dashboard_summary": MVR_QUARANTINE_REPAIR_DASHBOARD_SUMMARY,
+    "reproduction_command_summary": MVR_QUARANTINE_REPAIR_COMMAND,
+    "claim_allowed": MVR_QUARANTINE_REPAIR_CLAIM_ALLOWED,
+    "claims_blocked": MVR_QUARANTINE_REPAIR_BLOCKED_CLAIMS,
+    "reviewer_caution": "MVR-LOCAL-REAL-INPUT-PILOT-QUARANTINE-DETECTION-REPAIR-00 repairs instruction-like evidence detection and no-detection wording only; it broadens no file access, scans no directories, reads no hidden files, fetches no URLs, calls no providers, performs no network calls, writes no memory, admits no Atlas memory, exports no traces, federates no PMR, releases no product, claims no product readiness, grants no final-answer or accepted-evidence authority, and certifies no truth.",
+    "publication_status": "dashboard_indexed",
+}
+
+
+MVR_HUMAN_SELECTED_FILE_SMOKE_COMMAND = "python -c \"from pathlib import Path; from coherence.product.mvr_local_real_input_pilot_smoke import build_mvr_local_real_input_pilot_human_selected_file_smoke; bridge=Path(r'C:\\UVLM\\run_artifacts\\mvr_human_selected_file_smoke\\bridge'); build_mvr_local_real_input_pilot_human_selected_file_smoke(bridge)\""
+MVR_HUMAN_SELECTED_FILE_SMOKE_REPRO_FRAGMENTS = ["build_mvr_local_real_input_pilot_human_selected_file_smoke"]
+MVR_HUMAN_SELECTED_FILE_SMOKE_ARTIFACTS = [
+    "mvr_local_real_input_human_selected_file_smoke_packet.json",
+    "mvr_local_real_input_human_selected_file_smoke_receipt.json",
+    "mvr_local_real_input_source_manifest.json",
+    "mvr_local_real_input_consent_scope.json",
+    "mvr_local_real_input_quarantine_report.json",
+    "mvr_local_real_input_pilot_policy_packet.json",
+    "mvr_local_real_input_non_authority_boundary.json",
+    "minimal_viable_receipt_packet.json",
+    "minimal_viable_receipt_human_readable.md",
+    "mvr_local_real_input_pilot_receipt.json",
+    "pmr_local_runtime_artifact_index.json",
+    "artifact_inventory.json",
+    "run_artifact_manifest.json",
+    "export_bundle_manifest.json",
+    "export_bundle_parity_report.json",
+]
+MVR_HUMAN_SELECTED_FILE_SMOKE_SCHEMA_REFERENCES = [
+    "schema/bridge/mvr_local_real_input_human_selected_file_smoke_packet.schema.json",
+    "schema/bridge/mvr_local_real_input_human_selected_file_smoke_receipt.schema.json",
+    "schema/bridge/mvr_local_real_input_source_manifest.schema.json",
+    "schema/bridge/mvr_local_real_input_consent_scope.schema.json",
+    "schema/bridge/mvr_local_real_input_quarantine_report.schema.json",
+    "schema/bridge/mvr_local_real_input_pilot_policy_packet.schema.json",
+    "schema/bridge/mvr_local_real_input_non_authority_boundary.schema.json",
+]
+MVR_HUMAN_SELECTED_FILE_SMOKE_DOCTRINE_LANGUAGE = [
+    "MVR Local Real Input Pilot Human-Selected File Smoke",
+    "Human-selected file smoke uses explicit local source selection.",
+    "Human-selected file smoke is not product readiness.",
+    "Human-selected file smoke is not product release.",
+    "Human-selected file smoke is not a user study.",
+    "Human-selected file smoke is not accepted-evidence authority.",
+    "Local source selection is not accepted-evidence authority.",
+    "Local source processing is not memory write.",
+    "Consent is local to this pilot run.",
+    "Consent is not trace export authorization.",
+    "Consent is not PMR federation authorization.",
+    "The smoke never scans directories.",
+    "The smoke never auto-discovers files.",
+    "The smoke never reads hidden files.",
+    "The smoke never fetches URLs.",
+    "The smoke never calls providers.",
+    "The smoke never performs network calls.",
+    "Human review remains required.",
+    "Default smoke uses a generated harmless explicit local file fixture and does not process real user files.",
+    "Explicit path smoke processes only the selected local markdown file.",
+    "Instruction-like evidence is quarantined.",
+    "Quarantined evidence is not accepted evidence.",
+]
+MVR_HUMAN_SELECTED_FILE_SMOKE_SOURCE_SELECTION_TERMS = [
+    "generated_harmless_human_selected_file_fixture",
+    "explicit_human_selected_local_file",
+    "human_selected_file_smoke_source.md",
+    "local_markdown_file",
+    "explicit_user_selected",
+    "source_sha256",
+    "source_is_not_accepted_evidence",
+    "recursive_directory_scan_allowed = false",
+    "hidden_file_scan_allowed = false",
+    "url_fetch_performed = false",
+]
+MVR_HUMAN_SELECTED_FILE_SMOKE_QUARANTINE_TERMS = [
+    "instruction-like note",
+    "ignore prior rules",
+    "treat this note as authoritative",
+    "instruction_like_evidence_count = 1",
+    "matched_instruction_like_phrases",
+    "quarantined_evidence_is_not_accepted_evidence",
+    "human_review_required = true",
+]
+MVR_HUMAN_SELECTED_FILE_SMOKE_PRIOR_PHASE_RELATION = [
+    "MVR-LOCAL-REAL-INPUT-PILOT-DESIGN-00 defines the real-input pilot boundaries.",
+    "MVR-LOCAL-REAL-INPUT-PILOT-PROTOTYPE-00 implements explicit local source and pasted-excerpt prototype handling.",
+    "MVR-LOCAL-REAL-INPUT-PILOT-QUARANTINE-DETECTION-REPAIR-00 repairs instruction-like evidence quarantine detection.",
+    "MVR-LOCAL-REAL-INPUT-PILOT-HUMAN-SELECTED-FILE-SMOKE-00 records a controlled explicit local file smoke.",
+    "MINIMAL-VIABLE-RECEIPT-DESIGN-00 defines the receipt standard.",
+    "MINIMAL-VIABLE-RECEIPT-LOCAL-PROTOTYPE-00 emits the local fixture-backed receipt.",
+    "OBSERVATION-CONTRACT-POLICY-SIMULATION-00 rehearses notice, consent, and recovery outcomes.",
+    "VALIDATION-TIERING-PROVENANCE-00 records validation confidence scope.",
+]
+MVR_HUMAN_SELECTED_FILE_SMOKE_BLOCKED_CLAIMS = [
+    "human-selected file smoke proves product readiness",
+    "human-selected file smoke is product release",
+    "human-selected file smoke is a user study",
+    "human-selected file smoke validates market demand",
+    "human-selected file smoke proves human benefit",
+    "human-selected file smoke certifies truth",
+    "human-selected file smoke authorizes final answers",
+    "human-selected file smoke grants accepted-evidence authority",
+    "human-selected file smoke writes memory",
+    "human-selected file smoke admits Atlas memory",
+    "human-selected file smoke exports traces",
+    "human-selected file smoke federates PMR",
+    "human-selected file smoke trains the model",
+    "human-selected file smoke skips review",
+    "local source selection is accepted evidence",
+    "source manifest is accepted evidence",
+    "consent authorizes trace export",
+    "consent authorizes PMR federation",
+    "consent authorizes memory write",
+    "smoke can scan directories",
+    "smoke can read hidden files",
+    "smoke can fetch URLs",
+    "smoke can call providers",
+    "explicit source path means accepted evidence",
+    "quarantined evidence is accepted evidence",
+]
+MVR_HUMAN_SELECTED_FILE_SMOKE_CLAIM_ALLOWED = "MVR-LOCAL-REAL-INPUT-PILOT-HUMAN-SELECTED-FILE-SMOKE-00 records a controlled local smoke harness for explicitly selected local files using the MVR real-input pilot builder, preserving source manifest, consent scope, quarantine report, Minimal Viable Receipt artifacts, PMR/inventory/parity visibility, and non-authority boundaries without scanning directories, reading hidden files, fetching URLs, calling providers, performing network calls, writing memory, admitting Atlas memory, exporting traces, federating PMR, releasing product, claiming product readiness, granting final-answer or accepted-evidence authority, certifying truth, training models, skipping review, or performing user validation."
+MVR_HUMAN_SELECTED_FILE_SMOKE_FAILURE_CLASSES = [
+    "human_selected_file_smoke_mistaken_for_product_readiness",
+    "human_selected_file_smoke_mistaken_for_product_release",
+    "human_selected_file_smoke_mistaken_for_user_study",
+    "local_source_selection_mistaken_for_accepted_evidence",
+    "source_manifest_mistaken_for_accepted_evidence",
+    "explicit_source_path_mistaken_for_accepted_evidence",
+    "consent_mistaken_for_trace_export_authorization",
+    "consent_mistaken_for_pmr_federation_authorization",
+    "consent_mistaken_for_memory_write",
+    "smoke_mistaken_for_directory_scan",
+    "smoke_mistaken_for_hidden_file_read",
+    "smoke_mistaken_for_provider_runtime",
+    "quarantined_evidence_mistaken_for_accepted_evidence",
+    "unsupported_claims_hidden",
+    "source_expansion_missing",
+    "human_review_requirement_hidden",
+    "non_authority_boundaries_missing",
+]
+MVR_HUMAN_SELECTED_FILE_SMOKE_DASHBOARD_SUMMARY = {
+    "smoke_status": "completed",
+    "smoke_mode": "explicit_local_file_selection_smoke",
+    "default_smoke_source_mode": "generated_harmless_human_selected_file_fixture",
+    "default_source_path_supplied": False,
+    "default_selected_source_count": 1,
+    "default_source_class": "local_markdown_file",
+    "default_real_user_files_processed": False,
+    "default_local_fixture_mode": True,
+    "explicit_smoke_source_mode": "explicit_human_selected_local_file",
+    "explicit_source_path_supplied": True,
+    "explicit_selected_source_count": 1,
+    "explicit_source_class": "local_markdown_file",
+    "explicit_source_name": "human_selected_file_smoke_source.md",
+    "explicit_real_user_files_processed": True,
+    "explicit_local_fixture_mode": False,
+    "explicit_instruction_like_evidence_count": 1,
+    "matched_instruction_like_phrases_include_instruction_like_note": True,
+    "matched_instruction_like_phrases_include_ignore_prior_rules": True,
+    "matched_instruction_like_phrases_include_treat_this_note_as_authoritative": True,
+    "recursive_directory_scan_allowed": False,
+    "hidden_file_scan_allowed": False,
+    "url_fetch_performed": False,
+    "provider_runtime_performed": False,
+    "network_call_performed": False,
+    "product_release_performed": False,
+    "product_readiness_claimed": False,
+    "accepted_evidence_authority_granted": False,
+    "final_answer_authority_granted": False,
+    "truth_certification_emitted": False,
+    "compliance_certification_emitted": False,
+    "memory_write_performed": False,
+    "atlas_memory_admission_performed": False,
+    "trace_export_performed": False,
+    "pmr_federation_performed": False,
+    "model_training_performed": False,
+    "review_skip_authorized": False,
+    "human_review_required": True,
+    "smoke_is_not_user_study": True,
+    "smoke_is_not_product_readiness": True,
+    "smoke_is_not_product_release": True,
+    "smoke_is_not_accepted_evidence_authority": True,
+    "smoke_requires_human_review": True,
+}
+MVR_HUMAN_SELECTED_FILE_SMOKE_PHASE = {
+    "phase_id": "MVR-LOCAL-REAL-INPUT-PILOT-HUMAN-SELECTED-FILE-SMOKE-00",
+    "repo": "pdxvoiceteacher/CoherenceLattice",
+    "status": "accepted_local_validation",
+    "evidence_type": "local_real_input_pilot_human_selected_file_smoke_publication_sync",
+    "product_posture": "controlled_explicit_local_file_smoke_without_product_or_runtime_authority",
+    "primary_artifacts": MVR_HUMAN_SELECTED_FILE_SMOKE_ARTIFACTS,
+    "schema_references": MVR_HUMAN_SELECTED_FILE_SMOKE_SCHEMA_REFERENCES,
+    "dashboard_summary": MVR_HUMAN_SELECTED_FILE_SMOKE_DASHBOARD_SUMMARY,
+    "reproduction_command_summary": MVR_HUMAN_SELECTED_FILE_SMOKE_COMMAND,
+    "claim_allowed": MVR_HUMAN_SELECTED_FILE_SMOKE_CLAIM_ALLOWED,
+    "claims_blocked": MVR_HUMAN_SELECTED_FILE_SMOKE_BLOCKED_CLAIMS,
+    "reviewer_caution": "MVR-LOCAL-REAL-INPUT-PILOT-HUMAN-SELECTED-FILE-SMOKE-00 records a controlled explicit local file smoke only; it scans no directories, reads no hidden files, fetches no URLs, calls no providers, performs no network calls, writes no memory, admits no Atlas memory, exports no traces, federates no PMR, releases no product, claims no product readiness, grants no final-answer or accepted-evidence authority, certifies no truth, trains no model, skips no review, and performs no user validation.",
+    "publication_status": "dashboard_indexed",
+}
+
+
+COMPLIANCE_REPORT_DESIGN_COMMAND = "python -m pytest -q tests/test_compliance_ready_mvr_report_design.py tests/test_compliance_evidence_toolset_library_design.py tests/test_experiment_registry.py"
+COMPLIANCE_REPORT_DESIGN_REPRO_FRAGMENTS = ["test_compliance_ready_mvr_report_design.py"]
+COMPLIANCE_REPORT_DESIGN_ARTIFACTS = [
+    "docs/COMPLIANCE_READY_MVR_REPORT_DESIGN.md",
+    "config/receipt/compliance_ready_mvr_report_policy.v1.json",
+    "schema/bridge/compliance_ready_mvr_report_packet.schema.json",
+    "schema/bridge/compliance_ready_mvr_report_section_index.schema.json",
+    "schema/bridge/compliance_ready_mvr_control_mapping.schema.json",
+    "schema/bridge/compliance_ready_mvr_plain_language_glossary.schema.json",
+    "schema/bridge/compliance_ready_mvr_non_authority_boundary.schema.json",
+]
+COMPLIANCE_TOOLSET_DESIGN_COMMAND = "python -m pytest -q tests/test_compliance_evidence_toolset_library_design.py tests/test_compliance_ready_mvr_report_design.py tests/test_experiment_registry.py"
+COMPLIANCE_TOOLSET_DESIGN_REPRO_FRAGMENTS = ["test_compliance_evidence_toolset_library_design.py"]
+COMPLIANCE_TOOLSET_DESIGN_ARTIFACTS = [
+    "docs/COMPLIANCE_EVIDENCE_TOOLSET_LIBRARY.md",
+    "config/compliance/compliance_evidence_toolset_library.v1.json",
+    "schema/bridge/compliance_evidence_toolset_library_packet.schema.json",
+    "schema/bridge/compliance_framework_profile.schema.json",
+    "schema/bridge/compliance_evidence_mapping.schema.json",
+    "schema/bridge/compliance_gap_register.schema.json",
+    "schema/bridge/compliance_human_signoff_packet.schema.json",
+    "schema/bridge/compliance_evidence_non_authority_boundary.schema.json",
+]
+COMPLIANCE_REPORT_DOCTRINE_LANGUAGE = [
+    "Compliance-Ready MVR Report Design",
+    "The report must be stupidly user friendly.",
+    "Compliance users need a report, not an artifact maze.",
+    "Internal packet names must have plain-language labels.",
+    "A compliance-ready report supports review; it does not certify compliance.",
+    "A receipt supports audit evidence; it does not pass an audit.",
+    "Traceability is not truth.",
+    "Source selection is not accepted-evidence authority.",
+    "Quarantine is not deletion.",
+    "Consent scope is not memory write.",
+    "Human review remains required.",
+    "COMPLIANCE-READY-MVR-REPORT-DESIGN-00 does not generate reports.",
+    "COMPLIANCE-READY-MVR-REPORT-DESIGN-00 does not process real inputs.",
+    "COMPLIANCE-READY-MVR-REPORT-DESIGN-00 does not certify compliance.",
+    "COMPLIANCE-READY-MVR-REPORT-DESIGN-00 does not claim product readiness.",
+    "COMPLIANCE-READY-MVR-REPORT-DESIGN-00 does not release product.",
+]
+COMPLIANCE_TOOLSET_DOCTRINE_LANGUAGE = [
+    "Compliance Evidence Toolset Library",
+    "UVLM produces compliance evidence packs, not compliance certifications.",
+    "Human professionals with authority may use UVLM evidence in their own compliance, audit, legal, risk, or attestation workflows.",
+    "EU AI Act support means evidence mapping, not EU AI Act compliance certification.",
+    "ISO/IEC 42001 support means management-system evidence support, not ISO certification.",
+    "SOC 2 support means trust-services evidence support, not a SOC 2 report.",
+    "HIPAA support means privacy/security evidence support, not HIPAA compliance.",
+    "Legal compliance requires qualified human judgment.",
+    "Audit pass and attestation success cannot be generated by UVLM.",
+    "The system must be stupidly user friendly.",
+    "Compliance users need mapped evidence, gaps, review status, and sign-off packets, not an artifact maze.",
+    "Source selection is not accepted evidence.",
+    "Traceability is not truth.",
+    "Human review remains required.",
+    "COMPLIANCE-EVIDENCE-TOOLSET-LIBRARY-DESIGN-00 does not generate evidence packs.",
+    "COMPLIANCE-EVIDENCE-TOOLSET-LIBRARY-DESIGN-00 does not certify compliance.",
+    "COMPLIANCE-EVIDENCE-TOOLSET-LIBRARY-DESIGN-00 does not provide legal advice.",
+    "COMPLIANCE-EVIDENCE-TOOLSET-LIBRARY-DESIGN-00 does not claim product readiness.",
+    "COMPLIANCE-EVIDENCE-TOOLSET-LIBRARY-DESIGN-00 does not release product.",
+]
+COMPLIANCE_REPORT_AUDIENCE_TERMS = [
+    "compliance_professional",
+    "auditor",
+    "risk_manager",
+    "legal_reviewer",
+    "model_governance_reviewer",
+    "data_protection_reviewer",
+    "procurement_reviewer",
+    "executive_reviewer",
+]
+COMPLIANCE_REPORT_SECTION_TERMS = [
+    "executive_summary",
+    "input_selection_and_scope",
+    "consent_and_observation_scope",
+    "source_manifest_and_hashes",
+    "quarantine_and_exclusions",
+    "claim_support_and_unsupported_claims",
+    "controls_applied",
+    "human_review_requirements",
+    "retention_and_memory_boundaries",
+    "contestability_and_recovery_options",
+    "validation_confidence_scope",
+    "system_components_plain_language_map",
+    "non_authority_summary",
+    "audit_artifact_index",
+    "open_questions_and_required_follow_up",
+]
+COMPLIANCE_FRAMEWORK_PROFILE_TERMS = [
+    "eu_ai_act_evidence_support",
+    "iso_iec_42001_evidence_support",
+    "soc2_trust_services_evidence_support",
+    "hipaa_privacy_security_evidence_support",
+    "nist_ai_rmf_evidence_support",
+    "internal_ai_governance_policy_evidence_support",
+    "procurement_ai_review_evidence_support",
+    "vendor_ai_review_evidence_support",
+    "ai_incident_review_evidence_support",
+    "model_change_review_evidence_support",
+]
+COMPLIANCE_EU_AI_ACT_SUPPORT_TERMS = [
+    "risk_classification_support",
+    "intended_use_description",
+    "source_data_governance_evidence",
+    "technical_documentation_support",
+    "record_keeping_logging_support",
+    "transparency_deployer_information_support",
+    "human_oversight_support",
+    "accuracy_robustness_cybersecurity_posture",
+    "post_market_monitoring_or_incident_review_posture",
+    "fundamental_rights_or_data_equity_review_support",
+    "non_authority_boundary",
+]
+COMPLIANCE_GENERIC_EVIDENCE_MAPPING_TERMS = [
+    "source_manifest",
+    "source_hash",
+    "consent_scope",
+    "observation_scope",
+    "quarantine_report",
+    "unsupported_claims",
+    "controls_applied",
+    "human_review_status",
+    "validation_tier",
+    "retention_boundary",
+    "contestability_options",
+    "recovery_options",
+    "non_authority_boundary",
+    "audit_artifact_index",
+    "open_gaps",
+]
+COMPLIANCE_HUMAN_SIGNOFF_ROLE_TERMS = [
+    "compliance_officer",
+    "legal_reviewer",
+    "privacy_officer",
+    "security_officer",
+    "model_risk_manager",
+    "ai_governance_lead",
+    "licensed_auditor_or_certifier",
+    "executive_owner",
+]
+COMPLIANCE_DESIGN_BLOCKED_CLAIMS = [
+    "UVLM certifies ISO compliance",
+    "UVLM certifies SOC 2 compliance",
+    "UVLM certifies EU AI Act compliance",
+    "UVLM certifies HIPAA compliance",
+    "UVLM provides legal compliance",
+    "UVLM passes audits",
+    "UVLM guarantees attestation success",
+    "EU AI Act evidence support is EU AI Act compliance certification",
+    "ISO evidence support is ISO certification",
+    "SOC 2 evidence support is a SOC 2 report",
+    "HIPAA evidence support is HIPAA compliance",
+    "evidence pack means audit pass",
+    "human signoff packet means signed compliance",
+    "source manifest is accepted evidence",
+    "traceability means truth",
+    "control mapping means control effectiveness",
+    "compliance readability means legal advice",
+    "Compliance-ready MVR report certifies compliance",
+    "Compliance-ready MVR report passes audit",
+    "Compliance-ready MVR report guarantees attestation success",
+    "Compliance-ready MVR report certifies truth",
+    "Compliance-ready MVR report authorizes final answers",
+    "Compliance-ready MVR report grants accepted-evidence authority",
+    "Compliance-ready MVR report writes memory",
+    "Compliance-ready MVR report admits Atlas memory",
+    "Compliance-ready MVR report authorizes trace export",
+    "Compliance-ready MVR report authorizes PMR federation",
+    "Compliance-ready MVR report proves product readiness",
+    "Compliance-ready MVR report is product release",
+    "Quarantine means deletion",
+    "Consent scope means memory write",
+    "Plain language means loss of rigor",
+    "Compliance professional readability means legal advice",
+]
+COMPLIANCE_REPORT_CLAIM_ALLOWED = "COMPLIANCE-READY-MVR-REPORT-DESIGN-00 defines a design-only, plain-language report format for compliance professionals to review Minimal Viable Receipt transactions by summarizing input selection, consent and observation scope, source manifests, quarantine, claim support, unsupported claims, controls, human review requirements, retention boundaries, contestability, validation scope, component labels, audit artifacts, data-equity questions, and non-authority boundaries without generating reports in this phase, processing real inputs, certifying compliance, passing audits, guaranteeing attestation success, certifying truth, granting final-answer or accepted-evidence authority, writing memory, admitting Atlas memory, exporting traces, federating PMR, claiming product readiness, or releasing product."
+COMPLIANCE_TOOLSET_CLAIM_ALLOWED = "COMPLIANCE-EVIDENCE-TOOLSET-LIBRARY-DESIGN-00 defines a design-only compliance evidence toolset library for mapping Minimal Viable Receipt artifacts into framework-specific evidence packs, beginning with EU AI Act evidence support and expandable to ISO/IEC 42001, SOC 2, HIPAA, NIST AI RMF, internal governance, procurement, vendor review, incident review, and model-change review, while requiring qualified human signoff and avoiding compliance certification, legal advice, audit-pass claims, attestation-success claims, product-readiness claims, product release, truth certification, final-answer authority, accepted-evidence authority, memory write, Atlas admission, trace export, PMR federation, model training, or review skipping."
+COMPLIANCE_REPORT_DASHBOARD_SUMMARY = {
+    "policy_status": "active_design_only",
+    "report_definition": "plain_language_compliance_review_support_report_for_mvr_transactions",
+    "report_generation_enabled": False,
+    "runtime_behavior_changed": False,
+    "real_input_processing_performed": False,
+    "provider_runtime_performed": False,
+    "network_call_performed": False,
+    "product_release_performed": False,
+    "product_readiness_claimed": False,
+    "compliance_certification_emitted": False,
+    "audit_pass_claimed": False,
+    "attestation_success_claimed": False,
+    "final_answer_authority_granted": False,
+    "accepted_evidence_authority_granted": False,
+    "truth_certification_emitted": False,
+    "memory_write_performed": False,
+    "atlas_memory_admission_performed": False,
+    "trace_export_performed": False,
+    "pmr_federation_performed": False,
+    "report_is_not_compliance_certification": True,
+    "report_is_not_audit_pass": True,
+    "report_is_not_attestation_success": True,
+    "report_is_not_truth_certification": True,
+    "report_is_not_final_answer_authority": True,
+    "report_is_not_accepted_evidence_authority": True,
+    "report_is_not_product_release": True,
+    "report_is_not_product_readiness": True,
+    "report_is_not_memory_write": True,
+    "report_is_not_atlas_memory_admission": True,
+    "report_requires_human_review": True,
+}
+COMPLIANCE_TOOLSET_DASHBOARD_SUMMARY = {
+    "policy_status": "active_design_only",
+    "library_status": "active_design_only",
+    "day_one_profile": "eu_ai_act_evidence_support",
+    "evidence_pack_generation_enabled": False,
+    "compliance_certification_emitted": False,
+    "legal_advice_emitted": False,
+    "audit_pass_claimed": False,
+    "attestation_success_claimed": False,
+    "product_readiness_claimed": False,
+    "product_release_performed": False,
+    "provider_runtime_performed": False,
+    "network_call_performed": False,
+    "real_input_processing_performed": False,
+    "memory_write_performed": False,
+    "atlas_memory_admission_performed": False,
+    "trace_export_performed": False,
+    "pmr_federation_performed": False,
+    "final_answer_authority_granted": False,
+    "accepted_evidence_authority_granted": False,
+    "truth_certification_emitted": False,
+    "toolset_is_not_compliance_certification": True,
+    "toolset_is_not_legal_advice": True,
+    "toolset_is_not_audit_pass": True,
+    "toolset_is_not_attestation_success": True,
+    "toolset_is_not_product_readiness": True,
+    "toolset_is_not_product_release": True,
+    "toolset_is_not_truth_certification": True,
+    "toolset_is_not_final_answer_authority": True,
+    "toolset_is_not_accepted_evidence_authority": True,
+    "toolset_is_not_memory_write": True,
+    "toolset_is_not_atlas_memory_admission": True,
+    "toolset_requires_human_review": True,
+    "toolset_requires_authorized_professional_signoff": True,
+}
+COMPLIANCE_REPORT_PHASE = {
+    "phase_id": "COMPLIANCE-READY-MVR-REPORT-DESIGN-00",
+    "repo": "pdxvoiceteacher/CoherenceLattice",
+    "status": "accepted_local_validation",
+    "evidence_type": "compliance_ready_mvr_report_design_publication_sync",
+    "product_posture": "design_only_plain_language_compliance_review_support_without_certification_or_runtime_authority",
+    "primary_artifacts": COMPLIANCE_REPORT_DESIGN_ARTIFACTS,
+    "dashboard_summary": COMPLIANCE_REPORT_DASHBOARD_SUMMARY,
+    "reproduction_command_summary": COMPLIANCE_REPORT_DESIGN_COMMAND,
+    "claim_allowed": COMPLIANCE_REPORT_CLAIM_ALLOWED,
+    "claims_blocked": COMPLIANCE_DESIGN_BLOCKED_CLAIMS,
+    "reviewer_caution": "COMPLIANCE-READY-MVR-REPORT-DESIGN-00 is design-only. It generates no reports, processes no real inputs, certifies no compliance, passes no audit, guarantees no attestation success, certifies no truth, grants no final-answer or accepted-evidence authority, writes no memory, admits no Atlas memory, exports no traces, federates no PMR, claims no product readiness, and releases no product.",
+    "publication_status": "dashboard_indexed",
+}
+COMPLIANCE_TOOLSET_PHASE = {
+    "phase_id": "COMPLIANCE-EVIDENCE-TOOLSET-LIBRARY-DESIGN-00",
+    "repo": "pdxvoiceteacher/CoherenceLattice",
+    "status": "accepted_local_validation",
+    "evidence_type": "compliance_evidence_toolset_library_design_publication_sync",
+    "product_posture": "design_only_compliance_evidence_mapping_without_certification_legal_advice_or_runtime_authority",
+    "primary_artifacts": COMPLIANCE_TOOLSET_DESIGN_ARTIFACTS,
+    "dashboard_summary": COMPLIANCE_TOOLSET_DASHBOARD_SUMMARY,
+    "reproduction_command_summary": COMPLIANCE_TOOLSET_DESIGN_COMMAND,
+    "claim_allowed": COMPLIANCE_TOOLSET_CLAIM_ALLOWED,
+    "claims_blocked": COMPLIANCE_DESIGN_BLOCKED_CLAIMS,
+    "reviewer_caution": "COMPLIANCE-EVIDENCE-TOOLSET-LIBRARY-DESIGN-00 is design-only. It generates no evidence packs, certifies no compliance, provides no legal advice, passes no audit, guarantees no attestation success, claims no product readiness, releases no product, certifies no truth, grants no final-answer or accepted-evidence authority, writes no memory, admits no Atlas memory, exports no traces, federates no PMR, trains no model, and skips no review.",
+    "publication_status": "dashboard_indexed",
+}
+
+
+WAVE_BRIDGE_COMMAND = "python -c \"from pathlib import Path; from coherence.local_review.canonical_proxy_bridge import build_wave_rosetta_canonical_proxy_bridge; bridge=Path(r'C:\\UVLM\\run_artifacts\\wave_rosetta_canonical_proxy_bridge\\bridge'); build_wave_rosetta_canonical_proxy_bridge(bridge)\""
+WAVE_BRIDGE_REPRO_FRAGMENTS = ["build_wave_rosetta_canonical_proxy_bridge"]
+WAVE_BRIDGE_ARTIFACTS = [
+    "docs/WAVE_ROSETTA_CANONICAL_PROXY_BRIDGE.md",
+    "python/src/coherence/local_review/canonical_proxy_bridge.py",
+    "config/metrics/canonical_proxy_bridge_weight_profile.v1.json",
+    "schema/bridge/wave_rosetta_canonical_proxy_bridge_packet.schema.json",
+    "schema/bridge/waveform_feature_vector_packet.schema.json",
+    "schema/bridge/canonical_proxy_bridge_matrix.schema.json",
+    "schema/bridge/canonical_proxy_bridge_uncertainty_packet.schema.json",
+    "schema/bridge/canonical_proxy_bridge_weight_profile.schema.json",
+    "schema/bridge/canonical_proxy_bridge_input_ledger.schema.json",
+    "schema/bridge/canonical_proxy_bridge_review_packet.schema.json",
+    "wave_rosetta_canonical_proxy_bridge_packet.json",
+    "waveform_feature_vector_packet.json",
+    "canonical_proxy_bridge_matrix.json",
+    "canonical_proxy_bridge_uncertainty_packet.json",
+    "canonical_proxy_bridge_weight_profile.json",
+    "canonical_proxy_bridge_input_ledger.json",
+    "canonical_proxy_bridge_summary.md",
+    "canonical_proxy_bridge_review_packet.json",
+]
+EU_AI_ACT_MVR_MAPPING_ARTIFACTS = [
+    "docs/EU_AI_ACT_MVR_EVIDENCE_MAPPING_DESIGN.md",
+    "config/compliance/eu_ai_act_mvr_evidence_mapping.v1.json",
+    "schema/bridge/eu_ai_act_mvr_evidence_map.schema.json",
+    "schema/bridge/eu_ai_act_mvr_gap_register.schema.json",
+    "schema/bridge/eu_ai_act_mvr_human_review_packet.schema.json",
+    "schema/bridge/eu_ai_act_mvr_non_authority_boundary.schema.json",
+]
+WAVE_PROVENANCE_ARTIFACTS = [
+    "docs/WAVE_ROSETTA_CANONICAL_PROXY_BRIDGE_PROVENANCE.md",
+    "config/metrics/canonical_proxy_bridge_provenance.v1.json",
+    "schema/bridge/canonical_proxy_bridge_provenance_packet.schema.json",
+    "schema/bridge/canonical_proxy_bridge_formula_ledger.schema.json",
+    "schema/bridge/canonical_proxy_bridge_report_lineage.schema.json",
+    "schema/bridge/canonical_proxy_bridge_calibration_gap_register.schema.json",
+]
+WAVE_BRIDGE_DOCTRINE_LANGUAGE = [
+    "WAVE Rosetta Canonical-Proxy Bridge",
+    "WAVE Rosetta bridges runtime proxies to canonical meanings by calibration, not identity.",
+    "Runtime proxy values are not canonical GUFT measurements.",
+    "Bridge estimates are not proof.",
+    "Analogy is not identity.",
+    "High coherence does not necessarily mean constructive output.",
+    "Coherent cancellation must remain visible.",
+    "WAVE symmetry is pattern support, not ethical proof.",
+    "Bridge weights must be versioned.",
+    "Bridge inputs must be logged.",
+    "Bridge uncertainty must be explicit.",
+    "Population calibration is required.",
+    "Domain validation is required.",
+    "Human review remains required.",
+    "This bridge does not prove GUFT.",
+    "This bridge does not certify truth.",
+    "This bridge does not prove consciousness.",
+    "This bridge does not prove universal ontology.",
+    "This bridge does not release product.",
+    "This bridge does not claim product readiness.",
+]
+WAVE_PROVENANCE_DOCTRINE_LANGUAGE = [
+    "WAVE Rosetta Canonical-Proxy Bridge Provenance",
+    "This document preserves report lineage, conversion calculations, implemented v1 formulas, and calibration gaps.",
+    "The bridge is calibration, not identity.",
+    "The bridge estimate is not canonical measurement.",
+    "Scientific support is not proof.",
+    "GUFT support is not GUFT proof.",
+    "Runtime proxies are not canonical GUFT measurements.",
+    "High coherence can cancel output.",
+    "WAVE symmetry is pattern support, not ethical proof.",
+    "The normalized reliability-weighted formula is a future calibration candidate.",
+    "The implemented v1 formulas are deterministic scaffold formulas.",
+    "Bridge weights are versioned.",
+    "Bridge inputs must be logged.",
+    "Bridge uncertainty must be explicit.",
+    "Population calibration remains required.",
+    "Domain validation remains required.",
+    "Human review remains required.",
+    "WAVE-ROSETTA-CANONICAL-PROXY-BRIDGE-PROVENANCE-00 does not change bridge runtime behavior.",
+    "WAVE-ROSETTA-CANONICAL-PROXY-BRIDGE-PROVENANCE-00 does not change bridge formulas.",
+    "WAVE-ROSETTA-CANONICAL-PROXY-BRIDGE-PROVENANCE-00 does not change bridge weights.",
+    "WAVE-ROSETTA-CANONICAL-PROXY-BRIDGE-PROVENANCE-00 does not prove GUFT.",
+    "WAVE-ROSETTA-CANONICAL-PROXY-BRIDGE-PROVENANCE-00 does not certify truth.",
+]
+EU_AI_ACT_MVR_MAPPING_DOCTRINE_LANGUAGE = [
+    "EU AI Act MVR Evidence Mapping Design",
+    "EU AI Act support means evidence mapping, not EU AI Act compliance certification.",
+    "UVLM produces EU AI Act review-support evidence, not legal conclusions.",
+    "Qualified humans must decide whether evidence supports compliance claims.",
+    "The evidence map must be stupidly user friendly.",
+    "Missing evidence must be visible as a gap, not hidden.",
+    "Source manifest is not accepted evidence.",
+    "Traceability is not truth.",
+    "Control mapping is not control effectiveness.",
+    "Human review remains required.",
+    "Authorized professional signoff remains required.",
+    "EU-AI-ACT-MVR-EVIDENCE-MAPPING-DESIGN-00 does not generate runtime evidence maps.",
+    "EU-AI-ACT-MVR-EVIDENCE-MAPPING-DESIGN-00 does not certify EU AI Act compliance.",
+    "EU-AI-ACT-MVR-EVIDENCE-MAPPING-DESIGN-00 does not provide legal advice.",
+    "EU-AI-ACT-MVR-EVIDENCE-MAPPING-DESIGN-00 does not pass audits.",
+    "EU-AI-ACT-MVR-EVIDENCE-MAPPING-DESIGN-00 does not guarantee attestation success.",
+    "EU-AI-ACT-MVR-EVIDENCE-MAPPING-DESIGN-00 does not claim product readiness.",
+    "EU-AI-ACT-MVR-EVIDENCE-MAPPING-DESIGN-00 does not release product.",
+]
+WAVE_VECTOR_TERMS = [
+    "E_review", "T_review", "Ψ_review", "ΔS_review", "Λ_boundary", "Eₛ_review", "TAF_review_runtime_v0",
+    "phase_alignment", "amplitude_balance", "detuning", "jitter", "signal_to_noise", "spectral_entropy", "residual_energy",
+    "cancellation_index", "observability_index", "constructive_output_index", "provenance_support", "governance_route_support",
+    "materiality_level", "consent_scope_support", "human_review_status", "contestability_support", "affected_party_coverage",
+    "burden_distribution_visibility", "UCC_control_status", "Sophia_decision_support", "runtime_proxy_reliability",
+    "wave_analogue_reliability", "governance_lineage_reliability", "calibration_reliability",
+]
+WAVE_BRIDGE_ESTIMATE_TERMS = [
+    "E_bridge", "T_bridge", "Ψ_structural_bridge", "Ψ_constructive_bridge", "Ψ_cancellation_bridge", "ΔS_bridge",
+    "Λ_boundary_bridge", "Λ_phase_candidate", "Λ_critical_candidate", "Eₛ_bridge", "TAF_bridge",
+    "epistemic_uncertainty", "transfer_uncertainty", "combined_uncertainty",
+]
+WAVE_PROVENANCE_REPORT_LINEAGE = [
+    "GUFT discussion with Thomas and Apprentice 6_8_2026_842AM.docx",
+    "GUFT METRICS BRIDGE DISCUSSION 6_9_2026_1022AM.docx",
+    "wave_rosetta_canonical_proxy_bridge_scientific_review_20260609.md",
+    "2f49da190fcf5e3a04330f53bd9e6d30228c0a999cdabf8be2e94e957e6dfb09",
+    "9eaba6d5a49de7d09542b3e879cbb9eb936181a37e660b3434a5e31e110ccfe6",
+    "21045f07f5e2122db9714741a418f582cb87b6d004f6c66f4a63d4b6b7e77fd6",
+]
+WAVE_FORMULA_LINEAGE = [
+    "M_bridge_i = clamp", "B_i = clamp", "BridgeConfidence_i", "E_bridge = clamp", "T_bridge = clamp",
+    "Ψ_structural_bridge = clamp", "Ψ_constructive_bridge = clamp", "Ψ_cancellation_bridge = clamp", "ΔS_bridge = clamp",
+    "Λ_boundary_bridge = clamp", "Λ_phase_candidate = clamp", "Λ_critical_candidate = clamp", "Eₛ_bridge = clamp",
+    "TAF_bridge = clamp", "epistemic_uncertainty = clamp", "transfer_uncertainty = clamp", "combined_uncertainty = clamp",
+]
+WAVE_CALIBRATION_GAPS = [
+    "normalized_reliability_weighted_formula_not_yet_implemented",
+    "bridge_confidence_packet_not_yet_implemented",
+    "calibration_registry_not_yet_implemented",
+    "negative_control_report_not_yet_implemented",
+    "population_calibration_not_complete",
+    "domain_validation_not_complete",
+    "counterexample_pressure_not_yet_measured",
+    "semantic_coverage_kappa_not_yet_measured",
+    "domain_transfer_confidence_not_yet_measured",
+    "empirical_weight_fit_not_yet_performed",
+    "current_weight_profile_is_design_scaffold",
+]
+EU_AI_ACT_EVIDENCE_CATEGORIES = [
+    "risk_classification_support", "intended_use_description", "source_data_governance_evidence", "technical_documentation_support",
+    "record_keeping_logging_support", "transparency_deployer_information_support", "human_oversight_support",
+    "accuracy_robustness_cybersecurity_posture", "post_market_monitoring_or_incident_review_posture",
+    "fundamental_rights_or_data_equity_review_support", "non_authority_boundary",
+]
+EU_AI_ACT_GAP_TERMS = [
+    "missing_risk_classification", "missing_intended_use_owner", "missing_human_signoff", "missing_control_effectiveness_test",
+    "missing_representative_data_assessment", "missing_security_review", "missing_fundamental_rights_assessment",
+    "missing_post_market_monitoring_plan", "missing_incident_response_owner", "missing_legal_review",
+]
+WAVE_EU_PROVENANCE_BLOCKED_CLAIMS = [
+    "runtime proxies are canonical GUFT measurements",
+    "WAVE Rosetta proves GUFT",
+    "WAVE Rosetta proves universal ontology",
+    "WAVE Rosetta proves consciousness",
+    "bridge estimate is truth certification",
+    "bridge estimate grants final-answer authority",
+    "bridge estimate grants accepted-evidence authority",
+    "high Ψ means constructive output",
+    "waveform symmetry proves ethical symmetry",
+    "low TAF means hidden uncertainty is acceptable",
+    "calibration bridge releases product",
+    "calibration bridge proves product readiness",
+    "bridge weights need not be versioned",
+    "bridge estimates need no uncertainty packet",
+    "population calibration is complete",
+    "domain validation is complete",
+    "provenance ledger proves GUFT",
+    "provenance ledger proves universal ontology",
+    "provenance ledger proves consciousness",
+    "provenance ledger certifies truth",
+    "provenance ledger changes bridge weights",
+    "provenance ledger changes bridge formulas",
+    "implemented v1 formulas are final calibration",
+    "normalized reliability-weighted formula is already implemented",
+    "BridgeConfidence packet is already implemented",
+    "negative controls are already implemented",
+    "source reports are accepted evidence",
+    "report lineage is truth certification",
+    "UVLM certifies EU AI Act compliance",
+    "EU AI Act evidence map is EU AI Act compliance certification",
+    "EU AI Act evidence map provides legal advice",
+    "EU AI Act evidence map passes audit",
+    "EU AI Act evidence map guarantees attestation success",
+    "EU AI Act evidence map proves product readiness",
+    "EU AI Act evidence map is product release",
+    "EU AI Act evidence map certifies truth",
+    "EU AI Act evidence map authorizes final answers",
+    "EU AI Act evidence map grants accepted-evidence authority",
+    "EU AI Act evidence map writes memory",
+    "EU AI Act evidence map admits Atlas memory",
+    "EU AI Act evidence map exports traces",
+    "EU AI Act evidence map federates PMR",
+    "source manifest is accepted evidence",
+    "traceability means truth",
+    "control mapping means control effectiveness",
+    "visible gap means compliance failure",
+    "no visible gap means compliance success",
+    "human review role means human signoff occurred",
+]
+WAVE_BRIDGE_CLAIM_ALLOWED = "WAVE-ROSETTA-CANONICAL-PROXY-BRIDGE-00 emits bounded canonical-proxy bridge estimates that relate LOCAL-REVIEW-RUNTIME-V0 metric proxies to canonical GUFT / ΔSyn semantic targets through WAVE Rosetta structural features, governance/provenance support, reliability factors, and uncertainty penalties while preserving that the bridge is calibration, not identity; bridge estimate, not canonical measurement; scientific support, not proof; and while requiring population calibration, domain validation, uncertainty reporting, and human review."
+WAVE_PROVENANCE_CLAIM_ALLOWED = "WAVE-ROSETTA-CANONICAL-PROXY-BRIDGE-PROVENANCE-00 preserves report lineage, source report hashes, report-derived bridge formulas, implemented v1 bridge calculations, vector values, weight profiles, uncertainty formulas, calibration gaps, and non-authority boundaries for WAVE-ROSETTA-CANONICAL-PROXY-BRIDGE-00 without changing runtime behavior, bridge formulas, bridge weights, or claiming canonical measurement, GUFT proof, universal ontology proof, consciousness proof, truth certification, product readiness, product release, final-answer authority, accepted-evidence authority, memory write, Atlas admission, trace export, PMR federation, compliance certification, model training, or review skipping."
+EU_AI_ACT_MVR_MAPPING_CLAIM_ALLOWED = "EU-AI-ACT-MVR-EVIDENCE-MAPPING-DESIGN-00 defines a design-only EU AI Act evidence-support mapping for Minimal Viable Receipt artifacts, mapping source manifests, consent scope, observation scope, quarantine reports, unsupported claims, controls, human review status, validation tier, retention boundaries, contestability, recovery options, non-authority boundaries, audit artifacts, and open gaps into EU AI Act review-support categories without generating runtime evidence maps, certifying EU AI Act compliance, providing legal advice, passing audits, guaranteeing attestation success, claiming product readiness, releasing product, certifying truth, granting final-answer or accepted-evidence authority, writing memory, admitting Atlas memory, exporting traces, federating PMR, training models, or skipping review."
+WAVE_BRIDGE_DASHBOARD_SUMMARY = {
+    "bridge_status": "completed",
+    "bridge_mode": "canonical_proxy_bridge_estimate",
+    "E_bridge": 0.661,
+    "T_bridge": 0.705,
+    "Ψ_structural_bridge": 0.6303,
+    "Ψ_constructive_bridge": 0.452729,
+    "Ψ_cancellation_bridge": 0.214302,
+    "combined_uncertainty": 0.34625,
+    "bridge_is_not_canonical_measurement": True,
+    "bridge_is_not_truth_certification": True,
+    "bridge_is_not_universal_ontology_proof": True,
+    "bridge_is_not_consciousness_proof": True,
+    "bridge_is_not_product_release": True,
+    "bridge_is_not_product_readiness": True,
+    "bridge_is_not_final_answer_authority": True,
+    "bridge_is_not_accepted_evidence_authority": True,
+    "bridge_is_not_memory_write": True,
+    "bridge_is_not_atlas_memory_admission": True,
+    "bridge_requires_population_calibration": True,
+    "bridge_requires_domain_validation": True,
+    "bridge_requires_human_review": True,
+}
+EU_AI_ACT_MVR_MAPPING_DASHBOARD_SUMMARY = {
+    "policy_status": "active_design_only",
+    "mapping_status": "active_design_only",
+    "profile_id": "eu_ai_act_evidence_support",
+    "evidence_map_generation_enabled": False,
+    "eu_ai_act_compliance_certification_emitted": False,
+    "legal_advice_emitted": False,
+    "audit_pass_claimed": False,
+    "attestation_success_claimed": False,
+    "product_readiness_claimed": False,
+    "product_release_performed": False,
+    "provider_runtime_performed": False,
+    "network_call_performed": False,
+    "real_input_processing_performed": False,
+    "memory_write_performed": False,
+    "atlas_memory_admission_performed": False,
+    "trace_export_performed": False,
+    "pmr_federation_performed": False,
+    "final_answer_authority_granted": False,
+    "accepted_evidence_authority_granted": False,
+    "truth_certification_emitted": False,
+    "model_training_performed": False,
+    "review_skip_authorized": False,
+}
+WAVE_PROVENANCE_DASHBOARD_SUMMARY = {
+    "provenance_status": "active_documentation_only",
+    "target_phase": "WAVE-ROSETTA-CANONICAL-PROXY-BRIDGE-00",
+    "target_weight_profile_version": "v1.0.0",
+    "runtime_behavior_changed": False,
+    "bridge_weight_changed": False,
+    "bridge_formula_changed": False,
+    "canonical_measurement_claimed": False,
+    "guft_proof_claimed": False,
+    "universal_ontology_proof_claimed": False,
+    "consciousness_proof_claimed": False,
+    "truth_certification_emitted": False,
+    "final_answer_authority_granted": False,
+    "accepted_evidence_authority_granted": False,
+    "compliance_certification_emitted": False,
+    "product_release_performed": False,
+    "product_readiness_claimed": False,
+    "provider_runtime_performed": False,
+    "network_call_performed": False,
+    "memory_write_performed": False,
+    "atlas_memory_admission_performed": False,
+    "trace_export_performed": False,
+    "pmr_federation_performed": False,
+}
+WAVE_BRIDGE_PHASE = {
+    "phase_id": "WAVE-ROSETTA-CANONICAL-PROXY-BRIDGE-00",
+    "repo": "pdxvoiceteacher/CoherenceLattice",
+    "status": "accepted_local_validation",
+    "evidence_type": "wave_rosetta_canonical_proxy_bridge_publication_sync",
+    "product_posture": "canonical_proxy_bridge_estimate_without_canonical_measurement_or_proof_authority",
+    "primary_artifacts": WAVE_BRIDGE_ARTIFACTS,
+    "dashboard_summary": WAVE_BRIDGE_DASHBOARD_SUMMARY,
+    "reproduction_command_summary": WAVE_BRIDGE_COMMAND,
+    "claim_allowed": WAVE_BRIDGE_CLAIM_ALLOWED,
+    "claims_blocked": WAVE_EU_PROVENANCE_BLOCKED_CLAIMS,
+    "reviewer_caution": "WAVE-ROSETTA-CANONICAL-PROXY-BRIDGE-00 emits estimate/calibration artifacts only. It is not canonical GUFT measurement, GUFT proof, universal ontology proof, consciousness proof, truth certification, product readiness, product release, final-answer authority, accepted-evidence authority, memory write, Atlas admission, trace export, PMR federation, model training, or review skipping.",
+    "publication_status": "dashboard_indexed",
+}
+EU_AI_ACT_MVR_MAPPING_PHASE = {
+    "phase_id": "EU-AI-ACT-MVR-EVIDENCE-MAPPING-DESIGN-00",
+    "repo": "pdxvoiceteacher/CoherenceLattice",
+    "status": "accepted_local_validation",
+    "evidence_type": "eu_ai_act_mvr_evidence_mapping_design_publication_sync",
+    "product_posture": "design_only_eu_ai_act_evidence_support_without_certification_or_legal_advice",
+    "primary_artifacts": EU_AI_ACT_MVR_MAPPING_ARTIFACTS,
+    "dashboard_summary": EU_AI_ACT_MVR_MAPPING_DASHBOARD_SUMMARY,
+    "reproduction_command_summary": COMPLIANCE_TOOLSET_DESIGN_COMMAND,
+    "claim_allowed": EU_AI_ACT_MVR_MAPPING_CLAIM_ALLOWED,
+    "claims_blocked": WAVE_EU_PROVENANCE_BLOCKED_CLAIMS,
+    "reviewer_caution": "EU-AI-ACT-MVR-EVIDENCE-MAPPING-DESIGN-00 is design-only evidence support. It generates no runtime evidence maps, certifies no EU AI Act compliance, provides no legal advice, passes no audit, guarantees no attestation success, claims no product readiness, releases no product, certifies no truth, grants no final-answer or accepted-evidence authority, writes no memory, admits no Atlas memory, exports no traces, federates no PMR, trains no model, and skips no review.",
+    "publication_status": "dashboard_indexed",
+}
+
+EU_AI_ACT_MVR_EVIDENCE_MAP_LOCAL_PROTOTYPE_COMMAND = "python -c \"from pathlib import Path; from coherence.compliance.eu_ai_act_mvr_evidence_map import build_eu_ai_act_mvr_evidence_map_local_prototype; bridge=Path(r'C:\\UVLM\\run_artifacts\\eu_ai_act_mvr_evidence_map_local_prototype\\bridge'); build_eu_ai_act_mvr_evidence_map_local_prototype(bridge)\""
+EU_AI_ACT_MVR_EVIDENCE_MAP_LOCAL_PROTOTYPE_REPRO_FRAGMENTS = ["build_eu_ai_act_mvr_evidence_map_local_prototype"]
+EU_AI_ACT_MVR_EVIDENCE_MAP_LOCAL_PROTOTYPE_ARTIFACTS = [
+    "docs/EU_AI_ACT_MVR_EVIDENCE_MAP_LOCAL_PROTOTYPE.md",
+    "python/src/coherence/compliance/eu_ai_act_mvr_evidence_map.py",
+    "schema/bridge/eu_ai_act_mvr_evidence_map.schema.json",
+    "schema/bridge/eu_ai_act_mvr_gap_register.schema.json",
+    "schema/bridge/eu_ai_act_mvr_human_review_packet.schema.json",
+    "schema/bridge/eu_ai_act_mvr_non_authority_boundary.schema.json",
+    "schema/bridge/eu_ai_act_mvr_evidence_map_receipt.schema.json",
+    "eu_ai_act_mvr_evidence_map.json",
+    "eu_ai_act_mvr_gap_register.json",
+    "eu_ai_act_mvr_human_review_packet.json",
+    "eu_ai_act_mvr_non_authority_boundary.json",
+    "eu_ai_act_mvr_evidence_summary.md",
+    "eu_ai_act_mvr_evidence_map_receipt.json",
+    "mvr_local_real_input_human_selected_file_smoke_packet.json",
+    "mvr_local_real_input_source_manifest.json",
+    "mvr_local_real_input_consent_scope.json",
+    "mvr_local_real_input_quarantine_report.json",
+    "minimal_viable_receipt_packet.json",
+    "minimal_viable_receipt_human_readable.md",
+    "mvr_local_real_input_pilot_receipt.json",
+    "pmr_local_runtime_artifact_index.json",
+    "artifact_inventory.json",
+    "export_bundle_parity_report.json",
+]
+EU_AI_ACT_MVR_EVIDENCE_MAP_LOCAL_PROTOTYPE_DOCTRINE_LANGUAGE = [
+    "EU AI Act MVR Evidence Map Prototype",
+    "This is evidence support, not EU AI Act compliance certification.",
+    "UVLM produces mapped evidence and visible gaps, not legal conclusions.",
+    "Qualified humans must decide whether evidence supports compliance claims.",
+    "Missing evidence is visible as a gap, not hidden.",
+    "Source manifest is not accepted evidence.",
+    "Traceability is not truth.",
+    "Control mapping is not control effectiveness.",
+    "Human review remains required.",
+    "Authorized professional signoff remains required.",
+    "No legal advice was emitted.",
+    "No audit pass was claimed.",
+    "No attestation success was claimed.",
+    "No product readiness was claimed.",
+    "No product release was performed.",
+    "EU-AI-ACT-MVR-EVIDENCE-MAP-LOCAL-PROTOTYPE-00 emits review-support evidence, not compliance certification.",
+]
+EU_AI_ACT_MVR_EVIDENCE_MAP_LOCAL_PROTOTYPE_ARTIFACT_MAPPING_TERMS = [
+    "source_manifest",
+    "source_hash",
+    "consent_scope",
+    "observation_scope",
+    "quarantine_report",
+    "unsupported_claims",
+    "controls_applied",
+    "human_review_status",
+    "validation_tier",
+    "retention_boundary",
+    "contestability_options",
+    "recovery_options",
+    "non_authority_boundary",
+    "audit_artifact_index",
+    "open_gaps",
+]
+EU_AI_ACT_MVR_EVIDENCE_MAP_LOCAL_PROTOTYPE_GAP_TERMS = [
+    *EU_AI_ACT_GAP_TERMS,
+    "missing_evidence_visible = true",
+    "gaps_are_not_compliance_failures = true",
+    "no_visible_gap_is_not_compliance_success = true",
+]
+EU_AI_ACT_MVR_EVIDENCE_MAP_LOCAL_PROTOTYPE_SIGNOFF_TERMS = [
+    "compliance_officer",
+    "legal_reviewer",
+    "privacy_officer",
+    "security_officer",
+    "model_risk_manager",
+    "ai_governance_lead",
+    "executive_owner",
+    "licensed_auditor_or_certifier",
+    "signoff_performed = false",
+    "legal_review_performed = false",
+    "authorized_professional_signoff_required = true",
+]
+EU_AI_ACT_MVR_EVIDENCE_MAP_LOCAL_PROTOTYPE_PRIOR_PHASE_RELATION = [
+    "EU-AI-ACT-MVR-EVIDENCE-MAPPING-DESIGN-00 defines the design-only mapping profile.",
+    "EU-AI-ACT-MVR-EVIDENCE-MAP-LOCAL-PROTOTYPE-00 emits the first local EU AI Act evidence-support map.",
+    "COMPLIANCE-EVIDENCE-TOOLSET-LIBRARY-DESIGN-00 defines the broader evidence toolset library.",
+    "COMPLIANCE-READY-MVR-REPORT-DESIGN-00 defines the compliance-facing report structure.",
+    "MVR-LOCAL-REAL-INPUT-PILOT-HUMAN-SELECTED-FILE-SMOKE-00 supplies bounded MVR real-input pilot artifacts.",
+    "VALIDATION-TIERING-PROVENANCE-00 records validation confidence scope.",
+]
+EU_AI_ACT_MVR_EVIDENCE_MAP_LOCAL_PROTOTYPE_BLOCKED_CLAIMS = [
+    "EU AI Act evidence map prototype certifies EU AI Act compliance",
+    "EU AI Act evidence map prototype provides legal advice",
+    "EU AI Act evidence map prototype passes audit",
+    "EU AI Act evidence map prototype guarantees attestation success",
+    "EU AI Act evidence map prototype proves product readiness",
+    "EU AI Act evidence map prototype is product release",
+    "EU AI Act evidence map prototype certifies truth",
+    "EU AI Act evidence map prototype authorizes final answers",
+    "EU AI Act evidence map prototype grants accepted-evidence authority",
+    "EU AI Act evidence map prototype writes memory",
+    "EU AI Act evidence map prototype admits Atlas memory",
+    "EU AI Act evidence map prototype exports traces",
+    "EU AI Act evidence map prototype federates PMR",
+    "source manifest is accepted evidence",
+    "traceability means truth",
+    "control mapping means control effectiveness",
+    "visible gap means compliance failure",
+    "no visible gap means compliance success",
+    "human review role means human signoff occurred",
+    "mapped evidence means compliance satisfied",
+    "open_gap_count means compliance failure",
+    "gap_count means audit failure",
+    "signoff role means signoff performed",
+]
+EU_AI_ACT_MVR_EVIDENCE_MAP_LOCAL_PROTOTYPE_CLAIM_ALLOWED = "EU-AI-ACT-MVR-EVIDENCE-MAP-LOCAL-PROTOTYPE-00 emits a local EU AI Act evidence-support map from Minimal Viable Receipt artifacts, mapping source manifest, consent scope, observation scope, quarantine report, unsupported claims, controls, human review status, validation tier, retention boundary, contestability, recovery options, non-authority boundaries, audit artifact index, and open gaps into EU AI Act review-support categories while exposing missing evidence as visible gaps and requiring qualified human review and authorized professional signoff, without certifying EU AI Act compliance, providing legal advice, passing audits, guaranteeing attestation success, claiming product readiness, releasing product, certifying truth, granting final-answer or accepted-evidence authority, writing memory, admitting Atlas memory, exporting traces, federating PMR, training models, or skipping review."
+EU_AI_ACT_MVR_EVIDENCE_MAP_LOCAL_PROTOTYPE_DASHBOARD_SUMMARY = {
+    "evidence_map_status": "completed",
+    "evidence_map_mode": "local_mvr_evidence_map_prototype",
+    "profile_id": "eu_ai_act_evidence_support",
+    "evidence_source_mode": "generated_harmless_fixture",
+    "mvr_source_phase": "MVR-LOCAL-REAL-INPUT-PILOT-PROTOTYPE-00",
+    "mapping_category_count": 11,
+    "evidence_row_count": 11,
+    "open_gap_count": 10,
+    "gap_count": 10,
+    "review_status": "human_review_required",
+    "authorized_professional_signoff_required": True,
+    "signoff_performed": False,
+    "legal_review_performed": False,
+    "compliance_certification_emitted": False,
+    "legal_advice_emitted": False,
+    "audit_pass_claimed": False,
+    "attestation_success_claimed": False,
+    "product_readiness_claimed": False,
+    "product_release_performed": False,
+    "final_answer_authority_granted": False,
+    "accepted_evidence_authority_granted": False,
+    "truth_certification_emitted": False,
+    "memory_write_performed": False,
+    "atlas_memory_admission_performed": False,
+    "trace_export_performed": False,
+    "pmr_federation_performed": False,
+    "evidence_map_is_not_eu_ai_act_compliance_certification": True,
+    "evidence_map_is_not_legal_advice": True,
+    "evidence_map_is_not_audit_pass": True,
+    "evidence_map_is_not_attestation_success": True,
+    "evidence_map_is_not_product_readiness": True,
+    "evidence_map_is_not_product_release": True,
+    "evidence_map_is_not_truth_certification": True,
+    "evidence_map_is_not_final_answer_authority": True,
+    "evidence_map_is_not_accepted_evidence_authority": True,
+    "evidence_map_is_not_memory_write": True,
+    "evidence_map_is_not_atlas_memory_admission": True,
+}
+EU_AI_ACT_MVR_EVIDENCE_MAP_LOCAL_PROTOTYPE_PHASE = {
+    "phase_id": "EU-AI-ACT-MVR-EVIDENCE-MAP-LOCAL-PROTOTYPE-00",
+    "repo": "pdxvoiceteacher/CoherenceLattice",
+    "status": "accepted_local_validation",
+    "evidence_type": "eu_ai_act_mvr_evidence_map_local_prototype_publication_sync",
+    "product_posture": "local_eu_ai_act_evidence_support_map_without_certification_legal_advice_or_runtime_authority",
+    "primary_artifacts": EU_AI_ACT_MVR_EVIDENCE_MAP_LOCAL_PROTOTYPE_ARTIFACTS,
+    "dashboard_summary": EU_AI_ACT_MVR_EVIDENCE_MAP_LOCAL_PROTOTYPE_DASHBOARD_SUMMARY,
+    "reproduction_command_summary": EU_AI_ACT_MVR_EVIDENCE_MAP_LOCAL_PROTOTYPE_COMMAND,
+    "claim_allowed": EU_AI_ACT_MVR_EVIDENCE_MAP_LOCAL_PROTOTYPE_CLAIM_ALLOWED,
+    "claims_blocked": EU_AI_ACT_MVR_EVIDENCE_MAP_LOCAL_PROTOTYPE_BLOCKED_CLAIMS,
+    "reviewer_caution": "EU-AI-ACT-MVR-EVIDENCE-MAP-LOCAL-PROTOTYPE-00 emits local EU AI Act evidence-support map artifacts only. It is not EU AI Act compliance certification, legal advice, audit pass, attestation success, product readiness, product release, truth certification, final-answer authority, accepted-evidence authority, memory write, Atlas admission, trace export, PMR federation, provider runtime, network runtime, model training, or review skipping.",
+    "publication_status": "dashboard_indexed",
+}
+
+
+COMPLIANCE_READY_MVR_REPORT_LOCAL_PROTOTYPE_COMMAND = "python -c \"from pathlib import Path; from coherence.compliance.compliance_ready_mvr_report import build_compliance_ready_mvr_report_local_prototype; bridge=Path(r'C:\\UVLM\\run_artifacts\\compliance_ready_mvr_report_local_prototype\\bridge'); build_compliance_ready_mvr_report_local_prototype(bridge)\""
+COMPLIANCE_READY_MVR_REPORT_LOCAL_PROTOTYPE_REPRO_FRAGMENTS = ["build_compliance_ready_mvr_report_local_prototype"]
+COMPLIANCE_READY_MVR_REPORT_LOCAL_PROTOTYPE_ARTIFACTS = [
+    "compliance_ready_mvr_report.md",
+    "compliance_ready_mvr_report_packet.json",
+    "compliance_ready_mvr_report_section_index.json",
+    "compliance_ready_mvr_control_mapping.json",
+    "compliance_ready_mvr_plain_language_glossary.json",
+    "compliance_ready_mvr_non_authority_boundary.json",
+    "compliance_ready_mvr_report_receipt.json",
+    "python/src/coherence/compliance/compliance_ready_mvr_report.py",
+    "schema/bridge/compliance_ready_mvr_report_receipt.schema.json",
+]
+SOURCE_CORPUS_PROVENANCE_COMMAND = "python -m pytest -q tests/test_source_corpus_provenance_archive.py tests/test_experiment_registry.py"
+SOURCE_CORPUS_HASH_FILL_COMMAND = "python -m pytest -q tests/test_source_corpus_provenance_hash_fill.py tests/test_source_corpus_provenance_archive.py tests/test_experiment_registry.py"
+SOURCE_CORPUS_PROVENANCE_REPRO_FRAGMENTS = ["test_source_corpus_provenance_archive.py"]
+SOURCE_CORPUS_HASH_FILL_REPRO_FRAGMENTS = ["test_source_corpus_provenance_hash_fill.py"]
+SOURCE_CORPUS_PROVENANCE_ARTIFACTS = [
+    "docs/SOURCE_CORPUS_PROVENANCE_ARCHIVE.md",
+    "docs/provenance/source_reports/README.md",
+    "docs/provenance/source_reports/manifest.schema.json",
+    "docs/provenance/source_reports/manifest.json",
+    "docs/provenance/source_reports/sha256sums.txt",
+    "docs/provenance/source_reports/2026-06/README.md",
+    "docs/provenance/source_reports/2026-06/raw/.gitkeep",
+    "docs/provenance/source_reports/2026-06/normalized/.gitkeep",
+    "docs/provenance/source_reports/2026-06/summaries/.gitkeep",
+]
+SOURCE_CORPUS_CONCRETE_HASHES = [
+    "2f49da190fcf5e3a04330f53bd9e6d30228c0a999cdabf8be2e94e957e6dfb09",
+    "9eaba6d5a49de7d09542b3e879cbb9eb936181a37e660b3434a5e31e110ccfe6",
+    "21045f07f5e2122db9714741a418f582cb87b6d004f6c66f4a63d4b6b7e77fd6",
+    "9140a5dad410be3f38bcb933b6c360537957d0ce1d4b5ea0d259941eaa3c581e",
+    "94703c4678eccd407adb9009b34d2b178ab6ab18ee20b6df22d9407eda50dde1",
+]
+SOURCE_CORPUS_REPORT_FILENAMES = [
+    "GUFT discussion with Thomas and Apprentice 6_8_2026_842AM.docx",
+    "GUFT METRICS BRIDGE DISCUSSION 6_9_2026_1022AM.docx",
+    "wave_rosetta_canonical_proxy_bridge_scientific_review_20260609.md",
+    "EU AI Act Reporting Formats and Short-Term Product Strategy for UVLM Triadic Brain.docx",
+    "EU AI Act Aligned Reporting Architecture for Triadic Brain Product Lines.docx",
+]
+COMPLIANCE_READY_MVR_REPORT_LOCAL_PROTOTYPE_DOCTRINE_LANGUAGE = [
+    "Compliance-Ready MVR Report Local Prototype",
+    "This report supports review; it does not certify compliance.",
+    "This report is not legal advice.",
+    "This report does not pass an audit.",
+    "This report does not guarantee attestation success.",
+    "Source manifest is not accepted evidence.",
+    "Traceability is not truth.",
+    "Control mapping is not control effectiveness.",
+    "Visible gaps are not compliance failures.",
+    "No visible gap is not compliance success.",
+    "Human review remains required.",
+    "Authorized professional signoff remains required.",
+    "The report is stupidly user friendly.",
+    "Compliance users need a report, not an artifact maze.",
+]
+COMPLIANCE_READY_MVR_REPORT_LOCAL_PROTOTYPE_SECTION_TERMS = [
+    "Executive Summary",
+    "System and Intended Use",
+    "Input Selection and Source Scope",
+    "Consent and Observation Scope",
+    "Evidence Map Summary",
+    "Gap Register Summary",
+    "Human Oversight and Signoff",
+    "Controls and Traceability",
+    "Data Governance and Quarantine",
+    "Retention and Memory Boundaries",
+    "Contestability and Recovery",
+    "Validation Confidence Scope",
+    "WAVE / Metric Proxy Annex",
+    "Non-Authority Statement",
+    "Audit Artifact Index",
+    "Open Questions and Required Follow-Up",
+]
+COMPLIANCE_READY_MVR_REPORT_LOCAL_PROTOTYPE_GLOSSARY_TERMS = [
+    "MVR",
+    "Observation Contract",
+    "TAC",
+    "CES",
+    "PMR",
+    "Sophia",
+    "Validation Tier",
+    "Quarantine",
+    "Source Manifest",
+    "Non-Authority Boundary",
+    "WAVE Bridge",
+    "EU AI Act Evidence Map",
+    "Gap Register",
+    "Human Signoff Packet",
+]
+SOURCE_CORPUS_PROVENANCE_DOCTRINE_LANGUAGE = [
+    "Source Corpus Provenance Archive",
+    "Repos are governed provenance libraries, not document dumps.",
+    "Raw source reports may be omitted from public repos when privacy, sensitivity, size, or licensing requires hash-only reference.",
+    "DOCX originals should have Markdown derivatives when committed.",
+    "TXT and MD reports may be committed directly when public-safe.",
+    "Large or sensitive files should use private/archive storage, Git LFS, release assets, or external governed storage.",
+    "Future users must check canonical repo state before treating reports as current design.",
+    "Source reports are not accepted evidence by themselves.",
+    "Source reports are not theorem proof.",
+    "Source reports are not product release.",
+    "Source reports are not compliance certification.",
+    "Summaries are not sources.",
+    "Human review remains required.",
+    "Hashes preserve identity; hashes do not certify truth.",
+    "Visibility and sensitivity must be explicit.",
+    "Public release approval must be explicit.",
+]
+SOURCE_CORPUS_MANIFEST_TERMS = [
+    "active_governed_provenance_manifest",
+    "hash_only_public_reference",
+    "canonical_repo_state_supersedes_report",
+    "source_is_not_accepted_evidence",
+    "source_is_not_theorem_proof",
+    "source_is_not_product_release",
+    "source_is_not_compliance_certification",
+    "summary_is_not_source",
+    "human_review_required",
+    "public_release_approved = false",
+]
+COMPLIANCE_REPORT_SOURCE_CORPUS_BLOCKED_CLAIMS = [
+    "Compliance-ready MVR report local prototype certifies compliance",
+    "Compliance-ready MVR report local prototype provides legal advice",
+    "Compliance-ready MVR report local prototype passes audit",
+    "Compliance-ready MVR report local prototype guarantees attestation success",
+    "Compliance-ready MVR report local prototype proves product readiness",
+    "Compliance-ready MVR report local prototype is product release",
+    "Compliance-ready MVR report local prototype certifies truth",
+    "Compliance-ready MVR report local prototype authorizes final answers",
+    "Compliance-ready MVR report local prototype grants accepted-evidence authority",
+    "Compliance-ready MVR report local prototype writes memory",
+    "Compliance-ready MVR report local prototype admits Atlas memory",
+    "Compliance-ready MVR report local prototype exports traces",
+    "Compliance-ready MVR report local prototype federates PMR",
+    "source manifest is accepted evidence",
+    "traceability means truth",
+    "control mapping means control effectiveness",
+    "visible gap means compliance failure",
+    "no visible gap means compliance success",
+    "human review role means human signoff occurred",
+    "mapped evidence means compliance satisfied",
+    "WAVE bridge means canonical measurement",
+    "source corpus archive proves GUFT",
+    "source corpus archive proves compliance",
+    "source corpus archive certifies truth",
+    "source reports are accepted evidence",
+    "source reports are canonical repo state",
+    "source reports authorize product release",
+    "source reports certify product readiness",
+    "summaries are sources",
+    "hashes certify truth",
+    "raw reports may be public by default",
+    "private reports may be bulk imported without review",
+    "GitHub repo is a backup store",
+    "source corpus archive writes memory",
+    "source corpus archive admits Atlas memory",
+]
+COMPLIANCE_READY_MVR_REPORT_LOCAL_PROTOTYPE_CLAIM_ALLOWED = "COMPLIANCE-READY-MVR-REPORT-LOCAL-PROTOTYPE-00 emits a local compliance-ready Minimal Viable Receipt report prototype that summarizes MVR and EU AI Act evidence-map artifacts into a stupidly user-friendly compliance-facing report with executive status, evidence map summary, gap register summary, human oversight and signoff status, controls and traceability, data governance, retention boundaries, contestability, validation scope, metric proxy annex, non-authority statement, audit artifact index, and open questions while requiring human review and authorized professional signoff and avoiding compliance certification, legal advice, audit-pass claims, attestation-success claims, product-readiness claims, product release, truth certification, final-answer authority, accepted-evidence authority, memory write, Atlas admission, trace export, PMR federation, model training, or review skipping."
+SOURCE_CORPUS_PROVENANCE_ARCHIVE_CLAIM_ALLOWED = "SOURCE-CORPUS-PROVENANCE-ARCHIVE-00 defines a governed source-report archive pattern with manifest schema, source metadata, hashes, visibility and sensitivity flags, normalized derivative guidance, and non-authority boundaries so future developers can trace design and scientific provenance without treating source reports as accepted evidence, theorem proof, compliance certification, product release, product readiness, memory write, Atlas admission, or current canonical repo state."
+SOURCE_CORPUS_PROVENANCE_HASH_FILL_CLAIM_ALLOWED = "SOURCE-CORPUS-PROVENANCE-HASH-FILL-00 fills pending EU AI Act source-report hashes in the governed source-corpus manifest and sha256sums file while preserving hash-only public references, public_release_approved=false, no raw private DOCX import, and all non-authority boundaries."
+COMPLIANCE_READY_MVR_REPORT_LOCAL_PROTOTYPE_DASHBOARD_SUMMARY = {
+    "report_status": "completed",
+    "report_mode": "local_compliance_ready_mvr_report_prototype",
+    "report_source_mode": "generated_harmless_fixture",
+    "open_gap_count": 10,
+    "mapping_category_count": 11,
+    "evidence_row_count": 11,
+    "human_review_required": True,
+    "authorized_professional_signoff_required": True,
+    "control_mapping_rows": 14,
+    "glossary_entries": 14,
+    "compliance_certification_emitted": False,
+    "legal_advice_emitted": False,
+    "audit_pass_claimed": False,
+    "attestation_success_claimed": False,
+    "product_readiness_claimed": False,
+    "product_release_performed": False,
+    "final_answer_authority_granted": False,
+    "accepted_evidence_authority_granted": False,
+    "truth_certification_emitted": False,
+    "memory_write_performed": False,
+    "atlas_memory_admission_performed": False,
+    "trace_export_performed": False,
+    "pmr_federation_performed": False,
+}
+SOURCE_CORPUS_PROVENANCE_DASHBOARD_SUMMARY = {
+    "manifest_status": "active_governed_provenance_manifest",
+    "source_count": 5,
+    "known_wave_guft_hashes_preserved": True,
+    "eu_ai_act_report_hashes_filled": True,
+    "pending_hash_placeholders_remaining": 0,
+    "raw_private_reports_bulk_imported": False,
+    "visibility_and_public_release_approval_explicit": True,
+    "all_manifest_rows_preserve_non_authority_boundaries": True,
+    "source_reports_are_provenance_context_only": True,
+    "source_reports_are_not_accepted_evidence": True,
+    "source_reports_are_not_canonical_repo_state": True,
+    "memory_write_performed": False,
+    "atlas_memory_admission_performed": False,
+    "trace_export_performed": False,
+    "pmr_federation_performed": False,
+    "product_release_performed": False,
+    "product_readiness_claimed": False,
+    "truth_certification_emitted": False,
+    "theorem_proof_claimed": False,
+    "guft_proof_claimed": False,
+    "compliance_certification_emitted": False,
+}
+SOURCE_CORPUS_HASH_FILL_DASHBOARD_SUMMARY = {
+    "manifest_status": "active_governed_provenance_manifest",
+    "source_count": 5,
+    "known_wave_guft_hashes_preserved": True,
+    "eu_ai_act_report_hashes_filled": True,
+    "pending_hash_placeholders_remaining": 0,
+    "raw_private_reports_bulk_imported": False,
+    "hash_only_public_references_preserved": True,
+    "public_release_approved": False,
+    "all_non_authority_boundaries_preserved": True,
+    "memory_write_performed": False,
+    "atlas_memory_admission_performed": False,
+    "trace_export_performed": False,
+    "pmr_federation_performed": False,
+    "product_release_performed": False,
+    "product_readiness_claimed": False,
+    "truth_certification_emitted": False,
+    "theorem_proof_claimed": False,
+    "guft_proof_claimed": False,
+    "compliance_certification_emitted": False,
+}
+COMPLIANCE_READY_MVR_REPORT_LOCAL_PROTOTYPE_PHASE = {
+    "phase_id": "COMPLIANCE-READY-MVR-REPORT-LOCAL-PROTOTYPE-00",
+    "repo": "pdxvoiceteacher/CoherenceLattice",
+    "status": "accepted_local_validation",
+    "evidence_type": "compliance_ready_mvr_report_local_prototype_publication_sync",
+    "product_posture": "local_compliance_ready_mvr_report_review_support_without_certification_or_authority",
+    "primary_artifacts": COMPLIANCE_READY_MVR_REPORT_LOCAL_PROTOTYPE_ARTIFACTS,
+    "dashboard_summary": COMPLIANCE_READY_MVR_REPORT_LOCAL_PROTOTYPE_DASHBOARD_SUMMARY,
+    "reproduction_command_summary": COMPLIANCE_READY_MVR_REPORT_LOCAL_PROTOTYPE_COMMAND,
+    "claim_allowed": COMPLIANCE_READY_MVR_REPORT_LOCAL_PROTOTYPE_CLAIM_ALLOWED,
+    "claims_blocked": COMPLIANCE_REPORT_SOURCE_CORPUS_BLOCKED_CLAIMS,
+    "reviewer_caution": "COMPLIANCE-READY-MVR-REPORT-LOCAL-PROTOTYPE-00 emits local review-support report artifacts only. It certifies no compliance, provides no legal advice, passes no audit, guarantees no attestation success, claims no product readiness, releases no product, certifies no truth, grants no final-answer or accepted-evidence authority, writes no memory, admits no Atlas memory, exports no traces, federates no PMR, trains no model, and skips no review.",
+    "publication_status": "dashboard_indexed",
+}
+SOURCE_CORPUS_PROVENANCE_ARCHIVE_PHASE = {
+    "phase_id": "SOURCE-CORPUS-PROVENANCE-ARCHIVE-00",
+    "repo": "pdxvoiceteacher/CoherenceLattice",
+    "status": "accepted_local_validation",
+    "evidence_type": "source_corpus_provenance_archive_publication_sync",
+    "product_posture": "governed_source_report_provenance_manifest_without_evidence_or_canonical_authority",
+    "primary_artifacts": SOURCE_CORPUS_PROVENANCE_ARTIFACTS,
+    "dashboard_summary": SOURCE_CORPUS_PROVENANCE_DASHBOARD_SUMMARY,
+    "reproduction_command_summary": SOURCE_CORPUS_PROVENANCE_COMMAND,
+    "claim_allowed": SOURCE_CORPUS_PROVENANCE_ARCHIVE_CLAIM_ALLOWED,
+    "claims_blocked": COMPLIANCE_REPORT_SOURCE_CORPUS_BLOCKED_CLAIMS,
+    "reviewer_caution": "SOURCE-CORPUS-PROVENANCE-ARCHIVE-00 is a governed provenance archive pattern only. Source reports are provenance context, not accepted evidence, theorem proof, compliance certification, product release, product readiness, memory write, Atlas admission, or current canonical repo state.",
+    "publication_status": "dashboard_indexed",
+}
+SOURCE_CORPUS_PROVENANCE_HASH_FILL_PHASE = {
+    "phase_id": "SOURCE-CORPUS-PROVENANCE-HASH-FILL-00",
+    "repo": "pdxvoiceteacher/CoherenceLattice",
+    "status": "accepted_local_validation",
+    "evidence_type": "source_corpus_provenance_hash_fill_publication_sync",
+    "product_posture": "hash_fill_only_without_raw_private_docx_import_or_evidence_authority",
+    "primary_artifacts": SOURCE_CORPUS_PROVENANCE_ARTIFACTS,
+    "dashboard_summary": SOURCE_CORPUS_HASH_FILL_DASHBOARD_SUMMARY,
+    "reproduction_command_summary": SOURCE_CORPUS_HASH_FILL_COMMAND,
+    "claim_allowed": SOURCE_CORPUS_PROVENANCE_HASH_FILL_CLAIM_ALLOWED,
+    "claims_blocked": COMPLIANCE_REPORT_SOURCE_CORPUS_BLOCKED_CLAIMS,
+    "reviewer_caution": "SOURCE-CORPUS-PROVENANCE-HASH-FILL-00 fills pending EU AI Act source-report hashes only. It preserves hash-only public references, public_release_approved=false, no raw private DOCX import, and non-authority boundaries; it is not evidence authority, truth certification, compliance certification, product authority, memory write, Atlas admission, trace export, or PMR federation.",
+    "publication_status": "dashboard_indexed",
+}
+
+
+SOURCE_CORPUS_BATCH_MANIFEST_20260610_COMMAND = "python -m pytest -q python/tests/provenance/test_source_corpus_batch_manifest_20260610.py tests/test_experiment_registry.py"
+SOURCE_CORPUS_BATCH_MANIFEST_20260610_REPRO_FRAGMENTS = ["test_source_corpus_batch_manifest_20260610.py"]
+SOURCE_CORPUS_BATCH_MANIFEST_20260610_ARTIFACTS = [
+    "docs/provenance/source_reports/2026-06/batch_manifest_20260610.json",
+    "docs/provenance/source_reports/2026-06/batch_sha256sums_20260610.txt",
+    "docs/provenance/source_reports/2026-06/batch_aliases_20260610.json",
+    "docs/provenance/source_reports/2026-06/batch_summary_20260610.md",
+    "schema/bridge/source_corpus_batch_manifest.schema.json",
+    "python/tests/provenance/test_source_corpus_batch_manifest_20260610.py",
+]
+SOURCE_CORPUS_BATCH_MANIFEST_20260610_DOCTRINE_LANGUAGE = [
+    "June 2026 Source Corpus Batch Manifest",
+    "This batch preserves source identity and provenance, not accepted evidence.",
+    "Raw private files are not committed.",
+    "Duplicate filenames are deduplicated by SHA-256.",
+    "Filename aliases are preserved.",
+    "Public release approval is false by default.",
+    "Hashes preserve identity; hashes do not certify truth.",
+    "Canonical repo state supersedes source reports.",
+    "Human review remains required.",
+    "Large or sensitive reports remain hash-only references unless explicitly approved.",
+    "Repos are governed provenance libraries, not document dumps.",
+    "Source reports are not accepted evidence by themselves.",
+    "Source reports are not theorem proof.",
+    "Source reports are not product release.",
+    "Source reports are not product readiness.",
+    "Source reports are not compliance certification.",
+    "Source reports are not legal advice.",
+    "Source reports are not current canonical repo state.",
+    "SOURCE-CORPUS-BATCH-MANIFEST-2026-06-10-00 does not commit raw private reports.",
+    "SOURCE-CORPUS-BATCH-MANIFEST-2026-06-10-00 does not add extracted text.",
+    "SOURCE-CORPUS-BATCH-MANIFEST-2026-06-10-00 does not add normalized derivatives.",
+]
+SOURCE_CORPUS_BATCH_MANIFEST_20260610_FILENAMES = [
+    "Telemetry Project Deep Dive.docx",
+    "CoherenceLattice Change Management and Gnosis Synthesis Report.docx",
+    "Telemetry Integration into the CoherenceLattice Pipeline.docx",
+    "Multi-Axial Coherence Analysis for Exogenic Off-Loading in Complex Systems.docx",
+    "Quantum Gravity from Causal Memory.docx",
+    "Universal Control Codex (UCC) Supplement.docx",
+    "The Coherence Lattice GUFT meets GUPT.docx",
+    "The Grand Unified Field Theory of Coherence (GUFT) V69.me.docx",
+    "TCHES v1.4.docx",
+    "Appendix TAF – Operationalize it, because Ultra Verba, Lux Mentis.docx",
+    "Echo Primer.pdf",
+    "PMR - Internal Technical Memo.docx",
+    "THE COHERENCE OF SIGNAL.docx",
+    "Preventing Hyperreal design drift.docx",
+    "Triadic Brain Developer Guidance for Canonical Ingress, Grounding Bundles, and Phaselock Governance.docx",
+    "Triadic Brain Maths Glossary.docx",
+    "Thought-Exchange Layer (TEL) Graph MVP Design and Integration.docx",
+    "Final TEL Event Stack Validation in CoherenceLattice.docx",
+    "free will.zip",
+    "governed_tches_success_20260420_135304.zip",
+    "governed_tches_after_dq08_inventory_capture_20260501_161304.zip",
+    "mvr_tches_v1_4_human_selected_file_smoke.zip",
+]
+SOURCE_CORPUS_BATCH_MANIFEST_20260610_HASHES = [
+    "0d9bedc988ae3bd6c8c5291594e98cdf55f2483e61d365ae9976785e412f2656",
+    "f1206c5f86d83c6ac900d8880b5dcffa5433ce626a1ddfef8480a060ee3f4fa4",
+    "09268960029318fbd9c724094a6a82bf49e095576e1a5bc644a1e9215fad977a",
+    "7bf6c9637ecbb6afd1cef14a0ee39f5904ddb2493277902334456d05cc0a5104",
+    "23acd312e50e43b7c98702e87ce4bb324fd259502f6fc7cd937690c676feae4d",
+    "d48b4984c0061495a89c9cdaba12cd26816ce504c22f765ee1fd6cadc87f2f3d",
+    "bcf6941fe619fa40a9475327e977fce7c8af2c44b94d5ae5fd8665eb65a2976c",
+    "87584b4c97581a8657978c63bf4ba135cd707f2a1c21deccb513ffa881212503",
+    "d5feb2658f74bedbb56782c66ba473ef29e0ae02ca3ea091356c8cea30aba74d",
+    "aff0180dd1a61784bb5b6b173ebf6b66a6cb2f497bbb08aedb9fe4dc149ef583",
+    "0bb03eeb493da65f0625e5028d708873016c359d184bc0f1fecac5715d63b953",
+    "dc628557c0e729ff8fe5127d1eb129046a12186fff33b9dae65ad58f2e4e0ceb",
+    "5b028820fd50bd93a7f5ad1ec54955f08c0accd039a482e999fdc04efaccf6c2",
+    "a241521288f7c792b76f22b9ec82d19027be9f1032402ae0d87288cacdcb9258",
+    "fe5cd0189f64df015239453430a085a156580ecaab5856cc784498a25d62a38b",
+    "27941c74013b578c216e4569a066a8988860a9c8b01fa544cd6fe25a642a8f35",
+    "3608c158b6affd4f63d04e91d5eae65bb045afb864549d3b84ad9bc664d87c40",
+    "1904b3e786b4c0314b681d8c52ddef39ef02d3e4b2bbe2a2493b3072b84d997f",
+    "17bcca653cbe300c656d796f42f6a077b1bf58f3e3a6655133524cbe56386fdd",
+    "00683d8c93d5daabefa9ea6e5819c53f76e9155fd42a4b4dad036188843ee3d1",
+    "db97a6325de67c673baae100327773d6d5f0a0a14431ada361b1551d647fef3d",
+    "6046cabc13041f664cb67caf96cf5d43eb41fcc03df59248d0b3e6842552d7ca",
+]
+SOURCE_CORPUS_BATCH_MANIFEST_20260610_ALIAS_TERMS = [
+    "Telemetry%20Project%20Deep%20Dive.docx",
+    "Telemetry%20Integration%20into%20the%20CoherenceLattice%20Pipeline.docx",
+    "Universal%20Control%20Codex%20%28UCC%29%20Supplement.docx",
+    "Multi%E2%80%91Axial%20Coherence%20Analysis%20for%20Exogenic%20Off%E2%80%91Loading%20in%20Complex%20Systems.docx",
+    "filename_aliases",
+    "deduplicated by SHA-256",
+    "filename aliases are not separate sources",
+    "deduplication means byte-identity only",
+]
+SOURCE_CORPUS_BATCH_MANIFEST_20260610_MANIFEST_TERMS = [
+    "source_corpus_batch_20260610",
+    "active_hash_only_provenance_manifest",
+    "one_canonical_row_per_unique_sha256",
+    "raw_sha256",
+    "hash_only_public_reference",
+    "public_release_approved = false",
+    "canonical_repo_state_supersedes_report",
+    "source_is_not_accepted_evidence",
+    "source_is_not_theorem_proof",
+    "source_is_not_product_release",
+    "source_is_not_product_readiness",
+    "source_is_not_compliance_certification",
+    "source_is_not_legal_advice",
+    "source_is_not_memory_write",
+    "source_is_not_atlas_memory_admission",
+    "summary_is_not_source",
+    "human_review_required",
+]
+SOURCE_CORPUS_BATCH_MANIFEST_20260610_PRIOR_PHASE_RELATION = [
+    "SOURCE-CORPUS-PROVENANCE-ARCHIVE-00 defines the governed source-report archive pattern.",
+    "SOURCE-CORPUS-PROVENANCE-HASH-FILL-00 fills pending EU AI Act source-report hashes.",
+    "SOURCE-CORPUS-BATCH-MANIFEST-2026-06-10-00 adds the June 2026 hash-only batch manifest.",
+    "WAVE-ROSETTA-CANONICAL-PROXY-BRIDGE-PROVENANCE-00 uses source report hashes for scientific provenance.",
+    "COMPLIANCE-READY-MVR-REPORT-LOCAL-PROTOTYPE-00 uses compliance report provenance for report design context.",
+    "VALIDATION-TIERING-PROVENANCE-00 records validation confidence scope.",
+]
+SOURCE_CORPUS_BATCH_MANIFEST_20260610_BLOCKED_CLAIMS = [
+    "source corpus batch proves GUFT",
+    "source corpus batch proves compliance",
+    "source corpus batch certifies truth",
+    "source corpus batch grants accepted-evidence authority",
+    "source corpus batch is canonical repo state",
+    "source corpus batch authorizes product release",
+    "source corpus batch certifies product readiness",
+    "source corpus batch writes memory",
+    "source corpus batch admits Atlas memory",
+    "hashes certify truth",
+    "filename aliases are separate sources",
+    "raw private reports are public by default",
+    "deduplication means source equivalence beyond byte identity",
+    "source reports are accepted evidence",
+    "source reports are theorem proof",
+    "source reports are compliance certification",
+    "source reports are product release",
+    "source reports are product readiness",
+    "source reports are current canonical repo state",
+    "GitHub repo is a backup store",
+]
+SOURCE_CORPUS_BATCH_MANIFEST_20260610_CLAIM_ALLOWED = "SOURCE-CORPUS-BATCH-MANIFEST-2026-06-10-00 adds a governed, hash-only source-corpus batch manifest for June 2026 uploaded reports, deduplicating filename aliases by SHA-256 and preserving source identity, file size, source type, visibility, public-release status, and non-authority boundaries without committing raw private files or treating source reports as accepted evidence, theorem proof, compliance certification, product release, product readiness, memory write, Atlas admission, or canonical repo state."
+SOURCE_CORPUS_BATCH_MANIFEST_20260610_DASHBOARD_SUMMARY = {
+    "batch_status": "active_hash_only_provenance_manifest",
+    "batch_id": "source_corpus_batch_20260610",
+    "canonical_row_count": 22,
+    "unique_sha256_count": 22,
+    "deduplication_key": "raw_sha256",
+    "canonical_row_policy": "one_canonical_row_per_unique_sha256",
+    "alias_pairs_preserved": True,
+    "raw_files_committed": False,
+    "normalized_derivatives_added": False,
+    "extracted_text_added": False,
+    "all_rows_visibility": "hash_only_public_reference",
+    "all_rows_public_release_approved": False,
+    "all_rows_preserve_non_authority_boundaries": True,
+    "no_raw_docx_txt_pdf_zip_files_committed": True,
+    "source_corpus_batch_is_not_accepted_evidence": True,
+    "source_corpus_batch_is_not_theorem_proof": True,
+    "source_corpus_batch_is_not_compliance_certification": True,
+    "source_corpus_batch_is_not_product_release": True,
+    "source_corpus_batch_is_not_product_readiness": True,
+    "source_corpus_batch_is_not_memory_write": True,
+    "source_corpus_batch_is_not_atlas_memory_admission": True,
+    "source_corpus_batch_is_not_canonical_repo_state": True,
+    "hashes_do_not_certify_truth": True,
+    "human_review_required": True,
+}
+SOURCE_CORPUS_BATCH_MANIFEST_20260610_PHASE = {
+    "phase_id": "SOURCE-CORPUS-BATCH-MANIFEST-2026-06-10-00",
+    "repo": "pdxvoiceteacher/CoherenceLattice",
+    "status": "accepted_local_validation",
+    "evidence_type": "source_corpus_batch_manifest_20260610_publication_sync",
+    "product_posture": "hash_only_source_corpus_batch_manifest_without_evidence_proof_or_canonical_authority",
+    "primary_artifacts": SOURCE_CORPUS_BATCH_MANIFEST_20260610_ARTIFACTS,
+    "dashboard_summary": SOURCE_CORPUS_BATCH_MANIFEST_20260610_DASHBOARD_SUMMARY,
+    "reproduction_command_summary": SOURCE_CORPUS_BATCH_MANIFEST_20260610_COMMAND,
+    "claim_allowed": SOURCE_CORPUS_BATCH_MANIFEST_20260610_CLAIM_ALLOWED,
+    "claims_blocked": SOURCE_CORPUS_BATCH_MANIFEST_20260610_BLOCKED_CLAIMS,
+    "reviewer_caution": "SOURCE-CORPUS-BATCH-MANIFEST-2026-06-10-00 is a hash-only provenance manifest. It commits no raw private reports, grants no accepted-evidence authority, proves no theorem or GUFT, certifies no compliance or truth, releases no product, writes no memory, admits no Atlas memory, exports no traces, federates no PMR, and is not current canonical repo state.",
+    "publication_status": "dashboard_indexed",
+}
+
+WAVE_PROVENANCE_PHASE = {
+    "phase_id": "WAVE-ROSETTA-CANONICAL-PROXY-BRIDGE-PROVENANCE-00",
+    "repo": "pdxvoiceteacher/CoherenceLattice",
+    "status": "accepted_local_validation",
+    "evidence_type": "wave_rosetta_canonical_proxy_bridge_provenance_publication_sync",
+    "product_posture": "documentation_only_bridge_provenance_without_formula_weight_or_runtime_change",
+    "primary_artifacts": WAVE_PROVENANCE_ARTIFACTS,
+    "dashboard_summary": WAVE_PROVENANCE_DASHBOARD_SUMMARY,
+    "reproduction_command_summary": COMPLIANCE_REPORT_DESIGN_COMMAND,
+    "claim_allowed": WAVE_PROVENANCE_CLAIM_ALLOWED,
+    "claims_blocked": WAVE_EU_PROVENANCE_BLOCKED_CLAIMS,
+    "reviewer_caution": "WAVE-ROSETTA-CANONICAL-PROXY-BRIDGE-PROVENANCE-00 preserves lineage and calibration gaps only. It changes no runtime behavior, bridge formulas, or bridge weights and grants no proof, certification, authority, memory, export, federation, product, model-training, or review-skipping status.",
+    "publication_status": "dashboard_indexed",
+}
+
+
 VALIDATION_TIERING_PROVENANCE_COMMAND = "python -c \"from pathlib import Path; from coherence.validation.validation_receipt import build_validation_tier_receipt; bridge=Path(r'C:\\UVLM\\run_artifacts\\validation_tiering\\bridge'); policy_ref='validation_tier_policy.v1.json'; build_validation_tier_receipt(bridge, source_phase='AI-RECEIPT-ARCHITECTURE-00', validation_tier='deep', validation_scope='full_multi_module_suite', validation_intent='major_sync_or_handoff_grade_validation', commands_run=[{'command':'python -m pytest -q <full_multi_module_suite>', 'result':'passed', 'duration_seconds':32131.86}], artifact_chain_name='ai_receipt_architecture_product_stack', expected_artifacts=['ai_receipt_architecture_packet.json','ai_receipt_event_chain.json','ai_receipt_architecture.md','ai_receipt_architecture_receipt.json'], observed_artifacts=['ai_receipt_architecture_packet.json','ai_receipt_event_chain.json','ai_receipt_architecture.md','ai_receipt_architecture_receipt.json'], validation_result='passed')\""
 VALIDATION_TIERING_PROVENANCE_ARTIFACTS = [
     "config/validation/validation_tier_policy.v1.json",
@@ -12397,6 +14665,21 @@ AI_RECEIPT_ARCHITECTURE_PHASE,
 MINIMAL_VIABLE_RECEIPT_DESIGN_PHASE,
 MINIMAL_VIABLE_RECEIPT_LOCAL_PROTOTYPE_PHASE,
 MVR_READABILITY_REVIEW_SEED_PHASE,
+MVR_READABILITY_REVISION_PHASE,
+MVR_REAL_INPUT_PILOT_DESIGN_PHASE,
+MVR_REAL_INPUT_PILOT_PROTOTYPE_PHASE,
+MVR_QUARANTINE_REPAIR_PHASE,
+MVR_HUMAN_SELECTED_FILE_SMOKE_PHASE,
+COMPLIANCE_REPORT_PHASE,
+COMPLIANCE_TOOLSET_PHASE,
+WAVE_BRIDGE_PHASE,
+EU_AI_ACT_MVR_MAPPING_PHASE,
+EU_AI_ACT_MVR_EVIDENCE_MAP_LOCAL_PROTOTYPE_PHASE,
+COMPLIANCE_READY_MVR_REPORT_LOCAL_PROTOTYPE_PHASE,
+SOURCE_CORPUS_PROVENANCE_ARCHIVE_PHASE,
+SOURCE_CORPUS_PROVENANCE_HASH_FILL_PHASE,
+SOURCE_CORPUS_BATCH_MANIFEST_20260610_PHASE,
+WAVE_PROVENANCE_PHASE,
 VALIDATION_TIERING_PROVENANCE_PHASE,
 TELEMETRY_APERTURE_DESIGN_PHASE,
 TAC_POLICY_SIMULATION_PHASE,
@@ -14576,6 +16859,134 @@ BOUNDARIES.extend(
         *MVR_READABILITY_REVIEW_SEED_FAILURE_CLASSES,
         "Blocked overclaim examples for MVR Local Prototype Readability Review Seed publication boundaries.",
         *MVR_READABILITY_REVIEW_SEED_BLOCKED_CLAIMS,
+        MVR_READABILITY_REVISION_CLAIM_ALLOWED,
+        *MVR_READABILITY_REVISION_ARTIFACTS,
+        *MVR_READABILITY_REVISION_SCHEMA_REFERENCES,
+        *MVR_READABILITY_REVISION_REPRO_FRAGMENTS,
+        *MVR_READABILITY_REVISION_DOCTRINE_LANGUAGE,
+        *MVR_READABILITY_REVISION_APPLIED_REVISION_IDS,
+        *MVR_READABILITY_REVISION_REVISED_RECEIPT_LANGUAGE,
+        *MVR_READABILITY_REVISION_PRIOR_PHASE_RELATION,
+        *MVR_READABILITY_REVISION_FAILURE_CLASSES,
+        "Blocked overclaim examples for MVR Local Prototype Readability Revision publication boundaries.",
+        *MVR_READABILITY_REVISION_BLOCKED_CLAIMS,
+        MVR_REAL_INPUT_PILOT_DESIGN_CLAIM_ALLOWED,
+        *MVR_REAL_INPUT_PILOT_DESIGN_ARTIFACTS,
+        *MVR_REAL_INPUT_PILOT_DESIGN_REPRO_FRAGMENTS,
+        *MVR_REAL_INPUT_PILOT_DESIGN_DOCTRINE_LANGUAGE,
+        *MVR_REAL_INPUT_PILOT_DESIGN_ALLOWED_INPUT_CLASSES,
+        *MVR_REAL_INPUT_PILOT_DESIGN_BLOCKED_INPUT_CLASSES,
+        *MVR_REAL_INPUT_PILOT_DESIGN_SOURCE_RULES,
+        *MVR_REAL_INPUT_PILOT_DESIGN_CONSENT_OBSERVATION_TERMS,
+        *MVR_REAL_INPUT_PILOT_DESIGN_OUTPUT_REQUIREMENT_TERMS,
+        *MVR_REAL_INPUT_PILOT_DESIGN_PRIOR_PHASE_RELATION,
+        *MVR_REAL_INPUT_PILOT_DESIGN_FAILURE_CLASSES,
+        "Blocked overclaim examples for MVR Local Real Input Pilot Design publication boundaries.",
+        *MVR_REAL_INPUT_PILOT_DESIGN_BLOCKED_CLAIMS,
+        MVR_REAL_INPUT_PILOT_PROTOTYPE_CLAIM_ALLOWED,
+        *MVR_REAL_INPUT_PILOT_PROTOTYPE_ARTIFACTS,
+        *MVR_REAL_INPUT_PILOT_PROTOTYPE_SCHEMA_REFERENCES,
+        *MVR_REAL_INPUT_PILOT_PROTOTYPE_REPRO_FRAGMENTS,
+        *MVR_REAL_INPUT_PILOT_PROTOTYPE_DOCTRINE_LANGUAGE,
+        *MVR_REAL_INPUT_PILOT_PROTOTYPE_SOURCE_SELECTION_TERMS,
+        *MVR_REAL_INPUT_PILOT_PROTOTYPE_CONSENT_QUARANTINE_TERMS,
+        *MVR_REAL_INPUT_PILOT_PROTOTYPE_PRIOR_PHASE_RELATION,
+        *MVR_REAL_INPUT_PILOT_PROTOTYPE_FAILURE_CLASSES,
+        "Blocked overclaim examples for MVR Local Real Input Pilot Prototype publication boundaries.",
+        *MVR_REAL_INPUT_PILOT_PROTOTYPE_BLOCKED_CLAIMS,
+        MVR_QUARANTINE_REPAIR_CLAIM_ALLOWED,
+        *MVR_QUARANTINE_REPAIR_ARTIFACTS,
+        *MVR_QUARANTINE_REPAIR_REPRO_FRAGMENTS,
+        *MVR_QUARANTINE_REPAIR_DETECTOR_TERMS,
+        *MVR_QUARANTINE_REPAIR_DOCTRINE_LANGUAGE,
+        *MVR_QUARANTINE_REPAIR_SMOKE_OUTCOMES,
+        *MVR_QUARANTINE_REPAIR_PRIOR_PHASE_RELATION,
+        *MVR_QUARANTINE_REPAIR_FAILURE_CLASSES,
+        "Blocked overclaim examples for MVR Local Real Input Pilot Quarantine Detection Repair publication boundaries.",
+        *MVR_QUARANTINE_REPAIR_BLOCKED_CLAIMS,
+        MVR_HUMAN_SELECTED_FILE_SMOKE_CLAIM_ALLOWED,
+        *MVR_HUMAN_SELECTED_FILE_SMOKE_ARTIFACTS,
+        *MVR_HUMAN_SELECTED_FILE_SMOKE_SCHEMA_REFERENCES,
+        *MVR_HUMAN_SELECTED_FILE_SMOKE_REPRO_FRAGMENTS,
+        *MVR_HUMAN_SELECTED_FILE_SMOKE_DOCTRINE_LANGUAGE,
+        *MVR_HUMAN_SELECTED_FILE_SMOKE_SOURCE_SELECTION_TERMS,
+        *MVR_HUMAN_SELECTED_FILE_SMOKE_QUARANTINE_TERMS,
+        *MVR_HUMAN_SELECTED_FILE_SMOKE_PRIOR_PHASE_RELATION,
+        *MVR_HUMAN_SELECTED_FILE_SMOKE_FAILURE_CLASSES,
+        "Blocked overclaim examples for MVR Local Real Input Pilot Human-Selected File Smoke publication boundaries.",
+        *MVR_HUMAN_SELECTED_FILE_SMOKE_BLOCKED_CLAIMS,
+        COMPLIANCE_REPORT_CLAIM_ALLOWED,
+        COMPLIANCE_TOOLSET_CLAIM_ALLOWED,
+        *COMPLIANCE_REPORT_DESIGN_ARTIFACTS,
+        *COMPLIANCE_TOOLSET_DESIGN_ARTIFACTS,
+        *COMPLIANCE_REPORT_DOCTRINE_LANGUAGE,
+        *COMPLIANCE_TOOLSET_DOCTRINE_LANGUAGE,
+        *COMPLIANCE_REPORT_AUDIENCE_TERMS,
+        *COMPLIANCE_REPORT_SECTION_TERMS,
+        *COMPLIANCE_FRAMEWORK_PROFILE_TERMS,
+        *COMPLIANCE_EU_AI_ACT_SUPPORT_TERMS,
+        *COMPLIANCE_GENERIC_EVIDENCE_MAPPING_TERMS,
+        *COMPLIANCE_HUMAN_SIGNOFF_ROLE_TERMS,
+        *COMPLIANCE_REPORT_DESIGN_REPRO_FRAGMENTS,
+        *COMPLIANCE_TOOLSET_DESIGN_REPRO_FRAGMENTS,
+        "Blocked overclaim examples for compliance-ready MVR report and compliance evidence toolset publication boundaries.",
+        *COMPLIANCE_DESIGN_BLOCKED_CLAIMS,
+        WAVE_BRIDGE_CLAIM_ALLOWED,
+        WAVE_PROVENANCE_CLAIM_ALLOWED,
+        EU_AI_ACT_MVR_MAPPING_CLAIM_ALLOWED,
+        *WAVE_BRIDGE_ARTIFACTS,
+        *EU_AI_ACT_MVR_MAPPING_ARTIFACTS,
+        *WAVE_PROVENANCE_ARTIFACTS,
+        *WAVE_BRIDGE_REPRO_FRAGMENTS,
+        *WAVE_BRIDGE_DOCTRINE_LANGUAGE,
+        *WAVE_PROVENANCE_DOCTRINE_LANGUAGE,
+        EU_AI_ACT_MVR_EVIDENCE_MAP_LOCAL_PROTOTYPE_CLAIM_ALLOWED,
+        *EU_AI_ACT_MVR_EVIDENCE_MAP_LOCAL_PROTOTYPE_ARTIFACTS,
+        *EU_AI_ACT_MVR_EVIDENCE_MAP_LOCAL_PROTOTYPE_REPRO_FRAGMENTS,
+        *EU_AI_ACT_MVR_EVIDENCE_MAP_LOCAL_PROTOTYPE_DOCTRINE_LANGUAGE,
+        *EU_AI_ACT_MVR_EVIDENCE_MAP_LOCAL_PROTOTYPE_ARTIFACT_MAPPING_TERMS,
+        *EU_AI_ACT_MVR_EVIDENCE_MAP_LOCAL_PROTOTYPE_GAP_TERMS,
+        *EU_AI_ACT_MVR_EVIDENCE_MAP_LOCAL_PROTOTYPE_SIGNOFF_TERMS,
+        *EU_AI_ACT_MVR_EVIDENCE_MAP_LOCAL_PROTOTYPE_PRIOR_PHASE_RELATION,
+        *WAVE_VECTOR_TERMS,
+        *WAVE_BRIDGE_ESTIMATE_TERMS,
+        *WAVE_PROVENANCE_REPORT_LINEAGE,
+        *WAVE_FORMULA_LINEAGE,
+        *WAVE_CALIBRATION_GAPS,
+        *EU_AI_ACT_EVIDENCE_CATEGORIES,
+        *EU_AI_ACT_GAP_TERMS,
+        "Blocked overclaim examples for WAVE bridge, EU AI Act mapping, and WAVE provenance publication boundaries.",
+        *WAVE_EU_PROVENANCE_BLOCKED_CLAIMS,
+        "Blocked overclaim examples for EU AI Act MVR evidence map local prototype publication boundaries.",
+        *EU_AI_ACT_MVR_EVIDENCE_MAP_LOCAL_PROTOTYPE_BLOCKED_CLAIMS,
+        COMPLIANCE_READY_MVR_REPORT_LOCAL_PROTOTYPE_CLAIM_ALLOWED,
+        SOURCE_CORPUS_PROVENANCE_ARCHIVE_CLAIM_ALLOWED,
+        SOURCE_CORPUS_PROVENANCE_HASH_FILL_CLAIM_ALLOWED,
+        *COMPLIANCE_READY_MVR_REPORT_LOCAL_PROTOTYPE_ARTIFACTS,
+        *SOURCE_CORPUS_PROVENANCE_ARTIFACTS,
+        *COMPLIANCE_READY_MVR_REPORT_LOCAL_PROTOTYPE_REPRO_FRAGMENTS,
+        *SOURCE_CORPUS_PROVENANCE_REPRO_FRAGMENTS,
+        *SOURCE_CORPUS_HASH_FILL_REPRO_FRAGMENTS,
+        *COMPLIANCE_READY_MVR_REPORT_LOCAL_PROTOTYPE_DOCTRINE_LANGUAGE,
+        *COMPLIANCE_READY_MVR_REPORT_LOCAL_PROTOTYPE_SECTION_TERMS,
+        *COMPLIANCE_READY_MVR_REPORT_LOCAL_PROTOTYPE_GLOSSARY_TERMS,
+        *SOURCE_CORPUS_PROVENANCE_DOCTRINE_LANGUAGE,
+        *SOURCE_CORPUS_MANIFEST_TERMS,
+        *SOURCE_CORPUS_CONCRETE_HASHES,
+        *SOURCE_CORPUS_REPORT_FILENAMES,
+        "Blocked overclaim examples for compliance-ready report local prototype and source-corpus provenance publication boundaries.",
+        *COMPLIANCE_REPORT_SOURCE_CORPUS_BLOCKED_CLAIMS,
+        SOURCE_CORPUS_BATCH_MANIFEST_20260610_CLAIM_ALLOWED,
+        *SOURCE_CORPUS_BATCH_MANIFEST_20260610_ARTIFACTS,
+        *SOURCE_CORPUS_BATCH_MANIFEST_20260610_REPRO_FRAGMENTS,
+        *SOURCE_CORPUS_BATCH_MANIFEST_20260610_DOCTRINE_LANGUAGE,
+        *SOURCE_CORPUS_BATCH_MANIFEST_20260610_FILENAMES,
+        *SOURCE_CORPUS_BATCH_MANIFEST_20260610_HASHES,
+        *SOURCE_CORPUS_BATCH_MANIFEST_20260610_ALIAS_TERMS,
+        *SOURCE_CORPUS_BATCH_MANIFEST_20260610_MANIFEST_TERMS,
+        *SOURCE_CORPUS_BATCH_MANIFEST_20260610_PRIOR_PHASE_RELATION,
+        "Blocked overclaim examples for June 2026 source-corpus batch manifest publication boundaries.",
+        *SOURCE_CORPUS_BATCH_MANIFEST_20260610_BLOCKED_CLAIMS,
         VALIDATION_TIERING_PROVENANCE_CLAIM_ALLOWED,
         *VALIDATION_TIERING_PROVENANCE_ARTIFACTS,
         *VALIDATION_TIERING_PROVENANCE_TIER_TERMS,
@@ -15445,6 +17856,103 @@ def dashboard_payload() -> dict[str, Any]:
         "mvr_local_prototype_readability_review_seed_00_indexed": True,
         "mvr_local_prototype_readability_review_seed_status": "completed",
         "mvr_readability_gate_passed": False,
+        "mvr_local_prototype_readability_revision_00_indexed": True,
+        "mvr_local_prototype_readability_revision_status": "completed",
+        "mvr_readability_revision_gate_passed": False,
+        "mvr_local_real_input_pilot_design_00_indexed": True,
+        "mvr_local_real_input_pilot_design_status": "active_design_only",
+        "mvr_local_real_input_pilot_runtime_behavior_changed": False,
+        "mvr_local_real_input_processing_enabled": False,
+        "mvr_local_real_input_real_user_files_processed": False,
+        "mvr_local_real_input_pilot_prototype_00_indexed": True,
+        "mvr_local_real_input_pilot_prototype_status": "completed",
+        "mvr_local_real_input_pilot_prototype_real_input_processing_enabled": True,
+        "mvr_local_real_input_pilot_prototype_real_input_runtime_artifacts_emitted": True,
+        "mvr_local_real_input_pilot_prototype_real_user_files_processed": False,
+        "mvr_local_real_input_pilot_prototype_pasted_excerpt_real_user_files_processed": True,
+        "mvr_quarantine_detection_repair_00_indexed": True,
+        "mvr_quarantine_detection_repair_status": "completed",
+        "mvr_quarantine_detection_repair_no_detection_receipt_wording_conditional": True,
+        "mvr_quarantine_detection_repair_contradictory_wording_repaired": True,
+        "not_mvr_quarantine_detection_repair_file_access_broadened": True,
+        "not_mvr_quarantine_detection_repair_runtime_authority": True,
+        "mvr_human_selected_file_smoke_00_indexed": True,
+        "mvr_human_selected_file_smoke_status": "completed",
+        "mvr_human_selected_file_smoke_default_real_user_files_processed": False,
+        "mvr_human_selected_file_smoke_explicit_real_user_files_processed": True,
+        "not_mvr_human_selected_file_smoke_runtime_authority": True,
+        "not_mvr_human_selected_file_smoke_product_readiness": True,
+        "not_mvr_human_selected_file_smoke_accepted_evidence_authority": True,
+        "compliance_ready_mvr_report_design_00_indexed": True,
+        "compliance_ready_mvr_report_policy_status": "active_design_only",
+        "compliance_ready_mvr_report_generation_enabled": False,
+        "not_compliance_ready_mvr_report_certification": True,
+        "not_compliance_ready_mvr_report_runtime_authority": True,
+        "compliance_evidence_toolset_library_design_00_indexed": True,
+        "compliance_evidence_toolset_policy_status": "active_design_only",
+        "compliance_evidence_toolset_library_status": "active_design_only",
+        "compliance_evidence_toolset_day_one_profile": "eu_ai_act_evidence_support",
+        "compliance_evidence_toolset_evidence_pack_generation_enabled": False,
+        "not_compliance_evidence_toolset_certification": True,
+        "not_compliance_evidence_toolset_legal_advice": True,
+        "not_compliance_evidence_toolset_runtime_authority": True,
+        "wave_rosetta_canonical_proxy_bridge_00_indexed": True,
+        "wave_rosetta_canonical_proxy_bridge_status": "completed",
+        "wave_rosetta_canonical_proxy_bridge_is_not_canonical_measurement": True,
+        "eu_ai_act_mvr_evidence_mapping_design_00_indexed": True,
+        "eu_ai_act_mvr_evidence_mapping_status": "active_design_only",
+        "eu_ai_act_mvr_evidence_map_generation_enabled": False,
+        "eu_ai_act_mvr_evidence_map_local_prototype_00_indexed": True,
+        "eu_ai_act_mvr_evidence_map_local_prototype_status": "completed",
+        "eu_ai_act_mvr_evidence_map_local_prototype_profile_id": "eu_ai_act_evidence_support",
+        "eu_ai_act_mvr_evidence_map_local_prototype_open_gap_count": 10,
+        "eu_ai_act_mvr_evidence_map_local_prototype_signoff_performed": False,
+        "eu_ai_act_mvr_evidence_map_local_prototype_legal_review_performed": False,
+        "not_eu_ai_act_mvr_evidence_map_local_prototype_compliance_certification": True,
+        "not_eu_ai_act_mvr_evidence_map_local_prototype_runtime_authority": True,
+        "compliance_ready_mvr_report_local_prototype_00_indexed": True,
+        "compliance_ready_mvr_report_local_prototype_status": "completed",
+        "compliance_ready_mvr_report_local_prototype_open_gap_count": 10,
+        "compliance_ready_mvr_report_local_prototype_control_mapping_rows": 14,
+        "compliance_ready_mvr_report_local_prototype_glossary_entries": 14,
+        "not_compliance_ready_mvr_report_local_prototype_certification": True,
+        "not_compliance_ready_mvr_report_local_prototype_runtime_authority": True,
+        "source_corpus_provenance_archive_00_indexed": True,
+        "source_corpus_provenance_hash_fill_00_indexed": True,
+        "source_corpus_manifest_status": "active_governed_provenance_manifest",
+        "source_corpus_source_count": 5,
+        "source_corpus_pending_hash_placeholders_remaining": 0,
+        "source_corpus_raw_private_reports_bulk_imported": False,
+        "not_source_corpus_accepted_evidence": True,
+        "not_source_corpus_canonical_repo_state": True,
+        "not_source_corpus_runtime_authority": True,
+        "source_corpus_batch_manifest_2026_06_10_00_indexed": True,
+        "source_corpus_batch_status": "active_hash_only_provenance_manifest",
+        "source_corpus_batch_id": "source_corpus_batch_20260610",
+        "source_corpus_batch_canonical_row_count": 22,
+        "source_corpus_batch_unique_sha256_count": 22,
+        "source_corpus_batch_alias_pairs_preserved": True,
+        "source_corpus_batch_raw_files_committed": False,
+        "source_corpus_batch_normalized_derivatives_added": False,
+        "source_corpus_batch_extracted_text_added": False,
+        "source_corpus_batch_all_rows_visibility": "hash_only_public_reference",
+        "source_corpus_batch_all_rows_public_release_approved": False,
+        "source_corpus_batch_all_rows_preserve_non_authority_boundaries": True,
+        "source_corpus_batch_no_raw_private_files_committed": True,
+        "not_source_corpus_batch_accepted_evidence": True,
+        "not_source_corpus_batch_canonical_repo_state": True,
+        "wave_rosetta_canonical_proxy_bridge_provenance_00_indexed": True,
+        "wave_rosetta_canonical_proxy_bridge_provenance_status": "active_documentation_only",
+        "wave_rosetta_canonical_proxy_bridge_provenance_runtime_behavior_changed": False,
+        "not_wave_eu_provenance_runtime_authority": True,
+        "not_wave_eu_provenance_truth_or_compliance_certification": True,
+        "not_mvr_local_real_input_pilot_product_readiness": True,
+        "not_mvr_local_real_input_pilot_product_release": True,
+        "not_mvr_local_real_input_pilot_user_validation": True,
+        "not_mvr_local_real_input_pilot_runtime_authority": True,
+        "not_mvr_readability_revision_user_validation": True,
+        "not_mvr_readability_revision_product_readiness": True,
+        "not_mvr_readability_revision_runtime_authority": True,
         "not_mvr_readability_review_seed_user_validation": True,
         "not_mvr_readability_review_seed_product_readiness": True,
         "not_mvr_readability_review_seed_runtime_authority": True,
@@ -15547,6 +18055,21 @@ def reproducibility_index() -> dict[str, Any]:
                 {"name": "MINIMAL-VIABLE-RECEIPT-DESIGN-00 design validation", "command": MINIMAL_VIABLE_RECEIPT_DESIGN_COMMAND},
                 {"name": "MINIMAL-VIABLE-RECEIPT-LOCAL-PROTOTYPE-00 Python entrypoint", "command": MINIMAL_VIABLE_RECEIPT_LOCAL_PROTOTYPE_COMMAND},
                 {"name": "MVR-LOCAL-PROTOTYPE-READABILITY-REVIEW-SEED-00 Python entrypoint", "command": MVR_READABILITY_REVIEW_SEED_COMMAND},
+                {"name": "MVR-LOCAL-PROTOTYPE-READABILITY-REVISION-00 Python entrypoint", "command": MVR_READABILITY_REVISION_COMMAND},
+                {"name": "MVR-LOCAL-REAL-INPUT-PILOT-DESIGN-00 design validation", "command": MVR_REAL_INPUT_PILOT_DESIGN_COMMAND},
+                {"name": "MVR-LOCAL-REAL-INPUT-PILOT-PROTOTYPE-00 Python entrypoint", "command": MVR_REAL_INPUT_PILOT_PROTOTYPE_COMMAND},
+                {"name": "MVR-LOCAL-REAL-INPUT-PILOT-QUARANTINE-DETECTION-REPAIR-00 repair validation", "command": MVR_QUARANTINE_REPAIR_COMMAND},
+                {"name": "MVR-LOCAL-REAL-INPUT-PILOT-HUMAN-SELECTED-FILE-SMOKE-00 Python entrypoint", "command": MVR_HUMAN_SELECTED_FILE_SMOKE_COMMAND},
+                {"name": "COMPLIANCE-READY-MVR-REPORT-DESIGN-00 design validation", "command": COMPLIANCE_REPORT_DESIGN_COMMAND},
+                {"name": "COMPLIANCE-EVIDENCE-TOOLSET-LIBRARY-DESIGN-00 design validation", "command": COMPLIANCE_TOOLSET_DESIGN_COMMAND},
+                {"name": "WAVE-ROSETTA-CANONICAL-PROXY-BRIDGE-00 Python entrypoint", "command": WAVE_BRIDGE_COMMAND},
+                {"name": "EU-AI-ACT-MVR-EVIDENCE-MAPPING-DESIGN-00 design validation", "command": COMPLIANCE_TOOLSET_DESIGN_COMMAND},
+                {"name": "EU-AI-ACT-MVR-EVIDENCE-MAP-LOCAL-PROTOTYPE-00 Python entrypoint", "command": EU_AI_ACT_MVR_EVIDENCE_MAP_LOCAL_PROTOTYPE_COMMAND},
+                {"name": "COMPLIANCE-READY-MVR-REPORT-LOCAL-PROTOTYPE-00 Python entrypoint", "command": COMPLIANCE_READY_MVR_REPORT_LOCAL_PROTOTYPE_COMMAND},
+                {"name": "SOURCE-CORPUS-PROVENANCE-ARCHIVE-00 provenance validation", "command": SOURCE_CORPUS_PROVENANCE_COMMAND},
+                {"name": "SOURCE-CORPUS-PROVENANCE-HASH-FILL-00 hash-fill validation", "command": SOURCE_CORPUS_HASH_FILL_COMMAND},
+                {"name": "SOURCE-CORPUS-BATCH-MANIFEST-2026-06-10-00 batch manifest validation", "command": SOURCE_CORPUS_BATCH_MANIFEST_20260610_COMMAND},
+                {"name": "WAVE-ROSETTA-CANONICAL-PROXY-BRIDGE-PROVENANCE-00 provenance validation", "command": COMPLIANCE_REPORT_DESIGN_COMMAND},
                 {"name": "Validation Tiering Provenance Python entrypoint", "command": VALIDATION_TIERING_PROVENANCE_COMMAND},
                 {"name": "TELEMETRY-APERTURE-DESIGN-00 config/schema inspection", "command": TELEMETRY_APERTURE_DESIGN_COMMAND},
                 {"name": "TAC-POLICY-SIMULATION-00 Python entrypoint", "command": TAC_POLICY_SIMULATION_COMMAND},
@@ -16465,6 +18988,103 @@ def status_payload() -> dict[str, Any]:
         "mvr_local_prototype_readability_review_seed_00_indexed": True,
         "mvr_local_prototype_readability_review_seed_status": "completed",
         "mvr_readability_gate_passed": False,
+        "mvr_local_prototype_readability_revision_00_indexed": True,
+        "mvr_local_prototype_readability_revision_status": "completed",
+        "mvr_readability_revision_gate_passed": False,
+        "mvr_local_real_input_pilot_design_00_indexed": True,
+        "mvr_local_real_input_pilot_design_status": "active_design_only",
+        "mvr_local_real_input_pilot_runtime_behavior_changed": False,
+        "mvr_local_real_input_processing_enabled": False,
+        "mvr_local_real_input_real_user_files_processed": False,
+        "mvr_local_real_input_pilot_prototype_00_indexed": True,
+        "mvr_local_real_input_pilot_prototype_status": "completed",
+        "mvr_local_real_input_pilot_prototype_real_input_processing_enabled": True,
+        "mvr_local_real_input_pilot_prototype_real_input_runtime_artifacts_emitted": True,
+        "mvr_local_real_input_pilot_prototype_real_user_files_processed": False,
+        "mvr_local_real_input_pilot_prototype_pasted_excerpt_real_user_files_processed": True,
+        "mvr_quarantine_detection_repair_00_indexed": True,
+        "mvr_quarantine_detection_repair_status": "completed",
+        "mvr_quarantine_detection_repair_no_detection_receipt_wording_conditional": True,
+        "mvr_quarantine_detection_repair_contradictory_wording_repaired": True,
+        "not_mvr_quarantine_detection_repair_file_access_broadened": True,
+        "not_mvr_quarantine_detection_repair_runtime_authority": True,
+        "mvr_human_selected_file_smoke_00_indexed": True,
+        "mvr_human_selected_file_smoke_status": "completed",
+        "mvr_human_selected_file_smoke_default_real_user_files_processed": False,
+        "mvr_human_selected_file_smoke_explicit_real_user_files_processed": True,
+        "not_mvr_human_selected_file_smoke_runtime_authority": True,
+        "not_mvr_human_selected_file_smoke_product_readiness": True,
+        "not_mvr_human_selected_file_smoke_accepted_evidence_authority": True,
+        "compliance_ready_mvr_report_design_00_indexed": True,
+        "compliance_ready_mvr_report_policy_status": "active_design_only",
+        "compliance_ready_mvr_report_generation_enabled": False,
+        "not_compliance_ready_mvr_report_certification": True,
+        "not_compliance_ready_mvr_report_runtime_authority": True,
+        "compliance_evidence_toolset_library_design_00_indexed": True,
+        "compliance_evidence_toolset_policy_status": "active_design_only",
+        "compliance_evidence_toolset_library_status": "active_design_only",
+        "compliance_evidence_toolset_day_one_profile": "eu_ai_act_evidence_support",
+        "compliance_evidence_toolset_evidence_pack_generation_enabled": False,
+        "not_compliance_evidence_toolset_certification": True,
+        "not_compliance_evidence_toolset_legal_advice": True,
+        "not_compliance_evidence_toolset_runtime_authority": True,
+        "wave_rosetta_canonical_proxy_bridge_00_indexed": True,
+        "wave_rosetta_canonical_proxy_bridge_status": "completed",
+        "wave_rosetta_canonical_proxy_bridge_is_not_canonical_measurement": True,
+        "eu_ai_act_mvr_evidence_mapping_design_00_indexed": True,
+        "eu_ai_act_mvr_evidence_mapping_status": "active_design_only",
+        "eu_ai_act_mvr_evidence_map_generation_enabled": False,
+        "eu_ai_act_mvr_evidence_map_local_prototype_00_indexed": True,
+        "eu_ai_act_mvr_evidence_map_local_prototype_status": "completed",
+        "eu_ai_act_mvr_evidence_map_local_prototype_profile_id": "eu_ai_act_evidence_support",
+        "eu_ai_act_mvr_evidence_map_local_prototype_open_gap_count": 10,
+        "eu_ai_act_mvr_evidence_map_local_prototype_signoff_performed": False,
+        "eu_ai_act_mvr_evidence_map_local_prototype_legal_review_performed": False,
+        "not_eu_ai_act_mvr_evidence_map_local_prototype_compliance_certification": True,
+        "not_eu_ai_act_mvr_evidence_map_local_prototype_runtime_authority": True,
+        "compliance_ready_mvr_report_local_prototype_00_indexed": True,
+        "compliance_ready_mvr_report_local_prototype_status": "completed",
+        "compliance_ready_mvr_report_local_prototype_open_gap_count": 10,
+        "compliance_ready_mvr_report_local_prototype_control_mapping_rows": 14,
+        "compliance_ready_mvr_report_local_prototype_glossary_entries": 14,
+        "not_compliance_ready_mvr_report_local_prototype_certification": True,
+        "not_compliance_ready_mvr_report_local_prototype_runtime_authority": True,
+        "source_corpus_provenance_archive_00_indexed": True,
+        "source_corpus_provenance_hash_fill_00_indexed": True,
+        "source_corpus_manifest_status": "active_governed_provenance_manifest",
+        "source_corpus_source_count": 5,
+        "source_corpus_pending_hash_placeholders_remaining": 0,
+        "source_corpus_raw_private_reports_bulk_imported": False,
+        "not_source_corpus_accepted_evidence": True,
+        "not_source_corpus_canonical_repo_state": True,
+        "not_source_corpus_runtime_authority": True,
+        "source_corpus_batch_manifest_2026_06_10_00_indexed": True,
+        "source_corpus_batch_status": "active_hash_only_provenance_manifest",
+        "source_corpus_batch_id": "source_corpus_batch_20260610",
+        "source_corpus_batch_canonical_row_count": 22,
+        "source_corpus_batch_unique_sha256_count": 22,
+        "source_corpus_batch_alias_pairs_preserved": True,
+        "source_corpus_batch_raw_files_committed": False,
+        "source_corpus_batch_normalized_derivatives_added": False,
+        "source_corpus_batch_extracted_text_added": False,
+        "source_corpus_batch_all_rows_visibility": "hash_only_public_reference",
+        "source_corpus_batch_all_rows_public_release_approved": False,
+        "source_corpus_batch_all_rows_preserve_non_authority_boundaries": True,
+        "source_corpus_batch_no_raw_private_files_committed": True,
+        "not_source_corpus_batch_accepted_evidence": True,
+        "not_source_corpus_batch_canonical_repo_state": True,
+        "wave_rosetta_canonical_proxy_bridge_provenance_00_indexed": True,
+        "wave_rosetta_canonical_proxy_bridge_provenance_status": "active_documentation_only",
+        "wave_rosetta_canonical_proxy_bridge_provenance_runtime_behavior_changed": False,
+        "not_wave_eu_provenance_runtime_authority": True,
+        "not_wave_eu_provenance_truth_or_compliance_certification": True,
+        "not_mvr_local_real_input_pilot_product_readiness": True,
+        "not_mvr_local_real_input_pilot_product_release": True,
+        "not_mvr_local_real_input_pilot_user_validation": True,
+        "not_mvr_local_real_input_pilot_runtime_authority": True,
+        "not_mvr_readability_revision_user_validation": True,
+        "not_mvr_readability_revision_product_readiness": True,
+        "not_mvr_readability_revision_runtime_authority": True,
         "not_mvr_readability_review_seed_user_validation": True,
         "not_mvr_readability_review_seed_product_readiness": True,
         "not_mvr_readability_review_seed_runtime_authority": True,
@@ -21771,6 +24391,1105 @@ MVR-LOCAL-PROTOTYPE-READABILITY-REVIEW-SEED-00 synchronizes the locally validate
 Publication sync grants no runtime authority. It performs no provider runtime, network runtime, memory write, Atlas memory admission, trace export, PMR federation, product release, product-readiness claim, final-answer authorization, accepted-evidence grant, truth certification, model training, or review skipping.
 """
 
+
+MVR_READABILITY_REVISION_SYNC_DOCS = {
+    "index.md",
+    "minimal-viable-receipt-design.md",
+    "minimal-viable-receipt-local-prototype.md",
+    "mvr-local-prototype-readability-review-seed.md",
+    "ai-receipt-architecture.md",
+    "triadic-observation-contract.md",
+    "observation-contract-policy-simulation.md",
+    "coherence-event-signatures.md",
+    "ces-pmr-indexing-design.md",
+    "validation-tiering-provenance.md",
+    "claim-boundaries.md",
+}
+MVR_READABILITY_REVISION_SYNC_NOTE = f"""
+
+## MVR Local Prototype Readability Revision publication sync
+
+MVR-LOCAL-PROTOTYPE-READABILITY-REVISION-00 applies deterministic local readability revisions to the MINIMAL-VIABLE-RECEIPT-LOCAL-PROTOTYPE-00 fixture-backed readable receipt after MVR-LOCAL-PROTOTYPE-READABILITY-REVIEW-SEED-00 evaluates that receipt with deterministic local fixture responses. MVR Local Prototype Readability Revision is a Deterministic local readability revision. Suggested revisions are applied deterministically, not validated by users. Readability revision is not product readiness. Readability revision is not user validation. Readability revision is not market validation. Readability revision is not human benefit proof. Readability revision does not certify truth. The receipt remains local fixture-backed and non-authoritative. Original human-readable receipt is preserved. Revised human-readable receipt is emitted. Readability gate remains unpassed. Human review remains required.
+
+No real user study was performed. No human-subject study was performed. No user validation was performed. No product readiness was claimed. No product release was performed. No memory write was performed. No Atlas memory admission was performed. No trace export was performed. No PMR federation was performed. This publication sync grants no runtime authority.
+
+Artifacts include minimal_viable_receipt_human_readable.md, minimal_viable_receipt_human_readable_revised.md, minimal_viable_receipt_packet.json, mvr_readability_review_packet.json, mvr_readability_revision_suggestions.json, mvr_readability_review_receipt.json, mvr_readability_revision_packet.json, mvr_readability_revision_receipt.json, pmr_local_runtime_artifact_index.json, artifact_inventory.json, run_artifact_manifest.json, export_bundle_manifest.json, and export_bundle_parity_report.json. Schemas include schema/bridge/mvr_readability_revision_packet.schema.json, schema/bridge/mvr_readability_revision_receipt.schema.json, schema/bridge/mvr_readability_questionnaire.schema.json, schema/bridge/mvr_readability_response_fixture.schema.json, schema/bridge/mvr_readability_review_packet.schema.json, schema/bridge/mvr_readability_revision_suggestions.schema.json, and schema/bridge/mvr_readability_review_receipt.schema.json. Reproduction references build_mvr_local_prototype_readability_revision.
+
+The revision applies add_plain_language_glossary_for_architecture_terms, clarify_ces_pmr_replay_posture, clarify_observation_contract_notice_vs_consent, make_unsupported_claims_more_visually_prominent, clarify_local_fixture_evidence_is_not_accepted_evidence, and add_top_level_non_authority_summary. Revised receipt language includes Plain-language glossary; CES / PMR replay posture, in plain language; Observation Contract notice and consent, in plain language; Unsupported claims require review; Local fixture evidence is not accepted evidence; Top-level non-authority summary; This revised receipt is not product readiness.; This revised receipt is not user validation.; This revised receipt is not truth certification.; Readability gate is not passed in this phase.; Human review remains required.
+
+Relation to prior phases: MINIMAL-VIABLE-RECEIPT-DESIGN-00 defines the one-transaction/many-sections receipt standard. MINIMAL-VIABLE-RECEIPT-LOCAL-PROTOTYPE-00 emits the local fixture-backed readable receipt. MVR-LOCAL-PROTOTYPE-READABILITY-REVIEW-SEED-00 evaluates that receipt with deterministic local fixture responses. MVR-LOCAL-PROTOTYPE-READABILITY-REVISION-00 applies deterministic local readability revisions. AI-RECEIPT-ARCHITECTURE-00 defines the receipt architecture. TRIADIC-OBSERVATION-CONTRACT-DESIGN-00 defines governed attention. OBSERVATION-CONTRACT-POLICY-SIMULATION-00 rehearses notice, consent, recovery, source-expansion, pathway-prior, retention, trace-export, and PMR-federation policy outcomes. TAC phases define aperture posture and review visibility. COHERENCE-EVENT-SIGNATURES-DESIGN-00 defines event signatures. CES-PMR-INDEXING-DESIGN-00 defines CES as a compact PMR index, not source replacement. SOPHIA-EXECUTIVE-AUDIT-REALITY-CHECK-00 records whether external Sophia actually ran. VALIDATION-TIERING-PROVENANCE-00 records validation confidence scope. MET-SEM-00 keeps metric labels profile-scoped.
+
+See [MVR Local Prototype Readability Revision](mvr-local-prototype-readability-revision.md).
+"""
+
+def mvr_local_prototype_readability_revision_doc() -> str:
+    summary = "\n".join(f"- {key} = {str(value).lower() if isinstance(value, bool) else value}" for key, value in MVR_READABILITY_REVISION_DASHBOARD_SUMMARY.items())
+    return f"""# MVR Local Prototype Readability Revision
+
+MVR-LOCAL-PROTOTYPE-READABILITY-REVISION-00 synchronizes the locally validated CoherenceLattice MVR Local Prototype Readability Revision into publication dashboards. This is publication/dashboard synchronization only. It applies deterministic local readability revisions to the fixture-backed Minimal Viable Receipt human-readable prototype and grants no runtime authority.
+
+## Bounded allowed claim
+
+{MVR_READABILITY_REVISION_CLAIM_ALLOWED}
+
+## Doctrine language
+
+{_bullets(MVR_READABILITY_REVISION_DOCTRINE_LANGUAGE)}
+
+## Dashboard summary
+
+{summary}
+
+## Applied revision IDs
+
+{_bullets(MVR_READABILITY_REVISION_APPLIED_REVISION_IDS)}
+
+## Revised receipt language
+
+{_bullets(MVR_READABILITY_REVISION_REVISED_RECEIPT_LANGUAGE)}
+
+## Artifact references
+
+{_bullets(MVR_READABILITY_REVISION_ARTIFACTS)}
+
+## Schema references
+
+{_bullets(MVR_READABILITY_REVISION_SCHEMA_REFERENCES)}
+
+## Relation to prior phases
+
+{_bullets(MVR_READABILITY_REVISION_PRIOR_PHASE_RELATION)}
+
+## Failure classes
+
+{_bullets(MVR_READABILITY_REVISION_FAILURE_CLASSES)}
+
+## Blocked claims
+
+{_bullets(MVR_READABILITY_REVISION_BLOCKED_CLAIMS)}
+
+## Reproducibility
+
+- {MVR_READABILITY_REVISION_REPRO_FRAGMENTS[0]}
+- `{MVR_READABILITY_REVISION_COMMAND}`
+
+## Runtime authority boundary
+
+Publication sync grants no runtime authority. It performs no provider runtime, network runtime, memory write, Atlas memory admission, trace export, PMR federation, product release, product-readiness claim, final-answer authorization, accepted-evidence grant, truth certification, model training, or review skipping.
+"""
+
+
+MVR_REAL_INPUT_PILOT_DESIGN_SYNC_DOCS = {
+    "index.md",
+    "minimal-viable-receipt-design.md",
+    "minimal-viable-receipt-local-prototype.md",
+    "mvr-local-prototype-readability-review-seed.md",
+    "mvr-local-prototype-readability-revision.md",
+    "ai-receipt-architecture.md",
+    "triadic-observation-contract.md",
+    "observation-contract-policy-simulation.md",
+    "tac-ai-receipt-event-link.md",
+    "coherence-event-signatures.md",
+    "ces-pmr-indexing-design.md",
+    "validation-tiering-provenance.md",
+    "claim-boundaries.md",
+}
+MVR_REAL_INPUT_PILOT_DESIGN_SYNC_NOTE = f"""
+
+## MVR Local Real Input Pilot Design publication sync
+
+MVR-LOCAL-REAL-INPUT-PILOT-DESIGN-00 defines design-only boundaries for a future local real-input Minimal Viable Receipt pilot. MVR Local Real Input Pilot Design is publication/dashboard synchronization only. Real local input can enter only by explicit local source selection. Real input pilot design is not real input processing. Real input pilot design is not product readiness. Real input pilot design is not product release. A real-input pilot must be local-only by default, source-bounded, consent-bounded, quarantine-aware, receipt-required, and human-review-required. Local source selection is not accepted-evidence authority. Local source processing is not memory write. Human review remains required.
+
+MVR-LOCAL-REAL-INPUT-PILOT-DESIGN-00 does not process real files. MVR-LOCAL-REAL-INPUT-PILOT-DESIGN-00 does not emit runtime real-input artifacts. MVR-LOCAL-REAL-INPUT-PILOT-DESIGN-00 does not perform provider calls. MVR-LOCAL-REAL-INPUT-PILOT-DESIGN-00 does not perform network calls. MVR-LOCAL-REAL-INPUT-PILOT-DESIGN-00 does not write memory. MVR-LOCAL-REAL-INPUT-PILOT-DESIGN-00 does not admit Atlas memory. MVR-LOCAL-REAL-INPUT-PILOT-DESIGN-00 does not claim product readiness. MVR-LOCAL-REAL-INPUT-PILOT-DESIGN-00 does not release product. Publication sync grants no runtime authority.
+
+Artifacts include docs/MVR_LOCAL_REAL_INPUT_PILOT_DESIGN.md, config/receipt/mvr_local_real_input_pilot_policy.v1.json, schema/bridge/mvr_local_real_input_source_manifest.schema.json, schema/bridge/mvr_local_real_input_consent_scope.schema.json, schema/bridge/mvr_local_real_input_quarantine_report.schema.json, schema/bridge/mvr_local_real_input_pilot_policy_packet.schema.json, and schema/bridge/mvr_local_real_input_non_authority_boundary.schema.json.
+
+Allowed input classes: local_text_file, local_markdown_file, local_json_file, local_csv_file, local_plaintext_excerpt, local_user_pasted_excerpt, local_redacted_document_excerpt. Initially blocked input classes: remote_url_fetch, cloud_connector_file, email_inbox_scan, calendar_scan, browser_history_scan, whole_disk_scan, hidden_directory_scan, credential_file, secrets_file, private_key_file, raw_chat_history_bulk_import, personal_profile_bulk_import, unredacted_sensitive_identity_document, medical_record, legal_record, financial_account_record, child_data_record, biometric_data_record.
+
+Pilot source rules: explicit_user_selection_required, local_path_allowlist_required, recursive_directory_scan_allowed = false, hidden_file_scan_allowed = false, max_source_file_count_default = 5, max_source_bytes_default = 250000, source_hashing_required, source_manifest_required, source_expansion_required_for_decisions, instruction_like_evidence_quarantine_required, unsupported_claim_visibility_required, human_review_required.
+
+Consent and observation terms: consent_scope_required, consent_is_local_to_pilot_run, consent_is_not_memory_write, consent_is_not_trace_export_authorization, consent_is_not_pmr_federation_authorization, consent_is_not_product_release, revocation_supported, retention_review_required, observation_contract_posture_required, observation_contract_policy_simulation_ref_required, tac_aperture_posture_required, default_tac_mode = pulse, raw_trace_retention_allowed_default = false, trace_export_allowed_default = false, pmr_federation_allowed_default = false, no_silent_mode_shift_required, notice_and_consent_boundaries_visible.
+
+Output requirements: minimal_viable_receipt_required, human_readable_receipt_required, machine_readable_receipt_required, section_index_required, readability_profile_required, contestability_profile_required, cost_burden_profile_required, non_authority_boundary_required, local_real_input_source_manifest_required, quarantine_report_required, pilot_receipt_required.
+
+Relation to prior phases: MINIMAL-VIABLE-RECEIPT-DESIGN-00 defines the one-transaction/many-sections receipt standard. MINIMAL-VIABLE-RECEIPT-LOCAL-PROTOTYPE-00 emits the local fixture-backed readable receipt. MVR-LOCAL-PROTOTYPE-READABILITY-REVIEW-SEED-00 evaluates that receipt with deterministic local fixture responses. MVR-LOCAL-PROTOTYPE-READABILITY-REVISION-00 applies deterministic local readability revisions. MVR-LOCAL-REAL-INPUT-PILOT-DESIGN-00 defines boundaries for a future real-local-input pilot. TRIADIC-OBSERVATION-CONTRACT-DESIGN-00 defines governed attention. OBSERVATION-CONTRACT-POLICY-SIMULATION-00 rehearses notice, consent, recovery, source-expansion, pathway-prior, retention, trace-export, and PMR-federation policy outcomes. TAC phases define aperture posture and review visibility. COHERENCE-EVENT-SIGNATURES-DESIGN-00 defines event signatures. CES-PMR-INDEXING-DESIGN-00 defines CES as a compact PMR index, not source replacement. VALIDATION-TIERING-PROVENANCE-00 records validation confidence scope.
+
+See [MVR Local Real Input Pilot Design](mvr-local-real-input-pilot-design.md).
+"""
+
+def mvr_local_real_input_pilot_design_doc() -> str:
+    summary = "\n".join(f"- {key} = {str(value).lower() if isinstance(value, bool) else value}" for key, value in MVR_REAL_INPUT_PILOT_DESIGN_DASHBOARD_SUMMARY.items())
+    return f"""# MVR Local Real Input Pilot Design
+
+MVR-LOCAL-REAL-INPUT-PILOT-DESIGN-00 synchronizes the locally validated CoherenceLattice MVR Local Real Input Pilot Design into publication dashboards. This is publication/dashboard synchronization only. It defines boundaries for a future local real-input Minimal Viable Receipt pilot and grants no runtime authority.
+
+## Bounded allowed claim
+
+{MVR_REAL_INPUT_PILOT_DESIGN_CLAIM_ALLOWED}
+
+## Doctrine language
+
+{_bullets(MVR_REAL_INPUT_PILOT_DESIGN_DOCTRINE_LANGUAGE)}
+
+## Dashboard summary
+
+{summary}
+
+## Allowed input classes
+
+{_bullets(MVR_REAL_INPUT_PILOT_DESIGN_ALLOWED_INPUT_CLASSES)}
+
+## Initially blocked input classes
+
+{_bullets(MVR_REAL_INPUT_PILOT_DESIGN_BLOCKED_INPUT_CLASSES)}
+
+## Pilot source rules
+
+{_bullets(MVR_REAL_INPUT_PILOT_DESIGN_SOURCE_RULES)}
+
+## Consent and observation terms
+
+{_bullets(MVR_REAL_INPUT_PILOT_DESIGN_CONSENT_OBSERVATION_TERMS)}
+
+## Output requirement terms
+
+{_bullets(MVR_REAL_INPUT_PILOT_DESIGN_OUTPUT_REQUIREMENT_TERMS)}
+
+## Artifact references
+
+{_bullets(MVR_REAL_INPUT_PILOT_DESIGN_ARTIFACTS)}
+
+## Relation to prior phases
+
+{_bullets(MVR_REAL_INPUT_PILOT_DESIGN_PRIOR_PHASE_RELATION)}
+
+## Failure classes
+
+{_bullets(MVR_REAL_INPUT_PILOT_DESIGN_FAILURE_CLASSES)}
+
+## Blocked claims
+
+{_bullets(MVR_REAL_INPUT_PILOT_DESIGN_BLOCKED_CLAIMS)}
+
+## Reproducibility
+
+{_bullets(MVR_REAL_INPUT_PILOT_DESIGN_REPRO_FRAGMENTS)}
+- `{MVR_REAL_INPUT_PILOT_DESIGN_COMMAND}`
+
+## Runtime authority boundary
+
+Publication sync grants no runtime authority. It performs no real file processing, real user file ingestion, provider runtime, network runtime, memory write, Atlas memory admission, trace export, PMR federation, product release, product-readiness claim, real user study, human-subject study, user validation, market validation, human benefit proof, final-answer authorization, accepted-evidence grant, truth certification, compliance certification, model training, or review skipping.
+"""
+
+
+MVR_REAL_INPUT_PILOT_PROTOTYPE_SYNC_DOCS = {
+    "index.md",
+    "mvr-local-real-input-pilot-design.md",
+    "minimal-viable-receipt-local-prototype.md",
+    "minimal-viable-receipt-design.md",
+    "mvr-local-prototype-readability-review-seed.md",
+    "mvr-local-prototype-readability-revision.md",
+    "ai-receipt-architecture.md",
+    "triadic-observation-contract.md",
+    "observation-contract-policy-simulation.md",
+    "tac-ai-receipt-event-link.md",
+    "coherence-event-signatures.md",
+    "ces-pmr-indexing-design.md",
+    "validation-tiering-provenance.md",
+    "claim-boundaries.md",
+}
+MVR_REAL_INPUT_PILOT_PROTOTYPE_SYNC_NOTE = f"""
+
+## MVR Local Real Input Pilot Prototype publication sync
+
+MVR-LOCAL-REAL-INPUT-PILOT-PROTOTYPE-00 emits the first bounded local real-input pilot prototype. Real local input can enter only by explicit local source selection or explicit pasted excerpts. The prototype processes only explicit local sources or explicit pasted excerpts; it never scans directories, never auto-discovers files, never reads hidden files, never fetches URLs, never calls provider APIs, and never performs network calls. Local source selection is not accepted-evidence authority. Local source processing is not memory write. Consent is local to this pilot run and is not trace export authorization or PMR federation authorization. Publication sync grants no runtime authority.
+
+Default smoke uses generated_explicit_local_test_sources with selected_source_count = 2, recursive_directory_scan_allowed = false, hidden_file_scan_allowed = false, real_user_files_processed = false, local_fixture_mode = true, instruction_like_evidence_count = 1, real_input_processing_enabled = true, real_input_runtime_artifacts_emitted = true, and pilot_receipt_status = completed. Explicit pasted excerpt smoke uses explicit_pasted_excerpts with pasted_excerpt_selected_source_count = 1, pasted_excerpt_source_class = local_user_pasted_excerpt, pasted_excerpt_real_user_files_processed = true, and pasted_excerpt_local_fixture_mode = false.
+
+Artifacts include mvr_local_real_input_source_manifest.json, mvr_local_real_input_consent_scope.json, mvr_local_real_input_quarantine_report.json, mvr_local_real_input_pilot_policy_packet.json, mvr_local_real_input_non_authority_boundary.json, minimal_viable_receipt_packet.json, minimal_viable_receipt_checklist.json, minimal_viable_receipt_section_index.json, receipt_readability_profile.json, receipt_contestability_profile.json, receipt_cost_burden_profile.json, minimal_viable_receipt_non_authority_boundary.json, minimal_viable_receipt_human_readable.md, mvr_local_real_input_pilot_receipt.json, pmr_local_runtime_artifact_index.json, artifact_inventory.json, run_artifact_manifest.json, export_bundle_manifest.json, and export_bundle_parity_report.json. Schemas include schema/bridge/mvr_local_real_input_source_manifest.schema.json, schema/bridge/mvr_local_real_input_consent_scope.schema.json, schema/bridge/mvr_local_real_input_quarantine_report.schema.json, schema/bridge/mvr_local_real_input_pilot_policy_packet.schema.json, schema/bridge/mvr_local_real_input_non_authority_boundary.schema.json, schema/bridge/mvr_local_real_input_pilot_receipt.schema.json, schema/bridge/minimal_viable_receipt_packet.schema.json, schema/bridge/minimal_viable_receipt_checklist.schema.json, schema/bridge/minimal_viable_receipt_section_index.schema.json, schema/bridge/receipt_readability_profile.schema.json, schema/bridge/receipt_contestability_profile.schema.json, schema/bridge/receipt_cost_burden_profile.schema.json, and schema/bridge/minimal_viable_receipt_non_authority_boundary.schema.json. Reproduction references build_mvr_local_real_input_pilot_prototype.
+
+Source-selection terms: generated_explicit_local_test_sources, explicit_pasted_excerpts, local_user_pasted_excerpt, explicit_user_selected, accepted_for_processing, source_is_not_accepted_evidence, source_sha256, recursive_directory_scan_allowed = false, hidden_file_scan_allowed = false. Consent and quarantine terms: consent_status = active_for_local_pilot, consent_scope = local_pilot_run_only, consent_is_local_to_pilot_run = true, consent_is_not_memory_write = true, consent_is_not_trace_export_authorization = true, consent_is_not_pmr_federation_authorization = true, consent_is_not_product_release = true, quarantine_status = completed, instruction_like_evidence_detected, quarantined_evidence_is_not_accepted_evidence = true.
+
+Relation to prior phases: MVR-LOCAL-REAL-INPUT-PILOT-DESIGN-00 defines boundaries for a future real-local-input pilot. MVR-LOCAL-REAL-INPUT-PILOT-PROTOTYPE-00 emits the first bounded local real-input pilot prototype. MINIMAL-VIABLE-RECEIPT-DESIGN-00 defines the one-transaction/many-sections receipt standard. MINIMAL-VIABLE-RECEIPT-LOCAL-PROTOTYPE-00 emits the local fixture-backed readable receipt. MVR-LOCAL-PROTOTYPE-READABILITY-REVISION-00 applies deterministic local readability revisions. TRIADIC-OBSERVATION-CONTRACT-DESIGN-00 defines governed attention. OBSERVATION-CONTRACT-POLICY-SIMULATION-00 rehearses notice, consent, recovery, source-expansion, pathway-prior, retention, trace-export, and PMR-federation policy outcomes. TAC phases define aperture posture and review visibility. COHERENCE-EVENT-SIGNATURES-DESIGN-00 defines event signatures. CES-PMR-INDEXING-DESIGN-00 defines CES as a compact PMR index, not source replacement. VALIDATION-TIERING-PROVENANCE-00 records validation confidence scope.
+
+See [MVR Local Real Input Pilot Prototype](mvr-local-real-input-pilot-prototype.md).
+"""
+
+def mvr_local_real_input_pilot_prototype_doc() -> str:
+    summary = "\n".join(f"- {key} = {str(value).lower() if isinstance(value, bool) else value}" for key, value in MVR_REAL_INPUT_PILOT_PROTOTYPE_DASHBOARD_SUMMARY.items())
+    return f"""# MVR Local Real Input Pilot Prototype
+
+MVR-LOCAL-REAL-INPUT-PILOT-PROTOTYPE-00 synchronizes the locally validated CoherenceLattice MVR Local Real Input Pilot Prototype into publication dashboards. This is publication/dashboard synchronization only and grants no runtime authority beyond the local prototype evidence boundaries recorded here.
+
+## Bounded allowed claim
+
+{MVR_REAL_INPUT_PILOT_PROTOTYPE_CLAIM_ALLOWED}
+
+## Doctrine language
+
+{_bullets(MVR_REAL_INPUT_PILOT_PROTOTYPE_DOCTRINE_LANGUAGE)}
+
+## Dashboard summary
+
+{summary}
+
+## Source-selection terms
+
+{_bullets(MVR_REAL_INPUT_PILOT_PROTOTYPE_SOURCE_SELECTION_TERMS)}
+
+## Consent and quarantine terms
+
+{_bullets(MVR_REAL_INPUT_PILOT_PROTOTYPE_CONSENT_QUARANTINE_TERMS)}
+
+## Artifact references
+
+{_bullets(MVR_REAL_INPUT_PILOT_PROTOTYPE_ARTIFACTS)}
+
+## Schema references
+
+{_bullets(MVR_REAL_INPUT_PILOT_PROTOTYPE_SCHEMA_REFERENCES)}
+
+## Relation to prior phases
+
+{_bullets(MVR_REAL_INPUT_PILOT_PROTOTYPE_PRIOR_PHASE_RELATION)}
+
+## Failure classes
+
+{_bullets(MVR_REAL_INPUT_PILOT_PROTOTYPE_FAILURE_CLASSES)}
+
+## Blocked claims
+
+{_bullets(MVR_REAL_INPUT_PILOT_PROTOTYPE_BLOCKED_CLAIMS)}
+
+## Reproducibility
+
+- {MVR_REAL_INPUT_PILOT_PROTOTYPE_REPRO_FRAGMENTS[0]}
+- `{MVR_REAL_INPUT_PILOT_PROTOTYPE_COMMAND}`
+
+## Runtime authority boundary
+
+Publication sync grants no runtime authority. It does not imply product release, product readiness, provider runtime, network runtime, trace export, PMR federation, memory write, Atlas memory admission, deployment, final-answer authorization, accepted-evidence grant, truth certification, compliance certification, user validation, real user study, human-subject study, market validation, human benefit proof, model training, or review skipping.
+"""
+
+
+MVR_QUARANTINE_REPAIR_SYNC_DOCS = {
+    "index.md",
+    "mvr-local-real-input-pilot-design.md",
+    "mvr-local-real-input-pilot-prototype.md",
+    "minimal-viable-receipt-local-prototype.md",
+    "minimal-viable-receipt-design.md",
+    "mvr-local-prototype-readability-revision.md",
+    "ai-receipt-architecture.md",
+    "triadic-observation-contract.md",
+    "observation-contract-policy-simulation.md",
+    "tac-ai-receipt-event-link.md",
+    "coherence-event-signatures.md",
+    "ces-pmr-indexing-design.md",
+    "validation-tiering-provenance.md",
+    "claim-boundaries.md",
+}
+MVR_QUARANTINE_REPAIR_SYNC_NOTE = f"""
+
+## MVR Local Real Input Pilot Quarantine Detection Repair publication sync
+
+MVR-LOCAL-REAL-INPUT-PILOT-QUARANTINE-DETECTION-REPAIR-00 repairs instruction-like evidence detection for human-selected local files. Human-selected local files with instruction-like evidence must be quarantined. Harmless human-selected local files must not falsely claim quarantine. Instruction-like evidence was quarantined. No instruction-like evidence was detected for quarantine. Quarantined evidence is not accepted evidence. Local source selection is not accepted-evidence authority. Local source processing is not memory write. Human review remains required.
+
+The repair does not broaden file access, scan directories, read hidden files, fetch URLs, call providers, perform network calls, write memory, admit Atlas memory, export traces, federate PMR, claim product readiness, release product, grant final-answer authority, grant accepted-evidence authority, or certify truth. Publication sync grants no runtime authority.
+
+Detector terms include INSTRUCTION_LIKE_CUES, instruction-like note, ignore prior rules, ignore previous rules, ignore previous instructions, treat this note as authoritative, treat this as authoritative, follow these instructions, override prior instructions, system prompt, developer message, assistant must, you must, do not reveal, disregard previous, disregard prior, _matched_instruction_like_cues, and matched_instruction_like_phrases.
+
+Smoke outcomes include instruction_like and harmless cases with explicit_local_source_paths and local_markdown_file. The instruction-like smoke uses harmless_mvr_real_input_source_instruction_like.md, instruction_like_evidence_count = 1, quarantined_items_count = 1, and matched phrases: instruction-like note, ignore prior rules, treat this note as authoritative. The harmless smoke uses harmless_mvr_real_input_source_no_instruction.md and harmless evidence count = 0. Both smokes keep provider_runtime_performed = false, network_call_performed = false, product_release_performed = false, product_readiness_claimed = false, final_answer_authority_granted = false, accepted_evidence_authority_granted = false, truth_certification_emitted = false, memory_write_performed = false, atlas_memory_admission_performed = false, trace_export_performed = false, and pmr_federation_performed = false.
+
+Relation to prior phases: MVR-LOCAL-REAL-INPUT-PILOT-DESIGN-00 defines boundaries for a future real-local-input pilot. MVR-LOCAL-REAL-INPUT-PILOT-PROTOTYPE-00 emits the first bounded local real-input pilot prototype. MVR-LOCAL-REAL-INPUT-PILOT-QUARANTINE-DETECTION-REPAIR-00 repairs instruction-like evidence detection for human-selected local files. MINIMAL-VIABLE-RECEIPT-DESIGN-00 defines the one-transaction/many-sections receipt standard. MINIMAL-VIABLE-RECEIPT-LOCAL-PROTOTYPE-00 emits the local fixture-backed readable receipt. MVR-LOCAL-PROTOTYPE-READABILITY-REVISION-00 applies deterministic local readability revisions. TRIADIC-OBSERVATION-CONTRACT-DESIGN-00 defines governed attention. OBSERVATION-CONTRACT-POLICY-SIMULATION-00 rehearses notice, consent, recovery, source-expansion, pathway-prior, retention, trace-export, and PMR-federation policy outcomes. TAC phases define aperture posture and review visibility. COHERENCE-EVENT-SIGNATURES-DESIGN-00 defines event signatures. CES-PMR-INDEXING-DESIGN-00 defines CES as a compact PMR index, not source replacement. VALIDATION-TIERING-PROVENANCE-00 records validation confidence scope.
+
+See [MVR Local Real Input Pilot Quarantine Detection Repair](mvr-local-real-input-pilot-quarantine-detection-repair.md).
+"""
+
+
+MVR_HUMAN_SELECTED_FILE_SMOKE_SYNC_DOCS = {
+    "index.md",
+    "mvr-local-real-input-pilot-design.md",
+    "mvr-local-real-input-pilot-prototype.md",
+    "mvr-local-real-input-pilot-quarantine-detection-repair.md",
+    "minimal-viable-receipt-local-prototype.md",
+    "minimal-viable-receipt-design.md",
+    "observation-contract-policy-simulation.md",
+    "validation-tiering-provenance.md",
+    "claim-boundaries.md",
+}
+MVR_HUMAN_SELECTED_FILE_SMOKE_SYNC_NOTE = f"""
+
+## MVR local real-input pilot human-selected file smoke publication sync
+
+MVR-LOCAL-REAL-INPUT-PILOT-HUMAN-SELECTED-FILE-SMOKE-00 records a controlled explicit local file smoke. Human-selected file smoke uses explicit local source selection. Default smoke uses a generated harmless explicit local file fixture and does not process real user files. Explicit path smoke processes only the selected local markdown file. Instruction-like evidence is quarantined. Quarantined evidence is not accepted evidence. Human review remains required.
+
+Source-selection and quarantine terms: {', '.join(MVR_HUMAN_SELECTED_FILE_SMOKE_SOURCE_SELECTION_TERMS)}. Quarantine terms: {', '.join(MVR_HUMAN_SELECTED_FILE_SMOKE_QUARANTINE_TERMS)}.
+
+The smoke never scans directories, never auto-discovers files, never reads hidden files, never fetches URLs, never calls providers, and never performs network calls. It does not write memory, admit Atlas memory, export traces, federate PMR, release product, claim product readiness, grant final-answer authority, grant accepted-evidence authority, certify truth, train a model, skip review, validate market demand, prove human benefit, or perform user validation.
+
+Relation to prior phases: MVR-LOCAL-REAL-INPUT-PILOT-DESIGN-00 defines the real-input pilot boundaries. MVR-LOCAL-REAL-INPUT-PILOT-PROTOTYPE-00 implements explicit local source and pasted-excerpt prototype handling. MVR-LOCAL-REAL-INPUT-PILOT-QUARANTINE-DETECTION-REPAIR-00 repairs instruction-like evidence quarantine detection. MVR-LOCAL-REAL-INPUT-PILOT-HUMAN-SELECTED-FILE-SMOKE-00 records a controlled explicit local file smoke. MINIMAL-VIABLE-RECEIPT-DESIGN-00 defines the receipt standard. MINIMAL-VIABLE-RECEIPT-LOCAL-PROTOTYPE-00 emits the local fixture-backed receipt. OBSERVATION-CONTRACT-POLICY-SIMULATION-00 rehearses notice, consent, and recovery outcomes. VALIDATION-TIERING-PROVENANCE-00 records validation confidence scope.
+"""
+
+def mvr_local_real_input_pilot_quarantine_detection_repair_doc() -> str:
+    summary = "\n".join(f"- {key} = {str(value).lower() if isinstance(value, bool) else value}" for key, value in MVR_QUARANTINE_REPAIR_DASHBOARD_SUMMARY.items())
+    return f"""# MVR Local Real Input Pilot Quarantine Detection Repair
+
+MVR-LOCAL-REAL-INPUT-PILOT-QUARANTINE-DETECTION-REPAIR-00 synchronizes the locally validated CoherenceLattice MVR Local Real Input Pilot Quarantine Detection Repair into publication dashboards. This is publication/dashboard synchronization only and grants no runtime authority.
+
+## Bounded allowed claim
+
+{MVR_QUARANTINE_REPAIR_CLAIM_ALLOWED}
+
+## Dashboard summary
+
+{summary}
+
+## Detector terms
+
+{_bullets(MVR_QUARANTINE_REPAIR_DETECTOR_TERMS)}
+
+## Doctrine language
+
+{_bullets(MVR_QUARANTINE_REPAIR_DOCTRINE_LANGUAGE)}
+
+## Smoke outcomes
+
+{_bullets(MVR_QUARANTINE_REPAIR_SMOKE_OUTCOMES)}
+
+## Artifact references
+
+{_bullets(MVR_QUARANTINE_REPAIR_ARTIFACTS)}
+
+## Relation to prior phases
+
+{_bullets(MVR_QUARANTINE_REPAIR_PRIOR_PHASE_RELATION)}
+
+## Failure classes
+
+{_bullets(MVR_QUARANTINE_REPAIR_FAILURE_CLASSES)}
+
+## Blocked claims
+
+{_bullets(MVR_QUARANTINE_REPAIR_BLOCKED_CLAIMS)}
+
+## Reproducibility
+
+{_bullets(MVR_QUARANTINE_REPAIR_REPRO_FRAGMENTS)}
+- `{MVR_QUARANTINE_REPAIR_COMMAND}`
+
+## Runtime authority boundary
+
+Publication sync grants no runtime authority. It does not imply product release, product readiness, provider runtime, network runtime, trace export, PMR federation, memory write, Atlas memory admission, deployment, final-answer authority, accepted-evidence authority, truth certification, compliance certification, user validation, real user study, human-subject study, market validation, human benefit proof, model training, review skipping, consciousness proof, Omega detection, or universal ontology proof.
+"""
+
+def mvr_local_real_input_pilot_human_selected_file_smoke_doc() -> str:
+    summary = "\n".join(f"- {key} = {str(value).lower() if isinstance(value, bool) else value}" for key, value in MVR_HUMAN_SELECTED_FILE_SMOKE_DASHBOARD_SUMMARY.items())
+    return f"""# MVR Local Real Input Pilot Human-Selected File Smoke
+
+MVR-LOCAL-REAL-INPUT-PILOT-HUMAN-SELECTED-FILE-SMOKE-00 synchronizes the locally validated CoherenceLattice MVR Local Real Input Pilot Human-Selected File Smoke into publication dashboards. This is publication/dashboard synchronization only and grants no runtime authority.
+
+## Bounded allowed claim
+
+{MVR_HUMAN_SELECTED_FILE_SMOKE_CLAIM_ALLOWED}
+
+## Dashboard summary
+
+{summary}
+
+## Doctrine language
+
+{_bullets(MVR_HUMAN_SELECTED_FILE_SMOKE_DOCTRINE_LANGUAGE)}
+
+## Source-selection terms
+
+{_bullets(MVR_HUMAN_SELECTED_FILE_SMOKE_SOURCE_SELECTION_TERMS)}
+
+## Quarantine terms
+
+{_bullets(MVR_HUMAN_SELECTED_FILE_SMOKE_QUARANTINE_TERMS)}
+
+## Artifact references
+
+{_bullets(MVR_HUMAN_SELECTED_FILE_SMOKE_ARTIFACTS)}
+
+## Schema references
+
+{_bullets(MVR_HUMAN_SELECTED_FILE_SMOKE_SCHEMA_REFERENCES)}
+
+## Relation to prior phases
+
+{_bullets(MVR_HUMAN_SELECTED_FILE_SMOKE_PRIOR_PHASE_RELATION)}
+
+## Failure classes
+
+{_bullets(MVR_HUMAN_SELECTED_FILE_SMOKE_FAILURE_CLASSES)}
+
+## Blocked claims
+
+{_bullets(MVR_HUMAN_SELECTED_FILE_SMOKE_BLOCKED_CLAIMS)}
+
+## Reproducibility
+
+{_bullets(MVR_HUMAN_SELECTED_FILE_SMOKE_REPRO_FRAGMENTS)}
+- `{MVR_HUMAN_SELECTED_FILE_SMOKE_COMMAND}`
+
+## Runtime authority boundary
+
+Publication sync grants no runtime authority. It does not imply product release, product readiness, provider runtime, network runtime, trace export, PMR federation, memory write, Atlas memory admission, deployment, final-answer authority, accepted-evidence authority, truth certification, compliance certification, user validation, real user study, human-subject study, market validation, human benefit proof, model training, review skipping, consciousness proof, Omega detection, or universal ontology proof.
+"""
+
+
+COMPLIANCE_DESIGN_SYNC_DOCS = {
+    "index.md",
+    "minimal-viable-receipt-design.md",
+    "minimal-viable-receipt-local-prototype.md",
+    "mvr-local-real-input-pilot-design.md",
+    "mvr-local-real-input-pilot-prototype.md",
+    "mvr-local-real-input-pilot-human-selected-file-smoke.md",
+    "mvr-local-real-input-pilot-quarantine-detection-repair.md",
+    "ai-receipt-architecture.md",
+    "observation-contract-policy-simulation.md",
+    "validation-tiering-provenance.md",
+    "claim-boundaries.md",
+}
+COMPLIANCE_DESIGN_SYNC_NOTE = f"""
+
+## Compliance-ready MVR report and compliance evidence toolset design publication sync
+
+COMPLIANCE-READY-MVR-REPORT-DESIGN-00 defines a design-only, plain-language compliance review support report for MVR transactions. COMPLIANCE-EVIDENCE-TOOLSET-LIBRARY-DESIGN-00 defines a design-only compliance evidence toolset library. UVLM produces compliance evidence packs, not compliance certifications. Human professionals with authority may use UVLM evidence in their own compliance, audit, legal, risk, or attestation workflows.
+
+Compliance report doctrine: {'; '.join(COMPLIANCE_REPORT_DOCTRINE_LANGUAGE)}
+
+Compliance toolset doctrine: {'; '.join(COMPLIANCE_TOOLSET_DOCTRINE_LANGUAGE)}
+
+Report audiences: {', '.join(COMPLIANCE_REPORT_AUDIENCE_TERMS)}. Report sections: {', '.join(COMPLIANCE_REPORT_SECTION_TERMS)}. Framework profiles: {', '.join(COMPLIANCE_FRAMEWORK_PROFILE_TERMS)}. EU AI Act evidence support terms: {', '.join(COMPLIANCE_EU_AI_ACT_SUPPORT_TERMS)}. Generic evidence mapping terms: {', '.join(COMPLIANCE_GENERIC_EVIDENCE_MAPPING_TERMS)}. Human signoff roles: {', '.join(COMPLIANCE_HUMAN_SIGNOFF_ROLE_TERMS)}.
+
+These designs do not generate reports or evidence packs, process real inputs, certify compliance, provide legal advice, pass audits, guarantee attestation success, certify truth, grant final-answer authority, grant accepted-evidence authority, write memory, admit Atlas memory, export traces, federate PMR, train models, skip review, validate users, claim product readiness, or release product. Publication sync grants no runtime authority.
+"""
+
+
+def compliance_ready_mvr_report_design_doc() -> str:
+    summary = "\n".join(f"- {key} = {str(value).lower() if isinstance(value, bool) else value}" for key, value in COMPLIANCE_REPORT_DASHBOARD_SUMMARY.items())
+    return f"""# Compliance-Ready MVR Report Design
+
+COMPLIANCE-READY-MVR-REPORT-DESIGN-00 synchronizes the locally validated CoherenceLattice compliance-ready MVR report design into publication dashboards. This is publication/dashboard synchronization only and grants no runtime authority.
+
+## Bounded allowed claim
+
+{COMPLIANCE_REPORT_CLAIM_ALLOWED}
+
+## Dashboard summary
+
+{summary}
+
+## Doctrine language
+
+{_bullets(COMPLIANCE_REPORT_DOCTRINE_LANGUAGE)}
+
+## Report audience terms
+
+{_bullets(COMPLIANCE_REPORT_AUDIENCE_TERMS)}
+
+## Report section terms
+
+{_bullets(COMPLIANCE_REPORT_SECTION_TERMS)}
+
+## Artifact references
+
+{_bullets(COMPLIANCE_REPORT_DESIGN_ARTIFACTS)}
+
+## Related compliance toolset terms
+
+{_bullets(COMPLIANCE_FRAMEWORK_PROFILE_TERMS)}
+{_bullets(COMPLIANCE_GENERIC_EVIDENCE_MAPPING_TERMS)}
+{_bullets(COMPLIANCE_HUMAN_SIGNOFF_ROLE_TERMS)}
+
+## Blocked claims
+
+{_bullets(COMPLIANCE_DESIGN_BLOCKED_CLAIMS)}
+
+## Reproducibility
+
+{_bullets(COMPLIANCE_REPORT_DESIGN_REPRO_FRAGMENTS)}
+- `{COMPLIANCE_REPORT_DESIGN_COMMAND}`
+
+## Runtime authority boundary
+
+Publication sync grants no runtime authority. It does not imply report generation, evidence-pack generation, real input processing, provider runtime, network runtime, product release, product readiness, compliance certification, legal advice, audit pass, attestation success, truth certification, final-answer authority, accepted-evidence authority, memory write, Atlas memory admission, trace export, PMR federation, model training, review skipping, user validation, human-subject study, market validation, human benefit proof, consciousness proof, Omega detection, or universal ontology proof.
+"""
+
+
+def compliance_evidence_toolset_library_design_doc() -> str:
+    summary = "\n".join(f"- {key} = {str(value).lower() if isinstance(value, bool) else value}" for key, value in COMPLIANCE_TOOLSET_DASHBOARD_SUMMARY.items())
+    return f"""# Compliance Evidence Toolset Library Design
+
+COMPLIANCE-EVIDENCE-TOOLSET-LIBRARY-DESIGN-00 synchronizes the locally validated CoherenceLattice compliance evidence toolset library design into publication dashboards. This is publication/dashboard synchronization only and grants no runtime authority.
+
+## Bounded allowed claim
+
+{COMPLIANCE_TOOLSET_CLAIM_ALLOWED}
+
+## Dashboard summary
+
+{summary}
+
+## Doctrine language
+
+{_bullets(COMPLIANCE_TOOLSET_DOCTRINE_LANGUAGE)}
+
+## Framework profile terms
+
+{_bullets(COMPLIANCE_FRAMEWORK_PROFILE_TERMS)}
+
+## EU AI Act evidence support terms
+
+{_bullets(COMPLIANCE_EU_AI_ACT_SUPPORT_TERMS)}
+
+## Generic evidence mapping terms
+
+{_bullets(COMPLIANCE_GENERIC_EVIDENCE_MAPPING_TERMS)}
+
+## Human signoff role terms
+
+{_bullets(COMPLIANCE_HUMAN_SIGNOFF_ROLE_TERMS)}
+
+## Artifact references
+
+{_bullets(COMPLIANCE_TOOLSET_DESIGN_ARTIFACTS)}
+
+## Related report terms
+
+{_bullets(COMPLIANCE_REPORT_AUDIENCE_TERMS)}
+{_bullets(COMPLIANCE_REPORT_SECTION_TERMS)}
+
+## Blocked claims
+
+{_bullets(COMPLIANCE_DESIGN_BLOCKED_CLAIMS)}
+
+## Reproducibility
+
+{_bullets(COMPLIANCE_TOOLSET_DESIGN_REPRO_FRAGMENTS)}
+- `{COMPLIANCE_TOOLSET_DESIGN_COMMAND}`
+
+## Runtime authority boundary
+
+Publication sync grants no runtime authority. It does not imply report generation, evidence-pack generation, real input processing, provider runtime, network runtime, product release, product readiness, compliance certification, legal advice, audit pass, attestation success, truth certification, final-answer authority, accepted-evidence authority, memory write, Atlas memory admission, trace export, PMR federation, model training, review skipping, user validation, human-subject study, market validation, human benefit proof, consciousness proof, Omega detection, or universal ontology proof.
+"""
+
+
+WAVE_EU_PROVENANCE_SYNC_DOCS = {
+    "index.md",
+    "metric-semantic-contract.md",
+    "compliance-evidence-toolset-library-design.md",
+    "compliance-ready-mvr-report-design.md",
+    "minimal-viable-receipt-design.md",
+    "mvr-local-real-input-pilot-prototype.md",
+    "mvr-local-real-input-pilot-human-selected-file-smoke.md",
+    "validation-tiering-provenance.md",
+    "claim-boundaries.md",
+}
+WAVE_EU_PROVENANCE_SYNC_NOTE = f"""
+
+## WAVE Rosetta bridge, EU AI Act mapping, and WAVE provenance publication sync
+
+WAVE-ROSETTA-CANONICAL-PROXY-BRIDGE-00 is a bounded canonical-proxy bridge estimate only. WAVE-ROSETTA-CANONICAL-PROXY-BRIDGE-PROVENANCE-00 preserves report lineage, formulas, vector values, weight profiles, uncertainty formulas, and calibration gaps without changing runtime behavior, bridge formulas, or bridge weights. EU-AI-ACT-MVR-EVIDENCE-MAPPING-DESIGN-00 is design-only EU AI Act evidence support, not EU AI Act compliance certification or legal advice.
+
+WAVE bridge doctrine: {'; '.join(WAVE_BRIDGE_DOCTRINE_LANGUAGE)}
+
+WAVE provenance doctrine: {'; '.join(WAVE_PROVENANCE_DOCTRINE_LANGUAGE)}
+
+EU AI Act mapping doctrine: {'; '.join(EU_AI_ACT_MVR_MAPPING_DOCTRINE_LANGUAGE)}
+
+WAVE vector terms: {', '.join(WAVE_VECTOR_TERMS)}. Bridge estimate terms: {', '.join(WAVE_BRIDGE_ESTIMATE_TERMS)}. Provenance report lineage: {', '.join(WAVE_PROVENANCE_REPORT_LINEAGE)}. Formula lineage: {', '.join(WAVE_FORMULA_LINEAGE)}. Calibration gaps: {', '.join(WAVE_CALIBRATION_GAPS)}. EU AI Act evidence categories: {', '.join(EU_AI_ACT_EVIDENCE_CATEGORIES)}. EU AI Act gap terms: {', '.join(EU_AI_ACT_GAP_TERMS)}.
+
+Publication sync grants no runtime authority. It does not imply canonical GUFT measurement, GUFT proof, universal ontology proof, consciousness proof, truth certification, EU AI Act compliance certification, legal advice, audit pass, attestation success, product readiness, product release, final-answer authority, accepted-evidence authority, provider runtime, network runtime, real-input processing, memory write, Atlas memory admission, trace export, PMR federation, model training, review skipping, market validation, or human benefit proof.
+"""
+
+
+def wave_rosetta_canonical_proxy_bridge_doc() -> str:
+    summary = "\n".join(f"- {key} = {str(value).lower() if isinstance(value, bool) else value}" for key, value in WAVE_BRIDGE_DASHBOARD_SUMMARY.items())
+    return f"""# WAVE Rosetta Canonical-Proxy Bridge
+
+WAVE-ROSETTA-CANONICAL-PROXY-BRIDGE-00 synchronizes the locally validated WAVE Rosetta canonical-proxy bridge into publication dashboards. This is publication/dashboard synchronization only and grants no runtime authority.
+
+## Bounded allowed claim
+
+{WAVE_BRIDGE_CLAIM_ALLOWED}
+
+## Dashboard summary
+
+{summary}
+
+## Doctrine language
+
+{_bullets(WAVE_BRIDGE_DOCTRINE_LANGUAGE)}
+
+## WAVE vector terms
+
+{_bullets(WAVE_VECTOR_TERMS)}
+
+## Bridge estimate terms
+
+{_bullets(WAVE_BRIDGE_ESTIMATE_TERMS)}
+
+## Artifact references
+
+{_bullets(WAVE_BRIDGE_ARTIFACTS)}
+
+## Blocked claims
+
+{_bullets(WAVE_EU_PROVENANCE_BLOCKED_CLAIMS)}
+
+## Reproducibility
+
+{_bullets(WAVE_BRIDGE_REPRO_FRAGMENTS)}
+- `{WAVE_BRIDGE_COMMAND}`
+
+## Runtime authority boundary
+
+Publication sync grants no runtime authority. It does not imply canonical GUFT measurement, GUFT proof, universal ontology proof, consciousness proof, truth certification, EU AI Act compliance certification, legal advice, audit pass, attestation success, product readiness, product release, final-answer authority, accepted-evidence authority, provider runtime, network runtime, real-input processing, memory write, Atlas memory admission, trace export, PMR federation, model training, review skipping, market validation, or human benefit proof.
+"""
+
+
+def eu_ai_act_mvr_evidence_mapping_design_doc() -> str:
+    summary = "\n".join(f"- {key} = {str(value).lower() if isinstance(value, bool) else value}" for key, value in EU_AI_ACT_MVR_MAPPING_DASHBOARD_SUMMARY.items())
+    return f"""# EU AI Act MVR Evidence Mapping Design
+
+EU-AI-ACT-MVR-EVIDENCE-MAPPING-DESIGN-00 synchronizes the design-only EU AI Act MVR evidence mapping into publication dashboards. This is publication/dashboard synchronization only and grants no runtime authority.
+
+## Bounded allowed claim
+
+{EU_AI_ACT_MVR_MAPPING_CLAIM_ALLOWED}
+
+## Dashboard summary
+
+{summary}
+
+## Doctrine language
+
+{_bullets(EU_AI_ACT_MVR_MAPPING_DOCTRINE_LANGUAGE)}
+
+## EU AI Act evidence categories
+
+{_bullets(EU_AI_ACT_EVIDENCE_CATEGORIES)}
+
+## EU AI Act gap terms
+
+{_bullets(EU_AI_ACT_GAP_TERMS)}
+
+## Artifact references
+
+{_bullets(EU_AI_ACT_MVR_MAPPING_ARTIFACTS)}
+
+## Blocked claims
+
+{_bullets(WAVE_EU_PROVENANCE_BLOCKED_CLAIMS)}
+
+## Reproducibility
+
+- `{COMPLIANCE_TOOLSET_DESIGN_COMMAND}`
+
+## Runtime authority boundary
+
+Publication sync grants no runtime authority. It does not imply canonical GUFT measurement, GUFT proof, universal ontology proof, consciousness proof, truth certification, EU AI Act compliance certification, legal advice, audit pass, attestation success, product readiness, product release, final-answer authority, accepted-evidence authority, provider runtime, network runtime, real-input processing, memory write, Atlas memory admission, trace export, PMR federation, model training, review skipping, market validation, or human benefit proof.
+"""
+
+
+
+EU_AI_ACT_MVR_EVIDENCE_MAP_LOCAL_PROTOTYPE_SYNC_DOCS = {
+    "index.md",
+    "eu-ai-act-mvr-evidence-mapping-design.md",
+    "compliance-evidence-toolset-library-design.md",
+    "compliance-ready-mvr-report-design.md",
+    "mvr-local-real-input-pilot-human-selected-file-smoke.md",
+    "mvr-local-real-input-pilot-prototype.md",
+    "minimal-viable-receipt-design.md",
+    "validation-tiering-provenance.md",
+    "claim-boundaries.md",
+}
+EU_AI_ACT_MVR_EVIDENCE_MAP_LOCAL_PROTOTYPE_SYNC_NOTE = f"""
+
+## EU AI Act MVR evidence map local prototype publication sync
+
+EU-AI-ACT-MVR-EVIDENCE-MAP-LOCAL-PROTOTYPE-00 emits the first local EU AI Act evidence-support map from Minimal Viable Receipt artifacts. It is evidence support, not EU AI Act compliance certification, legal advice, audit pass, attestation success, product readiness, product release, truth certification, final-answer authority, accepted-evidence authority, memory write, Atlas admission, trace export, PMR federation, model training, or review skipping.
+
+Doctrine: {'; '.join(EU_AI_ACT_MVR_EVIDENCE_MAP_LOCAL_PROTOTYPE_DOCTRINE_LANGUAGE)}
+
+EU AI Act categories: {', '.join(EU_AI_ACT_EVIDENCE_CATEGORIES)}. MVR artifact mapping terms: {', '.join(EU_AI_ACT_MVR_EVIDENCE_MAP_LOCAL_PROTOTYPE_ARTIFACT_MAPPING_TERMS)}. Gap terms: {', '.join(EU_AI_ACT_MVR_EVIDENCE_MAP_LOCAL_PROTOTYPE_GAP_TERMS)}. Human review/signoff terms: {', '.join(EU_AI_ACT_MVR_EVIDENCE_MAP_LOCAL_PROTOTYPE_SIGNOFF_TERMS)}.
+
+Relation to prior phases: {' '.join(EU_AI_ACT_MVR_EVIDENCE_MAP_LOCAL_PROTOTYPE_PRIOR_PHASE_RELATION)} Publication sync grants no runtime authority.
+"""
+
+
+def eu_ai_act_mvr_evidence_map_local_prototype_doc() -> str:
+    summary = "\n".join(f"- {key} = {str(value).lower() if isinstance(value, bool) else value}" for key, value in EU_AI_ACT_MVR_EVIDENCE_MAP_LOCAL_PROTOTYPE_DASHBOARD_SUMMARY.items())
+    return f"""# EU AI Act MVR Evidence Map Prototype
+
+EU-AI-ACT-MVR-EVIDENCE-MAP-LOCAL-PROTOTYPE-00 synchronizes the locally validated CoherenceLattice EU AI Act MVR evidence map local prototype into publication dashboards. This is publication/dashboard synchronization only and grants no runtime authority.
+
+## Bounded allowed claim
+
+{EU_AI_ACT_MVR_EVIDENCE_MAP_LOCAL_PROTOTYPE_CLAIM_ALLOWED}
+
+## Dashboard summary
+
+{summary}
+
+## Doctrine language
+
+{_bullets(EU_AI_ACT_MVR_EVIDENCE_MAP_LOCAL_PROTOTYPE_DOCTRINE_LANGUAGE)}
+
+## EU AI Act categories
+
+{_bullets(EU_AI_ACT_EVIDENCE_CATEGORIES)}
+
+## MVR artifact mapping terms
+
+{_bullets(EU_AI_ACT_MVR_EVIDENCE_MAP_LOCAL_PROTOTYPE_ARTIFACT_MAPPING_TERMS)}
+
+## Gap terms
+
+{_bullets(EU_AI_ACT_MVR_EVIDENCE_MAP_LOCAL_PROTOTYPE_GAP_TERMS)}
+
+## Human review and signoff terms
+
+{_bullets(EU_AI_ACT_MVR_EVIDENCE_MAP_LOCAL_PROTOTYPE_SIGNOFF_TERMS)}
+
+## Relation to prior phases
+
+{_bullets(EU_AI_ACT_MVR_EVIDENCE_MAP_LOCAL_PROTOTYPE_PRIOR_PHASE_RELATION)}
+
+## Artifact references
+
+{_bullets(EU_AI_ACT_MVR_EVIDENCE_MAP_LOCAL_PROTOTYPE_ARTIFACTS)}
+
+## Blocked claims
+
+{_bullets(EU_AI_ACT_MVR_EVIDENCE_MAP_LOCAL_PROTOTYPE_BLOCKED_CLAIMS)}
+
+## Reproducibility
+
+{_bullets(EU_AI_ACT_MVR_EVIDENCE_MAP_LOCAL_PROTOTYPE_REPRO_FRAGMENTS)}
+- `{EU_AI_ACT_MVR_EVIDENCE_MAP_LOCAL_PROTOTYPE_COMMAND}`
+
+## Runtime authority boundary
+
+Publication sync grants no runtime authority. It does not imply EU AI Act compliance certification, legal advice, audit pass, attestation success, product readiness, product release, truth certification, final-answer authority, accepted-evidence authority, memory write, Atlas memory admission, trace export, PMR federation, provider runtime, network runtime, model training, review skipping, user validation, human-subject study, market validation, human benefit proof, consciousness proof, universal ontology proof, or GUFT proof.
+"""
+
+
+
+SOURCE_CORPUS_BATCH_MANIFEST_20260610_SYNC_DOCS = {
+    "index.md",
+    "source-corpus-provenance-archive.md",
+    "source-corpus-provenance-hash-fill.md",
+    "claim-boundaries.md",
+    "validation-tiering-provenance.md",
+}
+SOURCE_CORPUS_BATCH_MANIFEST_20260610_SYNC_NOTE = f"""
+
+## June 2026 source-corpus batch manifest publication sync
+
+SOURCE-CORPUS-BATCH-MANIFEST-2026-06-10-00 adds the June 2026 hash-only batch manifest. It preserves source identity and provenance only; raw private files are not committed, duplicate filenames are deduplicated by SHA-256, filename aliases are preserved, public release approval is false by default, and canonical repo state supersedes source reports.
+
+Source-corpus batch doctrine: {'; '.join(SOURCE_CORPUS_BATCH_MANIFEST_20260610_DOCTRINE_LANGUAGE)}
+
+High-priority filenames: {', '.join(SOURCE_CORPUS_BATCH_MANIFEST_20260610_FILENAMES)}.
+
+Concrete hashes: {', '.join(SOURCE_CORPUS_BATCH_MANIFEST_20260610_HASHES)}.
+
+Alias terms: {', '.join(SOURCE_CORPUS_BATCH_MANIFEST_20260610_ALIAS_TERMS)}. Manifest terms: {', '.join(SOURCE_CORPUS_BATCH_MANIFEST_20260610_MANIFEST_TERMS)}.
+
+Relation to prior phases: {' '.join(SOURCE_CORPUS_BATCH_MANIFEST_20260610_PRIOR_PHASE_RELATION)} Publication sync grants no runtime authority.
+"""
+
+
+def source_corpus_batch_manifest_20260610_doc() -> str:
+    summary = "\n".join(f"- {key} = {str(value).lower() if isinstance(value, bool) else value}" for key, value in SOURCE_CORPUS_BATCH_MANIFEST_20260610_DASHBOARD_SUMMARY.items())
+    return f"""# June 2026 Source Corpus Batch Manifest
+
+SOURCE-CORPUS-BATCH-MANIFEST-2026-06-10-00 synchronizes the June 2026 source-corpus batch manifest into publication dashboards. This is publication/dashboard synchronization only and grants no runtime authority.
+
+## Bounded allowed claim
+
+{SOURCE_CORPUS_BATCH_MANIFEST_20260610_CLAIM_ALLOWED}
+
+## Dashboard summary
+
+{summary}
+
+## Source-corpus doctrine language
+
+{_bullets(SOURCE_CORPUS_BATCH_MANIFEST_20260610_DOCTRINE_LANGUAGE)}
+
+## High-priority source report filenames
+
+{_bullets(SOURCE_CORPUS_BATCH_MANIFEST_20260610_FILENAMES)}
+
+## Concrete hashes
+
+{_bullets(SOURCE_CORPUS_BATCH_MANIFEST_20260610_HASHES)}
+
+## Alias terms
+
+{_bullets(SOURCE_CORPUS_BATCH_MANIFEST_20260610_ALIAS_TERMS)}
+
+## Source-corpus manifest terms
+
+{_bullets(SOURCE_CORPUS_BATCH_MANIFEST_20260610_MANIFEST_TERMS)}
+
+## Relation to prior phases
+
+{_bullets(SOURCE_CORPUS_BATCH_MANIFEST_20260610_PRIOR_PHASE_RELATION)}
+
+## Artifact references
+
+{_bullets(SOURCE_CORPUS_BATCH_MANIFEST_20260610_ARTIFACTS)}
+
+## Blocked claims
+
+{_bullets(SOURCE_CORPUS_BATCH_MANIFEST_20260610_BLOCKED_CLAIMS)}
+
+## Reproducibility
+
+{_bullets(SOURCE_CORPUS_BATCH_MANIFEST_20260610_REPRO_FRAGMENTS)}
+- `{SOURCE_CORPUS_BATCH_MANIFEST_20260610_COMMAND}`
+
+## Runtime authority boundary
+
+Publication sync grants no runtime authority. It does not imply raw private report import, accepted-evidence authority, theorem proof, GUFT proof, compliance certification, legal advice, audit pass, attestation success, product readiness, product release, truth certification, final-answer authority, memory write, Atlas memory admission, trace export, PMR federation, model training, review skipping, consciousness proof, or universal ontology proof.
+"""
+
+COMPLIANCE_REPORT_SOURCE_CORPUS_SYNC_DOCS = {
+    "index.md",
+    "compliance-ready-mvr-report-design.md",
+    "compliance-evidence-toolset-library-design.md",
+    "eu-ai-act-mvr-evidence-map-local-prototype.md",
+    "eu-ai-act-mvr-evidence-mapping-design.md",
+    "validation-tiering-provenance.md",
+    "claim-boundaries.md",
+}
+COMPLIANCE_REPORT_SOURCE_CORPUS_SYNC_NOTE = f"""
+
+## Compliance-ready MVR report local prototype and source-corpus provenance publication sync
+
+COMPLIANCE-READY-MVR-REPORT-LOCAL-PROTOTYPE-00 emits a local compliance-ready MVR report prototype for review support only. SOURCE-CORPUS-PROVENANCE-ARCHIVE-00 defines the governed source-report archive pattern, and SOURCE-CORPUS-PROVENANCE-HASH-FILL-00 fills pending EU AI Act source-report hashes while preserving hash-only public references and no raw private DOCX import.
+
+Compliance report doctrine: {'; '.join(COMPLIANCE_READY_MVR_REPORT_LOCAL_PROTOTYPE_DOCTRINE_LANGUAGE)}
+
+Compliance report sections: {', '.join(COMPLIANCE_READY_MVR_REPORT_LOCAL_PROTOTYPE_SECTION_TERMS)}. Glossary terms: {', '.join(COMPLIANCE_READY_MVR_REPORT_LOCAL_PROTOTYPE_GLOSSARY_TERMS)}.
+
+Source corpus doctrine: {'; '.join(SOURCE_CORPUS_PROVENANCE_DOCTRINE_LANGUAGE)}
+
+Source corpus manifest terms: {', '.join(SOURCE_CORPUS_MANIFEST_TERMS)}. Source report filenames: {', '.join(SOURCE_CORPUS_REPORT_FILENAMES)}. Source hashes: {', '.join(SOURCE_CORPUS_CONCRETE_HASHES)}.
+
+Publication sync grants no runtime authority. It does not imply compliance certification, legal advice, audit pass, attestation success, product readiness, product release, truth certification, final-answer authority, accepted-evidence authority, memory write, Atlas memory admission, trace export, PMR federation, provider runtime, network runtime, model training, review skipping, user validation, human-subject study, market validation, human benefit proof, theorem proof, GUFT proof, consciousness proof, or universal ontology proof.
+"""
+
+
+def compliance_ready_mvr_report_local_prototype_doc() -> str:
+    summary = "\n".join(f"- {key} = {str(value).lower() if isinstance(value, bool) else value}" for key, value in COMPLIANCE_READY_MVR_REPORT_LOCAL_PROTOTYPE_DASHBOARD_SUMMARY.items())
+    return f"""# Compliance-Ready MVR Report Local Prototype
+
+COMPLIANCE-READY-MVR-REPORT-LOCAL-PROTOTYPE-00 synchronizes the locally validated compliance-ready MVR report prototype into publication dashboards. This is publication/dashboard synchronization only and grants no runtime authority.
+
+## Bounded allowed claim
+
+{COMPLIANCE_READY_MVR_REPORT_LOCAL_PROTOTYPE_CLAIM_ALLOWED}
+
+## Dashboard summary
+
+{summary}
+
+## Doctrine language
+
+{_bullets(COMPLIANCE_READY_MVR_REPORT_LOCAL_PROTOTYPE_DOCTRINE_LANGUAGE)}
+
+## Compliance report section terms
+
+{_bullets(COMPLIANCE_READY_MVR_REPORT_LOCAL_PROTOTYPE_SECTION_TERMS)}
+
+## Glossary terms
+
+{_bullets(COMPLIANCE_READY_MVR_REPORT_LOCAL_PROTOTYPE_GLOSSARY_TERMS)}
+
+## Artifact references
+
+{_bullets(COMPLIANCE_READY_MVR_REPORT_LOCAL_PROTOTYPE_ARTIFACTS)}
+
+## Source-corpus provenance context
+
+{_bullets(SOURCE_CORPUS_REPORT_FILENAMES)}
+{_bullets(SOURCE_CORPUS_CONCRETE_HASHES)}
+
+## Blocked claims
+
+{_bullets(COMPLIANCE_REPORT_SOURCE_CORPUS_BLOCKED_CLAIMS)}
+
+## Reproducibility
+
+{_bullets(COMPLIANCE_READY_MVR_REPORT_LOCAL_PROTOTYPE_REPRO_FRAGMENTS)}
+- `{COMPLIANCE_READY_MVR_REPORT_LOCAL_PROTOTYPE_COMMAND}`
+
+## Runtime authority boundary
+
+Publication sync grants no runtime authority. It does not imply compliance certification, legal advice, audit pass, attestation success, product readiness, product release, truth certification, final-answer authority, accepted-evidence authority, memory write, Atlas memory admission, trace export, PMR federation, provider runtime, network runtime, model training, review skipping, user validation, human-subject study, market validation, human benefit proof, theorem proof, GUFT proof, consciousness proof, or universal ontology proof.
+"""
+
+
+def source_corpus_provenance_archive_doc() -> str:
+    summary = "\n".join(f"- {key} = {str(value).lower() if isinstance(value, bool) else value}" for key, value in SOURCE_CORPUS_PROVENANCE_DASHBOARD_SUMMARY.items())
+    return f"""# Source Corpus Provenance Archive
+
+SOURCE-CORPUS-PROVENANCE-ARCHIVE-00 synchronizes the governed source-corpus provenance archive into publication dashboards. This is publication/dashboard synchronization only and grants no runtime authority.
+
+## Bounded allowed claim
+
+{SOURCE_CORPUS_PROVENANCE_ARCHIVE_CLAIM_ALLOWED}
+
+## Dashboard summary
+
+{summary}
+
+## Doctrine language
+
+{_bullets(SOURCE_CORPUS_PROVENANCE_DOCTRINE_LANGUAGE)}
+
+## Manifest terms
+
+{_bullets(SOURCE_CORPUS_MANIFEST_TERMS)}
+
+## Source report filenames
+
+{_bullets(SOURCE_CORPUS_REPORT_FILENAMES)}
+
+## Concrete source hashes
+
+{_bullets(SOURCE_CORPUS_CONCRETE_HASHES)}
+
+## Artifact references
+
+{_bullets(SOURCE_CORPUS_PROVENANCE_ARTIFACTS)}
+
+## Blocked claims
+
+{_bullets(COMPLIANCE_REPORT_SOURCE_CORPUS_BLOCKED_CLAIMS)}
+
+## Reproducibility
+
+{_bullets(SOURCE_CORPUS_PROVENANCE_REPRO_FRAGMENTS)}
+- `{SOURCE_CORPUS_PROVENANCE_COMMAND}`
+
+## Runtime authority boundary
+
+Publication sync grants no runtime authority. It does not imply compliance certification, legal advice, audit pass, attestation success, product readiness, product release, truth certification, final-answer authority, accepted-evidence authority, memory write, Atlas memory admission, trace export, PMR federation, provider runtime, network runtime, model training, review skipping, user validation, human-subject study, market validation, human benefit proof, theorem proof, GUFT proof, consciousness proof, or universal ontology proof.
+"""
+
+
+def source_corpus_provenance_hash_fill_doc() -> str:
+    summary = "\n".join(f"- {key} = {str(value).lower() if isinstance(value, bool) else value}" for key, value in SOURCE_CORPUS_HASH_FILL_DASHBOARD_SUMMARY.items())
+    return f"""# Source Corpus Provenance Hash Fill
+
+SOURCE-CORPUS-PROVENANCE-HASH-FILL-00 synchronizes the source-corpus hash-fill phase into publication dashboards. It fills pending EU AI Act source-report hashes while preserving hash-only public references, public_release_approved=false, no raw private DOCX import, and all non-authority boundaries.
+
+## Bounded allowed claim
+
+{SOURCE_CORPUS_PROVENANCE_HASH_FILL_CLAIM_ALLOWED}
+
+## Dashboard summary
+
+{summary}
+
+## Doctrine language
+
+{_bullets(SOURCE_CORPUS_PROVENANCE_DOCTRINE_LANGUAGE)}
+
+## Manifest terms
+
+{_bullets(SOURCE_CORPUS_MANIFEST_TERMS)}
+
+## Source report filenames
+
+{_bullets(SOURCE_CORPUS_REPORT_FILENAMES)}
+
+## Concrete source hashes
+
+{_bullets(SOURCE_CORPUS_CONCRETE_HASHES)}
+
+## Artifact references
+
+{_bullets(SOURCE_CORPUS_PROVENANCE_ARTIFACTS)}
+
+## Blocked claims
+
+{_bullets(COMPLIANCE_REPORT_SOURCE_CORPUS_BLOCKED_CLAIMS)}
+
+## Reproducibility
+
+{_bullets(SOURCE_CORPUS_HASH_FILL_REPRO_FRAGMENTS)}
+- `{SOURCE_CORPUS_HASH_FILL_COMMAND}`
+
+## Runtime authority boundary
+
+Publication sync grants no runtime authority. It does not imply compliance certification, legal advice, audit pass, attestation success, product readiness, product release, truth certification, final-answer authority, accepted-evidence authority, memory write, Atlas memory admission, trace export, PMR federation, provider runtime, network runtime, model training, review skipping, user validation, human-subject study, market validation, human benefit proof, theorem proof, GUFT proof, consciousness proof, or universal ontology proof.
+"""
+
+def wave_rosetta_canonical_proxy_bridge_provenance_doc() -> str:
+    summary = "\n".join(f"- {key} = {str(value).lower() if isinstance(value, bool) else value}" for key, value in WAVE_PROVENANCE_DASHBOARD_SUMMARY.items())
+    return f"""# WAVE Rosetta Canonical-Proxy Bridge Provenance
+
+WAVE-ROSETTA-CANONICAL-PROXY-BRIDGE-PROVENANCE-00 synchronizes WAVE bridge provenance documentation into publication dashboards. This is publication/dashboard synchronization only and grants no runtime authority.
+
+## Bounded allowed claim
+
+{WAVE_PROVENANCE_CLAIM_ALLOWED}
+
+## Dashboard summary
+
+{summary}
+
+## Doctrine language
+
+{_bullets(WAVE_PROVENANCE_DOCTRINE_LANGUAGE)}
+
+## WAVE vector terms
+
+{_bullets(WAVE_VECTOR_TERMS)}
+
+## Bridge estimate terms
+
+{_bullets(WAVE_BRIDGE_ESTIMATE_TERMS)}
+
+## Provenance report lineage
+
+{_bullets(WAVE_PROVENANCE_REPORT_LINEAGE)}
+
+## Formula lineage
+
+{_bullets(WAVE_FORMULA_LINEAGE)}
+
+## Calibration gaps
+
+{_bullets(WAVE_CALIBRATION_GAPS)}
+
+## Artifact references
+
+{_bullets(WAVE_PROVENANCE_ARTIFACTS)}
+
+## Blocked claims
+
+{_bullets(WAVE_EU_PROVENANCE_BLOCKED_CLAIMS)}
+
+## Reproducibility
+
+- `{COMPLIANCE_REPORT_DESIGN_COMMAND}`
+
+## Runtime authority boundary
+
+Publication sync grants no runtime authority. It does not imply canonical GUFT measurement, GUFT proof, universal ontology proof, consciousness proof, truth certification, EU AI Act compliance certification, legal advice, audit pass, attestation success, product readiness, product release, final-answer authority, accepted-evidence authority, provider runtime, network runtime, real-input processing, memory write, Atlas memory admission, trace export, PMR federation, model training, review skipping, market validation, or human benefit proof.
+"""
+
+
 def build(out_dir: Path, docs_dir: Path) -> None:
     _write_json(out_dir / "experiment_suite_dashboard.json", dashboard_payload())
     _write_json(out_dir / "accepted_phase_matrix.json", accepted_phase_matrix())
@@ -21782,6 +25501,21 @@ def build(out_dir: Path, docs_dir: Path) -> None:
     docs_payload["minimal-viable-receipt-design.md"] = minimal_viable_receipt_design_doc()
     docs_payload["minimal-viable-receipt-local-prototype.md"] = minimal_viable_receipt_local_prototype_doc()
     docs_payload["mvr-local-prototype-readability-review-seed.md"] = mvr_local_prototype_readability_review_seed_doc()
+    docs_payload["mvr-local-prototype-readability-revision.md"] = mvr_local_prototype_readability_revision_doc()
+    docs_payload["mvr-local-real-input-pilot-design.md"] = mvr_local_real_input_pilot_design_doc()
+    docs_payload["mvr-local-real-input-pilot-prototype.md"] = mvr_local_real_input_pilot_prototype_doc()
+    docs_payload["mvr-local-real-input-pilot-quarantine-detection-repair.md"] = mvr_local_real_input_pilot_quarantine_detection_repair_doc()
+    docs_payload["mvr-local-real-input-pilot-human-selected-file-smoke.md"] = mvr_local_real_input_pilot_human_selected_file_smoke_doc()
+    docs_payload["compliance-ready-mvr-report-design.md"] = compliance_ready_mvr_report_design_doc()
+    docs_payload["compliance-evidence-toolset-library-design.md"] = compliance_evidence_toolset_library_design_doc()
+    docs_payload["compliance-ready-mvr-report-local-prototype.md"] = compliance_ready_mvr_report_local_prototype_doc()
+    docs_payload["source-corpus-provenance-archive.md"] = source_corpus_provenance_archive_doc()
+    docs_payload["source-corpus-provenance-hash-fill.md"] = source_corpus_provenance_hash_fill_doc()
+    docs_payload["source-corpus-batch-manifest-2026-06-10.md"] = source_corpus_batch_manifest_20260610_doc()
+    docs_payload["wave-rosetta-canonical-proxy-bridge.md"] = wave_rosetta_canonical_proxy_bridge_doc()
+    docs_payload["eu-ai-act-mvr-evidence-mapping-design.md"] = eu_ai_act_mvr_evidence_mapping_design_doc()
+    docs_payload["eu-ai-act-mvr-evidence-map-local-prototype.md"] = eu_ai_act_mvr_evidence_map_local_prototype_doc()
+    docs_payload["wave-rosetta-canonical-proxy-bridge-provenance.md"] = wave_rosetta_canonical_proxy_bridge_provenance_doc()
     for name in MINIMAL_VIABLE_RECEIPT_DESIGN_SYNC_DOCS:
         if name in docs_payload:
             docs_payload[name] = docs_payload[name].rstrip() + MINIMAL_VIABLE_RECEIPT_DESIGN_SYNC_NOTE
@@ -21797,6 +25531,36 @@ def build(out_dir: Path, docs_dir: Path) -> None:
     for name in MVR_READABILITY_REVIEW_SEED_SYNC_DOCS:
         if name in docs_payload:
             docs_payload[name] = docs_payload[name].rstrip() + MVR_READABILITY_REVIEW_SEED_SYNC_NOTE
+    for name in MVR_READABILITY_REVISION_SYNC_DOCS:
+        if name in docs_payload:
+            docs_payload[name] = docs_payload[name].rstrip() + MVR_READABILITY_REVISION_SYNC_NOTE
+    for name in MVR_REAL_INPUT_PILOT_DESIGN_SYNC_DOCS:
+        if name in docs_payload:
+            docs_payload[name] = docs_payload[name].rstrip() + MVR_REAL_INPUT_PILOT_DESIGN_SYNC_NOTE
+    for name in MVR_REAL_INPUT_PILOT_PROTOTYPE_SYNC_DOCS:
+        if name in docs_payload:
+            docs_payload[name] = docs_payload[name].rstrip() + MVR_REAL_INPUT_PILOT_PROTOTYPE_SYNC_NOTE
+    for name in MVR_QUARANTINE_REPAIR_SYNC_DOCS:
+        if name in docs_payload:
+            docs_payload[name] = docs_payload[name].rstrip() + MVR_QUARANTINE_REPAIR_SYNC_NOTE
+    for name in MVR_HUMAN_SELECTED_FILE_SMOKE_SYNC_DOCS:
+        if name in docs_payload:
+            docs_payload[name] = docs_payload[name].rstrip() + MVR_HUMAN_SELECTED_FILE_SMOKE_SYNC_NOTE
+    for name in COMPLIANCE_DESIGN_SYNC_DOCS:
+        if name in docs_payload:
+            docs_payload[name] = docs_payload[name].rstrip() + COMPLIANCE_DESIGN_SYNC_NOTE
+    for name in WAVE_EU_PROVENANCE_SYNC_DOCS:
+        if name in docs_payload:
+            docs_payload[name] = docs_payload[name].rstrip() + WAVE_EU_PROVENANCE_SYNC_NOTE
+    for name in EU_AI_ACT_MVR_EVIDENCE_MAP_LOCAL_PROTOTYPE_SYNC_DOCS:
+        if name in docs_payload:
+            docs_payload[name] = docs_payload[name].rstrip() + EU_AI_ACT_MVR_EVIDENCE_MAP_LOCAL_PROTOTYPE_SYNC_NOTE
+    for name in COMPLIANCE_REPORT_SOURCE_CORPUS_SYNC_DOCS:
+        if name in docs_payload:
+            docs_payload[name] = docs_payload[name].rstrip() + COMPLIANCE_REPORT_SOURCE_CORPUS_SYNC_NOTE
+    for name in SOURCE_CORPUS_BATCH_MANIFEST_20260610_SYNC_DOCS:
+        if name in docs_payload:
+            docs_payload[name] = docs_payload[name].rstrip() + SOURCE_CORPUS_BATCH_MANIFEST_20260610_SYNC_NOTE
     for name, text in docs_payload.items():
         _write_text(docs_dir / name, text)
 

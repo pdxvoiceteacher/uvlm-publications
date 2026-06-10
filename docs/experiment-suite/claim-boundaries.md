@@ -2424,6 +2424,1402 @@
 - recovery option performs memory write
 - source expansion can be skipped
 - unsupported claims can be hidden
+- MVR-LOCAL-PROTOTYPE-READABILITY-REVISION-00 applies deterministic local readability revisions to the fixture-backed Minimal Viable Receipt human-readable prototype, preserving the original receipt, emitting a revised receipt and revision receipts, and keeping the readability gate unpassed without performing a real user study, human-subject study, user validation, product-readiness claim, product release, market validation, human benefit proof, truth certification, final-answer authorization, accepted-evidence grant, memory write, Atlas admission, trace export, PMR federation, model training, or review skipping.
+- minimal_viable_receipt_human_readable.md
+- minimal_viable_receipt_human_readable_revised.md
+- minimal_viable_receipt_packet.json
+- mvr_readability_review_packet.json
+- mvr_readability_revision_suggestions.json
+- mvr_readability_review_receipt.json
+- mvr_readability_revision_packet.json
+- mvr_readability_revision_receipt.json
+- pmr_local_runtime_artifact_index.json
+- artifact_inventory.json
+- run_artifact_manifest.json
+- export_bundle_manifest.json
+- export_bundle_parity_report.json
+- schema/bridge/mvr_readability_revision_packet.schema.json
+- schema/bridge/mvr_readability_revision_receipt.schema.json
+- schema/bridge/mvr_readability_questionnaire.schema.json
+- schema/bridge/mvr_readability_response_fixture.schema.json
+- schema/bridge/mvr_readability_review_packet.schema.json
+- schema/bridge/mvr_readability_revision_suggestions.schema.json
+- schema/bridge/mvr_readability_review_receipt.schema.json
+- build_mvr_local_prototype_readability_revision
+- MVR Local Prototype Readability Revision
+- Deterministic local readability revision
+- Suggested revisions are applied deterministically, not validated by users.
+- Readability revision is not product readiness.
+- Readability revision is not user validation.
+- Readability revision is not market validation.
+- Readability revision is not human benefit proof.
+- Readability revision does not certify truth.
+- The receipt remains local fixture-backed and non-authoritative.
+- Original human-readable receipt is preserved.
+- Revised human-readable receipt is emitted.
+- Readability gate remains unpassed.
+- Human review remains required.
+- No real user study was performed.
+- No human-subject study was performed.
+- No user validation was performed.
+- No product readiness was claimed.
+- No product release was performed.
+- No memory write was performed.
+- No Atlas memory admission was performed.
+- No trace export was performed.
+- No PMR federation was performed.
+- add_plain_language_glossary_for_architecture_terms
+- clarify_ces_pmr_replay_posture
+- clarify_observation_contract_notice_vs_consent
+- make_unsupported_claims_more_visually_prominent
+- clarify_local_fixture_evidence_is_not_accepted_evidence
+- add_top_level_non_authority_summary
+- Plain-language glossary
+- CES / PMR replay posture, in plain language
+- Observation Contract notice and consent, in plain language
+- Unsupported claims require review
+- Local fixture evidence is not accepted evidence
+- Top-level non-authority summary
+- This revised receipt is not product readiness.
+- This revised receipt is not user validation.
+- This revised receipt is not truth certification.
+- Readability gate is not passed in this phase.
+- Human review remains required.
+- MINIMAL-VIABLE-RECEIPT-DESIGN-00 defines the one-transaction/many-sections receipt standard.
+- MINIMAL-VIABLE-RECEIPT-LOCAL-PROTOTYPE-00 emits the local fixture-backed readable receipt.
+- MVR-LOCAL-PROTOTYPE-READABILITY-REVIEW-SEED-00 evaluates that receipt with deterministic local fixture responses.
+- MVR-LOCAL-PROTOTYPE-READABILITY-REVISION-00 applies deterministic local readability revisions.
+- AI-RECEIPT-ARCHITECTURE-00 defines the receipt architecture.
+- TRIADIC-OBSERVATION-CONTRACT-DESIGN-00 defines governed attention.
+- OBSERVATION-CONTRACT-POLICY-SIMULATION-00 rehearses notice, consent, recovery, source-expansion, pathway-prior, retention, trace-export, and PMR-federation policy outcomes.
+- TAC phases define aperture posture and review visibility.
+- COHERENCE-EVENT-SIGNATURES-DESIGN-00 defines event signatures.
+- CES-PMR-INDEXING-DESIGN-00 defines CES as a compact PMR index, not source replacement.
+- SOPHIA-EXECUTIVE-AUDIT-REALITY-CHECK-00 records whether external Sophia actually ran.
+- VALIDATION-TIERING-PROVENANCE-00 records validation confidence scope.
+- MET-SEM-00 keeps metric labels profile-scoped.
+- readability_revision_mistaken_for_user_validation
+- readability_revision_mistaken_for_human_subject_study
+- readability_revision_mistaken_for_product_readiness
+- readability_revision_mistaken_for_market_validation
+- revised_receipt_mistaken_for_real_usability
+- readability_gate_revision_mistaken_for_gate_pass
+- applied_revision_mistaken_for_user_validated_fix
+- local_fixture_evidence_mistaken_for_accepted_evidence
+- receipt_readability_mistaken_for_visual_polish
+- receipt_that_only_impresses_architects
+- unsupported_claims_hidden
+- source_expansion_missing
+- contestability_missing
+- recovery_path_missing
+- non_authority_boundaries_missing
+- Blocked overclaim examples for MVR Local Prototype Readability Revision publication boundaries.
+- MVR readability revision is a real user study
+- MVR readability revision is a human-subject study
+- MVR readability revision is user validation
+- MVR readability revision proves product readiness
+- MVR readability revision is product release
+- MVR readability revision is market validation
+- MVR readability revision proves human benefit
+- MVR readability revision certifies truth
+- MVR readability revision authorizes final answers
+- MVR readability revision grants accepted-evidence authority
+- MVR readability revision writes memory
+- MVR readability revision admits Atlas memory
+- MVR readability revision exports traces
+- MVR readability revision federates PMR
+- MVR readability revision trains the model
+- MVR readability revision skips human review
+- readability gate passed
+- revised receipt means real usability
+- revised receipt means product readiness
+- revision applied means user validation
+- clear_count means product readiness
+- local fixture evidence is accepted evidence
+- readable fixture means product is ready
+- checklist completeness means answer correctness
+- contestability option guarantees reversal
+- recovery option performs memory write
+- source expansion can be skipped
+- unsupported claims can be hidden
+- MVR-LOCAL-REAL-INPUT-PILOT-DESIGN-00 defines design-only boundaries for a future local real-input Minimal Viable Receipt pilot in which explicitly selected local source material may later be processed under local-only, source-bounded, consent-bounded, quarantine-aware, receipt-required, human-review-required, non-authoritative conditions without processing real files in this phase, claiming product readiness, releasing product, granting accepted-evidence or final-answer authority, certifying truth, writing memory, admitting Atlas memory, exporting traces, federating PMR, training models, or skipping review.
+- docs/MVR_LOCAL_REAL_INPUT_PILOT_DESIGN.md
+- config/receipt/mvr_local_real_input_pilot_policy.v1.json
+- schema/bridge/mvr_local_real_input_source_manifest.schema.json
+- schema/bridge/mvr_local_real_input_consent_scope.schema.json
+- schema/bridge/mvr_local_real_input_quarantine_report.schema.json
+- schema/bridge/mvr_local_real_input_pilot_policy_packet.schema.json
+- schema/bridge/mvr_local_real_input_non_authority_boundary.schema.json
+- test_mvr_local_real_input_pilot_design.py
+- test_experiment_registry.py
+- MVR Local Real Input Pilot Design
+- Real local input can enter only by explicit local source selection.
+- Real input pilot design is not real input processing.
+- Real input pilot design is not product readiness.
+- Real input pilot design is not product release.
+- A real-input pilot must be local-only by default.
+- A real-input pilot must be source-bounded.
+- A real-input pilot must be consent-bounded.
+- A real-input pilot must preserve source expansion.
+- A real-input pilot must quarantine instruction-like evidence.
+- A real-input pilot must expose unsupported claims.
+- A real-input pilot must emit a Minimal Viable Receipt before any claim of readiness.
+- Local source selection is not accepted-evidence authority.
+- Local source processing is not memory write.
+- Human review remains required.
+- MVR-LOCAL-REAL-INPUT-PILOT-DESIGN-00 does not process real files.
+- MVR-LOCAL-REAL-INPUT-PILOT-DESIGN-00 does not emit runtime real-input artifacts.
+- MVR-LOCAL-REAL-INPUT-PILOT-DESIGN-00 does not perform provider calls.
+- MVR-LOCAL-REAL-INPUT-PILOT-DESIGN-00 does not perform network calls.
+- MVR-LOCAL-REAL-INPUT-PILOT-DESIGN-00 does not write memory.
+- MVR-LOCAL-REAL-INPUT-PILOT-DESIGN-00 does not admit Atlas memory.
+- MVR-LOCAL-REAL-INPUT-PILOT-DESIGN-00 does not claim product readiness.
+- MVR-LOCAL-REAL-INPUT-PILOT-DESIGN-00 does not release product.
+- local_text_file
+- local_markdown_file
+- local_json_file
+- local_csv_file
+- local_plaintext_excerpt
+- local_user_pasted_excerpt
+- local_redacted_document_excerpt
+- remote_url_fetch
+- cloud_connector_file
+- email_inbox_scan
+- calendar_scan
+- browser_history_scan
+- whole_disk_scan
+- hidden_directory_scan
+- credential_file
+- secrets_file
+- private_key_file
+- raw_chat_history_bulk_import
+- personal_profile_bulk_import
+- unredacted_sensitive_identity_document
+- medical_record
+- legal_record
+- financial_account_record
+- child_data_record
+- biometric_data_record
+- explicit_user_selection_required
+- local_path_allowlist_required
+- recursive_directory_scan_allowed = false
+- hidden_file_scan_allowed = false
+- max_source_file_count_default = 5
+- max_source_bytes_default = 250000
+- source_hashing_required
+- source_manifest_required
+- source_expansion_required_for_decisions
+- instruction_like_evidence_quarantine_required
+- unsupported_claim_visibility_required
+- human_review_required
+- consent_scope_required
+- consent_is_local_to_pilot_run
+- consent_is_not_memory_write
+- consent_is_not_trace_export_authorization
+- consent_is_not_pmr_federation_authorization
+- consent_is_not_product_release
+- revocation_supported
+- retention_review_required
+- observation_contract_posture_required
+- observation_contract_policy_simulation_ref_required
+- tac_aperture_posture_required
+- default_tac_mode = pulse
+- raw_trace_retention_allowed_default = false
+- trace_export_allowed_default = false
+- pmr_federation_allowed_default = false
+- no_silent_mode_shift_required
+- notice_and_consent_boundaries_visible
+- minimal_viable_receipt_required
+- human_readable_receipt_required
+- machine_readable_receipt_required
+- section_index_required
+- readability_profile_required
+- contestability_profile_required
+- cost_burden_profile_required
+- non_authority_boundary_required
+- local_real_input_source_manifest_required
+- quarantine_report_required
+- pilot_receipt_required
+- MINIMAL-VIABLE-RECEIPT-DESIGN-00 defines the one-transaction/many-sections receipt standard.
+- MINIMAL-VIABLE-RECEIPT-LOCAL-PROTOTYPE-00 emits the local fixture-backed readable receipt.
+- MVR-LOCAL-PROTOTYPE-READABILITY-REVIEW-SEED-00 evaluates that receipt with deterministic local fixture responses.
+- MVR-LOCAL-PROTOTYPE-READABILITY-REVISION-00 applies deterministic local readability revisions.
+- MVR-LOCAL-REAL-INPUT-PILOT-DESIGN-00 defines boundaries for a future real-local-input pilot.
+- TRIADIC-OBSERVATION-CONTRACT-DESIGN-00 defines governed attention.
+- OBSERVATION-CONTRACT-POLICY-SIMULATION-00 rehearses notice, consent, recovery, source-expansion, pathway-prior, retention, trace-export, and PMR-federation policy outcomes.
+- TAC phases define aperture posture and review visibility.
+- COHERENCE-EVENT-SIGNATURES-DESIGN-00 defines event signatures.
+- CES-PMR-INDEXING-DESIGN-00 defines CES as a compact PMR index, not source replacement.
+- VALIDATION-TIERING-PROVENANCE-00 records validation confidence scope.
+- real_input_design_mistaken_for_real_input_processing
+- local_source_selection_mistaken_for_accepted_evidence
+- consent_mistaken_for_memory_write
+- consent_mistaken_for_trace_export_authorization
+- consent_mistaken_for_pmr_federation_authorization
+- local_file_access_mistaken_for_directory_scan
+- source_manifest_missing
+- source_hash_missing
+- instruction_like_evidence_not_quarantined
+- unsupported_claims_hidden
+- source_expansion_missing
+- observation_contract_posture_missing
+- tac_aperture_posture_missing
+- no_silent_mode_shift_boundary_missing
+- real_input_receipt_missing
+- contestability_missing
+- recovery_path_missing
+- non_authority_boundaries_missing
+- product_readiness_claimed_from_local_pilot
+- real_input_pilot_mistaken_for_user_study
+- Blocked overclaim examples for MVR Local Real Input Pilot Design publication boundaries.
+- real input pilot design processes real files
+- real input pilot design is product readiness
+- real input pilot design is product release
+- local source selection grants accepted-evidence authority
+- local source processing writes memory
+- local source processing admits Atlas memory
+- local source processing authorizes final answers
+- local source processing certifies truth
+- consent authorizes trace export
+- consent authorizes PMR federation
+- consent authorizes memory write
+- local pilot can scan directories recursively
+- local pilot can read hidden files
+- local pilot can process credentials
+- local pilot can process private keys
+- local pilot can process medical records by default
+- local pilot can process legal records by default
+- local pilot can process financial records by default
+- local pilot can process child data by default
+- local pilot can process biometric data by default
+- unsupported claims can be hidden
+- instruction-like evidence can be trusted as evidence
+- source expansion can be skipped
+- real input pilot is a user study
+- real input pilot validates market demand
+- real input pilot proves human benefit
+- real input pilot trains the model
+- MVR-LOCAL-REAL-INPUT-PILOT-PROTOTYPE-00 emits local real-input pilot prototype artifacts for explicitly selected local sources and explicit pasted excerpts, producing source manifest, consent scope, quarantine report, policy packet, non-authority boundary, Minimal Viable Receipt packet, human-readable receipt, PMR/inventory/parity visibility, and pilot receipt while avoiding directory scans, hidden-file reads, URL fetches, provider calls, network calls, product release, product-readiness claims, final-answer authorization, accepted-evidence grants, truth certification, memory write, Atlas admission, trace export, PMR federation, model training, review skipping, user validation, human-subject study, market validation, or human benefit proof.
+- mvr_local_real_input_source_manifest.json
+- mvr_local_real_input_consent_scope.json
+- mvr_local_real_input_quarantine_report.json
+- mvr_local_real_input_pilot_policy_packet.json
+- mvr_local_real_input_non_authority_boundary.json
+- minimal_viable_receipt_packet.json
+- minimal_viable_receipt_checklist.json
+- minimal_viable_receipt_section_index.json
+- receipt_readability_profile.json
+- receipt_contestability_profile.json
+- receipt_cost_burden_profile.json
+- minimal_viable_receipt_non_authority_boundary.json
+- minimal_viable_receipt_human_readable.md
+- mvr_local_real_input_pilot_receipt.json
+- pmr_local_runtime_artifact_index.json
+- artifact_inventory.json
+- run_artifact_manifest.json
+- export_bundle_manifest.json
+- export_bundle_parity_report.json
+- schema/bridge/mvr_local_real_input_source_manifest.schema.json
+- schema/bridge/mvr_local_real_input_consent_scope.schema.json
+- schema/bridge/mvr_local_real_input_quarantine_report.schema.json
+- schema/bridge/mvr_local_real_input_pilot_policy_packet.schema.json
+- schema/bridge/mvr_local_real_input_non_authority_boundary.schema.json
+- schema/bridge/mvr_local_real_input_pilot_receipt.schema.json
+- schema/bridge/minimal_viable_receipt_packet.schema.json
+- schema/bridge/minimal_viable_receipt_checklist.schema.json
+- schema/bridge/minimal_viable_receipt_section_index.schema.json
+- schema/bridge/receipt_readability_profile.schema.json
+- schema/bridge/receipt_contestability_profile.schema.json
+- schema/bridge/receipt_cost_burden_profile.schema.json
+- schema/bridge/minimal_viable_receipt_non_authority_boundary.schema.json
+- build_mvr_local_real_input_pilot_prototype
+- MVR Local Real Input Pilot Prototype
+- Real local input can enter only by explicit local source selection.
+- The prototype processes only explicit local sources or explicit pasted excerpts.
+- The prototype never scans directories.
+- The prototype never auto-discovers files.
+- The prototype never reads hidden files.
+- The prototype never fetches URLs.
+- The prototype never calls provider APIs.
+- The prototype never performs network calls.
+- Local source selection is not accepted-evidence authority.
+- Local source processing is not memory write.
+- Consent is local to this pilot run.
+- Consent is not trace export authorization.
+- Consent is not PMR federation authorization.
+- Instruction-like evidence was quarantined.
+- Unsupported claims require review.
+- This receipt is not proof of truth.
+- This receipt is not product release.
+- This receipt is not product readiness.
+- This receipt does not authorize final answers.
+- This receipt does not grant accepted-evidence authority.
+- Human review remains required.
+- Default smoke uses generated explicit local test sources and does not process real user files.
+- Explicit pasted excerpt smoke processes only the supplied excerpt and remains local-only.
+- generated_explicit_local_test_sources
+- explicit_pasted_excerpts
+- local_user_pasted_excerpt
+- explicit_user_selected
+- accepted_for_processing
+- source_is_not_accepted_evidence
+- source_sha256
+- recursive_directory_scan_allowed = false
+- hidden_file_scan_allowed = false
+- consent_status = active_for_local_pilot
+- consent_scope = local_pilot_run_only
+- consent_is_local_to_pilot_run = true
+- consent_is_not_memory_write = true
+- consent_is_not_trace_export_authorization = true
+- consent_is_not_pmr_federation_authorization = true
+- consent_is_not_product_release = true
+- quarantine_status = completed
+- instruction_like_evidence_detected
+- quarantined_evidence_is_not_accepted_evidence = true
+- MVR-LOCAL-REAL-INPUT-PILOT-DESIGN-00 defines boundaries for a future real-local-input pilot.
+- MVR-LOCAL-REAL-INPUT-PILOT-PROTOTYPE-00 emits the first bounded local real-input pilot prototype.
+- MINIMAL-VIABLE-RECEIPT-DESIGN-00 defines the one-transaction/many-sections receipt standard.
+- MINIMAL-VIABLE-RECEIPT-LOCAL-PROTOTYPE-00 emits the local fixture-backed readable receipt.
+- MVR-LOCAL-PROTOTYPE-READABILITY-REVISION-00 applies deterministic local readability revisions.
+- TRIADIC-OBSERVATION-CONTRACT-DESIGN-00 defines governed attention.
+- OBSERVATION-CONTRACT-POLICY-SIMULATION-00 rehearses notice, consent, recovery, source-expansion, pathway-prior, retention, trace-export, and PMR-federation policy outcomes.
+- TAC phases define aperture posture and review visibility.
+- COHERENCE-EVENT-SIGNATURES-DESIGN-00 defines event signatures.
+- CES-PMR-INDEXING-DESIGN-00 defines CES as a compact PMR index, not source replacement.
+- VALIDATION-TIERING-PROVENANCE-00 records validation confidence scope.
+- local_real_input_pilot_mistaken_for_product_release
+- local_real_input_pilot_mistaken_for_product_readiness
+- local_real_input_pilot_mistaken_for_user_study
+- local_source_selection_mistaken_for_accepted_evidence
+- source_manifest_mistaken_for_accepted_evidence
+- quarantined_evidence_mistaken_for_accepted_evidence
+- consent_mistaken_for_trace_export_authorization
+- consent_mistaken_for_pmr_federation_authorization
+- consent_mistaken_for_memory_write
+- pasted_excerpt_mistaken_for_provider_runtime
+- local_pilot_mistaken_for_directory_scan
+- unsupported_claims_hidden
+- source_expansion_missing
+- human_review_requirement_hidden
+- non_authority_boundaries_missing
+- Blocked overclaim examples for MVR Local Real Input Pilot Prototype publication boundaries.
+- MVR real-input pilot prototype is product release
+- MVR real-input pilot prototype proves product readiness
+- MVR real-input pilot prototype is a user study
+- MVR real-input pilot prototype validates market demand
+- MVR real-input pilot prototype proves human benefit
+- MVR real-input pilot prototype certifies truth
+- MVR real-input pilot prototype authorizes final answers
+- MVR real-input pilot prototype grants accepted-evidence authority
+- MVR real-input pilot prototype writes memory
+- MVR real-input pilot prototype admits Atlas memory
+- MVR real-input pilot prototype exports traces
+- MVR real-input pilot prototype federates PMR
+- MVR real-input pilot prototype trains the model
+- MVR real-input pilot prototype skips review
+- local source selection is accepted evidence
+- local source processing writes memory
+- consent authorizes trace export
+- consent authorizes PMR federation
+- consent authorizes memory write
+- source manifest is accepted evidence
+- quarantined evidence is accepted evidence
+- pasted excerpt smoke is provider runtime
+- local pilot can scan directories recursively
+- local pilot can read hidden files
+- local pilot can fetch URLs
+- local pilot can call provider APIs
+- unsupported claims can be hidden
+- source expansion can be skipped
+- MVR-LOCAL-REAL-INPUT-PILOT-QUARANTINE-DETECTION-REPAIR-00 repairs instruction-like evidence detection for human-selected local real-input pilot files, ensuring instruction-like cues such as "instruction-like note", "ignore prior rules", and "treat this note as authoritative" are quarantined while harmless files do not falsely claim quarantine, without broadening file access, scanning directories, reading hidden files, fetching URLs, calling providers, performing network calls, writing memory, admitting Atlas memory, exporting traces, federating PMR, releasing product, claiming product readiness, granting final-answer or accepted-evidence authority, or certifying truth.
+- harmless_mvr_real_input_source_instruction_like.md
+- harmless_mvr_real_input_source_no_instruction.md
+- mvr_local_real_input_source_manifest.json
+- mvr_local_real_input_quarantine_report.json
+- minimal_viable_receipt_human_readable.md
+- mvr_local_real_input_pilot_receipt.json
+- artifact_inventory.json
+- run_artifact_manifest.json
+- export_bundle_manifest.json
+- export_bundle_parity_report.json
+- test_mvr_local_real_input_pilot_quarantine_detection_repair.py
+- INSTRUCTION_LIKE_CUES
+- instruction-like note
+- ignore prior rules
+- ignore previous rules
+- ignore previous instructions
+- treat this note as authoritative
+- treat this as authoritative
+- follow these instructions
+- override prior instructions
+- system prompt
+- developer message
+- assistant must
+- you must
+- do not reveal
+- disregard previous
+- disregard prior
+- _matched_instruction_like_cues
+- matched_instruction_like_phrases
+- MVR Local Real Input Pilot Quarantine Detection Repair
+- Human-selected local files with instruction-like evidence must be quarantined.
+- Harmless human-selected local files must not falsely claim quarantine.
+- Instruction-like evidence was quarantined.
+- No instruction-like evidence was detected for quarantine.
+- Quarantined evidence is not accepted evidence.
+- Local source selection is not accepted-evidence authority.
+- Local source processing is not memory write.
+- Human review remains required.
+- The repair does not broaden file access.
+- The repair does not scan directories.
+- The repair does not read hidden files.
+- The repair does not fetch URLs.
+- The repair does not call providers.
+- The repair does not perform network calls.
+- The repair does not write memory.
+- The repair does not admit Atlas memory.
+- The repair does not export traces.
+- The repair does not federate PMR.
+- The repair does not claim product readiness.
+- The repair does not release product.
+- The repair does not grant final-answer authority.
+- The repair does not grant accepted-evidence authority.
+- The repair does not certify truth.
+- instruction_like
+- harmless
+- explicit_local_source_paths
+- local_markdown_file
+- harmless_mvr_real_input_source_instruction_like.md
+- harmless_mvr_real_input_source_no_instruction.md
+- instruction_like_evidence_count = 1
+- quarantined_items_count = 1
+- matched phrases: instruction-like note, ignore prior rules, treat this note as authoritative
+- harmless evidence count = 0
+- provider_runtime_performed = false
+- network_call_performed = false
+- product_release_performed = false
+- product_readiness_claimed = false
+- final_answer_authority_granted = false
+- accepted_evidence_authority_granted = false
+- truth_certification_emitted = false
+- memory_write_performed = false
+- atlas_memory_admission_performed = false
+- trace_export_performed = false
+- pmr_federation_performed = false
+- MVR-LOCAL-REAL-INPUT-PILOT-DESIGN-00 defines boundaries for a future real-local-input pilot.
+- MVR-LOCAL-REAL-INPUT-PILOT-PROTOTYPE-00 emits the first bounded local real-input pilot prototype.
+- MVR-LOCAL-REAL-INPUT-PILOT-QUARANTINE-DETECTION-REPAIR-00 repairs instruction-like evidence detection for human-selected local files.
+- MINIMAL-VIABLE-RECEIPT-DESIGN-00 defines the one-transaction/many-sections receipt standard.
+- MINIMAL-VIABLE-RECEIPT-LOCAL-PROTOTYPE-00 emits the local fixture-backed readable receipt.
+- MVR-LOCAL-PROTOTYPE-READABILITY-REVISION-00 applies deterministic local readability revisions.
+- TRIADIC-OBSERVATION-CONTRACT-DESIGN-00 defines governed attention.
+- OBSERVATION-CONTRACT-POLICY-SIMULATION-00 rehearses notice, consent, recovery, source-expansion, pathway-prior, retention, trace-export, and PMR-federation policy outcomes.
+- TAC phases define aperture posture and review visibility.
+- COHERENCE-EVENT-SIGNATURES-DESIGN-00 defines event signatures.
+- CES-PMR-INDEXING-DESIGN-00 defines CES as a compact PMR index, not source replacement.
+- VALIDATION-TIERING-PROVENANCE-00 records validation confidence scope.
+- instruction_like_evidence_not_quarantined
+- harmless_file_falsely_claimed_quarantine
+- quarantine_wording_contradicts_count
+- matched_instruction_cues_missing
+- quarantined_evidence_mistaken_for_accepted_evidence
+- local_source_selection_mistaken_for_accepted_evidence
+- quarantine_repair_mistaken_for_broader_file_access
+- quarantine_repair_mistaken_for_product_readiness
+- quarantine_count_mistaken_for_truth_score
+- no_detection_mistaken_for_accepted_evidence
+- human_review_requirement_hidden
+- Blocked overclaim examples for MVR Local Real Input Pilot Quarantine Detection Repair publication boundaries.
+- quarantine repair broadens file access
+- quarantine repair scans directories
+- quarantine repair reads hidden files
+- quarantine repair fetches URLs
+- quarantine repair calls provider APIs
+- quarantine repair performs network calls
+- quarantine repair writes memory
+- quarantine repair admits Atlas memory
+- quarantine repair exports traces
+- quarantine repair federates PMR
+- quarantine repair releases product
+- quarantine repair proves product readiness
+- quarantine repair certifies truth
+- quarantine repair grants final-answer authority
+- quarantine repair grants accepted-evidence authority
+- local source selection is accepted evidence
+- quarantined evidence is accepted evidence
+- instruction-like evidence can be trusted as evidence
+- no-detection means receipt is product ready
+- no-detection means source is accepted evidence
+- quarantine count means truth score
+- MVR-LOCAL-REAL-INPUT-PILOT-HUMAN-SELECTED-FILE-SMOKE-00 records a controlled local smoke harness for explicitly selected local files using the MVR real-input pilot builder, preserving source manifest, consent scope, quarantine report, Minimal Viable Receipt artifacts, PMR/inventory/parity visibility, and non-authority boundaries without scanning directories, reading hidden files, fetching URLs, calling providers, performing network calls, writing memory, admitting Atlas memory, exporting traces, federating PMR, releasing product, claiming product readiness, granting final-answer or accepted-evidence authority, certifying truth, training models, skipping review, or performing user validation.
+- mvr_local_real_input_human_selected_file_smoke_packet.json
+- mvr_local_real_input_human_selected_file_smoke_receipt.json
+- mvr_local_real_input_source_manifest.json
+- mvr_local_real_input_consent_scope.json
+- mvr_local_real_input_quarantine_report.json
+- mvr_local_real_input_pilot_policy_packet.json
+- mvr_local_real_input_non_authority_boundary.json
+- minimal_viable_receipt_packet.json
+- minimal_viable_receipt_human_readable.md
+- mvr_local_real_input_pilot_receipt.json
+- pmr_local_runtime_artifact_index.json
+- artifact_inventory.json
+- run_artifact_manifest.json
+- export_bundle_manifest.json
+- export_bundle_parity_report.json
+- schema/bridge/mvr_local_real_input_human_selected_file_smoke_packet.schema.json
+- schema/bridge/mvr_local_real_input_human_selected_file_smoke_receipt.schema.json
+- schema/bridge/mvr_local_real_input_source_manifest.schema.json
+- schema/bridge/mvr_local_real_input_consent_scope.schema.json
+- schema/bridge/mvr_local_real_input_quarantine_report.schema.json
+- schema/bridge/mvr_local_real_input_pilot_policy_packet.schema.json
+- schema/bridge/mvr_local_real_input_non_authority_boundary.schema.json
+- build_mvr_local_real_input_pilot_human_selected_file_smoke
+- MVR Local Real Input Pilot Human-Selected File Smoke
+- Human-selected file smoke uses explicit local source selection.
+- Human-selected file smoke is not product readiness.
+- Human-selected file smoke is not product release.
+- Human-selected file smoke is not a user study.
+- Human-selected file smoke is not accepted-evidence authority.
+- Local source selection is not accepted-evidence authority.
+- Local source processing is not memory write.
+- Consent is local to this pilot run.
+- Consent is not trace export authorization.
+- Consent is not PMR federation authorization.
+- The smoke never scans directories.
+- The smoke never auto-discovers files.
+- The smoke never reads hidden files.
+- The smoke never fetches URLs.
+- The smoke never calls providers.
+- The smoke never performs network calls.
+- Human review remains required.
+- Default smoke uses a generated harmless explicit local file fixture and does not process real user files.
+- Explicit path smoke processes only the selected local markdown file.
+- Instruction-like evidence is quarantined.
+- Quarantined evidence is not accepted evidence.
+- generated_harmless_human_selected_file_fixture
+- explicit_human_selected_local_file
+- human_selected_file_smoke_source.md
+- local_markdown_file
+- explicit_user_selected
+- source_sha256
+- source_is_not_accepted_evidence
+- recursive_directory_scan_allowed = false
+- hidden_file_scan_allowed = false
+- url_fetch_performed = false
+- instruction-like note
+- ignore prior rules
+- treat this note as authoritative
+- instruction_like_evidence_count = 1
+- matched_instruction_like_phrases
+- quarantined_evidence_is_not_accepted_evidence
+- human_review_required = true
+- MVR-LOCAL-REAL-INPUT-PILOT-DESIGN-00 defines the real-input pilot boundaries.
+- MVR-LOCAL-REAL-INPUT-PILOT-PROTOTYPE-00 implements explicit local source and pasted-excerpt prototype handling.
+- MVR-LOCAL-REAL-INPUT-PILOT-QUARANTINE-DETECTION-REPAIR-00 repairs instruction-like evidence quarantine detection.
+- MVR-LOCAL-REAL-INPUT-PILOT-HUMAN-SELECTED-FILE-SMOKE-00 records a controlled explicit local file smoke.
+- MINIMAL-VIABLE-RECEIPT-DESIGN-00 defines the receipt standard.
+- MINIMAL-VIABLE-RECEIPT-LOCAL-PROTOTYPE-00 emits the local fixture-backed receipt.
+- OBSERVATION-CONTRACT-POLICY-SIMULATION-00 rehearses notice, consent, and recovery outcomes.
+- VALIDATION-TIERING-PROVENANCE-00 records validation confidence scope.
+- human_selected_file_smoke_mistaken_for_product_readiness
+- human_selected_file_smoke_mistaken_for_product_release
+- human_selected_file_smoke_mistaken_for_user_study
+- local_source_selection_mistaken_for_accepted_evidence
+- source_manifest_mistaken_for_accepted_evidence
+- explicit_source_path_mistaken_for_accepted_evidence
+- consent_mistaken_for_trace_export_authorization
+- consent_mistaken_for_pmr_federation_authorization
+- consent_mistaken_for_memory_write
+- smoke_mistaken_for_directory_scan
+- smoke_mistaken_for_hidden_file_read
+- smoke_mistaken_for_provider_runtime
+- quarantined_evidence_mistaken_for_accepted_evidence
+- unsupported_claims_hidden
+- source_expansion_missing
+- human_review_requirement_hidden
+- non_authority_boundaries_missing
+- Blocked overclaim examples for MVR Local Real Input Pilot Human-Selected File Smoke publication boundaries.
+- human-selected file smoke proves product readiness
+- human-selected file smoke is product release
+- human-selected file smoke is a user study
+- human-selected file smoke validates market demand
+- human-selected file smoke proves human benefit
+- human-selected file smoke certifies truth
+- human-selected file smoke authorizes final answers
+- human-selected file smoke grants accepted-evidence authority
+- human-selected file smoke writes memory
+- human-selected file smoke admits Atlas memory
+- human-selected file smoke exports traces
+- human-selected file smoke federates PMR
+- human-selected file smoke trains the model
+- human-selected file smoke skips review
+- local source selection is accepted evidence
+- source manifest is accepted evidence
+- consent authorizes trace export
+- consent authorizes PMR federation
+- consent authorizes memory write
+- smoke can scan directories
+- smoke can read hidden files
+- smoke can fetch URLs
+- smoke can call providers
+- explicit source path means accepted evidence
+- quarantined evidence is accepted evidence
+- COMPLIANCE-READY-MVR-REPORT-DESIGN-00 defines a design-only, plain-language report format for compliance professionals to review Minimal Viable Receipt transactions by summarizing input selection, consent and observation scope, source manifests, quarantine, claim support, unsupported claims, controls, human review requirements, retention boundaries, contestability, validation scope, component labels, audit artifacts, data-equity questions, and non-authority boundaries without generating reports in this phase, processing real inputs, certifying compliance, passing audits, guaranteeing attestation success, certifying truth, granting final-answer or accepted-evidence authority, writing memory, admitting Atlas memory, exporting traces, federating PMR, claiming product readiness, or releasing product.
+- COMPLIANCE-EVIDENCE-TOOLSET-LIBRARY-DESIGN-00 defines a design-only compliance evidence toolset library for mapping Minimal Viable Receipt artifacts into framework-specific evidence packs, beginning with EU AI Act evidence support and expandable to ISO/IEC 42001, SOC 2, HIPAA, NIST AI RMF, internal governance, procurement, vendor review, incident review, and model-change review, while requiring qualified human signoff and avoiding compliance certification, legal advice, audit-pass claims, attestation-success claims, product-readiness claims, product release, truth certification, final-answer authority, accepted-evidence authority, memory write, Atlas admission, trace export, PMR federation, model training, or review skipping.
+- docs/COMPLIANCE_READY_MVR_REPORT_DESIGN.md
+- config/receipt/compliance_ready_mvr_report_policy.v1.json
+- schema/bridge/compliance_ready_mvr_report_packet.schema.json
+- schema/bridge/compliance_ready_mvr_report_section_index.schema.json
+- schema/bridge/compliance_ready_mvr_control_mapping.schema.json
+- schema/bridge/compliance_ready_mvr_plain_language_glossary.schema.json
+- schema/bridge/compliance_ready_mvr_non_authority_boundary.schema.json
+- docs/COMPLIANCE_EVIDENCE_TOOLSET_LIBRARY.md
+- config/compliance/compliance_evidence_toolset_library.v1.json
+- schema/bridge/compliance_evidence_toolset_library_packet.schema.json
+- schema/bridge/compliance_framework_profile.schema.json
+- schema/bridge/compliance_evidence_mapping.schema.json
+- schema/bridge/compliance_gap_register.schema.json
+- schema/bridge/compliance_human_signoff_packet.schema.json
+- schema/bridge/compliance_evidence_non_authority_boundary.schema.json
+- Compliance-Ready MVR Report Design
+- The report must be stupidly user friendly.
+- Compliance users need a report, not an artifact maze.
+- Internal packet names must have plain-language labels.
+- A compliance-ready report supports review; it does not certify compliance.
+- A receipt supports audit evidence; it does not pass an audit.
+- Traceability is not truth.
+- Source selection is not accepted-evidence authority.
+- Quarantine is not deletion.
+- Consent scope is not memory write.
+- Human review remains required.
+- COMPLIANCE-READY-MVR-REPORT-DESIGN-00 does not generate reports.
+- COMPLIANCE-READY-MVR-REPORT-DESIGN-00 does not process real inputs.
+- COMPLIANCE-READY-MVR-REPORT-DESIGN-00 does not certify compliance.
+- COMPLIANCE-READY-MVR-REPORT-DESIGN-00 does not claim product readiness.
+- COMPLIANCE-READY-MVR-REPORT-DESIGN-00 does not release product.
+- Compliance Evidence Toolset Library
+- UVLM produces compliance evidence packs, not compliance certifications.
+- Human professionals with authority may use UVLM evidence in their own compliance, audit, legal, risk, or attestation workflows.
+- EU AI Act support means evidence mapping, not EU AI Act compliance certification.
+- ISO/IEC 42001 support means management-system evidence support, not ISO certification.
+- SOC 2 support means trust-services evidence support, not a SOC 2 report.
+- HIPAA support means privacy/security evidence support, not HIPAA compliance.
+- Legal compliance requires qualified human judgment.
+- Audit pass and attestation success cannot be generated by UVLM.
+- The system must be stupidly user friendly.
+- Compliance users need mapped evidence, gaps, review status, and sign-off packets, not an artifact maze.
+- Source selection is not accepted evidence.
+- Traceability is not truth.
+- Human review remains required.
+- COMPLIANCE-EVIDENCE-TOOLSET-LIBRARY-DESIGN-00 does not generate evidence packs.
+- COMPLIANCE-EVIDENCE-TOOLSET-LIBRARY-DESIGN-00 does not certify compliance.
+- COMPLIANCE-EVIDENCE-TOOLSET-LIBRARY-DESIGN-00 does not provide legal advice.
+- COMPLIANCE-EVIDENCE-TOOLSET-LIBRARY-DESIGN-00 does not claim product readiness.
+- COMPLIANCE-EVIDENCE-TOOLSET-LIBRARY-DESIGN-00 does not release product.
+- compliance_professional
+- auditor
+- risk_manager
+- legal_reviewer
+- model_governance_reviewer
+- data_protection_reviewer
+- procurement_reviewer
+- executive_reviewer
+- executive_summary
+- input_selection_and_scope
+- consent_and_observation_scope
+- source_manifest_and_hashes
+- quarantine_and_exclusions
+- claim_support_and_unsupported_claims
+- controls_applied
+- human_review_requirements
+- retention_and_memory_boundaries
+- contestability_and_recovery_options
+- validation_confidence_scope
+- system_components_plain_language_map
+- non_authority_summary
+- audit_artifact_index
+- open_questions_and_required_follow_up
+- eu_ai_act_evidence_support
+- iso_iec_42001_evidence_support
+- soc2_trust_services_evidence_support
+- hipaa_privacy_security_evidence_support
+- nist_ai_rmf_evidence_support
+- internal_ai_governance_policy_evidence_support
+- procurement_ai_review_evidence_support
+- vendor_ai_review_evidence_support
+- ai_incident_review_evidence_support
+- model_change_review_evidence_support
+- risk_classification_support
+- intended_use_description
+- source_data_governance_evidence
+- technical_documentation_support
+- record_keeping_logging_support
+- transparency_deployer_information_support
+- human_oversight_support
+- accuracy_robustness_cybersecurity_posture
+- post_market_monitoring_or_incident_review_posture
+- fundamental_rights_or_data_equity_review_support
+- non_authority_boundary
+- source_manifest
+- source_hash
+- consent_scope
+- observation_scope
+- quarantine_report
+- unsupported_claims
+- controls_applied
+- human_review_status
+- validation_tier
+- retention_boundary
+- contestability_options
+- recovery_options
+- non_authority_boundary
+- audit_artifact_index
+- open_gaps
+- compliance_officer
+- legal_reviewer
+- privacy_officer
+- security_officer
+- model_risk_manager
+- ai_governance_lead
+- licensed_auditor_or_certifier
+- executive_owner
+- test_compliance_ready_mvr_report_design.py
+- test_compliance_evidence_toolset_library_design.py
+- Blocked overclaim examples for compliance-ready MVR report and compliance evidence toolset publication boundaries.
+- UVLM certifies ISO compliance
+- UVLM certifies SOC 2 compliance
+- UVLM certifies EU AI Act compliance
+- UVLM certifies HIPAA compliance
+- UVLM provides legal compliance
+- UVLM passes audits
+- UVLM guarantees attestation success
+- EU AI Act evidence support is EU AI Act compliance certification
+- ISO evidence support is ISO certification
+- SOC 2 evidence support is a SOC 2 report
+- HIPAA evidence support is HIPAA compliance
+- evidence pack means audit pass
+- human signoff packet means signed compliance
+- source manifest is accepted evidence
+- traceability means truth
+- control mapping means control effectiveness
+- compliance readability means legal advice
+- Compliance-ready MVR report certifies compliance
+- Compliance-ready MVR report passes audit
+- Compliance-ready MVR report guarantees attestation success
+- Compliance-ready MVR report certifies truth
+- Compliance-ready MVR report authorizes final answers
+- Compliance-ready MVR report grants accepted-evidence authority
+- Compliance-ready MVR report writes memory
+- Compliance-ready MVR report admits Atlas memory
+- Compliance-ready MVR report authorizes trace export
+- Compliance-ready MVR report authorizes PMR federation
+- Compliance-ready MVR report proves product readiness
+- Compliance-ready MVR report is product release
+- Quarantine means deletion
+- Consent scope means memory write
+- Plain language means loss of rigor
+- Compliance professional readability means legal advice
+- WAVE-ROSETTA-CANONICAL-PROXY-BRIDGE-00 emits bounded canonical-proxy bridge estimates that relate LOCAL-REVIEW-RUNTIME-V0 metric proxies to canonical GUFT / ΔSyn semantic targets through WAVE Rosetta structural features, governance/provenance support, reliability factors, and uncertainty penalties while preserving that the bridge is calibration, not identity; bridge estimate, not canonical measurement; scientific support, not proof; and while requiring population calibration, domain validation, uncertainty reporting, and human review.
+- WAVE-ROSETTA-CANONICAL-PROXY-BRIDGE-PROVENANCE-00 preserves report lineage, source report hashes, report-derived bridge formulas, implemented v1 bridge calculations, vector values, weight profiles, uncertainty formulas, calibration gaps, and non-authority boundaries for WAVE-ROSETTA-CANONICAL-PROXY-BRIDGE-00 without changing runtime behavior, bridge formulas, bridge weights, or claiming canonical measurement, GUFT proof, universal ontology proof, consciousness proof, truth certification, product readiness, product release, final-answer authority, accepted-evidence authority, memory write, Atlas admission, trace export, PMR federation, compliance certification, model training, or review skipping.
+- EU-AI-ACT-MVR-EVIDENCE-MAPPING-DESIGN-00 defines a design-only EU AI Act evidence-support mapping for Minimal Viable Receipt artifacts, mapping source manifests, consent scope, observation scope, quarantine reports, unsupported claims, controls, human review status, validation tier, retention boundaries, contestability, recovery options, non-authority boundaries, audit artifacts, and open gaps into EU AI Act review-support categories without generating runtime evidence maps, certifying EU AI Act compliance, providing legal advice, passing audits, guaranteeing attestation success, claiming product readiness, releasing product, certifying truth, granting final-answer or accepted-evidence authority, writing memory, admitting Atlas memory, exporting traces, federating PMR, training models, or skipping review.
+- docs/WAVE_ROSETTA_CANONICAL_PROXY_BRIDGE.md
+- python/src/coherence/local_review/canonical_proxy_bridge.py
+- config/metrics/canonical_proxy_bridge_weight_profile.v1.json
+- schema/bridge/wave_rosetta_canonical_proxy_bridge_packet.schema.json
+- schema/bridge/waveform_feature_vector_packet.schema.json
+- schema/bridge/canonical_proxy_bridge_matrix.schema.json
+- schema/bridge/canonical_proxy_bridge_uncertainty_packet.schema.json
+- schema/bridge/canonical_proxy_bridge_weight_profile.schema.json
+- schema/bridge/canonical_proxy_bridge_input_ledger.schema.json
+- schema/bridge/canonical_proxy_bridge_review_packet.schema.json
+- wave_rosetta_canonical_proxy_bridge_packet.json
+- waveform_feature_vector_packet.json
+- canonical_proxy_bridge_matrix.json
+- canonical_proxy_bridge_uncertainty_packet.json
+- canonical_proxy_bridge_weight_profile.json
+- canonical_proxy_bridge_input_ledger.json
+- canonical_proxy_bridge_summary.md
+- canonical_proxy_bridge_review_packet.json
+- docs/EU_AI_ACT_MVR_EVIDENCE_MAPPING_DESIGN.md
+- config/compliance/eu_ai_act_mvr_evidence_mapping.v1.json
+- schema/bridge/eu_ai_act_mvr_evidence_map.schema.json
+- schema/bridge/eu_ai_act_mvr_gap_register.schema.json
+- schema/bridge/eu_ai_act_mvr_human_review_packet.schema.json
+- schema/bridge/eu_ai_act_mvr_non_authority_boundary.schema.json
+- docs/WAVE_ROSETTA_CANONICAL_PROXY_BRIDGE_PROVENANCE.md
+- config/metrics/canonical_proxy_bridge_provenance.v1.json
+- schema/bridge/canonical_proxy_bridge_provenance_packet.schema.json
+- schema/bridge/canonical_proxy_bridge_formula_ledger.schema.json
+- schema/bridge/canonical_proxy_bridge_report_lineage.schema.json
+- schema/bridge/canonical_proxy_bridge_calibration_gap_register.schema.json
+- build_wave_rosetta_canonical_proxy_bridge
+- WAVE Rosetta Canonical-Proxy Bridge
+- WAVE Rosetta bridges runtime proxies to canonical meanings by calibration, not identity.
+- Runtime proxy values are not canonical GUFT measurements.
+- Bridge estimates are not proof.
+- Analogy is not identity.
+- High coherence does not necessarily mean constructive output.
+- Coherent cancellation must remain visible.
+- WAVE symmetry is pattern support, not ethical proof.
+- Bridge weights must be versioned.
+- Bridge inputs must be logged.
+- Bridge uncertainty must be explicit.
+- Population calibration is required.
+- Domain validation is required.
+- Human review remains required.
+- This bridge does not prove GUFT.
+- This bridge does not certify truth.
+- This bridge does not prove consciousness.
+- This bridge does not prove universal ontology.
+- This bridge does not release product.
+- This bridge does not claim product readiness.
+- WAVE Rosetta Canonical-Proxy Bridge Provenance
+- This document preserves report lineage, conversion calculations, implemented v1 formulas, and calibration gaps.
+- The bridge is calibration, not identity.
+- The bridge estimate is not canonical measurement.
+- Scientific support is not proof.
+- GUFT support is not GUFT proof.
+- Runtime proxies are not canonical GUFT measurements.
+- High coherence can cancel output.
+- WAVE symmetry is pattern support, not ethical proof.
+- The normalized reliability-weighted formula is a future calibration candidate.
+- The implemented v1 formulas are deterministic scaffold formulas.
+- Bridge weights are versioned.
+- Bridge inputs must be logged.
+- Bridge uncertainty must be explicit.
+- Population calibration remains required.
+- Domain validation remains required.
+- Human review remains required.
+- WAVE-ROSETTA-CANONICAL-PROXY-BRIDGE-PROVENANCE-00 does not change bridge runtime behavior.
+- WAVE-ROSETTA-CANONICAL-PROXY-BRIDGE-PROVENANCE-00 does not change bridge formulas.
+- WAVE-ROSETTA-CANONICAL-PROXY-BRIDGE-PROVENANCE-00 does not change bridge weights.
+- WAVE-ROSETTA-CANONICAL-PROXY-BRIDGE-PROVENANCE-00 does not prove GUFT.
+- WAVE-ROSETTA-CANONICAL-PROXY-BRIDGE-PROVENANCE-00 does not certify truth.
+- EU-AI-ACT-MVR-EVIDENCE-MAP-LOCAL-PROTOTYPE-00 emits a local EU AI Act evidence-support map from Minimal Viable Receipt artifacts, mapping source manifest, consent scope, observation scope, quarantine report, unsupported claims, controls, human review status, validation tier, retention boundary, contestability, recovery options, non-authority boundaries, audit artifact index, and open gaps into EU AI Act review-support categories while exposing missing evidence as visible gaps and requiring qualified human review and authorized professional signoff, without certifying EU AI Act compliance, providing legal advice, passing audits, guaranteeing attestation success, claiming product readiness, releasing product, certifying truth, granting final-answer or accepted-evidence authority, writing memory, admitting Atlas memory, exporting traces, federating PMR, training models, or skipping review.
+- docs/EU_AI_ACT_MVR_EVIDENCE_MAP_LOCAL_PROTOTYPE.md
+- python/src/coherence/compliance/eu_ai_act_mvr_evidence_map.py
+- schema/bridge/eu_ai_act_mvr_evidence_map.schema.json
+- schema/bridge/eu_ai_act_mvr_gap_register.schema.json
+- schema/bridge/eu_ai_act_mvr_human_review_packet.schema.json
+- schema/bridge/eu_ai_act_mvr_non_authority_boundary.schema.json
+- schema/bridge/eu_ai_act_mvr_evidence_map_receipt.schema.json
+- eu_ai_act_mvr_evidence_map.json
+- eu_ai_act_mvr_gap_register.json
+- eu_ai_act_mvr_human_review_packet.json
+- eu_ai_act_mvr_non_authority_boundary.json
+- eu_ai_act_mvr_evidence_summary.md
+- eu_ai_act_mvr_evidence_map_receipt.json
+- mvr_local_real_input_human_selected_file_smoke_packet.json
+- mvr_local_real_input_source_manifest.json
+- mvr_local_real_input_consent_scope.json
+- mvr_local_real_input_quarantine_report.json
+- minimal_viable_receipt_packet.json
+- minimal_viable_receipt_human_readable.md
+- mvr_local_real_input_pilot_receipt.json
+- pmr_local_runtime_artifact_index.json
+- artifact_inventory.json
+- export_bundle_parity_report.json
+- build_eu_ai_act_mvr_evidence_map_local_prototype
+- EU AI Act MVR Evidence Map Prototype
+- This is evidence support, not EU AI Act compliance certification.
+- UVLM produces mapped evidence and visible gaps, not legal conclusions.
+- Qualified humans must decide whether evidence supports compliance claims.
+- Missing evidence is visible as a gap, not hidden.
+- Source manifest is not accepted evidence.
+- Traceability is not truth.
+- Control mapping is not control effectiveness.
+- Human review remains required.
+- Authorized professional signoff remains required.
+- No legal advice was emitted.
+- No audit pass was claimed.
+- No attestation success was claimed.
+- No product readiness was claimed.
+- No product release was performed.
+- EU-AI-ACT-MVR-EVIDENCE-MAP-LOCAL-PROTOTYPE-00 emits review-support evidence, not compliance certification.
+- source_manifest
+- source_hash
+- consent_scope
+- observation_scope
+- quarantine_report
+- unsupported_claims
+- controls_applied
+- human_review_status
+- validation_tier
+- retention_boundary
+- contestability_options
+- recovery_options
+- non_authority_boundary
+- audit_artifact_index
+- open_gaps
+- missing_risk_classification
+- missing_intended_use_owner
+- missing_human_signoff
+- missing_control_effectiveness_test
+- missing_representative_data_assessment
+- missing_security_review
+- missing_fundamental_rights_assessment
+- missing_post_market_monitoring_plan
+- missing_incident_response_owner
+- missing_legal_review
+- missing_evidence_visible = true
+- gaps_are_not_compliance_failures = true
+- no_visible_gap_is_not_compliance_success = true
+- compliance_officer
+- legal_reviewer
+- privacy_officer
+- security_officer
+- model_risk_manager
+- ai_governance_lead
+- executive_owner
+- licensed_auditor_or_certifier
+- signoff_performed = false
+- legal_review_performed = false
+- authorized_professional_signoff_required = true
+- EU-AI-ACT-MVR-EVIDENCE-MAPPING-DESIGN-00 defines the design-only mapping profile.
+- EU-AI-ACT-MVR-EVIDENCE-MAP-LOCAL-PROTOTYPE-00 emits the first local EU AI Act evidence-support map.
+- COMPLIANCE-EVIDENCE-TOOLSET-LIBRARY-DESIGN-00 defines the broader evidence toolset library.
+- COMPLIANCE-READY-MVR-REPORT-DESIGN-00 defines the compliance-facing report structure.
+- MVR-LOCAL-REAL-INPUT-PILOT-HUMAN-SELECTED-FILE-SMOKE-00 supplies bounded MVR real-input pilot artifacts.
+- VALIDATION-TIERING-PROVENANCE-00 records validation confidence scope.
+- E_review
+- T_review
+- Ψ_review
+- ΔS_review
+- Λ_boundary
+- Eₛ_review
+- TAF_review_runtime_v0
+- phase_alignment
+- amplitude_balance
+- detuning
+- jitter
+- signal_to_noise
+- spectral_entropy
+- residual_energy
+- cancellation_index
+- observability_index
+- constructive_output_index
+- provenance_support
+- governance_route_support
+- materiality_level
+- consent_scope_support
+- human_review_status
+- contestability_support
+- affected_party_coverage
+- burden_distribution_visibility
+- UCC_control_status
+- Sophia_decision_support
+- runtime_proxy_reliability
+- wave_analogue_reliability
+- governance_lineage_reliability
+- calibration_reliability
+- E_bridge
+- T_bridge
+- Ψ_structural_bridge
+- Ψ_constructive_bridge
+- Ψ_cancellation_bridge
+- ΔS_bridge
+- Λ_boundary_bridge
+- Λ_phase_candidate
+- Λ_critical_candidate
+- Eₛ_bridge
+- TAF_bridge
+- epistemic_uncertainty
+- transfer_uncertainty
+- combined_uncertainty
+- GUFT discussion with Thomas and Apprentice 6_8_2026_842AM.docx
+- GUFT METRICS BRIDGE DISCUSSION 6_9_2026_1022AM.docx
+- wave_rosetta_canonical_proxy_bridge_scientific_review_20260609.md
+- 2f49da190fcf5e3a04330f53bd9e6d30228c0a999cdabf8be2e94e957e6dfb09
+- 9eaba6d5a49de7d09542b3e879cbb9eb936181a37e660b3434a5e31e110ccfe6
+- 21045f07f5e2122db9714741a418f582cb87b6d004f6c66f4a63d4b6b7e77fd6
+- M_bridge_i = clamp
+- B_i = clamp
+- BridgeConfidence_i
+- E_bridge = clamp
+- T_bridge = clamp
+- Ψ_structural_bridge = clamp
+- Ψ_constructive_bridge = clamp
+- Ψ_cancellation_bridge = clamp
+- ΔS_bridge = clamp
+- Λ_boundary_bridge = clamp
+- Λ_phase_candidate = clamp
+- Λ_critical_candidate = clamp
+- Eₛ_bridge = clamp
+- TAF_bridge = clamp
+- epistemic_uncertainty = clamp
+- transfer_uncertainty = clamp
+- combined_uncertainty = clamp
+- normalized_reliability_weighted_formula_not_yet_implemented
+- bridge_confidence_packet_not_yet_implemented
+- calibration_registry_not_yet_implemented
+- negative_control_report_not_yet_implemented
+- population_calibration_not_complete
+- domain_validation_not_complete
+- counterexample_pressure_not_yet_measured
+- semantic_coverage_kappa_not_yet_measured
+- domain_transfer_confidence_not_yet_measured
+- empirical_weight_fit_not_yet_performed
+- current_weight_profile_is_design_scaffold
+- risk_classification_support
+- intended_use_description
+- source_data_governance_evidence
+- technical_documentation_support
+- record_keeping_logging_support
+- transparency_deployer_information_support
+- human_oversight_support
+- accuracy_robustness_cybersecurity_posture
+- post_market_monitoring_or_incident_review_posture
+- fundamental_rights_or_data_equity_review_support
+- non_authority_boundary
+- missing_risk_classification
+- missing_intended_use_owner
+- missing_human_signoff
+- missing_control_effectiveness_test
+- missing_representative_data_assessment
+- missing_security_review
+- missing_fundamental_rights_assessment
+- missing_post_market_monitoring_plan
+- missing_incident_response_owner
+- missing_legal_review
+- Blocked overclaim examples for WAVE bridge, EU AI Act mapping, and WAVE provenance publication boundaries.
+- runtime proxies are canonical GUFT measurements
+- WAVE Rosetta proves GUFT
+- WAVE Rosetta proves universal ontology
+- WAVE Rosetta proves consciousness
+- bridge estimate is truth certification
+- bridge estimate grants final-answer authority
+- bridge estimate grants accepted-evidence authority
+- high Ψ means constructive output
+- waveform symmetry proves ethical symmetry
+- low TAF means hidden uncertainty is acceptable
+- calibration bridge releases product
+- calibration bridge proves product readiness
+- bridge weights need not be versioned
+- bridge estimates need no uncertainty packet
+- population calibration is complete
+- domain validation is complete
+- provenance ledger proves GUFT
+- provenance ledger proves universal ontology
+- provenance ledger proves consciousness
+- provenance ledger certifies truth
+- provenance ledger changes bridge weights
+- provenance ledger changes bridge formulas
+- implemented v1 formulas are final calibration
+- normalized reliability-weighted formula is already implemented
+- BridgeConfidence packet is already implemented
+- negative controls are already implemented
+- source reports are accepted evidence
+- report lineage is truth certification
+- UVLM certifies EU AI Act compliance
+- EU AI Act evidence map is EU AI Act compliance certification
+- EU AI Act evidence map provides legal advice
+- EU AI Act evidence map passes audit
+- EU AI Act evidence map guarantees attestation success
+- EU AI Act evidence map proves product readiness
+- EU AI Act evidence map is product release
+- EU AI Act evidence map certifies truth
+- EU AI Act evidence map authorizes final answers
+- EU AI Act evidence map grants accepted-evidence authority
+- EU AI Act evidence map writes memory
+- EU AI Act evidence map admits Atlas memory
+- EU AI Act evidence map exports traces
+- EU AI Act evidence map federates PMR
+- source manifest is accepted evidence
+- traceability means truth
+- control mapping means control effectiveness
+- visible gap means compliance failure
+- no visible gap means compliance success
+- human review role means human signoff occurred
+- Blocked overclaim examples for EU AI Act MVR evidence map local prototype publication boundaries.
+- EU AI Act evidence map prototype certifies EU AI Act compliance
+- EU AI Act evidence map prototype provides legal advice
+- EU AI Act evidence map prototype passes audit
+- EU AI Act evidence map prototype guarantees attestation success
+- EU AI Act evidence map prototype proves product readiness
+- EU AI Act evidence map prototype is product release
+- EU AI Act evidence map prototype certifies truth
+- EU AI Act evidence map prototype authorizes final answers
+- EU AI Act evidence map prototype grants accepted-evidence authority
+- EU AI Act evidence map prototype writes memory
+- EU AI Act evidence map prototype admits Atlas memory
+- EU AI Act evidence map prototype exports traces
+- EU AI Act evidence map prototype federates PMR
+- source manifest is accepted evidence
+- traceability means truth
+- control mapping means control effectiveness
+- visible gap means compliance failure
+- no visible gap means compliance success
+- human review role means human signoff occurred
+- mapped evidence means compliance satisfied
+- open_gap_count means compliance failure
+- gap_count means audit failure
+- signoff role means signoff performed
+- COMPLIANCE-READY-MVR-REPORT-LOCAL-PROTOTYPE-00 emits a local compliance-ready Minimal Viable Receipt report prototype that summarizes MVR and EU AI Act evidence-map artifacts into a stupidly user-friendly compliance-facing report with executive status, evidence map summary, gap register summary, human oversight and signoff status, controls and traceability, data governance, retention boundaries, contestability, validation scope, metric proxy annex, non-authority statement, audit artifact index, and open questions while requiring human review and authorized professional signoff and avoiding compliance certification, legal advice, audit-pass claims, attestation-success claims, product-readiness claims, product release, truth certification, final-answer authority, accepted-evidence authority, memory write, Atlas admission, trace export, PMR federation, model training, or review skipping.
+- SOURCE-CORPUS-PROVENANCE-ARCHIVE-00 defines a governed source-report archive pattern with manifest schema, source metadata, hashes, visibility and sensitivity flags, normalized derivative guidance, and non-authority boundaries so future developers can trace design and scientific provenance without treating source reports as accepted evidence, theorem proof, compliance certification, product release, product readiness, memory write, Atlas admission, or current canonical repo state.
+- SOURCE-CORPUS-PROVENANCE-HASH-FILL-00 fills pending EU AI Act source-report hashes in the governed source-corpus manifest and sha256sums file while preserving hash-only public references, public_release_approved=false, no raw private DOCX import, and all non-authority boundaries.
+- compliance_ready_mvr_report.md
+- compliance_ready_mvr_report_packet.json
+- compliance_ready_mvr_report_section_index.json
+- compliance_ready_mvr_control_mapping.json
+- compliance_ready_mvr_plain_language_glossary.json
+- compliance_ready_mvr_non_authority_boundary.json
+- compliance_ready_mvr_report_receipt.json
+- python/src/coherence/compliance/compliance_ready_mvr_report.py
+- schema/bridge/compliance_ready_mvr_report_receipt.schema.json
+- docs/SOURCE_CORPUS_PROVENANCE_ARCHIVE.md
+- docs/provenance/source_reports/README.md
+- docs/provenance/source_reports/manifest.schema.json
+- docs/provenance/source_reports/manifest.json
+- docs/provenance/source_reports/sha256sums.txt
+- docs/provenance/source_reports/2026-06/README.md
+- docs/provenance/source_reports/2026-06/raw/.gitkeep
+- docs/provenance/source_reports/2026-06/normalized/.gitkeep
+- docs/provenance/source_reports/2026-06/summaries/.gitkeep
+- build_compliance_ready_mvr_report_local_prototype
+- test_source_corpus_provenance_archive.py
+- test_source_corpus_provenance_hash_fill.py
+- Compliance-Ready MVR Report Local Prototype
+- This report supports review; it does not certify compliance.
+- This report is not legal advice.
+- This report does not pass an audit.
+- This report does not guarantee attestation success.
+- Source manifest is not accepted evidence.
+- Traceability is not truth.
+- Control mapping is not control effectiveness.
+- Visible gaps are not compliance failures.
+- No visible gap is not compliance success.
+- Human review remains required.
+- Authorized professional signoff remains required.
+- The report is stupidly user friendly.
+- Compliance users need a report, not an artifact maze.
+- Executive Summary
+- System and Intended Use
+- Input Selection and Source Scope
+- Consent and Observation Scope
+- Evidence Map Summary
+- Gap Register Summary
+- Human Oversight and Signoff
+- Controls and Traceability
+- Data Governance and Quarantine
+- Retention and Memory Boundaries
+- Contestability and Recovery
+- Validation Confidence Scope
+- WAVE / Metric Proxy Annex
+- Non-Authority Statement
+- Audit Artifact Index
+- Open Questions and Required Follow-Up
+- MVR
+- Observation Contract
+- TAC
+- CES
+- PMR
+- Sophia
+- Validation Tier
+- Quarantine
+- Source Manifest
+- Non-Authority Boundary
+- WAVE Bridge
+- EU AI Act Evidence Map
+- Gap Register
+- Human Signoff Packet
+- Source Corpus Provenance Archive
+- Repos are governed provenance libraries, not document dumps.
+- Raw source reports may be omitted from public repos when privacy, sensitivity, size, or licensing requires hash-only reference.
+- DOCX originals should have Markdown derivatives when committed.
+- TXT and MD reports may be committed directly when public-safe.
+- Large or sensitive files should use private/archive storage, Git LFS, release assets, or external governed storage.
+- Future users must check canonical repo state before treating reports as current design.
+- Source reports are not accepted evidence by themselves.
+- Source reports are not theorem proof.
+- Source reports are not product release.
+- Source reports are not compliance certification.
+- Summaries are not sources.
+- Human review remains required.
+- Hashes preserve identity; hashes do not certify truth.
+- Visibility and sensitivity must be explicit.
+- Public release approval must be explicit.
+- active_governed_provenance_manifest
+- hash_only_public_reference
+- canonical_repo_state_supersedes_report
+- source_is_not_accepted_evidence
+- source_is_not_theorem_proof
+- source_is_not_product_release
+- source_is_not_compliance_certification
+- summary_is_not_source
+- human_review_required
+- public_release_approved = false
+- 2f49da190fcf5e3a04330f53bd9e6d30228c0a999cdabf8be2e94e957e6dfb09
+- 9eaba6d5a49de7d09542b3e879cbb9eb936181a37e660b3434a5e31e110ccfe6
+- 21045f07f5e2122db9714741a418f582cb87b6d004f6c66f4a63d4b6b7e77fd6
+- 9140a5dad410be3f38bcb933b6c360537957d0ce1d4b5ea0d259941eaa3c581e
+- 94703c4678eccd407adb9009b34d2b178ab6ab18ee20b6df22d9407eda50dde1
+- GUFT discussion with Thomas and Apprentice 6_8_2026_842AM.docx
+- GUFT METRICS BRIDGE DISCUSSION 6_9_2026_1022AM.docx
+- wave_rosetta_canonical_proxy_bridge_scientific_review_20260609.md
+- EU AI Act Reporting Formats and Short-Term Product Strategy for UVLM Triadic Brain.docx
+- EU AI Act Aligned Reporting Architecture for Triadic Brain Product Lines.docx
+- Blocked overclaim examples for compliance-ready report local prototype and source-corpus provenance publication boundaries.
+- Compliance-ready MVR report local prototype certifies compliance
+- Compliance-ready MVR report local prototype provides legal advice
+- Compliance-ready MVR report local prototype passes audit
+- Compliance-ready MVR report local prototype guarantees attestation success
+- Compliance-ready MVR report local prototype proves product readiness
+- Compliance-ready MVR report local prototype is product release
+- Compliance-ready MVR report local prototype certifies truth
+- Compliance-ready MVR report local prototype authorizes final answers
+- Compliance-ready MVR report local prototype grants accepted-evidence authority
+- Compliance-ready MVR report local prototype writes memory
+- Compliance-ready MVR report local prototype admits Atlas memory
+- Compliance-ready MVR report local prototype exports traces
+- Compliance-ready MVR report local prototype federates PMR
+- source manifest is accepted evidence
+- traceability means truth
+- control mapping means control effectiveness
+- visible gap means compliance failure
+- no visible gap means compliance success
+- human review role means human signoff occurred
+- mapped evidence means compliance satisfied
+- WAVE bridge means canonical measurement
+- source corpus archive proves GUFT
+- source corpus archive proves compliance
+- source corpus archive certifies truth
+- source reports are accepted evidence
+- source reports are canonical repo state
+- source reports authorize product release
+- source reports certify product readiness
+- summaries are sources
+- hashes certify truth
+- raw reports may be public by default
+- private reports may be bulk imported without review
+- GitHub repo is a backup store
+- source corpus archive writes memory
+- source corpus archive admits Atlas memory
+- SOURCE-CORPUS-BATCH-MANIFEST-2026-06-10-00 adds a governed, hash-only source-corpus batch manifest for June 2026 uploaded reports, deduplicating filename aliases by SHA-256 and preserving source identity, file size, source type, visibility, public-release status, and non-authority boundaries without committing raw private files or treating source reports as accepted evidence, theorem proof, compliance certification, product release, product readiness, memory write, Atlas admission, or canonical repo state.
+- docs/provenance/source_reports/2026-06/batch_manifest_20260610.json
+- docs/provenance/source_reports/2026-06/batch_sha256sums_20260610.txt
+- docs/provenance/source_reports/2026-06/batch_aliases_20260610.json
+- docs/provenance/source_reports/2026-06/batch_summary_20260610.md
+- schema/bridge/source_corpus_batch_manifest.schema.json
+- python/tests/provenance/test_source_corpus_batch_manifest_20260610.py
+- test_source_corpus_batch_manifest_20260610.py
+- June 2026 Source Corpus Batch Manifest
+- This batch preserves source identity and provenance, not accepted evidence.
+- Raw private files are not committed.
+- Duplicate filenames are deduplicated by SHA-256.
+- Filename aliases are preserved.
+- Public release approval is false by default.
+- Hashes preserve identity; hashes do not certify truth.
+- Canonical repo state supersedes source reports.
+- Human review remains required.
+- Large or sensitive reports remain hash-only references unless explicitly approved.
+- Repos are governed provenance libraries, not document dumps.
+- Source reports are not accepted evidence by themselves.
+- Source reports are not theorem proof.
+- Source reports are not product release.
+- Source reports are not product readiness.
+- Source reports are not compliance certification.
+- Source reports are not legal advice.
+- Source reports are not current canonical repo state.
+- SOURCE-CORPUS-BATCH-MANIFEST-2026-06-10-00 does not commit raw private reports.
+- SOURCE-CORPUS-BATCH-MANIFEST-2026-06-10-00 does not add extracted text.
+- SOURCE-CORPUS-BATCH-MANIFEST-2026-06-10-00 does not add normalized derivatives.
+- Telemetry Project Deep Dive.docx
+- CoherenceLattice Change Management and Gnosis Synthesis Report.docx
+- Telemetry Integration into the CoherenceLattice Pipeline.docx
+- Multi-Axial Coherence Analysis for Exogenic Off-Loading in Complex Systems.docx
+- Quantum Gravity from Causal Memory.docx
+- Universal Control Codex (UCC) Supplement.docx
+- The Coherence Lattice GUFT meets GUPT.docx
+- The Grand Unified Field Theory of Coherence (GUFT) V69.me.docx
+- TCHES v1.4.docx
+- Appendix TAF – Operationalize it, because Ultra Verba, Lux Mentis.docx
+- Echo Primer.pdf
+- PMR - Internal Technical Memo.docx
+- THE COHERENCE OF SIGNAL.docx
+- Preventing Hyperreal design drift.docx
+- Triadic Brain Developer Guidance for Canonical Ingress, Grounding Bundles, and Phaselock Governance.docx
+- Triadic Brain Maths Glossary.docx
+- Thought-Exchange Layer (TEL) Graph MVP Design and Integration.docx
+- Final TEL Event Stack Validation in CoherenceLattice.docx
+- free will.zip
+- governed_tches_success_20260420_135304.zip
+- governed_tches_after_dq08_inventory_capture_20260501_161304.zip
+- mvr_tches_v1_4_human_selected_file_smoke.zip
+- 0d9bedc988ae3bd6c8c5291594e98cdf55f2483e61d365ae9976785e412f2656
+- f1206c5f86d83c6ac900d8880b5dcffa5433ce626a1ddfef8480a060ee3f4fa4
+- 09268960029318fbd9c724094a6a82bf49e095576e1a5bc644a1e9215fad977a
+- 7bf6c9637ecbb6afd1cef14a0ee39f5904ddb2493277902334456d05cc0a5104
+- 23acd312e50e43b7c98702e87ce4bb324fd259502f6fc7cd937690c676feae4d
+- d48b4984c0061495a89c9cdaba12cd26816ce504c22f765ee1fd6cadc87f2f3d
+- bcf6941fe619fa40a9475327e977fce7c8af2c44b94d5ae5fd8665eb65a2976c
+- 87584b4c97581a8657978c63bf4ba135cd707f2a1c21deccb513ffa881212503
+- d5feb2658f74bedbb56782c66ba473ef29e0ae02ca3ea091356c8cea30aba74d
+- aff0180dd1a61784bb5b6b173ebf6b66a6cb2f497bbb08aedb9fe4dc149ef583
+- 0bb03eeb493da65f0625e5028d708873016c359d184bc0f1fecac5715d63b953
+- dc628557c0e729ff8fe5127d1eb129046a12186fff33b9dae65ad58f2e4e0ceb
+- 5b028820fd50bd93a7f5ad1ec54955f08c0accd039a482e999fdc04efaccf6c2
+- a241521288f7c792b76f22b9ec82d19027be9f1032402ae0d87288cacdcb9258
+- fe5cd0189f64df015239453430a085a156580ecaab5856cc784498a25d62a38b
+- 27941c74013b578c216e4569a066a8988860a9c8b01fa544cd6fe25a642a8f35
+- 3608c158b6affd4f63d04e91d5eae65bb045afb864549d3b84ad9bc664d87c40
+- 1904b3e786b4c0314b681d8c52ddef39ef02d3e4b2bbe2a2493b3072b84d997f
+- 17bcca653cbe300c656d796f42f6a077b1bf58f3e3a6655133524cbe56386fdd
+- 00683d8c93d5daabefa9ea6e5819c53f76e9155fd42a4b4dad036188843ee3d1
+- db97a6325de67c673baae100327773d6d5f0a0a14431ada361b1551d647fef3d
+- 6046cabc13041f664cb67caf96cf5d43eb41fcc03df59248d0b3e6842552d7ca
+- Telemetry%20Project%20Deep%20Dive.docx
+- Telemetry%20Integration%20into%20the%20CoherenceLattice%20Pipeline.docx
+- Universal%20Control%20Codex%20%28UCC%29%20Supplement.docx
+- Multi%E2%80%91Axial%20Coherence%20Analysis%20for%20Exogenic%20Off%E2%80%91Loading%20in%20Complex%20Systems.docx
+- filename_aliases
+- deduplicated by SHA-256
+- filename aliases are not separate sources
+- deduplication means byte-identity only
+- source_corpus_batch_20260610
+- active_hash_only_provenance_manifest
+- one_canonical_row_per_unique_sha256
+- raw_sha256
+- hash_only_public_reference
+- public_release_approved = false
+- canonical_repo_state_supersedes_report
+- source_is_not_accepted_evidence
+- source_is_not_theorem_proof
+- source_is_not_product_release
+- source_is_not_product_readiness
+- source_is_not_compliance_certification
+- source_is_not_legal_advice
+- source_is_not_memory_write
+- source_is_not_atlas_memory_admission
+- summary_is_not_source
+- human_review_required
+- SOURCE-CORPUS-PROVENANCE-ARCHIVE-00 defines the governed source-report archive pattern.
+- SOURCE-CORPUS-PROVENANCE-HASH-FILL-00 fills pending EU AI Act source-report hashes.
+- SOURCE-CORPUS-BATCH-MANIFEST-2026-06-10-00 adds the June 2026 hash-only batch manifest.
+- WAVE-ROSETTA-CANONICAL-PROXY-BRIDGE-PROVENANCE-00 uses source report hashes for scientific provenance.
+- COMPLIANCE-READY-MVR-REPORT-LOCAL-PROTOTYPE-00 uses compliance report provenance for report design context.
+- VALIDATION-TIERING-PROVENANCE-00 records validation confidence scope.
+- Blocked overclaim examples for June 2026 source-corpus batch manifest publication boundaries.
+- source corpus batch proves GUFT
+- source corpus batch proves compliance
+- source corpus batch certifies truth
+- source corpus batch grants accepted-evidence authority
+- source corpus batch is canonical repo state
+- source corpus batch authorizes product release
+- source corpus batch certifies product readiness
+- source corpus batch writes memory
+- source corpus batch admits Atlas memory
+- hashes certify truth
+- filename aliases are separate sources
+- raw private reports are public by default
+- deduplication means source equivalence beyond byte identity
+- source reports are accepted evidence
+- source reports are theorem proof
+- source reports are compliance certification
+- source reports are product release
+- source reports are product readiness
+- source reports are current canonical repo state
+- GitHub repo is a backup store
 - VALIDATION-TIERING-PROVENANCE-00 documents smoke, acceptance, and deep validation tiers and emits validation receipts that record tier, scope, commands, artifact chain, duration, sufficient-for decisions, and not-sufficient-for boundaries without certifying truth, releasing product, proving science, validating market or human benefit, deploying runtime, writing memory, or admitting Atlas memory.
 - config/validation/validation_tier_policy.v1.json
 - validation_tier_receipt.json
@@ -3659,3 +5055,139 @@ MVR-LOCAL-PROTOTYPE-READABILITY-REVIEW-SEED-00 evaluates the MINIMAL-VIABLE-RECE
 Artifacts include mvr_readability_questionnaire.json, mvr_readability_response_fixture.json, mvr_readability_review_packet.json, mvr_readability_revision_suggestions.json, mvr_readability_review_summary.md, mvr_readability_review_receipt.json, minimal_viable_receipt_human_readable.md, minimal_viable_receipt_packet.json, minimal_viable_receipt_local_prototype_receipt.json, pmr_local_runtime_artifact_index.json, artifact_inventory.json, run_artifact_manifest.json, export_bundle_manifest.json, and export_bundle_parity_report.json. Schemas include schema/bridge/mvr_readability_questionnaire.schema.json, schema/bridge/mvr_readability_response_fixture.schema.json, schema/bridge/mvr_readability_review_packet.schema.json, schema/bridge/mvr_readability_revision_suggestions.schema.json, and schema/bridge/mvr_readability_review_receipt.schema.json. Reproduction references build_mvr_local_prototype_readability_review_seed.
 
 See [MVR Local Prototype Readability Review Seed](mvr-local-prototype-readability-review-seed.md).
+
+## MVR Local Prototype Readability Revision publication sync
+
+MVR-LOCAL-PROTOTYPE-READABILITY-REVISION-00 applies deterministic local readability revisions to the MINIMAL-VIABLE-RECEIPT-LOCAL-PROTOTYPE-00 fixture-backed readable receipt after MVR-LOCAL-PROTOTYPE-READABILITY-REVIEW-SEED-00 evaluates that receipt with deterministic local fixture responses. MVR Local Prototype Readability Revision is a Deterministic local readability revision. Suggested revisions are applied deterministically, not validated by users. Readability revision is not product readiness. Readability revision is not user validation. Readability revision is not market validation. Readability revision is not human benefit proof. Readability revision does not certify truth. The receipt remains local fixture-backed and non-authoritative. Original human-readable receipt is preserved. Revised human-readable receipt is emitted. Readability gate remains unpassed. Human review remains required.
+
+No real user study was performed. No human-subject study was performed. No user validation was performed. No product readiness was claimed. No product release was performed. No memory write was performed. No Atlas memory admission was performed. No trace export was performed. No PMR federation was performed. This publication sync grants no runtime authority.
+
+Artifacts include minimal_viable_receipt_human_readable.md, minimal_viable_receipt_human_readable_revised.md, minimal_viable_receipt_packet.json, mvr_readability_review_packet.json, mvr_readability_revision_suggestions.json, mvr_readability_review_receipt.json, mvr_readability_revision_packet.json, mvr_readability_revision_receipt.json, pmr_local_runtime_artifact_index.json, artifact_inventory.json, run_artifact_manifest.json, export_bundle_manifest.json, and export_bundle_parity_report.json. Schemas include schema/bridge/mvr_readability_revision_packet.schema.json, schema/bridge/mvr_readability_revision_receipt.schema.json, schema/bridge/mvr_readability_questionnaire.schema.json, schema/bridge/mvr_readability_response_fixture.schema.json, schema/bridge/mvr_readability_review_packet.schema.json, schema/bridge/mvr_readability_revision_suggestions.schema.json, and schema/bridge/mvr_readability_review_receipt.schema.json. Reproduction references build_mvr_local_prototype_readability_revision.
+
+The revision applies add_plain_language_glossary_for_architecture_terms, clarify_ces_pmr_replay_posture, clarify_observation_contract_notice_vs_consent, make_unsupported_claims_more_visually_prominent, clarify_local_fixture_evidence_is_not_accepted_evidence, and add_top_level_non_authority_summary. Revised receipt language includes Plain-language glossary; CES / PMR replay posture, in plain language; Observation Contract notice and consent, in plain language; Unsupported claims require review; Local fixture evidence is not accepted evidence; Top-level non-authority summary; This revised receipt is not product readiness.; This revised receipt is not user validation.; This revised receipt is not truth certification.; Readability gate is not passed in this phase.; Human review remains required.
+
+Relation to prior phases: MINIMAL-VIABLE-RECEIPT-DESIGN-00 defines the one-transaction/many-sections receipt standard. MINIMAL-VIABLE-RECEIPT-LOCAL-PROTOTYPE-00 emits the local fixture-backed readable receipt. MVR-LOCAL-PROTOTYPE-READABILITY-REVIEW-SEED-00 evaluates that receipt with deterministic local fixture responses. MVR-LOCAL-PROTOTYPE-READABILITY-REVISION-00 applies deterministic local readability revisions. AI-RECEIPT-ARCHITECTURE-00 defines the receipt architecture. TRIADIC-OBSERVATION-CONTRACT-DESIGN-00 defines governed attention. OBSERVATION-CONTRACT-POLICY-SIMULATION-00 rehearses notice, consent, recovery, source-expansion, pathway-prior, retention, trace-export, and PMR-federation policy outcomes. TAC phases define aperture posture and review visibility. COHERENCE-EVENT-SIGNATURES-DESIGN-00 defines event signatures. CES-PMR-INDEXING-DESIGN-00 defines CES as a compact PMR index, not source replacement. SOPHIA-EXECUTIVE-AUDIT-REALITY-CHECK-00 records whether external Sophia actually ran. VALIDATION-TIERING-PROVENANCE-00 records validation confidence scope. MET-SEM-00 keeps metric labels profile-scoped.
+
+See [MVR Local Prototype Readability Revision](mvr-local-prototype-readability-revision.md).
+
+## MVR Local Real Input Pilot Design publication sync
+
+MVR-LOCAL-REAL-INPUT-PILOT-DESIGN-00 defines design-only boundaries for a future local real-input Minimal Viable Receipt pilot. MVR Local Real Input Pilot Design is publication/dashboard synchronization only. Real local input can enter only by explicit local source selection. Real input pilot design is not real input processing. Real input pilot design is not product readiness. Real input pilot design is not product release. A real-input pilot must be local-only by default, source-bounded, consent-bounded, quarantine-aware, receipt-required, and human-review-required. Local source selection is not accepted-evidence authority. Local source processing is not memory write. Human review remains required.
+
+MVR-LOCAL-REAL-INPUT-PILOT-DESIGN-00 does not process real files. MVR-LOCAL-REAL-INPUT-PILOT-DESIGN-00 does not emit runtime real-input artifacts. MVR-LOCAL-REAL-INPUT-PILOT-DESIGN-00 does not perform provider calls. MVR-LOCAL-REAL-INPUT-PILOT-DESIGN-00 does not perform network calls. MVR-LOCAL-REAL-INPUT-PILOT-DESIGN-00 does not write memory. MVR-LOCAL-REAL-INPUT-PILOT-DESIGN-00 does not admit Atlas memory. MVR-LOCAL-REAL-INPUT-PILOT-DESIGN-00 does not claim product readiness. MVR-LOCAL-REAL-INPUT-PILOT-DESIGN-00 does not release product. Publication sync grants no runtime authority.
+
+Artifacts include docs/MVR_LOCAL_REAL_INPUT_PILOT_DESIGN.md, config/receipt/mvr_local_real_input_pilot_policy.v1.json, schema/bridge/mvr_local_real_input_source_manifest.schema.json, schema/bridge/mvr_local_real_input_consent_scope.schema.json, schema/bridge/mvr_local_real_input_quarantine_report.schema.json, schema/bridge/mvr_local_real_input_pilot_policy_packet.schema.json, and schema/bridge/mvr_local_real_input_non_authority_boundary.schema.json.
+
+Allowed input classes: local_text_file, local_markdown_file, local_json_file, local_csv_file, local_plaintext_excerpt, local_user_pasted_excerpt, local_redacted_document_excerpt. Initially blocked input classes: remote_url_fetch, cloud_connector_file, email_inbox_scan, calendar_scan, browser_history_scan, whole_disk_scan, hidden_directory_scan, credential_file, secrets_file, private_key_file, raw_chat_history_bulk_import, personal_profile_bulk_import, unredacted_sensitive_identity_document, medical_record, legal_record, financial_account_record, child_data_record, biometric_data_record.
+
+Pilot source rules: explicit_user_selection_required, local_path_allowlist_required, recursive_directory_scan_allowed = false, hidden_file_scan_allowed = false, max_source_file_count_default = 5, max_source_bytes_default = 250000, source_hashing_required, source_manifest_required, source_expansion_required_for_decisions, instruction_like_evidence_quarantine_required, unsupported_claim_visibility_required, human_review_required.
+
+Consent and observation terms: consent_scope_required, consent_is_local_to_pilot_run, consent_is_not_memory_write, consent_is_not_trace_export_authorization, consent_is_not_pmr_federation_authorization, consent_is_not_product_release, revocation_supported, retention_review_required, observation_contract_posture_required, observation_contract_policy_simulation_ref_required, tac_aperture_posture_required, default_tac_mode = pulse, raw_trace_retention_allowed_default = false, trace_export_allowed_default = false, pmr_federation_allowed_default = false, no_silent_mode_shift_required, notice_and_consent_boundaries_visible.
+
+Output requirements: minimal_viable_receipt_required, human_readable_receipt_required, machine_readable_receipt_required, section_index_required, readability_profile_required, contestability_profile_required, cost_burden_profile_required, non_authority_boundary_required, local_real_input_source_manifest_required, quarantine_report_required, pilot_receipt_required.
+
+Relation to prior phases: MINIMAL-VIABLE-RECEIPT-DESIGN-00 defines the one-transaction/many-sections receipt standard. MINIMAL-VIABLE-RECEIPT-LOCAL-PROTOTYPE-00 emits the local fixture-backed readable receipt. MVR-LOCAL-PROTOTYPE-READABILITY-REVIEW-SEED-00 evaluates that receipt with deterministic local fixture responses. MVR-LOCAL-PROTOTYPE-READABILITY-REVISION-00 applies deterministic local readability revisions. MVR-LOCAL-REAL-INPUT-PILOT-DESIGN-00 defines boundaries for a future real-local-input pilot. TRIADIC-OBSERVATION-CONTRACT-DESIGN-00 defines governed attention. OBSERVATION-CONTRACT-POLICY-SIMULATION-00 rehearses notice, consent, recovery, source-expansion, pathway-prior, retention, trace-export, and PMR-federation policy outcomes. TAC phases define aperture posture and review visibility. COHERENCE-EVENT-SIGNATURES-DESIGN-00 defines event signatures. CES-PMR-INDEXING-DESIGN-00 defines CES as a compact PMR index, not source replacement. VALIDATION-TIERING-PROVENANCE-00 records validation confidence scope.
+
+See [MVR Local Real Input Pilot Design](mvr-local-real-input-pilot-design.md).
+
+## MVR Local Real Input Pilot Prototype publication sync
+
+MVR-LOCAL-REAL-INPUT-PILOT-PROTOTYPE-00 emits the first bounded local real-input pilot prototype. Real local input can enter only by explicit local source selection or explicit pasted excerpts. The prototype processes only explicit local sources or explicit pasted excerpts; it never scans directories, never auto-discovers files, never reads hidden files, never fetches URLs, never calls provider APIs, and never performs network calls. Local source selection is not accepted-evidence authority. Local source processing is not memory write. Consent is local to this pilot run and is not trace export authorization or PMR federation authorization. Publication sync grants no runtime authority.
+
+Default smoke uses generated_explicit_local_test_sources with selected_source_count = 2, recursive_directory_scan_allowed = false, hidden_file_scan_allowed = false, real_user_files_processed = false, local_fixture_mode = true, instruction_like_evidence_count = 1, real_input_processing_enabled = true, real_input_runtime_artifacts_emitted = true, and pilot_receipt_status = completed. Explicit pasted excerpt smoke uses explicit_pasted_excerpts with pasted_excerpt_selected_source_count = 1, pasted_excerpt_source_class = local_user_pasted_excerpt, pasted_excerpt_real_user_files_processed = true, and pasted_excerpt_local_fixture_mode = false.
+
+Artifacts include mvr_local_real_input_source_manifest.json, mvr_local_real_input_consent_scope.json, mvr_local_real_input_quarantine_report.json, mvr_local_real_input_pilot_policy_packet.json, mvr_local_real_input_non_authority_boundary.json, minimal_viable_receipt_packet.json, minimal_viable_receipt_checklist.json, minimal_viable_receipt_section_index.json, receipt_readability_profile.json, receipt_contestability_profile.json, receipt_cost_burden_profile.json, minimal_viable_receipt_non_authority_boundary.json, minimal_viable_receipt_human_readable.md, mvr_local_real_input_pilot_receipt.json, pmr_local_runtime_artifact_index.json, artifact_inventory.json, run_artifact_manifest.json, export_bundle_manifest.json, and export_bundle_parity_report.json. Schemas include schema/bridge/mvr_local_real_input_source_manifest.schema.json, schema/bridge/mvr_local_real_input_consent_scope.schema.json, schema/bridge/mvr_local_real_input_quarantine_report.schema.json, schema/bridge/mvr_local_real_input_pilot_policy_packet.schema.json, schema/bridge/mvr_local_real_input_non_authority_boundary.schema.json, schema/bridge/mvr_local_real_input_pilot_receipt.schema.json, schema/bridge/minimal_viable_receipt_packet.schema.json, schema/bridge/minimal_viable_receipt_checklist.schema.json, schema/bridge/minimal_viable_receipt_section_index.schema.json, schema/bridge/receipt_readability_profile.schema.json, schema/bridge/receipt_contestability_profile.schema.json, schema/bridge/receipt_cost_burden_profile.schema.json, and schema/bridge/minimal_viable_receipt_non_authority_boundary.schema.json. Reproduction references build_mvr_local_real_input_pilot_prototype.
+
+Source-selection terms: generated_explicit_local_test_sources, explicit_pasted_excerpts, local_user_pasted_excerpt, explicit_user_selected, accepted_for_processing, source_is_not_accepted_evidence, source_sha256, recursive_directory_scan_allowed = false, hidden_file_scan_allowed = false. Consent and quarantine terms: consent_status = active_for_local_pilot, consent_scope = local_pilot_run_only, consent_is_local_to_pilot_run = true, consent_is_not_memory_write = true, consent_is_not_trace_export_authorization = true, consent_is_not_pmr_federation_authorization = true, consent_is_not_product_release = true, quarantine_status = completed, instruction_like_evidence_detected, quarantined_evidence_is_not_accepted_evidence = true.
+
+Relation to prior phases: MVR-LOCAL-REAL-INPUT-PILOT-DESIGN-00 defines boundaries for a future real-local-input pilot. MVR-LOCAL-REAL-INPUT-PILOT-PROTOTYPE-00 emits the first bounded local real-input pilot prototype. MINIMAL-VIABLE-RECEIPT-DESIGN-00 defines the one-transaction/many-sections receipt standard. MINIMAL-VIABLE-RECEIPT-LOCAL-PROTOTYPE-00 emits the local fixture-backed readable receipt. MVR-LOCAL-PROTOTYPE-READABILITY-REVISION-00 applies deterministic local readability revisions. TRIADIC-OBSERVATION-CONTRACT-DESIGN-00 defines governed attention. OBSERVATION-CONTRACT-POLICY-SIMULATION-00 rehearses notice, consent, recovery, source-expansion, pathway-prior, retention, trace-export, and PMR-federation policy outcomes. TAC phases define aperture posture and review visibility. COHERENCE-EVENT-SIGNATURES-DESIGN-00 defines event signatures. CES-PMR-INDEXING-DESIGN-00 defines CES as a compact PMR index, not source replacement. VALIDATION-TIERING-PROVENANCE-00 records validation confidence scope.
+
+See [MVR Local Real Input Pilot Prototype](mvr-local-real-input-pilot-prototype.md).
+
+## MVR Local Real Input Pilot Quarantine Detection Repair publication sync
+
+MVR-LOCAL-REAL-INPUT-PILOT-QUARANTINE-DETECTION-REPAIR-00 repairs instruction-like evidence detection for human-selected local files. Human-selected local files with instruction-like evidence must be quarantined. Harmless human-selected local files must not falsely claim quarantine. Instruction-like evidence was quarantined. No instruction-like evidence was detected for quarantine. Quarantined evidence is not accepted evidence. Local source selection is not accepted-evidence authority. Local source processing is not memory write. Human review remains required.
+
+The repair does not broaden file access, scan directories, read hidden files, fetch URLs, call providers, perform network calls, write memory, admit Atlas memory, export traces, federate PMR, claim product readiness, release product, grant final-answer authority, grant accepted-evidence authority, or certify truth. Publication sync grants no runtime authority.
+
+Detector terms include INSTRUCTION_LIKE_CUES, instruction-like note, ignore prior rules, ignore previous rules, ignore previous instructions, treat this note as authoritative, treat this as authoritative, follow these instructions, override prior instructions, system prompt, developer message, assistant must, you must, do not reveal, disregard previous, disregard prior, _matched_instruction_like_cues, and matched_instruction_like_phrases.
+
+Smoke outcomes include instruction_like and harmless cases with explicit_local_source_paths and local_markdown_file. The instruction-like smoke uses harmless_mvr_real_input_source_instruction_like.md, instruction_like_evidence_count = 1, quarantined_items_count = 1, and matched phrases: instruction-like note, ignore prior rules, treat this note as authoritative. The harmless smoke uses harmless_mvr_real_input_source_no_instruction.md and harmless evidence count = 0. Both smokes keep provider_runtime_performed = false, network_call_performed = false, product_release_performed = false, product_readiness_claimed = false, final_answer_authority_granted = false, accepted_evidence_authority_granted = false, truth_certification_emitted = false, memory_write_performed = false, atlas_memory_admission_performed = false, trace_export_performed = false, and pmr_federation_performed = false.
+
+Relation to prior phases: MVR-LOCAL-REAL-INPUT-PILOT-DESIGN-00 defines boundaries for a future real-local-input pilot. MVR-LOCAL-REAL-INPUT-PILOT-PROTOTYPE-00 emits the first bounded local real-input pilot prototype. MVR-LOCAL-REAL-INPUT-PILOT-QUARANTINE-DETECTION-REPAIR-00 repairs instruction-like evidence detection for human-selected local files. MINIMAL-VIABLE-RECEIPT-DESIGN-00 defines the one-transaction/many-sections receipt standard. MINIMAL-VIABLE-RECEIPT-LOCAL-PROTOTYPE-00 emits the local fixture-backed readable receipt. MVR-LOCAL-PROTOTYPE-READABILITY-REVISION-00 applies deterministic local readability revisions. TRIADIC-OBSERVATION-CONTRACT-DESIGN-00 defines governed attention. OBSERVATION-CONTRACT-POLICY-SIMULATION-00 rehearses notice, consent, recovery, source-expansion, pathway-prior, retention, trace-export, and PMR-federation policy outcomes. TAC phases define aperture posture and review visibility. COHERENCE-EVENT-SIGNATURES-DESIGN-00 defines event signatures. CES-PMR-INDEXING-DESIGN-00 defines CES as a compact PMR index, not source replacement. VALIDATION-TIERING-PROVENANCE-00 records validation confidence scope.
+
+See [MVR Local Real Input Pilot Quarantine Detection Repair](mvr-local-real-input-pilot-quarantine-detection-repair.md).
+
+## MVR local real-input pilot human-selected file smoke publication sync
+
+MVR-LOCAL-REAL-INPUT-PILOT-HUMAN-SELECTED-FILE-SMOKE-00 records a controlled explicit local file smoke. Human-selected file smoke uses explicit local source selection. Default smoke uses a generated harmless explicit local file fixture and does not process real user files. Explicit path smoke processes only the selected local markdown file. Instruction-like evidence is quarantined. Quarantined evidence is not accepted evidence. Human review remains required.
+
+Source-selection and quarantine terms: generated_harmless_human_selected_file_fixture, explicit_human_selected_local_file, human_selected_file_smoke_source.md, local_markdown_file, explicit_user_selected, source_sha256, source_is_not_accepted_evidence, recursive_directory_scan_allowed = false, hidden_file_scan_allowed = false, url_fetch_performed = false. Quarantine terms: instruction-like note, ignore prior rules, treat this note as authoritative, instruction_like_evidence_count = 1, matched_instruction_like_phrases, quarantined_evidence_is_not_accepted_evidence, human_review_required = true.
+
+The smoke never scans directories, never auto-discovers files, never reads hidden files, never fetches URLs, never calls providers, and never performs network calls. It does not write memory, admit Atlas memory, export traces, federate PMR, release product, claim product readiness, grant final-answer authority, grant accepted-evidence authority, certify truth, train a model, skip review, validate market demand, prove human benefit, or perform user validation.
+
+Relation to prior phases: MVR-LOCAL-REAL-INPUT-PILOT-DESIGN-00 defines the real-input pilot boundaries. MVR-LOCAL-REAL-INPUT-PILOT-PROTOTYPE-00 implements explicit local source and pasted-excerpt prototype handling. MVR-LOCAL-REAL-INPUT-PILOT-QUARANTINE-DETECTION-REPAIR-00 repairs instruction-like evidence quarantine detection. MVR-LOCAL-REAL-INPUT-PILOT-HUMAN-SELECTED-FILE-SMOKE-00 records a controlled explicit local file smoke. MINIMAL-VIABLE-RECEIPT-DESIGN-00 defines the receipt standard. MINIMAL-VIABLE-RECEIPT-LOCAL-PROTOTYPE-00 emits the local fixture-backed receipt. OBSERVATION-CONTRACT-POLICY-SIMULATION-00 rehearses notice, consent, and recovery outcomes. VALIDATION-TIERING-PROVENANCE-00 records validation confidence scope.
+
+## Compliance-ready MVR report and compliance evidence toolset design publication sync
+
+COMPLIANCE-READY-MVR-REPORT-DESIGN-00 defines a design-only, plain-language compliance review support report for MVR transactions. COMPLIANCE-EVIDENCE-TOOLSET-LIBRARY-DESIGN-00 defines a design-only compliance evidence toolset library. UVLM produces compliance evidence packs, not compliance certifications. Human professionals with authority may use UVLM evidence in their own compliance, audit, legal, risk, or attestation workflows.
+
+Compliance report doctrine: Compliance-Ready MVR Report Design; The report must be stupidly user friendly.; Compliance users need a report, not an artifact maze.; Internal packet names must have plain-language labels.; A compliance-ready report supports review; it does not certify compliance.; A receipt supports audit evidence; it does not pass an audit.; Traceability is not truth.; Source selection is not accepted-evidence authority.; Quarantine is not deletion.; Consent scope is not memory write.; Human review remains required.; COMPLIANCE-READY-MVR-REPORT-DESIGN-00 does not generate reports.; COMPLIANCE-READY-MVR-REPORT-DESIGN-00 does not process real inputs.; COMPLIANCE-READY-MVR-REPORT-DESIGN-00 does not certify compliance.; COMPLIANCE-READY-MVR-REPORT-DESIGN-00 does not claim product readiness.; COMPLIANCE-READY-MVR-REPORT-DESIGN-00 does not release product.
+
+Compliance toolset doctrine: Compliance Evidence Toolset Library; UVLM produces compliance evidence packs, not compliance certifications.; Human professionals with authority may use UVLM evidence in their own compliance, audit, legal, risk, or attestation workflows.; EU AI Act support means evidence mapping, not EU AI Act compliance certification.; ISO/IEC 42001 support means management-system evidence support, not ISO certification.; SOC 2 support means trust-services evidence support, not a SOC 2 report.; HIPAA support means privacy/security evidence support, not HIPAA compliance.; Legal compliance requires qualified human judgment.; Audit pass and attestation success cannot be generated by UVLM.; The system must be stupidly user friendly.; Compliance users need mapped evidence, gaps, review status, and sign-off packets, not an artifact maze.; Source selection is not accepted evidence.; Traceability is not truth.; Human review remains required.; COMPLIANCE-EVIDENCE-TOOLSET-LIBRARY-DESIGN-00 does not generate evidence packs.; COMPLIANCE-EVIDENCE-TOOLSET-LIBRARY-DESIGN-00 does not certify compliance.; COMPLIANCE-EVIDENCE-TOOLSET-LIBRARY-DESIGN-00 does not provide legal advice.; COMPLIANCE-EVIDENCE-TOOLSET-LIBRARY-DESIGN-00 does not claim product readiness.; COMPLIANCE-EVIDENCE-TOOLSET-LIBRARY-DESIGN-00 does not release product.
+
+Report audiences: compliance_professional, auditor, risk_manager, legal_reviewer, model_governance_reviewer, data_protection_reviewer, procurement_reviewer, executive_reviewer. Report sections: executive_summary, input_selection_and_scope, consent_and_observation_scope, source_manifest_and_hashes, quarantine_and_exclusions, claim_support_and_unsupported_claims, controls_applied, human_review_requirements, retention_and_memory_boundaries, contestability_and_recovery_options, validation_confidence_scope, system_components_plain_language_map, non_authority_summary, audit_artifact_index, open_questions_and_required_follow_up. Framework profiles: eu_ai_act_evidence_support, iso_iec_42001_evidence_support, soc2_trust_services_evidence_support, hipaa_privacy_security_evidence_support, nist_ai_rmf_evidence_support, internal_ai_governance_policy_evidence_support, procurement_ai_review_evidence_support, vendor_ai_review_evidence_support, ai_incident_review_evidence_support, model_change_review_evidence_support. EU AI Act evidence support terms: risk_classification_support, intended_use_description, source_data_governance_evidence, technical_documentation_support, record_keeping_logging_support, transparency_deployer_information_support, human_oversight_support, accuracy_robustness_cybersecurity_posture, post_market_monitoring_or_incident_review_posture, fundamental_rights_or_data_equity_review_support, non_authority_boundary. Generic evidence mapping terms: source_manifest, source_hash, consent_scope, observation_scope, quarantine_report, unsupported_claims, controls_applied, human_review_status, validation_tier, retention_boundary, contestability_options, recovery_options, non_authority_boundary, audit_artifact_index, open_gaps. Human signoff roles: compliance_officer, legal_reviewer, privacy_officer, security_officer, model_risk_manager, ai_governance_lead, licensed_auditor_or_certifier, executive_owner.
+
+These designs do not generate reports or evidence packs, process real inputs, certify compliance, provide legal advice, pass audits, guarantee attestation success, certify truth, grant final-answer authority, grant accepted-evidence authority, write memory, admit Atlas memory, export traces, federate PMR, train models, skip review, validate users, claim product readiness, or release product. Publication sync grants no runtime authority.
+
+## WAVE Rosetta bridge, EU AI Act mapping, and WAVE provenance publication sync
+
+WAVE-ROSETTA-CANONICAL-PROXY-BRIDGE-00 is a bounded canonical-proxy bridge estimate only. WAVE-ROSETTA-CANONICAL-PROXY-BRIDGE-PROVENANCE-00 preserves report lineage, formulas, vector values, weight profiles, uncertainty formulas, and calibration gaps without changing runtime behavior, bridge formulas, or bridge weights. EU-AI-ACT-MVR-EVIDENCE-MAPPING-DESIGN-00 is design-only EU AI Act evidence support, not EU AI Act compliance certification or legal advice.
+
+WAVE bridge doctrine: WAVE Rosetta Canonical-Proxy Bridge; WAVE Rosetta bridges runtime proxies to canonical meanings by calibration, not identity.; Runtime proxy values are not canonical GUFT measurements.; Bridge estimates are not proof.; Analogy is not identity.; High coherence does not necessarily mean constructive output.; Coherent cancellation must remain visible.; WAVE symmetry is pattern support, not ethical proof.; Bridge weights must be versioned.; Bridge inputs must be logged.; Bridge uncertainty must be explicit.; Population calibration is required.; Domain validation is required.; Human review remains required.; This bridge does not prove GUFT.; This bridge does not certify truth.; This bridge does not prove consciousness.; This bridge does not prove universal ontology.; This bridge does not release product.; This bridge does not claim product readiness.
+
+WAVE provenance doctrine: WAVE Rosetta Canonical-Proxy Bridge Provenance; This document preserves report lineage, conversion calculations, implemented v1 formulas, and calibration gaps.; The bridge is calibration, not identity.; The bridge estimate is not canonical measurement.; Scientific support is not proof.; GUFT support is not GUFT proof.; Runtime proxies are not canonical GUFT measurements.; High coherence can cancel output.; WAVE symmetry is pattern support, not ethical proof.; The normalized reliability-weighted formula is a future calibration candidate.; The implemented v1 formulas are deterministic scaffold formulas.; Bridge weights are versioned.; Bridge inputs must be logged.; Bridge uncertainty must be explicit.; Population calibration remains required.; Domain validation remains required.; Human review remains required.; WAVE-ROSETTA-CANONICAL-PROXY-BRIDGE-PROVENANCE-00 does not change bridge runtime behavior.; WAVE-ROSETTA-CANONICAL-PROXY-BRIDGE-PROVENANCE-00 does not change bridge formulas.; WAVE-ROSETTA-CANONICAL-PROXY-BRIDGE-PROVENANCE-00 does not change bridge weights.; WAVE-ROSETTA-CANONICAL-PROXY-BRIDGE-PROVENANCE-00 does not prove GUFT.; WAVE-ROSETTA-CANONICAL-PROXY-BRIDGE-PROVENANCE-00 does not certify truth.
+
+EU AI Act mapping doctrine: EU AI Act MVR Evidence Mapping Design; EU AI Act support means evidence mapping, not EU AI Act compliance certification.; UVLM produces EU AI Act review-support evidence, not legal conclusions.; Qualified humans must decide whether evidence supports compliance claims.; The evidence map must be stupidly user friendly.; Missing evidence must be visible as a gap, not hidden.; Source manifest is not accepted evidence.; Traceability is not truth.; Control mapping is not control effectiveness.; Human review remains required.; Authorized professional signoff remains required.; EU-AI-ACT-MVR-EVIDENCE-MAPPING-DESIGN-00 does not generate runtime evidence maps.; EU-AI-ACT-MVR-EVIDENCE-MAPPING-DESIGN-00 does not certify EU AI Act compliance.; EU-AI-ACT-MVR-EVIDENCE-MAPPING-DESIGN-00 does not provide legal advice.; EU-AI-ACT-MVR-EVIDENCE-MAPPING-DESIGN-00 does not pass audits.; EU-AI-ACT-MVR-EVIDENCE-MAPPING-DESIGN-00 does not guarantee attestation success.; EU-AI-ACT-MVR-EVIDENCE-MAPPING-DESIGN-00 does not claim product readiness.; EU-AI-ACT-MVR-EVIDENCE-MAPPING-DESIGN-00 does not release product.
+
+WAVE vector terms: E_review, T_review, Ψ_review, ΔS_review, Λ_boundary, Eₛ_review, TAF_review_runtime_v0, phase_alignment, amplitude_balance, detuning, jitter, signal_to_noise, spectral_entropy, residual_energy, cancellation_index, observability_index, constructive_output_index, provenance_support, governance_route_support, materiality_level, consent_scope_support, human_review_status, contestability_support, affected_party_coverage, burden_distribution_visibility, UCC_control_status, Sophia_decision_support, runtime_proxy_reliability, wave_analogue_reliability, governance_lineage_reliability, calibration_reliability. Bridge estimate terms: E_bridge, T_bridge, Ψ_structural_bridge, Ψ_constructive_bridge, Ψ_cancellation_bridge, ΔS_bridge, Λ_boundary_bridge, Λ_phase_candidate, Λ_critical_candidate, Eₛ_bridge, TAF_bridge, epistemic_uncertainty, transfer_uncertainty, combined_uncertainty. Provenance report lineage: GUFT discussion with Thomas and Apprentice 6_8_2026_842AM.docx, GUFT METRICS BRIDGE DISCUSSION 6_9_2026_1022AM.docx, wave_rosetta_canonical_proxy_bridge_scientific_review_20260609.md, 2f49da190fcf5e3a04330f53bd9e6d30228c0a999cdabf8be2e94e957e6dfb09, 9eaba6d5a49de7d09542b3e879cbb9eb936181a37e660b3434a5e31e110ccfe6, 21045f07f5e2122db9714741a418f582cb87b6d004f6c66f4a63d4b6b7e77fd6. Formula lineage: M_bridge_i = clamp, B_i = clamp, BridgeConfidence_i, E_bridge = clamp, T_bridge = clamp, Ψ_structural_bridge = clamp, Ψ_constructive_bridge = clamp, Ψ_cancellation_bridge = clamp, ΔS_bridge = clamp, Λ_boundary_bridge = clamp, Λ_phase_candidate = clamp, Λ_critical_candidate = clamp, Eₛ_bridge = clamp, TAF_bridge = clamp, epistemic_uncertainty = clamp, transfer_uncertainty = clamp, combined_uncertainty = clamp. Calibration gaps: normalized_reliability_weighted_formula_not_yet_implemented, bridge_confidence_packet_not_yet_implemented, calibration_registry_not_yet_implemented, negative_control_report_not_yet_implemented, population_calibration_not_complete, domain_validation_not_complete, counterexample_pressure_not_yet_measured, semantic_coverage_kappa_not_yet_measured, domain_transfer_confidence_not_yet_measured, empirical_weight_fit_not_yet_performed, current_weight_profile_is_design_scaffold. EU AI Act evidence categories: risk_classification_support, intended_use_description, source_data_governance_evidence, technical_documentation_support, record_keeping_logging_support, transparency_deployer_information_support, human_oversight_support, accuracy_robustness_cybersecurity_posture, post_market_monitoring_or_incident_review_posture, fundamental_rights_or_data_equity_review_support, non_authority_boundary. EU AI Act gap terms: missing_risk_classification, missing_intended_use_owner, missing_human_signoff, missing_control_effectiveness_test, missing_representative_data_assessment, missing_security_review, missing_fundamental_rights_assessment, missing_post_market_monitoring_plan, missing_incident_response_owner, missing_legal_review.
+
+Publication sync grants no runtime authority. It does not imply canonical GUFT measurement, GUFT proof, universal ontology proof, consciousness proof, truth certification, EU AI Act compliance certification, legal advice, audit pass, attestation success, product readiness, product release, final-answer authority, accepted-evidence authority, provider runtime, network runtime, real-input processing, memory write, Atlas memory admission, trace export, PMR federation, model training, review skipping, market validation, or human benefit proof.
+
+## EU AI Act MVR evidence map local prototype publication sync
+
+EU-AI-ACT-MVR-EVIDENCE-MAP-LOCAL-PROTOTYPE-00 emits the first local EU AI Act evidence-support map from Minimal Viable Receipt artifacts. It is evidence support, not EU AI Act compliance certification, legal advice, audit pass, attestation success, product readiness, product release, truth certification, final-answer authority, accepted-evidence authority, memory write, Atlas admission, trace export, PMR federation, model training, or review skipping.
+
+Doctrine: EU AI Act MVR Evidence Map Prototype; This is evidence support, not EU AI Act compliance certification.; UVLM produces mapped evidence and visible gaps, not legal conclusions.; Qualified humans must decide whether evidence supports compliance claims.; Missing evidence is visible as a gap, not hidden.; Source manifest is not accepted evidence.; Traceability is not truth.; Control mapping is not control effectiveness.; Human review remains required.; Authorized professional signoff remains required.; No legal advice was emitted.; No audit pass was claimed.; No attestation success was claimed.; No product readiness was claimed.; No product release was performed.; EU-AI-ACT-MVR-EVIDENCE-MAP-LOCAL-PROTOTYPE-00 emits review-support evidence, not compliance certification.
+
+EU AI Act categories: risk_classification_support, intended_use_description, source_data_governance_evidence, technical_documentation_support, record_keeping_logging_support, transparency_deployer_information_support, human_oversight_support, accuracy_robustness_cybersecurity_posture, post_market_monitoring_or_incident_review_posture, fundamental_rights_or_data_equity_review_support, non_authority_boundary. MVR artifact mapping terms: source_manifest, source_hash, consent_scope, observation_scope, quarantine_report, unsupported_claims, controls_applied, human_review_status, validation_tier, retention_boundary, contestability_options, recovery_options, non_authority_boundary, audit_artifact_index, open_gaps. Gap terms: missing_risk_classification, missing_intended_use_owner, missing_human_signoff, missing_control_effectiveness_test, missing_representative_data_assessment, missing_security_review, missing_fundamental_rights_assessment, missing_post_market_monitoring_plan, missing_incident_response_owner, missing_legal_review, missing_evidence_visible = true, gaps_are_not_compliance_failures = true, no_visible_gap_is_not_compliance_success = true. Human review/signoff terms: compliance_officer, legal_reviewer, privacy_officer, security_officer, model_risk_manager, ai_governance_lead, executive_owner, licensed_auditor_or_certifier, signoff_performed = false, legal_review_performed = false, authorized_professional_signoff_required = true.
+
+Relation to prior phases: EU-AI-ACT-MVR-EVIDENCE-MAPPING-DESIGN-00 defines the design-only mapping profile. EU-AI-ACT-MVR-EVIDENCE-MAP-LOCAL-PROTOTYPE-00 emits the first local EU AI Act evidence-support map. COMPLIANCE-EVIDENCE-TOOLSET-LIBRARY-DESIGN-00 defines the broader evidence toolset library. COMPLIANCE-READY-MVR-REPORT-DESIGN-00 defines the compliance-facing report structure. MVR-LOCAL-REAL-INPUT-PILOT-HUMAN-SELECTED-FILE-SMOKE-00 supplies bounded MVR real-input pilot artifacts. VALIDATION-TIERING-PROVENANCE-00 records validation confidence scope. Publication sync grants no runtime authority.
+
+## Compliance-ready MVR report local prototype and source-corpus provenance publication sync
+
+COMPLIANCE-READY-MVR-REPORT-LOCAL-PROTOTYPE-00 emits a local compliance-ready MVR report prototype for review support only. SOURCE-CORPUS-PROVENANCE-ARCHIVE-00 defines the governed source-report archive pattern, and SOURCE-CORPUS-PROVENANCE-HASH-FILL-00 fills pending EU AI Act source-report hashes while preserving hash-only public references and no raw private DOCX import.
+
+Compliance report doctrine: Compliance-Ready MVR Report Local Prototype; This report supports review; it does not certify compliance.; This report is not legal advice.; This report does not pass an audit.; This report does not guarantee attestation success.; Source manifest is not accepted evidence.; Traceability is not truth.; Control mapping is not control effectiveness.; Visible gaps are not compliance failures.; No visible gap is not compliance success.; Human review remains required.; Authorized professional signoff remains required.; The report is stupidly user friendly.; Compliance users need a report, not an artifact maze.
+
+Compliance report sections: Executive Summary, System and Intended Use, Input Selection and Source Scope, Consent and Observation Scope, Evidence Map Summary, Gap Register Summary, Human Oversight and Signoff, Controls and Traceability, Data Governance and Quarantine, Retention and Memory Boundaries, Contestability and Recovery, Validation Confidence Scope, WAVE / Metric Proxy Annex, Non-Authority Statement, Audit Artifact Index, Open Questions and Required Follow-Up. Glossary terms: MVR, Observation Contract, TAC, CES, PMR, Sophia, Validation Tier, Quarantine, Source Manifest, Non-Authority Boundary, WAVE Bridge, EU AI Act Evidence Map, Gap Register, Human Signoff Packet.
+
+Source corpus doctrine: Source Corpus Provenance Archive; Repos are governed provenance libraries, not document dumps.; Raw source reports may be omitted from public repos when privacy, sensitivity, size, or licensing requires hash-only reference.; DOCX originals should have Markdown derivatives when committed.; TXT and MD reports may be committed directly when public-safe.; Large or sensitive files should use private/archive storage, Git LFS, release assets, or external governed storage.; Future users must check canonical repo state before treating reports as current design.; Source reports are not accepted evidence by themselves.; Source reports are not theorem proof.; Source reports are not product release.; Source reports are not compliance certification.; Summaries are not sources.; Human review remains required.; Hashes preserve identity; hashes do not certify truth.; Visibility and sensitivity must be explicit.; Public release approval must be explicit.
+
+Source corpus manifest terms: active_governed_provenance_manifest, hash_only_public_reference, canonical_repo_state_supersedes_report, source_is_not_accepted_evidence, source_is_not_theorem_proof, source_is_not_product_release, source_is_not_compliance_certification, summary_is_not_source, human_review_required, public_release_approved = false. Source report filenames: GUFT discussion with Thomas and Apprentice 6_8_2026_842AM.docx, GUFT METRICS BRIDGE DISCUSSION 6_9_2026_1022AM.docx, wave_rosetta_canonical_proxy_bridge_scientific_review_20260609.md, EU AI Act Reporting Formats and Short-Term Product Strategy for UVLM Triadic Brain.docx, EU AI Act Aligned Reporting Architecture for Triadic Brain Product Lines.docx. Source hashes: 2f49da190fcf5e3a04330f53bd9e6d30228c0a999cdabf8be2e94e957e6dfb09, 9eaba6d5a49de7d09542b3e879cbb9eb936181a37e660b3434a5e31e110ccfe6, 21045f07f5e2122db9714741a418f582cb87b6d004f6c66f4a63d4b6b7e77fd6, 9140a5dad410be3f38bcb933b6c360537957d0ce1d4b5ea0d259941eaa3c581e, 94703c4678eccd407adb9009b34d2b178ab6ab18ee20b6df22d9407eda50dde1.
+
+Publication sync grants no runtime authority. It does not imply compliance certification, legal advice, audit pass, attestation success, product readiness, product release, truth certification, final-answer authority, accepted-evidence authority, memory write, Atlas memory admission, trace export, PMR federation, provider runtime, network runtime, model training, review skipping, user validation, human-subject study, market validation, human benefit proof, theorem proof, GUFT proof, consciousness proof, or universal ontology proof.
+
+## June 2026 source-corpus batch manifest publication sync
+
+SOURCE-CORPUS-BATCH-MANIFEST-2026-06-10-00 adds the June 2026 hash-only batch manifest. It preserves source identity and provenance only; raw private files are not committed, duplicate filenames are deduplicated by SHA-256, filename aliases are preserved, public release approval is false by default, and canonical repo state supersedes source reports.
+
+Source-corpus batch doctrine: June 2026 Source Corpus Batch Manifest; This batch preserves source identity and provenance, not accepted evidence.; Raw private files are not committed.; Duplicate filenames are deduplicated by SHA-256.; Filename aliases are preserved.; Public release approval is false by default.; Hashes preserve identity; hashes do not certify truth.; Canonical repo state supersedes source reports.; Human review remains required.; Large or sensitive reports remain hash-only references unless explicitly approved.; Repos are governed provenance libraries, not document dumps.; Source reports are not accepted evidence by themselves.; Source reports are not theorem proof.; Source reports are not product release.; Source reports are not product readiness.; Source reports are not compliance certification.; Source reports are not legal advice.; Source reports are not current canonical repo state.; SOURCE-CORPUS-BATCH-MANIFEST-2026-06-10-00 does not commit raw private reports.; SOURCE-CORPUS-BATCH-MANIFEST-2026-06-10-00 does not add extracted text.; SOURCE-CORPUS-BATCH-MANIFEST-2026-06-10-00 does not add normalized derivatives.
+
+High-priority filenames: Telemetry Project Deep Dive.docx, CoherenceLattice Change Management and Gnosis Synthesis Report.docx, Telemetry Integration into the CoherenceLattice Pipeline.docx, Multi-Axial Coherence Analysis for Exogenic Off-Loading in Complex Systems.docx, Quantum Gravity from Causal Memory.docx, Universal Control Codex (UCC) Supplement.docx, The Coherence Lattice GUFT meets GUPT.docx, The Grand Unified Field Theory of Coherence (GUFT) V69.me.docx, TCHES v1.4.docx, Appendix TAF – Operationalize it, because Ultra Verba, Lux Mentis.docx, Echo Primer.pdf, PMR - Internal Technical Memo.docx, THE COHERENCE OF SIGNAL.docx, Preventing Hyperreal design drift.docx, Triadic Brain Developer Guidance for Canonical Ingress, Grounding Bundles, and Phaselock Governance.docx, Triadic Brain Maths Glossary.docx, Thought-Exchange Layer (TEL) Graph MVP Design and Integration.docx, Final TEL Event Stack Validation in CoherenceLattice.docx, free will.zip, governed_tches_success_20260420_135304.zip, governed_tches_after_dq08_inventory_capture_20260501_161304.zip, mvr_tches_v1_4_human_selected_file_smoke.zip.
+
+Concrete hashes: 0d9bedc988ae3bd6c8c5291594e98cdf55f2483e61d365ae9976785e412f2656, f1206c5f86d83c6ac900d8880b5dcffa5433ce626a1ddfef8480a060ee3f4fa4, 09268960029318fbd9c724094a6a82bf49e095576e1a5bc644a1e9215fad977a, 7bf6c9637ecbb6afd1cef14a0ee39f5904ddb2493277902334456d05cc0a5104, 23acd312e50e43b7c98702e87ce4bb324fd259502f6fc7cd937690c676feae4d, d48b4984c0061495a89c9cdaba12cd26816ce504c22f765ee1fd6cadc87f2f3d, bcf6941fe619fa40a9475327e977fce7c8af2c44b94d5ae5fd8665eb65a2976c, 87584b4c97581a8657978c63bf4ba135cd707f2a1c21deccb513ffa881212503, d5feb2658f74bedbb56782c66ba473ef29e0ae02ca3ea091356c8cea30aba74d, aff0180dd1a61784bb5b6b173ebf6b66a6cb2f497bbb08aedb9fe4dc149ef583, 0bb03eeb493da65f0625e5028d708873016c359d184bc0f1fecac5715d63b953, dc628557c0e729ff8fe5127d1eb129046a12186fff33b9dae65ad58f2e4e0ceb, 5b028820fd50bd93a7f5ad1ec54955f08c0accd039a482e999fdc04efaccf6c2, a241521288f7c792b76f22b9ec82d19027be9f1032402ae0d87288cacdcb9258, fe5cd0189f64df015239453430a085a156580ecaab5856cc784498a25d62a38b, 27941c74013b578c216e4569a066a8988860a9c8b01fa544cd6fe25a642a8f35, 3608c158b6affd4f63d04e91d5eae65bb045afb864549d3b84ad9bc664d87c40, 1904b3e786b4c0314b681d8c52ddef39ef02d3e4b2bbe2a2493b3072b84d997f, 17bcca653cbe300c656d796f42f6a077b1bf58f3e3a6655133524cbe56386fdd, 00683d8c93d5daabefa9ea6e5819c53f76e9155fd42a4b4dad036188843ee3d1, db97a6325de67c673baae100327773d6d5f0a0a14431ada361b1551d647fef3d, 6046cabc13041f664cb67caf96cf5d43eb41fcc03df59248d0b3e6842552d7ca.
+
+Alias terms: Telemetry%20Project%20Deep%20Dive.docx, Telemetry%20Integration%20into%20the%20CoherenceLattice%20Pipeline.docx, Universal%20Control%20Codex%20%28UCC%29%20Supplement.docx, Multi%E2%80%91Axial%20Coherence%20Analysis%20for%20Exogenic%20Off%E2%80%91Loading%20in%20Complex%20Systems.docx, filename_aliases, deduplicated by SHA-256, filename aliases are not separate sources, deduplication means byte-identity only. Manifest terms: source_corpus_batch_20260610, active_hash_only_provenance_manifest, one_canonical_row_per_unique_sha256, raw_sha256, hash_only_public_reference, public_release_approved = false, canonical_repo_state_supersedes_report, source_is_not_accepted_evidence, source_is_not_theorem_proof, source_is_not_product_release, source_is_not_product_readiness, source_is_not_compliance_certification, source_is_not_legal_advice, source_is_not_memory_write, source_is_not_atlas_memory_admission, summary_is_not_source, human_review_required.
+
+Relation to prior phases: SOURCE-CORPUS-PROVENANCE-ARCHIVE-00 defines the governed source-report archive pattern. SOURCE-CORPUS-PROVENANCE-HASH-FILL-00 fills pending EU AI Act source-report hashes. SOURCE-CORPUS-BATCH-MANIFEST-2026-06-10-00 adds the June 2026 hash-only batch manifest. WAVE-ROSETTA-CANONICAL-PROXY-BRIDGE-PROVENANCE-00 uses source report hashes for scientific provenance. COMPLIANCE-READY-MVR-REPORT-LOCAL-PROTOTYPE-00 uses compliance report provenance for report design context. VALIDATION-TIERING-PROVENANCE-00 records validation confidence scope. Publication sync grants no runtime authority.
