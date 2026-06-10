@@ -187,6 +187,16 @@ from tools.build_public_repro_dashboard import (
     EU_AI_ACT_MVR_MAPPING_CLAIM_ALLOWED,
     EU_AI_ACT_MVR_MAPPING_DASHBOARD_SUMMARY,
     EU_AI_ACT_MVR_MAPPING_DOCTRINE_LANGUAGE,
+    EU_AI_ACT_MVR_EVIDENCE_MAP_LOCAL_PROTOTYPE_ARTIFACTS,
+    EU_AI_ACT_MVR_EVIDENCE_MAP_LOCAL_PROTOTYPE_ARTIFACT_MAPPING_TERMS,
+    EU_AI_ACT_MVR_EVIDENCE_MAP_LOCAL_PROTOTYPE_BLOCKED_CLAIMS,
+    EU_AI_ACT_MVR_EVIDENCE_MAP_LOCAL_PROTOTYPE_CLAIM_ALLOWED,
+    EU_AI_ACT_MVR_EVIDENCE_MAP_LOCAL_PROTOTYPE_DASHBOARD_SUMMARY,
+    EU_AI_ACT_MVR_EVIDENCE_MAP_LOCAL_PROTOTYPE_DOCTRINE_LANGUAGE,
+    EU_AI_ACT_MVR_EVIDENCE_MAP_LOCAL_PROTOTYPE_GAP_TERMS,
+    EU_AI_ACT_MVR_EVIDENCE_MAP_LOCAL_PROTOTYPE_PRIOR_PHASE_RELATION,
+    EU_AI_ACT_MVR_EVIDENCE_MAP_LOCAL_PROTOTYPE_REPRO_FRAGMENTS,
+    EU_AI_ACT_MVR_EVIDENCE_MAP_LOCAL_PROTOTYPE_SIGNOFF_TERMS,
     WAVE_BRIDGE_ARTIFACTS,
     WAVE_BRIDGE_CLAIM_ALLOWED,
     WAVE_BRIDGE_DASHBOARD_SUMMARY,
@@ -525,6 +535,7 @@ REQUIRED_PHASES = {
     "COMPLIANCE-EVIDENCE-TOOLSET-LIBRARY-DESIGN-00",
     "WAVE-ROSETTA-CANONICAL-PROXY-BRIDGE-00",
     "EU-AI-ACT-MVR-EVIDENCE-MAPPING-DESIGN-00",
+    "EU-AI-ACT-MVR-EVIDENCE-MAP-LOCAL-PROTOTYPE-00",
     "WAVE-ROSETTA-CANONICAL-PROXY-BRIDGE-PROVENANCE-00",
 }
 
@@ -6885,6 +6896,105 @@ def test_validator_fails_if_mvr_readability_review_seed_makes_forbidden_claims(t
         out_dir, docs_dir = run_builder(tmp_path / claim.replace(" ", "_").replace("/", "_"))
         page = docs_dir / "mvr-local-prototype-readability-review-seed.md"
         page.write_text(page.read_text(encoding="utf-8") + f"\nMVR readability review seed claims {claim}.\n", encoding="utf-8")
+        result = validate_dashboard(out_dir / "experiment_suite_dashboard.json", docs_dir)
+        assert result["passed"] is False, claim
+        forbidden_found = [found.lower() for found in result["forbidden_claims_found"]]
+        assert claim.lower() in forbidden_found or f"claims {claim.lower()}" in forbidden_found, result
+
+
+
+def test_eu_ai_act_mvr_evidence_map_local_prototype_indexes_dashboard_docs_and_boundaries(tmp_path):
+    out_dir, docs_dir = run_builder(tmp_path)
+    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text(encoding="utf-8"))
+    artifact_index = json.loads((out_dir / "artifact_index.json").read_text(encoding="utf-8"))
+    repro_index = json.loads((out_dir / "reproducibility_index.json").read_text(encoding="utf-8"))
+    claim_boundaries = json.loads((out_dir / "claim_boundary_index.json").read_text(encoding="utf-8"))
+    status = json.loads((out_dir / "status.json").read_text(encoding="utf-8"))
+    page = (docs_dir / "eu-ai-act-mvr-evidence-map-local-prototype.md").read_text(encoding="utf-8")
+
+    phase = next(entry for entry in dashboard["accepted_phases"] if entry["phase_id"] == "EU-AI-ACT-MVR-EVIDENCE-MAP-LOCAL-PROTOTYPE-00")
+    summary = phase["dashboard_summary"]
+    assert summary == EU_AI_ACT_MVR_EVIDENCE_MAP_LOCAL_PROTOTYPE_DASHBOARD_SUMMARY
+    assert summary["evidence_map_status"] == "completed"
+    assert summary["mapping_category_count"] == 11
+    assert summary["evidence_row_count"] == 11
+    assert summary["open_gap_count"] == 10
+    assert summary["gap_count"] == 10
+    assert summary["review_status"] == "human_review_required"
+    assert summary["authorized_professional_signoff_required"] is True
+    assert summary["signoff_performed"] is False
+    assert summary["legal_review_performed"] is False
+    for field in (
+        "compliance_certification_emitted",
+        "legal_advice_emitted",
+        "audit_pass_claimed",
+        "attestation_success_claimed",
+        "product_readiness_claimed",
+        "product_release_performed",
+        "final_answer_authority_granted",
+        "accepted_evidence_authority_granted",
+        "truth_certification_emitted",
+        "memory_write_performed",
+        "atlas_memory_admission_performed",
+        "trace_export_performed",
+        "pmr_federation_performed",
+    ):
+        assert summary[field] is False
+    for field in (
+        "evidence_map_is_not_eu_ai_act_compliance_certification",
+        "evidence_map_is_not_legal_advice",
+        "evidence_map_is_not_audit_pass",
+        "evidence_map_is_not_attestation_success",
+        "evidence_map_is_not_product_readiness",
+        "evidence_map_is_not_product_release",
+        "evidence_map_is_not_truth_certification",
+        "evidence_map_is_not_final_answer_authority",
+        "evidence_map_is_not_accepted_evidence_authority",
+        "evidence_map_is_not_memory_write",
+        "evidence_map_is_not_atlas_memory_admission",
+    ):
+        assert summary[field] is True
+
+    assert artifact_index["phases"]["EU-AI-ACT-MVR-EVIDENCE-MAP-LOCAL-PROTOTYPE-00"] == EU_AI_ACT_MVR_EVIDENCE_MAP_LOCAL_PROTOTYPE_ARTIFACTS
+    artifact_text = json.dumps(artifact_index, ensure_ascii=False)
+    for artifact in EU_AI_ACT_MVR_EVIDENCE_MAP_LOCAL_PROTOTYPE_ARTIFACTS:
+        assert artifact in artifact_text
+    repro_text = json.dumps(repro_index, ensure_ascii=False)
+    for fragment in EU_AI_ACT_MVR_EVIDENCE_MAP_LOCAL_PROTOTYPE_REPRO_FRAGMENTS:
+        assert fragment in repro_text
+    for required in (
+        *EU_AI_ACT_MVR_EVIDENCE_MAP_LOCAL_PROTOTYPE_DOCTRINE_LANGUAGE,
+        *EU_AI_ACT_EVIDENCE_CATEGORIES,
+        *EU_AI_ACT_MVR_EVIDENCE_MAP_LOCAL_PROTOTYPE_ARTIFACT_MAPPING_TERMS,
+        *EU_AI_ACT_MVR_EVIDENCE_MAP_LOCAL_PROTOTYPE_GAP_TERMS,
+        *EU_AI_ACT_MVR_EVIDENCE_MAP_LOCAL_PROTOTYPE_SIGNOFF_TERMS,
+        *EU_AI_ACT_MVR_EVIDENCE_MAP_LOCAL_PROTOTYPE_PRIOR_PHASE_RELATION,
+        EU_AI_ACT_MVR_EVIDENCE_MAP_LOCAL_PROTOTYPE_CLAIM_ALLOWED,
+        "Publication sync grants no runtime authority.",
+    ):
+        assert required in page
+    boundaries = "\n".join(claim_boundaries["boundaries"])
+    for blocked in EU_AI_ACT_MVR_EVIDENCE_MAP_LOCAL_PROTOTYPE_BLOCKED_CLAIMS:
+        assert blocked in boundaries
+    assert status["eu_ai_act_mvr_evidence_map_local_prototype_00_indexed"] is True
+    assert status["eu_ai_act_mvr_evidence_map_local_prototype_status"] == "completed"
+    assert status["eu_ai_act_mvr_evidence_map_local_prototype_profile_id"] == "eu_ai_act_evidence_support"
+    assert status["eu_ai_act_mvr_evidence_map_local_prototype_open_gap_count"] == 10
+    assert status["eu_ai_act_mvr_evidence_map_local_prototype_signoff_performed"] is False
+    assert status["eu_ai_act_mvr_evidence_map_local_prototype_legal_review_performed"] is False
+    assert status["not_eu_ai_act_mvr_evidence_map_local_prototype_compliance_certification"] is True
+    assert status["not_eu_ai_act_mvr_evidence_map_local_prototype_runtime_authority"] is True
+
+
+def test_validator_required_phases_include_eu_ai_act_mvr_evidence_map_local_prototype():
+    assert "EU-AI-ACT-MVR-EVIDENCE-MAP-LOCAL-PROTOTYPE-00" in VALIDATOR_REQUIRED_PHASES
+
+
+def test_validator_fails_if_eu_ai_act_mvr_evidence_map_local_prototype_makes_forbidden_claims(tmp_path):
+    for claim in EU_AI_ACT_MVR_EVIDENCE_MAP_LOCAL_PROTOTYPE_BLOCKED_CLAIMS:
+        out_dir, docs_dir = run_builder(tmp_path / claim.replace(" ", "_").replace("/", "_"))
+        page = docs_dir / "eu-ai-act-mvr-evidence-map-local-prototype.md"
+        page.write_text(page.read_text(encoding="utf-8") + f"\nEU AI Act evidence map local prototype claims {claim}.\n", encoding="utf-8")
         result = validate_dashboard(out_dir / "experiment_suite_dashboard.json", docs_dir)
         assert result["passed"] is False, claim
         forbidden_found = [found.lower() for found in result["forbidden_claims_found"]]

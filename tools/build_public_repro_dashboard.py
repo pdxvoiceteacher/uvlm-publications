@@ -11298,6 +11298,176 @@ EU_AI_ACT_MVR_MAPPING_PHASE = {
     "reviewer_caution": "EU-AI-ACT-MVR-EVIDENCE-MAPPING-DESIGN-00 is design-only evidence support. It generates no runtime evidence maps, certifies no EU AI Act compliance, provides no legal advice, passes no audit, guarantees no attestation success, claims no product readiness, releases no product, certifies no truth, grants no final-answer or accepted-evidence authority, writes no memory, admits no Atlas memory, exports no traces, federates no PMR, trains no model, and skips no review.",
     "publication_status": "dashboard_indexed",
 }
+
+EU_AI_ACT_MVR_EVIDENCE_MAP_LOCAL_PROTOTYPE_COMMAND = "python -c \"from pathlib import Path; from coherence.compliance.eu_ai_act_mvr_evidence_map import build_eu_ai_act_mvr_evidence_map_local_prototype; bridge=Path(r'C:\\UVLM\\run_artifacts\\eu_ai_act_mvr_evidence_map_local_prototype\\bridge'); build_eu_ai_act_mvr_evidence_map_local_prototype(bridge)\""
+EU_AI_ACT_MVR_EVIDENCE_MAP_LOCAL_PROTOTYPE_REPRO_FRAGMENTS = ["build_eu_ai_act_mvr_evidence_map_local_prototype"]
+EU_AI_ACT_MVR_EVIDENCE_MAP_LOCAL_PROTOTYPE_ARTIFACTS = [
+    "docs/EU_AI_ACT_MVR_EVIDENCE_MAP_LOCAL_PROTOTYPE.md",
+    "python/src/coherence/compliance/eu_ai_act_mvr_evidence_map.py",
+    "schema/bridge/eu_ai_act_mvr_evidence_map.schema.json",
+    "schema/bridge/eu_ai_act_mvr_gap_register.schema.json",
+    "schema/bridge/eu_ai_act_mvr_human_review_packet.schema.json",
+    "schema/bridge/eu_ai_act_mvr_non_authority_boundary.schema.json",
+    "schema/bridge/eu_ai_act_mvr_evidence_map_receipt.schema.json",
+    "eu_ai_act_mvr_evidence_map.json",
+    "eu_ai_act_mvr_gap_register.json",
+    "eu_ai_act_mvr_human_review_packet.json",
+    "eu_ai_act_mvr_non_authority_boundary.json",
+    "eu_ai_act_mvr_evidence_summary.md",
+    "eu_ai_act_mvr_evidence_map_receipt.json",
+    "mvr_local_real_input_human_selected_file_smoke_packet.json",
+    "mvr_local_real_input_source_manifest.json",
+    "mvr_local_real_input_consent_scope.json",
+    "mvr_local_real_input_quarantine_report.json",
+    "minimal_viable_receipt_packet.json",
+    "minimal_viable_receipt_human_readable.md",
+    "mvr_local_real_input_pilot_receipt.json",
+    "pmr_local_runtime_artifact_index.json",
+    "artifact_inventory.json",
+    "export_bundle_parity_report.json",
+]
+EU_AI_ACT_MVR_EVIDENCE_MAP_LOCAL_PROTOTYPE_DOCTRINE_LANGUAGE = [
+    "EU AI Act MVR Evidence Map Prototype",
+    "This is evidence support, not EU AI Act compliance certification.",
+    "UVLM produces mapped evidence and visible gaps, not legal conclusions.",
+    "Qualified humans must decide whether evidence supports compliance claims.",
+    "Missing evidence is visible as a gap, not hidden.",
+    "Source manifest is not accepted evidence.",
+    "Traceability is not truth.",
+    "Control mapping is not control effectiveness.",
+    "Human review remains required.",
+    "Authorized professional signoff remains required.",
+    "No legal advice was emitted.",
+    "No audit pass was claimed.",
+    "No attestation success was claimed.",
+    "No product readiness was claimed.",
+    "No product release was performed.",
+    "EU-AI-ACT-MVR-EVIDENCE-MAP-LOCAL-PROTOTYPE-00 emits review-support evidence, not compliance certification.",
+]
+EU_AI_ACT_MVR_EVIDENCE_MAP_LOCAL_PROTOTYPE_ARTIFACT_MAPPING_TERMS = [
+    "source_manifest",
+    "source_hash",
+    "consent_scope",
+    "observation_scope",
+    "quarantine_report",
+    "unsupported_claims",
+    "controls_applied",
+    "human_review_status",
+    "validation_tier",
+    "retention_boundary",
+    "contestability_options",
+    "recovery_options",
+    "non_authority_boundary",
+    "audit_artifact_index",
+    "open_gaps",
+]
+EU_AI_ACT_MVR_EVIDENCE_MAP_LOCAL_PROTOTYPE_GAP_TERMS = [
+    *EU_AI_ACT_GAP_TERMS,
+    "missing_evidence_visible = true",
+    "gaps_are_not_compliance_failures = true",
+    "no_visible_gap_is_not_compliance_success = true",
+]
+EU_AI_ACT_MVR_EVIDENCE_MAP_LOCAL_PROTOTYPE_SIGNOFF_TERMS = [
+    "compliance_officer",
+    "legal_reviewer",
+    "privacy_officer",
+    "security_officer",
+    "model_risk_manager",
+    "ai_governance_lead",
+    "executive_owner",
+    "licensed_auditor_or_certifier",
+    "signoff_performed = false",
+    "legal_review_performed = false",
+    "authorized_professional_signoff_required = true",
+]
+EU_AI_ACT_MVR_EVIDENCE_MAP_LOCAL_PROTOTYPE_PRIOR_PHASE_RELATION = [
+    "EU-AI-ACT-MVR-EVIDENCE-MAPPING-DESIGN-00 defines the design-only mapping profile.",
+    "EU-AI-ACT-MVR-EVIDENCE-MAP-LOCAL-PROTOTYPE-00 emits the first local EU AI Act evidence-support map.",
+    "COMPLIANCE-EVIDENCE-TOOLSET-LIBRARY-DESIGN-00 defines the broader evidence toolset library.",
+    "COMPLIANCE-READY-MVR-REPORT-DESIGN-00 defines the compliance-facing report structure.",
+    "MVR-LOCAL-REAL-INPUT-PILOT-HUMAN-SELECTED-FILE-SMOKE-00 supplies bounded MVR real-input pilot artifacts.",
+    "VALIDATION-TIERING-PROVENANCE-00 records validation confidence scope.",
+]
+EU_AI_ACT_MVR_EVIDENCE_MAP_LOCAL_PROTOTYPE_BLOCKED_CLAIMS = [
+    "EU AI Act evidence map prototype certifies EU AI Act compliance",
+    "EU AI Act evidence map prototype provides legal advice",
+    "EU AI Act evidence map prototype passes audit",
+    "EU AI Act evidence map prototype guarantees attestation success",
+    "EU AI Act evidence map prototype proves product readiness",
+    "EU AI Act evidence map prototype is product release",
+    "EU AI Act evidence map prototype certifies truth",
+    "EU AI Act evidence map prototype authorizes final answers",
+    "EU AI Act evidence map prototype grants accepted-evidence authority",
+    "EU AI Act evidence map prototype writes memory",
+    "EU AI Act evidence map prototype admits Atlas memory",
+    "EU AI Act evidence map prototype exports traces",
+    "EU AI Act evidence map prototype federates PMR",
+    "source manifest is accepted evidence",
+    "traceability means truth",
+    "control mapping means control effectiveness",
+    "visible gap means compliance failure",
+    "no visible gap means compliance success",
+    "human review role means human signoff occurred",
+    "mapped evidence means compliance satisfied",
+    "open_gap_count means compliance failure",
+    "gap_count means audit failure",
+    "signoff role means signoff performed",
+]
+EU_AI_ACT_MVR_EVIDENCE_MAP_LOCAL_PROTOTYPE_CLAIM_ALLOWED = "EU-AI-ACT-MVR-EVIDENCE-MAP-LOCAL-PROTOTYPE-00 emits a local EU AI Act evidence-support map from Minimal Viable Receipt artifacts, mapping source manifest, consent scope, observation scope, quarantine report, unsupported claims, controls, human review status, validation tier, retention boundary, contestability, recovery options, non-authority boundaries, audit artifact index, and open gaps into EU AI Act review-support categories while exposing missing evidence as visible gaps and requiring qualified human review and authorized professional signoff, without certifying EU AI Act compliance, providing legal advice, passing audits, guaranteeing attestation success, claiming product readiness, releasing product, certifying truth, granting final-answer or accepted-evidence authority, writing memory, admitting Atlas memory, exporting traces, federating PMR, training models, or skipping review."
+EU_AI_ACT_MVR_EVIDENCE_MAP_LOCAL_PROTOTYPE_DASHBOARD_SUMMARY = {
+    "evidence_map_status": "completed",
+    "evidence_map_mode": "local_mvr_evidence_map_prototype",
+    "profile_id": "eu_ai_act_evidence_support",
+    "evidence_source_mode": "generated_harmless_fixture",
+    "mvr_source_phase": "MVR-LOCAL-REAL-INPUT-PILOT-PROTOTYPE-00",
+    "mapping_category_count": 11,
+    "evidence_row_count": 11,
+    "open_gap_count": 10,
+    "gap_count": 10,
+    "review_status": "human_review_required",
+    "authorized_professional_signoff_required": True,
+    "signoff_performed": False,
+    "legal_review_performed": False,
+    "compliance_certification_emitted": False,
+    "legal_advice_emitted": False,
+    "audit_pass_claimed": False,
+    "attestation_success_claimed": False,
+    "product_readiness_claimed": False,
+    "product_release_performed": False,
+    "final_answer_authority_granted": False,
+    "accepted_evidence_authority_granted": False,
+    "truth_certification_emitted": False,
+    "memory_write_performed": False,
+    "atlas_memory_admission_performed": False,
+    "trace_export_performed": False,
+    "pmr_federation_performed": False,
+    "evidence_map_is_not_eu_ai_act_compliance_certification": True,
+    "evidence_map_is_not_legal_advice": True,
+    "evidence_map_is_not_audit_pass": True,
+    "evidence_map_is_not_attestation_success": True,
+    "evidence_map_is_not_product_readiness": True,
+    "evidence_map_is_not_product_release": True,
+    "evidence_map_is_not_truth_certification": True,
+    "evidence_map_is_not_final_answer_authority": True,
+    "evidence_map_is_not_accepted_evidence_authority": True,
+    "evidence_map_is_not_memory_write": True,
+    "evidence_map_is_not_atlas_memory_admission": True,
+}
+EU_AI_ACT_MVR_EVIDENCE_MAP_LOCAL_PROTOTYPE_PHASE = {
+    "phase_id": "EU-AI-ACT-MVR-EVIDENCE-MAP-LOCAL-PROTOTYPE-00",
+    "repo": "pdxvoiceteacher/CoherenceLattice",
+    "status": "accepted_local_validation",
+    "evidence_type": "eu_ai_act_mvr_evidence_map_local_prototype_publication_sync",
+    "product_posture": "local_eu_ai_act_evidence_support_map_without_certification_legal_advice_or_runtime_authority",
+    "primary_artifacts": EU_AI_ACT_MVR_EVIDENCE_MAP_LOCAL_PROTOTYPE_ARTIFACTS,
+    "dashboard_summary": EU_AI_ACT_MVR_EVIDENCE_MAP_LOCAL_PROTOTYPE_DASHBOARD_SUMMARY,
+    "reproduction_command_summary": EU_AI_ACT_MVR_EVIDENCE_MAP_LOCAL_PROTOTYPE_COMMAND,
+    "claim_allowed": EU_AI_ACT_MVR_EVIDENCE_MAP_LOCAL_PROTOTYPE_CLAIM_ALLOWED,
+    "claims_blocked": EU_AI_ACT_MVR_EVIDENCE_MAP_LOCAL_PROTOTYPE_BLOCKED_CLAIMS,
+    "reviewer_caution": "EU-AI-ACT-MVR-EVIDENCE-MAP-LOCAL-PROTOTYPE-00 emits local EU AI Act evidence-support map artifacts only. It is not EU AI Act compliance certification, legal advice, audit pass, attestation success, product readiness, product release, truth certification, final-answer authority, accepted-evidence authority, memory write, Atlas admission, trace export, PMR federation, provider runtime, network runtime, model training, or review skipping.",
+    "publication_status": "dashboard_indexed",
+}
+
 WAVE_PROVENANCE_PHASE = {
     "phase_id": "WAVE-ROSETTA-CANONICAL-PROXY-BRIDGE-PROVENANCE-00",
     "repo": "pdxvoiceteacher/CoherenceLattice",
@@ -14046,6 +14216,7 @@ COMPLIANCE_REPORT_PHASE,
 COMPLIANCE_TOOLSET_PHASE,
 WAVE_BRIDGE_PHASE,
 EU_AI_ACT_MVR_MAPPING_PHASE,
+EU_AI_ACT_MVR_EVIDENCE_MAP_LOCAL_PROTOTYPE_PHASE,
 WAVE_PROVENANCE_PHASE,
 VALIDATION_TIERING_PROVENANCE_PHASE,
 TELEMETRY_APERTURE_DESIGN_PHASE,
@@ -16307,7 +16478,14 @@ BOUNDARIES.extend(
         *WAVE_BRIDGE_REPRO_FRAGMENTS,
         *WAVE_BRIDGE_DOCTRINE_LANGUAGE,
         *WAVE_PROVENANCE_DOCTRINE_LANGUAGE,
-        *EU_AI_ACT_MVR_MAPPING_DOCTRINE_LANGUAGE,
+        EU_AI_ACT_MVR_EVIDENCE_MAP_LOCAL_PROTOTYPE_CLAIM_ALLOWED,
+        *EU_AI_ACT_MVR_EVIDENCE_MAP_LOCAL_PROTOTYPE_ARTIFACTS,
+        *EU_AI_ACT_MVR_EVIDENCE_MAP_LOCAL_PROTOTYPE_REPRO_FRAGMENTS,
+        *EU_AI_ACT_MVR_EVIDENCE_MAP_LOCAL_PROTOTYPE_DOCTRINE_LANGUAGE,
+        *EU_AI_ACT_MVR_EVIDENCE_MAP_LOCAL_PROTOTYPE_ARTIFACT_MAPPING_TERMS,
+        *EU_AI_ACT_MVR_EVIDENCE_MAP_LOCAL_PROTOTYPE_GAP_TERMS,
+        *EU_AI_ACT_MVR_EVIDENCE_MAP_LOCAL_PROTOTYPE_SIGNOFF_TERMS,
+        *EU_AI_ACT_MVR_EVIDENCE_MAP_LOCAL_PROTOTYPE_PRIOR_PHASE_RELATION,
         *WAVE_VECTOR_TERMS,
         *WAVE_BRIDGE_ESTIMATE_TERMS,
         *WAVE_PROVENANCE_REPORT_LINEAGE,
@@ -16317,6 +16495,8 @@ BOUNDARIES.extend(
         *EU_AI_ACT_GAP_TERMS,
         "Blocked overclaim examples for WAVE bridge, EU AI Act mapping, and WAVE provenance publication boundaries.",
         *WAVE_EU_PROVENANCE_BLOCKED_CLAIMS,
+        "Blocked overclaim examples for EU AI Act MVR evidence map local prototype publication boundaries.",
+        *EU_AI_ACT_MVR_EVIDENCE_MAP_LOCAL_PROTOTYPE_BLOCKED_CLAIMS,
         VALIDATION_TIERING_PROVENANCE_CLAIM_ALLOWED,
         *VALIDATION_TIERING_PROVENANCE_ARTIFACTS,
         *VALIDATION_TIERING_PROVENANCE_TIER_TERMS,
@@ -17232,6 +17412,14 @@ def dashboard_payload() -> dict[str, Any]:
         "eu_ai_act_mvr_evidence_mapping_design_00_indexed": True,
         "eu_ai_act_mvr_evidence_mapping_status": "active_design_only",
         "eu_ai_act_mvr_evidence_map_generation_enabled": False,
+        "eu_ai_act_mvr_evidence_map_local_prototype_00_indexed": True,
+        "eu_ai_act_mvr_evidence_map_local_prototype_status": "completed",
+        "eu_ai_act_mvr_evidence_map_local_prototype_profile_id": "eu_ai_act_evidence_support",
+        "eu_ai_act_mvr_evidence_map_local_prototype_open_gap_count": 10,
+        "eu_ai_act_mvr_evidence_map_local_prototype_signoff_performed": False,
+        "eu_ai_act_mvr_evidence_map_local_prototype_legal_review_performed": False,
+        "not_eu_ai_act_mvr_evidence_map_local_prototype_compliance_certification": True,
+        "not_eu_ai_act_mvr_evidence_map_local_prototype_runtime_authority": True,
         "wave_rosetta_canonical_proxy_bridge_provenance_00_indexed": True,
         "wave_rosetta_canonical_proxy_bridge_provenance_status": "active_documentation_only",
         "wave_rosetta_canonical_proxy_bridge_provenance_runtime_behavior_changed": False,
@@ -17355,6 +17543,7 @@ def reproducibility_index() -> dict[str, Any]:
                 {"name": "COMPLIANCE-EVIDENCE-TOOLSET-LIBRARY-DESIGN-00 design validation", "command": COMPLIANCE_TOOLSET_DESIGN_COMMAND},
                 {"name": "WAVE-ROSETTA-CANONICAL-PROXY-BRIDGE-00 Python entrypoint", "command": WAVE_BRIDGE_COMMAND},
                 {"name": "EU-AI-ACT-MVR-EVIDENCE-MAPPING-DESIGN-00 design validation", "command": COMPLIANCE_TOOLSET_DESIGN_COMMAND},
+                {"name": "EU-AI-ACT-MVR-EVIDENCE-MAP-LOCAL-PROTOTYPE-00 Python entrypoint", "command": EU_AI_ACT_MVR_EVIDENCE_MAP_LOCAL_PROTOTYPE_COMMAND},
                 {"name": "WAVE-ROSETTA-CANONICAL-PROXY-BRIDGE-PROVENANCE-00 provenance validation", "command": COMPLIANCE_REPORT_DESIGN_COMMAND},
                 {"name": "Validation Tiering Provenance Python entrypoint", "command": VALIDATION_TIERING_PROVENANCE_COMMAND},
                 {"name": "TELEMETRY-APERTURE-DESIGN-00 config/schema inspection", "command": TELEMETRY_APERTURE_DESIGN_COMMAND},
@@ -18320,6 +18509,14 @@ def status_payload() -> dict[str, Any]:
         "eu_ai_act_mvr_evidence_mapping_design_00_indexed": True,
         "eu_ai_act_mvr_evidence_mapping_status": "active_design_only",
         "eu_ai_act_mvr_evidence_map_generation_enabled": False,
+        "eu_ai_act_mvr_evidence_map_local_prototype_00_indexed": True,
+        "eu_ai_act_mvr_evidence_map_local_prototype_status": "completed",
+        "eu_ai_act_mvr_evidence_map_local_prototype_profile_id": "eu_ai_act_evidence_support",
+        "eu_ai_act_mvr_evidence_map_local_prototype_open_gap_count": 10,
+        "eu_ai_act_mvr_evidence_map_local_prototype_signoff_performed": False,
+        "eu_ai_act_mvr_evidence_map_local_prototype_legal_review_performed": False,
+        "not_eu_ai_act_mvr_evidence_map_local_prototype_compliance_certification": True,
+        "not_eu_ai_act_mvr_evidence_map_local_prototype_runtime_authority": True,
         "wave_rosetta_canonical_proxy_bridge_provenance_00_indexed": True,
         "wave_rosetta_canonical_proxy_bridge_provenance_status": "active_documentation_only",
         "wave_rosetta_canonical_proxy_bridge_provenance_runtime_behavior_changed": False,
@@ -24342,6 +24539,88 @@ Publication sync grants no runtime authority. It does not imply canonical GUFT m
 """
 
 
+
+EU_AI_ACT_MVR_EVIDENCE_MAP_LOCAL_PROTOTYPE_SYNC_DOCS = {
+    "index.md",
+    "eu-ai-act-mvr-evidence-mapping-design.md",
+    "compliance-evidence-toolset-library-design.md",
+    "compliance-ready-mvr-report-design.md",
+    "mvr-local-real-input-pilot-human-selected-file-smoke.md",
+    "mvr-local-real-input-pilot-prototype.md",
+    "minimal-viable-receipt-design.md",
+    "validation-tiering-provenance.md",
+    "claim-boundaries.md",
+}
+EU_AI_ACT_MVR_EVIDENCE_MAP_LOCAL_PROTOTYPE_SYNC_NOTE = f"""
+
+## EU AI Act MVR evidence map local prototype publication sync
+
+EU-AI-ACT-MVR-EVIDENCE-MAP-LOCAL-PROTOTYPE-00 emits the first local EU AI Act evidence-support map from Minimal Viable Receipt artifacts. It is evidence support, not EU AI Act compliance certification, legal advice, audit pass, attestation success, product readiness, product release, truth certification, final-answer authority, accepted-evidence authority, memory write, Atlas admission, trace export, PMR federation, model training, or review skipping.
+
+Doctrine: {'; '.join(EU_AI_ACT_MVR_EVIDENCE_MAP_LOCAL_PROTOTYPE_DOCTRINE_LANGUAGE)}
+
+EU AI Act categories: {', '.join(EU_AI_ACT_EVIDENCE_CATEGORIES)}. MVR artifact mapping terms: {', '.join(EU_AI_ACT_MVR_EVIDENCE_MAP_LOCAL_PROTOTYPE_ARTIFACT_MAPPING_TERMS)}. Gap terms: {', '.join(EU_AI_ACT_MVR_EVIDENCE_MAP_LOCAL_PROTOTYPE_GAP_TERMS)}. Human review/signoff terms: {', '.join(EU_AI_ACT_MVR_EVIDENCE_MAP_LOCAL_PROTOTYPE_SIGNOFF_TERMS)}.
+
+Relation to prior phases: {' '.join(EU_AI_ACT_MVR_EVIDENCE_MAP_LOCAL_PROTOTYPE_PRIOR_PHASE_RELATION)} Publication sync grants no runtime authority.
+"""
+
+
+def eu_ai_act_mvr_evidence_map_local_prototype_doc() -> str:
+    summary = "\n".join(f"- {key} = {str(value).lower() if isinstance(value, bool) else value}" for key, value in EU_AI_ACT_MVR_EVIDENCE_MAP_LOCAL_PROTOTYPE_DASHBOARD_SUMMARY.items())
+    return f"""# EU AI Act MVR Evidence Map Prototype
+
+EU-AI-ACT-MVR-EVIDENCE-MAP-LOCAL-PROTOTYPE-00 synchronizes the locally validated CoherenceLattice EU AI Act MVR evidence map local prototype into publication dashboards. This is publication/dashboard synchronization only and grants no runtime authority.
+
+## Bounded allowed claim
+
+{EU_AI_ACT_MVR_EVIDENCE_MAP_LOCAL_PROTOTYPE_CLAIM_ALLOWED}
+
+## Dashboard summary
+
+{summary}
+
+## Doctrine language
+
+{_bullets(EU_AI_ACT_MVR_EVIDENCE_MAP_LOCAL_PROTOTYPE_DOCTRINE_LANGUAGE)}
+
+## EU AI Act categories
+
+{_bullets(EU_AI_ACT_EVIDENCE_CATEGORIES)}
+
+## MVR artifact mapping terms
+
+{_bullets(EU_AI_ACT_MVR_EVIDENCE_MAP_LOCAL_PROTOTYPE_ARTIFACT_MAPPING_TERMS)}
+
+## Gap terms
+
+{_bullets(EU_AI_ACT_MVR_EVIDENCE_MAP_LOCAL_PROTOTYPE_GAP_TERMS)}
+
+## Human review and signoff terms
+
+{_bullets(EU_AI_ACT_MVR_EVIDENCE_MAP_LOCAL_PROTOTYPE_SIGNOFF_TERMS)}
+
+## Relation to prior phases
+
+{_bullets(EU_AI_ACT_MVR_EVIDENCE_MAP_LOCAL_PROTOTYPE_PRIOR_PHASE_RELATION)}
+
+## Artifact references
+
+{_bullets(EU_AI_ACT_MVR_EVIDENCE_MAP_LOCAL_PROTOTYPE_ARTIFACTS)}
+
+## Blocked claims
+
+{_bullets(EU_AI_ACT_MVR_EVIDENCE_MAP_LOCAL_PROTOTYPE_BLOCKED_CLAIMS)}
+
+## Reproducibility
+
+{_bullets(EU_AI_ACT_MVR_EVIDENCE_MAP_LOCAL_PROTOTYPE_REPRO_FRAGMENTS)}
+- `{EU_AI_ACT_MVR_EVIDENCE_MAP_LOCAL_PROTOTYPE_COMMAND}`
+
+## Runtime authority boundary
+
+Publication sync grants no runtime authority. It does not imply EU AI Act compliance certification, legal advice, audit pass, attestation success, product readiness, product release, truth certification, final-answer authority, accepted-evidence authority, memory write, Atlas memory admission, trace export, PMR federation, provider runtime, network runtime, model training, review skipping, user validation, human-subject study, market validation, human benefit proof, consciousness proof, universal ontology proof, or GUFT proof.
+"""
+
 def wave_rosetta_canonical_proxy_bridge_provenance_doc() -> str:
     summary = "\n".join(f"- {key} = {str(value).lower() if isinstance(value, bool) else value}" for key, value in WAVE_PROVENANCE_DASHBOARD_SUMMARY.items())
     return f"""# WAVE Rosetta Canonical-Proxy Bridge Provenance
@@ -24418,6 +24697,7 @@ def build(out_dir: Path, docs_dir: Path) -> None:
     docs_payload["compliance-evidence-toolset-library-design.md"] = compliance_evidence_toolset_library_design_doc()
     docs_payload["wave-rosetta-canonical-proxy-bridge.md"] = wave_rosetta_canonical_proxy_bridge_doc()
     docs_payload["eu-ai-act-mvr-evidence-mapping-design.md"] = eu_ai_act_mvr_evidence_mapping_design_doc()
+    docs_payload["eu-ai-act-mvr-evidence-map-local-prototype.md"] = eu_ai_act_mvr_evidence_map_local_prototype_doc()
     docs_payload["wave-rosetta-canonical-proxy-bridge-provenance.md"] = wave_rosetta_canonical_proxy_bridge_provenance_doc()
     for name in MINIMAL_VIABLE_RECEIPT_DESIGN_SYNC_DOCS:
         if name in docs_payload:
@@ -24455,6 +24735,9 @@ def build(out_dir: Path, docs_dir: Path) -> None:
     for name in WAVE_EU_PROVENANCE_SYNC_DOCS:
         if name in docs_payload:
             docs_payload[name] = docs_payload[name].rstrip() + WAVE_EU_PROVENANCE_SYNC_NOTE
+    for name in EU_AI_ACT_MVR_EVIDENCE_MAP_LOCAL_PROTOTYPE_SYNC_DOCS:
+        if name in docs_payload:
+            docs_payload[name] = docs_payload[name].rstrip() + EU_AI_ACT_MVR_EVIDENCE_MAP_LOCAL_PROTOTYPE_SYNC_NOTE
     for name, text in docs_payload.items():
         _write_text(docs_dir / name, text)
 
