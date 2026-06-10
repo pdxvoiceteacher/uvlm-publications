@@ -197,6 +197,25 @@ from tools.build_public_repro_dashboard import (
     EU_AI_ACT_MVR_EVIDENCE_MAP_LOCAL_PROTOTYPE_PRIOR_PHASE_RELATION,
     EU_AI_ACT_MVR_EVIDENCE_MAP_LOCAL_PROTOTYPE_REPRO_FRAGMENTS,
     EU_AI_ACT_MVR_EVIDENCE_MAP_LOCAL_PROTOTYPE_SIGNOFF_TERMS,
+    COMPLIANCE_READY_MVR_REPORT_LOCAL_PROTOTYPE_ARTIFACTS,
+    COMPLIANCE_READY_MVR_REPORT_LOCAL_PROTOTYPE_CLAIM_ALLOWED,
+    COMPLIANCE_READY_MVR_REPORT_LOCAL_PROTOTYPE_DASHBOARD_SUMMARY,
+    COMPLIANCE_READY_MVR_REPORT_LOCAL_PROTOTYPE_DOCTRINE_LANGUAGE,
+    COMPLIANCE_READY_MVR_REPORT_LOCAL_PROTOTYPE_GLOSSARY_TERMS,
+    COMPLIANCE_READY_MVR_REPORT_LOCAL_PROTOTYPE_REPRO_FRAGMENTS,
+    COMPLIANCE_READY_MVR_REPORT_LOCAL_PROTOTYPE_SECTION_TERMS,
+    COMPLIANCE_REPORT_SOURCE_CORPUS_BLOCKED_CLAIMS,
+    SOURCE_CORPUS_CONCRETE_HASHES,
+    SOURCE_CORPUS_HASH_FILL_DASHBOARD_SUMMARY,
+    SOURCE_CORPUS_HASH_FILL_REPRO_FRAGMENTS,
+    SOURCE_CORPUS_MANIFEST_TERMS,
+    SOURCE_CORPUS_PROVENANCE_ARCHIVE_CLAIM_ALLOWED,
+    SOURCE_CORPUS_PROVENANCE_ARTIFACTS,
+    SOURCE_CORPUS_PROVENANCE_DASHBOARD_SUMMARY,
+    SOURCE_CORPUS_PROVENANCE_DOCTRINE_LANGUAGE,
+    SOURCE_CORPUS_PROVENANCE_HASH_FILL_CLAIM_ALLOWED,
+    SOURCE_CORPUS_PROVENANCE_REPRO_FRAGMENTS,
+    SOURCE_CORPUS_REPORT_FILENAMES,
     WAVE_BRIDGE_ARTIFACTS,
     WAVE_BRIDGE_CLAIM_ALLOWED,
     WAVE_BRIDGE_DASHBOARD_SUMMARY,
@@ -536,6 +555,9 @@ REQUIRED_PHASES = {
     "WAVE-ROSETTA-CANONICAL-PROXY-BRIDGE-00",
     "EU-AI-ACT-MVR-EVIDENCE-MAPPING-DESIGN-00",
     "EU-AI-ACT-MVR-EVIDENCE-MAP-LOCAL-PROTOTYPE-00",
+    "COMPLIANCE-READY-MVR-REPORT-LOCAL-PROTOTYPE-00",
+    "SOURCE-CORPUS-PROVENANCE-ARCHIVE-00",
+    "SOURCE-CORPUS-PROVENANCE-HASH-FILL-00",
     "WAVE-ROSETTA-CANONICAL-PROXY-BRIDGE-PROVENANCE-00",
 }
 
@@ -6995,6 +7017,118 @@ def test_validator_fails_if_eu_ai_act_mvr_evidence_map_local_prototype_makes_for
         out_dir, docs_dir = run_builder(tmp_path / claim.replace(" ", "_").replace("/", "_"))
         page = docs_dir / "eu-ai-act-mvr-evidence-map-local-prototype.md"
         page.write_text(page.read_text(encoding="utf-8") + f"\nEU AI Act evidence map local prototype claims {claim}.\n", encoding="utf-8")
+        result = validate_dashboard(out_dir / "experiment_suite_dashboard.json", docs_dir)
+        assert result["passed"] is False, claim
+        forbidden_found = [found.lower() for found in result["forbidden_claims_found"]]
+        assert claim.lower() in forbidden_found or f"claims {claim.lower()}" in forbidden_found, result
+
+
+
+def test_compliance_report_local_prototype_and_source_corpus_index_dashboard_docs_and_boundaries(tmp_path):
+    out_dir, docs_dir = run_builder(tmp_path)
+    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text(encoding="utf-8"))
+    artifact_index = json.loads((out_dir / "artifact_index.json").read_text(encoding="utf-8"))
+    repro_index = json.loads((out_dir / "reproducibility_index.json").read_text(encoding="utf-8"))
+    claim_boundaries = json.loads((out_dir / "claim_boundary_index.json").read_text(encoding="utf-8"))
+    status = json.loads((out_dir / "status.json").read_text(encoding="utf-8"))
+    report_page = (docs_dir / "compliance-ready-mvr-report-local-prototype.md").read_text(encoding="utf-8")
+    archive_page = (docs_dir / "source-corpus-provenance-archive.md").read_text(encoding="utf-8")
+    hash_fill_page = (docs_dir / "source-corpus-provenance-hash-fill.md").read_text(encoding="utf-8")
+
+    phases = {entry["phase_id"]: entry for entry in dashboard["accepted_phases"]}
+    report_summary = phases["COMPLIANCE-READY-MVR-REPORT-LOCAL-PROTOTYPE-00"]["dashboard_summary"]
+    archive_summary = phases["SOURCE-CORPUS-PROVENANCE-ARCHIVE-00"]["dashboard_summary"]
+    hash_fill_summary = phases["SOURCE-CORPUS-PROVENANCE-HASH-FILL-00"]["dashboard_summary"]
+    assert report_summary == COMPLIANCE_READY_MVR_REPORT_LOCAL_PROTOTYPE_DASHBOARD_SUMMARY
+    assert archive_summary == SOURCE_CORPUS_PROVENANCE_DASHBOARD_SUMMARY
+    assert hash_fill_summary == SOURCE_CORPUS_HASH_FILL_DASHBOARD_SUMMARY
+    assert report_summary["report_status"] == "completed"
+    assert report_summary["open_gap_count"] == 10
+    assert report_summary["control_mapping_rows"] == 14
+    assert report_summary["glossary_entries"] == 14
+    for field in (
+        "compliance_certification_emitted",
+        "legal_advice_emitted",
+        "audit_pass_claimed",
+        "attestation_success_claimed",
+        "product_readiness_claimed",
+        "product_release_performed",
+        "final_answer_authority_granted",
+        "accepted_evidence_authority_granted",
+        "truth_certification_emitted",
+        "memory_write_performed",
+        "atlas_memory_admission_performed",
+        "trace_export_performed",
+        "pmr_federation_performed",
+    ):
+        assert report_summary[field] is False
+    assert archive_summary["manifest_status"] == "active_governed_provenance_manifest"
+    assert archive_summary["source_count"] == 5
+    assert archive_summary["pending_hash_placeholders_remaining"] == 0
+    assert archive_summary["raw_private_reports_bulk_imported"] is False
+    assert hash_fill_summary["pending_hash_placeholders_remaining"] == 0
+    assert hash_fill_summary["raw_private_reports_bulk_imported"] is False
+
+    assert artifact_index["phases"]["COMPLIANCE-READY-MVR-REPORT-LOCAL-PROTOTYPE-00"] == COMPLIANCE_READY_MVR_REPORT_LOCAL_PROTOTYPE_ARTIFACTS
+    assert artifact_index["phases"]["SOURCE-CORPUS-PROVENANCE-ARCHIVE-00"] == SOURCE_CORPUS_PROVENANCE_ARTIFACTS
+    assert artifact_index["phases"]["SOURCE-CORPUS-PROVENANCE-HASH-FILL-00"] == SOURCE_CORPUS_PROVENANCE_ARTIFACTS
+    artifact_text = json.dumps(artifact_index, ensure_ascii=False)
+    for artifact in (*COMPLIANCE_READY_MVR_REPORT_LOCAL_PROTOTYPE_ARTIFACTS, *SOURCE_CORPUS_PROVENANCE_ARTIFACTS):
+        assert artifact in artifact_text
+    repro_text = json.dumps(repro_index, ensure_ascii=False)
+    for fragment in (*COMPLIANCE_READY_MVR_REPORT_LOCAL_PROTOTYPE_REPRO_FRAGMENTS, *SOURCE_CORPUS_PROVENANCE_REPRO_FRAGMENTS, *SOURCE_CORPUS_HASH_FILL_REPRO_FRAGMENTS):
+        assert fragment in repro_text
+    for required in (
+        *COMPLIANCE_READY_MVR_REPORT_LOCAL_PROTOTYPE_DOCTRINE_LANGUAGE,
+        *COMPLIANCE_READY_MVR_REPORT_LOCAL_PROTOTYPE_SECTION_TERMS,
+        *COMPLIANCE_READY_MVR_REPORT_LOCAL_PROTOTYPE_GLOSSARY_TERMS,
+        COMPLIANCE_READY_MVR_REPORT_LOCAL_PROTOTYPE_CLAIM_ALLOWED,
+        "Publication sync grants no runtime authority.",
+    ):
+        assert required in report_page
+    for page in (archive_page, hash_fill_page):
+        for required in (
+            *SOURCE_CORPUS_PROVENANCE_DOCTRINE_LANGUAGE,
+            *SOURCE_CORPUS_MANIFEST_TERMS,
+            *SOURCE_CORPUS_CONCRETE_HASHES,
+            *SOURCE_CORPUS_REPORT_FILENAMES,
+            "Publication sync grants no runtime authority.",
+        ):
+            assert required in page
+    assert SOURCE_CORPUS_PROVENANCE_ARCHIVE_CLAIM_ALLOWED in archive_page
+    assert SOURCE_CORPUS_PROVENANCE_HASH_FILL_CLAIM_ALLOWED in hash_fill_page
+    boundaries = "\n".join(claim_boundaries["boundaries"])
+    for blocked in COMPLIANCE_REPORT_SOURCE_CORPUS_BLOCKED_CLAIMS:
+        assert blocked in boundaries
+    assert status["compliance_ready_mvr_report_local_prototype_00_indexed"] is True
+    assert status["compliance_ready_mvr_report_local_prototype_status"] == "completed"
+    assert status["compliance_ready_mvr_report_local_prototype_open_gap_count"] == 10
+    assert status["compliance_ready_mvr_report_local_prototype_control_mapping_rows"] == 14
+    assert status["compliance_ready_mvr_report_local_prototype_glossary_entries"] == 14
+    assert status["not_compliance_ready_mvr_report_local_prototype_certification"] is True
+    assert status["not_compliance_ready_mvr_report_local_prototype_runtime_authority"] is True
+    assert status["source_corpus_provenance_archive_00_indexed"] is True
+    assert status["source_corpus_provenance_hash_fill_00_indexed"] is True
+    assert status["source_corpus_manifest_status"] == "active_governed_provenance_manifest"
+    assert status["source_corpus_source_count"] == 5
+    assert status["source_corpus_pending_hash_placeholders_remaining"] == 0
+    assert status["source_corpus_raw_private_reports_bulk_imported"] is False
+    assert status["not_source_corpus_accepted_evidence"] is True
+    assert status["not_source_corpus_canonical_repo_state"] is True
+    assert status["not_source_corpus_runtime_authority"] is True
+
+
+def test_validator_required_phases_include_compliance_report_source_corpus_syncs():
+    assert "COMPLIANCE-READY-MVR-REPORT-LOCAL-PROTOTYPE-00" in VALIDATOR_REQUIRED_PHASES
+    assert "SOURCE-CORPUS-PROVENANCE-ARCHIVE-00" in VALIDATOR_REQUIRED_PHASES
+    assert "SOURCE-CORPUS-PROVENANCE-HASH-FILL-00" in VALIDATOR_REQUIRED_PHASES
+
+
+def test_validator_fails_if_compliance_report_source_corpus_syncs_make_forbidden_claims(tmp_path):
+    for claim in COMPLIANCE_REPORT_SOURCE_CORPUS_BLOCKED_CLAIMS:
+        out_dir, docs_dir = run_builder(tmp_path / claim.replace(" ", "_").replace("/", "_"))
+        page = docs_dir / "compliance-ready-mvr-report-local-prototype.md"
+        page.write_text(page.read_text(encoding="utf-8") + f"\nCompliance source sync claims {claim}.\n", encoding="utf-8")
         result = validate_dashboard(out_dir / "experiment_suite_dashboard.json", docs_dir)
         assert result["passed"] is False, claim
         forbidden_found = [found.lower() for found in result["forbidden_claims_found"]]

@@ -3555,6 +3555,146 @@
 - open_gap_count means compliance failure
 - gap_count means audit failure
 - signoff role means signoff performed
+- COMPLIANCE-READY-MVR-REPORT-LOCAL-PROTOTYPE-00 emits a local compliance-ready Minimal Viable Receipt report prototype that summarizes MVR and EU AI Act evidence-map artifacts into a stupidly user-friendly compliance-facing report with executive status, evidence map summary, gap register summary, human oversight and signoff status, controls and traceability, data governance, retention boundaries, contestability, validation scope, metric proxy annex, non-authority statement, audit artifact index, and open questions while requiring human review and authorized professional signoff and avoiding compliance certification, legal advice, audit-pass claims, attestation-success claims, product-readiness claims, product release, truth certification, final-answer authority, accepted-evidence authority, memory write, Atlas admission, trace export, PMR federation, model training, or review skipping.
+- SOURCE-CORPUS-PROVENANCE-ARCHIVE-00 defines a governed source-report archive pattern with manifest schema, source metadata, hashes, visibility and sensitivity flags, normalized derivative guidance, and non-authority boundaries so future developers can trace design and scientific provenance without treating source reports as accepted evidence, theorem proof, compliance certification, product release, product readiness, memory write, Atlas admission, or current canonical repo state.
+- SOURCE-CORPUS-PROVENANCE-HASH-FILL-00 fills pending EU AI Act source-report hashes in the governed source-corpus manifest and sha256sums file while preserving hash-only public references, public_release_approved=false, no raw private DOCX import, and all non-authority boundaries.
+- compliance_ready_mvr_report.md
+- compliance_ready_mvr_report_packet.json
+- compliance_ready_mvr_report_section_index.json
+- compliance_ready_mvr_control_mapping.json
+- compliance_ready_mvr_plain_language_glossary.json
+- compliance_ready_mvr_non_authority_boundary.json
+- compliance_ready_mvr_report_receipt.json
+- python/src/coherence/compliance/compliance_ready_mvr_report.py
+- schema/bridge/compliance_ready_mvr_report_receipt.schema.json
+- docs/SOURCE_CORPUS_PROVENANCE_ARCHIVE.md
+- docs/provenance/source_reports/README.md
+- docs/provenance/source_reports/manifest.schema.json
+- docs/provenance/source_reports/manifest.json
+- docs/provenance/source_reports/sha256sums.txt
+- docs/provenance/source_reports/2026-06/README.md
+- docs/provenance/source_reports/2026-06/raw/.gitkeep
+- docs/provenance/source_reports/2026-06/normalized/.gitkeep
+- docs/provenance/source_reports/2026-06/summaries/.gitkeep
+- build_compliance_ready_mvr_report_local_prototype
+- test_source_corpus_provenance_archive.py
+- test_source_corpus_provenance_hash_fill.py
+- Compliance-Ready MVR Report Local Prototype
+- This report supports review; it does not certify compliance.
+- This report is not legal advice.
+- This report does not pass an audit.
+- This report does not guarantee attestation success.
+- Source manifest is not accepted evidence.
+- Traceability is not truth.
+- Control mapping is not control effectiveness.
+- Visible gaps are not compliance failures.
+- No visible gap is not compliance success.
+- Human review remains required.
+- Authorized professional signoff remains required.
+- The report is stupidly user friendly.
+- Compliance users need a report, not an artifact maze.
+- Executive Summary
+- System and Intended Use
+- Input Selection and Source Scope
+- Consent and Observation Scope
+- Evidence Map Summary
+- Gap Register Summary
+- Human Oversight and Signoff
+- Controls and Traceability
+- Data Governance and Quarantine
+- Retention and Memory Boundaries
+- Contestability and Recovery
+- Validation Confidence Scope
+- WAVE / Metric Proxy Annex
+- Non-Authority Statement
+- Audit Artifact Index
+- Open Questions and Required Follow-Up
+- MVR
+- Observation Contract
+- TAC
+- CES
+- PMR
+- Sophia
+- Validation Tier
+- Quarantine
+- Source Manifest
+- Non-Authority Boundary
+- WAVE Bridge
+- EU AI Act Evidence Map
+- Gap Register
+- Human Signoff Packet
+- Source Corpus Provenance Archive
+- Repos are governed provenance libraries, not document dumps.
+- Raw source reports may be omitted from public repos when privacy, sensitivity, size, or licensing requires hash-only reference.
+- DOCX originals should have Markdown derivatives when committed.
+- TXT and MD reports may be committed directly when public-safe.
+- Large or sensitive files should use private/archive storage, Git LFS, release assets, or external governed storage.
+- Future users must check canonical repo state before treating reports as current design.
+- Source reports are not accepted evidence by themselves.
+- Source reports are not theorem proof.
+- Source reports are not product release.
+- Source reports are not compliance certification.
+- Summaries are not sources.
+- Human review remains required.
+- Hashes preserve identity; hashes do not certify truth.
+- Visibility and sensitivity must be explicit.
+- Public release approval must be explicit.
+- active_governed_provenance_manifest
+- hash_only_public_reference
+- canonical_repo_state_supersedes_report
+- source_is_not_accepted_evidence
+- source_is_not_theorem_proof
+- source_is_not_product_release
+- source_is_not_compliance_certification
+- summary_is_not_source
+- human_review_required
+- public_release_approved = false
+- 2f49da190fcf5e3a04330f53bd9e6d30228c0a999cdabf8be2e94e957e6dfb09
+- 9eaba6d5a49de7d09542b3e879cbb9eb936181a37e660b3434a5e31e110ccfe6
+- 21045f07f5e2122db9714741a418f582cb87b6d004f6c66f4a63d4b6b7e77fd6
+- 9140a5dad410be3f38bcb933b6c360537957d0ce1d4b5ea0d259941eaa3c581e
+- 94703c4678eccd407adb9009b34d2b178ab6ab18ee20b6df22d9407eda50dde1
+- GUFT discussion with Thomas and Apprentice 6_8_2026_842AM.docx
+- GUFT METRICS BRIDGE DISCUSSION 6_9_2026_1022AM.docx
+- wave_rosetta_canonical_proxy_bridge_scientific_review_20260609.md
+- EU AI Act Reporting Formats and Short-Term Product Strategy for UVLM Triadic Brain.docx
+- EU AI Act Aligned Reporting Architecture for Triadic Brain Product Lines.docx
+- Blocked overclaim examples for compliance-ready report local prototype and source-corpus provenance publication boundaries.
+- Compliance-ready MVR report local prototype certifies compliance
+- Compliance-ready MVR report local prototype provides legal advice
+- Compliance-ready MVR report local prototype passes audit
+- Compliance-ready MVR report local prototype guarantees attestation success
+- Compliance-ready MVR report local prototype proves product readiness
+- Compliance-ready MVR report local prototype is product release
+- Compliance-ready MVR report local prototype certifies truth
+- Compliance-ready MVR report local prototype authorizes final answers
+- Compliance-ready MVR report local prototype grants accepted-evidence authority
+- Compliance-ready MVR report local prototype writes memory
+- Compliance-ready MVR report local prototype admits Atlas memory
+- Compliance-ready MVR report local prototype exports traces
+- Compliance-ready MVR report local prototype federates PMR
+- source manifest is accepted evidence
+- traceability means truth
+- control mapping means control effectiveness
+- visible gap means compliance failure
+- no visible gap means compliance success
+- human review role means human signoff occurred
+- mapped evidence means compliance satisfied
+- WAVE bridge means canonical measurement
+- source corpus archive proves GUFT
+- source corpus archive proves compliance
+- source corpus archive certifies truth
+- source reports are accepted evidence
+- source reports are canonical repo state
+- source reports authorize product release
+- source reports certify product readiness
+- summaries are sources
+- hashes certify truth
+- raw reports may be public by default
+- private reports may be bulk imported without review
+- GitHub repo is a backup store
+- source corpus archive writes memory
+- source corpus archive admits Atlas memory
 - VALIDATION-TIERING-PROVENANCE-00 documents smoke, acceptance, and deep validation tiers and emits validation receipts that record tier, scope, commands, artifact chain, duration, sufficient-for decisions, and not-sufficient-for boundaries without certifying truth, releasing product, proving science, validating market or human benefit, deploying runtime, writing memory, or admitting Atlas memory.
 - config/validation/validation_tier_policy.v1.json
 - validation_tier_receipt.json
@@ -4898,3 +5038,17 @@ Doctrine: EU AI Act MVR Evidence Map Prototype; This is evidence support, not EU
 EU AI Act categories: risk_classification_support, intended_use_description, source_data_governance_evidence, technical_documentation_support, record_keeping_logging_support, transparency_deployer_information_support, human_oversight_support, accuracy_robustness_cybersecurity_posture, post_market_monitoring_or_incident_review_posture, fundamental_rights_or_data_equity_review_support, non_authority_boundary. MVR artifact mapping terms: source_manifest, source_hash, consent_scope, observation_scope, quarantine_report, unsupported_claims, controls_applied, human_review_status, validation_tier, retention_boundary, contestability_options, recovery_options, non_authority_boundary, audit_artifact_index, open_gaps. Gap terms: missing_risk_classification, missing_intended_use_owner, missing_human_signoff, missing_control_effectiveness_test, missing_representative_data_assessment, missing_security_review, missing_fundamental_rights_assessment, missing_post_market_monitoring_plan, missing_incident_response_owner, missing_legal_review, missing_evidence_visible = true, gaps_are_not_compliance_failures = true, no_visible_gap_is_not_compliance_success = true. Human review/signoff terms: compliance_officer, legal_reviewer, privacy_officer, security_officer, model_risk_manager, ai_governance_lead, executive_owner, licensed_auditor_or_certifier, signoff_performed = false, legal_review_performed = false, authorized_professional_signoff_required = true.
 
 Relation to prior phases: EU-AI-ACT-MVR-EVIDENCE-MAPPING-DESIGN-00 defines the design-only mapping profile. EU-AI-ACT-MVR-EVIDENCE-MAP-LOCAL-PROTOTYPE-00 emits the first local EU AI Act evidence-support map. COMPLIANCE-EVIDENCE-TOOLSET-LIBRARY-DESIGN-00 defines the broader evidence toolset library. COMPLIANCE-READY-MVR-REPORT-DESIGN-00 defines the compliance-facing report structure. MVR-LOCAL-REAL-INPUT-PILOT-HUMAN-SELECTED-FILE-SMOKE-00 supplies bounded MVR real-input pilot artifacts. VALIDATION-TIERING-PROVENANCE-00 records validation confidence scope. Publication sync grants no runtime authority.
+
+## Compliance-ready MVR report local prototype and source-corpus provenance publication sync
+
+COMPLIANCE-READY-MVR-REPORT-LOCAL-PROTOTYPE-00 emits a local compliance-ready MVR report prototype for review support only. SOURCE-CORPUS-PROVENANCE-ARCHIVE-00 defines the governed source-report archive pattern, and SOURCE-CORPUS-PROVENANCE-HASH-FILL-00 fills pending EU AI Act source-report hashes while preserving hash-only public references and no raw private DOCX import.
+
+Compliance report doctrine: Compliance-Ready MVR Report Local Prototype; This report supports review; it does not certify compliance.; This report is not legal advice.; This report does not pass an audit.; This report does not guarantee attestation success.; Source manifest is not accepted evidence.; Traceability is not truth.; Control mapping is not control effectiveness.; Visible gaps are not compliance failures.; No visible gap is not compliance success.; Human review remains required.; Authorized professional signoff remains required.; The report is stupidly user friendly.; Compliance users need a report, not an artifact maze.
+
+Compliance report sections: Executive Summary, System and Intended Use, Input Selection and Source Scope, Consent and Observation Scope, Evidence Map Summary, Gap Register Summary, Human Oversight and Signoff, Controls and Traceability, Data Governance and Quarantine, Retention and Memory Boundaries, Contestability and Recovery, Validation Confidence Scope, WAVE / Metric Proxy Annex, Non-Authority Statement, Audit Artifact Index, Open Questions and Required Follow-Up. Glossary terms: MVR, Observation Contract, TAC, CES, PMR, Sophia, Validation Tier, Quarantine, Source Manifest, Non-Authority Boundary, WAVE Bridge, EU AI Act Evidence Map, Gap Register, Human Signoff Packet.
+
+Source corpus doctrine: Source Corpus Provenance Archive; Repos are governed provenance libraries, not document dumps.; Raw source reports may be omitted from public repos when privacy, sensitivity, size, or licensing requires hash-only reference.; DOCX originals should have Markdown derivatives when committed.; TXT and MD reports may be committed directly when public-safe.; Large or sensitive files should use private/archive storage, Git LFS, release assets, or external governed storage.; Future users must check canonical repo state before treating reports as current design.; Source reports are not accepted evidence by themselves.; Source reports are not theorem proof.; Source reports are not product release.; Source reports are not compliance certification.; Summaries are not sources.; Human review remains required.; Hashes preserve identity; hashes do not certify truth.; Visibility and sensitivity must be explicit.; Public release approval must be explicit.
+
+Source corpus manifest terms: active_governed_provenance_manifest, hash_only_public_reference, canonical_repo_state_supersedes_report, source_is_not_accepted_evidence, source_is_not_theorem_proof, source_is_not_product_release, source_is_not_compliance_certification, summary_is_not_source, human_review_required, public_release_approved = false. Source report filenames: GUFT discussion with Thomas and Apprentice 6_8_2026_842AM.docx, GUFT METRICS BRIDGE DISCUSSION 6_9_2026_1022AM.docx, wave_rosetta_canonical_proxy_bridge_scientific_review_20260609.md, EU AI Act Reporting Formats and Short-Term Product Strategy for UVLM Triadic Brain.docx, EU AI Act Aligned Reporting Architecture for Triadic Brain Product Lines.docx. Source hashes: 2f49da190fcf5e3a04330f53bd9e6d30228c0a999cdabf8be2e94e957e6dfb09, 9eaba6d5a49de7d09542b3e879cbb9eb936181a37e660b3434a5e31e110ccfe6, 21045f07f5e2122db9714741a418f582cb87b6d004f6c66f4a63d4b6b7e77fd6, 9140a5dad410be3f38bcb933b6c360537957d0ce1d4b5ea0d259941eaa3c581e, 94703c4678eccd407adb9009b34d2b178ab6ab18ee20b6df22d9407eda50dde1.
+
+Publication sync grants no runtime authority. It does not imply compliance certification, legal advice, audit pass, attestation success, product readiness, product release, truth certification, final-answer authority, accepted-evidence authority, memory write, Atlas memory admission, trace export, PMR federation, provider runtime, network runtime, model training, review skipping, user validation, human-subject study, market validation, human benefit proof, theorem proof, GUFT proof, consciousness proof, or universal ontology proof.

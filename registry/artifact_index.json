@@ -1342,6 +1342,39 @@
       "artifact_inventory.json",
       "export_bundle_parity_report.json"
     ],
+    "COMPLIANCE-READY-MVR-REPORT-LOCAL-PROTOTYPE-00": [
+      "compliance_ready_mvr_report.md",
+      "compliance_ready_mvr_report_packet.json",
+      "compliance_ready_mvr_report_section_index.json",
+      "compliance_ready_mvr_control_mapping.json",
+      "compliance_ready_mvr_plain_language_glossary.json",
+      "compliance_ready_mvr_non_authority_boundary.json",
+      "compliance_ready_mvr_report_receipt.json",
+      "python/src/coherence/compliance/compliance_ready_mvr_report.py",
+      "schema/bridge/compliance_ready_mvr_report_receipt.schema.json"
+    ],
+    "SOURCE-CORPUS-PROVENANCE-ARCHIVE-00": [
+      "docs/SOURCE_CORPUS_PROVENANCE_ARCHIVE.md",
+      "docs/provenance/source_reports/README.md",
+      "docs/provenance/source_reports/manifest.schema.json",
+      "docs/provenance/source_reports/manifest.json",
+      "docs/provenance/source_reports/sha256sums.txt",
+      "docs/provenance/source_reports/2026-06/README.md",
+      "docs/provenance/source_reports/2026-06/raw/.gitkeep",
+      "docs/provenance/source_reports/2026-06/normalized/.gitkeep",
+      "docs/provenance/source_reports/2026-06/summaries/.gitkeep"
+    ],
+    "SOURCE-CORPUS-PROVENANCE-HASH-FILL-00": [
+      "docs/SOURCE_CORPUS_PROVENANCE_ARCHIVE.md",
+      "docs/provenance/source_reports/README.md",
+      "docs/provenance/source_reports/manifest.schema.json",
+      "docs/provenance/source_reports/manifest.json",
+      "docs/provenance/source_reports/sha256sums.txt",
+      "docs/provenance/source_reports/2026-06/README.md",
+      "docs/provenance/source_reports/2026-06/raw/.gitkeep",
+      "docs/provenance/source_reports/2026-06/normalized/.gitkeep",
+      "docs/provenance/source_reports/2026-06/summaries/.gitkeep"
+    ],
     "WAVE-ROSETTA-CANONICAL-PROXY-BRIDGE-PROVENANCE-00": [
       "docs/WAVE_ROSETTA_CANONICAL_PROXY_BRIDGE_PROVENANCE.md",
       "config/metrics/canonical_proxy_bridge_provenance.v1.json",

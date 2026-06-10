@@ -114,6 +114,7 @@ from tools.build_public_repro_dashboard import (
     COMPLIANCE_DESIGN_BLOCKED_CLAIMS,
     WAVE_EU_PROVENANCE_BLOCKED_CLAIMS,
     EU_AI_ACT_MVR_EVIDENCE_MAP_LOCAL_PROTOTYPE_BLOCKED_CLAIMS,
+    COMPLIANCE_REPORT_SOURCE_CORPUS_BLOCKED_CLAIMS,
     MVR_READABILITY_REVIEW_SEED_CLAIM_ALLOWED,
     MVR_READABILITY_REVIEW_SEED_DASHBOARD_SUMMARY,
     MVR_READABILITY_REVIEW_SEED_DOCTRINE_LANGUAGE,
@@ -347,6 +348,9 @@ REQUIRED_PHASES = {
     "WAVE-ROSETTA-CANONICAL-PROXY-BRIDGE-00",
     "EU-AI-ACT-MVR-EVIDENCE-MAPPING-DESIGN-00",
     "EU-AI-ACT-MVR-EVIDENCE-MAP-LOCAL-PROTOTYPE-00",
+    "COMPLIANCE-READY-MVR-REPORT-LOCAL-PROTOTYPE-00",
+    "SOURCE-CORPUS-PROVENANCE-ARCHIVE-00",
+    "SOURCE-CORPUS-PROVENANCE-HASH-FILL-00",
     "WAVE-ROSETTA-CANONICAL-PROXY-BRIDGE-PROVENANCE-00",
 }
 REQUIRED_BOUNDARY_PHRASES = (
@@ -1304,6 +1308,7 @@ FORBIDDEN_PHRASES = (
     *[f"claims {claim}" for claim in COMPLIANCE_DESIGN_BLOCKED_CLAIMS],
     *[f"claims {claim}" for claim in WAVE_EU_PROVENANCE_BLOCKED_CLAIMS],
     *[f"claims {claim}" for claim in EU_AI_ACT_MVR_EVIDENCE_MAP_LOCAL_PROTOTYPE_BLOCKED_CLAIMS],
+    *[f"claims {claim}" for claim in COMPLIANCE_REPORT_SOURCE_CORPUS_BLOCKED_CLAIMS],
     "network authorized",
     "remote provider called",
     "remote provider calls",
@@ -1813,6 +1818,13 @@ def _forbidden_hits(text: str) -> list[str]:
                 "claims_blocked" in text[max(0, index - 3000) : index]
                 or "blocked claims" in text[max(0, index - 96) : index]
                 or "eu ai act mvr evidence map local prototype publication boundaries" in text[max(0, index - 2400) : index]
+            ):
+                start = index + len(normalized_phrase)
+                continue
+            if phrase in COMPLIANCE_REPORT_SOURCE_CORPUS_BLOCKED_CLAIMS and (
+                "claims_blocked" in text[max(0, index - 3000) : index]
+                or "blocked claims" in text[max(0, index - 96) : index]
+                or "compliance-ready report local prototype and source-corpus provenance publication boundaries" in text[max(0, index - 2600) : index]
             ):
                 start = index + len(normalized_phrase)
                 continue
