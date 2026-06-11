@@ -263,6 +263,10 @@
         "command": "python -c \"from pathlib import Path; from coherence.gateway.ai_receipt_gateway_scope_simulation import build_ai_receipt_gateway_scope_simulation; build_ai_receipt_gateway_scope_simulation(Path(r'C:\\UVLM\\run_artifacts\\ai_receipt_gateway_scope_simulation'))\""
       },
       {
+        "name": "AI-RECEIPT-GATEWAY-LOCAL-INGRESS-PROTOTYPE-00 Python entrypoint",
+        "command": "python -c \"from pathlib import Path; from coherence.gateway.ai_receipt_gateway_local_ingress import build_ai_receipt_gateway_local_ingress_prototype; build_ai_receipt_gateway_local_ingress_prototype(Path(r'C:\\UVLM\\run_artifacts\\ai_receipt_gateway_local_ingress_prototype\\bridge'))\""
+      },
+      {
         "name": "SOURCE-CORPUS-GATEWAY-REPORTS-BATCH-2026-06-10-00 source batch validation",
         "command": "python -m pytest -q python/tests/provenance/test_source_corpus_gateway_report_batch_20260610.py tests/test_experiment_registry.py"
       },

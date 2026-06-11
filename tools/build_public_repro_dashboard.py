@@ -11833,6 +11833,178 @@ AI_RECEIPT_GATEWAY_SCOPE_SIMULATION_BLOCKED_CLAIMS = GATEWAY_SCOPE_SOURCE_CORPUS
     "hashes certify truth",
 ]
 AI_RECEIPT_GATEWAY_SCOPE_SIMULATION_CLAIM_ALLOWED = "AI-RECEIPT-GATEWAY-SCOPE-SIMULATION-00 emits a design-only fixture policy simulation for UVLM AI Receipt Gateway scope, mode, ingress, activation, and negative-control outcomes, showing configured-scope allowed paths and fail-closed blocked paths for universal capture, silent activation, hidden file reads, unapproved directory scans, connector pulls without consent, raw retention without scope, trace export without scope, memory write without scope, PMR federation without scope, and enforcement mode enabled now, without activating runtime capture, processing real inputs, calling providers, performing network calls, writing memory, admitting Atlas memory, exporting traces, federating PMR, certifying compliance, providing legal advice, passing audits, guaranteeing attestation success, claiming product readiness, releasing product, granting final-answer authority, or granting accepted-evidence authority."
+AI_RECEIPT_GATEWAY_LOCAL_INGRESS_COMMAND = "python -c \"from pathlib import Path; from coherence.gateway.ai_receipt_gateway_local_ingress import build_ai_receipt_gateway_local_ingress_prototype; build_ai_receipt_gateway_local_ingress_prototype(Path(r'C:\\UVLM\\run_artifacts\\ai_receipt_gateway_local_ingress_prototype\\bridge'))\""
+AI_RECEIPT_GATEWAY_LOCAL_INGRESS_REPRO_FRAGMENTS = ["build_ai_receipt_gateway_local_ingress_prototype"]
+AI_RECEIPT_GATEWAY_LOCAL_INGRESS_ARTIFACTS = [
+    "docs/AI_RECEIPT_GATEWAY_LOCAL_INGRESS_PROTOTYPE.md",
+    "python/src/coherence/gateway/ai_receipt_gateway_local_ingress.py",
+    "python/src/coherence/gateway/__init__.py",
+    "python/tests/product/test_ai_receipt_gateway_local_ingress_prototype.py",
+    "schema/bridge/ai_receipt_gateway_local_ingress_packet.schema.json",
+    "schema/bridge/ai_receipt_gateway_local_ingress_receipt.schema.json",
+    "schema/bridge/ai_receipt_gateway_local_ingress_non_authority_boundary.schema.json",
+    "ai_receipt_gateway_local_ingress_packet.json",
+    "ai_receipt_gateway_local_ingress_receipt.json",
+    "ai_receipt_gateway_local_ingress_non_authority_boundary.json",
+    "ai_receipt_gateway_local_ingress_summary.md",
+    "ai_receipt_gateway_scope_simulation_packet.json",
+    "ai_receipt_gateway_visible_status_packet.json",
+    "ai_receipt_gateway_negative_control_report.json",
+    "ai_receipt_gateway_scope_simulation_receipt.json",
+    "minimal_viable_receipt_packet.json",
+    "minimal_viable_receipt_human_readable.md",
+    "eu_ai_act_mvr_evidence_map.json",
+    "eu_ai_act_mvr_gap_register.json",
+    "eu_ai_act_mvr_human_review_packet.json",
+    "eu_ai_act_mvr_evidence_map_receipt.json",
+    "compliance_ready_mvr_report.md",
+    "compliance_ready_mvr_report_packet.json",
+    "compliance_ready_mvr_report_receipt.json",
+    "pmr_local_runtime_artifact_index.json",
+    "artifact_inventory.json",
+    "run_artifact_manifest.json",
+    "export_bundle_manifest.json",
+    "export_bundle_parity_report.json",
+]
+AI_RECEIPT_GATEWAY_LOCAL_INGRESS_DASHBOARD_SUMMARY = {
+    "ingress_status": "completed",
+    "ingress_mode": "local_explicit_ingress_prototype",
+    "gateway_on": True,
+    "source_mode": "generated_harmless_fixture",
+    "scenario_id": "receipt_mode_local_file_selector",
+    "selected_decision_status": "allowed_configured_scope",
+    "activation_allowed": True,
+    "selected_source_count": 1,
+    "scope_simulation_status": "completed_design_only",
+    "scope_scenario_count": 14,
+    "negative_control_status": "passed_fail_closed",
+    "negative_control_count": 10,
+    "mvr_report_ref": "minimal_viable_receipt_human_readable.md",
+    "eu_ai_act_evidence_map_ref": "eu_ai_act_mvr_evidence_map.json",
+    "compliance_ready_report_ref": "compliance_ready_mvr_report.md",
+    "directory_scan_performed": False,
+    "hidden_file_read_performed": False,
+    "connector_pull_performed": False,
+    "provider_runtime_performed": False,
+    "network_call_performed": False,
+    "memory_write_performed": False,
+    "atlas_memory_admission_performed": False,
+    "trace_export_performed": False,
+    "pmr_federation_performed": False,
+    "compliance_certification_emitted": False,
+    "legal_advice_emitted": False,
+    "audit_pass_claimed": False,
+    "attestation_success_claimed": False,
+    "product_readiness_claimed": False,
+    "product_release_performed": False,
+    "truth_certification_emitted": False,
+    "final_answer_authority_granted": False,
+    "accepted_evidence_authority_granted": False,
+    "receipt_status": "completed",
+    "non_authority_boundary_status": "active",
+}
+AI_RECEIPT_GATEWAY_LOCAL_INGRESS_DOCTRINE_LANGUAGE = [
+    "AI Receipt Gateway Local Ingress Prototype",
+    "Local ingress is explicit, not automatic capture.",
+    "Configured scope is not universal capture.",
+    "Gateway activation remains simulated, not runtime activation.",
+    "No directory scan was performed.",
+    "No hidden file read was performed.",
+    "No connector pull was performed.",
+    "No provider call was performed.",
+    "No network call was performed.",
+    "No memory write was performed.",
+    "No Atlas admission was performed.",
+    "No trace export was performed.",
+    "No PMR federation was performed.",
+    "No compliance certification was emitted.",
+    "No legal advice was emitted.",
+    "No audit pass was claimed.",
+    "No attestation success was claimed.",
+    "Human review remains required.",
+    "Authorized professional signoff remains required for compliance use.",
+    "Gateway off performs no capture.",
+    "Directory paths are rejected.",
+    "Hidden files are rejected.",
+    "Explicit source selection is required.",
+    "Pasted excerpts are fixtures and not accepted evidence.",
+    "Raw retention remains off after summary.",
+]
+AI_RECEIPT_GATEWAY_LOCAL_INGRESS_SOURCE_MODES = [
+    "generated_harmless_fixture",
+    "explicit_local_source_path",
+    "explicit_pasted_excerpt_fixture",
+    "gateway_off_no_capture",
+]
+AI_RECEIPT_GATEWAY_LOCAL_INGRESS_NEGATIVE_CONTROLS = [
+    "gateway_off_does_not_process_source",
+    "directory_path_rejected",
+    "hidden_file_rejected",
+    "connector_pull_rejected",
+    "universal_capture_rejected",
+    "silent_activation_rejected",
+    "raw_retention_without_scope_rejected",
+    "trace_export_without_scope_rejected",
+    "memory_write_without_scope_rejected",
+    "pmr_federation_without_scope_rejected",
+]
+AI_RECEIPT_GATEWAY_LOCAL_INGRESS_GUARDRAILS = [
+    "gateway_local_ingress_is_not_runtime_capture",
+    "gateway_local_ingress_is_not_invisible_surveillance",
+    "gateway_local_ingress_is_not_universal_capture",
+    "gateway_local_ingress_is_not_compliance_certification",
+    "gateway_local_ingress_is_not_legal_advice",
+    "gateway_local_ingress_is_not_audit_pass",
+    "gateway_local_ingress_is_not_attestation_success",
+    "gateway_local_ingress_is_not_product_release",
+    "gateway_local_ingress_is_not_product_readiness",
+    "gateway_local_ingress_is_not_truth_certification",
+    "gateway_local_ingress_is_not_final_answer_authority",
+    "gateway_local_ingress_is_not_accepted_evidence_authority",
+    "gateway_local_ingress_does_not_write_memory",
+    "gateway_local_ingress_does_not_admit_atlas_memory",
+    "gateway_local_ingress_does_not_export_traces",
+    "gateway_local_ingress_does_not_federate_pmr",
+]
+AI_RECEIPT_GATEWAY_LOCAL_INGRESS_BLOCKED_CLAIMS = [
+    "local ingress captures all AI data",
+    "local ingress is invisible surveillance",
+    "local ingress activates runtime capture",
+    "local ingress scans directories",
+    "local ingress reads hidden files",
+    "local ingress pulls connectors",
+    "local ingress calls providers",
+    "local ingress performs network calls",
+    "local ingress writes memory",
+    "local ingress admits Atlas memory",
+    "local ingress exports traces",
+    "local ingress federates PMR",
+    "local ingress certifies compliance",
+    "local ingress provides legal advice",
+    "local ingress passes audits",
+    "local ingress guarantees attestation success",
+    "local ingress proves product readiness",
+    "local ingress releases product",
+    "local ingress grants accepted-evidence authority",
+    "local ingress authorizes final answers",
+    "gateway off still processes sources",
+    "generated harmless fixture means real input processing",
+    "explicit local source path means directory scan",
+    "pasted excerpt fixture is accepted evidence",
+    "downstream compliance report certifies compliance",
+    "EU evidence map passes audit",
+    "MVR report grants final-answer authority",
+]
+AI_RECEIPT_GATEWAY_LOCAL_INGRESS_CLAIM_ALLOWED = "AI-RECEIPT-GATEWAY-LOCAL-INGRESS-PROTOTYPE-00 emits a local explicit-ingress prototype for the UVLM AI Receipt Gateway that routes only explicitly selected local source paths, pasted excerpt fixtures, or generated harmless fixtures through the existing scope simulation, MVR, EU AI Act evidence-map, and compliance-ready report stack while preserving that configured scope is not universal capture, gateway activation is simulated, local ingress is not invisible surveillance, gateway off performs no capture, and no directory scan, hidden file read, connector pull, provider call, network call, memory write, Atlas admission, trace export, PMR federation, compliance certification, legal advice, audit pass, attestation success, product readiness, product release, truth certification, final-answer authority, or accepted-evidence authority occurs."
+AI_RECEIPT_GATEWAY_LOCAL_INGRESS_PRIOR_PHASE_RELATION = [
+    "AI-RECEIPT-GATEWAY-ACTIVATION-DESIGN-00 defines the VPN-like activation model.",
+    "AI-RECEIPT-GATEWAY-SCOPE-SIMULATION-00 simulates scope, mode, ingress, activation, and negative-control outcomes.",
+    "AI-RECEIPT-GATEWAY-LOCAL-INGRESS-PROTOTYPE-00 emits the first local explicit-ingress prototype.",
+    "MVR-LOCAL-REAL-INPUT-PILOT-HUMAN-SELECTED-FILE-SMOKE-00 supplies bounded MVR real-input pilot artifacts.",
+    "EU-AI-ACT-MVR-EVIDENCE-MAP-LOCAL-PROTOTYPE-00 supplies evidence-map artifacts.",
+    "COMPLIANCE-READY-MVR-REPORT-LOCAL-PROTOTYPE-00 supplies compliance-ready report artifacts.",
+    "COMPLIANCE-REPORT-PRESENTATION-STANDARD-00 defines presentation constraints.",
+]
 SOURCE_CORPUS_GATEWAY_REPORT_BATCH_CLAIM_ALLOWED = "SOURCE-CORPUS-GATEWAY-REPORTS-BATCH-2026-06-10-00 records a hash-only gateway and compliance report source batch with nine uploaded consultant report and visual mockup identities, preserving source filenames, SHA-256 hashes, visibility, public-release status, and non-authority boundaries without committing raw DOCX/PNG files or treating reports as accepted evidence, theorem proof, product release, product readiness, compliance certification, legal advice, memory write, Atlas admission, or canonical repo state."
 SOURCE_CORPUS_GATEWAY_REPORT_SOURCE_IDENTITY_REPAIR_CLAIM_ALLOWED = "SOURCE-CORPUS-GATEWAY-REPORTS-BATCH-SOURCE-IDENTITY-REPAIR-00 restores actual uploaded consultant report and visual mockup filenames and SHA-256 hashes as canonical source identities for the gateway report source batch while preserving hash-only public references, public_release_approved=false, no raw private DOCX/PNG import, and all non-authority boundaries."
 COMPLIANCE_READY_MVR_REPORT_LOCAL_PROTOTYPE_DOCTRINE_LANGUAGE = [
@@ -11991,6 +12163,7 @@ COMPLIANCE_REPORT_SOURCE_CORPUS_BLOCKED_CLAIMS = [
     "source reports are product readiness",
     "source reports are current canonical repo state",
     *GATEWAY_SCOPE_SOURCE_CORPUS_BLOCKED_CLAIMS,
+    *AI_RECEIPT_GATEWAY_LOCAL_INGRESS_BLOCKED_CLAIMS,
 ]
 COMPLIANCE_READY_MVR_REPORT_LOCAL_PROTOTYPE_CLAIM_ALLOWED = "COMPLIANCE-READY-MVR-REPORT-LOCAL-PROTOTYPE-00 emits a local compliance-ready Minimal Viable Receipt report prototype that summarizes MVR and EU AI Act evidence-map artifacts into a stupidly user-friendly compliance-facing report with executive status, evidence map summary, gap register summary, human oversight and signoff status, controls and traceability, data governance, retention boundaries, contestability, validation scope, metric proxy annex, non-authority statement, audit artifact index, and open questions while requiring human review and authorized professional signoff and avoiding compliance certification, legal advice, audit-pass claims, attestation-success claims, product-readiness claims, product release, truth certification, final-answer authority, accepted-evidence authority, memory write, Atlas admission, trace export, PMR federation, model training, or review skipping."
 SOURCE_CORPUS_PROVENANCE_ARCHIVE_CLAIM_ALLOWED = "SOURCE-CORPUS-PROVENANCE-ARCHIVE-00 defines a governed source-report archive pattern with manifest schema, source metadata, hashes, visibility and sensitivity flags, normalized derivative guidance, and non-authority boundaries so future developers can trace design and scientific provenance without treating source reports as accepted evidence, theorem proof, compliance certification, product release, product readiness, memory write, Atlas admission, or current canonical repo state."
@@ -12136,6 +12309,20 @@ AI_RECEIPT_GATEWAY_SCOPE_SIMULATION_PHASE = {
     "reviewer_caution": "AI-RECEIPT-GATEWAY-SCOPE-SIMULATION-00 is design-only fixture policy simulation. It is not runtime capture, gateway activation, invisible surveillance, universal capture, real-input processing, provider runtime, network runtime, memory write, Atlas admission, trace export, PMR federation, compliance certification, legal advice, audit pass, attestation success, product readiness, product release, final-answer authority, or accepted-evidence authority.",
     "publication_status": "dashboard_indexed",
 }
+AI_RECEIPT_GATEWAY_LOCAL_INGRESS_PHASE = {
+    "phase_id": "AI-RECEIPT-GATEWAY-LOCAL-INGRESS-PROTOTYPE-00",
+    "repo": "pdxvoiceteacher/CoherenceLattice",
+    "status": "accepted_local_validation",
+    "evidence_type": "ai_receipt_gateway_local_ingress_prototype_publication_sync",
+    "product_posture": "local_explicit_ingress_prototype_without_runtime_capture_or_authority",
+    "primary_artifacts": AI_RECEIPT_GATEWAY_LOCAL_INGRESS_ARTIFACTS,
+    "dashboard_summary": AI_RECEIPT_GATEWAY_LOCAL_INGRESS_DASHBOARD_SUMMARY,
+    "reproduction_command_summary": AI_RECEIPT_GATEWAY_LOCAL_INGRESS_COMMAND,
+    "claim_allowed": AI_RECEIPT_GATEWAY_LOCAL_INGRESS_CLAIM_ALLOWED,
+    "claims_blocked": AI_RECEIPT_GATEWAY_LOCAL_INGRESS_BLOCKED_CLAIMS,
+    "reviewer_caution": "AI-RECEIPT-GATEWAY-LOCAL-INGRESS-PROTOTYPE-00 is a local explicit-ingress prototype only. It performs no runtime capture, invisible surveillance, universal capture, directory scan, hidden file read, connector pull, provider/network call, memory write, Atlas admission, trace export, PMR federation, compliance certification, legal advice, audit pass, attestation success, product release/readiness, truth certification, final-answer authority, accepted-evidence authority, model training, or review skipping.",
+    "publication_status": "dashboard_indexed",
+}
 SOURCE_CORPUS_GATEWAY_REPORT_BATCH_PHASE = {
     "phase_id": "SOURCE-CORPUS-GATEWAY-REPORTS-BATCH-2026-06-10-00",
     "repo": "pdxvoiceteacher/CoherenceLattice",
@@ -12162,189 +12349,6 @@ SOURCE_CORPUS_GATEWAY_REPORT_SOURCE_IDENTITY_REPAIR_PHASE = {
     "claim_allowed": SOURCE_CORPUS_GATEWAY_REPORT_SOURCE_IDENTITY_REPAIR_CLAIM_ALLOWED,
     "claims_blocked": GATEWAY_SCOPE_SOURCE_CORPUS_BLOCKED_CLAIMS,
     "reviewer_caution": "SOURCE-CORPUS-GATEWAY-REPORTS-BATCH-SOURCE-IDENTITY-REPAIR-00 restores actual uploaded source identities only. Synthetic gateway_report_* names may remain aliases; hashes do not certify truth and raw private reports/images are not committed.",
-    "publication_status": "dashboard_indexed",
-}
-
-
-SOURCE_CORPUS_BATCH_MANIFEST_20260610_COMMAND = "python -m pytest -q python/tests/provenance/test_source_corpus_batch_manifest_20260610.py tests/test_experiment_registry.py"
-SOURCE_CORPUS_BATCH_MANIFEST_20260610_REPRO_FRAGMENTS = ["test_source_corpus_batch_manifest_20260610.py"]
-SOURCE_CORPUS_BATCH_MANIFEST_20260610_ARTIFACTS = [
-    "docs/provenance/source_reports/2026-06/batch_manifest_20260610.json",
-    "docs/provenance/source_reports/2026-06/batch_sha256sums_20260610.txt",
-    "docs/provenance/source_reports/2026-06/batch_aliases_20260610.json",
-    "docs/provenance/source_reports/2026-06/batch_summary_20260610.md",
-    "schema/bridge/source_corpus_batch_manifest.schema.json",
-    "python/tests/provenance/test_source_corpus_batch_manifest_20260610.py",
-]
-SOURCE_CORPUS_BATCH_MANIFEST_20260610_DOCTRINE_LANGUAGE = [
-    "June 2026 Source Corpus Batch Manifest",
-    "This batch preserves source identity and provenance, not accepted evidence.",
-    "Raw private files are not committed.",
-    "Duplicate filenames are deduplicated by SHA-256.",
-    "Filename aliases are preserved.",
-    "Public release approval is false by default.",
-    "Hashes preserve identity; hashes do not certify truth.",
-    "Canonical repo state supersedes source reports.",
-    "Human review remains required.",
-    "Large or sensitive reports remain hash-only references unless explicitly approved.",
-    "Repos are governed provenance libraries, not document dumps.",
-    "Source reports are not accepted evidence by themselves.",
-    "Source reports are not theorem proof.",
-    "Source reports are not product release.",
-    "Source reports are not product readiness.",
-    "Source reports are not compliance certification.",
-    "Source reports are not legal advice.",
-    "Source reports are not current canonical repo state.",
-    "SOURCE-CORPUS-BATCH-MANIFEST-2026-06-10-00 does not commit raw private reports.",
-    "SOURCE-CORPUS-BATCH-MANIFEST-2026-06-10-00 does not add extracted text.",
-    "SOURCE-CORPUS-BATCH-MANIFEST-2026-06-10-00 does not add normalized derivatives.",
-]
-SOURCE_CORPUS_BATCH_MANIFEST_20260610_FILENAMES = [
-    "Telemetry Project Deep Dive.docx",
-    "CoherenceLattice Change Management and Gnosis Synthesis Report.docx",
-    "Telemetry Integration into the CoherenceLattice Pipeline.docx",
-    "Multi-Axial Coherence Analysis for Exogenic Off-Loading in Complex Systems.docx",
-    "Quantum Gravity from Causal Memory.docx",
-    "Universal Control Codex (UCC) Supplement.docx",
-    "The Coherence Lattice GUFT meets GUPT.docx",
-    "The Grand Unified Field Theory of Coherence (GUFT) V69.me.docx",
-    "TCHES v1.4.docx",
-    "Appendix TAF – Operationalize it, because Ultra Verba, Lux Mentis.docx",
-    "Echo Primer.pdf",
-    "PMR - Internal Technical Memo.docx",
-    "THE COHERENCE OF SIGNAL.docx",
-    "Preventing Hyperreal design drift.docx",
-    "Triadic Brain Developer Guidance for Canonical Ingress, Grounding Bundles, and Phaselock Governance.docx",
-    "Triadic Brain Maths Glossary.docx",
-    "Thought-Exchange Layer (TEL) Graph MVP Design and Integration.docx",
-    "Final TEL Event Stack Validation in CoherenceLattice.docx",
-    "free will.zip",
-    "governed_tches_success_20260420_135304.zip",
-    "governed_tches_after_dq08_inventory_capture_20260501_161304.zip",
-    "mvr_tches_v1_4_human_selected_file_smoke.zip",
-]
-SOURCE_CORPUS_BATCH_MANIFEST_20260610_HASHES = [
-    "0d9bedc988ae3bd6c8c5291594e98cdf55f2483e61d365ae9976785e412f2656",
-    "f1206c5f86d83c6ac900d8880b5dcffa5433ce626a1ddfef8480a060ee3f4fa4",
-    "09268960029318fbd9c724094a6a82bf49e095576e1a5bc644a1e9215fad977a",
-    "7bf6c9637ecbb6afd1cef14a0ee39f5904ddb2493277902334456d05cc0a5104",
-    "23acd312e50e43b7c98702e87ce4bb324fd259502f6fc7cd937690c676feae4d",
-    "d48b4984c0061495a89c9cdaba12cd26816ce504c22f765ee1fd6cadc87f2f3d",
-    "bcf6941fe619fa40a9475327e977fce7c8af2c44b94d5ae5fd8665eb65a2976c",
-    "87584b4c97581a8657978c63bf4ba135cd707f2a1c21deccb513ffa881212503",
-    "d5feb2658f74bedbb56782c66ba473ef29e0ae02ca3ea091356c8cea30aba74d",
-    "aff0180dd1a61784bb5b6b173ebf6b66a6cb2f497bbb08aedb9fe4dc149ef583",
-    "0bb03eeb493da65f0625e5028d708873016c359d184bc0f1fecac5715d63b953",
-    "dc628557c0e729ff8fe5127d1eb129046a12186fff33b9dae65ad58f2e4e0ceb",
-    "5b028820fd50bd93a7f5ad1ec54955f08c0accd039a482e999fdc04efaccf6c2",
-    "a241521288f7c792b76f22b9ec82d19027be9f1032402ae0d87288cacdcb9258",
-    "fe5cd0189f64df015239453430a085a156580ecaab5856cc784498a25d62a38b",
-    "27941c74013b578c216e4569a066a8988860a9c8b01fa544cd6fe25a642a8f35",
-    "3608c158b6affd4f63d04e91d5eae65bb045afb864549d3b84ad9bc664d87c40",
-    "1904b3e786b4c0314b681d8c52ddef39ef02d3e4b2bbe2a2493b3072b84d997f",
-    "17bcca653cbe300c656d796f42f6a077b1bf58f3e3a6655133524cbe56386fdd",
-    "00683d8c93d5daabefa9ea6e5819c53f76e9155fd42a4b4dad036188843ee3d1",
-    "db97a6325de67c673baae100327773d6d5f0a0a14431ada361b1551d647fef3d",
-    "6046cabc13041f664cb67caf96cf5d43eb41fcc03df59248d0b3e6842552d7ca",
-]
-SOURCE_CORPUS_BATCH_MANIFEST_20260610_ALIAS_TERMS = [
-    "Telemetry%20Project%20Deep%20Dive.docx",
-    "Telemetry%20Integration%20into%20the%20CoherenceLattice%20Pipeline.docx",
-    "Universal%20Control%20Codex%20%28UCC%29%20Supplement.docx",
-    "Multi%E2%80%91Axial%20Coherence%20Analysis%20for%20Exogenic%20Off%E2%80%91Loading%20in%20Complex%20Systems.docx",
-    "filename_aliases",
-    "deduplicated by SHA-256",
-    "filename aliases are not separate sources",
-    "deduplication means byte-identity only",
-]
-SOURCE_CORPUS_BATCH_MANIFEST_20260610_MANIFEST_TERMS = [
-    "source_corpus_batch_20260610",
-    "active_hash_only_provenance_manifest",
-    "one_canonical_row_per_unique_sha256",
-    "raw_sha256",
-    "hash_only_public_reference",
-    "public_release_approved = false",
-    "canonical_repo_state_supersedes_report",
-    "source_is_not_accepted_evidence",
-    "source_is_not_theorem_proof",
-    "source_is_not_product_release",
-    "source_is_not_product_readiness",
-    "source_is_not_compliance_certification",
-    "source_is_not_legal_advice",
-    "source_is_not_memory_write",
-    "source_is_not_atlas_memory_admission",
-    "summary_is_not_source",
-    "human_review_required",
-]
-SOURCE_CORPUS_BATCH_MANIFEST_20260610_PRIOR_PHASE_RELATION = [
-    "SOURCE-CORPUS-PROVENANCE-ARCHIVE-00 defines the governed source-report archive pattern.",
-    "SOURCE-CORPUS-PROVENANCE-HASH-FILL-00 fills pending EU AI Act source-report hashes.",
-    "SOURCE-CORPUS-BATCH-MANIFEST-2026-06-10-00 adds the June 2026 hash-only batch manifest.",
-    "WAVE-ROSETTA-CANONICAL-PROXY-BRIDGE-PROVENANCE-00 uses source report hashes for scientific provenance.",
-    "COMPLIANCE-READY-MVR-REPORT-LOCAL-PROTOTYPE-00 uses compliance report provenance for report design context.",
-    "VALIDATION-TIERING-PROVENANCE-00 records validation confidence scope.",
-]
-SOURCE_CORPUS_BATCH_MANIFEST_20260610_BLOCKED_CLAIMS = [
-    "source corpus batch proves GUFT",
-    "source corpus batch proves compliance",
-    "source corpus batch certifies truth",
-    "source corpus batch grants accepted-evidence authority",
-    "source corpus batch is canonical repo state",
-    "source corpus batch authorizes product release",
-    "source corpus batch certifies product readiness",
-    "source corpus batch writes memory",
-    "source corpus batch admits Atlas memory",
-    "hashes certify truth",
-    "filename aliases are separate sources",
-    "raw private reports are public by default",
-    "deduplication means source equivalence beyond byte identity",
-    "source reports are accepted evidence",
-    "source reports are theorem proof",
-    "source reports are compliance certification",
-    "source reports are product release",
-    "source reports are product readiness",
-    "source reports are current canonical repo state",
-    "GitHub repo is a backup store",
-]
-SOURCE_CORPUS_BATCH_MANIFEST_20260610_CLAIM_ALLOWED = "SOURCE-CORPUS-BATCH-MANIFEST-2026-06-10-00 adds a governed, hash-only source-corpus batch manifest for June 2026 uploaded reports, deduplicating filename aliases by SHA-256 and preserving source identity, file size, source type, visibility, public-release status, and non-authority boundaries without committing raw private files or treating source reports as accepted evidence, theorem proof, compliance certification, product release, product readiness, memory write, Atlas admission, or canonical repo state."
-SOURCE_CORPUS_BATCH_MANIFEST_20260610_DASHBOARD_SUMMARY = {
-    "batch_status": "active_hash_only_provenance_manifest",
-    "batch_id": "source_corpus_batch_20260610",
-    "canonical_row_count": 22,
-    "unique_sha256_count": 22,
-    "deduplication_key": "raw_sha256",
-    "canonical_row_policy": "one_canonical_row_per_unique_sha256",
-    "alias_pairs_preserved": True,
-    "raw_files_committed": False,
-    "normalized_derivatives_added": False,
-    "extracted_text_added": False,
-    "all_rows_visibility": "hash_only_public_reference",
-    "all_rows_public_release_approved": False,
-    "all_rows_preserve_non_authority_boundaries": True,
-    "no_raw_docx_txt_pdf_zip_files_committed": True,
-    "source_corpus_batch_is_not_accepted_evidence": True,
-    "source_corpus_batch_is_not_theorem_proof": True,
-    "source_corpus_batch_is_not_compliance_certification": True,
-    "source_corpus_batch_is_not_product_release": True,
-    "source_corpus_batch_is_not_product_readiness": True,
-    "source_corpus_batch_is_not_memory_write": True,
-    "source_corpus_batch_is_not_atlas_memory_admission": True,
-    "source_corpus_batch_is_not_canonical_repo_state": True,
-    "hashes_do_not_certify_truth": True,
-    "human_review_required": True,
-}
-SOURCE_CORPUS_BATCH_MANIFEST_20260610_PHASE = {
-    "phase_id": "SOURCE-CORPUS-BATCH-MANIFEST-2026-06-10-00",
-    "repo": "pdxvoiceteacher/CoherenceLattice",
-    "status": "accepted_local_validation",
-    "evidence_type": "source_corpus_batch_manifest_20260610_publication_sync",
-    "product_posture": "hash_only_source_corpus_batch_manifest_without_evidence_proof_or_canonical_authority",
-    "primary_artifacts": SOURCE_CORPUS_BATCH_MANIFEST_20260610_ARTIFACTS,
-    "dashboard_summary": SOURCE_CORPUS_BATCH_MANIFEST_20260610_DASHBOARD_SUMMARY,
-    "reproduction_command_summary": SOURCE_CORPUS_BATCH_MANIFEST_20260610_COMMAND,
-    "claim_allowed": SOURCE_CORPUS_BATCH_MANIFEST_20260610_CLAIM_ALLOWED,
-    "claims_blocked": SOURCE_CORPUS_BATCH_MANIFEST_20260610_BLOCKED_CLAIMS,
-    "reviewer_caution": "SOURCE-CORPUS-BATCH-MANIFEST-2026-06-10-00 is a hash-only provenance manifest. It commits no raw private reports, grants no accepted-evidence authority, proves no theorem or GUFT, certifies no compliance or truth, releases no product, writes no memory, admits no Atlas memory, exports no traces, federates no PMR, and is not current canonical repo state.",
     "publication_status": "dashboard_indexed",
 }
 
@@ -15102,6 +15106,7 @@ SOURCE_CORPUS_PROVENANCE_ARCHIVE_PHASE,
 SOURCE_CORPUS_PROVENANCE_HASH_FILL_PHASE,
 SOURCE_CORPUS_BATCH_MANIFEST_PHASE,
 AI_RECEIPT_GATEWAY_SCOPE_SIMULATION_PHASE,
+AI_RECEIPT_GATEWAY_LOCAL_INGRESS_PHASE,
 SOURCE_CORPUS_GATEWAY_REPORT_BATCH_PHASE,
 SOURCE_CORPUS_GATEWAY_REPORT_SOURCE_IDENTITY_REPAIR_PHASE,
 WAVE_PROVENANCE_PHASE,
@@ -18362,6 +18367,13 @@ def dashboard_payload() -> dict[str, Any]:
         "ai_receipt_gateway_scope_simulation_negative_control_count": 10,
         "not_ai_receipt_gateway_scope_simulation_runtime_capture": True,
         "not_ai_receipt_gateway_scope_simulation_runtime_authority": True,
+        "ai_receipt_gateway_local_ingress_prototype_00_indexed": True,
+        "ai_receipt_gateway_local_ingress_status": "completed",
+        "ai_receipt_gateway_local_ingress_mode": "local_explicit_ingress_prototype",
+        "ai_receipt_gateway_local_ingress_source_mode": "generated_harmless_fixture",
+        "ai_receipt_gateway_local_ingress_selected_source_count": 1,
+        "not_ai_receipt_gateway_local_ingress_runtime_capture": True,
+        "not_ai_receipt_gateway_local_ingress_runtime_authority": True,
         "source_corpus_gateway_reports_batch_2026_06_10_00_indexed": True,
         "source_corpus_gateway_reports_batch_source_identity_repair_00_indexed": True,
         "source_corpus_gateway_reports_batch_status": "active_hash_only_gateway_report_provenance_manifest",
@@ -18517,6 +18529,7 @@ def reproducibility_index() -> dict[str, Any]:
                 {"name": "SOURCE-CORPUS-PROVENANCE-HASH-FILL-00 hash-fill validation", "command": SOURCE_CORPUS_HASH_FILL_COMMAND},
                 {"name": "SOURCE-CORPUS-BATCH-MANIFEST-2026-06-10-00 batch manifest validation", "command": SOURCE_CORPUS_BATCH_MANIFEST_COMMAND},
                 {"name": "AI-RECEIPT-GATEWAY-SCOPE-SIMULATION-00 Python entrypoint", "command": AI_RECEIPT_GATEWAY_SCOPE_SIMULATION_COMMAND},
+                {"name": "AI-RECEIPT-GATEWAY-LOCAL-INGRESS-PROTOTYPE-00 Python entrypoint", "command": AI_RECEIPT_GATEWAY_LOCAL_INGRESS_COMMAND},
                 {"name": "SOURCE-CORPUS-GATEWAY-REPORTS-BATCH-2026-06-10-00 source batch validation", "command": "python -m pytest -q python/tests/provenance/test_source_corpus_gateway_report_batch_20260610.py tests/test_experiment_registry.py"},
                 {"name": "WAVE-ROSETTA-CANONICAL-PROXY-BRIDGE-PROVENANCE-00 provenance validation", "command": COMPLIANCE_REPORT_DESIGN_COMMAND},
                 {"name": "Validation Tiering Provenance Python entrypoint", "command": VALIDATION_TIERING_PROVENANCE_COMMAND},
@@ -19518,6 +19531,13 @@ def status_payload() -> dict[str, Any]:
         "ai_receipt_gateway_scope_simulation_negative_control_count": 10,
         "not_ai_receipt_gateway_scope_simulation_runtime_capture": True,
         "not_ai_receipt_gateway_scope_simulation_runtime_authority": True,
+        "ai_receipt_gateway_local_ingress_prototype_00_indexed": True,
+        "ai_receipt_gateway_local_ingress_status": "completed",
+        "ai_receipt_gateway_local_ingress_mode": "local_explicit_ingress_prototype",
+        "ai_receipt_gateway_local_ingress_source_mode": "generated_harmless_fixture",
+        "ai_receipt_gateway_local_ingress_selected_source_count": 1,
+        "not_ai_receipt_gateway_local_ingress_runtime_capture": True,
+        "not_ai_receipt_gateway_local_ingress_runtime_authority": True,
         "source_corpus_gateway_reports_batch_2026_06_10_00_indexed": True,
         "source_corpus_gateway_reports_batch_source_identity_repair_00_indexed": True,
         "source_corpus_gateway_reports_batch_status": "active_hash_only_gateway_report_provenance_manifest",
@@ -26033,6 +26053,78 @@ Publication sync grants no runtime authority. It does not imply runtime gateway 
 """
 
 
+def ai_receipt_gateway_local_ingress_prototype_doc() -> str:
+    summary = "\n".join(f"- {key} = {str(value).lower() if isinstance(value, bool) else value}" for key, value in AI_RECEIPT_GATEWAY_LOCAL_INGRESS_DASHBOARD_SUMMARY.items())
+    return f"""# AI Receipt Gateway Local Ingress Prototype
+
+AI-RECEIPT-GATEWAY-LOCAL-INGRESS-PROTOTYPE-00 synchronizes the local explicit-ingress prototype into publication dashboards. This is publication/dashboard synchronization only and grants no runtime authority.
+
+## Bounded allowed claim
+
+{AI_RECEIPT_GATEWAY_LOCAL_INGRESS_CLAIM_ALLOWED}
+
+## Dashboard summary
+
+{summary}
+
+## Doctrine language
+
+{_bullets(AI_RECEIPT_GATEWAY_LOCAL_INGRESS_DOCTRINE_LANGUAGE)}
+
+## Local ingress source modes
+
+{_bullets(AI_RECEIPT_GATEWAY_LOCAL_INGRESS_SOURCE_MODES)}
+
+## Negative controls
+
+{_bullets(AI_RECEIPT_GATEWAY_LOCAL_INGRESS_NEGATIVE_CONTROLS)}
+
+## Non-authority guardrails
+
+{_bullets(AI_RECEIPT_GATEWAY_LOCAL_INGRESS_GUARDRAILS)}
+
+## Artifact references
+
+{_bullets(AI_RECEIPT_GATEWAY_LOCAL_INGRESS_ARTIFACTS)}
+
+## Relation to prior phases
+
+{_bullets(AI_RECEIPT_GATEWAY_LOCAL_INGRESS_PRIOR_PHASE_RELATION)}
+
+## Blocked claims
+
+{_bullets(AI_RECEIPT_GATEWAY_LOCAL_INGRESS_BLOCKED_CLAIMS)}
+
+## Reproducibility
+
+{_bullets(AI_RECEIPT_GATEWAY_LOCAL_INGRESS_REPRO_FRAGMENTS)}
+- `{AI_RECEIPT_GATEWAY_LOCAL_INGRESS_COMMAND}`
+
+## Runtime authority boundary
+
+Publication sync grants no runtime authority. It does not imply runtime gateway activation, runtime capture, invisible surveillance, universal capture, directory scans, hidden file reads, connector pulls, provider calls, network calls, memory writes, Atlas memory admission, trace export, PMR federation, compliance certification, legal advice, audit pass, attestation success, product readiness, product release, truth certification, final-answer authority, accepted-evidence authority, model training, or review skipping.
+"""
+
+
+AI_RECEIPT_GATEWAY_LOCAL_INGRESS_SYNC_DOCS = {
+    "ai-receipt-architecture.md",
+    "ai-receipt-gateway-scope-simulation.md",
+    "compliance-ready-mvr-report-local-prototype.md",
+    "compliance-report-presentation-standard.md",
+    "eu-ai-act-mvr-evidence-map-local-prototype.md",
+    "minimal-viable-receipt-local-prototype.md",
+    "validation-tiering-provenance.md",
+}
+AI_RECEIPT_GATEWAY_LOCAL_INGRESS_SYNC_NOTE = f"""
+
+## AI Receipt Gateway local ingress prototype publication sync
+
+{_bullets(AI_RECEIPT_GATEWAY_LOCAL_INGRESS_PRIOR_PHASE_RELATION)}
+
+AI-RECEIPT-GATEWAY-LOCAL-INGRESS-PROTOTYPE-00 is local explicit ingress only, not automatic capture. Configured scope is not universal capture; gateway activation remains simulated, not runtime activation. No directory scan, hidden file read, connector pull, provider call, network call, memory write, Atlas admission, trace export, PMR federation, compliance certification, legal advice, audit pass, attestation success, product readiness, product release, truth certification, final-answer authority, or accepted-evidence authority occurred. Publication sync grants no runtime authority.
+"""
+
+
 def source_corpus_gateway_reports_batch_doc() -> str:
     summary = "\n".join(f"- {key} = {str(value).lower() if isinstance(value, bool) else value}" for key, value in SOURCE_CORPUS_GATEWAY_REPORT_BATCH_DASHBOARD_SUMMARY.items())
     return f"""# Source Corpus Gateway Reports Batch 2026-06-10
@@ -26206,6 +26298,7 @@ def build(out_dir: Path, docs_dir: Path) -> None:
     docs_payload["source-corpus-provenance-hash-fill.md"] = source_corpus_provenance_hash_fill_doc()
     docs_payload["source-corpus-batch-manifest-2026-06-10.md"] = source_corpus_batch_manifest_doc()
     docs_payload["ai-receipt-gateway-scope-simulation.md"] = ai_receipt_gateway_scope_simulation_doc()
+    docs_payload["ai-receipt-gateway-local-ingress-prototype.md"] = ai_receipt_gateway_local_ingress_prototype_doc()
     docs_payload["source-corpus-gateway-reports-batch-2026-06-10.md"] = source_corpus_gateway_reports_batch_doc()
     docs_payload["source-corpus-gateway-reports-batch-source-identity-repair.md"] = source_corpus_gateway_reports_batch_source_identity_repair_doc()
     docs_payload["compliance-report-presentation-standard.md"] = compliance_report_presentation_standard_doc()
@@ -26258,6 +26351,9 @@ def build(out_dir: Path, docs_dir: Path) -> None:
     for name in GATEWAY_SCOPE_SOURCE_CORPUS_SYNC_DOCS:
         if name in docs_payload:
             docs_payload[name] = docs_payload[name].rstrip() + GATEWAY_SCOPE_SOURCE_CORPUS_SYNC_NOTE
+    for name in AI_RECEIPT_GATEWAY_LOCAL_INGRESS_SYNC_DOCS:
+        if name in docs_payload:
+            docs_payload[name] = docs_payload[name].rstrip() + AI_RECEIPT_GATEWAY_LOCAL_INGRESS_SYNC_NOTE
     for name, text in docs_payload.items():
         _write_text(docs_dir / name, text)
 

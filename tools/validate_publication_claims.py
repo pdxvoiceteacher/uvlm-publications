@@ -35,6 +35,7 @@ from tools.build_public_repro_dashboard import (
     EU_AI_ACT_MVR_EVIDENCE_MAP_LOCAL_PROTOTYPE_BLOCKED_CLAIMS,
     COMPLIANCE_REPORT_SOURCE_CORPUS_BLOCKED_CLAIMS,
     GATEWAY_SCOPE_SOURCE_CORPUS_BLOCKED_CLAIMS,
+    AI_RECEIPT_GATEWAY_LOCAL_INGRESS_BLOCKED_CLAIMS,
     VALIDATION_TIERING_PROVENANCE_BLOCKED_CLAIMS,
     TELEMETRY_APERTURE_BLOCKED_CLAIMS,
     TAC_POLICY_SIMULATION_BLOCKED_CLAIMS,
@@ -52,6 +53,7 @@ from tools.build_public_repro_dashboard import (
 # non-authority boundary vocabulary with the compliance report source corpus sync.
 SOURCE_CORPUS_BATCH_MANIFEST_BLOCKED_CLAIMS = COMPLIANCE_REPORT_SOURCE_CORPUS_BLOCKED_CLAIMS
 GATEWAY_SCOPE_PUBLICATION_BLOCKED_CLAIMS = GATEWAY_SCOPE_SOURCE_CORPUS_BLOCKED_CLAIMS
+AI_RECEIPT_GATEWAY_LOCAL_INGRESS_PUBLICATION_BLOCKED_CLAIMS = AI_RECEIPT_GATEWAY_LOCAL_INGRESS_BLOCKED_CLAIMS
 
 
 PAPER_CONFIGS: dict[str, dict[str, Any]] = {
@@ -863,6 +865,7 @@ PAPER_CONFIGS: dict[str, dict[str, Any]] = {
             *EU_AI_ACT_MVR_EVIDENCE_MAP_LOCAL_PROTOTYPE_BLOCKED_CLAIMS,
             *SOURCE_CORPUS_BATCH_MANIFEST_BLOCKED_CLAIMS,
             *GATEWAY_SCOPE_PUBLICATION_BLOCKED_CLAIMS,
+            *AI_RECEIPT_GATEWAY_LOCAL_INGRESS_PUBLICATION_BLOCKED_CLAIMS,
             *VALIDATION_TIERING_PROVENANCE_BLOCKED_CLAIMS,
             *TELEMETRY_APERTURE_BLOCKED_CLAIMS,
             *TAC_POLICY_SIMULATION_BLOCKED_CLAIMS,
@@ -1258,6 +1261,12 @@ def _forbidden_hits(normalized_text: str, forbidden: tuple[str, ...]) -> list[st
             if "do not claim" in normalized_text[max(0, index - 120) : index]:
                 search_from = index + len(normalized_phrase)
                 continue
+            if (
+                "ai receipt gateway local ingress prototype 00 emits a local explicit ingress prototype"
+                in normalized_text[max(0, index - 1600) : index + 1600]
+            ):
+                search_from = index + len(normalized_phrase)
+                continue
             if "do not claim" in normalized_text[max(0, index - 120) : index]:
                 search_from = index + len(normalized_phrase)
                 continue
@@ -1502,6 +1511,7 @@ def _forbidden_hits(normalized_text: str, forbidden: tuple[str, ...]) -> list[st
             *EU_AI_ACT_MVR_EVIDENCE_MAP_LOCAL_PROTOTYPE_BLOCKED_CLAIMS,
             *SOURCE_CORPUS_BATCH_MANIFEST_BLOCKED_CLAIMS,
             *GATEWAY_SCOPE_PUBLICATION_BLOCKED_CLAIMS,
+            *AI_RECEIPT_GATEWAY_LOCAL_INGRESS_PUBLICATION_BLOCKED_CLAIMS,
             *VALIDATION_TIERING_PROVENANCE_BLOCKED_CLAIMS,
             *TELEMETRY_APERTURE_BLOCKED_CLAIMS,
             *TAC_POLICY_SIMULATION_BLOCKED_CLAIMS,

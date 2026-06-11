@@ -23,3 +23,15 @@ COMPLIANCE-REPORT-PRESENTATION-STANDARD-00 defines market-ready visual/report la
 - Public release approval remains false.
 
 Publication sync grants no runtime authority.
+
+## AI Receipt Gateway local ingress prototype publication sync
+
+- AI-RECEIPT-GATEWAY-ACTIVATION-DESIGN-00 defines the VPN-like activation model.
+- AI-RECEIPT-GATEWAY-SCOPE-SIMULATION-00 simulates scope, mode, ingress, activation, and negative-control outcomes.
+- AI-RECEIPT-GATEWAY-LOCAL-INGRESS-PROTOTYPE-00 emits the first local explicit-ingress prototype.
+- MVR-LOCAL-REAL-INPUT-PILOT-HUMAN-SELECTED-FILE-SMOKE-00 supplies bounded MVR real-input pilot artifacts.
+- EU-AI-ACT-MVR-EVIDENCE-MAP-LOCAL-PROTOTYPE-00 supplies evidence-map artifacts.
+- COMPLIANCE-READY-MVR-REPORT-LOCAL-PROTOTYPE-00 supplies compliance-ready report artifacts.
+- COMPLIANCE-REPORT-PRESENTATION-STANDARD-00 defines presentation constraints.
+
+AI-RECEIPT-GATEWAY-LOCAL-INGRESS-PROTOTYPE-00 is local explicit ingress only, not automatic capture. Configured scope is not universal capture; gateway activation remains simulated, not runtime activation. No directory scan, hidden file read, connector pull, provider call, network call, memory write, Atlas admission, trace export, PMR federation, compliance certification, legal advice, audit pass, attestation success, product readiness, product release, truth certification, final-answer authority, or accepted-evidence authority occurred. Publication sync grants no runtime authority.

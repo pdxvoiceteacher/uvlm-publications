@@ -114,11 +114,11 @@ SOURCE-CORPUS-GATEWAY-REPORTS-BATCH-SOURCE-IDENTITY-REPAIR-00 restores actual up
 - source corpus gateway report batch certifies truth
 - source corpus gateway report batch grants accepted-evidence authority
 - source corpus gateway report batch is canonical repo state
-- visual mockups are authority claims
 - visual polish is legal validity
 - design inspiration is product readiness
 - raw private gateway reports are committed
 - raw gateway report images are committed
+- visual mockups are authority claims
 - hashes certify truth
 
 ## Runtime authority boundary

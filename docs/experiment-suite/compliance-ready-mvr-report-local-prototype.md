@@ -187,12 +187,39 @@ COMPLIANCE-READY-MVR-REPORT-LOCAL-PROTOTYPE-00 emits a local compliance-ready Mi
 - source corpus gateway report batch certifies truth
 - source corpus gateway report batch grants accepted-evidence authority
 - source corpus gateway report batch is canonical repo state
-- visual mockups are authority claims
 - visual polish is legal validity
 - design inspiration is product readiness
 - raw private gateway reports are committed
 - raw gateway report images are committed
+- visual mockups are authority claims
 - hashes certify truth
+- local ingress captures all AI data
+- local ingress is invisible surveillance
+- local ingress activates runtime capture
+- local ingress scans directories
+- local ingress reads hidden files
+- local ingress pulls connectors
+- local ingress calls providers
+- local ingress performs network calls
+- local ingress writes memory
+- local ingress admits Atlas memory
+- local ingress exports traces
+- local ingress federates PMR
+- local ingress certifies compliance
+- local ingress provides legal advice
+- local ingress passes audits
+- local ingress guarantees attestation success
+- local ingress proves product readiness
+- local ingress releases product
+- local ingress grants accepted-evidence authority
+- local ingress authorizes final answers
+- gateway off still processes sources
+- generated harmless fixture means real input processing
+- explicit local source path means directory scan
+- pasted excerpt fixture is accepted evidence
+- downstream compliance report certifies compliance
+- EU evidence map passes audit
+- MVR report grants final-answer authority
 
 ## Reproducibility
 
@@ -215,3 +242,15 @@ Publication sync grants no runtime authority. It does not imply compliance certi
 AI-RECEIPT-GATEWAY-SCOPE-SIMULATION-00 is design-only policy simulation, not runtime capture, gateway activation, invisible surveillance, universal capture, real-input processing, provider runtime, network runtime, memory write, Atlas admission, trace export, PMR federation, compliance certification, legal advice, audit pass, attestation success, product readiness, product release, final-answer authority, or accepted-evidence authority.
 
 SOURCE-CORPUS-GATEWAY-REPORTS-BATCH-2026-06-10-00 and SOURCE-CORPUS-GATEWAY-REPORTS-BATCH-SOURCE-IDENTITY-REPAIR-00 preserve actual uploaded consultant report and visual mockup filenames and hashes as hash-only provenance. Raw private reports and images are not committed. Public release approval remains false. Publication sync grants no runtime authority.
+
+## AI Receipt Gateway local ingress prototype publication sync
+
+- AI-RECEIPT-GATEWAY-ACTIVATION-DESIGN-00 defines the VPN-like activation model.
+- AI-RECEIPT-GATEWAY-SCOPE-SIMULATION-00 simulates scope, mode, ingress, activation, and negative-control outcomes.
+- AI-RECEIPT-GATEWAY-LOCAL-INGRESS-PROTOTYPE-00 emits the first local explicit-ingress prototype.
+- MVR-LOCAL-REAL-INPUT-PILOT-HUMAN-SELECTED-FILE-SMOKE-00 supplies bounded MVR real-input pilot artifacts.
+- EU-AI-ACT-MVR-EVIDENCE-MAP-LOCAL-PROTOTYPE-00 supplies evidence-map artifacts.
+- COMPLIANCE-READY-MVR-REPORT-LOCAL-PROTOTYPE-00 supplies compliance-ready report artifacts.
+- COMPLIANCE-REPORT-PRESENTATION-STANDARD-00 defines presentation constraints.
+
+AI-RECEIPT-GATEWAY-LOCAL-INGRESS-PROTOTYPE-00 is local explicit ingress only, not automatic capture. Configured scope is not universal capture; gateway activation remains simulated, not runtime activation. No directory scan, hidden file read, connector pull, provider call, network call, memory write, Atlas admission, trace export, PMR federation, compliance certification, legal advice, audit pass, attestation success, product readiness, product release, truth certification, final-answer authority, or accepted-evidence authority occurred. Publication sync grants no runtime authority.

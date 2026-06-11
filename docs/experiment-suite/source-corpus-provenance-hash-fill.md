@@ -187,12 +187,39 @@ SOURCE-CORPUS-PROVENANCE-HASH-FILL-00 fills pending EU AI Act source-report hash
 - source corpus gateway report batch certifies truth
 - source corpus gateway report batch grants accepted-evidence authority
 - source corpus gateway report batch is canonical repo state
-- visual mockups are authority claims
 - visual polish is legal validity
 - design inspiration is product readiness
 - raw private gateway reports are committed
 - raw gateway report images are committed
+- visual mockups are authority claims
 - hashes certify truth
+- local ingress captures all AI data
+- local ingress is invisible surveillance
+- local ingress activates runtime capture
+- local ingress scans directories
+- local ingress reads hidden files
+- local ingress pulls connectors
+- local ingress calls providers
+- local ingress performs network calls
+- local ingress writes memory
+- local ingress admits Atlas memory
+- local ingress exports traces
+- local ingress federates PMR
+- local ingress certifies compliance
+- local ingress provides legal advice
+- local ingress passes audits
+- local ingress guarantees attestation success
+- local ingress proves product readiness
+- local ingress releases product
+- local ingress grants accepted-evidence authority
+- local ingress authorizes final answers
+- gateway off still processes sources
+- generated harmless fixture means real input processing
+- explicit local source path means directory scan
+- pasted excerpt fixture is accepted evidence
+- downstream compliance report certifies compliance
+- EU evidence map passes audit
+- MVR report grants final-answer authority
 
 ## Reproducibility
 

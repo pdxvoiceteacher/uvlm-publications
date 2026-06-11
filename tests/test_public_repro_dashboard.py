@@ -79,6 +79,16 @@ from tools.build_public_repro_dashboard import (
     AI_RECEIPT_GATEWAY_SCOPE_SIMULATION_DASHBOARD_SUMMARY,
     AI_RECEIPT_GATEWAY_SCOPE_SIMULATION_DOCTRINE_LANGUAGE,
     AI_RECEIPT_GATEWAY_SCOPE_SIMULATION_REPRO_FRAGMENTS,
+    AI_RECEIPT_GATEWAY_LOCAL_INGRESS_ARTIFACTS,
+    AI_RECEIPT_GATEWAY_LOCAL_INGRESS_BLOCKED_CLAIMS,
+    AI_RECEIPT_GATEWAY_LOCAL_INGRESS_CLAIM_ALLOWED,
+    AI_RECEIPT_GATEWAY_LOCAL_INGRESS_DASHBOARD_SUMMARY,
+    AI_RECEIPT_GATEWAY_LOCAL_INGRESS_DOCTRINE_LANGUAGE,
+    AI_RECEIPT_GATEWAY_LOCAL_INGRESS_GUARDRAILS,
+    AI_RECEIPT_GATEWAY_LOCAL_INGRESS_NEGATIVE_CONTROLS,
+    AI_RECEIPT_GATEWAY_LOCAL_INGRESS_PRIOR_PHASE_RELATION,
+    AI_RECEIPT_GATEWAY_LOCAL_INGRESS_REPRO_FRAGMENTS,
+    AI_RECEIPT_GATEWAY_LOCAL_INGRESS_SOURCE_MODES,
     AI_RECEIPT_GATEWAY_VISIBLE_STATUS_FIELDS,
     GATEWAY_SCOPE_AND_SOURCE_CORPUS_PRIOR_PHASE_RELATION,
     SOURCE_CORPUS_GATEWAY_REPORT_BATCH_ARTIFACTS,
@@ -596,6 +606,7 @@ REQUIRED_PHASES = {
     "SOURCE-CORPUS-PROVENANCE-HASH-FILL-00",
     "SOURCE-CORPUS-BATCH-MANIFEST-2026-06-10-00",
     "AI-RECEIPT-GATEWAY-SCOPE-SIMULATION-00",
+    "AI-RECEIPT-GATEWAY-LOCAL-INGRESS-PROTOTYPE-00",
     "SOURCE-CORPUS-GATEWAY-REPORTS-BATCH-2026-06-10-00",
     "SOURCE-CORPUS-GATEWAY-REPORTS-BATCH-SOURCE-IDENTITY-REPAIR-00",
     "WAVE-ROSETTA-CANONICAL-PROXY-BRIDGE-PROVENANCE-00",
@@ -7168,6 +7179,7 @@ def test_validator_required_phases_include_compliance_report_source_corpus_syncs
     assert "SOURCE-CORPUS-PROVENANCE-HASH-FILL-00" in VALIDATOR_REQUIRED_PHASES
     assert "SOURCE-CORPUS-BATCH-MANIFEST-2026-06-10-00" in VALIDATOR_REQUIRED_PHASES
     assert "AI-RECEIPT-GATEWAY-SCOPE-SIMULATION-00" in VALIDATOR_REQUIRED_PHASES
+    assert "AI-RECEIPT-GATEWAY-LOCAL-INGRESS-PROTOTYPE-00" in VALIDATOR_REQUIRED_PHASES
     assert "SOURCE-CORPUS-GATEWAY-REPORTS-BATCH-2026-06-10-00" in VALIDATOR_REQUIRED_PHASES
     assert "SOURCE-CORPUS-GATEWAY-REPORTS-BATCH-SOURCE-IDENTITY-REPAIR-00" in VALIDATOR_REQUIRED_PHASES
 
@@ -7355,4 +7367,87 @@ def test_validator_fails_if_gateway_scope_or_gateway_report_batch_makes_forbidde
             claim.lower() in forbidden_found
             or f"claims {claim.lower()}" in forbidden_found
             or f"gateway scope sync claims {claim.lower()}" in forbidden_found
+        ), result
+
+
+def test_ai_receipt_gateway_local_ingress_prototype_indexes_dashboard_docs_and_boundaries(tmp_path):
+    out_dir, docs_dir = run_builder(tmp_path)
+    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text(encoding="utf-8"))
+    artifact_index = json.loads((out_dir / "artifact_index.json").read_text(encoding="utf-8"))
+    repro_index = json.loads((out_dir / "reproducibility_index.json").read_text(encoding="utf-8"))
+    claim_boundaries = json.loads((out_dir / "claim_boundary_index.json").read_text(encoding="utf-8"))
+    status = json.loads((out_dir / "status.json").read_text(encoding="utf-8"))
+    page = (docs_dir / "ai-receipt-gateway-local-ingress-prototype.md").read_text(encoding="utf-8")
+
+    phases = {entry["phase_id"]: entry for entry in dashboard["accepted_phases"]}
+    assert "AI-RECEIPT-GATEWAY-LOCAL-INGRESS-PROTOTYPE-00" in phases
+    summary = phases["AI-RECEIPT-GATEWAY-LOCAL-INGRESS-PROTOTYPE-00"]["dashboard_summary"]
+    assert summary == AI_RECEIPT_GATEWAY_LOCAL_INGRESS_DASHBOARD_SUMMARY
+    assert summary["ingress_status"] == "completed"
+    assert summary["source_mode"] == "generated_harmless_fixture"
+    assert summary["selected_decision_status"] == "allowed_configured_scope"
+    assert summary["scope_simulation_status"] == "completed_design_only"
+    assert summary["negative_control_status"] == "passed_fail_closed"
+    assert summary["mvr_report_ref"] == "minimal_viable_receipt_human_readable.md"
+    assert summary["eu_ai_act_evidence_map_ref"] == "eu_ai_act_mvr_evidence_map.json"
+    assert summary["compliance_ready_report_ref"] == "compliance_ready_mvr_report.md"
+    for field in (
+        "directory_scan_performed",
+        "hidden_file_read_performed",
+        "connector_pull_performed",
+        "provider_runtime_performed",
+        "network_call_performed",
+        "memory_write_performed",
+        "atlas_memory_admission_performed",
+        "trace_export_performed",
+        "pmr_federation_performed",
+        "compliance_certification_emitted",
+        "legal_advice_emitted",
+        "audit_pass_claimed",
+        "attestation_success_claimed",
+        "product_readiness_claimed",
+        "product_release_performed",
+        "truth_certification_emitted",
+        "final_answer_authority_granted",
+        "accepted_evidence_authority_granted",
+    ):
+        assert summary[field] is False
+
+    assert artifact_index["phases"]["AI-RECEIPT-GATEWAY-LOCAL-INGRESS-PROTOTYPE-00"] == AI_RECEIPT_GATEWAY_LOCAL_INGRESS_ARTIFACTS
+    artifact_text = json.dumps(artifact_index, ensure_ascii=False)
+    for artifact in AI_RECEIPT_GATEWAY_LOCAL_INGRESS_ARTIFACTS:
+        assert artifact in artifact_text
+    repro_text = json.dumps(repro_index, ensure_ascii=False)
+    assert "build_ai_receipt_gateway_local_ingress_prototype" in repro_text
+
+    for required in (
+        *AI_RECEIPT_GATEWAY_LOCAL_INGRESS_DOCTRINE_LANGUAGE,
+        *AI_RECEIPT_GATEWAY_LOCAL_INGRESS_SOURCE_MODES,
+        *AI_RECEIPT_GATEWAY_LOCAL_INGRESS_NEGATIVE_CONTROLS,
+        *AI_RECEIPT_GATEWAY_LOCAL_INGRESS_GUARDRAILS,
+        *AI_RECEIPT_GATEWAY_LOCAL_INGRESS_PRIOR_PHASE_RELATION,
+        AI_RECEIPT_GATEWAY_LOCAL_INGRESS_CLAIM_ALLOWED,
+        "Publication sync grants no runtime authority.",
+    ):
+        assert required in page
+    boundaries = "\n".join(claim_boundaries["boundaries"])
+    for blocked in AI_RECEIPT_GATEWAY_LOCAL_INGRESS_BLOCKED_CLAIMS:
+        assert blocked in boundaries
+    assert status["ai_receipt_gateway_local_ingress_prototype_00_indexed"] is True
+    assert status["ai_receipt_gateway_local_ingress_status"] == "completed"
+    assert status["ai_receipt_gateway_local_ingress_source_mode"] == "generated_harmless_fixture"
+
+
+def test_validator_fails_if_gateway_local_ingress_makes_forbidden_claims(tmp_path):
+    for claim in AI_RECEIPT_GATEWAY_LOCAL_INGRESS_BLOCKED_CLAIMS:
+        out_dir, docs_dir = run_builder(tmp_path / claim.replace(" ", "_").replace("/", "_"))
+        page = docs_dir / "ai-receipt-gateway-local-ingress-prototype.md"
+        page.write_text(page.read_text(encoding="utf-8") + f"\nLocal ingress sync claims {claim}.\n", encoding="utf-8")
+        result = validate_dashboard(out_dir / "experiment_suite_dashboard.json", docs_dir)
+        assert result["passed"] is False, claim
+        forbidden_found = [found.lower() for found in result["forbidden_claims_found"]]
+        assert (
+            claim.lower() in forbidden_found
+            or f"claims {claim.lower()}" in forbidden_found
+            or f"local ingress sync claims {claim.lower()}" in forbidden_found
         ), result
