@@ -71,6 +71,33 @@ from tools.build_public_repro_dashboard import (
     AI_RECEIPT_ARCHITECTURE_PRODUCT_FRAMING,
     AI_RECEIPT_ARCHITECTURE_REPRO_FRAGMENTS,
     AI_RECEIPT_ARCHITECTURE_REQUIRED_DOC_PHRASES,
+    AI_RECEIPT_GATEWAY_DECISION_STATUSES,
+    AI_RECEIPT_GATEWAY_SCENARIOS,
+    AI_RECEIPT_GATEWAY_SCOPE_SIMULATION_ARTIFACTS,
+    AI_RECEIPT_GATEWAY_SCOPE_SIMULATION_BLOCKED_CLAIMS,
+    AI_RECEIPT_GATEWAY_SCOPE_SIMULATION_CLAIM_ALLOWED,
+    AI_RECEIPT_GATEWAY_SCOPE_SIMULATION_DASHBOARD_SUMMARY,
+    AI_RECEIPT_GATEWAY_SCOPE_SIMULATION_DOCTRINE_LANGUAGE,
+    AI_RECEIPT_GATEWAY_SCOPE_SIMULATION_REPRO_FRAGMENTS,
+    AI_RECEIPT_GATEWAY_LOCAL_INGRESS_ARTIFACTS,
+    AI_RECEIPT_GATEWAY_LOCAL_INGRESS_BLOCKED_CLAIMS,
+    AI_RECEIPT_GATEWAY_LOCAL_INGRESS_CLAIM_ALLOWED,
+    AI_RECEIPT_GATEWAY_LOCAL_INGRESS_DASHBOARD_SUMMARY,
+    AI_RECEIPT_GATEWAY_LOCAL_INGRESS_DOCTRINE_LANGUAGE,
+    AI_RECEIPT_GATEWAY_LOCAL_INGRESS_GUARDRAILS,
+    AI_RECEIPT_GATEWAY_LOCAL_INGRESS_NEGATIVE_CONTROLS,
+    AI_RECEIPT_GATEWAY_LOCAL_INGRESS_PRIOR_PHASE_RELATION,
+    AI_RECEIPT_GATEWAY_LOCAL_INGRESS_REPRO_FRAGMENTS,
+    AI_RECEIPT_GATEWAY_LOCAL_INGRESS_SOURCE_MODES,
+    AI_RECEIPT_GATEWAY_VISIBLE_STATUS_FIELDS,
+    GATEWAY_SCOPE_AND_SOURCE_CORPUS_PRIOR_PHASE_RELATION,
+    SOURCE_CORPUS_GATEWAY_REPORT_BATCH_ARTIFACTS,
+    SOURCE_CORPUS_GATEWAY_REPORT_BATCH_CLAIM_ALLOWED,
+    SOURCE_CORPUS_GATEWAY_REPORT_BATCH_DASHBOARD_SUMMARY,
+    SOURCE_CORPUS_GATEWAY_REPORT_FILENAMES,
+    SOURCE_CORPUS_GATEWAY_REPORT_HASHES,
+    SOURCE_CORPUS_GATEWAY_REPORT_SOURCE_IDENTITY_REPAIR_CLAIM_ALLOWED,
+    SOURCE_CORPUS_GATEWAY_REPORT_SOURCE_IDENTITY_REPAIR_LANGUAGE,
     MINIMAL_VIABLE_RECEIPT_DESIGN_ARTIFACTS,
     MINIMAL_VIABLE_RECEIPT_DESIGN_BLOCKED_CLAIMS,
     MINIMAL_VIABLE_RECEIPT_DESIGN_CLAIM_ALLOWED,
@@ -205,6 +232,14 @@ from tools.build_public_repro_dashboard import (
     COMPLIANCE_READY_MVR_REPORT_LOCAL_PROTOTYPE_REPRO_FRAGMENTS,
     COMPLIANCE_READY_MVR_REPORT_LOCAL_PROTOTYPE_SECTION_TERMS,
     COMPLIANCE_REPORT_SOURCE_CORPUS_BLOCKED_CLAIMS,
+    SOURCE_CORPUS_BATCH_ALIAS_TERMS,
+    SOURCE_CORPUS_BATCH_CONCRETE_HASHES,
+    SOURCE_CORPUS_BATCH_DASHBOARD_SUMMARY,
+    SOURCE_CORPUS_BATCH_MANIFEST_ARTIFACTS,
+    SOURCE_CORPUS_BATCH_MANIFEST_CLAIM_ALLOWED,
+    SOURCE_CORPUS_BATCH_MANIFEST_REPRO_FRAGMENTS,
+    SOURCE_CORPUS_BATCH_PRIOR_PHASE_RELATION,
+    SOURCE_CORPUS_BATCH_REPORT_FILENAMES,
     SOURCE_CORPUS_CONCRETE_HASHES,
     SOURCE_CORPUS_HASH_FILL_DASHBOARD_SUMMARY,
     SOURCE_CORPUS_HASH_FILL_REPRO_FRAGMENTS,
@@ -558,6 +593,11 @@ REQUIRED_PHASES = {
     "COMPLIANCE-READY-MVR-REPORT-LOCAL-PROTOTYPE-00",
     "SOURCE-CORPUS-PROVENANCE-ARCHIVE-00",
     "SOURCE-CORPUS-PROVENANCE-HASH-FILL-00",
+    "SOURCE-CORPUS-BATCH-MANIFEST-2026-06-10-00",
+    "AI-RECEIPT-GATEWAY-SCOPE-SIMULATION-00",
+    "AI-RECEIPT-GATEWAY-LOCAL-INGRESS-PROTOTYPE-00",
+    "SOURCE-CORPUS-GATEWAY-REPORTS-BATCH-2026-06-10-00",
+    "SOURCE-CORPUS-GATEWAY-REPORTS-BATCH-SOURCE-IDENTITY-REPAIR-00",
     "WAVE-ROSETTA-CANONICAL-PROXY-BRIDGE-PROVENANCE-00",
 }
 
@@ -976,7 +1016,11 @@ def test_validator_fails_if_evidence_review_pack_second_pass_makes_forbidden_cla
         result = validate_dashboard(out_dir / "experiment_suite_dashboard.json", docs_dir)
         assert result["passed"] is False, claim
         forbidden_found = [found.lower() for found in result["forbidden_claims_found"]]
-        assert claim.lower() in forbidden_found or f"claims {claim.lower()}" in forbidden_found, result
+        assert (
+            claim.lower() in forbidden_found
+            or f"claims {claim.lower()}" in forbidden_found
+            or f"gateway scope sync claims {claim.lower()}" in forbidden_found
+        ), result
 
 
 def test_rw_comp_03_indexes_and_docs_are_generated(tmp_path):
@@ -7122,6 +7166,11 @@ def test_validator_required_phases_include_compliance_report_source_corpus_syncs
     assert "COMPLIANCE-READY-MVR-REPORT-LOCAL-PROTOTYPE-00" in VALIDATOR_REQUIRED_PHASES
     assert "SOURCE-CORPUS-PROVENANCE-ARCHIVE-00" in VALIDATOR_REQUIRED_PHASES
     assert "SOURCE-CORPUS-PROVENANCE-HASH-FILL-00" in VALIDATOR_REQUIRED_PHASES
+    assert "SOURCE-CORPUS-BATCH-MANIFEST-2026-06-10-00" in VALIDATOR_REQUIRED_PHASES
+    assert "AI-RECEIPT-GATEWAY-SCOPE-SIMULATION-00" in VALIDATOR_REQUIRED_PHASES
+    assert "AI-RECEIPT-GATEWAY-LOCAL-INGRESS-PROTOTYPE-00" in VALIDATOR_REQUIRED_PHASES
+    assert "SOURCE-CORPUS-GATEWAY-REPORTS-BATCH-2026-06-10-00" in VALIDATOR_REQUIRED_PHASES
+    assert "SOURCE-CORPUS-GATEWAY-REPORTS-BATCH-SOURCE-IDENTITY-REPAIR-00" in VALIDATOR_REQUIRED_PHASES
 
 
 def test_validator_fails_if_compliance_report_source_corpus_syncs_make_forbidden_claims(tmp_path):
@@ -7132,4 +7181,262 @@ def test_validator_fails_if_compliance_report_source_corpus_syncs_make_forbidden
         result = validate_dashboard(out_dir / "experiment_suite_dashboard.json", docs_dir)
         assert result["passed"] is False, claim
         forbidden_found = [found.lower() for found in result["forbidden_claims_found"]]
-        assert claim.lower() in forbidden_found or f"claims {claim.lower()}" in forbidden_found, result
+        assert (
+            claim.lower() in forbidden_found
+            or f"claims {claim.lower()}" in forbidden_found
+            or f"compliance source sync claims {claim.lower()}" in forbidden_found
+        ), result
+
+
+def test_source_corpus_batch_manifest_indexes_dashboard_docs_and_boundaries(tmp_path):
+    out_dir, docs_dir = run_builder(tmp_path)
+    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text(encoding="utf-8"))
+    artifact_index = json.loads((out_dir / "artifact_index.json").read_text(encoding="utf-8"))
+    repro_index = json.loads((out_dir / "reproducibility_index.json").read_text(encoding="utf-8"))
+    claim_boundaries = json.loads((out_dir / "claim_boundary_index.json").read_text(encoding="utf-8"))
+    status = json.loads((out_dir / "status.json").read_text(encoding="utf-8"))
+    page = (docs_dir / "source-corpus-batch-manifest-2026-06-10.md").read_text(encoding="utf-8")
+
+    phases = {entry["phase_id"]: entry for entry in dashboard["accepted_phases"]}
+    assert "SOURCE-CORPUS-BATCH-MANIFEST-2026-06-10-00" in phases
+    summary = phases["SOURCE-CORPUS-BATCH-MANIFEST-2026-06-10-00"]["dashboard_summary"]
+    assert summary == SOURCE_CORPUS_BATCH_DASHBOARD_SUMMARY
+    assert summary["batch_status"] == "active_hash_only_provenance_manifest"
+    assert summary["batch_id"] == "source_corpus_batch_20260610"
+    assert summary["canonical_row_count"] == 22
+    assert summary["unique_sha256_count"] == 22
+    assert summary["alias_pairs_preserved"] is True
+    assert summary["raw_files_committed"] is False
+    assert summary["normalized_derivatives_added"] is False
+    assert summary["extracted_text_added"] is False
+    assert summary["all_rows_visibility"] == "hash_only_public_reference"
+    assert summary["all_rows_public_release_approved"] is False
+    assert summary["all_rows_preserve_non_authority_boundaries"] is True
+
+    assert artifact_index["phases"]["SOURCE-CORPUS-BATCH-MANIFEST-2026-06-10-00"] == SOURCE_CORPUS_BATCH_MANIFEST_ARTIFACTS
+    artifact_text = json.dumps(artifact_index, ensure_ascii=False)
+    for artifact in SOURCE_CORPUS_BATCH_MANIFEST_ARTIFACTS:
+        assert artifact in artifact_text
+    repro_text = json.dumps(repro_index, ensure_ascii=False)
+    for fragment in SOURCE_CORPUS_BATCH_MANIFEST_REPRO_FRAGMENTS:
+        assert fragment in repro_text
+
+    for required in (
+        *SOURCE_CORPUS_PROVENANCE_DOCTRINE_LANGUAGE,
+        *SOURCE_CORPUS_BATCH_REPORT_FILENAMES,
+        *SOURCE_CORPUS_BATCH_CONCRETE_HASHES,
+        *SOURCE_CORPUS_BATCH_ALIAS_TERMS,
+        *SOURCE_CORPUS_MANIFEST_TERMS,
+        *SOURCE_CORPUS_BATCH_PRIOR_PHASE_RELATION,
+        SOURCE_CORPUS_BATCH_MANIFEST_CLAIM_ALLOWED,
+        "Publication sync grants no runtime authority.",
+    ):
+        assert required in page
+
+    boundaries = "\n".join(claim_boundaries["boundaries"])
+    for blocked in COMPLIANCE_REPORT_SOURCE_CORPUS_BLOCKED_CLAIMS:
+        assert blocked in boundaries
+    assert status["source_corpus_batch_manifest_2026_06_10_00_indexed"] is True
+    assert status["source_corpus_batch_status"] == "active_hash_only_provenance_manifest"
+    assert status["source_corpus_batch_id"] == "source_corpus_batch_20260610"
+    assert status["source_corpus_batch_canonical_row_count"] == 22
+    assert status["source_corpus_batch_unique_sha256_count"] == 22
+    assert status["source_corpus_batch_raw_files_committed"] is False
+    assert status["source_corpus_batch_normalized_derivatives_added"] is False
+    assert status["source_corpus_batch_extracted_text_added"] is False
+
+
+def test_validator_fails_if_source_corpus_batch_manifest_makes_forbidden_claims(tmp_path):
+    for claim in COMPLIANCE_REPORT_SOURCE_CORPUS_BLOCKED_CLAIMS:
+        out_dir, docs_dir = run_builder(tmp_path / claim.replace(" ", "_").replace("/", "_"))
+        page = docs_dir / "source-corpus-batch-manifest-2026-06-10.md"
+        page.write_text(page.read_text(encoding="utf-8") + f"\nSource corpus batch sync claims {claim}.\n", encoding="utf-8")
+        result = validate_dashboard(out_dir / "experiment_suite_dashboard.json", docs_dir)
+        assert result["passed"] is False, claim
+        forbidden_found = [found.lower() for found in result["forbidden_claims_found"]]
+        assert (
+            claim.lower() in forbidden_found
+            or f"claims {claim.lower()}" in forbidden_found
+            or f"source corpus batch sync claims {claim.lower()}" in forbidden_found
+        ), result
+
+
+def test_gateway_scope_and_gateway_report_source_corpus_index_dashboard_docs_and_boundaries(tmp_path):
+    out_dir, docs_dir = run_builder(tmp_path)
+    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text(encoding="utf-8"))
+    artifact_index = json.loads((out_dir / "artifact_index.json").read_text(encoding="utf-8"))
+    repro_index = json.loads((out_dir / "reproducibility_index.json").read_text(encoding="utf-8"))
+    claim_boundaries = json.loads((out_dir / "claim_boundary_index.json").read_text(encoding="utf-8"))
+    status = json.loads((out_dir / "status.json").read_text(encoding="utf-8"))
+    gateway_page = (docs_dir / "ai-receipt-gateway-scope-simulation.md").read_text(encoding="utf-8")
+    batch_page = (docs_dir / "source-corpus-gateway-reports-batch-2026-06-10.md").read_text(encoding="utf-8")
+    repair_page = (docs_dir / "source-corpus-gateway-reports-batch-source-identity-repair.md").read_text(encoding="utf-8")
+
+    phases = {entry["phase_id"]: entry for entry in dashboard["accepted_phases"]}
+    assert "AI-RECEIPT-GATEWAY-SCOPE-SIMULATION-00" in phases
+    assert "SOURCE-CORPUS-GATEWAY-REPORTS-BATCH-2026-06-10-00" in phases
+    assert "SOURCE-CORPUS-GATEWAY-REPORTS-BATCH-SOURCE-IDENTITY-REPAIR-00" in phases
+
+    gateway_summary = phases["AI-RECEIPT-GATEWAY-SCOPE-SIMULATION-00"]["dashboard_summary"]
+    assert gateway_summary == AI_RECEIPT_GATEWAY_SCOPE_SIMULATION_DASHBOARD_SUMMARY
+    assert gateway_summary["simulation_status"] == "completed_design_only"
+    assert gateway_summary["scenario_count"] == 14
+    assert gateway_summary["negative_control_status"] == "passed_fail_closed"
+    assert gateway_summary["negative_control_count"] == 10
+    for field in (
+        "runtime_capture_enabled",
+        "provider_runtime_performed",
+        "network_call_performed",
+        "memory_write_performed",
+        "atlas_memory_admission_performed",
+        "trace_export_performed",
+        "pmr_federation_performed",
+    ):
+        assert gateway_summary[field] is False
+
+    batch_summary = phases["SOURCE-CORPUS-GATEWAY-REPORTS-BATCH-2026-06-10-00"]["dashboard_summary"]
+    repair_summary = phases["SOURCE-CORPUS-GATEWAY-REPORTS-BATCH-SOURCE-IDENTITY-REPAIR-00"]["dashboard_summary"]
+    assert batch_summary == SOURCE_CORPUS_GATEWAY_REPORT_BATCH_DASHBOARD_SUMMARY
+    assert repair_summary == SOURCE_CORPUS_GATEWAY_REPORT_BATCH_DASHBOARD_SUMMARY
+    assert batch_summary["row_count"] == 9
+    assert batch_summary["unique_sha256_count"] == 9
+    assert batch_summary["actual_uploaded_filenames_preserved"] is True
+    assert batch_summary["actual_uploaded_hashes_preserved"] is True
+    assert batch_summary["raw_files_committed"] is False
+    assert batch_summary["raw_images_committed"] is False
+
+    assert artifact_index["phases"]["AI-RECEIPT-GATEWAY-SCOPE-SIMULATION-00"] == AI_RECEIPT_GATEWAY_SCOPE_SIMULATION_ARTIFACTS
+    assert artifact_index["phases"]["SOURCE-CORPUS-GATEWAY-REPORTS-BATCH-2026-06-10-00"] == SOURCE_CORPUS_GATEWAY_REPORT_BATCH_ARTIFACTS
+    assert artifact_index["phases"]["SOURCE-CORPUS-GATEWAY-REPORTS-BATCH-SOURCE-IDENTITY-REPAIR-00"] == SOURCE_CORPUS_GATEWAY_REPORT_BATCH_ARTIFACTS
+    artifact_text = json.dumps(artifact_index, ensure_ascii=False)
+    for artifact in (*AI_RECEIPT_GATEWAY_SCOPE_SIMULATION_ARTIFACTS, *SOURCE_CORPUS_GATEWAY_REPORT_BATCH_ARTIFACTS):
+        assert artifact in artifact_text
+    assert "build_ai_receipt_gateway_scope_simulation" in json.dumps(repro_index, ensure_ascii=False)
+
+    for required in (
+        *AI_RECEIPT_GATEWAY_SCOPE_SIMULATION_DOCTRINE_LANGUAGE,
+        *AI_RECEIPT_GATEWAY_SCENARIOS,
+        *AI_RECEIPT_GATEWAY_DECISION_STATUSES,
+        *AI_RECEIPT_GATEWAY_VISIBLE_STATUS_FIELDS,
+        AI_RECEIPT_GATEWAY_SCOPE_SIMULATION_CLAIM_ALLOWED,
+        "Publication sync grants no runtime authority.",
+    ):
+        assert required in gateway_page
+    for page in (batch_page, repair_page):
+        for required in (
+            *SOURCE_CORPUS_GATEWAY_REPORT_FILENAMES,
+            *SOURCE_CORPUS_GATEWAY_REPORT_HASHES,
+            *SOURCE_CORPUS_GATEWAY_REPORT_SOURCE_IDENTITY_REPAIR_LANGUAGE,
+            *GATEWAY_SCOPE_AND_SOURCE_CORPUS_PRIOR_PHASE_RELATION,
+            "Publication sync grants no runtime authority.",
+        ):
+            assert required in page
+    assert SOURCE_CORPUS_GATEWAY_REPORT_BATCH_CLAIM_ALLOWED in batch_page
+    assert SOURCE_CORPUS_GATEWAY_REPORT_SOURCE_IDENTITY_REPAIR_CLAIM_ALLOWED in repair_page
+
+    boundaries = "\n".join(claim_boundaries["boundaries"])
+    for blocked in AI_RECEIPT_GATEWAY_SCOPE_SIMULATION_BLOCKED_CLAIMS:
+        assert blocked in boundaries
+    assert status["ai_receipt_gateway_scope_simulation_00_indexed"] is True
+    assert status["source_corpus_gateway_reports_batch_2026_06_10_00_indexed"] is True
+    assert status["source_corpus_gateway_reports_batch_source_identity_repair_00_indexed"] is True
+    assert status["source_corpus_gateway_reports_batch_row_count"] == 9
+    assert status["source_corpus_gateway_reports_batch_unique_sha256_count"] == 9
+
+
+def test_validator_fails_if_gateway_scope_or_gateway_report_batch_makes_forbidden_claims(tmp_path):
+    for claim in AI_RECEIPT_GATEWAY_SCOPE_SIMULATION_BLOCKED_CLAIMS:
+        out_dir, docs_dir = run_builder(tmp_path / claim.replace(" ", "_").replace("/", "_"))
+        page = docs_dir / "ai-receipt-gateway-scope-simulation.md"
+        page.write_text(page.read_text(encoding="utf-8") + f"\nGateway scope sync claims {claim}.\n", encoding="utf-8")
+        result = validate_dashboard(out_dir / "experiment_suite_dashboard.json", docs_dir)
+        assert result["passed"] is False, claim
+        forbidden_found = [found.lower() for found in result["forbidden_claims_found"]]
+        assert (
+            claim.lower() in forbidden_found
+            or f"claims {claim.lower()}" in forbidden_found
+            or f"gateway scope sync claims {claim.lower()}" in forbidden_found
+        ), result
+
+
+def test_ai_receipt_gateway_local_ingress_prototype_indexes_dashboard_docs_and_boundaries(tmp_path):
+    out_dir, docs_dir = run_builder(tmp_path)
+    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text(encoding="utf-8"))
+    artifact_index = json.loads((out_dir / "artifact_index.json").read_text(encoding="utf-8"))
+    repro_index = json.loads((out_dir / "reproducibility_index.json").read_text(encoding="utf-8"))
+    claim_boundaries = json.loads((out_dir / "claim_boundary_index.json").read_text(encoding="utf-8"))
+    status = json.loads((out_dir / "status.json").read_text(encoding="utf-8"))
+    page = (docs_dir / "ai-receipt-gateway-local-ingress-prototype.md").read_text(encoding="utf-8")
+
+    phases = {entry["phase_id"]: entry for entry in dashboard["accepted_phases"]}
+    assert "AI-RECEIPT-GATEWAY-LOCAL-INGRESS-PROTOTYPE-00" in phases
+    summary = phases["AI-RECEIPT-GATEWAY-LOCAL-INGRESS-PROTOTYPE-00"]["dashboard_summary"]
+    assert summary == AI_RECEIPT_GATEWAY_LOCAL_INGRESS_DASHBOARD_SUMMARY
+    assert summary["ingress_status"] == "completed"
+    assert summary["source_mode"] == "generated_harmless_fixture"
+    assert summary["selected_decision_status"] == "allowed_configured_scope"
+    assert summary["scope_simulation_status"] == "completed_design_only"
+    assert summary["negative_control_status"] == "passed_fail_closed"
+    assert summary["mvr_report_ref"] == "minimal_viable_receipt_human_readable.md"
+    assert summary["eu_ai_act_evidence_map_ref"] == "eu_ai_act_mvr_evidence_map.json"
+    assert summary["compliance_ready_report_ref"] == "compliance_ready_mvr_report.md"
+    for field in (
+        "directory_scan_performed",
+        "hidden_file_read_performed",
+        "connector_pull_performed",
+        "provider_runtime_performed",
+        "network_call_performed",
+        "memory_write_performed",
+        "atlas_memory_admission_performed",
+        "trace_export_performed",
+        "pmr_federation_performed",
+        "compliance_certification_emitted",
+        "legal_advice_emitted",
+        "audit_pass_claimed",
+        "attestation_success_claimed",
+        "product_readiness_claimed",
+        "product_release_performed",
+        "truth_certification_emitted",
+        "final_answer_authority_granted",
+        "accepted_evidence_authority_granted",
+    ):
+        assert summary[field] is False
+
+    assert artifact_index["phases"]["AI-RECEIPT-GATEWAY-LOCAL-INGRESS-PROTOTYPE-00"] == AI_RECEIPT_GATEWAY_LOCAL_INGRESS_ARTIFACTS
+    artifact_text = json.dumps(artifact_index, ensure_ascii=False)
+    for artifact in AI_RECEIPT_GATEWAY_LOCAL_INGRESS_ARTIFACTS:
+        assert artifact in artifact_text
+    repro_text = json.dumps(repro_index, ensure_ascii=False)
+    assert "build_ai_receipt_gateway_local_ingress_prototype" in repro_text
+
+    for required in (
+        *AI_RECEIPT_GATEWAY_LOCAL_INGRESS_DOCTRINE_LANGUAGE,
+        *AI_RECEIPT_GATEWAY_LOCAL_INGRESS_SOURCE_MODES,
+        *AI_RECEIPT_GATEWAY_LOCAL_INGRESS_NEGATIVE_CONTROLS,
+        *AI_RECEIPT_GATEWAY_LOCAL_INGRESS_GUARDRAILS,
+        *AI_RECEIPT_GATEWAY_LOCAL_INGRESS_PRIOR_PHASE_RELATION,
+        AI_RECEIPT_GATEWAY_LOCAL_INGRESS_CLAIM_ALLOWED,
+        "Publication sync grants no runtime authority.",
+    ):
+        assert required in page
+    boundaries = "\n".join(claim_boundaries["boundaries"])
+    for blocked in AI_RECEIPT_GATEWAY_LOCAL_INGRESS_BLOCKED_CLAIMS:
+        assert blocked in boundaries
+    assert status["ai_receipt_gateway_local_ingress_prototype_00_indexed"] is True
+    assert status["ai_receipt_gateway_local_ingress_status"] == "completed"
+    assert status["ai_receipt_gateway_local_ingress_source_mode"] == "generated_harmless_fixture"
+
+
+def test_validator_fails_if_gateway_local_ingress_makes_forbidden_claims(tmp_path):
+    for claim in AI_RECEIPT_GATEWAY_LOCAL_INGRESS_BLOCKED_CLAIMS:
+        out_dir, docs_dir = run_builder(tmp_path / claim.replace(" ", "_").replace("/", "_"))
+        page = docs_dir / "ai-receipt-gateway-local-ingress-prototype.md"
+        page.write_text(page.read_text(encoding="utf-8") + f"\nLocal ingress sync claims {claim}.\n", encoding="utf-8")
+        result = validate_dashboard(out_dir / "experiment_suite_dashboard.json", docs_dir)
+        assert result["passed"] is False, claim
+        forbidden_found = [found.lower() for found in result["forbidden_claims_found"]]
+        assert (
+            claim.lower() in forbidden_found
+            or f"claims {claim.lower()}" in forbidden_found
+            or f"local ingress sync claims {claim.lower()}" in forbidden_found
+        ), result
