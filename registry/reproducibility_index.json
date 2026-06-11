@@ -256,7 +256,15 @@
       },
       {
         "name": "SOURCE-CORPUS-BATCH-MANIFEST-2026-06-10-00 batch manifest validation",
-        "command": "python -m pytest -q python/tests/provenance/test_source_corpus_batch_manifest_20260610.py tests/test_experiment_registry.py"
+        "command": "python -m pytest -q python/tests/provenance/test_source_corpus_batch_manifest_20260610.py tests/test_source_corpus_provenance_archive.py tests/test_experiment_registry.py"
+      },
+      {
+        "name": "AI-RECEIPT-GATEWAY-SCOPE-SIMULATION-00 Python entrypoint",
+        "command": "python -c \"from pathlib import Path; from coherence.gateway.ai_receipt_gateway_scope_simulation import build_ai_receipt_gateway_scope_simulation; build_ai_receipt_gateway_scope_simulation(Path(r'C:\\UVLM\\run_artifacts\\ai_receipt_gateway_scope_simulation'))\""
+      },
+      {
+        "name": "SOURCE-CORPUS-GATEWAY-REPORTS-BATCH-2026-06-10-00 source batch validation",
+        "command": "python -m pytest -q python/tests/provenance/test_source_corpus_gateway_report_batch_20260610.py tests/test_experiment_registry.py"
       },
       {
         "name": "WAVE-ROSETTA-CANONICAL-PROXY-BRIDGE-PROVENANCE-00 provenance validation",

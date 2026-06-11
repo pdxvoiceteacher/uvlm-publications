@@ -147,6 +147,52 @@ COMPLIANCE-READY-MVR-REPORT-LOCAL-PROTOTYPE-00 emits a local compliance-ready Mi
 - GitHub repo is a backup store
 - source corpus archive writes memory
 - source corpus archive admits Atlas memory
+- source corpus batch proves GUFT
+- source corpus batch proves compliance
+- source corpus batch certifies truth
+- source corpus batch grants accepted-evidence authority
+- source corpus batch is canonical repo state
+- source corpus batch authorizes product release
+- source corpus batch certifies product readiness
+- source corpus batch writes memory
+- source corpus batch admits Atlas memory
+- filename aliases are separate sources
+- raw private reports are public by default
+- deduplication means source equivalence beyond byte identity
+- source reports are theorem proof
+- source reports are compliance certification
+- source reports are product release
+- source reports are product readiness
+- source reports are current canonical repo state
+- AI Receipt Gateway scope simulation activates runtime capture
+- AI Receipt Gateway scope simulation activates gateway
+- AI Receipt Gateway scope simulation is invisible surveillance
+- AI Receipt Gateway scope simulation captures universally
+- AI Receipt Gateway scope simulation processes real inputs
+- AI Receipt Gateway scope simulation calls providers
+- AI Receipt Gateway scope simulation performs network calls
+- AI Receipt Gateway scope simulation writes memory
+- AI Receipt Gateway scope simulation admits Atlas memory
+- AI Receipt Gateway scope simulation exports traces
+- AI Receipt Gateway scope simulation federates PMR
+- AI Receipt Gateway scope simulation certifies compliance
+- AI Receipt Gateway scope simulation provides legal advice
+- AI Receipt Gateway scope simulation passes audits
+- AI Receipt Gateway scope simulation guarantees attestation success
+- gateway scope simulation means enforcement mode is active
+- gateway scope simulation means configured scope is universal capture
+- gateway scope simulation means gateway off still captures data
+- source corpus gateway report batch proves product readiness
+- source corpus gateway report batch certifies compliance
+- source corpus gateway report batch certifies truth
+- source corpus gateway report batch grants accepted-evidence authority
+- source corpus gateway report batch is canonical repo state
+- visual mockups are authority claims
+- visual polish is legal validity
+- design inspiration is product readiness
+- raw private gateway reports are committed
+- raw gateway report images are committed
+- hashes certify truth
 
 ## Reproducibility
 
@@ -156,3 +202,16 @@ COMPLIANCE-READY-MVR-REPORT-LOCAL-PROTOTYPE-00 emits a local compliance-ready Mi
 ## Runtime authority boundary
 
 Publication sync grants no runtime authority. It does not imply compliance certification, legal advice, audit pass, attestation success, product readiness, product release, truth certification, final-answer authority, accepted-evidence authority, memory write, Atlas memory admission, trace export, PMR federation, provider runtime, network runtime, model training, review skipping, user validation, human-subject study, market validation, human benefit proof, theorem proof, GUFT proof, consciousness proof, or universal ontology proof.
+
+## AI Receipt Gateway scope simulation and gateway report source-corpus sync
+
+- AI-RECEIPT-GATEWAY-ACTIVATION-DESIGN-00 defines the VPN-like activation model.
+- AI-RECEIPT-GATEWAY-SCOPE-SIMULATION-00 simulates scope, mode, ingress, activation, and negative-control outcomes.
+- COMPLIANCE-REPORT-PRESENTATION-STANDARD-00 defines market-ready visual/report language.
+- SOURCE-CORPUS-GATEWAY-REPORTS-BATCH-2026-06-10-00 records gateway/report consultant source provenance.
+- SOURCE-CORPUS-GATEWAY-REPORTS-BATCH-SOURCE-IDENTITY-REPAIR-00 restores the actual uploaded source identities.
+- SOURCE-CORPUS-PROVENANCE-ARCHIVE-00 defines the source-report archive pattern.
+
+AI-RECEIPT-GATEWAY-SCOPE-SIMULATION-00 is design-only policy simulation, not runtime capture, gateway activation, invisible surveillance, universal capture, real-input processing, provider runtime, network runtime, memory write, Atlas admission, trace export, PMR federation, compliance certification, legal advice, audit pass, attestation success, product readiness, product release, final-answer authority, or accepted-evidence authority.
+
+SOURCE-CORPUS-GATEWAY-REPORTS-BATCH-2026-06-10-00 and SOURCE-CORPUS-GATEWAY-REPORTS-BATCH-SOURCE-IDENTITY-REPAIR-00 preserve actual uploaded consultant report and visual mockup filenames and hashes as hash-only provenance. Raw private reports and images are not committed. Public release approval remains false. Publication sync grants no runtime authority.

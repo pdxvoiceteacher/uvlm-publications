@@ -33,19 +33,21 @@ SOURCE-CORPUS-BATCH-MANIFEST-2026-06-10-00 adds a governed, hash-only source-cor
 - hashes_do_not_certify_truth = true
 - human_review_required = true
 
-## Source-corpus doctrine language
+## Doctrine language
 
+- Source Corpus Provenance Archive
 - June 2026 Source Corpus Batch Manifest
 - This batch preserves source identity and provenance, not accepted evidence.
 - Raw private files are not committed.
 - Duplicate filenames are deduplicated by SHA-256.
 - Filename aliases are preserved.
 - Public release approval is false by default.
-- Hashes preserve identity; hashes do not certify truth.
-- Canonical repo state supersedes source reports.
-- Human review remains required.
-- Large or sensitive reports remain hash-only references unless explicitly approved.
 - Repos are governed provenance libraries, not document dumps.
+- Raw source reports may be omitted from public repos when privacy, sensitivity, size, or licensing requires hash-only reference.
+- DOCX originals should have Markdown derivatives when committed.
+- TXT and MD reports may be committed directly when public-safe.
+- Large or sensitive files should use private/archive storage, Git LFS, release assets, or external governed storage.
+- Future users must check canonical repo state before treating reports as current design.
 - Source reports are not accepted evidence by themselves.
 - Source reports are not theorem proof.
 - Source reports are not product release.
@@ -53,9 +55,37 @@ SOURCE-CORPUS-BATCH-MANIFEST-2026-06-10-00 adds a governed, hash-only source-cor
 - Source reports are not compliance certification.
 - Source reports are not legal advice.
 - Source reports are not current canonical repo state.
+- Summaries are not sources.
+- Human review remains required.
+- Hashes preserve identity; hashes do not certify truth.
+- Visibility and sensitivity must be explicit.
+- Public release approval must be explicit.
+- Canonical repo state supersedes source reports.
+- Large or sensitive reports remain hash-only references unless explicitly approved.
 - SOURCE-CORPUS-BATCH-MANIFEST-2026-06-10-00 does not commit raw private reports.
 - SOURCE-CORPUS-BATCH-MANIFEST-2026-06-10-00 does not add extracted text.
 - SOURCE-CORPUS-BATCH-MANIFEST-2026-06-10-00 does not add normalized derivatives.
+
+## Manifest terms
+
+- active_governed_provenance_manifest
+- source_corpus_batch_20260610
+- active_hash_only_provenance_manifest
+- one_canonical_row_per_unique_sha256
+- raw_sha256
+- hash_only_public_reference
+- canonical_repo_state_supersedes_report
+- source_is_not_accepted_evidence
+- source_is_not_theorem_proof
+- source_is_not_product_release
+- source_is_not_product_readiness
+- source_is_not_compliance_certification
+- source_is_not_legal_advice
+- source_is_not_memory_write
+- source_is_not_atlas_memory_admission
+- summary_is_not_source
+- human_review_required
+- public_release_approved = false
 
 ## High-priority source report filenames
 
@@ -82,7 +112,7 @@ SOURCE-CORPUS-BATCH-MANIFEST-2026-06-10-00 adds a governed, hash-only source-cor
 - governed_tches_after_dq08_inventory_capture_20260501_161304.zip
 - mvr_tches_v1_4_human_selected_file_smoke.zip
 
-## Concrete hashes
+## Concrete source hashes
 
 - 0d9bedc988ae3bd6c8c5291594e98cdf55f2483e61d365ae9976785e412f2656
 - f1206c5f86d83c6ac900d8880b5dcffa5433ce626a1ddfef8480a060ee3f4fa4
@@ -107,7 +137,7 @@ SOURCE-CORPUS-BATCH-MANIFEST-2026-06-10-00 adds a governed, hash-only source-cor
 - db97a6325de67c673baae100327773d6d5f0a0a14431ada361b1551d647fef3d
 - 6046cabc13041f664cb67caf96cf5d43eb41fcc03df59248d0b3e6842552d7ca
 
-## Alias terms
+## Alias and deduplication terms
 
 - Telemetry%20Project%20Deep%20Dive.docx
 - Telemetry%20Integration%20into%20the%20CoherenceLattice%20Pipeline.docx
@@ -118,25 +148,14 @@ SOURCE-CORPUS-BATCH-MANIFEST-2026-06-10-00 adds a governed, hash-only source-cor
 - filename aliases are not separate sources
 - deduplication means byte-identity only
 
-## Source-corpus manifest terms
+## Artifact references
 
-- source_corpus_batch_20260610
-- active_hash_only_provenance_manifest
-- one_canonical_row_per_unique_sha256
-- raw_sha256
-- hash_only_public_reference
-- public_release_approved = false
-- canonical_repo_state_supersedes_report
-- source_is_not_accepted_evidence
-- source_is_not_theorem_proof
-- source_is_not_product_release
-- source_is_not_product_readiness
-- source_is_not_compliance_certification
-- source_is_not_legal_advice
-- source_is_not_memory_write
-- source_is_not_atlas_memory_admission
-- summary_is_not_source
-- human_review_required
+- docs/provenance/source_reports/2026-06/batch_manifest_20260610.json
+- docs/provenance/source_reports/2026-06/batch_sha256sums_20260610.txt
+- docs/provenance/source_reports/2026-06/batch_aliases_20260610.json
+- docs/provenance/source_reports/2026-06/batch_summary_20260610.md
+- schema/bridge/source_corpus_batch_manifest.schema.json
+- python/tests/provenance/test_source_corpus_batch_manifest_20260610.py
 
 ## Relation to prior phases
 
@@ -147,17 +166,43 @@ SOURCE-CORPUS-BATCH-MANIFEST-2026-06-10-00 adds a governed, hash-only source-cor
 - COMPLIANCE-READY-MVR-REPORT-LOCAL-PROTOTYPE-00 uses compliance report provenance for report design context.
 - VALIDATION-TIERING-PROVENANCE-00 records validation confidence scope.
 
-## Artifact references
-
-- docs/provenance/source_reports/2026-06/batch_manifest_20260610.json
-- docs/provenance/source_reports/2026-06/batch_sha256sums_20260610.txt
-- docs/provenance/source_reports/2026-06/batch_aliases_20260610.json
-- docs/provenance/source_reports/2026-06/batch_summary_20260610.md
-- schema/bridge/source_corpus_batch_manifest.schema.json
-- python/tests/provenance/test_source_corpus_batch_manifest_20260610.py
-
 ## Blocked claims
 
+- Compliance-ready MVR report local prototype certifies compliance
+- Compliance-ready MVR report local prototype provides legal advice
+- Compliance-ready MVR report local prototype passes audit
+- Compliance-ready MVR report local prototype guarantees attestation success
+- Compliance-ready MVR report local prototype proves product readiness
+- Compliance-ready MVR report local prototype is product release
+- Compliance-ready MVR report local prototype certifies truth
+- Compliance-ready MVR report local prototype authorizes final answers
+- Compliance-ready MVR report local prototype grants accepted-evidence authority
+- Compliance-ready MVR report local prototype writes memory
+- Compliance-ready MVR report local prototype admits Atlas memory
+- Compliance-ready MVR report local prototype exports traces
+- Compliance-ready MVR report local prototype federates PMR
+- source manifest is accepted evidence
+- traceability means truth
+- control mapping means control effectiveness
+- visible gap means compliance failure
+- no visible gap means compliance success
+- human review role means human signoff occurred
+- mapped evidence means compliance satisfied
+- WAVE bridge means canonical measurement
+- source corpus archive proves GUFT
+- source corpus archive proves compliance
+- source corpus archive certifies truth
+- source reports are accepted evidence
+- source reports are canonical repo state
+- source reports authorize product release
+- source reports certify product readiness
+- summaries are sources
+- hashes certify truth
+- raw reports may be public by default
+- private reports may be bulk imported without review
+- GitHub repo is a backup store
+- source corpus archive writes memory
+- source corpus archive admits Atlas memory
 - source corpus batch proves GUFT
 - source corpus batch proves compliance
 - source corpus batch certifies truth
@@ -167,23 +212,64 @@ SOURCE-CORPUS-BATCH-MANIFEST-2026-06-10-00 adds a governed, hash-only source-cor
 - source corpus batch certifies product readiness
 - source corpus batch writes memory
 - source corpus batch admits Atlas memory
-- hashes certify truth
 - filename aliases are separate sources
 - raw private reports are public by default
 - deduplication means source equivalence beyond byte identity
-- source reports are accepted evidence
 - source reports are theorem proof
 - source reports are compliance certification
 - source reports are product release
 - source reports are product readiness
 - source reports are current canonical repo state
-- GitHub repo is a backup store
+- AI Receipt Gateway scope simulation activates runtime capture
+- AI Receipt Gateway scope simulation activates gateway
+- AI Receipt Gateway scope simulation is invisible surveillance
+- AI Receipt Gateway scope simulation captures universally
+- AI Receipt Gateway scope simulation processes real inputs
+- AI Receipt Gateway scope simulation calls providers
+- AI Receipt Gateway scope simulation performs network calls
+- AI Receipt Gateway scope simulation writes memory
+- AI Receipt Gateway scope simulation admits Atlas memory
+- AI Receipt Gateway scope simulation exports traces
+- AI Receipt Gateway scope simulation federates PMR
+- AI Receipt Gateway scope simulation certifies compliance
+- AI Receipt Gateway scope simulation provides legal advice
+- AI Receipt Gateway scope simulation passes audits
+- AI Receipt Gateway scope simulation guarantees attestation success
+- gateway scope simulation means enforcement mode is active
+- gateway scope simulation means configured scope is universal capture
+- gateway scope simulation means gateway off still captures data
+- source corpus gateway report batch proves product readiness
+- source corpus gateway report batch certifies compliance
+- source corpus gateway report batch certifies truth
+- source corpus gateway report batch grants accepted-evidence authority
+- source corpus gateway report batch is canonical repo state
+- visual mockups are authority claims
+- visual polish is legal validity
+- design inspiration is product readiness
+- raw private gateway reports are committed
+- raw gateway report images are committed
+- hashes certify truth
 
 ## Reproducibility
 
 - test_source_corpus_batch_manifest_20260610.py
-- `python -m pytest -q python/tests/provenance/test_source_corpus_batch_manifest_20260610.py tests/test_experiment_registry.py`
+- test_source_corpus_provenance_archive.py
+- test_experiment_registry.py
+- `python -m pytest -q python/tests/provenance/test_source_corpus_batch_manifest_20260610.py tests/test_source_corpus_provenance_archive.py tests/test_experiment_registry.py`
 
 ## Runtime authority boundary
 
 Publication sync grants no runtime authority. It does not imply raw private report import, accepted-evidence authority, theorem proof, GUFT proof, compliance certification, legal advice, audit pass, attestation success, product readiness, product release, truth certification, final-answer authority, memory write, Atlas memory admission, trace export, PMR federation, model training, review skipping, consciousness proof, or universal ontology proof.
+
+## AI Receipt Gateway scope simulation and gateway report source-corpus sync
+
+- AI-RECEIPT-GATEWAY-ACTIVATION-DESIGN-00 defines the VPN-like activation model.
+- AI-RECEIPT-GATEWAY-SCOPE-SIMULATION-00 simulates scope, mode, ingress, activation, and negative-control outcomes.
+- COMPLIANCE-REPORT-PRESENTATION-STANDARD-00 defines market-ready visual/report language.
+- SOURCE-CORPUS-GATEWAY-REPORTS-BATCH-2026-06-10-00 records gateway/report consultant source provenance.
+- SOURCE-CORPUS-GATEWAY-REPORTS-BATCH-SOURCE-IDENTITY-REPAIR-00 restores the actual uploaded source identities.
+- SOURCE-CORPUS-PROVENANCE-ARCHIVE-00 defines the source-report archive pattern.
+
+AI-RECEIPT-GATEWAY-SCOPE-SIMULATION-00 is design-only policy simulation, not runtime capture, gateway activation, invisible surveillance, universal capture, real-input processing, provider runtime, network runtime, memory write, Atlas admission, trace export, PMR federation, compliance certification, legal advice, audit pass, attestation success, product readiness, product release, final-answer authority, or accepted-evidence authority.
+
+SOURCE-CORPUS-GATEWAY-REPORTS-BATCH-2026-06-10-00 and SOURCE-CORPUS-GATEWAY-REPORTS-BATCH-SOURCE-IDENTITY-REPAIR-00 preserve actual uploaded consultant report and visual mockup filenames and hashes as hash-only provenance. Raw private reports and images are not committed. Public release approval remains false. Publication sync grants no runtime authority.

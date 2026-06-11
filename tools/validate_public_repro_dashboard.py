@@ -78,6 +78,14 @@ from tools.build_public_repro_dashboard import (
     AI_RECEIPT_ARCHITECTURE_PRODUCT_FRAMING,
     AI_RECEIPT_ARCHITECTURE_REPRO_FRAGMENTS,
     AI_RECEIPT_ARCHITECTURE_REQUIRED_DOC_PHRASES,
+    AI_RECEIPT_GATEWAY_DECISION_STATUSES,
+    AI_RECEIPT_GATEWAY_SCENARIOS,
+    AI_RECEIPT_GATEWAY_SCOPE_SIMULATION_ARTIFACTS,
+    AI_RECEIPT_GATEWAY_SCOPE_SIMULATION_BLOCKED_CLAIMS,
+    AI_RECEIPT_GATEWAY_SCOPE_SIMULATION_CLAIM_ALLOWED,
+    AI_RECEIPT_GATEWAY_SCOPE_SIMULATION_DOCTRINE_LANGUAGE,
+    AI_RECEIPT_GATEWAY_SCOPE_SIMULATION_REPRO_FRAGMENTS,
+    AI_RECEIPT_GATEWAY_VISIBLE_STATUS_FIELDS,
     MINIMAL_VIABLE_RECEIPT_DESIGN_ARTIFACTS,
     MINIMAL_VIABLE_RECEIPT_DESIGN_BLOCKED_CLAIMS,
     MINIMAL_VIABLE_RECEIPT_DESIGN_CLAIM_ALLOWED,
@@ -353,6 +361,9 @@ REQUIRED_PHASES = {
     "SOURCE-CORPUS-PROVENANCE-ARCHIVE-00",
     "SOURCE-CORPUS-PROVENANCE-HASH-FILL-00",
     "SOURCE-CORPUS-BATCH-MANIFEST-2026-06-10-00",
+    "AI-RECEIPT-GATEWAY-SCOPE-SIMULATION-00",
+    "SOURCE-CORPUS-GATEWAY-REPORTS-BATCH-2026-06-10-00",
+    "SOURCE-CORPUS-GATEWAY-REPORTS-BATCH-SOURCE-IDENTITY-REPAIR-00",
     "WAVE-ROSETTA-CANONICAL-PROXY-BRIDGE-PROVENANCE-00",
 }
 REQUIRED_BOUNDARY_PHRASES = (
@@ -504,6 +515,15 @@ REQUIRED_BOUNDARY_PHRASES = (
     *AI_RECEIPT_ARCHITECTURE_PRODUCT_FRAMING,
     *AI_RECEIPT_ARCHITECTURE_REPRO_FRAGMENTS,
     *AI_RECEIPT_ARCHITECTURE_BLOCKED_CLAIMS,
+    "AI-RECEIPT-GATEWAY-SCOPE-SIMULATION-00",
+    AI_RECEIPT_GATEWAY_SCOPE_SIMULATION_CLAIM_ALLOWED,
+    *AI_RECEIPT_GATEWAY_SCOPE_SIMULATION_ARTIFACTS,
+    *AI_RECEIPT_GATEWAY_SCOPE_SIMULATION_DOCTRINE_LANGUAGE,
+    *AI_RECEIPT_GATEWAY_SCENARIOS,
+    *AI_RECEIPT_GATEWAY_DECISION_STATUSES,
+    *AI_RECEIPT_GATEWAY_VISIBLE_STATUS_FIELDS,
+    *AI_RECEIPT_GATEWAY_SCOPE_SIMULATION_REPRO_FRAGMENTS,
+    *AI_RECEIPT_GATEWAY_SCOPE_SIMULATION_BLOCKED_CLAIMS,
     "VALIDATION-TIERING-PROVENANCE-00",
     "policy_status",
     "validation_tier = deep",
@@ -1300,6 +1320,9 @@ FORBIDDEN_PHRASES = (
     "adapter executed",
     "adapter execution",
     "network authorization",
+    *[f"compliance source sync claims {claim}" for claim in COMPLIANCE_REPORT_SOURCE_CORPUS_BLOCKED_CLAIMS],
+    *[f"source corpus batch sync claims {claim}" for claim in COMPLIANCE_REPORT_SOURCE_CORPUS_BLOCKED_CLAIMS],
+    *[f"gateway scope sync claims {claim}" for claim in AI_RECEIPT_GATEWAY_SCOPE_SIMULATION_BLOCKED_CLAIMS],
     *[f"claims {claim}" for claim in MINIMAL_VIABLE_RECEIPT_LOCAL_PROTOTYPE_BLOCKED_CLAIMS],
     *[f"claims {claim}" for claim in MVR_READABILITY_REVIEW_SEED_BLOCKED_CLAIMS],
     *[f"claims {claim}" for claim in MVR_READABILITY_REVISION_BLOCKED_CLAIMS],
@@ -1310,8 +1333,6 @@ FORBIDDEN_PHRASES = (
     *[f"claims {claim}" for claim in COMPLIANCE_DESIGN_BLOCKED_CLAIMS],
     *[f"claims {claim}" for claim in WAVE_EU_PROVENANCE_BLOCKED_CLAIMS],
     *[f"claims {claim}" for claim in EU_AI_ACT_MVR_EVIDENCE_MAP_LOCAL_PROTOTYPE_BLOCKED_CLAIMS],
-    *[f"claims {claim}" for claim in COMPLIANCE_REPORT_SOURCE_CORPUS_BLOCKED_CLAIMS],
-    *[f"claims {claim}" for claim in SOURCE_CORPUS_BATCH_MANIFEST_20260610_BLOCKED_CLAIMS],
     "network authorized",
     "remote provider called",
     "remote provider calls",
@@ -1745,7 +1766,7 @@ def _forbidden_hits(text: str) -> list[str]:
             if text[max(0, index - 8) : index].endswith("blocked ") and phrase.lower().startswith("claims "):
                 start = index + len(normalized_phrase)
                 continue
-            if phrase.lower().startswith("claims "):
+            if phrase.lower().startswith(("claims ", "source corpus batch sync claims ", "gateway scope sync claims ", "compliance source sync claims ")):
                 hits.append(phrase)
                 break
             if f"claims {normalized_phrase}" in claims_window and "blocked claims" not in claims_window:
@@ -1831,10 +1852,10 @@ def _forbidden_hits(text: str) -> list[str]:
             ):
                 start = index + len(normalized_phrase)
                 continue
-            if phrase in SOURCE_CORPUS_BATCH_MANIFEST_20260610_BLOCKED_CLAIMS and (
+            if phrase in AI_RECEIPT_GATEWAY_SCOPE_SIMULATION_BLOCKED_CLAIMS and (
                 "claims_blocked" in text[max(0, index - 3000) : index]
                 or "blocked claims" in text[max(0, index - 96) : index]
-                or "june 2026 source-corpus batch manifest publication boundaries" in text[max(0, index - 2400) : index]
+                or "gateway scope" in text[max(0, index - 2600) : index]
             ):
                 start = index + len(normalized_phrase)
                 continue

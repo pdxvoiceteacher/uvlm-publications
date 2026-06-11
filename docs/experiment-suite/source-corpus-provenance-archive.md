@@ -33,6 +33,12 @@ SOURCE-CORPUS-PROVENANCE-ARCHIVE-00 defines a governed source-report archive pat
 ## Doctrine language
 
 - Source Corpus Provenance Archive
+- June 2026 Source Corpus Batch Manifest
+- This batch preserves source identity and provenance, not accepted evidence.
+- Raw private files are not committed.
+- Duplicate filenames are deduplicated by SHA-256.
+- Filename aliases are preserved.
+- Public release approval is false by default.
 - Repos are governed provenance libraries, not document dumps.
 - Raw source reports may be omitted from public repos when privacy, sensitivity, size, or licensing requires hash-only reference.
 - DOCX originals should have Markdown derivatives when committed.
@@ -42,22 +48,38 @@ SOURCE-CORPUS-PROVENANCE-ARCHIVE-00 defines a governed source-report archive pat
 - Source reports are not accepted evidence by themselves.
 - Source reports are not theorem proof.
 - Source reports are not product release.
+- Source reports are not product readiness.
 - Source reports are not compliance certification.
+- Source reports are not legal advice.
+- Source reports are not current canonical repo state.
 - Summaries are not sources.
 - Human review remains required.
 - Hashes preserve identity; hashes do not certify truth.
 - Visibility and sensitivity must be explicit.
 - Public release approval must be explicit.
+- Canonical repo state supersedes source reports.
+- Large or sensitive reports remain hash-only references unless explicitly approved.
+- SOURCE-CORPUS-BATCH-MANIFEST-2026-06-10-00 does not commit raw private reports.
+- SOURCE-CORPUS-BATCH-MANIFEST-2026-06-10-00 does not add extracted text.
+- SOURCE-CORPUS-BATCH-MANIFEST-2026-06-10-00 does not add normalized derivatives.
 
 ## Manifest terms
 
 - active_governed_provenance_manifest
+- source_corpus_batch_20260610
+- active_hash_only_provenance_manifest
+- one_canonical_row_per_unique_sha256
+- raw_sha256
 - hash_only_public_reference
 - canonical_repo_state_supersedes_report
 - source_is_not_accepted_evidence
 - source_is_not_theorem_proof
 - source_is_not_product_release
+- source_is_not_product_readiness
 - source_is_not_compliance_certification
+- source_is_not_legal_advice
+- source_is_not_memory_write
+- source_is_not_atlas_memory_admission
 - summary_is_not_source
 - human_review_required
 - public_release_approved = false
@@ -127,6 +149,52 @@ SOURCE-CORPUS-PROVENANCE-ARCHIVE-00 defines a governed source-report archive pat
 - GitHub repo is a backup store
 - source corpus archive writes memory
 - source corpus archive admits Atlas memory
+- source corpus batch proves GUFT
+- source corpus batch proves compliance
+- source corpus batch certifies truth
+- source corpus batch grants accepted-evidence authority
+- source corpus batch is canonical repo state
+- source corpus batch authorizes product release
+- source corpus batch certifies product readiness
+- source corpus batch writes memory
+- source corpus batch admits Atlas memory
+- filename aliases are separate sources
+- raw private reports are public by default
+- deduplication means source equivalence beyond byte identity
+- source reports are theorem proof
+- source reports are compliance certification
+- source reports are product release
+- source reports are product readiness
+- source reports are current canonical repo state
+- AI Receipt Gateway scope simulation activates runtime capture
+- AI Receipt Gateway scope simulation activates gateway
+- AI Receipt Gateway scope simulation is invisible surveillance
+- AI Receipt Gateway scope simulation captures universally
+- AI Receipt Gateway scope simulation processes real inputs
+- AI Receipt Gateway scope simulation calls providers
+- AI Receipt Gateway scope simulation performs network calls
+- AI Receipt Gateway scope simulation writes memory
+- AI Receipt Gateway scope simulation admits Atlas memory
+- AI Receipt Gateway scope simulation exports traces
+- AI Receipt Gateway scope simulation federates PMR
+- AI Receipt Gateway scope simulation certifies compliance
+- AI Receipt Gateway scope simulation provides legal advice
+- AI Receipt Gateway scope simulation passes audits
+- AI Receipt Gateway scope simulation guarantees attestation success
+- gateway scope simulation means enforcement mode is active
+- gateway scope simulation means configured scope is universal capture
+- gateway scope simulation means gateway off still captures data
+- source corpus gateway report batch proves product readiness
+- source corpus gateway report batch certifies compliance
+- source corpus gateway report batch certifies truth
+- source corpus gateway report batch grants accepted-evidence authority
+- source corpus gateway report batch is canonical repo state
+- visual mockups are authority claims
+- visual polish is legal validity
+- design inspiration is product readiness
+- raw private gateway reports are committed
+- raw gateway report images are committed
+- hashes certify truth
 
 ## Reproducibility
 
@@ -137,16 +205,15 @@ SOURCE-CORPUS-PROVENANCE-ARCHIVE-00 defines a governed source-report archive pat
 
 Publication sync grants no runtime authority. It does not imply compliance certification, legal advice, audit pass, attestation success, product readiness, product release, truth certification, final-answer authority, accepted-evidence authority, memory write, Atlas memory admission, trace export, PMR federation, provider runtime, network runtime, model training, review skipping, user validation, human-subject study, market validation, human benefit proof, theorem proof, GUFT proof, consciousness proof, or universal ontology proof.
 
-## June 2026 source-corpus batch manifest publication sync
+## AI Receipt Gateway scope simulation and gateway report source-corpus sync
 
-SOURCE-CORPUS-BATCH-MANIFEST-2026-06-10-00 adds the June 2026 hash-only batch manifest. It preserves source identity and provenance only; raw private files are not committed, duplicate filenames are deduplicated by SHA-256, filename aliases are preserved, public release approval is false by default, and canonical repo state supersedes source reports.
+- AI-RECEIPT-GATEWAY-ACTIVATION-DESIGN-00 defines the VPN-like activation model.
+- AI-RECEIPT-GATEWAY-SCOPE-SIMULATION-00 simulates scope, mode, ingress, activation, and negative-control outcomes.
+- COMPLIANCE-REPORT-PRESENTATION-STANDARD-00 defines market-ready visual/report language.
+- SOURCE-CORPUS-GATEWAY-REPORTS-BATCH-2026-06-10-00 records gateway/report consultant source provenance.
+- SOURCE-CORPUS-GATEWAY-REPORTS-BATCH-SOURCE-IDENTITY-REPAIR-00 restores the actual uploaded source identities.
+- SOURCE-CORPUS-PROVENANCE-ARCHIVE-00 defines the source-report archive pattern.
 
-Source-corpus batch doctrine: June 2026 Source Corpus Batch Manifest; This batch preserves source identity and provenance, not accepted evidence.; Raw private files are not committed.; Duplicate filenames are deduplicated by SHA-256.; Filename aliases are preserved.; Public release approval is false by default.; Hashes preserve identity; hashes do not certify truth.; Canonical repo state supersedes source reports.; Human review remains required.; Large or sensitive reports remain hash-only references unless explicitly approved.; Repos are governed provenance libraries, not document dumps.; Source reports are not accepted evidence by themselves.; Source reports are not theorem proof.; Source reports are not product release.; Source reports are not product readiness.; Source reports are not compliance certification.; Source reports are not legal advice.; Source reports are not current canonical repo state.; SOURCE-CORPUS-BATCH-MANIFEST-2026-06-10-00 does not commit raw private reports.; SOURCE-CORPUS-BATCH-MANIFEST-2026-06-10-00 does not add extracted text.; SOURCE-CORPUS-BATCH-MANIFEST-2026-06-10-00 does not add normalized derivatives.
+AI-RECEIPT-GATEWAY-SCOPE-SIMULATION-00 is design-only policy simulation, not runtime capture, gateway activation, invisible surveillance, universal capture, real-input processing, provider runtime, network runtime, memory write, Atlas admission, trace export, PMR federation, compliance certification, legal advice, audit pass, attestation success, product readiness, product release, final-answer authority, or accepted-evidence authority.
 
-High-priority filenames: Telemetry Project Deep Dive.docx, CoherenceLattice Change Management and Gnosis Synthesis Report.docx, Telemetry Integration into the CoherenceLattice Pipeline.docx, Multi-Axial Coherence Analysis for Exogenic Off-Loading in Complex Systems.docx, Quantum Gravity from Causal Memory.docx, Universal Control Codex (UCC) Supplement.docx, The Coherence Lattice GUFT meets GUPT.docx, The Grand Unified Field Theory of Coherence (GUFT) V69.me.docx, TCHES v1.4.docx, Appendix TAF – Operationalize it, because Ultra Verba, Lux Mentis.docx, Echo Primer.pdf, PMR - Internal Technical Memo.docx, THE COHERENCE OF SIGNAL.docx, Preventing Hyperreal design drift.docx, Triadic Brain Developer Guidance for Canonical Ingress, Grounding Bundles, and Phaselock Governance.docx, Triadic Brain Maths Glossary.docx, Thought-Exchange Layer (TEL) Graph MVP Design and Integration.docx, Final TEL Event Stack Validation in CoherenceLattice.docx, free will.zip, governed_tches_success_20260420_135304.zip, governed_tches_after_dq08_inventory_capture_20260501_161304.zip, mvr_tches_v1_4_human_selected_file_smoke.zip.
-
-Concrete hashes: 0d9bedc988ae3bd6c8c5291594e98cdf55f2483e61d365ae9976785e412f2656, f1206c5f86d83c6ac900d8880b5dcffa5433ce626a1ddfef8480a060ee3f4fa4, 09268960029318fbd9c724094a6a82bf49e095576e1a5bc644a1e9215fad977a, 7bf6c9637ecbb6afd1cef14a0ee39f5904ddb2493277902334456d05cc0a5104, 23acd312e50e43b7c98702e87ce4bb324fd259502f6fc7cd937690c676feae4d, d48b4984c0061495a89c9cdaba12cd26816ce504c22f765ee1fd6cadc87f2f3d, bcf6941fe619fa40a9475327e977fce7c8af2c44b94d5ae5fd8665eb65a2976c, 87584b4c97581a8657978c63bf4ba135cd707f2a1c21deccb513ffa881212503, d5feb2658f74bedbb56782c66ba473ef29e0ae02ca3ea091356c8cea30aba74d, aff0180dd1a61784bb5b6b173ebf6b66a6cb2f497bbb08aedb9fe4dc149ef583, 0bb03eeb493da65f0625e5028d708873016c359d184bc0f1fecac5715d63b953, dc628557c0e729ff8fe5127d1eb129046a12186fff33b9dae65ad58f2e4e0ceb, 5b028820fd50bd93a7f5ad1ec54955f08c0accd039a482e999fdc04efaccf6c2, a241521288f7c792b76f22b9ec82d19027be9f1032402ae0d87288cacdcb9258, fe5cd0189f64df015239453430a085a156580ecaab5856cc784498a25d62a38b, 27941c74013b578c216e4569a066a8988860a9c8b01fa544cd6fe25a642a8f35, 3608c158b6affd4f63d04e91d5eae65bb045afb864549d3b84ad9bc664d87c40, 1904b3e786b4c0314b681d8c52ddef39ef02d3e4b2bbe2a2493b3072b84d997f, 17bcca653cbe300c656d796f42f6a077b1bf58f3e3a6655133524cbe56386fdd, 00683d8c93d5daabefa9ea6e5819c53f76e9155fd42a4b4dad036188843ee3d1, db97a6325de67c673baae100327773d6d5f0a0a14431ada361b1551d647fef3d, 6046cabc13041f664cb67caf96cf5d43eb41fcc03df59248d0b3e6842552d7ca.
-
-Alias terms: Telemetry%20Project%20Deep%20Dive.docx, Telemetry%20Integration%20into%20the%20CoherenceLattice%20Pipeline.docx, Universal%20Control%20Codex%20%28UCC%29%20Supplement.docx, Multi%E2%80%91Axial%20Coherence%20Analysis%20for%20Exogenic%20Off%E2%80%91Loading%20in%20Complex%20Systems.docx, filename_aliases, deduplicated by SHA-256, filename aliases are not separate sources, deduplication means byte-identity only. Manifest terms: source_corpus_batch_20260610, active_hash_only_provenance_manifest, one_canonical_row_per_unique_sha256, raw_sha256, hash_only_public_reference, public_release_approved = false, canonical_repo_state_supersedes_report, source_is_not_accepted_evidence, source_is_not_theorem_proof, source_is_not_product_release, source_is_not_product_readiness, source_is_not_compliance_certification, source_is_not_legal_advice, source_is_not_memory_write, source_is_not_atlas_memory_admission, summary_is_not_source, human_review_required.
-
-Relation to prior phases: SOURCE-CORPUS-PROVENANCE-ARCHIVE-00 defines the governed source-report archive pattern. SOURCE-CORPUS-PROVENANCE-HASH-FILL-00 fills pending EU AI Act source-report hashes. SOURCE-CORPUS-BATCH-MANIFEST-2026-06-10-00 adds the June 2026 hash-only batch manifest. WAVE-ROSETTA-CANONICAL-PROXY-BRIDGE-PROVENANCE-00 uses source report hashes for scientific provenance. COMPLIANCE-READY-MVR-REPORT-LOCAL-PROTOTYPE-00 uses compliance report provenance for report design context. VALIDATION-TIERING-PROVENANCE-00 records validation confidence scope. Publication sync grants no runtime authority.
+SOURCE-CORPUS-GATEWAY-REPORTS-BATCH-2026-06-10-00 and SOURCE-CORPUS-GATEWAY-REPORTS-BATCH-SOURCE-IDENTITY-REPAIR-00 preserve actual uploaded consultant report and visual mockup filenames and hashes as hash-only provenance. Raw private reports and images are not committed. Public release approval remains false. Publication sync grants no runtime authority.
