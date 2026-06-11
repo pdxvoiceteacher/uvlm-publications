@@ -3624,6 +3624,12 @@
 - Gap Register
 - Human Signoff Packet
 - Source Corpus Provenance Archive
+- June 2026 Source Corpus Batch Manifest
+- This batch preserves source identity and provenance, not accepted evidence.
+- Raw private files are not committed.
+- Duplicate filenames are deduplicated by SHA-256.
+- Filename aliases are preserved.
+- Public release approval is false by default.
 - Repos are governed provenance libraries, not document dumps.
 - Raw source reports may be omitted from public repos when privacy, sensitivity, size, or licensing requires hash-only reference.
 - DOCX originals should have Markdown derivatives when committed.
@@ -3633,19 +3639,35 @@
 - Source reports are not accepted evidence by themselves.
 - Source reports are not theorem proof.
 - Source reports are not product release.
+- Source reports are not product readiness.
 - Source reports are not compliance certification.
+- Source reports are not legal advice.
+- Source reports are not current canonical repo state.
 - Summaries are not sources.
 - Human review remains required.
 - Hashes preserve identity; hashes do not certify truth.
 - Visibility and sensitivity must be explicit.
 - Public release approval must be explicit.
+- Canonical repo state supersedes source reports.
+- Large or sensitive reports remain hash-only references unless explicitly approved.
+- SOURCE-CORPUS-BATCH-MANIFEST-2026-06-10-00 does not commit raw private reports.
+- SOURCE-CORPUS-BATCH-MANIFEST-2026-06-10-00 does not add extracted text.
+- SOURCE-CORPUS-BATCH-MANIFEST-2026-06-10-00 does not add normalized derivatives.
 - active_governed_provenance_manifest
+- source_corpus_batch_20260610
+- active_hash_only_provenance_manifest
+- one_canonical_row_per_unique_sha256
+- raw_sha256
 - hash_only_public_reference
 - canonical_repo_state_supersedes_report
 - source_is_not_accepted_evidence
 - source_is_not_theorem_proof
 - source_is_not_product_release
+- source_is_not_product_readiness
 - source_is_not_compliance_certification
+- source_is_not_legal_advice
+- source_is_not_memory_write
+- source_is_not_atlas_memory_admission
 - summary_is_not_source
 - human_review_required
 - public_release_approved = false
@@ -3695,6 +3717,52 @@
 - GitHub repo is a backup store
 - source corpus archive writes memory
 - source corpus archive admits Atlas memory
+- source corpus batch proves GUFT
+- source corpus batch proves compliance
+- source corpus batch certifies truth
+- source corpus batch grants accepted-evidence authority
+- source corpus batch is canonical repo state
+- source corpus batch authorizes product release
+- source corpus batch certifies product readiness
+- source corpus batch writes memory
+- source corpus batch admits Atlas memory
+- filename aliases are separate sources
+- raw private reports are public by default
+- deduplication means source equivalence beyond byte identity
+- source reports are theorem proof
+- source reports are compliance certification
+- source reports are product release
+- source reports are product readiness
+- source reports are current canonical repo state
+- AI Receipt Gateway scope simulation activates runtime capture
+- AI Receipt Gateway scope simulation activates gateway
+- AI Receipt Gateway scope simulation is invisible surveillance
+- AI Receipt Gateway scope simulation captures universally
+- AI Receipt Gateway scope simulation processes real inputs
+- AI Receipt Gateway scope simulation calls providers
+- AI Receipt Gateway scope simulation performs network calls
+- AI Receipt Gateway scope simulation writes memory
+- AI Receipt Gateway scope simulation admits Atlas memory
+- AI Receipt Gateway scope simulation exports traces
+- AI Receipt Gateway scope simulation federates PMR
+- AI Receipt Gateway scope simulation certifies compliance
+- AI Receipt Gateway scope simulation provides legal advice
+- AI Receipt Gateway scope simulation passes audits
+- AI Receipt Gateway scope simulation guarantees attestation success
+- gateway scope simulation means enforcement mode is active
+- gateway scope simulation means configured scope is universal capture
+- gateway scope simulation means gateway off still captures data
+- source corpus gateway report batch proves product readiness
+- source corpus gateway report batch certifies compliance
+- source corpus gateway report batch certifies truth
+- source corpus gateway report batch grants accepted-evidence authority
+- source corpus gateway report batch is canonical repo state
+- visual mockups are authority claims
+- visual polish is legal validity
+- design inspiration is product readiness
+- raw private gateway reports are committed
+- raw gateway report images are committed
+- hashes certify truth
 - VALIDATION-TIERING-PROVENANCE-00 documents smoke, acceptance, and deep validation tiers and emits validation receipts that record tier, scope, commands, artifact chain, duration, sufficient-for decisions, and not-sufficient-for boundaries without certifying truth, releasing product, proving science, validating market or human benefit, deploying runtime, writing memory, or admitting Atlas memory.
 - config/validation/validation_tier_policy.v1.json
 - validation_tier_receipt.json
@@ -5041,14 +5109,14 @@ Relation to prior phases: EU-AI-ACT-MVR-EVIDENCE-MAPPING-DESIGN-00 defines the d
 
 ## Compliance-ready MVR report local prototype and source-corpus provenance publication sync
 
-COMPLIANCE-READY-MVR-REPORT-LOCAL-PROTOTYPE-00 emits a local compliance-ready MVR report prototype for review support only. SOURCE-CORPUS-PROVENANCE-ARCHIVE-00 defines the governed source-report archive pattern, and SOURCE-CORPUS-PROVENANCE-HASH-FILL-00 fills pending EU AI Act source-report hashes while preserving hash-only public references and no raw private DOCX import.
+COMPLIANCE-READY-MVR-REPORT-LOCAL-PROTOTYPE-00 emits a local compliance-ready MVR report prototype for review support only. SOURCE-CORPUS-PROVENANCE-ARCHIVE-00 defines the governed source-report archive pattern, SOURCE-CORPUS-PROVENANCE-HASH-FILL-00 fills pending EU AI Act source-report hashes, and SOURCE-CORPUS-BATCH-MANIFEST-2026-06-10-00 adds the June 2026 hash-only batch manifest while preserving hash-only public references and no raw private file import.
 
 Compliance report doctrine: Compliance-Ready MVR Report Local Prototype; This report supports review; it does not certify compliance.; This report is not legal advice.; This report does not pass an audit.; This report does not guarantee attestation success.; Source manifest is not accepted evidence.; Traceability is not truth.; Control mapping is not control effectiveness.; Visible gaps are not compliance failures.; No visible gap is not compliance success.; Human review remains required.; Authorized professional signoff remains required.; The report is stupidly user friendly.; Compliance users need a report, not an artifact maze.
 
 Compliance report sections: Executive Summary, System and Intended Use, Input Selection and Source Scope, Consent and Observation Scope, Evidence Map Summary, Gap Register Summary, Human Oversight and Signoff, Controls and Traceability, Data Governance and Quarantine, Retention and Memory Boundaries, Contestability and Recovery, Validation Confidence Scope, WAVE / Metric Proxy Annex, Non-Authority Statement, Audit Artifact Index, Open Questions and Required Follow-Up. Glossary terms: MVR, Observation Contract, TAC, CES, PMR, Sophia, Validation Tier, Quarantine, Source Manifest, Non-Authority Boundary, WAVE Bridge, EU AI Act Evidence Map, Gap Register, Human Signoff Packet.
 
-Source corpus doctrine: Source Corpus Provenance Archive; Repos are governed provenance libraries, not document dumps.; Raw source reports may be omitted from public repos when privacy, sensitivity, size, or licensing requires hash-only reference.; DOCX originals should have Markdown derivatives when committed.; TXT and MD reports may be committed directly when public-safe.; Large or sensitive files should use private/archive storage, Git LFS, release assets, or external governed storage.; Future users must check canonical repo state before treating reports as current design.; Source reports are not accepted evidence by themselves.; Source reports are not theorem proof.; Source reports are not product release.; Source reports are not compliance certification.; Summaries are not sources.; Human review remains required.; Hashes preserve identity; hashes do not certify truth.; Visibility and sensitivity must be explicit.; Public release approval must be explicit.
+Source corpus doctrine: Source Corpus Provenance Archive; June 2026 Source Corpus Batch Manifest; This batch preserves source identity and provenance, not accepted evidence.; Raw private files are not committed.; Duplicate filenames are deduplicated by SHA-256.; Filename aliases are preserved.; Public release approval is false by default.; Repos are governed provenance libraries, not document dumps.; Raw source reports may be omitted from public repos when privacy, sensitivity, size, or licensing requires hash-only reference.; DOCX originals should have Markdown derivatives when committed.; TXT and MD reports may be committed directly when public-safe.; Large or sensitive files should use private/archive storage, Git LFS, release assets, or external governed storage.; Future users must check canonical repo state before treating reports as current design.; Source reports are not accepted evidence by themselves.; Source reports are not theorem proof.; Source reports are not product release.; Source reports are not product readiness.; Source reports are not compliance certification.; Source reports are not legal advice.; Source reports are not current canonical repo state.; Summaries are not sources.; Human review remains required.; Hashes preserve identity; hashes do not certify truth.; Visibility and sensitivity must be explicit.; Public release approval must be explicit.; Canonical repo state supersedes source reports.; Large or sensitive reports remain hash-only references unless explicitly approved.; SOURCE-CORPUS-BATCH-MANIFEST-2026-06-10-00 does not commit raw private reports.; SOURCE-CORPUS-BATCH-MANIFEST-2026-06-10-00 does not add extracted text.; SOURCE-CORPUS-BATCH-MANIFEST-2026-06-10-00 does not add normalized derivatives.
 
-Source corpus manifest terms: active_governed_provenance_manifest, hash_only_public_reference, canonical_repo_state_supersedes_report, source_is_not_accepted_evidence, source_is_not_theorem_proof, source_is_not_product_release, source_is_not_compliance_certification, summary_is_not_source, human_review_required, public_release_approved = false. Source report filenames: GUFT discussion with Thomas and Apprentice 6_8_2026_842AM.docx, GUFT METRICS BRIDGE DISCUSSION 6_9_2026_1022AM.docx, wave_rosetta_canonical_proxy_bridge_scientific_review_20260609.md, EU AI Act Reporting Formats and Short-Term Product Strategy for UVLM Triadic Brain.docx, EU AI Act Aligned Reporting Architecture for Triadic Brain Product Lines.docx. Source hashes: 2f49da190fcf5e3a04330f53bd9e6d30228c0a999cdabf8be2e94e957e6dfb09, 9eaba6d5a49de7d09542b3e879cbb9eb936181a37e660b3434a5e31e110ccfe6, 21045f07f5e2122db9714741a418f582cb87b6d004f6c66f4a63d4b6b7e77fd6, 9140a5dad410be3f38bcb933b6c360537957d0ce1d4b5ea0d259941eaa3c581e, 94703c4678eccd407adb9009b34d2b178ab6ab18ee20b6df22d9407eda50dde1.
+Source corpus manifest terms: active_governed_provenance_manifest, source_corpus_batch_20260610, active_hash_only_provenance_manifest, one_canonical_row_per_unique_sha256, raw_sha256, hash_only_public_reference, canonical_repo_state_supersedes_report, source_is_not_accepted_evidence, source_is_not_theorem_proof, source_is_not_product_release, source_is_not_product_readiness, source_is_not_compliance_certification, source_is_not_legal_advice, source_is_not_memory_write, source_is_not_atlas_memory_admission, summary_is_not_source, human_review_required, public_release_approved = false. Source report filenames: GUFT discussion with Thomas and Apprentice 6_8_2026_842AM.docx, GUFT METRICS BRIDGE DISCUSSION 6_9_2026_1022AM.docx, wave_rosetta_canonical_proxy_bridge_scientific_review_20260609.md, EU AI Act Reporting Formats and Short-Term Product Strategy for UVLM Triadic Brain.docx, EU AI Act Aligned Reporting Architecture for Triadic Brain Product Lines.docx. Source hashes: 2f49da190fcf5e3a04330f53bd9e6d30228c0a999cdabf8be2e94e957e6dfb09, 9eaba6d5a49de7d09542b3e879cbb9eb936181a37e660b3434a5e31e110ccfe6, 21045f07f5e2122db9714741a418f582cb87b6d004f6c66f4a63d4b6b7e77fd6, 9140a5dad410be3f38bcb933b6c360537957d0ce1d4b5ea0d259941eaa3c581e, 94703c4678eccd407adb9009b34d2b178ab6ab18ee20b6df22d9407eda50dde1.
 
 Publication sync grants no runtime authority. It does not imply compliance certification, legal advice, audit pass, attestation success, product readiness, product release, truth certification, final-answer authority, accepted-evidence authority, memory write, Atlas memory admission, trace export, PMR federation, provider runtime, network runtime, model training, review skipping, user validation, human-subject study, market validation, human benefit proof, theorem proof, GUFT proof, consciousness proof, or universal ontology proof.
