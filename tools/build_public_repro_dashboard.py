@@ -12359,6 +12359,151 @@ CONTROL_PACKAGE_PRIOR_PHASE_RELATION = [
     "CONTROL-PACKAGE-MANIFEST-STANDARD-00 defines package metadata and boundaries.",
     "CONTROL-PACKAGE-MANIFEST-STANDARD-ENV-ISOLATION-REPAIR-00 repairs validation isolation only.",
 ]
+CONTROL_PACKAGE_REGISTRY_COMMAND = "python -m pytest -q python/tests/product/test_control_package_registry_design.py tests/test_experiment_registry.py"
+CONTROL_PACKAGE_REGISTRY_REPRO_FRAGMENTS = ["test_control_package_registry_design.py", "control_package_registry.v1.json"]
+CONTROL_PACKAGE_REGISTRY_ARTIFACTS = [
+    "docs/CONTROL_PACKAGE_REGISTRY_DESIGN.md",
+    "config/packages/control_package_registry.v1.json",
+    "schema/bridge/control_package_registry.schema.json",
+    "schema/bridge/control_package_registry_entry.schema.json",
+    "schema/bridge/control_package_registry_non_authority_boundary.schema.json",
+    "python/tests/product/test_control_package_registry_design.py",
+]
+CONTROL_PACKAGE_REGISTRY_DASHBOARD_SUMMARY = {
+    "registry_status": "active_design_only",
+    "policy_status": "active_design_only",
+    "registry_mode": "local_design_registry_only",
+    "package_install_enabled": False,
+    "package_activation_enabled": False,
+    "package_execution_enabled": False,
+    "remote_marketplace_enabled": False,
+    "subscription_billing_enabled": False,
+    "entitlement_enforcement_enabled": False,
+    "runtime_behavior_changed": False,
+    "provider_runtime_performed": False,
+    "network_call_performed": False,
+    "memory_write_performed": False,
+    "atlas_memory_admission_performed": False,
+    "trace_export_performed": False,
+    "pmr_federation_performed": False,
+    "compliance_certification_emitted": False,
+    "legal_advice_emitted": False,
+    "audit_pass_claimed": False,
+    "attestation_success_claimed": False,
+    "product_readiness_claimed": False,
+    "product_release_performed": False,
+    "final_answer_authority_granted": False,
+    "accepted_evidence_authority_granted": False,
+    "truth_certification_emitted": False,
+    "registry_entry_fields": 35,
+    "registry_entries": 8,
+}
+CONTROL_PACKAGE_REGISTRY_ENTRY_FIELDS = [
+    "registry_entry_id", "package_id", "package_name", "package_type", "package_family",
+    "package_version", "author_owner", "license_id", "license_url", "entitlement_model",
+    "free_or_paid_status", "public_good_status", "commercial_entitlement_required",
+    "subscription_eligible", "local_install_supported", "remote_install_supported_future_only",
+    "installation_state", "activation_state", "dependencies", "dependency_status",
+    "compatible_core_versions", "compatibility_status", "emitted_artifacts", "schemas_added",
+    "control_objectives", "framework_mappings", "data_access_required", "retention_behavior",
+    "connector_scope_required", "human_review_required",
+    "authorized_professional_signoff_required_for_compliance_use", "source_provenance_refs",
+    "non_authority_boundaries", "package_manifest_ref", "registry_notes",
+]
+CONTROL_PACKAGE_REGISTRY_ENTRIES = CONTROL_PACKAGE_EXAMPLE_PACKAGES
+CONTROL_PACKAGE_REGISTRY_DEFAULTS = [
+    "installation_state = not_installed",
+    "activation_state = inactive",
+    "dependency_status = not_evaluated_design_only",
+    "compatibility_status = not_evaluated_design_only",
+    "package_manifest_ref = config/packages/control_package_manifest_standard.v1.json",
+    "registry_entry_is_not_customer_entitlement",
+    "registry_entry_is_not_control_effectiveness",
+    "registry_entry_is_not_compliance",
+    "registry_entry_is_not_audit_pass",
+    "registry_entry_is_not_product_release",
+    "registry_entry_is_not_product_readiness",
+]
+CONTROL_PACKAGE_REGISTRY_GUARDRAILS = [
+    "registry_is_not_package_installation",
+    "registry_is_not_package_activation",
+    "registry_is_not_package_execution",
+    "registry_is_not_payment_system",
+    "registry_is_not_subscription_billing",
+    "registry_is_not_marketplace",
+    "registry_is_not_customer_entitlement",
+    "registry_is_not_control_effectiveness",
+    "registry_is_not_compliance",
+    "registry_is_not_legal_advice",
+    "registry_is_not_audit_pass",
+    "registry_is_not_attestation_success",
+    "registry_is_not_product_release",
+    "registry_is_not_product_readiness",
+    "registry_is_not_truth_certification",
+    "registry_is_not_final_answer_authority",
+    "registry_is_not_accepted_evidence_authority",
+    "registry_does_not_write_memory",
+    "registry_does_not_admit_atlas_memory",
+    "registry_does_not_export_traces",
+    "registry_does_not_federate_pmr",
+    "human_review_required",
+]
+CONTROL_PACKAGE_REGISTRY_DOCTRINE_LANGUAGE = [
+    "Control Package Registry Design",
+    "The registry records package availability and state; it does not install or execute packages.",
+    "Registry presence is not customer entitlement.",
+    "Package availability is not compliance.",
+    "Package installation state is not control effectiveness.",
+    "Package activation state is not audit pass.",
+    "Framework evidence packs are evidence support, not certification.",
+    "Public-good package does not mean public domain.",
+    "Author-contributed package does not mean unrestricted commercial use.",
+    "Marketplace-ready metadata does not mean marketplace exists.",
+    "Human review remains required.",
+    "Authorized professional signoff remains required for compliance use.",
+    "Data-access requirements must be visible before activation.",
+    "Retention behavior must be visible before activation.",
+    "Non-authority boundaries must travel with registry entries.",
+    "CONTROL-PACKAGE-REGISTRY-DESIGN-00 does not install packages.",
+    "CONTROL-PACKAGE-REGISTRY-DESIGN-00 does not activate packages.",
+    "CONTROL-PACKAGE-REGISTRY-DESIGN-00 does not execute packages.",
+    "CONTROL-PACKAGE-REGISTRY-DESIGN-00 does not implement payment.",
+    "CONTROL-PACKAGE-REGISTRY-DESIGN-00 does not implement subscriptions.",
+    "CONTROL-PACKAGE-REGISTRY-DESIGN-00 does not implement a marketplace.",
+]
+CONTROL_PACKAGE_REGISTRY_BLOCKED_CLAIMS = [
+    "registry presence means customer entitlement",
+    "registry presence means package installed",
+    "registry presence means package activated",
+    "registry presence means package executed",
+    "registry package availability means compliance",
+    "registry installation state means control effectiveness",
+    "registry activation state means audit pass",
+    "registry framework pack certifies compliance",
+    "registry evidence pack provides legal advice",
+    "registry implements payment",
+    "registry implements subscription billing",
+    "registry implements marketplace downloads",
+    "registry writes memory",
+    "registry admits Atlas memory",
+    "registry exports traces",
+    "registry federates PMR",
+    "registry certifies truth",
+    "registry grants accepted-evidence authority",
+    "registry authorizes final answers",
+    "public-good package means public domain",
+    "author-contributed package means unrestricted commercial use",
+    "subscription eligible means billing implemented",
+    "marketplace ready means marketplace exists",
+]
+CONTROL_PACKAGE_REGISTRY_CLAIM_ALLOWED = "CONTROL-PACKAGE-REGISTRY-DESIGN-00 defines a design-only local control package registry for Triadic Brain package entries, recording package identity, type, family, version, author/owner, license, entitlement model, free/paid/public-good status, installation state, activation state, dependencies, compatibility, emitted artifacts, schemas, control objectives, framework mappings, data-access requirements, retention behavior, source provenance, and non-authority boundaries while preserving that registry presence is not entitlement, package availability is not compliance, installation state is not control effectiveness, activation state is not audit pass, and no package installation, package activation, package execution, payment, subscription billing, marketplace, provider/network calls, memory write, Atlas admission, trace export, PMR federation, compliance certification, legal advice, audit pass, attestation success, product readiness, product release, truth certification, final-answer authority, or accepted-evidence authority occurs."
+CONTROL_PACKAGE_REGISTRY_PRIOR_PHASE_RELATION = [
+    "CONTROL-PACKAGE-MANIFEST-STANDARD-00 defines package metadata and boundaries.",
+    "CONTROL-PACKAGE-MANIFEST-STANDARD-ENV-ISOLATION-REPAIR-00 repairs validation isolation only.",
+    "CONTROL-PACKAGE-REGISTRY-DESIGN-00 records package availability and state.",
+    "AI-RECEIPT-GATEWAY-LOCAL-INGRESS-PROTOTYPE-00 provides the local explicit-ingress prototype.",
+    "COMPLIANCE-EVIDENCE-TOOLSET-LIBRARY-DESIGN-00 defines compliance evidence toolsets.",
+]
 SOURCE_CORPUS_GATEWAY_REPORT_BATCH_CLAIM_ALLOWED = "SOURCE-CORPUS-GATEWAY-REPORTS-BATCH-2026-06-10-00 records a hash-only gateway and compliance report source batch with nine uploaded consultant report and visual mockup identities, preserving source filenames, SHA-256 hashes, visibility, public-release status, and non-authority boundaries without committing raw DOCX/PNG files or treating reports as accepted evidence, theorem proof, product release, product readiness, compliance certification, legal advice, memory write, Atlas admission, or canonical repo state."
 SOURCE_CORPUS_GATEWAY_REPORT_SOURCE_IDENTITY_REPAIR_CLAIM_ALLOWED = "SOURCE-CORPUS-GATEWAY-REPORTS-BATCH-SOURCE-IDENTITY-REPAIR-00 restores actual uploaded consultant report and visual mockup filenames and SHA-256 hashes as canonical source identities for the gateway report source batch while preserving hash-only public references, public_release_approved=false, no raw private DOCX/PNG import, and all non-authority boundaries."
 COMPLIANCE_READY_MVR_REPORT_LOCAL_PROTOTYPE_DOCTRINE_LANGUAGE = [
@@ -12703,6 +12848,20 @@ CONTROL_PACKAGE_ENV_ISOLATION_REPAIR_PHASE = {
     "claim_allowed": CONTROL_PACKAGE_ENV_ISOLATION_REPAIR_CLAIM_ALLOWED,
     "claims_blocked": CONTROL_PACKAGE_BLOCKED_CLAIMS,
     "reviewer_caution": "CONTROL-PACKAGE-MANIFEST-STANDARD-ENV-ISOLATION-REPAIR-00 narrows local validation isolation only. It does not enable payment, subscriptions, marketplace, package execution, provider/network, memory, Atlas, export, federation, compliance/legal/audit/product/truth/final-answer/accepted-evidence authority behavior.",
+    "publication_status": "dashboard_indexed",
+}
+CONTROL_PACKAGE_REGISTRY_DESIGN_PHASE = {
+    "phase_id": "CONTROL-PACKAGE-REGISTRY-DESIGN-00",
+    "repo": "pdxvoiceteacher/CoherenceLattice",
+    "status": "accepted_local_validation",
+    "evidence_type": "control_package_registry_design_publication_sync",
+    "product_posture": "design_only_local_registry_without_install_activation_execution_payment_marketplace_or_authority",
+    "primary_artifacts": CONTROL_PACKAGE_REGISTRY_ARTIFACTS,
+    "dashboard_summary": CONTROL_PACKAGE_REGISTRY_DASHBOARD_SUMMARY,
+    "reproduction_command_summary": CONTROL_PACKAGE_REGISTRY_COMMAND,
+    "claim_allowed": CONTROL_PACKAGE_REGISTRY_CLAIM_ALLOWED,
+    "claims_blocked": CONTROL_PACKAGE_REGISTRY_BLOCKED_CLAIMS,
+    "reviewer_caution": "CONTROL-PACKAGE-REGISTRY-DESIGN-00 is design-only local registry metadata. It installs, activates, and executes no packages and grants no payment, subscription, marketplace, customer-entitlement, compliance/legal/audit/product/truth/final-answer/accepted-evidence, provider/network, memory, Atlas, export, or federation authority.",
     "publication_status": "dashboard_indexed",
 }
 SOURCE_CORPUS_GATEWAY_REPORT_BATCH_PHASE = {
@@ -15491,6 +15650,7 @@ AI_RECEIPT_GATEWAY_SCOPE_SIMULATION_PHASE,
 AI_RECEIPT_GATEWAY_LOCAL_INGRESS_PHASE,
 CONTROL_PACKAGE_MANIFEST_PHASE,
 CONTROL_PACKAGE_ENV_ISOLATION_REPAIR_PHASE,
+CONTROL_PACKAGE_REGISTRY_DESIGN_PHASE,
 SOURCE_CORPUS_GATEWAY_REPORT_BATCH_PHASE,
 SOURCE_CORPUS_GATEWAY_REPORT_SOURCE_IDENTITY_REPAIR_PHASE,
 WAVE_PROVENANCE_PHASE,
@@ -17809,6 +17969,17 @@ BOUNDARIES.extend(
         *CONTROL_PACKAGE_MANIFEST_REPRO_FRAGMENTS,
         "Blocked overclaim examples for control package manifest standard publication boundaries.",
         *CONTROL_PACKAGE_BLOCKED_CLAIMS,
+        CONTROL_PACKAGE_REGISTRY_CLAIM_ALLOWED,
+        *CONTROL_PACKAGE_REGISTRY_ARTIFACTS,
+        *CONTROL_PACKAGE_REGISTRY_ENTRY_FIELDS,
+        *CONTROL_PACKAGE_REGISTRY_ENTRIES,
+        *CONTROL_PACKAGE_REGISTRY_DEFAULTS,
+        *CONTROL_PACKAGE_REGISTRY_GUARDRAILS,
+        *CONTROL_PACKAGE_REGISTRY_DOCTRINE_LANGUAGE,
+        *CONTROL_PACKAGE_REGISTRY_PRIOR_PHASE_RELATION,
+        *CONTROL_PACKAGE_REGISTRY_REPRO_FRAGMENTS,
+        "Blocked overclaim examples for control package registry design publication boundaries.",
+        *CONTROL_PACKAGE_REGISTRY_BLOCKED_CLAIMS,
         VALIDATION_TIERING_PROVENANCE_CLAIM_ALLOWED,
         *VALIDATION_TIERING_PROVENANCE_ARTIFACTS,
         *VALIDATION_TIERING_PROVENANCE_TIER_TERMS,
@@ -18779,6 +18950,19 @@ def dashboard_payload() -> dict[str, Any]:
         "control_package_manifest_manifest_fields": 30,
         "control_package_manifest_example_packages": 8,
         "not_control_package_manifest_runtime_authority": True,
+        "control_package_registry_design_00_indexed": True,
+        "control_package_registry_status": "active_design_only",
+        "control_package_registry_policy_status": "active_design_only",
+        "control_package_registry_mode": "local_design_registry_only",
+        "control_package_registry_package_install_enabled": False,
+        "control_package_registry_package_activation_enabled": False,
+        "control_package_registry_package_execution_enabled": False,
+        "control_package_registry_remote_marketplace_enabled": False,
+        "control_package_registry_subscription_billing_enabled": False,
+        "control_package_registry_entitlement_enforcement_enabled": False,
+        "control_package_registry_entry_fields": 35,
+        "control_package_registry_entries": 8,
+        "not_control_package_registry_runtime_authority": True,
         "source_corpus_gateway_reports_batch_2026_06_10_00_indexed": True,
         "source_corpus_gateway_reports_batch_source_identity_repair_00_indexed": True,
         "source_corpus_gateway_reports_batch_status": "active_hash_only_gateway_report_provenance_manifest",
@@ -18936,6 +19120,7 @@ def reproducibility_index() -> dict[str, Any]:
                 {"name": "AI-RECEIPT-GATEWAY-SCOPE-SIMULATION-00 Python entrypoint", "command": AI_RECEIPT_GATEWAY_SCOPE_SIMULATION_COMMAND},
                 {"name": "AI-RECEIPT-GATEWAY-LOCAL-INGRESS-PROTOTYPE-00 Python entrypoint", "command": AI_RECEIPT_GATEWAY_LOCAL_INGRESS_COMMAND},
                 {"name": "CONTROL-PACKAGE-MANIFEST-STANDARD-00 design validation", "command": CONTROL_PACKAGE_MANIFEST_COMMAND},
+                {"name": "CONTROL-PACKAGE-REGISTRY-DESIGN-00 design validation", "command": CONTROL_PACKAGE_REGISTRY_COMMAND},
                 {"name": "SOURCE-CORPUS-GATEWAY-REPORTS-BATCH-2026-06-10-00 source batch validation", "command": "python -m pytest -q python/tests/provenance/test_source_corpus_gateway_report_batch_20260610.py tests/test_experiment_registry.py"},
                 {"name": "WAVE-ROSETTA-CANONICAL-PROXY-BRIDGE-PROVENANCE-00 provenance validation", "command": COMPLIANCE_REPORT_DESIGN_COMMAND},
                 {"name": "Validation Tiering Provenance Python entrypoint", "command": VALIDATION_TIERING_PROVENANCE_COMMAND},
@@ -19957,6 +20142,19 @@ def status_payload() -> dict[str, Any]:
         "control_package_manifest_manifest_fields": 30,
         "control_package_manifest_example_packages": 8,
         "not_control_package_manifest_runtime_authority": True,
+        "control_package_registry_design_00_indexed": True,
+        "control_package_registry_status": "active_design_only",
+        "control_package_registry_policy_status": "active_design_only",
+        "control_package_registry_mode": "local_design_registry_only",
+        "control_package_registry_package_install_enabled": False,
+        "control_package_registry_package_activation_enabled": False,
+        "control_package_registry_package_execution_enabled": False,
+        "control_package_registry_remote_marketplace_enabled": False,
+        "control_package_registry_subscription_billing_enabled": False,
+        "control_package_registry_entitlement_enforcement_enabled": False,
+        "control_package_registry_entry_fields": 35,
+        "control_package_registry_entries": 8,
+        "not_control_package_registry_runtime_authority": True,
         "source_corpus_gateway_reports_batch_2026_06_10_00_indexed": True,
         "source_corpus_gateway_reports_batch_source_identity_repair_00_indexed": True,
         "source_corpus_gateway_reports_batch_status": "active_hash_only_gateway_report_provenance_manifest",
@@ -26669,6 +26867,77 @@ Publication sync grants no runtime authority. The repair does not enable payment
 """
 
 
+def control_package_registry_design_doc() -> str:
+    summary = "\n".join(f"- {key} = {str(value).lower() if isinstance(value, bool) else value}" for key, value in CONTROL_PACKAGE_REGISTRY_DASHBOARD_SUMMARY.items())
+    return f"""# Control Package Registry Design
+
+CONTROL-PACKAGE-REGISTRY-DESIGN-00 synchronizes the design-only local control package registry into publication dashboards. This is publication/dashboard synchronization only and grants no runtime authority.
+
+## Bounded allowed claim
+
+{CONTROL_PACKAGE_REGISTRY_CLAIM_ALLOWED}
+
+## Dashboard summary
+
+{summary}
+
+## Registry entry fields
+
+{_bullets(CONTROL_PACKAGE_REGISTRY_ENTRY_FIELDS)}
+
+## Registry entries
+
+{_bullets(CONTROL_PACKAGE_REGISTRY_ENTRIES)}
+
+## Registry defaults
+
+{_bullets(CONTROL_PACKAGE_REGISTRY_DEFAULTS)}
+
+## Registry-level non-authority guardrails
+
+{_bullets(CONTROL_PACKAGE_REGISTRY_GUARDRAILS)}
+
+## Doctrine language
+
+{_bullets(CONTROL_PACKAGE_REGISTRY_DOCTRINE_LANGUAGE)}
+
+## Relation to prior phases
+
+{_bullets(CONTROL_PACKAGE_REGISTRY_PRIOR_PHASE_RELATION)}
+
+## Required artifacts
+
+{_bullets(CONTROL_PACKAGE_REGISTRY_ARTIFACTS)}
+
+## Blocked overclaims
+
+{_bullets(CONTROL_PACKAGE_REGISTRY_BLOCKED_CLAIMS)}
+
+## Reproducibility
+
+{_bullets(CONTROL_PACKAGE_REGISTRY_REPRO_FRAGMENTS)}
+- `{CONTROL_PACKAGE_REGISTRY_COMMAND}`
+
+Publication sync grants no runtime authority. CONTROL-PACKAGE-REGISTRY-DESIGN-00 does not imply package installation, package activation, package execution, payment implementation, subscription billing, marketplace availability, customer entitlement, provider runtime, network calls, memory writes, Atlas memory admission, trace export, PMR federation, compliance certification, legal advice, audit pass, attestation success, product readiness, product release, truth certification, final-answer authority, accepted-evidence authority, model training, or review skipping.
+"""
+
+CONTROL_PACKAGE_REGISTRY_SYNC_DOCS = {
+    "control-package-registry-design.md",
+    "control-package-manifest-standard.md",
+    "control-package-manifest-standard-env-isolation-repair.md",
+    "ai-receipt-gateway-local-ingress-prototype.md",
+    "compliance-evidence-toolset-library-design.md",
+    "validation-tiering-provenance.md",
+}
+CONTROL_PACKAGE_REGISTRY_SYNC_NOTE = f"""
+
+## Control package registry design publication sync
+
+CONTROL-PACKAGE-REGISTRY-DESIGN-00 records package availability and state only. It does not install, activate, or execute packages; does not implement payment, subscriptions, or marketplace downloads; and grants no customer entitlement, compliance, legal, audit, product, truth, final-answer, accepted-evidence, memory, Atlas, export, federation, provider, or network authority.
+
+{_bullets(CONTROL_PACKAGE_REGISTRY_PRIOR_PHASE_RELATION)}
+"""
+
 CONTROL_PACKAGE_MANIFEST_SYNC_DOCS = {
     "ai-receipt-architecture.md",
     "ai-receipt-gateway-local-ingress-prototype.md",
@@ -26862,6 +27131,7 @@ def build(out_dir: Path, docs_dir: Path) -> None:
     docs_payload["ai-receipt-gateway-local-ingress-prototype.md"] = ai_receipt_gateway_local_ingress_prototype_doc()
     docs_payload["control-package-manifest-standard.md"] = control_package_manifest_standard_doc()
     docs_payload["control-package-manifest-standard-env-isolation-repair.md"] = control_package_manifest_standard_env_isolation_repair_doc()
+    docs_payload["control-package-registry-design.md"] = control_package_registry_design_doc()
     docs_payload["source-corpus-gateway-reports-batch-2026-06-10.md"] = source_corpus_gateway_reports_batch_doc()
     docs_payload["source-corpus-gateway-reports-batch-source-identity-repair.md"] = source_corpus_gateway_reports_batch_source_identity_repair_doc()
     docs_payload["compliance-report-presentation-standard.md"] = compliance_report_presentation_standard_doc()
@@ -26920,6 +27190,9 @@ def build(out_dir: Path, docs_dir: Path) -> None:
     for name in CONTROL_PACKAGE_MANIFEST_SYNC_DOCS:
         if name in docs_payload:
             docs_payload[name] = docs_payload[name].rstrip() + CONTROL_PACKAGE_MANIFEST_SYNC_NOTE
+    for name in CONTROL_PACKAGE_REGISTRY_SYNC_DOCS:
+        if name in docs_payload:
+            docs_payload[name] = docs_payload[name].rstrip() + CONTROL_PACKAGE_REGISTRY_SYNC_NOTE
     for name, text in docs_payload.items():
         _write_text(docs_dir / name, text)
 

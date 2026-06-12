@@ -283,3 +283,13 @@ CONTROL-PACKAGE-MANIFEST-STANDARD-ENV-ISOLATION-REPAIR-00 repairs local validati
 ## Runtime authority boundary
 
 Publication sync grants no runtime authority. The repair does not enable payment, marketplace, package execution, provider/network calls, memory, Atlas, export, federation, compliance/legal/audit/product/authority behavior.
+
+## Control package registry design publication sync
+
+CONTROL-PACKAGE-REGISTRY-DESIGN-00 records package availability and state only. It does not install, activate, or execute packages; does not implement payment, subscriptions, or marketplace downloads; and grants no customer entitlement, compliance, legal, audit, product, truth, final-answer, accepted-evidence, memory, Atlas, export, federation, provider, or network authority.
+
+- CONTROL-PACKAGE-MANIFEST-STANDARD-00 defines package metadata and boundaries.
+- CONTROL-PACKAGE-MANIFEST-STANDARD-ENV-ISOLATION-REPAIR-00 repairs validation isolation only.
+- CONTROL-PACKAGE-REGISTRY-DESIGN-00 records package availability and state.
+- AI-RECEIPT-GATEWAY-LOCAL-INGRESS-PROTOTYPE-00 provides the local explicit-ingress prototype.
+- COMPLIANCE-EVIDENCE-TOOLSET-LIBRARY-DESIGN-00 defines compliance evidence toolsets.

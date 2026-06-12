@@ -106,6 +106,17 @@ from tools.build_public_repro_dashboard import (
     CONTROL_PACKAGE_MANIFEST_FIELDS,
     CONTROL_PACKAGE_MANIFEST_REPRO_FRAGMENTS,
     CONTROL_PACKAGE_PRIOR_PHASE_RELATION,
+    CONTROL_PACKAGE_REGISTRY_ARTIFACTS,
+    CONTROL_PACKAGE_REGISTRY_BLOCKED_CLAIMS,
+    CONTROL_PACKAGE_REGISTRY_CLAIM_ALLOWED,
+    CONTROL_PACKAGE_REGISTRY_DASHBOARD_SUMMARY,
+    CONTROL_PACKAGE_REGISTRY_DEFAULTS,
+    CONTROL_PACKAGE_REGISTRY_DOCTRINE_LANGUAGE,
+    CONTROL_PACKAGE_REGISTRY_ENTRIES,
+    CONTROL_PACKAGE_REGISTRY_ENTRY_FIELDS,
+    CONTROL_PACKAGE_REGISTRY_GUARDRAILS,
+    CONTROL_PACKAGE_REGISTRY_PRIOR_PHASE_RELATION,
+    CONTROL_PACKAGE_REGISTRY_REPRO_FRAGMENTS,
     CONTROL_PACKAGE_RETENTION_CATEGORIES,
     CONTROL_PACKAGE_TYPES,
     AI_RECEIPT_GATEWAY_VISIBLE_STATUS_FIELDS,
@@ -628,6 +639,7 @@ REQUIRED_PHASES = {
     "AI-RECEIPT-GATEWAY-LOCAL-INGRESS-PROTOTYPE-00",
     "CONTROL-PACKAGE-MANIFEST-STANDARD-00",
     "CONTROL-PACKAGE-MANIFEST-STANDARD-ENV-ISOLATION-REPAIR-00",
+    "CONTROL-PACKAGE-REGISTRY-DESIGN-00",
     "SOURCE-CORPUS-GATEWAY-REPORTS-BATCH-2026-06-10-00",
     "SOURCE-CORPUS-GATEWAY-REPORTS-BATCH-SOURCE-IDENTITY-REPAIR-00",
     "WAVE-ROSETTA-CANONICAL-PROXY-BRIDGE-PROVENANCE-00",
@@ -7586,3 +7598,96 @@ def test_validator_fails_if_control_package_manifest_makes_forbidden_claims(tmp_
         assert result["passed"] is False, claim
         forbidden_found = [found.lower() for found in result["forbidden_claims_found"]]
         assert claim.lower() in forbidden_found or f"control package sync claims {claim.lower()}" in forbidden_found, result
+
+
+
+def test_control_package_registry_design_indexes_dashboard_docs_and_boundaries(tmp_path):
+    out_dir, docs_dir = run_builder(tmp_path)
+    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text(encoding="utf-8"))
+    artifact_index = json.loads((out_dir / "artifact_index.json").read_text(encoding="utf-8"))
+    status = json.loads((out_dir / "status.json").read_text(encoding="utf-8"))
+    reproducibility_text = (out_dir / "reproducibility_index.json").read_text(encoding="utf-8")
+    boundary_text = (docs_dir / "claim-boundaries.md").read_text(encoding="utf-8")
+    page_text = (docs_dir / "control-package-registry-design.md").read_text(encoding="utf-8")
+    phase_ids = {phase["phase_id"] for phase in dashboard["accepted_phases"]}
+
+    assert "CONTROL-PACKAGE-REGISTRY-DESIGN-00" in phase_ids
+    assert "CONTROL-PACKAGE-REGISTRY-DESIGN-00" in VALIDATOR_REQUIRED_PHASES
+    phase = {phase["phase_id"]: phase for phase in dashboard["accepted_phases"]}["CONTROL-PACKAGE-REGISTRY-DESIGN-00"]
+    summary = phase["dashboard_summary"]
+    assert summary == CONTROL_PACKAGE_REGISTRY_DASHBOARD_SUMMARY
+    assert summary["registry_status"] == "active_design_only"
+    assert summary["policy_status"] == "active_design_only"
+    assert summary["registry_mode"] == "local_design_registry_only"
+    assert summary["package_install_enabled"] is False
+    assert summary["package_activation_enabled"] is False
+    assert summary["package_execution_enabled"] is False
+    assert summary["remote_marketplace_enabled"] is False
+    assert summary["subscription_billing_enabled"] is False
+    assert summary["entitlement_enforcement_enabled"] is False
+    assert summary["provider_runtime_performed"] is False
+    assert summary["network_call_performed"] is False
+    assert summary["memory_write_performed"] is False
+    assert summary["atlas_memory_admission_performed"] is False
+    assert summary["trace_export_performed"] is False
+    assert summary["pmr_federation_performed"] is False
+    assert summary["compliance_certification_emitted"] is False
+    assert summary["legal_advice_emitted"] is False
+    assert summary["audit_pass_claimed"] is False
+    assert summary["product_readiness_claimed"] is False
+    assert summary["product_release_performed"] is False
+    assert summary["final_answer_authority_granted"] is False
+    assert summary["accepted_evidence_authority_granted"] is False
+    assert summary["registry_entry_fields"] == 35
+    assert summary["registry_entries"] == 8
+    assert artifact_index["phases"]["CONTROL-PACKAGE-REGISTRY-DESIGN-00"] == CONTROL_PACKAGE_REGISTRY_ARTIFACTS
+
+    for artifact in CONTROL_PACKAGE_REGISTRY_ARTIFACTS:
+        assert artifact in page_text
+    for fragment in CONTROL_PACKAGE_REGISTRY_REPRO_FRAGMENTS:
+        assert fragment in page_text
+    assert "test_control_package_registry_design.py" in reproducibility_text
+
+    for phrase_group in (
+        CONTROL_PACKAGE_REGISTRY_ENTRY_FIELDS,
+        CONTROL_PACKAGE_REGISTRY_ENTRIES,
+        CONTROL_PACKAGE_REGISTRY_DEFAULTS,
+        CONTROL_PACKAGE_REGISTRY_GUARDRAILS,
+        CONTROL_PACKAGE_REGISTRY_DOCTRINE_LANGUAGE,
+        CONTROL_PACKAGE_REGISTRY_PRIOR_PHASE_RELATION,
+        CONTROL_PACKAGE_REGISTRY_BLOCKED_CLAIMS,
+    ):
+        for phrase in phrase_group:
+            assert phrase in page_text
+            assert phrase in boundary_text
+
+    assert CONTROL_PACKAGE_REGISTRY_CLAIM_ALLOWED in page_text
+    assert CONTROL_PACKAGE_REGISTRY_CLAIM_ALLOWED in boundary_text
+    assert "Publication sync grants no runtime authority." in page_text
+    assert status["control_package_registry_design_00_indexed"] is True
+    assert status["control_package_registry_status"] == "active_design_only"
+    assert status["control_package_registry_policy_status"] == "active_design_only"
+    assert status["control_package_registry_mode"] == "local_design_registry_only"
+    assert status["control_package_registry_package_install_enabled"] is False
+    assert status["control_package_registry_package_activation_enabled"] is False
+    assert status["control_package_registry_package_execution_enabled"] is False
+    assert status["control_package_registry_remote_marketplace_enabled"] is False
+    assert status["control_package_registry_subscription_billing_enabled"] is False
+    assert status["control_package_registry_entitlement_enforcement_enabled"] is False
+    assert status["control_package_registry_entry_fields"] == 35
+    assert status["control_package_registry_entries"] == 8
+    assert status["not_control_package_registry_runtime_authority"] is True
+
+
+def test_validator_fails_if_control_package_registry_makes_forbidden_claims(tmp_path):
+    for claim in CONTROL_PACKAGE_REGISTRY_BLOCKED_CLAIMS:
+        out_dir, docs_dir = run_builder(tmp_path / claim.replace(" ", "_").replace("/", "_"))
+        page = docs_dir / "control-package-registry-design.md"
+        page.write_text(
+            page.read_text(encoding="utf-8") + f"\nControl package registry sync claims {claim}.\n",
+            encoding="utf-8",
+        )
+        result = validate_dashboard(out_dir / "experiment_suite_dashboard.json", docs_dir)
+        assert result["passed"] is False, claim
+        forbidden_found = [found.lower() for found in result["forbidden_claims_found"]]
+        assert claim.lower() in forbidden_found or f"control package registry sync claims {claim.lower()}" in forbidden_found, result

@@ -110,6 +110,16 @@ from tools.build_public_repro_dashboard import (
     CONTROL_PACKAGE_MANIFEST_FIELDS,
     CONTROL_PACKAGE_MANIFEST_REPRO_FRAGMENTS,
     CONTROL_PACKAGE_PRIOR_PHASE_RELATION,
+    CONTROL_PACKAGE_REGISTRY_ARTIFACTS,
+    CONTROL_PACKAGE_REGISTRY_BLOCKED_CLAIMS,
+    CONTROL_PACKAGE_REGISTRY_CLAIM_ALLOWED,
+    CONTROL_PACKAGE_REGISTRY_DEFAULTS,
+    CONTROL_PACKAGE_REGISTRY_DOCTRINE_LANGUAGE,
+    CONTROL_PACKAGE_REGISTRY_ENTRIES,
+    CONTROL_PACKAGE_REGISTRY_ENTRY_FIELDS,
+    CONTROL_PACKAGE_REGISTRY_GUARDRAILS,
+    CONTROL_PACKAGE_REGISTRY_PRIOR_PHASE_RELATION,
+    CONTROL_PACKAGE_REGISTRY_REPRO_FRAGMENTS,
     CONTROL_PACKAGE_RETENTION_CATEGORIES,
     CONTROL_PACKAGE_TYPES,
     AI_RECEIPT_GATEWAY_VISIBLE_STATUS_FIELDS,
@@ -392,6 +402,7 @@ REQUIRED_PHASES = {
     "AI-RECEIPT-GATEWAY-LOCAL-INGRESS-PROTOTYPE-00",
     "CONTROL-PACKAGE-MANIFEST-STANDARD-00",
     "CONTROL-PACKAGE-MANIFEST-STANDARD-ENV-ISOLATION-REPAIR-00",
+    "CONTROL-PACKAGE-REGISTRY-DESIGN-00",
     "SOURCE-CORPUS-GATEWAY-REPORTS-BATCH-2026-06-10-00",
     "SOURCE-CORPUS-GATEWAY-REPORTS-BATCH-SOURCE-IDENTITY-REPAIR-00",
     "WAVE-ROSETTA-CANONICAL-PROXY-BRIDGE-PROVENANCE-00",
@@ -583,6 +594,17 @@ REQUIRED_BOUNDARY_PHRASES = (
     *CONTROL_PACKAGE_PRIOR_PHASE_RELATION,
     *CONTROL_PACKAGE_MANIFEST_REPRO_FRAGMENTS,
     *CONTROL_PACKAGE_BLOCKED_CLAIMS,
+    "CONTROL-PACKAGE-REGISTRY-DESIGN-00",
+    CONTROL_PACKAGE_REGISTRY_CLAIM_ALLOWED,
+    *CONTROL_PACKAGE_REGISTRY_ARTIFACTS,
+    *CONTROL_PACKAGE_REGISTRY_ENTRY_FIELDS,
+    *CONTROL_PACKAGE_REGISTRY_ENTRIES,
+    *CONTROL_PACKAGE_REGISTRY_DEFAULTS,
+    *CONTROL_PACKAGE_REGISTRY_GUARDRAILS,
+    *CONTROL_PACKAGE_REGISTRY_DOCTRINE_LANGUAGE,
+    *CONTROL_PACKAGE_REGISTRY_PRIOR_PHASE_RELATION,
+    *CONTROL_PACKAGE_REGISTRY_REPRO_FRAGMENTS,
+    *CONTROL_PACKAGE_REGISTRY_BLOCKED_CLAIMS,
     "VALIDATION-TIERING-PROVENANCE-00",
     "policy_status",
     "validation_tier = deep",
@@ -1384,6 +1406,7 @@ FORBIDDEN_PHRASES = (
     *[f"gateway scope sync claims {claim}" for claim in AI_RECEIPT_GATEWAY_SCOPE_SIMULATION_BLOCKED_CLAIMS],
     *[f"local ingress sync claims {claim}" for claim in AI_RECEIPT_GATEWAY_LOCAL_INGRESS_BLOCKED_CLAIMS],
     *[f"control package sync claims {claim}" for claim in CONTROL_PACKAGE_BLOCKED_CLAIMS],
+    *[f"control package registry sync claims {claim}" for claim in CONTROL_PACKAGE_REGISTRY_BLOCKED_CLAIMS],
     *[f"claims {claim}" for claim in MINIMAL_VIABLE_RECEIPT_LOCAL_PROTOTYPE_BLOCKED_CLAIMS],
     *[f"claims {claim}" for claim in MVR_READABILITY_REVIEW_SEED_BLOCKED_CLAIMS],
     *[f"claims {claim}" for claim in MVR_READABILITY_REVISION_BLOCKED_CLAIMS],
@@ -1827,7 +1850,7 @@ def _forbidden_hits(text: str) -> list[str]:
             if text[max(0, index - 8) : index].endswith("blocked ") and phrase.lower().startswith("claims "):
                 start = index + len(normalized_phrase)
                 continue
-            if phrase.lower().startswith(("claims ", "source corpus batch sync claims ", "gateway scope sync claims ", "local ingress sync claims ", "control package sync claims ", "compliance source sync claims ")):
+            if phrase.lower().startswith(("claims ", "source corpus batch sync claims ", "gateway scope sync claims ", "local ingress sync claims ", "control package sync claims ", "control package registry sync claims ", "compliance source sync claims ")):
                 hits.append(phrase)
                 break
             if f"claims {normalized_phrase}" in claims_window and "blocked claims" not in claims_window:

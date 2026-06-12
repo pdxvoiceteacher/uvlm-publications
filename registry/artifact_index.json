@@ -1447,6 +1447,14 @@
       "schema/bridge/control_package_non_authority_boundary.schema.json",
       "python/tests/product/test_control_package_manifest_standard.py"
     ],
+    "CONTROL-PACKAGE-REGISTRY-DESIGN-00": [
+      "docs/CONTROL_PACKAGE_REGISTRY_DESIGN.md",
+      "config/packages/control_package_registry.v1.json",
+      "schema/bridge/control_package_registry.schema.json",
+      "schema/bridge/control_package_registry_entry.schema.json",
+      "schema/bridge/control_package_registry_non_authority_boundary.schema.json",
+      "python/tests/product/test_control_package_registry_design.py"
+    ],
     "SOURCE-CORPUS-GATEWAY-REPORTS-BATCH-2026-06-10-00": [
       "docs/provenance/source_reports/2026-06/gateway_report_batch_20260610.json",
       "docs/provenance/source_reports/2026-06/gateway_report_batch_aliases_20260610.json",
