@@ -35,3 +35,14 @@ Publication sync grants no runtime authority.
 - COMPLIANCE-REPORT-PRESENTATION-STANDARD-00 defines presentation constraints.
 
 AI-RECEIPT-GATEWAY-LOCAL-INGRESS-PROTOTYPE-00 is local explicit ingress only, not automatic capture. Configured scope is not universal capture; gateway activation remains simulated, not runtime activation. No directory scan, hidden file read, connector pull, provider call, network call, memory write, Atlas admission, trace export, PMR federation, compliance certification, legal advice, audit pass, attestation success, product readiness, product release, truth certification, final-answer authority, or accepted-evidence authority occurred. Publication sync grants no runtime authority.
+
+## Control package manifest standard publication sync
+
+- AI-RECEIPT-GATEWAY-LOCAL-INGRESS-PROTOTYPE-00 provides the local explicit-ingress prototype.
+- COMPLIANCE-REPORT-PRESENTATION-STANDARD-00 defines report presentation constraints.
+- COMPLIANCE-EVIDENCE-TOOLSET-LIBRARY-DESIGN-00 defines compliance evidence toolsets.
+- SOURCE-CORPUS-PROVENANCE-ARCHIVE-00 defines provenance archive practices.
+- CONTROL-PACKAGE-MANIFEST-STANDARD-00 defines package metadata and boundaries.
+- CONTROL-PACKAGE-MANIFEST-STANDARD-ENV-ISOLATION-REPAIR-00 repairs validation isolation only.
+
+CONTROL-PACKAGE-MANIFEST-STANDARD-00 is design-only package metadata and boundary definition. CONTROL-PACKAGE-MANIFEST-STANDARD-ENV-ISOLATION-REPAIR-00 repairs validation isolation only. The sync implements no payment, subscription billing, remote marketplace availability, runtime package install, package execution, package activation, provider runtime, network calls, memory writes, Atlas memory admission, trace export, PMR federation, compliance certification, legal advice, audit pass, attestation success, product readiness, product release, truth certification, final-answer authority, accepted-evidence authority, model training, review skipping, or customer entitlement. Publication sync grants no runtime authority.

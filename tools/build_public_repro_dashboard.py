@@ -12195,6 +12195,170 @@ AI_RECEIPT_GATEWAY_LOCAL_INGRESS_PRIOR_PHASE_RELATION = [
     "COMPLIANCE-READY-MVR-REPORT-LOCAL-PROTOTYPE-00 supplies compliance-ready report artifacts.",
     "COMPLIANCE-REPORT-PRESENTATION-STANDARD-00 defines presentation constraints.",
 ]
+CONTROL_PACKAGE_MANIFEST_COMMAND = "python -m pytest -q python/tests/product/test_control_package_manifest_standard.py tests/test_experiment_registry.py"
+CONTROL_PACKAGE_MANIFEST_REPRO_FRAGMENTS = ["test_control_package_manifest_standard.py", "control_package_manifest_standard.v1.json"]
+CONTROL_PACKAGE_MANIFEST_ARTIFACTS = [
+    "docs/CONTROL_PACKAGE_MANIFEST_STANDARD.md",
+    "config/packages/control_package_manifest_standard.v1.json",
+    "schema/bridge/control_package_manifest.schema.json",
+    "schema/bridge/control_package_entitlement_profile.schema.json",
+    "schema/bridge/control_package_dependency_profile.schema.json",
+    "schema/bridge/control_package_non_authority_boundary.schema.json",
+    "python/tests/product/test_control_package_manifest_standard.py",
+]
+CONTROL_PACKAGE_MANIFEST_DASHBOARD_SUMMARY = {
+    "policy_status": "active_design_only",
+    "package_standard_status": "active_design_only",
+    "runtime_package_install_enabled": False,
+    "remote_marketplace_enabled": False,
+    "subscription_billing_enabled": False,
+    "package_execution_enabled": False,
+    "runtime_behavior_changed": False,
+    "product_release_performed": False,
+    "product_readiness_claimed": False,
+    "compliance_certification_emitted": False,
+    "legal_advice_emitted": False,
+    "audit_pass_claimed": False,
+    "attestation_success_claimed": False,
+    "final_answer_authority_granted": False,
+    "accepted_evidence_authority_granted": False,
+    "truth_certification_emitted": False,
+    "memory_write_performed": False,
+    "atlas_memory_admission_performed": False,
+    "trace_export_performed": False,
+    "pmr_federation_performed": False,
+    "provider_runtime_performed": False,
+    "network_call_performed": False,
+    "package_types": 9,
+    "package_families": 33,
+    "manifest_fields": 30,
+    "example_packages": 8,
+}
+CONTROL_PACKAGE_TYPES = [
+    "core_platform_package", "control_package", "framework_evidence_pack", "ingress_package",
+    "report_export_package", "review_workflow_package", "public_good_package",
+    "enterprise_package", "author_contributed_package",
+]
+CONTROL_PACKAGE_FAMILIES = [
+    "ai_receipt_gateway_core", "minimal_viable_receipt_core", "source_manifest_hash_core",
+    "non_authority_boundary_core", "artifact_inventory_export_core", "local_file_ingress",
+    "pasted_excerpt_ingress", "api_proxy_ingress", "sdk_wrapper_ingress", "browser_extension_ingress",
+    "saas_connector_ingress", "model_gateway_ingress", "observation_contract_control",
+    "telemetry_aperture_control", "prompt_injection_quarantine_control", "unsupported_claims_register",
+    "retention_boundary_control", "contestability_recovery_control", "human_review_signoff_control",
+    "incident_forensic_dossier_control", "pmr_recall_control", "eu_ai_act_evidence_support_pack",
+    "nist_ai_rmf_evidence_pack", "iso_iec_42001_aims_evidence_pack", "soc2_ai_governance_evidence_pack",
+    "hipaa_ai_governance_evidence_pack", "coso_ai_control_evidence_pack", "owasp_genai_security_evidence_pack",
+    "compliance_ready_mvr_report_pack", "executive_summary_pack", "evidence_index_csv_pack",
+    "machine_readable_json_evidence_pack", "forensic_dossier_export_pack",
+]
+CONTROL_PACKAGE_MANIFEST_FIELDS = [
+    "package_id", "package_name", "package_type", "package_family", "package_version",
+    "author_owner", "license_id", "license_url", "entitlement_model", "free_or_paid_status",
+    "public_good_status", "commercial_entitlement_required", "subscription_eligible",
+    "local_install_supported", "remote_install_supported_future_only", "dependencies",
+    "compatible_core_versions", "emitted_artifacts", "schemas_added", "control_objectives",
+    "framework_mappings", "data_access_required", "retention_behavior", "connector_scope_required",
+    "human_review_required", "authorized_professional_signoff_required_for_compliance_use",
+    "source_provenance_refs", "non_authority_boundaries", "installation_status", "activation_status",
+]
+CONTROL_PACKAGE_ENTITLEMENT_MODELS = [
+    "free_core", "public_good_free", "paid_single_package", "paid_framework_pack", "enterprise_subscription",
+    "author_contributed_free", "author_contributed_commercial", "restricted_internal", "future_marketplace",
+]
+CONTROL_PACKAGE_INSTALLATION_STATES = [
+    "not_installed", "installed_disabled", "installed_enabled", "dependency_missing", "incompatible_core_version",
+    "license_required", "entitlement_required", "retired", "revoked",
+]
+CONTROL_PACKAGE_ACTIVATION_STATES = [
+    "inactive", "active_design_only", "active_local_runtime", "active_subscription_required", "blocked_by_policy",
+    "blocked_by_missing_dependency", "blocked_by_license", "future_only",
+]
+CONTROL_PACKAGE_DATA_ACCESS_CATEGORIES = [
+    "no_data_access", "explicit_local_file_only", "pasted_excerpt_only", "configured_api_proxy",
+    "configured_connector_scope", "directory_scope_requires_policy", "hidden_file_access_forbidden",
+    "provider_network_access_forbidden_by_default",
+]
+CONTROL_PACKAGE_RETENTION_CATEGORIES = [
+    "no_raw_retention", "hash_only", "summary_only", "explicit_retention_scope_required",
+    "customer_managed_retention", "export_only", "future_policy_managed_retention",
+]
+CONTROL_PACKAGE_EXAMPLE_PACKAGES = [
+    "ai_receipt_gateway_core_free", "minimal_viable_receipt_core_free", "eu_ai_act_evidence_support_pack_paid",
+    "prompt_injection_quarantine_control_paid", "source_manifest_hash_core_public_good",
+    "compliance_ready_mvr_report_pack_paid", "local_file_ingress_free_or_core",
+    "human_review_signoff_control_enterprise",
+]
+CONTROL_PACKAGE_DOCTRINE_LANGUAGE = [
+    "Control Package Manifest Standard",
+    "Triadic Brain Core is the governed substrate.",
+    "Controls ship as installable packages.",
+    "Customers should pay for the controls and framework packs they need.",
+    "Some packages may be free or public-good when licensed or donated by authoring owners.",
+    "Package installation is not control effectiveness.",
+    "Package availability is not compliance.",
+    "Package activation is not audit pass.",
+    "Framework evidence packs are evidence support, not certification.",
+    "Human review remains required.",
+    "Authorized professional signoff remains required for compliance use.",
+    "Package authorship and license terms must be explicit.",
+    "Data-access requirements must be visible before activation.",
+    "Retention behavior must be visible before activation.",
+    "Non-authority boundaries must travel with the package.",
+    "CONTROL-PACKAGE-MANIFEST-STANDARD-00 does not implement payment.",
+    "CONTROL-PACKAGE-MANIFEST-STANDARD-00 does not implement remote marketplace installs.",
+    "CONTROL-PACKAGE-MANIFEST-STANDARD-00 does not activate packages at runtime.",
+]
+CONTROL_PACKAGE_GUARDRAILS = [
+    "package_installation_is_not_control_effectiveness", "package_installation_is_not_compliance",
+    "package_activation_is_not_audit_pass", "framework_pack_is_not_certification",
+    "evidence_pack_is_not_legal_advice", "package_manifest_is_not_product_release",
+    "package_manifest_is_not_product_readiness", "package_manifest_is_not_truth_certification",
+    "package_manifest_is_not_final_answer_authority", "package_manifest_is_not_accepted_evidence_authority",
+    "package_manifest_does_not_write_memory", "package_manifest_does_not_admit_atlas_memory",
+    "package_manifest_does_not_export_traces", "package_manifest_does_not_federate_pmr",
+    "human_review_required",
+]
+CONTROL_PACKAGE_ENV_ISOLATION_REPAIR_LANGUAGE = [
+    "CONTROL-PACKAGE-MANIFEST-STANDARD-ENV-ISOLATION-REPAIR-00 narrows forbidden-artifact validation to avoid failing on local generated developer workspace artifacts.",
+    "Runtime artifact emission is tested in runtime/prototype phases via explicit bridge output checks.",
+    "CONTROL-PACKAGE-MANIFEST-STANDARD-00 remains design-only after the repair.",
+    "The repair does not enable payment, marketplace, package execution, provider/network calls, memory, Atlas, export, federation, compliance/legal/audit/product/authority behavior.",
+]
+CONTROL_PACKAGE_BLOCKED_CLAIMS = [
+    "package installation means control effectiveness",
+    "package installation means compliance",
+    "package activation passes audit",
+    "framework evidence pack certifies compliance",
+    "evidence pack provides legal advice",
+    "package manifest proves product readiness",
+    "package manifest releases product",
+    "package manifest certifies truth",
+    "package manifest grants accepted-evidence authority",
+    "package manifest authorizes final answers",
+    "package manifest writes memory",
+    "package manifest admits Atlas memory",
+    "package manifest exports traces",
+    "package manifest federates PMR",
+    "free package means public domain",
+    "author contributed means unrestricted commercial use",
+    "subscription eligible means billing is implemented",
+    "marketplace ready means marketplace exists",
+    "package available means customer is entitled",
+    "control package manifest standard implements payment",
+    "control package manifest standard activates packages at runtime",
+    "control package manifest standard enables marketplace installs",
+]
+CONTROL_PACKAGE_MANIFEST_CLAIM_ALLOWED = "CONTROL-PACKAGE-MANIFEST-STANDARD-00 defines a design-only manifest standard for installable Triadic Brain control packages, framework evidence packs, ingress packages, report/export packages, and review workflow packages, including package identity, authorship, licensing, entitlement model, free/paid/public-good status, dependencies, compatible core versions, emitted artifacts, schemas, control objectives, framework mappings, data-access requirements, retention behavior, human review requirements, source provenance references, installation/activation states, and non-authority boundaries, without implementing payment, subscriptions, remote marketplace installs, runtime package execution, compliance certification, legal advice, audit pass, attestation success, product readiness, product release, truth certification, final-answer authority, accepted-evidence authority, memory write, Atlas admission, trace export, PMR federation, provider runtime, or network calls."
+CONTROL_PACKAGE_ENV_ISOLATION_REPAIR_CLAIM_ALLOWED = "CONTROL-PACKAGE-MANIFEST-STANDARD-ENV-ISOLATION-REPAIR-00 repairs local validation isolation for the design-only control package manifest standard by narrowing forbidden runtime/payment/marketplace/authority artifact checks so local generated workspace artifacts do not cause false failures, while preserving that no payment, subscription billing, remote marketplace, package execution, provider/network, memory, Atlas, export, federation, compliance/legal/audit/product/truth/final-answer/accepted-evidence authority behavior is enabled."
+CONTROL_PACKAGE_PRIOR_PHASE_RELATION = [
+    "AI-RECEIPT-GATEWAY-LOCAL-INGRESS-PROTOTYPE-00 provides the local explicit-ingress prototype.",
+    "COMPLIANCE-REPORT-PRESENTATION-STANDARD-00 defines report presentation constraints.",
+    "COMPLIANCE-EVIDENCE-TOOLSET-LIBRARY-DESIGN-00 defines compliance evidence toolsets.",
+    "SOURCE-CORPUS-PROVENANCE-ARCHIVE-00 defines provenance archive practices.",
+    "CONTROL-PACKAGE-MANIFEST-STANDARD-00 defines package metadata and boundaries.",
+    "CONTROL-PACKAGE-MANIFEST-STANDARD-ENV-ISOLATION-REPAIR-00 repairs validation isolation only.",
+]
 SOURCE_CORPUS_GATEWAY_REPORT_BATCH_CLAIM_ALLOWED = "SOURCE-CORPUS-GATEWAY-REPORTS-BATCH-2026-06-10-00 records a hash-only gateway and compliance report source batch with nine uploaded consultant report and visual mockup identities, preserving source filenames, SHA-256 hashes, visibility, public-release status, and non-authority boundaries without committing raw DOCX/PNG files or treating reports as accepted evidence, theorem proof, product release, product readiness, compliance certification, legal advice, memory write, Atlas admission, or canonical repo state."
 SOURCE_CORPUS_GATEWAY_REPORT_SOURCE_IDENTITY_REPAIR_CLAIM_ALLOWED = "SOURCE-CORPUS-GATEWAY-REPORTS-BATCH-SOURCE-IDENTITY-REPAIR-00 restores actual uploaded consultant report and visual mockup filenames and SHA-256 hashes as canonical source identities for the gateway report source batch while preserving hash-only public references, public_release_approved=false, no raw private DOCX/PNG import, and all non-authority boundaries."
 COMPLIANCE_READY_MVR_REPORT_LOCAL_PROTOTYPE_DOCTRINE_LANGUAGE = [
@@ -12511,6 +12675,34 @@ AI_RECEIPT_GATEWAY_LOCAL_INGRESS_PHASE = {
     "claim_allowed": AI_RECEIPT_GATEWAY_LOCAL_INGRESS_CLAIM_ALLOWED,
     "claims_blocked": AI_RECEIPT_GATEWAY_LOCAL_INGRESS_BLOCKED_CLAIMS,
     "reviewer_caution": "AI-RECEIPT-GATEWAY-LOCAL-INGRESS-PROTOTYPE-00 is a local explicit-ingress prototype only. It performs no runtime capture, invisible surveillance, universal capture, directory scan, hidden file read, connector pull, provider/network call, memory write, Atlas admission, trace export, PMR federation, compliance certification, legal advice, audit pass, attestation success, product release/readiness, truth certification, final-answer authority, accepted-evidence authority, model training, or review skipping.",
+    "publication_status": "dashboard_indexed",
+}
+CONTROL_PACKAGE_MANIFEST_PHASE = {
+    "phase_id": "CONTROL-PACKAGE-MANIFEST-STANDARD-00",
+    "repo": "pdxvoiceteacher/CoherenceLattice",
+    "status": "accepted_local_validation",
+    "evidence_type": "control_package_manifest_standard_publication_sync",
+    "product_posture": "design_only_package_manifest_standard_without_payment_marketplace_runtime_or_authority",
+    "primary_artifacts": CONTROL_PACKAGE_MANIFEST_ARTIFACTS,
+    "dashboard_summary": CONTROL_PACKAGE_MANIFEST_DASHBOARD_SUMMARY,
+    "reproduction_command_summary": CONTROL_PACKAGE_MANIFEST_COMMAND,
+    "claim_allowed": CONTROL_PACKAGE_MANIFEST_CLAIM_ALLOWED,
+    "claims_blocked": CONTROL_PACKAGE_BLOCKED_CLAIMS,
+    "reviewer_caution": "CONTROL-PACKAGE-MANIFEST-STANDARD-00 is design-only manifest metadata. It implements no payment, subscriptions, remote marketplace installs, package execution, provider/network runtime, memory, Atlas, export, federation, compliance/legal/audit/product/truth/final-answer/accepted-evidence authority, model training, review skipping, or customer entitlement.",
+    "publication_status": "dashboard_indexed",
+}
+CONTROL_PACKAGE_ENV_ISOLATION_REPAIR_PHASE = {
+    "phase_id": "CONTROL-PACKAGE-MANIFEST-STANDARD-ENV-ISOLATION-REPAIR-00",
+    "repo": "pdxvoiceteacher/CoherenceLattice",
+    "status": "accepted_local_validation",
+    "evidence_type": "control_package_manifest_standard_env_isolation_repair_publication_sync",
+    "product_posture": "validation_isolation_repair_only_without_payment_marketplace_runtime_or_authority",
+    "primary_artifacts": CONTROL_PACKAGE_MANIFEST_ARTIFACTS,
+    "dashboard_summary": CONTROL_PACKAGE_MANIFEST_DASHBOARD_SUMMARY,
+    "reproduction_command_summary": CONTROL_PACKAGE_MANIFEST_COMMAND,
+    "claim_allowed": CONTROL_PACKAGE_ENV_ISOLATION_REPAIR_CLAIM_ALLOWED,
+    "claims_blocked": CONTROL_PACKAGE_BLOCKED_CLAIMS,
+    "reviewer_caution": "CONTROL-PACKAGE-MANIFEST-STANDARD-ENV-ISOLATION-REPAIR-00 narrows local validation isolation only. It does not enable payment, subscriptions, marketplace, package execution, provider/network, memory, Atlas, export, federation, compliance/legal/audit/product/truth/final-answer/accepted-evidence authority behavior.",
     "publication_status": "dashboard_indexed",
 }
 SOURCE_CORPUS_GATEWAY_REPORT_BATCH_PHASE = {
@@ -15297,6 +15489,8 @@ SOURCE_CORPUS_PROVENANCE_HASH_FILL_PHASE,
 SOURCE_CORPUS_BATCH_MANIFEST_PHASE,
 AI_RECEIPT_GATEWAY_SCOPE_SIMULATION_PHASE,
 AI_RECEIPT_GATEWAY_LOCAL_INGRESS_PHASE,
+CONTROL_PACKAGE_MANIFEST_PHASE,
+CONTROL_PACKAGE_ENV_ISOLATION_REPAIR_PHASE,
 SOURCE_CORPUS_GATEWAY_REPORT_BATCH_PHASE,
 SOURCE_CORPUS_GATEWAY_REPORT_SOURCE_IDENTITY_REPAIR_PHASE,
 WAVE_PROVENANCE_PHASE,
@@ -17596,17 +17790,25 @@ BOUNDARIES.extend(
         *SOURCE_CORPUS_REPORT_FILENAMES,
         "Blocked overclaim examples for compliance-ready report local prototype and source-corpus provenance publication boundaries.",
         *COMPLIANCE_REPORT_SOURCE_CORPUS_BLOCKED_CLAIMS,
-        SOURCE_CORPUS_BATCH_MANIFEST_20260610_CLAIM_ALLOWED,
-        *SOURCE_CORPUS_BATCH_MANIFEST_20260610_ARTIFACTS,
-        *SOURCE_CORPUS_BATCH_MANIFEST_20260610_REPRO_FRAGMENTS,
-        *SOURCE_CORPUS_BATCH_MANIFEST_20260610_DOCTRINE_LANGUAGE,
-        *SOURCE_CORPUS_BATCH_MANIFEST_20260610_FILENAMES,
-        *SOURCE_CORPUS_BATCH_MANIFEST_20260610_HASHES,
-        *SOURCE_CORPUS_BATCH_MANIFEST_20260610_ALIAS_TERMS,
-        *SOURCE_CORPUS_BATCH_MANIFEST_20260610_MANIFEST_TERMS,
-        *SOURCE_CORPUS_BATCH_MANIFEST_20260610_PRIOR_PHASE_RELATION,
-        "Blocked overclaim examples for June 2026 source-corpus batch manifest publication boundaries.",
-        *SOURCE_CORPUS_BATCH_MANIFEST_20260610_BLOCKED_CLAIMS,
+        CONTROL_PACKAGE_MANIFEST_CLAIM_ALLOWED,
+        CONTROL_PACKAGE_ENV_ISOLATION_REPAIR_CLAIM_ALLOWED,
+        *CONTROL_PACKAGE_MANIFEST_ARTIFACTS,
+        *CONTROL_PACKAGE_TYPES,
+        *CONTROL_PACKAGE_FAMILIES,
+        *CONTROL_PACKAGE_MANIFEST_FIELDS,
+        *CONTROL_PACKAGE_ENTITLEMENT_MODELS,
+        *CONTROL_PACKAGE_INSTALLATION_STATES,
+        *CONTROL_PACKAGE_ACTIVATION_STATES,
+        *CONTROL_PACKAGE_DATA_ACCESS_CATEGORIES,
+        *CONTROL_PACKAGE_RETENTION_CATEGORIES,
+        *CONTROL_PACKAGE_EXAMPLE_PACKAGES,
+        *CONTROL_PACKAGE_DOCTRINE_LANGUAGE,
+        *CONTROL_PACKAGE_GUARDRAILS,
+        *CONTROL_PACKAGE_ENV_ISOLATION_REPAIR_LANGUAGE,
+        *CONTROL_PACKAGE_PRIOR_PHASE_RELATION,
+        *CONTROL_PACKAGE_MANIFEST_REPRO_FRAGMENTS,
+        "Blocked overclaim examples for control package manifest standard publication boundaries.",
+        *CONTROL_PACKAGE_BLOCKED_CLAIMS,
         VALIDATION_TIERING_PROVENANCE_CLAIM_ALLOWED,
         *VALIDATION_TIERING_PROVENANCE_ARTIFACTS,
         *VALIDATION_TIERING_PROVENANCE_TIER_TERMS,
@@ -18564,6 +18766,19 @@ def dashboard_payload() -> dict[str, Any]:
         "ai_receipt_gateway_local_ingress_selected_source_count": 1,
         "not_ai_receipt_gateway_local_ingress_runtime_capture": True,
         "not_ai_receipt_gateway_local_ingress_runtime_authority": True,
+        "control_package_manifest_standard_00_indexed": True,
+        "control_package_manifest_standard_env_isolation_repair_00_indexed": True,
+        "control_package_manifest_policy_status": "active_design_only",
+        "control_package_manifest_package_standard_status": "active_design_only",
+        "control_package_manifest_runtime_package_install_enabled": False,
+        "control_package_manifest_remote_marketplace_enabled": False,
+        "control_package_manifest_subscription_billing_enabled": False,
+        "control_package_manifest_package_execution_enabled": False,
+        "control_package_manifest_package_types": 9,
+        "control_package_manifest_package_families": 33,
+        "control_package_manifest_manifest_fields": 30,
+        "control_package_manifest_example_packages": 8,
+        "not_control_package_manifest_runtime_authority": True,
         "source_corpus_gateway_reports_batch_2026_06_10_00_indexed": True,
         "source_corpus_gateway_reports_batch_source_identity_repair_00_indexed": True,
         "source_corpus_gateway_reports_batch_status": "active_hash_only_gateway_report_provenance_manifest",
@@ -18720,6 +18935,7 @@ def reproducibility_index() -> dict[str, Any]:
                 {"name": "SOURCE-CORPUS-BATCH-MANIFEST-2026-06-10-00 batch manifest validation", "command": SOURCE_CORPUS_BATCH_MANIFEST_COMMAND},
                 {"name": "AI-RECEIPT-GATEWAY-SCOPE-SIMULATION-00 Python entrypoint", "command": AI_RECEIPT_GATEWAY_SCOPE_SIMULATION_COMMAND},
                 {"name": "AI-RECEIPT-GATEWAY-LOCAL-INGRESS-PROTOTYPE-00 Python entrypoint", "command": AI_RECEIPT_GATEWAY_LOCAL_INGRESS_COMMAND},
+                {"name": "CONTROL-PACKAGE-MANIFEST-STANDARD-00 design validation", "command": CONTROL_PACKAGE_MANIFEST_COMMAND},
                 {"name": "SOURCE-CORPUS-GATEWAY-REPORTS-BATCH-2026-06-10-00 source batch validation", "command": "python -m pytest -q python/tests/provenance/test_source_corpus_gateway_report_batch_20260610.py tests/test_experiment_registry.py"},
                 {"name": "WAVE-ROSETTA-CANONICAL-PROXY-BRIDGE-PROVENANCE-00 provenance validation", "command": COMPLIANCE_REPORT_DESIGN_COMMAND},
                 {"name": "Validation Tiering Provenance Python entrypoint", "command": VALIDATION_TIERING_PROVENANCE_COMMAND},
@@ -19728,6 +19944,19 @@ def status_payload() -> dict[str, Any]:
         "ai_receipt_gateway_local_ingress_selected_source_count": 1,
         "not_ai_receipt_gateway_local_ingress_runtime_capture": True,
         "not_ai_receipt_gateway_local_ingress_runtime_authority": True,
+        "control_package_manifest_standard_00_indexed": True,
+        "control_package_manifest_standard_env_isolation_repair_00_indexed": True,
+        "control_package_manifest_policy_status": "active_design_only",
+        "control_package_manifest_package_standard_status": "active_design_only",
+        "control_package_manifest_runtime_package_install_enabled": False,
+        "control_package_manifest_remote_marketplace_enabled": False,
+        "control_package_manifest_subscription_billing_enabled": False,
+        "control_package_manifest_package_execution_enabled": False,
+        "control_package_manifest_package_types": 9,
+        "control_package_manifest_package_families": 33,
+        "control_package_manifest_manifest_fields": 30,
+        "control_package_manifest_example_packages": 8,
+        "not_control_package_manifest_runtime_authority": True,
         "source_corpus_gateway_reports_batch_2026_06_10_00_indexed": True,
         "source_corpus_gateway_reports_batch_source_identity_repair_00_indexed": True,
         "source_corpus_gateway_reports_batch_status": "active_hash_only_gateway_report_provenance_manifest",
@@ -26315,6 +26544,148 @@ AI-RECEIPT-GATEWAY-LOCAL-INGRESS-PROTOTYPE-00 is local explicit ingress only, no
 """
 
 
+def _control_package_common_sections() -> str:
+    return f"""## Package types
+
+{_bullets(CONTROL_PACKAGE_TYPES)}
+
+## Package families
+
+{_bullets(CONTROL_PACKAGE_FAMILIES)}
+
+## Manifest fields
+
+{_bullets(CONTROL_PACKAGE_MANIFEST_FIELDS)}
+
+## Entitlement models
+
+{_bullets(CONTROL_PACKAGE_ENTITLEMENT_MODELS)}
+
+## Installation states
+
+{_bullets(CONTROL_PACKAGE_INSTALLATION_STATES)}
+
+## Activation states
+
+{_bullets(CONTROL_PACKAGE_ACTIVATION_STATES)}
+
+## Data-access categories
+
+{_bullets(CONTROL_PACKAGE_DATA_ACCESS_CATEGORIES)}
+
+## Retention categories
+
+{_bullets(CONTROL_PACKAGE_RETENTION_CATEGORIES)}
+
+## Example packages
+
+{_bullets(CONTROL_PACKAGE_EXAMPLE_PACKAGES)}
+
+## Doctrine language
+
+{_bullets(CONTROL_PACKAGE_DOCTRINE_LANGUAGE)}
+
+## Non-authority guardrails
+
+{_bullets(CONTROL_PACKAGE_GUARDRAILS)}
+
+## Env-isolation repair language
+
+{_bullets(CONTROL_PACKAGE_ENV_ISOLATION_REPAIR_LANGUAGE)}
+
+## Relation to prior phases
+
+{_bullets(CONTROL_PACKAGE_PRIOR_PHASE_RELATION)}
+"""
+
+
+def control_package_manifest_standard_doc() -> str:
+    summary = "\n".join(f"- {key} = {str(value).lower() if isinstance(value, bool) else value}" for key, value in CONTROL_PACKAGE_MANIFEST_DASHBOARD_SUMMARY.items())
+    return f"""# Control Package Manifest Standard
+
+CONTROL-PACKAGE-MANIFEST-STANDARD-00 synchronizes the design-only control package manifest standard into publication dashboards. This is publication/dashboard synchronization only and grants no runtime authority.
+
+## Bounded allowed claim
+
+{CONTROL_PACKAGE_MANIFEST_CLAIM_ALLOWED}
+
+## Dashboard summary
+
+{summary}
+
+{_control_package_common_sections()}
+
+## Artifact references
+
+{_bullets(CONTROL_PACKAGE_MANIFEST_ARTIFACTS)}
+
+## Blocked claims
+
+{_bullets(CONTROL_PACKAGE_BLOCKED_CLAIMS)}
+
+## Reproducibility
+
+{_bullets(CONTROL_PACKAGE_MANIFEST_REPRO_FRAGMENTS)}
+- `{CONTROL_PACKAGE_MANIFEST_COMMAND}`
+
+## Runtime authority boundary
+
+Publication sync grants no runtime authority. It does not imply payment implementation, subscription billing, remote marketplace availability, runtime package install, package execution, package activation, provider runtime, network calls, memory writes, Atlas memory admission, trace export, PMR federation, compliance certification, legal advice, audit pass, attestation success, product readiness, product release, truth certification, final-answer authority, accepted-evidence authority, model training, review skipping, or customer entitlement.
+"""
+
+
+def control_package_manifest_standard_env_isolation_repair_doc() -> str:
+    summary = "\n".join(f"- {key} = {str(value).lower() if isinstance(value, bool) else value}" for key, value in CONTROL_PACKAGE_MANIFEST_DASHBOARD_SUMMARY.items())
+    return f"""# Control Package Manifest Standard Env-Isolation Repair
+
+CONTROL-PACKAGE-MANIFEST-STANDARD-ENV-ISOLATION-REPAIR-00 synchronizes local validation isolation repair for the design-only control package manifest standard. This is publication/dashboard synchronization only and grants no runtime authority.
+
+## Bounded allowed claim
+
+{CONTROL_PACKAGE_ENV_ISOLATION_REPAIR_CLAIM_ALLOWED}
+
+## Dashboard summary
+
+{summary}
+
+{_control_package_common_sections()}
+
+## Artifact references
+
+{_bullets(CONTROL_PACKAGE_MANIFEST_ARTIFACTS)}
+
+## Blocked claims
+
+{_bullets(CONTROL_PACKAGE_BLOCKED_CLAIMS)}
+
+## Reproducibility
+
+{_bullets(CONTROL_PACKAGE_MANIFEST_REPRO_FRAGMENTS)}
+- `{CONTROL_PACKAGE_MANIFEST_COMMAND}`
+
+## Runtime authority boundary
+
+Publication sync grants no runtime authority. The repair does not enable payment, marketplace, package execution, provider/network calls, memory, Atlas, export, federation, compliance/legal/audit/product/authority behavior.
+"""
+
+
+CONTROL_PACKAGE_MANIFEST_SYNC_DOCS = {
+    "ai-receipt-architecture.md",
+    "ai-receipt-gateway-local-ingress-prototype.md",
+    "compliance-evidence-toolset-library-design.md",
+    "compliance-report-presentation-standard.md",
+    "validation-tiering-provenance.md",
+}
+CONTROL_PACKAGE_MANIFEST_SYNC_NOTE = f"""
+
+## Control package manifest standard publication sync
+
+{_bullets(CONTROL_PACKAGE_PRIOR_PHASE_RELATION)}
+
+CONTROL-PACKAGE-MANIFEST-STANDARD-00 is design-only package metadata and boundary definition. CONTROL-PACKAGE-MANIFEST-STANDARD-ENV-ISOLATION-REPAIR-00 repairs validation isolation only. The sync implements no payment, subscription billing, remote marketplace availability, runtime package install, package execution, package activation, provider runtime, network calls, memory writes, Atlas memory admission, trace export, PMR federation, compliance certification, legal advice, audit pass, attestation success, product readiness, product release, truth certification, final-answer authority, accepted-evidence authority, model training, review skipping, or customer entitlement. Publication sync grants no runtime authority.
+"""
+
+
 def source_corpus_gateway_reports_batch_doc() -> str:
     summary = "\n".join(f"- {key} = {str(value).lower() if isinstance(value, bool) else value}" for key, value in SOURCE_CORPUS_GATEWAY_REPORT_BATCH_DASHBOARD_SUMMARY.items())
     return f"""# Source Corpus Gateway Reports Batch 2026-06-10
@@ -26489,6 +26860,8 @@ def build(out_dir: Path, docs_dir: Path) -> None:
     docs_payload["source-corpus-batch-manifest-2026-06-10.md"] = source_corpus_batch_manifest_doc()
     docs_payload["ai-receipt-gateway-scope-simulation.md"] = ai_receipt_gateway_scope_simulation_doc()
     docs_payload["ai-receipt-gateway-local-ingress-prototype.md"] = ai_receipt_gateway_local_ingress_prototype_doc()
+    docs_payload["control-package-manifest-standard.md"] = control_package_manifest_standard_doc()
+    docs_payload["control-package-manifest-standard-env-isolation-repair.md"] = control_package_manifest_standard_env_isolation_repair_doc()
     docs_payload["source-corpus-gateway-reports-batch-2026-06-10.md"] = source_corpus_gateway_reports_batch_doc()
     docs_payload["source-corpus-gateway-reports-batch-source-identity-repair.md"] = source_corpus_gateway_reports_batch_source_identity_repair_doc()
     docs_payload["compliance-report-presentation-standard.md"] = compliance_report_presentation_standard_doc()
@@ -26544,6 +26917,9 @@ def build(out_dir: Path, docs_dir: Path) -> None:
     for name in AI_RECEIPT_GATEWAY_LOCAL_INGRESS_SYNC_DOCS:
         if name in docs_payload:
             docs_payload[name] = docs_payload[name].rstrip() + AI_RECEIPT_GATEWAY_LOCAL_INGRESS_SYNC_NOTE
+    for name in CONTROL_PACKAGE_MANIFEST_SYNC_DOCS:
+        if name in docs_payload:
+            docs_payload[name] = docs_payload[name].rstrip() + CONTROL_PACKAGE_MANIFEST_SYNC_NOTE
     for name, text in docs_payload.items():
         _write_text(docs_dir / name, text)
 

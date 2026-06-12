@@ -89,6 +89,25 @@ from tools.build_public_repro_dashboard import (
     AI_RECEIPT_GATEWAY_LOCAL_INGRESS_PRIOR_PHASE_RELATION,
     AI_RECEIPT_GATEWAY_LOCAL_INGRESS_REPRO_FRAGMENTS,
     AI_RECEIPT_GATEWAY_LOCAL_INGRESS_SOURCE_MODES,
+    CONTROL_PACKAGE_ACTIVATION_STATES,
+    CONTROL_PACKAGE_BLOCKED_CLAIMS,
+    CONTROL_PACKAGE_DATA_ACCESS_CATEGORIES,
+    CONTROL_PACKAGE_DOCTRINE_LANGUAGE,
+    CONTROL_PACKAGE_ENTITLEMENT_MODELS,
+    CONTROL_PACKAGE_ENV_ISOLATION_REPAIR_CLAIM_ALLOWED,
+    CONTROL_PACKAGE_ENV_ISOLATION_REPAIR_LANGUAGE,
+    CONTROL_PACKAGE_EXAMPLE_PACKAGES,
+    CONTROL_PACKAGE_FAMILIES,
+    CONTROL_PACKAGE_GUARDRAILS,
+    CONTROL_PACKAGE_INSTALLATION_STATES,
+    CONTROL_PACKAGE_MANIFEST_ARTIFACTS,
+    CONTROL_PACKAGE_MANIFEST_CLAIM_ALLOWED,
+    CONTROL_PACKAGE_MANIFEST_DASHBOARD_SUMMARY,
+    CONTROL_PACKAGE_MANIFEST_FIELDS,
+    CONTROL_PACKAGE_MANIFEST_REPRO_FRAGMENTS,
+    CONTROL_PACKAGE_PRIOR_PHASE_RELATION,
+    CONTROL_PACKAGE_RETENTION_CATEGORIES,
+    CONTROL_PACKAGE_TYPES,
     AI_RECEIPT_GATEWAY_VISIBLE_STATUS_FIELDS,
     GATEWAY_SCOPE_AND_SOURCE_CORPUS_PRIOR_PHASE_RELATION,
     SOURCE_CORPUS_GATEWAY_REPORT_BATCH_ARTIFACTS,
@@ -607,6 +626,8 @@ REQUIRED_PHASES = {
     "SOURCE-CORPUS-BATCH-MANIFEST-2026-06-10-00",
     "AI-RECEIPT-GATEWAY-SCOPE-SIMULATION-00",
     "AI-RECEIPT-GATEWAY-LOCAL-INGRESS-PROTOTYPE-00",
+    "CONTROL-PACKAGE-MANIFEST-STANDARD-00",
+    "CONTROL-PACKAGE-MANIFEST-STANDARD-ENV-ISOLATION-REPAIR-00",
     "SOURCE-CORPUS-GATEWAY-REPORTS-BATCH-2026-06-10-00",
     "SOURCE-CORPUS-GATEWAY-REPORTS-BATCH-SOURCE-IDENTITY-REPAIR-00",
     "WAVE-ROSETTA-CANONICAL-PROXY-BRIDGE-PROVENANCE-00",
@@ -7451,3 +7472,117 @@ def test_validator_fails_if_gateway_local_ingress_makes_forbidden_claims(tmp_pat
             or f"claims {claim.lower()}" in forbidden_found
             or f"local ingress sync claims {claim.lower()}" in forbidden_found
         ), result
+
+
+
+def test_control_package_manifest_standard_indexes_dashboard_docs_and_boundaries(tmp_path):
+    out_dir, docs_dir = run_builder(tmp_path)
+    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text(encoding="utf-8"))
+    artifact_index = json.loads((out_dir / "artifact_index.json").read_text(encoding="utf-8"))
+    status = json.loads((out_dir / "status.json").read_text(encoding="utf-8"))
+    reproducibility_text = (out_dir / "reproducibility_index.json").read_text(encoding="utf-8")
+    boundary_text = (docs_dir / "claim-boundaries.md").read_text(encoding="utf-8")
+    manifest_page = (docs_dir / "control-package-manifest-standard.md").read_text(encoding="utf-8")
+    repair_page = (docs_dir / "control-package-manifest-standard-env-isolation-repair.md").read_text(encoding="utf-8")
+    combined_page_text = manifest_page + "\n" + repair_page
+    phase_ids = {phase["phase_id"] for phase in dashboard["accepted_phases"]}
+
+    assert "CONTROL-PACKAGE-MANIFEST-STANDARD-00" in phase_ids
+    assert "CONTROL-PACKAGE-MANIFEST-STANDARD-ENV-ISOLATION-REPAIR-00" in phase_ids
+    assert "CONTROL-PACKAGE-MANIFEST-STANDARD-00" in VALIDATOR_REQUIRED_PHASES
+    assert "CONTROL-PACKAGE-MANIFEST-STANDARD-ENV-ISOLATION-REPAIR-00" in VALIDATOR_REQUIRED_PHASES
+
+    phase_by_id = {phase["phase_id"]: phase for phase in dashboard["accepted_phases"]}
+    for phase_id in (
+        "CONTROL-PACKAGE-MANIFEST-STANDARD-00",
+        "CONTROL-PACKAGE-MANIFEST-STANDARD-ENV-ISOLATION-REPAIR-00",
+    ):
+        summary = phase_by_id[phase_id]["dashboard_summary"]
+        assert summary == CONTROL_PACKAGE_MANIFEST_DASHBOARD_SUMMARY
+        assert summary["policy_status"] == "active_design_only"
+        assert summary["package_standard_status"] == "active_design_only"
+        assert summary["runtime_package_install_enabled"] is False
+        assert summary["remote_marketplace_enabled"] is False
+        assert summary["subscription_billing_enabled"] is False
+        assert summary["package_execution_enabled"] is False
+        assert summary["provider_runtime_performed"] is False
+        assert summary["network_call_performed"] is False
+        assert summary["memory_write_performed"] is False
+        assert summary["atlas_memory_admission_performed"] is False
+        assert summary["trace_export_performed"] is False
+        assert summary["pmr_federation_performed"] is False
+        assert summary["compliance_certification_emitted"] is False
+        assert summary["legal_advice_emitted"] is False
+        assert summary["audit_pass_claimed"] is False
+        assert summary["product_readiness_claimed"] is False
+        assert summary["product_release_performed"] is False
+        assert summary["final_answer_authority_granted"] is False
+        assert summary["accepted_evidence_authority_granted"] is False
+        assert summary["package_types"] == 9
+        assert summary["package_families"] == 33
+        assert summary["manifest_fields"] == 30
+        assert summary["example_packages"] == 8
+        assert artifact_index["phases"][phase_id] == CONTROL_PACKAGE_MANIFEST_ARTIFACTS
+
+    for artifact in CONTROL_PACKAGE_MANIFEST_ARTIFACTS:
+        assert artifact in manifest_page
+        assert artifact in repair_page
+        assert artifact in artifact_index["phases"]["CONTROL-PACKAGE-MANIFEST-STANDARD-00"]
+
+    for fragment in CONTROL_PACKAGE_MANIFEST_REPRO_FRAGMENTS:
+        assert fragment in combined_page_text
+    assert "test_control_package_manifest_standard.py" in reproducibility_text
+
+    for phrase_group in (
+        CONTROL_PACKAGE_TYPES,
+        CONTROL_PACKAGE_FAMILIES,
+        CONTROL_PACKAGE_MANIFEST_FIELDS,
+        CONTROL_PACKAGE_ENTITLEMENT_MODELS,
+        CONTROL_PACKAGE_INSTALLATION_STATES,
+        CONTROL_PACKAGE_ACTIVATION_STATES,
+        CONTROL_PACKAGE_DATA_ACCESS_CATEGORIES,
+        CONTROL_PACKAGE_RETENTION_CATEGORIES,
+        CONTROL_PACKAGE_EXAMPLE_PACKAGES,
+        CONTROL_PACKAGE_DOCTRINE_LANGUAGE,
+        CONTROL_PACKAGE_GUARDRAILS,
+        CONTROL_PACKAGE_ENV_ISOLATION_REPAIR_LANGUAGE,
+        CONTROL_PACKAGE_PRIOR_PHASE_RELATION,
+        CONTROL_PACKAGE_BLOCKED_CLAIMS,
+    ):
+        for phrase in phrase_group:
+            assert phrase in combined_page_text
+            assert phrase in boundary_text
+
+    assert CONTROL_PACKAGE_MANIFEST_CLAIM_ALLOWED in manifest_page
+    assert CONTROL_PACKAGE_MANIFEST_CLAIM_ALLOWED in boundary_text
+    assert CONTROL_PACKAGE_ENV_ISOLATION_REPAIR_CLAIM_ALLOWED in repair_page
+    assert CONTROL_PACKAGE_ENV_ISOLATION_REPAIR_CLAIM_ALLOWED in boundary_text
+    assert "Publication sync grants no runtime authority." in manifest_page
+    assert "Publication sync grants no runtime authority." in repair_page
+    assert status["control_package_manifest_standard_00_indexed"] is True
+    assert status["control_package_manifest_standard_env_isolation_repair_00_indexed"] is True
+    assert status["control_package_manifest_policy_status"] == "active_design_only"
+    assert status["control_package_manifest_package_standard_status"] == "active_design_only"
+    assert status["control_package_manifest_runtime_package_install_enabled"] is False
+    assert status["control_package_manifest_remote_marketplace_enabled"] is False
+    assert status["control_package_manifest_subscription_billing_enabled"] is False
+    assert status["control_package_manifest_package_execution_enabled"] is False
+    assert status["control_package_manifest_package_types"] == 9
+    assert status["control_package_manifest_package_families"] == 33
+    assert status["control_package_manifest_manifest_fields"] == 30
+    assert status["control_package_manifest_example_packages"] == 8
+    assert status["not_control_package_manifest_runtime_authority"] is True
+
+
+def test_validator_fails_if_control_package_manifest_makes_forbidden_claims(tmp_path):
+    for claim in CONTROL_PACKAGE_BLOCKED_CLAIMS:
+        out_dir, docs_dir = run_builder(tmp_path / claim.replace(" ", "_").replace("/", "_"))
+        page = docs_dir / "control-package-manifest-standard.md"
+        page.write_text(
+            page.read_text(encoding="utf-8") + f"\nControl package sync claims {claim}.\n",
+            encoding="utf-8",
+        )
+        result = validate_dashboard(out_dir / "experiment_suite_dashboard.json", docs_dir)
+        assert result["passed"] is False, claim
+        forbidden_found = [found.lower() for found in result["forbidden_claims_found"]]
+        assert claim.lower() in forbidden_found or f"control package sync claims {claim.lower()}" in forbidden_found, result

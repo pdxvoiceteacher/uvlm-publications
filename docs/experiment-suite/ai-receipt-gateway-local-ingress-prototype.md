@@ -191,3 +191,14 @@ AI-RECEIPT-GATEWAY-LOCAL-INGRESS-PROTOTYPE-00 emits a local explicit-ingress pro
 ## Runtime authority boundary
 
 Publication sync grants no runtime authority. It does not imply runtime gateway activation, runtime capture, invisible surveillance, universal capture, directory scans, hidden file reads, connector pulls, provider calls, network calls, memory writes, Atlas memory admission, trace export, PMR federation, compliance certification, legal advice, audit pass, attestation success, product readiness, product release, truth certification, final-answer authority, accepted-evidence authority, model training, or review skipping.
+
+## Control package manifest standard publication sync
+
+- AI-RECEIPT-GATEWAY-LOCAL-INGRESS-PROTOTYPE-00 provides the local explicit-ingress prototype.
+- COMPLIANCE-REPORT-PRESENTATION-STANDARD-00 defines report presentation constraints.
+- COMPLIANCE-EVIDENCE-TOOLSET-LIBRARY-DESIGN-00 defines compliance evidence toolsets.
+- SOURCE-CORPUS-PROVENANCE-ARCHIVE-00 defines provenance archive practices.
+- CONTROL-PACKAGE-MANIFEST-STANDARD-00 defines package metadata and boundaries.
+- CONTROL-PACKAGE-MANIFEST-STANDARD-ENV-ISOLATION-REPAIR-00 repairs validation isolation only.
+
+CONTROL-PACKAGE-MANIFEST-STANDARD-00 is design-only package metadata and boundary definition. CONTROL-PACKAGE-MANIFEST-STANDARD-ENV-ISOLATION-REPAIR-00 repairs validation isolation only. The sync implements no payment, subscription billing, remote marketplace availability, runtime package install, package execution, package activation, provider runtime, network calls, memory writes, Atlas memory admission, trace export, PMR federation, compliance certification, legal advice, audit pass, attestation success, product readiness, product release, truth certification, final-answer authority, accepted-evidence authority, model training, review skipping, or customer entitlement. Publication sync grants no runtime authority.

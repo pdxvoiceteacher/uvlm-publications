@@ -1429,6 +1429,24 @@
       "export_bundle_manifest.json",
       "export_bundle_parity_report.json"
     ],
+    "CONTROL-PACKAGE-MANIFEST-STANDARD-00": [
+      "docs/CONTROL_PACKAGE_MANIFEST_STANDARD.md",
+      "config/packages/control_package_manifest_standard.v1.json",
+      "schema/bridge/control_package_manifest.schema.json",
+      "schema/bridge/control_package_entitlement_profile.schema.json",
+      "schema/bridge/control_package_dependency_profile.schema.json",
+      "schema/bridge/control_package_non_authority_boundary.schema.json",
+      "python/tests/product/test_control_package_manifest_standard.py"
+    ],
+    "CONTROL-PACKAGE-MANIFEST-STANDARD-ENV-ISOLATION-REPAIR-00": [
+      "docs/CONTROL_PACKAGE_MANIFEST_STANDARD.md",
+      "config/packages/control_package_manifest_standard.v1.json",
+      "schema/bridge/control_package_manifest.schema.json",
+      "schema/bridge/control_package_entitlement_profile.schema.json",
+      "schema/bridge/control_package_dependency_profile.schema.json",
+      "schema/bridge/control_package_non_authority_boundary.schema.json",
+      "python/tests/product/test_control_package_manifest_standard.py"
+    ],
     "SOURCE-CORPUS-GATEWAY-REPORTS-BATCH-2026-06-10-00": [
       "docs/provenance/source_reports/2026-06/gateway_report_batch_20260610.json",
       "docs/provenance/source_reports/2026-06/gateway_report_batch_aliases_20260610.json",
