@@ -4123,6 +4123,118 @@
 - author-contributed package means unrestricted commercial use
 - subscription eligible means billing implemented
 - marketplace ready means marketplace exists
+- CONTROL-PACKAGE-INSTALL-SIMULATION-00 emits a design-only local registry state-transition simulation for Triadic Brain package install, enable, disable, dependency, compatibility, license, entitlement, and policy outcomes while preserving that no package is installed, activated, executed, downloaded, billed, entitled, control-effective, compliant, audit-passed, product-ready, product-released, truth-certified, memory-written, Atlas-admitted, trace-exported, PMR-federated, final-answer-authorized, or accepted-evidence-authorized.
+- docs/CONTROL_PACKAGE_INSTALL_SIMULATION.md
+- python/src/coherence/packages/control_package_install_simulation.py
+- python/src/coherence/packages/__init__.py
+- python/tests/product/test_control_package_install_simulation.py
+- schema/bridge/control_package_install_simulation_packet.schema.json
+- schema/bridge/control_package_install_simulation_receipt.schema.json
+- schema/bridge/control_package_install_negative_control_report.schema.json
+- schema/bridge/control_package_install_non_authority_boundary.schema.json
+- control_package_install_simulation_packet.json
+- control_package_install_simulation_receipt.json
+- control_package_install_negative_control_report.json
+- control_package_install_non_authority_boundary.json
+- control_package_install_simulation_summary.md
+- install_free_core_package_design_only
+- enable_installed_design_only_package
+- disable_installed_design_only_package
+- missing_dependency_blocks_install
+- incompatible_core_version_blocks_install
+- license_required_blocks_install
+- entitlement_required_blocks_install
+- paid_package_without_entitlement_blocks_install
+- public_good_package_available_not_public_domain
+- author_contributed_package_available_not_unrestricted
+- marketplace_download_requested_blocked
+- subscription_billing_requested_blocked
+- runtime_package_execution_requested_blocked
+- package_activation_claims_control_effectiveness_blocked
+- package_availability_claims_compliance_blocked
+- package_activation_claims_audit_pass_blocked
+- simulated_install_allowed_design_only
+- simulated_enable_allowed_design_only
+- simulated_disable_allowed_design_only
+- blocked_missing_dependency
+- blocked_incompatible_core_version
+- blocked_license_required
+- blocked_entitlement_required
+- blocked_paid_package_without_entitlement
+- blocked_public_good_not_public_domain
+- blocked_author_contributed_not_unrestricted
+- blocked_marketplace_download
+- blocked_subscription_billing
+- blocked_runtime_package_execution
+- blocked_control_effectiveness_claim
+- blocked_compliance_claim
+- blocked_audit_pass_claim
+- Control Package Install Simulation
+- This simulation rehearses package state transitions; it does not install packages.
+- Install simulation is not package installation.
+- Enable simulation is not package activation.
+- Package activation simulation is not control effectiveness.
+- Package availability simulation is not compliance.
+- Marketplace download requests are blocked.
+- Subscription billing requests are blocked.
+- Runtime package execution requests are blocked.
+- Customer entitlement is not granted.
+- Human review remains required.
+- CONTROL-PACKAGE-INSTALL-SIMULATION-00 does not implement payment.
+- CONTROL-PACKAGE-INSTALL-SIMULATION-00 does not implement subscriptions.
+- CONTROL-PACKAGE-INSTALL-SIMULATION-00 does not implement marketplace downloads.
+- CONTROL-PACKAGE-INSTALL-SIMULATION-00 does not execute packages.
+- install_simulation_is_not_package_installation
+- install_simulation_is_not_package_activation
+- install_simulation_is_not_package_execution
+- install_simulation_is_not_payment
+- install_simulation_is_not_subscription_billing
+- install_simulation_is_not_marketplace
+- install_simulation_is_not_customer_entitlement
+- install_simulation_is_not_control_effectiveness
+- install_simulation_is_not_compliance
+- install_simulation_is_not_legal_advice
+- install_simulation_is_not_audit_pass
+- install_simulation_is_not_attestation_success
+- install_simulation_is_not_product_release
+- install_simulation_is_not_product_readiness
+- install_simulation_is_not_truth_certification
+- install_simulation_is_not_final_answer_authority
+- install_simulation_is_not_accepted_evidence_authority
+- install_simulation_does_not_write_memory
+- install_simulation_does_not_admit_atlas_memory
+- install_simulation_does_not_export_traces
+- install_simulation_does_not_federate_pmr
+- human_review_required
+- CONTROL-PACKAGE-MANIFEST-STANDARD-00 defines package metadata and boundaries.
+- CONTROL-PACKAGE-REGISTRY-DESIGN-00 records package availability and state.
+- CONTROL-PACKAGE-INSTALL-SIMULATION-00 simulates package state transitions.
+- AI-RECEIPT-GATEWAY-LOCAL-INGRESS-PROTOTYPE-00 provides the local explicit-ingress prototype.
+- COMPLIANCE-EVIDENCE-TOOLSET-LIBRARY-DESIGN-00 defines compliance evidence toolsets.
+- build_control_package_install_simulation
+- control_package_install_simulation_summary.md
+- Blocked overclaim examples for control package install simulation publication boundaries.
+- install simulation installs package
+- install simulation activates package
+- install simulation executes package
+- install simulation grants entitlement
+- install simulation implements payment
+- install simulation implements subscription billing
+- install simulation downloads from marketplace
+- package activation simulation proves control effectiveness
+- package availability simulation proves compliance
+- enable simulation passes audit
+- install simulation certifies compliance
+- install simulation provides legal advice
+- install simulation releases product
+- install simulation claims product readiness
+- install simulation writes memory
+- install simulation admits Atlas memory
+- install simulation exports traces
+- install simulation federates PMR
+- install simulation grants accepted-evidence authority
+- install simulation authorizes final answers
+- install simulation certifies truth
 - VALIDATION-TIERING-PROVENANCE-00 documents smoke, acceptance, and deep validation tiers and emits validation receipts that record tier, scope, commands, artifact chain, duration, sufficient-for decisions, and not-sufficient-for boundaries without certifying truth, releasing product, proving science, validating market or human benefit, deploying runtime, writing memory, or admitting Atlas memory.
 - config/validation/validation_tier_policy.v1.json
 - validation_tier_receipt.json

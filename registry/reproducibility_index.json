@@ -275,6 +275,10 @@
         "command": "python -m pytest -q python/tests/product/test_control_package_registry_design.py tests/test_experiment_registry.py"
       },
       {
+        "name": "CONTROL-PACKAGE-INSTALL-SIMULATION-00 Python entrypoint",
+        "command": "python -c \"from pathlib import Path; from coherence.packages.control_package_install_simulation import build_control_package_install_simulation; build_control_package_install_simulation(Path(r'C:\\UVLM\\run_artifacts\\control_package_install_simulation\\bridge'))\""
+      },
+      {
         "name": "SOURCE-CORPUS-GATEWAY-REPORTS-BATCH-2026-06-10-00 source batch validation",
         "command": "python -m pytest -q python/tests/provenance/test_source_corpus_gateway_report_batch_20260610.py tests/test_experiment_registry.py"
       },

@@ -12504,6 +12504,169 @@ CONTROL_PACKAGE_REGISTRY_PRIOR_PHASE_RELATION = [
     "AI-RECEIPT-GATEWAY-LOCAL-INGRESS-PROTOTYPE-00 provides the local explicit-ingress prototype.",
     "COMPLIANCE-EVIDENCE-TOOLSET-LIBRARY-DESIGN-00 defines compliance evidence toolsets.",
 ]
+CONTROL_PACKAGE_INSTALL_SIMULATION_COMMAND = "python -c \"from pathlib import Path; from coherence.packages.control_package_install_simulation import build_control_package_install_simulation; build_control_package_install_simulation(Path(r'C:\\UVLM\\run_artifacts\\control_package_install_simulation\\bridge'))\""
+CONTROL_PACKAGE_INSTALL_SIMULATION_REPRO_FRAGMENTS = ["build_control_package_install_simulation", "control_package_install_simulation_summary.md"]
+CONTROL_PACKAGE_INSTALL_SIMULATION_ARTIFACTS = [
+    "docs/CONTROL_PACKAGE_INSTALL_SIMULATION.md",
+    "python/src/coherence/packages/control_package_install_simulation.py",
+    "python/src/coherence/packages/__init__.py",
+    "python/tests/product/test_control_package_install_simulation.py",
+    "schema/bridge/control_package_install_simulation_packet.schema.json",
+    "schema/bridge/control_package_install_simulation_receipt.schema.json",
+    "schema/bridge/control_package_install_negative_control_report.schema.json",
+    "schema/bridge/control_package_install_non_authority_boundary.schema.json",
+    "control_package_install_simulation_packet.json",
+    "control_package_install_simulation_receipt.json",
+    "control_package_install_negative_control_report.json",
+    "control_package_install_non_authority_boundary.json",
+    "control_package_install_simulation_summary.md",
+]
+CONTROL_PACKAGE_INSTALL_SIMULATION_DASHBOARD_SUMMARY = {
+    "simulation_status": "completed_design_only",
+    "simulation_mode": "local_registry_state_transition_simulation_only",
+    "registry_ref": "config/packages/control_package_registry.v1.json",
+    "package_id": "ai_receipt_gateway_core_free",
+    "package_name": "AI Receipt Gateway Core Free",
+    "scenario_id": "install_free_core_package_design_only",
+    "selected_decision_status": "simulated_install_allowed_design_only",
+    "simulated_state_transition": "not_installed -> installed_disabled (simulated only)",
+    "scenario_count": 16,
+    "negative_control_count": 7,
+    "all_negative_controls_blocked": True,
+    "package_install_performed": False,
+    "package_activation_performed": False,
+    "package_execution_performed": False,
+    "marketplace_download_performed": False,
+    "subscription_billing_performed": False,
+    "entitlement_enforcement_performed": False,
+    "customer_entitlement_granted": False,
+    "control_effectiveness_claimed": False,
+    "compliance_certification_emitted": False,
+    "legal_advice_emitted": False,
+    "audit_pass_claimed": False,
+    "attestation_success_claimed": False,
+    "product_readiness_claimed": False,
+    "product_release_performed": False,
+    "provider_runtime_performed": False,
+    "network_call_performed": False,
+    "memory_write_performed": False,
+    "atlas_memory_admission_performed": False,
+    "trace_export_performed": False,
+    "pmr_federation_performed": False,
+    "final_answer_authority_granted": False,
+    "accepted_evidence_authority_granted": False,
+    "truth_certification_emitted": False,
+    "receipt_status": "completed",
+    "boundary_schema": "coherencelattice.control_package_install_non_authority_boundary.v1",
+}
+CONTROL_PACKAGE_INSTALL_SIMULATION_SCENARIOS = [
+    "install_free_core_package_design_only",
+    "enable_installed_design_only_package",
+    "disable_installed_design_only_package",
+    "missing_dependency_blocks_install",
+    "incompatible_core_version_blocks_install",
+    "license_required_blocks_install",
+    "entitlement_required_blocks_install",
+    "paid_package_without_entitlement_blocks_install",
+    "public_good_package_available_not_public_domain",
+    "author_contributed_package_available_not_unrestricted",
+    "marketplace_download_requested_blocked",
+    "subscription_billing_requested_blocked",
+    "runtime_package_execution_requested_blocked",
+    "package_activation_claims_control_effectiveness_blocked",
+    "package_availability_claims_compliance_blocked",
+    "package_activation_claims_audit_pass_blocked",
+]
+CONTROL_PACKAGE_INSTALL_SIMULATION_DECISION_STATUSES = [
+    "simulated_install_allowed_design_only",
+    "simulated_enable_allowed_design_only",
+    "simulated_disable_allowed_design_only",
+    "blocked_missing_dependency",
+    "blocked_incompatible_core_version",
+    "blocked_license_required",
+    "blocked_entitlement_required",
+    "blocked_paid_package_without_entitlement",
+    "blocked_public_good_not_public_domain",
+    "blocked_author_contributed_not_unrestricted",
+    "blocked_marketplace_download",
+    "blocked_subscription_billing",
+    "blocked_runtime_package_execution",
+    "blocked_control_effectiveness_claim",
+    "blocked_compliance_claim",
+    "blocked_audit_pass_claim",
+]
+CONTROL_PACKAGE_INSTALL_SIMULATION_DOCTRINE_LANGUAGE = [
+    "Control Package Install Simulation",
+    "This simulation rehearses package state transitions; it does not install packages.",
+    "Install simulation is not package installation.",
+    "Enable simulation is not package activation.",
+    "Package activation simulation is not control effectiveness.",
+    "Package availability simulation is not compliance.",
+    "Marketplace download requests are blocked.",
+    "Subscription billing requests are blocked.",
+    "Runtime package execution requests are blocked.",
+    "Customer entitlement is not granted.",
+    "Human review remains required.",
+    "CONTROL-PACKAGE-INSTALL-SIMULATION-00 does not implement payment.",
+    "CONTROL-PACKAGE-INSTALL-SIMULATION-00 does not implement subscriptions.",
+    "CONTROL-PACKAGE-INSTALL-SIMULATION-00 does not implement marketplace downloads.",
+    "CONTROL-PACKAGE-INSTALL-SIMULATION-00 does not execute packages.",
+]
+CONTROL_PACKAGE_INSTALL_SIMULATION_GUARDRAILS = [
+    "install_simulation_is_not_package_installation",
+    "install_simulation_is_not_package_activation",
+    "install_simulation_is_not_package_execution",
+    "install_simulation_is_not_payment",
+    "install_simulation_is_not_subscription_billing",
+    "install_simulation_is_not_marketplace",
+    "install_simulation_is_not_customer_entitlement",
+    "install_simulation_is_not_control_effectiveness",
+    "install_simulation_is_not_compliance",
+    "install_simulation_is_not_legal_advice",
+    "install_simulation_is_not_audit_pass",
+    "install_simulation_is_not_attestation_success",
+    "install_simulation_is_not_product_release",
+    "install_simulation_is_not_product_readiness",
+    "install_simulation_is_not_truth_certification",
+    "install_simulation_is_not_final_answer_authority",
+    "install_simulation_is_not_accepted_evidence_authority",
+    "install_simulation_does_not_write_memory",
+    "install_simulation_does_not_admit_atlas_memory",
+    "install_simulation_does_not_export_traces",
+    "install_simulation_does_not_federate_pmr",
+    "human_review_required",
+]
+CONTROL_PACKAGE_INSTALL_SIMULATION_BLOCKED_CLAIMS = [
+    "install simulation installs package",
+    "install simulation activates package",
+    "install simulation executes package",
+    "install simulation grants entitlement",
+    "install simulation implements payment",
+    "install simulation implements subscription billing",
+    "install simulation downloads from marketplace",
+    "package activation simulation proves control effectiveness",
+    "package availability simulation proves compliance",
+    "enable simulation passes audit",
+    "install simulation certifies compliance",
+    "install simulation provides legal advice",
+    "install simulation releases product",
+    "install simulation claims product readiness",
+    "install simulation writes memory",
+    "install simulation admits Atlas memory",
+    "install simulation exports traces",
+    "install simulation federates PMR",
+    "install simulation grants accepted-evidence authority",
+    "install simulation authorizes final answers",
+    "install simulation certifies truth",
+]
+CONTROL_PACKAGE_INSTALL_SIMULATION_CLAIM_ALLOWED = "CONTROL-PACKAGE-INSTALL-SIMULATION-00 emits a design-only local registry state-transition simulation for Triadic Brain package install, enable, disable, dependency, compatibility, license, entitlement, and policy outcomes while preserving that no package is installed, activated, executed, downloaded, billed, entitled, control-effective, compliant, audit-passed, product-ready, product-released, truth-certified, memory-written, Atlas-admitted, trace-exported, PMR-federated, final-answer-authorized, or accepted-evidence-authorized."
+CONTROL_PACKAGE_INSTALL_SIMULATION_PRIOR_PHASE_RELATION = [
+    "CONTROL-PACKAGE-MANIFEST-STANDARD-00 defines package metadata and boundaries.",
+    "CONTROL-PACKAGE-REGISTRY-DESIGN-00 records package availability and state.",
+    "CONTROL-PACKAGE-INSTALL-SIMULATION-00 simulates package state transitions.",
+    "AI-RECEIPT-GATEWAY-LOCAL-INGRESS-PROTOTYPE-00 provides the local explicit-ingress prototype.",
+    "COMPLIANCE-EVIDENCE-TOOLSET-LIBRARY-DESIGN-00 defines compliance evidence toolsets.",
+]
 SOURCE_CORPUS_GATEWAY_REPORT_BATCH_CLAIM_ALLOWED = "SOURCE-CORPUS-GATEWAY-REPORTS-BATCH-2026-06-10-00 records a hash-only gateway and compliance report source batch with nine uploaded consultant report and visual mockup identities, preserving source filenames, SHA-256 hashes, visibility, public-release status, and non-authority boundaries without committing raw DOCX/PNG files or treating reports as accepted evidence, theorem proof, product release, product readiness, compliance certification, legal advice, memory write, Atlas admission, or canonical repo state."
 SOURCE_CORPUS_GATEWAY_REPORT_SOURCE_IDENTITY_REPAIR_CLAIM_ALLOWED = "SOURCE-CORPUS-GATEWAY-REPORTS-BATCH-SOURCE-IDENTITY-REPAIR-00 restores actual uploaded consultant report and visual mockup filenames and SHA-256 hashes as canonical source identities for the gateway report source batch while preserving hash-only public references, public_release_approved=false, no raw private DOCX/PNG import, and all non-authority boundaries."
 COMPLIANCE_READY_MVR_REPORT_LOCAL_PROTOTYPE_DOCTRINE_LANGUAGE = [
@@ -12862,6 +13025,20 @@ CONTROL_PACKAGE_REGISTRY_DESIGN_PHASE = {
     "claim_allowed": CONTROL_PACKAGE_REGISTRY_CLAIM_ALLOWED,
     "claims_blocked": CONTROL_PACKAGE_REGISTRY_BLOCKED_CLAIMS,
     "reviewer_caution": "CONTROL-PACKAGE-REGISTRY-DESIGN-00 is design-only local registry metadata. It installs, activates, and executes no packages and grants no payment, subscription, marketplace, customer-entitlement, compliance/legal/audit/product/truth/final-answer/accepted-evidence, provider/network, memory, Atlas, export, or federation authority.",
+    "publication_status": "dashboard_indexed",
+}
+CONTROL_PACKAGE_INSTALL_SIMULATION_PHASE = {
+    "phase_id": "CONTROL-PACKAGE-INSTALL-SIMULATION-00",
+    "repo": "pdxvoiceteacher/CoherenceLattice",
+    "status": "accepted_local_validation",
+    "evidence_type": "control_package_install_simulation_publication_sync",
+    "product_posture": "design_only_install_state_transition_simulation_without_install_activation_execution_payment_marketplace_or_authority",
+    "primary_artifacts": CONTROL_PACKAGE_INSTALL_SIMULATION_ARTIFACTS,
+    "dashboard_summary": CONTROL_PACKAGE_INSTALL_SIMULATION_DASHBOARD_SUMMARY,
+    "reproduction_command_summary": CONTROL_PACKAGE_INSTALL_SIMULATION_COMMAND,
+    "claim_allowed": CONTROL_PACKAGE_INSTALL_SIMULATION_CLAIM_ALLOWED,
+    "claims_blocked": CONTROL_PACKAGE_INSTALL_SIMULATION_BLOCKED_CLAIMS,
+    "reviewer_caution": "CONTROL-PACKAGE-INSTALL-SIMULATION-00 rehearses design-only registry state transitions. It installs, activates, executes, downloads, bills, or entitles no package and grants no control-effectiveness, compliance/legal/audit/product/truth/final-answer/accepted-evidence, provider/network, memory, Atlas, export, federation, model-training, or review-skipping authority.",
     "publication_status": "dashboard_indexed",
 }
 SOURCE_CORPUS_GATEWAY_REPORT_BATCH_PHASE = {
@@ -15651,6 +15828,7 @@ AI_RECEIPT_GATEWAY_LOCAL_INGRESS_PHASE,
 CONTROL_PACKAGE_MANIFEST_PHASE,
 CONTROL_PACKAGE_ENV_ISOLATION_REPAIR_PHASE,
 CONTROL_PACKAGE_REGISTRY_DESIGN_PHASE,
+CONTROL_PACKAGE_INSTALL_SIMULATION_PHASE,
 SOURCE_CORPUS_GATEWAY_REPORT_BATCH_PHASE,
 SOURCE_CORPUS_GATEWAY_REPORT_SOURCE_IDENTITY_REPAIR_PHASE,
 WAVE_PROVENANCE_PHASE,
@@ -17980,6 +18158,16 @@ BOUNDARIES.extend(
         *CONTROL_PACKAGE_REGISTRY_REPRO_FRAGMENTS,
         "Blocked overclaim examples for control package registry design publication boundaries.",
         *CONTROL_PACKAGE_REGISTRY_BLOCKED_CLAIMS,
+        CONTROL_PACKAGE_INSTALL_SIMULATION_CLAIM_ALLOWED,
+        *CONTROL_PACKAGE_INSTALL_SIMULATION_ARTIFACTS,
+        *CONTROL_PACKAGE_INSTALL_SIMULATION_SCENARIOS,
+        *CONTROL_PACKAGE_INSTALL_SIMULATION_DECISION_STATUSES,
+        *CONTROL_PACKAGE_INSTALL_SIMULATION_DOCTRINE_LANGUAGE,
+        *CONTROL_PACKAGE_INSTALL_SIMULATION_GUARDRAILS,
+        *CONTROL_PACKAGE_INSTALL_SIMULATION_PRIOR_PHASE_RELATION,
+        *CONTROL_PACKAGE_INSTALL_SIMULATION_REPRO_FRAGMENTS,
+        "Blocked overclaim examples for control package install simulation publication boundaries.",
+        *CONTROL_PACKAGE_INSTALL_SIMULATION_BLOCKED_CLAIMS,
         VALIDATION_TIERING_PROVENANCE_CLAIM_ALLOWED,
         *VALIDATION_TIERING_PROVENANCE_ARTIFACTS,
         *VALIDATION_TIERING_PROVENANCE_TIER_TERMS,
@@ -18963,6 +19151,19 @@ def dashboard_payload() -> dict[str, Any]:
         "control_package_registry_entry_fields": 35,
         "control_package_registry_entries": 8,
         "not_control_package_registry_runtime_authority": True,
+        "control_package_install_simulation_00_indexed": True,
+        "control_package_install_simulation_status": "completed_design_only",
+        "control_package_install_simulation_mode": "local_registry_state_transition_simulation_only",
+        "control_package_install_simulation_scenario_count": 16,
+        "control_package_install_simulation_negative_control_count": 7,
+        "control_package_install_simulation_all_negative_controls_blocked": True,
+        "control_package_install_simulation_package_install_performed": False,
+        "control_package_install_simulation_package_activation_performed": False,
+        "control_package_install_simulation_package_execution_performed": False,
+        "control_package_install_simulation_marketplace_download_performed": False,
+        "control_package_install_simulation_subscription_billing_performed": False,
+        "control_package_install_simulation_entitlement_enforcement_performed": False,
+        "not_control_package_install_simulation_runtime_authority": True,
         "source_corpus_gateway_reports_batch_2026_06_10_00_indexed": True,
         "source_corpus_gateway_reports_batch_source_identity_repair_00_indexed": True,
         "source_corpus_gateway_reports_batch_status": "active_hash_only_gateway_report_provenance_manifest",
@@ -19121,6 +19322,7 @@ def reproducibility_index() -> dict[str, Any]:
                 {"name": "AI-RECEIPT-GATEWAY-LOCAL-INGRESS-PROTOTYPE-00 Python entrypoint", "command": AI_RECEIPT_GATEWAY_LOCAL_INGRESS_COMMAND},
                 {"name": "CONTROL-PACKAGE-MANIFEST-STANDARD-00 design validation", "command": CONTROL_PACKAGE_MANIFEST_COMMAND},
                 {"name": "CONTROL-PACKAGE-REGISTRY-DESIGN-00 design validation", "command": CONTROL_PACKAGE_REGISTRY_COMMAND},
+                {"name": "CONTROL-PACKAGE-INSTALL-SIMULATION-00 Python entrypoint", "command": CONTROL_PACKAGE_INSTALL_SIMULATION_COMMAND},
                 {"name": "SOURCE-CORPUS-GATEWAY-REPORTS-BATCH-2026-06-10-00 source batch validation", "command": "python -m pytest -q python/tests/provenance/test_source_corpus_gateway_report_batch_20260610.py tests/test_experiment_registry.py"},
                 {"name": "WAVE-ROSETTA-CANONICAL-PROXY-BRIDGE-PROVENANCE-00 provenance validation", "command": COMPLIANCE_REPORT_DESIGN_COMMAND},
                 {"name": "Validation Tiering Provenance Python entrypoint", "command": VALIDATION_TIERING_PROVENANCE_COMMAND},
@@ -20155,6 +20357,19 @@ def status_payload() -> dict[str, Any]:
         "control_package_registry_entry_fields": 35,
         "control_package_registry_entries": 8,
         "not_control_package_registry_runtime_authority": True,
+        "control_package_install_simulation_00_indexed": True,
+        "control_package_install_simulation_status": "completed_design_only",
+        "control_package_install_simulation_mode": "local_registry_state_transition_simulation_only",
+        "control_package_install_simulation_scenario_count": 16,
+        "control_package_install_simulation_negative_control_count": 7,
+        "control_package_install_simulation_all_negative_controls_blocked": True,
+        "control_package_install_simulation_package_install_performed": False,
+        "control_package_install_simulation_package_activation_performed": False,
+        "control_package_install_simulation_package_execution_performed": False,
+        "control_package_install_simulation_marketplace_download_performed": False,
+        "control_package_install_simulation_subscription_billing_performed": False,
+        "control_package_install_simulation_entitlement_enforcement_performed": False,
+        "not_control_package_install_simulation_runtime_authority": True,
         "source_corpus_gateway_reports_batch_2026_06_10_00_indexed": True,
         "source_corpus_gateway_reports_batch_source_identity_repair_00_indexed": True,
         "source_corpus_gateway_reports_batch_status": "active_hash_only_gateway_report_provenance_manifest",
@@ -26921,6 +27136,73 @@ CONTROL-PACKAGE-REGISTRY-DESIGN-00 synchronizes the design-only local control pa
 Publication sync grants no runtime authority. CONTROL-PACKAGE-REGISTRY-DESIGN-00 does not imply package installation, package activation, package execution, payment implementation, subscription billing, marketplace availability, customer entitlement, provider runtime, network calls, memory writes, Atlas memory admission, trace export, PMR federation, compliance certification, legal advice, audit pass, attestation success, product readiness, product release, truth certification, final-answer authority, accepted-evidence authority, model training, or review skipping.
 """
 
+def control_package_install_simulation_doc() -> str:
+    summary = "\n".join(f"- {key} = {str(value).lower() if isinstance(value, bool) else value}" for key, value in CONTROL_PACKAGE_INSTALL_SIMULATION_DASHBOARD_SUMMARY.items())
+    return f"""# Control Package Install Simulation
+
+CONTROL-PACKAGE-INSTALL-SIMULATION-00 synchronizes the design-only control package install simulation into publication dashboards. This is publication/dashboard synchronization only and grants no runtime authority.
+
+## Bounded allowed claim
+
+{CONTROL_PACKAGE_INSTALL_SIMULATION_CLAIM_ALLOWED}
+
+## Dashboard summary
+
+{summary}
+
+## Scenarios
+
+{_bullets(CONTROL_PACKAGE_INSTALL_SIMULATION_SCENARIOS)}
+
+## Decision statuses
+
+{_bullets(CONTROL_PACKAGE_INSTALL_SIMULATION_DECISION_STATUSES)}
+
+## Doctrine language
+
+{_bullets(CONTROL_PACKAGE_INSTALL_SIMULATION_DOCTRINE_LANGUAGE)}
+
+## Non-authority guardrails
+
+{_bullets(CONTROL_PACKAGE_INSTALL_SIMULATION_GUARDRAILS)}
+
+## Relation to prior phases
+
+{_bullets(CONTROL_PACKAGE_INSTALL_SIMULATION_PRIOR_PHASE_RELATION)}
+
+## Required artifacts
+
+{_bullets(CONTROL_PACKAGE_INSTALL_SIMULATION_ARTIFACTS)}
+
+## Blocked overclaims
+
+{_bullets(CONTROL_PACKAGE_INSTALL_SIMULATION_BLOCKED_CLAIMS)}
+
+## Reproducibility
+
+{_bullets(CONTROL_PACKAGE_INSTALL_SIMULATION_REPRO_FRAGMENTS)}
+- `{CONTROL_PACKAGE_INSTALL_SIMULATION_COMMAND}`
+
+Publication sync grants no runtime authority. CONTROL-PACKAGE-INSTALL-SIMULATION-00 does not imply package installation, package activation, package execution, package download, payment implementation, subscription billing, marketplace availability, customer entitlement, control effectiveness, provider runtime, network calls, memory writes, Atlas memory admission, trace export, PMR federation, compliance certification, legal advice, audit pass, attestation success, product readiness, product release, truth certification, final-answer authority, accepted-evidence authority, model training, or review skipping.
+"""
+
+CONTROL_PACKAGE_INSTALL_SIMULATION_SYNC_DOCS = {
+    "control-package-install-simulation.md",
+    "control-package-registry-design.md",
+    "control-package-manifest-standard.md",
+    "control-package-manifest-standard-env-isolation-repair.md",
+    "ai-receipt-gateway-local-ingress-prototype.md",
+    "validation-tiering-provenance.md",
+}
+CONTROL_PACKAGE_INSTALL_SIMULATION_SYNC_NOTE = f"""
+
+## Control package install simulation publication sync
+
+CONTROL-PACKAGE-INSTALL-SIMULATION-00 rehearses package state transitions only. It does not install, activate, execute, download, bill, entitle, prove control effectiveness, certify compliance, pass audit, release product, certify truth, write memory, admit Atlas memory, export traces, federate PMR, authorize final answers, or grant accepted-evidence authority.
+
+{_bullets(CONTROL_PACKAGE_INSTALL_SIMULATION_PRIOR_PHASE_RELATION)}
+"""
+
 CONTROL_PACKAGE_REGISTRY_SYNC_DOCS = {
     "control-package-registry-design.md",
     "control-package-manifest-standard.md",
@@ -27132,6 +27414,7 @@ def build(out_dir: Path, docs_dir: Path) -> None:
     docs_payload["control-package-manifest-standard.md"] = control_package_manifest_standard_doc()
     docs_payload["control-package-manifest-standard-env-isolation-repair.md"] = control_package_manifest_standard_env_isolation_repair_doc()
     docs_payload["control-package-registry-design.md"] = control_package_registry_design_doc()
+    docs_payload["control-package-install-simulation.md"] = control_package_install_simulation_doc()
     docs_payload["source-corpus-gateway-reports-batch-2026-06-10.md"] = source_corpus_gateway_reports_batch_doc()
     docs_payload["source-corpus-gateway-reports-batch-source-identity-repair.md"] = source_corpus_gateway_reports_batch_source_identity_repair_doc()
     docs_payload["compliance-report-presentation-standard.md"] = compliance_report_presentation_standard_doc()
@@ -27193,6 +27476,9 @@ def build(out_dir: Path, docs_dir: Path) -> None:
     for name in CONTROL_PACKAGE_REGISTRY_SYNC_DOCS:
         if name in docs_payload:
             docs_payload[name] = docs_payload[name].rstrip() + CONTROL_PACKAGE_REGISTRY_SYNC_NOTE
+    for name in CONTROL_PACKAGE_INSTALL_SIMULATION_SYNC_DOCS:
+        if name in docs_payload:
+            docs_payload[name] = docs_payload[name].rstrip() + CONTROL_PACKAGE_INSTALL_SIMULATION_SYNC_NOTE
     for name, text in docs_payload.items():
         _write_text(docs_dir / name, text)
 

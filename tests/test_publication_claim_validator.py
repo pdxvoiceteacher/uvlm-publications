@@ -62,6 +62,8 @@ from tools.build_public_repro_dashboard import (
     CONTROL_PACKAGE_MANIFEST_CLAIM_ALLOWED,
     CONTROL_PACKAGE_REGISTRY_BLOCKED_CLAIMS,
     CONTROL_PACKAGE_REGISTRY_CLAIM_ALLOWED,
+    CONTROL_PACKAGE_INSTALL_SIMULATION_BLOCKED_CLAIMS,
+    CONTROL_PACKAGE_INSTALL_SIMULATION_CLAIM_ALLOWED,
     GATEWAY_SCOPE_SOURCE_CORPUS_BLOCKED_CLAIMS,
     SOURCE_CORPUS_GATEWAY_REPORT_BATCH_CLAIM_ALLOWED,
     SOURCE_CORPUS_GATEWAY_REPORT_SOURCE_IDENTITY_REPAIR_CLAIM_ALLOWED,
@@ -5536,5 +5538,21 @@ def test_publication_claim_validator_rejects_control_package_registry_overclaims
 def test_publication_claim_validator_allows_bounded_control_package_registry_claim(tmp_path):
     paper_root = tmp_path / "paper"
     _write_minimal_publication_claim_fixture(paper_root, CONTROL_PACKAGE_REGISTRY_CLAIM_ALLOWED)
+    result = validate_publication_claims(paper_root / "PUB_GOV_ARTIFACT_COG_01.md")
+    assert result["forbidden_overclaims_found"] == []
+
+
+
+def test_publication_claim_validator_rejects_control_package_install_simulation_overclaims(tmp_path):
+    for claim in CONTROL_PACKAGE_INSTALL_SIMULATION_BLOCKED_CLAIMS:
+        paper_root = tmp_path / claim.replace(" ", "_").replace("/", "_")
+        _write_minimal_publication_claim_fixture(paper_root, f"Control package install simulation sync claims {claim}.")
+        result = validate_publication_claims(paper_root / "PUB_GOV_ARTIFACT_COG_01.md")
+        assert result["forbidden_overclaims_found"], claim
+
+
+def test_publication_claim_validator_allows_bounded_control_package_install_simulation_claim(tmp_path):
+    paper_root = tmp_path / "paper"
+    _write_minimal_publication_claim_fixture(paper_root, CONTROL_PACKAGE_INSTALL_SIMULATION_CLAIM_ALLOWED)
     result = validate_publication_claims(paper_root / "PUB_GOV_ARTIFACT_COG_01.md")
     assert result["forbidden_overclaims_found"] == []

@@ -117,6 +117,16 @@ from tools.build_public_repro_dashboard import (
     CONTROL_PACKAGE_REGISTRY_GUARDRAILS,
     CONTROL_PACKAGE_REGISTRY_PRIOR_PHASE_RELATION,
     CONTROL_PACKAGE_REGISTRY_REPRO_FRAGMENTS,
+    CONTROL_PACKAGE_INSTALL_SIMULATION_ARTIFACTS,
+    CONTROL_PACKAGE_INSTALL_SIMULATION_BLOCKED_CLAIMS,
+    CONTROL_PACKAGE_INSTALL_SIMULATION_CLAIM_ALLOWED,
+    CONTROL_PACKAGE_INSTALL_SIMULATION_DASHBOARD_SUMMARY,
+    CONTROL_PACKAGE_INSTALL_SIMULATION_DECISION_STATUSES,
+    CONTROL_PACKAGE_INSTALL_SIMULATION_DOCTRINE_LANGUAGE,
+    CONTROL_PACKAGE_INSTALL_SIMULATION_GUARDRAILS,
+    CONTROL_PACKAGE_INSTALL_SIMULATION_PRIOR_PHASE_RELATION,
+    CONTROL_PACKAGE_INSTALL_SIMULATION_REPRO_FRAGMENTS,
+    CONTROL_PACKAGE_INSTALL_SIMULATION_SCENARIOS,
     CONTROL_PACKAGE_RETENTION_CATEGORIES,
     CONTROL_PACKAGE_TYPES,
     AI_RECEIPT_GATEWAY_VISIBLE_STATUS_FIELDS,
@@ -640,6 +650,7 @@ REQUIRED_PHASES = {
     "CONTROL-PACKAGE-MANIFEST-STANDARD-00",
     "CONTROL-PACKAGE-MANIFEST-STANDARD-ENV-ISOLATION-REPAIR-00",
     "CONTROL-PACKAGE-REGISTRY-DESIGN-00",
+    "CONTROL-PACKAGE-INSTALL-SIMULATION-00",
     "SOURCE-CORPUS-GATEWAY-REPORTS-BATCH-2026-06-10-00",
     "SOURCE-CORPUS-GATEWAY-REPORTS-BATCH-SOURCE-IDENTITY-REPAIR-00",
     "WAVE-ROSETTA-CANONICAL-PROXY-BRIDGE-PROVENANCE-00",
@@ -7691,3 +7702,95 @@ def test_validator_fails_if_control_package_registry_makes_forbidden_claims(tmp_
         assert result["passed"] is False, claim
         forbidden_found = [found.lower() for found in result["forbidden_claims_found"]]
         assert claim.lower() in forbidden_found or f"control package registry sync claims {claim.lower()}" in forbidden_found, result
+
+
+
+def test_control_package_install_simulation_indexes_dashboard_docs_and_boundaries(tmp_path):
+    out_dir, docs_dir = run_builder(tmp_path)
+    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text(encoding="utf-8"))
+    artifact_index = json.loads((out_dir / "artifact_index.json").read_text(encoding="utf-8"))
+    status = json.loads((out_dir / "status.json").read_text(encoding="utf-8"))
+    reproducibility_text = (out_dir / "reproducibility_index.json").read_text(encoding="utf-8")
+    boundary_text = (docs_dir / "claim-boundaries.md").read_text(encoding="utf-8")
+    page_text = (docs_dir / "control-package-install-simulation.md").read_text(encoding="utf-8")
+    phase_ids = {phase["phase_id"] for phase in dashboard["accepted_phases"]}
+
+    assert "CONTROL-PACKAGE-INSTALL-SIMULATION-00" in phase_ids
+    assert "CONTROL-PACKAGE-INSTALL-SIMULATION-00" in VALIDATOR_REQUIRED_PHASES
+    phase = {phase["phase_id"]: phase for phase in dashboard["accepted_phases"]}["CONTROL-PACKAGE-INSTALL-SIMULATION-00"]
+    summary = phase["dashboard_summary"]
+    assert summary == CONTROL_PACKAGE_INSTALL_SIMULATION_DASHBOARD_SUMMARY
+    assert summary["simulation_status"] == "completed_design_only"
+    assert summary["simulation_mode"] == "local_registry_state_transition_simulation_only"
+    assert summary["scenario_count"] == 16
+    assert summary["negative_control_count"] == 7
+    assert summary["all_negative_controls_blocked"] is True
+    assert summary["package_install_performed"] is False
+    assert summary["package_activation_performed"] is False
+    assert summary["package_execution_performed"] is False
+    assert summary["marketplace_download_performed"] is False
+    assert summary["subscription_billing_performed"] is False
+    assert summary["entitlement_enforcement_performed"] is False
+    assert summary["provider_runtime_performed"] is False
+    assert summary["network_call_performed"] is False
+    assert summary["memory_write_performed"] is False
+    assert summary["atlas_memory_admission_performed"] is False
+    assert summary["trace_export_performed"] is False
+    assert summary["pmr_federation_performed"] is False
+    assert summary["compliance_certification_emitted"] is False
+    assert summary["legal_advice_emitted"] is False
+    assert summary["audit_pass_claimed"] is False
+    assert summary["product_readiness_claimed"] is False
+    assert summary["product_release_performed"] is False
+    assert summary["final_answer_authority_granted"] is False
+    assert summary["accepted_evidence_authority_granted"] is False
+    assert artifact_index["phases"]["CONTROL-PACKAGE-INSTALL-SIMULATION-00"] == CONTROL_PACKAGE_INSTALL_SIMULATION_ARTIFACTS
+
+    for artifact in CONTROL_PACKAGE_INSTALL_SIMULATION_ARTIFACTS:
+        assert artifact in page_text
+    for fragment in CONTROL_PACKAGE_INSTALL_SIMULATION_REPRO_FRAGMENTS:
+        assert fragment in page_text
+    assert "build_control_package_install_simulation" in reproducibility_text
+
+    for phrase_group in (
+        CONTROL_PACKAGE_INSTALL_SIMULATION_SCENARIOS,
+        CONTROL_PACKAGE_INSTALL_SIMULATION_DECISION_STATUSES,
+        CONTROL_PACKAGE_INSTALL_SIMULATION_DOCTRINE_LANGUAGE,
+        CONTROL_PACKAGE_INSTALL_SIMULATION_GUARDRAILS,
+        CONTROL_PACKAGE_INSTALL_SIMULATION_PRIOR_PHASE_RELATION,
+        CONTROL_PACKAGE_INSTALL_SIMULATION_BLOCKED_CLAIMS,
+    ):
+        for phrase in phrase_group:
+            assert phrase in page_text
+            assert phrase in boundary_text
+
+    assert CONTROL_PACKAGE_INSTALL_SIMULATION_CLAIM_ALLOWED in page_text
+    assert CONTROL_PACKAGE_INSTALL_SIMULATION_CLAIM_ALLOWED in boundary_text
+    assert "Publication sync grants no runtime authority." in page_text
+    assert status["control_package_install_simulation_00_indexed"] is True
+    assert status["control_package_install_simulation_status"] == "completed_design_only"
+    assert status["control_package_install_simulation_mode"] == "local_registry_state_transition_simulation_only"
+    assert status["control_package_install_simulation_scenario_count"] == 16
+    assert status["control_package_install_simulation_negative_control_count"] == 7
+    assert status["control_package_install_simulation_all_negative_controls_blocked"] is True
+    assert status["control_package_install_simulation_package_install_performed"] is False
+    assert status["control_package_install_simulation_package_activation_performed"] is False
+    assert status["control_package_install_simulation_package_execution_performed"] is False
+    assert status["control_package_install_simulation_marketplace_download_performed"] is False
+    assert status["control_package_install_simulation_subscription_billing_performed"] is False
+    assert status["control_package_install_simulation_entitlement_enforcement_performed"] is False
+    assert status["not_control_package_install_simulation_runtime_authority"] is True
+
+
+def test_validator_fails_if_control_package_install_simulation_makes_forbidden_claims(tmp_path):
+    for claim in CONTROL_PACKAGE_INSTALL_SIMULATION_BLOCKED_CLAIMS:
+        out_dir, docs_dir = run_builder(tmp_path / claim.replace(" ", "_").replace("/", "_"))
+        page = docs_dir / "control-package-install-simulation.md"
+        page.write_text(
+            page.read_text(encoding="utf-8") + f"\nControl package install simulation sync claims {claim}.\n",
+            encoding="utf-8",
+        )
+        result = validate_dashboard(out_dir / "experiment_suite_dashboard.json", docs_dir)
+        assert result["passed"] is False, claim
+        forbidden_found = [found.lower() for found in result["forbidden_claims_found"]]
+        assert claim.lower() in forbidden_found or f"control package install simulation sync claims {claim.lower()}" in forbidden_found, result

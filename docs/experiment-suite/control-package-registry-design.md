@@ -208,3 +208,13 @@ CONTROL-PACKAGE-REGISTRY-DESIGN-00 records package availability and state only. 
 - CONTROL-PACKAGE-REGISTRY-DESIGN-00 records package availability and state.
 - AI-RECEIPT-GATEWAY-LOCAL-INGRESS-PROTOTYPE-00 provides the local explicit-ingress prototype.
 - COMPLIANCE-EVIDENCE-TOOLSET-LIBRARY-DESIGN-00 defines compliance evidence toolsets.
+
+## Control package install simulation publication sync
+
+CONTROL-PACKAGE-INSTALL-SIMULATION-00 rehearses package state transitions only. It does not install, activate, execute, download, bill, entitle, prove control effectiveness, certify compliance, pass audit, release product, certify truth, write memory, admit Atlas memory, export traces, federate PMR, authorize final answers, or grant accepted-evidence authority.
+
+- CONTROL-PACKAGE-MANIFEST-STANDARD-00 defines package metadata and boundaries.
+- CONTROL-PACKAGE-REGISTRY-DESIGN-00 records package availability and state.
+- CONTROL-PACKAGE-INSTALL-SIMULATION-00 simulates package state transitions.
+- AI-RECEIPT-GATEWAY-LOCAL-INGRESS-PROTOTYPE-00 provides the local explicit-ingress prototype.
+- COMPLIANCE-EVIDENCE-TOOLSET-LIBRARY-DESIGN-00 defines compliance evidence toolsets.

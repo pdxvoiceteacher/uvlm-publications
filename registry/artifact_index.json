@@ -1455,6 +1455,21 @@
       "schema/bridge/control_package_registry_non_authority_boundary.schema.json",
       "python/tests/product/test_control_package_registry_design.py"
     ],
+    "CONTROL-PACKAGE-INSTALL-SIMULATION-00": [
+      "docs/CONTROL_PACKAGE_INSTALL_SIMULATION.md",
+      "python/src/coherence/packages/control_package_install_simulation.py",
+      "python/src/coherence/packages/__init__.py",
+      "python/tests/product/test_control_package_install_simulation.py",
+      "schema/bridge/control_package_install_simulation_packet.schema.json",
+      "schema/bridge/control_package_install_simulation_receipt.schema.json",
+      "schema/bridge/control_package_install_negative_control_report.schema.json",
+      "schema/bridge/control_package_install_non_authority_boundary.schema.json",
+      "control_package_install_simulation_packet.json",
+      "control_package_install_simulation_receipt.json",
+      "control_package_install_negative_control_report.json",
+      "control_package_install_non_authority_boundary.json",
+      "control_package_install_simulation_summary.md"
+    ],
     "SOURCE-CORPUS-GATEWAY-REPORTS-BATCH-2026-06-10-00": [
       "docs/provenance/source_reports/2026-06/gateway_report_batch_20260610.json",
       "docs/provenance/source_reports/2026-06/gateway_report_batch_aliases_20260610.json",
