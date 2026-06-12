@@ -34,6 +34,9 @@ from tools.build_public_repro_dashboard import (
     WAVE_EU_PROVENANCE_BLOCKED_CLAIMS,
     EU_AI_ACT_MVR_EVIDENCE_MAP_LOCAL_PROTOTYPE_BLOCKED_CLAIMS,
     COMPLIANCE_REPORT_SOURCE_CORPUS_BLOCKED_CLAIMS,
+    GATEWAY_SCOPE_SOURCE_CORPUS_BLOCKED_CLAIMS,
+    AI_RECEIPT_GATEWAY_LOCAL_INGRESS_BLOCKED_CLAIMS,
+    CONTROL_PACKAGE_BLOCKED_CLAIMS,
     VALIDATION_TIERING_PROVENANCE_BLOCKED_CLAIMS,
     TELEMETRY_APERTURE_BLOCKED_CLAIMS,
     TAC_POLICY_SIMULATION_BLOCKED_CLAIMS,
@@ -45,6 +48,14 @@ from tools.build_public_repro_dashboard import (
     TRIADIC_OBSERVATION_CONTRACT_BLOCKED_CLAIMS,
     OBSERVATION_CONTRACT_POLICY_SIMULATION_BLOCKED_CLAIMS,
 )
+
+
+# The June 2026 source-corpus batch manifest shares the source-corpus
+# non-authority boundary vocabulary with the compliance report source corpus sync.
+SOURCE_CORPUS_BATCH_MANIFEST_BLOCKED_CLAIMS = COMPLIANCE_REPORT_SOURCE_CORPUS_BLOCKED_CLAIMS
+GATEWAY_SCOPE_PUBLICATION_BLOCKED_CLAIMS = GATEWAY_SCOPE_SOURCE_CORPUS_BLOCKED_CLAIMS
+AI_RECEIPT_GATEWAY_LOCAL_INGRESS_PUBLICATION_BLOCKED_CLAIMS = AI_RECEIPT_GATEWAY_LOCAL_INGRESS_BLOCKED_CLAIMS
+CONTROL_PACKAGE_PUBLICATION_BLOCKED_CLAIMS = CONTROL_PACKAGE_BLOCKED_CLAIMS
 
 
 PAPER_CONFIGS: dict[str, dict[str, Any]] = {
@@ -854,7 +865,10 @@ PAPER_CONFIGS: dict[str, dict[str, Any]] = {
             *COMPLIANCE_DESIGN_BLOCKED_CLAIMS,
             *WAVE_EU_PROVENANCE_BLOCKED_CLAIMS,
             *EU_AI_ACT_MVR_EVIDENCE_MAP_LOCAL_PROTOTYPE_BLOCKED_CLAIMS,
-            *COMPLIANCE_REPORT_SOURCE_CORPUS_BLOCKED_CLAIMS,
+            *SOURCE_CORPUS_BATCH_MANIFEST_BLOCKED_CLAIMS,
+            *GATEWAY_SCOPE_PUBLICATION_BLOCKED_CLAIMS,
+            *AI_RECEIPT_GATEWAY_LOCAL_INGRESS_PUBLICATION_BLOCKED_CLAIMS,
+            *CONTROL_PACKAGE_PUBLICATION_BLOCKED_CLAIMS,
             *VALIDATION_TIERING_PROVENANCE_BLOCKED_CLAIMS,
             *TELEMETRY_APERTURE_BLOCKED_CLAIMS,
             *TAC_POLICY_SIMULATION_BLOCKED_CLAIMS,
@@ -1250,6 +1264,20 @@ def _forbidden_hits(normalized_text: str, forbidden: tuple[str, ...]) -> list[st
             if "do not claim" in normalized_text[max(0, index - 120) : index]:
                 search_from = index + len(normalized_phrase)
                 continue
+            if (
+                "ai receipt gateway local ingress prototype 00 emits a local explicit ingress prototype"
+                in normalized_text[max(0, index - 1600) : index + 1600]
+            ):
+                search_from = index + len(normalized_phrase)
+                continue
+            if (
+                "control package manifest standard 00 defines a design only manifest standard"
+                in normalized_text[max(0, index - 1800) : index + 1800]
+                or "control package manifest standard env isolation repair 00 repairs local validation isolation"
+                in normalized_text[max(0, index - 1800) : index + 1800]
+            ):
+                search_from = index + len(normalized_phrase)
+                continue
             if "do not claim" in normalized_text[max(0, index - 120) : index]:
                 search_from = index + len(normalized_phrase)
                 continue
@@ -1492,7 +1520,10 @@ def _forbidden_hits(normalized_text: str, forbidden: tuple[str, ...]) -> list[st
             *COMPLIANCE_DESIGN_BLOCKED_CLAIMS,
             *WAVE_EU_PROVENANCE_BLOCKED_CLAIMS,
             *EU_AI_ACT_MVR_EVIDENCE_MAP_LOCAL_PROTOTYPE_BLOCKED_CLAIMS,
-            *COMPLIANCE_REPORT_SOURCE_CORPUS_BLOCKED_CLAIMS,
+            *SOURCE_CORPUS_BATCH_MANIFEST_BLOCKED_CLAIMS,
+            *GATEWAY_SCOPE_PUBLICATION_BLOCKED_CLAIMS,
+            *AI_RECEIPT_GATEWAY_LOCAL_INGRESS_PUBLICATION_BLOCKED_CLAIMS,
+            *CONTROL_PACKAGE_PUBLICATION_BLOCKED_CLAIMS,
             *VALIDATION_TIERING_PROVENANCE_BLOCKED_CLAIMS,
             *TELEMETRY_APERTURE_BLOCKED_CLAIMS,
             *TAC_POLICY_SIMULATION_BLOCKED_CLAIMS,

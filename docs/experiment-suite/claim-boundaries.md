@@ -3624,6 +3624,12 @@
 - Gap Register
 - Human Signoff Packet
 - Source Corpus Provenance Archive
+- June 2026 Source Corpus Batch Manifest
+- This batch preserves source identity and provenance, not accepted evidence.
+- Raw private files are not committed.
+- Duplicate filenames are deduplicated by SHA-256.
+- Filename aliases are preserved.
+- Public release approval is false by default.
 - Repos are governed provenance libraries, not document dumps.
 - Raw source reports may be omitted from public repos when privacy, sensitivity, size, or licensing requires hash-only reference.
 - DOCX originals should have Markdown derivatives when committed.
@@ -3633,19 +3639,35 @@
 - Source reports are not accepted evidence by themselves.
 - Source reports are not theorem proof.
 - Source reports are not product release.
+- Source reports are not product readiness.
 - Source reports are not compliance certification.
+- Source reports are not legal advice.
+- Source reports are not current canonical repo state.
 - Summaries are not sources.
 - Human review remains required.
 - Hashes preserve identity; hashes do not certify truth.
 - Visibility and sensitivity must be explicit.
 - Public release approval must be explicit.
+- Canonical repo state supersedes source reports.
+- Large or sensitive reports remain hash-only references unless explicitly approved.
+- SOURCE-CORPUS-BATCH-MANIFEST-2026-06-10-00 does not commit raw private reports.
+- SOURCE-CORPUS-BATCH-MANIFEST-2026-06-10-00 does not add extracted text.
+- SOURCE-CORPUS-BATCH-MANIFEST-2026-06-10-00 does not add normalized derivatives.
 - active_governed_provenance_manifest
+- source_corpus_batch_20260610
+- active_hash_only_provenance_manifest
+- one_canonical_row_per_unique_sha256
+- raw_sha256
 - hash_only_public_reference
 - canonical_repo_state_supersedes_report
 - source_is_not_accepted_evidence
 - source_is_not_theorem_proof
 - source_is_not_product_release
+- source_is_not_product_readiness
 - source_is_not_compliance_certification
+- source_is_not_legal_advice
+- source_is_not_memory_write
+- source_is_not_atlas_memory_admission
 - summary_is_not_source
 - human_review_required
 - public_release_approved = false
@@ -3695,6 +3717,277 @@
 - GitHub repo is a backup store
 - source corpus archive writes memory
 - source corpus archive admits Atlas memory
+- source corpus batch proves GUFT
+- source corpus batch proves compliance
+- source corpus batch certifies truth
+- source corpus batch grants accepted-evidence authority
+- source corpus batch is canonical repo state
+- source corpus batch authorizes product release
+- source corpus batch certifies product readiness
+- source corpus batch writes memory
+- source corpus batch admits Atlas memory
+- filename aliases are separate sources
+- raw private reports are public by default
+- deduplication means source equivalence beyond byte identity
+- source reports are theorem proof
+- source reports are compliance certification
+- source reports are product release
+- source reports are product readiness
+- source reports are current canonical repo state
+- AI Receipt Gateway scope simulation activates runtime capture
+- AI Receipt Gateway scope simulation activates gateway
+- AI Receipt Gateway scope simulation is invisible surveillance
+- AI Receipt Gateway scope simulation captures universally
+- AI Receipt Gateway scope simulation processes real inputs
+- AI Receipt Gateway scope simulation calls providers
+- AI Receipt Gateway scope simulation performs network calls
+- AI Receipt Gateway scope simulation writes memory
+- AI Receipt Gateway scope simulation admits Atlas memory
+- AI Receipt Gateway scope simulation exports traces
+- AI Receipt Gateway scope simulation federates PMR
+- AI Receipt Gateway scope simulation certifies compliance
+- AI Receipt Gateway scope simulation provides legal advice
+- AI Receipt Gateway scope simulation passes audits
+- AI Receipt Gateway scope simulation guarantees attestation success
+- gateway scope simulation means enforcement mode is active
+- gateway scope simulation means configured scope is universal capture
+- gateway scope simulation means gateway off still captures data
+- source corpus gateway report batch proves product readiness
+- source corpus gateway report batch certifies compliance
+- source corpus gateway report batch certifies truth
+- source corpus gateway report batch grants accepted-evidence authority
+- source corpus gateway report batch is canonical repo state
+- visual polish is legal validity
+- design inspiration is product readiness
+- raw private gateway reports are committed
+- raw gateway report images are committed
+- visual mockups are authority claims
+- hashes certify truth
+- local ingress captures all AI data
+- local ingress is invisible surveillance
+- local ingress activates runtime capture
+- local ingress scans directories
+- local ingress reads hidden files
+- local ingress pulls connectors
+- local ingress calls providers
+- local ingress performs network calls
+- local ingress writes memory
+- local ingress admits Atlas memory
+- local ingress exports traces
+- local ingress federates PMR
+- local ingress certifies compliance
+- local ingress provides legal advice
+- local ingress passes audits
+- local ingress guarantees attestation success
+- local ingress proves product readiness
+- local ingress releases product
+- local ingress grants accepted-evidence authority
+- local ingress authorizes final answers
+- gateway off still processes sources
+- generated harmless fixture means real input processing
+- explicit local source path means directory scan
+- pasted excerpt fixture is accepted evidence
+- downstream compliance report certifies compliance
+- EU evidence map passes audit
+- MVR report grants final-answer authority
+- CONTROL-PACKAGE-MANIFEST-STANDARD-00 defines a design-only manifest standard for installable Triadic Brain control packages, framework evidence packs, ingress packages, report/export packages, and review workflow packages, including package identity, authorship, licensing, entitlement model, free/paid/public-good status, dependencies, compatible core versions, emitted artifacts, schemas, control objectives, framework mappings, data-access requirements, retention behavior, human review requirements, source provenance references, installation/activation states, and non-authority boundaries, without implementing payment, subscriptions, remote marketplace installs, runtime package execution, compliance certification, legal advice, audit pass, attestation success, product readiness, product release, truth certification, final-answer authority, accepted-evidence authority, memory write, Atlas admission, trace export, PMR federation, provider runtime, or network calls.
+- CONTROL-PACKAGE-MANIFEST-STANDARD-ENV-ISOLATION-REPAIR-00 repairs local validation isolation for the design-only control package manifest standard by narrowing forbidden runtime/payment/marketplace/authority artifact checks so local generated workspace artifacts do not cause false failures, while preserving that no payment, subscription billing, remote marketplace, package execution, provider/network, memory, Atlas, export, federation, compliance/legal/audit/product/truth/final-answer/accepted-evidence authority behavior is enabled.
+- docs/CONTROL_PACKAGE_MANIFEST_STANDARD.md
+- config/packages/control_package_manifest_standard.v1.json
+- schema/bridge/control_package_manifest.schema.json
+- schema/bridge/control_package_entitlement_profile.schema.json
+- schema/bridge/control_package_dependency_profile.schema.json
+- schema/bridge/control_package_non_authority_boundary.schema.json
+- python/tests/product/test_control_package_manifest_standard.py
+- core_platform_package
+- control_package
+- framework_evidence_pack
+- ingress_package
+- report_export_package
+- review_workflow_package
+- public_good_package
+- enterprise_package
+- author_contributed_package
+- ai_receipt_gateway_core
+- minimal_viable_receipt_core
+- source_manifest_hash_core
+- non_authority_boundary_core
+- artifact_inventory_export_core
+- local_file_ingress
+- pasted_excerpt_ingress
+- api_proxy_ingress
+- sdk_wrapper_ingress
+- browser_extension_ingress
+- saas_connector_ingress
+- model_gateway_ingress
+- observation_contract_control
+- telemetry_aperture_control
+- prompt_injection_quarantine_control
+- unsupported_claims_register
+- retention_boundary_control
+- contestability_recovery_control
+- human_review_signoff_control
+- incident_forensic_dossier_control
+- pmr_recall_control
+- eu_ai_act_evidence_support_pack
+- nist_ai_rmf_evidence_pack
+- iso_iec_42001_aims_evidence_pack
+- soc2_ai_governance_evidence_pack
+- hipaa_ai_governance_evidence_pack
+- coso_ai_control_evidence_pack
+- owasp_genai_security_evidence_pack
+- compliance_ready_mvr_report_pack
+- executive_summary_pack
+- evidence_index_csv_pack
+- machine_readable_json_evidence_pack
+- forensic_dossier_export_pack
+- package_id
+- package_name
+- package_type
+- package_family
+- package_version
+- author_owner
+- license_id
+- license_url
+- entitlement_model
+- free_or_paid_status
+- public_good_status
+- commercial_entitlement_required
+- subscription_eligible
+- local_install_supported
+- remote_install_supported_future_only
+- dependencies
+- compatible_core_versions
+- emitted_artifacts
+- schemas_added
+- control_objectives
+- framework_mappings
+- data_access_required
+- retention_behavior
+- connector_scope_required
+- human_review_required
+- authorized_professional_signoff_required_for_compliance_use
+- source_provenance_refs
+- non_authority_boundaries
+- installation_status
+- activation_status
+- free_core
+- public_good_free
+- paid_single_package
+- paid_framework_pack
+- enterprise_subscription
+- author_contributed_free
+- author_contributed_commercial
+- restricted_internal
+- future_marketplace
+- not_installed
+- installed_disabled
+- installed_enabled
+- dependency_missing
+- incompatible_core_version
+- license_required
+- entitlement_required
+- retired
+- revoked
+- inactive
+- active_design_only
+- active_local_runtime
+- active_subscription_required
+- blocked_by_policy
+- blocked_by_missing_dependency
+- blocked_by_license
+- future_only
+- no_data_access
+- explicit_local_file_only
+- pasted_excerpt_only
+- configured_api_proxy
+- configured_connector_scope
+- directory_scope_requires_policy
+- hidden_file_access_forbidden
+- provider_network_access_forbidden_by_default
+- no_raw_retention
+- hash_only
+- summary_only
+- explicit_retention_scope_required
+- customer_managed_retention
+- export_only
+- future_policy_managed_retention
+- ai_receipt_gateway_core_free
+- minimal_viable_receipt_core_free
+- eu_ai_act_evidence_support_pack_paid
+- prompt_injection_quarantine_control_paid
+- source_manifest_hash_core_public_good
+- compliance_ready_mvr_report_pack_paid
+- local_file_ingress_free_or_core
+- human_review_signoff_control_enterprise
+- Control Package Manifest Standard
+- Triadic Brain Core is the governed substrate.
+- Controls ship as installable packages.
+- Customers should pay for the controls and framework packs they need.
+- Some packages may be free or public-good when licensed or donated by authoring owners.
+- Package installation is not control effectiveness.
+- Package availability is not compliance.
+- Package activation is not audit pass.
+- Framework evidence packs are evidence support, not certification.
+- Human review remains required.
+- Authorized professional signoff remains required for compliance use.
+- Package authorship and license terms must be explicit.
+- Data-access requirements must be visible before activation.
+- Retention behavior must be visible before activation.
+- Non-authority boundaries must travel with the package.
+- CONTROL-PACKAGE-MANIFEST-STANDARD-00 does not implement payment.
+- CONTROL-PACKAGE-MANIFEST-STANDARD-00 does not implement remote marketplace installs.
+- CONTROL-PACKAGE-MANIFEST-STANDARD-00 does not activate packages at runtime.
+- package_installation_is_not_control_effectiveness
+- package_installation_is_not_compliance
+- package_activation_is_not_audit_pass
+- framework_pack_is_not_certification
+- evidence_pack_is_not_legal_advice
+- package_manifest_is_not_product_release
+- package_manifest_is_not_product_readiness
+- package_manifest_is_not_truth_certification
+- package_manifest_is_not_final_answer_authority
+- package_manifest_is_not_accepted_evidence_authority
+- package_manifest_does_not_write_memory
+- package_manifest_does_not_admit_atlas_memory
+- package_manifest_does_not_export_traces
+- package_manifest_does_not_federate_pmr
+- human_review_required
+- CONTROL-PACKAGE-MANIFEST-STANDARD-ENV-ISOLATION-REPAIR-00 narrows forbidden-artifact validation to avoid failing on local generated developer workspace artifacts.
+- Runtime artifact emission is tested in runtime/prototype phases via explicit bridge output checks.
+- CONTROL-PACKAGE-MANIFEST-STANDARD-00 remains design-only after the repair.
+- The repair does not enable payment, marketplace, package execution, provider/network calls, memory, Atlas, export, federation, compliance/legal/audit/product/authority behavior.
+- AI-RECEIPT-GATEWAY-LOCAL-INGRESS-PROTOTYPE-00 provides the local explicit-ingress prototype.
+- COMPLIANCE-REPORT-PRESENTATION-STANDARD-00 defines report presentation constraints.
+- COMPLIANCE-EVIDENCE-TOOLSET-LIBRARY-DESIGN-00 defines compliance evidence toolsets.
+- SOURCE-CORPUS-PROVENANCE-ARCHIVE-00 defines provenance archive practices.
+- CONTROL-PACKAGE-MANIFEST-STANDARD-00 defines package metadata and boundaries.
+- CONTROL-PACKAGE-MANIFEST-STANDARD-ENV-ISOLATION-REPAIR-00 repairs validation isolation only.
+- test_control_package_manifest_standard.py
+- control_package_manifest_standard.v1.json
+- Blocked overclaim examples for control package manifest standard publication boundaries.
+- package installation means control effectiveness
+- package installation means compliance
+- package activation passes audit
+- framework evidence pack certifies compliance
+- evidence pack provides legal advice
+- package manifest proves product readiness
+- package manifest releases product
+- package manifest certifies truth
+- package manifest grants accepted-evidence authority
+- package manifest authorizes final answers
+- package manifest writes memory
+- package manifest admits Atlas memory
+- package manifest exports traces
+- package manifest federates PMR
+- free package means public domain
+- author contributed means unrestricted commercial use
+- subscription eligible means billing is implemented
+- marketplace ready means marketplace exists
+- package available means customer is entitled
+- control package manifest standard implements payment
+- control package manifest standard activates packages at runtime
+- control package manifest standard enables marketplace installs
 - VALIDATION-TIERING-PROVENANCE-00 documents smoke, acceptance, and deep validation tiers and emits validation receipts that record tier, scope, commands, artifact chain, duration, sufficient-for decisions, and not-sufficient-for boundaries without certifying truth, releasing product, proving science, validating market or human benefit, deploying runtime, writing memory, or admitting Atlas memory.
 - config/validation/validation_tier_policy.v1.json
 - validation_tier_receipt.json
@@ -5041,14 +5334,14 @@ Relation to prior phases: EU-AI-ACT-MVR-EVIDENCE-MAPPING-DESIGN-00 defines the d
 
 ## Compliance-ready MVR report local prototype and source-corpus provenance publication sync
 
-COMPLIANCE-READY-MVR-REPORT-LOCAL-PROTOTYPE-00 emits a local compliance-ready MVR report prototype for review support only. SOURCE-CORPUS-PROVENANCE-ARCHIVE-00 defines the governed source-report archive pattern, and SOURCE-CORPUS-PROVENANCE-HASH-FILL-00 fills pending EU AI Act source-report hashes while preserving hash-only public references and no raw private DOCX import.
+COMPLIANCE-READY-MVR-REPORT-LOCAL-PROTOTYPE-00 emits a local compliance-ready MVR report prototype for review support only. SOURCE-CORPUS-PROVENANCE-ARCHIVE-00 defines the governed source-report archive pattern, SOURCE-CORPUS-PROVENANCE-HASH-FILL-00 fills pending EU AI Act source-report hashes, and SOURCE-CORPUS-BATCH-MANIFEST-2026-06-10-00 adds the June 2026 hash-only batch manifest while preserving hash-only public references and no raw private file import.
 
 Compliance report doctrine: Compliance-Ready MVR Report Local Prototype; This report supports review; it does not certify compliance.; This report is not legal advice.; This report does not pass an audit.; This report does not guarantee attestation success.; Source manifest is not accepted evidence.; Traceability is not truth.; Control mapping is not control effectiveness.; Visible gaps are not compliance failures.; No visible gap is not compliance success.; Human review remains required.; Authorized professional signoff remains required.; The report is stupidly user friendly.; Compliance users need a report, not an artifact maze.
 
 Compliance report sections: Executive Summary, System and Intended Use, Input Selection and Source Scope, Consent and Observation Scope, Evidence Map Summary, Gap Register Summary, Human Oversight and Signoff, Controls and Traceability, Data Governance and Quarantine, Retention and Memory Boundaries, Contestability and Recovery, Validation Confidence Scope, WAVE / Metric Proxy Annex, Non-Authority Statement, Audit Artifact Index, Open Questions and Required Follow-Up. Glossary terms: MVR, Observation Contract, TAC, CES, PMR, Sophia, Validation Tier, Quarantine, Source Manifest, Non-Authority Boundary, WAVE Bridge, EU AI Act Evidence Map, Gap Register, Human Signoff Packet.
 
-Source corpus doctrine: Source Corpus Provenance Archive; Repos are governed provenance libraries, not document dumps.; Raw source reports may be omitted from public repos when privacy, sensitivity, size, or licensing requires hash-only reference.; DOCX originals should have Markdown derivatives when committed.; TXT and MD reports may be committed directly when public-safe.; Large or sensitive files should use private/archive storage, Git LFS, release assets, or external governed storage.; Future users must check canonical repo state before treating reports as current design.; Source reports are not accepted evidence by themselves.; Source reports are not theorem proof.; Source reports are not product release.; Source reports are not compliance certification.; Summaries are not sources.; Human review remains required.; Hashes preserve identity; hashes do not certify truth.; Visibility and sensitivity must be explicit.; Public release approval must be explicit.
+Source corpus doctrine: Source Corpus Provenance Archive; June 2026 Source Corpus Batch Manifest; This batch preserves source identity and provenance, not accepted evidence.; Raw private files are not committed.; Duplicate filenames are deduplicated by SHA-256.; Filename aliases are preserved.; Public release approval is false by default.; Repos are governed provenance libraries, not document dumps.; Raw source reports may be omitted from public repos when privacy, sensitivity, size, or licensing requires hash-only reference.; DOCX originals should have Markdown derivatives when committed.; TXT and MD reports may be committed directly when public-safe.; Large or sensitive files should use private/archive storage, Git LFS, release assets, or external governed storage.; Future users must check canonical repo state before treating reports as current design.; Source reports are not accepted evidence by themselves.; Source reports are not theorem proof.; Source reports are not product release.; Source reports are not product readiness.; Source reports are not compliance certification.; Source reports are not legal advice.; Source reports are not current canonical repo state.; Summaries are not sources.; Human review remains required.; Hashes preserve identity; hashes do not certify truth.; Visibility and sensitivity must be explicit.; Public release approval must be explicit.; Canonical repo state supersedes source reports.; Large or sensitive reports remain hash-only references unless explicitly approved.; SOURCE-CORPUS-BATCH-MANIFEST-2026-06-10-00 does not commit raw private reports.; SOURCE-CORPUS-BATCH-MANIFEST-2026-06-10-00 does not add extracted text.; SOURCE-CORPUS-BATCH-MANIFEST-2026-06-10-00 does not add normalized derivatives.
 
-Source corpus manifest terms: active_governed_provenance_manifest, hash_only_public_reference, canonical_repo_state_supersedes_report, source_is_not_accepted_evidence, source_is_not_theorem_proof, source_is_not_product_release, source_is_not_compliance_certification, summary_is_not_source, human_review_required, public_release_approved = false. Source report filenames: GUFT discussion with Thomas and Apprentice 6_8_2026_842AM.docx, GUFT METRICS BRIDGE DISCUSSION 6_9_2026_1022AM.docx, wave_rosetta_canonical_proxy_bridge_scientific_review_20260609.md, EU AI Act Reporting Formats and Short-Term Product Strategy for UVLM Triadic Brain.docx, EU AI Act Aligned Reporting Architecture for Triadic Brain Product Lines.docx. Source hashes: 2f49da190fcf5e3a04330f53bd9e6d30228c0a999cdabf8be2e94e957e6dfb09, 9eaba6d5a49de7d09542b3e879cbb9eb936181a37e660b3434a5e31e110ccfe6, 21045f07f5e2122db9714741a418f582cb87b6d004f6c66f4a63d4b6b7e77fd6, 9140a5dad410be3f38bcb933b6c360537957d0ce1d4b5ea0d259941eaa3c581e, 94703c4678eccd407adb9009b34d2b178ab6ab18ee20b6df22d9407eda50dde1.
+Source corpus manifest terms: active_governed_provenance_manifest, source_corpus_batch_20260610, active_hash_only_provenance_manifest, one_canonical_row_per_unique_sha256, raw_sha256, hash_only_public_reference, canonical_repo_state_supersedes_report, source_is_not_accepted_evidence, source_is_not_theorem_proof, source_is_not_product_release, source_is_not_product_readiness, source_is_not_compliance_certification, source_is_not_legal_advice, source_is_not_memory_write, source_is_not_atlas_memory_admission, summary_is_not_source, human_review_required, public_release_approved = false. Source report filenames: GUFT discussion with Thomas and Apprentice 6_8_2026_842AM.docx, GUFT METRICS BRIDGE DISCUSSION 6_9_2026_1022AM.docx, wave_rosetta_canonical_proxy_bridge_scientific_review_20260609.md, EU AI Act Reporting Formats and Short-Term Product Strategy for UVLM Triadic Brain.docx, EU AI Act Aligned Reporting Architecture for Triadic Brain Product Lines.docx. Source hashes: 2f49da190fcf5e3a04330f53bd9e6d30228c0a999cdabf8be2e94e957e6dfb09, 9eaba6d5a49de7d09542b3e879cbb9eb936181a37e660b3434a5e31e110ccfe6, 21045f07f5e2122db9714741a418f582cb87b6d004f6c66f4a63d4b6b7e77fd6, 9140a5dad410be3f38bcb933b6c360537957d0ce1d4b5ea0d259941eaa3c581e, 94703c4678eccd407adb9009b34d2b178ab6ab18ee20b6df22d9407eda50dde1.
 
 Publication sync grants no runtime authority. It does not imply compliance certification, legal advice, audit pass, attestation success, product readiness, product release, truth certification, final-answer authority, accepted-evidence authority, memory write, Atlas memory admission, trace export, PMR federation, provider runtime, network runtime, model training, review skipping, user validation, human-subject study, market validation, human benefit proof, theorem proof, GUFT proof, consciousness proof, or universal ontology proof.
