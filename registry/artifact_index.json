@@ -1470,6 +1470,30 @@
       "control_package_install_non_authority_boundary.json",
       "control_package_install_simulation_summary.md"
     ],
+    "CONTROL-PACKAGE-CATALOG-BUNDLE-DESIGN-00": [
+      "docs/CONTROL_PACKAGE_CATALOG_BUNDLE_DESIGN.md",
+      "config/packages/control_package_catalog_bundles.v1.json",
+      "schema/bridge/control_package_catalog_bundle.schema.json",
+      "schema/bridge/control_package_catalog_bundle_entry.schema.json",
+      "schema/bridge/control_package_catalog_bundle_non_authority_boundary.schema.json",
+      "python/tests/product/test_control_package_catalog_bundle_design.py"
+    ],
+    "SOURCE-CORPUS-PRICING-RELEASE-REPORTS-BATCH-2026-06-12-00": [
+      "docs/provenance/source_reports/2026-06/pricing_release_report_batch_20260612.json",
+      "docs/provenance/source_reports/2026-06/pricing_release_report_batch_aliases_20260612.json",
+      "docs/provenance/source_reports/2026-06/pricing_release_report_batch_sha256sums_20260612.txt",
+      "docs/provenance/source_reports/2026-06/pricing_release_report_batch_summary_20260612.md",
+      "schema/bridge/source_corpus_pricing_release_report_batch.schema.json",
+      "python/tests/provenance/test_source_corpus_pricing_release_report_batch_20260612.py"
+    ],
+    "SOURCE-CORPUS-PRICING-RELEASE-REPORTS-BATCH-SCHEMA-REPAIR-00": [
+      "docs/provenance/source_reports/2026-06/pricing_release_report_batch_20260612.json",
+      "docs/provenance/source_reports/2026-06/pricing_release_report_batch_aliases_20260612.json",
+      "docs/provenance/source_reports/2026-06/pricing_release_report_batch_sha256sums_20260612.txt",
+      "docs/provenance/source_reports/2026-06/pricing_release_report_batch_summary_20260612.md",
+      "schema/bridge/source_corpus_pricing_release_report_batch.schema.json",
+      "python/tests/provenance/test_source_corpus_pricing_release_report_batch_20260612.py"
+    ],
     "SOURCE-CORPUS-GATEWAY-REPORTS-BATCH-2026-06-10-00": [
       "docs/provenance/source_reports/2026-06/gateway_report_batch_20260610.json",
       "docs/provenance/source_reports/2026-06/gateway_report_batch_aliases_20260610.json",

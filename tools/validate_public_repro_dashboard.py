@@ -129,6 +129,24 @@ from tools.build_public_repro_dashboard import (
     CONTROL_PACKAGE_INSTALL_SIMULATION_PRIOR_PHASE_RELATION,
     CONTROL_PACKAGE_INSTALL_SIMULATION_REPRO_FRAGMENTS,
     CONTROL_PACKAGE_INSTALL_SIMULATION_SCENARIOS,
+    CONTROL_PACKAGE_CATALOG_BUNDLE_ARTIFACTS,
+    CONTROL_PACKAGE_CATALOG_BUNDLE_BLOCKED_CLAIMS,
+    CONTROL_PACKAGE_CATALOG_BUNDLE_CLAIM_ALLOWED,
+    CONTROL_PACKAGE_CATALOG_BUNDLE_DOCTRINE_LANGUAGE,
+    CONTROL_PACKAGE_CATALOG_BUNDLE_ENTRIES,
+    CONTROL_PACKAGE_CATALOG_BUNDLE_GUARDRAILS,
+    CONTROL_PACKAGE_CATALOG_BUNDLE_MEMBERSHIP_TERMS,
+    CONTROL_PACKAGE_CATALOG_BUNDLE_REPRO_FRAGMENTS,
+    CATALOG_PRICING_RELEASE_PRIOR_PHASE_RELATION,
+    PRICING_RELEASE_BLOCKED_CLAIMS,
+    PRICING_RELEASE_CLAIM_ALLOWED,
+    PRICING_RELEASE_DOCTRINE_LANGUAGE,
+    PRICING_RELEASE_PRODUCT_STRATEGY_CONCLUSIONS,
+    PRICING_RELEASE_REPORT_BATCH_ARTIFACTS,
+    PRICING_RELEASE_REPORT_BATCH_REPRO_FRAGMENTS,
+    PRICING_RELEASE_SCHEMA_REPAIR_CLAIM_ALLOWED,
+    PRICING_RELEASE_SCHEMA_REPAIR_LANGUAGE,
+    PRICING_RELEASE_SOURCE_IDENTITIES,
     CONTROL_PACKAGE_RETENTION_CATEGORIES,
     CONTROL_PACKAGE_TYPES,
     AI_RECEIPT_GATEWAY_VISIBLE_STATUS_FIELDS,
@@ -413,6 +431,9 @@ REQUIRED_PHASES = {
     "CONTROL-PACKAGE-MANIFEST-STANDARD-ENV-ISOLATION-REPAIR-00",
     "CONTROL-PACKAGE-REGISTRY-DESIGN-00",
     "CONTROL-PACKAGE-INSTALL-SIMULATION-00",
+    "CONTROL-PACKAGE-CATALOG-BUNDLE-DESIGN-00",
+    "SOURCE-CORPUS-PRICING-RELEASE-REPORTS-BATCH-2026-06-12-00",
+    "SOURCE-CORPUS-PRICING-RELEASE-REPORTS-BATCH-SCHEMA-REPAIR-00",
     "SOURCE-CORPUS-GATEWAY-REPORTS-BATCH-2026-06-10-00",
     "SOURCE-CORPUS-GATEWAY-REPORTS-BATCH-SOURCE-IDENTITY-REPAIR-00",
     "WAVE-ROSETTA-CANONICAL-PROXY-BRIDGE-PROVENANCE-00",
@@ -625,6 +646,27 @@ REQUIRED_BOUNDARY_PHRASES = (
     *CONTROL_PACKAGE_INSTALL_SIMULATION_PRIOR_PHASE_RELATION,
     *CONTROL_PACKAGE_INSTALL_SIMULATION_REPRO_FRAGMENTS,
     *CONTROL_PACKAGE_INSTALL_SIMULATION_BLOCKED_CLAIMS,
+    "CONTROL-PACKAGE-CATALOG-BUNDLE-DESIGN-00",
+    "SOURCE-CORPUS-PRICING-RELEASE-REPORTS-BATCH-2026-06-12-00",
+    "SOURCE-CORPUS-PRICING-RELEASE-REPORTS-BATCH-SCHEMA-REPAIR-00",
+    CONTROL_PACKAGE_CATALOG_BUNDLE_CLAIM_ALLOWED,
+    *CONTROL_PACKAGE_CATALOG_BUNDLE_ARTIFACTS,
+    *CONTROL_PACKAGE_CATALOG_BUNDLE_ENTRIES,
+    *CONTROL_PACKAGE_CATALOG_BUNDLE_MEMBERSHIP_TERMS,
+    *CONTROL_PACKAGE_CATALOG_BUNDLE_DOCTRINE_LANGUAGE,
+    *CONTROL_PACKAGE_CATALOG_BUNDLE_GUARDRAILS,
+    *CONTROL_PACKAGE_CATALOG_BUNDLE_REPRO_FRAGMENTS,
+    PRICING_RELEASE_CLAIM_ALLOWED,
+    PRICING_RELEASE_SCHEMA_REPAIR_CLAIM_ALLOWED,
+    *PRICING_RELEASE_REPORT_BATCH_ARTIFACTS,
+    *PRICING_RELEASE_SOURCE_IDENTITIES,
+    *PRICING_RELEASE_PRODUCT_STRATEGY_CONCLUSIONS,
+    *PRICING_RELEASE_DOCTRINE_LANGUAGE,
+    *PRICING_RELEASE_SCHEMA_REPAIR_LANGUAGE,
+    *PRICING_RELEASE_REPORT_BATCH_REPRO_FRAGMENTS,
+    *CATALOG_PRICING_RELEASE_PRIOR_PHASE_RELATION,
+    *CONTROL_PACKAGE_CATALOG_BUNDLE_BLOCKED_CLAIMS,
+    *PRICING_RELEASE_BLOCKED_CLAIMS,
     "VALIDATION-TIERING-PROVENANCE-00",
     "policy_status",
     "validation_tier = deep",
@@ -1428,6 +1470,8 @@ FORBIDDEN_PHRASES = (
     *[f"control package sync claims {claim}" for claim in CONTROL_PACKAGE_BLOCKED_CLAIMS],
     *[f"control package registry sync claims {claim}" for claim in CONTROL_PACKAGE_REGISTRY_BLOCKED_CLAIMS],
     *[f"control package install simulation sync claims {claim}" for claim in CONTROL_PACKAGE_INSTALL_SIMULATION_BLOCKED_CLAIMS],
+    *[f"control package catalog bundle sync claims {claim}" for claim in CONTROL_PACKAGE_CATALOG_BUNDLE_BLOCKED_CLAIMS],
+    *[f"pricing release source sync claims {claim}" for claim in PRICING_RELEASE_BLOCKED_CLAIMS],
     *[f"claims {claim}" for claim in MINIMAL_VIABLE_RECEIPT_LOCAL_PROTOTYPE_BLOCKED_CLAIMS],
     *[f"claims {claim}" for claim in MVR_READABILITY_REVIEW_SEED_BLOCKED_CLAIMS],
     *[f"claims {claim}" for claim in MVR_READABILITY_REVISION_BLOCKED_CLAIMS],
@@ -1872,14 +1916,22 @@ def _forbidden_hits(text: str) -> list[str]:
                 start = index + len(normalized_phrase)
                 continue
             if (
+                phrase.lower().startswith(("claims ", "source corpus batch sync claims ", "gateway scope sync claims ", "local ingress sync claims ", "control package sync claims ", "control package registry sync claims ", "control package install simulation sync claims ", "control package catalog bundle sync claims ", "pricing release source sync claims ", "compliance source sync claims "))
+            ):
+                hits.append(phrase)
+                break
+            if (
                 "control package install simulation 00 emits a design only local registry state transition simulation"
+                in text[max(0, index - 2200) : index + 2200]
+                or "control package catalog bundle design 00 defines a design only customer facing catalog bundle model"
+                in text[max(0, index - 2400) : index + 2400]
+                or "source corpus pricing release reports batch 2026 06 12 00 records hash only provenance"
+                in text[max(0, index - 2600) : index + 2600]
+                or "source corpus pricing release reports batch schema repair 00 adds the missing"
                 in text[max(0, index - 2200) : index + 2200]
             ):
                 start = index + len(normalized_phrase)
                 continue
-            if phrase.lower().startswith(("claims ", "source corpus batch sync claims ", "gateway scope sync claims ", "local ingress sync claims ", "control package sync claims ", "control package registry sync claims ", "control package install simulation sync claims ", "compliance source sync claims ")):
-                hits.append(phrase)
-                break
             if f"claims {normalized_phrase}" in claims_window and "blocked claims" not in claims_window:
                 hits.append(phrase)
                 break

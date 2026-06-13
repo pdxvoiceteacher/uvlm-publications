@@ -127,6 +127,26 @@ from tools.build_public_repro_dashboard import (
     CONTROL_PACKAGE_INSTALL_SIMULATION_PRIOR_PHASE_RELATION,
     CONTROL_PACKAGE_INSTALL_SIMULATION_REPRO_FRAGMENTS,
     CONTROL_PACKAGE_INSTALL_SIMULATION_SCENARIOS,
+    CONTROL_PACKAGE_CATALOG_BUNDLE_ARTIFACTS,
+    CONTROL_PACKAGE_CATALOG_BUNDLE_BLOCKED_CLAIMS,
+    CONTROL_PACKAGE_CATALOG_BUNDLE_CLAIM_ALLOWED,
+    CONTROL_PACKAGE_CATALOG_BUNDLE_DASHBOARD_SUMMARY,
+    CONTROL_PACKAGE_CATALOG_BUNDLE_DOCTRINE_LANGUAGE,
+    CONTROL_PACKAGE_CATALOG_BUNDLE_ENTRIES,
+    CONTROL_PACKAGE_CATALOG_BUNDLE_GUARDRAILS,
+    CONTROL_PACKAGE_CATALOG_BUNDLE_MEMBERSHIP_TERMS,
+    CONTROL_PACKAGE_CATALOG_BUNDLE_REPRO_FRAGMENTS,
+    CATALOG_PRICING_RELEASE_PRIOR_PHASE_RELATION,
+    PRICING_RELEASE_BLOCKED_CLAIMS,
+    PRICING_RELEASE_CLAIM_ALLOWED,
+    PRICING_RELEASE_DOCTRINE_LANGUAGE,
+    PRICING_RELEASE_PRODUCT_STRATEGY_CONCLUSIONS,
+    PRICING_RELEASE_REPORT_BATCH_ARTIFACTS,
+    PRICING_RELEASE_REPORT_BATCH_DASHBOARD_SUMMARY,
+    PRICING_RELEASE_REPORT_BATCH_REPRO_FRAGMENTS,
+    PRICING_RELEASE_SCHEMA_REPAIR_CLAIM_ALLOWED,
+    PRICING_RELEASE_SCHEMA_REPAIR_LANGUAGE,
+    PRICING_RELEASE_SOURCE_IDENTITIES,
     CONTROL_PACKAGE_RETENTION_CATEGORIES,
     CONTROL_PACKAGE_TYPES,
     AI_RECEIPT_GATEWAY_VISIBLE_STATUS_FIELDS,
@@ -651,6 +671,9 @@ REQUIRED_PHASES = {
     "CONTROL-PACKAGE-MANIFEST-STANDARD-ENV-ISOLATION-REPAIR-00",
     "CONTROL-PACKAGE-REGISTRY-DESIGN-00",
     "CONTROL-PACKAGE-INSTALL-SIMULATION-00",
+    "CONTROL-PACKAGE-CATALOG-BUNDLE-DESIGN-00",
+    "SOURCE-CORPUS-PRICING-RELEASE-REPORTS-BATCH-2026-06-12-00",
+    "SOURCE-CORPUS-PRICING-RELEASE-REPORTS-BATCH-SCHEMA-REPAIR-00",
     "SOURCE-CORPUS-GATEWAY-REPORTS-BATCH-2026-06-10-00",
     "SOURCE-CORPUS-GATEWAY-REPORTS-BATCH-SOURCE-IDENTITY-REPAIR-00",
     "WAVE-ROSETTA-CANONICAL-PROXY-BRIDGE-PROVENANCE-00",
@@ -7794,3 +7817,122 @@ def test_validator_fails_if_control_package_install_simulation_makes_forbidden_c
         assert result["passed"] is False, claim
         forbidden_found = [found.lower() for found in result["forbidden_claims_found"]]
         assert claim.lower() in forbidden_found or f"control package install simulation sync claims {claim.lower()}" in forbidden_found, result
+
+
+
+def test_catalog_bundle_and_pricing_release_sync_indexes_dashboard_docs_and_boundaries(tmp_path):
+    out_dir, docs_dir = run_builder(tmp_path)
+    dashboard = json.loads((out_dir / "experiment_suite_dashboard.json").read_text(encoding="utf-8"))
+    artifact_index = json.loads((out_dir / "artifact_index.json").read_text(encoding="utf-8"))
+    status = json.loads((out_dir / "status.json").read_text(encoding="utf-8"))
+    reproducibility_text = (out_dir / "reproducibility_index.json").read_text(encoding="utf-8")
+    boundary_text = (docs_dir / "claim-boundaries.md").read_text(encoding="utf-8")
+    catalog_page = (docs_dir / "control-package-catalog-bundle-design.md").read_text(encoding="utf-8")
+    pricing_page = (docs_dir / "source-corpus-pricing-release-reports-batch-2026-06-12.md").read_text(encoding="utf-8")
+    repair_page = (docs_dir / "source-corpus-pricing-release-reports-batch-schema-repair.md").read_text(encoding="utf-8")
+    combined_page_text = catalog_page + "\n" + pricing_page + "\n" + repair_page
+    phase_by_id = {phase["phase_id"]: phase for phase in dashboard["accepted_phases"]}
+
+    for phase_id in (
+        "CONTROL-PACKAGE-CATALOG-BUNDLE-DESIGN-00",
+        "SOURCE-CORPUS-PRICING-RELEASE-REPORTS-BATCH-2026-06-12-00",
+        "SOURCE-CORPUS-PRICING-RELEASE-REPORTS-BATCH-SCHEMA-REPAIR-00",
+    ):
+        assert phase_id in phase_by_id
+        assert phase_id in VALIDATOR_REQUIRED_PHASES
+
+    catalog_summary = phase_by_id["CONTROL-PACKAGE-CATALOG-BUNDLE-DESIGN-00"]["dashboard_summary"]
+    assert catalog_summary == CONTROL_PACKAGE_CATALOG_BUNDLE_DASHBOARD_SUMMARY
+    assert catalog_summary["catalog_status"] == "active_design_only"
+    assert catalog_summary["catalog_mode"] == "customer_facing_bundle_design_only"
+    assert catalog_summary["bundles"] == 8
+    for key in (
+        "package_install_enabled", "package_activation_enabled", "package_execution_enabled",
+        "marketplace_download_enabled", "subscription_billing_enabled", "payment_processing_enabled",
+        "entitlement_enforcement_enabled", "provider_runtime_performed", "network_call_performed",
+        "memory_write_performed", "trace_export_performed", "pmr_federation_performed",
+        "compliance_certification_emitted", "legal_advice_emitted", "audit_pass_claimed",
+        "product_readiness_claimed", "product_release_performed", "final_answer_authority_granted",
+        "accepted_evidence_authority_granted",
+    ):
+        assert catalog_summary[key] is False
+    assert artifact_index["phases"]["CONTROL-PACKAGE-CATALOG-BUNDLE-DESIGN-00"] == CONTROL_PACKAGE_CATALOG_BUNDLE_ARTIFACTS
+
+    for phase_id in (
+        "SOURCE-CORPUS-PRICING-RELEASE-REPORTS-BATCH-2026-06-12-00",
+        "SOURCE-CORPUS-PRICING-RELEASE-REPORTS-BATCH-SCHEMA-REPAIR-00",
+    ):
+        pricing_summary = phase_by_id[phase_id]["dashboard_summary"]
+        assert pricing_summary == PRICING_RELEASE_REPORT_BATCH_DASHBOARD_SUMMARY
+        assert pricing_summary["row_count"] == 2
+        assert pricing_summary["unique_sha256_count"] == 2
+        assert pricing_summary["raw_files_committed"] is False
+        assert pricing_summary["extracted_text_added"] is False
+        assert pricing_summary["public_release_approved"] is False
+        assert pricing_summary["schema_file_present"] is True
+        assert artifact_index["phases"][phase_id] == PRICING_RELEASE_REPORT_BATCH_ARTIFACTS
+
+    for phrase_group in (
+        CONTROL_PACKAGE_CATALOG_BUNDLE_ARTIFACTS,
+        CONTROL_PACKAGE_CATALOG_BUNDLE_ENTRIES,
+        CONTROL_PACKAGE_CATALOG_BUNDLE_MEMBERSHIP_TERMS,
+        CONTROL_PACKAGE_CATALOG_BUNDLE_DOCTRINE_LANGUAGE,
+        CONTROL_PACKAGE_CATALOG_BUNDLE_GUARDRAILS,
+        CONTROL_PACKAGE_CATALOG_BUNDLE_BLOCKED_CLAIMS,
+        PRICING_RELEASE_REPORT_BATCH_ARTIFACTS,
+        PRICING_RELEASE_SOURCE_IDENTITIES,
+        PRICING_RELEASE_PRODUCT_STRATEGY_CONCLUSIONS,
+        PRICING_RELEASE_DOCTRINE_LANGUAGE,
+        PRICING_RELEASE_SCHEMA_REPAIR_LANGUAGE,
+        PRICING_RELEASE_BLOCKED_CLAIMS,
+        CATALOG_PRICING_RELEASE_PRIOR_PHASE_RELATION,
+    ):
+        for phrase in phrase_group:
+            assert phrase in combined_page_text
+            assert phrase in boundary_text
+
+    assert CONTROL_PACKAGE_CATALOG_BUNDLE_CLAIM_ALLOWED in catalog_page
+    assert CONTROL_PACKAGE_CATALOG_BUNDLE_CLAIM_ALLOWED in boundary_text
+    assert PRICING_RELEASE_CLAIM_ALLOWED in pricing_page
+    assert PRICING_RELEASE_CLAIM_ALLOWED in boundary_text
+    assert PRICING_RELEASE_SCHEMA_REPAIR_CLAIM_ALLOWED in repair_page
+    assert PRICING_RELEASE_SCHEMA_REPAIR_CLAIM_ALLOWED in boundary_text
+    assert "test_control_package_catalog_bundle_design.py" in reproducibility_text
+    assert "test_source_corpus_pricing_release_report_batch_20260612.py" in reproducibility_text
+    assert "Publication sync grants no runtime authority." in combined_page_text
+    assert status["control_package_catalog_bundle_design_00_indexed"] is True
+    assert status["control_package_catalog_status"] == "active_design_only"
+    assert status["control_package_catalog_mode"] == "customer_facing_bundle_design_only"
+    assert status["control_package_catalog_bundles"] == 8
+    assert status["control_package_catalog_payment_processing_enabled"] is False
+    assert status["control_package_catalog_subscription_billing_enabled"] is False
+    assert status["control_package_catalog_entitlement_enforcement_enabled"] is False
+    assert status["source_corpus_pricing_release_reports_batch_2026_06_12_00_indexed"] is True
+    assert status["source_corpus_pricing_release_reports_batch_schema_repair_00_indexed"] is True
+    assert status["pricing_release_batch_row_count"] == 2
+    assert status["pricing_release_batch_unique_sha256_count"] == 2
+    assert status["pricing_release_raw_files_committed"] is False
+    assert status["pricing_release_public_release_approved"] is False
+    assert status["not_pricing_release_runtime_authority"] is True
+
+
+def test_validator_fails_if_catalog_bundle_makes_forbidden_claims(tmp_path):
+    for claim in CONTROL_PACKAGE_CATALOG_BUNDLE_BLOCKED_CLAIMS:
+        out_dir, docs_dir = run_builder(tmp_path / claim.replace(" ", "_").replace("/", "_"))
+        page = docs_dir / "control-package-catalog-bundle-design.md"
+        page.write_text(page.read_text(encoding="utf-8") + f"\nControl package catalog bundle sync claims {claim}.\n", encoding="utf-8")
+        result = validate_dashboard(out_dir / "experiment_suite_dashboard.json", docs_dir)
+        assert result["passed"] is False, claim
+        forbidden_found = [found.lower() for found in result["forbidden_claims_found"]]
+        assert claim.lower() in forbidden_found or f"control package catalog bundle sync claims {claim.lower()}" in forbidden_found, result
+
+
+def test_validator_fails_if_pricing_release_makes_forbidden_claims(tmp_path):
+    for claim in PRICING_RELEASE_BLOCKED_CLAIMS:
+        out_dir, docs_dir = run_builder(tmp_path / claim.replace(" ", "_").replace("/", "_"))
+        page = docs_dir / "source-corpus-pricing-release-reports-batch-2026-06-12.md"
+        page.write_text(page.read_text(encoding="utf-8") + f"\nPricing release source sync claims {claim}.\n", encoding="utf-8")
+        result = validate_dashboard(out_dir / "experiment_suite_dashboard.json", docs_dir)
+        assert result["passed"] is False, claim
+        forbidden_found = [found.lower() for found in result["forbidden_claims_found"]]
+        assert claim.lower() in forbidden_found or f"pricing release source sync claims {claim.lower()}" in forbidden_found, result

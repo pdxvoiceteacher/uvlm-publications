@@ -12667,6 +12667,230 @@ CONTROL_PACKAGE_INSTALL_SIMULATION_PRIOR_PHASE_RELATION = [
     "AI-RECEIPT-GATEWAY-LOCAL-INGRESS-PROTOTYPE-00 provides the local explicit-ingress prototype.",
     "COMPLIANCE-EVIDENCE-TOOLSET-LIBRARY-DESIGN-00 defines compliance evidence toolsets.",
 ]
+CONTROL_PACKAGE_CATALOG_BUNDLE_COMMAND = "python -m pytest -q python/tests/product/test_control_package_catalog_bundle_design.py tests/test_experiment_registry.py"
+CONTROL_PACKAGE_CATALOG_BUNDLE_REPRO_FRAGMENTS = ["test_control_package_catalog_bundle_design.py", "control_package_catalog_bundles.v1.json"]
+CONTROL_PACKAGE_CATALOG_BUNDLE_ARTIFACTS = [
+    "docs/CONTROL_PACKAGE_CATALOG_BUNDLE_DESIGN.md",
+    "config/packages/control_package_catalog_bundles.v1.json",
+    "schema/bridge/control_package_catalog_bundle.schema.json",
+    "schema/bridge/control_package_catalog_bundle_entry.schema.json",
+    "schema/bridge/control_package_catalog_bundle_non_authority_boundary.schema.json",
+    "python/tests/product/test_control_package_catalog_bundle_design.py",
+]
+CONTROL_PACKAGE_CATALOG_BUNDLE_DASHBOARD_SUMMARY = {
+    "catalog_status": "active_design_only",
+    "policy_status": "active_design_only",
+    "catalog_mode": "customer_facing_bundle_design_only",
+    "package_registry_ref": "config/packages/control_package_registry.v1.json",
+    "manifest_standard_ref": "config/packages/control_package_manifest_standard.v1.json",
+    "package_install_enabled": False,
+    "package_activation_enabled": False,
+    "package_execution_enabled": False,
+    "marketplace_download_enabled": False,
+    "subscription_billing_enabled": False,
+    "payment_processing_enabled": False,
+    "entitlement_enforcement_enabled": False,
+    "runtime_behavior_changed": False,
+    "provider_runtime_performed": False,
+    "network_call_performed": False,
+    "memory_write_performed": False,
+    "atlas_memory_admission_performed": False,
+    "trace_export_performed": False,
+    "pmr_federation_performed": False,
+    "compliance_certification_emitted": False,
+    "legal_advice_emitted": False,
+    "audit_pass_claimed": False,
+    "attestation_success_claimed": False,
+    "product_readiness_claimed": False,
+    "product_release_performed": False,
+    "final_answer_authority_granted": False,
+    "accepted_evidence_authority_granted": False,
+    "truth_certification_emitted": False,
+    "bundle_fields": 24,
+    "bundle_types": 8,
+    "bundles": 8,
+}
+CONTROL_PACKAGE_CATALOG_BUNDLE_ENTRIES = [
+    "free_core_bundle",
+    "eu_ai_act_evidence_support_bundle",
+    "security_controls_bundle",
+    "compliance_reporting_bundle",
+    "enterprise_governance_bundle",
+    "forensic_recall_bundle",
+    "developer_integration_bundle",
+    "public_good_transparency_bundle",
+]
+CONTROL_PACKAGE_CATALOG_BUNDLE_MEMBERSHIP_TERMS = [
+    "ai_receipt_gateway_core_free",
+    "minimal_viable_receipt_core_free",
+    "source_manifest_hash_core_public_good",
+    "local_file_ingress_free_or_core",
+    "eu_ai_act_evidence_support_pack_paid",
+    "compliance_ready_mvr_report_pack_paid",
+    "human_review_signoff_control_enterprise",
+    "prompt_injection_quarantine_control_paid",
+]
+CONTROL_PACKAGE_CATALOG_BUNDLE_DOCTRINE_LANGUAGE = [
+    "Control Package Catalog Bundle Design",
+    "Packages are modular internal controls and capabilities.",
+    "Bundles are customer-facing product groupings.",
+    "A bundle is not an entitlement.",
+    "A bundle is not an installation.",
+    "A bundle is not package activation.",
+    "A bundle is not package execution.",
+    "A paid bundle definition is not payment implementation.",
+    "A subscription bundle definition is not subscription billing.",
+    "A marketplace-visible bundle definition is not a marketplace.",
+    "Bundle availability is not compliance.",
+    "Bundle inclusion is not control effectiveness.",
+    "Framework evidence bundle is evidence support, not certification.",
+    "Public-good bundle does not mean public domain.",
+    "Author-contributed bundle does not mean unrestricted commercial use.",
+    "Human review remains required.",
+    "Authorized professional signoff remains required for compliance use.",
+    "CONTROL-PACKAGE-CATALOG-BUNDLE-DESIGN-00 does not implement payment.",
+    "CONTROL-PACKAGE-CATALOG-BUNDLE-DESIGN-00 does not implement subscriptions.",
+    "CONTROL-PACKAGE-CATALOG-BUNDLE-DESIGN-00 does not implement marketplace downloads.",
+    "CONTROL-PACKAGE-CATALOG-BUNDLE-DESIGN-00 does not install, activate, or execute packages.",
+]
+CONTROL_PACKAGE_CATALOG_BUNDLE_GUARDRAILS = [
+    "bundle_is_not_customer_entitlement",
+    "bundle_is_not_package_installation",
+    "bundle_is_not_package_activation",
+    "bundle_is_not_package_execution",
+    "bundle_is_not_payment_processing",
+    "bundle_is_not_subscription_billing",
+    "bundle_is_not_marketplace_download",
+    "bundle_is_not_control_effectiveness",
+    "bundle_is_not_compliance",
+    "framework_bundle_is_not_certification",
+    "bundle_is_not_legal_advice",
+    "bundle_is_not_audit_pass",
+    "bundle_is_not_attestation_success",
+    "bundle_is_not_product_release",
+    "bundle_is_not_product_readiness",
+    "bundle_is_not_truth_certification",
+    "bundle_is_not_final_answer_authority",
+    "bundle_is_not_accepted_evidence_authority",
+    "bundle_does_not_write_memory",
+    "bundle_does_not_admit_atlas_memory",
+    "bundle_does_not_export_traces",
+    "bundle_does_not_federate_pmr",
+    "human_review_required",
+]
+CONTROL_PACKAGE_CATALOG_BUNDLE_BLOCKED_CLAIMS = [
+    "bundle grants customer entitlement",
+    "bundle installs packages",
+    "bundle activates packages",
+    "bundle executes packages",
+    "bundle implements payment",
+    "bundle implements subscription billing",
+    "bundle downloads from marketplace",
+    "bundle availability proves compliance",
+    "bundle inclusion proves control effectiveness",
+    "framework bundle certifies compliance",
+    "bundle provides legal advice",
+    "bundle passes audit",
+    "bundle guarantees attestation success",
+    "bundle releases product",
+    "bundle claims product readiness",
+    "bundle writes memory",
+    "bundle admits Atlas memory",
+    "bundle exports traces",
+    "bundle federates PMR",
+    "bundle grants accepted-evidence authority",
+    "bundle authorizes final answers",
+    "bundle certifies truth",
+    "public-good bundle means public domain",
+    "author-contributed bundle means unrestricted commercial use",
+]
+CONTROL_PACKAGE_CATALOG_BUNDLE_CLAIM_ALLOWED = "CONTROL-PACKAGE-CATALOG-BUNDLE-DESIGN-00 defines a design-only customer-facing catalog bundle model for grouping Triadic Brain packages into understandable product bundles, including core free, framework evidence, security controls, compliance reporting, enterprise governance, forensic recall, developer integration, and public-good transparency bundles, while preserving that bundle definitions are not customer entitlement, package installation, package activation, package execution, payment processing, subscription billing, marketplace download, control effectiveness, compliance certification, legal advice, audit pass, attestation success, product readiness, product release, truth certification, memory write, Atlas admission, trace export, PMR federation, final-answer authority, or accepted-evidence authority."
+PRICING_RELEASE_REPORT_BATCH_ARTIFACTS = [
+    "docs/provenance/source_reports/2026-06/pricing_release_report_batch_20260612.json",
+    "docs/provenance/source_reports/2026-06/pricing_release_report_batch_aliases_20260612.json",
+    "docs/provenance/source_reports/2026-06/pricing_release_report_batch_sha256sums_20260612.txt",
+    "docs/provenance/source_reports/2026-06/pricing_release_report_batch_summary_20260612.md",
+    "schema/bridge/source_corpus_pricing_release_report_batch.schema.json",
+    "python/tests/provenance/test_source_corpus_pricing_release_report_batch_20260612.py",
+]
+PRICING_RELEASE_REPORT_BATCH_COMMAND = "python -m pytest -q python/tests/provenance/test_source_corpus_pricing_release_report_batch_20260612.py tests/test_experiment_registry.py"
+PRICING_RELEASE_REPORT_BATCH_REPRO_FRAGMENTS = ["test_source_corpus_pricing_release_report_batch_20260612.py", "source_corpus_pricing_release_report_batch.schema.json"]
+PRICING_RELEASE_REPORT_BATCH_DASHBOARD_SUMMARY = {
+    "batch_status": "active_hash_only_pricing_release_provenance_manifest",
+    "batch_id": "pricing_release_report_batch_20260612",
+    "row_count": 2,
+    "unique_sha256_count": 2,
+    "raw_files_committed": False,
+    "normalized_derivatives_added": False,
+    "extracted_text_added": False,
+    "visibility": "hash_only_public_reference",
+    "public_release_approved": False,
+    "schema_file_present": True,
+    "raw_private_docx_files_committed": False,
+}
+PRICING_RELEASE_SOURCE_IDENTITIES = [
+    "Apprentice Echo Bundle and pricing memo_6_12_2026_500PM.docx",
+    "3ec57bef5253bb0da3cc87aab7035f434046a5cccef5779ed341a11d0929d0c9",
+    "Pricing Study and Release Consult 6_11_2026_918PM.docx",
+    "a4e3fa673ffb0338fc025de78b63f14b9704adc979a0abebc55d20f686212f4b",
+]
+PRICING_RELEASE_PRODUCT_STRATEGY_CONCLUSIONS = [
+    "Sell governed AI work-event evidence infrastructure, not compliance certification.",
+    "Governed Receipt Core should be the first product.",
+    "Framework Evidence Packs should sit on top of the core.",
+    "Enterprise Adapters and Recovery should come later.",
+    "Governed work-event / receipt transaction is the preferred pricing unit.",
+    "Evidence support is the product; compliance certification is not the product.",
+    "A watermark says AI was here; a governed receipt says what happened.",
+    "Product maturity should be labeled as live, near-ready, design-only, simulation-only, future, or out-of-scope.",
+    "Bundle-first packaging is useful, but too many SKUs too early should be avoided.",
+    "Unsupported claims should be first-class report objects.",
+    "Reports should support human-readable report, machine-readable JSON, and evidence-index CSV export.",
+]
+PRICING_RELEASE_DOCTRINE_LANGUAGE = [
+    "Raw private pricing/release reports are not committed.",
+    "Hashes preserve identity; hashes do not certify truth.",
+    "Source reports preserve product strategy provenance, not canonical repo state.",
+    "Pricing strategy is not payment implementation.",
+    "Subscription strategy is not subscription billing.",
+    "Bundle strategy is not customer entitlement.",
+    "Product strategy is not product readiness or product release.",
+    "Human review remains required.",
+]
+PRICING_RELEASE_BLOCKED_CLAIMS = [
+    "pricing report implements payment",
+    "pricing report implements subscription billing",
+    "pricing report grants customer entitlement",
+    "release report releases product",
+    "pricing report proves product readiness",
+    "source report is canonical repo state",
+    "source report certifies compliance",
+    "source report provides legal advice",
+    "source report passes audit",
+    "source report certifies truth",
+    "source report writes memory",
+    "source report admits Atlas memory",
+    "source report exports traces",
+    "source report federates PMR",
+    "summary is source",
+    "hash certifies truth",
+]
+PRICING_RELEASE_CLAIM_ALLOWED = "SOURCE-CORPUS-PRICING-RELEASE-REPORTS-BATCH-2026-06-12-00 records hash-only provenance for June 2026 pricing, release, bundle, and product packaging strategy reports, preserving source filenames, SHA-256 hashes, visibility, public-release status, and bounded product strategy conclusions without committing raw private DOCX files or treating the reports as accepted evidence, canonical repo state, payment implementation, subscription billing, customer entitlement, product readiness, product release, compliance certification, legal advice, audit pass, truth certification, memory write, Atlas admission, trace export, PMR federation, final-answer authority, or accepted-evidence authority."
+PRICING_RELEASE_SCHEMA_REPAIR_CLAIM_ALLOWED = "SOURCE-CORPUS-PRICING-RELEASE-REPORTS-BATCH-SCHEMA-REPAIR-00 adds the missing source_corpus_pricing_release_report_batch schema referenced by the pricing/release source-corpus manifest, allowing schema validation while preserving hash-only provenance, no raw DOCX import, public_release_approved=false, and all non-authority boundaries."
+PRICING_RELEASE_SCHEMA_REPAIR_LANGUAGE = [
+    "schema file present: schema/bridge/source_corpus_pricing_release_report_batch.schema.json",
+    "pricing/release source batch validates against the schema.",
+    "no payment, subscription billing, customer entitlement, marketplace, product readiness, product release, compliance/legal/audit/truth/memory/export/federation/authority behavior emitted.",
+]
+CATALOG_PRICING_RELEASE_PRIOR_PHASE_RELATION = [
+    "CONTROL-PACKAGE-MANIFEST-STANDARD-00 defines package metadata and boundaries.",
+    "CONTROL-PACKAGE-REGISTRY-DESIGN-00 records package availability and state.",
+    "CONTROL-PACKAGE-INSTALL-SIMULATION-00 simulates package state transitions.",
+    "CONTROL-PACKAGE-CATALOG-BUNDLE-DESIGN-00 groups packages into customer-facing bundles.",
+    "SOURCE-CORPUS-PRICING-RELEASE-REPORTS-BATCH-2026-06-12-00 preserves pricing/release strategy provenance.",
+    "SOURCE-CORPUS-PRICING-RELEASE-REPORTS-BATCH-SCHEMA-REPAIR-00 repairs schema validation for the source batch.",
+    "AI-RECEIPT-GATEWAY-LOCAL-INGRESS-PROTOTYPE-00 provides the local explicit-ingress prototype.",
+]
 SOURCE_CORPUS_GATEWAY_REPORT_BATCH_CLAIM_ALLOWED = "SOURCE-CORPUS-GATEWAY-REPORTS-BATCH-2026-06-10-00 records a hash-only gateway and compliance report source batch with nine uploaded consultant report and visual mockup identities, preserving source filenames, SHA-256 hashes, visibility, public-release status, and non-authority boundaries without committing raw DOCX/PNG files or treating reports as accepted evidence, theorem proof, product release, product readiness, compliance certification, legal advice, memory write, Atlas admission, or canonical repo state."
 SOURCE_CORPUS_GATEWAY_REPORT_SOURCE_IDENTITY_REPAIR_CLAIM_ALLOWED = "SOURCE-CORPUS-GATEWAY-REPORTS-BATCH-SOURCE-IDENTITY-REPAIR-00 restores actual uploaded consultant report and visual mockup filenames and SHA-256 hashes as canonical source identities for the gateway report source batch while preserving hash-only public references, public_release_approved=false, no raw private DOCX/PNG import, and all non-authority boundaries."
 COMPLIANCE_READY_MVR_REPORT_LOCAL_PROTOTYPE_DOCTRINE_LANGUAGE = [
@@ -13039,6 +13263,48 @@ CONTROL_PACKAGE_INSTALL_SIMULATION_PHASE = {
     "claim_allowed": CONTROL_PACKAGE_INSTALL_SIMULATION_CLAIM_ALLOWED,
     "claims_blocked": CONTROL_PACKAGE_INSTALL_SIMULATION_BLOCKED_CLAIMS,
     "reviewer_caution": "CONTROL-PACKAGE-INSTALL-SIMULATION-00 rehearses design-only registry state transitions. It installs, activates, executes, downloads, bills, or entitles no package and grants no control-effectiveness, compliance/legal/audit/product/truth/final-answer/accepted-evidence, provider/network, memory, Atlas, export, federation, model-training, or review-skipping authority.",
+    "publication_status": "dashboard_indexed",
+}
+CONTROL_PACKAGE_CATALOG_BUNDLE_PHASE = {
+    "phase_id": "CONTROL-PACKAGE-CATALOG-BUNDLE-DESIGN-00",
+    "repo": "pdxvoiceteacher/CoherenceLattice",
+    "status": "accepted_local_validation",
+    "evidence_type": "control_package_catalog_bundle_design_publication_sync",
+    "product_posture": "design_only_catalog_bundle_without_payment_subscription_marketplace_entitlement_install_or_authority",
+    "primary_artifacts": CONTROL_PACKAGE_CATALOG_BUNDLE_ARTIFACTS,
+    "dashboard_summary": CONTROL_PACKAGE_CATALOG_BUNDLE_DASHBOARD_SUMMARY,
+    "reproduction_command_summary": CONTROL_PACKAGE_CATALOG_BUNDLE_COMMAND,
+    "claim_allowed": CONTROL_PACKAGE_CATALOG_BUNDLE_CLAIM_ALLOWED,
+    "claims_blocked": CONTROL_PACKAGE_CATALOG_BUNDLE_BLOCKED_CLAIMS,
+    "reviewer_caution": "CONTROL-PACKAGE-CATALOG-BUNDLE-DESIGN-00 defines customer-facing bundle metadata only. It implements no payment, subscription billing, marketplace download, customer entitlement, package install, package activation, package execution, compliance/legal/audit/product/truth/final-answer/accepted-evidence authority, memory, Atlas, export, or federation behavior.",
+    "publication_status": "dashboard_indexed",
+}
+PRICING_RELEASE_REPORT_BATCH_PHASE = {
+    "phase_id": "SOURCE-CORPUS-PRICING-RELEASE-REPORTS-BATCH-2026-06-12-00",
+    "repo": "pdxvoiceteacher/CoherenceLattice",
+    "status": "accepted_local_validation",
+    "evidence_type": "pricing_release_source_corpus_batch_publication_sync",
+    "product_posture": "hash_only_pricing_release_provenance_without_payment_subscription_entitlement_release_or_authority",
+    "primary_artifacts": PRICING_RELEASE_REPORT_BATCH_ARTIFACTS,
+    "dashboard_summary": PRICING_RELEASE_REPORT_BATCH_DASHBOARD_SUMMARY,
+    "reproduction_command_summary": PRICING_RELEASE_REPORT_BATCH_COMMAND,
+    "claim_allowed": PRICING_RELEASE_CLAIM_ALLOWED,
+    "claims_blocked": PRICING_RELEASE_BLOCKED_CLAIMS,
+    "reviewer_caution": "SOURCE-CORPUS-PRICING-RELEASE-REPORTS-BATCH-2026-06-12-00 is hash-only pricing/release strategy provenance. It commits no raw DOCX files and grants no payment, subscription, entitlement, product-readiness, product-release, compliance/legal/audit/truth/memory/export/federation/final-answer/accepted-evidence authority.",
+    "publication_status": "dashboard_indexed",
+}
+PRICING_RELEASE_SCHEMA_REPAIR_PHASE = {
+    "phase_id": "SOURCE-CORPUS-PRICING-RELEASE-REPORTS-BATCH-SCHEMA-REPAIR-00",
+    "repo": "pdxvoiceteacher/CoherenceLattice",
+    "status": "accepted_local_validation",
+    "evidence_type": "pricing_release_source_corpus_schema_repair_publication_sync",
+    "product_posture": "schema_validation_repair_only_without_raw_docx_payment_subscription_entitlement_release_or_authority",
+    "primary_artifacts": PRICING_RELEASE_REPORT_BATCH_ARTIFACTS,
+    "dashboard_summary": PRICING_RELEASE_REPORT_BATCH_DASHBOARD_SUMMARY,
+    "reproduction_command_summary": PRICING_RELEASE_REPORT_BATCH_COMMAND,
+    "claim_allowed": PRICING_RELEASE_SCHEMA_REPAIR_CLAIM_ALLOWED,
+    "claims_blocked": PRICING_RELEASE_BLOCKED_CLAIMS,
+    "reviewer_caution": "SOURCE-CORPUS-PRICING-RELEASE-REPORTS-BATCH-SCHEMA-REPAIR-00 repairs schema validation only and preserves hash-only provenance, no raw DOCX import, public_release_approved=false, and all non-authority boundaries.",
     "publication_status": "dashboard_indexed",
 }
 SOURCE_CORPUS_GATEWAY_REPORT_BATCH_PHASE = {
@@ -15829,6 +16095,9 @@ CONTROL_PACKAGE_MANIFEST_PHASE,
 CONTROL_PACKAGE_ENV_ISOLATION_REPAIR_PHASE,
 CONTROL_PACKAGE_REGISTRY_DESIGN_PHASE,
 CONTROL_PACKAGE_INSTALL_SIMULATION_PHASE,
+CONTROL_PACKAGE_CATALOG_BUNDLE_PHASE,
+PRICING_RELEASE_REPORT_BATCH_PHASE,
+PRICING_RELEASE_SCHEMA_REPAIR_PHASE,
 SOURCE_CORPUS_GATEWAY_REPORT_BATCH_PHASE,
 SOURCE_CORPUS_GATEWAY_REPORT_SOURCE_IDENTITY_REPAIR_PHASE,
 WAVE_PROVENANCE_PHASE,
@@ -18168,6 +18437,26 @@ BOUNDARIES.extend(
         *CONTROL_PACKAGE_INSTALL_SIMULATION_REPRO_FRAGMENTS,
         "Blocked overclaim examples for control package install simulation publication boundaries.",
         *CONTROL_PACKAGE_INSTALL_SIMULATION_BLOCKED_CLAIMS,
+        CONTROL_PACKAGE_CATALOG_BUNDLE_CLAIM_ALLOWED,
+        *CONTROL_PACKAGE_CATALOG_BUNDLE_ARTIFACTS,
+        *CONTROL_PACKAGE_CATALOG_BUNDLE_ENTRIES,
+        *CONTROL_PACKAGE_CATALOG_BUNDLE_MEMBERSHIP_TERMS,
+        *CONTROL_PACKAGE_CATALOG_BUNDLE_DOCTRINE_LANGUAGE,
+        *CONTROL_PACKAGE_CATALOG_BUNDLE_GUARDRAILS,
+        *CONTROL_PACKAGE_CATALOG_BUNDLE_REPRO_FRAGMENTS,
+        *CATALOG_PRICING_RELEASE_PRIOR_PHASE_RELATION,
+        "Blocked overclaim examples for control package catalog bundle design publication boundaries.",
+        *CONTROL_PACKAGE_CATALOG_BUNDLE_BLOCKED_CLAIMS,
+        PRICING_RELEASE_CLAIM_ALLOWED,
+        PRICING_RELEASE_SCHEMA_REPAIR_CLAIM_ALLOWED,
+        *PRICING_RELEASE_REPORT_BATCH_ARTIFACTS,
+        *PRICING_RELEASE_SOURCE_IDENTITIES,
+        *PRICING_RELEASE_PRODUCT_STRATEGY_CONCLUSIONS,
+        *PRICING_RELEASE_DOCTRINE_LANGUAGE,
+        *PRICING_RELEASE_SCHEMA_REPAIR_LANGUAGE,
+        *PRICING_RELEASE_REPORT_BATCH_REPRO_FRAGMENTS,
+        "Blocked overclaim examples for pricing/release source-corpus provenance publication boundaries.",
+        *PRICING_RELEASE_BLOCKED_CLAIMS,
         VALIDATION_TIERING_PROVENANCE_CLAIM_ALLOWED,
         *VALIDATION_TIERING_PROVENANCE_ARTIFACTS,
         *VALIDATION_TIERING_PROVENANCE_TIER_TERMS,
@@ -19164,6 +19453,30 @@ def dashboard_payload() -> dict[str, Any]:
         "control_package_install_simulation_subscription_billing_performed": False,
         "control_package_install_simulation_entitlement_enforcement_performed": False,
         "not_control_package_install_simulation_runtime_authority": True,
+        "control_package_catalog_bundle_design_00_indexed": True,
+        "control_package_catalog_status": "active_design_only",
+        "control_package_catalog_policy_status": "active_design_only",
+        "control_package_catalog_mode": "customer_facing_bundle_design_only",
+        "control_package_catalog_package_install_enabled": False,
+        "control_package_catalog_package_activation_enabled": False,
+        "control_package_catalog_package_execution_enabled": False,
+        "control_package_catalog_marketplace_download_enabled": False,
+        "control_package_catalog_subscription_billing_enabled": False,
+        "control_package_catalog_payment_processing_enabled": False,
+        "control_package_catalog_entitlement_enforcement_enabled": False,
+        "control_package_catalog_bundles": 8,
+        "not_control_package_catalog_runtime_authority": True,
+        "source_corpus_pricing_release_reports_batch_2026_06_12_00_indexed": True,
+        "source_corpus_pricing_release_reports_batch_schema_repair_00_indexed": True,
+        "pricing_release_batch_status": "active_hash_only_pricing_release_provenance_manifest",
+        "pricing_release_batch_id": "pricing_release_report_batch_20260612",
+        "pricing_release_batch_row_count": 2,
+        "pricing_release_batch_unique_sha256_count": 2,
+        "pricing_release_raw_files_committed": False,
+        "pricing_release_extracted_text_added": False,
+        "pricing_release_public_release_approved": False,
+        "pricing_release_schema_file_present": True,
+        "not_pricing_release_runtime_authority": True,
         "source_corpus_gateway_reports_batch_2026_06_10_00_indexed": True,
         "source_corpus_gateway_reports_batch_source_identity_repair_00_indexed": True,
         "source_corpus_gateway_reports_batch_status": "active_hash_only_gateway_report_provenance_manifest",
@@ -19323,6 +19636,8 @@ def reproducibility_index() -> dict[str, Any]:
                 {"name": "CONTROL-PACKAGE-MANIFEST-STANDARD-00 design validation", "command": CONTROL_PACKAGE_MANIFEST_COMMAND},
                 {"name": "CONTROL-PACKAGE-REGISTRY-DESIGN-00 design validation", "command": CONTROL_PACKAGE_REGISTRY_COMMAND},
                 {"name": "CONTROL-PACKAGE-INSTALL-SIMULATION-00 Python entrypoint", "command": CONTROL_PACKAGE_INSTALL_SIMULATION_COMMAND},
+                {"name": "CONTROL-PACKAGE-CATALOG-BUNDLE-DESIGN-00 design validation", "command": CONTROL_PACKAGE_CATALOG_BUNDLE_COMMAND},
+                {"name": "SOURCE-CORPUS-PRICING-RELEASE-REPORTS-BATCH-2026-06-12-00 source batch validation", "command": PRICING_RELEASE_REPORT_BATCH_COMMAND},
                 {"name": "SOURCE-CORPUS-GATEWAY-REPORTS-BATCH-2026-06-10-00 source batch validation", "command": "python -m pytest -q python/tests/provenance/test_source_corpus_gateway_report_batch_20260610.py tests/test_experiment_registry.py"},
                 {"name": "WAVE-ROSETTA-CANONICAL-PROXY-BRIDGE-PROVENANCE-00 provenance validation", "command": COMPLIANCE_REPORT_DESIGN_COMMAND},
                 {"name": "Validation Tiering Provenance Python entrypoint", "command": VALIDATION_TIERING_PROVENANCE_COMMAND},
@@ -20370,6 +20685,30 @@ def status_payload() -> dict[str, Any]:
         "control_package_install_simulation_subscription_billing_performed": False,
         "control_package_install_simulation_entitlement_enforcement_performed": False,
         "not_control_package_install_simulation_runtime_authority": True,
+        "control_package_catalog_bundle_design_00_indexed": True,
+        "control_package_catalog_status": "active_design_only",
+        "control_package_catalog_policy_status": "active_design_only",
+        "control_package_catalog_mode": "customer_facing_bundle_design_only",
+        "control_package_catalog_package_install_enabled": False,
+        "control_package_catalog_package_activation_enabled": False,
+        "control_package_catalog_package_execution_enabled": False,
+        "control_package_catalog_marketplace_download_enabled": False,
+        "control_package_catalog_subscription_billing_enabled": False,
+        "control_package_catalog_payment_processing_enabled": False,
+        "control_package_catalog_entitlement_enforcement_enabled": False,
+        "control_package_catalog_bundles": 8,
+        "not_control_package_catalog_runtime_authority": True,
+        "source_corpus_pricing_release_reports_batch_2026_06_12_00_indexed": True,
+        "source_corpus_pricing_release_reports_batch_schema_repair_00_indexed": True,
+        "pricing_release_batch_status": "active_hash_only_pricing_release_provenance_manifest",
+        "pricing_release_batch_id": "pricing_release_report_batch_20260612",
+        "pricing_release_batch_row_count": 2,
+        "pricing_release_batch_unique_sha256_count": 2,
+        "pricing_release_raw_files_committed": False,
+        "pricing_release_extracted_text_added": False,
+        "pricing_release_public_release_approved": False,
+        "pricing_release_schema_file_present": True,
+        "not_pricing_release_runtime_authority": True,
         "source_corpus_gateway_reports_batch_2026_06_10_00_indexed": True,
         "source_corpus_gateway_reports_batch_source_identity_repair_00_indexed": True,
         "source_corpus_gateway_reports_batch_status": "active_hash_only_gateway_report_provenance_manifest",
@@ -27186,6 +27525,171 @@ CONTROL-PACKAGE-INSTALL-SIMULATION-00 synchronizes the design-only control packa
 Publication sync grants no runtime authority. CONTROL-PACKAGE-INSTALL-SIMULATION-00 does not imply package installation, package activation, package execution, package download, payment implementation, subscription billing, marketplace availability, customer entitlement, control effectiveness, provider runtime, network calls, memory writes, Atlas memory admission, trace export, PMR federation, compliance certification, legal advice, audit pass, attestation success, product readiness, product release, truth certification, final-answer authority, accepted-evidence authority, model training, or review skipping.
 """
 
+def control_package_catalog_bundle_design_doc() -> str:
+    summary = "\n".join(f"- {key} = {str(value).lower() if isinstance(value, bool) else value}" for key, value in CONTROL_PACKAGE_CATALOG_BUNDLE_DASHBOARD_SUMMARY.items())
+    return f"""# Control Package Catalog Bundle Design
+
+CONTROL-PACKAGE-CATALOG-BUNDLE-DESIGN-00 synchronizes customer-facing catalog bundle design into publication dashboards. This is publication/dashboard synchronization only and grants no runtime authority.
+
+## Bounded allowed claim
+
+{CONTROL_PACKAGE_CATALOG_BUNDLE_CLAIM_ALLOWED}
+
+## Dashboard summary
+
+{summary}
+
+## Bundle entries
+
+{_bullets(CONTROL_PACKAGE_CATALOG_BUNDLE_ENTRIES)}
+
+## Bundle membership terms
+
+{_bullets(CONTROL_PACKAGE_CATALOG_BUNDLE_MEMBERSHIP_TERMS)}
+
+## Doctrine language
+
+{_bullets(CONTROL_PACKAGE_CATALOG_BUNDLE_DOCTRINE_LANGUAGE)}
+
+## Non-authority guardrails
+
+{_bullets(CONTROL_PACKAGE_CATALOG_BUNDLE_GUARDRAILS)}
+
+## Relation to prior phases
+
+{_bullets(CATALOG_PRICING_RELEASE_PRIOR_PHASE_RELATION)}
+
+## Required artifacts
+
+{_bullets(CONTROL_PACKAGE_CATALOG_BUNDLE_ARTIFACTS)}
+
+## Blocked overclaims
+
+{_bullets(CONTROL_PACKAGE_CATALOG_BUNDLE_BLOCKED_CLAIMS)}
+
+## Reproducibility
+
+{_bullets(CONTROL_PACKAGE_CATALOG_BUNDLE_REPRO_FRAGMENTS)}
+- `{CONTROL_PACKAGE_CATALOG_BUNDLE_COMMAND}`
+
+Publication sync grants no runtime authority. CONTROL-PACKAGE-CATALOG-BUNDLE-DESIGN-00 does not imply payment implementation, subscription billing, marketplace availability, customer entitlement, package installation, package activation, package execution, product readiness, product release, compliance certification, legal advice, audit pass, attestation success, truth certification, memory write, Atlas admission, trace export, PMR federation, final-answer authority, accepted-evidence authority, model training, or review skipping.
+"""
+
+def source_corpus_pricing_release_reports_batch_doc() -> str:
+    summary = "\n".join(f"- {key} = {str(value).lower() if isinstance(value, bool) else value}" for key, value in PRICING_RELEASE_REPORT_BATCH_DASHBOARD_SUMMARY.items())
+    return f"""# Source Corpus Pricing Release Reports Batch 2026-06-12
+
+SOURCE-CORPUS-PRICING-RELEASE-REPORTS-BATCH-2026-06-12-00 synchronizes hash-only pricing/release source-corpus provenance into publication dashboards. This is publication/dashboard synchronization only and grants no runtime authority.
+
+## Bounded allowed claim
+
+{PRICING_RELEASE_CLAIM_ALLOWED}
+
+## Dashboard summary
+
+{summary}
+
+## Pricing/release source identities
+
+{_bullets(PRICING_RELEASE_SOURCE_IDENTITIES)}
+
+## Preserved product strategy conclusions
+
+{_bullets(PRICING_RELEASE_PRODUCT_STRATEGY_CONCLUSIONS)}
+
+## Pricing/release doctrine
+
+{_bullets(PRICING_RELEASE_DOCTRINE_LANGUAGE)}
+
+## Relation to prior phases
+
+{_bullets(CATALOG_PRICING_RELEASE_PRIOR_PHASE_RELATION)}
+
+## Required artifacts
+
+{_bullets(PRICING_RELEASE_REPORT_BATCH_ARTIFACTS)}
+
+## Blocked overclaims
+
+{_bullets(PRICING_RELEASE_BLOCKED_CLAIMS)}
+
+## Reproducibility
+
+{_bullets(PRICING_RELEASE_REPORT_BATCH_REPRO_FRAGMENTS)}
+- `{PRICING_RELEASE_REPORT_BATCH_COMMAND}`
+
+Publication sync grants no runtime authority. Raw private pricing/release reports are not committed, public_release_approved=false, and source reports remain hash-only provenance rather than payment, subscription, entitlement, release, product-readiness, compliance, legal, audit, truth, memory, export, federation, final-answer, or accepted-evidence authority.
+"""
+
+def source_corpus_pricing_release_reports_batch_schema_repair_doc() -> str:
+    summary = "\n".join(f"- {key} = {str(value).lower() if isinstance(value, bool) else value}" for key, value in PRICING_RELEASE_REPORT_BATCH_DASHBOARD_SUMMARY.items())
+    return f"""# Source Corpus Pricing Release Reports Batch Schema Repair
+
+SOURCE-CORPUS-PRICING-RELEASE-REPORTS-BATCH-SCHEMA-REPAIR-00 synchronizes schema validation repair for the pricing/release source-corpus batch. This is publication/dashboard synchronization only and grants no runtime authority.
+
+## Bounded schema repair claim
+
+{PRICING_RELEASE_SCHEMA_REPAIR_CLAIM_ALLOWED}
+
+## Dashboard summary
+
+{summary}
+
+## Schema repair language
+
+{_bullets(PRICING_RELEASE_SCHEMA_REPAIR_LANGUAGE)}
+
+## Pricing/release source identities
+
+{_bullets(PRICING_RELEASE_SOURCE_IDENTITIES)}
+
+## Preserved product strategy conclusions
+
+{_bullets(PRICING_RELEASE_PRODUCT_STRATEGY_CONCLUSIONS)}
+
+## Pricing/release doctrine
+
+{_bullets(PRICING_RELEASE_DOCTRINE_LANGUAGE)}
+
+## Relation to prior phases
+
+{_bullets(CATALOG_PRICING_RELEASE_PRIOR_PHASE_RELATION)}
+
+## Required artifacts
+
+{_bullets(PRICING_RELEASE_REPORT_BATCH_ARTIFACTS)}
+
+## Blocked overclaims
+
+{_bullets(PRICING_RELEASE_BLOCKED_CLAIMS)}
+
+## Reproducibility
+
+{_bullets(PRICING_RELEASE_REPORT_BATCH_REPRO_FRAGMENTS)}
+- `{PRICING_RELEASE_REPORT_BATCH_COMMAND}`
+
+Publication sync grants no runtime authority. SOURCE-CORPUS-PRICING-RELEASE-REPORTS-BATCH-SCHEMA-REPAIR-00 repairs schema validation only and does not import raw DOCX files, approve public release, implement payment/subscriptions/entitlements/marketplace behavior, release product, certify compliance/truth, write memory, export traces, federate PMR, authorize final answers, or grant accepted-evidence authority.
+"""
+
+CATALOG_PRICING_RELEASE_SYNC_DOCS = {
+    "control-package-catalog-bundle-design.md",
+    "source-corpus-pricing-release-reports-batch-2026-06-12.md",
+    "source-corpus-pricing-release-reports-batch-schema-repair.md",
+    "control-package-install-simulation.md",
+    "control-package-registry-design.md",
+    "control-package-manifest-standard.md",
+    "source-corpus-provenance-archive.md",
+    "validation-tiering-provenance.md",
+}
+CATALOG_PRICING_RELEASE_SYNC_NOTE = f"""
+
+## Catalog bundle and pricing/release provenance publication sync
+
+CONTROL-PACKAGE-CATALOG-BUNDLE-DESIGN-00 groups packages into customer-facing bundles without implementing payment, subscriptions, marketplace downloads, customer entitlement, install, activation, execution, compliance, audit, product release, product readiness, or authority. SOURCE-CORPUS-PRICING-RELEASE-REPORTS-BATCH-2026-06-12-00 preserves pricing/release strategy reports as hash-only provenance, and SOURCE-CORPUS-PRICING-RELEASE-REPORTS-BATCH-SCHEMA-REPAIR-00 repairs schema validation only.
+
+{_bullets(CATALOG_PRICING_RELEASE_PRIOR_PHASE_RELATION)}
+"""
+
 CONTROL_PACKAGE_INSTALL_SIMULATION_SYNC_DOCS = {
     "control-package-install-simulation.md",
     "control-package-registry-design.md",
@@ -27415,6 +27919,9 @@ def build(out_dir: Path, docs_dir: Path) -> None:
     docs_payload["control-package-manifest-standard-env-isolation-repair.md"] = control_package_manifest_standard_env_isolation_repair_doc()
     docs_payload["control-package-registry-design.md"] = control_package_registry_design_doc()
     docs_payload["control-package-install-simulation.md"] = control_package_install_simulation_doc()
+    docs_payload["control-package-catalog-bundle-design.md"] = control_package_catalog_bundle_design_doc()
+    docs_payload["source-corpus-pricing-release-reports-batch-2026-06-12.md"] = source_corpus_pricing_release_reports_batch_doc()
+    docs_payload["source-corpus-pricing-release-reports-batch-schema-repair.md"] = source_corpus_pricing_release_reports_batch_schema_repair_doc()
     docs_payload["source-corpus-gateway-reports-batch-2026-06-10.md"] = source_corpus_gateway_reports_batch_doc()
     docs_payload["source-corpus-gateway-reports-batch-source-identity-repair.md"] = source_corpus_gateway_reports_batch_source_identity_repair_doc()
     docs_payload["compliance-report-presentation-standard.md"] = compliance_report_presentation_standard_doc()
@@ -27479,6 +27986,9 @@ def build(out_dir: Path, docs_dir: Path) -> None:
     for name in CONTROL_PACKAGE_INSTALL_SIMULATION_SYNC_DOCS:
         if name in docs_payload:
             docs_payload[name] = docs_payload[name].rstrip() + CONTROL_PACKAGE_INSTALL_SIMULATION_SYNC_NOTE
+    for name in CATALOG_PRICING_RELEASE_SYNC_DOCS:
+        if name in docs_payload:
+            docs_payload[name] = docs_payload[name].rstrip() + CATALOG_PRICING_RELEASE_SYNC_NOTE
     for name, text in docs_payload.items():
         _write_text(docs_dir / name, text)
 

@@ -39,6 +39,8 @@ from tools.build_public_repro_dashboard import (
     CONTROL_PACKAGE_BLOCKED_CLAIMS,
     CONTROL_PACKAGE_REGISTRY_BLOCKED_CLAIMS,
     CONTROL_PACKAGE_INSTALL_SIMULATION_BLOCKED_CLAIMS,
+    CONTROL_PACKAGE_CATALOG_BUNDLE_BLOCKED_CLAIMS,
+    PRICING_RELEASE_BLOCKED_CLAIMS,
     VALIDATION_TIERING_PROVENANCE_BLOCKED_CLAIMS,
     TELEMETRY_APERTURE_BLOCKED_CLAIMS,
     TAC_POLICY_SIMULATION_BLOCKED_CLAIMS,
@@ -60,6 +62,8 @@ AI_RECEIPT_GATEWAY_LOCAL_INGRESS_PUBLICATION_BLOCKED_CLAIMS = AI_RECEIPT_GATEWAY
 CONTROL_PACKAGE_PUBLICATION_BLOCKED_CLAIMS = CONTROL_PACKAGE_BLOCKED_CLAIMS
 CONTROL_PACKAGE_REGISTRY_PUBLICATION_BLOCKED_CLAIMS = CONTROL_PACKAGE_REGISTRY_BLOCKED_CLAIMS
 CONTROL_PACKAGE_INSTALL_SIMULATION_PUBLICATION_BLOCKED_CLAIMS = CONTROL_PACKAGE_INSTALL_SIMULATION_BLOCKED_CLAIMS
+CONTROL_PACKAGE_CATALOG_BUNDLE_PUBLICATION_BLOCKED_CLAIMS = CONTROL_PACKAGE_CATALOG_BUNDLE_BLOCKED_CLAIMS
+PRICING_RELEASE_PUBLICATION_BLOCKED_CLAIMS = PRICING_RELEASE_BLOCKED_CLAIMS
 
 
 PAPER_CONFIGS: dict[str, dict[str, Any]] = {
@@ -875,6 +879,8 @@ PAPER_CONFIGS: dict[str, dict[str, Any]] = {
             *CONTROL_PACKAGE_PUBLICATION_BLOCKED_CLAIMS,
             *CONTROL_PACKAGE_REGISTRY_PUBLICATION_BLOCKED_CLAIMS,
             *CONTROL_PACKAGE_INSTALL_SIMULATION_PUBLICATION_BLOCKED_CLAIMS,
+            *CONTROL_PACKAGE_CATALOG_BUNDLE_PUBLICATION_BLOCKED_CLAIMS,
+            *PRICING_RELEASE_PUBLICATION_BLOCKED_CLAIMS,
             *VALIDATION_TIERING_PROVENANCE_BLOCKED_CLAIMS,
             *TELEMETRY_APERTURE_BLOCKED_CLAIMS,
             *TAC_POLICY_SIMULATION_BLOCKED_CLAIMS,
@@ -1285,6 +1291,12 @@ def _forbidden_hits(normalized_text: str, forbidden: tuple[str, ...]) -> list[st
                 in normalized_text[max(0, index - 2200) : index + 2200]
                 or "control package install simulation 00 emits a design only local registry state transition simulation"
                 in normalized_text[max(0, index - 2200) : index + 2200]
+                or "control package catalog bundle design 00 defines a design only customer facing catalog bundle model"
+                in normalized_text[max(0, index - 2400) : index + 2400]
+                or "source corpus pricing release reports batch 2026 06 12 00 records hash only provenance"
+                in normalized_text[max(0, index - 2600) : index + 2600]
+                or "source corpus pricing release reports batch schema repair 00 adds the missing"
+                in normalized_text[max(0, index - 2200) : index + 2200]
             ):
                 search_from = index + len(normalized_phrase)
                 continue
@@ -1536,6 +1548,8 @@ def _forbidden_hits(normalized_text: str, forbidden: tuple[str, ...]) -> list[st
             *CONTROL_PACKAGE_PUBLICATION_BLOCKED_CLAIMS,
             *CONTROL_PACKAGE_REGISTRY_PUBLICATION_BLOCKED_CLAIMS,
             *CONTROL_PACKAGE_INSTALL_SIMULATION_PUBLICATION_BLOCKED_CLAIMS,
+            *CONTROL_PACKAGE_CATALOG_BUNDLE_PUBLICATION_BLOCKED_CLAIMS,
+            *PRICING_RELEASE_PUBLICATION_BLOCKED_CLAIMS,
             *VALIDATION_TIERING_PROVENANCE_BLOCKED_CLAIMS,
             *TELEMETRY_APERTURE_BLOCKED_CLAIMS,
             *TAC_POLICY_SIMULATION_BLOCKED_CLAIMS,

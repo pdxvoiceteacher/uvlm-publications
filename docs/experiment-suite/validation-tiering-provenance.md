@@ -373,3 +373,15 @@ CONTROL-PACKAGE-INSTALL-SIMULATION-00 rehearses package state transitions only. 
 - CONTROL-PACKAGE-INSTALL-SIMULATION-00 simulates package state transitions.
 - AI-RECEIPT-GATEWAY-LOCAL-INGRESS-PROTOTYPE-00 provides the local explicit-ingress prototype.
 - COMPLIANCE-EVIDENCE-TOOLSET-LIBRARY-DESIGN-00 defines compliance evidence toolsets.
+
+## Catalog bundle and pricing/release provenance publication sync
+
+CONTROL-PACKAGE-CATALOG-BUNDLE-DESIGN-00 groups packages into customer-facing bundles without implementing payment, subscriptions, marketplace downloads, customer entitlement, install, activation, execution, compliance, audit, product release, product readiness, or authority. SOURCE-CORPUS-PRICING-RELEASE-REPORTS-BATCH-2026-06-12-00 preserves pricing/release strategy reports as hash-only provenance, and SOURCE-CORPUS-PRICING-RELEASE-REPORTS-BATCH-SCHEMA-REPAIR-00 repairs schema validation only.
+
+- CONTROL-PACKAGE-MANIFEST-STANDARD-00 defines package metadata and boundaries.
+- CONTROL-PACKAGE-REGISTRY-DESIGN-00 records package availability and state.
+- CONTROL-PACKAGE-INSTALL-SIMULATION-00 simulates package state transitions.
+- CONTROL-PACKAGE-CATALOG-BUNDLE-DESIGN-00 groups packages into customer-facing bundles.
+- SOURCE-CORPUS-PRICING-RELEASE-REPORTS-BATCH-2026-06-12-00 preserves pricing/release strategy provenance.
+- SOURCE-CORPUS-PRICING-RELEASE-REPORTS-BATCH-SCHEMA-REPAIR-00 repairs schema validation for the source batch.
+- AI-RECEIPT-GATEWAY-LOCAL-INGRESS-PROTOTYPE-00 provides the local explicit-ingress prototype.
