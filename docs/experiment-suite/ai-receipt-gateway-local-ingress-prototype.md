@@ -222,3 +222,11 @@ CONTROL-PACKAGE-INSTALL-SIMULATION-00 rehearses package state transitions only. 
 - CONTROL-PACKAGE-INSTALL-SIMULATION-00 simulates package state transitions.
 - AI-RECEIPT-GATEWAY-LOCAL-INGRESS-PROTOTYPE-00 provides the local explicit-ingress prototype.
 - COMPLIANCE-EVIDENCE-TOOLSET-LIBRARY-DESIGN-00 defines compliance evidence toolsets.
+
+## Product Readiness Roadmap Matrix sync
+
+PRODUCT-READINESS-ROADMAP-MATRIX-00 applies PRODUCT-MATURITY-LABEL-TAXONOMY-00 maturity labels to product roadmap rows. Roadmap matrix is planning evidence, not product readiness. Roadmap matrix is not product release. Roadmap matrix is not customer entitlement. Roadmap matrix is not compliance certification. Roadmap matrix is not audit pass. Live-bounded-local rows are locally validated for bounded scope only, not generally available. Design-only rows do not enable runtime behavior. Simulation-only rows rehearse behavior but do not perform real behavior. Future rows are not implemented. Out-of-scope rows are intentionally excluded. Human review remains required. Authorized professional signoff remains required for compliance use. Publication sync grants no runtime authority.
+
+## Product Maturity Label Taxonomy sync
+
+PRODUCT-MATURITY-LABEL-TAXONOMY-00 defines maturity labels for product surfaces. Maturity labels prevent design drift. A maturity label is not product readiness. A maturity label is not product release. A maturity label is not compliance certification. A maturity label is not audit pass. A maturity label is not customer entitlement. Live means locally implemented and validated for its bounded scope, not generally released. Near-ready means implementation is substantially complete but still requires review, polish, integration, or pilot evidence. Design-only means policy/config/docs/schemas/tests exist, but runtime behavior is not enabled. Simulation-only means behavior is rehearsed with fixtures or state-transition simulation, not performed for real. Future means intentionally planned but not implemented. Out-of-scope means intentionally excluded. Human review remains required. Authorized professional signoff remains required for compliance use. Publication sync grants no runtime authority.

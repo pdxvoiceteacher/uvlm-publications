@@ -437,6 +437,28 @@ from tools.build_public_repro_dashboard import (
     TRIADIC_OBSERVATION_CONTRACT_RECOVERY_RIGHTS,
     OBSERVATION_CONTRACT_POLICY_SIMULATION_ARTIFACTS,
     OBSERVATION_CONTRACT_POLICY_SIMULATION_BLOCKED_CLAIMS,
+    PRODUCT_MATURITY_LABEL_TAXONOMY_BLOCKED_CLAIMS,
+    PRODUCT_MATURITY_LABEL_TAXONOMY_CLAIM_ALLOWED,
+    PRODUCT_MATURITY_LABEL_TAXONOMY_DASHBOARD_SUMMARY,
+    PRODUCT_MATURITY_LABEL_TAXONOMY_LABELS,
+    PRODUCT_MATURITY_LABEL_TAXONOMY_SURFACE_TYPES,
+    PRODUCT_MATURITY_LABEL_TAXONOMY_INITIAL_SURFACE_PROFILES,
+    PRODUCT_MATURITY_LABEL_TAXONOMY_DOCTRINE_LANGUAGE,
+    PRODUCT_MATURITY_LABEL_TAXONOMY_GUARDRAILS,
+    PRODUCT_MATURITY_LABEL_TAXONOMY_PRIOR_PHASE_RELATION,
+    PRODUCT_MATURITY_LABEL_TAXONOMY_ARTIFACTS,
+    PRODUCT_READINESS_ROADMAP_BLOCKED_CLAIMS,
+    PRODUCT_READINESS_ROADMAP_CLAIM_ALLOWED,
+    PRODUCT_READINESS_ROADMAP_DASHBOARD_SUMMARY,
+    PRODUCT_READINESS_ROADMAP_MATRIX_ARTIFACTS,
+    PRODUCT_READINESS_ROADMAP_ROW_FIELDS,
+    PRODUCT_READINESS_ROADMAP_PRODUCT_LINES,
+    PRODUCT_READINESS_ROADMAP_ROWS,
+    PRODUCT_READINESS_ROADMAP_OPEN_GAPS,
+    PRODUCT_READINESS_ROADMAP_NEXT_VALIDATION_STEPS,
+    PRODUCT_READINESS_ROADMAP_DOCTRINE_LANGUAGE,
+    PRODUCT_READINESS_ROADMAP_GUARDRAILS,
+    PRODUCT_READINESS_ROADMAP_PRIOR_PHASE_RELATION,
     OBSERVATION_CONTRACT_POLICY_SIMULATION_CLAIM_ALLOWED,
     OBSERVATION_CONTRACT_POLICY_SIMULATION_DOCTRINE_LANGUAGE,
     OBSERVATION_CONTRACT_POLICY_SIMULATION_FAILURE_CLASSES,
@@ -533,6 +555,8 @@ REQUIRED_DOCS = {
     "minimal-viable-receipt-design.md",
 }
 REQUIRED_PHASES = {
+    "PRODUCT-READINESS-ROADMAP-MATRIX-00",
+    "PRODUCT-MATURITY-LABEL-TAXONOMY-00",
     "EXP-SUITE-REGISTRY-01",
     "EXP-SUITE-REPRO-01",
     "WAVE-FAMILY-CLOSEOUT-01",
@@ -7936,3 +7960,63 @@ def test_validator_fails_if_pricing_release_makes_forbidden_claims(tmp_path):
         assert result["passed"] is False, claim
         forbidden_found = [found.lower() for found in result["forbidden_claims_found"]]
         assert claim.lower() in forbidden_found or f"pricing release source sync claims {claim.lower()}" in forbidden_found, result
+
+
+def test_product_maturity_label_taxonomy_publication_sync():
+    dashboard = json.loads(Path("registry/experiment_suite_dashboard.json").read_text(encoding="utf-8"))
+    artifacts = json.loads(Path("registry/artifact_index.json").read_text(encoding="utf-8"))
+    page = Path("docs/experiment-suite/product-maturity-label-taxonomy.md").read_text(encoding="utf-8")
+
+    assert any(p["phase_id"] == "PRODUCT-MATURITY-LABEL-TAXONOMY-00" for p in dashboard["accepted_phases"])
+    phase_artifacts = artifacts["phases"]["PRODUCT-MATURITY-LABEL-TAXONOMY-00"]
+    for artifact in PRODUCT_MATURITY_LABEL_TAXONOMY_ARTIFACTS:
+        assert artifact in phase_artifacts
+    for key, value in PRODUCT_MATURITY_LABEL_TAXONOMY_DASHBOARD_SUMMARY.items():
+        assert dashboard[f"product_maturity_label_taxonomy_{key}"] == value
+    for label, definition in PRODUCT_MATURITY_LABEL_TAXONOMY_LABELS.items():
+        assert label in page
+        assert definition in page
+    for surface in PRODUCT_MATURITY_LABEL_TAXONOMY_SURFACE_TYPES:
+        assert surface in page
+    for phase, label in PRODUCT_MATURITY_LABEL_TAXONOMY_INITIAL_SURFACE_PROFILES.items():
+        assert f"{phase} = {label}" in page
+    for phrase in PRODUCT_MATURITY_LABEL_TAXONOMY_DOCTRINE_LANGUAGE:
+        assert phrase in page
+    for guardrail in PRODUCT_MATURITY_LABEL_TAXONOMY_GUARDRAILS:
+        assert guardrail in page
+    for relation in PRODUCT_MATURITY_LABEL_TAXONOMY_PRIOR_PHASE_RELATION:
+        assert relation in page
+    assert "Publication sync grants no runtime authority" in page
+
+
+def test_product_readiness_roadmap_matrix_publication_sync():
+    dashboard = json.loads(Path("registry/experiment_suite_dashboard.json").read_text(encoding="utf-8"))
+    artifacts = json.loads(Path("registry/artifact_index.json").read_text(encoding="utf-8"))
+    reproducibility = json.loads(Path("registry/reproducibility_index.json").read_text(encoding="utf-8"))
+    page = Path("docs/experiment-suite/product-readiness-roadmap-matrix.md").read_text(encoding="utf-8")
+
+    assert any(p["phase_id"] == "PRODUCT-READINESS-ROADMAP-MATRIX-00" for p in dashboard["accepted_phases"])
+    phase_artifacts = artifacts["phases"]["PRODUCT-READINESS-ROADMAP-MATRIX-00"]
+    for artifact in PRODUCT_READINESS_ROADMAP_MATRIX_ARTIFACTS:
+        assert artifact in phase_artifacts
+    repro_text = json.dumps(reproducibility)
+    assert "python/tests/product/test_product_readiness_roadmap_matrix.py" in repro_text
+    for key, value in PRODUCT_READINESS_ROADMAP_DASHBOARD_SUMMARY.items():
+        assert dashboard[f"product_readiness_roadmap_matrix_{key}"] == value
+    for field in PRODUCT_READINESS_ROADMAP_ROW_FIELDS:
+        assert field in page
+    for line in PRODUCT_READINESS_ROADMAP_PRODUCT_LINES:
+        assert line in page
+    for row, label in PRODUCT_READINESS_ROADMAP_ROWS.items():
+        assert f"{row} = {label}" in page
+    for gap in PRODUCT_READINESS_ROADMAP_OPEN_GAPS:
+        assert gap in page
+    for step in PRODUCT_READINESS_ROADMAP_NEXT_VALIDATION_STEPS:
+        assert step in page
+    for phrase in PRODUCT_READINESS_ROADMAP_DOCTRINE_LANGUAGE:
+        assert phrase in page
+    for guardrail in PRODUCT_READINESS_ROADMAP_GUARDRAILS:
+        assert guardrail in page
+    for relation in PRODUCT_READINESS_ROADMAP_PRIOR_PHASE_RELATION:
+        assert relation in page
+    assert "Publication sync grants no runtime authority" in page
