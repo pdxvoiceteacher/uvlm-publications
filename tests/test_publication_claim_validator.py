@@ -91,6 +91,16 @@ from tools.build_public_repro_dashboard import (
     TRIADIC_OBSERVATION_CONTRACT_BLOCKED_CLAIMS,
     TRIADIC_OBSERVATION_CONTRACT_CLAIM_ALLOWED,
     OBSERVATION_CONTRACT_POLICY_SIMULATION_BLOCKED_CLAIMS,
+    PRODUCT_MATURITY_LABEL_TAXONOMY_BLOCKED_CLAIMS,
+    PRODUCT_MATURITY_LABEL_TAXONOMY_CLAIM_ALLOWED,
+    PRODUCT_MATURITY_LABEL_TAXONOMY_DASHBOARD_SUMMARY,
+    PRODUCT_MATURITY_LABEL_TAXONOMY_LABELS,
+    PRODUCT_MATURITY_LABEL_TAXONOMY_SURFACE_TYPES,
+    PRODUCT_MATURITY_LABEL_TAXONOMY_INITIAL_SURFACE_PROFILES,
+    PRODUCT_MATURITY_LABEL_TAXONOMY_DOCTRINE_LANGUAGE,
+    PRODUCT_MATURITY_LABEL_TAXONOMY_GUARDRAILS,
+    PRODUCT_MATURITY_LABEL_TAXONOMY_PRIOR_PHASE_RELATION,
+    PRODUCT_MATURITY_LABEL_TAXONOMY_ARTIFACTS,
     OBSERVATION_CONTRACT_POLICY_SIMULATION_CLAIM_ALLOWED,
 )
 from tools.validate_publication_claims import PAPER_CONFIGS, validate_publication_claims
@@ -5590,3 +5600,14 @@ def test_publication_claim_validator_allows_bounded_catalog_pricing_claims(tmp_p
         _write_minimal_publication_claim_fixture(paper_root, claim)
         result = validate_publication_claims(paper_root / "PUB_GOV_ARTIFACT_COG_01.md")
         assert result["forbidden_overclaims_found"] == []
+
+
+def test_claim_validator_rejects_maturity_label_overclaims():
+    for claim in PRODUCT_MATURITY_LABEL_TAXONOMY_BLOCKED_CLAIMS:
+        assert claim in PAPER_CONFIGS["PUB-GOV-ARTIFACT-COG-01"]["forbidden_overclaims"]
+
+
+def test_bounded_maturity_taxonomy_claim_is_allowed():
+    normalized = PRODUCT_MATURITY_LABEL_TAXONOMY_CLAIM_ALLOWED.lower()
+    for claim in PRODUCT_MATURITY_LABEL_TAXONOMY_BLOCKED_CLAIMS:
+        assert claim not in normalized
