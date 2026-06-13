@@ -942,6 +942,14 @@
       "reviewer quickstarts",
       "status.json files"
     ],
+    "PRODUCT-MATURITY-LABEL-TAXONOMY-00": [
+      "docs/PRODUCT_MATURITY_LABEL_TAXONOMY.md",
+      "config/product/product_maturity_label_taxonomy.v1.json",
+      "schema/bridge/product_maturity_label.schema.json",
+      "schema/bridge/product_maturity_surface_profile.schema.json",
+      "schema/bridge/product_maturity_non_authority_boundary.schema.json",
+      "python/tests/product/test_product_maturity_label_taxonomy.py"
+    ],
     "ONTOLOGY-CLAIM-REGISTRY-00": [
       "ontology_claim_registry_packet.json",
       "ontology_evidence_level_packet.json",

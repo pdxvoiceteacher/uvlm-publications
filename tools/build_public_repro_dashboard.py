@@ -15715,7 +15715,227 @@ PUBLIC_UTILITY_ALPHA_CLAIMS_BLOCKED = [
     "Public Utility Alpha is not universal portability proof.",
     "Public Utility Alpha is not AI consciousness.",
 ]
+PRODUCT_MATURITY_LABEL_TAXONOMY_ARTIFACTS = (
+    "docs/PRODUCT_MATURITY_LABEL_TAXONOMY.md",
+    "config/product/product_maturity_label_taxonomy.v1.json",
+    "schema/bridge/product_maturity_label.schema.json",
+    "schema/bridge/product_maturity_surface_profile.schema.json",
+    "schema/bridge/product_maturity_non_authority_boundary.schema.json",
+    "python/tests/product/test_product_maturity_label_taxonomy.py",
+)
+PRODUCT_MATURITY_LABEL_TAXONOMY_LABELS = {
+    "live_bounded_local": "implemented and locally validated for a bounded non-release scope.",
+    "near_ready_review_required": "close to usable but still requiring review, pilot evidence, hardening, or signoff.",
+    "design_only": "design/config/schema/docs/tests exist but runtime behavior is not enabled.",
+    "simulation_only": "behavior is rehearsed with fixtures or state-transition simulation; real behavior is not performed.",
+    "future_planned": "intentionally planned but not implemented.",
+    "out_of_scope": "intentionally excluded from the product surface.",
+    "deprecated": "retained for provenance but no longer recommended.",
+    "blocked_by_policy": "intentionally blocked by safety, legal, data, or governance policy.",
+    "blocked_by_missing_evidence": "withheld because validation evidence is insufficient.",
+}
+PRODUCT_MATURITY_LABEL_TAXONOMY_SURFACE_TYPES = (
+    "phase", "package", "bundle", "report", "export", "source_corpus_batch",
+    "public_dashboard_entry", "claim_boundary", "reproducibility_entry", "schema", "policy_config",
+)
+PRODUCT_MATURITY_LABEL_TAXONOMY_INITIAL_SURFACE_PROFILES = {
+    "AI-RECEIPT-GATEWAY-LOCAL-INGRESS-PROTOTYPE-00": "live_bounded_local",
+    "CONTROL-PACKAGE-MANIFEST-STANDARD-00": "design_only",
+    "CONTROL-PACKAGE-REGISTRY-DESIGN-00": "design_only",
+    "CONTROL-PACKAGE-INSTALL-SIMULATION-00": "simulation_only",
+    "CONTROL-PACKAGE-CATALOG-BUNDLE-DESIGN-00": "design_only",
+    "SOURCE-CORPUS-PRICING-RELEASE-REPORTS-BATCH-2026-06-12-00": "design_only",
+    "SOURCE-CORPUS-PRICING-RELEASE-REPORTS-BATCH-SCHEMA-REPAIR-00": "design_only",
+    "COMPLIANCE-READY-MVR-REPORT-LOCAL-PROTOTYPE-00": "live_bounded_local",
+    "EU-AI-ACT-MVR-EVIDENCE-MAP-LOCAL-PROTOTYPE-00": "live_bounded_local",
+    "PUBLICATION-SYNC-CATALOG-ENTRY-00": "design_only",
+    "PUBLICATION-SYNC-DASHBOARD-ENTRY-00": "design_only",
+}
+PRODUCT_MATURITY_LABEL_TAXONOMY_DOCTRINE_LANGUAGE = (
+    "Product Maturity Label Taxonomy",
+    "Maturity labels prevent design drift.",
+    "A maturity label is not product readiness.",
+    "A maturity label is not product release.",
+    "A maturity label is not compliance certification.",
+    "A maturity label is not audit pass.",
+    "A maturity label is not customer entitlement.",
+    "Live means locally implemented and validated for its bounded scope, not generally released.",
+    "Near-ready means implementation is substantially complete but still requires review, polish, integration, or pilot evidence.",
+    "Design-only means policy/config/docs/schemas/tests exist, but runtime behavior is not enabled.",
+    "Simulation-only means behavior is rehearsed with fixtures or state-transition simulation, not performed for real.",
+    "Future means intentionally planned but not implemented.",
+    "Out-of-scope means intentionally excluded.",
+    "Human review remains required.",
+    "Authorized professional signoff remains required for compliance use.",
+)
+PRODUCT_MATURITY_LABEL_TAXONOMY_GUARDRAILS = (
+    "maturity_label_is_not_product_readiness", "maturity_label_is_not_product_release",
+    "maturity_label_is_not_compliance_certification", "maturity_label_is_not_legal_advice",
+    "maturity_label_is_not_audit_pass", "maturity_label_is_not_attestation_success",
+    "maturity_label_is_not_customer_entitlement", "maturity_label_is_not_package_installation",
+    "maturity_label_is_not_package_activation", "maturity_label_is_not_package_execution",
+    "maturity_label_is_not_payment_processing", "maturity_label_is_not_subscription_billing",
+    "maturity_label_is_not_marketplace_download", "maturity_label_is_not_truth_certification",
+    "maturity_label_is_not_final_answer_authority", "maturity_label_is_not_accepted_evidence_authority",
+    "maturity_label_does_not_write_memory", "maturity_label_does_not_admit_atlas_memory",
+    "maturity_label_does_not_export_traces", "maturity_label_does_not_federate_pmr", "human_review_required",
+)
+PRODUCT_MATURITY_LABEL_TAXONOMY_BLOCKED_CLAIMS = (
+    "maturity label proves product readiness", "maturity label releases product",
+    "live label means general availability", "live label means customer entitlement",
+    "near-ready label means release-ready", "design-only label means runtime behavior enabled",
+    "simulation-only label means real behavior performed", "future label means implemented",
+    "maturity label certifies compliance", "maturity label provides legal advice",
+    "maturity label passes audit", "maturity label guarantees attestation success",
+    "maturity label grants accepted-evidence authority", "maturity label authorizes final answers",
+    "maturity label writes memory", "maturity label admits Atlas memory",
+    "maturity label exports traces", "maturity label federates PMR",
+)
+PRODUCT_MATURITY_LABEL_TAXONOMY_CLAIM_ALLOWED = "PRODUCT-MATURITY-LABEL-TAXONOMY-00 defines a design-only maturity label taxonomy for Triadic Brain / UVLM phases, packages, bundles, reports, exports, source-corpus batches, public dashboard entries, claim boundaries, reproducibility entries, schemas, and policy configs, using labels such as live_bounded_local, near_ready_review_required, design_only, simulation_only, future_planned, out_of_scope, deprecated, blocked_by_policy, and blocked_by_missing_evidence while preserving that maturity labels do not constitute product readiness, product release, customer entitlement, package installation, package activation, package execution, payment processing, subscription billing, marketplace download, compliance certification, legal advice, audit pass, attestation success, truth certification, memory write, Atlas admission, trace export, PMR federation, final-answer authority, or accepted-evidence authority."
+PRODUCT_MATURITY_LABEL_TAXONOMY_PRIOR_PHASE_RELATION = (
+    "PRODUCT-MATURITY-LABEL-TAXONOMY-00 defines maturity labels for product surfaces.",
+    "CONTROL-PACKAGE-CATALOG-BUNDLE-DESIGN-00 groups packages into customer-facing bundles.",
+    "CONTROL-PACKAGE-INSTALL-SIMULATION-00 is simulation-only.",
+    "CONTROL-PACKAGE-MANIFEST-STANDARD-00 is design-only.",
+    "CONTROL-PACKAGE-REGISTRY-DESIGN-00 is design-only.",
+    "AI-RECEIPT-GATEWAY-LOCAL-INGRESS-PROTOTYPE-00 is live_bounded_local.",
+    "COMPLIANCE-READY-MVR-REPORT-LOCAL-PROTOTYPE-00 is live_bounded_local.",
+    "EU-AI-ACT-MVR-EVIDENCE-MAP-LOCAL-PROTOTYPE-00 is live_bounded_local.",
+    "SOURCE-CORPUS-PRICING-RELEASE-REPORTS-BATCH-2026-06-12-00 is design-only.",
+)
+PRODUCT_MATURITY_LABEL_TAXONOMY_DASHBOARD_SUMMARY = {
+    "taxonomy_status": "active_design_only", "policy_status": "active_design_only",
+    "maturity_labeling_enabled_for_docs": True, "maturity_labeling_enabled_for_runtime": False,
+    "maturity_labels": 9, "surface_types": 11, "initial_surface_profiles": 11,
+    "runtime_behavior_changed": False, "product_readiness_claimed": False, "product_release_performed": False,
+    "customer_entitlement_granted": False, "package_install_performed": False, "package_activation_performed": False,
+    "package_execution_performed": False, "payment_processing_performed": False, "subscription_billing_performed": False,
+    "marketplace_download_performed": False, "compliance_certification_emitted": False, "legal_advice_emitted": False,
+    "audit_pass_claimed": False, "attestation_success_claimed": False, "truth_certification_emitted": False,
+    "final_answer_authority_granted": False, "accepted_evidence_authority_granted": False, "memory_write_performed": False,
+    "atlas_memory_admission_performed": False, "trace_export_performed": False, "pmr_federation_performed": False,
+    "provider_runtime_performed": False, "network_call_performed": False,
+}
+PRODUCT_MATURITY_LABEL_TAXONOMY_COMMAND = "python -m pytest -q python/tests/product/test_product_maturity_label_taxonomy.py python/tests/integration/test_experiment_suite_registry.py"
+
+def product_maturity_label_taxonomy_doc() -> str:
+    labels = "\n".join(f"- {label}: {definition}" for label, definition in PRODUCT_MATURITY_LABEL_TAXONOMY_LABELS.items())
+    surfaces = "\n".join(f"- {surface}" for surface in PRODUCT_MATURITY_LABEL_TAXONOMY_SURFACE_TYPES)
+    profiles = "\n".join(f"- {phase} = {label}" for phase, label in PRODUCT_MATURITY_LABEL_TAXONOMY_INITIAL_SURFACE_PROFILES.items())
+    doctrine = "\n".join(f"- {phrase}" for phrase in PRODUCT_MATURITY_LABEL_TAXONOMY_DOCTRINE_LANGUAGE)
+    guardrails = "\n".join(f"- {guardrail}" for guardrail in PRODUCT_MATURITY_LABEL_TAXONOMY_GUARDRAILS)
+    blocked = "\n".join(f"- {claim}" for claim in PRODUCT_MATURITY_LABEL_TAXONOMY_BLOCKED_CLAIMS)
+    artifacts = "\n".join(f"- {artifact}" for artifact in PRODUCT_MATURITY_LABEL_TAXONOMY_ARTIFACTS)
+    relations = "\n".join(f"- {relation}" for relation in PRODUCT_MATURITY_LABEL_TAXONOMY_PRIOR_PHASE_RELATION)
+    return f"""# Product Maturity Label Taxonomy
+
+PRODUCT-MATURITY-LABEL-TAXONOMY-00 is a publication/dashboard synchronization for a locally validated, active_design_only taxonomy. It enables maturity labeling for docs and dashboard surfaces only; maturity_labeling_enabled_for_runtime = false. Maturity labels prevent design drift.
+
+## Dashboard summary
+
+- taxonomy_status = active_design_only
+- policy_status = active_design_only
+- maturity_labeling_enabled_for_docs = true
+- maturity_labeling_enabled_for_runtime = false
+- maturity_labels = 9
+- surface_types = 11
+- initial_surface_profiles = 11
+- runtime_behavior_changed = false
+- product_readiness_claimed = false
+- product_release_performed = false
+- customer_entitlement_granted = false
+- package_install_performed = false
+- package_activation_performed = false
+- package_execution_performed = false
+- payment_processing_performed = false
+- subscription_billing_performed = false
+- marketplace_download_performed = false
+- compliance_certification_emitted = false
+- legal_advice_emitted = false
+- audit_pass_claimed = false
+- attestation_success_claimed = false
+- truth_certification_emitted = false
+- final_answer_authority_granted = false
+- accepted_evidence_authority_granted = false
+- memory_write_performed = false
+- atlas_memory_admission_performed = false
+- trace_export_performed = false
+- pmr_federation_performed = false
+- provider_runtime_performed = false
+- network_call_performed = false
+
+## Maturity labels and definitions
+
+{labels}
+
+## Surface types
+
+{surfaces}
+
+## Initial surface profiles
+
+{profiles}
+
+## Doctrine language
+
+{doctrine}
+
+## Non-authority guardrails
+
+{guardrails}
+
+## Blocked claims
+
+Reject claims implying:
+
+{blocked}
+
+## Allowed claim
+
+{PRODUCT_MATURITY_LABEL_TAXONOMY_CLAIM_ALLOWED}
+
+## Relation to prior phases
+
+{relations}
+
+## Artifact references
+
+{artifacts}
+
+## Runtime authority boundary
+
+Publication sync grants no runtime authority. It does not imply runtime maturity labeling, product readiness, product release, customer entitlement, package installation, package activation, package execution, payment processing, subscription billing, marketplace download, compliance certification, legal advice, audit pass, attestation success, truth certification, memory write, Atlas admission, trace export, PMR federation, provider runtime, network calls, final-answer authority, accepted-evidence authority, model training, or review skipping.
+"""
+
+PRODUCT_MATURITY_LABEL_TAXONOMY_SYNC_DOCS = (
+    "index.md", "control-package-catalog-bundle-design.md", "control-package-install-simulation.md",
+    "control-package-registry-design.md", "control-package-manifest-standard.md",
+    "source-corpus-pricing-release-reports-batch-2026-06-12.md", "ai-receipt-gateway-local-ingress-prototype.md",
+    "compliance-ready-mvr-report-local-prototype.md", "eu-ai-act-mvr-evidence-map-local-prototype.md",
+    "claim-boundaries.md", "validation-tiering-provenance.md",
+)
+PRODUCT_MATURITY_LABEL_TAXONOMY_SYNC_NOTE = """
+
+## Product Maturity Label Taxonomy sync
+
+PRODUCT-MATURITY-LABEL-TAXONOMY-00 defines maturity labels for product surfaces. Maturity labels prevent design drift. A maturity label is not product readiness. A maturity label is not product release. A maturity label is not compliance certification. A maturity label is not audit pass. A maturity label is not customer entitlement. Live means locally implemented and validated for its bounded scope, not generally released. Near-ready means implementation is substantially complete but still requires review, polish, integration, or pilot evidence. Design-only means policy/config/docs/schemas/tests exist, but runtime behavior is not enabled. Simulation-only means behavior is rehearsed with fixtures or state-transition simulation, not performed for real. Future means intentionally planned but not implemented. Out-of-scope means intentionally excluded. Human review remains required. Authorized professional signoff remains required for compliance use. Publication sync grants no runtime authority.
+"""
+
 ACCEPTED_PHASES = [
+    {
+        "phase_id": "PRODUCT-MATURITY-LABEL-TAXONOMY-00",
+        "repo": "pdxvoiceteacher/CoherenceLattice",
+        "status": "accepted",
+        "evidence_type": "design_taxonomy_validation",
+        "product_posture": "active_design_only_publication_dashboard_sync_no_runtime_authority",
+        "primary_artifacts": list(PRODUCT_MATURITY_LABEL_TAXONOMY_ARTIFACTS),
+        "dashboard_summary": PRODUCT_MATURITY_LABEL_TAXONOMY_DASHBOARD_SUMMARY,
+        "reproduction_command_summary": PRODUCT_MATURITY_LABEL_TAXONOMY_COMMAND,
+        "claim_allowed": PRODUCT_MATURITY_LABEL_TAXONOMY_CLAIM_ALLOWED,
+        "claims_blocked": list(PRODUCT_MATURITY_LABEL_TAXONOMY_BLOCKED_CLAIMS),
+        "reviewer_caution": "PRODUCT-MATURITY-LABEL-TAXONOMY-00 is design-only publication/dashboard taxonomy sync. It grants no runtime maturity labeling, product readiness, product release, customer entitlement, package installation, package activation, package execution, payment processing, compliance certification, legal advice, audit pass, attestation success, truth certification, memory write, Atlas admission, trace export, PMR federation, provider runtime, network call, final-answer authority, accepted-evidence authority, model training, or review skipping.",
+        "publication_status": "dashboard_indexed",
+    },
     {
         "phase_id": "SONYA-ADAPTER-CONTRACT-REGISTRY-01",
         "repo": "pdxvoiceteacher/CoherenceLattice",
@@ -16970,6 +17190,7 @@ PLANNED_PHASES = [
     "Raw-model comparison baselines",
 ]
 BOUNDARIES = [
+    *PRODUCT_MATURITY_LABEL_TAXONOMY_GUARDRAILS,
     "Negative control is not authorization.",
     "LOCAL-REVIEW-RUNTIME-V0 is not product release.",
     "LOCAL-REVIEW-RUNTIME-V0 is not final answer authority.",
@@ -18723,6 +18944,8 @@ def dashboard_payload() -> dict[str, Any]:
         "blocked_phase_count": len(BLOCKED_PHASES),
         "planned_phase_count": len(PLANNED_PHASES),
         "accepted_phases": accepted_phases,
+        "product_maturity_label_taxonomy_00_indexed": True,
+        **{f"product_maturity_label_taxonomy_{k}": v for k, v in PRODUCT_MATURITY_LABEL_TAXONOMY_DASHBOARD_SUMMARY.items()},
         "partial_phases": PARTIAL_PHASES,
         "blocked_phases": BLOCKED_PHASES,
         "planned_phases": PLANNED_PHASES,
@@ -19638,6 +19861,7 @@ def reproducibility_index() -> dict[str, Any]:
                 {"name": "CONTROL-PACKAGE-INSTALL-SIMULATION-00 Python entrypoint", "command": CONTROL_PACKAGE_INSTALL_SIMULATION_COMMAND},
                 {"name": "CONTROL-PACKAGE-CATALOG-BUNDLE-DESIGN-00 design validation", "command": CONTROL_PACKAGE_CATALOG_BUNDLE_COMMAND},
                 {"name": "SOURCE-CORPUS-PRICING-RELEASE-REPORTS-BATCH-2026-06-12-00 source batch validation", "command": PRICING_RELEASE_REPORT_BATCH_COMMAND},
+                {"name": "PRODUCT-MATURITY-LABEL-TAXONOMY-00 design validation", "command": PRODUCT_MATURITY_LABEL_TAXONOMY_COMMAND},
                 {"name": "SOURCE-CORPUS-GATEWAY-REPORTS-BATCH-2026-06-10-00 source batch validation", "command": "python -m pytest -q python/tests/provenance/test_source_corpus_gateway_report_batch_20260610.py tests/test_experiment_registry.py"},
                 {"name": "WAVE-ROSETTA-CANONICAL-PROXY-BRIDGE-PROVENANCE-00 provenance validation", "command": COMPLIANCE_REPORT_DESIGN_COMMAND},
                 {"name": "Validation Tiering Provenance Python entrypoint", "command": VALIDATION_TIERING_PROVENANCE_COMMAND},
@@ -19788,6 +20012,8 @@ def status_payload() -> dict[str, Any]:
         "status": "draft_public_review",
         "claim_level": "public_reviewer_orientation",
         "accepted_phase_count": len(_accepted_phases()),
+        "product_maturity_label_taxonomy_00_indexed": True,
+        **{f"product_maturity_label_taxonomy_{k}": v for k, v in PRODUCT_MATURITY_LABEL_TAXONOMY_DASHBOARD_SUMMARY.items()},
         "latest_product_facing_receipt": "EVIDENCE-REVIEW-PACK-00",
         "latest_fixture_comparison": "RW-COMP-02",
         "latest_bounded_candidate_repair_cycle": "RETROSYNTHESIS-SANDBOX-CYCLE-01",
@@ -27922,6 +28148,7 @@ def build(out_dir: Path, docs_dir: Path) -> None:
     docs_payload["control-package-catalog-bundle-design.md"] = control_package_catalog_bundle_design_doc()
     docs_payload["source-corpus-pricing-release-reports-batch-2026-06-12.md"] = source_corpus_pricing_release_reports_batch_doc()
     docs_payload["source-corpus-pricing-release-reports-batch-schema-repair.md"] = source_corpus_pricing_release_reports_batch_schema_repair_doc()
+    docs_payload["product-maturity-label-taxonomy.md"] = product_maturity_label_taxonomy_doc()
     docs_payload["source-corpus-gateway-reports-batch-2026-06-10.md"] = source_corpus_gateway_reports_batch_doc()
     docs_payload["source-corpus-gateway-reports-batch-source-identity-repair.md"] = source_corpus_gateway_reports_batch_source_identity_repair_doc()
     docs_payload["compliance-report-presentation-standard.md"] = compliance_report_presentation_standard_doc()
@@ -27989,6 +28216,9 @@ def build(out_dir: Path, docs_dir: Path) -> None:
     for name in CATALOG_PRICING_RELEASE_SYNC_DOCS:
         if name in docs_payload:
             docs_payload[name] = docs_payload[name].rstrip() + CATALOG_PRICING_RELEASE_SYNC_NOTE
+    for name in PRODUCT_MATURITY_LABEL_TAXONOMY_SYNC_DOCS:
+        if name in docs_payload:
+            docs_payload[name] = docs_payload[name].rstrip() + PRODUCT_MATURITY_LABEL_TAXONOMY_SYNC_NOTE
     for name, text in docs_payload.items():
         _write_text(docs_dir / name, text)
 

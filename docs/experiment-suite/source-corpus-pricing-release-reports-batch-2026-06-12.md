@@ -109,3 +109,7 @@ CONTROL-PACKAGE-CATALOG-BUNDLE-DESIGN-00 groups packages into customer-facing bu
 - SOURCE-CORPUS-PRICING-RELEASE-REPORTS-BATCH-2026-06-12-00 preserves pricing/release strategy provenance.
 - SOURCE-CORPUS-PRICING-RELEASE-REPORTS-BATCH-SCHEMA-REPAIR-00 repairs schema validation for the source batch.
 - AI-RECEIPT-GATEWAY-LOCAL-INGRESS-PROTOTYPE-00 provides the local explicit-ingress prototype.
+
+## Product Maturity Label Taxonomy sync
+
+PRODUCT-MATURITY-LABEL-TAXONOMY-00 defines maturity labels for product surfaces. Maturity labels prevent design drift. A maturity label is not product readiness. A maturity label is not product release. A maturity label is not compliance certification. A maturity label is not audit pass. A maturity label is not customer entitlement. Live means locally implemented and validated for its bounded scope, not generally released. Near-ready means implementation is substantially complete but still requires review, polish, integration, or pilot evidence. Design-only means policy/config/docs/schemas/tests exist, but runtime behavior is not enabled. Simulation-only means behavior is rehearsed with fixtures or state-transition simulation, not performed for real. Future means intentionally planned but not implemented. Out-of-scope means intentionally excluded. Human review remains required. Authorized professional signoff remains required for compliance use. Publication sync grants no runtime authority.
