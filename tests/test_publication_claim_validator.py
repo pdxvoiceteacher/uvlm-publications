@@ -101,6 +101,18 @@ from tools.build_public_repro_dashboard import (
     PRODUCT_MATURITY_LABEL_TAXONOMY_GUARDRAILS,
     PRODUCT_MATURITY_LABEL_TAXONOMY_PRIOR_PHASE_RELATION,
     PRODUCT_MATURITY_LABEL_TAXONOMY_ARTIFACTS,
+    PRODUCT_READINESS_ROADMAP_BLOCKED_CLAIMS,
+    PRODUCT_READINESS_ROADMAP_CLAIM_ALLOWED,
+    PRODUCT_READINESS_ROADMAP_DASHBOARD_SUMMARY,
+    PRODUCT_READINESS_ROADMAP_MATRIX_ARTIFACTS,
+    PRODUCT_READINESS_ROADMAP_ROW_FIELDS,
+    PRODUCT_READINESS_ROADMAP_PRODUCT_LINES,
+    PRODUCT_READINESS_ROADMAP_ROWS,
+    PRODUCT_READINESS_ROADMAP_OPEN_GAPS,
+    PRODUCT_READINESS_ROADMAP_NEXT_VALIDATION_STEPS,
+    PRODUCT_READINESS_ROADMAP_DOCTRINE_LANGUAGE,
+    PRODUCT_READINESS_ROADMAP_GUARDRAILS,
+    PRODUCT_READINESS_ROADMAP_PRIOR_PHASE_RELATION,
     OBSERVATION_CONTRACT_POLICY_SIMULATION_CLAIM_ALLOWED,
 )
 from tools.validate_publication_claims import PAPER_CONFIGS, validate_publication_claims
@@ -5610,4 +5622,15 @@ def test_claim_validator_rejects_maturity_label_overclaims():
 def test_bounded_maturity_taxonomy_claim_is_allowed():
     normalized = PRODUCT_MATURITY_LABEL_TAXONOMY_CLAIM_ALLOWED.lower()
     for claim in PRODUCT_MATURITY_LABEL_TAXONOMY_BLOCKED_CLAIMS:
+        assert claim not in normalized
+
+
+def test_claim_validator_rejects_roadmap_matrix_overclaims():
+    for claim in PRODUCT_READINESS_ROADMAP_BLOCKED_CLAIMS:
+        assert claim in PAPER_CONFIGS["PUB-GOV-ARTIFACT-COG-01"]["forbidden_overclaims"]
+
+
+def test_bounded_roadmap_matrix_claim_is_allowed():
+    normalized = PRODUCT_READINESS_ROADMAP_CLAIM_ALLOWED.lower()
+    for claim in PRODUCT_READINESS_ROADMAP_BLOCKED_CLAIMS:
         assert claim not in normalized

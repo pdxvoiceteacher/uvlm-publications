@@ -168,3 +168,7 @@ PRODUCT-MATURITY-LABEL-TAXONOMY-00 defines a design-only maturity label taxonomy
 ## Runtime authority boundary
 
 Publication sync grants no runtime authority. It does not imply runtime maturity labeling, product readiness, product release, customer entitlement, package installation, package activation, package execution, payment processing, subscription billing, marketplace download, compliance certification, legal advice, audit pass, attestation success, truth certification, memory write, Atlas admission, trace export, PMR federation, provider runtime, network calls, final-answer authority, accepted-evidence authority, model training, or review skipping.
+
+## Product Readiness Roadmap Matrix sync
+
+PRODUCT-READINESS-ROADMAP-MATRIX-00 applies PRODUCT-MATURITY-LABEL-TAXONOMY-00 maturity labels to product roadmap rows. Roadmap matrix is planning evidence, not product readiness. Roadmap matrix is not product release. Roadmap matrix is not customer entitlement. Roadmap matrix is not compliance certification. Roadmap matrix is not audit pass. Live-bounded-local rows are locally validated for bounded scope only, not generally available. Design-only rows do not enable runtime behavior. Simulation-only rows rehearse behavior but do not perform real behavior. Future rows are not implemented. Out-of-scope rows are intentionally excluded. Human review remains required. Authorized professional signoff remains required for compliance use. Publication sync grants no runtime authority.

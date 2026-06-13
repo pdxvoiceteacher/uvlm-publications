@@ -942,6 +942,15 @@
       "reviewer quickstarts",
       "status.json files"
     ],
+    "PRODUCT-READINESS-ROADMAP-MATRIX-00": [
+      "docs/PRODUCT_READINESS_ROADMAP_MATRIX.md",
+      "config/product/product_readiness_roadmap_matrix.v1.json",
+      "config/product/product_maturity_label_taxonomy.v1.json",
+      "schema/bridge/product_readiness_roadmap_matrix.schema.json",
+      "schema/bridge/product_readiness_roadmap_row.schema.json",
+      "schema/bridge/product_readiness_roadmap_non_authority_boundary.schema.json",
+      "python/tests/product/test_product_readiness_roadmap_matrix.py"
+    ],
     "PRODUCT-MATURITY-LABEL-TAXONOMY-00": [
       "docs/PRODUCT_MATURITY_LABEL_TAXONOMY.md",
       "config/product/product_maturity_label_taxonomy.v1.json",

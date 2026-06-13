@@ -15921,7 +15921,239 @@ PRODUCT_MATURITY_LABEL_TAXONOMY_SYNC_NOTE = """
 PRODUCT-MATURITY-LABEL-TAXONOMY-00 defines maturity labels for product surfaces. Maturity labels prevent design drift. A maturity label is not product readiness. A maturity label is not product release. A maturity label is not compliance certification. A maturity label is not audit pass. A maturity label is not customer entitlement. Live means locally implemented and validated for its bounded scope, not generally released. Near-ready means implementation is substantially complete but still requires review, polish, integration, or pilot evidence. Design-only means policy/config/docs/schemas/tests exist, but runtime behavior is not enabled. Simulation-only means behavior is rehearsed with fixtures or state-transition simulation, not performed for real. Future means intentionally planned but not implemented. Out-of-scope means intentionally excluded. Human review remains required. Authorized professional signoff remains required for compliance use. Publication sync grants no runtime authority.
 """
 
+PRODUCT_READINESS_ROADMAP_MATRIX_ARTIFACTS = (
+    "docs/PRODUCT_READINESS_ROADMAP_MATRIX.md",
+    "config/product/product_readiness_roadmap_matrix.v1.json",
+    "config/product/product_maturity_label_taxonomy.v1.json",
+    "schema/bridge/product_readiness_roadmap_matrix.schema.json",
+    "schema/bridge/product_readiness_roadmap_row.schema.json",
+    "schema/bridge/product_readiness_roadmap_non_authority_boundary.schema.json",
+    "python/tests/product/test_product_readiness_roadmap_matrix.py",
+)
+PRODUCT_READINESS_ROADMAP_ROW_FIELDS = (
+    "row_id", "product_surface", "product_line", "surface_type", "current_maturity_label",
+    "target_maturity_label", "customer_value_summary", "validated_dependencies", "open_gaps",
+    "next_validation_steps", "evidence_refs", "publication_refs", "package_refs", "report_refs",
+    "required_human_review", "authorized_professional_signoff_required_for_compliance_use",
+    "non_authority_boundaries", "roadmap_notes",
+)
+PRODUCT_READINESS_ROADMAP_PRODUCT_LINES = (
+    "gateway_core", "mvr_receipt_core", "eu_ai_act_evidence_support", "compliance_ready_report_pack",
+    "control_package_ecosystem", "catalog_bundle_packaging", "source_corpus_provenance",
+    "human_review_signoff_workflow", "export_recall_forensic_dossier", "enterprise_adapter_future",
+    "marketplace_subscription_future",
+)
+PRODUCT_READINESS_ROADMAP_ROWS = {
+    "ai_receipt_gateway_local_ingress": "live_bounded_local",
+    "minimal_viable_receipt_core": "live_bounded_local",
+    "eu_ai_act_evidence_map_local_prototype": "live_bounded_local",
+    "compliance_ready_mvr_report_local_prototype": "live_bounded_local",
+    "control_package_manifest_standard": "design_only",
+    "control_package_registry_design": "design_only",
+    "control_package_install_simulation": "simulation_only",
+    "control_package_catalog_bundle_design": "design_only",
+    "pricing_release_source_corpus_provenance": "design_only",
+    "product_maturity_label_taxonomy": "design_only",
+    "human_review_signoff_workflow": "future_planned",
+    "export_recall_forensic_dossier": "near_ready_review_required",
+    "enterprise_adapter_suite": "future_planned",
+    "marketplace_subscription_system": "out_of_scope",
+}
+PRODUCT_READINESS_ROADMAP_OPEN_GAPS = (
+    "real customer pilot evidence", "security review", "privacy review", "accessibility review",
+    "performance review", "installer/onboarding", "human reviewer workflow", "export bundle polish",
+    "framework evidence pack expansion", "legal review", "pricing/packaging review", "support model",
+    "incident recovery workflow", "enterprise adapter design",
+)
+PRODUCT_READINESS_ROADMAP_NEXT_VALIDATION_STEPS = (
+    "AI-RECEIPT-GATEWAY-EXPLICIT-FILE-SMOKE-00",
+    "COMPLIANCE-REPORT-PRESENTATION-LOCAL-PROTOTYPE-00",
+    "HUMAN-REVIEW-SIGNOFF-WORKFLOW-DESIGN-00",
+    "AI-RECEIPT-EXPORT-BUNDLE-PROTOTYPE-00",
+    "PRODUCT-READINESS-REVIEW-PACKET-00",
+    "SECURITY-THREAT-MODEL-00",
+    "PRIVACY-DATA-PROTECTION-REVIEW-SUPPORT-00",
+    "ACCESSIBILITY-REVIEW-00",
+)
+PRODUCT_READINESS_ROADMAP_DOCTRINE_LANGUAGE = (
+    "Product Readiness Roadmap Matrix",
+    "Roadmap matrix is planning evidence, not product readiness.",
+    "Roadmap matrix is not product release.",
+    "Roadmap matrix is not customer entitlement.",
+    "Roadmap matrix is not compliance certification.",
+    "Roadmap matrix is not audit pass.",
+    "Roadmap maturity labels inherit PRODUCT-MATURITY-LABEL-TAXONOMY-00 boundaries.",
+    "Live-bounded-local rows are locally validated for bounded scope only, not generally available.",
+    "Design-only rows do not enable runtime behavior.",
+    "Simulation-only rows rehearse behavior but do not perform real behavior.",
+    "Future rows are not implemented.",
+    "Out-of-scope rows are intentionally excluded.",
+    "Human review remains required.",
+    "Authorized professional signoff remains required for compliance use.",
+)
+PRODUCT_READINESS_ROADMAP_GUARDRAILS = (
+    "roadmap_matrix_is_not_product_readiness", "roadmap_matrix_is_not_product_release",
+    "roadmap_matrix_is_not_customer_entitlement", "roadmap_matrix_is_not_package_installation",
+    "roadmap_matrix_is_not_package_activation", "roadmap_matrix_is_not_package_execution",
+    "roadmap_matrix_is_not_payment_processing", "roadmap_matrix_is_not_subscription_billing",
+    "roadmap_matrix_is_not_marketplace_download", "roadmap_matrix_is_not_compliance_certification",
+    "roadmap_matrix_is_not_legal_advice", "roadmap_matrix_is_not_audit_pass",
+    "roadmap_matrix_is_not_attestation_success", "roadmap_matrix_is_not_truth_certification",
+    "roadmap_matrix_is_not_final_answer_authority", "roadmap_matrix_is_not_accepted_evidence_authority",
+    "roadmap_matrix_does_not_write_memory", "roadmap_matrix_does_not_admit_atlas_memory",
+    "roadmap_matrix_does_not_export_traces", "roadmap_matrix_does_not_federate_pmr", "human_review_required",
+)
+PRODUCT_READINESS_ROADMAP_BLOCKED_CLAIMS = (
+    "roadmap matrix proves product readiness", "roadmap matrix releases product",
+    "roadmap matrix grants customer entitlement", "roadmap matrix installs packages",
+    "roadmap matrix activates packages", "roadmap matrix executes packages",
+    "roadmap matrix implements payment", "roadmap matrix implements subscription billing",
+    "roadmap matrix downloads from marketplace", "roadmap matrix certifies compliance",
+    "roadmap matrix provides legal advice", "roadmap matrix passes audit",
+    "roadmap matrix guarantees attestation success", "roadmap matrix certifies truth",
+    "roadmap matrix writes memory", "roadmap matrix admits Atlas memory",
+    "roadmap matrix exports traces", "roadmap matrix federates PMR",
+    "roadmap matrix grants accepted-evidence authority", "roadmap matrix authorizes final answers",
+    "roadmap matrix grants final-answer authority", "roadmap matrix is general availability",
+    "live_bounded_local row means general availability", "near_ready_review_required row means release ready",
+    "design_only row enables runtime", "simulation_only row performs real behavior",
+    "future_planned row is implemented", "out_of_scope row is included in product",
+)
+PRODUCT_READINESS_ROADMAP_CLAIM_ALLOWED = "PRODUCT-READINESS-ROADMAP-MATRIX-00 defines a design-only product roadmap matrix for Triadic Brain / UVLM product surfaces, using PRODUCT-MATURITY-LABEL-TAXONOMY-00 maturity labels to organize gateway core, MVR receipt core, EU AI Act evidence support, compliance-ready report pack, control package ecosystem, catalog bundle packaging, source-corpus provenance, human review/signoff workflow, export/recall forensic dossier, enterprise adapter future, and marketplace/subscription future rows while preserving that the roadmap is planning evidence only and does not claim product readiness, product release, customer entitlement, package installation, package activation, package execution, payment processing, subscription billing, marketplace download, compliance certification, legal advice, audit pass, attestation success, truth certification, memory write, Atlas admission, trace export, PMR federation, final-answer authority, or accepted-evidence authority."
+PRODUCT_READINESS_ROADMAP_PRIOR_PHASE_RELATION = (
+    "PRODUCT-MATURITY-LABEL-TAXONOMY-00 defines maturity labels for product surfaces.",
+    "PRODUCT-READINESS-ROADMAP-MATRIX-00 applies maturity labels to product roadmap rows.",
+    "AI-RECEIPT-GATEWAY-LOCAL-INGRESS-PROTOTYPE-00 is live_bounded_local.",
+    "MINIMAL-VIABLE-RECEIPT-LOCAL-PROTOTYPE-00 supports the MVR receipt core row.",
+    "EU-AI-ACT-MVR-EVIDENCE-MAP-LOCAL-PROTOTYPE-00 is live_bounded_local.",
+    "COMPLIANCE-READY-MVR-REPORT-LOCAL-PROTOTYPE-00 is live_bounded_local.",
+    "CONTROL-PACKAGE-MANIFEST-STANDARD-00 is design_only.",
+    "CONTROL-PACKAGE-REGISTRY-DESIGN-00 is design_only.",
+    "CONTROL-PACKAGE-INSTALL-SIMULATION-00 is simulation_only.",
+    "CONTROL-PACKAGE-CATALOG-BUNDLE-DESIGN-00 is design_only.",
+    "SOURCE-CORPUS-PRICING-RELEASE-REPORTS-BATCH-2026-06-12-00 is design_only.",
+)
+PRODUCT_READINESS_ROADMAP_DASHBOARD_SUMMARY = {
+    "matrix_status": "active_design_only", "policy_status": "active_design_only",
+    "roadmap_mode": "design_planning_matrix_only",
+    "maturity_taxonomy_ref": "config/product/product_maturity_label_taxonomy.v1.json",
+    "roadmap_rows": 14, "product_lines": 11, "required_open_gaps": 14,
+    "required_next_validation_steps": 8, "product_readiness_claimed": False,
+    "product_release_performed": False, "customer_entitlement_granted": False,
+    "package_install_performed": False, "package_activation_performed": False,
+    "package_execution_performed": False, "payment_processing_performed": False,
+    "subscription_billing_performed": False, "marketplace_download_performed": False,
+    "runtime_behavior_changed": False, "provider_runtime_performed": False,
+    "network_call_performed": False, "memory_write_performed": False,
+    "atlas_memory_admission_performed": False, "trace_export_performed": False,
+    "pmr_federation_performed": False, "compliance_certification_emitted": False,
+    "legal_advice_emitted": False, "audit_pass_claimed": False,
+    "attestation_success_claimed": False, "truth_certification_emitted": False,
+    "final_answer_authority_granted": False, "accepted_evidence_authority_granted": False,
+}
+PRODUCT_READINESS_ROADMAP_COMMAND = "python -m pytest -q python/tests/product/test_product_readiness_roadmap_matrix.py python/tests/product/test_product_maturity_label_taxonomy.py python/tests/product/test_control_package_install_simulation.py python/tests/integration/test_experiment_suite_registry.py"
+
+def product_readiness_roadmap_matrix_doc() -> str:
+    fields = "\n".join(f"- {field}" for field in PRODUCT_READINESS_ROADMAP_ROW_FIELDS)
+    product_lines = "\n".join(f"- {line}" for line in PRODUCT_READINESS_ROADMAP_PRODUCT_LINES)
+    rows = "\n".join(f"- {row} = {label}" for row, label in PRODUCT_READINESS_ROADMAP_ROWS.items())
+    gaps = "\n".join(f"- {gap}" for gap in PRODUCT_READINESS_ROADMAP_OPEN_GAPS)
+    steps = "\n".join(f"- {step}" for step in PRODUCT_READINESS_ROADMAP_NEXT_VALIDATION_STEPS)
+    doctrine = "\n".join(f"- {phrase}" for phrase in PRODUCT_READINESS_ROADMAP_DOCTRINE_LANGUAGE)
+    guardrails = "\n".join(f"- {guardrail}" for guardrail in PRODUCT_READINESS_ROADMAP_GUARDRAILS)
+    blocked = "\n".join(f"- {claim}" for claim in PRODUCT_READINESS_ROADMAP_BLOCKED_CLAIMS)
+    artifacts = "\n".join(f"- {artifact}" for artifact in PRODUCT_READINESS_ROADMAP_MATRIX_ARTIFACTS)
+    relations = "\n".join(f"- {relation}" for relation in PRODUCT_READINESS_ROADMAP_PRIOR_PHASE_RELATION)
+    summary = "\n".join(f"- {key} = {str(value).lower() if isinstance(value, bool) else value}" for key, value in PRODUCT_READINESS_ROADMAP_DASHBOARD_SUMMARY.items())
+    return f"""# Product Readiness Roadmap Matrix
+
+PRODUCT-READINESS-ROADMAP-MATRIX-00 is a publication/dashboard synchronization for a locally validated, active_design_only roadmap matrix. The roadmap_mode = design_planning_matrix_only. This roadmap matrix is planning evidence, not product readiness.
+
+## Dashboard summary
+
+{summary}
+
+## Roadmap row fields
+
+{fields}
+
+## Product lines
+
+{product_lines}
+
+## Roadmap rows and maturity labels
+
+{rows}
+
+## Required open gaps
+
+{gaps}
+
+## Required next validation steps
+
+{steps}
+
+## Doctrine language
+
+{doctrine}
+
+## Non-authority guardrails
+
+{guardrails}
+
+## Blocked claims
+
+Reject claims implying:
+
+{blocked}
+
+## Allowed claim
+
+{PRODUCT_READINESS_ROADMAP_CLAIM_ALLOWED}
+
+## Relation to prior phases
+
+{relations}
+
+## Artifact references
+
+{artifacts}
+
+## Runtime authority boundary
+
+Publication sync grants no runtime authority. It does not imply product readiness, product release, customer entitlement, package installation, package activation, package execution, payment processing, subscription billing, marketplace download, provider runtime, network calls, memory write, Atlas memory admission, trace export, PMR federation, compliance certification, legal advice, audit pass, attestation success, truth certification, final-answer authority, accepted-evidence authority, model training, or review skipping.
+"""
+
+PRODUCT_READINESS_ROADMAP_SYNC_DOCS = (
+    "index.md", "product-maturity-label-taxonomy.md", "control-package-catalog-bundle-design.md",
+    "control-package-install-simulation.md", "control-package-registry-design.md",
+    "control-package-manifest-standard.md", "ai-receipt-gateway-local-ingress-prototype.md",
+    "compliance-ready-mvr-report-local-prototype.md", "eu-ai-act-mvr-evidence-map-local-prototype.md",
+    "source-corpus-pricing-release-reports-batch-2026-06-12.md", "claim-boundaries.md",
+    "validation-tiering-provenance.md",
+)
+PRODUCT_READINESS_ROADMAP_SYNC_NOTE = """
+
+## Product Readiness Roadmap Matrix sync
+
+PRODUCT-READINESS-ROADMAP-MATRIX-00 applies PRODUCT-MATURITY-LABEL-TAXONOMY-00 maturity labels to product roadmap rows. Roadmap matrix is planning evidence, not product readiness. Roadmap matrix is not product release. Roadmap matrix is not customer entitlement. Roadmap matrix is not compliance certification. Roadmap matrix is not audit pass. Live-bounded-local rows are locally validated for bounded scope only, not generally available. Design-only rows do not enable runtime behavior. Simulation-only rows rehearse behavior but do not perform real behavior. Future rows are not implemented. Out-of-scope rows are intentionally excluded. Human review remains required. Authorized professional signoff remains required for compliance use. Publication sync grants no runtime authority.
+"""
+
 ACCEPTED_PHASES = [
+    {
+        "phase_id": "PRODUCT-READINESS-ROADMAP-MATRIX-00",
+        "repo": "pdxvoiceteacher/CoherenceLattice",
+        "status": "accepted",
+        "evidence_type": "design_planning_matrix_validation",
+        "product_posture": "active_design_only_roadmap_matrix_no_runtime_authority",
+        "primary_artifacts": list(PRODUCT_READINESS_ROADMAP_MATRIX_ARTIFACTS),
+        "dashboard_summary": PRODUCT_READINESS_ROADMAP_DASHBOARD_SUMMARY,
+        "reproduction_command_summary": PRODUCT_READINESS_ROADMAP_COMMAND,
+        "claim_allowed": PRODUCT_READINESS_ROADMAP_CLAIM_ALLOWED,
+        "claims_blocked": list(PRODUCT_READINESS_ROADMAP_BLOCKED_CLAIMS),
+        "reviewer_caution": "PRODUCT-READINESS-ROADMAP-MATRIX-00 is design-only publication/dashboard roadmap sync. It is planning evidence only and grants no product readiness, product release, customer entitlement, package installation, package activation, package execution, payment processing, subscription billing, marketplace download, provider runtime, network call, memory write, Atlas admission, trace export, PMR federation, compliance certification, legal advice, audit pass, attestation success, truth certification, final-answer authority, accepted-evidence authority, model training, or review skipping.",
+        "publication_status": "dashboard_indexed",
+    },
     {
         "phase_id": "PRODUCT-MATURITY-LABEL-TAXONOMY-00",
         "repo": "pdxvoiceteacher/CoherenceLattice",
@@ -17191,6 +17423,7 @@ PLANNED_PHASES = [
 ]
 BOUNDARIES = [
     *PRODUCT_MATURITY_LABEL_TAXONOMY_GUARDRAILS,
+    *PRODUCT_READINESS_ROADMAP_GUARDRAILS,
     "Negative control is not authorization.",
     "LOCAL-REVIEW-RUNTIME-V0 is not product release.",
     "LOCAL-REVIEW-RUNTIME-V0 is not final answer authority.",
@@ -18946,6 +19179,10 @@ def dashboard_payload() -> dict[str, Any]:
         "accepted_phases": accepted_phases,
         "product_maturity_label_taxonomy_00_indexed": True,
         **{f"product_maturity_label_taxonomy_{k}": v for k, v in PRODUCT_MATURITY_LABEL_TAXONOMY_DASHBOARD_SUMMARY.items()},
+        "product_readiness_roadmap_matrix_00_indexed": True,
+        **{f"product_readiness_roadmap_matrix_{k}": v for k, v in PRODUCT_READINESS_ROADMAP_DASHBOARD_SUMMARY.items()},
+        "product_readiness_roadmap_matrix_00_indexed": True,
+        **{f"product_readiness_roadmap_matrix_{k}": v for k, v in PRODUCT_READINESS_ROADMAP_DASHBOARD_SUMMARY.items()},
         "partial_phases": PARTIAL_PHASES,
         "blocked_phases": BLOCKED_PHASES,
         "planned_phases": PLANNED_PHASES,
@@ -19862,6 +20099,7 @@ def reproducibility_index() -> dict[str, Any]:
                 {"name": "CONTROL-PACKAGE-CATALOG-BUNDLE-DESIGN-00 design validation", "command": CONTROL_PACKAGE_CATALOG_BUNDLE_COMMAND},
                 {"name": "SOURCE-CORPUS-PRICING-RELEASE-REPORTS-BATCH-2026-06-12-00 source batch validation", "command": PRICING_RELEASE_REPORT_BATCH_COMMAND},
                 {"name": "PRODUCT-MATURITY-LABEL-TAXONOMY-00 design validation", "command": PRODUCT_MATURITY_LABEL_TAXONOMY_COMMAND},
+                {"name": "PRODUCT-READINESS-ROADMAP-MATRIX-00 design validation", "command": PRODUCT_READINESS_ROADMAP_COMMAND},
                 {"name": "SOURCE-CORPUS-GATEWAY-REPORTS-BATCH-2026-06-10-00 source batch validation", "command": "python -m pytest -q python/tests/provenance/test_source_corpus_gateway_report_batch_20260610.py tests/test_experiment_registry.py"},
                 {"name": "WAVE-ROSETTA-CANONICAL-PROXY-BRIDGE-PROVENANCE-00 provenance validation", "command": COMPLIANCE_REPORT_DESIGN_COMMAND},
                 {"name": "Validation Tiering Provenance Python entrypoint", "command": VALIDATION_TIERING_PROVENANCE_COMMAND},
@@ -28149,6 +28387,7 @@ def build(out_dir: Path, docs_dir: Path) -> None:
     docs_payload["source-corpus-pricing-release-reports-batch-2026-06-12.md"] = source_corpus_pricing_release_reports_batch_doc()
     docs_payload["source-corpus-pricing-release-reports-batch-schema-repair.md"] = source_corpus_pricing_release_reports_batch_schema_repair_doc()
     docs_payload["product-maturity-label-taxonomy.md"] = product_maturity_label_taxonomy_doc()
+    docs_payload["product-readiness-roadmap-matrix.md"] = product_readiness_roadmap_matrix_doc()
     docs_payload["source-corpus-gateway-reports-batch-2026-06-10.md"] = source_corpus_gateway_reports_batch_doc()
     docs_payload["source-corpus-gateway-reports-batch-source-identity-repair.md"] = source_corpus_gateway_reports_batch_source_identity_repair_doc()
     docs_payload["compliance-report-presentation-standard.md"] = compliance_report_presentation_standard_doc()
@@ -28216,6 +28455,9 @@ def build(out_dir: Path, docs_dir: Path) -> None:
     for name in CATALOG_PRICING_RELEASE_SYNC_DOCS:
         if name in docs_payload:
             docs_payload[name] = docs_payload[name].rstrip() + CATALOG_PRICING_RELEASE_SYNC_NOTE
+    for name in PRODUCT_READINESS_ROADMAP_SYNC_DOCS:
+        if name in docs_payload:
+            docs_payload[name] = docs_payload[name].rstrip() + PRODUCT_READINESS_ROADMAP_SYNC_NOTE
     for name in PRODUCT_MATURITY_LABEL_TAXONOMY_SYNC_DOCS:
         if name in docs_payload:
             docs_payload[name] = docs_payload[name].rstrip() + PRODUCT_MATURITY_LABEL_TAXONOMY_SYNC_NOTE
