@@ -52,6 +52,25 @@ from tools.build_public_repro_dashboard import (
     COMPLIANCE_READY_MVR_REPORT_LOCAL_PROTOTYPE_CLAIM_ALLOWED,
     SOURCE_CORPUS_PROVENANCE_ARCHIVE_CLAIM_ALLOWED,
     SOURCE_CORPUS_PROVENANCE_HASH_FILL_CLAIM_ALLOWED,
+    SOURCE_CORPUS_BATCH_MANIFEST_CLAIM_ALLOWED,
+    AI_RECEIPT_GATEWAY_SCOPE_SIMULATION_CLAIM_ALLOWED,
+    AI_RECEIPT_GATEWAY_LOCAL_INGRESS_BLOCKED_CLAIMS,
+    AI_RECEIPT_GATEWAY_LOCAL_INGRESS_CLAIM_ALLOWED,
+    CONTROL_PACKAGE_BLOCKED_CLAIMS,
+    CONTROL_PACKAGE_ENV_ISOLATION_REPAIR_CLAIM_ALLOWED,
+    CONTROL_PACKAGE_MANIFEST_CLAIM_ALLOWED,
+    CONTROL_PACKAGE_REGISTRY_BLOCKED_CLAIMS,
+    CONTROL_PACKAGE_REGISTRY_CLAIM_ALLOWED,
+    CONTROL_PACKAGE_INSTALL_SIMULATION_BLOCKED_CLAIMS,
+    CONTROL_PACKAGE_INSTALL_SIMULATION_CLAIM_ALLOWED,
+    CONTROL_PACKAGE_CATALOG_BUNDLE_BLOCKED_CLAIMS,
+    CONTROL_PACKAGE_CATALOG_BUNDLE_CLAIM_ALLOWED,
+    PRICING_RELEASE_BLOCKED_CLAIMS,
+    PRICING_RELEASE_CLAIM_ALLOWED,
+    PRICING_RELEASE_SCHEMA_REPAIR_CLAIM_ALLOWED,
+    GATEWAY_SCOPE_SOURCE_CORPUS_BLOCKED_CLAIMS,
+    SOURCE_CORPUS_GATEWAY_REPORT_BATCH_CLAIM_ALLOWED,
+    SOURCE_CORPUS_GATEWAY_REPORT_SOURCE_IDENTITY_REPAIR_CLAIM_ALLOWED,
     VALIDATION_TIERING_PROVENANCE_BLOCKED_CLAIMS,
     VALIDATION_TIERING_PROVENANCE_CLAIM_ALLOWED,
     TELEMETRY_APERTURE_BLOCKED_CLAIMS,
@@ -5433,3 +5452,140 @@ def test_publication_claim_validator_allows_bounded_source_corpus_hash_fill_clai
     _write_minimal_publication_claim_fixture(paper_root, SOURCE_CORPUS_PROVENANCE_HASH_FILL_CLAIM_ALLOWED)
     result = validate_publication_claims(paper_root / "PUB_GOV_ARTIFACT_COG_01.md")
     assert result["forbidden_overclaims_found"] == []
+
+
+def test_publication_claim_validator_rejects_source_corpus_batch_overclaims(tmp_path):
+    for claim in COMPLIANCE_REPORT_SOURCE_CORPUS_BLOCKED_CLAIMS:
+        paper_root = tmp_path / claim.replace(" ", "_").replace("/", "_")
+        _write_minimal_publication_claim_fixture(paper_root, f"Source corpus batch sync claims {claim}.")
+        result = validate_publication_claims(paper_root / "PUB_GOV_ARTIFACT_COG_01.md")
+        assert result["forbidden_overclaims_found"], claim
+
+
+def test_publication_claim_validator_allows_bounded_source_corpus_batch_claim(tmp_path):
+    paper_root = tmp_path / "paper"
+    _write_minimal_publication_claim_fixture(paper_root, SOURCE_CORPUS_BATCH_MANIFEST_CLAIM_ALLOWED)
+    result = validate_publication_claims(paper_root / "PUB_GOV_ARTIFACT_COG_01.md")
+    assert result["forbidden_overclaims_found"] == []
+
+
+def test_publication_claim_validator_rejects_gateway_scope_and_source_corpus_overclaims(tmp_path):
+    for claim in GATEWAY_SCOPE_SOURCE_CORPUS_BLOCKED_CLAIMS:
+        paper_root = tmp_path / claim.replace(" ", "_").replace("/", "_")
+        _write_minimal_publication_claim_fixture(paper_root, f"Gateway scope source-corpus sync claims {claim}.")
+        result = validate_publication_claims(paper_root / "PUB_GOV_ARTIFACT_COG_01.md")
+        assert result["forbidden_overclaims_found"], claim
+
+
+def test_publication_claim_validator_allows_bounded_gateway_scope_claim(tmp_path):
+    paper_root = tmp_path / "paper"
+    _write_minimal_publication_claim_fixture(paper_root, AI_RECEIPT_GATEWAY_SCOPE_SIMULATION_CLAIM_ALLOWED)
+    result = validate_publication_claims(paper_root / "PUB_GOV_ARTIFACT_COG_01.md")
+    assert result["forbidden_overclaims_found"] == []
+
+
+def test_publication_claim_validator_allows_bounded_gateway_source_corpus_claims(tmp_path):
+    for claim in (
+        SOURCE_CORPUS_GATEWAY_REPORT_BATCH_CLAIM_ALLOWED,
+        SOURCE_CORPUS_GATEWAY_REPORT_SOURCE_IDENTITY_REPAIR_CLAIM_ALLOWED,
+    ):
+        paper_root = tmp_path / claim[:32].replace(" ", "_").replace("/", "_")
+        _write_minimal_publication_claim_fixture(paper_root, claim)
+        result = validate_publication_claims(paper_root / "PUB_GOV_ARTIFACT_COG_01.md")
+        assert result["forbidden_overclaims_found"] == []
+
+
+def test_publication_claim_validator_rejects_gateway_local_ingress_overclaims(tmp_path):
+    for claim in AI_RECEIPT_GATEWAY_LOCAL_INGRESS_BLOCKED_CLAIMS:
+        paper_root = tmp_path / claim.replace(" ", "_").replace("/", "_")
+        _write_minimal_publication_claim_fixture(paper_root, f"Local ingress sync claims {claim}.")
+        result = validate_publication_claims(paper_root / "PUB_GOV_ARTIFACT_COG_01.md")
+        assert result["forbidden_overclaims_found"], claim
+
+
+def test_publication_claim_validator_allows_bounded_gateway_local_ingress_claim(tmp_path):
+    paper_root = tmp_path / "paper"
+    _write_minimal_publication_claim_fixture(paper_root, AI_RECEIPT_GATEWAY_LOCAL_INGRESS_CLAIM_ALLOWED)
+    result = validate_publication_claims(paper_root / "PUB_GOV_ARTIFACT_COG_01.md")
+    assert result["forbidden_overclaims_found"] == []
+
+
+
+def test_publication_claim_validator_rejects_control_package_overclaims(tmp_path):
+    for claim in CONTROL_PACKAGE_BLOCKED_CLAIMS:
+        paper_root = tmp_path / claim.replace(" ", "_").replace("/", "_")
+        _write_minimal_publication_claim_fixture(paper_root, f"Control package sync claims {claim}.")
+        result = validate_publication_claims(paper_root / "PUB_GOV_ARTIFACT_COG_01.md")
+        assert result["forbidden_overclaims_found"], claim
+
+
+def test_publication_claim_validator_allows_bounded_control_package_claims(tmp_path):
+    for claim in (
+        CONTROL_PACKAGE_MANIFEST_CLAIM_ALLOWED,
+        CONTROL_PACKAGE_ENV_ISOLATION_REPAIR_CLAIM_ALLOWED,
+    ):
+        paper_root = tmp_path / claim[:32].replace(" ", "_").replace("/", "_")
+        _write_minimal_publication_claim_fixture(paper_root, claim)
+        result = validate_publication_claims(paper_root / "PUB_GOV_ARTIFACT_COG_01.md")
+        assert result["forbidden_overclaims_found"] == []
+
+
+
+def test_publication_claim_validator_rejects_control_package_registry_overclaims(tmp_path):
+    for claim in CONTROL_PACKAGE_REGISTRY_BLOCKED_CLAIMS:
+        paper_root = tmp_path / claim.replace(" ", "_").replace("/", "_")
+        _write_minimal_publication_claim_fixture(paper_root, f"Control package registry sync claims {claim}.")
+        result = validate_publication_claims(paper_root / "PUB_GOV_ARTIFACT_COG_01.md")
+        assert result["forbidden_overclaims_found"], claim
+
+
+def test_publication_claim_validator_allows_bounded_control_package_registry_claim(tmp_path):
+    paper_root = tmp_path / "paper"
+    _write_minimal_publication_claim_fixture(paper_root, CONTROL_PACKAGE_REGISTRY_CLAIM_ALLOWED)
+    result = validate_publication_claims(paper_root / "PUB_GOV_ARTIFACT_COG_01.md")
+    assert result["forbidden_overclaims_found"] == []
+
+
+
+def test_publication_claim_validator_rejects_control_package_install_simulation_overclaims(tmp_path):
+    for claim in CONTROL_PACKAGE_INSTALL_SIMULATION_BLOCKED_CLAIMS:
+        paper_root = tmp_path / claim.replace(" ", "_").replace("/", "_")
+        _write_minimal_publication_claim_fixture(paper_root, f"Control package install simulation sync claims {claim}.")
+        result = validate_publication_claims(paper_root / "PUB_GOV_ARTIFACT_COG_01.md")
+        assert result["forbidden_overclaims_found"], claim
+
+
+def test_publication_claim_validator_allows_bounded_control_package_install_simulation_claim(tmp_path):
+    paper_root = tmp_path / "paper"
+    _write_minimal_publication_claim_fixture(paper_root, CONTROL_PACKAGE_INSTALL_SIMULATION_CLAIM_ALLOWED)
+    result = validate_publication_claims(paper_root / "PUB_GOV_ARTIFACT_COG_01.md")
+    assert result["forbidden_overclaims_found"] == []
+
+
+
+def test_publication_claim_validator_rejects_catalog_bundle_overclaims(tmp_path):
+    for claim in CONTROL_PACKAGE_CATALOG_BUNDLE_BLOCKED_CLAIMS:
+        paper_root = tmp_path / claim.replace(" ", "_").replace("/", "_")
+        _write_minimal_publication_claim_fixture(paper_root, f"Control package catalog bundle sync claims {claim}.")
+        result = validate_publication_claims(paper_root / "PUB_GOV_ARTIFACT_COG_01.md")
+        assert result["forbidden_overclaims_found"], claim
+
+
+def test_publication_claim_validator_rejects_pricing_release_overclaims(tmp_path):
+    for claim in PRICING_RELEASE_BLOCKED_CLAIMS:
+        paper_root = tmp_path / claim.replace(" ", "_").replace("/", "_")
+        _write_minimal_publication_claim_fixture(paper_root, f"Pricing release source sync claims {claim}.")
+        result = validate_publication_claims(paper_root / "PUB_GOV_ARTIFACT_COG_01.md")
+        assert result["forbidden_overclaims_found"], claim
+
+
+def test_publication_claim_validator_allows_bounded_catalog_pricing_claims(tmp_path):
+    for claim in (
+        CONTROL_PACKAGE_CATALOG_BUNDLE_CLAIM_ALLOWED,
+        PRICING_RELEASE_CLAIM_ALLOWED,
+        PRICING_RELEASE_SCHEMA_REPAIR_CLAIM_ALLOWED,
+    ):
+        paper_root = tmp_path / claim[:32].replace(" ", "_").replace("/", "_")
+        _write_minimal_publication_claim_fixture(paper_root, claim)
+        result = validate_publication_claims(paper_root / "PUB_GOV_ARTIFACT_COG_01.md")
+        assert result["forbidden_overclaims_found"] == []
