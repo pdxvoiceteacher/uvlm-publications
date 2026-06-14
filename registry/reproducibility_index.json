@@ -287,6 +287,18 @@
         "command": "python -m pytest -q python/tests/provenance/test_source_corpus_pricing_release_report_batch_20260612.py tests/test_experiment_registry.py"
       },
       {
+        "name": "PRODUCT-MATURITY-LABEL-TAXONOMY-00 design validation",
+        "command": "python -m pytest -q python/tests/product/test_product_maturity_label_taxonomy.py python/tests/integration/test_experiment_suite_registry.py"
+      },
+      {
+        "name": "PRODUCT-READINESS-ROADMAP-MATRIX-00 design validation",
+        "command": "python -m pytest -q python/tests/product/test_product_readiness_roadmap_matrix.py python/tests/product/test_product_maturity_label_taxonomy.py python/tests/product/test_control_package_install_simulation.py python/tests/integration/test_experiment_suite_registry.py"
+      },
+      {
+        "name": "AEGIS admission and risk taxonomy stack validation",
+        "command": "python -m pytest -q python/tests/provenance/test_source_corpus_aegis_implementation_report_batch_20260613.py python/tests/aegis/test_aegis_admission_contract.py python/tests/provenance/test_source_corpus_taxonomy_stack_threat_standards_batch_20260613.py python/tests/product/test_enterprise_ai_risk_taxonomy_stack_design.py python/tests/integration/test_experiment_suite_registry.py"
+      },
+      {
         "name": "SOURCE-CORPUS-GATEWAY-REPORTS-BATCH-2026-06-10-00 source batch validation",
         "command": "python -m pytest -q python/tests/provenance/test_source_corpus_gateway_report_batch_20260610.py tests/test_experiment_registry.py"
       },
