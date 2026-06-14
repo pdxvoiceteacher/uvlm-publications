@@ -221,3 +221,7 @@ PRODUCT-READINESS-ROADMAP-MATRIX-00 defines a design-only product roadmap matrix
 ## Runtime authority boundary
 
 Publication sync grants no runtime authority. It does not imply product readiness, product release, customer entitlement, package installation, package activation, package execution, payment processing, subscription billing, marketplace download, provider runtime, network calls, memory write, Atlas memory admission, trace export, PMR federation, compliance certification, legal advice, audit pass, attestation success, truth certification, final-answer authority, accepted-evidence authority, model training, or review skipping.
+
+## AEGIS admission and Enterprise AI Risk Taxonomy sync
+
+SOURCE-CORPUS-AEGIS-IMPLEMENTATION-REPORTS-BATCH-2026-06-13-00 and SOURCE-CORPUS-TAXONOMY-STACK-THREAT-STANDARDS-BATCH-2026-06-13-00 preserve hash-only source provenance. AEGIS-ADMISSION-CONTRACT-00 provides deterministic admission decisions before downstream RequestEnvelope flow. ENTERPRISE-AI-RISK-TAXONOMY-STACK-DESIGN-00 maps the canonical AI Work Event / Receipt spine into risk views and emits evidence-support structure only. Publication sync grants no runtime authority, live SaaS operation, provider runtime, network calls, memory writes, Atlas admission, trace export, PMR federation, package execution, product readiness, product release, compliance certification, legal advice, audit pass, truth certification, final-answer authority, or accepted-evidence authority.

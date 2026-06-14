@@ -1,5 +1,35 @@
 # Claim Boundaries
 
+- aegis_admission_is_not_truth_certification
+- aegis_admission_is_not_memory_write_authorization
+- aegis_admission_is_not_deployment_authority
+- aegis_admission_is_not_compliance_certification
+- aegis_admission_is_not_legal_advice
+- aegis_admission_is_not_audit_pass
+- aegis_admission_is_not_attestation_success
+- aegis_admission_is_not_product_release
+- aegis_admission_is_not_product_readiness
+- aegis_admission_is_not_final_answer_authority
+- aegis_admission_is_not_accepted_evidence_authority
+- aegis_admission_does_not_write_memory
+- aegis_admission_does_not_admit_atlas_memory
+- aegis_admission_does_not_export_traces
+- aegis_admission_does_not_federate_pmr
+- risk_taxonomy_is_not_compliance_certification
+- risk_taxonomy_is_not_legal_advice
+- risk_taxonomy_is_not_audit_pass
+- risk_taxonomy_is_not_attestation_success
+- risk_taxonomy_is_not_product_readiness
+- risk_taxonomy_is_not_product_release
+- risk_taxonomy_is_not_truth_certification
+- risk_taxonomy_is_not_final_answer_authority
+- risk_taxonomy_is_not_accepted_evidence_authority
+- risk_taxonomy_does_not_write_memory
+- risk_taxonomy_does_not_admit_atlas_memory
+- risk_taxonomy_does_not_export_traces
+- risk_taxonomy_does_not_federate_pmr
+- human_review_required
+- professional_review_required_for_compliance_use
 - maturity_label_is_not_product_readiness
 - maturity_label_is_not_product_release
 - maturity_label_is_not_compliance_certification
@@ -5788,6 +5818,10 @@ Source corpus doctrine: Source Corpus Provenance Archive; June 2026 Source Corpu
 Source corpus manifest terms: active_governed_provenance_manifest, source_corpus_batch_20260610, active_hash_only_provenance_manifest, one_canonical_row_per_unique_sha256, raw_sha256, hash_only_public_reference, canonical_repo_state_supersedes_report, source_is_not_accepted_evidence, source_is_not_theorem_proof, source_is_not_product_release, source_is_not_product_readiness, source_is_not_compliance_certification, source_is_not_legal_advice, source_is_not_memory_write, source_is_not_atlas_memory_admission, summary_is_not_source, human_review_required, public_release_approved = false. Source report filenames: GUFT discussion with Thomas and Apprentice 6_8_2026_842AM.docx, GUFT METRICS BRIDGE DISCUSSION 6_9_2026_1022AM.docx, wave_rosetta_canonical_proxy_bridge_scientific_review_20260609.md, EU AI Act Reporting Formats and Short-Term Product Strategy for UVLM Triadic Brain.docx, EU AI Act Aligned Reporting Architecture for Triadic Brain Product Lines.docx. Source hashes: 2f49da190fcf5e3a04330f53bd9e6d30228c0a999cdabf8be2e94e957e6dfb09, 9eaba6d5a49de7d09542b3e879cbb9eb936181a37e660b3434a5e31e110ccfe6, 21045f07f5e2122db9714741a418f582cb87b6d004f6c66f4a63d4b6b7e77fd6, 9140a5dad410be3f38bcb933b6c360537957d0ce1d4b5ea0d259941eaa3c581e, 94703c4678eccd407adb9009b34d2b178ab6ab18ee20b6df22d9407eda50dde1.
 
 Publication sync grants no runtime authority. It does not imply compliance certification, legal advice, audit pass, attestation success, product readiness, product release, truth certification, final-answer authority, accepted-evidence authority, memory write, Atlas memory admission, trace export, PMR federation, provider runtime, network runtime, model training, review skipping, user validation, human-subject study, market validation, human benefit proof, theorem proof, GUFT proof, consciousness proof, or universal ontology proof.
+
+## AEGIS admission and Enterprise AI Risk Taxonomy sync
+
+SOURCE-CORPUS-AEGIS-IMPLEMENTATION-REPORTS-BATCH-2026-06-13-00 and SOURCE-CORPUS-TAXONOMY-STACK-THREAT-STANDARDS-BATCH-2026-06-13-00 preserve hash-only source provenance. AEGIS-ADMISSION-CONTRACT-00 provides deterministic admission decisions before downstream RequestEnvelope flow. ENTERPRISE-AI-RISK-TAXONOMY-STACK-DESIGN-00 maps the canonical AI Work Event / Receipt spine into risk views and emits evidence-support structure only. Publication sync grants no runtime authority, live SaaS operation, provider runtime, network calls, memory writes, Atlas admission, trace export, PMR federation, package execution, product readiness, product release, compliance certification, legal advice, audit pass, truth certification, final-answer authority, or accepted-evidence authority.
 
 ## Product Readiness Roadmap Matrix sync
 

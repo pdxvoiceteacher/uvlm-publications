@@ -942,6 +942,50 @@
       "reviewer quickstarts",
       "status.json files"
     ],
+    "SOURCE-CORPUS-AEGIS-IMPLEMENTATION-REPORTS-BATCH-2026-06-13-00": [
+      "docs/provenance/source_reports/2026-06/aegis_implementation_report_batch_20260613.json",
+      "docs/provenance/source_reports/2026-06/aegis_implementation_report_batch_aliases_20260613.json",
+      "docs/provenance/source_reports/2026-06/aegis_implementation_report_batch_sha256sums_20260613.txt",
+      "docs/provenance/source_reports/2026-06/aegis_implementation_report_batch_summary_20260613.md",
+      "schema/bridge/source_corpus_aegis_implementation_report_batch.schema.json",
+      "python/tests/provenance/test_source_corpus_aegis_implementation_report_batch_20260613.py"
+    ],
+    "AEGIS-ADMISSION-CONTRACT-00": [
+      "docs/AEGIS_ADMISSION_CONTRACT.md",
+      "python/src/coherence/aegis/__init__.py",
+      "python/src/coherence/aegis/types.py",
+      "python/src/coherence/aegis/policy.py",
+      "python/src/coherence/aegis/admission.py",
+      "python/src/coherence/aegis/failure_receipt.py",
+      "schema/bridge/aegis_admission_packet.schema.json",
+      "schema/bridge/aegis_failure_receipt.schema.json",
+      "schema/bridge/aegis_admission_non_authority_boundary.schema.json",
+      "python/tests/aegis/test_aegis_admission_contract.py"
+    ],
+    "SOURCE-CORPUS-TAXONOMY-STACK-THREAT-STANDARDS-BATCH-2026-06-13-00": [
+      "docs/provenance/source_reports/2026-06/taxonomy_stack_threat_standards_batch_20260613.json",
+      "docs/provenance/source_reports/2026-06/taxonomy_stack_threat_standards_batch_aliases_20260613.json",
+      "docs/provenance/source_reports/2026-06/taxonomy_stack_threat_standards_batch_sha256sums_20260613.txt",
+      "docs/provenance/source_reports/2026-06/taxonomy_stack_threat_standards_batch_summary_20260613.md",
+      "schema/bridge/source_corpus_taxonomy_stack_threat_standards_batch.schema.json",
+      "python/tests/provenance/test_source_corpus_taxonomy_stack_threat_standards_batch_20260613.py"
+    ],
+    "SOURCE-CORPUS-TAXONOMY-STACK-THREAT-STANDARDS-BATCH-ROOT-MANIFEST-REPAIR-00": [
+      "docs/provenance/source_reports/manifest.json",
+      "taxonomy_stack_threat_standards_batch_20260613",
+      "docs/provenance/source_reports/2026-06/taxonomy_stack_threat_standards_batch_20260613.json",
+      "docs/provenance/source_reports/2026-06/taxonomy_stack_threat_standards_batch_sha256sums_20260613.txt",
+      "docs/provenance/source_reports/2026-06/taxonomy_stack_threat_standards_batch_summary_20260613.md",
+      "docs/provenance/source_reports/2026-06/taxonomy_stack_threat_standards_batch_aliases_20260613.json"
+    ],
+    "ENTERPRISE-AI-RISK-TAXONOMY-STACK-DESIGN-00": [
+      "docs/ENTERPRISE_AI_RISK_TAXONOMY_STACK_DESIGN.md",
+      "config/risk/enterprise_ai_risk_taxonomy_stack.v1.json",
+      "schema/bridge/enterprise_ai_risk_taxonomy_stack.schema.json",
+      "schema/bridge/enterprise_ai_risk_register_entry.schema.json",
+      "schema/bridge/enterprise_ai_risk_non_authority_boundary.schema.json",
+      "python/tests/product/test_enterprise_ai_risk_taxonomy_stack_design.py"
+    ],
     "PRODUCT-READINESS-ROADMAP-MATRIX-00": [
       "docs/PRODUCT_READINESS_ROADMAP_MATRIX.md",
       "config/product/product_readiness_roadmap_matrix.v1.json",

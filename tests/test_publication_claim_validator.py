@@ -113,6 +113,31 @@ from tools.build_public_repro_dashboard import (
     PRODUCT_READINESS_ROADMAP_DOCTRINE_LANGUAGE,
     PRODUCT_READINESS_ROADMAP_GUARDRAILS,
     PRODUCT_READINESS_ROADMAP_PRIOR_PHASE_RELATION,
+    AEGIS_STACK_PHASE_IDS,
+    AEGIS_SOURCE_ARTIFACTS,
+    AEGIS_ADMISSION_ARTIFACTS,
+    TAXONOMY_SOURCE_ARTIFACTS,
+    TAXONOMY_ROOT_REPAIR_ARTIFACTS,
+    ENTERPRISE_RISK_ARTIFACTS,
+    AEGIS_SOURCE_IDENTITIES,
+    TAXONOMY_SOURCE_IDENTITIES,
+    AEGIS_DECISIONS,
+    AEGIS_SCENARIOS,
+    AEGIS_DOCTRINE,
+    AEGIS_INVARIANT_SUMMARY,
+    AEGIS_SOURCE_CONCLUSIONS,
+    TAXONOMY_CONCLUSIONS,
+    ENTERPRISE_RISK_CONTENT,
+    ENTERPRISE_RISK_REGISTER_FIELDS,
+    ENTERPRISE_RISK_PACKAGES,
+    AEGIS_RISK_GUARDRAILS,
+    AEGIS_RISK_BLOCKED_CLAIMS,
+    AEGIS_ALLOWED_CLAIMS,
+    AEGIS_RISK_PRIOR_PHASE_RELATION,
+    AEGIS_SOURCE_DASHBOARD_SUMMARY,
+    TAXONOMY_SOURCE_DASHBOARD_SUMMARY,
+    TAXONOMY_ROOT_REPAIR_DASHBOARD_SUMMARY,
+    ENTERPRISE_RISK_DASHBOARD_SUMMARY,
     OBSERVATION_CONTRACT_POLICY_SIMULATION_CLAIM_ALLOWED,
 )
 from tools.validate_publication_claims import PAPER_CONFIGS, validate_publication_claims
@@ -5634,3 +5659,15 @@ def test_bounded_roadmap_matrix_claim_is_allowed():
     normalized = PRODUCT_READINESS_ROADMAP_CLAIM_ALLOWED.lower()
     for claim in PRODUCT_READINESS_ROADMAP_BLOCKED_CLAIMS:
         assert claim not in normalized
+
+
+def test_claim_validator_rejects_aegis_and_risk_taxonomy_overclaims():
+    for claim in AEGIS_RISK_BLOCKED_CLAIMS:
+        assert claim in PAPER_CONFIGS["PUB-GOV-ARTIFACT-COG-01"]["forbidden_overclaims"]
+
+
+def test_bounded_aegis_and_risk_taxonomy_claims_are_allowed():
+    for allowed_claim in AEGIS_ALLOWED_CLAIMS:
+        normalized = allowed_claim.lower()
+        for claim in AEGIS_RISK_BLOCKED_CLAIMS:
+            assert claim.lower() not in normalized

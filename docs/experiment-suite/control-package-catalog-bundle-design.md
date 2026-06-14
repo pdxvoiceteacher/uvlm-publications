@@ -178,6 +178,10 @@ CONTROL-PACKAGE-CATALOG-BUNDLE-DESIGN-00 groups packages into customer-facing bu
 - SOURCE-CORPUS-PRICING-RELEASE-REPORTS-BATCH-SCHEMA-REPAIR-00 repairs schema validation for the source batch.
 - AI-RECEIPT-GATEWAY-LOCAL-INGRESS-PROTOTYPE-00 provides the local explicit-ingress prototype.
 
+## AEGIS admission and Enterprise AI Risk Taxonomy sync
+
+SOURCE-CORPUS-AEGIS-IMPLEMENTATION-REPORTS-BATCH-2026-06-13-00 and SOURCE-CORPUS-TAXONOMY-STACK-THREAT-STANDARDS-BATCH-2026-06-13-00 preserve hash-only source provenance. AEGIS-ADMISSION-CONTRACT-00 provides deterministic admission decisions before downstream RequestEnvelope flow. ENTERPRISE-AI-RISK-TAXONOMY-STACK-DESIGN-00 maps the canonical AI Work Event / Receipt spine into risk views and emits evidence-support structure only. Publication sync grants no runtime authority, live SaaS operation, provider runtime, network calls, memory writes, Atlas admission, trace export, PMR federation, package execution, product readiness, product release, compliance certification, legal advice, audit pass, truth certification, final-answer authority, or accepted-evidence authority.
+
 ## Product Readiness Roadmap Matrix sync
 
 PRODUCT-READINESS-ROADMAP-MATRIX-00 applies PRODUCT-MATURITY-LABEL-TAXONOMY-00 maturity labels to product roadmap rows. Roadmap matrix is planning evidence, not product readiness. Roadmap matrix is not product release. Roadmap matrix is not customer entitlement. Roadmap matrix is not compliance certification. Roadmap matrix is not audit pass. Live-bounded-local rows are locally validated for bounded scope only, not generally available. Design-only rows do not enable runtime behavior. Simulation-only rows rehearse behavior but do not perform real behavior. Future rows are not implemented. Out-of-scope rows are intentionally excluded. Human review remains required. Authorized professional signoff remains required for compliance use. Publication sync grants no runtime authority.
