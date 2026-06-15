@@ -962,6 +962,19 @@
       "schema/bridge/aegis_admission_non_authority_boundary.schema.json",
       "python/tests/aegis/test_aegis_admission_contract.py"
     ],
+    "AEGIS-SOURCE-SCOPE-CONSENT-00": [
+      "docs/AEGIS_SOURCE_SCOPE_CONSENT.md",
+      "python/src/coherence/aegis/source_scope.py",
+      "python/src/coherence/aegis/consent_check.py",
+      "python/src/coherence/aegis/admission.py",
+      "python/src/coherence/aegis/policy.py",
+      "python/src/coherence/aegis/failure_receipt.py",
+      "schema/bridge/aegis_source_scope_packet.schema.json",
+      "schema/bridge/aegis_consent_packet.schema.json",
+      "schema/bridge/aegis_source_scope_consent_non_authority_boundary.schema.json",
+      "python/tests/aegis/test_aegis_source_scope_consent.py",
+      "python/tests/aegis/test_aegis_admission_contract.py"
+    ],
     "SOURCE-CORPUS-TAXONOMY-STACK-THREAT-STANDARDS-BATCH-2026-06-13-00": [
       "docs/provenance/source_reports/2026-06/taxonomy_stack_threat_standards_batch_20260613.json",
       "docs/provenance/source_reports/2026-06/taxonomy_stack_threat_standards_batch_aliases_20260613.json",

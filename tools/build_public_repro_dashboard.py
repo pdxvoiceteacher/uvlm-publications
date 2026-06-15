@@ -16142,35 +16142,55 @@ PRODUCT-READINESS-ROADMAP-MATRIX-00 applies PRODUCT-MATURITY-LABEL-TAXONOMY-00 m
 AEGIS_STACK_PHASE_IDS = (
     "SOURCE-CORPUS-AEGIS-IMPLEMENTATION-REPORTS-BATCH-2026-06-13-00",
     "AEGIS-ADMISSION-CONTRACT-00",
+    "AEGIS-SOURCE-SCOPE-CONSENT-00",
     "SOURCE-CORPUS-TAXONOMY-STACK-THREAT-STANDARDS-BATCH-2026-06-13-00",
     "SOURCE-CORPUS-TAXONOMY-STACK-THREAT-STANDARDS-BATCH-ROOT-MANIFEST-REPAIR-00",
     "ENTERPRISE-AI-RISK-TAXONOMY-STACK-DESIGN-00",
 )
 AEGIS_SOURCE_ARTIFACTS=("docs/provenance/source_reports/2026-06/aegis_implementation_report_batch_20260613.json","docs/provenance/source_reports/2026-06/aegis_implementation_report_batch_aliases_20260613.json","docs/provenance/source_reports/2026-06/aegis_implementation_report_batch_sha256sums_20260613.txt","docs/provenance/source_reports/2026-06/aegis_implementation_report_batch_summary_20260613.md","schema/bridge/source_corpus_aegis_implementation_report_batch.schema.json","python/tests/provenance/test_source_corpus_aegis_implementation_report_batch_20260613.py")
 AEGIS_ADMISSION_ARTIFACTS=("docs/AEGIS_ADMISSION_CONTRACT.md","python/src/coherence/aegis/__init__.py","python/src/coherence/aegis/types.py","python/src/coherence/aegis/policy.py","python/src/coherence/aegis/admission.py","python/src/coherence/aegis/failure_receipt.py","schema/bridge/aegis_admission_packet.schema.json","schema/bridge/aegis_failure_receipt.schema.json","schema/bridge/aegis_admission_non_authority_boundary.schema.json","python/tests/aegis/test_aegis_admission_contract.py")
+AEGIS_SOURCE_SCOPE_CONSENT_ARTIFACTS=("docs/AEGIS_SOURCE_SCOPE_CONSENT.md","python/src/coherence/aegis/source_scope.py","python/src/coherence/aegis/consent_check.py","python/src/coherence/aegis/admission.py","python/src/coherence/aegis/policy.py","python/src/coherence/aegis/failure_receipt.py","schema/bridge/aegis_source_scope_packet.schema.json","schema/bridge/aegis_consent_packet.schema.json","schema/bridge/aegis_source_scope_consent_non_authority_boundary.schema.json","python/tests/aegis/test_aegis_source_scope_consent.py","python/tests/aegis/test_aegis_admission_contract.py")
 TAXONOMY_SOURCE_ARTIFACTS=("docs/provenance/source_reports/2026-06/taxonomy_stack_threat_standards_batch_20260613.json","docs/provenance/source_reports/2026-06/taxonomy_stack_threat_standards_batch_aliases_20260613.json","docs/provenance/source_reports/2026-06/taxonomy_stack_threat_standards_batch_sha256sums_20260613.txt","docs/provenance/source_reports/2026-06/taxonomy_stack_threat_standards_batch_summary_20260613.md","schema/bridge/source_corpus_taxonomy_stack_threat_standards_batch.schema.json","python/tests/provenance/test_source_corpus_taxonomy_stack_threat_standards_batch_20260613.py")
 TAXONOMY_ROOT_REPAIR_ARTIFACTS=("docs/provenance/source_reports/manifest.json","taxonomy_stack_threat_standards_batch_20260613","docs/provenance/source_reports/2026-06/taxonomy_stack_threat_standards_batch_20260613.json","docs/provenance/source_reports/2026-06/taxonomy_stack_threat_standards_batch_sha256sums_20260613.txt","docs/provenance/source_reports/2026-06/taxonomy_stack_threat_standards_batch_summary_20260613.md","docs/provenance/source_reports/2026-06/taxonomy_stack_threat_standards_batch_aliases_20260613.json")
 ENTERPRISE_RISK_ARTIFACTS=("docs/ENTERPRISE_AI_RISK_TAXONOMY_STACK_DESIGN.md","config/risk/enterprise_ai_risk_taxonomy_stack.v1.json","schema/bridge/enterprise_ai_risk_taxonomy_stack.schema.json","schema/bridge/enterprise_ai_risk_register_entry.schema.json","schema/bridge/enterprise_ai_risk_non_authority_boundary.schema.json","python/tests/product/test_enterprise_ai_risk_taxonomy_stack_design.py")
 AEGIS_SOURCE_IDENTITIES=("Comparative Internal Agents and the Aethyr Ladder.docx","2867e0e0f963a5f30b2b88f3960b1e535982e0dbcddf87b9a89c884a577c4e44","UVLM Triadic AI Receipt Gateway Product Organs and Implementation Report.docx","d10ddee31910034ee59209128b82a1219d51c79411a1740ae62f3dbcd419982f","AEGIS in the UVLM Product Spine.docx","82bb823066239f19b0a2882fc03facccbd8d0b7d712be4089bc8758ec1bb3378","THOMAS and ECHO Discuss AEGIS 6_13_2026_1217PM.docx","43f71e7cc02f9f4bc46963132f78bb70e05dd45c4239292acbbf30263d431570")
 TAXONOMY_SOURCE_IDENTITIES=("Taxonomy Stack Analysis 6_13_2026_337PM.docx","a12a0f4c8766d1dae68a2a0842dc7a6c0af6ce65180ae07b5189a6229e5f6baf","6_13_2026_457PM.txt","26715909557e0fc22f89e1d0e7083355b0672b1844b348a2a899faa8feb30677")
 AEGIS_DECISIONS=("admit","admit_with_controls","hold_for_human_review","reject_fail_closed","alarm_requires_elevated_review")
+AEGIS_SOURCE_SCOPE_CONSENT_DECISIONS=("allow","allow_with_controls","hold_for_human_review","reject_fail_closed","alarm_requires_elevated_review")
 AEGIS_SCENARIOS=("valid_explicit_local_file_admit","valid_pasted_excerpt_admit_with_controls","missing_scope_hold_for_human_review","missing_consent_reject_fail_closed","hidden_file_reject_fail_closed","directory_scan_reject_fail_closed","connector_without_scope_reject_fail_closed","model_candidate_without_sonya_reject_fail_closed","source_instruction_quarantine_hold","side_effecting_action_alarm")
 AEGIS_DOCTRINE=("AEGIS Admission Contract","AEGIS is the admissibility shield.","AEGIS decides admissibility, not truth.","No configured AI work enters the Triadic Brain without AEGIS admission.","Failed admission creates a failure receipt, not a governed RequestEnvelope.","AEGIS admission is not truth certification.","AEGIS admission is not memory write authorization.","AEGIS admission is not deployment authority.","AEGIS admission is not compliance certification.","AEGIS admission is not legal advice.","AEGIS admission is not audit pass.","Human review remains required.")
 AEGIS_INVARIANT_SUMMARY={"scenario_count":10,"admit_decisions":1,"admit_with_controls_decisions":1,"hold_for_human_review_decisions":2,"reject_fail_closed_decisions":5,"alarm_requires_elevated_review_decisions":1,"failed_held_alarm_emit_failure_receipt":True,"failed_held_alarm_create_request_envelope":False,"admitted_emit_request_envelope_ref":True,"admitted_emit_failure_receipt":False,"provider_runtime_performed":False,"network_call_performed":False,"memory_write_performed":False,"atlas_memory_admission_performed":False,"trace_export_performed":False,"pmr_federation_performed":False,"product_readiness_claimed":False,"product_release_performed":False,"compliance_certification_emitted":False,"legal_advice_emitted":False,"audit_pass_claimed":False,"truth_certification_emitted":False,"final_answer_authority_granted":False,"accepted_evidence_authority_granted":False}
+
+AEGIS_SOURCE_SCOPE_STATUSES=("scoped","scoped_with_controls","missing_scope","hidden_file_rejected","directory_scan_rejected","connector_scope_missing","unsupported_source_kind","source_instruction_quarantine")
+AEGIS_CONSENT_STATUSES=("consent_valid","consent_valid_with_controls","consent_missing","consent_scope_mismatch","consent_revoked","consent_expired","consent_requires_human_review")
+AEGIS_SOURCE_SCOPE_SCENARIOS=("explicit_selected_local_file_allowed","pasted_excerpt_allowed_with_controls","missing_scope_hold","hidden_file_reject","directory_scan_reject","connector_without_scope_reject","unsupported_source_kind_reject","source_instruction_quarantine_hold")
+AEGIS_CONSENT_SCENARIOS=("explicit_consent_valid","pasted_excerpt_consent_valid_with_controls","consent_missing_reject","consent_scope_mismatch_reject","consent_revoked_reject","consent_expired_reject","consent_requires_human_review_hold")
+AEGIS_SOURCE_SCOPE_CONSENT_REPRO_FRAGMENTS=("evaluate_source_scope","evaluate_consent","build_aegis_admission_contract","python/tests/aegis/test_aegis_source_scope_consent.py","python/tests/aegis/test_aegis_admission_contract.py")
+AEGIS_SOURCE_SCOPE_CONSENT_DOCTRINE=("AEGIS Source Scope and Consent","AEGIS is the admissibility shield.","Source scope must be explicit.","Consent must be explicit for configured AI work.","Hidden-file access is rejected fail-closed.","Directory scans are rejected fail-closed.","Connector sources require explicit connector scope.","Pasted excerpts may be admitted with controls.","Missing consent rejects fail-closed.","allow and allow_with_controls are source-scope/consent decisions, not admission outcomes.","admit and admit_with_controls are admission decisions, not source-scope/consent decisions.","Failed scope/consent checks create failure receipts, not governed RequestEnvelope artifacts.","Source-scope checks do not certify truth.","Consent checks do not certify truth.","Source-scope checks do not authorize memory writes.","Consent checks do not authorize memory writes.","Human review remains required.")
+AEGIS_SOURCE_SCOPE_CONSENT_GUARDRAILS=("source_scope_check_is_not_truth_certification","source_scope_check_is_not_memory_write_authorization","source_scope_check_is_not_deployment_authority","source_scope_check_is_not_compliance_certification","source_scope_check_is_not_legal_advice","source_scope_check_is_not_audit_pass","source_scope_check_is_not_product_release","source_scope_check_is_not_product_readiness","source_scope_check_is_not_final_answer_authority","source_scope_check_is_not_accepted_evidence_authority","source_scope_check_does_not_write_memory","source_scope_check_does_not_admit_atlas_memory","source_scope_check_does_not_export_traces","source_scope_check_does_not_federate_pmr","consent_check_is_not_truth_certification","consent_check_is_not_memory_write_authorization","consent_check_is_not_deployment_authority","consent_check_is_not_compliance_certification","consent_check_is_not_legal_advice","consent_check_is_not_audit_pass","consent_check_is_not_product_release","consent_check_is_not_product_readiness","consent_check_is_not_final_answer_authority","consent_check_is_not_accepted_evidence_authority","consent_check_does_not_write_memory","consent_check_does_not_admit_atlas_memory","consent_check_does_not_export_traces","consent_check_does_not_federate_pmr","human_review_required")
+AEGIS_SOURCE_SCOPE_CONSENT_SUMMARY={"source_scope_decisions":list(AEGIS_SOURCE_SCOPE_CONSENT_DECISIONS),"consent_decisions":list(AEGIS_SOURCE_SCOPE_CONSENT_DECISIONS),"admission_decisions":list(AEGIS_DECISIONS),"source_scope_case_count":8,"consent_case_count":7,"admission_scenario_count":10,"admit_decisions":1,"admit_with_controls_decisions":1,"hold_for_human_review_decisions":2,"reject_fail_closed_decisions":5,"alarm_requires_elevated_review_decisions":1,"source_scope_packets_emitted":True,"consent_packets_emitted":True,"source_scope_consent_boundary_packets_emitted":True,"failed_held_alarm_create_request_envelope":False,"failed_held_alarm_emit_failure_receipt":True,"admitted_emit_request_envelope_ref":True,"admitted_emit_failure_receipt":False,"hidden_file_read_performed":False,"directory_scan_performed":False,"connector_pull_performed":False,"consent_write_performed":False,"provider_runtime_performed":False,"network_call_performed":False,"memory_write_performed":False,"atlas_memory_admission_performed":False,"trace_export_performed":False,"pmr_federation_performed":False,"product_readiness_claimed":False,"product_release_performed":False,"compliance_certification_emitted":False,"legal_advice_emitted":False,"audit_pass_claimed":False,"truth_certification_emitted":False,"final_answer_authority_granted":False,"accepted_evidence_authority_granted":False}
+AEGIS_SOURCE_SCOPE_CONSENT_BLOCKED_CLAIMS=("source scope check certifies truth","source scope check authorizes memory write","source scope check authorizes deployment","source scope check certifies compliance","source scope check provides legal advice","source scope check passes audit","source scope check releases product","source scope check proves product readiness","source scope check grants final-answer authority","source scope check grants accepted-evidence authority","consent check certifies truth","consent check authorizes memory write","consent check authorizes deployment","consent check certifies compliance","consent check provides legal advice","consent check passes audit","consent check releases product","consent check proves product readiness","consent check grants final-answer authority","consent check grants accepted-evidence authority","hidden file is allowed by default","directory scan is allowed by default","connector pull is allowed without explicit scope","missing consent can proceed","failed scope check creates RequestEnvelope","failed consent check creates RequestEnvelope","allow means final-answer authority","allow_with_controls means accepted-evidence authority","source-scope allow certifies truth","consent allow certifies truth","allow means compliance certification","allow_with_controls means audit pass","allow means product release","allow_with_controls means product readiness","allow means memory write authorization","allow means deployment authority")
+AEGIS_SOURCE_SCOPE_CONSENT_DECISION_VOCAB_REPAIR_CLAIM_ALLOWED="PUBLICATION-SYNC-AEGIS-SOURCE-SCOPE-CONSENT-DECISION-VOCAB-REPAIR-00 repairs the publication decision vocabulary for AEGIS-SOURCE-SCOPE-CONSENT-00 by distinguishing source-scope/consent decisions such as allow and allow_with_controls from admission decisions such as admit and admit_with_controls, while preserving that these terms are deterministic admissibility labels only and do not certify truth, authorize memory writes, grant deployment authority, certify compliance, provide legal advice, pass audits, claim product readiness, release product, grant final-answer authority, or grant accepted-evidence authority."
+AEGIS_SOURCE_SCOPE_CONSENT_CLAIM_ALLOWED="AEGIS-SOURCE-SCOPE-CONSENT-00 implements local deterministic AEGIS source-scope and consent checks for configured AI work events, evaluating explicit local file selection, pasted excerpts, missing scope, hidden files, directory scans, connector scope, source-instruction quarantine, valid consent, missing consent, mismatched consent, revoked consent, expired consent, and human-review consent states, while preserving that AEGIS checks admissibility rather than truth and do not perform hidden-file reads, directory scans, connector pulls, provider calls, network calls, memory writes, Atlas admission, trace export, PMR federation, product readiness, product release, compliance certification, legal advice, audit pass, truth certification, final-answer authority, or accepted-evidence authority."
+AEGIS_SOURCE_SCOPE_CONSENT_PRIOR_PHASE_RELATION=("AEGIS-ADMISSION-CONTRACT-00 provides the admission contract and failure receipt behavior.","AEGIS-SOURCE-SCOPE-CONSENT-00 provides reusable source-scope and consent checks consumed by admission.","AI-RECEIPT-GATEWAY-LOCAL-INGRESS-PROTOTYPE-00 provides bounded local ingress context.","ENTERPRISE-AI-RISK-TAXONOMY-STACK-DESIGN-00 provides multi-view risk taxonomy context.","PRODUCT-READINESS-ROADMAP-MATRIX-00 lists source-scope and consent follow-up as product roadmap validation.")
+AEGIS_SOURCE_SCOPE_CONSENT_COMMAND="python -m pytest -q python/tests/aegis/test_aegis_source_scope_consent.py python/tests/aegis/test_aegis_admission_contract.py"
+
 AEGIS_SOURCE_CONCLUSIONS=("AEGIS is the admissibility shield.","Sonya packetizes; AEGIS permits.","AEGIS should not be the whole Triadic Brain.","AEGIS should not decide truth.","AEGIS decides admissibility, scope, consent, grounding, quarantine, and pre-execution action status.","No configured AI work should enter the Triadic Brain without AEGIS admission.","No model output should enter without Sonya packetization.","No side-effecting action should proceed without AEGIS pre-execution decision.","Deterministic policy should come before LLM-assisted review.","Start with stable canonical JSON, SHA-256 hashes, hash chains, and export manifests before cryptographic signatures.","AEGIS outputs must be machine-verifiable and human-readable.","Aethyr/internal-agent material is conceptual analogy and safety context, not product authority.")
 TAXONOMY_CONCLUSIONS=("Use a taxonomy stack, not one master list.","Keep one canonical AI Work Event / Receipt spine.","Framework reports should be projections over the same receipt spine.","EU AI Act evidence readiness should be the first flagship SaaS package.","NIST, ISO, COSO, SOC/SSAE, OWASP GenAI, PMR, CBOM/ToolRisk, exogenic cost, and federation governance should be purchasable control packs.","Every control pack produces evidence, not authority.","Every report should carry a meta-receipt.","Every high-risk event remains human-reviewable.","Every coherence metric supports judgment without replacing judgment.","Knowledge integrity and anti-hyperreal drift should be first-class risk families.","AEGIS validation shows deterministic admission, fail-closed receipts, and no authority emitted.")
 ENTERPRISE_RISK_CONTENT=("Enterprise AI Risk Taxonomy Stack","multi_view_risk_taxonomy_design_only","AI Work Event / Receipt","canonical_event","local_agent_risk","ai_assurance_risk","enterprise_control_risk","sector_specific_risk","coherence_entropy_risk","federation_sovereignty_risk","enterprise_risk","nist_csf_cybersecurity","nist_ai_rmf_lifecycle","eu_ai_act_systemic_fundamental_rights","iso_iec_42001_aims","soc2_ssae_attestation_quality","owasp_genai_agentic_security","privacy_data_rights","records_legal_hold_evidence_retention","human_oversight_ai_literacy","environmental_exogenic_cost","knowledge_integrity_hyperreal_drift","resilience_business_continuity_disaster_recovery","federation_sovereignty_omega_field")
 ENTERPRISE_RISK_REGISTER_FIELDS=("risk_id","taxonomy_family","risk_statement","objective_affected","risk_source","event","consequence","affected_parties","inherent_risk","controls","receipt_artifacts","coherence_signals","residual_risk","status","CAPA_ref","professional_review_required","non_authority_boundary")
 ENTERPRISE_RISK_PACKAGES=("EU AI Act Evidence Readiness Packet","NIST AI RMF Evidence Package","ISO/IEC 42001 AIMS Evidence Pack","COSO AI Internal Control Report","SOC 2 / SSAE Evidence Binder","OWASP GenAI / Agentic Security Pack","PMR Memory Rights Console","CBOM + ToolRisk Inventory","Forensic QA Ledger","Exogenic Cost Ledger","NIST CSF Cybersecurity Crosswalk","Privacy / Data Rights Workflow Pack","Records, Legal Hold, and eDiscovery Pack","Accessibility and Fundamental Rights Pack","Human Oversight and AI Literacy Pack","Resilience / BCP / Disaster Recovery Pack","Federation Governance Pack","TCHES / Data Center Coherence Infrastructure Pack","Omega Field State Observatory")
 AEGIS_RISK_GUARDRAILS=("aegis_admission_is_not_truth_certification","aegis_admission_is_not_memory_write_authorization","aegis_admission_is_not_deployment_authority","aegis_admission_is_not_compliance_certification","aegis_admission_is_not_legal_advice","aegis_admission_is_not_audit_pass","aegis_admission_is_not_attestation_success","aegis_admission_is_not_product_release","aegis_admission_is_not_product_readiness","aegis_admission_is_not_final_answer_authority","aegis_admission_is_not_accepted_evidence_authority","aegis_admission_does_not_write_memory","aegis_admission_does_not_admit_atlas_memory","aegis_admission_does_not_export_traces","aegis_admission_does_not_federate_pmr","risk_taxonomy_is_not_compliance_certification","risk_taxonomy_is_not_legal_advice","risk_taxonomy_is_not_audit_pass","risk_taxonomy_is_not_attestation_success","risk_taxonomy_is_not_product_readiness","risk_taxonomy_is_not_product_release","risk_taxonomy_is_not_truth_certification","risk_taxonomy_is_not_final_answer_authority","risk_taxonomy_is_not_accepted_evidence_authority","risk_taxonomy_does_not_write_memory","risk_taxonomy_does_not_admit_atlas_memory","risk_taxonomy_does_not_export_traces","risk_taxonomy_does_not_federate_pmr","human_review_required","professional_review_required_for_compliance_use")
-AEGIS_RISK_BLOCKED_CLAIMS=("AEGIS admission certifies truth","AEGIS admission authorizes memory write","AEGIS admission authorizes deployment","AEGIS admission certifies compliance","AEGIS admission provides legal advice","AEGIS admission passes audit","AEGIS admission releases product","AEGIS admission proves product readiness","AEGIS admission grants final-answer authority","AEGIS admission grants accepted-evidence authority","failed admission creates RequestEnvelope","AEGIS is the whole Triadic Brain","AEGIS replaces Sophia","AEGIS replaces Sonya","AEGIS is the Publisher","AEGIS report implements runtime","AEGIS report certifies compliance","AEGIS report provides legal advice","AEGIS report passes audit","AEGIS report releases product","AEGIS report proves product readiness","AEGIS report certifies truth","Aethyr analogy is product authority","internal-agent analogy proves machine consciousness","taxonomy report certifies compliance","taxonomy report provides legal advice","taxonomy report passes audit","taxonomy report proves product readiness","taxonomy report releases product","taxonomy report implements runtime controls","taxonomy report grants accepted-evidence authority","taxonomy report authorizes final answers","taxonomy view is a separate truth engine","coherence metric replaces professional judgment","report projection is certification","source report is canonical repo state","hash certifies truth","summary is source","risk taxonomy certifies compliance","risk taxonomy provides legal advice","risk taxonomy passes audit","risk taxonomy proves product readiness","risk taxonomy releases product","risk taxonomy grants accepted-evidence authority","risk taxonomy authorizes final answers","risk taxonomy certifies truth","risk taxonomy writes memory","risk taxonomy admits Atlas memory","risk taxonomy exports traces","risk taxonomy federates PMR")
+AEGIS_RISK_BLOCKED_CLAIMS=("AEGIS admission certifies truth","AEGIS admission authorizes memory write","AEGIS admission authorizes deployment","AEGIS admission certifies compliance","AEGIS admission provides legal advice","AEGIS admission passes audit","AEGIS admission releases product","AEGIS admission proves product readiness","AEGIS admission grants final-answer authority","AEGIS admission grants accepted-evidence authority",*AEGIS_SOURCE_SCOPE_CONSENT_BLOCKED_CLAIMS,"failed admission creates RequestEnvelope","AEGIS is the whole Triadic Brain","AEGIS replaces Sophia","AEGIS replaces Sonya","AEGIS is the Publisher","AEGIS report implements runtime","AEGIS report certifies compliance","AEGIS report provides legal advice","AEGIS report passes audit","AEGIS report releases product","AEGIS report proves product readiness","AEGIS report certifies truth","Aethyr analogy is product authority","internal-agent analogy proves machine consciousness","taxonomy report certifies compliance","taxonomy report provides legal advice","taxonomy report passes audit","taxonomy report proves product readiness","taxonomy report releases product","taxonomy report implements runtime controls","taxonomy report grants accepted-evidence authority","taxonomy report authorizes final answers","taxonomy view is a separate truth engine","coherence metric replaces professional judgment","report projection is certification","source report is canonical repo state","hash certifies truth","summary is source","risk taxonomy certifies compliance","risk taxonomy provides legal advice","risk taxonomy passes audit","risk taxonomy proves product readiness","risk taxonomy releases product","risk taxonomy grants accepted-evidence authority","risk taxonomy authorizes final answers","risk taxonomy certifies truth","risk taxonomy writes memory","risk taxonomy admits Atlas memory","risk taxonomy exports traces","risk taxonomy federates PMR")
 AEGIS_ALLOWED_CLAIMS=(
 "SOURCE-CORPUS-AEGIS-IMPLEMENTATION-REPORTS-BATCH-2026-06-13-00 records hash-only provenance for June 2026 AEGIS implementation, product-organ, product-spine, Science Iteration design discussion, and internal-agent analogy reports, preserving source filenames, SHA-256 hashes, visibility, public-release status, and bounded implementation conclusions without committing raw private DOCX files or treating the reports as accepted evidence, canonical repo state, runtime implementation, package installation, package activation, package execution, compliance certification, legal advice, audit pass, product readiness, product release, truth certification, memory write, Atlas admission, trace export, PMR federation, final-answer authority, accepted-evidence authority, or proof of machine consciousness.",
 "AEGIS-ADMISSION-CONTRACT-00 implements a local deterministic AEGIS admission contract that emits admission packets and failure receipts for configured AI work events, deciding whether an event is admitted, admitted with controls, held for human review, rejected fail-closed, or escalated to alarm, while preserving that AEGIS decides admissibility rather than truth and does not perform provider calls, network calls, memory writes, Atlas admission, trace export, PMR federation, product readiness, product release, compliance certification, legal advice, audit pass, attestation success, truth certification, final-answer authority, or accepted-evidence authority.",
+AEGIS_SOURCE_SCOPE_CONSENT_CLAIM_ALLOWED,
+AEGIS_SOURCE_SCOPE_CONSENT_DECISION_VOCAB_REPAIR_CLAIM_ALLOWED,
 "SOURCE-CORPUS-TAXONOMY-STACK-THREAT-STANDARDS-BATCH-2026-06-13-00 records hash-only provenance for June 2026 taxonomy stack, threat standards, and AEGIS validation-analysis materials, preserving source filenames, SHA-256 hashes, visibility, public-release status, and bounded threat/standards conclusions without committing raw private DOCX/TXT files or treating the reports as accepted evidence, canonical repo state, runtime implementation, compliance certification, legal advice, audit pass, product readiness, product release, truth certification, memory write, Atlas admission, trace export, PMR federation, final-answer authority, or accepted-evidence authority.",
 "SOURCE-CORPUS-TAXONOMY-STACK-THREAT-STANDARDS-BATCH-ROOT-MANIFEST-REPAIR-00 repairs the source-corpus root manifest index for taxonomy_stack_threat_standards_batch_20260613 by adding manifest, sha256sums, summary, and aliases references while preserving hash-only provenance, no raw DOCX/TXT import, and all non-authority boundaries.",
 "ENTERPRISE-AI-RISK-TAXONOMY-STACK-DESIGN-00 defines a design-only enterprise AI risk taxonomy stack for Triadic Brain / UVLM that maps one canonical AI Work Event / Receipt spine into local agent, AI assurance, enterprise control, sector-specific, coherence/entropy, and federation/sovereignty risk views, including taxonomy families for NIST CSF, NIST AI RMF, EU AI Act, ISO/IEC 42001, SOC/SSAE, OWASP GenAI, privacy, records, human oversight, exogenic cost, knowledge integrity, resilience, and federation governance, while preserving that the taxonomy stack emits evidence-support structure only and does not certify compliance, provide legal advice, pass audits, claim product readiness, release product, certify truth, write memory, admit Atlas memory, export traces, federate PMR, grant final-answer authority, or grant accepted-evidence authority.")
-AEGIS_RISK_PRIOR_PHASE_RELATION=("AI-RECEIPT-GATEWAY-LOCAL-INGRESS-PROTOTYPE-00 provides the bounded local ingress context.","AEGIS-ADMISSION-CONTRACT-00 provides deterministic admission decisions before downstream RequestEnvelope flow.","SOURCE-CORPUS-AEGIS-IMPLEMENTATION-REPORTS-BATCH-2026-06-13-00 preserves AEGIS implementation provenance.","SOURCE-CORPUS-TAXONOMY-STACK-THREAT-STANDARDS-BATCH-2026-06-13-00 preserves taxonomy/threat/standards provenance.","SOURCE-CORPUS-TAXONOMY-STACK-THREAT-STANDARDS-BATCH-ROOT-MANIFEST-REPAIR-00 repairs root source-corpus batch discoverability.","ENTERPRISE-AI-RISK-TAXONOMY-STACK-DESIGN-00 maps the canonical AI Work Event / Receipt spine into risk views.","PRODUCT-READINESS-ROADMAP-MATRIX-00 identifies enterprise risk taxonomy and AEGIS follow-up work as planning rows/gaps.","PRODUCT-MATURITY-LABEL-TAXONOMY-00 preserves design-only and bounded-local labels.")
+AEGIS_RISK_PRIOR_PHASE_RELATION=(*AEGIS_SOURCE_SCOPE_CONSENT_PRIOR_PHASE_RELATION,"AI-RECEIPT-GATEWAY-LOCAL-INGRESS-PROTOTYPE-00 provides the bounded local ingress context.","AEGIS-ADMISSION-CONTRACT-00 provides deterministic admission decisions before downstream RequestEnvelope flow.","SOURCE-CORPUS-AEGIS-IMPLEMENTATION-REPORTS-BATCH-2026-06-13-00 preserves AEGIS implementation provenance.","SOURCE-CORPUS-TAXONOMY-STACK-THREAT-STANDARDS-BATCH-2026-06-13-00 preserves taxonomy/threat/standards provenance.","SOURCE-CORPUS-TAXONOMY-STACK-THREAT-STANDARDS-BATCH-ROOT-MANIFEST-REPAIR-00 repairs root source-corpus batch discoverability.","ENTERPRISE-AI-RISK-TAXONOMY-STACK-DESIGN-00 maps the canonical AI Work Event / Receipt spine into risk views.","PRODUCT-READINESS-ROADMAP-MATRIX-00 identifies enterprise risk taxonomy and AEGIS follow-up work as planning rows/gaps.","PRODUCT-MATURITY-LABEL-TAXONOMY-00 preserves design-only and bounded-local labels.")
 AEGIS_SOURCE_DASHBOARD_SUMMARY={"batch_status":"active_hash_only_aegis_implementation_provenance_manifest","row_count":4,"unique_sha256_count":4,"raw_files_committed":False,"normalized_derivatives_added":False,"extracted_text_added":False,"no_raw_private_docx_files_committed":True,"runtime_implementation_emitted":False,"authority_emitted":False}
 TAXONOMY_SOURCE_DASHBOARD_SUMMARY={"batch_status":"active_hash_only_taxonomy_stack_threat_standards_provenance_manifest","row_count":2,"unique_sha256_count":2,"raw_files_committed":False,"normalized_derivatives_added":False,"extracted_text_added":False,"root_batch_manifest_entry":"taxonomy_stack_threat_standards_batch_20260613","manifest_ref_present":True,"sha256sums_ref_present":True,"summary_ref_present":True,"aliases_ref_present":True,"no_raw_private_docx_txt_files_committed":True,"runtime_emitted":False,"compliance_certification_emitted":False,"legal_advice_emitted":False,"audit_pass_claimed":False,"product_readiness_claimed":False,"product_release_performed":False,"truth_certification_emitted":False,"memory_write_performed":False,"trace_export_performed":False,"pmr_federation_performed":False,"authority_emitted":False}
 TAXONOMY_ROOT_REPAIR_DASHBOARD_SUMMARY={"repair_status":"completed","root_batch_manifest_entry":"taxonomy_stack_threat_standards_batch_20260613","manifest_ref_present":True,"sha256sums_ref_present":True,"summary_ref_present":True,"aliases_ref_present":True,"raw_files_committed":False,"authority_emitted":False}
@@ -16245,6 +16265,77 @@ AEGIS-ADMISSION-CONTRACT-00 documents the local deterministic AEGIS admission co
 ## Non-authority guardrails
 
 {_bullets_from(AEGIS_RISK_GUARDRAILS)}
+
+Publication sync grants no runtime authority.
+"""
+def aegis_source_scope_consent_doc() -> str:
+    return f"""# AEGIS Source Scope and Consent
+
+AEGIS-SOURCE-SCOPE-CONSENT-00 documents local deterministic AEGIS source-scope and consent checks for configured AI work events.
+
+## Doctrine
+
+{_bullets_from(AEGIS_SOURCE_SCOPE_CONSENT_DOCTRINE)}
+
+## Dashboard summary
+
+{_summary_lines(AEGIS_SOURCE_SCOPE_CONSENT_SUMMARY)}
+
+## Source-scope statuses
+
+{_bullets_from(AEGIS_SOURCE_SCOPE_STATUSES)}
+
+## Consent statuses
+
+{_bullets_from(AEGIS_CONSENT_STATUSES)}
+
+## Source-scope / consent decisions
+
+{_bullets_from(AEGIS_SOURCE_SCOPE_CONSENT_DECISIONS)}
+
+## Admission decisions
+
+{_bullets_from(AEGIS_DECISIONS)}
+
+## Source-scope scenarios
+
+{_bullets_from(AEGIS_SOURCE_SCOPE_SCENARIOS)}
+
+## Consent scenarios
+
+{_bullets_from(AEGIS_CONSENT_SCENARIOS)}
+
+## Admission integration scenarios
+
+{_bullets_from(AEGIS_SCENARIOS)}
+
+## Reproducibility references
+
+{_bullets_from(AEGIS_SOURCE_SCOPE_CONSENT_REPRO_FRAGMENTS)}
+
+## Relation to prior phases
+
+{_bullets_from(AEGIS_SOURCE_SCOPE_CONSENT_PRIOR_PHASE_RELATION)}
+
+## Artifact references
+
+{_bullets_from(AEGIS_SOURCE_SCOPE_CONSENT_ARTIFACTS)}
+
+## Allowed claim
+
+{AEGIS_SOURCE_SCOPE_CONSENT_CLAIM_ALLOWED}
+
+## Decision vocabulary repair allowed claim
+
+{AEGIS_SOURCE_SCOPE_CONSENT_DECISION_VOCAB_REPAIR_CLAIM_ALLOWED}
+
+## Blocked claims
+
+{_bullets_from(AEGIS_SOURCE_SCOPE_CONSENT_BLOCKED_CLAIMS)}
+
+## Non-authority guardrails
+
+{_bullets_from(AEGIS_SOURCE_SCOPE_CONSENT_GUARDRAILS)}
 
 Publication sync grants no runtime authority.
 """
@@ -16346,7 +16437,7 @@ AEGIS_STACK_SYNC_NOTE="""
 
 ## AEGIS admission and Enterprise AI Risk Taxonomy sync
 
-SOURCE-CORPUS-AEGIS-IMPLEMENTATION-REPORTS-BATCH-2026-06-13-00 and SOURCE-CORPUS-TAXONOMY-STACK-THREAT-STANDARDS-BATCH-2026-06-13-00 preserve hash-only source provenance. AEGIS-ADMISSION-CONTRACT-00 provides deterministic admission decisions before downstream RequestEnvelope flow. ENTERPRISE-AI-RISK-TAXONOMY-STACK-DESIGN-00 maps the canonical AI Work Event / Receipt spine into risk views and emits evidence-support structure only. Publication sync grants no runtime authority, live SaaS operation, provider runtime, network calls, memory writes, Atlas admission, trace export, PMR federation, package execution, product readiness, product release, compliance certification, legal advice, audit pass, truth certification, final-answer authority, or accepted-evidence authority.
+SOURCE-CORPUS-AEGIS-IMPLEMENTATION-REPORTS-BATCH-2026-06-13-00 and SOURCE-CORPUS-TAXONOMY-STACK-THREAT-STANDARDS-BATCH-2026-06-13-00 preserve hash-only source provenance. AEGIS-ADMISSION-CONTRACT-00 provides the admission contract and failure receipt behavior. AEGIS-SOURCE-SCOPE-CONSENT-00 provides reusable source-scope and consent checks consumed by admission. AI-RECEIPT-GATEWAY-LOCAL-INGRESS-PROTOTYPE-00 provides bounded local ingress context. ENTERPRISE-AI-RISK-TAXONOMY-STACK-DESIGN-00 provides multi-view risk taxonomy context. PRODUCT-READINESS-ROADMAP-MATRIX-00 lists source-scope and consent follow-up as product roadmap validation. Publication sync grants no runtime authority, live SaaS operation, provider runtime, network calls, hidden-file reads, directory scans, connector pulls, consent writes, memory writes, Atlas admission, trace export, PMR federation, package execution, product readiness, product release, compliance certification, legal advice, audit pass, truth certification, final-answer authority, or accepted-evidence authority.
 """
 
 ACCEPTED_PHASES = [
@@ -16376,6 +16467,20 @@ ACCEPTED_PHASES = [
         "claim_allowed": AEGIS_ALLOWED_CLAIMS[1],
         "claims_blocked": list(AEGIS_RISK_BLOCKED_CLAIMS),
         "reviewer_caution": "AEGIS decides admissibility, not truth. Failed, held, and alarm decisions emit failure receipts and no governed RequestEnvelope. No provider runtime, network calls, memory write, Atlas admission, trace export, PMR federation, product release, compliance certification, final-answer authority, or accepted-evidence authority is granted.",
+        "publication_status": "dashboard_indexed",
+    },
+    {
+        "phase_id": "AEGIS-SOURCE-SCOPE-CONSENT-00",
+        "repo": "pdxvoiceteacher/CoherenceLattice",
+        "status": "accepted",
+        "evidence_type": "local_deterministic_source_scope_consent_checks",
+        "product_posture": "bounded_local_admissibility_checks_no_provider_runtime_or_authority",
+        "primary_artifacts": list(AEGIS_SOURCE_SCOPE_CONSENT_ARTIFACTS),
+        "dashboard_summary": AEGIS_SOURCE_SCOPE_CONSENT_SUMMARY,
+        "reproduction_command_summary": AEGIS_SOURCE_SCOPE_CONSENT_COMMAND,
+        "claim_allowed": AEGIS_SOURCE_SCOPE_CONSENT_CLAIM_ALLOWED,
+        "claims_blocked": list(AEGIS_SOURCE_SCOPE_CONSENT_BLOCKED_CLAIMS),
+        "reviewer_caution": "AEGIS source-scope and consent checks decide admissibility, not truth. Hidden files, directory scans, connector pulls without scope, and missing consent fail closed. Failed checks emit failure receipts, not governed RequestEnvelope artifacts. No provider runtime, network calls, memory write, Atlas admission, trace export, PMR federation, product release, compliance certification, final-answer authority, or accepted-evidence authority is granted.",
         "publication_status": "dashboard_indexed",
     },
     {
@@ -17703,6 +17808,8 @@ PLANNED_PHASES = [
 ]
 BOUNDARIES = [
     *AEGIS_RISK_GUARDRAILS,
+    *AEGIS_SOURCE_SCOPE_CONSENT_GUARDRAILS,
+    *AEGIS_SOURCE_SCOPE_CONSENT_BLOCKED_CLAIMS,
     *PRODUCT_MATURITY_LABEL_TAXONOMY_GUARDRAILS,
     *PRODUCT_READINESS_ROADMAP_GUARDRAILS,
     "Negative control is not authorization.",
@@ -19461,6 +19568,8 @@ def dashboard_payload() -> dict[str, Any]:
         "aegis_stack_00_indexed": True,
         **{f"aegis_source_corpus_{k}": v for k, v in AEGIS_SOURCE_DASHBOARD_SUMMARY.items()},
         **{f"aegis_admission_{k}": v for k, v in AEGIS_INVARIANT_SUMMARY.items()},
+        "aegis_source_scope_consent_00_indexed": True,
+        **{f"aegis_source_scope_consent_{k}": v for k, v in AEGIS_SOURCE_SCOPE_CONSENT_SUMMARY.items()},
         **{f"taxonomy_source_corpus_{k}": v for k, v in TAXONOMY_SOURCE_DASHBOARD_SUMMARY.items()},
         **{f"taxonomy_root_manifest_repair_{k}": v for k, v in TAXONOMY_ROOT_REPAIR_DASHBOARD_SUMMARY.items()},
         **{f"enterprise_ai_risk_taxonomy_{k}": v for k, v in ENTERPRISE_RISK_DASHBOARD_SUMMARY.items()},
@@ -20388,6 +20497,7 @@ def reproducibility_index() -> dict[str, Any]:
                 {"name": "PRODUCT-MATURITY-LABEL-TAXONOMY-00 design validation", "command": PRODUCT_MATURITY_LABEL_TAXONOMY_COMMAND},
                 {"name": "PRODUCT-READINESS-ROADMAP-MATRIX-00 design validation", "command": PRODUCT_READINESS_ROADMAP_COMMAND},
                 {"name": "AEGIS admission and risk taxonomy stack validation", "command": AEGIS_STACK_COMMAND},
+                {"name": "AEGIS-SOURCE-SCOPE-CONSENT-00 source-scope consent validation", "command": AEGIS_SOURCE_SCOPE_CONSENT_COMMAND},
                 {"name": "SOURCE-CORPUS-GATEWAY-REPORTS-BATCH-2026-06-10-00 source batch validation", "command": "python -m pytest -q python/tests/provenance/test_source_corpus_gateway_report_batch_20260610.py tests/test_experiment_registry.py"},
                 {"name": "WAVE-ROSETTA-CANONICAL-PROXY-BRIDGE-PROVENANCE-00 provenance validation", "command": COMPLIANCE_REPORT_DESIGN_COMMAND},
                 {"name": "Validation Tiering Provenance Python entrypoint", "command": VALIDATION_TIERING_PROVENANCE_COMMAND},
@@ -20541,6 +20651,8 @@ def status_payload() -> dict[str, Any]:
         "aegis_stack_00_indexed": True,
         **{f"aegis_source_corpus_{k}": v for k, v in AEGIS_SOURCE_DASHBOARD_SUMMARY.items()},
         **{f"aegis_admission_{k}": v for k, v in AEGIS_INVARIANT_SUMMARY.items()},
+        "aegis_source_scope_consent_00_indexed": True,
+        **{f"aegis_source_scope_consent_{k}": v for k, v in AEGIS_SOURCE_SCOPE_CONSENT_SUMMARY.items()},
         **{f"taxonomy_source_corpus_{k}": v for k, v in TAXONOMY_SOURCE_DASHBOARD_SUMMARY.items()},
         **{f"taxonomy_root_manifest_repair_{k}": v for k, v in TAXONOMY_ROOT_REPAIR_DASHBOARD_SUMMARY.items()},
         **{f"enterprise_ai_risk_taxonomy_{k}": v for k, v in ENTERPRISE_RISK_DASHBOARD_SUMMARY.items()},
@@ -28684,6 +28796,7 @@ def build(out_dir: Path, docs_dir: Path) -> None:
     docs_payload["product-readiness-roadmap-matrix.md"] = product_readiness_roadmap_matrix_doc()
     docs_payload["source-corpus-aegis-implementation-reports-batch-2026-06-13.md"] = aegis_source_corpus_doc()
     docs_payload["aegis-admission-contract.md"] = aegis_admission_contract_doc()
+    docs_payload["aegis-source-scope-consent.md"] = aegis_source_scope_consent_doc()
     docs_payload["source-corpus-taxonomy-stack-threat-standards-batch-2026-06-13.md"] = taxonomy_source_corpus_doc()
     docs_payload["source-corpus-taxonomy-stack-threat-standards-batch-root-manifest-repair.md"] = taxonomy_root_manifest_repair_doc()
     docs_payload["enterprise-ai-risk-taxonomy-stack-design.md"] = enterprise_ai_risk_taxonomy_stack_design_doc()
