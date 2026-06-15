@@ -124,7 +124,7 @@ ENTERPRISE-AI-RISK-TAXONOMY-STACK-DESIGN-00 defines a design-only multi-view ris
 
 ## Allowed claim
 
-SOURCE-CORPUS-TAXONOMY-STACK-THREAT-STANDARDS-BATCH-ROOT-MANIFEST-REPAIR-00 repairs the source-corpus root manifest index for taxonomy_stack_threat_standards_batch_20260613 by adding manifest, sha256sums, summary, and aliases references while preserving hash-only provenance, no raw DOCX/TXT import, and all non-authority boundaries.
+SOURCE-CORPUS-TAXONOMY-STACK-THREAT-STANDARDS-BATCH-2026-06-13-00 records hash-only provenance for June 2026 taxonomy stack, threat standards, and AEGIS validation-analysis materials, preserving source filenames, SHA-256 hashes, visibility, public-release status, and bounded threat/standards conclusions without committing raw private DOCX/TXT files or treating the reports as accepted evidence, canonical repo state, runtime implementation, compliance certification, legal advice, audit pass, product readiness, product release, truth certification, memory write, Atlas admission, trace export, PMR federation, final-answer authority, or accepted-evidence authority.
 
 ## Non-authority guardrails
 

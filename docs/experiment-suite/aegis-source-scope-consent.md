@@ -13,6 +13,8 @@ AEGIS-SOURCE-SCOPE-CONSENT-00 documents local deterministic AEGIS source-scope a
 - Connector sources require explicit connector scope.
 - Pasted excerpts may be admitted with controls.
 - Missing consent rejects fail-closed.
+- allow and allow_with_controls are source-scope/consent decisions, not admission outcomes.
+- admit and admit_with_controls are admission decisions, not source-scope/consent decisions.
 - Failed scope/consent checks create failure receipts, not governed RequestEnvelope artifacts.
 - Source-scope checks do not certify truth.
 - Consent checks do not certify truth.
@@ -22,6 +24,9 @@ AEGIS-SOURCE-SCOPE-CONSENT-00 documents local deterministic AEGIS source-scope a
 
 ## Dashboard summary
 
+- source_scope_decisions = ['allow', 'allow_with_controls', 'hold_for_human_review', 'reject_fail_closed', 'alarm_requires_elevated_review']
+- consent_decisions = ['allow', 'allow_with_controls', 'hold_for_human_review', 'reject_fail_closed', 'alarm_requires_elevated_review']
+- admission_decisions = ['admit', 'admit_with_controls', 'hold_for_human_review', 'reject_fail_closed', 'alarm_requires_elevated_review']
 - source_scope_case_count = 8
 - consent_case_count = 7
 - admission_scenario_count = 10
@@ -77,7 +82,15 @@ AEGIS-SOURCE-SCOPE-CONSENT-00 documents local deterministic AEGIS source-scope a
 - consent_expired
 - consent_requires_human_review
 
-## Decisions
+## Source-scope / consent decisions
+
+- allow
+- allow_with_controls
+- hold_for_human_review
+- reject_fail_closed
+- alarm_requires_elevated_review
+
+## Admission decisions
 
 - admit
 - admit_with_controls
@@ -153,6 +166,10 @@ AEGIS-SOURCE-SCOPE-CONSENT-00 documents local deterministic AEGIS source-scope a
 
 AEGIS-SOURCE-SCOPE-CONSENT-00 implements local deterministic AEGIS source-scope and consent checks for configured AI work events, evaluating explicit local file selection, pasted excerpts, missing scope, hidden files, directory scans, connector scope, source-instruction quarantine, valid consent, missing consent, mismatched consent, revoked consent, expired consent, and human-review consent states, while preserving that AEGIS checks admissibility rather than truth and do not perform hidden-file reads, directory scans, connector pulls, provider calls, network calls, memory writes, Atlas admission, trace export, PMR federation, product readiness, product release, compliance certification, legal advice, audit pass, truth certification, final-answer authority, or accepted-evidence authority.
 
+## Decision vocabulary repair allowed claim
+
+PUBLICATION-SYNC-AEGIS-SOURCE-SCOPE-CONSENT-DECISION-VOCAB-REPAIR-00 repairs the publication decision vocabulary for AEGIS-SOURCE-SCOPE-CONSENT-00 by distinguishing source-scope/consent decisions such as allow and allow_with_controls from admission decisions such as admit and admit_with_controls, while preserving that these terms are deterministic admissibility labels only and do not certify truth, authorize memory writes, grant deployment authority, certify compliance, provide legal advice, pass audits, claim product readiness, release product, grant final-answer authority, or grant accepted-evidence authority.
+
 ## Blocked claims
 
 - source scope check certifies truth
@@ -181,6 +198,16 @@ AEGIS-SOURCE-SCOPE-CONSENT-00 implements local deterministic AEGIS source-scope 
 - missing consent can proceed
 - failed scope check creates RequestEnvelope
 - failed consent check creates RequestEnvelope
+- allow means final-answer authority
+- allow_with_controls means accepted-evidence authority
+- source-scope allow certifies truth
+- consent allow certifies truth
+- allow means compliance certification
+- allow_with_controls means audit pass
+- allow means product release
+- allow_with_controls means product readiness
+- allow means memory write authorization
+- allow means deployment authority
 
 ## Non-authority guardrails
 

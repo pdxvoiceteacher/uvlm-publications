@@ -24,7 +24,7 @@ SOURCE-CORPUS-TAXONOMY-STACK-THREAT-STANDARDS-BATCH-ROOT-MANIFEST-REPAIR-00 repa
 
 ## Allowed claim
 
-SOURCE-CORPUS-TAXONOMY-STACK-THREAT-STANDARDS-BATCH-2026-06-13-00 records hash-only provenance for June 2026 taxonomy stack, threat standards, and AEGIS validation-analysis materials, preserving source filenames, SHA-256 hashes, visibility, public-release status, and bounded threat/standards conclusions without committing raw private DOCX/TXT files or treating the reports as accepted evidence, canonical repo state, runtime implementation, compliance certification, legal advice, audit pass, product readiness, product release, truth certification, memory write, Atlas admission, trace export, PMR federation, final-answer authority, or accepted-evidence authority.
+PUBLICATION-SYNC-AEGIS-SOURCE-SCOPE-CONSENT-DECISION-VOCAB-REPAIR-00 repairs the publication decision vocabulary for AEGIS-SOURCE-SCOPE-CONSENT-00 by distinguishing source-scope/consent decisions such as allow and allow_with_controls from admission decisions such as admit and admit_with_controls, while preserving that these terms are deterministic admissibility labels only and do not certify truth, authorize memory writes, grant deployment authority, certify compliance, provide legal advice, pass audits, claim product readiness, release product, grant final-answer authority, or grant accepted-evidence authority.
 
 ## Non-authority guardrails
 

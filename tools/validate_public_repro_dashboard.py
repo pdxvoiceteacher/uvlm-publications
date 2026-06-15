@@ -322,6 +322,12 @@ from tools.build_public_repro_dashboard import (
     AEGIS_STACK_PHASE_IDS,
     AEGIS_SOURCE_ARTIFACTS,
     AEGIS_ADMISSION_ARTIFACTS,
+    AEGIS_SOURCE_SCOPE_CONSENT_ARTIFACTS,
+    AEGIS_SOURCE_SCOPE_CONSENT_DECISIONS,
+    AEGIS_SOURCE_SCOPE_CONSENT_DOCTRINE,
+    AEGIS_SOURCE_SCOPE_CONSENT_GUARDRAILS,
+    AEGIS_SOURCE_SCOPE_CONSENT_BLOCKED_CLAIMS,
+    AEGIS_SOURCE_SCOPE_CONSENT_DECISION_VOCAB_REPAIR_CLAIM_ALLOWED,
     TAXONOMY_SOURCE_ARTIFACTS,
     TAXONOMY_ROOT_REPAIR_ARTIFACTS,
     ENTERPRISE_RISK_ARTIFACTS,
@@ -653,6 +659,19 @@ REQUIRED_BOUNDARY_PHRASES = (
     *AI_RECEIPT_GATEWAY_LOCAL_INGRESS_PRIOR_PHASE_RELATION,
     *AI_RECEIPT_GATEWAY_LOCAL_INGRESS_REPRO_FRAGMENTS,
     *AI_RECEIPT_GATEWAY_LOCAL_INGRESS_BLOCKED_CLAIMS,
+    "AEGIS-SOURCE-SCOPE-CONSENT-00",
+    "source_scope_decisions",
+    "consent_decisions",
+    "admission_decisions",
+    "allow and allow_with_controls are source-scope/consent decisions, not admission outcomes.",
+    "admit and admit_with_controls are admission decisions, not source-scope/consent decisions.",
+    *AEGIS_SOURCE_SCOPE_CONSENT_ARTIFACTS,
+    *AEGIS_SOURCE_SCOPE_CONSENT_DECISIONS,
+    *AEGIS_DECISIONS,
+    *AEGIS_SOURCE_SCOPE_CONSENT_DOCTRINE,
+    *AEGIS_SOURCE_SCOPE_CONSENT_GUARDRAILS,
+    *AEGIS_SOURCE_SCOPE_CONSENT_BLOCKED_CLAIMS,
+    AEGIS_SOURCE_SCOPE_CONSENT_DECISION_VOCAB_REPAIR_CLAIM_ALLOWED,
     "CONTROL-PACKAGE-MANIFEST-STANDARD-00",
     CONTROL_PACKAGE_MANIFEST_CLAIM_ALLOWED,
     CONTROL_PACKAGE_ENV_ISOLATION_REPAIR_CLAIM_ALLOWED,
@@ -1858,6 +1877,13 @@ def _forbidden_hits(text: str) -> list[str]:
                 start = index + len(normalized_phrase)
                 continue
             if phrase == "compliance certification" and "claims" not in text[max(0, index - 64) : index]:
+                start = index + len(normalized_phrase)
+                continue
+            if phrase == "memory write authorization" and (
+                "blocked claims" in text[max(0, index - 5000) : index]
+                or "claims_blocked" in text[max(0, index - 500) : index]
+                or "allow means " in text[max(0, index - 32) : index]
+            ):
                 start = index + len(normalized_phrase)
                 continue
             if phrase == "compliance certification" and "claims" not in text[max(0, index - 64) : index] and (
