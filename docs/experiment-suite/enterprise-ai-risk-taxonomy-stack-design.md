@@ -99,6 +99,11 @@ ENTERPRISE-AI-RISK-TAXONOMY-STACK-DESIGN-00 defines a design-only multi-view ris
 
 ## Relation to prior phases
 
+- AEGIS-ADMISSION-CONTRACT-00 provides the admission contract and failure receipt behavior.
+- AEGIS-SOURCE-SCOPE-CONSENT-00 provides reusable source-scope and consent checks consumed by admission.
+- AI-RECEIPT-GATEWAY-LOCAL-INGRESS-PROTOTYPE-00 provides bounded local ingress context.
+- ENTERPRISE-AI-RISK-TAXONOMY-STACK-DESIGN-00 provides multi-view risk taxonomy context.
+- PRODUCT-READINESS-ROADMAP-MATRIX-00 lists source-scope and consent follow-up as product roadmap validation.
 - AI-RECEIPT-GATEWAY-LOCAL-INGRESS-PROTOTYPE-00 provides the bounded local ingress context.
 - AEGIS-ADMISSION-CONTRACT-00 provides deterministic admission decisions before downstream RequestEnvelope flow.
 - SOURCE-CORPUS-AEGIS-IMPLEMENTATION-REPORTS-BATCH-2026-06-13-00 preserves AEGIS implementation provenance.
@@ -119,7 +124,7 @@ ENTERPRISE-AI-RISK-TAXONOMY-STACK-DESIGN-00 defines a design-only multi-view ris
 
 ## Allowed claim
 
-ENTERPRISE-AI-RISK-TAXONOMY-STACK-DESIGN-00 defines a design-only enterprise AI risk taxonomy stack for Triadic Brain / UVLM that maps one canonical AI Work Event / Receipt spine into local agent, AI assurance, enterprise control, sector-specific, coherence/entropy, and federation/sovereignty risk views, including taxonomy families for NIST CSF, NIST AI RMF, EU AI Act, ISO/IEC 42001, SOC/SSAE, OWASP GenAI, privacy, records, human oversight, exogenic cost, knowledge integrity, resilience, and federation governance, while preserving that the taxonomy stack emits evidence-support structure only and does not certify compliance, provide legal advice, pass audits, claim product readiness, release product, certify truth, write memory, admit Atlas memory, export traces, federate PMR, grant final-answer authority, or grant accepted-evidence authority.
+SOURCE-CORPUS-TAXONOMY-STACK-THREAT-STANDARDS-BATCH-ROOT-MANIFEST-REPAIR-00 repairs the source-corpus root manifest index for taxonomy_stack_threat_standards_batch_20260613 by adding manifest, sha256sums, summary, and aliases references while preserving hash-only provenance, no raw DOCX/TXT import, and all non-authority boundaries.
 
 ## Non-authority guardrails
 

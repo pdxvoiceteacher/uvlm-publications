@@ -133,6 +133,8 @@ from tools.build_public_repro_dashboard import (
     AEGIS_RISK_GUARDRAILS,
     AEGIS_RISK_BLOCKED_CLAIMS,
     AEGIS_ALLOWED_CLAIMS,
+    AEGIS_SOURCE_SCOPE_CONSENT_BLOCKED_CLAIMS,
+    AEGIS_SOURCE_SCOPE_CONSENT_CLAIM_ALLOWED,
     AEGIS_RISK_PRIOR_PHASE_RELATION,
     AEGIS_SOURCE_DASHBOARD_SUMMARY,
     TAXONOMY_SOURCE_DASHBOARD_SUMMARY,
@@ -5671,3 +5673,14 @@ def test_bounded_aegis_and_risk_taxonomy_claims_are_allowed():
         normalized = allowed_claim.lower()
         for claim in AEGIS_RISK_BLOCKED_CLAIMS:
             assert claim.lower() not in normalized
+
+
+def test_claim_validator_rejects_source_scope_and_consent_overclaims():
+    for claim in AEGIS_SOURCE_SCOPE_CONSENT_BLOCKED_CLAIMS:
+        assert claim in PAPER_CONFIGS["PUB-GOV-ARTIFACT-COG-01"]["forbidden_overclaims"]
+
+
+def test_bounded_source_scope_and_consent_claim_is_allowed():
+    normalized = AEGIS_SOURCE_SCOPE_CONSENT_CLAIM_ALLOWED.lower()
+    for claim in AEGIS_SOURCE_SCOPE_CONSENT_BLOCKED_CLAIMS:
+        assert claim.lower() not in normalized

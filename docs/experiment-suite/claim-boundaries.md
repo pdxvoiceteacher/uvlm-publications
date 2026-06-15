@@ -30,6 +30,35 @@
 - risk_taxonomy_does_not_federate_pmr
 - human_review_required
 - professional_review_required_for_compliance_use
+- source_scope_check_is_not_truth_certification
+- source_scope_check_is_not_memory_write_authorization
+- source_scope_check_is_not_deployment_authority
+- source_scope_check_is_not_compliance_certification
+- source_scope_check_is_not_legal_advice
+- source_scope_check_is_not_audit_pass
+- source_scope_check_is_not_product_release
+- source_scope_check_is_not_product_readiness
+- source_scope_check_is_not_final_answer_authority
+- source_scope_check_is_not_accepted_evidence_authority
+- source_scope_check_does_not_write_memory
+- source_scope_check_does_not_admit_atlas_memory
+- source_scope_check_does_not_export_traces
+- source_scope_check_does_not_federate_pmr
+- consent_check_is_not_truth_certification
+- consent_check_is_not_memory_write_authorization
+- consent_check_is_not_deployment_authority
+- consent_check_is_not_compliance_certification
+- consent_check_is_not_legal_advice
+- consent_check_is_not_audit_pass
+- consent_check_is_not_product_release
+- consent_check_is_not_product_readiness
+- consent_check_is_not_final_answer_authority
+- consent_check_is_not_accepted_evidence_authority
+- consent_check_does_not_write_memory
+- consent_check_does_not_admit_atlas_memory
+- consent_check_does_not_export_traces
+- consent_check_does_not_federate_pmr
+- human_review_required
 - maturity_label_is_not_product_readiness
 - maturity_label_is_not_product_release
 - maturity_label_is_not_compliance_certification
@@ -5821,7 +5850,7 @@ Publication sync grants no runtime authority. It does not imply compliance certi
 
 ## AEGIS admission and Enterprise AI Risk Taxonomy sync
 
-SOURCE-CORPUS-AEGIS-IMPLEMENTATION-REPORTS-BATCH-2026-06-13-00 and SOURCE-CORPUS-TAXONOMY-STACK-THREAT-STANDARDS-BATCH-2026-06-13-00 preserve hash-only source provenance. AEGIS-ADMISSION-CONTRACT-00 provides deterministic admission decisions before downstream RequestEnvelope flow. ENTERPRISE-AI-RISK-TAXONOMY-STACK-DESIGN-00 maps the canonical AI Work Event / Receipt spine into risk views and emits evidence-support structure only. Publication sync grants no runtime authority, live SaaS operation, provider runtime, network calls, memory writes, Atlas admission, trace export, PMR federation, package execution, product readiness, product release, compliance certification, legal advice, audit pass, truth certification, final-answer authority, or accepted-evidence authority.
+SOURCE-CORPUS-AEGIS-IMPLEMENTATION-REPORTS-BATCH-2026-06-13-00 and SOURCE-CORPUS-TAXONOMY-STACK-THREAT-STANDARDS-BATCH-2026-06-13-00 preserve hash-only source provenance. AEGIS-ADMISSION-CONTRACT-00 provides the admission contract and failure receipt behavior. AEGIS-SOURCE-SCOPE-CONSENT-00 provides reusable source-scope and consent checks consumed by admission. AI-RECEIPT-GATEWAY-LOCAL-INGRESS-PROTOTYPE-00 provides bounded local ingress context. ENTERPRISE-AI-RISK-TAXONOMY-STACK-DESIGN-00 provides multi-view risk taxonomy context. PRODUCT-READINESS-ROADMAP-MATRIX-00 lists source-scope and consent follow-up as product roadmap validation. Publication sync grants no runtime authority, live SaaS operation, provider runtime, network calls, hidden-file reads, directory scans, connector pulls, consent writes, memory writes, Atlas admission, trace export, PMR federation, package execution, product readiness, product release, compliance certification, legal advice, audit pass, truth certification, final-answer authority, or accepted-evidence authority.
 
 ## Product Readiness Roadmap Matrix sync
 
