@@ -133,6 +133,47 @@
 - report generation allowed means compliance certification
 - evidence-map use allowed means accepted evidence
 - control-package use allowed means product release
+- instruction_quarantine_is_not_truth_certification
+- instruction_quarantine_is_not_source_truth_certification
+- instruction_quarantine_is_not_memory_write_authorization
+- instruction_quarantine_is_not_deployment_authority
+- instruction_quarantine_is_not_compliance_certification
+- instruction_quarantine_is_not_legal_advice
+- instruction_quarantine_is_not_audit_pass
+- instruction_quarantine_is_not_attestation_success
+- instruction_quarantine_is_not_product_release
+- instruction_quarantine_is_not_product_readiness
+- instruction_quarantine_is_not_final_answer_authority
+- instruction_quarantine_is_not_accepted_evidence_authority
+- instruction_quarantine_does_not_execute_source_instructions
+- instruction_quarantine_does_not_write_memory
+- instruction_quarantine_does_not_admit_atlas_memory
+- instruction_quarantine_does_not_export_traces
+- instruction_quarantine_does_not_federate_pmr
+- human_review_required
+- instruction quarantine certifies truth
+- instruction quarantine certifies source truth
+- instruction quarantine authorizes memory write
+- instruction quarantine authorizes deployment
+- instruction quarantine certifies compliance
+- instruction quarantine provides legal advice
+- instruction quarantine passes audit
+- instruction quarantine releases product
+- instruction quarantine proves product readiness
+- instruction quarantine grants final-answer authority
+- instruction quarantine grants accepted-evidence authority
+- quarantined instruction executed
+- source instruction controls downstream model
+- source instruction controls report generation
+- source instruction controls evidence map
+- source instruction controls control package
+- safe excerpt means truth certified
+- quarantine receipt certifies compliance
+- clear means truth certified
+- clear_with_notice means accepted evidence
+- quarantine_for_human_review means audit pass
+- reject_fail_closed means legal determination
+- alarm_requires_elevated_review means compliance breach
 - maturity_label_is_not_product_readiness
 - maturity_label_is_not_product_release
 - maturity_label_is_not_compliance_certification
@@ -5924,7 +5965,7 @@ Publication sync grants no runtime authority. It does not imply compliance certi
 
 ## AEGIS admission and Enterprise AI Risk Taxonomy sync
 
-SOURCE-CORPUS-AEGIS-IMPLEMENTATION-REPORTS-BATCH-2026-06-13-00 and SOURCE-CORPUS-TAXONOMY-STACK-THREAT-STANDARDS-BATCH-2026-06-13-00 preserve hash-only source provenance. AEGIS-ADMISSION-CONTRACT-00 provides the admission contract and failure receipt behavior. AEGIS-SOURCE-SCOPE-CONSENT-00 provides reusable source-scope and consent checks consumed by admission. AEGIS-GROUNDING-BINDING-00 binds compatible admission, source-scope, and consent packets to source hashes, evidence refs, and receipt refs. AI-RECEIPT-GATEWAY-LOCAL-INGRESS-PROTOTYPE-00 provides bounded local ingress context. ENTERPRISE-AI-RISK-TAXONOMY-STACK-DESIGN-00 provides multi-view risk taxonomy context. PRODUCT-READINESS-ROADMAP-MATRIX-00 lists grounding binding as an AEGIS follow-up validation step. Publication sync grants no runtime authority, live SaaS operation, provider runtime, network calls, hidden-file reads, directory scans, connector pulls, consent writes, memory writes, Atlas admission, trace export, PMR federation, package execution, product readiness, product release, compliance certification, legal advice, audit pass, truth certification, final-answer authority, or accepted-evidence authority.
+SOURCE-CORPUS-AEGIS-IMPLEMENTATION-REPORTS-BATCH-2026-06-13-00 and SOURCE-CORPUS-TAXONOMY-STACK-THREAT-STANDARDS-BATCH-2026-06-13-00 preserve hash-only source provenance. AEGIS-ADMISSION-CONTRACT-00 provides the admission contract and failure receipt behavior. AEGIS-SOURCE-SCOPE-CONSENT-00 provides reusable source-scope and consent checks consumed by admission. AEGIS-GROUNDING-BINDING-00 binds compatible admission, source-scope, and consent packets to source hashes, evidence refs, and receipt refs. AEGIS-INSTRUCTION-QUARANTINE-00 separates source content from source-borne instructions before downstream use. AI-RECEIPT-GATEWAY-LOCAL-INGRESS-PROTOTYPE-00 provides bounded local ingress context. ENTERPRISE-AI-RISK-TAXONOMY-STACK-DESIGN-00 provides multi-view risk taxonomy context. PRODUCT-READINESS-ROADMAP-MATRIX-00 lists instruction quarantine as an AEGIS follow-up validation step. Publication sync grants no runtime authority, live SaaS operation, provider runtime, network calls, hidden-file reads, directory scans, connector pulls, consent writes, memory writes, Atlas admission, trace export, PMR federation, package execution, product readiness, product release, compliance certification, legal advice, audit pass, truth certification, final-answer authority, or accepted-evidence authority.
 
 ## Product Readiness Roadmap Matrix sync
 

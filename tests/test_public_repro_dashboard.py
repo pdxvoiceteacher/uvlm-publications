@@ -488,6 +488,19 @@ from tools.build_public_repro_dashboard import (
     AEGIS_GROUNDING_BLOCKED_CLAIMS,
     AEGIS_GROUNDING_CLAIM_ALLOWED,
     AEGIS_GROUNDING_PRIOR_PHASE_RELATION,
+    AEGIS_INSTRUCTION_QUARANTINE_ARTIFACTS,
+    AEGIS_INSTRUCTION_QUARANTINE_STATUSES,
+    AEGIS_INSTRUCTION_QUARANTINE_DECISIONS,
+    AEGIS_INSTRUCTION_PATTERN_CLASSES,
+    AEGIS_INSTRUCTION_QUARANTINE_SCENARIOS,
+    AEGIS_INSTRUCTION_QUARANTINE_REPRO_FRAGMENTS,
+    AEGIS_INSTRUCTION_QUARANTINE_DOCTRINE,
+    AEGIS_INSTRUCTION_QUARANTINE_COMPATIBILITY,
+    AEGIS_INSTRUCTION_QUARANTINE_GUARDRAILS,
+    AEGIS_INSTRUCTION_QUARANTINE_SUMMARY,
+    AEGIS_INSTRUCTION_QUARANTINE_BLOCKED_CLAIMS,
+    AEGIS_INSTRUCTION_QUARANTINE_CLAIM_ALLOWED,
+    AEGIS_INSTRUCTION_QUARANTINE_PRIOR_PHASE_RELATION,
     TAXONOMY_SOURCE_ARTIFACTS,
     TAXONOMY_ROOT_REPAIR_ARTIFACTS,
     ENTERPRISE_RISK_ARTIFACTS,
@@ -612,6 +625,7 @@ REQUIRED_PHASES = {
     "AEGIS-ADMISSION-CONTRACT-00",
     "AEGIS-SOURCE-SCOPE-CONSENT-00",
     "AEGIS-GROUNDING-BINDING-00",
+    "AEGIS-INSTRUCTION-QUARANTINE-00",
     "SOURCE-CORPUS-AEGIS-IMPLEMENTATION-REPORTS-BATCH-2026-06-13-00",
     "PRODUCT-READINESS-ROADMAP-MATRIX-00",
     "PRODUCT-MATURITY-LABEL-TAXONOMY-00",
@@ -8117,6 +8131,7 @@ def test_aegis_admission_and_risk_taxonomy_stack_publication_sync():
             "docs/experiment-suite/aegis-admission-contract.md",
             "docs/experiment-suite/aegis-source-scope-consent.md",
             "docs/experiment-suite/aegis-grounding-binding.md",
+            "docs/experiment-suite/aegis-instruction-quarantine.md",
             "docs/experiment-suite/source-corpus-taxonomy-stack-threat-standards-batch-2026-06-13.md",
             "docs/experiment-suite/source-corpus-taxonomy-stack-threat-standards-batch-root-manifest-repair.md",
             "docs/experiment-suite/enterprise-ai-risk-taxonomy-stack-design.md",
@@ -8130,6 +8145,7 @@ def test_aegis_admission_and_risk_taxonomy_stack_publication_sync():
         "AEGIS-ADMISSION-CONTRACT-00": AEGIS_ADMISSION_ARTIFACTS,
         "AEGIS-SOURCE-SCOPE-CONSENT-00": AEGIS_SOURCE_SCOPE_CONSENT_ARTIFACTS,
         "AEGIS-GROUNDING-BINDING-00": AEGIS_GROUNDING_BINDING_ARTIFACTS,
+        "AEGIS-INSTRUCTION-QUARANTINE-00": AEGIS_INSTRUCTION_QUARANTINE_ARTIFACTS,
         "SOURCE-CORPUS-TAXONOMY-STACK-THREAT-STANDARDS-BATCH-2026-06-13-00": TAXONOMY_SOURCE_ARTIFACTS,
         "SOURCE-CORPUS-TAXONOMY-STACK-THREAT-STANDARDS-BATCH-ROOT-MANIFEST-REPAIR-00": TAXONOMY_ROOT_REPAIR_ARTIFACTS,
         "ENTERPRISE-AI-RISK-TAXONOMY-STACK-DESIGN-00": ENTERPRISE_RISK_ARTIFACTS,
@@ -8143,6 +8159,8 @@ def test_aegis_admission_and_risk_taxonomy_stack_publication_sync():
         assert dashboard[f"aegis_source_scope_consent_{key}"] == value
     for key, value in AEGIS_GROUNDING_SUMMARY.items():
         assert dashboard[f"aegis_grounding_binding_{key}"] == value
+    for key, value in AEGIS_INSTRUCTION_QUARANTINE_SUMMARY.items():
+        assert dashboard[f"aegis_instruction_quarantine_{key}"] == value
     for key, value in TAXONOMY_SOURCE_DASHBOARD_SUMMARY.items():
         assert dashboard[f"taxonomy_source_corpus_{key}"] == value
     for key, value in TAXONOMY_ROOT_REPAIR_DASHBOARD_SUMMARY.items():
@@ -8162,6 +8180,11 @@ def test_aegis_admission_and_risk_taxonomy_stack_publication_sync():
         AEGIS_GROUNDING_DECISIONS, AEGIS_GROUNDING_SCENARIOS, AEGIS_GROUNDING_REPRO_FRAGMENTS,
         AEGIS_GROUNDING_DOCTRINE, AEGIS_GROUNDING_COMPATIBILITY, AEGIS_GROUNDING_GUARDRAILS,
         AEGIS_GROUNDING_BLOCKED_CLAIMS, AEGIS_GROUNDING_PRIOR_PHASE_RELATION,
+        AEGIS_INSTRUCTION_QUARANTINE_STATUSES, AEGIS_INSTRUCTION_QUARANTINE_DECISIONS,
+        AEGIS_INSTRUCTION_PATTERN_CLASSES, AEGIS_INSTRUCTION_QUARANTINE_SCENARIOS,
+        AEGIS_INSTRUCTION_QUARANTINE_REPRO_FRAGMENTS, AEGIS_INSTRUCTION_QUARANTINE_DOCTRINE,
+        AEGIS_INSTRUCTION_QUARANTINE_COMPATIBILITY, AEGIS_INSTRUCTION_QUARANTINE_GUARDRAILS,
+        AEGIS_INSTRUCTION_QUARANTINE_BLOCKED_CLAIMS, AEGIS_INSTRUCTION_QUARANTINE_PRIOR_PHASE_RELATION,
     ):
         for phrase in phrase_group:
             assert phrase in pages
@@ -8170,4 +8193,5 @@ def test_aegis_admission_and_risk_taxonomy_stack_publication_sync():
     assert "Source-scope / consent decisions" in pages
     assert "Admission decisions" in pages
     assert AEGIS_GROUNDING_CLAIM_ALLOWED in pages
+    assert AEGIS_INSTRUCTION_QUARANTINE_CLAIM_ALLOWED in pages
     assert "Publication sync grants no runtime authority" in pages

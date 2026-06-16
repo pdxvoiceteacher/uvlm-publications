@@ -307,6 +307,10 @@
         "command": "python -m pytest -q python/tests/aegis/test_aegis_grounding_binding.py python/tests/aegis/test_aegis_source_scope_consent.py python/tests/aegis/test_aegis_admission_contract.py"
       },
       {
+        "name": "AEGIS-INSTRUCTION-QUARANTINE-00 instruction quarantine validation",
+        "command": "python -m pytest -q python/tests/aegis/test_aegis_instruction_quarantine.py python/tests/aegis/test_aegis_grounding_binding.py python/tests/aegis/test_aegis_source_scope_consent.py python/tests/aegis/test_aegis_admission_contract.py"
+      },
+      {
         "name": "SOURCE-CORPUS-GATEWAY-REPORTS-BATCH-2026-06-10-00 source batch validation",
         "command": "python -m pytest -q python/tests/provenance/test_source_corpus_gateway_report_batch_20260610.py tests/test_experiment_registry.py"
       },
