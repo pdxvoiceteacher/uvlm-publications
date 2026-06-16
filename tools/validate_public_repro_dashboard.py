@@ -328,6 +328,17 @@ from tools.build_public_repro_dashboard import (
     AEGIS_SOURCE_SCOPE_CONSENT_GUARDRAILS,
     AEGIS_SOURCE_SCOPE_CONSENT_BLOCKED_CLAIMS,
     AEGIS_SOURCE_SCOPE_CONSENT_DECISION_VOCAB_REPAIR_CLAIM_ALLOWED,
+    AEGIS_GROUNDING_BINDING_ARTIFACTS,
+    AEGIS_GROUNDING_STATUSES,
+    AEGIS_GROUNDING_DECISIONS,
+    AEGIS_GROUNDING_SCENARIOS,
+    AEGIS_GROUNDING_REPRO_FRAGMENTS,
+    AEGIS_GROUNDING_DOCTRINE,
+    AEGIS_GROUNDING_COMPATIBILITY,
+    AEGIS_GROUNDING_GUARDRAILS,
+    AEGIS_GROUNDING_BLOCKED_CLAIMS,
+    AEGIS_GROUNDING_CLAIM_ALLOWED,
+    AEGIS_GROUNDING_PRIOR_PHASE_RELATION,
     TAXONOMY_SOURCE_ARTIFACTS,
     TAXONOMY_ROOT_REPAIR_ARTIFACTS,
     ENTERPRISE_RISK_ARTIFACTS,
@@ -362,6 +373,7 @@ from tools.build_public_repro_dashboard import (
 
 
 REQUIRED_PHASES = {
+    "AEGIS-GROUNDING-BINDING-00",
     "EXP-SUITE-REGISTRY-01",
     "EXP-SUITE-REPRO-01",
     "WAVE-FAMILY-CLOSEOUT-01",
@@ -672,6 +684,18 @@ REQUIRED_BOUNDARY_PHRASES = (
     *AEGIS_SOURCE_SCOPE_CONSENT_GUARDRAILS,
     *AEGIS_SOURCE_SCOPE_CONSENT_BLOCKED_CLAIMS,
     AEGIS_SOURCE_SCOPE_CONSENT_DECISION_VOCAB_REPAIR_CLAIM_ALLOWED,
+    "AEGIS-GROUNDING-BINDING-00",
+    AEGIS_GROUNDING_CLAIM_ALLOWED,
+    *AEGIS_GROUNDING_BINDING_ARTIFACTS,
+    *AEGIS_GROUNDING_STATUSES,
+    *AEGIS_GROUNDING_DECISIONS,
+    *AEGIS_GROUNDING_SCENARIOS,
+    *AEGIS_GROUNDING_REPRO_FRAGMENTS,
+    *AEGIS_GROUNDING_DOCTRINE,
+    *AEGIS_GROUNDING_COMPATIBILITY,
+    *AEGIS_GROUNDING_GUARDRAILS,
+    *AEGIS_GROUNDING_BLOCKED_CLAIMS,
+    *AEGIS_GROUNDING_PRIOR_PHASE_RELATION,
     "CONTROL-PACKAGE-MANIFEST-STANDARD-00",
     CONTROL_PACKAGE_MANIFEST_CLAIM_ALLOWED,
     CONTROL_PACKAGE_ENV_ISOLATION_REPAIR_CLAIM_ALLOWED,
@@ -1883,6 +1907,13 @@ def _forbidden_hits(text: str) -> list[str]:
                 "blocked claims" in text[max(0, index - 5000) : index]
                 or "claims_blocked" in text[max(0, index - 500) : index]
                 or "allow means " in text[max(0, index - 32) : index]
+            ):
+                start = index + len(normalized_phrase)
+                continue
+            if phrase == "truth certified" and (
+                "blocked claims" in text[max(0, index - 5000) : index]
+                or "claims_blocked" in text[max(0, index - 500) : index]
+                or "bound means " in text[max(0, index - 32) : index]
             ):
                 start = index + len(normalized_phrase)
                 continue

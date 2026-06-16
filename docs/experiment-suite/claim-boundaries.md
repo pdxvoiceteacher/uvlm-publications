@@ -95,6 +95,44 @@
 - allow_with_controls means product readiness
 - allow means memory write authorization
 - allow means deployment authority
+- grounding_binding_is_not_truth_certification
+- grounding_binding_is_not_source_truth_certification
+- grounding_binding_is_not_memory_write_authorization
+- grounding_binding_is_not_deployment_authority
+- grounding_binding_is_not_compliance_certification
+- grounding_binding_is_not_legal_advice
+- grounding_binding_is_not_audit_pass
+- grounding_binding_is_not_attestation_success
+- grounding_binding_is_not_product_release
+- grounding_binding_is_not_product_readiness
+- grounding_binding_is_not_final_answer_authority
+- grounding_binding_is_not_accepted_evidence_authority
+- grounding_binding_does_not_write_memory
+- grounding_binding_does_not_admit_atlas_memory
+- grounding_binding_does_not_export_traces
+- grounding_binding_does_not_federate_pmr
+- human_review_required
+- grounding binding certifies truth
+- grounding binding certifies source truth
+- grounding binding authorizes memory write
+- grounding binding authorizes deployment
+- grounding binding certifies compliance
+- grounding binding provides legal advice
+- grounding binding passes audit
+- grounding binding releases product
+- grounding binding proves product readiness
+- grounding binding grants final-answer authority
+- grounding binding grants accepted-evidence authority
+- failed grounding creates RequestEnvelope
+- hash binding proves content truth
+- evidence ref certifies compliance
+- receipt ref certifies truth
+- bound means truth certified
+- bound_with_controls means audit passed
+- downstream model use means final-answer authority
+- report generation allowed means compliance certification
+- evidence-map use allowed means accepted evidence
+- control-package use allowed means product release
 - maturity_label_is_not_product_readiness
 - maturity_label_is_not_product_release
 - maturity_label_is_not_compliance_certification
@@ -5886,7 +5924,7 @@ Publication sync grants no runtime authority. It does not imply compliance certi
 
 ## AEGIS admission and Enterprise AI Risk Taxonomy sync
 
-SOURCE-CORPUS-AEGIS-IMPLEMENTATION-REPORTS-BATCH-2026-06-13-00 and SOURCE-CORPUS-TAXONOMY-STACK-THREAT-STANDARDS-BATCH-2026-06-13-00 preserve hash-only source provenance. AEGIS-ADMISSION-CONTRACT-00 provides the admission contract and failure receipt behavior. AEGIS-SOURCE-SCOPE-CONSENT-00 provides reusable source-scope and consent checks consumed by admission. AI-RECEIPT-GATEWAY-LOCAL-INGRESS-PROTOTYPE-00 provides bounded local ingress context. ENTERPRISE-AI-RISK-TAXONOMY-STACK-DESIGN-00 provides multi-view risk taxonomy context. PRODUCT-READINESS-ROADMAP-MATRIX-00 lists source-scope and consent follow-up as product roadmap validation. Publication sync grants no runtime authority, live SaaS operation, provider runtime, network calls, hidden-file reads, directory scans, connector pulls, consent writes, memory writes, Atlas admission, trace export, PMR federation, package execution, product readiness, product release, compliance certification, legal advice, audit pass, truth certification, final-answer authority, or accepted-evidence authority.
+SOURCE-CORPUS-AEGIS-IMPLEMENTATION-REPORTS-BATCH-2026-06-13-00 and SOURCE-CORPUS-TAXONOMY-STACK-THREAT-STANDARDS-BATCH-2026-06-13-00 preserve hash-only source provenance. AEGIS-ADMISSION-CONTRACT-00 provides the admission contract and failure receipt behavior. AEGIS-SOURCE-SCOPE-CONSENT-00 provides reusable source-scope and consent checks consumed by admission. AEGIS-GROUNDING-BINDING-00 binds compatible admission, source-scope, and consent packets to source hashes, evidence refs, and receipt refs. AI-RECEIPT-GATEWAY-LOCAL-INGRESS-PROTOTYPE-00 provides bounded local ingress context. ENTERPRISE-AI-RISK-TAXONOMY-STACK-DESIGN-00 provides multi-view risk taxonomy context. PRODUCT-READINESS-ROADMAP-MATRIX-00 lists grounding binding as an AEGIS follow-up validation step. Publication sync grants no runtime authority, live SaaS operation, provider runtime, network calls, hidden-file reads, directory scans, connector pulls, consent writes, memory writes, Atlas admission, trace export, PMR federation, package execution, product readiness, product release, compliance certification, legal advice, audit pass, truth certification, final-answer authority, or accepted-evidence authority.
 
 ## Product Readiness Roadmap Matrix sync
 

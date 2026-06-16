@@ -101,6 +101,12 @@ ENTERPRISE-AI-RISK-TAXONOMY-STACK-DESIGN-00 defines a design-only multi-view ris
 
 - AEGIS-ADMISSION-CONTRACT-00 provides the admission contract and failure receipt behavior.
 - AEGIS-SOURCE-SCOPE-CONSENT-00 provides reusable source-scope and consent checks consumed by admission.
+- AEGIS-GROUNDING-BINDING-00 binds compatible admission, source-scope, and consent packets to source hashes, evidence refs, and receipt refs.
+- AI-RECEIPT-GATEWAY-LOCAL-INGRESS-PROTOTYPE-00 provides bounded local ingress context.
+- ENTERPRISE-AI-RISK-TAXONOMY-STACK-DESIGN-00 provides multi-view risk taxonomy context.
+- PRODUCT-READINESS-ROADMAP-MATRIX-00 lists grounding binding as an AEGIS follow-up validation step.
+- AEGIS-ADMISSION-CONTRACT-00 provides the admission contract and failure receipt behavior.
+- AEGIS-SOURCE-SCOPE-CONSENT-00 provides reusable source-scope and consent checks consumed by admission.
 - AI-RECEIPT-GATEWAY-LOCAL-INGRESS-PROTOTYPE-00 provides bounded local ingress context.
 - ENTERPRISE-AI-RISK-TAXONOMY-STACK-DESIGN-00 provides multi-view risk taxonomy context.
 - PRODUCT-READINESS-ROADMAP-MATRIX-00 lists source-scope and consent follow-up as product roadmap validation.
@@ -124,7 +130,7 @@ ENTERPRISE-AI-RISK-TAXONOMY-STACK-DESIGN-00 defines a design-only multi-view ris
 
 ## Allowed claim
 
-SOURCE-CORPUS-TAXONOMY-STACK-THREAT-STANDARDS-BATCH-2026-06-13-00 records hash-only provenance for June 2026 taxonomy stack, threat standards, and AEGIS validation-analysis materials, preserving source filenames, SHA-256 hashes, visibility, public-release status, and bounded threat/standards conclusions without committing raw private DOCX/TXT files or treating the reports as accepted evidence, canonical repo state, runtime implementation, compliance certification, legal advice, audit pass, product readiness, product release, truth certification, memory write, Atlas admission, trace export, PMR federation, final-answer authority, or accepted-evidence authority.
+AEGIS-GROUNDING-BINDING-00 implements local deterministic AEGIS grounding-binding artifacts that bind admitted source-scope and consent packets to canonical source references, content hashes, evidence references, and receipt links before downstream model-candidate, report-generation, evidence-map, or control-package use, while preserving that grounding binding checks admissibility linkage rather than truth and does not read hidden files, scan directories, pull connectors, call providers, perform network calls, write memory, admit Atlas memory, export traces, federate PMR, certify compliance, provide legal advice, pass audits, claim product readiness, release product, certify truth, grant final-answer authority, or grant accepted-evidence authority.
 
 ## Non-authority guardrails
 

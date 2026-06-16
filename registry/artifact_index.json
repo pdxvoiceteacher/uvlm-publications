@@ -975,6 +975,20 @@
       "python/tests/aegis/test_aegis_source_scope_consent.py",
       "python/tests/aegis/test_aegis_admission_contract.py"
     ],
+    "AEGIS-GROUNDING-BINDING-00": [
+      "docs/AEGIS_GROUNDING_BINDING.md",
+      "python/src/coherence/aegis/grounding_binding.py",
+      "python/src/coherence/aegis/admission.py",
+      "python/src/coherence/aegis/source_scope.py",
+      "python/src/coherence/aegis/consent_check.py",
+      "python/src/coherence/aegis/policy.py",
+      "schema/bridge/aegis_grounding_binding_packet.schema.json",
+      "schema/bridge/aegis_grounding_failure_receipt.schema.json",
+      "schema/bridge/aegis_grounding_binding_non_authority_boundary.schema.json",
+      "python/tests/aegis/test_aegis_grounding_binding.py",
+      "python/tests/aegis/test_aegis_source_scope_consent.py",
+      "python/tests/aegis/test_aegis_admission_contract.py"
+    ],
     "SOURCE-CORPUS-TAXONOMY-STACK-THREAT-STANDARDS-BATCH-2026-06-13-00": [
       "docs/provenance/source_reports/2026-06/taxonomy_stack_threat_standards_batch_20260613.json",
       "docs/provenance/source_reports/2026-06/taxonomy_stack_threat_standards_batch_aliases_20260613.json",
