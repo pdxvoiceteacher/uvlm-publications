@@ -99,6 +99,17 @@ ENTERPRISE-AI-RISK-TAXONOMY-STACK-DESIGN-00 defines a design-only multi-view ris
 
 ## Relation to prior phases
 
+- AEGIS-ADMISSION-CONTRACT-00 provides the admission contract and failure receipt behavior.
+- AEGIS-SOURCE-SCOPE-CONSENT-00 provides reusable source-scope and consent checks consumed by admission.
+- AEGIS-GROUNDING-BINDING-00 binds compatible admission, source-scope, and consent packets to source hashes, evidence refs, and receipt refs.
+- AI-RECEIPT-GATEWAY-LOCAL-INGRESS-PROTOTYPE-00 provides bounded local ingress context.
+- ENTERPRISE-AI-RISK-TAXONOMY-STACK-DESIGN-00 provides multi-view risk taxonomy context.
+- PRODUCT-READINESS-ROADMAP-MATRIX-00 lists grounding binding as an AEGIS follow-up validation step.
+- AEGIS-ADMISSION-CONTRACT-00 provides the admission contract and failure receipt behavior.
+- AEGIS-SOURCE-SCOPE-CONSENT-00 provides reusable source-scope and consent checks consumed by admission.
+- AI-RECEIPT-GATEWAY-LOCAL-INGRESS-PROTOTYPE-00 provides bounded local ingress context.
+- ENTERPRISE-AI-RISK-TAXONOMY-STACK-DESIGN-00 provides multi-view risk taxonomy context.
+- PRODUCT-READINESS-ROADMAP-MATRIX-00 lists source-scope and consent follow-up as product roadmap validation.
 - AI-RECEIPT-GATEWAY-LOCAL-INGRESS-PROTOTYPE-00 provides the bounded local ingress context.
 - AEGIS-ADMISSION-CONTRACT-00 provides deterministic admission decisions before downstream RequestEnvelope flow.
 - SOURCE-CORPUS-AEGIS-IMPLEMENTATION-REPORTS-BATCH-2026-06-13-00 preserves AEGIS implementation provenance.
@@ -119,7 +130,7 @@ ENTERPRISE-AI-RISK-TAXONOMY-STACK-DESIGN-00 defines a design-only multi-view ris
 
 ## Allowed claim
 
-ENTERPRISE-AI-RISK-TAXONOMY-STACK-DESIGN-00 defines a design-only enterprise AI risk taxonomy stack for Triadic Brain / UVLM that maps one canonical AI Work Event / Receipt spine into local agent, AI assurance, enterprise control, sector-specific, coherence/entropy, and federation/sovereignty risk views, including taxonomy families for NIST CSF, NIST AI RMF, EU AI Act, ISO/IEC 42001, SOC/SSAE, OWASP GenAI, privacy, records, human oversight, exogenic cost, knowledge integrity, resilience, and federation governance, while preserving that the taxonomy stack emits evidence-support structure only and does not certify compliance, provide legal advice, pass audits, claim product readiness, release product, certify truth, write memory, admit Atlas memory, export traces, federate PMR, grant final-answer authority, or grant accepted-evidence authority.
+AEGIS-GROUNDING-BINDING-00 implements local deterministic AEGIS grounding-binding artifacts that bind admitted source-scope and consent packets to canonical source references, content hashes, evidence references, and receipt links before downstream model-candidate, report-generation, evidence-map, or control-package use, while preserving that grounding binding checks admissibility linkage rather than truth and does not read hidden files, scan directories, pull connectors, call providers, perform network calls, write memory, admit Atlas memory, export traces, federate PMR, certify compliance, provide legal advice, pass audits, claim product readiness, release product, certify truth, grant final-answer authority, or grant accepted-evidence authority.
 
 ## Non-authority guardrails
 
