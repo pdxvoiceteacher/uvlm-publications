@@ -299,6 +299,18 @@
         "command": "python -m pytest -q python/tests/provenance/test_source_corpus_aegis_implementation_report_batch_20260613.py python/tests/aegis/test_aegis_admission_contract.py python/tests/provenance/test_source_corpus_taxonomy_stack_threat_standards_batch_20260613.py python/tests/product/test_enterprise_ai_risk_taxonomy_stack_design.py python/tests/integration/test_experiment_suite_registry.py"
       },
       {
+        "name": "AEGIS-SOURCE-SCOPE-CONSENT-00 source-scope consent validation",
+        "command": "python -m pytest -q python/tests/aegis/test_aegis_source_scope_consent.py python/tests/aegis/test_aegis_admission_contract.py"
+      },
+      {
+        "name": "AEGIS-GROUNDING-BINDING-00 grounding binding validation",
+        "command": "python -m pytest -q python/tests/aegis/test_aegis_grounding_binding.py python/tests/aegis/test_aegis_source_scope_consent.py python/tests/aegis/test_aegis_admission_contract.py"
+      },
+      {
+        "name": "AEGIS-INSTRUCTION-QUARANTINE-00 instruction quarantine validation",
+        "command": "python -m pytest -q python/tests/aegis/test_aegis_instruction_quarantine.py python/tests/aegis/test_aegis_grounding_binding.py python/tests/aegis/test_aegis_source_scope_consent.py python/tests/aegis/test_aegis_admission_contract.py"
+      },
+      {
         "name": "SOURCE-CORPUS-GATEWAY-REPORTS-BATCH-2026-06-10-00 source batch validation",
         "command": "python -m pytest -q python/tests/provenance/test_source_corpus_gateway_report_batch_20260610.py tests/test_experiment_registry.py"
       },
