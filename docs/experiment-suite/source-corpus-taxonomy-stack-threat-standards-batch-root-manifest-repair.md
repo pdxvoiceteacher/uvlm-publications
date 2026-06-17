@@ -24,7 +24,7 @@ SOURCE-CORPUS-TAXONOMY-STACK-THREAT-STANDARDS-BATCH-ROOT-MANIFEST-REPAIR-00 repa
 
 ## Allowed claim
 
-SOURCE-CORPUS-TAXONOMY-STACK-THREAT-STANDARDS-BATCH-ROOT-MANIFEST-REPAIR-00 repairs the source-corpus root manifest index for taxonomy_stack_threat_standards_batch_20260613 by adding manifest, sha256sums, summary, and aliases references while preserving hash-only provenance, no raw DOCX/TXT import, and all non-authority boundaries.
+PUBLICATION-SYNC-AEGIS-SOURCE-SCOPE-CONSENT-DECISION-VOCAB-REPAIR-00 repairs the publication decision vocabulary for AEGIS-SOURCE-SCOPE-CONSENT-00 by distinguishing source-scope/consent decisions such as allow and allow_with_controls from admission decisions such as admit and admit_with_controls, while preserving that these terms are deterministic admissibility labels only and do not certify truth, authorize memory writes, grant deployment authority, certify compliance, provide legal advice, pass audits, claim product readiness, release product, grant final-answer authority, or grant accepted-evidence authority.
 
 ## Non-authority guardrails
 
