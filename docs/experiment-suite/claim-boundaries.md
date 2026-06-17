@@ -30,6 +30,313 @@
 - risk_taxonomy_does_not_federate_pmr
 - human_review_required
 - professional_review_required_for_compliance_use
+- source_scope_check_is_not_truth_certification
+- source_scope_check_is_not_memory_write_authorization
+- source_scope_check_is_not_deployment_authority
+- source_scope_check_is_not_compliance_certification
+- source_scope_check_is_not_legal_advice
+- source_scope_check_is_not_audit_pass
+- source_scope_check_is_not_product_release
+- source_scope_check_is_not_product_readiness
+- source_scope_check_is_not_final_answer_authority
+- source_scope_check_is_not_accepted_evidence_authority
+- source_scope_check_does_not_write_memory
+- source_scope_check_does_not_admit_atlas_memory
+- source_scope_check_does_not_export_traces
+- source_scope_check_does_not_federate_pmr
+- consent_check_is_not_truth_certification
+- consent_check_is_not_memory_write_authorization
+- consent_check_is_not_deployment_authority
+- consent_check_is_not_compliance_certification
+- consent_check_is_not_legal_advice
+- consent_check_is_not_audit_pass
+- consent_check_is_not_product_release
+- consent_check_is_not_product_readiness
+- consent_check_is_not_final_answer_authority
+- consent_check_is_not_accepted_evidence_authority
+- consent_check_does_not_write_memory
+- consent_check_does_not_admit_atlas_memory
+- consent_check_does_not_export_traces
+- consent_check_does_not_federate_pmr
+- human_review_required
+- source scope check certifies truth
+- source scope check authorizes memory write
+- source scope check authorizes deployment
+- source scope check certifies compliance
+- source scope check provides legal advice
+- source scope check passes audit
+- source scope check releases product
+- source scope check proves product readiness
+- source scope check grants final-answer authority
+- source scope check grants accepted-evidence authority
+- consent check certifies truth
+- consent check authorizes memory write
+- consent check authorizes deployment
+- consent check certifies compliance
+- consent check provides legal advice
+- consent check passes audit
+- consent check releases product
+- consent check proves product readiness
+- consent check grants final-answer authority
+- consent check grants accepted-evidence authority
+- hidden file is allowed by default
+- directory scan is allowed by default
+- connector pull is allowed without explicit scope
+- missing consent can proceed
+- failed scope check creates RequestEnvelope
+- failed consent check creates RequestEnvelope
+- allow means final-answer authority
+- allow_with_controls means accepted-evidence authority
+- source-scope allow certifies truth
+- consent allow certifies truth
+- allow means compliance certification
+- allow_with_controls means audit pass
+- allow means product release
+- allow_with_controls means product readiness
+- allow means memory write authorization
+- allow means deployment authority
+- grounding_binding_is_not_truth_certification
+- grounding_binding_is_not_source_truth_certification
+- grounding_binding_is_not_memory_write_authorization
+- grounding_binding_is_not_deployment_authority
+- grounding_binding_is_not_compliance_certification
+- grounding_binding_is_not_legal_advice
+- grounding_binding_is_not_audit_pass
+- grounding_binding_is_not_attestation_success
+- grounding_binding_is_not_product_release
+- grounding_binding_is_not_product_readiness
+- grounding_binding_is_not_final_answer_authority
+- grounding_binding_is_not_accepted_evidence_authority
+- grounding_binding_does_not_write_memory
+- grounding_binding_does_not_admit_atlas_memory
+- grounding_binding_does_not_export_traces
+- grounding_binding_does_not_federate_pmr
+- human_review_required
+- grounding binding certifies truth
+- grounding binding certifies source truth
+- grounding binding authorizes memory write
+- grounding binding authorizes deployment
+- grounding binding certifies compliance
+- grounding binding provides legal advice
+- grounding binding passes audit
+- grounding binding releases product
+- grounding binding proves product readiness
+- grounding binding grants final-answer authority
+- grounding binding grants accepted-evidence authority
+- failed grounding creates RequestEnvelope
+- hash binding proves content truth
+- evidence ref certifies compliance
+- receipt ref certifies truth
+- bound means truth certified
+- bound_with_controls means audit passed
+- downstream model use means final-answer authority
+- report generation allowed means compliance certification
+- evidence-map use allowed means accepted evidence
+- control-package use allowed means product release
+- instruction_quarantine_is_not_truth_certification
+- instruction_quarantine_is_not_source_truth_certification
+- instruction_quarantine_is_not_memory_write_authorization
+- instruction_quarantine_is_not_deployment_authority
+- instruction_quarantine_is_not_compliance_certification
+- instruction_quarantine_is_not_legal_advice
+- instruction_quarantine_is_not_audit_pass
+- instruction_quarantine_is_not_attestation_success
+- instruction_quarantine_is_not_product_release
+- instruction_quarantine_is_not_product_readiness
+- instruction_quarantine_is_not_final_answer_authority
+- instruction_quarantine_is_not_accepted_evidence_authority
+- instruction_quarantine_does_not_execute_source_instructions
+- instruction_quarantine_does_not_write_memory
+- instruction_quarantine_does_not_admit_atlas_memory
+- instruction_quarantine_does_not_export_traces
+- instruction_quarantine_does_not_federate_pmr
+- human_review_required
+- instruction quarantine certifies truth
+- instruction quarantine certifies source truth
+- instruction quarantine authorizes memory write
+- instruction quarantine authorizes deployment
+- instruction quarantine certifies compliance
+- instruction quarantine provides legal advice
+- instruction quarantine passes audit
+- instruction quarantine releases product
+- instruction quarantine proves product readiness
+- instruction quarantine grants final-answer authority
+- instruction quarantine grants accepted-evidence authority
+- quarantined instruction executed
+- source instruction controls downstream model
+- source instruction controls report generation
+- source instruction controls evidence map
+- source instruction controls control package
+- safe excerpt means truth certified
+- quarantine receipt certifies compliance
+- clear means truth certified
+- clear_with_notice means accepted evidence
+- quarantine_for_human_review means audit pass
+- reject_fail_closed means legal determination
+- alarm_requires_elevated_review means compliance breach
+- model_candidate_gate_is_not_truth_certification
+- model_candidate_gate_is_not_source_truth_certification
+- model_candidate_gate_is_not_memory_write_authorization
+- model_candidate_gate_is_not_deployment_authority
+- model_candidate_gate_is_not_compliance_certification
+- model_candidate_gate_is_not_legal_advice
+- model_candidate_gate_is_not_audit_pass
+- model_candidate_gate_is_not_attestation_success
+- model_candidate_gate_is_not_product_release
+- model_candidate_gate_is_not_product_readiness
+- model_candidate_gate_is_not_final_answer_authority
+- model_candidate_gate_is_not_accepted_evidence_authority
+- model_candidate_gate_does_not_call_provider
+- model_candidate_gate_does_not_generate_model_output
+- model_candidate_gate_does_not_execute_source_instructions
+- model_candidate_gate_does_not_write_memory
+- model_candidate_gate_does_not_admit_atlas_memory
+- model_candidate_gate_does_not_export_traces
+- model_candidate_gate_does_not_federate_pmr
+- human_review_required
+- model candidate gate certifies truth
+- model candidate gate certifies source truth
+- model candidate gate authorizes memory write
+- model candidate gate authorizes deployment
+- model candidate gate certifies compliance
+- model candidate gate provides legal advice
+- model candidate gate passes audit
+- model candidate gate releases product
+- model candidate gate proves product readiness
+- model candidate gate grants final-answer authority
+- model candidate gate grants accepted-evidence authority
+- model candidate gate calls provider
+- model candidate gate generates model output
+- allowed candidate means final answer
+- allowed candidate means accepted evidence
+- candidate_allowed means truth certified
+- candidate_allowed_with_controls means audit passed
+- failed model-candidate gate creates model output
+- quarantined source can form model candidate without review
+- rejected source can form model candidate
+- alarmed source can form model candidate
+- missing consent can form model candidate
+- unbound grounding can form model candidate
+- model_candidate_allowed means model_candidate_created
+- provider_runtime_allowed means provider_runtime_performed
+- model output generated by AEGIS gate
+- candidate gate trained a model
+- candidate gate selected a final answer
+- action_firewall_is_not_truth_certification
+- action_firewall_is_not_source_truth_certification
+- action_firewall_is_not_memory_write_authorization
+- action_firewall_is_not_deployment_authority
+- action_firewall_is_not_compliance_certification
+- action_firewall_is_not_legal_advice
+- action_firewall_is_not_audit_pass
+- action_firewall_is_not_attestation_success
+- action_firewall_is_not_product_release
+- action_firewall_is_not_product_readiness
+- action_firewall_is_not_final_answer_authority
+- action_firewall_is_not_accepted_evidence_authority
+- action_firewall_does_not_execute_tools
+- action_firewall_does_not_perform_actions
+- action_firewall_does_not_call_provider
+- action_firewall_does_not_call_network
+- action_firewall_does_not_write_files
+- action_firewall_does_not_delete_files
+- action_firewall_does_not_pull_connectors
+- action_firewall_does_not_push_connectors
+- action_firewall_does_not_write_memory
+- action_firewall_does_not_admit_atlas_memory
+- action_firewall_does_not_export_traces
+- action_firewall_does_not_federate_pmr
+- human_review_required
+- action firewall certifies truth
+- action firewall authorizes memory write
+- action firewall authorizes deployment
+- action firewall certifies compliance
+- action firewall provides legal advice
+- action firewall passes audit
+- action firewall releases product
+- action firewall proves product readiness
+- action firewall grants final-answer authority
+- action firewall grants accepted-evidence authority
+- action firewall executes tools
+- action firewall performs actions
+- action firewall writes files
+- action firewall deletes files
+- action firewall pulls connector data
+- action firewall pushes connector data
+- action firewall calls provider
+- action firewall calls network
+- action firewall writes memory
+- action firewall admits Atlas memory
+- action firewall exports traces
+- action firewall federates PMR
+- action firewall installs packages
+- action firewall activates packages
+- action firewall executes packages
+- action firewall processes payment
+- action firewall bills subscription
+- action firewall downloads marketplace package
+- model candidate eligibility authorizes action
+- model_candidate_allowed means action allowed
+- preview allowed means action performed
+- operator authorization inferred from model output
+- missing operator authorization can proceed
+- action_allowed means action performed
+- action_allowed_with_controls means action performed
+- noop action performed
+- preview action wrote file
+- final answer emitted by action firewall
+- accepted evidence marked by action firewall
+- receipt_chain_export_is_not_external_export
+- receipt_chain_export_is_not_truth_certification
+- receipt_chain_export_is_not_source_truth_certification
+- receipt_chain_export_is_not_memory_write_authorization
+- receipt_chain_export_is_not_deployment_authority
+- receipt_chain_export_is_not_compliance_certification
+- receipt_chain_export_is_not_legal_advice
+- receipt_chain_export_is_not_audit_pass
+- receipt_chain_export_is_not_attestation_success
+- receipt_chain_export_is_not_product_release
+- receipt_chain_export_is_not_product_readiness
+- receipt_chain_export_is_not_final_answer_authority
+- receipt_chain_export_is_not_accepted_evidence_authority
+- receipt_chain_export_does_not_call_provider
+- receipt_chain_export_does_not_call_network
+- receipt_chain_export_does_not_execute_tools
+- receipt_chain_export_does_not_perform_actions
+- receipt_chain_export_does_not_write_memory
+- receipt_chain_export_does_not_admit_atlas_memory
+- receipt_chain_export_does_not_export_traces
+- receipt_chain_export_does_not_federate_pmr
+- human_review_required
+- receipt chain export certifies truth
+- receipt chain export certifies source truth
+- receipt chain export authorizes memory write
+- receipt chain export authorizes deployment
+- receipt chain export certifies compliance
+- receipt chain export provides legal advice
+- receipt chain export passes audit
+- receipt chain export releases product
+- receipt chain export proves product readiness
+- receipt chain export grants final-answer authority
+- receipt chain export grants accepted-evidence authority
+- receipt chain export performs external export
+- receipt chain export calls provider
+- receipt chain export calls network
+- receipt chain export writes memory
+- receipt chain export admits Atlas memory
+- receipt chain export exports traces
+- receipt chain export federates PMR
+- receipt chain export executes tools
+- receipt chain export performs actions
+- chain hash proves truth
+- chain hash proves compliance
+- manifest row is accepted evidence
+- local manifest is audit pass
+- local manifest is product release
+- completed_with_failures means downstream allowed
+- local_manifest_written means external export
+- chain_sha256 certifies compliance
+- receipt chain grants final answer authority
 - maturity_label_is_not_product_readiness
 - maturity_label_is_not_product_release
 - maturity_label_is_not_compliance_certification
@@ -5821,7 +6128,7 @@ Publication sync grants no runtime authority. It does not imply compliance certi
 
 ## AEGIS admission and Enterprise AI Risk Taxonomy sync
 
-SOURCE-CORPUS-AEGIS-IMPLEMENTATION-REPORTS-BATCH-2026-06-13-00 and SOURCE-CORPUS-TAXONOMY-STACK-THREAT-STANDARDS-BATCH-2026-06-13-00 preserve hash-only source provenance. AEGIS-ADMISSION-CONTRACT-00 provides deterministic admission decisions before downstream RequestEnvelope flow. ENTERPRISE-AI-RISK-TAXONOMY-STACK-DESIGN-00 maps the canonical AI Work Event / Receipt spine into risk views and emits evidence-support structure only. Publication sync grants no runtime authority, live SaaS operation, provider runtime, network calls, memory writes, Atlas admission, trace export, PMR federation, package execution, product readiness, product release, compliance certification, legal advice, audit pass, truth certification, final-answer authority, or accepted-evidence authority.
+SOURCE-CORPUS-AEGIS-IMPLEMENTATION-REPORTS-BATCH-2026-06-13-00 and SOURCE-CORPUS-TAXONOMY-STACK-THREAT-STANDARDS-BATCH-2026-06-13-00 preserve hash-only source provenance. AEGIS-ADMISSION-CONTRACT-00 provides the admission contract and failure receipt behavior. AEGIS-SOURCE-SCOPE-CONSENT-00 provides reusable source-scope and consent checks consumed by admission. AEGIS-GROUNDING-BINDING-00 binds compatible admission, source-scope, and consent packets to source hashes, evidence refs, and receipt refs. AEGIS-INSTRUCTION-QUARANTINE-00 separates source content from source-borne instructions before downstream use. AEGIS-MODEL-CANDIDATE-GATE-00 gates model-candidate eligibility on compatible upstream AEGIS packets. AEGIS-ACTION-FIREWALL-00 gates action eligibility and preserves that model-candidate eligibility is not action authority. AEGIS-RECEIPT-CHAIN-EXPORT-00 assembles the local AEGIS packet and receipt chain for evidence-support review. AI-RECEIPT-GATEWAY-LOCAL-INGRESS-PROTOTYPE-00 provides bounded local ingress context. ENTERPRISE-AI-RISK-TAXONOMY-STACK-DESIGN-00 provides multi-view risk taxonomy context. PRODUCT-READINESS-ROADMAP-MATRIX-00 lists receipt-chain export as an AEGIS follow-up validation step. Publication sync grants no runtime authority, live SaaS operation, provider runtime, network calls, hidden-file reads, directory scans, connector pulls, consent writes, memory writes, Atlas admission, trace export, PMR federation, package execution, product readiness, product release, compliance certification, legal advice, audit pass, truth certification, final-answer authority, or accepted-evidence authority.
 
 ## Product Readiness Roadmap Matrix sync
 
