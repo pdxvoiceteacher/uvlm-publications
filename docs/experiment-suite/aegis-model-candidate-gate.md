@@ -153,7 +153,7 @@ AEGIS-MODEL-CANDIDATE-GATE-00 documents local deterministic model-candidate gate
 - AEGIS-MODEL-CANDIDATE-GATE-00 gates model-candidate eligibility on compatible upstream AEGIS packets.
 - AI-RECEIPT-GATEWAY-LOCAL-INGRESS-PROTOTYPE-00 provides bounded local ingress context.
 - ENTERPRISE-AI-RISK-TAXONOMY-STACK-DESIGN-00 provides multi-view risk taxonomy context.
-- PRODUCT-READINESS-ROADMAP-MATRIX-00 lists action firewall as an AEGIS follow-up validation step.
+- PRODUCT-READINESS-ROADMAP-MATRIX-00 lists receipt-chain export as an AEGIS follow-up validation step.
 
 ## Artifact references
 

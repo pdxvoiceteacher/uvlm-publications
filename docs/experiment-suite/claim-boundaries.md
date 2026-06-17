@@ -286,6 +286,57 @@
 - preview action wrote file
 - final answer emitted by action firewall
 - accepted evidence marked by action firewall
+- receipt_chain_export_is_not_external_export
+- receipt_chain_export_is_not_truth_certification
+- receipt_chain_export_is_not_source_truth_certification
+- receipt_chain_export_is_not_memory_write_authorization
+- receipt_chain_export_is_not_deployment_authority
+- receipt_chain_export_is_not_compliance_certification
+- receipt_chain_export_is_not_legal_advice
+- receipt_chain_export_is_not_audit_pass
+- receipt_chain_export_is_not_attestation_success
+- receipt_chain_export_is_not_product_release
+- receipt_chain_export_is_not_product_readiness
+- receipt_chain_export_is_not_final_answer_authority
+- receipt_chain_export_is_not_accepted_evidence_authority
+- receipt_chain_export_does_not_call_provider
+- receipt_chain_export_does_not_call_network
+- receipt_chain_export_does_not_execute_tools
+- receipt_chain_export_does_not_perform_actions
+- receipt_chain_export_does_not_write_memory
+- receipt_chain_export_does_not_admit_atlas_memory
+- receipt_chain_export_does_not_export_traces
+- receipt_chain_export_does_not_federate_pmr
+- human_review_required
+- receipt chain export certifies truth
+- receipt chain export certifies source truth
+- receipt chain export authorizes memory write
+- receipt chain export authorizes deployment
+- receipt chain export certifies compliance
+- receipt chain export provides legal advice
+- receipt chain export passes audit
+- receipt chain export releases product
+- receipt chain export proves product readiness
+- receipt chain export grants final-answer authority
+- receipt chain export grants accepted-evidence authority
+- receipt chain export performs external export
+- receipt chain export calls provider
+- receipt chain export calls network
+- receipt chain export writes memory
+- receipt chain export admits Atlas memory
+- receipt chain export exports traces
+- receipt chain export federates PMR
+- receipt chain export executes tools
+- receipt chain export performs actions
+- chain hash proves truth
+- chain hash proves compliance
+- manifest row is accepted evidence
+- local manifest is audit pass
+- local manifest is product release
+- completed_with_failures means downstream allowed
+- local_manifest_written means external export
+- chain_sha256 certifies compliance
+- receipt chain grants final answer authority
 - maturity_label_is_not_product_readiness
 - maturity_label_is_not_product_release
 - maturity_label_is_not_compliance_certification
@@ -6077,7 +6128,7 @@ Publication sync grants no runtime authority. It does not imply compliance certi
 
 ## AEGIS admission and Enterprise AI Risk Taxonomy sync
 
-SOURCE-CORPUS-AEGIS-IMPLEMENTATION-REPORTS-BATCH-2026-06-13-00 and SOURCE-CORPUS-TAXONOMY-STACK-THREAT-STANDARDS-BATCH-2026-06-13-00 preserve hash-only source provenance. AEGIS-ADMISSION-CONTRACT-00 provides the admission contract and failure receipt behavior. AEGIS-SOURCE-SCOPE-CONSENT-00 provides reusable source-scope and consent checks consumed by admission. AEGIS-GROUNDING-BINDING-00 binds compatible admission, source-scope, and consent packets to source hashes, evidence refs, and receipt refs. AEGIS-INSTRUCTION-QUARANTINE-00 separates source content from source-borne instructions before downstream use. AEGIS-MODEL-CANDIDATE-GATE-00 gates model-candidate eligibility on compatible upstream AEGIS packets. AEGIS-ACTION-FIREWALL-00 gates action eligibility and preserves that model-candidate eligibility is not action authority. AI-RECEIPT-GATEWAY-LOCAL-INGRESS-PROTOTYPE-00 provides bounded local ingress context. ENTERPRISE-AI-RISK-TAXONOMY-STACK-DESIGN-00 provides multi-view risk taxonomy context. PRODUCT-READINESS-ROADMAP-MATRIX-00 lists action firewall as an AEGIS follow-up validation step. Publication sync grants no runtime authority, live SaaS operation, provider runtime, network calls, hidden-file reads, directory scans, connector pulls, consent writes, memory writes, Atlas admission, trace export, PMR federation, package execution, product readiness, product release, compliance certification, legal advice, audit pass, truth certification, final-answer authority, or accepted-evidence authority.
+SOURCE-CORPUS-AEGIS-IMPLEMENTATION-REPORTS-BATCH-2026-06-13-00 and SOURCE-CORPUS-TAXONOMY-STACK-THREAT-STANDARDS-BATCH-2026-06-13-00 preserve hash-only source provenance. AEGIS-ADMISSION-CONTRACT-00 provides the admission contract and failure receipt behavior. AEGIS-SOURCE-SCOPE-CONSENT-00 provides reusable source-scope and consent checks consumed by admission. AEGIS-GROUNDING-BINDING-00 binds compatible admission, source-scope, and consent packets to source hashes, evidence refs, and receipt refs. AEGIS-INSTRUCTION-QUARANTINE-00 separates source content from source-borne instructions before downstream use. AEGIS-MODEL-CANDIDATE-GATE-00 gates model-candidate eligibility on compatible upstream AEGIS packets. AEGIS-ACTION-FIREWALL-00 gates action eligibility and preserves that model-candidate eligibility is not action authority. AEGIS-RECEIPT-CHAIN-EXPORT-00 assembles the local AEGIS packet and receipt chain for evidence-support review. AI-RECEIPT-GATEWAY-LOCAL-INGRESS-PROTOTYPE-00 provides bounded local ingress context. ENTERPRISE-AI-RISK-TAXONOMY-STACK-DESIGN-00 provides multi-view risk taxonomy context. PRODUCT-READINESS-ROADMAP-MATRIX-00 lists receipt-chain export as an AEGIS follow-up validation step. Publication sync grants no runtime authority, live SaaS operation, provider runtime, network calls, hidden-file reads, directory scans, connector pulls, consent writes, memory writes, Atlas admission, trace export, PMR federation, package execution, product readiness, product release, compliance certification, legal advice, audit pass, truth certification, final-answer authority, or accepted-evidence authority.
 
 ## Product Readiness Roadmap Matrix sync
 
