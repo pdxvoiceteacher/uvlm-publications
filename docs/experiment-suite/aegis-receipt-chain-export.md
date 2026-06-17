@@ -177,7 +177,7 @@ AEGIS-RECEIPT-CHAIN-EXPORT-00 documents local deterministic receipt-chain export
 - AEGIS-RECEIPT-CHAIN-EXPORT-00 assembles the local AEGIS packet and receipt chain for evidence-support review.
 - AI-RECEIPT-GATEWAY-LOCAL-INGRESS-PROTOTYPE-00 provides bounded local ingress context.
 - ENTERPRISE-AI-RISK-TAXONOMY-STACK-DESIGN-00 provides multi-view risk taxonomy context.
-- PRODUCT-READINESS-ROADMAP-MATRIX-00 lists receipt-chain export as an AEGIS follow-up validation step.
+- PRODUCT-READINESS-ROADMAP-MATRIX-00 lists local runtime enforcement adapter as an AEGIS follow-up validation step.
 
 ## Artifact references
 

@@ -323,6 +323,10 @@
         "command": "python -m pytest -q python/tests/aegis/test_aegis_receipt_chain_export.py python/tests/aegis/test_aegis_action_firewall.py python/tests/aegis/test_aegis_model_candidate_gate.py python/tests/aegis/test_aegis_instruction_quarantine.py python/tests/aegis/test_aegis_grounding_binding.py python/tests/aegis/test_aegis_source_scope_consent.py python/tests/aegis/test_aegis_admission_contract.py"
       },
       {
+        "name": "AEGIS-LOCAL-RUNTIME-ENFORCEMENT-ADAPTER-00 local runtime enforcement validation",
+        "command": "python -m pytest -q python/tests/aegis/test_aegis_local_runtime_enforcement_adapter.py python/tests/aegis/test_aegis_receipt_chain_export.py python/tests/aegis/test_aegis_action_firewall.py python/tests/aegis/test_aegis_model_candidate_gate.py python/tests/aegis/test_aegis_instruction_quarantine.py python/tests/aegis/test_aegis_grounding_binding.py python/tests/aegis/test_aegis_source_scope_consent.py python/tests/aegis/test_aegis_admission_contract.py"
+      },
+      {
         "name": "SOURCE-CORPUS-GATEWAY-REPORTS-BATCH-2026-06-10-00 source batch validation",
         "command": "python -m pytest -q python/tests/provenance/test_source_corpus_gateway_report_batch_20260610.py tests/test_experiment_registry.py"
       },

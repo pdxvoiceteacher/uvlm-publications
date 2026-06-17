@@ -337,6 +337,65 @@
 - local_manifest_written means external export
 - chain_sha256 certifies compliance
 - receipt chain grants final answer authority
+- local_runtime_enforcement_adapter_is_not_truth_certification
+- local_runtime_enforcement_adapter_is_not_source_truth_certification
+- local_runtime_enforcement_adapter_is_not_memory_write_authorization
+- local_runtime_enforcement_adapter_is_not_deployment_authority
+- local_runtime_enforcement_adapter_is_not_compliance_certification
+- local_runtime_enforcement_adapter_is_not_legal_advice
+- local_runtime_enforcement_adapter_is_not_audit_pass
+- local_runtime_enforcement_adapter_is_not_attestation_success
+- local_runtime_enforcement_adapter_is_not_product_release
+- local_runtime_enforcement_adapter_is_not_product_readiness
+- local_runtime_enforcement_adapter_is_not_final_answer_authority
+- local_runtime_enforcement_adapter_is_not_accepted_evidence_authority
+- local_runtime_enforcement_adapter_does_not_execute_tools
+- local_runtime_enforcement_adapter_does_not_perform_actions
+- local_runtime_enforcement_adapter_does_not_call_provider
+- local_runtime_enforcement_adapter_does_not_call_network
+- local_runtime_enforcement_adapter_does_not_write_files
+- local_runtime_enforcement_adapter_does_not_delete_files
+- local_runtime_enforcement_adapter_does_not_pull_connectors
+- local_runtime_enforcement_adapter_does_not_push_connectors
+- local_runtime_enforcement_adapter_does_not_write_memory
+- local_runtime_enforcement_adapter_does_not_admit_atlas_memory
+- local_runtime_enforcement_adapter_does_not_export_traces
+- local_runtime_enforcement_adapter_does_not_federate_pmr
+- local_runtime_enforcement_adapter_does_not_create_model_candidates
+- local_runtime_enforcement_adapter_does_not_generate_model_output
+- human_review_required
+- local runtime enforcement adapter certifies truth
+- local runtime enforcement adapter authorizes memory write
+- local runtime enforcement adapter authorizes deployment
+- local runtime enforcement adapter certifies compliance
+- local runtime enforcement adapter provides legal advice
+- local runtime enforcement adapter passes audit
+- local runtime enforcement adapter releases product
+- local runtime enforcement adapter proves product readiness
+- local runtime enforcement adapter grants final-answer authority
+- local runtime enforcement adapter grants accepted-evidence authority
+- local runtime enforcement adapter executes tools
+- local runtime enforcement adapter performs actions
+- local runtime enforcement adapter writes files
+- local runtime enforcement adapter deletes files
+- local runtime enforcement adapter pulls connector data
+- local runtime enforcement adapter pushes connector data
+- local runtime enforcement adapter calls provider
+- local runtime enforcement adapter calls network
+- local runtime enforcement adapter writes memory
+- local runtime enforcement adapter admits Atlas memory
+- local runtime enforcement adapter exports traces
+- local runtime enforcement adapter federates PMR
+- local runtime enforcement adapter creates model candidate
+- local runtime enforcement adapter generates model output
+- preflight allowed means operation performed
+- preflight allowed means final answer authority
+- completed-with-failures chain permits action execution
+- receipt chain manifest executes runtime
+- local receipt view means audit pass
+- evidence support review means compliance certification
+- authorized_for_requested_action is sufficient for preflight
+- authorized_for_evidence_support_review is sufficient for preflight
 - maturity_label_is_not_product_readiness
 - maturity_label_is_not_product_release
 - maturity_label_is_not_compliance_certification
@@ -6128,7 +6187,7 @@ Publication sync grants no runtime authority. It does not imply compliance certi
 
 ## AEGIS admission and Enterprise AI Risk Taxonomy sync
 
-SOURCE-CORPUS-AEGIS-IMPLEMENTATION-REPORTS-BATCH-2026-06-13-00 and SOURCE-CORPUS-TAXONOMY-STACK-THREAT-STANDARDS-BATCH-2026-06-13-00 preserve hash-only source provenance. AEGIS-ADMISSION-CONTRACT-00 provides the admission contract and failure receipt behavior. AEGIS-SOURCE-SCOPE-CONSENT-00 provides reusable source-scope and consent checks consumed by admission. AEGIS-GROUNDING-BINDING-00 binds compatible admission, source-scope, and consent packets to source hashes, evidence refs, and receipt refs. AEGIS-INSTRUCTION-QUARANTINE-00 separates source content from source-borne instructions before downstream use. AEGIS-MODEL-CANDIDATE-GATE-00 gates model-candidate eligibility on compatible upstream AEGIS packets. AEGIS-ACTION-FIREWALL-00 gates action eligibility and preserves that model-candidate eligibility is not action authority. AEGIS-RECEIPT-CHAIN-EXPORT-00 assembles the local AEGIS packet and receipt chain for evidence-support review. AI-RECEIPT-GATEWAY-LOCAL-INGRESS-PROTOTYPE-00 provides bounded local ingress context. ENTERPRISE-AI-RISK-TAXONOMY-STACK-DESIGN-00 provides multi-view risk taxonomy context. PRODUCT-READINESS-ROADMAP-MATRIX-00 lists receipt-chain export as an AEGIS follow-up validation step. Publication sync grants no runtime authority, live SaaS operation, provider runtime, network calls, hidden-file reads, directory scans, connector pulls, consent writes, memory writes, Atlas admission, trace export, PMR federation, package execution, product readiness, product release, compliance certification, legal advice, audit pass, truth certification, final-answer authority, or accepted-evidence authority.
+SOURCE-CORPUS-AEGIS-IMPLEMENTATION-REPORTS-BATCH-2026-06-13-00 and SOURCE-CORPUS-TAXONOMY-STACK-THREAT-STANDARDS-BATCH-2026-06-13-00 preserve hash-only source provenance. AEGIS-ADMISSION-CONTRACT-00 provides the admission contract and failure receipt behavior. AEGIS-SOURCE-SCOPE-CONSENT-00 provides reusable source-scope and consent checks consumed by admission. AEGIS-GROUNDING-BINDING-00 binds compatible admission, source-scope, and consent packets to source hashes, evidence refs, and receipt refs. AEGIS-INSTRUCTION-QUARANTINE-00 separates source content from source-borne instructions before downstream use. AEGIS-MODEL-CANDIDATE-GATE-00 gates model-candidate eligibility on compatible upstream AEGIS packets. AEGIS-ACTION-FIREWALL-00 gates action eligibility and preserves that model-candidate eligibility is not action authority. AEGIS-RECEIPT-CHAIN-EXPORT-00 assembles the local AEGIS packet and receipt chain for evidence-support review. AEGIS-LOCAL-RUNTIME-ENFORCEMENT-ADAPTER-00 consumes the receipt chain and exposes a fail-closed preflight decision to local callers. AI-RECEIPT-GATEWAY-LOCAL-INGRESS-PROTOTYPE-00 provides bounded local ingress context. ENTERPRISE-AI-RISK-TAXONOMY-STACK-DESIGN-00 provides multi-view risk taxonomy context. PRODUCT-READINESS-ROADMAP-MATRIX-00 lists local runtime enforcement adapter as an AEGIS follow-up validation step. Publication sync grants no runtime authority, live SaaS operation, provider runtime, network calls, hidden-file reads, directory scans, connector pulls, consent writes, memory writes, Atlas admission, trace export, PMR federation, package execution, product readiness, product release, compliance certification, legal advice, audit pass, truth certification, final-answer authority, or accepted-evidence authority.
 
 ## Product Readiness Roadmap Matrix sync
 
