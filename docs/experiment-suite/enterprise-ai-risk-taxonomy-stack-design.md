@@ -103,9 +103,17 @@ ENTERPRISE-AI-RISK-TAXONOMY-STACK-DESIGN-00 defines a design-only multi-view ris
 - AEGIS-SOURCE-SCOPE-CONSENT-00 provides reusable source-scope and consent checks consumed by admission.
 - AEGIS-GROUNDING-BINDING-00 binds compatible admission, source-scope, and consent packets to source hashes, evidence refs, and receipt refs.
 - AEGIS-INSTRUCTION-QUARANTINE-00 separates source content from source-borne instructions before downstream use.
+- AEGIS-MODEL-CANDIDATE-GATE-00 gates model-candidate eligibility on compatible upstream AEGIS packets.
 - AI-RECEIPT-GATEWAY-LOCAL-INGRESS-PROTOTYPE-00 provides bounded local ingress context.
 - ENTERPRISE-AI-RISK-TAXONOMY-STACK-DESIGN-00 provides multi-view risk taxonomy context.
-- PRODUCT-READINESS-ROADMAP-MATRIX-00 lists instruction quarantine as an AEGIS follow-up validation step.
+- PRODUCT-READINESS-ROADMAP-MATRIX-00 lists model-candidate gating as an AEGIS follow-up validation step.
+- AEGIS-ADMISSION-CONTRACT-00 provides the admission contract and failure receipt behavior.
+- AEGIS-SOURCE-SCOPE-CONSENT-00 provides reusable source-scope and consent checks consumed by admission.
+- AEGIS-GROUNDING-BINDING-00 binds compatible admission, source-scope, and consent packets to source hashes, evidence refs, and receipt refs.
+- AEGIS-INSTRUCTION-QUARANTINE-00 separates source content from source-borne instructions before downstream use.
+- AI-RECEIPT-GATEWAY-LOCAL-INGRESS-PROTOTYPE-00 provides bounded local ingress context.
+- ENTERPRISE-AI-RISK-TAXONOMY-STACK-DESIGN-00 provides multi-view risk taxonomy context.
+- PRODUCT-READINESS-ROADMAP-MATRIX-00 lists model-candidate gating as an AEGIS follow-up validation step.
 - AEGIS-ADMISSION-CONTRACT-00 provides the admission contract and failure receipt behavior.
 - AEGIS-SOURCE-SCOPE-CONSENT-00 provides reusable source-scope and consent checks consumed by admission.
 - AEGIS-GROUNDING-BINDING-00 binds compatible admission, source-scope, and consent packets to source hashes, evidence refs, and receipt refs.
