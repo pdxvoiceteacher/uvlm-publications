@@ -514,6 +514,19 @@ from tools.build_public_repro_dashboard import (
     AEGIS_MODEL_CANDIDATE_BLOCKED_CLAIMS,
     AEGIS_MODEL_CANDIDATE_CLAIM_ALLOWED,
     AEGIS_MODEL_CANDIDATE_PRIOR_PHASE_RELATION,
+    AEGIS_ACTION_FIREWALL_ARTIFACTS,
+    AEGIS_ACTION_FIREWALL_STATUSES,
+    AEGIS_ACTION_FIREWALL_DECISIONS,
+    AEGIS_ACTION_KINDS,
+    AEGIS_ACTION_FIREWALL_SCENARIOS,
+    AEGIS_ACTION_FIREWALL_REPRO_FRAGMENTS,
+    AEGIS_ACTION_FIREWALL_DOCTRINE,
+    AEGIS_ACTION_FIREWALL_COMPATIBILITY,
+    AEGIS_ACTION_FIREWALL_GUARDRAILS,
+    AEGIS_ACTION_FIREWALL_SUMMARY,
+    AEGIS_ACTION_FIREWALL_BLOCKED_CLAIMS,
+    AEGIS_ACTION_FIREWALL_CLAIM_ALLOWED,
+    AEGIS_ACTION_FIREWALL_PRIOR_PHASE_RELATION,
     TAXONOMY_SOURCE_ARTIFACTS,
     TAXONOMY_ROOT_REPAIR_ARTIFACTS,
     ENTERPRISE_RISK_ARTIFACTS,
@@ -640,6 +653,7 @@ REQUIRED_PHASES = {
     "AEGIS-GROUNDING-BINDING-00",
     "AEGIS-INSTRUCTION-QUARANTINE-00",
     "AEGIS-MODEL-CANDIDATE-GATE-00",
+    "AEGIS-ACTION-FIREWALL-00",
     "SOURCE-CORPUS-AEGIS-IMPLEMENTATION-REPORTS-BATCH-2026-06-13-00",
     "PRODUCT-READINESS-ROADMAP-MATRIX-00",
     "PRODUCT-MATURITY-LABEL-TAXONOMY-00",
@@ -8147,6 +8161,7 @@ def test_aegis_admission_and_risk_taxonomy_stack_publication_sync():
             "docs/experiment-suite/aegis-grounding-binding.md",
             "docs/experiment-suite/aegis-instruction-quarantine.md",
             "docs/experiment-suite/aegis-model-candidate-gate.md",
+            "docs/experiment-suite/aegis-action-firewall.md",
             "docs/experiment-suite/source-corpus-taxonomy-stack-threat-standards-batch-2026-06-13.md",
             "docs/experiment-suite/source-corpus-taxonomy-stack-threat-standards-batch-root-manifest-repair.md",
             "docs/experiment-suite/enterprise-ai-risk-taxonomy-stack-design.md",
@@ -8162,6 +8177,7 @@ def test_aegis_admission_and_risk_taxonomy_stack_publication_sync():
         "AEGIS-GROUNDING-BINDING-00": AEGIS_GROUNDING_BINDING_ARTIFACTS,
         "AEGIS-INSTRUCTION-QUARANTINE-00": AEGIS_INSTRUCTION_QUARANTINE_ARTIFACTS,
         "AEGIS-MODEL-CANDIDATE-GATE-00": AEGIS_MODEL_CANDIDATE_GATE_ARTIFACTS,
+        "AEGIS-ACTION-FIREWALL-00": AEGIS_ACTION_FIREWALL_ARTIFACTS,
         "SOURCE-CORPUS-TAXONOMY-STACK-THREAT-STANDARDS-BATCH-2026-06-13-00": TAXONOMY_SOURCE_ARTIFACTS,
         "SOURCE-CORPUS-TAXONOMY-STACK-THREAT-STANDARDS-BATCH-ROOT-MANIFEST-REPAIR-00": TAXONOMY_ROOT_REPAIR_ARTIFACTS,
         "ENTERPRISE-AI-RISK-TAXONOMY-STACK-DESIGN-00": ENTERPRISE_RISK_ARTIFACTS,
@@ -8179,6 +8195,8 @@ def test_aegis_admission_and_risk_taxonomy_stack_publication_sync():
         assert dashboard[f"aegis_instruction_quarantine_{key}"] == value
     for key, value in AEGIS_MODEL_CANDIDATE_SUMMARY.items():
         assert dashboard[f"aegis_model_candidate_gate_{key}"] == value
+    for key, value in AEGIS_ACTION_FIREWALL_SUMMARY.items():
+        assert dashboard[f"aegis_action_firewall_{key}"] == value
     for key, value in TAXONOMY_SOURCE_DASHBOARD_SUMMARY.items():
         assert dashboard[f"taxonomy_source_corpus_{key}"] == value
     for key, value in TAXONOMY_ROOT_REPAIR_DASHBOARD_SUMMARY.items():
@@ -8208,6 +8226,11 @@ def test_aegis_admission_and_risk_taxonomy_stack_publication_sync():
         AEGIS_MODEL_CANDIDATE_REPRO_FRAGMENTS, AEGIS_MODEL_CANDIDATE_DOCTRINE,
         AEGIS_MODEL_CANDIDATE_DOWNSTREAM, AEGIS_MODEL_CANDIDATE_GUARDRAILS,
         AEGIS_MODEL_CANDIDATE_BLOCKED_CLAIMS, AEGIS_MODEL_CANDIDATE_PRIOR_PHASE_RELATION,
+        AEGIS_ACTION_FIREWALL_STATUSES, AEGIS_ACTION_FIREWALL_DECISIONS,
+        AEGIS_ACTION_KINDS, AEGIS_ACTION_FIREWALL_SCENARIOS,
+        AEGIS_ACTION_FIREWALL_REPRO_FRAGMENTS, AEGIS_ACTION_FIREWALL_DOCTRINE,
+        AEGIS_ACTION_FIREWALL_COMPATIBILITY, AEGIS_ACTION_FIREWALL_GUARDRAILS,
+        AEGIS_ACTION_FIREWALL_BLOCKED_CLAIMS, AEGIS_ACTION_FIREWALL_PRIOR_PHASE_RELATION,
     ):
         for phrase in phrase_group:
             assert phrase in pages
@@ -8218,4 +8241,5 @@ def test_aegis_admission_and_risk_taxonomy_stack_publication_sync():
     assert AEGIS_GROUNDING_CLAIM_ALLOWED in pages
     assert AEGIS_INSTRUCTION_QUARANTINE_CLAIM_ALLOWED in pages
     assert AEGIS_MODEL_CANDIDATE_CLAIM_ALLOWED in pages
+    assert AEGIS_ACTION_FIREWALL_CLAIM_ALLOWED in pages
     assert "Publication sync grants no runtime authority" in pages
