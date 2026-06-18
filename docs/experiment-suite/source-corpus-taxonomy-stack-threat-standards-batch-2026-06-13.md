@@ -60,7 +60,7 @@ SOURCE-CORPUS-TAXONOMY-STACK-THREAT-STANDARDS-BATCH-2026-06-13-00 records hash-o
 
 ## Allowed claim
 
-SOURCE-CORPUS-TAXONOMY-STACK-THREAT-STANDARDS-BATCH-2026-06-13-00 records hash-only provenance for June 2026 taxonomy stack, threat standards, and AEGIS validation-analysis materials, preserving source filenames, SHA-256 hashes, visibility, public-release status, and bounded threat/standards conclusions without committing raw private DOCX/TXT files or treating the reports as accepted evidence, canonical repo state, runtime implementation, compliance certification, legal advice, audit pass, product readiness, product release, truth certification, memory write, Atlas admission, trace export, PMR federation, final-answer authority, or accepted-evidence authority.
+AEGIS-SOURCE-SCOPE-CONSENT-00 implements local deterministic AEGIS source-scope and consent checks for configured AI work events, evaluating explicit local file selection, pasted excerpts, missing scope, hidden files, directory scans, connector scope, source-instruction quarantine, valid consent, missing consent, mismatched consent, revoked consent, expired consent, and human-review consent states, while preserving that AEGIS checks admissibility rather than truth and do not perform hidden-file reads, directory scans, connector pulls, provider calls, network calls, memory writes, Atlas admission, trace export, PMR federation, product readiness, product release, compliance certification, legal advice, audit pass, truth certification, final-answer authority, or accepted-evidence authority.
 
 ## Non-authority guardrails
 

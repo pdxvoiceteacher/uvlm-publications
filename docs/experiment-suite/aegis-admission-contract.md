@@ -115,4 +115,4 @@ AEGIS-ADMISSION-CONTRACT-00 implements a local deterministic AEGIS admission con
 - human_review_required
 - professional_review_required_for_compliance_use
 
-Publication sync grants no runtime authority.
+Publication sync grants no runtime authority. live_bounded_local means bounded local validation. live_bounded_local does not mean general availability. Publication visibility does not mean product release. Status rendering does not mean runtime enforcement.
