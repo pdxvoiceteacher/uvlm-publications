@@ -396,6 +396,66 @@
 - evidence support review means compliance certification
 - authorized_for_requested_action is sufficient for preflight
 - authorized_for_evidence_support_review is sufficient for preflight
+- ui_preflight_status_surface_is_not_enforcement_authority
+- ui_preflight_status_surface_is_not_action_authority
+- ui_preflight_status_surface_is_not_truth_certification
+- ui_preflight_status_surface_is_not_source_truth_certification
+- ui_preflight_status_surface_is_not_memory_write_authorization
+- ui_preflight_status_surface_is_not_deployment_authority
+- ui_preflight_status_surface_is_not_compliance_certification
+- ui_preflight_status_surface_is_not_legal_advice
+- ui_preflight_status_surface_is_not_audit_pass
+- ui_preflight_status_surface_is_not_attestation_success
+- ui_preflight_status_surface_is_not_product_release
+- ui_preflight_status_surface_is_not_product_readiness
+- ui_preflight_status_surface_is_not_final_answer_authority
+- ui_preflight_status_surface_is_not_accepted_evidence_authority
+- ui_preflight_status_surface_does_not_execute_tools
+- ui_preflight_status_surface_does_not_perform_actions
+- ui_preflight_status_surface_does_not_call_provider
+- ui_preflight_status_surface_does_not_call_network
+- ui_preflight_status_surface_does_not_write_user_files
+- ui_preflight_status_surface_does_not_delete_files
+- ui_preflight_status_surface_does_not_pull_connectors
+- ui_preflight_status_surface_does_not_push_connectors
+- ui_preflight_status_surface_does_not_write_memory
+- ui_preflight_status_surface_does_not_admit_atlas_memory
+- ui_preflight_status_surface_does_not_export_traces
+- ui_preflight_status_surface_does_not_federate_pmr
+- ui_preflight_status_surface_does_not_create_model_candidates
+- ui_preflight_status_surface_does_not_generate_model_output
+- human_review_required
+- UI preflight status surface certifies truth
+- UI preflight status surface authorizes memory write
+- UI preflight status surface authorizes deployment
+- UI preflight status surface certifies compliance
+- UI preflight status surface provides legal advice
+- UI preflight status surface passes audit
+- UI preflight status surface releases product
+- UI preflight status surface proves product readiness
+- UI preflight status surface grants final-answer authority
+- UI preflight status surface grants accepted-evidence authority
+- UI preflight status surface executes tools
+- UI preflight status surface performs actions
+- UI preflight status surface calls provider
+- UI preflight status surface calls network
+- UI preflight status surface writes user files
+- UI preflight status surface writes memory
+- UI preflight status surface creates model candidates
+- UI preflight status surface generates model output
+- ready for preview means operation performed
+- ready with controls means action authorized
+- review required means audit failed
+- blocked means illegal
+- elevated review required means compliance breach
+- green status proves safety
+- surface hash certifies truth
+- failure receipt proves audit failure
+- status surface can override AEGIS preflight
+- informational severity means safe
+- critical severity certifies an incident
+- rendered status means runtime executed
+- static HTML is an enforcement endpoint
 - maturity_label_is_not_product_readiness
 - maturity_label_is_not_product_release
 - maturity_label_is_not_compliance_certification
@@ -6145,7 +6205,7 @@ Compliance toolset doctrine: Compliance Evidence Toolset Library; UVLM produces 
 
 Report audiences: compliance_professional, auditor, risk_manager, legal_reviewer, model_governance_reviewer, data_protection_reviewer, procurement_reviewer, executive_reviewer. Report sections: executive_summary, input_selection_and_scope, consent_and_observation_scope, source_manifest_and_hashes, quarantine_and_exclusions, claim_support_and_unsupported_claims, controls_applied, human_review_requirements, retention_and_memory_boundaries, contestability_and_recovery_options, validation_confidence_scope, system_components_plain_language_map, non_authority_summary, audit_artifact_index, open_questions_and_required_follow_up. Framework profiles: eu_ai_act_evidence_support, iso_iec_42001_evidence_support, soc2_trust_services_evidence_support, hipaa_privacy_security_evidence_support, nist_ai_rmf_evidence_support, internal_ai_governance_policy_evidence_support, procurement_ai_review_evidence_support, vendor_ai_review_evidence_support, ai_incident_review_evidence_support, model_change_review_evidence_support. EU AI Act evidence support terms: risk_classification_support, intended_use_description, source_data_governance_evidence, technical_documentation_support, record_keeping_logging_support, transparency_deployer_information_support, human_oversight_support, accuracy_robustness_cybersecurity_posture, post_market_monitoring_or_incident_review_posture, fundamental_rights_or_data_equity_review_support, non_authority_boundary. Generic evidence mapping terms: source_manifest, source_hash, consent_scope, observation_scope, quarantine_report, unsupported_claims, controls_applied, human_review_status, validation_tier, retention_boundary, contestability_options, recovery_options, non_authority_boundary, audit_artifact_index, open_gaps. Human signoff roles: compliance_officer, legal_reviewer, privacy_officer, security_officer, model_risk_manager, ai_governance_lead, licensed_auditor_or_certifier, executive_owner.
 
-These designs do not generate reports or evidence packs, process real inputs, certify compliance, provide legal advice, pass audits, guarantee attestation success, certify truth, grant final-answer authority, grant accepted-evidence authority, write memory, admit Atlas memory, export traces, federate PMR, train models, skip review, validate users, claim product readiness, or release product. Publication sync grants no runtime authority.
+These designs do not generate reports or evidence packs, process real inputs, certify compliance, provide legal advice, pass audits, guarantee attestation success, certify truth, grant final-answer authority, grant accepted-evidence authority, write memory, admit Atlas memory, export traces, federate PMR, train models, skip review, validate users, claim product readiness, or release product. Publication sync grants no runtime authority. live_bounded_local means bounded local validation. live_bounded_local does not mean general availability. Publication visibility does not mean product release. Status rendering does not mean runtime enforcement.
 
 ## WAVE Rosetta bridge, EU AI Act mapping, and WAVE provenance publication sync
 
@@ -6169,7 +6229,7 @@ Doctrine: EU AI Act MVR Evidence Map Prototype; This is evidence support, not EU
 
 EU AI Act categories: risk_classification_support, intended_use_description, source_data_governance_evidence, technical_documentation_support, record_keeping_logging_support, transparency_deployer_information_support, human_oversight_support, accuracy_robustness_cybersecurity_posture, post_market_monitoring_or_incident_review_posture, fundamental_rights_or_data_equity_review_support, non_authority_boundary. MVR artifact mapping terms: source_manifest, source_hash, consent_scope, observation_scope, quarantine_report, unsupported_claims, controls_applied, human_review_status, validation_tier, retention_boundary, contestability_options, recovery_options, non_authority_boundary, audit_artifact_index, open_gaps. Gap terms: missing_risk_classification, missing_intended_use_owner, missing_human_signoff, missing_control_effectiveness_test, missing_representative_data_assessment, missing_security_review, missing_fundamental_rights_assessment, missing_post_market_monitoring_plan, missing_incident_response_owner, missing_legal_review, missing_evidence_visible = true, gaps_are_not_compliance_failures = true, no_visible_gap_is_not_compliance_success = true. Human review/signoff terms: compliance_officer, legal_reviewer, privacy_officer, security_officer, model_risk_manager, ai_governance_lead, executive_owner, licensed_auditor_or_certifier, signoff_performed = false, legal_review_performed = false, authorized_professional_signoff_required = true.
 
-Relation to prior phases: EU-AI-ACT-MVR-EVIDENCE-MAPPING-DESIGN-00 defines the design-only mapping profile. EU-AI-ACT-MVR-EVIDENCE-MAP-LOCAL-PROTOTYPE-00 emits the first local EU AI Act evidence-support map. COMPLIANCE-EVIDENCE-TOOLSET-LIBRARY-DESIGN-00 defines the broader evidence toolset library. COMPLIANCE-READY-MVR-REPORT-DESIGN-00 defines the compliance-facing report structure. MVR-LOCAL-REAL-INPUT-PILOT-HUMAN-SELECTED-FILE-SMOKE-00 supplies bounded MVR real-input pilot artifacts. VALIDATION-TIERING-PROVENANCE-00 records validation confidence scope. Publication sync grants no runtime authority.
+Relation to prior phases: EU-AI-ACT-MVR-EVIDENCE-MAPPING-DESIGN-00 defines the design-only mapping profile. EU-AI-ACT-MVR-EVIDENCE-MAP-LOCAL-PROTOTYPE-00 emits the first local EU AI Act evidence-support map. COMPLIANCE-EVIDENCE-TOOLSET-LIBRARY-DESIGN-00 defines the broader evidence toolset library. COMPLIANCE-READY-MVR-REPORT-DESIGN-00 defines the compliance-facing report structure. MVR-LOCAL-REAL-INPUT-PILOT-HUMAN-SELECTED-FILE-SMOKE-00 supplies bounded MVR real-input pilot artifacts. VALIDATION-TIERING-PROVENANCE-00 records validation confidence scope. Publication sync grants no runtime authority. live_bounded_local means bounded local validation. live_bounded_local does not mean general availability. Publication visibility does not mean product release. Status rendering does not mean runtime enforcement.
 
 ## Compliance-ready MVR report local prototype and source-corpus provenance publication sync
 
@@ -6187,12 +6247,12 @@ Publication sync grants no runtime authority. It does not imply compliance certi
 
 ## AEGIS admission and Enterprise AI Risk Taxonomy sync
 
-SOURCE-CORPUS-AEGIS-IMPLEMENTATION-REPORTS-BATCH-2026-06-13-00 and SOURCE-CORPUS-TAXONOMY-STACK-THREAT-STANDARDS-BATCH-2026-06-13-00 preserve hash-only source provenance. AEGIS-ADMISSION-CONTRACT-00 provides the admission contract and failure receipt behavior. AEGIS-SOURCE-SCOPE-CONSENT-00 provides reusable source-scope and consent checks consumed by admission. AEGIS-GROUNDING-BINDING-00 binds compatible admission, source-scope, and consent packets to source hashes, evidence refs, and receipt refs. AEGIS-INSTRUCTION-QUARANTINE-00 separates source content from source-borne instructions before downstream use. AEGIS-MODEL-CANDIDATE-GATE-00 gates model-candidate eligibility on compatible upstream AEGIS packets. AEGIS-ACTION-FIREWALL-00 gates action eligibility and preserves that model-candidate eligibility is not action authority. AEGIS-RECEIPT-CHAIN-EXPORT-00 assembles the local AEGIS packet and receipt chain for evidence-support review. AEGIS-LOCAL-RUNTIME-ENFORCEMENT-ADAPTER-00 consumes the receipt chain and exposes a fail-closed preflight decision to local callers. AI-RECEIPT-GATEWAY-LOCAL-INGRESS-PROTOTYPE-00 provides bounded local ingress context. ENTERPRISE-AI-RISK-TAXONOMY-STACK-DESIGN-00 provides multi-view risk taxonomy context. PRODUCT-READINESS-ROADMAP-MATRIX-00 lists local runtime enforcement adapter as an AEGIS follow-up validation step. Publication sync grants no runtime authority, live SaaS operation, provider runtime, network calls, hidden-file reads, directory scans, connector pulls, consent writes, memory writes, Atlas admission, trace export, PMR federation, package execution, product readiness, product release, compliance certification, legal advice, audit pass, truth certification, final-answer authority, or accepted-evidence authority.
+SOURCE-CORPUS-AEGIS-IMPLEMENTATION-REPORTS-BATCH-2026-06-13-00 and SOURCE-CORPUS-TAXONOMY-STACK-THREAT-STANDARDS-BATCH-2026-06-13-00 preserve hash-only source provenance. AEGIS-ADMISSION-CONTRACT-00 provides the admission contract and failure receipt behavior. AEGIS-SOURCE-SCOPE-CONSENT-00 provides reusable source-scope and consent checks consumed by admission. AEGIS-GROUNDING-BINDING-00 binds compatible admission, source-scope, and consent packets to source hashes, evidence refs, and receipt refs. AEGIS-INSTRUCTION-QUARANTINE-00 separates source content from source-borne instructions before downstream use. AEGIS-MODEL-CANDIDATE-GATE-00 gates model-candidate eligibility on compatible upstream AEGIS packets. AEGIS-ACTION-FIREWALL-00 gates action eligibility and preserves that model-candidate eligibility is not action authority. AEGIS-RECEIPT-CHAIN-EXPORT-00 assembles the local AEGIS packet and receipt chain for evidence-support review. AEGIS-LOCAL-RUNTIME-ENFORCEMENT-ADAPTER-00 consumes the receipt chain and exposes a fail-closed preflight decision to local callers. AEGIS-UI-PREFLIGHT-STATUS-SURFACE-00 presents the preflight decision without replacing it. AI-RECEIPT-GATEWAY-LOCAL-INGRESS-PROTOTYPE-00 provides bounded local ingress context. ENTERPRISE-AI-RISK-TAXONOMY-STACK-DESIGN-00 provides multi-view risk taxonomy context. PRODUCT-READINESS-ROADMAP-MATRIX-00 lists local runtime enforcement adapter as an AEGIS follow-up validation step. Publication sync grants no runtime authority, live SaaS operation, provider runtime, network calls, hidden-file reads, directory scans, connector pulls, consent writes, memory writes, Atlas admission, trace export, PMR federation, package execution, product readiness, product release, compliance certification, legal advice, audit pass, truth certification, final-answer authority, or accepted-evidence authority.
 
 ## Product Readiness Roadmap Matrix sync
 
-PRODUCT-READINESS-ROADMAP-MATRIX-00 applies PRODUCT-MATURITY-LABEL-TAXONOMY-00 maturity labels to product roadmap rows. Roadmap matrix is planning evidence, not product readiness. Roadmap matrix is not product release. Roadmap matrix is not customer entitlement. Roadmap matrix is not compliance certification. Roadmap matrix is not audit pass. Live-bounded-local rows are locally validated for bounded scope only, not generally available. Design-only rows do not enable runtime behavior. Simulation-only rows rehearse behavior but do not perform real behavior. Future rows are not implemented. Out-of-scope rows are intentionally excluded. Human review remains required. Authorized professional signoff remains required for compliance use. Publication sync grants no runtime authority.
+PRODUCT-READINESS-ROADMAP-MATRIX-00 applies PRODUCT-MATURITY-LABEL-TAXONOMY-00 maturity labels to product roadmap rows. Roadmap matrix is planning evidence, not product readiness. Roadmap matrix is not product release. Roadmap matrix is not customer entitlement. Roadmap matrix is not compliance certification. Roadmap matrix is not audit pass. Live-bounded-local rows are locally validated for bounded scope only, not generally available. Design-only rows do not enable runtime behavior. Simulation-only rows rehearse behavior but do not perform real behavior. Future rows are not implemented. Out-of-scope rows are intentionally excluded. Human review remains required. Authorized professional signoff remains required for compliance use. Publication sync grants no runtime authority. live_bounded_local means bounded local validation. live_bounded_local does not mean general availability. Publication visibility does not mean product release. Status rendering does not mean runtime enforcement.
 
 ## Product Maturity Label Taxonomy sync
 
-PRODUCT-MATURITY-LABEL-TAXONOMY-00 defines maturity labels for product surfaces. Maturity labels prevent design drift. A maturity label is not product readiness. A maturity label is not product release. A maturity label is not compliance certification. A maturity label is not audit pass. A maturity label is not customer entitlement. Live means locally implemented and validated for its bounded scope, not generally released. Near-ready means implementation is substantially complete but still requires review, polish, integration, or pilot evidence. Design-only means policy/config/docs/schemas/tests exist, but runtime behavior is not enabled. Simulation-only means behavior is rehearsed with fixtures or state-transition simulation, not performed for real. Future means intentionally planned but not implemented. Out-of-scope means intentionally excluded. Human review remains required. Authorized professional signoff remains required for compliance use. Publication sync grants no runtime authority.
+PRODUCT-MATURITY-LABEL-TAXONOMY-00 defines maturity labels for product surfaces. Maturity labels prevent design drift. A maturity label is not product readiness. A maturity label is not product release. A maturity label is not compliance certification. A maturity label is not audit pass. A maturity label is not customer entitlement. Live means locally implemented and validated for its bounded scope, not generally released. Near-ready means implementation is substantially complete but still requires review, polish, integration, or pilot evidence. Design-only means policy/config/docs/schemas/tests exist, but runtime behavior is not enabled. Simulation-only means behavior is rehearsed with fixtures or state-transition simulation, not performed for real. Future means intentionally planned but not implemented. Out-of-scope means intentionally excluded. Human review remains required. Authorized professional signoff remains required for compliance use. Publication sync grants no runtime authority. live_bounded_local means bounded local validation. live_bounded_local does not mean general availability. Publication visibility does not mean product release. Status rendering does not mean runtime enforcement.

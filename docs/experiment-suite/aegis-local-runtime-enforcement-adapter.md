@@ -217,7 +217,7 @@ AEGIS-LOCAL-RUNTIME-ENFORCEMENT-ADAPTER-00 documents a local deterministic prefl
 - AEGIS-MODEL-CANDIDATE-GATE-00 gates model-candidate eligibility on compatible upstream AEGIS packets.
 - AEGIS-ACTION-FIREWALL-00 gates action eligibility and preserves that model-candidate eligibility is not action authority.
 - AEGIS-RECEIPT-CHAIN-EXPORT-00 assembles the local AEGIS packet and receipt chain for evidence-support review.
-- AEGIS-LOCAL-RUNTIME-ENFORCEMENT-ADAPTER-00 consumes the receipt chain and exposes a fail-closed preflight decision to local callers.
+- AEGIS-LOCAL-RUNTIME-ENFORCEMENT-ADAPTER-00 consumes the receipt chain and exposes a fail-closed preflight decision to local callers. AEGIS-UI-PREFLIGHT-STATUS-SURFACE-00 presents the preflight decision without replacing it.
 - AI-RECEIPT-GATEWAY-LOCAL-INGRESS-PROTOTYPE-00 provides bounded local ingress context.
 - ENTERPRISE-AI-RISK-TAXONOMY-STACK-DESIGN-00 provides multi-view risk taxonomy context.
 - PRODUCT-READINESS-ROADMAP-MATRIX-00 lists local runtime enforcement adapter as an AEGIS follow-up validation step.

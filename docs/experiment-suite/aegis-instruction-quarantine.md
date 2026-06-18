@@ -223,4 +223,4 @@ AEGIS-INSTRUCTION-QUARANTINE-00 implements local deterministic AEGIS instruction
 - instruction_quarantine_does_not_federate_pmr
 - human_review_required
 
-Publication sync grants no runtime authority.
+Publication sync grants no runtime authority. live_bounded_local means bounded local validation. live_bounded_local does not mean general availability. Publication visibility does not mean product release. Status rendering does not mean runtime enforcement.

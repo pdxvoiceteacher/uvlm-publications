@@ -148,6 +148,8 @@ from tools.build_public_repro_dashboard import (
     AEGIS_RECEIPT_CHAIN_CLAIM_ALLOWED,
     AEGIS_LOCAL_RUNTIME_BLOCKED_CLAIMS,
     AEGIS_LOCAL_RUNTIME_CLAIM_ALLOWED,
+    AEGIS_UI_PREFLIGHT_BLOCKED_CLAIMS,
+    AEGIS_UI_PREFLIGHT_CLAIM_ALLOWED,
     AEGIS_RISK_PRIOR_PHASE_RELATION,
     AEGIS_SOURCE_DASHBOARD_SUMMARY,
     TAXONOMY_SOURCE_DASHBOARD_SUMMARY,
@@ -5767,4 +5769,16 @@ def test_claim_validator_rejects_local_runtime_enforcement_overclaims():
 def test_bounded_local_runtime_enforcement_claim_is_allowed():
     normalized = AEGIS_LOCAL_RUNTIME_CLAIM_ALLOWED.lower()
     for claim in AEGIS_LOCAL_RUNTIME_BLOCKED_CLAIMS:
+        assert claim.lower() not in normalized
+
+
+def test_claim_validator_rejects_ui_preflight_status_surface_overclaims():
+    forbidden = PAPER_CONFIGS["PUB-GOV-ARTIFACT-COG-01"]["forbidden_overclaims"]
+    for claim in AEGIS_UI_PREFLIGHT_BLOCKED_CLAIMS:
+        assert claim in forbidden
+
+
+def test_bounded_ui_preflight_status_surface_claim_is_allowed():
+    normalized = AEGIS_UI_PREFLIGHT_CLAIM_ALLOWED.lower()
+    for claim in AEGIS_UI_PREFLIGHT_BLOCKED_CLAIMS:
         assert claim.lower() not in normalized

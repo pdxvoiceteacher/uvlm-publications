@@ -554,6 +554,23 @@ from tools.build_public_repro_dashboard import (
     AEGIS_LOCAL_RUNTIME_BLOCKED_CLAIMS,
     AEGIS_LOCAL_RUNTIME_CLAIM_ALLOWED,
     AEGIS_LOCAL_RUNTIME_PRIOR_PHASE_RELATION,
+    AEGIS_UI_PREFLIGHT_STATUS_SURFACE_ARTIFACTS,
+    AEGIS_UI_PREFLIGHT_SOURCE_STATUSES,
+    AEGIS_UI_PREFLIGHT_SURFACE_STATUSES,
+    AEGIS_UI_PREFLIGHT_RENDERING_OUTCOMES,
+    AEGIS_UI_PREFLIGHT_STATUS_MAPPINGS,
+    AEGIS_UI_PREFLIGHT_SCENARIOS,
+    AEGIS_UI_PREFLIGHT_REPRO_FRAGMENTS,
+    AEGIS_UI_PREFLIGHT_ACCESSIBILITY_LANGUAGE,
+    AEGIS_UI_PREFLIGHT_SECURITY_LANGUAGE,
+    AEGIS_UI_PREFLIGHT_DOCTRINE,
+    AEGIS_UI_PREFLIGHT_SOURCE_INTEGRITY_LANGUAGE,
+    AEGIS_UI_PREFLIGHT_HASH_LANGUAGE,
+    AEGIS_UI_PREFLIGHT_GUARDRAILS,
+    AEGIS_UI_PREFLIGHT_SUMMARY,
+    AEGIS_UI_PREFLIGHT_BLOCKED_CLAIMS,
+    AEGIS_UI_PREFLIGHT_CLAIM_ALLOWED,
+    AEGIS_UI_PREFLIGHT_PRIOR_PHASE_RELATION,
     TAXONOMY_SOURCE_ARTIFACTS,
     TAXONOMY_ROOT_REPAIR_ARTIFACTS,
     ENTERPRISE_RISK_ARTIFACTS,
@@ -683,6 +700,7 @@ REQUIRED_PHASES = {
     "AEGIS-ACTION-FIREWALL-00",
     "AEGIS-RECEIPT-CHAIN-EXPORT-00",
     "AEGIS-LOCAL-RUNTIME-ENFORCEMENT-ADAPTER-00",
+    "AEGIS-UI-PREFLIGHT-STATUS-SURFACE-00",
     "SOURCE-CORPUS-AEGIS-IMPLEMENTATION-REPORTS-BATCH-2026-06-13-00",
     "PRODUCT-READINESS-ROADMAP-MATRIX-00",
     "PRODUCT-MATURITY-LABEL-TAXONOMY-00",
@@ -8193,6 +8211,7 @@ def test_aegis_admission_and_risk_taxonomy_stack_publication_sync():
             "docs/experiment-suite/aegis-action-firewall.md",
             "docs/experiment-suite/aegis-receipt-chain-export.md",
         "docs/experiment-suite/aegis-local-runtime-enforcement-adapter.md",
+        "docs/experiment-suite/aegis-ui-preflight-status-surface.md",
             "docs/experiment-suite/source-corpus-taxonomy-stack-threat-standards-batch-2026-06-13.md",
             "docs/experiment-suite/source-corpus-taxonomy-stack-threat-standards-batch-root-manifest-repair.md",
             "docs/experiment-suite/enterprise-ai-risk-taxonomy-stack-design.md",
@@ -8211,6 +8230,7 @@ def test_aegis_admission_and_risk_taxonomy_stack_publication_sync():
         "AEGIS-ACTION-FIREWALL-00": AEGIS_ACTION_FIREWALL_ARTIFACTS,
         "AEGIS-RECEIPT-CHAIN-EXPORT-00": AEGIS_RECEIPT_CHAIN_EXPORT_ARTIFACTS,
         "AEGIS-LOCAL-RUNTIME-ENFORCEMENT-ADAPTER-00": AEGIS_LOCAL_RUNTIME_ENFORCEMENT_ARTIFACTS,
+        "AEGIS-UI-PREFLIGHT-STATUS-SURFACE-00": AEGIS_UI_PREFLIGHT_STATUS_SURFACE_ARTIFACTS,
         "SOURCE-CORPUS-TAXONOMY-STACK-THREAT-STANDARDS-BATCH-2026-06-13-00": TAXONOMY_SOURCE_ARTIFACTS,
         "SOURCE-CORPUS-TAXONOMY-STACK-THREAT-STANDARDS-BATCH-ROOT-MANIFEST-REPAIR-00": TAXONOMY_ROOT_REPAIR_ARTIFACTS,
         "ENTERPRISE-AI-RISK-TAXONOMY-STACK-DESIGN-00": ENTERPRISE_RISK_ARTIFACTS,
@@ -8234,6 +8254,8 @@ def test_aegis_admission_and_risk_taxonomy_stack_publication_sync():
         assert dashboard[f"aegis_receipt_chain_export_{key}"] == value
     for key, value in AEGIS_LOCAL_RUNTIME_SUMMARY.items():
         assert dashboard[f"aegis_local_runtime_enforcement_adapter_{key}"] == value
+    for key, value in AEGIS_UI_PREFLIGHT_SUMMARY.items():
+        assert dashboard[f"aegis_ui_preflight_status_surface_{key}"] == value
     for key, value in TAXONOMY_SOURCE_DASHBOARD_SUMMARY.items():
         assert dashboard[f"taxonomy_source_corpus_{key}"] == value
     for key, value in TAXONOMY_ROOT_REPAIR_DASHBOARD_SUMMARY.items():
@@ -8279,6 +8301,14 @@ def test_aegis_admission_and_risk_taxonomy_stack_publication_sync():
         AEGIS_LOCAL_RUNTIME_DOCTRINE, AEGIS_LOCAL_RUNTIME_COMPATIBILITY,
         AEGIS_LOCAL_RUNTIME_GUARDRAILS, AEGIS_LOCAL_RUNTIME_BLOCKED_CLAIMS,
         AEGIS_LOCAL_RUNTIME_PRIOR_PHASE_RELATION, AEGIS_LOCAL_RUNTIME_ENFORCEMENT_ARTIFACTS,
+        AEGIS_UI_PREFLIGHT_SOURCE_STATUSES, AEGIS_UI_PREFLIGHT_SURFACE_STATUSES,
+        AEGIS_UI_PREFLIGHT_RENDERING_OUTCOMES, AEGIS_UI_PREFLIGHT_STATUS_MAPPINGS,
+        AEGIS_UI_PREFLIGHT_SCENARIOS, AEGIS_UI_PREFLIGHT_REPRO_FRAGMENTS,
+        AEGIS_UI_PREFLIGHT_ACCESSIBILITY_LANGUAGE, AEGIS_UI_PREFLIGHT_SECURITY_LANGUAGE,
+        AEGIS_UI_PREFLIGHT_DOCTRINE, AEGIS_UI_PREFLIGHT_SOURCE_INTEGRITY_LANGUAGE,
+        AEGIS_UI_PREFLIGHT_HASH_LANGUAGE, AEGIS_UI_PREFLIGHT_GUARDRAILS,
+        AEGIS_UI_PREFLIGHT_BLOCKED_CLAIMS, AEGIS_UI_PREFLIGHT_PRIOR_PHASE_RELATION,
+        AEGIS_UI_PREFLIGHT_STATUS_SURFACE_ARTIFACTS,
     ):
         for phrase in phrase_group:
             assert phrase in pages
@@ -8292,4 +8322,5 @@ def test_aegis_admission_and_risk_taxonomy_stack_publication_sync():
     assert AEGIS_ACTION_FIREWALL_CLAIM_ALLOWED in pages
     assert AEGIS_RECEIPT_CHAIN_CLAIM_ALLOWED in pages
     assert AEGIS_LOCAL_RUNTIME_CLAIM_ALLOWED in pages
+    assert AEGIS_UI_PREFLIGHT_CLAIM_ALLOWED in pages
     assert "Publication sync grants no runtime authority" in pages
