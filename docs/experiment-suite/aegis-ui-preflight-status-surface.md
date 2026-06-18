@@ -326,4 +326,3 @@ This publication surface preserves the exact accessibility and static-rendering 
 - receipt bodies are not embedded
 
 These terms are publication and review-support metadata only. They do not make the status surface an enforcement endpoint, compliance certification, audit pass, product release, final-answer authority, or accepted-evidence authority.
-
