@@ -6,6 +6,24 @@ import json
 from pathlib import Path
 from typing import Any
 
+
+AEGIS_UI_PREFLIGHT_STATUS_SURFACE_ACCESSIBILITY_REPAIR_TERMS = (
+    'text_status_required',
+    'aria_status_label_required',
+    'plain_language_summary_required',
+    'high_contrast_compatible',
+    'reduced_motion_compatible',
+    'screen_reader_order_defined',
+    'color_only_status_used',
+    'color aliases are noncanonical',
+    'source-derived strings are escaped',
+    'unknown reason codes use governed generic display text',
+    'raw source content is not displayed',
+    'raw prompts are not displayed',
+    'receipt bodies are not embedded',
+)
+
+
 SOURCE_CORPUS_BATCH_MANIFEST_20260610_CLAIM_ALLOWED = (
     'SOURCE-CORPUS-BATCH-MANIFEST-2026-06-10-00 adds a governed, hash-only source-corpus batch manifest for June 2026 uploaded reports, deduplicating filename aliases by SHA-256 and preserving source identity, file size, source type, visibility, public-release status, and non-authority boundaries without committing raw private files or treating source reports as accepted evidence, theorem proof, compliance certification, product release, product readiness, memory write, Atlas admission, or canonical repo state.'
 )

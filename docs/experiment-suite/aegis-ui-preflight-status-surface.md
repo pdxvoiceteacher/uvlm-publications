@@ -306,3 +306,24 @@ AEGIS-UI-PREFLIGHT-STATUS-SURFACE-00 implements a local deterministic and access
 ## Runtime boundary
 
 Publication sync grants no runtime or enforcement authority, operation execution, tool execution, provider runtime, network access, file writes, connector access, memory writes, model-candidate creation, model-output generation, compliance certification, audit pass, product readiness, final-answer authority, accepted-evidence authority, or decision authority.
+
+## Accessibility and sanitization profile tokens
+
+This publication surface preserves the exact accessibility and static-rendering tokens used by the local AEGIS UI preflight-status surface profile.
+
+- text_status_required = true
+- aria_status_label_required = true
+- plain_language_summary_required = true
+- high_contrast_compatible = true
+- reduced_motion_compatible = true
+- screen_reader_order_defined = true
+- color_only_status_used = false
+- color aliases are noncanonical
+- source-derived strings are escaped
+- unknown reason codes use governed generic display text
+- raw source content is not displayed
+- raw prompts are not displayed
+- receipt bodies are not embedded
+
+These terms are publication and review-support metadata only. They do not make the status surface an enforcement endpoint, compliance certification, audit pass, product release, final-answer authority, or accepted-evidence authority.
+
