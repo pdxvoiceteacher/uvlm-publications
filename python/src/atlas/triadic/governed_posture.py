@@ -1,206 +1,117 @@
-"""Bounded Atlas posture assignment and offline human-review rendering."""
-
+"""Deterministic, file-only Atlas posture and human-review renderer."""
 from __future__ import annotations
-
-import argparse
-import hashlib
-import html
-import json
-import os
+import argparse, hashlib, html, json, os
 from pathlib import Path
 from tempfile import NamedTemporaryFile
 from typing import Any
 
-PRODUCER = "pdxvoiceteacher/uvlm-publications"
-SIDE_EFFECT_FLAGS = {
-    "memory_write_performed": False, "prior_canonized": False,
-    "publication_performed": False, "doi_mutated": False,
-    "crossref_deposit_performed": False, "catalog_mutated": False,
-    "knowledge_graph_mutated": False, "pmr_write_performed": False,
-    "deployment_authorized": False, "truth_certified": False,
-}
+class GovernedPostureError(ValueError): pass
+SHA = "0123456789abcdef"
+SOPHIA_NONAUTH = ("truth_certification","final_answer_authority","memory_write_authority","canonization","publication","deployment","model_invocation","candidate_alteration","external_action_authority")
+SOPHIA_EFFECTS = ("network_access_performed","model_invocation_performed","candidate_mutation_performed","source_mutation_performed","memory_write_performed","canonization_performed","publication_performed","deployment_performed","pmr_write_performed")
+ATLAS_NONAUTH = ("truth_certification","final_answer_authority","memory_write_authority","pmr_write_authority","canonization","publication","doi_mutation","crossref_deposit","catalog_mutation","knowledge_graph_mutation","deployment","release","model_invocation","candidate_alteration","sophia_alteration","external_action_authority")
+ATLAS_EFFECTS = ("network_access_performed","model_invocation_performed","candidate_mutation_performed","sophia_mutation_performed","source_mutation_performed","memory_write_performed","pmr_write_performed","canonization_performed","publication_performed","doi_mutated","crossref_deposit_performed","catalog_mutated","knowledge_graph_mutated","deployment_performed","release_performed")
+FORBIDDEN = ("chain_of_thought","private_reasoning","hidden_reasoning","scratchpad","internal_deliberation","thinking","raw_output","raw_model_output","prompt_text","source_prompt","self_approval")
+POSITIVE = ("truth_certified","final_answer_authorized","memory_write_authorized","canonization_authorized","publication_authorized","deployment_authorized","self_approved","governance_approved","release_authorized","doi_authorized","crossref_authorized")
 
+def _constant(value: str) -> Any: raise ValueError("non-finite JSON number")
+def _pairs(pairs: list[tuple[str, Any]]) -> dict[str, Any]:
+    out = {}
+    for k,v in pairs:
+        if k in out: raise ValueError("duplicate JSON member")
+        out[k]=v
+    return out
+def _canon(value: Any) -> bytes: return json.dumps(value,sort_keys=True,separators=(",",":"),ensure_ascii=False,allow_nan=False).encode("utf-8")
+def _hash(data: bytes) -> str: return hashlib.sha256(data).hexdigest()
+def _load(path: Path) -> tuple[dict[str,Any],str,str]:
+    try: raw=path.read_bytes()
+    except OSError as e: raise GovernedPostureError("required artifact unavailable") from e
+    if b"\0" in raw: raise GovernedPostureError("invalid JSON contract")
+    try: value=json.loads(raw.decode("utf-8"),object_pairs_hook=_pairs,parse_constant=_constant)
+    except (UnicodeDecodeError,json.JSONDecodeError,ValueError) as e: raise GovernedPostureError("invalid JSON contract") from e
+    if not isinstance(value,dict): raise GovernedPostureError("JSON top-level must be object")
+    return value,_hash(raw),_hash(_canon(value))
+def _below(root: Path, path: Path) -> None:
+    if path.is_symlink() or not path.is_file(): raise GovernedPostureError("unsafe or missing required artifact")
+    try: path.resolve().relative_to(root)
+    except ValueError as e: raise GovernedPostureError("artifact outside run root") from e
+def _need(obj:dict[str,Any], keys:tuple[str,...], label:str) -> None:
+    if any(k not in obj for k in keys): raise GovernedPostureError(f"{label} contract missing required field")
+def _string(v:Any) -> bool: return isinstance(v,str) and bool(v)
+def _sha(v:Any) -> bool: return isinstance(v,str) and len(v)==64 and all(x in SHA for x in v)
+def _scan(v:Any,key:str="") -> None:
+    k=key.lower()
+    if k in FORBIDDEN or (k.startswith("raw_output") and k!="raw_output_sha256"): raise GovernedPostureError("prohibited private or raw material")
+    if k in POSITIVE and v is True: raise GovernedPostureError("positive authority prohibited")
+    if isinstance(v,dict):
+        for a,b in v.items(): _scan(b,a)
+    elif isinstance(v,list):
+        for a in v: _scan(a,key)
+def _exact(value:Any, expected:Any, label:str) -> None:
+    if value != expected: raise GovernedPostureError(f"{label} contract mismatch")
+def _parent(typ:str,path:str,file_digest:str,canon_digest:str|None=None) -> dict[str,str]:
+    out={"artifact_type":typ,"path":path}
+    if canon_digest is None: out["sha256"]=file_digest
+    else: out.update(file_sha256=file_digest,canonical_sha256=canon_digest)
+    return out
+def _esc(v:Any) -> str: return html.escape(str(v))
+def _rows(items:list[Any], fields:tuple[str,...]) -> str:
+    return "".join("<li>"+ " | ".join(f"<b>{_esc(k)}</b>: {_esc(x.get(k,''))}" for k in fields) +"</li>" for x in items if isinstance(x,dict))
 
-class GovernedPostureError(ValueError):
-    """Raised when an input run cannot support a bounded Atlas posture."""
+def _html(req:dict[str,Any], man:dict[str,Any], cand:dict[str,Any], sop:dict[str,Any], post:dict[str,Any]) -> bytes:
+    claims=_rows(cand["claims"],("claim_id","text","uncertainty","support_status","candidate_maturity"))
+    citations=[]
+    for c in cand["claims"]:
+        if isinstance(c,dict): citations.extend(c.get("citations",[]) if isinstance(c.get("citations",[]),list) else [])
+    cites=_rows(citations,("segment_id","segment_sha256","source_ordinal","exact_excerpt"))
+    findings=_rows(sop["claim_findings"],("claim_id","evidence_status","maturity_status","uncertainty_status"))
+    return f"""<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Atlas human review</title></head><body>
+<h1>Atlas governed human review</h1><p>Run: {_esc(post["run_id"])} | logical time: {_esc(post["logical_time"])}</p>
+<h2>Request</h2><p>Question: {_esc(req["question"])} | selected model: {_esc(req["model_id"])}</p>
+<h2>Grounding</h2><p>{_esc(man["source_id"])} | {_esc(man["source_label"])} | {_esc(man["source_sha256"])} | {_esc(man["normalized_sha256"])} | {_esc(man["media_type"])}</p>
+<h2>Candidate</h2><p>{_esc(cand["answer"])} | uncertainty: {_esc(cand["uncertainty"])}</p><p>provider: {_esc(cand["provider"])}; requested: {_esc(cand["requested_model_id"])}; observed: {_esc(cand["observed_response_model"])}; digest: {_esc(cand["installed_model_digest"])}; adapter: {_esc(cand["adapter_identity"])}; replay: {_esc(cand["replay_mode"])}; real model invoked: {_esc(cand["real_model_invoked"])}</p>
+<h3>Claims</h3><ul>{claims}</ul><h3>Citations</h3><ul>{cites}</ul>
+<h2>Sophia</h2><p>{_esc(sop["disposition"])} | reason codes: {_esc(", ".join(sorted(sop["reason_codes"]))) } | authority: {_esc(sop["authority_boundary_status"])}</p><ul>{findings}</ul>
+<h2>Atlas</h2><p>{_esc(post["retention_posture"])} | {_esc(post["publication_posture"])} | {_esc(post["expiry_posture"])} | {_esc(post["revocation_posture"])} | human review: true | human decision: PENDING</p>
+<p>Candidate is not final. Sophia disposition is not truth certification. Atlas posture is not memory write or canonization and is not publication authorization. No DOI, Crossref, catalog, graph, deployment, or release action occurred. Human final authority remains binding.</p></body></html>""".encode("utf-8")
 
-
-def _read(path: Path) -> dict[str, Any]:
-    if not path.is_file() or path.is_symlink():
-        raise GovernedPostureError(f"unsafe or missing artifact: {path}")
-    try:
-        value = json.loads(path.read_text(encoding="utf-8"))
-    except json.JSONDecodeError as error:
-        raise GovernedPostureError(f"invalid JSON: {path}") from error
-    if not isinstance(value, dict):
-        raise GovernedPostureError(f"artifact must be an object: {path}")
-    return value
-
-
-def _digest(path: Path) -> str:
-    return hashlib.sha256(path.read_bytes()).hexdigest()
-
-
-def _value(payload: dict[str, Any], *names: str) -> Any:
-    for name in names:
-        if payload.get(name) not in (None, ""):
-            return payload[name]
-    return None
-
-
-def _require_equal(run_id: str, label: str, payload: dict[str, Any]) -> None:
-    if _value(payload, "run_id", "runId") != run_id:
-        raise GovernedPostureError(f"{label} run_id mismatch")
-
-
-def _expected_hash(payload: dict[str, Any], *names: str) -> str | None:
-    value = _value(payload, *names)
-    if isinstance(value, str):
-        return value
-    parents = payload.get("parent_hashes")
-    if isinstance(parents, dict):
-        for name in names:
-            if isinstance(parents.get(name), str):
-                return parents[name]
-    return None
-
-
-def _validate_hash(payload: dict[str, Any], actual: str, label: str, *names: str) -> None:
-    expected = _expected_hash(payload, *names)
-    if expected is not None and expected != actual:
-        raise GovernedPostureError(f"{label} hash mismatch")
-
-
-def _walk(value: Any, key: str = "") -> None:
-    lower = key.lower()
-    if any(token in lower for token in ("chain_of_thought", "private_reasoning", "hidden_reasoning")):
-        raise GovernedPostureError("private reasoning is prohibited")
-    if isinstance(value, dict):
-        for child_key, child in value.items():
-            child_lower = str(child_key).lower()
-            if child is True and any(token in child_lower for token in (
-                "memory_write", "canonized", "publication_performed", "doi_mutated",
-                "crossref_deposit", "catalog_mutated", "knowledge_graph_mutated",
-                "deployment_authorized", "truth_certified", "final_decision",
-            )):
-                raise GovernedPostureError(f"authority field must not be true: {child_key}")
-            _walk(child, str(child_key))
-    elif isinstance(value, list):
-        for child in value:
-            _walk(child, key)
-
-
-def _producer(payload: dict[str, Any], label: str, expected: str | None = None) -> str:
-    producer = _value(payload, "producer_repository", "repository", "producer_repo")
-    if not isinstance(producer, str) or not producer:
-        raise GovernedPostureError(f"{label} producer repository missing")
-    if expected and producer != expected:
-        raise GovernedPostureError(f"{label} producer repository mismatch")
-    return producer
-
-
-def _atomic(path: Path, content: bytes) -> None:
-    path.parent.mkdir(parents=True, exist_ok=True)
-    with NamedTemporaryFile(dir=path.parent, delete=False) as temp:
-        temp.write(content)
-        name = temp.name
-    os.replace(name, path)
-
-
-def _text(value: Any) -> str:
-    return html.escape(str(value if value is not None else ""))
-
-
-def _review_html(request: dict[str, Any], candidate: dict[str, Any], sophia: dict[str, Any], posture: dict[str, Any]) -> str:
-    claims = _value(candidate, "claims", "claim_list") or []
-    if not isinstance(claims, list):
-        claims = [claims]
-    sources = _value(candidate, "cited_source_passages", "source_passages", "evidence") or []
-    if not isinstance(sources, list):
-        sources = [sources]
-    items = "".join(f"<li>{_text(item)}</li>" for item in claims)
-    evidence = "".join(f"<li>{_text(item)}</li>" for item in sources)
-    disposition = posture["sophia_disposition"]
-    return f"""<!doctype html>
-<html lang="en"><head><meta charset="utf-8"><title>Atlas governed review</title>
-<style>body{{font-family:system-ui,sans-serif;max-width:70rem;margin:2rem auto;line-height:1.5}} .notice{{border-left:4px solid #555;padding:.5rem 1rem}} code{{overflow-wrap:anywhere}}</style></head>
-<body><h1>Atlas governed human review</h1>
-<p><strong>Human question:</strong> {_text(_value(request, "question", "human_question", "prompt"))}</p>
-<p><strong>Source identity and source digest:</strong> {_text(_value(request, "source_identity", "source_id"))} / <code>{_text(_value(request, "source_digest", "source_sha256"))}</code></p>
-<p><strong>Candidate answer:</strong> {_text(_value(candidate, "answer", "candidate_answer", "response"))}</p>
-<h2>Claims</h2><ul>{items}</ul><h2>Cited source passages</h2><ul>{evidence}</ul>
-<p><strong>Unsupported or partial evidence markers:</strong> {_text(_value(candidate, "unsupported_claims", "partial_evidence", "uncertainty"))}</p>
-<p><strong>Model identity and local-model digest:</strong> {_text(_value(candidate, "model_identity", "model_id"))} / <code>{_text(_value(candidate, "local_model_digest", "model_digest"))}</code></p>
-<p><strong>Explicit candidate uncertainty:</strong> {_text(_value(candidate, "uncertainty", "candidate_uncertainty"))}</p>
-<p><strong>Sophia disposition:</strong> {_text(disposition)}</p><p><strong>Sophia reason codes:</strong> {_text(_value(sophia, "reason_codes", "reasons"))}</p>
-<p><strong>Atlas retention posture:</strong> {_text(posture["retention_posture"])}</p><p><strong>Atlas publication posture:</strong> {_text(posture["publication_posture"])}</p>
-<div class="notice">No memory write. No publication. No truth certification. Human decision: <strong>PENDING</strong>.</div>
-<p>Human options (descriptive only): accept for personal use; request revision; reject; export; discard.</p>
-</body></html>"""
-
-
-def assign_governed_posture(run_root: str | Path) -> dict[str, Any]:
-    """Validate a captured run, then atomically emit bounded posture and review files."""
-    root = Path(run_root).resolve()
-    if not root.is_absolute() or not root.is_dir():
-        raise GovernedPostureError("run_root must be an existing absolute directory")
-    paths = {
-        "request": root / "request.json", "manifest": root / "grounding" / "manifest.json",
-        "segments": root / "grounding" / "segments.jsonl", "candidate": root / "candidate_packet.json",
-        "sophia": root / "sophia_audit_packet.json",
-    }
-    if not paths["segments"].is_file() or paths["segments"].is_symlink():
-        raise GovernedPostureError("unsafe or missing grounding segments")
-    request, manifest, candidate, sophia = (_read(paths[key]) for key in ("request", "manifest", "candidate", "sophia"))
-    run_id = _value(request, "run_id", "runId")
-    if not isinstance(run_id, str) or not run_id:
-        raise GovernedPostureError("request run_id missing")
-    for label, packet in (("manifest", manifest), ("candidate", candidate), ("Sophia", sophia)):
-        _require_equal(run_id, label, packet)
-        _walk(packet)
-    _walk(request)
-    _producer(request, "request")
-    _producer(manifest, "manifest", "pdxvoiceteacher/CoherenceLattice")
-    _producer(candidate, "candidate", "pdxvoiceteacher/CoherenceLattice")
-    _producer(sophia, "Sophia", "pdxvoiceteacher/Sophia")
-    candidate_hash, sophia_hash, manifest_hash = _digest(paths["candidate"]), _digest(paths["sophia"]), _digest(paths["manifest"])
-    _validate_hash(sophia, candidate_hash, "candidate", "candidate_sha256", "candidate_packet_sha256")
-    _validate_hash(sophia, manifest_hash, "grounding manifest", "grounding_manifest_sha256", "manifest_sha256")
-    _validate_hash(candidate, manifest_hash, "grounding manifest", "grounding_manifest_sha256", "manifest_sha256")
-    _validate_hash(request, candidate_hash, "candidate", "candidate_sha256", "candidate_packet_sha256")
-    _validate_hash(request, sophia_hash, "Sophia", "sophia_packet_sha256", "sophia_audit_packet_sha256")
-    disposition = _value(sophia, "disposition", "audit_disposition", "status")
-    if disposition not in {"PASS", "HOLD", "REJECT"}:
-        raise GovernedPostureError("Sophia disposition missing or invalid")
-    retention, publication = {"PASS": ("retain_for_human_review", "publication_blocked_pending_human_review"), "HOLD": ("quarantine", "do_not_publish"), "REJECT": ("rejected", "do_not_publish")}[disposition]
-    logical_time = _value(request, "logical_time", "logicalTime")
-    if logical_time is None:
-        raise GovernedPostureError("logical_time missing")
-    posture: dict[str, Any] = {
-        "schema_id": "uvlm.atlas.posture_packet.v1", "schema_version": "1.0",
-        "packet_type": "atlas_posture_packet", "run_id": run_id, "logical_time": logical_time,
-        "producer": {"repository": PRODUCER, "commit": _value(request, "atlas_commit") or "unknown", "clean_tree": True, "cli": "atlas.triadic.governed_posture", "version": "1.0"},
-        "candidate_sha256": candidate_hash, "sophia_packet_sha256": sophia_hash,
-        "parent_hashes": {"request.json": _digest(paths["request"]), "grounding/manifest.json": manifest_hash, "candidate_packet.json": candidate_hash, "sophia_audit_packet.json": sophia_hash},
-        "sophia_disposition": disposition, "retention_posture": retention, "publication_posture": publication,
-        "reason_codes": list(_value(sophia, "reason_codes", "reasons") or []), "expiry_posture": "review_bounded", "revocation_posture": "revocable",
-        "requires_human_review": True, "nonauthority": True, "human_decision": "PENDING", **SIDE_EFFECT_FLAGS,
-    }
-    packet_bytes = (json.dumps(posture, sort_keys=True, indent=2) + "\n").encode()
-    review_bytes = _review_html(request, candidate, sophia, posture).encode()
-    _atomic(root / "atlas_posture_packet.json", packet_bytes)
-    _atomic(root / "final_review.html", review_bytes)
-    return posture
-
-
-def main() -> int:
-    parser = argparse.ArgumentParser()
-    parser.add_argument("--run-root", required=True)
-    args = parser.parse_args()
-    assign_governed_posture(args.run_root)
-    return 0
-
-
-if __name__ == "__main__":
-    raise SystemExit(main())
-
+def assign_governed_posture(run_root: str|Path) -> dict[str,Any]:
+    original=Path(run_root)
+    if not original.is_absolute() or original == Path(original.anchor): raise GovernedPostureError("run_root must be non-root absolute directory")
+    root=original.resolve()
+    if not root.is_dir(): raise GovernedPostureError("run_root must be existing directory")
+    paths={"request":root/"request.json","manifest":root/"grounding/manifest.json","segments":root/"grounding/segments.jsonl","candidate":root/"candidate_packet.json","sophia":root/"sophia_audit_packet.json"}
+    for p in paths.values(): _below(root,p)
+    req,rf,rc=_load(paths["request"]); man,mf,mc=_load(paths["manifest"]); cand,cf,cc=_load(paths["candidate"]); sop,sf,sc=_load(paths["sophia"])
+    for obj in (req,man,cand,sop): _scan(obj)
+    _need(req,("schema_id","run_id","logical_time","question","model_id","replay_mode","producer_repository"),"request")
+    _exact(req["schema_id"],"uvlm.coherencelattice.request.v1","request"); _exact(req["producer_repository"],"pdxvoiceteacher/CoherenceLattice","request")
+    if not all(_string(req[k]) for k in ("run_id","logical_time","question","model_id")) or not isinstance(req["replay_mode"],bool): raise GovernedPostureError("request contract invalid")
+    _need(man,("schema","source_id","source_label","source_sha256","normalized_sha256","media_type","artifacts","run_id","logical_time","producer_repository"),"manifest")
+    _exact(man["schema"],"coherencelattice.grounding_bundle.v1","manifest"); _exact(man["producer_repository"],"pdxvoiceteacher/CoherenceLattice","manifest"); _exact(man["artifacts"],{"source_md":"source.md","segments_jsonl":"segments.jsonl","conversion_report_json":"conversion_report.json"},"manifest")
+    if not all(_string(man[k]) for k in ("source_id","source_label","media_type","run_id","logical_time")) or not _sha(man["source_sha256"]) or not _sha(man["normalized_sha256"]): raise GovernedPostureError("manifest contract invalid")
+    ck=("schema_id","schema_version","packet_type","producer_repository","producer","run_id","logical_time","parents","request_sha256","grounding_manifest_sha256","source_sha256","normalized_source_sha256","sonya_request_id","sonya_candidate_id","sonya_node_id","provider","requested_model_id","observed_response_model","installed_model_digest","adapter_identity","raw_output_sha256","completion","real_model_invoked","replay_mode","answer","uncertainty","claims","candidate_not_final","not_truth_certification","not_governance_approval","not_memory_authorization","not_publication_authorization","not_deployment_authority","human_review_required")
+    _need(cand,ck,"candidate"); _exact(cand["schema_id"],"uvlm.coherencelattice.candidate_packet.v1","candidate"); _exact(cand["schema_version"],"v1","candidate"); _exact(cand["packet_type"],"candidate_packet","candidate"); _exact(cand["producer_repository"],"pdxvoiceteacher/CoherenceLattice","candidate"); _exact(cand["producer"],{"repository":"CoherenceLattice","role":"candidate_canonicalizer"},"candidate")
+    if not all(cand[x] is True for x in ("candidate_not_final","not_truth_certification","not_governance_approval","not_memory_authorization","not_publication_authorization","not_deployment_authority","human_review_required")): raise GovernedPostureError("candidate nonauthority invalid")
+    sk=("schema_id","schema_version","packet_type","producer_repository","producer","run_id","logical_time","request_file_sha256","request_canonical_sha256","grounding_manifest_sha256","grounding_manifest_canonical_sha256","candidate_sha256","candidate_canonical_sha256","parent_list","disposition","reason_codes","claim_findings","authority_boundary_status","requires_human_review","permitted_next_route","nonauthority","side_effects")
+    _need(sop,sk,"Sophia"); _exact(sop["schema_id"],"uvlm.sophia.audit_packet.v1","Sophia"); _exact(sop["schema_version"],"1.1","Sophia"); _exact(sop["packet_type"],"sophia_audit_packet","Sophia"); _exact(sop["producer_repository"],"pdxvoiceteacher/Sophia","Sophia"); _exact(sop["producer"],{"repository":"pdxvoiceteacher/Sophia","role":"independent_candidate_auditor","version":"1.1"},"Sophia")
+    if sop["disposition"] not in ("PASS","HOLD","REJECT") or not sop["requires_human_review"] or not isinstance(sop["reason_codes"],list) or not all(isinstance(x,str) for x in sop["reason_codes"]) or not isinstance(sop["claim_findings"],list): raise GovernedPostureError("Sophia contract invalid")
+    _exact(sop["permitted_next_route"],"none" if sop["disposition"]=="REJECT" else "atlas_posture_only","Sophia route")
+    for key in SOPHIA_NONAUTH+SOPHIA_EFFECTS:
+        group=sop["nonauthority"] if key in SOPHIA_NONAUTH else sop["side_effects"]
+        if not isinstance(group,dict) or group.get(key) is not False: raise GovernedPostureError("Sophia authority ceiling invalid")
+    if any(x["run_id"]!=req["run_id"] or x["logical_time"]!=req["logical_time"] for x in (man,cand,sop)): raise GovernedPostureError("cross-packet identity mismatch")
+    _exact(cand["request_sha256"],rc,"candidate request digest"); _exact(cand["grounding_manifest_sha256"],mc,"candidate manifest digest")
+    _exact(cand["parents"],[_parent("request","request.json",rc),_parent("grounding_manifest","grounding/manifest.json",mc)],"candidate parents"); _exact(cand["source_sha256"],man["source_sha256"],"candidate source"); _exact(cand["normalized_source_sha256"],man["normalized_sha256"],"candidate source")
+    for k,v in (("request_file_sha256",rf),("request_canonical_sha256",rc),("grounding_manifest_sha256",mf),("grounding_manifest_canonical_sha256",mc),("candidate_sha256",cf),("candidate_canonical_sha256",cc)): _exact(sop[k],v,"Sophia digest")
+    _exact(sop["parent_list"],[_parent("request","request.json",rf,rc),_parent("grounding_manifest","grounding/manifest.json",mf,mc),_parent("candidate_packet","candidate_packet.json",cf,cc)],"Sophia parents")
+    retention,publication={"PASS":("retain_for_human_review","publication_blocked_pending_human_review"),"HOLD":("quarantine","do_not_publish"),"REJECT":("rejected","do_not_publish")}[sop["disposition"]]
+    parents=[_parent("request","request.json",rf,rc),_parent("grounding_manifest","grounding/manifest.json",mf,mc),_parent("candidate_packet","candidate_packet.json",cf,cc),_parent("sophia_audit_packet","sophia_audit_packet.json",sf,sc)]
+    post={"schema_id":"uvlm.atlas.posture_packet.v1","schema_version":"1.1","packet_type":"atlas_posture_packet","run_id":req["run_id"],"logical_time":req["logical_time"],"producer_repository":"pdxvoiceteacher/uvlm-publications","producer":{"repository":"pdxvoiceteacher/uvlm-publications","role":"bounded_posture_and_human_review_renderer","version":"1.1"},"request_file_sha256":rf,"request_canonical_sha256":rc,"grounding_manifest_sha256":mf,"grounding_manifest_canonical_sha256":mc,"candidate_sha256":cf,"candidate_canonical_sha256":cc,"sophia_packet_sha256":sf,"sophia_packet_canonical_sha256":sc,"parent_list":parents,"source_id":man["source_id"],"source_label":man["source_label"],"source_sha256":man["source_sha256"],"normalized_source_sha256":man["normalized_sha256"],"sophia_disposition":sop["disposition"],"sophia_reason_codes":sorted(sop["reason_codes"]),"sophia_claim_findings":sop["claim_findings"],"sophia_authority_boundary_status":sop["authority_boundary_status"],"retention_posture":retention,"publication_posture":publication,"expiry_posture":"review_bounded","revocation_posture":"revocable","requires_human_review":True,"human_decision":"PENDING","nonauthority":dict.fromkeys(ATLAS_NONAUTH,False),"side_effects":dict.fromkeys(ATLAS_EFFECTS,False)}
+    for path,data in ((root/"atlas_posture_packet.json",_canon(post)+b"\n"),(root/"final_review.html",_html(req,man,cand,sop,post))):
+        with NamedTemporaryFile(dir=root,delete=False) as f: f.write(data); tmp=f.name
+        os.replace(tmp,path)
+    return post
+def main()->int:
+    p=argparse.ArgumentParser(); p.add_argument("--run-root",required=True); assign_governed_posture(p.parse_args().run_root); return 0
+if __name__=="__main__": raise SystemExit(main())

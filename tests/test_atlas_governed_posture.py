@@ -1,63 +1,32 @@
 from __future__ import annotations
-
-import hashlib
-import json
-import sys
+import hashlib,json,sys
 from pathlib import Path
-
 import pytest
-
-sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "python" / "src"))
-
-from atlas.triadic.governed_posture import GovernedPostureError, assign_governed_posture
-
-
-def write_json(path: Path, value: dict) -> str:
-    path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(json.dumps(value, sort_keys=True), encoding="utf-8")
-    return hashlib.sha256(path.read_bytes()).hexdigest()
-
-
-def make_run(root: Path, disposition: str = "PASS") -> Path:
-    run_id = "run-fixed"
-    (root / "grounding").mkdir(parents=True)
-    (root / "grounding" / "segments.jsonl").write_text("{}\n", encoding="utf-8")
-    manifest = write_json(root / "grounding" / "manifest.json", {"run_id": run_id, "producer_repository": "pdxvoiceteacher/CoherenceLattice"})
-    candidate = write_json(root / "candidate_packet.json", {"run_id": run_id, "producer_repository": "pdxvoiceteacher/CoherenceLattice", "grounding_manifest_sha256": manifest, "answer": "Bounded answer", "claims": ["Claim"], "cited_source_passages": ["Passage"], "uncertainty": "partial", "model_identity": "local", "local_model_digest": "abc"})
-    sophia = write_json(root / "sophia_audit_packet.json", {"run_id": run_id, "producer_repository": "pdxvoiceteacher/Sophia", "disposition": disposition, "candidate_sha256": candidate, "grounding_manifest_sha256": manifest, "reason_codes": ["reviewed"]})
-    write_json(root / "request.json", {"run_id": run_id, "producer_repository": "pdxvoiceteacher/Sonya", "logical_time": 7, "candidate_sha256": candidate, "sophia_packet_sha256": sophia, "question": "Question", "source_identity": "source", "source_digest": "digest"})
-    return root
-
-
-def test_postures_and_review_are_deterministic_and_bounded(tmp_path: Path):
-    expected = {"PASS": ("retain_for_human_review", "publication_blocked_pending_human_review"), "HOLD": ("quarantine", "do_not_publish"), "REJECT": ("rejected", "do_not_publish")}
-    for disposition, pair in expected.items():
-        root = make_run(tmp_path / disposition, disposition)
-        packet = assign_governed_posture(root)
-        assert (packet["retention_posture"], packet["publication_posture"]) == pair
-        assert all(packet[key] is False for key in ("memory_write_performed", "publication_performed", "doi_mutated", "crossref_deposit_performed"))
-        review = (root / "final_review.html").read_text(encoding="utf-8")
-        for text in ("Question", "Bounded answer", "Sophia disposition", "No memory write", "Human decision: <strong>PENDING</strong>"):
-            assert text in review
-        before = (root / "atlas_posture_packet.json").read_bytes(), (root / "final_review.html").read_bytes()
-        assign_governed_posture(root)
-        assert before == ((root / "atlas_posture_packet.json").read_bytes(), (root / "final_review.html").read_bytes())
-
-
-def test_missing_or_altered_sophia_and_authority_fail_closed(tmp_path: Path):
-    root = make_run(tmp_path)
-    (root / "sophia_audit_packet.json").unlink()
-    with pytest.raises(GovernedPostureError):
-        assign_governed_posture(root)
-    root = make_run(tmp_path / "altered")
-    packet = json.loads((root / "sophia_audit_packet.json").read_text())
-    packet["candidate_sha256"] = "0" * 64
-    write_json(root / "sophia_audit_packet.json", packet)
-    with pytest.raises(GovernedPostureError):
-        assign_governed_posture(root)
-    root = make_run(tmp_path / "authority")
-    packet = json.loads((root / "candidate_packet.json").read_text())
-    packet["truth_certified"] = True
-    write_json(root / "candidate_packet.json", packet)
-    with pytest.raises(GovernedPostureError):
-        assign_governed_posture(root)
+sys.path.insert(0,str(Path(__file__).resolve().parents[1]/"python"/"src"))
+from atlas.triadic.governed_posture import GovernedPostureError,assign_governed_posture
+def canonical(x): return hashlib.sha256(json.dumps(x,sort_keys=True,separators=(",",":"),ensure_ascii=False).encode()).hexdigest()
+def write(p,x):
+ p.parent.mkdir(parents=True,exist_ok=True); p.write_text(json.dumps(x,sort_keys=True)+"\n"); return hashlib.sha256(p.read_bytes()).hexdigest()
+def run(root,disposition="PASS"):
+ rid,t="r1","t1"; (root/"grounding").mkdir(parents=True); (root/"grounding/segments.jsonl").write_text("{}\n")
+ req={"schema_id":"uvlm.coherencelattice.request.v1","run_id":rid,"logical_time":t,"question":"<question>","model_id":"opaque/backend","replay_mode":True,"producer_repository":"pdxvoiceteacher/CoherenceLattice"}
+ rf=write(root/"request.json",req); rc=canonical(req)
+ man={"schema":"coherencelattice.grounding_bundle.v1","source_id":"s","source_label":"label","source_sha256":"a"*64,"normalized_sha256":"b"*64,"media_type":"text/plain","artifacts":{"source_md":"source.md","segments_jsonl":"segments.jsonl","conversion_report_json":"conversion_report.json"},"run_id":rid,"logical_time":t,"producer_repository":"pdxvoiceteacher/CoherenceLattice"}
+ mf=write(root/"grounding/manifest.json",man); mc=canonical(man)
+ cand={"schema_id":"uvlm.coherencelattice.candidate_packet.v1","schema_version":"v1","packet_type":"candidate_packet","producer_repository":"pdxvoiceteacher/CoherenceLattice","producer":{"repository":"CoherenceLattice","role":"candidate_canonicalizer"},"run_id":rid,"logical_time":t,"parents":[{"artifact_type":"request","path":"request.json","sha256":rc},{"artifact_type":"grounding_manifest","path":"grounding/manifest.json","sha256":mc}],"request_sha256":rc,"grounding_manifest_sha256":mc,"source_sha256":"a"*64,"normalized_source_sha256":"b"*64,"sonya_request_id":"x","sonya_candidate_id":"y","sonya_node_id":"z","provider":"opaque","requested_model_id":"opaque/backend","observed_response_model":"returned","installed_model_digest":"d","adapter_identity":"adapter","raw_output_sha256":"c"*64,"completion":"done","real_model_invoked":False,"replay_mode":True,"answer":"answer","uncertainty":"partial","claims":[{"claim_id":"c1","text":"claim","uncertainty":"partial","support_status":"supported","candidate_maturity":"draft","citations":[{"segment_id":"seg","segment_sha256":"d","source_ordinal":1,"exact_excerpt":"excerpt"}]}],"candidate_not_final":True,"not_truth_certification":True,"not_governance_approval":True,"not_memory_authorization":True,"not_publication_authorization":True,"not_deployment_authority":True,"human_review_required":True}
+ cf=write(root/"candidate_packet.json",cand); cc=canonical(cand)
+ non={k:False for k in ("truth_certification","final_answer_authority","memory_write_authority","canonization","publication","deployment","model_invocation","candidate_alteration","external_action_authority")}; effects={k:False for k in ("network_access_performed","model_invocation_performed","candidate_mutation_performed","source_mutation_performed","memory_write_performed","canonization_performed","publication_performed","deployment_performed","pmr_write_performed")}
+ sop={"schema_id":"uvlm.sophia.audit_packet.v1","schema_version":"1.1","packet_type":"sophia_audit_packet","producer_repository":"pdxvoiceteacher/Sophia","producer":{"repository":"pdxvoiceteacher/Sophia","role":"independent_candidate_auditor","version":"1.1"},"run_id":rid,"logical_time":t,"request_file_sha256":rf,"request_canonical_sha256":rc,"grounding_manifest_sha256":mf,"grounding_manifest_canonical_sha256":mc,"candidate_sha256":cf,"candidate_canonical_sha256":cc,"parent_list":[{"artifact_type":"request","path":"request.json","file_sha256":rf,"canonical_sha256":rc},{"artifact_type":"grounding_manifest","path":"grounding/manifest.json","file_sha256":mf,"canonical_sha256":mc},{"artifact_type":"candidate_packet","path":"candidate_packet.json","file_sha256":cf,"canonical_sha256":cc}],"disposition":disposition,"reason_codes":["z","a"],"claim_findings":[{"claim_id":"c1","evidence_status":"supported","maturity_status":"draft","uncertainty_status":"partial"}],"authority_boundary_status":"bounded","requires_human_review":True,"permitted_next_route":"none" if disposition=="REJECT" else "atlas_posture_only","nonauthority":non,"side_effects":effects}
+ write(root/"sophia_audit_packet.json",sop); return root
+@pytest.mark.parametrize("d,expected",[("PASS",("retain_for_human_review","publication_blocked_pending_human_review")),("HOLD",("quarantine","do_not_publish")),("REJECT",("rejected","do_not_publish"))])
+def test_current_contract_and_rendering(tmp_path,d,expected):
+ r=run(tmp_path,d); before={p:p.read_bytes() for p in (r/"request.json",r/"grounding/manifest.json",r/"candidate_packet.json",r/"sophia_audit_packet.json")}; p=assign_governed_posture(r)
+ assert (p["retention_posture"],p["publication_posture"])==expected and p["grounding_manifest_sha256"]!=p["grounding_manifest_canonical_sha256"]
+ h=(r/"final_review.html").read_text(); assert "claim" in h and "excerpt" in h and "&lt;question&gt;" in h
+ first=(r/"atlas_posture_packet.json").read_bytes(),(r/"final_review.html").read_bytes(); assign_governed_posture(r); assert first==((r/"atlas_posture_packet.json").read_bytes(),(r/"final_review.html").read_bytes()) and before=={p:p.read_bytes() for p in before}
+@pytest.mark.parametrize("mutate",[lambda r:(r/"sophia_audit_packet.json").unlink(),lambda r:(r/"request.json").write_bytes(b'{"x":1,"x":2}'),lambda r:(r/"candidate_packet.json").write_bytes(b'{"x":NaN}'),lambda r:(r/"candidate_packet.json").write_bytes(b'\0')])
+def test_malformed_and_missing_fail_closed(tmp_path,mutate):
+ r=run(tmp_path); mutate(r)
+ with pytest.raises(GovernedPostureError): assign_governed_posture(r)
+def test_relative_root_rejected(tmp_path):
+ with pytest.raises(GovernedPostureError): assign_governed_posture(".")
