@@ -2,6 +2,25 @@
 
 Canonical source for UVLM scholarly publications and DOI minting.
 
+## UVLM Triadic Cognition architecture quick lock
+
+This publication registry adopts **UVLM-TCC-ADR-001** through
+[`docs/architecture/UVLM_TCC_ADR_001_ATLAS_PUBLISHER_ADOPTION.md`](docs/architecture/UVLM_TCC_ADR_001_ATLAS_PUBLISHER_ADOPTION.md).
+External commit/hash binding is deferred to
+`THREE-REPOSITORY-ARCHITECTURE-CONSISTENCY-VALIDATION-00`.
+
+Model-result flow: **approved local model → Sonya → CoherenceLattice → Sophia → Atlas/Publisher → Human → PMR only when separately authorized**.
+Invocation clarification: **Sonya → approved local model backend → Sonya**.
+
+- Atlas receives governed forward-lane artifacts after Sophia. Its posture is
+  not a memory write, canonization, or publication.
+- Publication and DOI execution are a separately authorized lane; PMR is
+  governed provenance retention, not Atlas itself.
+- UCC is cross-cutting; telemetry is first-class; and retrosynthesis may
+  return only bounded, governed prior candidates.
+- Human final authority remains binding. The complete live three-repository
+  route is not yet accepted.
+
 ## Repository Structure
 
 - `papers/`: publication packages (`paper.pdf`, `metadata.yaml`, local docs).
@@ -187,13 +206,13 @@ pytest -q tests/test_atlas_memory_disposition.py
 
 The atlas overlay pipeline follows a strict order:
 
-1. **CoherenceLattice** provides formal coherence truth (including canonical drift).
+1. **CoherenceLattice** provides canonical formal measurement artifacts (including canonical drift measurement).
 2. **Sophia** provides executive interpretation (canonical attention updates).
 3. **Publisher (Atlas)** renders overlays and presents memory-facing metadata.
 
 Semantics used in this repo:
 
-- **Formal drift** = CoherenceLattice truth (`bridge/coherence_drift_map.json`).
+- **Canonical formal drift measurement** = the CoherenceLattice-owned formal measurement artifact (`bridge/coherence_drift_map.json`). Repository ownership of a measurement implementation does not grant truth certification.
 - **Attention update** = Sophia executive interpretation (`bridge/attention_updates.json`).
 - **Overlay rendering** = Publisher visualization layer (Atlas modules).
 
@@ -224,14 +243,14 @@ If `attention_updates.json` is missing, Atlas emits a bounded warning state only
 
 ### Sonya memory ingestion gate (Phase C)
 
-Publisher memory artifacts ingest **only Sophia-audited Sonya decisions**.
+Atlas/Publisher memory posture and presentation may consume **only Sophia-audited Sonya decisions**. A separately authorized, human-approved persistence workflow is required for any storage action.
 
 Required order:
 
 1. raw Sonya input
 2. CoherenceLattice projection
 3. Sophia audit/admission decision
-4. Publisher memory storage
+4. Atlas/Publisher memory posture and presentation
 
 Publisher does **not** store raw Sonya input directly into canonical corpus memory.
 
