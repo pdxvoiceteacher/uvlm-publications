@@ -1,3 +1,8 @@
+> ## HISTORICAL CONTINUITY RECORD
+> Verified historical implementation facts remain useful.
+> Current local architecture is governed by `docs/architecture/UVLM_TCC_ADR_001_ATLAS_PUBLISHER_ADOPTION.md` under UVLM-TCC-ADR-001; exact external commit/hash binding is deferred to the three-repository consistency gate.
+> Historical claims of automatic storage, canonization, completed live integration, or publication authority are not current authorization. Historical proposals are not current authorization.
+
 # Atlas Continuity Handoff
 ## Date: 2026-04-02
 
