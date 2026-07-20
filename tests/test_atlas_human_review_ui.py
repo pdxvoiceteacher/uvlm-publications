@@ -54,3 +54,25 @@ def test_rejections_are_bounded_and_no_packet_is_published(tmp_path):
         assert response.status_code == status and 'Request rejected' in response.text and csrf not in response.text
     assert not list((root.parent/'human_decisions').glob('*/human_review_decision.json')) and before == {p:p.read_bytes() for p in before}
     with pytest.raises(HumanReviewError): load_sealed_run('relative')
+
+
+@pytest.mark.parametrize('decision,note', [('HOLD', 'needs correction'), ('REJECT', 'not accepted')])
+def test_hold_and_reject_preview_with_required_note(tmp_path, decision, note):
+    root = sealed(tmp_path / 'artifacts' / 'run')
+    c = client(root)
+    csrf = fields(c.get('/review').text)['csrf']
+    response = c.post('/review/preview', data={'csrf': csrf, 'decision': decision, 'reviewer': 'Reviewer', 'note': note})
+    assert response.status_code == 200
+    assert 'Confirm decision' in response.text
+
+
+def test_input_and_decision_root_bounds(tmp_path):
+    root = sealed(tmp_path / 'artifacts' / 'run')
+    with pytest.raises(HumanReviewError):
+        create_app(root, root)
+    with pytest.raises(HumanReviewError):
+        create_app(root, root / 'human_decisions')
+    c = client(root)
+    csrf = fields(c.get('/review').text)['csrf']
+    response = c.post('/review/preview', data={'csrf': csrf, 'decision': 'APPROVE', 'reviewer': 'x' * 201, 'note': ''})
+    assert response.status_code == 400

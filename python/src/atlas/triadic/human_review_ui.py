@@ -13,6 +13,9 @@ class HumanReviewError(ValueError): pass
 REQUIRED=("request.json","grounding/manifest.json","candidate_packet.json","sophia_audit_packet.json","atlas_posture_packet.json","final_review.html","run_manifest.json","checksums.sha256")
 AUTH=("truth_certification","final_answer_authority","memory_write_authority","pmr_write_authority","canonization","publication","doi_mutation","crossref_deposit","catalog_mutation","knowledge_graph_mutation","deployment","release","model_invocation","candidate_alteration","sophia_alteration","atlas_posture_alteration","external_action_authority","automatic_phase_advance")
 EFFECTS=("network_access_beyond_loopback","model_invocation_performed","candidate_mutation_performed","sophia_mutation_performed","atlas_posture_mutation_performed","sealed_run_mutation_performed","memory_write_performed","pmr_write_performed","canonization_performed","publication_performed","doi_mutated","crossref_deposit_performed","catalog_mutated","knowledge_graph_mutated","deployment_performed","release_performed")
+REVIEWER_MAX=200
+NOTE_MAX=4000
+FORM_MAX=16*1024
 HEADERS={"Content-Security-Policy":"default-src 'none'; style-src 'unsafe-inline'; frame-src 'self'; form-action 'self'; base-uri 'none'; frame-ancestors 'none'","X-Content-Type-Options":"nosniff","Referrer-Policy":"no-referrer","Cache-Control":"no-store"}
 def _sha(b:bytes)->str:return hashlib.sha256(b).hexdigest()
 def _pairs(pairs):
@@ -67,7 +70,8 @@ def _decision_root(s,v):
  p=p.resolve()
  try:p.relative_to(s['root'].parent)
  except ValueError as e:raise HumanReviewError('decision root is invalid') from e
- if p==s['root']:raise HumanReviewError('decision root is invalid')
+ try:p.relative_to(s['root']); raise HumanReviewError('decision root is invalid')
+ except ValueError:pass
  p.mkdir(parents=True,exist_ok=True);return p
 def _existing(out,rid):
  found=[]
@@ -90,7 +94,15 @@ def _loop_ip(value):
 def _loop(v):
  try:return bool(v) and all(_loop_ip(x[4][0]) for x in socket.getaddrinfo(v,None,type=socket.SOCK_STREAM))
  except (ValueError,socket.gaierror):return False
-def _form(req):return {k:v[-1] for k,v in parse_qs(req.scope['_body'].decode(),keep_blank_values=True).items()}
+def _form(req):
+ body=req.scope['_body']
+ if len(body)>FORM_MAX:raise HumanReviewError('form is too large')
+ try:return {k:v[-1] for k,v in parse_qs(body.decode(),keep_blank_values=True).items()}
+ except UnicodeDecodeError as e:raise HumanReviewError('form is invalid') from e
+def _safe_text(value,limit):
+ value=value.strip()
+ if not value or len(value)>limit or any(ord(c)<32 and c not in '\n\r\t' or 127<=ord(c)<=159 for c in value):raise HumanReviewError('form field is invalid')
+ return value
 def create_app(run_root,decision_root=None):
  s=load_sealed_run(run_root);out=_decision_root(s,decision_root);csrf=secrets.token_urlsafe(32);pending=None;used=set();app=FastAPI(docs_url=None,redoc_url=None,openapi_url=None)
  def reject(msg,status):return _response(f'<h1 tabindex="-1">Request rejected</h1><p>{msg}</p>',status)
@@ -122,7 +134,9 @@ def create_app(run_root,decision_root=None):
   f=_form(req)
   try:guard(req,f)
   except PermissionError:return reject('The local request was not authorized.',403)
-  d=f.get('decision','');r=f.get('reviewer','').strip();n=f.get('note','').strip();errors=[]
+  d=f.get('decision','');errors=[]
+  try:r=_safe_text(f.get('reviewer',''),REVIEWER_MAX);n=f.get('note','').strip(); n='' if not n else _safe_text(n,NOTE_MAX)
+  except HumanReviewError:r='';n='';errors.append('Reviewer or note is invalid.')
   if d not in {'APPROVE','HOLD','REJECT'}:errors.append('Choose APPROVE, HOLD, or REJECT.')
   if not r:errors.append('Reviewer display name is required.')
   if d in {'HOLD','REJECT'} and not n:errors.append('A decision note is required for HOLD or REJECT.')
