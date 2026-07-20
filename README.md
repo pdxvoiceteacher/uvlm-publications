@@ -18,8 +18,23 @@ Invocation clarification: **Sonya → approved local model backend → Sonya**.
   governed provenance retention, not Atlas itself.
 - UCC is cross-cutting; telemetry is first-class; and retrosynthesis may
   return only bounded, governed prior candidates.
-- Human final authority remains binding. The complete live three-repository
-  route is not yet accepted.
+- Human final authority remains binding. One bounded local three-repository
+  acceptance route completed; this is not release or deployment readiness.
+
+### Local human-review decision UI
+
+Review a sealed Atlas run and capture an APPROVE, HOLD, or REJECT decision on
+loopback only:
+
+```bash
+PYTHONPATH=python/src python -m atlas.triadic.human_review_ui \
+  --run-root /absolute/path/to/sealed-run-root
+```
+
+The UI writes immutable decision receipts outside the sealed run root (by
+default, beside it in `human_decisions/`). A human decision is not truth
+certification and does not authorize memory, PMR, canonization, publication,
+DOI, Crossref, deployment, or release.
 
 ## Repository Structure
 
