@@ -84,8 +84,11 @@ def _host(host):
   if ']' not in host:return None
   return host[1:host.index(']')]
  return host.rsplit(':',1)[0] if host.count(':')==1 else host
+def _loop_ip(value):
+ try:return ipaddress.ip_address(value).is_loopback
+ except ValueError:return False
 def _loop(v):
- try:return bool(v) and all(ipaddress.ip_address(x[4][0]).is_loopback for x in socket.getaddrinfo(v,None,type=socket.SOCK_STREAM))
+ try:return bool(v) and all(_loop_ip(x[4][0]) for x in socket.getaddrinfo(v,None,type=socket.SOCK_STREAM))
  except (ValueError,socket.gaierror):return False
 def _form(req):return {k:v[-1] for k,v in parse_qs(req.scope['_body'].decode(),keep_blank_values=True).items()}
 def create_app(run_root,decision_root=None):
@@ -93,7 +96,7 @@ def create_app(run_root,decision_root=None):
  def reject(msg,status):return _response(f'<h1 tabindex="-1">Request rejected</h1><p>{msg}</p>',status)
  def guard(req,form=None):
   host=_host(req.headers.get('host','')); client=req.client.host if req.client else None
-  if not _loop(host) or (client is not None and not ipaddress.ip_address(client).is_loopback):raise PermissionError
+  if not _loop(host) or (client is not None and not _loop_ip(client)):raise PermissionError
   origin=req.headers.get('origin');site=req.headers.get('sec-fetch-site')
   if origin not in (None,'',f'http://{req.headers.get("host")}') or site not in (None,'','none','same-origin'):raise PermissionError
   if form is not None and not secrets.compare_digest(form.get('csrf',''),csrf):raise PermissionError
@@ -139,7 +142,7 @@ def create_app(run_root,decision_root=None):
   try:
    if _existing(out,record['run_id']):return reject('A decision already exists for this run.',409)
    if _files(s['root'])!=s['files']:raise HumanReviewError
-   did=str(uuid.uuid4());packet={'schema_id':'uvlm.human_review_decision.v1','schema_version':'1.0','packet_type':'human_review_decision','decision_id':did,'generated_at_utc':datetime.now(timezone.utc).isoformat(),'reviewer':{'display_name':record['reviewer'],'identity_assurance':'local_assertion_only','cryptographic_signature_present':False},'decision':record['decision'],'decision_note':record['note'],'source':{'interface':'atlas_local_human_review_ui','loopback_only':True},'requires_human_review':True,'authority_boundary':dict.fromkeys(AUTH,False),'side_effects':dict.fromkeys(EFFECTS,False),'nonauthority':'This receipt records a bounded human decision only.'}|{k:v for k,v in record.items() if k!='token'};data=json.dumps(packet,sort_keys=True,separators=(',',':'),ensure_ascii=False).encode()+b'\n'
+   did=str(uuid.uuid4());packet={'schema_id':'uvlm.human_review_decision.v1','schema_version':'1.0','packet_type':'human_review_decision','decision_id':did,'run_id':record['run_id'],'logical_time':record['logical_time'],'generated_at_utc':datetime.now(timezone.utc).isoformat(),'reviewer':{'display_name':record['reviewer'],'identity_assurance':'local_assertion_only','cryptographic_signature_present':False},'decision':record['decision'],'decision_note':record['note'],'source':{'interface':'atlas_local_human_review_ui','loopback_only':True},'evidence_bindings':record['evidence_bindings'],'sophia_disposition':record['sophia_disposition'],'atlas_retention_posture':record['atlas_retention_posture'],'atlas_publication_posture':record['atlas_publication_posture'],'requires_human_review':True,'authority_boundary':dict.fromkeys(AUTH,False),'side_effects':dict.fromkeys(EFFECTS,False),'nonauthority':'This receipt records a bounded human decision only.'};data=json.dumps(packet,sort_keys=True,separators=(',',':'),ensure_ascii=False).encode()+b'\n'
    with TemporaryDirectory(dir=out,prefix='.pending-') as temp:
     t=Path(temp);(t/'human_review_decision.json').write_bytes(data);(t/'human_review_decision.json.sha256').write_text(f'{_sha(data)}  human_review_decision.json\n');bindings=''.join(f'<li>{_esc(k)}: {_esc(v)}</li>' for k,v in record['evidence_bindings'].items());(t/'human_review_decision_receipt.html').write_text(f'<!doctype html><html><body><h1>Human decision receipt</h1><p>This receipt records a human decision. It does not certify truth. It does not authorize memory or PMR write, canonization or publication, DOI, Crossref, catalog, or graph mutation, deployment, release, or automatic phase advance.</p><p>ID: {_esc(did)}; decision: {_esc(record["decision"])}; reviewer: {_esc(record["reviewer"])}; note: {_esc(record["note"])}; run: {_esc(record["run_id"])}; logical time: {_esc(record["logical_time"])}; timestamp: {_esc(packet["generated_at_utc"])}</p><p>Sophia: {_esc(record["sophia_disposition"])}; Atlas: {_esc(record["atlas_retention_posture"])} / {_esc(record["atlas_publication_posture"])}; identity assurance local_assertion_only; cryptographic signature absent.</p><ul>{bindings}</ul></body></html>',encoding='utf-8');os.replace(t,out/did)
    if _files(s['root'])!=s['files']:raise HumanReviewError
