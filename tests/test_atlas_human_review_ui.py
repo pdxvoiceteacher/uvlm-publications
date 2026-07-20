@@ -51,7 +51,11 @@ def test_rejections_are_bounded_and_no_packet_is_published(tmp_path):
     c = client(root); csrf = fields(c.get('/review').text)['csrf']
     for data, status in [({'decision':'APPROVE','reviewer':'a','note':''},403), ({'csrf':csrf,'decision':'HOLD','reviewer':'a','note':''},400), ({'csrf':csrf,'confirmation_token':'unknown'},409)]:
         response = c.post('/review/commit' if 'confirmation_token' in data else '/review/preview', data=data)
-        assert response.status_code == status and 'Request rejected' in response.text and csrf not in response.text
+        assert response.status_code == status
+        if status == 400:
+            assert 'Correct these fields' in response.text
+        else:
+            assert 'Request rejected' in response.text and csrf not in response.text
     assert not list((root.parent/'human_decisions').glob('*/human_review_decision.json')) and before == {p:p.read_bytes() for p in before}
     with pytest.raises(HumanReviewError): load_sealed_run('relative')
 
@@ -63,7 +67,11 @@ def test_hold_and_reject_preview_with_required_note(tmp_path, decision, note):
     csrf = fields(c.get('/review').text)['csrf']
     response = c.post('/review/preview', data={'csrf': csrf, 'decision': decision, 'reviewer': 'Reviewer', 'note': note})
     assert response.status_code == 200
-    assert 'Confirm decision' in response.text
+    confirm = fields(response.text)
+    committed = c.post('/review/commit', data=confirm)
+    assert committed.status_code == 200
+    packet = json.loads(next((root.parent/'human_decisions').glob('*/human_review_decision.json')).read_text())
+    assert packet['decision'] == decision
 
 
 def test_input_and_decision_root_bounds(tmp_path):

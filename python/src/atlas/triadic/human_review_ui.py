@@ -70,8 +70,9 @@ def _decision_root(s,v):
  p=p.resolve()
  try:p.relative_to(s['root'].parent)
  except ValueError as e:raise HumanReviewError('decision root is invalid') from e
- try:p.relative_to(s['root']); raise HumanReviewError('decision root is invalid')
+ try:p.relative_to(s['root'])
  except ValueError:pass
+ else:raise HumanReviewError('decision root is invalid')
  p.mkdir(parents=True,exist_ok=True);return p
 def _existing(out,rid):
  found=[]
@@ -99,9 +100,13 @@ def _form(req):
  if len(body)>FORM_MAX:raise HumanReviewError('form is too large')
  try:return {k:v[-1] for k,v in parse_qs(body.decode(),keep_blank_values=True).items()}
  except UnicodeDecodeError as e:raise HumanReviewError('form is invalid') from e
-def _safe_text(value,limit):
+def _reviewer_text(value):
  value=value.strip()
- if not value or len(value)>limit or any(ord(c)<32 and c not in '\n\r\t' or 127<=ord(c)<=159 for c in value):raise HumanReviewError('form field is invalid')
+ if not value or len(value)>REVIEWER_MAX or any(ord(c)<32 or 127<=ord(c)<=159 for c in value):raise HumanReviewError('form field is invalid')
+ return value
+def _note_text(value):
+ value=value.strip()
+ if value and (len(value)>NOTE_MAX or any((ord(c)<32 and c not in '\n\r') or 127<=ord(c)<=159 for c in value)):raise HumanReviewError('form field is invalid')
  return value
 def create_app(run_root,decision_root=None):
  s=load_sealed_run(run_root);out=_decision_root(s,decision_root);csrf=secrets.token_urlsafe(32);pending=None;used=set();app=FastAPI(docs_url=None,redoc_url=None,openapi_url=None)
@@ -135,7 +140,7 @@ def create_app(run_root,decision_root=None):
   try:guard(req,f)
   except PermissionError:return reject('The local request was not authorized.',403)
   d=f.get('decision','');errors=[]
-  try:r=_safe_text(f.get('reviewer',''),REVIEWER_MAX);n=f.get('note','').strip(); n='' if not n else _safe_text(n,NOTE_MAX)
+  try:r=_reviewer_text(f.get('reviewer',''));n=_note_text(f.get('note',''))
   except HumanReviewError:r='';n='';errors.append('Reviewer or note is invalid.')
   if d not in {'APPROVE','HOLD','REJECT'}:errors.append('Choose APPROVE, HOLD, or REJECT.')
   if not r:errors.append('Reviewer display name is required.')
