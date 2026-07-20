@@ -3,7 +3,6 @@ import hashlib, json, sys
 from pathlib import Path
 import pytest
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]/"python"/"src"))
-pytest.importorskip("fastapi", reason="FastAPI is a declared application dependency")
 from fastapi.testclient import TestClient
 from atlas.triadic.governed_posture import assign_governed_posture
 from atlas.triadic.human_review_ui import HumanReviewError, create_app, load_sealed_run

@@ -14,3 +14,5 @@ truth certification nor publication authority.
 
 The next product phase is Sonya system-tray ingress and launcher. A dialogue
 AI remains deferred to the next bounded workstream.
+
+Repair DELTA-01 binds preview and commit with a one-time server-side confirmation token: direct commits and field tampering fail closed. Existing decisions, JSON, and checksums validate strictly; receipts carry complete evidence and authority context. No model, memory, publication, deployment, or authority effect occurs. The live local FastAPI post-merge gate remains required after merge.

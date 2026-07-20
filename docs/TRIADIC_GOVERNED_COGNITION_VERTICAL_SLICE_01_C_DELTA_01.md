@@ -22,4 +22,3 @@ authority; human final authority remains binding.
 The future Atlas human-dialogue node is deferred, not cancelled, and must
 remain subordinate to the deterministic packet. One real three-repository
 acceptance run remains the next product gate.
-
