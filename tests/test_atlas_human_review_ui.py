@@ -14,7 +14,10 @@ from test_atlas_governed_posture import run
 def sealed(root: Path) -> Path:
     run(root); assign_governed_posture(root)
     (root / 'run_manifest.json').write_text('{"logical_time":"t1","run_id":"r1"}\n')
-    names = ['request.json','grounding/manifest.json','candidate_packet.json','sophia_audit_packet.json','atlas_posture_packet.json','final_review.html','run_manifest.json']
+    (root / 'grounding' / 'source.md').write_text('source\n')
+    (root / 'grounding' / 'conversion_report.json').write_text('{}\n')
+    (root / 'lifecycle_events.jsonl').write_text('{\"event\":\"review\"}\n')
+    names = sorted(p.relative_to(root).as_posix() for p in root.rglob('*') if p.is_file())
     (root / 'checksums.sha256').write_text(''.join(f'{hashlib.sha256((root/n).read_bytes()).hexdigest()}  {n}\n' for n in names))
     return root
 
@@ -84,3 +87,19 @@ def test_input_and_decision_root_bounds(tmp_path):
     csrf = fields(c.get('/review').text)['csrf']
     response = c.post('/review/preview', data={'csrf': csrf, 'decision': 'APPROVE', 'reviewer': 'x' * 201, 'note': ''})
     assert response.status_code == 400
+
+
+@pytest.mark.parametrize('target', ['grounding/source.md', 'grounding/segments.jsonl', 'lifecycle_events.jsonl'])
+def test_complete_eleven_target_ledger_rejects_supplemental_changes(tmp_path, target):
+    root = sealed(tmp_path / 'artifacts' / 'run')
+    assert len((root / 'checksums.sha256').read_text().splitlines()) == 11
+    (root / target).write_text('altered\n')
+    with pytest.raises(HumanReviewError):
+        load_sealed_run(root)
+
+
+def test_complete_ledger_rejects_an_unlisted_artifact(tmp_path):
+    root = sealed(tmp_path / 'artifacts' / 'run')
+    (root / 'unlisted.txt').write_text('not ledgered\n')
+    with pytest.raises(HumanReviewError):
+        load_sealed_run(root)

@@ -41,22 +41,28 @@ def _root(v):
  return p
 def _files(root):
  out={}
- for n in REQUIRED:
-  p=root/n
-  if p.is_symlink() or not p.is_file():raise HumanReviewError('sealed required artifact is invalid')
-  try:p.resolve().relative_to(root)
-  except ValueError as e:raise HumanReviewError('sealed required artifact is invalid') from e
-  out[n]=p.read_bytes()
+ for path in root.rglob('*'):
+  if path.is_symlink():raise HumanReviewError('sealed artifact is unsafe')
+  if not path.is_file():continue
+  try:name=path.relative_to(root).as_posix()
+  except ValueError as e:raise HumanReviewError('sealed artifact is unsafe') from e
+  if name in out:raise HumanReviewError('sealed artifact inventory is invalid')
+  out[name]=path.read_bytes()
+ if not set(REQUIRED)<=set(out):raise HumanReviewError('sealed required artifact is invalid')
  return out
 def _checks(files):
- try:lines=files['checksums.sha256'].decode().splitlines()
+ try:raw=files['checksums.sha256']; lines=raw.decode('utf-8').splitlines()
  except UnicodeDecodeError as e:raise HumanReviewError('checksum file is invalid') from e
+ if b'\0' in raw:raise HumanReviewError('checksum file is invalid')
  got={}
  for line in lines:
   parts=line.split(maxsplit=1)
-  if len(parts)!=2 or len(parts[0])!=64 or parts[1].lstrip(' *') in got:raise HumanReviewError('checksum file is invalid')
-  got[parts[1].lstrip(' *')]=parts[0]
- names=set(REQUIRED)-{'checksums.sha256'}
+  if len(parts)!=2:raise HumanReviewError('checksum file is invalid')
+  digest,target=parts[0],parts[1].lstrip(' *')
+  if len(digest)!=64 or digest.lower()!=digest or any(c not in '0123456789abcdef' for c in digest):raise HumanReviewError('checksum file is invalid')
+  if not target or target.startswith('/') or '\\' in target or target in {'.','..'} or '..' in Path(target).parts or target in got:raise HumanReviewError('checksum file is invalid')
+  got[target]=digest
+ names=set(files)-{'checksums.sha256'}
  if set(got)!=names or any(got[n]!=_sha(files[n]) for n in names):raise HumanReviewError('sealed checksum verification failed')
 def load_sealed_run(v):
  root=_root(v); files=_files(root);_checks(files); req,man,cand,sop,atlas,run=(_json(root/n) for n in REQUIRED[:5]+('run_manifest.json',))
