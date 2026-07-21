@@ -10,6 +10,8 @@ from fastapi import FastAPI, Request
 from fastapi.responses import HTMLResponse
 import uvicorn
 class HumanReviewError(ValueError): pass
+class RequestRejected(PermissionError):
+ def __init__(self, code): self.code=code
 REQUIRED=("request.json","grounding/manifest.json","candidate_packet.json","sophia_audit_packet.json","atlas_posture_packet.json","final_review.html","run_manifest.json","checksums.sha256")
 AUTH=("truth_certification","final_answer_authority","memory_write_authority","pmr_write_authority","canonization","publication","doi_mutation","crossref_deposit","catalog_mutation","knowledge_graph_mutation","deployment","release","model_invocation","candidate_alteration","sophia_alteration","atlas_posture_alteration","external_action_authority","automatic_phase_advance")
 EFFECTS=("network_access_beyond_loopback","model_invocation_performed","candidate_mutation_performed","sophia_mutation_performed","atlas_posture_mutation_performed","sealed_run_mutation_performed","memory_write_performed","pmr_write_performed","canonization_performed","publication_performed","doi_mutated","crossref_deposit_performed","catalog_mutated","knowledge_graph_mutated","deployment_performed","release_performed")
@@ -116,18 +118,24 @@ def _note_text(value):
  return value
 def create_app(run_root,decision_root=None):
  s=load_sealed_run(run_root);out=_decision_root(s,decision_root);csrf=secrets.token_urlsafe(32);pending=None;used=set();app=FastAPI(docs_url=None,redoc_url=None,openapi_url=None)
- def reject(msg,status):return _response(f'<h1 tabindex="-1">Request rejected</h1><p>{msg}</p>',status)
+ def reject(msg,status,code='REQUEST_REJECTED'):return _response(f'<h1 tabindex="-1">Request rejected</h1><p>{msg}</p><p>Reason code: {_esc(code)}</p>',status)
  def guard(req,form=None):
   host=_host(req.headers.get('host','')); client=req.client.host if req.client else None
-  if not _loop(host) or (client is not None and not _loop_ip(client)):raise PermissionError
+  if not _loop(host):raise RequestRejected('REQUEST_HOST_NOT_LOOPBACK')
+  if client is not None and not _loop_ip(client):raise RequestRejected('REQUEST_CLIENT_NOT_LOOPBACK')
   origin=req.headers.get('origin');site=req.headers.get('sec-fetch-site')
-  if origin not in (None,'',f'http://{req.headers.get("host")}') or site not in (None,'','none','same-origin'):raise PermissionError
-  if form is not None and not secrets.compare_digest(form.get('csrf',''),csrf):raise PermissionError
+  if site == 'cross-site':raise RequestRejected('REQUEST_FETCH_SITE_CROSS_SITE')
+  if site not in (None,'','none','same-origin','same-site'):raise RequestRejected('REQUEST_FETCH_SITE_INVALID')
+  if origin not in (None,'','null',f'http://{req.headers.get("host")}'):raise RequestRejected('REQUEST_ORIGIN_MISMATCH')
+  if form is not None:
+   if not form.get('csrf'):raise RequestRejected('REQUEST_CSRF_MISSING')
+   if not secrets.compare_digest(form['csrf'],csrf):raise RequestRejected('REQUEST_CSRF_INVALID')
  @app.middleware('http')
  async def boundary(req,call):
   try:
    if req.method=='POST':req.scope['_body']=await req.body()
    guard(req);return await call(req)
+  except RequestRejected as e:return reject('The local request was not authorized.',403,e.code)
   except PermissionError:return reject('The local request was not authorized.',403)
   except HumanReviewError:return reject('The local review request could not be accepted.',409)
  def review(errors=(),values={}):
@@ -144,6 +152,7 @@ def create_app(run_root,decision_root=None):
   nonlocal pending
   f=_form(req)
   try:guard(req,f)
+  except RequestRejected as e:return reject('The local request was not authorized.',403,e.code)
   except PermissionError:return reject('The local request was not authorized.',403)
   d=f.get('decision','');errors=[]
   try:r=_reviewer_text(f.get('reviewer',''));n=_note_text(f.get('note',''))
@@ -160,6 +169,7 @@ def create_app(run_root,decision_root=None):
   nonlocal pending
   f=_form(req)
   try:guard(req,f)
+  except RequestRejected as e:return reject('The local request was not authorized.',403,e.code)
   except PermissionError:return reject('The local request was not authorized.',403)
   token=f.get('confirmation_token','')
   if not pending or token in used or not secrets.compare_digest(token,pending.get('token','')):return reject('The decision confirmation conflicts with this session.',409)

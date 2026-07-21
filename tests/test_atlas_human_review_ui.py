@@ -103,3 +103,21 @@ def test_complete_ledger_rejects_an_unlisted_artifact(tmp_path):
     (root / 'unlisted.txt').write_text('not ledgered\n')
     with pytest.raises(HumanReviewError):
         load_sealed_run(root)
+
+def test_privacy_browser_null_origin_form_post_is_authorized_by_loopback_and_csrf(tmp_path):
+    root = sealed(tmp_path / 'artifacts' / 'run')
+    c = client(root)
+    csrf = fields(c.get('/review').text)['csrf']
+    response = c.post('/review/preview', headers={'origin': 'null', 'sec-fetch-site': 'same-origin'}, data={'csrf': csrf, 'decision': 'APPROVE', 'reviewer': 'Reviewer', 'note': ''})
+    assert response.status_code == 200
+    assert 'Confirm decision' in response.text
+
+
+def test_cross_site_form_post_has_safe_reason_code(tmp_path):
+    root = sealed(tmp_path / 'artifacts' / 'run')
+    c = client(root)
+    csrf = fields(c.get('/review').text)['csrf']
+    response = c.post('/review/preview', headers={'origin': 'null', 'sec-fetch-site': 'cross-site'}, data={'csrf': csrf, 'decision': 'APPROVE', 'reviewer': 'Reviewer', 'note': ''})
+    assert response.status_code == 403
+    assert 'REQUEST_FETCH_SITE_CROSS_SITE' in response.text
+    assert csrf not in response.text
