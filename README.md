@@ -36,6 +36,10 @@ default, beside it in `human_decisions/`). A human decision is not truth
 certification and does not authorize memory, PMR, canonization, publication,
 DOI, Crossref, deployment, or release.
 
+## Atlas provenance apprentice profile
+
+The repository-local Atlas posture and human-decision provenance curriculum is available in [`docs/provenance/`](docs/provenance/README.md). It has no publication, retention, deployment, or release authority.
+
 ## Repository Structure
 
 - `papers/`: publication packages (`paper.pdf`, `metadata.yaml`, local docs).
