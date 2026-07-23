@@ -1,0 +1,49 @@
+{
+  "apprentice_practicum": [
+    "Trace posture to exact candidate and audit.",
+    "Separate presentation from evidence.",
+    "Bind APPROVE/HOLD/REJECT to the sealed run."
+  ],
+  "authority_effect": "none",
+  "canonical_curriculum": {
+    "path": "docs/provenance/pedagogy/machine/uvlm_provenance_curriculum.v1.json",
+    "repository": "pdxvoiceteacher/CoherenceLattice",
+    "version": "1.0.0"
+  },
+  "doctrine": [
+    "Provenance is lineage, not truth.",
+    "Integrity is not correctness.",
+    "Authenticity is not authority.",
+    "A hash identifies bytes; it does not justify a claim.",
+    "Canonicalization creates stable identity, not certainty.",
+    "A candidate remains a candidate until separate authority acts.",
+    "An audit evaluates but does not own or rewrite its subject.",
+    "A human decision records governance and does not certify universal truth.",
+    "Missing and disputed lineage are explicit states.",
+    "Corrections and revocations append to history.",
+    "Retention is consent-bounded inspectability, not canon.",
+    "Provenance controls must remain useful and proportionate."
+  ],
+  "must_not_claim": [
+    "candidate rewrite",
+    "audit rewrite",
+    "truth from presentation",
+    "memory or publication from ordinary review",
+    "authority beyond the human decision scope"
+  ],
+  "must_record": [
+    "candidate and Sophia inputs",
+    "distinct file and canonical digests",
+    "posture mapping",
+    "human review state",
+    "immutable decision transaction",
+    "retention and publication boundary",
+    "nonauthority"
+  ],
+  "profile_id": "uvlm.provenance.profile.atlas.v1",
+  "repository": "pdxvoiceteacher/uvlm-publications",
+  "required_competencies": ["PV-C01", "PV-C02", "PV-C03", "PV-C04", "PV-C05", "PV-C06", "PV-C07", "PV-C08", "PV-C09", "PV-C10", "PV-C11", "PV-C12"],
+  "role": "posture_presenter_and_human_decision_boundary",
+  "schema_id": "uvlm.provenance.repository_apprentice_profile.v1",
+  "version": "1.0.0"
+}
