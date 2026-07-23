@@ -1,0 +1,22 @@
+{
+  "$id": "https://uvlm.org/schemas/uvlm_provenance_repository_apprentice_profile.v1.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "apprentice_practicum": {"items": {"minLength": 1, "type": "string"}, "minItems": 1, "type": "array"},
+    "authority_effect": {"const": "none"},
+    "canonical_curriculum": {"additionalProperties": false, "properties": {"path": {"minLength": 1, "type": "string"}, "repository": {"const": "pdxvoiceteacher/CoherenceLattice"}, "version": {"const": "1.0.0"}}, "required": ["repository", "path", "version"], "type": "object"},
+    "doctrine": {"items": {"minLength": 1, "type": "string"}, "minItems": 6, "type": "array", "uniqueItems": true},
+    "must_not_claim": {"items": {"minLength": 1, "type": "string"}, "minItems": 1, "type": "array"},
+    "must_record": {"items": {"minLength": 1, "type": "string"}, "minItems": 1, "type": "array"},
+    "profile_id": {"minLength": 1, "type": "string"},
+    "repository": {"minLength": 1, "type": "string"},
+    "required_competencies": {"items": {"pattern": "^PV-C\\d{2}$", "type": "string"}, "minItems": 1, "type": "array", "uniqueItems": true},
+    "role": {"minLength": 1, "type": "string"},
+    "schema_id": {"const": "uvlm.provenance.repository_apprentice_profile.v1"},
+    "version": {"pattern": "^\\d+\\.\\d+\\.\\d+$", "type": "string"}
+  },
+  "required": ["schema_id", "version", "profile_id", "repository", "role", "canonical_curriculum", "doctrine", "required_competencies", "must_record", "must_not_claim", "apprentice_practicum", "authority_effect"],
+  "title": "UVLM Provenance Repository Apprentice Profile",
+  "type": "object"
+}

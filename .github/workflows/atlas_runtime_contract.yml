@@ -20,4 +20,4 @@ jobs:
       - run: python -m pip install --upgrade pip
       - run: python -m pip install -e '.[test]'
       - run: git diff --check
-      - run: PYTHONDONTWRITEBYTECODE=1 PYTHONNOUSERSITE=1 PYTHONPATH=python/src python -m pytest -q -rs -p no:cacheprovider tests/test_atlas_human_review_ui.py tests/test_atlas_governed_posture.py
+      - run: PYTHONDONTWRITEBYTECODE=1 PYTHONNOUSERSITE=1 PYTHONPATH=python/src python -m pytest -q -rs -p no:cacheprovider tests/test_provenance_apprentice_profile.py tests/test_atlas_governed_posture.py tests/test_atlas_governed_posture_explain.py tests/test_atlas_human_review_ui.py
