@@ -36,6 +36,10 @@ default, beside it in `human_decisions/`). A human decision is not truth
 certification and does not authorize memory, PMR, canonization, publication,
 DOI, Crossref, deployment, or release.
 
+## Deterministic Atlas posture explanations
+
+For a sealed run and separately supplied Sophia explanation packet, Atlas can generate file-only plain-language decision context with `python -m atlas.triadic.governed_posture_explain`. See [`docs/TRIADIC_PRODUCT_USABILITY_VERTICAL_SLICE_02_C_ATLAS_EXPLANATION_01.md`](docs/TRIADIC_PRODUCT_USABILITY_VERTICAL_SLICE_02_C_ATLAS_EXPLANATION_01.md).
+
 ## Atlas provenance apprentice profile
 
 The repository-local Atlas posture and human-decision provenance curriculum is available in [`docs/provenance/`](docs/provenance/README.md). It has no publication, retention, deployment, or release authority.
