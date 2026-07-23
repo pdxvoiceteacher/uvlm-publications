@@ -40,6 +40,10 @@ DOI, Crossref, deployment, or release.
 
 For a sealed run and separately supplied Sophia explanation packet, Atlas can generate file-only plain-language decision context with `python -m atlas.triadic.governed_posture_explain`. See [`docs/TRIADIC_PRODUCT_USABILITY_VERTICAL_SLICE_02_C_ATLAS_EXPLANATION_01.md`](docs/TRIADIC_PRODUCT_USABILITY_VERTICAL_SLICE_02_C_ATLAS_EXPLANATION_01.md).
 
+## Universal provider candidate v2
+
+Atlas supports safe, provider-neutral v2 execution provenance alongside v1 sealed runs; see [`docs/TRIADIC_PRODUCT_USABILITY_02_C_PROVIDER_CANDIDATE_V2.md`](docs/TRIADIC_PRODUCT_USABILITY_02_C_PROVIDER_CANDIDATE_V2.md).
+
 ## Atlas provenance apprentice profile
 
 The repository-local Atlas posture and human-decision provenance curriculum is available in [`docs/provenance/`](docs/provenance/README.md). It has no publication, retention, deployment, or release authority.

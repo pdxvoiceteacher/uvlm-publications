@@ -157,6 +157,7 @@ def build_atlas_explanation(run_root: str | Path, sophia_explanation: str | Path
         "posture_explanations": explanations,
         "sophia_disposition_explanation": f"Sophia disposition {sophia['disposition']} informs this presentation: {sophia['overall_reason']}",
         "repair_available": sophia["repairable"],
+        "provider_explanation": None if atlas.get("provider_context") is None else f"Provider trust class {atlas['provider_context']['trust_class']} and data-egress class {atlas['provider_context']['data_egress']} describe execution routing only. Identity assurance {atlas['provider_context']['assurance']} does not create correctness or Atlas posture authority.",
         "decision_meanings": DECISION_MEANINGS,
         "permitted_next_actions": ["REQUEST_REPAIR", "RECORD_DECISION", "EXPORT_EVIDENCE"],
         "authority_boundary": dict.fromkeys(posture.ATLAS_NONAUTH, False),
